@@ -2,7 +2,7 @@ import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { Alert, Platform, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Avatar, Button, Card, EmptyState, ErrorBox, Loading, Row, Screen, Segmented, T, Tag } from "../../components/ui";
+import { Avatar, Button, Card, EmptyState, ErrorBox, IconLine, Loading, Row, Screen, Segmented, T, Tag } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { dateTime, money, STATUS_LABEL } from "../../lib/format";
@@ -18,7 +18,7 @@ function confirmAction(message: string): Promise<boolean> {
   );
 }
 
-const tone = (s: Booking["status"]) => (s === "cancelled" ? "danger" : s === "pending_payment" ? "warn" : s === "completed" ? "neutral" : "brand");
+const tone = (s: Booking["status"]) => (s === "cancelled" ? "danger" : s === "confirmed" || s === "on_the_way" ? "gold" : "neutral");
 
 export default function Bookings() {
   const insets = useSafeAreaInsets();
@@ -86,10 +86,10 @@ export default function Bookings() {
               </View>
               <Tag label={STATUS_LABEL[b.status]} tone={tone(b.status)} />
             </Row>
-            <View style={{ marginTop: 12, gap: 4 }}>
-              <T variant="caption">🗓  {dateTime(b.startsAt, b.barber.timeZone)} ({b.barber.city} time)</T>
-              <T variant="caption">{b.locationType === "home" ? "🏠" : "💈"}  {b.address}</T>
-              {!!b.notes && <T variant="caption" muted>📝  {b.notes}</T>}
+            <View style={{ marginTop: 12, gap: 6 }}>
+              <IconLine icon="calendar-outline">{dateTime(b.startsAt, b.barber.timeZone)} ({b.barber.city} time)</IconLine>
+              <IconLine icon={b.locationType === "home" ? "home-outline" : "storefront-outline"}>{b.address}</IconLine>
+              {!!b.notes && <IconLine icon="document-text-outline" muted>{b.notes}</IconLine>}
             </View>
             <Row gap={8} style={{ marginTop: 14, flexWrap: "wrap" }}>
               {!isBarber && b.status === "pending_payment" && (

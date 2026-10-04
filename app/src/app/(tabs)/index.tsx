@@ -7,7 +7,7 @@ import { BarberTile } from "../../components/BarberCard";
 import { LocationPill, LocationSheet } from "../../components/LocationSheet";
 import { ReelThumb } from "../../components/ReelThumb";
 import { colors, fonts, radius } from "../../components/theme";
-import { Avatar, Card, IconButton, Loading, Row, SearchBar, Section, styles, T, Tag } from "../../components/ui";
+import { Avatar, Card, GoldIcon, IconButton, Loading, Row, SearchBar, Section, styles, T, Tag, type IconName } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { useCart } from "../../lib/cart";
@@ -75,7 +75,7 @@ export default function Home() {
         </Row>
 
         <T variant="display" style={{ marginTop: 22 }}>
-          {greeting()}{user ? `, ${user.name.split(" ")[0]}` : ""} 👋
+          {greeting()}{user ? `, ${user.name.split(" ")[0]}` : ""}
         </T>
         <T muted style={{ marginTop: 4 }}>Ready to get fresh?</T>
 
@@ -85,13 +85,13 @@ export default function Home() {
 
         {/* Service tiles */}
         <Row gap={12} style={{ marginTop: 20, alignItems: "stretch" }}>
-          <BigTile title="Book a barber" subtitle="At the shop" emoji="💈" bg={colors.brandSoft} onPress={() => router.push("/explore")} />
-          <BigTile title="Barber at home" subtitle="They come to you" emoji="🏠" bg={colors.peach} onPress={() => router.push({ pathname: "/explore", params: { home: "1" } })} />
+          <BigTile title="Book a barber" subtitle="At the shop" icon="cut" dark onPress={() => router.push("/explore")} />
+          <BigTile title="Barber at home" subtitle="They come to you" icon="home" onPress={() => router.push({ pathname: "/explore", params: { home: "1" } })} />
         </Row>
         <Row gap={12} style={{ marginTop: 12 }}>
-          <SmallTile title="AI Stylist" emoji="✨" bg={colors.lilac} onPress={() => router.push("/stylist")} />
-          <SmallTile title="Reels" emoji="🎬" bg={colors.rose} onPress={() => router.push("/reels")} />
-          <SmallTile title="Shop" emoji="🛍️" bg={colors.sky} onPress={() => router.push("/shop")} />
+          <SmallTile title="AI Stylist" icon="sparkles" onPress={() => router.push("/stylist")} />
+          <SmallTile title="Reels" icon="play" onPress={() => router.push("/reels")} />
+          <SmallTile title="Shop" icon="bag-handle" onPress={() => router.push("/shop")} />
         </Row>
 
         {/* Upcoming appointment */}
@@ -104,7 +104,7 @@ export default function Home() {
                 <T variant="strong">{next.service?.name} · {next.barber.name}</T>
                 <T variant="caption" muted>{dateTime(next.startsAt, next.barber.timeZone)}</T>
               </View>
-              <Tag label={STATUS_LABEL[next.status]} tone={next.status === "pending_payment" ? "warn" : "brand"} />
+              <Tag label={STATUS_LABEL[next.status]} tone={next.status === "pending_payment" ? "neutral" : "gold"} />
             </Row>
           </Card>
         )}
@@ -112,7 +112,7 @@ export default function Home() {
         {!place && (
           <Card tone="surface" style={{ marginTop: 20 }} onPress={() => setSheet(true)}>
             <Row gap={12}>
-              <T style={{ fontSize: 30, lineHeight: 36 }}>📍</T>
+              <GoldIcon icon="location" />
               <View style={{ flex: 1 }}>
                 <T variant="strong">Where are you?</T>
                 <T variant="caption" muted>Pick your city to see barbers near you.</T>
@@ -125,15 +125,15 @@ export default function Home() {
 
       {/* Promo banners */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} snapToInterval={banner + 12} decelerationRate="fast" contentContainerStyle={[styles.inner, { paddingHorizontal: 20, gap: 12, marginTop: 24 }]}>
-        <Banner width={banner} bg={colors.brand} title="Your barber, at your door" body="Book a home visit and skip the queue." cta="Book now" emoji="🏠" dark onPress={() => router.push({ pathname: "/explore", params: { home: "1" } })} />
-        <Banner width={banner} bg={colors.lilac} title="Not sure what cut to get?" body="Snap a selfie — our AI stylist finds your perfect cut." cta="Try AI Stylist" emoji="✨" onPress={() => router.push("/stylist")} />
+        <Banner width={banner} title="Your barber, at your door" body="Book a home visit and skip the queue." cta="Book now" icon="home" dark onPress={() => router.push({ pathname: "/explore", params: { home: "1" } })} />
+        <Banner width={banner} title="Not sure what cut to get?" body="Snap a selfie — our AI stylist finds your perfect cut." cta="Try AI Stylist" icon="sparkles" onPress={() => router.push("/stylist")} />
         <Banner
           width={banner}
-          bg={colors.peach}
+          dark
           title={`${SHOP_NAME} products`}
           body={catalog ? `Free delivery over ${money(catalog.shipping.freeFrom, catalog.currency)}.` : "Pomades, beard oils & more — delivered."}
           cta="Shop now"
-          emoji="🛍️"
+          icon="bag-handle"
           onPress={() => router.push("/shop")}
         />
       </ScrollView>
@@ -172,7 +172,7 @@ export default function Home() {
         {user?.role !== "barber" && (
           <Card tone="surface" style={{ marginTop: 28 }} onPress={() => router.push("/become-barber")}>
             <Row gap={12}>
-              <T style={{ fontSize: 28, lineHeight: 34 }}>✂️</T>
+              <GoldIcon icon="cut" />
               <View style={{ flex: 1 }}>
                 <T variant="strong">Are you a barber?</T>
                 <T variant="caption" muted>Join {APP_NAME} and get booked in your city.</T>
@@ -187,40 +187,53 @@ export default function Home() {
   );
 }
 
-function BigTile({ title, subtitle, emoji, bg, onPress }: { title: string; subtitle: string; emoji: string; bg: string; onPress: () => void }) {
+function BigTile({ title, subtitle, icon, dark, onPress }: { title: string; subtitle: string; icon: IconName; dark?: boolean; onPress: () => void }) {
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => [{ flex: 1, backgroundColor: bg, borderRadius: radius.lg, padding: 16, height: 132, overflow: "hidden" }, pressed && styles.pressed]}>
-      <T variant="heading">{title}</T>
-      <T variant="caption" muted>{subtitle}</T>
-      <T style={{ position: "absolute", right: 12, bottom: 8, fontSize: 52, lineHeight: 62 }}>{emoji}</T>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [
+        { flex: 1, borderRadius: radius.lg, padding: 16, height: 136, justifyContent: "space-between" },
+        dark ? { backgroundColor: colors.ink } : [styles.card, { padding: 16 }],
+        pressed && styles.pressed,
+      ]}
+    >
+      <GoldIcon icon={icon} dark={dark} />
+      <View>
+        <T variant="heading" color={dark ? colors.onInk : colors.text}>{title}</T>
+        <T variant="caption" color={dark ? "rgba(255,255,255,0.65)" : colors.muted}>{subtitle}</T>
+      </View>
     </Pressable>
   );
 }
 
-function SmallTile({ title, emoji, bg, onPress }: { title: string; emoji: string; bg: string; onPress: () => void }) {
+function SmallTile({ title, icon, onPress }: { title: string; icon: IconName; onPress: () => void }) {
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => [{ flex: 1, alignItems: "center" }, pressed && styles.pressed]}>
-      <View style={{ backgroundColor: bg, borderRadius: radius.lg, width: "100%", height: 78, alignItems: "center", justifyContent: "center" }}>
-        <T style={{ fontSize: 34, lineHeight: 42 }}>{emoji}</T>
-      </View>
+    <Pressable onPress={onPress} style={({ pressed }) => [{ flex: 1, alignItems: "center", backgroundColor: colors.card, borderRadius: radius.lg, paddingVertical: 14, borderWidth: 1, borderColor: colors.border }, pressed && styles.pressed]}>
+      <Ionicons name={icon} size={24} color={colors.gold} />
       <T variant="caption" style={{ marginTop: 8, fontFamily: fonts.semibold }}>{title}</T>
     </Pressable>
   );
 }
 
-function Banner({ width, bg, title, body, cta, emoji, dark, onPress }: { width: number; bg: string; title: string; body: string; cta: string; emoji: string; dark?: boolean; onPress: () => void }) {
-  const fg = dark ? "#fff" : colors.text;
+function Banner({ width, title, body, cta, icon, dark, onPress }: { width: number; title: string; body: string; cta: string; icon: IconName; dark?: boolean; onPress: () => void }) {
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => [{ width, backgroundColor: bg, borderRadius: radius.lg, padding: 18, minHeight: 140, overflow: "hidden" }, pressed && styles.pressed]}>
-      <View style={{ maxWidth: "72%" }}>
-        <T variant="heading" color={fg}>{title}</T>
-        <T variant="caption" color={dark ? "rgba(255,255,255,0.85)" : colors.muted} style={{ marginTop: 4 }}>{body}</T>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [
+        { width, borderRadius: radius.lg, padding: 20, minHeight: 150, overflow: "hidden" },
+        dark ? { backgroundColor: colors.ink } : { backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
+        pressed && styles.pressed,
+      ]}
+    >
+      <View style={{ maxWidth: "74%" }}>
+        <T variant="title" color={dark ? colors.gold : colors.text} style={{ fontSize: 20, lineHeight: 26 }}>{title}</T>
+        <T variant="caption" color={dark ? "rgba(255,255,255,0.75)" : colors.muted} style={{ marginTop: 6 }}>{body}</T>
       </View>
-      <View style={{ marginTop: 14, alignSelf: "flex-start", backgroundColor: dark ? "#fff" : colors.text, borderRadius: radius.pill, paddingHorizontal: 14, paddingVertical: 8 }}>
-        <T variant="caption" color={dark ? colors.brandDark : "#fff"} style={{ fontFamily: fonts.semibold }}>{cta}</T>
-      </View>
-      <T style={{ position: "absolute", right: 14, bottom: 6, fontSize: 64, lineHeight: 76 }}>{emoji}</T>
+      <Row gap={6} style={{ marginTop: 16 }}>
+        <T variant="caption" color={dark ? colors.gold : colors.goldDeep} style={{ fontFamily: fonts.semibold }}>{cta}</T>
+        <Ionicons name="arrow-forward" size={14} color={dark ? colors.gold : colors.goldDeep} />
+      </Row>
+      <Ionicons name={icon} size={84} color={dark ? "rgba(197,162,83,0.18)" : colors.goldSoft} style={{ position: "absolute", right: -6, bottom: -8 }} />
     </Pressable>
   );
 }
-

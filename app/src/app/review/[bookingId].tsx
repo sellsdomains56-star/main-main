@@ -5,7 +5,7 @@ import { Avatar, Button, ErrorBox, Field, Loading, Screen, StarsInput, T } from 
 import { api } from "../../lib/api";
 import type { Booking } from "../../lib/types";
 
-const LABELS = ["", "Not great", "Okay", "Good", "Great", "Fresh to death 🔥"];
+const LABELS = ["", "Not great", "Okay", "Good", "Great", "Fresh to death"];
 
 export default function ReviewScreen() {
   const { bookingId } = useLocalSearchParams<{ bookingId: string }>();

@@ -27,7 +27,7 @@ export default function Account() {
             <View style={{ flex: 1 }}>
               <T variant="title">{user.name}</T>
               <T variant="caption" muted>{user.email}</T>
-              {user.role === "barber" && <T variant="caption" color={colors.brand}>Barber account</T>}
+              {user.role === "barber" && <T variant="caption" color={colors.goldDeep}>Barber account</T>}
             </View>
           </Row>
         ) : (

@@ -15,8 +15,8 @@ export function ReelThumb({ reel, width = 120, onPress, showBarber = true }: { r
         {poster ? (
           <Image source={{ uri: poster }} style={{ width: "100%", height: "100%" }} />
         ) : (
-          <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.brandDark }}>
-            <Ionicons name="play-circle" size={36} color="rgba(255,255,255,0.9)" />
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.ink }}>
+            <Ionicons name="play-circle" size={36} color={colors.gold} />
           </View>
         )}
         <View style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: 8, backgroundColor: "rgba(0,0,0,0.25)" }}>

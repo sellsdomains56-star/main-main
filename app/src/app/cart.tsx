@@ -2,6 +2,7 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 import { LocationPill } from "../components/LocationSheet";
+import { ProductArt } from "../components/ProductArt";
 import { QuantityStepper } from "../components/QuantityStepper";
 import { colors, radius } from "../components/theme";
 import { Button, Card, Divider, EmptyState, ErrorBox, Field, Loading, Row, Screen, Section, SummaryLine, T } from "../components/ui";
@@ -77,9 +78,7 @@ export default function Cart() {
         <View key={p.id}>
           {i > 0 && <Divider style={{ marginVertical: 0 }} />}
           <Row gap={14} style={{ paddingVertical: 12 }}>
-            <View style={{ width: 56, height: 56, borderRadius: radius.md, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" }}>
-              <T style={{ fontSize: 28, lineHeight: 34 }}>{p.emoji}</T>
-            </View>
+            <ProductArt category={p.category} size={56} />
             <View style={{ flex: 1 }}>
               <T variant="strong" numberOfLines={1}>{p.name.replace(`${SHOP_NAME} `, "")}</T>
               <T variant="caption" muted>{money(p.price * items[p.id], p.currency)}</T>
@@ -93,7 +92,7 @@ export default function Cart() {
         <SummaryLine label="Subtotal" value={money(subtotal, catalog.currency)} />
         <SummaryLine label="Delivery" value={shipping ? money(shipping, catalog.currency) : "Free"} />
         {shipping > 0 && (
-          <T variant="small" color={colors.brandDark} style={{ marginTop: 4 }}>
+          <T variant="small" color={colors.goldDeep} style={{ marginTop: 4 }}>
             Add {money(catalog.shipping.freeFrom - subtotal, catalog.currency)} more for free delivery
           </T>
         )}

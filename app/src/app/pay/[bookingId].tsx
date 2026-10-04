@@ -2,7 +2,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
 import { PayButton } from "../../components/PayButton";
-import { Avatar, Button, Card, Divider, ErrorBox, Loading, Row, Screen, SummaryLine, T } from "../../components/ui";
+import { Avatar, Button, Card, Divider, ErrorBox, IconLine, Loading, Row, Screen, SummaryLine, T } from "../../components/ui";
 import { api } from "../../lib/api";
 import { STRIPE_PUBLISHABLE_KEY } from "../../lib/config";
 import { dateTime, money } from "../../lib/format";
@@ -45,7 +45,7 @@ export default function Pay() {
         <Divider />
         <SummaryLine label={booking.service?.name ?? "Service"} value={money(booking.service?.price ?? booking.amount, booking.currency)} />
         {fee > 0 && <SummaryLine label="Home visit" value={money(fee, booking.currency)} />}
-        <T variant="caption" muted style={{ marginTop: 4 }}>{booking.locationType === "home" ? "🏠 " : "💈 "}{booking.address}</T>
+        <View style={{ marginTop: 6 }}><IconLine icon={booking.locationType === "home" ? "home-outline" : "storefront-outline"} muted>{booking.address}</IconLine></View>
         <Divider />
         <SummaryLine label="Total" value={amount} strong />
       </Card>

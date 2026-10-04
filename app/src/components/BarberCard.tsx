@@ -21,7 +21,7 @@ export function BarberCard({ barber }: { barber: Barber }) {
         <T variant="caption" muted numberOfLines={1} style={{ marginTop: 3 }}>{barber.specialties.slice(0, 3).join(" · ")}</T>
         <Row gap={6} style={{ marginTop: 8 }}>
           <Tag label={`from ${money(barber.startingPrice, barber.currency)}`} />
-          {barber.offersHomeVisits && <Tag label="Comes to you" tone="brand" icon="home" />}
+          {barber.offersHomeVisits && <Tag label="Comes to you" tone="gold" icon="home" />}
         </Row>
       </View>
     </Pressable>
@@ -35,7 +35,7 @@ export function BarberTile({ barber }: { barber: Barber }) {
       <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 168, height: 168 }} rounded={radius.lg} />
       {barber.offersHomeVisits && (
         <View style={{ position: "absolute", top: 10, left: 10 }}>
-          <Tag label="Comes to you" tone="brand" icon="home" />
+          <Tag label="Comes to you" tone="gold" icon="home" />
         </View>
       )}
       <T variant="strong" numberOfLines={1} style={{ marginTop: 10 }}>{barber.name}</T>

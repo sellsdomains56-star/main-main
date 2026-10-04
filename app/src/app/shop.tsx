@@ -3,6 +3,7 @@ import { router, Stack } from "expo-router";
 import { useMemo, useState } from "react";
 import { Pressable, ScrollView, useWindowDimensions, View } from "react-native";
 import { LocationPill } from "../components/LocationSheet";
+import { ProductArt } from "../components/ProductArt";
 import { QuantityStepper } from "../components/QuantityStepper";
 import { colors, radius } from "../components/theme";
 import { Button, ErrorBox, IconButton, Loading, Pill, Row, Screen, styles, T } from "../components/ui";
@@ -12,7 +13,6 @@ import { money } from "../lib/format";
 import { useLocation } from "../lib/location";
 import { useCatalog } from "../lib/useCatalog";
 
-const TINTS = [colors.brandSoft, colors.peach, colors.lilac, colors.sky, colors.rose];
 
 export default function Shop() {
   const { width } = useWindowDimensions();
@@ -36,17 +36,19 @@ export default function Shop() {
       }
     >
       <Stack.Screen options={{ headerRight: () => <IconButton icon="receipt-outline" label="My orders" tone="plain" onPress={() => router.push("/orders")} /> }} />
-      <View style={{ backgroundColor: colors.brand, borderRadius: radius.lg, padding: 20, overflow: "hidden" }}>
-        <T variant="title" color="#fff">Buy all {SHOP_NAME} products</T>
-        <T variant="caption" color="rgba(255,255,255,0.9)" style={{ marginTop: 6, maxWidth: "75%" }}>
+      <View style={{ backgroundColor: colors.ink, borderRadius: radius.lg, padding: 22, overflow: "hidden" }}>
+        <T variant="small" color={colors.gold} style={{ letterSpacing: 2 }}>{SHOP_NAME.toUpperCase()}</T>
+        <T variant="title" color={colors.onInk} style={{ marginTop: 6 }}>Buy all {SHOP_NAME} products</T>
+        <T variant="caption" color="rgba(255,255,255,0.7)" style={{ marginTop: 6, maxWidth: "78%" }}>
           The same pomades, oils and shampoos our barbers use — delivered to your door.
         </T>
         {catalog && (
-          <View style={{ marginTop: 14, alignSelf: "flex-start", backgroundColor: "rgba(255,255,255,0.2)", borderRadius: radius.pill, paddingHorizontal: 12, paddingVertical: 6 }}>
-            <T variant="small" color="#fff">🚚 Free delivery over {money(catalog.shipping.freeFrom, catalog.currency)}</T>
-          </View>
+          <Row gap={6} style={{ marginTop: 16 }}>
+            <Ionicons name="car-outline" size={15} color={colors.gold} />
+            <T variant="small" color={colors.gold}>Free delivery over {money(catalog.shipping.freeFrom, catalog.currency)}</T>
+          </Row>
         )}
-        <T style={{ position: "absolute", right: 14, bottom: 4, fontSize: 64, lineHeight: 76 }}>🛍️</T>
+        <Ionicons name="bag-handle-outline" size={96} color="rgba(197,162,83,0.16)" style={{ position: "absolute", right: -4, bottom: -10 }} />
       </View>
 
       <View style={{ marginTop: 16 }}>
@@ -61,17 +63,17 @@ export default function Shop() {
       {!catalog && !error && <Loading />}
 
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10 }}>
-        {products.map((p, i) => (
+        {products.map((p) => (
           <View key={p.id} style={{ width: cardWidth }}>
-            <View style={{ backgroundColor: TINTS[i % TINTS.length], borderRadius: radius.lg, aspectRatio: 1, alignItems: "center", justifyContent: "center" }}>
-              <T style={{ fontSize: 56, lineHeight: 68 }}>{p.emoji}</T>
+            <View>
+              <ProductArt category={p.category} size={cardWidth} />
               {!items[p.id] && (
                 <Pressable
                   accessibilityLabel={`Add ${p.name} to cart`}
                   onPress={() => add(p.id)}
-                  style={({ pressed }) => [{ position: "absolute", right: 10, bottom: 10, width: 36, height: 36, borderRadius: 18, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }, pressed && styles.pressed]}
+                  style={({ pressed }) => [{ position: "absolute", right: 10, bottom: 10, width: 36, height: 36, borderRadius: 18, backgroundColor: colors.ink, alignItems: "center", justifyContent: "center" }, pressed && styles.pressed]}
                 >
-                  <Ionicons name="add" size={22} color={colors.text} />
+                  <Ionicons name="add" size={22} color={colors.gold} />
                 </Pressable>
               )}
             </View>

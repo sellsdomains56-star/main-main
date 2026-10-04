@@ -156,7 +156,7 @@ const ReelPage = memo(function ReelPage({
             <View>
               <T variant="strong" color="#fff" style={{ fontFamily: fonts.bold }}>{b.name}</T>
               <Row gap={4}>
-                <Ionicons name="star" size={12} color={colors.star} />
+                <Ionicons name="star" size={12} color={colors.gold} />
                 <T variant="small" color="rgba(255,255,255,0.9)">
                   {b.rating ? b.rating.toFixed(1) : "New"} · {b.city}{b.offersHomeVisits ? " · comes to you" : ""}
                 </T>

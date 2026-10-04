@@ -5,8 +5,8 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { Image, Platform, Pressable, View } from "react-native";
 import { BarberCard } from "../components/BarberCard";
-import { colors, radius } from "../components/theme";
-import { Button, Card, Divider, ErrorBox, Field, Pill, Row, Screen, Section, T, Tag, Wrap } from "../components/ui";
+import { colors, fonts, radius } from "../components/theme";
+import { Button, Card, GoldIcon, Divider, ErrorBox, Field, Pill, Row, Screen, Section, T, Tag, Wrap } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { useLocation } from "../lib/location";
@@ -84,7 +84,8 @@ export default function Stylist() {
         ) : undefined
       }
     >
-      <T variant="display">Find your{"\n"}perfect cut ✨</T>
+      <T variant="small" color={colors.goldDeep} style={{ letterSpacing: 2 }}>AI STYLIST</T>
+      <T variant="display" style={{ marginTop: 4 }}>Find your perfect cut</T>
       <T muted style={{ marginTop: 6 }}>Upload a clear, front-facing photo. Our AI reads your face shape and hair type and suggests the cuts that suit you.</T>
 
       <View style={{ marginTop: 20 }}>
@@ -95,7 +96,7 @@ export default function Stylist() {
           </View>
         ) : (
           <View style={{ borderWidth: 2, borderStyle: "dashed", borderColor: colors.surfaceStrong, borderRadius: radius.xl, padding: 24, alignItems: "center", backgroundColor: colors.surface }}>
-            <T style={{ fontSize: 48, lineHeight: 58 }}>🤳</T>
+            <GoldIcon icon="camera-outline" size={60} />
             <T variant="strong" style={{ marginTop: 8 }}>Add a photo of your head</T>
             <T variant="caption" muted center style={{ marginTop: 4 }}>Good light · no hat · face the camera</T>
             <Row gap={10} style={{ marginTop: 16 }}>
@@ -127,7 +128,7 @@ export default function Stylist() {
         <>
           <Card tone="surface" style={{ marginTop: 20 }}>
             <Row gap={8} style={{ flexWrap: "wrap" }}>
-              <Tag label={`${result.advice.faceShape} face`} tone="brand" />
+              <Tag label={`${result.advice.faceShape} face`} tone="gold" />
               <Tag label={result.advice.hairType} />
             </Row>
             <T style={{ marginTop: 10 }}>{result.advice.summary}</T>
@@ -135,16 +136,16 @@ export default function Stylist() {
 
           <Section title="Cuts that suit you">
             {result.advice.recommendations.map((r, i) => (
-              <Card key={r.name} style={{ marginBottom: 12, ...(i === 0 ? { borderColor: colors.brand, borderWidth: 1.5 } : {}) }}>
-                {i === 0 && <View style={{ marginBottom: 8 }}><Tag label="Best match" tone="brand" icon="trophy" /></View>}
+              <Card key={r.name} style={{ marginBottom: 12, ...(i === 0 ? { borderColor: colors.gold, borderWidth: 1.5 } : {}) }}>
+                {i === 0 && <View style={{ marginBottom: 8 }}><Tag label="Best match" tone="gold" icon="trophy" /></View>}
                 <T variant="heading">{r.name}</T>
                 <T variant="caption" muted style={{ marginTop: 2 }}>{r.length} · {r.maintenance} maintenance</T>
                 <T style={{ marginTop: 10 }}>{r.description}</T>
                 <T variant="caption" muted style={{ marginTop: 6 }}>{r.whyItSuits}</T>
                 <View style={{ backgroundColor: colors.surface, borderRadius: radius.md, padding: 12, marginTop: 12 }}>
                   <Row gap={6}>
-                    <Ionicons name="chatbubble-ellipses-outline" size={14} color={colors.brand} />
-                    <T variant="small" color={colors.brandDark}>Tell your barber</T>
+                    <Ionicons name="chatbubble-ellipses-outline" size={14} color={colors.gold} />
+                    <T variant="small" color={colors.goldDeep}>Tell your barber</T>
                   </Row>
                   <T style={{ marginTop: 4 }}>"{r.askYourBarber}"</T>
                 </View>
@@ -165,7 +166,7 @@ export default function Stylist() {
             ))}
           </Section>
           <Pressable onPress={() => { setResult(null); setPhoto(null); }} style={{ marginTop: 20, alignSelf: "center" }}>
-            <T variant="caption" color={colors.brand}>Try another photo</T>
+            <T variant="caption" color={colors.goldDeep} style={{ fontFamily: fonts.semibold }}>Try another photo</T>
           </Pressable>
         </>
       )}

@@ -2,7 +2,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
 import { PayButton } from "../../components/PayButton";
-import { Button, Card, Divider, ErrorBox, Loading, Screen, SummaryLine, T } from "../../components/ui";
+import { Button, Card, Divider, ErrorBox, IconLine, Loading, Screen, SummaryLine, T } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useCart } from "../../lib/cart";
 import { STRIPE_PUBLISHABLE_KEY } from "../../lib/config";
@@ -43,7 +43,7 @@ export default function PayOrder() {
         <SummaryLine label="Delivery" value={order.shipping ? money(order.shipping, order.currency) : "Free"} />
         <Divider />
         <SummaryLine label="Total" value={amount} strong />
-        <T variant="caption" muted style={{ marginTop: 10 }}>🚚 {order.shippingName}, {order.shippingAddress}</T>
+        <View style={{ marginTop: 10 }}><IconLine icon="car-outline" muted>{order.shippingName}, {order.shippingAddress}</IconLine></View>
       </Card>
 
       <View style={{ marginTop: 20 }}>

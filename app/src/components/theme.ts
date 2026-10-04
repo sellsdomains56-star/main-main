@@ -1,32 +1,33 @@
 import { Platform } from "react-native";
 
-// Minimal "super app" look: white space, soft grey surfaces, one fresh-green accent.
+// Light page, black ink, gold for details only. See DESIGN.md before adding colors.
 export const colors = {
-  bg: "#FFFFFF",
-  surface: "#F4F6F5",
-  surfaceStrong: "#E9EDEB",
+  // Page & surfaces
+  bg: "#FAF8F4", // warm off-white page
   card: "#FFFFFF",
-  text: "#101814",
-  muted: "#6B7570",
-  faint: "#9AA39F",
-  border: "#ECEFED",
-  brand: "#0BA360",
-  brandDark: "#087A48",
-  brandSoft: "#E7F6EE",
-  onBrand: "#FFFFFF",
-  star: "#F5A623",
-  danger: "#E5484D",
-  dangerSoft: "#FDECEC",
-  warn: "#B7791F",
-  warnSoft: "#FFF4E0",
-  // Tile tints for the home grid
-  peach: "#FFF1E6",
-  lilac: "#F1EDFF",
-  rose: "#FFEAF1",
-  sky: "#E8F3FF",
+  surface: "#F3EFE7", // inputs, chips, quiet tiles
+  surfaceStrong: "#E7E0D3",
+  border: "#E9E3D8",
+
+  // Ink
+  text: "#111111",
+  muted: "#6E675D",
+  faint: "#A39C90",
+  ink: "#111111", // primary buttons, dark banners, selected chips
+  onInk: "#FFFFFF",
+
+  // Gold — details only: icons, stars, selected marks, prices on dark, small highlights
+  gold: "#C5A253",
+  goldDeep: "#8E6E2A", // gold text on light backgrounds (readable contrast)
+  goldSoft: "#F4ECDA", // gold tint for tags and avatar fallbacks
+
+  // Status
+  danger: "#B42318",
+  dangerSoft: "#FBEAE8",
 };
 
 export const fonts = {
+  display: "PlayfairDisplay_700Bold", // big headings only
   regular: "Inter_400Regular",
   medium: "Inter_500Medium",
   semibold: "Inter_600SemiBold",
@@ -34,9 +35,9 @@ export const fonts = {
   black: "Inter_800ExtraBold",
 };
 
-export const radius = { sm: 10, md: 14, lg: 20, xl: 28, pill: 999 };
+export const radius = { sm: 10, md: 14, lg: 18, xl: 26, pill: 999 };
 
 export const shadow = Platform.select({
-  web: { boxShadow: "0 2px 12px rgba(16, 24, 20, 0.06)" },
-  default: { shadowColor: "#101814", shadowOpacity: 0.06, shadowRadius: 12, shadowOffset: { width: 0, height: 2 }, elevation: 2 },
+  web: { boxShadow: "0 1px 2px rgba(17,17,17,0.04), 0 4px 16px rgba(17,17,17,0.05)" },
+  default: { shadowColor: "#111111", shadowOpacity: 0.06, shadowRadius: 14, shadowOffset: { width: 0, height: 3 }, elevation: 2 },
 }) as object;

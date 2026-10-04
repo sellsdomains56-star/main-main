@@ -54,7 +54,7 @@ export default function BecomeBarber() {
         />
       }
     >
-      <T variant="display">Grow your chair 💈</T>
+      <T variant="display">Grow your chair</T>
       <T muted style={{ marginTop: 6 }}>Join {APP_NAME}: get booked by customers in your city, get paid upfront, post reels of your best cuts.</T>
 
       <Section title="Where do you work?">

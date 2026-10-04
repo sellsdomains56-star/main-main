@@ -7,7 +7,7 @@ import type { Country } from "../lib/types";
 import { colors, fonts, radius } from "./theme";
 import { ErrorBox, IconButton, Loading, Row, T } from "./ui";
 
-/** "📍 Berlin, Germany ▾" — opens a sheet to pick country, then city. */
+/** "Berlin, Germany ⌄" pill — opens a sheet to pick country, then city. */
 export function LocationPill({ label = "Your city" }: { label?: string }) {
   const { place, country } = useLocation();
   const [open, setOpen] = useState(false);
@@ -17,7 +17,7 @@ export function LocationPill({ label = "Your city" }: { label?: string }) {
       <Pressable onPress={() => setOpen(true)} hitSlop={8} accessibilityRole="button" accessibilityLabel={`${label}: ${text}`}>
         <T variant="small" muted>{label}</T>
         <Row gap={4}>
-          <Ionicons name="location" size={16} color={colors.brand} />
+          <Ionicons name="location" size={16} color={colors.gold} />
           <T variant="strong" numberOfLines={1} style={{ fontFamily: fonts.bold, maxWidth: 240 }}>{text}</T>
           <Ionicons name="chevron-down" size={16} color={colors.text} />
         </Row>
@@ -61,7 +61,7 @@ export function LocationSheet({ visible, onClose }: { visible: boolean; onClose:
             countries.map((c) => (
               <Option
                 key={c.code}
-                leading={flag(c.code)}
+                flag={flag(c.code)}
                 title={c.name}
                 subtitle={`${c.cities.length} ${c.cities.length === 1 ? "city" : "cities"}`}
                 selected={place?.countryCode === c.code}
@@ -71,11 +71,11 @@ export function LocationSheet({ visible, onClose }: { visible: boolean; onClose:
             ))}
           {picked && (
             <>
-              <Option leading="🌍" title={`All of ${picked.name}`} selected={place?.countryCode === picked.code && place.city === ""} onPress={() => choose(picked.code, "")} />
+              <Option icon="globe-outline" title={`All of ${picked.name}`} selected={place?.countryCode === picked.code && place.city === ""} onPress={() => choose(picked.code, "")} />
               {picked.cities.map((city) => (
                 <Option
                   key={city.name}
-                  leading="🏙️"
+                  icon="business-outline"
                   title={city.name}
                   subtitle={`${city.barberCount} ${city.barberCount === 1 ? "barber" : "barbers"}`}
                   selected={place?.countryCode === picked.code && place.city === city.name}
@@ -90,15 +90,21 @@ export function LocationSheet({ visible, onClose }: { visible: boolean; onClose:
   );
 }
 
-function Option({ leading, title, subtitle, selected, chevron, onPress }: { leading: string; title: string; subtitle?: string; selected?: boolean; chevron?: boolean; onPress: () => void }) {
+function Option({ flag: flagText, icon, title, subtitle, selected, chevron, onPress }: { flag?: string; icon?: keyof typeof Ionicons.glyphMap; title: string; subtitle?: string; selected?: boolean; chevron?: boolean; onPress: () => void }) {
   return (
     <Pressable onPress={onPress} style={({ pressed }) => ({ flexDirection: "row", alignItems: "center", gap: 14, padding: 12, borderRadius: radius.md, backgroundColor: pressed || selected ? colors.surface : "transparent" })}>
-      <T style={{ fontSize: 26, lineHeight: 32 }}>{leading}</T>
+      {flagText ? (
+        <T style={{ fontSize: 26, lineHeight: 32, width: 40, textAlign: "center" }}>{flagText}</T>
+      ) : (
+        <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: colors.goldSoft, alignItems: "center", justifyContent: "center" }}>
+          <Ionicons name={icon ?? "location-outline"} size={19} color={colors.goldDeep} />
+        </View>
+      )}
       <View style={{ flex: 1 }}>
         <T variant="strong">{title}</T>
         {subtitle && <T variant="caption" muted>{subtitle}</T>}
       </View>
-      {selected && <Ionicons name="checkmark-circle" size={22} color={colors.brand} />}
+      {selected && <Ionicons name="checkmark-circle" size={22} color={colors.gold} />}
       {chevron && <Ionicons name="chevron-forward" size={18} color={colors.faint} />}
     </Pressable>
   );

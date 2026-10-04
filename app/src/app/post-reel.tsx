@@ -4,7 +4,7 @@ import { useVideoPlayer, VideoView } from "expo-video";
 import { useState } from "react";
 import { View } from "react-native";
 import { colors, radius } from "../components/theme";
-import { Button, EmptyState, ErrorBox, Field, Screen, T } from "../components/ui";
+import { Button, EmptyState, GoldIcon, ErrorBox, Field, Screen, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 
@@ -64,7 +64,7 @@ export default function PostReel() {
           </View>
         ) : (
           <View style={{ width: "100%", borderWidth: 2, borderStyle: "dashed", borderColor: colors.surfaceStrong, borderRadius: radius.xl, padding: 28, alignItems: "center", backgroundColor: colors.surface }}>
-            <T style={{ fontSize: 48, lineHeight: 58 }}>🎬</T>
+            <GoldIcon icon="videocam-outline" size={60} />
             <T variant="strong" style={{ marginTop: 8 }}>Choose a video</T>
           </View>
         )}
@@ -72,7 +72,7 @@ export default function PostReel() {
       </View>
 
       <View style={{ marginTop: 20 }}>
-        <Field label="Caption" value={caption} onChangeText={setCaption} placeholder="e.g. Skin fade + beard sculpt ✂️ #fade" maxLength={300} multiline />
+        <Field label="Caption" value={caption} onChangeText={setCaption} placeholder="e.g. Skin fade + beard sculpt #fade" maxLength={300} multiline />
       </View>
       {error && <ErrorBox message={error} />}
     </Screen>

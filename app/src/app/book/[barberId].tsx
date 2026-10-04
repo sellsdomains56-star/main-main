@@ -100,7 +100,7 @@ export default function Book() {
             <View key={s.id}>
               {i > 0 && <Divider style={{ marginVertical: 0 }} />}
               <Pressable onPress={() => setServiceId(s.id)} style={{ flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 14 }} accessibilityState={{ selected }}>
-                <Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={selected ? colors.brand : colors.faint} />
+                <Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={selected ? colors.gold : colors.faint} />
                 <View style={{ flex: 1 }}>
                   <T variant="strong">{s.name}</T>
                   <T variant="caption" muted>{s.durationMin} min</T>

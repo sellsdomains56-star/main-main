@@ -22,8 +22,8 @@ export type IconName = keyof typeof Ionicons.glyphMap;
 // ---------- Typography ----------
 
 const variants = {
-  display: { fontFamily: fonts.black, fontSize: 28, lineHeight: 34, letterSpacing: -0.6 },
-  title: { fontFamily: fonts.bold, fontSize: 22, lineHeight: 28, letterSpacing: -0.3 },
+  display: { fontFamily: fonts.display, fontSize: 30, lineHeight: 38, letterSpacing: -0.2 },
+  title: { fontFamily: fonts.display, fontSize: 23, lineHeight: 30 },
   heading: { fontFamily: fonts.bold, fontSize: 17, lineHeight: 22 },
   body: { fontFamily: fonts.regular, fontSize: 15, lineHeight: 21 },
   strong: { fontFamily: fonts.semibold, fontSize: 15, lineHeight: 21 },
@@ -106,7 +106,7 @@ export function Section({ title, action, children, style }: { title?: string; ac
           {title ? <T variant="heading">{title}</T> : <View />}
           {action && (
             <Pressable onPress={action.onPress} hitSlop={8}>
-              <T variant="caption" color={colors.brand}>{action.label}</T>
+              <T variant="caption" color={colors.goldDeep} style={{ fontFamily: fonts.semibold }}>{action.label}</T>
             </Pressable>
           )}
         </View>
@@ -164,15 +164,15 @@ export function Button({
 }: {
   title: string;
   onPress: () => void;
-  variant?: "primary" | "secondary" | "ghost" | "danger";
+  variant?: "primary" | "secondary" | "ghost" | "danger" | "gold";
   size?: "lg" | "md" | "sm";
   loading?: boolean;
   disabled?: boolean;
   icon?: IconName;
   style?: StyleProp<ViewStyle>;
 }) {
-  const bg = { primary: colors.brand, secondary: colors.surface, ghost: "transparent", danger: colors.dangerSoft }[variant];
-  const fg = { primary: colors.onBrand, secondary: colors.text, ghost: colors.brand, danger: colors.danger }[variant];
+  const bg = { primary: colors.ink, secondary: colors.surface, ghost: "transparent", danger: colors.dangerSoft, gold: colors.gold }[variant];
+  const fg = { primary: colors.gold, secondary: colors.text, ghost: colors.goldDeep, danger: colors.danger, gold: colors.ink }[variant];
   const height = { lg: 54, md: 44, sm: 36 }[size];
   return (
     <Pressable
@@ -209,7 +209,7 @@ export function IconButton({ icon, onPress, label, badge, tone = "surface" }: { 
       <Ionicons name={icon} size={20} color={colors.text} />
       {!!badge && (
         <View style={styles.badge}>
-          <Text style={{ color: colors.onBrand, fontFamily: fonts.bold, fontSize: 10 }}>{badge}</Text>
+          <Text style={{ color: colors.gold, fontFamily: fonts.bold, fontSize: 10 }}>{badge}</Text>
         </View>
       )}
     </Pressable>
@@ -221,11 +221,11 @@ export function Pill({ label, selected, onPress, icon }: { label: string; select
     <Pressable
       onPress={onPress}
       accessibilityState={{ selected }}
-      style={({ pressed }) => [styles.pill, selected ? { backgroundColor: colors.text } : { backgroundColor: colors.surface }, pressed && styles.pressed]}
+      style={({ pressed }) => [styles.pill, selected ? { backgroundColor: colors.ink } : { backgroundColor: colors.surface }, pressed && styles.pressed]}
     >
       <Row gap={6}>
-        {icon && <Ionicons name={icon} size={14} color={selected ? colors.bg : colors.text} />}
-        <T variant="caption" color={selected ? colors.bg : colors.text} style={{ fontFamily: fonts.semibold }}>{label}</T>
+        {icon && <Ionicons name={icon} size={14} color={selected ? colors.gold : colors.text} />}
+        <T variant="caption" color={selected ? colors.onInk : colors.text} style={{ fontFamily: fonts.semibold }}>{label}</T>
       </Row>
     </Pressable>
   );
@@ -263,7 +263,7 @@ export function Field({ label, style, ...props }: TextInputProps & { label: stri
           setFocused(false);
           props.onBlur?.(e);
         }}
-        style={[styles.input, focused && { borderColor: colors.brand, backgroundColor: colors.bg }, props.multiline && { minHeight: 96, textAlignVertical: "top", paddingTop: 14 }]}
+        style={[styles.input, focused && { borderColor: colors.gold, backgroundColor: colors.card }, props.multiline && { minHeight: 96, textAlignVertical: "top", paddingTop: 14 }]}
       />
     </View>
   );
@@ -297,7 +297,7 @@ export function SearchBar({ value, onChangeText, placeholder, onPress, autoFocus
 export function Rating({ value, count, size = "caption" }: { value: number | null; count?: number; size?: "caption" | "strong" }) {
   return (
     <Row gap={4}>
-      <Ionicons name="star" size={size === "strong" ? 16 : 13} color={colors.star} />
+      <Ionicons name="star" size={size === "strong" ? 16 : 13} color={colors.gold} />
       <T variant={size} style={{ fontFamily: fonts.semibold }}>{value ? value.toFixed(1) : "New"}</T>
       {count !== undefined && value !== null && <T variant={size} muted>({count})</T>}
     </Row>
@@ -309,16 +309,16 @@ export function StarsInput({ value, onChange }: { value: number; onChange: (v: n
     <Row gap={10}>
       {[1, 2, 3, 4, 5].map((n) => (
         <Pressable key={n} onPress={() => onChange(n)} hitSlop={6} accessibilityLabel={`${n} stars`}>
-          <Ionicons name={value >= n ? "star" : "star-outline"} size={38} color={colors.star} />
+          <Ionicons name={value >= n ? "star" : "star-outline"} size={38} color={colors.gold} />
         </Pressable>
       ))}
     </Row>
   );
 }
 
-export function Tag({ label, tone = "neutral", icon }: { label: string; tone?: "neutral" | "brand" | "warn" | "danger"; icon?: IconName }) {
-  const bg = { neutral: colors.surface, brand: colors.brandSoft, warn: colors.warnSoft, danger: colors.dangerSoft }[tone];
-  const fg = { neutral: colors.muted, brand: colors.brandDark, warn: colors.warn, danger: colors.danger }[tone];
+export function Tag({ label, tone = "neutral", icon }: { label: string; tone?: "neutral" | "gold" | "dark" | "danger"; icon?: IconName }) {
+  const bg = { neutral: colors.surface, gold: colors.goldSoft, dark: colors.ink, danger: colors.dangerSoft }[tone];
+  const fg = { neutral: colors.muted, gold: colors.goldDeep, dark: colors.gold, danger: colors.danger }[tone];
   return (
     <View style={[styles.tag, { backgroundColor: bg }]}>
       <Row gap={4}>
@@ -344,8 +344,8 @@ export function Photo({ uri, name, style, rounded = radius.md }: { uri?: string 
   const size = typeof flat?.width === "number" ? flat.width : 64;
   if (!uri || failed) {
     return (
-      <View style={[{ backgroundColor: colors.brandSoft, alignItems: "center", justifyContent: "center", borderRadius: rounded, overflow: "hidden" }, style]}>
-        <Text style={{ color: colors.brandDark, fontFamily: fonts.bold, fontSize: Math.max(14, Math.min(size * 0.34, 40)) }}>{initials(name)}</Text>
+      <View style={[{ backgroundColor: colors.goldSoft, alignItems: "center", justifyContent: "center", borderRadius: rounded, overflow: "hidden" }, style]}>
+        <Text style={{ color: colors.goldDeep, fontFamily: fonts.display, fontSize: Math.max(14, Math.min(size * 0.34, 40)) }}>{initials(name)}</Text>
       </View>
     );
   }
@@ -360,7 +360,7 @@ export function ListRow({ icon, title, subtitle, onPress, right, danger }: { ico
   return (
     <Pressable onPress={onPress} style={({ pressed }) => [styles.listRow, pressed && { backgroundColor: colors.surface }]}>
       <View style={[styles.listIcon, danger && { backgroundColor: colors.dangerSoft }]}>
-        <Ionicons name={icon} size={19} color={danger ? colors.danger : colors.text} />
+        <Ionicons name={icon} size={19} color={danger ? colors.danger : colors.goldDeep} />
       </View>
       <View style={{ flex: 1 }}>
         <T variant="strong" color={danger ? colors.danger : undefined}>{title}</T>
@@ -374,7 +374,7 @@ export function ListRow({ icon, title, subtitle, onPress, right, danger }: { ico
 export function Loading() {
   return (
     <View style={{ padding: 40, alignItems: "center" }}>
-      <ActivityIndicator color={colors.brand} />
+      <ActivityIndicator color={colors.gold} />
     </View>
   );
 }
@@ -394,8 +394,8 @@ export function ErrorBox({ message, onRetry }: { message: string; onRetry?: () =
 export function EmptyState({ icon, title, body, action }: { icon: IconName; title: string; body?: string; action?: { label: string; onPress: () => void } }) {
   return (
     <View style={{ alignItems: "center", paddingVertical: 48, paddingHorizontal: 24 }}>
-      <View style={[styles.listIcon, { width: 64, height: 64, borderRadius: 32, backgroundColor: colors.brandSoft, marginBottom: 16 }]}>
-        <Ionicons name={icon} size={28} color={colors.brand} />
+      <View style={[styles.listIcon, { width: 64, height: 64, borderRadius: 32, backgroundColor: colors.goldSoft, marginBottom: 16 }]}>
+        <Ionicons name={icon} size={28} color={colors.goldDeep} />
       </View>
       <T variant="heading" center>{title}</T>
       {body && <T muted center style={{ marginTop: 6 }}>{body}</T>}
@@ -413,7 +413,7 @@ export const styles = StyleSheet.create({
   pressed: { opacity: 0.75, transform: [{ scale: 0.99 }] },
   button: { borderRadius: radius.pill, alignItems: "center", justifyContent: "center" },
   iconButton: { width: 42, height: 42, borderRadius: 21, alignItems: "center", justifyContent: "center" },
-  badge: { position: "absolute", top: -2, right: -2, minWidth: 18, height: 18, borderRadius: 9, backgroundColor: colors.brand, alignItems: "center", justifyContent: "center", paddingHorizontal: 4, borderWidth: 2, borderColor: colors.bg },
+  badge: { position: "absolute", top: -2, right: -2, minWidth: 18, height: 18, borderRadius: 9, backgroundColor: colors.ink, alignItems: "center", justifyContent: "center", paddingHorizontal: 4, borderWidth: 2, borderColor: colors.bg },
   pill: { borderRadius: radius.pill, paddingVertical: 9, paddingHorizontal: 14 },
   segmented: { flexDirection: "row", backgroundColor: colors.surface, borderRadius: radius.pill, padding: 4 },
   segment: { flex: 1, alignItems: "center", paddingVertical: 9, borderRadius: radius.pill },
@@ -433,5 +433,24 @@ export function SummaryLine({ label, value, strong }: { label: string; value: st
       <T variant={strong ? "heading" : "body"} muted={!strong}>{label}</T>
       <T variant={strong ? "heading" : "strong"}>{value}</T>
     </Row>
+  );
+}
+
+/** A small line of text led by a gold icon (replaces emoji bullets). */
+export function IconLine({ icon, children, muted }: { icon: IconName; children: ReactNode; muted?: boolean }) {
+  return (
+    <Row gap={8} style={{ alignItems: "flex-start" }}>
+      <Ionicons name={icon} size={15} color={colors.gold} style={{ marginTop: 1 }} />
+      <T variant="caption" muted={muted} style={{ flex: 1 }}>{children}</T>
+    </Row>
+  );
+}
+
+/** Gold icon in a soft circle — the standard illustration for tiles and empty states. */
+export function GoldIcon({ icon, size = 44, dark }: { icon: IconName; size?: number; dark?: boolean }) {
+  return (
+    <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: dark ? "rgba(197,162,83,0.14)" : colors.goldSoft, alignItems: "center", justifyContent: "center" }}>
+      <Ionicons name={icon} size={size * 0.48} color={dark ? colors.gold : colors.goldDeep} />
+    </View>
   );
 }
