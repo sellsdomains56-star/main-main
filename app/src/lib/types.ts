@@ -116,3 +116,14 @@ export interface Order {
   status: "pending_payment" | "paid" | "shipped" | "cancelled";
   createdAt: string;
 }
+
+export interface Reel {
+  id: string;
+  videoUrl: string;
+  posterUrl: string | null;
+  caption: string;
+  likes: number;
+  likedByMe: boolean;
+  createdAt: string;
+  barber: Pick<Barber, "id" | "name" | "photoUrl" | "city" | "rating" | "ratingCount" | "startingPrice" | "currency" | "offersHomeVisits">;
+}

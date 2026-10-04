@@ -1,15 +1,16 @@
 import cors from "cors";
 import express, { type ErrorRequestHandler } from "express";
 import { z } from "zod";
-import { createSession, hashPassword, publicUser, requireAuth, verifyPassword } from "./auth.js";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { createSession, hashPassword, optionalAuth, publicUser, requireAuth, verifyPassword } from "./auth.js";
 import { config } from "./config.js";
-import { db, newId, save } from "./db.js";
+import { db, newId, save, UPLOADS_DIR } from "./db.js";
 import { clientSecretFor, createPaymentIntent, demoPayments, paymentSucceeded, refund, stripe } from "./payments.js";
 import { PRODUCTS, SHIPPING } from "./products.js";
 import { COUNTRIES } from "./seed.js";
 import { availableSlots } from "./slots.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
-import type { Barber, Booking, Order, Product } from "./types.js";
+import type { Barber, Booking, Order, Product, Reel } from "./types.js";
 
 class HttpError extends Error {
   constructor(public status: number, message: string) {
@@ -66,6 +67,21 @@ function bookingView(b: Booking) {
   };
 }
 
+function reelView(r: Reel, viewerId?: string) {
+  const b = getBarber(r.barberId);
+  const v = barberView(b);
+  return {
+    id: r.id,
+    videoUrl: r.videoUrl,
+    posterUrl: r.posterUrl ?? null,
+    caption: r.caption,
+    likes: r.likedBy.length,
+    likedByMe: !!viewerId && r.likedBy.includes(viewerId),
+    createdAt: r.createdAt,
+    barber: { id: v.id, name: v.name, photoUrl: v.photoUrl, city: v.city, rating: v.rating, ratingCount: v.ratingCount, startingPrice: v.startingPrice, currency: v.currency, offersHomeVisits: v.offersHomeVisits },
+  };
+}
+
 function canAccess(userId: string, booking: Booking) {
   const user = db.users.find((u) => u.id === userId);
   return booking.customerId === userId || (user?.role === "barber" && user.barberId === booking.barberId);
@@ -105,6 +121,25 @@ export function createApp() {
     res.json({ received: true });
   });
 
+  // Reel uploads arrive as a raw video body, so this route also sits before express.json().
+  app.post("/reels", requireAuth, express.raw({ type: ["video/*", "application/octet-stream"], limit: "100mb" }), (req, res) => {
+    const user = req.user!;
+    if (user.role !== "barber" || !user.barberId) throw new HttpError(403, "Only barbers can post reels.");
+    if (!Buffer.isBuffer(req.body) || req.body.length < 1000) throw new HttpError(400, "Please attach a video.");
+    const type = req.header("content-type") ?? "";
+    const ext = type.includes("quicktime") ? "mov" : type.includes("webm") ? "webm" : "mp4";
+    const id = newId();
+    mkdirSync(UPLOADS_DIR, { recursive: true });
+    writeFileSync(new URL(`${id}.${ext}`, UPLOADS_DIR), req.body);
+    const caption = String(req.query.caption ?? "").slice(0, 300);
+    const reel: Reel = { id, barberId: user.barberId, videoUrl: `/uploads/${id}.${ext}`, caption, likedBy: [], createdAt: new Date().toISOString() };
+    db.reels.push(reel);
+    save();
+    res.status(201).json(reelView(reel, user.id));
+  });
+
+  app.use("/media", express.static(new URL("../media", import.meta.url).pathname, { maxAge: "7d" }));
+  app.use("/uploads", express.static(UPLOADS_DIR.pathname, { maxAge: "7d" }));
   app.use(express.json({ limit: "12mb" })); // head photos arrive as base64
 
   app.get("/health", (_req, res) => {
@@ -190,7 +225,7 @@ export function createApp() {
     const barberId = newId();
     const p = body.haircutPrice;
     db.barbers.push({
-      id: barberId, name: body.name, bio: body.bio, photoUrl: `https://i.pravatar.cc/400?u=${barberId}`,
+      id: barberId, name: body.name, bio: body.bio, photoUrl: "", // shows initials until the barber uploads a photo
       countryCode: body.countryCode, city: body.city, shopAddress: body.shopAddress, specialties: body.specialties,
       services: [
         { id: `${barberId}-cut`, name: "Classic haircut", durationMin: 30, price: p },
@@ -380,7 +415,37 @@ export function createApp() {
     res.status(201).json(barberView(barber));
   });
 
-  // ---------- Shop: GP's Fresh products ----------
+  // ---------- Reels ----------
+  app.get("/reels", optionalAuth, (req, res) => {
+    const q = parse(z.object({ country: z.string().optional(), city: z.string().optional(), barberId: z.string().optional() }), req.query);
+    const barbersById = new Map(db.barbers.map((b) => [b.id, b]));
+    const list = db.reels.filter((r) => {
+      const b = barbersById.get(r.barberId);
+      return b && (!q.barberId || b.id === q.barberId) && (!q.country || b.countryCode === q.country) && (!q.city || b.city === q.city);
+    });
+    // Newest first, with a boost for popular reels.
+    const score = (r: Reel) => Date.parse(r.createdAt) / 3_600_000 + Math.log1p(r.likedBy.length) * 24;
+    res.json(list.sort((a, b) => score(b) - score(a)).map((r) => reelView(r, req.user?.id)));
+  });
+
+  app.post("/reels/:id/like", requireAuth, (req, res) => {
+    const reel = db.reels.find((r) => r.id === req.params.id);
+    if (!reel) throw new HttpError(404, "Reel not found.");
+    const me = req.user!.id;
+    reel.likedBy = reel.likedBy.includes(me) ? reel.likedBy.filter((id) => id !== me) : [...reel.likedBy, me];
+    save();
+    res.json(reelView(reel, me));
+  });
+
+  app.delete("/reels/:id", requireAuth, (req, res) => {
+    const reel = db.reels.find((r) => r.id === req.params.id);
+    if (!reel || reel.barberId !== req.user!.barberId) throw new HttpError(404, "Reel not found.");
+    db.reels = db.reels.filter((r) => r !== reel);
+    save();
+    res.status(204).end();
+  });
+
+  // ---------- Shop: JB's Fresh products ----------
   const currencyFor = (country?: string) => {
     const currency = (country && findCountry(country)?.currency) || "eur";
     return SHIPPING[currency] ? currency : "eur";

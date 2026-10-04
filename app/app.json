@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "GP Always Fresh",
+    "name": "JB Always Fresh",
     "slug": "always-fresh",
     "scheme": "alwaysfresh",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.alwaysfresh.app"
@@ -14,7 +14,7 @@
     "android": {
       "package": "com.alwaysfresh.app",
       "adaptiveIcon": {
-        "backgroundColor": "#0B0B0F",
+        "backgroundColor": "#0BA360",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -33,8 +33,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "GP Always Fresh uses your photos so the AI stylist can suggest the perfect haircut.",
-          "cameraPermission": "GP Always Fresh uses the camera so the AI stylist can see your hair and suggest the perfect haircut."
+          "photosPermission": "JB Always Fresh uses your photos so the AI stylist can suggest the perfect haircut.",
+          "cameraPermission": "JB Always Fresh uses the camera so the AI stylist can see your hair and suggest the perfect haircut."
         }
       ],
       [
@@ -43,7 +43,8 @@
           "merchantIdentifier": "merchant.com.alwaysfresh.app",
           "enableGooglePay": true
         }
-      ]
+      ],
+      "expo-video"
     ],
     "experiments": {
       "typedRoutes": false

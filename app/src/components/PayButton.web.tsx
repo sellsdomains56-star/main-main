@@ -3,8 +3,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useState } from "react";
 import { STRIPE_PUBLISHABLE_KEY } from "../lib/config";
 import type { PayButtonProps } from "./PayButton.types";
-import { useTheme } from "./theme";
-import { Button, P } from "./ui";
+import { colors } from "./theme";
+import { Button, T } from "./ui";
 
 const stripePromise = STRIPE_PUBLISHABLE_KEY ? loadStripe(STRIPE_PUBLISHABLE_KEY) : null;
 
@@ -13,11 +13,10 @@ const stripePromise = STRIPE_PUBLISHABLE_KEY ? loadStripe(STRIPE_PUBLISHABLE_KEY
  * (once your domain is registered in the Stripe dashboard), plus cards and local methods.
  */
 export function PayButton(props: PayButtonProps) {
-  const t = useTheme();
   return (
     <Elements
       stripe={stripePromise}
-      options={{ clientSecret: props.clientSecret, appearance: { theme: t.bg === "#0B0B0F" ? "night" : "stripe", variables: { colorPrimary: t.primary } } }}
+      options={{ clientSecret: props.clientSecret, appearance: { theme: "stripe", variables: { colorPrimary: colors.brand, borderRadius: "12px" } } }}
     >
       <Checkout {...props} />
     </Elements>
@@ -59,7 +58,7 @@ function Checkout({ amountLabel, onPaid }: PayButtonProps) {
         <PaymentElement options={{ layout: "tabs", wallets: { applePay: "auto", googlePay: "auto" } }} />
       </div>
       <Button title={`Pay ${amountLabel}`} icon="lock-closed" onPress={pay} loading={busy} disabled={!stripe} />
-      {error && <P style={{ color: "#D64545", marginTop: 8 }}>{error}</P>}
+      {error && <T variant="caption" color="#E5484D" style={{ marginTop: 8 }}>{error}</T>}
     </>
   );
 }

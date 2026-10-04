@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import {
   ActivityIndicator,
   Image,
@@ -11,165 +11,427 @@ import {
   View,
   type StyleProp,
   type TextInputProps,
+  type TextStyle,
   type ViewStyle,
 } from "react-native";
-import { useTheme } from "./theme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { colors, fonts, radius, shadow } from "./theme";
 
-/** Scrollable page with a readable max width, so the same screens work as a website. */
-export function Screen({ children, scroll = true }: { children: ReactNode; scroll?: boolean }) {
-  const t = useTheme();
-  const inner = <View style={styles.inner}>{children}</View>;
+export type IconName = keyof typeof Ionicons.glyphMap;
+
+// ---------- Typography ----------
+
+const variants = {
+  display: { fontFamily: fonts.black, fontSize: 28, lineHeight: 34, letterSpacing: -0.6 },
+  title: { fontFamily: fonts.bold, fontSize: 22, lineHeight: 28, letterSpacing: -0.3 },
+  heading: { fontFamily: fonts.bold, fontSize: 17, lineHeight: 22 },
+  body: { fontFamily: fonts.regular, fontSize: 15, lineHeight: 21 },
+  strong: { fontFamily: fonts.semibold, fontSize: 15, lineHeight: 21 },
+  caption: { fontFamily: fonts.medium, fontSize: 13, lineHeight: 18 },
+  small: { fontFamily: fonts.medium, fontSize: 12, lineHeight: 16 },
+} satisfies Record<string, TextStyle>;
+
+export function T({
+  children,
+  variant = "body",
+  muted,
+  color,
+  center,
+  numberOfLines,
+  style,
+}: {
+  children: ReactNode;
+  variant?: keyof typeof variants;
+  muted?: boolean;
+  color?: string;
+  center?: boolean;
+  numberOfLines?: number;
+  style?: StyleProp<TextStyle>;
+}) {
   return (
-    <View style={{ flex: 1, backgroundColor: t.bg }}>
-      {scroll ? <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">{inner}</ScrollView> : inner}
+    <Text
+      numberOfLines={numberOfLines}
+      style={[variants[variant], { color: color ?? (muted ? colors.muted : colors.text) }, center && { textAlign: "center" }, style]}
+    >
+      {children}
+    </Text>
+  );
+}
+
+// ---------- Layout ----------
+
+/** Page container: readable max width (so it also works as a website) and an optional sticky footer. */
+export function Screen({
+  children,
+  footer,
+  scroll = true,
+  padded = true,
+  background = colors.bg,
+}: {
+  children: ReactNode;
+  footer?: ReactNode;
+  scroll?: boolean;
+  padded?: boolean;
+  background?: string;
+}) {
+  const inner = <View style={[styles.inner, padded && styles.padded]}>{children}</View>;
+  return (
+    <View style={{ flex: 1, backgroundColor: background }}>
+      {scroll ? (
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+          {inner}
+        </ScrollView>
+      ) : (
+        inner
+      )}
+      {footer && <Footer>{footer}</Footer>}
     </View>
   );
 }
 
-export function H1({ children }: { children: ReactNode }) {
-  const t = useTheme();
-  return <Text style={[styles.h1, { color: t.text }]}>{children}</Text>;
+export function Footer({ children }: { children: ReactNode }) {
+  const insets = useSafeAreaInsets();
+  return (
+    <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, 12) }]}>
+      <View style={styles.footerInner}>{children}</View>
+    </View>
+  );
 }
 
-export function H2({ children }: { children: ReactNode }) {
-  const t = useTheme();
-  return <Text style={[styles.h2, { color: t.text }]}>{children}</Text>;
+export function Section({ title, action, children, style }: { title?: string; action?: { label: string; onPress: () => void }; children: ReactNode; style?: StyleProp<ViewStyle> }) {
+  return (
+    <View style={[{ marginTop: 24 }, style]}>
+      {(title || action) && (
+        <View style={[styles.rowBetween, { marginBottom: 12 }]}>
+          {title ? <T variant="heading">{title}</T> : <View />}
+          {action && (
+            <Pressable onPress={action.onPress} hitSlop={8}>
+              <T variant="caption" color={colors.brand}>{action.label}</T>
+            </Pressable>
+          )}
+        </View>
+      )}
+      {children}
+    </View>
+  );
 }
 
-export function P({ children, muted, style }: { children: ReactNode; muted?: boolean; style?: object }) {
-  const t = useTheme();
-  return <Text style={[styles.p, { color: muted ? t.muted : t.text }, style]}>{children}</Text>;
+export function Row({ children, style, gap = 8 }: { children: ReactNode; style?: StyleProp<ViewStyle>; gap?: number }) {
+  return <View style={[{ flexDirection: "row", alignItems: "center", gap }, style]}>{children}</View>;
 }
 
-export function Card({ children, style, onPress }: { children: ReactNode; style?: StyleProp<ViewStyle>; onPress?: () => void }) {
-  const t = useTheme();
-  const base = [styles.card, { backgroundColor: t.card, borderColor: t.border }, style];
+export function Wrap({ children, gap = 8 }: { children: ReactNode; gap?: number }) {
+  return <View style={{ flexDirection: "row", flexWrap: "wrap", gap }}>{children}</View>;
+}
+
+export function Divider({ style }: { style?: StyleProp<ViewStyle> }) {
+  return <View style={[{ height: StyleSheet.hairlineWidth, backgroundColor: colors.border, marginVertical: 12 }, style]} />;
+}
+
+// ---------- Surfaces ----------
+
+export function Card({
+  children,
+  style,
+  onPress,
+  tone = "card",
+}: {
+  children: ReactNode;
+  style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
+  tone?: "card" | "surface";
+}) {
+  const base = [tone === "card" ? styles.card : styles.surfaceCard, style];
   if (!onPress) return <View style={base}>{children}</View>;
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => [base, pressed && { opacity: 0.85 }]}>
+    <Pressable onPress={onPress} style={({ pressed }) => [base, pressed && styles.pressed]}>
       {children}
     </Pressable>
   );
 }
 
+// ---------- Controls ----------
+
 export function Button({
   title,
   onPress,
   variant = "primary",
+  size = "lg",
   loading,
   disabled,
   icon,
+  style,
 }: {
   title: string;
   onPress: () => void;
-  variant?: "primary" | "secondary" | "danger";
+  variant?: "primary" | "secondary" | "ghost" | "danger";
+  size?: "lg" | "md" | "sm";
   loading?: boolean;
   disabled?: boolean;
-  icon?: keyof typeof Ionicons.glyphMap;
+  icon?: IconName;
+  style?: StyleProp<ViewStyle>;
 }) {
-  const t = useTheme();
-  const bg = variant === "primary" ? t.primary : variant === "danger" ? t.danger : t.chip;
-  const fg = variant === "secondary" ? t.text : t.primaryText;
+  const bg = { primary: colors.brand, secondary: colors.surface, ghost: "transparent", danger: colors.dangerSoft }[variant];
+  const fg = { primary: colors.onBrand, secondary: colors.text, ghost: colors.brand, danger: colors.danger }[variant];
+  const height = { lg: 54, md: 44, sm: 36 }[size];
   return (
     <Pressable
       accessibilityRole="button"
       onPress={onPress}
       disabled={disabled || loading}
-      style={({ pressed }) => [styles.button, { backgroundColor: bg, opacity: disabled ? 0.5 : pressed ? 0.85 : 1 }]}
+      style={({ pressed }) => [
+        styles.button,
+        { backgroundColor: bg, height, paddingHorizontal: size === "sm" ? 14 : 20, opacity: disabled ? 0.4 : 1 },
+        pressed && styles.pressed,
+        style,
+      ]}
     >
       {loading ? (
         <ActivityIndicator color={fg} />
       ) : (
-        <View style={styles.row}>
-          {icon && <Ionicons name={icon} size={18} color={fg} style={{ marginRight: 8 }} />}
-          <Text style={[styles.buttonText, { color: fg }]}>{title}</Text>
+        <Row gap={8}>
+          {icon && <Ionicons name={icon} size={size === "sm" ? 15 : 18} color={fg} />}
+          <T variant={size === "sm" ? "caption" : "strong"} color={fg} style={{ fontFamily: fonts.semibold }}>{title}</T>
+        </Row>
+      )}
+    </Pressable>
+  );
+}
+
+export function IconButton({ icon, onPress, label, badge, tone = "surface" }: { icon: IconName; onPress: () => void; label: string; badge?: number; tone?: "surface" | "plain" }) {
+  return (
+    <Pressable
+      accessibilityLabel={label}
+      onPress={onPress}
+      hitSlop={6}
+      style={({ pressed }) => [styles.iconButton, tone === "surface" && { backgroundColor: colors.surface }, pressed && styles.pressed]}
+    >
+      <Ionicons name={icon} size={20} color={colors.text} />
+      {!!badge && (
+        <View style={styles.badge}>
+          <Text style={{ color: colors.onBrand, fontFamily: fonts.bold, fontSize: 10 }}>{badge}</Text>
         </View>
       )}
     </Pressable>
   );
 }
 
-export function Chip({ label, selected, onPress }: { label: string; selected?: boolean; onPress?: () => void }) {
-  const t = useTheme();
+export function Pill({ label, selected, onPress, icon }: { label: string; selected?: boolean; onPress?: () => void; icon?: IconName }) {
   return (
     <Pressable
       onPress={onPress}
-      style={[styles.chip, { backgroundColor: selected ? t.primary : t.chip }]}
       accessibilityState={{ selected }}
+      style={({ pressed }) => [styles.pill, selected ? { backgroundColor: colors.text } : { backgroundColor: colors.surface }, pressed && styles.pressed]}
     >
-      <Text style={{ color: selected ? t.primaryText : t.text, fontWeight: "600", fontSize: 13 }}>{label}</Text>
+      <Row gap={6}>
+        {icon && <Ionicons name={icon} size={14} color={selected ? colors.bg : colors.text} />}
+        <T variant="caption" color={selected ? colors.bg : colors.text} style={{ fontFamily: fonts.semibold }}>{label}</T>
+      </Row>
     </Pressable>
   );
 }
 
-export function Field({ label, ...props }: TextInputProps & { label: string }) {
-  const t = useTheme();
+export function Segmented<V extends string>({ options, value, onChange }: { options: { value: V; label: string }[]; value: V; onChange: (v: V) => void }) {
   return (
-    <View style={{ marginBottom: 14 }}>
-      <Text style={[styles.label, { color: t.muted }]}>{label}</Text>
-      <TextInput
-        accessibilityLabel={label}
-        placeholderTextColor={t.muted}
-        {...props}
-        style={[styles.input, { color: t.text, borderColor: t.border, backgroundColor: t.card }, props.multiline && { minHeight: 90, textAlignVertical: "top" }]}
-      />
-    </View>
-  );
-}
-
-export function Stars({ value, size = 16, onChange }: { value: number; size?: number; onChange?: (v: number) => void }) {
-  const t = useTheme();
-  return (
-    <View style={styles.row}>
-      {[1, 2, 3, 4, 5].map((n) => {
-        const name = value >= n ? "star" : value >= n - 0.5 ? "star-half" : "star-outline";
-        const star = <Ionicons name={name} size={size} color={t.accent} />;
-        return onChange ? (
-          <Pressable key={n} onPress={() => onChange(n)} hitSlop={6} accessibilityLabel={`${n} stars`} style={{ marginRight: 6 }}>
-            {star}
+    <View style={styles.segmented}>
+      {options.map((o) => {
+        const active = o.value === value;
+        return (
+          <Pressable key={o.value} onPress={() => onChange(o.value)} style={[styles.segment, active && styles.segmentActive]} accessibilityState={{ selected: active }}>
+            <T variant="caption" color={active ? colors.text : colors.muted} style={{ fontFamily: fonts.semibold }}>{o.label}</T>
           </Pressable>
-        ) : (
-          <View key={n}>{star}</View>
         );
       })}
     </View>
   );
 }
 
-export function Avatar({ uri, size = 56 }: { uri: string; size?: number }) {
-  return <Image source={{ uri }} style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: "#888" }} />;
+export function Field({ label, style, ...props }: TextInputProps & { label: string }) {
+  const [focused, setFocused] = useState(false);
+  return (
+    <View style={[{ marginBottom: 14 }, style as ViewStyle]}>
+      <T variant="caption" muted style={{ marginBottom: 6 }}>{label}</T>
+      <TextInput
+        accessibilityLabel={label}
+        placeholderTextColor={colors.faint}
+        {...props}
+        onFocus={(e) => {
+          setFocused(true);
+          props.onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          setFocused(false);
+          props.onBlur?.(e);
+        }}
+        style={[styles.input, focused && { borderColor: colors.brand, backgroundColor: colors.bg }, props.multiline && { minHeight: 96, textAlignVertical: "top", paddingTop: 14 }]}
+      />
+    </View>
+  );
+}
+
+export function SearchBar({ value, onChangeText, placeholder, onPress, autoFocus }: { value?: string; onChangeText?: (v: string) => void; placeholder: string; onPress?: () => void; autoFocus?: boolean }) {
+  const content = (
+    <View style={styles.search}>
+      <Ionicons name="search" size={18} color={colors.muted} />
+      {onPress ? (
+        <T muted style={{ marginLeft: 10 }}>{placeholder}</T>
+      ) : (
+        <TextInput
+          accessibilityLabel={placeholder}
+          value={value}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          placeholderTextColor={colors.muted}
+          autoFocus={autoFocus}
+          autoCapitalize="none"
+          style={{ flex: 1, marginLeft: 10, fontFamily: fonts.regular, fontSize: 15, color: colors.text, paddingVertical: 0, ...({ outlineStyle: "none" } as object) }}
+        />
+      )}
+    </View>
+  );
+  return onPress ? <Pressable onPress={onPress} style={({ pressed }) => pressed && styles.pressed}>{content}</Pressable> : content;
+}
+
+// ---------- Data display ----------
+
+export function Rating({ value, count, size = "caption" }: { value: number | null; count?: number; size?: "caption" | "strong" }) {
+  return (
+    <Row gap={4}>
+      <Ionicons name="star" size={size === "strong" ? 16 : 13} color={colors.star} />
+      <T variant={size} style={{ fontFamily: fonts.semibold }}>{value ? value.toFixed(1) : "New"}</T>
+      {count !== undefined && value !== null && <T variant={size} muted>({count})</T>}
+    </Row>
+  );
+}
+
+export function StarsInput({ value, onChange }: { value: number; onChange: (v: number) => void }) {
+  return (
+    <Row gap={10}>
+      {[1, 2, 3, 4, 5].map((n) => (
+        <Pressable key={n} onPress={() => onChange(n)} hitSlop={6} accessibilityLabel={`${n} stars`}>
+          <Ionicons name={value >= n ? "star" : "star-outline"} size={38} color={colors.star} />
+        </Pressable>
+      ))}
+    </Row>
+  );
+}
+
+export function Tag({ label, tone = "neutral", icon }: { label: string; tone?: "neutral" | "brand" | "warn" | "danger"; icon?: IconName }) {
+  const bg = { neutral: colors.surface, brand: colors.brandSoft, warn: colors.warnSoft, danger: colors.dangerSoft }[tone];
+  const fg = { neutral: colors.muted, brand: colors.brandDark, warn: colors.warn, danger: colors.danger }[tone];
+  return (
+    <View style={[styles.tag, { backgroundColor: bg }]}>
+      <Row gap={4}>
+        {icon && <Ionicons name={icon} size={12} color={fg} />}
+        <T variant="small" color={fg} style={{ fontFamily: fonts.semibold }}>{label}</T>
+      </Row>
+    </View>
+  );
+}
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0]!.toUpperCase())
+    .join("");
+
+/** Photo with a graceful initials fallback (no grey boxes when an image fails to load). */
+export function Photo({ uri, name, style, rounded = radius.md }: { uri?: string | null; name: string; style: StyleProp<ViewStyle>; rounded?: number }) {
+  const [failed, setFailed] = useState(false);
+  const flat = StyleSheet.flatten(style) as ViewStyle;
+  const size = typeof flat?.width === "number" ? flat.width : 64;
+  if (!uri || failed) {
+    return (
+      <View style={[{ backgroundColor: colors.brandSoft, alignItems: "center", justifyContent: "center", borderRadius: rounded, overflow: "hidden" }, style]}>
+        <Text style={{ color: colors.brandDark, fontFamily: fonts.bold, fontSize: Math.max(14, Math.min(size * 0.34, 40)) }}>{initials(name)}</Text>
+      </View>
+    );
+  }
+  return <Image source={{ uri }} onError={() => setFailed(true)} style={[{ borderRadius: rounded, backgroundColor: colors.surface }, style as object]} />;
+}
+
+export function Avatar({ uri, name, size = 48 }: { uri?: string | null; name: string; size?: number }) {
+  return <Photo uri={uri} name={name} style={{ width: size, height: size }} rounded={size / 2} />;
+}
+
+export function ListRow({ icon, title, subtitle, onPress, right, danger }: { icon: IconName; title: string; subtitle?: string; onPress?: () => void; right?: ReactNode; danger?: boolean }) {
+  return (
+    <Pressable onPress={onPress} style={({ pressed }) => [styles.listRow, pressed && { backgroundColor: colors.surface }]}>
+      <View style={[styles.listIcon, danger && { backgroundColor: colors.dangerSoft }]}>
+        <Ionicons name={icon} size={19} color={danger ? colors.danger : colors.text} />
+      </View>
+      <View style={{ flex: 1 }}>
+        <T variant="strong" color={danger ? colors.danger : undefined}>{title}</T>
+        {subtitle && <T variant="caption" muted>{subtitle}</T>}
+      </View>
+      {right ?? (onPress && <Ionicons name="chevron-forward" size={18} color={colors.faint} />)}
+    </Pressable>
+  );
 }
 
 export function Loading() {
-  const t = useTheme();
   return (
     <View style={{ padding: 40, alignItems: "center" }}>
-      <ActivityIndicator color={t.primary} size="large" />
+      <ActivityIndicator color={colors.brand} />
     </View>
   );
 }
 
 export function ErrorBox({ message, onRetry }: { message: string; onRetry?: () => void }) {
-  const t = useTheme();
   return (
-    <Card style={{ borderColor: t.danger }}>
-      <P style={{ color: t.danger }}>{message}</P>
-      {onRetry && <View style={{ marginTop: 10 }}><Button title="Try again" variant="secondary" onPress={onRetry} /></View>}
-    </Card>
+    <View style={[styles.surfaceCard, { backgroundColor: colors.dangerSoft, marginBottom: 12 }]}>
+      <Row gap={8} style={{ alignItems: "flex-start" }}>
+        <Ionicons name="alert-circle" size={18} color={colors.danger} />
+        <T variant="caption" color={colors.danger} style={{ flex: 1 }}>{message}</T>
+      </Row>
+      {onRetry && <Button title="Try again" variant="ghost" size="sm" onPress={onRetry} style={{ alignSelf: "flex-start", marginTop: 6, paddingHorizontal: 0 }} />}
+    </View>
+  );
+}
+
+export function EmptyState({ icon, title, body, action }: { icon: IconName; title: string; body?: string; action?: { label: string; onPress: () => void } }) {
+  return (
+    <View style={{ alignItems: "center", paddingVertical: 48, paddingHorizontal: 24 }}>
+      <View style={[styles.listIcon, { width: 64, height: 64, borderRadius: 32, backgroundColor: colors.brandSoft, marginBottom: 16 }]}>
+        <Ionicons name={icon} size={28} color={colors.brand} />
+      </View>
+      <T variant="heading" center>{title}</T>
+      {body && <T muted center style={{ marginTop: 6 }}>{body}</T>}
+      {action && <Button title={action.label} onPress={action.onPress} size="md" style={{ marginTop: 18, alignSelf: "center" }} />}
+    </View>
   );
 }
 
 export const styles = StyleSheet.create({
-  scroll: { flexGrow: 1 },
-  inner: { width: "100%", maxWidth: 820, alignSelf: "center", padding: 16, paddingBottom: 40 },
-  h1: { fontSize: 28, fontWeight: "800", marginBottom: 8, letterSpacing: -0.5 },
-  h2: { fontSize: 19, fontWeight: "700", marginTop: 18, marginBottom: 10 },
-  p: { fontSize: 15, lineHeight: 21 },
-  card: { borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, padding: 14, marginBottom: 12 },
-  button: { borderRadius: 14, paddingVertical: 14, paddingHorizontal: 18, alignItems: "center", justifyContent: "center", minHeight: 50 },
-  buttonText: { fontSize: 16, fontWeight: "700" },
-  row: { flexDirection: "row", alignItems: "center" },
-  chip: { borderRadius: 999, paddingVertical: 8, paddingHorizontal: 14, marginRight: 8, marginBottom: 8 },
-  label: { fontSize: 13, fontWeight: "600", marginBottom: 6 },
-  input: { borderWidth: 1, borderRadius: 12, paddingHorizontal: 14, paddingVertical: 12, fontSize: 16 },
+  inner: { width: "100%", maxWidth: 760, alignSelf: "center" },
+  padded: { paddingHorizontal: 20, paddingTop: 12, paddingBottom: 32 },
+  rowBetween: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
+  card: { backgroundColor: colors.card, borderRadius: radius.lg, padding: 16, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.border, ...shadow },
+  surfaceCard: { backgroundColor: colors.surface, borderRadius: radius.lg, padding: 16 },
+  pressed: { opacity: 0.75, transform: [{ scale: 0.99 }] },
+  button: { borderRadius: radius.pill, alignItems: "center", justifyContent: "center" },
+  iconButton: { width: 42, height: 42, borderRadius: 21, alignItems: "center", justifyContent: "center" },
+  badge: { position: "absolute", top: -2, right: -2, minWidth: 18, height: 18, borderRadius: 9, backgroundColor: colors.brand, alignItems: "center", justifyContent: "center", paddingHorizontal: 4, borderWidth: 2, borderColor: colors.bg },
+  pill: { borderRadius: radius.pill, paddingVertical: 9, paddingHorizontal: 14 },
+  segmented: { flexDirection: "row", backgroundColor: colors.surface, borderRadius: radius.pill, padding: 4 },
+  segment: { flex: 1, alignItems: "center", paddingVertical: 9, borderRadius: radius.pill },
+  segmentActive: { backgroundColor: colors.bg, ...shadow },
+  input: { backgroundColor: colors.surface, borderRadius: radius.md, borderWidth: 1.5, borderColor: "transparent", paddingHorizontal: 14, paddingVertical: 13, fontSize: 16, fontFamily: fonts.regular, color: colors.text },
+  search: { flexDirection: "row", alignItems: "center", backgroundColor: colors.surface, borderRadius: radius.pill, paddingHorizontal: 16, height: 48 },
+  tag: { borderRadius: radius.pill, paddingHorizontal: 9, paddingVertical: 4, alignSelf: "flex-start" },
+  listRow: { flexDirection: "row", alignItems: "center", gap: 14, paddingVertical: 12, paddingHorizontal: 4, borderRadius: radius.md },
+  listIcon: { width: 40, height: 40, borderRadius: 20, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" },
+  footer: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.border, backgroundColor: colors.bg, paddingTop: 12, paddingHorizontal: 20 },
+  footerInner: { width: "100%", maxWidth: 720, alignSelf: "center" },
 });
+
+export function SummaryLine({ label, value, strong }: { label: string; value: string; strong?: boolean }) {
+  return (
+    <Row style={{ justifyContent: "space-between", marginVertical: 3 }}>
+      <T variant={strong ? "heading" : "body"} muted={!strong}>{label}</T>
+      <T variant={strong ? "heading" : "strong"}>{value}</T>
+    </Row>
+  );
+}

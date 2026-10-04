@@ -1,22 +1,16 @@
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { Text, View } from "react-native";
-import { useTheme } from "../components/theme";
-import { Button, Card, ErrorBox, Loading, P, Screen, styles } from "../components/ui";
+import { View } from "react-native";
+import { Button, Card, EmptyState, ErrorBox, Loading, Row, Screen, T, Tag } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
+import { SHOP_NAME } from "../lib/config";
 import { money } from "../lib/format";
 import type { Order } from "../lib/types";
 
-const LABEL: Record<Order["status"], string> = {
-  pending_payment: "Awaiting payment",
-  paid: "Paid · preparing",
-  shipped: "Shipped",
-  cancelled: "Cancelled",
-};
+const LABEL: Record<Order["status"], string> = { pending_payment: "Awaiting payment", paid: "Preparing", shipped: "Shipped", cancelled: "Cancelled" };
 
 export default function Orders() {
-  const t = useTheme();
   const { user } = useAuth();
   const [orders, setOrders] = useState<Order[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -29,37 +23,27 @@ export default function Orders() {
   useFocusEffect(load);
 
   if (!user) {
-    return (
-      <Screen>
-        <P muted style={{ marginBottom: 12 }}>Sign in to see your orders.</P>
-        <Button title="Sign in" onPress={() => router.push("/login")} />
-      </Screen>
-    );
+    return <Screen><EmptyState icon="receipt-outline" title="Sign in to see your orders" action={{ label: "Sign in", onPress: () => router.push("/login") }} /></Screen>;
   }
 
   return (
     <Screen>
       {error && <ErrorBox message={error} onRetry={load} />}
       {!orders && !error && <Loading />}
-      {orders?.length === 0 && (
-        <>
-          <P muted style={{ marginBottom: 12 }}>No orders yet.</P>
-          <Button title="Shop GP's Fresh products" onPress={() => router.replace("/shop")} />
-        </>
-      )}
+      {orders?.length === 0 && <EmptyState icon="bag-handle-outline" title="No orders yet" body={`Treat yourself to some ${SHOP_NAME}.`} action={{ label: "Shop now", onPress: () => router.replace("/shop") }} />}
       {orders?.map((o) => (
-        <Card key={o.id}>
-          <View style={[styles.row, { justifyContent: "space-between" }]}>
-            <P muted>{new Date(o.createdAt).toLocaleDateString()}</P>
-            <Text style={{ color: o.status === "pending_payment" ? t.accent : t.primary, fontWeight: "700", fontSize: 12 }}>{LABEL[o.status]}</Text>
+        <Card key={o.id} style={{ marginBottom: 12 }}>
+          <Row style={{ justifyContent: "space-between" }}>
+            <T variant="caption" muted>{new Date(o.createdAt).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" })}</T>
+            <Tag label={LABEL[o.status]} tone={o.status === "pending_payment" ? "warn" : o.status === "cancelled" ? "danger" : "brand"} />
+          </Row>
+          <View style={{ marginTop: 10, gap: 2 }}>
+            {o.items.map((i) => <T key={i.productId}>{i.quantity} × {i.name}</T>)}
           </View>
-          {o.items.map((i) => <P key={i.productId}>{i.quantity} × {i.name}</P>)}
-          <P style={{ fontWeight: "800", marginTop: 6 }}>{money(o.amount, o.currency)}</P>
-          {o.status === "pending_payment" && (
-            <View style={{ marginTop: 8 }}>
-              <Button title="Pay now" onPress={() => router.push({ pathname: "/order/[orderId]", params: { orderId: o.id } })} />
-            </View>
-          )}
+          <Row style={{ justifyContent: "space-between", marginTop: 12 }}>
+            <T variant="heading">{money(o.amount, o.currency)}</T>
+            {o.status === "pending_payment" && <Button title="Pay now" size="sm" onPress={() => router.push({ pathname: "/order/[orderId]", params: { orderId: o.id } })} />}
+          </Row>
         </Card>
       ))}
     </Screen>

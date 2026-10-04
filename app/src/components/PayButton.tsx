@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Platform } from "react-native";
 import { APP_NAME, MERCHANT_COUNTRY } from "../lib/config";
 import type { PayButtonProps } from "./PayButton.types";
-import { Button, P } from "./ui";
+import { Button, T } from "./ui";
 
 /** iOS / Android: Stripe PaymentSheet with Apple Pay, Google Pay and cards. */
 export function PayButton({ clientSecret, currency, amountLabel, onPaid }: PayButtonProps) {
@@ -45,10 +45,10 @@ export function PayButton({ clientSecret, currency, amountLabel, onPaid }: PayBu
         onPress={pay}
         loading={busy}
       />
-      <P muted style={{ fontSize: 12, marginTop: 8, textAlign: "center" }}>
+      <T variant="small" muted center style={{ marginTop: 10 }}>
         {Platform.OS === "ios" ? "Apple Pay" : "Google Pay"} or card · secured by Stripe
-      </P>
-      {error && <P style={{ color: "#D64545", marginTop: 8 }}>{error}</P>}
+      </T>
+      {error && <T variant="caption" color="#E5484D" style={{ marginTop: 8 }}>{error}</T>}
     </>
   );
 }

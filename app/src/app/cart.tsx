@@ -1,21 +1,21 @@
 import { router } from "expo-router";
 import { useState } from "react";
-import { Text, View } from "react-native";
-import { LocationPicker } from "../components/LocationPicker";
+import { View } from "react-native";
+import { LocationPill } from "../components/LocationSheet";
 import { QuantityStepper } from "../components/QuantityStepper";
-import { useTheme } from "../components/theme";
-import { Button, Card, ErrorBox, Field, H2, Loading, P, Screen, styles } from "../components/ui";
+import { colors, radius } from "../components/theme";
+import { Button, Card, Divider, EmptyState, ErrorBox, Field, Loading, Row, Screen, Section, SummaryLine, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { useCart } from "../lib/cart";
+import { SHOP_NAME } from "../lib/config";
 import { money } from "../lib/format";
 import { useLocation } from "../lib/location";
 import { useCatalog } from "../lib/useCatalog";
 
 export default function Cart() {
-  const t = useTheme();
   const { user } = useAuth();
-  const { place, country } = useLocation();
+  const { place } = useLocation();
   const { catalog, error: loadError } = useCatalog(place?.countryCode);
   const { items, setQuantity } = useCart();
   const [name, setName] = useState(user?.name ?? "");
@@ -33,8 +33,7 @@ export default function Cart() {
   if (!lines.length) {
     return (
       <Screen>
-        <P muted style={{ marginBottom: 12 }}>Your cart is empty.</P>
-        <Button title="Shop GP's Fresh products" onPress={() => router.replace("/shop")} />
+        <EmptyState icon="bag-handle-outline" title="Your cart is empty" body={`Pomades, beard oils and more from ${SHOP_NAME}.`} action={{ label: "Start shopping", onPress: () => router.replace("/shop") }} />
       </Screen>
     );
   }
@@ -63,59 +62,53 @@ export default function Cart() {
   }
 
   return (
-    <Screen>
-      {lines.map((p) => (
-        <Card key={p.id}>
-          <View style={[styles.row, { justifyContent: "space-between" }]}>
-            <Text style={{ fontSize: 32, marginRight: 12 }}>{p.emoji}</Text>
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: t.text, fontWeight: "700" }}>{p.name}</Text>
-              <P muted>{money(p.price, p.currency)} each</P>
+    <Screen
+      footer={
+        <Button
+          title={user ? `Checkout · ${money(subtotal + shipping, catalog.currency)}` : "Sign in to check out"}
+          icon="lock-closed"
+          onPress={checkout}
+          loading={busy}
+          disabled={!!user && (!place || !name.trim() || address.trim().length < 5)}
+        />
+      }
+    >
+      {lines.map((p, i) => (
+        <View key={p.id}>
+          {i > 0 && <Divider style={{ marginVertical: 0 }} />}
+          <Row gap={14} style={{ paddingVertical: 12 }}>
+            <View style={{ width: 56, height: 56, borderRadius: radius.md, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" }}>
+              <T style={{ fontSize: 28, lineHeight: 34 }}>{p.emoji}</T>
             </View>
-            <QuantityStepper value={items[p.id]} onChange={(q) => setQuantity(p.id, q)} />
-          </View>
-        </Card>
+            <View style={{ flex: 1 }}>
+              <T variant="strong" numberOfLines={1}>{p.name.replace(`${SHOP_NAME} `, "")}</T>
+              <T variant="caption" muted>{money(p.price * items[p.id], p.currency)}</T>
+            </View>
+            <QuantityStepper value={items[p.id]} onChange={(q) => setQuantity(p.id, q)} compact />
+          </Row>
+        </View>
       ))}
 
-      <Card>
-        <Row label="Subtotal" value={money(subtotal, catalog.currency)} />
-        <Row label="Delivery" value={shipping ? money(shipping, catalog.currency) : "Free"} />
+      <Card tone="surface" style={{ marginTop: 12 }}>
+        <SummaryLine label="Subtotal" value={money(subtotal, catalog.currency)} />
+        <SummaryLine label="Delivery" value={shipping ? money(shipping, catalog.currency) : "Free"} />
         {shipping > 0 && (
-          <P muted style={{ fontSize: 13, marginTop: 4 }}>
-            Add {money(catalog.shipping.freeFrom - subtotal, catalog.currency)} more for free delivery.
-          </P>
+          <T variant="small" color={colors.brandDark} style={{ marginTop: 4 }}>
+            Add {money(catalog.shipping.freeFrom - subtotal, catalog.currency)} more for free delivery
+          </T>
         )}
-        <View style={{ height: 1, backgroundColor: t.border, marginVertical: 10 }} />
-        <Row label="Total" value={money(subtotal + shipping, catalog.currency)} bold />
+        <Divider />
+        <SummaryLine label="Total" value={money(subtotal + shipping, catalog.currency)} strong />
       </Card>
 
-      <H2>Delivery</H2>
-      {!place ? (
-        <Card><LocationPicker /></Card>
-      ) : (
-        <P muted style={{ marginBottom: 10 }}>Delivering to {country?.name ?? place.countryCode}. Change your country on the Home tab.</P>
-      )}
-      <Field label="Full name" value={name} onChangeText={setName} autoComplete="name" />
-      <Field label="Delivery address" value={address} onChangeText={setAddress} multiline placeholder="Street and number, postcode, city" autoComplete="street-address" />
-
+      <Section title="Delivery details">
+        <View style={{ marginBottom: 14 }}>
+          <LocationPill label="Country" />
+        </View>
+        <Field label="Full name" value={name} onChangeText={setName} autoComplete="name" />
+        <Field label="Delivery address" value={address} onChangeText={setAddress} multiline placeholder="Street and number, postcode, city" autoComplete="street-address" />
+      </Section>
       {error && <ErrorBox message={error} />}
-      <Button
-        title={user ? "Continue to payment" : "Sign in to check out"}
-        icon="lock-closed"
-        onPress={checkout}
-        loading={busy}
-        disabled={!!user && (!place || !name.trim() || address.trim().length < 5)}
-      />
     </Screen>
-  );
-}
-
-function Row({ label, value, bold }: { label: string; value: string; bold?: boolean }) {
-  const t = useTheme();
-  return (
-    <View style={[styles.row, { justifyContent: "space-between", marginVertical: 2 }]}>
-      <P style={bold ? { fontWeight: "800" } : undefined}>{label}</P>
-      <Text style={{ color: t.text, fontWeight: bold ? "800" : "600", fontSize: bold ? 18 : 15 }}>{value}</Text>
-    </View>
   );
 }

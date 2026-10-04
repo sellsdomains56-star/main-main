@@ -1,7 +1,7 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { Avatar, Button, ErrorBox, Field, H1, Loading, P, Screen, Stars } from "../../components/ui";
+import { Avatar, Button, ErrorBox, Field, Loading, Screen, StarsInput, T } from "../../components/ui";
 import { api } from "../../lib/api";
 import type { Booking } from "../../lib/types";
 
@@ -35,16 +35,15 @@ export default function ReviewScreen() {
   }
 
   return (
-    <Screen>
-      <View style={{ alignItems: "center", marginBottom: 16 }}>
-        <Avatar uri={booking.barber.photoUrl} size={80} />
-        <H1>How was {booking.barber.name.split(" ")[0]}?</H1>
-        <Stars value={rating} size={38} onChange={setRating} />
-        <P muted style={{ marginTop: 8 }}>{LABELS[rating]}</P>
+    <Screen footer={<Button title="Submit rating" onPress={submit} loading={busy} />}>
+      <View style={{ alignItems: "center", marginTop: 12, marginBottom: 24 }}>
+        <Avatar uri={booking.barber.photoUrl} name={booking.barber.name} size={84} />
+        <T variant="title" center style={{ marginTop: 14 }}>How was your cut with {booking.barber.name.split(" ")[0]}?</T>
+        <View style={{ marginTop: 18 }}><StarsInput value={rating} onChange={setRating} /></View>
+        <T variant="strong" muted style={{ marginTop: 10 }}>{LABELS[rating]}</T>
       </View>
-      <Field label="Tell others about your cut (optional)" value={comment} onChangeText={setComment} multiline placeholder="Clean fade, on time, great vibe…" />
+      <Field label="Tell others about it (optional)" value={comment} onChangeText={setComment} multiline placeholder="Clean fade, on time, great vibe…" />
       {error && <ErrorBox message={error} />}
-      <Button title="Submit rating" onPress={submit} loading={busy} />
     </Screen>
   );
 }

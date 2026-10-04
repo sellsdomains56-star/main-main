@@ -1,8 +1,8 @@
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { Alert, Platform, Text, View } from "react-native";
-import { useTheme } from "../../components/theme";
-import { Avatar, Button, Card, ErrorBox, Loading, P, Screen, styles } from "../../components/ui";
+import { Alert, Platform, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Avatar, Button, Card, EmptyState, ErrorBox, Loading, Row, Screen, Segmented, T, Tag } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { dateTime, money, STATUS_LABEL } from "../../lib/format";
@@ -18,10 +18,14 @@ function confirmAction(message: string): Promise<boolean> {
   );
 }
 
+const tone = (s: Booking["status"]) => (s === "cancelled" ? "danger" : s === "pending_payment" ? "warn" : s === "completed" ? "neutral" : "brand");
+
 export default function Bookings() {
+  const insets = useSafeAreaInsets();
   const { user, loading: authLoading } = useAuth();
   const [list, setList] = useState<Booking[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
 
   const load = useCallback(() => {
     if (!user) return;
@@ -30,20 +34,23 @@ export default function Bookings() {
   }, [user]);
   useFocusEffect(load);
 
-  if (authLoading) return <Screen><Loading /></Screen>;
+  const header = <T variant="display" style={{ marginTop: insets.top + 8, marginBottom: 16 }}>Bookings</T>;
+
+  if (authLoading) return <Screen>{header}<Loading /></Screen>;
   if (!user) {
     return (
       <Screen>
-        <P muted style={{ marginBottom: 12 }}>Sign in to see your appointments.</P>
-        <Button title="Sign in" onPress={() => router.push("/login")} />
+        {header}
+        <EmptyState icon="calendar-outline" title="Your appointments live here" body="Sign in to book barbers and manage your cuts." action={{ label: "Sign in", onPress: () => router.push("/login") }} />
       </Screen>
     );
   }
 
   const isBarber = user.role === "barber";
   const now = Date.now();
-  const upcoming = list?.filter((b) => Date.parse(b.endsAt) >= now && b.status !== "cancelled" && b.status !== "completed") ?? [];
-  const past = list?.filter((b) => !upcoming.includes(b)) ?? [];
+  const isUpcoming = (b: Booking) => Date.parse(b.endsAt) >= now && b.status !== "cancelled" && b.status !== "completed";
+  const shown = (list ?? []).filter((b) => (tab === "upcoming" ? isUpcoming(b) : !isUpcoming(b)));
+  if (tab === "upcoming") shown.sort((a, b) => a.startsAt.localeCompare(b.startsAt));
 
   const run = (fn: () => Promise<unknown>) => async () => {
     try {
@@ -54,69 +61,64 @@ export default function Bookings() {
     }
   };
 
-  const renderBooking = (b: Booking) => (
-    <BookingCard key={b.id} booking={b} isBarber={isBarber}>
-      {!isBarber && b.status === "pending_payment" && (
-        <Button title="Pay now" onPress={() => router.push({ pathname: "/pay/[bookingId]", params: { bookingId: b.id } })} />
-      )}
-      {isBarber && b.status === "confirmed" && <Button title="I'm on my way" icon="car" onPress={run(() => api.setBookingStatus(b.id, "on_the_way"))} />}
-      {isBarber && (b.status === "confirmed" || b.status === "on_the_way") && (
-        <View style={{ marginTop: 8 }}><Button title="Mark as done" variant="secondary" icon="checkmark" onPress={run(() => api.setBookingStatus(b.id, "completed"))} /></View>
-      )}
-      {!isBarber && b.status === "completed" && !b.reviewed && (
-        <Button title="Rate your barber" icon="star" onPress={() => router.push({ pathname: "/review/[bookingId]", params: { bookingId: b.id } })} />
-      )}
-      {["pending_payment", "confirmed"].includes(b.status) && (
-        <View style={{ marginTop: 8 }}>
-          <Button
-            title="Cancel booking"
-            variant="secondary"
-            onPress={run(async () => {
-              if (await confirmAction(b.status === "confirmed" ? "Cancel and refund this booking?" : "Cancel this booking?")) await api.cancelBooking(b.id);
-            })}
-          />
-        </View>
-      )}
-    </BookingCard>
-  );
-
   return (
     <Screen>
-      {error && <ErrorBox message={error} onRetry={load} />}
-      {!list && !error && <Loading />}
-      {list?.length === 0 && (
-        <>
-          <P muted style={{ marginBottom: 12 }}>{isBarber ? "No appointments yet." : "No bookings yet — time to get fresh."}</P>
-          {!isBarber && <Button title="Find a barber" onPress={() => router.push("/barbers")} />}
-        </>
-      )}
-      {upcoming.length > 0 && <P style={{ fontWeight: "800", fontSize: 18, marginBottom: 10 }}>Upcoming</P>}
-      {upcoming.map(renderBooking)}
-      {past.length > 0 && <P style={{ fontWeight: "800", fontSize: 18, marginVertical: 10 }}>Past</P>}
-      {past.map(renderBooking)}
-    </Screen>
-  );
-}
-
-function BookingCard({ booking: b, isBarber, children }: { booking: Booking; isBarber: boolean; children: React.ReactNode }) {
-  const t = useTheme();
-  const statusColor = b.status === "cancelled" ? t.danger : b.status === "pending_payment" ? t.accent : t.primary;
-  return (
-    <Card>
-      <View style={styles.row}>
-        <Avatar uri={b.barber.photoUrl} size={48} />
-        <View style={{ flex: 1, marginLeft: 12 }}>
-          <Text style={{ color: t.text, fontWeight: "700", fontSize: 16 }}>
-            {isBarber ? b.customerName : b.barber.name}
-          </Text>
-          <P muted>{b.service?.name} · {money(b.amount, b.currency)}</P>
-        </View>
-        <Text style={{ color: statusColor, fontWeight: "700", fontSize: 12 }}>{STATUS_LABEL[b.status]}</Text>
+      {header}
+      <Segmented value={tab} onChange={setTab} options={[{ value: "upcoming", label: "Upcoming" }, { value: "past", label: "Past" }]} />
+      <View style={{ marginTop: 16 }}>
+        {error && <ErrorBox message={error} onRetry={load} />}
+        {!list && !error && <Loading />}
+        {list && shown.length === 0 && (
+          <EmptyState
+            icon="cut-outline"
+            title={tab === "upcoming" ? "Nothing booked yet" : "No past appointments"}
+            body={isBarber ? "New bookings from customers appear here." : tab === "upcoming" ? "Find a barber near you and get fresh." : undefined}
+            action={!isBarber && tab === "upcoming" ? { label: "Find a barber", onPress: () => router.push("/explore") } : undefined}
+          />
+        )}
+        {shown.map((b) => (
+          <Card key={b.id} style={{ marginBottom: 12 }}>
+            <Row gap={12}>
+              <Avatar uri={isBarber ? null : b.barber.photoUrl} name={isBarber ? b.customerName : b.barber.name} size={48} />
+              <View style={{ flex: 1 }}>
+                <T variant="strong">{isBarber ? b.customerName : b.barber.name}</T>
+                <T variant="caption" muted>{b.service?.name} · {money(b.amount, b.currency)}</T>
+              </View>
+              <Tag label={STATUS_LABEL[b.status]} tone={tone(b.status)} />
+            </Row>
+            <View style={{ marginTop: 12, gap: 4 }}>
+              <T variant="caption">🗓  {dateTime(b.startsAt, b.barber.timeZone)} ({b.barber.city} time)</T>
+              <T variant="caption">{b.locationType === "home" ? "🏠" : "💈"}  {b.address}</T>
+              {!!b.notes && <T variant="caption" muted>📝  {b.notes}</T>}
+            </View>
+            <Row gap={8} style={{ marginTop: 14, flexWrap: "wrap" }}>
+              {!isBarber && b.status === "pending_payment" && (
+                <Button title="Pay now" size="md" onPress={() => router.push({ pathname: "/pay/[bookingId]", params: { bookingId: b.id } })} />
+              )}
+              {isBarber && b.status === "confirmed" && <Button title="On my way" icon="car-outline" size="md" onPress={run(() => api.setBookingStatus(b.id, "on_the_way"))} />}
+              {isBarber && (b.status === "confirmed" || b.status === "on_the_way") && (
+                <Button title="Mark done" icon="checkmark" size="md" variant="secondary" onPress={run(() => api.setBookingStatus(b.id, "completed"))} />
+              )}
+              {!isBarber && b.status === "completed" && !b.reviewed && (
+                <Button title="Rate your cut" icon="star" size="md" onPress={() => router.push({ pathname: "/review/[bookingId]", params: { bookingId: b.id } })} />
+              )}
+              {!isBarber && b.status === "completed" && (
+                <Button title="Book again" size="md" variant="secondary" onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: b.barber.id } })} />
+              )}
+              {["pending_payment", "confirmed"].includes(b.status) && (
+                <Button
+                  title="Cancel"
+                  size="md"
+                  variant="ghost"
+                  onPress={run(async () => {
+                    if (await confirmAction(b.status === "confirmed" ? "Cancel and refund this booking?" : "Cancel this booking?")) await api.cancelBooking(b.id);
+                  })}
+                />
+              )}
+            </Row>
+          </Card>
+        ))}
       </View>
-      <P style={{ marginTop: 10 }}>🗓 {dateTime(b.startsAt, b.barber.timeZone)} ({b.barber.city} time)</P>
-      <P>{b.locationType === "home" ? "🏠" : "💈"} {b.address}</P>
-      {!!b.notes && <P muted>📝 {b.notes}</P>}
-      <View style={{ marginTop: 10 }}>{children}</View>
-    </Card>
+    </Screen>
   );
 }

@@ -1,31 +1,49 @@
 import { router } from "expo-router";
-import { Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { money } from "../lib/format";
 import type { Barber } from "../lib/types";
-import { useTheme } from "./theme";
-import { Avatar, Card, P, Stars, styles } from "./ui";
+import { radius } from "./theme";
+import { Photo, Rating, Row, styles, T, Tag } from "./ui";
 
+const open = (id: string) => router.push({ pathname: "/barber/[id]", params: { id } });
+
+/** List row: photo left, details right. */
 export function BarberCard({ barber }: { barber: Barber }) {
-  const t = useTheme();
   return (
-    <Card onPress={() => router.push(`/barber/${barber.id}`)}>
-      <View style={styles.row}>
-        <Avatar uri={barber.photoUrl} size={64} />
-        <View style={{ flex: 1, marginLeft: 12 }}>
-          <Text style={{ color: t.text, fontSize: 17, fontWeight: "700" }}>{barber.name}</Text>
-          <View style={[styles.row, { marginTop: 3 }]}>
-            <Stars value={barber.rating ?? 0} size={14} />
-            <P muted style={{ marginLeft: 6, fontSize: 13 }}>
-              {barber.rating ? `${barber.rating.toFixed(1)} (${barber.ratingCount})` : "New"}
-            </P>
-          </View>
-          <P muted style={{ fontSize: 13, marginTop: 3 }}>
-            {barber.city} · from {money(barber.startingPrice, barber.currency)}
-            {barber.offersHomeVisits ? " · comes to you" : ""}
-          </P>
-        </View>
+    <Pressable onPress={() => open(barber.id)} style={({ pressed }) => [{ flexDirection: "row", gap: 14, paddingVertical: 12 }, pressed && styles.pressed]}>
+      <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 84, height: 84 }} rounded={radius.lg} />
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <T variant="heading" numberOfLines={1}>{barber.name}</T>
+        <Row gap={6} style={{ marginTop: 3 }}>
+          <Rating value={barber.rating} count={barber.ratingCount} />
+          <T variant="caption" muted>· {barber.city}</T>
+        </Row>
+        <T variant="caption" muted numberOfLines={1} style={{ marginTop: 3 }}>{barber.specialties.slice(0, 3).join(" · ")}</T>
+        <Row gap={6} style={{ marginTop: 8 }}>
+          <Tag label={`from ${money(barber.startingPrice, barber.currency)}`} />
+          {barber.offersHomeVisits && <Tag label="Comes to you" tone="brand" icon="home" />}
+        </Row>
       </View>
-      <P muted style={{ fontSize: 13, marginTop: 10 }} >{barber.specialties.slice(0, 4).join(" · ")}</P>
-    </Card>
+    </Pressable>
   );
 }
+
+/** Carousel tile: big photo on top. */
+export function BarberTile({ barber }: { barber: Barber }) {
+  return (
+    <Pressable onPress={() => open(barber.id)} style={({ pressed }) => [{ width: 168 }, pressed && styles.pressed]}>
+      <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 168, height: 168 }} rounded={radius.lg} />
+      {barber.offersHomeVisits && (
+        <View style={{ position: "absolute", top: 10, left: 10 }}>
+          <Tag label="Comes to you" tone="brand" icon="home" />
+        </View>
+      )}
+      <T variant="strong" numberOfLines={1} style={{ marginTop: 10 }}>{barber.name}</T>
+      <Row gap={6} style={{ marginTop: 2 }}>
+        <Rating value={barber.rating} />
+        <T variant="caption" muted>· from {money(barber.startingPrice, barber.currency)}</T>
+      </Row>
+    </Pressable>
+  );
+}
+

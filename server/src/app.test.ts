@@ -107,7 +107,7 @@ test("AI stylist requires sign-in and reports when not configured", async () => 
 test("shop: products priced in local currency, order with shipping, pay (demo)", async () => {
   const { json: uk } = await call("/products?country=GB");
   assert.equal(uk.currency, "gbp");
-  assert.ok(uk.products.length > 5 && uk.products.every((p: { name: string; price: number }) => p.name.startsWith("GP's Fresh") && p.price > 0));
+  assert.ok(uk.products.length > 5 && uk.products.every((p: { name: string; price: number }) => p.name.startsWith("JB's Fresh") && p.price > 0));
 
   const { json: acc } = await call("/auth/register", { body: { name: "Shopper", email: "shop@example.com", password: "password123" } });
   assert.equal((await call("/orders", { body: { countryCode: "DE", items: [{ productId: "p-pomade", quantity: 1 }], shippingName: "S", shippingAddress: "Somewhere 1" } })).status, 401);
@@ -136,4 +136,34 @@ test("shop: products priced in local currency, order with shipping, pay (demo)",
 
   const bad = await call("/orders", { token: acc.token, body: { countryCode: "DE", items: [{ productId: "nope", quantity: 1 }], shippingName: "S", shippingAddress: "Somewhere 1" } });
   assert.equal(bad.status, 404);
+});
+
+test("reels: feed by city, like toggle, barber upload", async () => {
+  const { json: berlin } = await call("/reels?country=DE&city=Berlin");
+  assert.ok(berlin.length >= 2);
+  assert.ok(berlin.every((r: { barber: { city: string } }) => r.barber.city === "Berlin"));
+  const video = await fetch(base + berlin[0].videoUrl);
+  assert.equal(video.status, 200);
+  assert.match(video.headers.get("content-type") ?? "", /video\/mp4/);
+
+  const { json: fan } = await call("/auth/register", { body: { name: "Fan", email: "fan@example.com", password: "password123" } });
+  const liked = await call(`/reels/${berlin[0].id}/like`, { token: fan.token, method: "POST" });
+  assert.equal(liked.json.likedByMe, true);
+  assert.equal(liked.json.likes, berlin[0].likes + 1);
+  const { json: feed } = await call("/reels?country=DE&city=Berlin", { token: fan.token });
+  assert.equal(feed.find((r: { id: string }) => r.id === berlin[0].id).likedByMe, true);
+  const unliked = await call(`/reels/${berlin[0].id}/like`, { token: fan.token, method: "POST" });
+  assert.equal(unliked.json.likes, berlin[0].likes);
+
+  const upload = (token: string) =>
+    fetch(`${base}/reels?caption=${encodeURIComponent("Fresh fade")}`, { method: "POST", headers: { authorization: `Bearer ${token}`, "content-type": "video/mp4" }, body: new Uint8Array(5000) });
+  assert.equal((await upload(fan.token)).status, 403);
+  const { json: barber } = await call("/auth/login", { body: { email: "barber@example.com", password: "password123" } });
+  const res = await upload(barber.token);
+  assert.equal(res.status, 201);
+  const reel = await res.json();
+  assert.equal(reel.caption, "Fresh fade");
+  const { json: mine } = await call(`/reels?barberId=${barber.user.barberId}`);
+  assert.equal(mine[0].id, reel.id);
+  assert.equal((await call(`/reels/${reel.id}`, { token: barber.token, method: "DELETE" })).status, 204);
 });

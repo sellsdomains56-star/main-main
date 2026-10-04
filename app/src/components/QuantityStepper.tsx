@@ -1,18 +1,18 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Pressable, Text, View } from "react-native";
-import { useTheme } from "./theme";
+import { Pressable, View } from "react-native";
+import { colors, radius } from "./theme";
+import { T } from "./ui";
 
-export function QuantityStepper({ value, onChange }: { value: number; onChange: (v: number) => void }) {
-  const t = useTheme();
-  const btn = (icon: "remove" | "add", next: number, label: string) => (
-    <Pressable accessibilityLabel={label} onPress={() => onChange(next)} hitSlop={6} style={{ backgroundColor: t.chip, borderRadius: 999, padding: 6 }}>
-      <Ionicons name={icon} size={18} color={t.text} />
+export function QuantityStepper({ value, onChange, compact }: { value: number; onChange: (v: number) => void; compact?: boolean }) {
+  const btn = (icon: "remove" | "add" | "trash-outline", next: number, label: string) => (
+    <Pressable accessibilityLabel={label} onPress={() => onChange(next)} hitSlop={6} style={{ padding: compact ? 6 : 8 }}>
+      <Ionicons name={icon} size={16} color={colors.text} />
     </Pressable>
   );
   return (
-    <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
-      {btn("remove", value - 1, "Remove one")}
-      <Text style={{ color: t.text, fontWeight: "700", fontSize: 16, minWidth: 18, textAlign: "center" }}>{value}</Text>
+    <View style={{ flexDirection: "row", alignItems: "center", backgroundColor: colors.surface, borderRadius: radius.pill, paddingHorizontal: 4 }}>
+      {btn(value === 1 ? "trash-outline" : "remove", value - 1, "Remove one")}
+      <T variant="strong" center style={{ minWidth: 22 }}>{value}</T>
       {btn("add", value + 1, "Add one")}
     </View>
   );

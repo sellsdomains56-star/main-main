@@ -1,5 +1,5 @@
 import { API_URL } from "./config";
-import type { Barber, Booking, Catalog, Country, Order, Review, StyleAdvice, User } from "./types";
+import type { Barber, Booking, Catalog, Country, Order, Reel, Review, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -24,7 +24,7 @@ async function request<T>(path: string, init: { method?: string; body?: unknown 
       body: init.body !== undefined ? JSON.stringify(init.body) : undefined,
     });
   } catch {
-    throw new ApiError(0, "Can't reach GP Always Fresh right now. Check your connection.");
+    throw new ApiError(0, "Can't reach JB Always Fresh right now. Check your connection.");
   }
   if (res.status === 204) return undefined as T;
   const data = await res.json().catch(() => ({}));
@@ -37,7 +37,26 @@ const qs = (params: Record<string, string | undefined>) => {
   return entries.length ? "?" + new URLSearchParams(entries).toString() : "";
 };
 
+/** Media paths from the API (/media/..., /uploads/...) become absolute URLs. */
+export const mediaUrl = (path: string | null | undefined) => (!path ? null : /^https?:/.test(path) ? path : API_URL + path);
+
 export const api = {
+  reels: (f: { country?: string; city?: string; barberId?: string }) => request<Reel[]>("/reels" + qs(f)),
+  likeReel: (id: string) => request<Reel>(`/reels/${id}/like`, { method: "POST" }),
+  deleteReel: (id: string) => request<void>(`/reels/${id}`, { method: "DELETE" }),
+  async postReel(video: Blob, contentType: string, caption: string): Promise<Reel> {
+    const res = await fetch(`${API_URL}/reels?caption=${encodeURIComponent(caption)}`, {
+      method: "POST",
+      headers: { "content-type": contentType, ...(authToken ? { authorization: `Bearer ${authToken}` } : {}) },
+      body: video,
+    }).catch(() => {
+      throw new ApiError(0, "Upload failed. Check your connection.");
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new ApiError(res.status, data.error ?? "Upload failed.");
+    return data as Reel;
+  },
+
   locations: () => request<Country[]>("/locations"),
   barbers: (f: { country?: string; city?: string; search?: string; specialty?: string; homeVisits?: boolean; sort?: "rating" | "price" }) =>
     request<Barber[]>("/barbers" + qs({ ...f, homeVisits: f.homeVisits ? "true" : undefined })),

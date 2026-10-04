@@ -1,9 +1,10 @@
 import { router } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
-import { Button, Chip, ErrorBox, Field, H1, P, Screen } from "../components/ui";
+import { Button, ErrorBox, Field, Screen, Segmented, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
+import { APP_NAME } from "../lib/config";
 import { useLocation } from "../lib/location";
 
 export default function Login() {
@@ -34,18 +35,27 @@ export default function Login() {
   }
 
   return (
-    <Screen>
-      <H1>{mode === "login" ? "Welcome back" : "Create your account"}</H1>
-      <View style={{ flexDirection: "row", marginVertical: 12 }}>
-        <Chip label="Sign in" selected={mode === "login"} onPress={() => setMode("login")} />
-        <Chip label="New here? Sign up" selected={mode === "register"} onPress={() => setMode("register")} />
+    <Screen
+      footer={
+        <Button
+          title={mode === "login" ? "Sign in" : "Create account"}
+          onPress={submit}
+          loading={busy}
+          disabled={!email || !password || (mode === "register" && !name)}
+        />
+      }
+    >
+      <T variant="display">{mode === "login" ? "Welcome back" : `Join ${APP_NAME}`}</T>
+      <T muted style={{ marginTop: 6, marginBottom: 20 }}>
+        {mode === "login" ? `Sign in to ${APP_NAME}.` : "Book barbers, save reels and shop in seconds."}
+      </T>
+      <Segmented value={mode} onChange={setMode} options={[{ value: "login", label: "Sign in" }, { value: "register", label: "Create account" }]} />
+      <View style={{ marginTop: 20 }}>
+        {mode === "register" && <Field label="Name" value={name} onChangeText={setName} autoComplete="name" />}
+        <Field label="Email" value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" autoComplete="email" />
+        <Field label="Password" value={password} onChangeText={setPassword} secureTextEntry autoComplete={mode === "login" ? "current-password" : "new-password"} placeholder={mode === "register" ? "At least 8 characters" : undefined} />
       </View>
-      {mode === "register" && <Field label="Name" value={name} onChangeText={setName} autoComplete="name" />}
-      <Field label="Email" value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" autoComplete="email" />
-      <Field label="Password" value={password} onChangeText={setPassword} secureTextEntry autoComplete={mode === "login" ? "current-password" : "new-password"} />
-      {mode === "register" && <P muted style={{ marginBottom: 12 }}>At least 8 characters.</P>}
       {error && <ErrorBox message={error} />}
-      <Button title={mode === "login" ? "Sign in" : "Create account"} onPress={submit} loading={busy} disabled={!email || !password || (mode === "register" && !name)} />
     </Screen>
   );
 }

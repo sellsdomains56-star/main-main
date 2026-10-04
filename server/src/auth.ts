@@ -35,6 +35,14 @@ declare global {
   }
 }
 
+/** Attaches req.user when a valid token is sent, but never rejects. */
+export function optionalAuth(req: Request, _res: Response, next: NextFunction) {
+  const token = req.header("authorization")?.replace(/^Bearer\s+/i, "");
+  const userId = token ? db.sessions[token] : undefined;
+  req.user = userId ? db.users.find((u) => u.id === userId) : undefined;
+  next();
+}
+
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
   const token = req.header("authorization")?.replace(/^Bearer\s+/i, "");
   const userId = token ? db.sessions[token] : undefined;

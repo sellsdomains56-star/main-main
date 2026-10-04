@@ -113,3 +113,13 @@ export interface Order {
   paymentIntentId?: string;
   createdAt: string;
 }
+
+export interface Reel {
+  id: string;
+  barberId: string;
+  videoUrl: string; // path served by this API (/media/... or /uploads/...) or a full URL
+  posterUrl?: string;
+  caption: string;
+  likedBy: string[]; // user ids
+  createdAt: string;
+}
