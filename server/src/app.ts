@@ -4,7 +4,7 @@ import { z } from "zod";
 import { createSession, hashPassword, publicUser, requireAuth, verifyPassword } from "./auth.js";
 import { config } from "./config.js";
 import { db, newId, save } from "./db.js";
-import { createPaymentIntent, demoPayments, paymentSucceeded, refund, stripe } from "./payments.js";
+import { clientSecretFor, createPaymentIntent, demoPayments, paymentSucceeded, refund, stripe } from "./payments.js";
 import { COUNTRIES } from "./seed.js";
 import { availableSlots } from "./slots.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
@@ -59,7 +59,7 @@ function bookingView(b: Booking) {
   return {
     ...b,
     paymentIntentId: undefined,
-    barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city },
+    barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: cityOf(barber).timeZone },
     customerName: customer?.name ?? "Customer",
     service: barber.services.find((s) => s.id === b.serviceId),
   };
@@ -310,6 +310,13 @@ export function createApp() {
     const booking = db.bookings.find((b) => b.id === req.params.id);
     if (!booking || !canAccess(req.user!.id, booking)) throw new HttpError(404, "Booking not found.");
     res.json(bookingView(booking));
+  });
+
+  app.get("/bookings/:id/payment", requireAuth, async (req, res) => {
+    const booking = db.bookings.find((b) => b.id === req.params.id && b.customerId === req.user!.id);
+    if (!booking) throw new HttpError(404, "Booking not found.");
+    const clientSecret = booking.status === "pending_payment" && booking.paymentIntentId ? await clientSecretFor(booking.paymentIntentId) : null;
+    res.json({ booking: bookingView(booking), clientSecret, demoPayments });
   });
 
   // Called by the app after the payment sheet completes. The server re-checks with Stripe,

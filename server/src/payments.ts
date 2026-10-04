@@ -27,6 +27,11 @@ export async function createPaymentIntent(booking: Booking): Promise<{ clientSec
   return { clientSecret: intent.client_secret!, id: intent.id };
 }
 
+export async function clientSecretFor(paymentIntentId: string): Promise<string | null> {
+  if (!stripe) return null;
+  return (await stripe.paymentIntents.retrieve(paymentIntentId)).client_secret;
+}
+
 export async function paymentSucceeded(paymentIntentId: string): Promise<boolean> {
   if (!stripe) return false;
   const intent = await stripe.paymentIntents.retrieve(paymentIntentId);
