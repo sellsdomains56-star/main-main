@@ -1,6 +1,5 @@
 import Stripe from "stripe";
 import { config } from "./config.js";
-import type { Booking } from "./types.js";
 
 // Stripe handles cards, Apple Pay and Google Pay through the same PaymentIntent:
 // the mobile PaymentSheet and the web Payment Element both show the wallets
@@ -9,20 +8,17 @@ export const stripe = config.stripeSecretKey ? new Stripe(config.stripeSecretKey
 
 export const demoPayments = !stripe;
 
-export async function createPaymentIntent(booking: Booking): Promise<{ clientSecret: string; id: string } | null> {
+/** One PaymentIntent per booking or shop order; `ref` is e.g. "booking-<id>" or "order-<id>". */
+export async function createPaymentIntent(
+  ref: string,
+  amount: number,
+  currency: string,
+  metadata: Record<string, string>,
+): Promise<{ clientSecret: string; id: string } | null> {
   if (!stripe) return null;
   const intent = await stripe.paymentIntents.create(
-    {
-      amount: booking.amount,
-      currency: booking.currency,
-      automatic_payment_methods: { enabled: true },
-      metadata: {
-        bookingId: booking.id,
-        barberId: booking.barberId,
-        platformFee: String(Math.round((booking.amount * config.platformFeePercent) / 100)),
-      },
-    },
-    { idempotencyKey: `booking-${booking.id}` },
+    { amount, currency, automatic_payment_methods: { enabled: true }, metadata },
+    { idempotencyKey: ref },
   );
   return { clientSecret: intent.client_secret!, id: intent.id };
 }

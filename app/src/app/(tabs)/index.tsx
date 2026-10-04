@@ -42,6 +42,14 @@ export default function Home() {
           </P>
         </Card>
 
+        <Card onPress={() => router.push("/shop")}>
+          <P style={{ fontWeight: "800", fontSize: 18 }}>🛍️ Buy all GP's Fresh products</P>
+          <P muted style={{ marginTop: 4 }}>
+            Pomades, beard oils, shampoos and tools — the same products our barbers use, delivered to your door.
+          </P>
+          <P style={{ color: t.primary, fontWeight: "700", marginTop: 8 }}>Shop now →</P>
+        </Card>
+
         {place && (
           <>
             <H2>

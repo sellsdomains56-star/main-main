@@ -5,10 +5,11 @@ import { createSession, hashPassword, publicUser, requireAuth, verifyPassword } 
 import { config } from "./config.js";
 import { db, newId, save } from "./db.js";
 import { clientSecretFor, createPaymentIntent, demoPayments, paymentSucceeded, refund, stripe } from "./payments.js";
+import { PRODUCTS, SHIPPING } from "./products.js";
 import { COUNTRIES } from "./seed.js";
 import { availableSlots } from "./slots.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
-import type { Barber, Booking } from "./types.js";
+import type { Barber, Booking, Order, Product } from "./types.js";
 
 class HttpError extends Error {
   constructor(public status: number, message: string) {
@@ -96,10 +97,10 @@ export function createApp() {
     }
     if (event.type === "payment_intent.succeeded") {
       const booking = db.bookings.find((b) => b.paymentIntentId === event.data.object.id);
-      if (booking && booking.status === "pending_payment") {
-        booking.status = "confirmed";
-        save();
-      }
+      if (booking && booking.status === "pending_payment") booking.status = "confirmed";
+      const order = db.orders.find((o) => o.paymentIntentId === event.data.object.id);
+      if (order && order.status === "pending_payment") order.status = "paid";
+      save();
     }
     res.json({ received: true });
   });
@@ -293,7 +294,12 @@ export function createApp() {
       reviewed: false,
       createdAt: new Date().toISOString(),
     };
-    const intent = await createPaymentIntent(booking);
+    const intent = await createPaymentIntent(`booking-${booking.id}`, booking.amount, booking.currency, {
+      kind: "booking",
+      bookingId: booking.id,
+      barberId: booking.barberId,
+      platformFee: String(Math.round((booking.amount * config.platformFeePercent) / 100)),
+    });
     booking.paymentIntentId = intent?.id;
     db.bookings.push(booking);
     save();
@@ -372,6 +378,81 @@ export function createApp() {
     booking.reviewed = true;
     save();
     res.status(201).json(barberView(barber));
+  });
+
+  // ---------- Shop: GP's Fresh products ----------
+  const currencyFor = (country?: string) => {
+    const currency = (country && findCountry(country)?.currency) || "eur";
+    return SHIPPING[currency] ? currency : "eur";
+  };
+  const productView = (p: Product, currency: string) => ({
+    id: p.id, name: p.name, category: p.category, emoji: p.emoji, description: p.description,
+    price: p.prices[currency], currency,
+  });
+
+  app.get("/products", (req, res) => {
+    const { country } = parse(z.object({ country: z.string().optional() }), req.query);
+    const currency = currencyFor(country);
+    res.json({ currency, shipping: SHIPPING[currency], products: PRODUCTS.map((p) => productView(p, currency)) });
+  });
+
+  app.post("/orders", requireAuth, async (req, res) => {
+    const body = parse(
+      z.object({
+        countryCode: z.string().length(2),
+        items: z.array(z.object({ productId: z.string(), quantity: z.number().int().min(1).max(20) })).min(1),
+        shippingName: z.string().trim().min(1, "Please enter a name for delivery"),
+        shippingAddress: z.string().trim().min(5, "Please enter your delivery address"),
+      }),
+      req.body,
+    );
+    if (!findCountry(body.countryCode)) throw new HttpError(400, "We don't ship to that country yet.");
+    const currency = currencyFor(body.countryCode);
+    const items = body.items.map((i) => {
+      const product = PRODUCTS.find((p) => p.id === i.productId);
+      if (!product) throw new HttpError(404, "One of the products is no longer available.");
+      return { productId: product.id, name: product.name, quantity: i.quantity, unitPrice: product.prices[currency] };
+    });
+    const subtotal = items.reduce((sum, i) => sum + i.unitPrice * i.quantity, 0);
+    const shipping = subtotal >= SHIPPING[currency].freeFrom ? 0 : SHIPPING[currency].fee;
+    const order: Order = {
+      id: newId(), customerId: req.user!.id, items, subtotal, shipping, amount: subtotal + shipping, currency,
+      shippingName: body.shippingName, shippingAddress: body.shippingAddress, countryCode: body.countryCode,
+      status: "pending_payment", createdAt: new Date().toISOString(),
+    };
+    const intent = await createPaymentIntent(`order-${order.id}`, order.amount, currency, { kind: "order", orderId: order.id });
+    order.paymentIntentId = intent?.id;
+    db.orders.push(order);
+    save();
+    res.status(201).json({ order: { ...order, paymentIntentId: undefined }, clientSecret: intent?.clientSecret ?? null, demoPayments });
+  });
+
+  app.get("/orders", requireAuth, (req, res) => {
+    res.json(
+      db.orders
+        .filter((o) => o.customerId === req.user!.id)
+        .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+        .map((o) => ({ ...o, paymentIntentId: undefined })),
+    );
+  });
+
+  app.get("/orders/:id/payment", requireAuth, async (req, res) => {
+    const order = db.orders.find((o) => o.id === req.params.id && o.customerId === req.user!.id);
+    if (!order) throw new HttpError(404, "Order not found.");
+    const clientSecret = order.status === "pending_payment" && order.paymentIntentId ? await clientSecretFor(order.paymentIntentId) : null;
+    res.json({ order: { ...order, paymentIntentId: undefined }, clientSecret, demoPayments });
+  });
+
+  app.post("/orders/:id/confirm-payment", requireAuth, async (req, res) => {
+    const order = db.orders.find((o) => o.id === req.params.id && o.customerId === req.user!.id);
+    if (!order) throw new HttpError(404, "Order not found.");
+    if (order.status === "pending_payment") {
+      const paid = demoPayments || (order.paymentIntentId ? await paymentSucceeded(order.paymentIntentId) : false);
+      if (!paid) throw new HttpError(402, "Payment hasn't gone through yet.");
+      order.status = "paid";
+      save();
+    }
+    res.json({ ...order, paymentIntentId: undefined });
   });
 
   // ---------- AI stylist ----------

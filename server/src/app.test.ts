@@ -103,3 +103,37 @@ test("AI stylist requires sign-in and reports when not configured", async () => 
   const res = await call("/ai/haircut-advice", { token: json.token, body: { imageBase64: "x".repeat(200) } });
   assert.equal(res.status, 503);
 });
+
+test("shop: products priced in local currency, order with shipping, pay (demo)", async () => {
+  const { json: uk } = await call("/products?country=GB");
+  assert.equal(uk.currency, "gbp");
+  assert.ok(uk.products.length > 5 && uk.products.every((p: { name: string; price: number }) => p.name.startsWith("GP's Fresh") && p.price > 0));
+
+  const { json: acc } = await call("/auth/register", { body: { name: "Shopper", email: "shop@example.com", password: "password123" } });
+  assert.equal((await call("/orders", { body: { countryCode: "DE", items: [{ productId: "p-pomade", quantity: 1 }], shippingName: "S", shippingAddress: "Somewhere 1" } })).status, 401);
+
+  const { json: de } = await call("/products?country=DE");
+  const pomade = de.products.find((p: { id: string }) => p.id === "p-pomade");
+  const small = await call("/orders", {
+    token: acc.token,
+    body: { countryCode: "DE", items: [{ productId: "p-pomade", quantity: 2 }], shippingName: "Shopper", shippingAddress: "Kiezweg 5, Berlin" },
+  });
+  assert.equal(small.status, 201, JSON.stringify(small.json));
+  assert.equal(small.json.order.currency, "eur");
+  assert.equal(small.json.order.subtotal, pomade.price * 2);
+  assert.equal(small.json.order.amount, pomade.price * 2 + de.shipping.fee);
+
+  const big = await call("/orders", {
+    token: acc.token,
+    body: { countryCode: "DE", items: [{ productId: "p-kit", quantity: 2 }], shippingName: "Shopper", shippingAddress: "Kiezweg 5, Berlin" },
+  });
+  assert.equal(big.json.order.shipping, 0);
+
+  const paid = await call(`/orders/${small.json.order.id}/confirm-payment`, { token: acc.token, method: "POST" });
+  assert.equal(paid.json.status, "paid");
+  const { json: orders } = await call("/orders", { token: acc.token });
+  assert.equal(orders.length, 2);
+
+  const bad = await call("/orders", { token: acc.token, body: { countryCode: "DE", items: [{ productId: "nope", quantity: 1 }], shippingName: "S", shippingAddress: "Somewhere 1" } });
+  assert.equal(bad.status, 404);
+});

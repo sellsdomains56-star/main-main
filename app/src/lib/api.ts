@@ -1,5 +1,5 @@
 import { API_URL } from "./config";
-import type { Barber, Booking, Country, Review, StyleAdvice, User } from "./types";
+import type { Barber, Booking, Catalog, Country, Order, Review, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -24,7 +24,7 @@ async function request<T>(path: string, init: { method?: string; body?: unknown 
       body: init.body !== undefined ? JSON.stringify(init.body) : undefined,
     });
   } catch {
-    throw new ApiError(0, "Can't reach Always Fresh right now. Check your connection.");
+    throw new ApiError(0, "Can't reach GP Always Fresh right now. Check your connection.");
   }
   if (res.status === 204) return undefined as T;
   const data = await res.json().catch(() => ({}));
@@ -62,6 +62,13 @@ export const api = {
   cancelBooking: (id: string) => request<Booking>(`/bookings/${id}/cancel`, { method: "POST" }),
   setBookingStatus: (id: string, status: "on_the_way" | "completed") => request<Booking>(`/bookings/${id}/status`, { body: { status } }),
   review: (id: string, rating: number, comment: string) => request<Barber>(`/bookings/${id}/review`, { body: { rating, comment } }),
+
+  products: (country?: string) => request<Catalog>("/products" + qs({ country })),
+  createOrder: (body: { countryCode: string; items: { productId: string; quantity: number }[]; shippingName: string; shippingAddress: string }) =>
+    request<{ order: Order; clientSecret: string | null; demoPayments: boolean }>("/orders", { body }),
+  orders: () => request<Order[]>("/orders"),
+  orderPayment: (id: string) => request<{ order: Order; clientSecret: string | null; demoPayments: boolean }>(`/orders/${id}/payment`),
+  confirmOrderPayment: (id: string) => request<Order>(`/orders/${id}/confirm-payment`, { method: "POST" }),
 
   haircutAdvice: (body: { imageBase64: string; mediaType: string; preferences: Record<string, string>; country?: string; city?: string }) =>
     request<{ advice: StyleAdvice; barbers: Barber[] }>("/ai/haircut-advice", { body }),

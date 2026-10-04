@@ -2,7 +2,7 @@ import { PaymentSheetError, useStripe } from "@stripe/stripe-react-native";
 import * as Linking from "expo-linking";
 import { useState } from "react";
 import { Platform } from "react-native";
-import { MERCHANT_COUNTRY } from "../lib/config";
+import { APP_NAME, MERCHANT_COUNTRY } from "../lib/config";
 import type { PayButtonProps } from "./PayButton.types";
 import { Button, P } from "./ui";
 
@@ -17,7 +17,7 @@ export function PayButton({ clientSecret, currency, amountLabel, onPaid }: PayBu
     setError(null);
     try {
       const init = await initPaymentSheet({
-        merchantDisplayName: "Always Fresh",
+        merchantDisplayName: APP_NAME,
         paymentIntentClientSecret: clientSecret,
         applePay: { merchantCountryCode: MERCHANT_COUNTRY },
         googlePay: { merchantCountryCode: MERCHANT_COUNTRY, currencyCode: currency.toUpperCase(), testEnv: __DEV__ },

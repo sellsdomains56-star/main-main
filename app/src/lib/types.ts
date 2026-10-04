@@ -87,3 +87,32 @@ export interface StyleAdvice {
   recommendations: HaircutRecommendation[];
   beardAdvice: string;
 }
+
+export interface Product {
+  id: string;
+  name: string;
+  category: string;
+  emoji: string;
+  description: string;
+  price: number;
+  currency: string;
+}
+
+export interface Catalog {
+  currency: string;
+  shipping: { fee: number; freeFrom: number };
+  products: Product[];
+}
+
+export interface Order {
+  id: string;
+  items: { productId: string; name: string; quantity: number; unitPrice: number }[];
+  subtotal: number;
+  shipping: number;
+  amount: number;
+  currency: string;
+  shippingName: string;
+  shippingAddress: string;
+  status: "pending_payment" | "paid" | "shipped" | "cancelled";
+  createdAt: string;
+}

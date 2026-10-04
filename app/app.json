@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Always Fresh",
+    "name": "GP Always Fresh",
     "slug": "always-fresh",
     "scheme": "alwaysfresh",
     "version": "1.0.0",
@@ -33,8 +33,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Always Fresh uses your photos so the AI stylist can suggest the perfect haircut.",
-          "cameraPermission": "Always Fresh uses the camera so the AI stylist can see your hair and suggest the perfect haircut."
+          "photosPermission": "GP Always Fresh uses your photos so the AI stylist can suggest the perfect haircut.",
+          "cameraPermission": "GP Always Fresh uses the camera so the AI stylist can see your hair and suggest the perfect haircut."
         }
       ],
       [

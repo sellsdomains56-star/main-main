@@ -79,3 +79,37 @@ export interface Review {
   comment: string;
   createdAt: string;
 }
+
+export interface Product {
+  id: string;
+  name: string;
+  category: string;
+  emoji: string;
+  description: string;
+  prices: Record<string, number>; // currency -> minor units
+}
+
+export type OrderStatus = "pending_payment" | "paid" | "shipped" | "cancelled";
+
+export interface OrderItem {
+  productId: string;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+}
+
+export interface Order {
+  id: string;
+  customerId: string;
+  items: OrderItem[];
+  subtotal: number;
+  shipping: number;
+  amount: number; // total charged, minor units
+  currency: string;
+  shippingName: string;
+  shippingAddress: string;
+  countryCode: string;
+  status: OrderStatus;
+  paymentIntentId?: string;
+  createdAt: string;
+}

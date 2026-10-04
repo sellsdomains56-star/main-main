@@ -2,6 +2,7 @@ import { router } from "expo-router";
 import { LocationPicker } from "../../components/LocationPicker";
 import { Button, Card, H1, H2, Loading, P, Screen } from "../../components/ui";
 import { useAuth } from "../../lib/auth";
+import { APP_NAME } from "../../lib/config";
 
 export default function Profile() {
   const { user, loading, signOut } = useAuth();
@@ -22,7 +23,7 @@ export default function Profile() {
         </>
       ) : (
         <>
-          <H1>Welcome to Always Fresh</H1>
+          <H1>Welcome to {APP_NAME}</H1>
           <P muted style={{ marginBottom: 14 }}>Sign in to book barbers, pay with Apple Pay or Google Pay, and use the AI stylist.</P>
           <Button title="Sign in or create account" onPress={() => router.push("/login")} />
         </>
@@ -37,7 +38,7 @@ export default function Profile() {
         <>
           <H2>Are you a barber?</H2>
           <Card onPress={() => router.push("/become-barber")}>
-            <P style={{ fontWeight: "700" }}>Join Always Fresh →</P>
+            <P style={{ fontWeight: "700" }}>Join {APP_NAME} →</P>
             <P muted>Get booked by customers in your city, get paid online, build your rating.</P>
           </Card>
         </>
@@ -45,6 +46,10 @@ export default function Profile() {
 
       {user && (
         <>
+          <H2>Shop</H2>
+          <Card onPress={() => router.push("/orders")}>
+            <P style={{ fontWeight: "700" }}>My GP's Fresh orders →</P>
+          </Card>
           <H2>Account</H2>
           <Button title="Sign out" variant="secondary" onPress={signOut} />
         </>
