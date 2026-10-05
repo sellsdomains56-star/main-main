@@ -8,52 +8,14 @@ import { db, newId, save, UPLOADS_DIR } from "./db.js";
 import { clientSecretFor, createPaymentIntent, demoPayments, paymentSucceeded, refund, stripe } from "./payments.js";
 import { PRODUCTS, SHIPPING } from "./products.js";
 import { COUNTRIES } from "./seed.js";
+import { allSpecialties, searchBarbers } from "./search.js";
+import { registerAssistantRoutes } from "./routes/assistant.js";
+import { registerPortfolioRoutes } from "./routes/portfolio.js";
+import { registerSupportRoutes } from "./routes/support.js";
+import { barberView, cityOf, findCountry, getBarber, HttpError, parse } from "./common.js";
 import { availableSlots } from "./slots.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
 import type { Barber, Booking, Order, Product, Reel } from "./types.js";
-
-class HttpError extends Error {
-  constructor(public status: number, message: string) {
-    super(message);
-  }
-}
-
-const findCountry = (code: string) => COUNTRIES.find((c) => c.code === code);
-
-function cityOf(barber: Barber) {
-  const city = findCountry(barber.countryCode)?.cities.find((c) => c.name === barber.city);
-  if (!city) throw new HttpError(500, `Unknown city for barber ${barber.id}`);
-  return city;
-}
-
-function getBarber(id: string): Barber {
-  const barber = db.barbers.find((b) => b.id === id);
-  if (!barber) throw new HttpError(404, "Barber not found.");
-  return barber;
-}
-
-function barberView(b: Barber) {
-  const country = findCountry(b.countryCode)!;
-  return {
-    id: b.id,
-    name: b.name,
-    bio: b.bio,
-    photoUrl: b.photoUrl,
-    countryCode: b.countryCode,
-    countryName: country.name,
-    city: b.city,
-    timeZone: cityOf(b).timeZone,
-    shopAddress: b.shopAddress,
-    specialties: b.specialties,
-    services: b.services,
-    offersHomeVisits: b.offersHomeVisits,
-    homeVisitFee: b.homeVisitFee,
-    currency: country.currency,
-    rating: b.ratingCount ? Math.round((b.ratingSum / b.ratingCount) * 10) / 10 : null,
-    ratingCount: b.ratingCount,
-    startingPrice: Math.min(...b.services.map((s) => s.price)),
-  };
-}
 
 function bookingView(b: Booking) {
   const barber = getBarber(b.barberId);
@@ -85,12 +47,6 @@ function reelView(r: Reel, viewerId?: string) {
 function canAccess(userId: string, booking: Booking) {
   const user = db.users.find((u) => u.id === userId);
   return booking.customerId === userId || (user?.role === "barber" && user.barberId === booking.barberId);
-}
-
-function parse<T extends z.ZodType>(schema: T, data: unknown): z.infer<T> {
-  const result = schema.safeParse(data);
-  if (!result.success) throw new HttpError(400, result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; "));
-  return result.data;
 }
 
 export function createApp() {
@@ -216,6 +172,8 @@ export function createApp() {
         specialties: z.array(z.string()).default([]),
         offersHomeVisits: z.boolean().default(true),
         haircutPrice: z.number().int().positive(),
+        yearsExperience: z.number().int().min(0).max(70).default(0),
+        languages: z.array(z.string()).default([]),
       }),
       req.body,
     );
@@ -234,6 +192,7 @@ export function createApp() {
         { id: `${barberId}-combo`, name: "Haircut + beard", durationMin: 60, price: Math.round(p * 1.5) },
       ],
       offersHomeVisits: body.offersHomeVisits, homeVisitFee: body.offersHomeVisits ? Math.round(p * 0.5) : 0,
+      yearsExperience: body.yearsExperience, languages: body.languages, gallery: [], transformations: [],
       workingDays: [1, 2, 3, 4, 5, 6], openHour: 9, closeHour: 19, ratingSum: 0, ratingCount: 0,
     });
     const user = { id: newId(), name: body.name, email: body.email, role: "barber" as const, barberId, countryCode: body.countryCode, city: body.city, passwordHash: hashPassword(body.password) };
@@ -242,6 +201,10 @@ export function createApp() {
     res.status(201).json({ token: createSession(user.id), user: publicUser(user) });
   });
 
+  registerPortfolioRoutes(app);
+  registerSupportRoutes(app);
+  registerAssistantRoutes(app);
+
   // ---------- Barbers ----------
   app.get("/barbers", (req, res) => {
     const q = parse(
@@ -249,25 +212,34 @@ export function createApp() {
         country: z.string().optional(),
         city: z.string().optional(),
         search: z.string().optional(),
-        specialty: z.string().optional(),
+        specialty: z.string().optional(), // comma-separated, matches any
+        minRating: z.coerce.number().min(0).max(5).optional(),
+        maxPrice: z.coerce.number().int().positive().optional(),
+        availableToday: z.enum(["true", "false"]).optional(),
+        availableOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
         homeVisits: z.enum(["true", "false"]).optional(),
-        sort: z.enum(["rating", "price"]).default("rating"),
+        sort: z.enum(["rating", "price", "soonest", "experience"]).default("rating"),
       }),
       req.query,
     );
-    const search = q.search?.toLowerCase();
-    let list = db.barbers.filter(
-      (b) =>
-        (!q.country || b.countryCode === q.country) &&
-        (!q.city || b.city.toLowerCase() === q.city.toLowerCase()) &&
-        (!q.specialty || b.specialties.includes(q.specialty)) &&
-        (q.homeVisits !== "true" || b.offersHomeVisits) &&
-        (!search || b.name.toLowerCase().includes(search) || b.specialties.some((s) => s.includes(search))),
-    ).map(barberView);
-    list = q.sort === "price"
-      ? list.sort((a, b) => a.startingPrice - b.startingPrice)
-      : list.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0) || b.ratingCount - a.ratingCount);
-    res.json(list);
+    res.json(
+      searchBarbers({
+        country: q.country,
+        city: q.city,
+        q: q.search?.trim() || undefined,
+        specialties: q.specialty?.split(",").map((s) => s.trim()).filter(Boolean),
+        minRating: q.minRating,
+        maxPrice: q.maxPrice,
+        availableToday: q.availableToday === "true",
+        availableOn: q.availableOn,
+        homeVisits: q.homeVisits === "true",
+        sort: q.sort,
+      }),
+    );
+  });
+
+  app.get("/specialties", (_req, res) => {
+    res.json(allSpecialties());
   });
 
   app.get("/barbers/:id", (req, res) => {

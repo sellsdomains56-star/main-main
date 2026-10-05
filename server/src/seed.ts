@@ -33,6 +33,48 @@ export const COUNTRIES: Country[] = [
     cities: [{ name: "Dubai", timeZone: "Asia/Dubai" }],
   },
   {
+    code: "FR",
+    name: "France",
+    currency: "eur",
+    cities: [{ name: "Paris", timeZone: "Europe/Paris" }],
+  },
+  {
+    code: "TR",
+    name: "Türkiye",
+    currency: "try",
+    cities: [{ name: "Istanbul", timeZone: "Europe/Istanbul" }],
+  },
+  {
+    code: "SA",
+    name: "Saudi Arabia",
+    currency: "sar",
+    cities: [{ name: "Riyadh", timeZone: "Asia/Riyadh" }],
+  },
+  {
+    code: "NG",
+    name: "Nigeria",
+    currency: "ngn",
+    cities: [{ name: "Lagos", timeZone: "Africa/Lagos" }],
+  },
+  {
+    code: "CA",
+    name: "Canada",
+    currency: "cad",
+    cities: [{ name: "Toronto", timeZone: "America/Toronto" }],
+  },
+  {
+    code: "BR",
+    name: "Brazil",
+    currency: "brl",
+    cities: [{ name: "São Paulo", timeZone: "America/Sao_Paulo" }],
+  },
+  {
+    code: "AU",
+    name: "Australia",
+    currency: "aud",
+    cities: [{ name: "Sydney", timeZone: "Australia/Sydney" }],
+  },
+  {
     code: "US",
     name: "United States",
     currency: "usd",
@@ -54,7 +96,9 @@ const std = (prefix: string, cut: number, beard: number, combo: number, fade: nu
 
 const base = { workingDays: [1, 2, 3, 4, 5, 6], openHour: 9, closeHour: 19 };
 
-export const BARBERS: Barber[] = [
+type SeedBarber = Omit<Barber, "yearsExperience" | "languages" | "gallery" | "transformations">;
+
+const BASE_BARBERS: SeedBarber[] = [
   {
     id: "b1", name: "Malik Fresh", bio: "Fades so clean they glow. 12 years behind the chair.",
     photoUrl: photo(12), countryCode: "DE", city: "Berlin", shopAddress: "Oranienstraße 21, 10999 Berlin",
@@ -121,4 +165,86 @@ export const BARBERS: Barber[] = [
     specialties: ["pompadour", "long hair", "curtains", "scissor cut", "beard"], services: std("b11", 4500, 2000, 6000, 5000),
     offersHomeVisits: true, homeVisitFee: 3000, ...base, ratingSum: 4.7 * 66, ratingCount: 66,
   },
+  {
+    id: "b12", name: "Karim Benali", bio: "Parisian precision: crops, tapers and beard design.",
+    photoUrl: photo(11), countryCode: "FR", city: "Paris", shopAddress: "18 Rue Oberkampf, 75011 Paris",
+    specialties: ["french crop", "taper", "beard", "skin fade"], services: std("b12", 3000, 1800, 4500, 3500),
+    offersHomeVisits: true, homeVisitFee: 2000, ...base, ratingSum: 4.8 * 102, ratingCount: 102,
+  },
+  {
+    id: "b13", name: "Mehmet Kaya", bio: "Third-generation Istanbul barber. Razor work and hot towel rituals.",
+    photoUrl: photo(13), countryCode: "TR", city: "Istanbul", shopAddress: "İstiklal Cd. 120, Beyoğlu, İstanbul",
+    specialties: ["hot towel shave", "skin fade", "beard", "side part"], services: std("b13", 60000, 35000, 85000, 70000),
+    offersHomeVisits: true, homeVisitFee: 30000, ...base, ratingSum: 4.9 * 210, ratingCount: 210,
+  },
+  {
+    id: "b14", name: "Faisal Al Otaibi", bio: "Sharp fades and beard sculpting in Riyadh, at your home or office.",
+    photoUrl: photo(18), countryCode: "SA", city: "Riyadh", shopAddress: "Tahlia St, Al Olaya, Riyadh",
+    specialties: ["skin fade", "beard", "line-up", "taper"], services: std("b14", 8000, 5000, 12000, 9500),
+    offersHomeVisits: true, homeVisitFee: 5000, ...base, workingDays: [0, 1, 2, 3, 4, 6], ratingSum: 4.8 * 88, ratingCount: 88,
+  },
+  {
+    id: "b15", name: "Tunde Adeyemi", bio: "Lagos-born, waves and braids specialist. Clean every time.",
+    photoUrl: photo(56), countryCode: "NG", city: "Lagos", shopAddress: "12 Admiralty Way, Lekki, Lagos",
+    specialties: ["waves", "braids", "locs", "afro", "line-up"], services: std("b15", 800000, 400000, 1100000, 900000),
+    offersHomeVisits: true, homeVisitFee: 300000, ...base, ratingSum: 4.9 * 134, ratingCount: 134,
+  },
+  {
+    id: "b16", name: "Andre Thompson", bio: "Toronto's fade king. Kids cuts welcome.",
+    photoUrl: photo(65), countryCode: "CA", city: "Toronto", shopAddress: "560 Queen St W, Toronto, ON",
+    specialties: ["skin fade", "kids cut", "hair design", "taper"], services: std("b16", 4000, 2000, 5500, 4500),
+    offersHomeVisits: false, homeVisitFee: 0, ...base, ratingSum: 4.7 * 77, ratingCount: 77,
+  },
+  {
+    id: "b17", name: "Rafael Souza", bio: "Cortes modernos and hair colour in São Paulo.",
+    photoUrl: photo(61), countryCode: "BR", city: "São Paulo", shopAddress: "Rua Augusta 1500, São Paulo",
+    specialties: ["hair color", "textured crop", "curly hair", "mullet"], services: std("b17", 7000, 4000, 10000, 8000),
+    offersHomeVisits: true, homeVisitFee: 4000, ...base, ratingSum: 4.8 * 91, ratingCount: 91,
+  },
+  {
+    id: "b18", name: "Liam O'Connor", bio: "Bondi beach cuts — relaxed, textured, effortless.",
+    photoUrl: photo(70), countryCode: "AU", city: "Sydney", shopAddress: "80 Campbell Parade, Bondi Beach NSW",
+    specialties: ["textured crop", "long hair", "curtains", "scissor cut"], services: std("b18", 5000, 2500, 7000, 5500),
+    offersHomeVisits: true, homeVisitFee: 3000, ...base, ratingSum: 4.6 * 58, ratingCount: 58,
+  },
 ];
+
+// Profile details per barber. Portfolio images are placeholders from scripts/make-demo-portfolio.sh.
+const PROFILE: Record<string, { years: number; languages: string[]; gallery: number[]; transformations: number[] }> = {
+  b1: { years: 12, languages: ["German", "English", "French"], gallery: [1, 3, 4], transformations: [1, 2] },
+  b2: { years: 8, languages: ["German", "English"], gallery: [2, 5, 7], transformations: [3] },
+  b3: { years: 15, languages: ["German", "Turkish", "English"], gallery: [8, 1, 3], transformations: [1, 2] },
+  b4: { years: 6, languages: ["German", "English"], gallery: [7, 2], transformations: [3] },
+  b5: { years: 10, languages: ["English"], gallery: [4, 1, 6], transformations: [4, 1] },
+  b6: { years: 20, languages: ["English", "Italian"], gallery: [5, 8], transformations: [5] },
+  b7: { years: 7, languages: ["English"], gallery: [2, 9], transformations: [3] },
+  b8: { years: 9, languages: ["Dutch", "English"], gallery: [2, 9, 5], transformations: [3, 5] },
+  b9: { years: 14, languages: ["Arabic", "English", "Urdu"], gallery: [1, 3, 8], transformations: [2, 1] },
+  b10: { years: 11, languages: ["English", "Spanish"], gallery: [4, 6, 10], transformations: [4, 6] },
+  b11: { years: 13, languages: ["English", "Spanish"], gallery: [5, 7], transformations: [5] },
+  b12: { years: 10, languages: ["French", "Arabic", "English"], gallery: [2, 3, 1], transformations: [3, 2] },
+  b13: { years: 22, languages: ["Turkish", "English"], gallery: [8, 1, 5], transformations: [1, 5] },
+  b14: { years: 9, languages: ["Arabic", "English"], gallery: [1, 3], transformations: [2] },
+  b15: { years: 12, languages: ["English", "Yoruba"], gallery: [6, 10, 4], transformations: [6, 4] },
+  b16: { years: 8, languages: ["English", "French"], gallery: [1, 4], transformations: [1] },
+  b17: { years: 7, languages: ["Portuguese", "English", "Spanish"], gallery: [2, 7], transformations: [3] },
+  b18: { years: 5, languages: ["English"], gallery: [2, 9], transformations: [3] },
+};
+
+const STYLE_NAMES = ["", "Skin fade", "Beard sculpt", "Textured crop", "Taper + waves", "Side part", "Braids"];
+
+export const BARBERS: Barber[] = BASE_BARBERS.map((b) => {
+  const p = PROFILE[b.id] ?? { years: 5, languages: ["English"], gallery: [], transformations: [] };
+  return {
+    ...b,
+    yearsExperience: p.years,
+    languages: p.languages,
+    gallery: p.gallery.map((n) => ({ id: `${b.id}-g${n}`, url: `/media/demo/g${n}.jpg`, caption: "" })),
+    transformations: p.transformations.map((n) => ({
+      id: `${b.id}-t${n}`,
+      beforeUrl: `/media/demo/t${n}-before.jpg`,
+      afterUrl: `/media/demo/t${n}-after.jpg`,
+      caption: STYLE_NAMES[n] ?? "",
+    })),
+  };
+});

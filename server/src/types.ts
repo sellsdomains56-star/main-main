@@ -31,11 +31,29 @@ export interface Barber {
   services: Service[];
   offersHomeVisits: boolean;
   homeVisitFee: number; // minor units
+  yearsExperience: number;
+  languages: string[];
+  gallery: PortfolioPhoto[];
+  transformations: Transformation[];
   workingDays: number[]; // 0 = Sunday
   openHour: number; // local time, inclusive
   closeHour: number; // local time, exclusive
   ratingSum: number;
   ratingCount: number;
+}
+
+export interface PortfolioPhoto {
+  id: string;
+  url: string; // served by this API (/media/..., /uploads/...) or a full URL
+  caption: string;
+}
+
+/** A before-and-after pair from the barber's work. */
+export interface Transformation {
+  id: string;
+  beforeUrl: string;
+  afterUrl: string;
+  caption: string;
 }
 
 export interface User {
@@ -122,4 +140,31 @@ export interface Reel {
   caption: string;
   likedBy: string[]; // user ids
   createdAt: string;
+}
+
+export interface SupportTicket {
+  id: string;
+  userId?: string;
+  name: string;
+  email: string;
+  topic: "booking" | "payment" | "account" | "barber" | "shop" | "other";
+  message: string;
+  bookingId?: string;
+  source: "form" | "assistant";
+  status: "open" | "closed";
+  createdAt: string;
+}
+
+/**
+ * One AI assistant conversation. `messages` holds the exact Claude API message
+ * params, append-only, so thinking blocks stay valid across turns.
+ */
+export interface Conversation {
+  id: string;
+  ownerKey: string; // user id, or an anonymous key the client keeps
+  messages: unknown[];
+  /** What the chat screen shows: plain text bubbles plus the actions attached to replies. */
+  display: { role: "user" | "assistant"; text: string; actions?: unknown[]; at: string }[];
+  createdAt: string;
+  updatedAt: string;
 }
