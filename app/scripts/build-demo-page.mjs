@@ -27,7 +27,7 @@ const entry = readdirSync(jsDir).find((f) => f.startsWith("entry-") && f.endsWit
 let js = readFileSync(join(jsDir, entry), "utf8");
 
 // Inline the assets the app actually uses (images and the fonts it loads) as data: URIs.
-const USED_FONTS = /\/(Inter_(400Regular|500Medium|600SemiBold|700Bold|800ExtraBold)|PlayfairDisplay_700Bold|Ionicons)\./; // the faces src/app/_layout.tsx loads
+const USED_FONTS = /\/(Inter_(300Light|400Regular|500Medium|600SemiBold|700Bold|800ExtraBold)|Ionicons)\./; // the faces src/app/_layout.tsx loads
 const MIME = { png: "image/png", jpg: "image/jpeg", ttf: "font/ttf" };
 let inlined = 0;
 js = js.replace(/"(\/assets\/[^"]+\.(png|jpg|ttf))"/g, (whole, path, ext) => {

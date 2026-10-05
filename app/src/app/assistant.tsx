@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BarberCard } from "../components/BarberCard";
-import { colors, fonts, radius } from "../components/theme";
-import { Button, Card, ErrorBox, GoldIcon, IconButton, Pill, Row, styles, T, Wrap } from "../components/ui";
+import { Orb } from "../components/Orb";
+import { colors, fonts, glowSmall, radius } from "../components/theme";
+import { Button, Card, ErrorBox, GoldIcon, IconButton, Row, styles, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { dateTime } from "../lib/format";
@@ -103,15 +104,23 @@ export default function Assistant() {
         keyboardShouldPersistTaps="handled"
       >
         {messages.length === 0 && (
-          <View style={{ alignItems: "center", paddingTop: 24 }}>
-            <GoldIcon icon="sparkles" size={64} />
-            <T variant="title" center style={{ marginTop: 14 }}>Hi{user ? ` ${user.name.split(" ")[0]}` : ""}, I'm your concierge</T>
-            <T muted center style={{ marginTop: 6, maxWidth: 360 }}>
-              Ask me to find a barber anywhere in the world, check availability, help with a booking, or answer any question.
+          <View style={{ alignItems: "center", paddingTop: 32 }}>
+            <Orb size={132} />
+            <T variant="eyebrow" style={{ marginTop: 28 }}>JB Concierge</T>
+            <T variant="display" center style={{ marginTop: 8, fontSize: 30, lineHeight: 36 }}>
+              {user ? `${user.name.split(" ")[0]}, how` : "How"} can I{"\n"}help today?
             </T>
-            <View style={{ marginTop: 20 }}>
-              <Wrap gap={8}>{SUGGESTIONS.map((s) => <Pill key={s} label={s} onPress={() => send(s)} />)}</Wrap>
-            </View>
+            <T muted center style={{ marginTop: 10, maxWidth: 360 }}>
+              Find a barber anywhere, check free times, sort out a booking — or ask me anything.
+            </T>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingTop: 22, paddingBottom: 16, paddingHorizontal: 16 }} style={{ alignSelf: "stretch", marginHorizontal: -16 }}>
+              {SUGGESTIONS.map((s) => (
+                <Pressable key={s} onPress={() => send(s)} accessibilityRole="button" style={({ pressed }) => [styles.card, { width: 150, minHeight: 104, padding: 14 }, pressed && styles.pressed]}>
+                  <Ionicons name="sparkles" size={16} color={colors.gold} />
+                  <T variant="caption" style={{ marginTop: 10 }}>{s}</T>
+                </Pressable>
+              ))}
+            </ScrollView>
           </View>
         )}
 
@@ -151,9 +160,9 @@ export default function Assistant() {
             accessibilityLabel="Send"
             disabled={!input.trim() || sending}
             onPress={() => send(input)}
-            style={({ pressed }) => [{ width: 46, height: 46, borderRadius: 23, backgroundColor: colors.ink, alignItems: "center", justifyContent: "center", opacity: !input.trim() || sending ? 0.35 : 1 }, pressed && styles.pressed]}
+            style={({ pressed }) => [{ width: 46, height: 46, borderRadius: 23, backgroundColor: colors.gold, alignItems: "center", justifyContent: "center", opacity: !input.trim() || sending ? 0.35 : 1 }, !!input.trim() && !sending && glowSmall, pressed && styles.pressed]}
           >
-            <Ionicons name="arrow-up" size={20} color={colors.gold} />
+            <Ionicons name="arrow-up" size={20} color={colors.onGold} />
           </Pressable>
         </Row>
       </View>
@@ -163,8 +172,8 @@ export default function Assistant() {
 
 function UserBubble({ text }: { text: string }) {
   return (
-    <View style={{ alignSelf: "flex-end", maxWidth: "85%", marginTop: 12, backgroundColor: colors.ink, borderRadius: radius.lg, borderBottomRightRadius: 6, paddingHorizontal: 14, paddingVertical: 10 }}>
-      <T color={colors.onInk}>{text}</T>
+    <View style={[{ alignSelf: "flex-end", maxWidth: "85%", marginTop: 12, backgroundColor: colors.gold, borderRadius: radius.lg, borderBottomRightRadius: 6, paddingHorizontal: 14, paddingVertical: 10 }, glowSmall]}>
+      <T color={colors.onGold}>{text}</T>
     </View>
   );
 }

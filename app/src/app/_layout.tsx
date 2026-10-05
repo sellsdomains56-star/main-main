@@ -1,5 +1,4 @@
-import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold, useFonts } from "@expo-google-fonts/inter";
-import { PlayfairDisplay_700Bold } from "@expo-google-fonts/playfair-display";
+import { Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold, useFonts } from "@expo-google-fonts/inter";
 import { Ionicons } from "@expo/vector-icons";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -11,7 +10,7 @@ import { APP_NAME } from "../lib/config";
 import { LocationProvider } from "../lib/location";
 
 export default function RootLayout() {
-  const [fontsLoaded, fontError] = useFonts({ ...Ionicons.font, PlayfairDisplay_700Bold, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold });
+  const [fontsLoaded, fontError] = useFonts({ ...Ionicons.font, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold });
   if (!fontsLoaded && !fontError) return null; // if a font can't load, start anyway with system fonts
 
   return (
@@ -20,7 +19,7 @@ export default function RootLayout() {
         <CartProvider>
           <PaymentProvider>
             <>
-              <StatusBar style="dark" />
+              <StatusBar style="light" />
               <Stack
                 screenOptions={{
                   headerStyle: { backgroundColor: colors.bg },

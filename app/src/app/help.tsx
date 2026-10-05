@@ -64,7 +64,7 @@ export default function Help() {
       <Pressable
         onPress={() => router.push("/assistant")}
         accessibilityRole="button"
-        style={({ pressed }) => [{ marginTop: 18, backgroundColor: colors.ink, borderRadius: radius.lg, padding: 18, flexDirection: "row", alignItems: "center", gap: 14 }, pressed && styles.pressed]}
+        style={({ pressed }) => [styles.card, styles.cardGlow, { marginTop: 18, padding: 18, flexDirection: "row", alignItems: "center", gap: 14 }, pressed && styles.pressed]}
       >
         <GoldIcon icon="sparkles" dark size={48} />
         <View style={{ flex: 1 }}>

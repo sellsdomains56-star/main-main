@@ -42,7 +42,7 @@ export function LocationSheet({ visible, onClose }: { visible: boolean; onClose:
 
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={close}>
-      <Pressable style={{ flex: 1, backgroundColor: "rgba(16,24,20,0.35)" }} onPress={close} accessibilityLabel="Close" />
+      <Pressable style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.65)" }} onPress={close} accessibilityLabel="Close" />
       <View style={{ backgroundColor: colors.bg, borderTopLeftRadius: radius.xl, borderTopRightRadius: radius.xl, maxHeight: "80%", paddingBottom: insets.bottom + 12, width: "100%", maxWidth: 760, alignSelf: "center" }}>
         <View style={{ alignItems: "center", paddingTop: 10 }}>
           <View style={{ width: 40, height: 5, borderRadius: 3, backgroundColor: colors.surfaceStrong }} />

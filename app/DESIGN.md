@@ -1,32 +1,38 @@
 # JB Always Fresh — design guide
 
-The look: a quiet, premium barbershop. **Light page, black ink, gold details.**
+The look: a premium barbershop at night. **Black, charcoal cards, honey-gold light.**
+References: a dark step-by-step flow with glowing connector lines (gold instead of orange), a glowing AI orb for the concierge, and an editorial barbershop site (numbered timeline, service tiles, pill button with an arrow).
 
 ## Colors (`src/components/theme.ts`)
 
-| Token | Use it for | Never |
-| --- | --- | --- |
-| `bg` #FAF8F4 | Page background | — |
-| `card` #FFFFFF | Cards, sheets | — |
-| `surface` #F3EFE7 | Inputs, chips, quiet tiles | Big colored blocks |
-| `ink` #111111 | Text, primary buttons, dark banners, selected chips | — |
-| `gold` #C5A253 | Icons, stars, selected marks, text **on black** | Large fills, body text on light |
-| `goldDeep` #8E6E2A | Gold text/links **on light** backgrounds | — |
-| `goldSoft` #F4ECDA | Small tags, avatar fallbacks | Whole sections |
+| Token | Use it for |
+| --- | --- |
+| `bg` #0A0A0B | Page |
+| `card` #141416 | Cards, sheets, footers, tab bar |
+| `surface` #1B1B1E | Inputs, chips, option rows, quiet tiles |
+| `border` #26262A | Hairline around every card and control |
+| `text` #F4F1EA · `muted` #A49F96 · `faint` #6F6B64 | Text, secondary text, icons/placeholders only |
+| `gold` #F2B53A | The accent: primary buttons, icons, stars, eyebrow labels, selected states, prices |
+| `goldSoft`, `goldLine` | Tinted fills, glowing borders and connector lines |
+| `onGold` #17110A | Text and icons on gold |
 
 Rules:
-- Gold is a detail color. If more than ~5% of a screen is gold, pull it back.
-- One primary (black) button per screen, usually in the sticky footer.
-- No rainbow tints and no decorative emoji — use gold Ionicons on `surface` or `goldSoft` circles. (Country flags are content and are fine.)
-- Reels are the exception: full-bleed black video with white text and a gold "Book" button.
+- Gold is light, not paint: use it for edges, icons, labels and the one primary button. Large gold areas are reserved for the primary button, the "Ask JB" button and the user's chat bubbles.
+- The **glow** (`glow`, `glowSmall`, `Card glowing`) marks the single most important thing on screen: the active step, the selected option, the best match.
+- No emoji as icons — Ionicons in gold. Country flags are content and are fine.
 
 ## Type
 
-- `display` / `title` → Playfair Display (serif) for page headings only.
-- Everything else → Inter. Body 15, captions 13, small 12.
+Inter throughout. Big headings are **Inter Light** (34–40px, tight tracking); eyebrows are 11px uppercase semibold gold with wide tracking ("STEP 1", "SERVICES"); body 16px.
+
+## Patterns
+
+- **Step flow:** `StepCard` + `StepConnector` (try-on, booking). Active step glows, done steps show a gold check, upcoming steps are dimmed.
+- **Options:** `OptionRow` (radio + label + icon), selected = gold edge and glow.
+- **Hero CTA:** `ArrowButton` — gold pill with the arrow in a dark circle.
+- **Timeline:** `Timeline` — "01 — FIND YOUR BARBER" with dots on a thin line.
+- **Service tiles:** dark gradient tiles with an uppercase label; replace with real photography when available.
 
 ## Shape & spacing
 
-- 20px page padding, 24px between sections, 12px between cards.
-- Radius 18 for cards and tiles, pills fully rounded.
-- Soft shadow on white cards only; flat `surface` elsewhere.
+20px page padding, 28px between sections, radius 20 on cards, pills fully rounded, 44px minimum tap targets, visible gold focus ring on the website.

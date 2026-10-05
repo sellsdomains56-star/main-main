@@ -145,7 +145,7 @@ export default function Portfolio() {
               const url = await pickAndUploadImage({ square: true });
               if (url) return api.addGalleryPhoto(url, "");
             })}
-            style={{ width: tile, height: tile, borderRadius: radius.md, backgroundColor: colors.ink, alignItems: "center", justifyContent: "center" }}
+            style={{ width: tile, height: tile, borderRadius: radius.md, backgroundColor: colors.surface, borderWidth: 1, borderStyle: "dashed", borderColor: colors.goldLine, alignItems: "center", justifyContent: "center" }}
           >
             {busy === "gallery" ? <Loading /> : <T variant="caption" color={colors.gold}>+ Add photo</T>}
           </Pressable>

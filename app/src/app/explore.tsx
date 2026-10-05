@@ -93,7 +93,7 @@ export default function Explore() {
             <SearchBar value={search} onChangeText={setSearch} placeholder={near ? "Name or style, e.g. skin fade" : "Style, city or name, e.g. braids lagos"} />
           </View>
 
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, marginTop: 14 }}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -20, marginTop: 4, marginBottom: -10 }} contentContainerStyle={{ gap: 8, paddingHorizontal: 20, paddingVertical: 10 }}>
             <Pill label={activeCount ? `Filters · ${activeCount}` : "Filters"} icon="options-outline" selected={activeCount > 0} onPress={() => setSheet(true)} />
             <Pill label="Available today" icon="time-outline" selected={filters.availableToday} onPress={() => set({ availableToday: !filters.availableToday })} />
             <Pill label="Comes to me" icon="home-outline" selected={filters.homeVisits} onPress={() => set({ homeVisits: !filters.homeVisits })} />
@@ -148,7 +148,7 @@ function FilterSheet({ visible, onClose, filters, set, near, currency, count }: 
 
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
-      <Pressable style={{ flex: 1, backgroundColor: "rgba(17,17,17,0.4)" }} onPress={onClose} accessibilityLabel="Close filters" />
+      <Pressable style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.65)" }} onPress={onClose} accessibilityLabel="Close filters" />
       <View style={{ backgroundColor: colors.bg, borderTopLeftRadius: radius.xl, borderTopRightRadius: radius.xl, maxHeight: "86%", width: "100%", maxWidth: 760, alignSelf: "center", paddingBottom: insets.bottom + 12 }}>
         <Row style={{ justifyContent: "space-between", paddingHorizontal: 20, paddingTop: 18, paddingBottom: 8 }}>
           <T variant="title">Filters</T>

@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { Pressable, ScrollView, useWindowDimensions, View } from "react-native";
@@ -6,8 +7,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BarberTile } from "../../components/BarberCard";
 import { LocationPill, LocationSheet } from "../../components/LocationSheet";
 import { ReelThumb } from "../../components/ReelThumb";
-import { colors, fonts, radius, shadow } from "../../components/theme";
-import { Avatar, Card, GoldIcon, IconButton, Loading, Row, SearchBar, Section, styles, T, Tag, type IconName } from "../../components/ui";
+import { colors, fonts, glowSmall, radius } from "../../components/theme";
+import { ArrowButton, Avatar, Card, GoldIcon, IconButton, Loading, Row, SearchBar, Section, styles, T, Tag, Timeline, type IconName } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { useCart } from "../../lib/cart";
@@ -58,7 +59,9 @@ export default function Home() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
-    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ paddingTop: insets.top + 8, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
+      {/* Warm gold haze behind the header */}
+      <LinearGradient colors={["rgba(242,181,58,0.16)", "rgba(242,181,58,0.04)", "rgba(10,10,11,0)"]} style={{ position: "absolute", top: 0, left: 0, right: 0, height: 360 }} pointerEvents="none" />
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingTop: insets.top + 8, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
       <View style={[styles.inner, { paddingHorizontal: 20 }]}>
         {/* Top bar */}
         <Row style={{ justifyContent: "space-between" }}>
@@ -75,10 +78,10 @@ export default function Home() {
           </Row>
         </Row>
 
-        <T variant="display" style={{ marginTop: 22 }}>
-          {greeting()}{user ? `, ${user.name.split(" ")[0]}` : ""}
-        </T>
-        <T muted style={{ marginTop: 4 }}>Ready to get fresh?</T>
+        <T variant="eyebrow" style={{ marginTop: 28 }}>{greeting()}{user ? `, ${user.name.split(" ")[0]}` : ""}</T>
+        <T variant="display" style={{ marginTop: 8, fontSize: 40, lineHeight: 46 }}>Precision cuts.{"\n"}Anywhere.</T>
+        <T muted style={{ marginTop: 10, maxWidth: 420 }}>Discover, compare and book the best barbers worldwide — at their shop or at your door.</T>
+        <ArrowButton title="Book appointment" onPress={() => router.push("/explore")} style={{ marginTop: 20 }} />
 
         <View style={{ marginTop: 18 }}>
           <SearchBar placeholder="Search barbers, styles or cities worldwide" onPress={() => router.push("/explore")} />
@@ -95,6 +98,14 @@ export default function Home() {
           <SmallTile title="Reels" icon="play" onPress={() => router.push("/reels")} />
           <SmallTile title="Shop" icon="bag-handle" onPress={() => router.push("/shop")} />
         </Row>
+
+        <Section eyebrow="Services" title="What are you after?">
+          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
+            {SERVICES.map((sv) => (
+              <ServiceTile key={sv.label} label={sv.label} icon={sv.icon} width={(Math.min(width, 760) - 40 - 20) / 3} onPress={sv.go} />
+            ))}
+          </View>
+        </Section>
 
         {/* Upcoming appointment */}
         {next && (
@@ -126,12 +137,12 @@ export default function Home() {
       </View>
 
       {/* Promo banners */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} snapToInterval={banner + 12} decelerationRate="fast" contentContainerStyle={[styles.inner, { paddingHorizontal: 20, gap: 12, marginTop: 24 }]}>
-        <Banner width={banner} title="See a new cut on your own face" body="AI Try-On previews cuts, fades, colours and beards on your photo — before you book." cta="Try it on" icon="sparkles" dark onPress={() => router.push("/stylist")} />
-        <Banner width={banner} title="Your barber, at your door" body="Book a home visit and skip the queue." cta="Book now" icon="home" onPress={() => router.push({ pathname: "/explore", params: { home: "1" } })} />
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} snapToInterval={banner + 12} decelerationRate="fast" style={{ marginTop: 0, marginBottom: -24 }} contentContainerStyle={[styles.inner, { paddingHorizontal: 20, paddingVertical: 24, gap: 12 }]}>
+        <Banner width={banner} eyebrow="AI Try-On" title="See a new cut on your own face" body="AI Try-On previews cuts, fades, colours and beards on your photo — before you book." cta="Try it on" icon="sparkles" dark onPress={() => router.push("/stylist")} />
+        <Banner width={banner} eyebrow="Home visits" title="Your barber, at your door" body="Book a home visit and skip the queue." cta="Book now" icon="home" onPress={() => router.push({ pathname: "/explore", params: { home: "1" } })} />
         <Banner
           width={banner}
-          dark
+          eyebrow="Shop"
           title={`${SHOP_NAME} products`}
           body={catalog ? `Free delivery over ${money(catalog.shipping.freeFrom, catalog.currency)}.` : "Pomades, beard oils & more — delivered."}
           cta="Shop now"
@@ -171,6 +182,19 @@ export default function Home() {
       )}
 
       <View style={[styles.inner, { paddingHorizontal: 20 }]}>
+        <Section eyebrow="How it works" title="Fresh in three steps">
+          <Card>
+            <Timeline
+              active={next ? 2 : 0}
+              steps={[
+                { title: "Find your barber", body: "Search worldwide, compare work, reviews and prices — or let AI Try-On pick your look." },
+                { title: "Book & pay", body: "Choose a time at the shop or at your door. Pay with Apple Pay, Google Pay or card." },
+                { title: "Get fresh", body: "Your barber does the rest. Rate the cut and book again in one tap." },
+              ]}
+            />
+          </Card>
+        </Section>
+
         {user?.role !== "barber" && (
           <Card tone="surface" style={{ marginTop: 28 }} onPress={() => router.push("/become-barber")}>
             <Row gap={12}>
@@ -191,15 +215,38 @@ export default function Home() {
         accessibilityRole="button"
         accessibilityLabel="Ask JB Concierge"
         style={({ pressed }) => [
-          { position: "absolute", right: 20, bottom: 20, flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: colors.ink, borderRadius: radius.pill, paddingHorizontal: 18, height: 52 },
-          shadow,
+          { position: "absolute", right: 20, bottom: 20, flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: colors.gold, borderRadius: radius.pill, paddingHorizontal: 20, height: 52 },
+          glowSmall,
           pressed && styles.pressed,
         ]}
       >
-        <Ionicons name="sparkles" size={18} color={colors.gold} />
-        <T variant="strong" color={colors.onInk}>Ask JB</T>
+        <Ionicons name="sparkles" size={18} color={colors.onGold} />
+        <T variant="strong" color={colors.onGold}>Ask JB</T>
       </Pressable>
     </View>
+  );
+}
+
+const SERVICES: { label: string; icon: IconName; go: () => void }[] = [
+  { label: "Haircut", icon: "cut-outline", go: () => router.push({ pathname: "/explore", params: { specialty: "scissor cut,textured crop,taper,french crop" } }) },
+  { label: "Skin fade", icon: "flash-outline", go: () => router.push({ pathname: "/explore", params: { specialty: "skin fade" } }) },
+  { label: "Beard trim", icon: "man-outline", go: () => router.push({ pathname: "/explore", params: { specialty: "beard,line-up" } }) },
+  { label: "Hot shave", icon: "flame-outline", go: () => router.push({ pathname: "/explore", params: { specialty: "hot towel shave" } }) },
+  { label: "Styling", icon: "color-wand-outline", go: () => router.push({ pathname: "/explore", params: { specialty: "pompadour,side part,hair design,hair color" } }) },
+  { label: "Products", icon: "bag-handle-outline", go: () => router.push("/shop") },
+];
+
+/** Dark service tile with an uppercase label, like a moody photo card (swap in real photos later). */
+function ServiceTile({ label, icon, width, onPress }: { label: string; icon: IconName; width: number; onPress: () => void }) {
+  return (
+    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} style={({ pressed }) => [{ width, height: width * 0.82, borderRadius: radius.lg, overflow: "hidden", borderWidth: 1, borderColor: colors.border }, pressed && styles.pressed]}>
+      <LinearGradient colors={["#221C12", "#121214"]} start={{ x: 0.1, y: 0 }} end={{ x: 0.9, y: 1 }} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} />
+      <Ionicons name={icon} size={width * 0.5} color="rgba(242,181,58,0.16)" style={{ position: "absolute", right: -6, top: 4 }} />
+      <View style={{ flex: 1, justifyContent: "flex-end", padding: 12 }}>
+        <Ionicons name={icon} size={18} color={colors.gold} />
+        <T variant="eyebrow" color={colors.text} style={{ marginTop: 6, fontSize: 10, letterSpacing: 1.4 }} numberOfLines={1}>{label}</T>
+      </View>
+    </Pressable>
   );
 }
 
@@ -207,16 +254,13 @@ function BigTile({ title, subtitle, icon, dark, onPress }: { title: string; subt
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => [
-        { flex: 1, borderRadius: radius.lg, padding: 16, height: 136, justifyContent: "space-between" },
-        dark ? { backgroundColor: colors.ink } : [styles.card, { padding: 16 }],
-        pressed && styles.pressed,
-      ]}
+      accessibilityRole="button"
+      style={({ pressed }) => [styles.card, { flex: 1, padding: 16, height: 140, justifyContent: "space-between" }, dark && styles.cardGlow, pressed && styles.pressed]}
     >
-      <GoldIcon icon={icon} dark={dark} />
+      <GoldIcon icon={icon} />
       <View>
-        <T variant="heading" color={dark ? colors.onInk : colors.text}>{title}</T>
-        <T variant="caption" color={dark ? "rgba(255,255,255,0.65)" : colors.muted}>{subtitle}</T>
+        <T variant="heading">{title}</T>
+        <T variant="caption" muted>{subtitle}</T>
       </View>
     </Pressable>
   );
@@ -224,32 +268,28 @@ function BigTile({ title, subtitle, icon, dark, onPress }: { title: string; subt
 
 function SmallTile({ title, icon, onPress }: { title: string; icon: IconName; onPress: () => void }) {
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => [{ flex: 1, alignItems: "center", backgroundColor: colors.card, borderRadius: radius.lg, paddingVertical: 14, borderWidth: 1, borderColor: colors.border }, pressed && styles.pressed]}>
-      <Ionicons name={icon} size={24} color={colors.gold} />
-      <T variant="caption" style={{ marginTop: 8, fontFamily: fonts.semibold }}>{title}</T>
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      style={({ pressed }) => [{ flex: 1, alignItems: "center", backgroundColor: colors.card, borderRadius: radius.lg, paddingVertical: 16, borderWidth: 1, borderColor: colors.border }, pressed && styles.pressed]}
+    >
+      <Ionicons name={icon} size={22} color={colors.gold} />
+      <T variant="small" style={{ marginTop: 8, fontFamily: fonts.semibold }}>{title}</T>
     </Pressable>
   );
 }
 
-function Banner({ width, title, body, cta, icon, dark, onPress }: { width: number; title: string; body: string; cta: string; icon: IconName; dark?: boolean; onPress: () => void }) {
+function Banner({ width, eyebrow, title, body, cta, icon, dark, onPress }: { width: number; eyebrow: string; title: string; body: string; cta: string; icon: IconName; dark?: boolean; onPress: () => void }) {
   return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [
-        { width, borderRadius: radius.lg, padding: 20, minHeight: 150, overflow: "hidden" },
-        dark ? { backgroundColor: colors.ink } : { backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
-        pressed && styles.pressed,
-      ]}
-    >
-      <View style={{ maxWidth: "74%" }}>
-        <T variant="title" color={dark ? colors.gold : colors.text} style={{ fontSize: 20, lineHeight: 26 }}>{title}</T>
-        <T variant="caption" color={dark ? "rgba(255,255,255,0.75)" : colors.muted} style={{ marginTop: 6 }}>{body}</T>
-      </View>
+    <Pressable onPress={onPress} accessibilityRole="button" style={({ pressed }) => [styles.card, { width, padding: 20, minHeight: 168, overflow: "hidden" }, dark && styles.cardGlow, pressed && styles.pressed]}>
+      <Ionicons name={icon} size={120} color="rgba(242,181,58,0.07)" style={{ position: "absolute", right: -14, bottom: -18 }} />
+      <T variant="eyebrow">{eyebrow}</T>
+      <T variant="title" style={{ marginTop: 8, maxWidth: "88%", fontSize: 22, lineHeight: 28 }}>{title}</T>
+      <T variant="caption" muted style={{ marginTop: 6, maxWidth: "80%" }}>{body}</T>
       <Row gap={6} style={{ marginTop: 16 }}>
-        <T variant="caption" color={dark ? colors.gold : colors.goldDeep} style={{ fontFamily: fonts.semibold }}>{cta}</T>
-        <Ionicons name="arrow-forward" size={14} color={dark ? colors.gold : colors.goldDeep} />
+        <T variant="caption" color={colors.gold} style={{ fontFamily: fonts.semibold }}>{cta}</T>
+        <Ionicons name="arrow-forward" size={14} color={colors.gold} />
       </Row>
-      <Ionicons name={icon} size={84} color={dark ? "rgba(197,162,83,0.18)" : colors.goldSoft} style={{ position: "absolute", right: -6, bottom: -8 }} />
     </Pressable>
   );
 }

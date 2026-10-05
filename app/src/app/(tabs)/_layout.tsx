@@ -14,10 +14,11 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.text,
+        tabBarActiveTintColor: colors.gold,
         tabBarInactiveTintColor: colors.faint,
         tabBarLabelStyle: { fontFamily: fonts.semibold, fontSize: 11 },
         tabBarStyle: { backgroundColor: colors.bg, borderTopColor: colors.border },
+        sceneStyle: { backgroundColor: colors.bg },
       }}
     >
       <Tabs.Screen name="index" options={{ title: "Home", tabBarIcon: icon("home", "home-outline") }} />
@@ -26,7 +27,7 @@ export default function TabsLayout() {
         options={{
           title: "Reels",
           tabBarIcon: icon("play-circle", "play-circle-outline"),
-          tabBarActiveTintColor: "#fff",
+          tabBarActiveTintColor: colors.gold,
           tabBarInactiveTintColor: "rgba(255,255,255,0.6)",
           tabBarStyle: { backgroundColor: "#000", borderTopColor: "#000" },
         }}
