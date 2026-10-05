@@ -1,10 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router, Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
-import { Modal, Pressable, ScrollView, View } from "react-native";
+import { Modal, Pressable, ScrollView, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BarberCard } from "../components/BarberCard";
 import { LocationPill } from "../components/LocationSheet";
+import { BarberMap } from "../components/map/BarberMap";
+import { barberPins } from "../components/map/types";
 import { colors, fonts, radius } from "../components/theme";
 import { Button, Divider, EmptyState, ErrorBox, Field, IconButton, Loading, Pill, Row, SearchBar, Segmented, T, Wrap, styles } from "../components/ui";
 import { api } from "../lib/api";
@@ -30,7 +32,10 @@ interface Filters {
 }
 
 export default function Explore() {
-  const params = useLocalSearchParams<{ home?: string; q?: string; specialty?: string; anywhere?: string; consult?: string }>();
+  const params = useLocalSearchParams<{ home?: string; q?: string; specialty?: string; anywhere?: string; consult?: string; view?: "map" }>();
+  const [view, setView] = useState<"list" | "map">(params.view === "map" ? "map" : "list");
+  const [selected, setSelected] = useState<string | null>(null);
+  const { height: screenH } = useWindowDimensions();
   const consult = params.consult === "1"; // picking a barber for a free video / phone consultation
   const { place, country } = useLocation();
   const [scope, setScope] = useState<"near" | "anywhere">(params.anywhere === "1" || !place ? "anywhere" : "near");
@@ -126,11 +131,41 @@ export default function Explore() {
               <EmptyState icon="cut-outline" title="No barbers found" body="Try fewer filters or search anywhere in the world." action={near ? { label: "Search anywhere", onPress: () => setScope("anywhere") } : undefined} />
             )}
             {!!list?.length && (
-              <T variant="caption" muted style={{ marginTop: 4 }}>
-                {list.length} {list.length === 1 ? "barber" : "barbers"} {near ? `in ${place!.city || country?.name}` : "worldwide"}
-              </T>
+              <Row style={{ justifyContent: "space-between", marginTop: 4 }}>
+                <T variant="caption" muted style={{ flex: 1 }}>
+                  {list.length} {list.length === 1 ? "barber" : "barbers"} {near ? `in ${place!.city || country?.name}` : "worldwide"}
+                  {view === "map" ? ` · ${barberPins(list).filter((p) => p.free).length} free today` : ""}
+                </T>
+                <Row gap={6}>
+                  <Pill label="List" icon="list-outline" selected={view === "list"} onPress={() => setView("list")} />
+                  <Pill label="Map" icon="map-outline" selected={view === "map"} onPress={() => setView("map")} />
+                </Row>
+              </Row>
             )}
-            {list?.map((b, i) => (
+            {view === "map" && !!list?.length && (
+              <View style={{ marginTop: 12 }}>
+                <BarberMap
+                  pins={barberPins(list)}
+                  height={Math.max(320, Math.min(screenH * 0.5, 520))}
+                  selectedId={selected}
+                  onSelect={setSelected}
+                  placeName={near ? place!.city || country?.name : undefined}
+                />
+                <Row gap={14} style={{ marginTop: 10 }}>
+                  <Row gap={6}><View style={{ width: 22, height: 12, borderRadius: 6, backgroundColor: colors.ink }} /><T variant="small" muted>Free today</T></Row>
+                  <Row gap={6}><View style={{ width: 22, height: 12, borderRadius: 6, borderWidth: 1.5, borderColor: colors.ink, backgroundColor: colors.card }} /><T variant="small" muted>Next free later</T></Row>
+                </Row>
+                {(() => {
+                  const b = list.find((x) => x.id === selected);
+                  return b ? (
+                    <BarberCard barber={b} showCountry={!near} onPress={consult ? () => router.push({ pathname: "/book/[barberId]", params: { barberId: b.id, mode: "consult" } }) : undefined} />
+                  ) : (
+                    <T variant="caption" muted style={{ marginTop: 12 }}>Tap a pin to see the barber, their prices and when they're free.</T>
+                  );
+                })()}
+              </View>
+            )}
+            {view === "list" && list?.map((b, i) => (
               <View key={b.id}>
                 {i > 0 && <Divider style={{ marginVertical: 0 }} />}
                 <BarberCard

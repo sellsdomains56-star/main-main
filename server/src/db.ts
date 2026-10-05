@@ -1,7 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import { DEMO_REELS } from "./reels.js";
-import { BARBERS } from "./seed.js";
+import { BARBERS, COUNTRIES } from "./seed.js";
 import type { AppNotification, Barber, Booking, Conversation, Order, Reel, Review, SupportTicket, User } from "./types.js";
 
 // Simple JSON-file store. Good enough to run the product end-to-end; swap for
@@ -31,7 +31,13 @@ function load(): Data {
       const data = { orders: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], ...JSON.parse(readFileSync(DATA_FILE, "utf8")) } as Data;
       // Fill fields added after this file was first written.
       const defaults = { yearsExperience: 0, languages: [], gallery: [], transformations: [] };
-      data.barbers = data.barbers.map((b) => ({ ...defaults, ...b }));
+      data.barbers = data.barbers.map((b) => {
+        const seeded = BARBERS.find((s) => s.id === b.id);
+        const centre = COUNTRIES.find((c) => c.code === b.countryCode)?.cities.find((c) => c.name === b.city);
+        return { ...defaults, ...b, lat: b.lat ?? seeded?.lat ?? centre?.lat ?? 0, lng: b.lng ?? seeded?.lng ?? centre?.lng ?? 0 };
+      });
+      // Sample barbers added since the file was written (e.g. new cities).
+      for (const s of BARBERS) if (!data.barbers.some((b) => b.id === s.id)) data.barbers.push(structuredClone(s));
       return data;
     } catch {
       // first run

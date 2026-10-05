@@ -7,6 +7,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BarberTile } from "../../components/BarberCard";
 import { LogoLockup } from "../../components/Brand";
 import { LocationPill } from "../../components/LocationSheet";
+import { BarberMap } from "../../components/map/BarberMap";
+import { barberPins } from "../../components/map/types";
 import { ReelThumb } from "../../components/ReelThumb";
 import { colors, fonts, radius, raise } from "../../components/theme";
 import { ArrowButton, Avatar, Card, IconBadge, IconButton, Loading, Rating, Row, SearchBar, Section, styles, T, Tag, Timeline, type IconName } from "../../components/ui";
@@ -197,6 +199,25 @@ export default function Home() {
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: edge, gap: 14 }}>
                 {barbers.slice(0, 8).map((b) => <BarberTile key={b.id} barber={b} />)}
               </ScrollView>
+            )}
+
+            {!!barbers?.length && (
+              <View style={block}>
+                <Section
+                  eyebrow="On the map"
+                  title={`Barbers in ${where}`}
+                  action={{ label: "Open map", onPress: () => router.push({ pathname: "/explore", params: { view: "map" } }) }}
+                >
+                  <Pressable onPress={() => router.push({ pathname: "/explore", params: { view: "map" } })} accessibilityRole="button" accessibilityLabel={`Open the map of barbers in ${where}`}>
+                    <View pointerEvents="none">
+                      <BarberMap pins={barberPins(barbers)} height={wide ? 360 : 240} interactive={false} placeName={where ?? undefined} />
+                    </View>
+                  </Pressable>
+                  <T variant="caption" muted style={{ marginTop: 8 }}>
+                    {barbers.length} {barbers.length === 1 ? "barber" : "barbers"} · {barberPins(barbers).filter((p) => p.free).length} free today
+                  </T>
+                </Section>
+              </View>
             )}
 
             <View style={block}>

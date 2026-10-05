@@ -15,6 +15,8 @@ export interface Barber {
   city: string;
   timeZone: string;
   shopAddress: string;
+  lat: number; // shop location, for maps
+  lng: number;
   specialties: string[];
   services: Service[];
   offersHomeVisits: boolean;
@@ -57,7 +59,7 @@ export interface Country {
   code: string;
   name: string;
   currency: string;
-  cities: { name: string; barberCount: number }[];
+  cities: { name: string; barberCount: number; lat: number; lng: number }[];
 }
 
 export interface User {

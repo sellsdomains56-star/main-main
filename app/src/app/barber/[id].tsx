@@ -1,8 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router, Stack, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { Image, Modal, Pressable, useWindowDimensions, View } from "react-native";
+import { Image, Linking, Modal, Platform, Pressable, useWindowDimensions, View } from "react-native";
 import { BeforeAfter } from "../../components/BeforeAfter";
+import { BarberMap } from "../../components/map/BarberMap";
+import { barberPins, directionsUrl } from "../../components/map/types";
 import { ReelThumb } from "../../components/ReelThumb";
 import { colors, radius } from "../../components/theme";
 import { Avatar, Button, Divider, EmptyState, ErrorBox, IconButton, IconLine, Loading, Photo, Rating, Row, Screen, Segmented, T, Tag, Wrap } from "../../components/ui";
@@ -93,6 +95,19 @@ export default function BarberProfile() {
       <T style={{ marginTop: 18 }}>{barber.bio}</T>
       <View style={{ marginTop: 12 }}>
         <Wrap gap={6}>{barber.specialties.map((s) => <Tag key={s} label={s} />)}</Wrap>
+      </View>
+
+      {/* Where to find them */}
+      <View style={{ marginTop: 22 }}>
+        <T variant="heading" style={{ marginBottom: 10 }}>Location</T>
+        <BarberMap pins={barberPins([barber])} height={200} placeName={barber.city} />
+        <Row style={{ justifyContent: "space-between", marginTop: 10 }} gap={10}>
+          <View style={{ flex: 1 }}>
+            <T variant="strong">{barber.shopAddress}</T>
+            <T variant="caption" muted>{barber.offersHomeVisits ? `Shop in ${barber.city} · also comes to you` : `Shop in ${barber.city}`}</T>
+          </View>
+          <Button title="Directions" icon="navigate-outline" size="sm" variant="secondary" onPress={() => Linking.openURL(directionsUrl(barber.lat, barber.lng, Platform.OS === "ios"))} />
+        </Row>
       </View>
 
       <View style={{ marginTop: 22 }}>

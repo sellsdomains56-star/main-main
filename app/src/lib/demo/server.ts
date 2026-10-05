@@ -13,6 +13,7 @@ import type { AssistantAction, ChatMessage } from "../types";
 interface SeedService { id: string; name: string; durationMin: number; price: number }
 interface SeedBarber {
   id: string; name: string; bio: string; photoUrl: string; countryCode: string; city: string; shopAddress: string;
+  lat: number; lng: number;
   specialties: string[]; services: SeedService[]; offersHomeVisits: boolean; homeVisitFee: number;
   yearsExperience: number; languages: string[];
   gallery: { id: string; url: string; caption: string }[];
@@ -20,7 +21,7 @@ interface SeedBarber {
   workingDays: number[]; openHour: number; closeHour: number; ratingSum: number; ratingCount: number;
   offersConsultations?: boolean; videoLink?: string;
 }
-interface SeedCountry { code: string; name: string; currency: string; cities: { name: string; timeZone: string }[] }
+interface SeedCountry { code: string; name: string; currency: string; cities: { name: string; timeZone: string; lat: number; lng: number }[] }
 interface SeedReel { id: string; barberId: string; videoUrl: string; posterUrl?: string; caption: string; likes: number; createdAt: string }
 interface SeedProduct { id: string; name: string; category: string; emoji: string; description: string; prices: Record<string, number> }
 export interface DemoData {
@@ -179,7 +180,7 @@ function barberView(b: SeedBarber) {
   const r = rating(b);
   return {
     id: b.id, name: b.name, bio: b.bio, photoUrl: b.photoUrl, countryCode: b.countryCode, countryName: c.name, city: b.city,
-    timeZone: timeZoneOf(b), shopAddress: b.shopAddress, specialties: b.specialties, services: b.services,
+    timeZone: timeZoneOf(b), shopAddress: b.shopAddress, lat: b.lat, lng: b.lng, specialties: b.specialties, services: b.services,
     offersHomeVisits: b.offersHomeVisits, homeVisitFee: b.homeVisitFee, offersConsultations: b.offersConsultations !== false, hasVideoLink: !!b.videoLink,
     currency: c.currency, rating: r.rating, ratingCount: r.ratingCount,
     startingPrice: Math.min(...b.services.map((s) => s.price)), yearsExperience: b.yearsExperience, languages: b.languages,
@@ -610,7 +611,7 @@ export function createDemoServer(data: DemoData) {
     if (path === "/locations") {
       return seed.countries.map((c) => ({
         code: c.code, name: c.name, currency: c.currency,
-        cities: c.cities.map((city) => ({ name: city.name, barberCount: allBarbers().filter((b) => b.countryCode === c.code && b.city === city.name).length })),
+        cities: c.cities.map((city) => ({ name: city.name, lat: city.lat, lng: city.lng, barberCount: allBarbers().filter((b) => b.countryCode === c.code && b.city === city.name).length })),
       }));
     }
 
@@ -672,6 +673,10 @@ export function createDemoServer(data: DemoData) {
       saved.newBarbers.push({
         id, name: String(body.name).trim(), bio: String(body.bio ?? ""), photoUrl: "", countryCode: body.countryCode, city: body.city,
         shopAddress: String(body.shopAddress ?? ""), specialties: body.specialties ?? [],
+        ...(() => {
+          const c = country(body.countryCode)?.cities.find((x) => x.name === body.city);
+          return { lat: (c?.lat ?? 0) + (Math.random() - 0.5) * 0.04, lng: (c?.lng ?? 0) + (Math.random() - 0.5) * 0.04 };
+        })(),
         services: [
           { id: `${id}-cut`, name: "Classic haircut", durationMin: 30, price: p },
           { id: `${id}-fade`, name: "Skin fade", durationMin: 45, price: Math.round(p * 1.2) },

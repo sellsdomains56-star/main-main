@@ -40,6 +40,8 @@ export function registerPortfolioRoutes(app: Express) {
         specialties: z.array(z.string().min(1).max(40)).max(20).optional(),
         offersHomeVisits: z.boolean().optional(),
         offersConsultations: z.boolean().optional(),
+        lat: z.number().min(-90).max(90).optional(), // the shop's pin on the map
+        lng: z.number().min(-180).max(180).optional(),
         videoLink: z
           .string()
           .trim()

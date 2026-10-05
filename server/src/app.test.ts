@@ -282,3 +282,16 @@ test("alerts: confirmation for both sides, on-the-way, reminders, cancellation, 
   // Other people's alerts stay private.
   assert.ok((await call("/notifications", { token: barber.json.token })).json.items.every((n: { body: string }) => !/full refund/.test(n.body)));
 });
+
+test("every UAE city has barbers, and barbers carry map coordinates", async () => {
+  const { json } = await call("/locations");
+  const ae = json.find((c: { code: string }) => c.code === "AE");
+  assert.ok(ae.cities.length >= 13);
+  for (const city of ae.cities) {
+    assert.ok(city.barberCount > 0, `${city.name} has no barbers`);
+    assert.equal(typeof city.lat, "number");
+  }
+  const { json: dubai } = await call("/barbers?country=AE&city=Dubai");
+  assert.ok(dubai.length >= 3);
+  for (const b of dubai) assert.ok(Math.abs(b.lat - 25.2) < 0.3 && Math.abs(b.lng - 55.2) < 0.3, `${b.name} is placed outside Dubai`);
+});

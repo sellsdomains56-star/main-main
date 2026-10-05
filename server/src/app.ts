@@ -123,6 +123,8 @@ export function createApp() {
         currency: c.currency,
         cities: c.cities.map((city) => ({
           name: city.name,
+          lat: city.lat,
+          lng: city.lng,
           barberCount: db.barbers.filter((b) => b.countryCode === c.code && b.city === city.name).length,
         })),
       })),
@@ -209,13 +211,16 @@ export function createApp() {
       req.body,
     );
     const country = findCountry(body.countryCode);
-    if (!country?.cities.some((c) => c.name === body.city)) throw new HttpError(400, "We don't operate in that city yet.");
+    const city = country?.cities.find((c) => c.name === body.city);
+    if (!city) throw new HttpError(400, "We don't operate in that city yet.");
     if (db.users.some((u) => u.email === body.email)) throw new HttpError(409, "An account with this email already exists.");
     const barberId = newId();
     const p = body.haircutPrice;
     db.barbers.push({
       id: barberId, name: body.name, bio: body.bio, photoUrl: "", // shows initials until the barber uploads a photo
       countryCode: body.countryCode, city: body.city, shopAddress: body.shopAddress, specialties: body.specialties,
+      // Near the city centre until the barber drops their exact pin (PATCH /barbers/me).
+      lat: city.lat + (Math.random() - 0.5) * 0.04, lng: city.lng + (Math.random() - 0.5) * 0.04,
       services: [
         { id: `${barberId}-cut`, name: "Classic haircut", durationMin: 30, price: p },
         { id: `${barberId}-fade`, name: "Skin fade", durationMin: 45, price: Math.round(p * 1.2) },

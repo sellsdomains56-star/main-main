@@ -47,6 +47,8 @@ export function barberView(b: Barber) {
     city: b.city,
     timeZone: cityOf(b).timeZone,
     shopAddress: b.shopAddress,
+    lat: b.lat,
+    lng: b.lng,
     specialties: b.specialties,
     services: b.services,
     offersHomeVisits: b.offersHomeVisits,

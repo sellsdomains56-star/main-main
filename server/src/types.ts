@@ -10,6 +10,8 @@ export interface Country {
 export interface City {
   name: string;
   timeZone: string; // IANA zone, used to build bookable slots in local time
+  lat: number; // city centre, for maps
+  lng: number;
 }
 
 export interface Service {
@@ -27,6 +29,8 @@ export interface Barber {
   countryCode: string;
   city: string;
   shopAddress: string;
+  lat: number; // where the shop is (or roughly where the barber works), for maps
+  lng: number;
   specialties: string[];
   services: Service[];
   offersHomeVisits: boolean;
