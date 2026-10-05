@@ -532,25 +532,37 @@ export function ArrowButton({ title, onPress, style, light }: { title: string; o
   );
 }
 
-/** "01 — CONSULTATION" timeline: numbered steps on a thin line, the current one marked with a black dot. */
-export function Timeline({ steps, active = 0, onInk }: { steps: { title: string; body: string }[]; active?: number; onInk?: boolean }) {
+/** "01 — CONSULTATION" timeline: numbered steps on a thin line, the current one marked with a black dot. Steps with `onPress` are tappable. */
+export function Timeline({ steps, active = 0, onInk }: { steps: { title: string; body: string; onPress?: () => void }[]; active?: number; onInk?: boolean }) {
   const on = onInk ? colors.onInk : colors.text;
   const off = onInk ? colors.inkLine : colors.surfaceStrong;
   const sub = onInk ? colors.inkMuted : colors.muted;
   return (
     <View>
-      {steps.map((s, i) => (
-        <View key={s.title} style={{ flexDirection: "row", gap: 14 }}>
-          <View style={{ alignItems: "center", width: 12 }}>
-            <View style={{ width: i === active ? 11 : 9, height: i === active ? 11 : 9, borderRadius: 6, marginTop: 2, backgroundColor: i === active ? on : off }} />
-            {i < steps.length - 1 && <View style={{ flex: 1, width: 1, backgroundColor: i < active ? on : off, marginVertical: 4 }} />}
-          </View>
-          <View style={{ flex: 1, paddingBottom: i < steps.length - 1 ? 20 : 0 }}>
-            <T variant="eyebrow" color={i === active ? on : sub} style={{ fontFamily: fonts.bold }}>{`${String(i + 1).padStart(2, "0")} — ${s.title}`}</T>
-            <T variant="caption" color={sub} style={{ marginTop: 4 }}>{s.body}</T>
-          </View>
-        </View>
-      ))}
+      {steps.map((s, i) => {
+        const body = (
+          <>
+            <View style={{ alignItems: "center", width: 12 }}>
+              <View style={{ width: i === active ? 11 : 9, height: i === active ? 11 : 9, borderRadius: 6, marginTop: 2, backgroundColor: i === active ? on : off }} />
+              {i < steps.length - 1 && <View style={{ flex: 1, width: 1, backgroundColor: i < active ? on : off, marginVertical: 4 }} />}
+            </View>
+            <View style={{ flex: 1, paddingBottom: i < steps.length - 1 ? 20 : 0 }}>
+              <Row gap={6}>
+                <T variant="eyebrow" color={i === active ? on : sub} style={{ fontFamily: fonts.bold }}>{`${String(i + 1).padStart(2, "0")} — ${s.title}`}</T>
+                {s.onPress && <Ionicons name="arrow-forward" size={12} color={i === active ? on : sub} />}
+              </Row>
+              <T variant="caption" color={sub} style={{ marginTop: 4 }}>{s.body}</T>
+            </View>
+          </>
+        );
+        return s.onPress ? (
+          <Pressable key={s.title} onPress={s.onPress} accessibilityRole="button" style={({ pressed, focused }: { pressed: boolean; focused?: boolean }) => [{ flexDirection: "row", gap: 14 }, pressed && styles.pressed, focused && styles.focusRing]}>
+            {body}
+          </Pressable>
+        ) : (
+          <View key={s.title} style={{ flexDirection: "row", gap: 14 }}>{body}</View>
+        );
+      })}
     </View>
   );
 }

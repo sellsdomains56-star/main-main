@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { router, Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { Modal, Pressable, ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -30,7 +30,8 @@ interface Filters {
 }
 
 export default function Explore() {
-  const params = useLocalSearchParams<{ home?: string; q?: string; specialty?: string; anywhere?: string }>();
+  const params = useLocalSearchParams<{ home?: string; q?: string; specialty?: string; anywhere?: string; consult?: string }>();
+  const consult = params.consult === "1"; // picking a barber for a free video / phone consultation
   const { place, country } = useLocation();
   const [scope, setScope] = useState<"near" | "anywhere">(params.anywhere === "1" || !place ? "anywhere" : "near");
   const [search, setSearch] = useState(params.q ?? "");
@@ -74,7 +75,7 @@ export default function Explore() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
-      <Stack.Screen options={{ title: "Find a barber" }} />
+      <Stack.Screen options={{ title: consult ? "Free consultation" : "Find a barber" }} />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
         <View style={[styles.inner, styles.padded]}>
           {place && (
@@ -88,6 +89,13 @@ export default function Explore() {
             />
           )}
           {!place && <LocationPill label="Searching worldwide · set your city" />}
+          {consult && (
+            <View style={[styles.inkCard, { marginTop: 14, padding: 18, borderRadius: radius.xl }]}>
+              <T variant="eyebrow" color={colors.inkMuted}>01 — Consultation</T>
+              <T variant="heading" color={colors.onInk} style={{ marginTop: 6 }}>Talk to a barber before you book</T>
+              <T variant="caption" color={colors.inkMuted} style={{ marginTop: 4 }}>Pick a barber for a free 15-minute video call on Google Meet or a phone call.</T>
+            </View>
+          )}
 
           <View style={{ marginTop: 14 }}>
             <SearchBar value={search} onChangeText={setSearch} placeholder={near ? "Name or style, e.g. skin fade" : "Style, city or name, e.g. braids lagos"} />
@@ -125,7 +133,11 @@ export default function Explore() {
             {list?.map((b, i) => (
               <View key={b.id}>
                 {i > 0 && <Divider style={{ marginVertical: 0 }} />}
-                <BarberCard barber={b} showCountry={!near} />
+                <BarberCard
+                  barber={b}
+                  showCountry={!near}
+                  onPress={consult ? () => router.push({ pathname: "/book/[barberId]", params: { barberId: b.id, mode: "consult" } }) : undefined}
+                />
               </View>
             ))}
           </View>

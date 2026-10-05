@@ -39,12 +39,25 @@ export function registerPortfolioRoutes(app: Express) {
         languages: z.array(z.string().min(1).max(30)).max(10).optional(),
         specialties: z.array(z.string().min(1).max(40)).max(20).optional(),
         offersHomeVisits: z.boolean().optional(),
+        offersConsultations: z.boolean().optional(),
+        videoLink: z
+          .string()
+          .trim()
+          .regex(/^https:\/\/meet\.google\.com\/[a-z0-9-]+$/i, "Paste your Google Meet link, e.g. https://meet.google.com/abc-defg-hij")
+          .or(z.literal(""))
+          .optional(),
       }),
       req.body,
     );
     Object.assign(barber, body);
     save();
-    res.json(barberView(barber));
+    res.json({ ...barberView(barber), videoLink: barber.videoLink ?? "" });
+  });
+
+  // The barber's own settings that aren't public (their Google Meet link).
+  app.get("/barbers/me/settings", requireAuth, (req, res) => {
+    const barber = myBarber(req);
+    res.json({ videoLink: barber.videoLink ?? "", offersConsultations: barber.offersConsultations !== false });
   });
 
   app.post("/barbers/me/gallery", requireAuth, (req, res) => {

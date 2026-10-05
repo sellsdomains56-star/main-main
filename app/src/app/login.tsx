@@ -1,6 +1,8 @@
 import { router } from "expo-router";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { View } from "react-native";
+import { LogoLockup } from "../components/Brand";
+import { SocialSignIn } from "../components/SocialSignIn";
 import { Button, ErrorBox, Field, Screen, Segmented, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
@@ -17,6 +19,12 @@ export default function Login() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const done = useCallback(async (token: string, user: Parameters<typeof signIn>[1]) => {
+    await signIn(token, user);
+    if (router.canGoBack()) router.back();
+    else router.replace("/");
+  }, [signIn]);
+
   async function submit() {
     setBusy(true);
     setError(null);
@@ -24,9 +32,7 @@ export default function Login() {
       const res = mode === "login"
         ? await api.login(email, password)
         : await api.register({ name, email, password, countryCode: place?.countryCode, city: place?.city || undefined });
-      await signIn(res.token, res.user);
-      if (router.canGoBack()) router.back();
-      else router.replace("/");
+      await done(res.token, res.user);
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -45,10 +51,14 @@ export default function Login() {
         />
       }
     >
+      <View style={{ alignItems: "center", marginBottom: 22 }}>
+        <LogoLockup size={64} />
+      </View>
       <T variant="display">{mode === "login" ? "Welcome back" : `Join ${APP_NAME}`}</T>
       <T muted style={{ marginTop: 6, marginBottom: 20 }}>
         {mode === "login" ? `Sign in to ${APP_NAME}.` : "Book barbers, save reels and shop in seconds."}
       </T>
+      <SocialSignIn onSignedIn={done} onError={setError} />
       <Segmented value={mode} onChange={setMode} options={[{ value: "login", label: "Sign in" }, { value: "register", label: "Create account" }]} />
       <View style={{ marginTop: 20 }}>
         {mode === "register" && <Field label="Name" value={name} onChangeText={setName} autoComplete="name" />}

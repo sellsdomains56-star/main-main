@@ -167,3 +167,58 @@ test("reels: feed by city, like toggle, barber upload", async () => {
   assert.equal(mine[0].id, reel.id);
   assert.equal((await call(`/reels/${reel.id}`, { token: barber.token, method: "DELETE" })).status, 204);
 });
+
+test("free consultations: video with the barber's Meet link, phone needs a number, no payment", async () => {
+  const customer = await call("/auth/register", { body: { name: "Cara Consult", email: "cara@example.com", password: "password123" } });
+  const barberAcc = await call("/auth/register-barber", {
+    body: { name: "Meet Barber", email: "meet@example.com", password: "password123", countryCode: "DE", city: "Berlin", shopAddress: "Teststr. 2", haircutPrice: 2500 },
+  });
+  const barberId = barberAcc.json.user.barberId;
+  const { json: profile } = await call(`/barbers/${barberId}`);
+  assert.equal(profile.offersConsultations, true);
+  assert.equal(profile.hasVideoLink, false);
+
+  const bad = await call("/barbers/me", { method: "PATCH", token: barberAcc.json.token, body: { videoLink: "https://example.com/room" } });
+  assert.equal(bad.status, 400);
+  const set = await call("/barbers/me", { method: "PATCH", token: barberAcc.json.token, body: { videoLink: "https://meet.google.com/abc-defg-hij" } });
+  assert.equal(set.status, 200);
+  assert.equal(set.json.hasVideoLink, true);
+
+  const date = nextWorkday();
+  const { json: avail } = await call(`/barbers/${barberId}/availability?date=${date}&serviceId=consultation`);
+  assert.ok(avail.slots.length > 0);
+
+  // A consultation can't be booked "at the shop", and a phone consult needs a number.
+  const atShop = await call("/bookings", { token: customer.json.token, body: { barberId, serviceId: "consultation", startsAt: avail.slots[0], locationType: "shop" } });
+  assert.equal(atShop.status, 400);
+  const noPhone = await call("/bookings", { token: customer.json.token, body: { barberId, serviceId: "consultation", startsAt: avail.slots[0], locationType: "phone" } });
+  assert.equal(noPhone.status, 400);
+
+  const video = await call("/bookings", { token: customer.json.token, body: { barberId, serviceId: "consultation", startsAt: avail.slots[0], locationType: "video" } });
+  assert.equal(video.status, 201);
+  assert.equal(video.json.booking.status, "confirmed");
+  assert.equal(video.json.booking.amount, 0);
+  assert.equal(video.json.clientSecret, null);
+  assert.equal(video.json.booking.videoLink, "https://meet.google.com/abc-defg-hij");
+  assert.equal(video.json.booking.service.name, "Free consultation");
+
+  const phone = await call("/bookings", { token: customer.json.token, body: { barberId, serviceId: "consultation", startsAt: avail.slots[1], locationType: "phone", phone: "+49 30 1234567" } });
+  assert.equal(phone.status, 201);
+  assert.equal(phone.json.booking.phone, "+49 30 1234567");
+  assert.equal(phone.json.booking.videoLink, null);
+
+  // Haircuts still need the shop or a home address.
+  const cutByVideo = await call("/bookings", { token: customer.json.token, body: { barberId, serviceId: profile.services[0].id, startsAt: avail.slots[2], locationType: "video" } });
+  assert.equal(cutByVideo.status, 400);
+});
+
+test("Apple / Google sign-in rejects tokens the server can't verify", async () => {
+  const google = await call("/auth/google", { body: { idToken: "not-a-real-token-but-long-enough" } });
+  assert.equal(google.status, 401);
+  assert.match(google.json.error, /Google sign-in failed/);
+  const apple = await call("/auth/apple", { body: { idToken: "not-a-real-token-but-long-enough" } });
+  assert.equal(apple.status, 401);
+  // Other auth routes still work alongside these.
+  const login = await call("/auth/login", { body: { email: "nobody@example.com", password: "x" } });
+  assert.equal(login.status, 401);
+});

@@ -10,6 +10,13 @@ export function resolveMedia(path: string | null | undefined): string | null {
   if (DEMO_DATA) return DEMO_DATA.media[path] ?? null;
   return API_URL + path;
 }
+// Sign in with Google: OAuth client IDs from Google Cloud Console (one per platform).
+export const GOOGLE_CLIENT_IDS = {
+  web: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID ?? "",
+  ios: process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID ?? "",
+  android: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID ?? "",
+};
+
 export const STRIPE_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? "";
 export const APPLE_MERCHANT_ID = "merchant.com.alwaysfresh.app";
 // Country your Stripe account is registered in (needed by Apple Pay / Google Pay).

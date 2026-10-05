@@ -19,6 +19,8 @@ export interface Barber {
   services: Service[];
   offersHomeVisits: boolean;
   homeVisitFee: number;
+  offersConsultations: boolean; // free 15-min video (Google Meet) or phone consultation
+  hasVideoLink: boolean;
   currency: string;
   rating: number | null;
   ratingCount: number;
@@ -68,6 +70,12 @@ export interface User {
   city?: string;
 }
 
+/** shop / home = an appointment; video / phone = a free consultation. */
+export type LocationType = "shop" | "home" | "video" | "phone";
+
+export const CONSULTATION_ID = "consultation";
+export const isConsultation = (b: Pick<Booking, "locationType">) => b.locationType === "video" || b.locationType === "phone";
+
 export type BookingStatus = "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled";
 
 export interface Booking {
@@ -75,8 +83,10 @@ export interface Booking {
   barberId: string;
   startsAt: string;
   endsAt: string;
-  locationType: "shop" | "home";
+  locationType: LocationType;
   address: string;
+  phone?: string; // customer's number for phone consultations
+  videoLink?: string | null; // barber's Google Meet link, for confirmed video consultations
   notes: string;
   amount: number;
   currency: string;

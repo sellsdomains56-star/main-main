@@ -47,10 +47,21 @@ export default function BarberProfile() {
         isMe ? (
           <Button title="Post a new reel" icon="videocam" onPress={() => router.push("/post-reel")} />
         ) : (
-          <Button
-            title={service ? `Book ${service.name} · ${money(service.price, barber.currency)}` : "Book now"}
-            onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: barber.id, ...(service ? { serviceId: service.id } : {}) } })}
-          />
+          <Row gap={10}>
+            {barber.offersConsultations && (
+              <Button
+                title="Consult"
+                icon="videocam-outline"
+                variant="secondary"
+                onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: barber.id, mode: "consult" } })}
+              />
+            )}
+            <Button
+              title={service ? `Book · ${money(service.price, barber.currency)}` : "Book now"}
+              onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: barber.id, ...(service ? { serviceId: service.id } : {}) } })}
+              style={{ flex: 1 }}
+            />
+          </Row>
         )
       }
     >
@@ -74,6 +85,7 @@ export default function BarberProfile() {
         <IconLine icon={barber.offersHomeVisits ? "home-outline" : "storefront-outline"}>
           {barber.offersHomeVisits ? `Comes to you (+${money(barber.homeVisitFee, barber.currency)}) or at the shop` : "Appointments at the shop"}
         </IconLine>
+        {barber.offersConsultations && <IconLine icon="videocam-outline">Free 15-min consultation · Google Meet or phone</IconLine>}
         {barber.languages.length > 0 && <IconLine icon="chatbubbles-outline">Speaks {barber.languages.join(", ")}</IconLine>}
         <IconLine icon="location-outline" muted>{barber.shopAddress}</IconLine>
       </View>

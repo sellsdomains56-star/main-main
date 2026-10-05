@@ -18,11 +18,11 @@ export function nextFreeLabel(iso: string | null, timeZone: string) {
 }
 
 /** List row: photo left, details right. */
-export function BarberCard({ barber, showCountry }: { barber: Barber; showCountry?: boolean }) {
+export function BarberCard({ barber, showCountry, onPress }: { barber: Barber; showCountry?: boolean; onPress?: () => void }) {
   const next = nextFreeLabel(barber.nextAvailable, barber.timeZone);
   return (
     <Pressable
-      onPress={() => open(barber.id)}
+      onPress={onPress ?? (() => open(barber.id))}
       accessibilityRole="button"
       accessibilityLabel={`${barber.name}, ${barber.rating ?? "new"} stars, ${barber.city}`}
       style={({ pressed }) => [{ flexDirection: "row", gap: 14, paddingVertical: 14, cursor: "pointer" } as object, pressed && styles.pressed]}

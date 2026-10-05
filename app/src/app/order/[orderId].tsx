@@ -5,7 +5,7 @@ import { PayButton } from "../../components/PayButton";
 import { Button, Card, Divider, ErrorBox, IconLine, Loading, Screen, SummaryLine, T } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useCart } from "../../lib/cart";
-import { STRIPE_PUBLISHABLE_KEY } from "../../lib/config";
+import { SHOP_NAME, STRIPE_PUBLISHABLE_KEY } from "../../lib/config";
 import { money } from "../../lib/format";
 import type { Order } from "../../lib/types";
 
@@ -53,7 +53,7 @@ export default function PayOrder() {
         ) : data.clientSecret && !STRIPE_PUBLISHABLE_KEY ? (
           <ErrorBox message="This app build is missing EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY, so it can't take payments." />
         ) : data.clientSecret ? (
-          <PayButton clientSecret={data.clientSecret} currency={order.currency} amountLabel={amount} onPaid={onPaid} />
+          <PayButton clientSecret={data.clientSecret} currency={order.currency} amount={order.amount} amountLabel={amount} label={`${SHOP_NAME} order`} onPaid={onPaid} />
         ) : data.demoPayments ? (
           <>
             <T variant="caption" muted style={{ marginBottom: 12 }}>Demo mode — Stripe isn't connected yet, so no real money moves.</T>

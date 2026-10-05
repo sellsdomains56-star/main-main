@@ -9,7 +9,8 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alwaysfresh.app"
+      "bundleIdentifier": "com.alwaysfresh.app",
+      "usesAppleSignIn": true
     },
     "android": {
       "package": "com.alwaysfresh.app",
@@ -44,7 +45,9 @@
           "enableGooglePay": true
         }
       ],
-      "expo-video"
+      "expo-video",
+      "expo-apple-authentication",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": false

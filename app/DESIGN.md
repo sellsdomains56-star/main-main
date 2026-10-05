@@ -28,11 +28,12 @@ Inter throughout. Headlines are **Inter Medium with tight tracking** (34px scree
 ## Patterns
 
 - **Navigation:** black tab bar on phones; on wide screens (web ≥1024px) the rounded black side rail with the monogram, tabs, vertical "Book now" and the avatar (`components/TabBar.tsx`).
-- **Brand:** `Logo` (JB monogram in a black circle) and `Wordmark` ("JB ALWAYS FRESH / EST. 2026") in `components/Brand.tsx`.
+- **Brand:** the thin-line JB monogram (`Monogram`, paths in `assets/brand/monogram.json`), `LogoLockup` (monogram with ALWAYS FRESH beneath), `Logo` (monogram in a black circle) in `components/Brand.tsx`. The app icon is generated from the same paths (`scripts/make-icons.mjs`).
+- **Slide to book:** `SlideToConfirm` — black track, white knob; used to confirm bookings, then the official Apple Pay / Google Pay "Book" button pays.
 - **Hero CTA:** `ArrowButton` — black pill, arrow in a white circle.
 - **Timeline:** `Timeline` — "01 — FIND YOUR BARBER" with dots on a thin line; the current step has the black dot.
 - **Step flow:** `StepCard` + `StepConnector` (try-on, booking). Active step has the black edge, done steps a check, upcoming steps are dimmed.
-- **Service tiles / hero:** black panels with line art until real photography exists — set `HERO_PHOTO` and `SERVICE_PHOTOS` in `src/lib/brandMedia.ts` and the screens switch to photos.
+- **Photography:** the hero carousel (with dots), service tiles and AI Try-On panel use the photos listed in `src/lib/brandMedia.ts`; tiles without a photo fall back to line art on black.
 
 ## Shape & spacing
 

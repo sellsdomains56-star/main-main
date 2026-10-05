@@ -33,7 +33,8 @@ export default function Pay() {
 
   return (
     <Screen>
-      <T variant="title">Review & pay</T>
+      <T variant="eyebrow" muted>Almost done</T>
+      <T variant="display" style={{ marginTop: 6 }}>Review & pay</T>
       <Card style={{ marginTop: 16 }}>
         <Row gap={12}>
           <Avatar uri={booking.barber.photoUrl} name={booking.barber.name} size={48} />
@@ -57,13 +58,12 @@ export default function Pay() {
         ) : data.clientSecret && !STRIPE_PUBLISHABLE_KEY ? (
           <ErrorBox message="This app build is missing EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY, so it can't take payments." />
         ) : data.clientSecret ? (
-          <PayButton clientSecret={data.clientSecret} currency={booking.currency} amountLabel={amount} onPaid={onPaid} />
+          <PayButton clientSecret={data.clientSecret} currency={booking.currency} amount={booking.amount} amountLabel={amount} label={`${booking.service?.name ?? "Appointment"} with ${booking.barber.name}`} onPaid={onPaid} />
         ) : data.demoPayments ? (
           <>
-            <T variant="caption" muted style={{ marginBottom: 12 }}>Demo mode — Stripe isn't connected yet, so no real money moves.</T>
             <Button
               title={`Pay ${amount}`}
-              icon="lock-closed"
+              icon="logo-apple"
               loading={busy}
               onPress={async () => {
                 setBusy(true);
@@ -76,6 +76,7 @@ export default function Pay() {
                 }
               }}
             />
+            <T variant="small" muted center style={{ marginTop: 10 }}>Demo — no real money moves. In the app this opens Apple Pay (or Google Pay), with cards as a fallback.</T>
           </>
         ) : (
           <ErrorBox message="Payments are temporarily unavailable." onRetry={load} />

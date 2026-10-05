@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, Order, Reel, Review, StyleAdvice, User } from "./types";
+import type { AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, LocationType, Order, Reel, Review, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -101,11 +101,14 @@ export const api = {
     request<{ token: string; user: User }>("/auth/register", { body }),
   registerBarber: (body: Record<string, unknown>) => request<{ token: string; user: User }>("/auth/register-barber", { body }),
   login: (email: string, password: string) => request<{ token: string; user: User }>("/auth/login", { body: { email, password } }),
+  /** Sign in with Apple / Google using the identity token from the provider. */
+  socialSignIn: (provider: "apple" | "google", idToken: string, name?: string) =>
+    request<{ token: string; user: User }>(`/auth/${provider}`, { body: { idToken, name } }),
   logout: () => request<void>("/auth/logout", { method: "POST" }),
   me: () => request<User>("/me"),
   updateMe: (body: Partial<Pick<User, "name" | "countryCode" | "city">>) => request<User>("/me", { method: "PATCH", body }),
 
-  createBooking: (body: { barberId: string; serviceId: string; startsAt: string; locationType: "shop" | "home"; address?: string; notes?: string }) =>
+  createBooking: (body: { barberId: string; serviceId: string; startsAt: string; locationType: LocationType; address?: string; phone?: string; notes?: string }) =>
     request<{ booking: Booking; clientSecret: string | null; demoPayments: boolean }>("/bookings", { body }),
   bookings: () => request<Booking[]>("/bookings"),
   booking: (id: string) => request<Booking>(`/bookings/${id}`),
@@ -136,8 +139,9 @@ export const api = {
     if (!res.ok) throw new ApiError(res.status, data.error ?? "Upload failed.");
     return data;
   },
-  updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties">>) =>
+  updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties" | "offersConsultations"> & { videoLink: string }>) =>
     request<Barber>("/barbers/me", { method: "PATCH", body }),
+  myBarberSettings: () => request<{ videoLink: string; offersConsultations: boolean }>("/barbers/me/settings"),
   addGalleryPhoto: (url: string, caption: string) => request<Barber>("/barbers/me/gallery", { body: { url, caption } }),
   removeGalleryPhoto: (id: string) => request<Barber>(`/barbers/me/gallery/${id}`, { method: "DELETE" }),
   addTransformation: (beforeUrl: string, afterUrl: string, caption: string) =>

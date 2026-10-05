@@ -2,7 +2,7 @@ import { z } from "zod";
 import { db } from "./db.js";
 import { COUNTRIES } from "./seed.js";
 import { availableSlots } from "./slots.js";
-import type { Barber } from "./types.js";
+import type { Barber, Service } from "./types.js";
 
 export class HttpError extends Error {
   constructor(public status: number, message: string) {
@@ -24,6 +24,17 @@ export function getBarber(id: string): Barber {
   return barber;
 }
 
+/** The free consultation every barber offers unless they turn it off: a 15-minute video or phone call. */
+export const CONSULTATION: Service = { id: "consultation", name: "Free consultation", durationMin: 15, price: 0 };
+
+export const offersConsultations = (b: Barber) => b.offersConsultations !== false;
+
+/** A barber's service by id, including the free consultation. */
+export function findService(b: Barber, serviceId: string): Service | undefined {
+  if (serviceId === CONSULTATION.id) return offersConsultations(b) ? CONSULTATION : undefined;
+  return b.services.find((s) => s.id === serviceId);
+}
+
 export function barberView(b: Barber) {
   const country = findCountry(b.countryCode)!;
   return {
@@ -40,6 +51,8 @@ export function barberView(b: Barber) {
     services: b.services,
     offersHomeVisits: b.offersHomeVisits,
     homeVisitFee: b.homeVisitFee,
+    offersConsultations: offersConsultations(b),
+    hasVideoLink: !!b.videoLink,
     currency: country.currency,
     rating: b.ratingCount ? Math.round((b.ratingSum / b.ratingCount) * 10) / 10 : null,
     ratingCount: b.ratingCount,

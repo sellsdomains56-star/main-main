@@ -13,8 +13,9 @@ import { registerAssistantRoutes } from "./routes/assistant.js";
 import { registerPortfolioRoutes } from "./routes/portfolio.js";
 import { registerSupportRoutes } from "./routes/support.js";
 import { registerTryOnRoutes } from "./routes/tryon.js";
-import { barberView, cityOf, findCountry, getBarber, HttpError, parse } from "./common.js";
+import { barberView, cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError, parse } from "./common.js";
 import { availableSlots } from "./slots.js";
+import { upsertSocialUser, verifyIdentityToken } from "./social.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
 import type { Barber, Booking, Order, Product, Reel } from "./types.js";
 
@@ -26,7 +27,9 @@ function bookingView(b: Booking) {
     paymentIntentId: undefined,
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: cityOf(barber).timeZone },
     customerName: customer?.name ?? "Customer",
-    service: barber.services.find((s) => s.id === b.serviceId),
+    service: findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined),
+    // Video consultations: the barber's Google Meet link, once the booking is confirmed.
+    videoLink: b.locationType === "video" && ["confirmed", "on_the_way"].includes(b.status) ? barber.videoLink ?? null : null,
   };
 }
 
@@ -100,7 +103,10 @@ export function createApp() {
   app.use(express.json({ limit: "12mb" })); // head photos arrive as base64
 
   app.get("/health", (_req, res) => {
-    res.json({ ok: true, demoPayments, aiStylist: config.anthropicConfigured, assistant: config.anthropicConfigured, tryOn: config.openaiConfigured });
+    res.json({
+      ok: true, demoPayments, aiStylist: config.anthropicConfigured, assistant: config.anthropicConfigured, tryOn: config.openaiConfigured,
+      appleSignIn: config.appleAudiences.length > 0, googleSignIn: config.googleClientIds.length > 0,
+    });
   });
 
   // ---------- Locations ----------
@@ -141,6 +147,25 @@ export function createApp() {
     const body = parse(z.object({ email: z.string().trim().toLowerCase(), password: z.string() }), req.body);
     const user = db.users.find((u) => u.email === body.email);
     if (!user || !verifyPassword(body.password, user.passwordHash)) throw new HttpError(401, "Wrong email or password.");
+    res.json({ token: createSession(user.id), user: publicUser(user) });
+  });
+
+  // Sign in with Apple / Google: the app sends the identity token it got from the provider.
+  app.post(["/auth/apple", "/auth/google"], async (req, res) => {
+    const provider = req.path.endsWith("/apple") ? "apple" : "google";
+    const body = parse(z.object({ idToken: z.string().min(20), name: z.string().max(100).optional() }), req.body);
+    let identity;
+    try {
+      identity = await verifyIdentityToken(provider, body.idToken, provider === "apple" ? config.appleAudiences : config.googleClientIds);
+    } catch (err) {
+      throw new HttpError(401, `${provider === "apple" ? "Apple" : "Google"} sign-in failed: ${(err as Error).message}`);
+    }
+    let user;
+    try {
+      user = upsertSocialUser(identity, body.name);
+    } catch (err) {
+      throw new HttpError(400, (err as Error).message);
+    }
     res.json({ token: createSession(user.id), user: publicUser(user) });
   });
 
@@ -257,7 +282,7 @@ export function createApp() {
   app.get("/barbers/:id/availability", (req, res) => {
     const barber = getBarber(req.params.id);
     const q = parse(z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), serviceId: z.string() }), req.query);
-    const service = barber.services.find((s) => s.id === q.serviceId);
+    const service = findService(barber, q.serviceId);
     if (!service) throw new HttpError(404, "Service not found.");
     res.json({ timeZone: cityOf(barber).timeZone, slots: availableSlots(barber, cityOf(barber).timeZone, q.date, service.durationMin, db.bookings) });
   });
@@ -269,17 +294,24 @@ export function createApp() {
         barberId: z.string(),
         serviceId: z.string(),
         startsAt: z.string().datetime(),
-        locationType: z.enum(["shop", "home"]),
+        locationType: z.enum(["shop", "home", "video", "phone"]),
         address: z.string().default(""),
+        phone: z.string().trim().max(30).default(""),
         notes: z.string().max(1000).default(""),
       }),
       req.body,
     );
     const barber = getBarber(body.barberId);
-    const service = barber.services.find((s) => s.id === body.serviceId);
+    const service = findService(barber, body.serviceId);
     if (!service) throw new HttpError(404, "Service not found.");
+    const consultation = service.id === CONSULTATION.id;
+    const remote = body.locationType === "video" || body.locationType === "phone";
+    if (consultation !== remote) {
+      throw new HttpError(400, consultation ? "Consultations are by video call or phone." : "Choose the shop or your place for this service.");
+    }
     if (body.locationType === "home" && !barber.offersHomeVisits) throw new HttpError(400, "This barber doesn't do home visits.");
     if (body.locationType === "home" && !body.address.trim()) throw new HttpError(400, "Please enter the address the barber should come to.");
+    if (body.locationType === "phone" && body.phone.replace(/[^\d]/g, "").length < 6) throw new HttpError(400, "Please enter the phone number your barber should call.");
 
     const tz = cityOf(barber).timeZone;
     const date = new Intl.DateTimeFormat("en-CA", { timeZone: tz }).format(new Date(body.startsAt));
@@ -295,7 +327,8 @@ export function createApp() {
       startsAt: start.toISOString(),
       endsAt: new Date(start.getTime() + service.durationMin * 60_000).toISOString(),
       locationType: body.locationType,
-      address: body.locationType === "home" ? body.address.trim() : barber.shopAddress,
+      address: body.locationType === "home" ? body.address.trim() : body.locationType === "shop" ? barber.shopAddress : body.locationType === "video" ? "Video call · Google Meet" : "Phone call",
+      phone: body.locationType === "phone" ? body.phone : undefined,
       notes: body.notes,
       amount: service.price + (body.locationType === "home" ? barber.homeVisitFee : 0),
       currency: findCountry(barber.countryCode)!.currency,
@@ -303,6 +336,14 @@ export function createApp() {
       reviewed: false,
       createdAt: new Date().toISOString(),
     };
+    // Free bookings (consultations) are confirmed straight away — nothing to pay.
+    if (booking.amount === 0) {
+      booking.status = "confirmed";
+      db.bookings.push(booking);
+      save();
+      res.status(201).json({ booking: bookingView(booking), clientSecret: null, demoPayments });
+      return;
+    }
     const intent = await createPaymentIntent(`booking-${booking.id}`, booking.amount, booking.currency, {
       kind: "booking",
       bookingId: booking.id,
@@ -376,6 +417,7 @@ export function createApp() {
     const booking = db.bookings.find((b) => b.id === req.params.id && b.customerId === req.user!.id);
     if (!booking) throw new HttpError(404, "Booking not found.");
     if (booking.status !== "completed") throw new HttpError(400, "You can rate your barber once the appointment is completed.");
+    if (booking.serviceId === CONSULTATION.id) throw new HttpError(400, "Consultations can't be rated — rate your barber after your cut.");
     if (booking.reviewed) throw new HttpError(409, "You already rated this appointment.");
     const barber = getBarber(booking.barberId);
     db.reviews.push({

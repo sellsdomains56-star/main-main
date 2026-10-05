@@ -1,4 +1,5 @@
 import { router, useFocusEffect } from "expo-router";
+import { Linking } from "react-native";
 import { useCallback, useState } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -7,7 +8,9 @@ import { Avatar, Button, Card, EmptyState, ErrorBox, IconLine, Loading, Row, Scr
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { dateTime, money, STATUS_LABEL } from "../../lib/format";
-import type { Booking } from "../../lib/types";
+import { isConsultation, type Booking } from "../../lib/types";
+
+const LOCATION_ICON = { shop: "storefront-outline", home: "home-outline", video: "videocam-outline", phone: "call-outline" } as const;
 
 const tone = (s: Booking["status"]) => (s === "cancelled" ? "danger" : s === "confirmed" || s === "on_the_way" ? "accent" : "neutral");
 
@@ -74,28 +77,44 @@ export default function Bookings() {
               <Avatar uri={isBarber ? null : b.barber.photoUrl} name={isBarber ? b.customerName : b.barber.name} size={48} />
               <View style={{ flex: 1 }}>
                 <T variant="strong">{isBarber ? b.customerName : b.barber.name}</T>
-                <T variant="caption" muted>{b.service?.name} · {money(b.amount, b.currency)}</T>
+                <T variant="caption" muted>{b.service?.name} · {b.amount ? money(b.amount, b.currency) : "Free"}</T>
               </View>
               <Tag label={STATUS_LABEL[b.status]} tone={tone(b.status)} />
             </Row>
             <View style={{ marginTop: 12, gap: 6 }}>
               <IconLine icon="calendar-outline">{dateTime(b.startsAt, b.barber.timeZone)} ({b.barber.city} time)</IconLine>
-              <IconLine icon={b.locationType === "home" ? "home-outline" : "storefront-outline"}>{b.address}</IconLine>
+              <IconLine icon={LOCATION_ICON[b.locationType]}>
+                {b.locationType === "phone" ? (isBarber ? `Phone call · call ${b.customerName.split(" ")[0]} on ${b.phone}` : `Phone call · ${b.barber.name.split(" ")[0]} calls you on ${b.phone}`) : b.address}
+              </IconLine>
+              {b.locationType === "video" && ["confirmed", "on_the_way"].includes(b.status) && !b.videoLink && (
+                <IconLine icon="information-circle-outline" muted>
+                  {isBarber ? "Add your Google Meet link in My work so your client can join." : "Your barber will add the Google Meet link here before the call."}
+                </IconLine>
+              )}
               {!!b.notes && <IconLine icon="document-text-outline" muted>{b.notes}</IconLine>}
             </View>
             <Row gap={8} style={{ marginTop: 14, flexWrap: "wrap" }}>
+              {b.locationType === "video" && !!b.videoLink && ["confirmed", "on_the_way"].includes(b.status) && (
+                <Button title="Join Google Meet" icon="videocam" size="md" onPress={() => Linking.openURL(b.videoLink!)} />
+              )}
+              {isBarber && b.locationType === "video" && !b.videoLink && ["confirmed", "on_the_way"].includes(b.status) && (
+                <Button title="Add Meet link" icon="link" size="md" variant="secondary" onPress={() => router.push("/portfolio")} />
+              )}
+              {isBarber && b.locationType === "phone" && !!b.phone && ["confirmed", "on_the_way"].includes(b.status) && (
+                <Button title={`Call ${b.customerName.split(" ")[0]}`} icon="call" size="md" onPress={() => Linking.openURL(`tel:${b.phone!.replace(/[^\d+]/g, "")}`)} />
+              )}
               {!isBarber && b.status === "pending_payment" && (
                 <Button title="Pay now" size="md" onPress={() => router.push({ pathname: "/pay/[bookingId]", params: { bookingId: b.id } })} />
               )}
-              {isBarber && b.status === "confirmed" && <Button title="On my way" icon="car-outline" size="md" onPress={run(() => api.setBookingStatus(b.id, "on_the_way"))} />}
+              {isBarber && b.status === "confirmed" && b.locationType === "home" && <Button title="On my way" icon="car-outline" size="md" onPress={run(() => api.setBookingStatus(b.id, "on_the_way"))} />}
               {isBarber && (b.status === "confirmed" || b.status === "on_the_way") && (
                 <Button title="Mark done" icon="checkmark" size="md" variant="secondary" onPress={run(() => api.setBookingStatus(b.id, "completed"))} />
               )}
-              {!isBarber && b.status === "completed" && !b.reviewed && (
+              {!isBarber && b.status === "completed" && !b.reviewed && !isConsultation(b) && (
                 <Button title="Rate your cut" icon="star" size="md" onPress={() => router.push({ pathname: "/review/[bookingId]", params: { bookingId: b.id } })} />
               )}
               {!isBarber && b.status === "completed" && (
-                <Button title="Book again" size="md" variant="secondary" onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: b.barber.id } })} />
+                <Button title={isConsultation(b) ? "Book the cut" : "Book again"} size="md" variant="secondary" onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: b.barber.id } })} />
               )}
               {["pending_payment", "confirmed"].includes(b.status) && confirmingCancel !== b.id && (
                 <Button title="Cancel" size="md" variant="ghost" onPress={() => setConfirmingCancel(b.id)} />

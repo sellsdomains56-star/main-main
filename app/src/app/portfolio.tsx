@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Image, Pressable, useWindowDimensions, View } from "react-native";
 import { BeforeAfter } from "../components/BeforeAfter";
 import { colors, radius } from "../components/theme";
-import { Button, EmptyState, ErrorBox, Field, IconButton, Loading, Photo, Row, Screen, Section, T } from "../components/ui";
+import { Button, EmptyState, ErrorBox, Field, IconButton, Loading, OptionRow, Photo, Row, Screen, Section, T } from "../components/ui";
 import { api, mediaUrl } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { pickAndUploadImage } from "../lib/upload";
@@ -16,6 +16,9 @@ export default function Portfolio() {
   const [barber, setBarber] = useState<Barber | null>(null);
   const [years, setYears] = useState("");
   const [languages, setLanguages] = useState("");
+  const [meetLink, setMeetLink] = useState("");
+  const [consults, setConsults] = useState(true);
+  const [savedNote, setSavedNote] = useState<string | null>(null);
   const [pair, setPair] = useState<{ before?: string; after?: string; caption: string }>({ caption: "" });
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -27,6 +30,10 @@ export default function Portfolio() {
       setYears(b.yearsExperience ? String(b.yearsExperience) : "");
       setLanguages(b.languages.join(", "));
     }, (e: Error) => setError(e.message));
+    api.myBarberSettings().then((s) => {
+      setMeetLink(s.videoLink);
+      setConsults(s.offersConsultations);
+    }, () => {});
   }, [user]);
   useEffect(load, [load]);
 
@@ -86,6 +93,28 @@ export default function Portfolio() {
           }))}
           style={{ alignSelf: "flex-start" }}
         />
+      </Section>
+
+      <Section title="Consultations">
+        <T variant="caption" muted style={{ marginBottom: 12 }}>
+          Customers can book a free 15-minute video call or phone call with you before they book a cut. Paste your Google Meet link so they can join — open meet.google.com, start a meeting and copy its link.
+        </T>
+        <OptionRow label="Offer free consultations" sublabel="Video call on Google Meet or a phone call" icon="videocam-outline" selected={consults} onPress={() => setConsults(!consults)} />
+        <Field label="Your Google Meet link" value={meetLink} onChangeText={setMeetLink} autoCapitalize="none" keyboardType="url" placeholder="https://meet.google.com/abc-defg-hij" />
+        <Row gap={10}>
+          <Button
+            title="Save"
+            size="md"
+            loading={busy === "consult"}
+            onPress={() => run("consult", async () => {
+              setSavedNote(null);
+              const b = await api.updateMyBarber({ offersConsultations: consults, videoLink: meetLink.trim() });
+              setSavedNote("Saved");
+              return b;
+            })}
+          />
+          {!!savedNote && <T variant="caption" muted>{savedNote}</T>}
+        </Row>
       </Section>
 
       <Section title="Before & after">

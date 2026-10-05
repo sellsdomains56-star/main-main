@@ -31,6 +31,8 @@ export interface Barber {
   services: Service[];
   offersHomeVisits: boolean;
   homeVisitFee: number; // minor units
+  offersConsultations?: boolean; // free 15-min video/phone consultations; on unless set to false
+  videoLink?: string; // the barber's Google Meet link for video consultations
   yearsExperience: number;
   languages: string[];
   gallery: PortfolioPhoto[];
@@ -62,6 +64,8 @@ export interface User {
   email: string;
   passwordHash: string;
   role: Role;
+  appleSub?: string; // "Sign in with Apple" user id
+  googleSub?: string; // "Sign in with Google" user id
   barberId?: string;
   countryCode?: string;
   city?: string;
@@ -76,8 +80,9 @@ export interface Booking {
   serviceId: string;
   startsAt: string; // ISO UTC
   endsAt: string; // ISO UTC
-  locationType: "shop" | "home";
+  locationType: "shop" | "home" | "video" | "phone"; // video/phone = free consultation
   address: string;
+  phone?: string; // the customer's number, for phone consultations
   notes: string;
   amount: number; // minor units, total charged
   currency: string;

@@ -18,6 +18,7 @@ interface SeedBarber {
   gallery: { id: string; url: string; caption: string }[];
   transformations: { id: string; beforeUrl: string; afterUrl: string; caption: string }[];
   workingDays: number[]; openHour: number; closeHour: number; ratingSum: number; ratingCount: number;
+  offersConsultations?: boolean; videoLink?: string;
 }
 interface SeedCountry { code: string; name: string; currency: string; cities: { name: string; timeZone: string }[] }
 interface SeedReel { id: string; barberId: string; videoUrl: string; posterUrl?: string; caption: string; likes: number; createdAt: string }
@@ -44,7 +45,7 @@ export class DemoError extends Error {
 interface User { id: string; name: string; email: string; passwordHash: string; role: "customer" | "barber"; barberId?: string; countryCode?: string; city?: string }
 interface Booking {
   id: string; customerId: string; barberId: string; serviceId: string; startsAt: string; endsAt: string;
-  locationType: "shop" | "home"; address: string; notes: string; amount: number; currency: string;
+  locationType: "shop" | "home" | "video" | "phone"; address: string; phone?: string; notes: string; amount: number; currency: string;
   status: "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled"; reviewed: boolean; createdAt: string;
 }
 interface Review { id: string; barberId: string; customerId: string; customerName: string; bookingId: string; rating: number; comment: string; createdAt: string }
@@ -175,7 +176,8 @@ function barberView(b: SeedBarber) {
   return {
     id: b.id, name: b.name, bio: b.bio, photoUrl: b.photoUrl, countryCode: b.countryCode, countryName: c.name, city: b.city,
     timeZone: timeZoneOf(b), shopAddress: b.shopAddress, specialties: b.specialties, services: b.services,
-    offersHomeVisits: b.offersHomeVisits, homeVisitFee: b.homeVisitFee, currency: c.currency, rating: r.rating, ratingCount: r.ratingCount,
+    offersHomeVisits: b.offersHomeVisits, homeVisitFee: b.homeVisitFee, offersConsultations: b.offersConsultations !== false, hasVideoLink: !!b.videoLink,
+    currency: c.currency, rating: r.rating, ratingCount: r.ratingCount,
     startingPrice: Math.min(...b.services.map((s) => s.price)), yearsExperience: b.yearsExperience, languages: b.languages,
     gallery: b.gallery, transformations: b.transformations, nextAvailable: nextAvailable(b),
   };
@@ -226,13 +228,18 @@ function requireUser(token: string | null) {
   return u;
 }
 
+/** The free 15-minute video or phone consultation every barber offers unless they turn it off. */
+const CONSULTATION = { id: "consultation", name: "Free consultation", durationMin: 15, price: 0 };
+const findService = (b: SeedBarber, id: string) => (id === CONSULTATION.id ? (b.offersConsultations !== false ? CONSULTATION : undefined) : b.services.find((s) => s.id === id));
+
 function bookingView(b: Booking) {
   const barber = getBarber(b.barberId);
   return {
     ...b,
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: timeZoneOf(barber) },
     customerName: saved.users.find((u) => u.id === b.customerId)?.name ?? "Customer",
-    service: barber.services.find((s) => s.id === b.serviceId),
+    service: findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined),
+    videoLink: b.locationType === "video" && ["confirmed", "on_the_way"].includes(b.status) ? barber.videoLink ?? null : null,
   };
 }
 
@@ -457,7 +464,7 @@ function conciergeTools(user: User | undefined, actions: AssistantAction[]) {
         return mine.length
           ? mine.map((bk) => {
               const b = getBarber(bk.barberId);
-              return { booking_id: bk.id, barber: b.name, service: b.services.find((s) => s.id === bk.serviceId)?.name, when: `${fmtLocal(bk.startsAt, timeZoneOf(b))} (${b.city} time)`, status: bk.status };
+              return { booking_id: bk.id, barber: b.name, service: findService(b, bk.serviceId)?.name ?? CONSULTATION.name, when: `${fmtLocal(bk.startsAt, timeZoneOf(b))} (${b.city} time)`, status: bk.status };
             })
           : "No bookings yet.";
       },
@@ -573,6 +580,20 @@ export function createDemoServer(data: DemoData) {
       persist();
       return { token: t, user: publicUser(u) };
     }
+    // Demo stand-in for Sign in with Apple / Google: no real provider, just a demo account on this device.
+    if ((path === "/auth/apple" || path === "/auth/google") && method === "POST") {
+      const provider = path.endsWith("apple") ? "Apple" : "Google";
+      const email = `${provider.toLowerCase()}-demo@jbalwaysfresh.demo`;
+      let u = saved.users.find((x) => x.email === email);
+      if (!u) {
+        u = { id: newId(), name: String(body?.name ?? "").trim() || `${provider} Demo`, email, passwordHash: await hash(newId()), role: "customer" };
+        saved.users.push(u);
+      }
+      const t = newId();
+      saved.sessions[t] = u.id;
+      persist();
+      return { token: t, user: publicUser(u) };
+    }
     if (path === "/auth/logout") {
       if (token) delete saved.sessions[token];
       persist();
@@ -629,9 +650,18 @@ export function createDemoServer(data: DemoData) {
     if ((x = m(/^\/barbers\/me$/)) && method === "PATCH") {
       const u = requireUser(token);
       if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
+      if (body?.videoLink && !/^https:\/\/meet\.google\.com\/[a-z0-9-]+$/i.test(String(body.videoLink).trim())) {
+        throw new DemoError(400, "Paste your Google Meet link, e.g. https://meet.google.com/abc-defg-hij");
+      }
       saved.barberPatches[u.barberId] = { ...saved.barberPatches[u.barberId], ...body };
       persist();
       return barberView(getBarber(u.barberId));
+    }
+    if (path === "/barbers/me/settings") {
+      const u = requireUser(token);
+      if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
+      const b = getBarber(u.barberId);
+      return { videoLink: b.videoLink ?? "", offersConsultations: b.offersConsultations !== false };
     }
     if ((x = m(/^\/barbers\/me\/(gallery|transformations)(?:\/(.+))?$/))) {
       const u = requireUser(token);
@@ -650,7 +680,7 @@ export function createDemoServer(data: DemoData) {
     }
     if ((x = m(/^\/barbers\/([^/]+)\/availability$/))) {
       const b = getBarber(x[1]);
-      const s = b.services.find((s) => s.id === q.serviceId);
+      const s = findService(b, q.serviceId);
       if (!s) throw new DemoError(404, "Service not found.");
       return { timeZone: timeZoneOf(b), slots: slots(b, q.date, s.durationMin) };
     }
@@ -664,19 +694,23 @@ export function createDemoServer(data: DemoData) {
     if (path === "/bookings" && method === "POST") {
       const u = requireUser(token);
       const b = getBarber(body?.barberId);
-      const s = b.services.find((s) => s.id === body?.serviceId);
+      const s = findService(b, body?.serviceId);
       if (!s) throw new DemoError(404, "Service not found.");
-      const locationType = body?.locationType === "home" ? "home" : "shop";
+      const consultation = s.id === CONSULTATION.id;
+      const locationType: Booking["locationType"] = consultation ? (body?.locationType === "phone" ? "phone" : "video") : body?.locationType === "home" ? "home" : "shop";
       if (locationType === "home" && !String(body?.address ?? "").trim()) throw new DemoError(400, "Please enter the address the barber should come to.");
+      const phone = String(body?.phone ?? "").trim();
+      if (locationType === "phone" && phone.replace(/[^\d]/g, "").length < 6) throw new DemoError(400, "Please enter the phone number your barber should call.");
       const start = new Date(body?.startsAt);
       const date = new Intl.DateTimeFormat("en-CA", { timeZone: timeZoneOf(b) }).format(start);
       if (!slots(b, date, s.durationMin).includes(start.toISOString())) throw new DemoError(409, "That time was just taken — please pick another slot.");
       const bk: Booking = {
         id: newId(), customerId: u.id, barberId: b.id, serviceId: s.id, startsAt: start.toISOString(),
         endsAt: new Date(start.getTime() + s.durationMin * 60_000).toISOString(), locationType,
-        address: locationType === "home" ? String(body?.address).trim() : b.shopAddress, notes: String(body?.notes ?? ""),
+        address: locationType === "home" ? String(body?.address).trim() : locationType === "shop" ? b.shopAddress : locationType === "video" ? "Video call · Google Meet" : "Phone call",
+        phone: locationType === "phone" ? phone : undefined, notes: String(body?.notes ?? ""),
         amount: s.price + (locationType === "home" ? b.homeVisitFee : 0), currency: country(b.countryCode)!.currency,
-        status: "pending_payment", reviewed: false, createdAt: new Date().toISOString(),
+        status: consultation ? "confirmed" : "pending_payment", reviewed: false, createdAt: new Date().toISOString(),
       };
       saved.bookings.push(bk);
       persist();
@@ -708,6 +742,7 @@ export function createDemoServer(data: DemoData) {
           break;
         case "review": {
           if (bk.status !== "completed") throw new DemoError(400, "You can rate your barber once the appointment is completed.");
+          if (bk.serviceId === CONSULTATION.id) throw new DemoError(400, "Consultations can't be rated — rate your barber after your cut.");
           if (bk.reviewed) throw new DemoError(409, "You already rated this appointment.");
           saved.reviews.push({ id: newId(), barberId: bk.barberId, customerId: u.id, customerName: u.name.split(" ")[0], bookingId: bk.id, rating: Number(body?.rating), comment: String(body?.comment ?? "").trim(), createdAt: new Date().toISOString() });
           bk.reviewed = true;

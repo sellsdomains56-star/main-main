@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
-import { barberView, cityOf, findCountry, getBarber, HttpError } from "./common.js";
+import { barberView, cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError } from "./common.js";
 import { db } from "./db.js";
 import { FAQ, SUPPORT_EMAIL } from "./faq.js";
 import { createTicket, TicketTopic } from "./routes/support.js";
@@ -204,7 +204,7 @@ export async function runTool(name: string, raw: unknown, ctx: TurnContext): Pro
     case "check_availability": {
       const i = inputs.check_availability.parse(raw);
       const b = getBarber(i.barber_id);
-      const service = b.services.find((s) => s.id === i.service_id);
+      const service = findService(b, i.service_id);
       if (!service) throw new HttpError(404, "Unknown service id — call get_barber for the list.");
       const tz = cityOf(b).timeZone;
       const slots = availableSlots(b, tz, i.date, service.durationMin, db.bookings);
@@ -222,7 +222,7 @@ export async function runTool(name: string, raw: unknown, ctx: TurnContext): Pro
         return {
           booking_id: bk.id,
           barber: b.name,
-          service: b.services.find((s) => s.id === bk.serviceId)?.name,
+          service: findService(b, bk.serviceId)?.name ?? (bk.serviceId === CONSULTATION.id ? CONSULTATION.name : undefined),
           when: `${fmtLocal(bk.startsAt, tz)} (${b.city} time)`,
           where: bk.address,
           status: bk.status,
