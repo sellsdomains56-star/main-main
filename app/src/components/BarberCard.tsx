@@ -7,21 +7,47 @@ import { Photo, Rating, Row, styles, T, Tag } from "./ui";
 
 const open = (id: string) => router.push({ pathname: "/barber/[id]", params: { id } });
 
+/** "Today 14:30" / "Tue 09:00" in the barber's local time. */
+export function nextFreeLabel(iso: string | null, timeZone: string) {
+  if (!iso) return null;
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone }).format(new Date());
+  const day = new Intl.DateTimeFormat("en-CA", { timeZone }).format(new Date(iso));
+  const t = new Intl.DateTimeFormat(undefined, { hour: "2-digit", minute: "2-digit", timeZone }).format(new Date(iso));
+  if (day === today) return `Today ${t}`;
+  return `${new Intl.DateTimeFormat(undefined, { weekday: "short", timeZone }).format(new Date(iso))} ${t}`;
+}
+
 /** List row: photo left, details right. */
-export function BarberCard({ barber }: { barber: Barber }) {
+export function BarberCard({ barber, showCountry }: { barber: Barber; showCountry?: boolean }) {
+  const next = nextFreeLabel(barber.nextAvailable, barber.timeZone);
   return (
-    <Pressable onPress={() => open(barber.id)} style={({ pressed }) => [{ flexDirection: "row", gap: 14, paddingVertical: 12 }, pressed && styles.pressed]}>
-      <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 84, height: 84 }} rounded={radius.lg} />
+    <Pressable
+      onPress={() => open(barber.id)}
+      accessibilityRole="button"
+      accessibilityLabel={`${barber.name}, ${barber.rating ?? "new"} stars, ${barber.city}`}
+      style={({ pressed }) => [{ flexDirection: "row", gap: 14, paddingVertical: 14, cursor: "pointer" } as object, pressed && styles.pressed]}
+    >
+      <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 88, height: 88 }} rounded={radius.lg} />
       <View style={{ flex: 1, justifyContent: "center" }}>
         <T variant="heading" numberOfLines={1}>{barber.name}</T>
-        <Row gap={6} style={{ marginTop: 3 }}>
-          <Rating value={barber.rating} count={barber.ratingCount} />
-          <T variant="caption" muted>· {barber.city}</T>
-        </Row>
-        <T variant="caption" muted numberOfLines={1} style={{ marginTop: 3 }}>{barber.specialties.slice(0, 3).join(" · ")}</T>
-        <Row gap={6} style={{ marginTop: 8 }}>
+        {showCountry ? (
+          <>
+            <Rating value={barber.rating} count={barber.ratingCount} />
+            <T variant="caption" muted numberOfLines={1}>{barber.city}, {barber.countryName}</T>
+          </>
+        ) : (
+          <Row gap={6} style={{ marginTop: 3 }}>
+            <Rating value={barber.rating} count={barber.ratingCount} />
+            <T variant="caption" muted>· {barber.city}</T>
+          </Row>
+        )}
+        <T variant="caption" muted numberOfLines={1} style={{ marginTop: 3 }}>
+          {barber.yearsExperience ? `${barber.yearsExperience} yrs · ` : ""}{barber.specialties.slice(0, 3).join(" · ")}
+        </T>
+        <Row gap={6} style={{ marginTop: 8, flexWrap: "wrap" }}>
           <Tag label={`from ${money(barber.startingPrice, barber.currency)}`} />
-          {barber.offersHomeVisits && <Tag label="Comes to you" tone="gold" icon="home" />}
+          {next && <Tag label={next} tone="gold" icon="time-outline" />}
+          {barber.offersHomeVisits && <Tag label="Comes to you" tone="neutral" icon="home-outline" />}
         </Row>
       </View>
     </Pressable>

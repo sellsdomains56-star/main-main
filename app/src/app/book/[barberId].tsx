@@ -11,7 +11,7 @@ import type { Barber } from "../../lib/types";
 
 export default function Book() {
   const { user } = useAuth();
-  const params = useLocalSearchParams<{ barberId: string; serviceId?: string }>();
+  const params = useLocalSearchParams<{ barberId: string; serviceId?: string; startsAt?: string; locationType?: "shop" | "home" }>();
   const [barber, setBarber] = useState<Barber | null>(null);
   const [serviceId, setServiceId] = useState<string | undefined>(params.serviceId);
   const [locationType, setLocationType] = useState<"shop" | "home">("shop");
@@ -28,9 +28,15 @@ export default function Book() {
     api.barber(params.barberId).then((b) => {
       setBarber(b);
       setServiceId((s) => s ?? b.services[0]?.id);
-      if (b.offersHomeVisits) setLocationType("home");
+      if (params.locationType) setLocationType(params.locationType === "home" && b.offersHomeVisits ? "home" : "shop");
+      else if (b.offersHomeVisits) setLocationType("home");
+      // Pre-filled from the concierge: open on that day.
+      if (params.startsAt) {
+        setDate(new Intl.DateTimeFormat("en-CA", { timeZone: b.timeZone }).format(new Date(params.startsAt)));
+        setUserPickedDate(true);
+      }
     }, (e: Error) => setError(e.message));
-  }, [params.barberId]);
+  }, [params.barberId, params.locationType, params.startsAt]);
 
   const days = useMemo(() => (barber ? upcomingDays(14, barber.timeZone) : []), [barber]);
   useEffect(() => {
@@ -45,9 +51,12 @@ export default function Book() {
       // Until the customer picks a day themselves, skip ahead to the first day with free times.
       const i = days.findIndex((d) => d.date === date);
       if (!r.slots.length && !userPickedDate && i >= 0 && i < days.length - 1) setDate(days[i + 1].date);
-      else setSlots(r.slots);
+      else {
+        setSlots(r.slots);
+        if (params.startsAt && r.slots.includes(params.startsAt)) setSlot(params.startsAt);
+      }
     }, (e: Error) => setError(e.message));
-  }, [barber, date, serviceId, days, userPickedDate]);
+  }, [barber, date, serviceId, days, userPickedDate, params.startsAt]);
 
   if (!barber) return <Screen>{error ? <ErrorBox message={error} /> : <Loading />}</Screen>;
   const service = barber.services.find((s) => s.id === serviceId);

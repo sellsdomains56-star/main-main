@@ -1,24 +1,27 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router, Stack, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { Pressable, View } from "react-native";
+import { Image, Modal, Pressable, useWindowDimensions, View } from "react-native";
+import { BeforeAfter } from "../../components/BeforeAfter";
 import { ReelThumb } from "../../components/ReelThumb";
 import { colors, radius } from "../../components/theme";
-import { Avatar, Button, Divider, EmptyState, ErrorBox, Loading, Photo, Rating, Row, Screen, Segmented, T, Tag, Wrap } from "../../components/ui";
-import { api } from "../../lib/api";
+import { Avatar, Button, Divider, EmptyState, ErrorBox, IconButton, IconLine, Loading, Photo, Rating, Row, Screen, Segmented, T, Tag, Wrap } from "../../components/ui";
+import { api, mediaUrl } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
-import { money } from "../../lib/format";
+import { dateTime, money } from "../../lib/format";
 import { flag } from "../../lib/location";
 import type { Barber, Reel, Review } from "../../lib/types";
 
-type TabKey = "services" | "reels" | "reviews";
+type TabKey = "portfolio" | "services" | "reels" | "reviews";
 
 export default function BarberProfile() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { user } = useAuth();
   const [barber, setBarber] = useState<(Barber & { reviews: Review[] }) | null>(null);
   const [reels, setReels] = useState<Reel[]>([]);
-  const [tab, setTab] = useState<TabKey>("services");
+  const [tab, setTab] = useState<TabKey>("portfolio");
+  const [viewer, setViewer] = useState<string | null>(null);
+  const { width } = useWindowDimensions();
   const [serviceId, setServiceId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -60,30 +63,77 @@ export default function BarberProfile() {
 
       <Row gap={10} style={{ marginTop: 18 }}>
         <Stat value={barber.rating ? barber.rating.toFixed(1) : "New"} label={`${barber.ratingCount} reviews`} icon="star" />
+        <Stat value={barber.yearsExperience ? `${barber.yearsExperience} yrs` : "New"} label="experience" icon="ribbon" />
         <Stat value={money(barber.startingPrice, barber.currency)} label="from" icon="pricetag" />
-        <Stat value={barber.offersHomeVisits ? "Yes" : "Shop only"} label="Home visits" icon="home" />
       </Row>
+
+      <View style={{ marginTop: 16, gap: 8 }}>
+        <IconLine icon="time-outline">
+          {barber.nextAvailable ? `Next free: ${dateTime(barber.nextAvailable, barber.timeZone)} (${barber.city} time)` : "Fully booked for the next two weeks"}
+        </IconLine>
+        <IconLine icon={barber.offersHomeVisits ? "home-outline" : "storefront-outline"}>
+          {barber.offersHomeVisits ? `Comes to you (+${money(barber.homeVisitFee, barber.currency)}) or at the shop` : "Appointments at the shop"}
+        </IconLine>
+        {barber.languages.length > 0 && <IconLine icon="chatbubbles-outline">Speaks {barber.languages.join(", ")}</IconLine>}
+        <IconLine icon="location-outline" muted>{barber.shopAddress}</IconLine>
+      </View>
 
       <T style={{ marginTop: 18 }}>{barber.bio}</T>
       <View style={{ marginTop: 12 }}>
         <Wrap gap={6}>{barber.specialties.map((s) => <Tag key={s} label={s} />)}</Wrap>
       </View>
-      <Row gap={6} style={{ marginTop: 12 }}>
-        <Ionicons name="location-outline" size={15} color={colors.muted} />
-        <T variant="caption" muted>{barber.shopAddress}</T>
-      </Row>
 
       <View style={{ marginTop: 22 }}>
         <Segmented<TabKey>
           value={tab}
           onChange={setTab}
           options={[
+            { value: "portfolio", label: "Work" },
             { value: "services", label: "Services" },
-            { value: "reels", label: `Reels${reels.length ? ` (${reels.length})` : ""}` },
+            { value: "reels", label: "Reels" },
             { value: "reviews", label: "Reviews" },
           ]}
         />
       </View>
+
+      {tab === "portfolio" && (
+        <View style={{ marginTop: 16 }}>
+          {barber.transformations.length === 0 && barber.gallery.length === 0 && (
+            <EmptyState
+              icon="images-outline"
+              title="No work posted yet"
+              body={isMe ? "Add photos and before-and-after transformations to win more bookings." : undefined}
+              action={isMe ? { label: "Add your work", onPress: () => router.push("/portfolio") } : undefined}
+            />
+          )}
+          {barber.transformations.length > 0 && (
+            <>
+              <T variant="heading" style={{ marginBottom: 10 }}>Transformations</T>
+              {barber.transformations.map((t) => (
+                <View key={t.id} style={{ marginBottom: 16 }}>
+                  <BeforeAfter beforeUri={mediaUrl(t.beforeUrl)!} afterUri={mediaUrl(t.afterUrl)!} height={Math.min(width - 40, 420)} />
+                  {!!t.caption && <T variant="caption" muted style={{ marginTop: 6 }}>{t.caption}</T>}
+                </View>
+              ))}
+            </>
+          )}
+          {barber.gallery.length > 0 && (
+            <>
+              <T variant="heading" style={{ marginTop: 8, marginBottom: 10 }}>Photos</T>
+              <Wrap gap={6}>
+                {barber.gallery.map((p) => {
+                  const size = (Math.min(width, 760) - 40 - 12) / 3;
+                  return (
+                    <Pressable key={p.id} onPress={() => setViewer(mediaUrl(p.url))} accessibilityLabel={p.caption || "Open photo"}>
+                      <Image source={{ uri: mediaUrl(p.url)! }} style={{ width: size, height: size, borderRadius: radius.md, backgroundColor: colors.surface }} />
+                    </Pressable>
+                  );
+                })}
+              </Wrap>
+            </>
+          )}
+        </View>
+      )}
 
       {tab === "services" && (
         <View style={{ marginTop: 8 }}>
@@ -142,11 +192,19 @@ export default function BarberProfile() {
           ))}
         </View>
       )}
+      <Modal visible={!!viewer} transparent animationType="fade" onRequestClose={() => setViewer(null)}>
+        <Pressable onPress={() => setViewer(null)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.92)", alignItems: "center", justifyContent: "center", padding: 16 }} accessibilityLabel="Close photo">
+          {viewer && <Image source={{ uri: viewer }} style={{ width: Math.min(width - 32, 720), height: Math.min(width - 32, 720), borderRadius: radius.lg }} resizeMode="contain" />}
+          <View style={{ position: "absolute", top: 48, right: 20 }}>
+            <IconButton icon="close" label="Close" onPress={() => setViewer(null)} />
+          </View>
+        </Pressable>
+      </Modal>
     </Screen>
   );
 }
 
-function Stat({ value, label, icon }: { value: string; label: string; icon: "star" | "pricetag" | "home" }) {
+function Stat({ value, label, icon }: { value: string; label: string; icon: "star" | "pricetag" | "ribbon" }) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.surface, borderRadius: radius.md, paddingVertical: 12, alignItems: "center" }}>
       <Row gap={4}>

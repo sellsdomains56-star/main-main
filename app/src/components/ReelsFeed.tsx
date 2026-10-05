@@ -171,6 +171,7 @@ const ReelPage = memo(function ReelPage({
           title={`Book ${b.name.split(" ")[0]} · from ${money(b.startingPrice, b.currency)}`}
           icon="calendar"
           size="md"
+          variant="gold"
           onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: b.id } })}
           style={{ marginTop: 14, alignSelf: "flex-start", borderRadius: radius.pill }}
         />

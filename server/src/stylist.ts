@@ -12,7 +12,8 @@ export const StyleAdvice = z.object({
   recommendations: z
     .array(
       z.object({
-        name: z.string().describe("haircut name, e.g. 'Mid skin fade with textured crop'"),
+        name: z.string().describe("style name, e.g. 'Mid skin fade with textured crop'"),
+        category: z.enum(["haircut", "color", "beard"]).describe("what this changes"),
         description: z.string(),
         whyItSuits: z.string(),
         length: z.enum(["very short", "short", "medium", "long"]),
@@ -21,9 +22,14 @@ export const StyleAdvice = z.object({
         specialtyTags: z
           .array(z.string())
           .describe("matching barber specialties from the provided list"),
+        previewPrompt: z
+          .string()
+          .describe(
+            "instruction for a photo-editing AI to show this exact look on THIS person: describe only the hair/beard result (lengths, fade height, texture, parting, colour, beard shape) in one or two sentences; never describe the face",
+          ),
       }),
     )
-    .describe("3 to 5 haircuts, best match first"),
+    .describe("4 to 6 looks, best match first: mostly haircuts, plus one hair-colour idea and one beard style when they suit the person"),
   beardAdvice: z.string().describe("beard suggestion, or an empty string if not relevant"),
 });
 

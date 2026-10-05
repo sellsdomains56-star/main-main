@@ -58,3 +58,13 @@ test("assistant tools: search, profile, availability, prepare booking, ticket", 
   const t = (await runTool("create_support_ticket", { topic: "payment", message: "Charged twice for one cut", email: "a@b.co" }, ctx)) as { ticket_id: string };
   assert.ok(db.tickets.some((x) => x.id === t.ticket_id && x.source === "assistant"));
 });
+
+test("try-on previews require sign-in and report when OpenAI isn't configured", async () => {
+  assert.equal((await post("/ai/tryon/preview", { imageBase64: "x".repeat(200), look: "skin fade" })).status, 401);
+  if (process.env.OPENAI_API_KEY) return;
+  const reg = await (await post("/auth/register", { name: "T", email: "tryon@example.com", password: "password123" })).json();
+  const res = await post("/ai/tryon/preview", { imageBase64: "x".repeat(200), look: "skin fade" }, { authorization: `Bearer ${reg.token}` });
+  assert.equal(res.status, 503);
+  const health = await (await fetch(`${base}/health`)).json();
+  assert.equal(health.tryOn, false);
+});

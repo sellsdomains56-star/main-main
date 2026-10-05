@@ -23,6 +23,24 @@ export interface Barber {
   rating: number | null;
   ratingCount: number;
   startingPrice: number;
+  yearsExperience: number;
+  languages: string[];
+  gallery: PortfolioPhoto[];
+  transformations: Transformation[];
+  nextAvailable: string | null;
+}
+
+export interface PortfolioPhoto {
+  id: string;
+  url: string;
+  caption: string;
+}
+
+export interface Transformation {
+  id: string;
+  beforeUrl: string;
+  afterUrl: string;
+  caption: string;
 }
 
 export interface Review {
@@ -71,6 +89,8 @@ export interface Booking {
 
 export interface HaircutRecommendation {
   name: string;
+  category: "haircut" | "color" | "beard";
+  previewPrompt: string;
   description: string;
   whyItSuits: string;
   length: string;
@@ -126,4 +146,35 @@ export interface Reel {
   likedByMe: boolean;
   createdAt: string;
   barber: Pick<Barber, "id" | "name" | "photoUrl" | "city" | "rating" | "ratingCount" | "startingPrice" | "currency" | "offersHomeVisits">;
+}
+
+export interface FaqItem {
+  id: string;
+  topic: "booking" | "payment" | "account" | "barber" | "shop" | "ai";
+  question: string;
+  answer: string;
+}
+
+export type AssistantAction =
+  | { type: "barbers"; barberIds: string[] }
+  | { type: "book"; barberId: string; serviceId: string; startsAt: string; locationType: "shop" | "home" }
+  | { type: "ticket"; ticketId: string };
+
+export interface ChatMessage {
+  role: "user" | "assistant";
+  text: string;
+  actions?: AssistantAction[];
+  at: string;
+}
+
+export interface BarberSearch {
+  country?: string;
+  city?: string;
+  search?: string;
+  specialty?: string[];
+  minRating?: number;
+  maxPrice?: number;
+  availableToday?: boolean;
+  homeVisits?: boolean;
+  sort?: "rating" | "price" | "soonest" | "experience";
 }

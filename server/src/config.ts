@@ -17,4 +17,8 @@ export const config = {
   stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET || undefined,
   platformFeePercent: Number(process.env.PLATFORM_FEE_PERCENT ?? 10),
   anthropicConfigured: Boolean(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN),
+  // AI Try-On previews (OpenAI image editing)
+  openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
+  openaiImageModel: process.env.OPENAI_IMAGE_MODEL || "gpt-image-2",
+  tryOnDailyLimit: Number(process.env.TRYON_DAILY_LIMIT ?? 20),
 };

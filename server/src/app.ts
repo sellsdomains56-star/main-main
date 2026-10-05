@@ -12,6 +12,7 @@ import { allSpecialties, searchBarbers } from "./search.js";
 import { registerAssistantRoutes } from "./routes/assistant.js";
 import { registerPortfolioRoutes } from "./routes/portfolio.js";
 import { registerSupportRoutes } from "./routes/support.js";
+import { registerTryOnRoutes } from "./routes/tryon.js";
 import { barberView, cityOf, findCountry, getBarber, HttpError, parse } from "./common.js";
 import { availableSlots } from "./slots.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
@@ -99,7 +100,7 @@ export function createApp() {
   app.use(express.json({ limit: "12mb" })); // head photos arrive as base64
 
   app.get("/health", (_req, res) => {
-    res.json({ ok: true, demoPayments, aiStylist: config.anthropicConfigured });
+    res.json({ ok: true, demoPayments, aiStylist: config.anthropicConfigured, assistant: config.anthropicConfigured, tryOn: config.openaiConfigured });
   });
 
   // ---------- Locations ----------
@@ -204,6 +205,7 @@ export function createApp() {
   registerPortfolioRoutes(app);
   registerSupportRoutes(app);
   registerAssistantRoutes(app);
+  registerTryOnRoutes(app);
 
   // ---------- Barbers ----------
   app.get("/barbers", (req, res) => {

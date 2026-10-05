@@ -12,7 +12,7 @@ export const colors = {
   // Ink
   text: "#111111",
   muted: "#6E675D",
-  faint: "#A39C90",
+  faint: "#8C8478", // ≥3:1 on bg — icons and placeholders only, never body text
   ink: "#111111", // primary buttons, dark banners, selected chips
   onInk: "#FFFFFF",
 

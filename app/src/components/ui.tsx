@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useState, type ReactNode } from "react";
 import {
   ActivityIndicator,
+  Platform,
   Image,
   Pressable,
   ScrollView,
@@ -15,6 +16,7 @@ import {
   type ViewStyle,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { API_URL } from "../lib/config";
 import { colors, fonts, radius, shadow } from "./theme";
 
 export type IconName = keyof typeof Ionicons.glyphMap;
@@ -25,8 +27,8 @@ const variants = {
   display: { fontFamily: fonts.display, fontSize: 30, lineHeight: 38, letterSpacing: -0.2 },
   title: { fontFamily: fonts.display, fontSize: 23, lineHeight: 30 },
   heading: { fontFamily: fonts.bold, fontSize: 17, lineHeight: 22 },
-  body: { fontFamily: fonts.regular, fontSize: 15, lineHeight: 21 },
-  strong: { fontFamily: fonts.semibold, fontSize: 15, lineHeight: 21 },
+  body: { fontFamily: fonts.regular, fontSize: 16, lineHeight: 24 },
+  strong: { fontFamily: fonts.semibold, fontSize: 16, lineHeight: 22 },
   caption: { fontFamily: fonts.medium, fontSize: 13, lineHeight: 18 },
   small: { fontFamily: fonts.medium, fontSize: 12, lineHeight: 16 },
 } satisfies Record<string, TextStyle>;
@@ -173,14 +175,15 @@ export function Button({
 }) {
   const bg = { primary: colors.ink, secondary: colors.surface, ghost: "transparent", danger: colors.dangerSoft, gold: colors.gold }[variant];
   const fg = { primary: colors.gold, secondary: colors.text, ghost: colors.goldDeep, danger: colors.danger, gold: colors.ink }[variant];
-  const height = { lg: 54, md: 44, sm: 36 }[size];
+  const height = { lg: 54, md: 46, sm: 40 }[size];
   return (
     <Pressable
       accessibilityRole="button"
       onPress={onPress}
       disabled={disabled || loading}
-      style={({ pressed }) => [
+      style={({ pressed, focused }: { pressed: boolean; focused?: boolean }) => [
         styles.button,
+        focused && styles.focusRing,
         { backgroundColor: bg, height, paddingHorizontal: size === "sm" ? 14 : 20, opacity: disabled ? 0.4 : 1 },
         pressed && styles.pressed,
         style,
@@ -221,7 +224,7 @@ export function Pill({ label, selected, onPress, icon }: { label: string; select
     <Pressable
       onPress={onPress}
       accessibilityState={{ selected }}
-      style={({ pressed }) => [styles.pill, selected ? { backgroundColor: colors.ink } : { backgroundColor: colors.surface }, pressed && styles.pressed]}
+      style={({ pressed, focused }: { pressed: boolean; focused?: boolean }) => [styles.pill, selected ? { backgroundColor: colors.ink } : { backgroundColor: colors.surface }, pressed && styles.pressed, focused && styles.focusRing]}
     >
       <Row gap={6}>
         {icon && <Ionicons name={icon} size={14} color={selected ? colors.gold : colors.text} />}
@@ -340,6 +343,7 @@ const initials = (name: string) =>
 /** Photo with a graceful initials fallback (no grey boxes when an image fails to load). */
 export function Photo({ uri, name, style, rounded = radius.md }: { uri?: string | null; name: string; style: StyleProp<ViewStyle>; rounded?: number }) {
   const [failed, setFailed] = useState(false);
+  if (uri?.startsWith("/")) uri = API_URL + uri; // media served by our API
   const flat = StyleSheet.flatten(style) as ViewStyle;
   const size = typeof flat?.width === "number" ? flat.width : 64;
   if (!uri || failed) {
@@ -410,11 +414,13 @@ export const styles = StyleSheet.create({
   rowBetween: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
   card: { backgroundColor: colors.card, borderRadius: radius.lg, padding: 16, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.border, ...shadow },
   surfaceCard: { backgroundColor: colors.surface, borderRadius: radius.lg, padding: 16 },
-  pressed: { opacity: 0.75, transform: [{ scale: 0.99 }] },
+  pressed: { opacity: 0.75 },
+  // Keyboard focus on the website (a no-op on phones).
+  focusRing: Platform.select({ web: { outlineStyle: "solid", outlineWidth: 2, outlineColor: colors.gold, outlineOffset: 2 } as object, default: {} }),
   button: { borderRadius: radius.pill, alignItems: "center", justifyContent: "center" },
-  iconButton: { width: 42, height: 42, borderRadius: 21, alignItems: "center", justifyContent: "center" },
+  iconButton: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center" },
   badge: { position: "absolute", top: -2, right: -2, minWidth: 18, height: 18, borderRadius: 9, backgroundColor: colors.ink, alignItems: "center", justifyContent: "center", paddingHorizontal: 4, borderWidth: 2, borderColor: colors.bg },
-  pill: { borderRadius: radius.pill, paddingVertical: 9, paddingHorizontal: 14 },
+  pill: { borderRadius: radius.pill, paddingVertical: 9, paddingHorizontal: 14, minHeight: 40, justifyContent: "center" },
   segmented: { flexDirection: "row", backgroundColor: colors.surface, borderRadius: radius.pill, padding: 4 },
   segment: { flex: 1, alignItems: "center", paddingVertical: 9, borderRadius: radius.pill },
   segmentActive: { backgroundColor: colors.bg, ...shadow },

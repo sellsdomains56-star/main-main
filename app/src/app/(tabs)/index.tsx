@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BarberTile } from "../../components/BarberCard";
 import { LocationPill, LocationSheet } from "../../components/LocationSheet";
 import { ReelThumb } from "../../components/ReelThumb";
-import { colors, fonts, radius } from "../../components/theme";
+import { colors, fonts, radius, shadow } from "../../components/theme";
 import { Avatar, Card, GoldIcon, IconButton, Loading, Row, SearchBar, Section, styles, T, Tag, type IconName } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
@@ -57,7 +57,8 @@ export default function Home() {
   const banner = Math.min(pageWidth * 0.86, 420);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ paddingTop: insets.top + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ paddingTop: insets.top + 8, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
       <View style={[styles.inner, { paddingHorizontal: 20 }]}>
         {/* Top bar */}
         <Row style={{ justifyContent: "space-between" }}>
@@ -80,7 +81,7 @@ export default function Home() {
         <T muted style={{ marginTop: 4 }}>Ready to get fresh?</T>
 
         <View style={{ marginTop: 18 }}>
-          <SearchBar placeholder="Search barbers, fades, beards…" onPress={() => router.push("/explore")} />
+          <SearchBar placeholder="Search barbers, styles or cities worldwide" onPress={() => router.push("/explore")} />
         </View>
 
         {/* Service tiles */}
@@ -89,7 +90,8 @@ export default function Home() {
           <BigTile title="Barber at home" subtitle="They come to you" icon="home" onPress={() => router.push({ pathname: "/explore", params: { home: "1" } })} />
         </Row>
         <Row gap={12} style={{ marginTop: 12 }}>
-          <SmallTile title="AI Stylist" icon="sparkles" onPress={() => router.push("/stylist")} />
+          <SmallTile title="AI Try-On" icon="sparkles" onPress={() => router.push("/stylist")} />
+          <SmallTile title="Concierge" icon="chatbubble-ellipses" onPress={() => router.push("/assistant")} />
           <SmallTile title="Reels" icon="play" onPress={() => router.push("/reels")} />
           <SmallTile title="Shop" icon="bag-handle" onPress={() => router.push("/shop")} />
         </Row>
@@ -125,8 +127,8 @@ export default function Home() {
 
       {/* Promo banners */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} snapToInterval={banner + 12} decelerationRate="fast" contentContainerStyle={[styles.inner, { paddingHorizontal: 20, gap: 12, marginTop: 24 }]}>
-        <Banner width={banner} title="Your barber, at your door" body="Book a home visit and skip the queue." cta="Book now" icon="home" dark onPress={() => router.push({ pathname: "/explore", params: { home: "1" } })} />
-        <Banner width={banner} title="Not sure what cut to get?" body="Snap a selfie — our AI stylist finds your perfect cut." cta="Try AI Stylist" icon="sparkles" onPress={() => router.push("/stylist")} />
+        <Banner width={banner} title="See a new cut on your own face" body="AI Try-On previews cuts, fades, colours and beards on your photo — before you book." cta="Try it on" icon="sparkles" dark onPress={() => router.push("/stylist")} />
+        <Banner width={banner} title="Your barber, at your door" body="Book a home visit and skip the queue." cta="Book now" icon="home" onPress={() => router.push({ pathname: "/explore", params: { home: "1" } })} />
         <Banner
           width={banner}
           dark
@@ -184,6 +186,20 @@ export default function Home() {
       </View>
       <LocationSheet visible={sheet} onClose={() => setSheet(false)} />
     </ScrollView>
+      <Pressable
+        onPress={() => router.push("/assistant")}
+        accessibilityRole="button"
+        accessibilityLabel="Ask JB Concierge"
+        style={({ pressed }) => [
+          { position: "absolute", right: 20, bottom: 20, flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: colors.ink, borderRadius: radius.pill, paddingHorizontal: 18, height: 52 },
+          shadow,
+          pressed && styles.pressed,
+        ]}
+      >
+        <Ionicons name="sparkles" size={18} color={colors.gold} />
+        <T variant="strong" color={colors.onInk}>Ask JB</T>
+      </Pressable>
+    </View>
   );
 }
 

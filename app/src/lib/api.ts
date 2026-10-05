@@ -1,5 +1,5 @@
 import { API_URL } from "./config";
-import type { Barber, Booking, Catalog, Country, Order, Reel, Review, StyleAdvice, User } from "./types";
+import type { AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, Order, Reel, Review, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -12,7 +12,7 @@ export class ApiError extends Error {
   }
 }
 
-async function request<T>(path: string, init: { method?: string; body?: unknown } = {}): Promise<T> {
+async function request<T>(path: string, init: { method?: string; body?: unknown; headers?: Record<string, string> } = {}): Promise<T> {
   let res: Response;
   try {
     res = await fetch(API_URL + path, {
@@ -20,6 +20,7 @@ async function request<T>(path: string, init: { method?: string; body?: unknown 
       headers: {
         "content-type": "application/json",
         ...(authToken ? { authorization: `Bearer ${authToken}` } : {}),
+        ...init.headers,
       },
       body: init.body !== undefined ? JSON.stringify(init.body) : undefined,
     });
@@ -58,8 +59,22 @@ export const api = {
   },
 
   locations: () => request<Country[]>("/locations"),
-  barbers: (f: { country?: string; city?: string; search?: string; specialty?: string; homeVisits?: boolean; sort?: "rating" | "price" }) =>
-    request<Barber[]>("/barbers" + qs({ ...f, homeVisits: f.homeVisits ? "true" : undefined })),
+  barbers: (f: BarberSearch) =>
+    request<Barber[]>(
+      "/barbers" +
+        qs({
+          country: f.country,
+          city: f.city,
+          search: f.search,
+          specialty: f.specialty?.length ? f.specialty.join(",") : undefined,
+          minRating: f.minRating ? String(f.minRating) : undefined,
+          maxPrice: f.maxPrice ? String(f.maxPrice) : undefined,
+          availableToday: f.availableToday ? "true" : undefined,
+          homeVisits: f.homeVisits ? "true" : undefined,
+          sort: f.sort,
+        }),
+    ),
+  specialties: () => request<string[]>("/specialties"),
   barber: (id: string) => request<Barber & { reviews: Review[] }>(`/barbers/${id}`),
   availability: (id: string, date: string, serviceId: string) =>
     request<{ timeZone: string; slots: string[] }>(`/barbers/${id}/availability` + qs({ date, serviceId })),
@@ -88,6 +103,41 @@ export const api = {
   orders: () => request<Order[]>("/orders"),
   orderPayment: (id: string) => request<{ order: Order; clientSecret: string | null; demoPayments: boolean }>(`/orders/${id}/payment`),
   confirmOrderPayment: (id: string) => request<Order>(`/orders/${id}/confirm-payment`, { method: "POST" }),
+
+  // Barber portfolio
+  async uploadImage(file: Blob, contentType: string): Promise<{ url: string }> {
+    const res = await fetch(`${API_URL}/uploads/image`, {
+      method: "POST",
+      headers: { "content-type": contentType, ...(authToken ? { authorization: `Bearer ${authToken}` } : {}) },
+      body: file,
+    }).catch(() => {
+      throw new ApiError(0, "Upload failed. Check your connection.");
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new ApiError(res.status, data.error ?? "Upload failed.");
+    return data;
+  },
+  updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties">>) =>
+    request<Barber>("/barbers/me", { method: "PATCH", body }),
+  addGalleryPhoto: (url: string, caption: string) => request<Barber>("/barbers/me/gallery", { body: { url, caption } }),
+  removeGalleryPhoto: (id: string) => request<Barber>(`/barbers/me/gallery/${id}`, { method: "DELETE" }),
+  addTransformation: (beforeUrl: string, afterUrl: string, caption: string) =>
+    request<Barber>("/barbers/me/transformations", { body: { beforeUrl, afterUrl, caption } }),
+  removeTransformation: (id: string) => request<Barber>(`/barbers/me/transformations/${id}`, { method: "DELETE" }),
+
+  // Help centre & assistant
+  faq: () => request<{ email: string; faq: FaqItem[] }>("/support/faq"),
+  createTicket: (body: { topic: string; message: string; email?: string; name?: string; bookingId?: string }) =>
+    request<{ id: string }>("/support/tickets", { body }),
+  chat: (body: { conversationId?: string; message: string; country?: string; city?: string }, guestKey: string) =>
+    request<{ conversationId: string; reply: string; actions: AssistantAction[] }>("/assistant/chat", { body, headers: { "x-guest-key": guestKey } }),
+  conversation: (id: string, guestKey: string) =>
+    request<{ id: string; display: ChatMessage[] }>(`/assistant/conversations/${id}`, { headers: { "x-guest-key": guestKey } }),
+
+  // AI try-on
+  tryOnPreview: (body: { imageBase64: string; mediaType: string; look: string }) =>
+    request<{ image: string; remainingToday: number }>("/ai/tryon/preview", { body }),
+  health: () => request<{ ok: boolean; demoPayments: boolean; aiStylist: boolean; assistant: boolean; tryOn: boolean }>("/health"),
 
   haircutAdvice: (body: { imageBase64: string; mediaType: string; preferences: Record<string, string>; country?: string; city?: string }) =>
     request<{ advice: StyleAdvice; barbers: Barber[] }>("/ai/haircut-advice", { body }),

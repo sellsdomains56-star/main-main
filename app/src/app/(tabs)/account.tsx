@@ -41,6 +41,7 @@ export default function Account() {
 
       {user?.role === "barber" && user.barberId && (
         <Section title="Your business">
+          <ListRow icon="images-outline" title="My work" subtitle="Profile photo, portfolio, before & afters" onPress={() => router.push("/portfolio")} />
           <ListRow icon="videocam-outline" title="Post a reel" subtitle="Show off your latest cut" onPress={() => router.push("/post-reel")} />
           <ListRow icon="person-circle-outline" title="My public profile" subtitle="Services, reels and reviews" onPress={() => router.push({ pathname: "/barber/[id]", params: { id: user.barberId! } })} />
           <ListRow icon="calendar-outline" title="Appointments" onPress={() => router.push("/bookings")} />
@@ -51,7 +52,12 @@ export default function Account() {
         {user?.role !== "barber" && <ListRow icon="calendar-outline" title="My bookings" onPress={() => router.push("/bookings")} />}
         <ListRow icon="bag-handle-outline" title={`${SHOP_NAME} orders`} onPress={() => router.push("/orders")} />
         <ListRow icon="location-outline" title="My city" subtitle={where} onPress={() => setSheet(true)} />
-        <ListRow icon="sparkles-outline" title="AI Stylist" subtitle="Find your perfect cut" onPress={() => router.push("/stylist")} />
+        <ListRow icon="sparkles-outline" title="AI Try-On" subtitle="See new styles on your own photo" onPress={() => router.push("/stylist")} />
+      </Section>
+
+      <Section title="Support">
+        <ListRow icon="chatbubble-ellipses-outline" title="JB Concierge" subtitle="Ask anything, 24/7" onPress={() => router.push("/assistant")} />
+        <ListRow icon="help-circle-outline" title="Help centre" subtitle="FAQs and contact support" onPress={() => router.push("/help")} />
       </Section>
 
       {!user && (

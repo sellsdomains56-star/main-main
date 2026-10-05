@@ -1,29 +1,36 @@
-# JB Always Fresh 💈
+# JB Always Fresh
 
-A minimal, Careem-style "super app" for barbers. Book a barber in your city — at their shop or at your door — pay with Apple Pay, Google Pay or card, rate your cut, let an AI stylist tell you which haircut suits you from a photo of your head, and buy all JB's Fresh products in the in-app shop.
+**One global platform for barbers and hairstyling:** discover, compare and book barbers anywhere in the world, see their work, read real reviews, get help from an AI concierge, and preview new hairstyles on your own face before you book. Instead of searching Instagram, Google Maps, TikTok and separate booking apps, everything is in one place — as a **website and an iPhone/Android app from one codebase**.
 
-The brand name is set in one place: `APP_NAME` / `SHOP_NAME` in `app/src/lib/config.ts` (plus `name` in `app/app.json`).
-
-One codebase, three platforms:
+Design: light page, black ink, gold details only — see [`app/DESIGN.md`](app/DESIGN.md). The brand name lives in `APP_NAME` / `SHOP_NAME` in `app/src/lib/config.ts` (plus `name` in `app/app.json`).
 
 | Folder | What it is |
 | --- | --- |
 | [`app/`](app) | The **iOS app, Android app and website** (Expo / React Native + Expo Router). |
-| [`server/`](server) | The **API** (Node + Express + TypeScript): barbers, locations, bookings, payments, ratings, AI stylist. |
+| [`server/`](server) | The **API** (Node + Express + TypeScript): barbers, search, bookings, payments, reviews, portfolios, reels, shop, AI concierge, AI try-on, support. |
 
 ## Features
 
-- **Book by country and city** – customers pick their country, then their city (or "all cities"), and only see barbers there. Prices are in the local currency and appointment times are shown in the barber's local time.
-- **Reels** – a full-screen, swipe-up video feed (like Instagram Reels / TikTok) of barbers in your city. The visible video autoplays; like, mute, open the barber's profile, or tap **Book** straight from the video. Barbers post reels from the app (Account → Post a reel); each barber's reels also show on their profile.
-- **Barber profiles** – bio, specialties, services and prices, shop address, rating, reels and reviews.
-- **Barber comes to you** – choose "Come to me" (home visit, with the barber's travel fee) or "At the shop".
-- **Live availability** – 30-minute slots inside opening hours; taken slots disappear, double-bookings are rejected.
-- **Payments** – Stripe PaymentIntents. On iPhone the payment sheet shows **Apple Pay**, on Android **Google Pay**, on the website the Stripe Payment Element (Apple Pay in Safari, Google Pay in Chrome, cards, and local methods like iDEAL/Klarna if you enable them in Stripe). Cancelling a paid booking refunds it.
-- **Ratings** – after the barber marks the appointment done, the customer can rate 1–5 stars and leave a review (one per booking).
-- **AI stylist** – take or upload a photo of your head, add preferences (length, maintenance, vibe). Claude analyses face shape and hair type, recommends 3–5 cuts with exact "tell your barber" instructions, and suggests barbers in your city who specialise in them.
-- **JB's Fresh shop** – "Buy all JB's Fresh products": pomades, waxes, beard oil, shampoo, tools and a starter kit. Prices are in the customer's local currency, there's a cart, delivery address, flat delivery fee with free delivery above a threshold, the same Apple Pay / Google Pay / card checkout, and an order history. Edit products and prices in `server/src/products.ts`.
-- **Barber accounts** – barbers sign up in-app ("Join as a barber"), get a listing in their city, see their appointments and tap "I'm on my way" / "Mark as done".
-- **Demo mode** – without Stripe keys the app runs with simulated payments so you can try everything immediately.
+### Discover & compare
+- **Search anywhere in the world** or in your city: free text ("fade london", "braids lagos"), hairstyle/specialty, minimum rating, max price, available today, home visits. Sort by top rated, soonest available, lowest price or most experienced.
+- **Professional barber profiles:** photo, bio, years of experience, languages, specialties, services and prices, location, next free time, star rating and verified reviews.
+- **Portfolio:** photos of their work and **before-and-after transformations** with a drag-to-compare slider; barbers manage it under Account → My work.
+- **Reels:** a full-screen swipe-up video feed of barbers' work, with Book straight from the video.
+
+### Book & pay
+- Shop appointments or **barber comes to you** (home/hotel/office) with a travel fee.
+- Live availability in the barber's local time zone; double-bookings are impossible.
+- **Stripe payments:** Apple Pay, Google Pay, cards (and local methods on the web). Cancelling refunds automatically.
+- Reviews only from completed bookings, one per appointment.
+
+### AI
+- **AI Hairstyle Try-On:** upload a selfie → Claude analyses face shape, hair type and current cut and recommends haircuts, fades, colours and beard styles with exact "tell your barber" words → **OpenAI image editing renders each look on your own photo** (compare with a slider, or describe your own idea) → **Find barbers for this look** searches barbers with that specialty. Photos are not stored.
+- **JB Concierge (Claude):** a chat assistant that searches barbers worldwide, explains profiles and prices, checks availability, shows your bookings, prepares a booking for you to confirm and pay (it never books or charges on its own), answers policy questions from the help centre, and opens support tickets. Conversations are kept server-side, append-only.
+
+### Support & shop
+- **Help centre:** searchable FAQ, a contact form that creates support tickets, and the concierge 24/7.
+- **JB's Fresh shop:** "Buy all JB's Fresh products" with local-currency prices, cart, delivery and the same checkout.
+- **Demo mode:** without Stripe keys, payments are simulated so you can try everything.
 
 ## Run it locally
 
@@ -33,7 +40,7 @@ Requirements: Node 20+.
 # 1. API
 cd server
 npm install
-cp .env.example .env      # optional: add STRIPE_SECRET_KEY and ANTHROPIC_API_KEY
+cp .env.example .env      # optional: STRIPE_SECRET_KEY, ANTHROPIC_API_KEY, OPENAI_API_KEY
 npm run dev               # http://localhost:4000
 
 # 2. App (new terminal)
@@ -60,9 +67,10 @@ cd app && npx tsc --noEmit
 2. **Apple Pay** – create the merchant ID `merchant.com.alwaysfresh.app` in your Apple Developer account (or change it in `app/app.json` and `app/src/lib/config.ts`), upload Stripe's Apple Pay certificate, and for the website register your domain under Stripe → Settings → Payment method domains.
 3. **Google Pay** – enabled via `enableGooglePay` in `app/app.json`; request production access in the Google Pay console before launch (test mode is used in development builds).
 4. **Paying barbers** – right now all money lands in your Stripe account and the platform fee (`PLATFORM_FEE_PERCENT`) is recorded on each payment. To pay barbers out automatically, add Stripe Connect (Express accounts) and pass `transfer_data` / `application_fee_amount` when creating the PaymentIntent in `server/src/payments.ts`.
-5. **AI stylist** – set `ANTHROPIC_API_KEY` on the server. It uses Claude (`claude-opus-5-5`) with vision and structured output (`server/src/stylist.ts`). Photos are resized on the device and are not stored.
+5. **AI** – set `ANTHROPIC_API_KEY` for the AI stylist analysis and JB Concierge (Claude `claude-opus-5-5`; `server/src/stylist.ts`, `server/src/assistant.ts`), and `OPENAI_API_KEY` for try-on previews (OpenAI image editing, model set by `OPENAI_IMAGE_MODEL`, default `gpt-image-2`; `server/src/tryon.ts`). `TRYON_DAILY_LIMIT` caps previews per user per day to control cost. Each provider bills per use; previews are the most expensive part. Photos are processed per request and never stored. Hook your helpdesk into `createTicket` in `server/src/routes/support.ts` and set `SUPPORT_EMAIL`.
 6. **Database** – the API stores data in `server/data/db.json`, which is fine for trying it out. Move to Postgres (or similar) before launch; all data access goes through `server/src/db.ts`.
 7. **Reels** – the 12 sample reels in `server/media/demo/` are generated placeholders (`server/scripts/make-demo-reels.sh`); delete them from `server/src/reels.ts` once barbers upload real videos. Uploaded videos are stored in `server/data/uploads/` — move them to object storage (S3, Cloudflare R2, …) behind a CDN before launch, and consider transcoding uploads to H.264 MP4 so every device can play them.
 8. **Shop** – replace the sample products, prices and delivery fees in `server/src/products.ts`, and add product photos. Paid orders show as "Paid · preparing"; hook up your fulfilment (or a tool like Shopify/ShipStation) to ship them and mark them shipped.
-9. **Cities** – add countries/cities in `server/src/seed.ts` (`COUNTRIES`). Replace the sample barbers with real ones.
-10. **App stores** – change the bundle IDs in `app/app.json` if needed, then `npx eas-cli build --platform all` and `npx eas-cli submit`. Deploy the website with `npx expo export --platform web` and host the `dist/` folder (any static host).
+9. **Portfolio images** – the sample portfolio and before/after images in `server/media/demo/` are generated placeholders (`server/scripts/make-demo-portfolio.sh`); real barbers upload their own under Account → My work. Uploaded images go to `server/data/uploads/` — move them to object storage behind a CDN before launch.
+10. **Cities** – add countries/cities in `server/src/seed.ts` (`COUNTRIES`). Replace the sample barbers with real ones.
+11. **App stores** – change the bundle IDs in `app/app.json` if needed, then `npx eas-cli build --platform all` and `npx eas-cli submit`. Deploy the website with `npx expo export --platform web` and host the `dist/` folder (any static host).

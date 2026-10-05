@@ -31,8 +31,11 @@ export default function RootLayout() {
                 }}
               >
                 <Stack.Screen name="(tabs)" options={{ headerShown: false, title: APP_NAME }} />
-                <Stack.Screen name="explore" options={{ title: "Barbers" }} />
-                <Stack.Screen name="stylist" options={{ title: "AI Stylist" }} />
+                <Stack.Screen name="explore" options={{ title: "Find a barber" }} />
+                <Stack.Screen name="stylist" options={{ title: "AI Try-On" }} />
+                <Stack.Screen name="assistant" options={{ title: "JB Concierge" }} />
+                <Stack.Screen name="help" options={{ title: "Help centre" }} />
+                <Stack.Screen name="portfolio" options={{ title: "My work" }} />
                 <Stack.Screen name="shop" options={{ title: "JB's Fresh Shop" }} />
                 <Stack.Screen name="cart" options={{ title: "Your cart" }} />
                 <Stack.Screen name="order/[orderId]" options={{ title: "Checkout" }} />
