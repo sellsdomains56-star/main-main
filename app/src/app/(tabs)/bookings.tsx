@@ -1,22 +1,13 @@
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { Alert, Platform, View } from "react-native";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { colors } from "../../components/theme";
 import { Avatar, Button, Card, EmptyState, ErrorBox, IconLine, Loading, Row, Screen, Segmented, T, Tag } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { dateTime, money, STATUS_LABEL } from "../../lib/format";
 import type { Booking } from "../../lib/types";
-
-function confirmAction(message: string): Promise<boolean> {
-  if (Platform.OS === "web") return Promise.resolve(window.confirm(message));
-  return new Promise((resolve) =>
-    Alert.alert("Are you sure?", message, [
-      { text: "No", style: "cancel", onPress: () => resolve(false) },
-      { text: "Yes", style: "destructive", onPress: () => resolve(true) },
-    ]),
-  );
-}
 
 const tone = (s: Booking["status"]) => (s === "cancelled" ? "danger" : s === "confirmed" || s === "on_the_way" ? "gold" : "neutral");
 
@@ -26,6 +17,7 @@ export default function Bookings() {
   const [list, setList] = useState<Booking[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
+  const [confirmingCancel, setConfirmingCancel] = useState<string | null>(null); // in-app confirm (works on web too)
 
   const load = useCallback(() => {
     if (!user) return;
@@ -105,17 +97,27 @@ export default function Bookings() {
               {!isBarber && b.status === "completed" && (
                 <Button title="Book again" size="md" variant="secondary" onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: b.barber.id } })} />
               )}
-              {["pending_payment", "confirmed"].includes(b.status) && (
-                <Button
-                  title="Cancel"
-                  size="md"
-                  variant="ghost"
-                  onPress={run(async () => {
-                    if (await confirmAction(b.status === "confirmed" ? "Cancel and refund this booking?" : "Cancel this booking?")) await api.cancelBooking(b.id);
-                  })}
-                />
+              {["pending_payment", "confirmed"].includes(b.status) && confirmingCancel !== b.id && (
+                <Button title="Cancel" size="md" variant="ghost" onPress={() => setConfirmingCancel(b.id)} />
               )}
             </Row>
+            {confirmingCancel === b.id && (
+              <View style={{ marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: colors.dangerSoft }}>
+                <T variant="caption">{b.status === "confirmed" ? "Cancel this booking? You'll get a full refund." : "Cancel this booking?"}</T>
+                <Row gap={8} style={{ marginTop: 10 }}>
+                  <Button
+                    title="Yes, cancel"
+                    size="sm"
+                    variant="danger"
+                    onPress={run(async () => {
+                      setConfirmingCancel(null);
+                      await api.cancelBooking(b.id);
+                    })}
+                  />
+                  <Button title="Keep booking" size="sm" variant="secondary" onPress={() => setConfirmingCancel(null)} />
+                </Row>
+              </View>
+            )}
           </Card>
         ))}
       </View>

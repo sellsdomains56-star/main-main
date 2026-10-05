@@ -16,7 +16,7 @@ import {
   type ViewStyle,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { API_URL } from "../lib/config";
+import { resolveMedia } from "../lib/config";
 import { colors, fonts, radius, shadow } from "./theme";
 
 export type IconName = keyof typeof Ionicons.glyphMap;
@@ -343,7 +343,7 @@ const initials = (name: string) =>
 /** Photo with a graceful initials fallback (no grey boxes when an image fails to load). */
 export function Photo({ uri, name, style, rounded = radius.md }: { uri?: string | null; name: string; style: StyleProp<ViewStyle>; rounded?: number }) {
   const [failed, setFailed] = useState(false);
-  if (uri?.startsWith("/")) uri = API_URL + uri; // media served by our API
+  uri = resolveMedia(uri); // media served by our API (or bundled in the demo)
   const flat = StyleSheet.flatten(style) as ViewStyle;
   const size = typeof flat?.width === "number" ? flat.width : 64;
   if (!uri || failed) {

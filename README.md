@@ -32,6 +32,10 @@ Design: light page, black ink, gold details only — see [`app/DESIGN.md`](app/D
 - **JB's Fresh shop:** "Buy all JB's Fresh products" with local-currency prices, cart, delivery and the same checkout.
 - **Demo mode:** without Stripe keys, payments are simulated so you can try everything.
 
+## Try-it demo (no install)
+
+`node app/scripts/build-demo-page.mjs out.html` builds the website as one self-contained page (code, fonts, icons, demo media and seed data inlined) that runs with an in-browser demo server (`app/src/lib/demo/server.ts`) instead of the API — bookings, reviews, reels likes, shop orders and support tickets are kept on the viewer's device and payments are simulated. Published as a claude.ai Artifact with the `sample` capability, the concierge and the AI stylist's photo analysis run on the viewer's Claude; try-on picture previews need the real server's OpenAI connection.
+
 ## Run it locally
 
 Requirements: Node 20+.

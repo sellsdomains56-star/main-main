@@ -1,4 +1,5 @@
-import { API_URL } from "./config";
+import { API_URL, DEMO_DATA, resolveMedia } from "./config";
+import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
 import type { AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, Order, Reel, Review, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
@@ -12,7 +13,17 @@ export class ApiError extends Error {
   }
 }
 
+const demo = DEMO_DATA ? createDemoServer(DEMO_DATA) : null;
+
 async function request<T>(path: string, init: { method?: string; body?: unknown; headers?: Record<string, string> } = {}): Promise<T> {
+  if (demo) {
+    try {
+      return (await demo(init.method ?? (init.body !== undefined ? "POST" : "GET"), path, init.body as never, authToken, init.headers)) as T;
+    } catch (e) {
+      if (e instanceof DemoError) throw new ApiError(e.status, e.message);
+      throw e;
+    }
+  }
   let res: Response;
   try {
     res = await fetch(API_URL + path, {
@@ -39,13 +50,20 @@ const qs = (params: Record<string, string | undefined>) => {
 };
 
 /** Media paths from the API (/media/..., /uploads/...) become absolute URLs. */
-export const mediaUrl = (path: string | null | undefined) => (!path ? null : /^https?:/.test(path) ? path : API_URL + path);
+export const mediaUrl = resolveMedia;
 
 export const api = {
   reels: (f: { country?: string; city?: string; barberId?: string }) => request<Reel[]>("/reels" + qs(f)),
   likeReel: (id: string) => request<Reel>(`/reels/${id}/like`, { method: "POST" }),
   deleteReel: (id: string) => request<void>(`/reels/${id}`, { method: "DELETE" }),
   async postReel(video: Blob, contentType: string, caption: string): Promise<Reel> {
+    if (demo) {
+      try {
+        return demoPostReel(authToken, video, caption) as Reel;
+      } catch (e) {
+        throw new ApiError((e as DemoError).status ?? 500, (e as Error).message);
+      }
+    }
     const res = await fetch(`${API_URL}/reels?caption=${encodeURIComponent(caption)}`, {
       method: "POST",
       headers: { "content-type": contentType, ...(authToken ? { authorization: `Bearer ${authToken}` } : {}) },
@@ -106,6 +124,7 @@ export const api = {
 
   // Barber portfolio
   async uploadImage(file: Blob, contentType: string): Promise<{ url: string }> {
+    if (demo) return { url: await demoUpload(file) };
     const res = await fetch(`${API_URL}/uploads/image`, {
       method: "POST",
       headers: { "content-type": contentType, ...(authToken ? { authorization: `Bearer ${authToken}` } : {}) },

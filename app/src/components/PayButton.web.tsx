@@ -1,5 +1,5 @@
 import { Elements, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js/pure"; // loads Stripe only when a payment needs it
 import { useState } from "react";
 import { STRIPE_PUBLISHABLE_KEY } from "../lib/config";
 import type { PayButtonProps } from "./PayButton.types";

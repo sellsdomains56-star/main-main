@@ -1,5 +1,6 @@
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold, useFonts } from "@expo-google-fonts/inter";
 import { PlayfairDisplay_700Bold } from "@expo-google-fonts/playfair-display";
+import { Ionicons } from "@expo/vector-icons";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { PaymentProvider } from "../components/PaymentProvider";
@@ -10,8 +11,8 @@ import { APP_NAME } from "../lib/config";
 import { LocationProvider } from "../lib/location";
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({ PlayfairDisplay_700Bold, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold });
-  if (!fontsLoaded) return null;
+  const [fontsLoaded, fontError] = useFonts({ ...Ionicons.font, PlayfairDisplay_700Bold, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold });
+  if (!fontsLoaded && !fontError) return null; // if a font can't load, start anyway with system fonts
 
   return (
     <AuthProvider>
