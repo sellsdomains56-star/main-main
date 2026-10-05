@@ -6,12 +6,14 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ReelsFeed } from "../../components/ReelsFeed";
 import { ErrorBox, Loading } from "../../components/ui";
 import { api } from "../../lib/api";
+import { useLightStatusBar } from "../../lib/statusBar";
 import type { Reel } from "../../lib/types";
 
 /** One barber's reels, opened from their profile. */
 export default function BarberReels() {
   const { barberId, start } = useLocalSearchParams<{ barberId: string; start?: string }>();
   const insets = useSafeAreaInsets();
+  useLightStatusBar();
   const [reels, setReels] = useState<Reel[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
@@ -21,7 +23,7 @@ export default function BarberReels() {
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>
       {reels && <ReelsFeed reels={reels} startId={start} bottomInset={insets.bottom} />}
-      {!reels && !error && <View style={{ flex: 1, justifyContent: "center" }}><Loading /></View>}
+      {!reels && !error && <View style={{ flex: 1, justifyContent: "center" }}><Loading color="#fff" /></View>}
       {error && <View style={{ padding: 20, marginTop: 80 }}><ErrorBox message={error} /></View>}
       <Pressable
         onPress={() => (router.canGoBack() ? router.back() : router.replace("/reels"))}

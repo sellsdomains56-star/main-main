@@ -1,38 +1,39 @@
 import { Platform } from "react-native";
 
-// Black, with honey-gold light. See DESIGN.md before adding colors.
+// Off-white page, black ink, black panels — the "Modern Barber" look. See DESIGN.md before adding colors.
 export const colors = {
-  // Page & surfaces (darkest to lightest)
-  bg: "#0A0A0B", // the page
-  card: "#141416", // cards, sheets, bars
-  surface: "#1B1B1E", // inputs, chips, quiet tiles
-  surfaceStrong: "#2A2A2E", // pressed / active surfaces, dividers on cards
-  border: "#26262A", // hairline around cards and controls
+  // Page & surfaces
+  bg: "#EEECE8", // the page: warm off-white
+  card: "#FFFFFF", // cards, sheets, bars
+  surface: "#E5E2DD", // chips, quiet tiles, segmented tracks
+  surfaceStrong: "#D5D1CB", // pressed surfaces, inactive dots
+  border: "#DAD6D0", // hairline around cards and controls
 
   // Text
-  text: "#F4F1EA",
-  muted: "#A49F96", // secondary text (≥7:1 on bg)
-  faint: "#6F6B64", // icons, placeholders, disabled — never body text
+  text: "#0B0B0B",
+  muted: "#5E5A55", // secondary text (≥6:1 on bg)
+  faint: "#97928C", // icons, placeholders, disabled — never body text
 
-  // Honey gold — the only accent
-  gold: "#F2B53A",
-  goldBright: "#FFCB57", // highlights inside glows
-  goldDeep: "#E7AE3F", // gold text on dark (same family, a touch calmer)
-  goldSoft: "rgba(242, 181, 58, 0.12)", // tinted fills: selected chips, tags, avatar fallbacks
-  goldLine: "rgba(242, 181, 58, 0.55)", // glowing borders and connector lines
-  onGold: "#17110A", // text and icons on gold fills
+  // Accent is black: primary buttons, selected states, active steps
+  accent: "#0B0B0B",
+  accentSoft: "rgba(11, 11, 11, 0.06)", // tinted fills
+  accentLine: "#0B0B0B", // selected borders and connector lines
+  onAccent: "#FFFFFF", // text and icons on black fills
 
-  // Raised dark blocks (banners, feature tiles, the floating button) — a step above `card`
-  ink: "#121214",
-  onInk: "#F4F1EA",
+  // Black panels (hero, service tiles, banners, tab bar)
+  ink: "#0B0B0B",
+  inkRaised: "#1A1A1A", // a step lighter, for controls inside panels
+  onInk: "#F4F2EE",
+  inkMuted: "rgba(244, 242, 238, 0.62)",
+  inkLine: "rgba(244, 242, 238, 0.16)",
 
   // Status
-  danger: "#FF7A6B",
-  dangerSoft: "rgba(255, 122, 107, 0.12)",
+  danger: "#B42318",
+  dangerSoft: "rgba(180, 35, 24, 0.08)",
 };
 
 export const fonts = {
-  display: "Inter_300Light", // big, light headings
+  display: "Inter_500Medium", // big, tight headlines
   regular: "Inter_400Regular",
   medium: "Inter_500Medium",
   semibold: "Inter_600SemiBold",
@@ -40,22 +41,22 @@ export const fonts = {
   black: "Inter_800ExtraBold",
 };
 
-export const radius = { sm: 10, md: 14, lg: 20, xl: 26, pill: 999 };
+export const radius = { sm: 10, md: 14, lg: 20, xl: 28, pill: 999 };
 
-/** Depth for cards on black: a faint top highlight plus a soft drop. */
+/** Soft depth for white cards on the off-white page. */
 export const shadow = Platform.select({
-  web: { boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04), 0 10px 30px rgba(0,0,0,0.45)" },
-  default: { shadowColor: "#000", shadowOpacity: 0.45, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 4 },
+  web: { boxShadow: "0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05)" },
+  default: { shadowColor: "#000", shadowOpacity: 0.06, shadowRadius: 12, shadowOffset: { width: 0, height: 4 }, elevation: 2 },
 }) as object;
 
-/** The signature gold glow: selected options, the active step, primary feature cards. */
-export const glow = Platform.select({
-  web: { boxShadow: "0 0 0 1px rgba(242,181,58,0.55), 0 0 22px rgba(242,181,58,0.22), inset 0 1px 0 rgba(255,255,255,0.05)" },
-  default: { shadowColor: "#F2B53A", shadowOpacity: 0.35, shadowRadius: 14, shadowOffset: { width: 0, height: 0 }, elevation: 6 },
+/** Emphasis for the one thing that matters most (selected option, active step): a crisp black edge. */
+export const emphasis = Platform.select({
+  web: { boxShadow: "0 0 0 1px #0B0B0B, 0 10px 28px rgba(0,0,0,0.08)" },
+  default: { shadowColor: "#000", shadowOpacity: 0.1, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 4 },
 }) as object;
 
-/** A smaller glow for dots, handles and buttons. */
-export const glowSmall = Platform.select({
-  web: { boxShadow: "0 0 12px rgba(242,181,58,0.55)" },
-  default: { shadowColor: "#F2B53A", shadowOpacity: 0.6, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, elevation: 4 },
+/** Lift for black buttons and floating controls. */
+export const raise = Platform.select({
+  web: { boxShadow: "0 6px 16px rgba(0,0,0,0.16)" },
+  default: { shadowColor: "#000", shadowOpacity: 0.18, shadowRadius: 10, shadowOffset: { width: 0, height: 4 }, elevation: 4 },
 }) as object;

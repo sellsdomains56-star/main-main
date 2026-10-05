@@ -2,7 +2,7 @@
 
 **One global platform for barbers and hairstyling:** discover, compare and book barbers anywhere in the world, see their work, read real reviews, get help from an AI concierge, and preview new hairstyles on your own face before you book. Instead of searching Instagram, Google Maps, TikTok and separate booking apps, everything is in one place — as a **website and an iPhone/Android app from one codebase**.
 
-Design: light page, black ink, gold details only — see [`app/DESIGN.md`](app/DESIGN.md). The brand name lives in `APP_NAME` / `SHOP_NAME` in `app/src/lib/config.ts` (plus `name` in `app/app.json`).
+Design: minimal black and white (off-white page, black type and panels) after the "Modern Barber" reference — see [`app/DESIGN.md`](app/DESIGN.md). The brand name lives in `APP_NAME` / `SHOP_NAME` in `app/src/lib/config.ts` (plus `name` in `app/app.json`).
 
 | Folder | What it is |
 | --- | --- |
@@ -76,5 +76,6 @@ cd app && npx tsc --noEmit
 7. **Reels** – the 12 sample reels in `server/media/demo/` are generated placeholders (`server/scripts/make-demo-reels.sh`); delete them from `server/src/reels.ts` once barbers upload real videos. Uploaded videos are stored in `server/data/uploads/` — move them to object storage (S3, Cloudflare R2, …) behind a CDN before launch, and consider transcoding uploads to H.264 MP4 so every device can play them.
 8. **Shop** – replace the sample products, prices and delivery fees in `server/src/products.ts`, and add product photos. Paid orders show as "Paid · preparing"; hook up your fulfilment (or a tool like Shopify/ShipStation) to ship them and mark them shipped.
 9. **Portfolio images** – the sample portfolio and before/after images in `server/media/demo/` are generated placeholders (`server/scripts/make-demo-portfolio.sh`); real barbers upload their own under Account → My work. Uploaded images go to `server/data/uploads/` — move them to object storage behind a CDN before launch.
-10. **Cities** – add countries/cities in `server/src/seed.ts` (`COUNTRIES`). Replace the sample barbers with real ones.
-11. **App stores** – change the bundle IDs in `app/app.json` if needed, then `npx eas-cli build --platform all` and `npx eas-cli submit`. Deploy the website with `npx expo export --platform web` and host the `dist/` folder (any static host).
+10. **Brand photography** – the home screen's big hero panel and the six service tiles use black panels with line art until you add real photos: put them in `app/assets/brand/` and set `HERO_PHOTO` / `SERVICE_PHOTOS` in `app/src/lib/brandMedia.ts`. Use photos you own or have a licence for.
+11. **Cities** – add countries/cities in `server/src/seed.ts` (`COUNTRIES`). Replace the sample barbers with real ones.
+12. **App stores** – change the bundle IDs in `app/app.json` if needed, then `npx eas-cli build --platform all` and `npx eas-cli submit`. Deploy the website with `npx expo export --platform web` and host the `dist/` folder (any static host).

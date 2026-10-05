@@ -4,7 +4,7 @@ import { useVideoPlayer, VideoView } from "expo-video";
 import { useState } from "react";
 import { View } from "react-native";
 import { colors, radius } from "../components/theme";
-import { Button, EmptyState, GoldIcon, ErrorBox, Field, Screen, T } from "../components/ui";
+import { Button, EmptyState, IconBadge, ErrorBox, Field, Screen, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 
@@ -64,7 +64,7 @@ export default function PostReel() {
           </View>
         ) : (
           <View style={{ width: "100%", borderWidth: 2, borderStyle: "dashed", borderColor: colors.surfaceStrong, borderRadius: radius.xl, padding: 28, alignItems: "center", backgroundColor: colors.surface }}>
-            <GoldIcon icon="videocam-outline" size={60} />
+            <IconBadge icon="videocam-outline" size={60} />
             <T variant="strong" style={{ marginTop: 8 }}>Choose a video</T>
           </View>
         )}

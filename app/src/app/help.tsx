@@ -3,7 +3,7 @@ import { router, Stack } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { Pressable, View } from "react-native";
 import { colors, fonts, radius } from "../components/theme";
-import { Button, Card, Divider, ErrorBox, Field, GoldIcon, Loading, Pill, Row, Screen, SearchBar, Section, T, Wrap, styles } from "../components/ui";
+import { Button, Card, Divider, ErrorBox, Field, IconBadge, Loading, Pill, Row, Screen, SearchBar, Section, T, Wrap, styles } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import type { FaqItem } from "../lib/types";
@@ -64,14 +64,14 @@ export default function Help() {
       <Pressable
         onPress={() => router.push("/assistant")}
         accessibilityRole="button"
-        style={({ pressed }) => [styles.card, styles.cardGlow, { marginTop: 18, padding: 18, flexDirection: "row", alignItems: "center", gap: 14 }, pressed && styles.pressed]}
+        style={({ pressed }) => [styles.inkCard, { marginTop: 18, padding: 18, flexDirection: "row", alignItems: "center", gap: 14, borderRadius: radius.xl }, pressed && styles.pressed]}
       >
-        <GoldIcon icon="sparkles" dark size={48} />
+        <IconBadge icon="sparkles" dark size={48} />
         <View style={{ flex: 1 }}>
-          <T variant="heading" color={colors.gold}>Chat with JB Concierge</T>
-          <T variant="caption" color="rgba(255,255,255,0.75)">Instant answers, barber recommendations and booking help — 24/7.</T>
+          <T variant="heading" color={colors.onInk}>Chat with JB Concierge</T>
+          <T variant="caption" color={colors.inkMuted}>Instant answers, barber recommendations and booking help — 24/7.</T>
         </View>
-        <Ionicons name="chevron-forward" size={20} color={colors.gold} />
+        <Ionicons name="arrow-forward" size={20} color={colors.onInk} />
       </Pressable>
 
       <Section title="Common questions">
@@ -91,7 +91,7 @@ export default function Help() {
                   style={{ flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 16, minHeight: 44 }}
                 >
                   <T variant="strong" style={{ flex: 1 }}>{f.question}</T>
-                  <Ionicons name={expanded ? "remove" : "add"} size={20} color={colors.goldDeep} />
+                  <Ionicons name={expanded ? "remove" : "add"} size={20} color={colors.accent} />
                 </Pressable>
                 {expanded && <T muted style={{ paddingBottom: 16, lineHeight: 23 }}>{f.answer}</T>}
               </View>
@@ -104,7 +104,7 @@ export default function Help() {
         {sent ? (
           <Card tone="surface">
             <Row gap={10}>
-              <Ionicons name="checkmark-circle" size={22} color={colors.gold} />
+              <Ionicons name="checkmark-circle" size={22} color={colors.accent} />
               <View style={{ flex: 1 }}>
                 <T variant="strong">Message sent</T>
                 <T variant="caption" muted>Ticket #{sent.slice(0, 8)} · we usually reply within 24 hours{user ? ` to ${user.email}` : ""}.</T>
@@ -126,7 +126,7 @@ export default function Help() {
         )}
         {!!supportEmail && (
           <T variant="caption" muted center style={{ marginTop: 14 }}>
-            Or email us at <T variant="caption" color={colors.goldDeep} style={{ fontFamily: fonts.semibold }}>{supportEmail}</T>
+            Or email us at <T variant="caption" color={colors.accent} style={{ fontFamily: fonts.semibold }}>{supportEmail}</T>
           </T>
         )}
       </Section>

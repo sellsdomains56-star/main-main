@@ -7,6 +7,7 @@ import { ReelsFeed } from "../../components/ReelsFeed";
 import { Button, Loading, Row, T } from "../../components/ui";
 import { fonts } from "../../components/theme";
 import { api } from "../../lib/api";
+import { useLightStatusBar } from "../../lib/statusBar";
 import { useLocation } from "../../lib/location";
 import type { Reel } from "../../lib/types";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,6 +16,7 @@ export default function ReelsTab() {
   const { start } = useLocalSearchParams<{ start?: string }>();
   const { place, country } = useLocation();
   const insets = useSafeAreaInsets();
+  useLightStatusBar();
   const [reels, setReels] = useState<Reel[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [sheet, setSheet] = useState(false);
@@ -30,7 +32,7 @@ export default function ReelsTab() {
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>
       {reels && reels.length > 0 && <ReelsFeed key={`${where}-${start ?? ""}`} reels={reels} startId={start} />}
-      {!reels && !error && <View style={{ flex: 1, justifyContent: "center" }}><Loading /></View>}
+      {!reels && !error && <View style={{ flex: 1, justifyContent: "center" }}><Loading color="#fff" /></View>}
       {(error || reels?.length === 0) && (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 32 }}>
           <T variant="heading" color="#fff" center>{error ?? `No reels in ${where} yet`}</T>

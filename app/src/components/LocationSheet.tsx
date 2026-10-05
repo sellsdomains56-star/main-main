@@ -7,21 +7,34 @@ import type { Country } from "../lib/types";
 import { colors, fonts, radius } from "./theme";
 import { ErrorBox, IconButton, Loading, Row, T } from "./ui";
 
-/** "Berlin, Germany ⌄" pill — opens a sheet to pick country, then city. */
-export function LocationPill({ label = "Your city" }: { label?: string }) {
+/** "Berlin, Germany ⌄" — opens a sheet to pick country, then city. `chip` is the compact pill for black panels. */
+export function LocationPill({ label = "Your city", variant = "stacked" }: { label?: string; variant?: "stacked" | "chip" }) {
   const { place, country } = useLocation();
   const [open, setOpen] = useState(false);
   const text = place ? (place.city ? `${place.city}, ${country?.name ?? place.countryCode}` : `All of ${country?.name ?? place.countryCode}`) : "Choose your city";
   return (
     <>
-      <Pressable onPress={() => setOpen(true)} hitSlop={8} accessibilityRole="button" accessibilityLabel={`${label}: ${text}`}>
-        <T variant="small" muted>{label}</T>
-        <Row gap={4}>
-          <Ionicons name="location" size={16} color={colors.gold} />
-          <T variant="strong" numberOfLines={1} style={{ fontFamily: fonts.bold, maxWidth: 240 }}>{text}</T>
-          <Ionicons name="chevron-down" size={16} color={colors.text} />
-        </Row>
-      </Pressable>
+      {variant === "chip" ? (
+        <Pressable
+          onPress={() => setOpen(true)}
+          accessibilityRole="button"
+          accessibilityLabel={`${label}: ${text}`}
+          style={({ pressed }) => [{ flexDirection: "row", alignItems: "center", gap: 6, alignSelf: "flex-start", height: 38, paddingHorizontal: 14, borderRadius: radius.pill, backgroundColor: "rgba(244,242,238,0.14)" }, pressed && { opacity: 0.7 }]}
+        >
+          <Ionicons name="location-outline" size={15} color={colors.onInk} />
+          <T variant="caption" color={colors.onInk} numberOfLines={1} style={{ fontFamily: fonts.semibold, maxWidth: 220 }}>{text}</T>
+          <Ionicons name="chevron-down" size={14} color={colors.onInk} />
+        </Pressable>
+      ) : (
+        <Pressable onPress={() => setOpen(true)} hitSlop={8} accessibilityRole="button" accessibilityLabel={`${label}: ${text}`}>
+          <T variant="small" muted>{label}</T>
+          <Row gap={4}>
+            <Ionicons name="location-outline" size={16} color={colors.text} />
+            <T variant="strong" numberOfLines={1} style={{ fontFamily: fonts.bold, maxWidth: 240 }}>{text}</T>
+            <Ionicons name="chevron-down" size={16} color={colors.text} />
+          </Row>
+        </Pressable>
+      )}
       <LocationSheet visible={open} onClose={() => setOpen(false)} />
     </>
   );
@@ -96,15 +109,15 @@ function Option({ flag: flagText, icon, title, subtitle, selected, chevron, onPr
       {flagText ? (
         <T style={{ fontSize: 26, lineHeight: 32, width: 40, textAlign: "center" }}>{flagText}</T>
       ) : (
-        <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: colors.goldSoft, alignItems: "center", justifyContent: "center" }}>
-          <Ionicons name={icon ?? "location-outline"} size={19} color={colors.goldDeep} />
+        <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: colors.accentSoft, alignItems: "center", justifyContent: "center" }}>
+          <Ionicons name={icon ?? "location-outline"} size={19} color={colors.accent} />
         </View>
       )}
       <View style={{ flex: 1 }}>
         <T variant="strong">{title}</T>
         {subtitle && <T variant="caption" muted>{subtitle}</T>}
       </View>
-      {selected && <Ionicons name="checkmark-circle" size={22} color={colors.gold} />}
+      {selected && <Ionicons name="checkmark-circle" size={22} color={colors.accent} />}
       {chevron && <Ionicons name="chevron-forward" size={18} color={colors.faint} />}
     </Pressable>
   );

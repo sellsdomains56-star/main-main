@@ -92,7 +92,7 @@ export default function Cart() {
         <SummaryLine label="Subtotal" value={money(subtotal, catalog.currency)} />
         <SummaryLine label="Delivery" value={shipping ? money(shipping, catalog.currency) : "Free"} />
         {shipping > 0 && (
-          <T variant="small" color={colors.goldDeep} style={{ marginTop: 4 }}>
+          <T variant="small" color={colors.accent} style={{ marginTop: 4 }}>
             Add {money(catalog.shipping.freeFrom - subtotal, catalog.currency)} more for free delivery
           </T>
         )}

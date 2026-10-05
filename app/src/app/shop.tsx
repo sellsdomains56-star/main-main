@@ -1,11 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router, Stack } from "expo-router";
 import { useMemo, useState } from "react";
-import { Pressable, ScrollView, useWindowDimensions, View } from "react-native";
+import { Pressable, ScrollView, Text, useWindowDimensions, View } from "react-native";
 import { LocationPill } from "../components/LocationSheet";
 import { ProductArt } from "../components/ProductArt";
 import { QuantityStepper } from "../components/QuantityStepper";
-import { colors, glowSmall, radius } from "../components/theme";
+import { colors, fonts, raise, radius } from "../components/theme";
 import { Button, ErrorBox, IconButton, Loading, Pill, Row, Screen, styles, T } from "../components/ui";
 import { useCart } from "../lib/cart";
 import { SHOP_NAME } from "../lib/config";
@@ -36,19 +36,19 @@ export default function Shop() {
       }
     >
       <Stack.Screen options={{ headerRight: () => <IconButton icon="receipt-outline" label="My orders" tone="plain" onPress={() => router.push("/orders")} /> }} />
-      <View style={[styles.card, styles.cardGlow, { padding: 22, overflow: "hidden" }]}>
-        <T variant="small" color={colors.gold} style={{ letterSpacing: 2 }}>{SHOP_NAME.toUpperCase()}</T>
-        <T variant="title" color={colors.onInk} style={{ marginTop: 6 }}>Buy all {SHOP_NAME} products</T>
-        <T variant="caption" color="rgba(255,255,255,0.7)" style={{ marginTop: 6, maxWidth: "78%" }}>
+      <View style={{ backgroundColor: colors.ink, borderRadius: radius.xl, padding: 24, overflow: "hidden" }}>
+        <T variant="eyebrow" color={colors.inkMuted}>{SHOP_NAME}</T>
+        <Text style={{ fontFamily: fonts.display, color: colors.onInk, fontSize: 30, lineHeight: 33, letterSpacing: -1.2, marginTop: 10, maxWidth: "85%" }}>Buy all {SHOP_NAME} products</Text>
+        <T variant="caption" color={colors.inkMuted} style={{ marginTop: 8, maxWidth: "78%" }}>
           The same pomades, oils and shampoos our barbers use — delivered to your door.
         </T>
         {catalog && (
           <Row gap={6} style={{ marginTop: 16 }}>
-            <Ionicons name="car-outline" size={15} color={colors.gold} />
-            <T variant="small" color={colors.gold}>Free delivery over {money(catalog.shipping.freeFrom, catalog.currency)}</T>
+            <Ionicons name="car-outline" size={15} color={colors.onInk} />
+            <T variant="small" color={colors.onInk} style={{ fontFamily: fonts.semibold }}>Free delivery over {money(catalog.shipping.freeFrom, catalog.currency)}</T>
           </Row>
         )}
-        <Ionicons name="bag-handle-outline" size={96} color="rgba(242,181,58,0.14)" style={{ position: "absolute", right: -4, bottom: -10 }} />
+        <Ionicons name="bag-handle-outline" size={96} color="rgba(244,242,238,0.08)" style={{ position: "absolute", right: -4, bottom: -10 }} />
       </View>
 
       <View style={{ marginTop: 16 }}>
@@ -71,9 +71,9 @@ export default function Shop() {
                 <Pressable
                   accessibilityLabel={`Add ${p.name} to cart`}
                   onPress={() => add(p.id)}
-                  style={({ pressed }) => [{ position: "absolute", right: 10, bottom: 10, width: 36, height: 36, borderRadius: 18, backgroundColor: colors.gold, alignItems: "center", justifyContent: "center" }, glowSmall, pressed && styles.pressed]}
+                  style={({ pressed }) => [{ position: "absolute", right: 10, bottom: 10, width: 44, height: 44, borderRadius: 22, backgroundColor: colors.accent, alignItems: "center", justifyContent: "center" }, raise, pressed && styles.pressed]}
                 >
-                  <Ionicons name="add" size={22} color={colors.onGold} />
+                  <Ionicons name="add" size={22} color={colors.onAccent} />
                 </Pressable>
               )}
             </View>

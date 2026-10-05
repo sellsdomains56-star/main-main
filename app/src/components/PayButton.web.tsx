@@ -16,7 +16,7 @@ export function PayButton(props: PayButtonProps) {
   return (
     <Elements
       stripe={stripePromise}
-      options={{ clientSecret: props.clientSecret, appearance: { theme: "night", variables: { colorPrimary: colors.gold, colorBackground: colors.surface, colorText: colors.text, borderRadius: "12px" } } }}
+      options={{ clientSecret: props.clientSecret, appearance: { theme: "stripe", variables: { colorPrimary: colors.accent, colorBackground: colors.card, colorText: colors.text, borderRadius: "12px", fontFamily: "Inter, system-ui, sans-serif" } } }}
     >
       <Checkout {...props} />
     </Elements>

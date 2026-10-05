@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
-import { colors, fonts, glowSmall, radius } from "../../components/theme";
+import { colors, fonts, radius } from "../../components/theme";
 import { Avatar, Button, ErrorBox, Field, Loading, OptionRow, Pill, Row, Screen, StepCard, StepConnector, T, Wrap } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
@@ -88,7 +88,7 @@ export default function Book() {
         <Row gap={14}>
           <View>
             <T variant="eyebrow" color={colors.muted}>Total</T>
-            <T variant="title" color={colors.gold}>{money(total, barber.currency)}</T>
+            <T variant="title" color={colors.accent}>{money(total, barber.currency)}</T>
           </View>
           <Button title={user ? "Continue" : "Sign in to book"} onPress={confirm} loading={submitting} disabled={!!user && !ready} style={{ flex: 1 }} />
         </Row>
@@ -111,7 +111,7 @@ export default function Book() {
               sublabel={`${s.durationMin} min`}
               selected={s.id === serviceId}
               onPress={() => setServiceId(s.id)}
-              right={<T variant="strong" color={s.id === serviceId ? colors.gold : colors.text}>{money(s.price, barber.currency)}</T>}
+              right={<T variant="strong" color={s.id === serviceId ? colors.accent : colors.text}>{money(s.price, barber.currency)}</T>}
             />
           ))}
         </StepCard>
@@ -152,13 +152,12 @@ export default function Book() {
                   accessibilityState={{ selected }}
                   accessibilityLabel={d.label}
                   style={[
-                    { width: 58, paddingVertical: 10, borderRadius: radius.md, alignItems: "center", backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
-                    selected && { borderColor: colors.gold, backgroundColor: "rgba(242,181,58,0.10)" },
-                    selected && glowSmall,
+                    { width: 58, paddingVertical: 10, borderRadius: radius.md, alignItems: "center", backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
+                    selected && { borderColor: colors.accent, backgroundColor: colors.accent },
                   ]}
                 >
-                  <T variant="small" color={selected ? colors.gold : colors.muted}>{top}</T>
-                  <T variant="heading" style={{ fontFamily: fonts.semibold }}>{Number(bottom) || bottom}</T>
+                  <T variant="small" color={selected ? colors.inkMuted : colors.muted}>{top}</T>
+                  <T variant="heading" color={selected ? colors.onAccent : colors.text} style={{ fontFamily: fonts.semibold }}>{Number(bottom) || bottom}</T>
                 </Pressable>
               );
             })}

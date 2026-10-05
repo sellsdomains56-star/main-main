@@ -170,7 +170,7 @@ export default function TryOn() {
               <View style={{ marginTop: 16 }}>
                 <Field label="Anything else? (optional)" placeholder="e.g. growing it out, I play sports" value={notes} onChangeText={setNotes} style={{ marginBottom: 0 }} />
               </View>
-              {loading && <T variant="caption" color={colors.gold} style={{ marginTop: 12 }}>Studying your face shape and hair…</T>}
+              {loading && <T variant="caption" color={colors.accent} style={{ marginTop: 12 }}>Studying your face shape and hair…</T>}
             </>
           ) : (
             <T variant="caption" muted>{[length, maintenance, vibe].filter(Boolean).join(" · ") || "No preferences — open to anything"}</T>
@@ -185,7 +185,7 @@ export default function TryOn() {
           {result ? (
             <>
               <Row gap={8} style={{ flexWrap: "wrap" }}>
-                <Tag label={`${result.advice.faceShape} face`} tone="gold" />
+                <Tag label={`${result.advice.faceShape} face`} tone="accent" />
                 <Tag label={result.advice.hairType} />
               </Row>
               <T style={{ marginTop: 12 }}>{result.advice.summary}</T>
@@ -219,7 +219,7 @@ export default function TryOn() {
               const p = previews[r.name];
               const best = i === 0 && category === "all";
               return (
-                <Card key={r.name} glowing={best || p?.status === "done"} style={{ marginTop: 12, padding: 18 }}>
+                <Card key={r.name} highlighted={best || p?.status === "done"} style={{ marginTop: 12, padding: 18 }}>
                   <Row gap={8} style={{ flexWrap: "wrap" }}>
                     {best && <Tag label="Best match" tone="dark" icon="trophy-outline" />}
                     <Tag label={r.category === "color" ? "Colour" : r.category === "beard" ? "Beard" : "Haircut"} />
@@ -227,7 +227,7 @@ export default function TryOn() {
                   </Row>
                   <T variant="title" style={{ marginTop: 12, fontSize: 21, lineHeight: 27 }}>{r.name}</T>
                   <T muted style={{ marginTop: 6 }}>{r.description}</T>
-                  <T variant="caption" color={colors.goldDeep} style={{ marginTop: 6 }}>{r.whyItSuits}</T>
+                  <T variant="caption" color={colors.accent} style={{ marginTop: 6 }}>{r.whyItSuits}</T>
 
                   {p?.status === "done" && p.image && photo && (
                     <View style={{ marginTop: 14 }}>
@@ -236,8 +236,8 @@ export default function TryOn() {
                     </View>
                   )}
                   {p?.status === "loading" && (
-                    <View style={{ marginTop: 14, height: 120, borderRadius: radius.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.goldLine, alignItems: "center", justifyContent: "center", padding: 16 }}>
-                      <Ionicons name="sparkles" size={22} color={colors.gold} />
+                    <View style={{ marginTop: 14, height: 120, borderRadius: radius.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.accentLine, alignItems: "center", justifyContent: "center", padding: 16 }}>
+                      <Ionicons name="sparkles" size={22} color={colors.accent} />
                       <T variant="caption" muted center style={{ marginTop: 8 }}>Creating your preview… usually 15–30 seconds.</T>
                     </View>
                   )}

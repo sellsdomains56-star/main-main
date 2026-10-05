@@ -103,9 +103,9 @@ export default function Explore() {
             <Row gap={6} style={{ marginTop: 10, flexWrap: "wrap" }}>
               {filters.specialty.map((s) => (
                 <Pressable key={s} onPress={() => set({ specialty: filters.specialty.filter((x) => x !== s) })} accessibilityLabel={`Remove ${s}`}
-                  style={{ flexDirection: "row", alignItems: "center", gap: 4, backgroundColor: colors.goldSoft, borderRadius: radius.pill, paddingHorizontal: 10, paddingVertical: 6 }}>
-                  <T variant="small" color={colors.goldDeep} style={{ fontFamily: fonts.semibold }}>{s}</T>
-                  <Ionicons name="close" size={13} color={colors.goldDeep} />
+                  style={{ flexDirection: "row", alignItems: "center", gap: 4, backgroundColor: colors.accentSoft, borderRadius: radius.pill, paddingHorizontal: 10, paddingVertical: 6 }}>
+                  <T variant="small" color={colors.accent} style={{ fontFamily: fonts.semibold }}>{s}</T>
+                  <Ionicons name="close" size={13} color={colors.accent} />
                 </Pressable>
               ))}
             </Row>

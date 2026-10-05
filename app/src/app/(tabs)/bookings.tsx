@@ -9,7 +9,7 @@ import { useAuth } from "../../lib/auth";
 import { dateTime, money, STATUS_LABEL } from "../../lib/format";
 import type { Booking } from "../../lib/types";
 
-const tone = (s: Booking["status"]) => (s === "cancelled" ? "danger" : s === "confirmed" || s === "on_the_way" ? "gold" : "neutral");
+const tone = (s: Booking["status"]) => (s === "cancelled" ? "danger" : s === "confirmed" || s === "on_the_way" ? "accent" : "neutral");
 
 export default function Bookings() {
   const insets = useSafeAreaInsets();

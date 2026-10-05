@@ -35,7 +35,7 @@ export default function Orders() {
         <Card key={o.id} style={{ marginBottom: 12 }}>
           <Row style={{ justifyContent: "space-between" }}>
             <T variant="caption" muted>{new Date(o.createdAt).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" })}</T>
-            <Tag label={LABEL[o.status]} tone={o.status === "pending_payment" ? "neutral" : o.status === "cancelled" ? "danger" : "gold"} />
+            <Tag label={LABEL[o.status]} tone={o.status === "pending_payment" ? "neutral" : o.status === "cancelled" ? "danger" : "accent"} />
           </Row>
           <View style={{ marginTop: 10, gap: 2 }}>
             {o.items.map((i) => <T key={i.productId}>{i.quantity} × {i.name}</T>)}

@@ -148,7 +148,7 @@ export default function BarberProfile() {
                     <T variant="caption" muted>{s.durationMin} min</T>
                   </View>
                   <T variant="strong">{money(s.price, barber.currency)}</T>
-                  <Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={selected ? colors.gold : colors.faint} />
+                  <Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={selected ? colors.accent : colors.faint} />
                 </Pressable>
               </View>
             );
@@ -208,7 +208,7 @@ function Stat({ value, label, icon }: { value: string; label: string; icon: "sta
   return (
     <View style={{ flex: 1, backgroundColor: colors.surface, borderRadius: radius.md, paddingVertical: 12, alignItems: "center" }}>
       <Row gap={4}>
-        <Ionicons name={icon} size={13} color={icon === "star" ? colors.gold : colors.gold} />
+        <Ionicons name={icon} size={13} color={icon === "star" ? colors.accent : colors.accent} />
         <T variant="strong" numberOfLines={1}>{value}</T>
       </Row>
       <T variant="small" muted>{label}</T>

@@ -46,7 +46,7 @@ export function BarberCard({ barber, showCountry }: { barber: Barber; showCountr
         </T>
         <Row gap={6} style={{ marginTop: 8, flexWrap: "wrap" }}>
           <Tag label={`from ${money(barber.startingPrice, barber.currency)}`} />
-          {next && <Tag label={next} tone="gold" icon="time-outline" />}
+          {next && <Tag label={next} tone="accent" icon="time-outline" />}
           {barber.offersHomeVisits && <Tag label="Comes to you" tone="neutral" icon="home-outline" />}
         </Row>
       </View>
@@ -61,7 +61,7 @@ export function BarberTile({ barber }: { barber: Barber }) {
       <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 168, height: 168 }} rounded={radius.lg} />
       {barber.offersHomeVisits && (
         <View style={{ position: "absolute", top: 10, left: 10 }}>
-          <Tag label="Comes to you" tone="gold" icon="home" />
+          <Tag label="Comes to you" tone="light" icon="home-outline" />
         </View>
       )}
       <T variant="strong" numberOfLines={1} style={{ marginTop: 10 }}>{barber.name}</T>

@@ -5,8 +5,8 @@ import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollVie
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BarberCard } from "../components/BarberCard";
 import { Orb } from "../components/Orb";
-import { colors, fonts, glowSmall, radius } from "../components/theme";
-import { Button, Card, ErrorBox, GoldIcon, IconButton, Row, styles, T } from "../components/ui";
+import { colors, fonts, raise, radius } from "../components/theme";
+import { Button, Card, ErrorBox, IconBadge, IconButton, Row, styles, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { dateTime } from "../lib/format";
@@ -116,7 +116,7 @@ export default function Assistant() {
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingTop: 22, paddingBottom: 16, paddingHorizontal: 16 }} style={{ alignSelf: "stretch", marginHorizontal: -16 }}>
               {SUGGESTIONS.map((s) => (
                 <Pressable key={s} onPress={() => send(s)} accessibilityRole="button" style={({ pressed }) => [styles.card, { width: 150, minHeight: 104, padding: 14 }, pressed && styles.pressed]}>
-                  <Ionicons name="sparkles" size={16} color={colors.gold} />
+                  <Ionicons name="sparkles" size={16} color={colors.accent} />
                   <T variant="caption" style={{ marginTop: 10 }}>{s}</T>
                 </Pressable>
               ))}
@@ -128,9 +128,9 @@ export default function Assistant() {
 
         {sending && (
           <Row gap={8} style={{ marginTop: 12 }}>
-            <GoldIcon icon="sparkles" size={30} />
+            <IconBadge icon="sparkles" size={30} />
             <View style={{ backgroundColor: colors.card, borderRadius: radius.lg, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: colors.border }}>
-              <ActivityIndicator size="small" color={colors.gold} />
+              <ActivityIndicator size="small" color={colors.accent} />
             </View>
           </Row>
         )}
@@ -160,9 +160,9 @@ export default function Assistant() {
             accessibilityLabel="Send"
             disabled={!input.trim() || sending}
             onPress={() => send(input)}
-            style={({ pressed }) => [{ width: 46, height: 46, borderRadius: 23, backgroundColor: colors.gold, alignItems: "center", justifyContent: "center", opacity: !input.trim() || sending ? 0.35 : 1 }, !!input.trim() && !sending && glowSmall, pressed && styles.pressed]}
+            style={({ pressed }) => [{ width: 46, height: 46, borderRadius: 23, backgroundColor: colors.accent, alignItems: "center", justifyContent: "center", opacity: !input.trim() || sending ? 0.35 : 1 }, !!input.trim() && !sending && raise, pressed && styles.pressed]}
           >
-            <Ionicons name="arrow-up" size={20} color={colors.onGold} />
+            <Ionicons name="arrow-up" size={20} color={colors.onAccent} />
           </Pressable>
         </Row>
       </View>
@@ -172,8 +172,8 @@ export default function Assistant() {
 
 function UserBubble({ text }: { text: string }) {
   return (
-    <View style={[{ alignSelf: "flex-end", maxWidth: "85%", marginTop: 12, backgroundColor: colors.gold, borderRadius: radius.lg, borderBottomRightRadius: 6, paddingHorizontal: 14, paddingVertical: 10 }, glowSmall]}>
-      <T color={colors.onGold}>{text}</T>
+    <View style={[{ alignSelf: "flex-end", maxWidth: "85%", marginTop: 12, backgroundColor: colors.accent, borderRadius: radius.lg, borderBottomRightRadius: 6, paddingHorizontal: 14, paddingVertical: 10 }, raise]}>
+      <T color={colors.onAccent}>{text}</T>
     </View>
   );
 }
@@ -182,7 +182,7 @@ function AssistantBubble({ message }: { message: ChatMessage }) {
   return (
     <View style={{ marginTop: 12, maxWidth: "92%" }}>
       <Row gap={8} style={{ alignItems: "flex-start" }}>
-        <GoldIcon icon="sparkles" size={30} />
+        <IconBadge icon="sparkles" size={30} />
         <View style={{ flex: 1, backgroundColor: colors.card, borderRadius: radius.lg, borderTopLeftRadius: 6, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: colors.border }}>
           <T>{message.text}</T>
         </View>
@@ -210,8 +210,8 @@ function ActionView({ action }: { action: AssistantAction }) {
     const b = barbers[0];
     const service = b?.services.find((s) => s.id === action.serviceId);
     return (
-      <Card style={{ marginTop: 8, marginLeft: 38, borderColor: colors.gold, borderWidth: 1.5 }}>
-        <T variant="small" color={colors.goldDeep} style={{ fontFamily: fonts.semibold }}>READY TO BOOK</T>
+      <Card style={{ marginTop: 8, marginLeft: 38, borderColor: colors.accent, borderWidth: 1.5 }}>
+        <T variant="small" color={colors.accent} style={{ fontFamily: fonts.semibold }}>READY TO BOOK</T>
         <T variant="strong" style={{ marginTop: 4 }}>{service?.name ?? "Appointment"}{b ? ` with ${b.name}` : ""}</T>
         {b && <T variant="caption" muted>{dateTime(action.startsAt, b.timeZone)} ({b.city} time) · {action.locationType === "home" ? "at your place" : "at the shop"}</T>}
         <Button
@@ -226,7 +226,7 @@ function ActionView({ action }: { action: AssistantAction }) {
   return (
     <Card tone="surface" style={{ marginTop: 8, marginLeft: 38 }}>
       <Row gap={8}>
-        <Ionicons name="checkmark-circle" size={18} color={colors.gold} />
+        <Ionicons name="checkmark-circle" size={18} color={colors.accent} />
         <T variant="caption">Support ticket #{action.ticketId.slice(0, 8)} opened — we'll reply by email.</T>
       </Row>
     </Card>
