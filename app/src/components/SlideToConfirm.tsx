@@ -11,7 +11,15 @@ const PAD = 5;
  * "Slide to book": drag the white knob across the black track to confirm.
  * Screen-reader users confirm with the standard activate action (double-tap).
  */
-export function SlideToConfirm({ label, onConfirm, disabled, loading, disabledLabel }: { label: string; onConfirm: () => void; disabled?: boolean; loading?: boolean; disabledLabel?: string }) {
+export function SlideToConfirm({ label, onConfirm, disabled, loading, disabledLabel, resetAfter }: {
+  label: string;
+  onConfirm: () => void;
+  disabled?: boolean;
+  loading?: boolean;
+  disabledLabel?: string;
+  /** Slide back after confirming (when the action navigates away and the screen stays mounted). */
+  resetAfter?: boolean;
+}) {
   const [width, setWidth] = useState(0);
   const x = useRef(new Animated.Value(0)).current;
   const max = Math.max(0, width - KNOB - PAD * 2);
@@ -31,14 +39,17 @@ export function SlideToConfirm({ label, onConfirm, disabled, loading, disabledLa
         onPanResponderMove: (_, g) => x.setValue(Math.min(Math.max(g.dx, 0), max)),
         onPanResponderRelease: (_, g) => {
           if (max > 0 && g.dx >= max * 0.82) {
-            Animated.timing(x, { toValue: max, duration: 120, useNativeDriver: false }).start(() => onConfirm());
+            Animated.timing(x, { toValue: max, duration: 120, useNativeDriver: false }).start(() => {
+              onConfirm();
+              if (resetAfter) setTimeout(() => Animated.spring(x, { toValue: 0, useNativeDriver: false }).start(), 700);
+            });
           } else {
             Animated.spring(x, { toValue: 0, useNativeDriver: false, bounciness: 8 }).start();
           }
         },
         onPanResponderTerminate: () => Animated.spring(x, { toValue: 0, useNativeDriver: false }).start(),
       }),
-    [locked, max, onConfirm, x],
+    [locked, max, onConfirm, x, resetAfter],
   );
 
   const labelOpacity = max ? x.interpolate({ inputRange: [0, max * 0.6], outputRange: [1, 0], extrapolate: "clamp" }) : 1;
@@ -58,7 +69,7 @@ export function SlideToConfirm({ label, onConfirm, disabled, loading, disabledLa
     >
       {/* The track fills in behind the knob as it moves */}
       <Animated.View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: fill, borderRadius: radius.pill, backgroundColor: colors.inkRaised }} />
-      <Animated.View pointerEvents="none" style={{ position: "absolute", left: KNOB + PAD * 2, right: 16, alignItems: "center", opacity: labelOpacity }}>
+      <Animated.View pointerEvents="none" style={{ position: "absolute", left: KNOB + PAD * 2, right: 34, alignItems: "center", opacity: labelOpacity }}>
         <T variant="eyebrow" color={colors.onInk} numberOfLines={1} style={{ fontSize: 12, letterSpacing: 1.6, fontFamily: fonts.bold }}>
           {disabled && disabledLabel ? disabledLabel : label}
         </T>

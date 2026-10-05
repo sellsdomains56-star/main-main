@@ -10,8 +10,9 @@ import { LocationPill } from "../../components/LocationSheet";
 import { BarberMap } from "../../components/map/BarberMap";
 import { barberPins } from "../../components/map/types";
 import { ReelThumb } from "../../components/ReelThumb";
-import { colors, fonts, radius, raise } from "../../components/theme";
-import { ArrowButton, Avatar, Card, IconBadge, IconButton, Loading, Rating, Row, SearchBar, Section, styles, T, Tag, Timeline, type IconName } from "../../components/ui";
+import { SlideToConfirm } from "../../components/SlideToConfirm";
+import { colors, fonts, neonGlow, radius, raise } from "../../components/theme";
+import { Avatar, Card, IconBadge, IconButton, Loading, Rating, Row, SearchBar, Section, styles, T, Tag, Timeline, type IconName } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAlerts } from "../../lib/alerts";
 import { useAuth } from "../../lib/auth";
@@ -77,7 +78,10 @@ export default function Home() {
       <T variant="body" style={{ fontFamily: fonts.medium, fontSize: 17, lineHeight: 24 }}>
         Precision cuts.{"\n"}Timeless style.{"\n"}Built for confidence.
       </T>
-      <ArrowButton title="Book appointment" onPress={() => router.push("/explore")} style={{ marginTop: 20 }} />
+      {/* On phones, stop short of the floating concierge button so the knob can reach the end. */}
+      <View style={{ marginTop: 20, width: wide ? 270 : Math.min(contentW - 76, 300) }}>
+        <SlideToConfirm label="Book appointment" onConfirm={() => router.push("/explore")} resetAfter />
+      </View>
     </View>
   );
 
@@ -292,8 +296,10 @@ export default function Home() {
             </Card>
           )}
 
-          <View style={{ alignItems: "center", marginTop: 48 }}>
-            <LogoLockup size={56} />
+          {/* Footer: the white version of the logo on black */}
+          <View style={{ alignItems: "center", marginTop: 44, backgroundColor: colors.ink, borderRadius: radius.xl, paddingVertical: 36 }}>
+            <LogoLockup size={60} color={colors.onInk} muted={colors.inkMuted} />
+            <T variant="caption" color={colors.inkMuted} style={{ marginTop: 14 }}>Book barbers worldwide · Every city in the UAE</T>
           </View>
         </View>
       </ScrollView>
@@ -448,21 +454,42 @@ const SERVICES: { slot: keyof typeof SERVICE_PHOTOS; label: string; art: ArtName
 /** Dark service tile with an uppercase label — a photo when one is set, line art otherwise. */
 function ServiceTile({ slot, label, art, go, width }: (typeof SERVICES)[number] & { width: number }) {
   const photo = SERVICE_PHOTOS[slot];
+  const h = width * 0.86;
+  // The glow lives on an outer frame so the clipped photo inside doesn't cut it off (iOS).
   return (
-    <Pressable onPress={go} accessibilityRole="button" accessibilityLabel={label} style={({ pressed }) => [{ width, height: width * 0.86, borderRadius: 18, overflow: "hidden", backgroundColor: colors.ink }, pressed && styles.pressed]}>
-      {photo ? (
-        <Image source={photo} resizeMode="cover" style={{ position: "absolute", width: "100%", height: "100%" }} />
-      ) : (
-        <>
-          <LinearGradient colors={["#2A2A2A", "#0B0B0B"]} start={{ x: 0.9, y: 0 }} end={{ x: 0.1, y: 1 }} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} />
-          <MaterialCommunityIcons name={art} size={width * 0.42} color="rgba(244,242,238,0.85)" style={{ position: "absolute", right: width * 0.1, top: width * 0.08 }} />
-        </>
-      )}
-      <LinearGradient colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.72)"]} style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "60%" }} />
-      <View style={{ flex: 1, justifyContent: "flex-end", padding: 11 }}>
-        <T variant="eyebrow" color={colors.onInk} style={{ fontSize: 10, letterSpacing: 1.2, fontFamily: fonts.bold }} numberOfLines={1}>{label}</T>
-      </View>
-    </Pressable>
+    <View style={[{ width, height: h, borderRadius: 18 }, neonGlow]}>
+      <Pressable
+        onPress={go}
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        style={({ pressed }) => [{ flex: 1, borderRadius: 18, overflow: "hidden", backgroundColor: colors.ink, borderWidth: 1, borderColor: "rgba(255,210,122,0.85)" }, pressed && styles.pressed]}
+      >
+        {photo ? (
+          <Image source={photo} resizeMode="cover" style={{ position: "absolute", width: "100%", height: "100%" }} />
+        ) : (
+          <>
+            <LinearGradient colors={["#2A2A2A", "#0B0B0B"]} start={{ x: 0.9, y: 0 }} end={{ x: 0.1, y: 1 }} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} />
+            <MaterialCommunityIcons name={art} size={width * 0.42} color="rgba(255,210,122,0.9)" style={{ position: "absolute", right: width * 0.1, top: width * 0.08 }} />
+          </>
+        )}
+        {/* Golden neon wash rising from the bottom edge */}
+        <LinearGradient
+          colors={["rgba(0,0,0,0)", "rgba(11,11,11,0.55)", "rgba(242,181,58,0.38)"]}
+          locations={[0, 0.55, 1]}
+          style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "70%" }}
+        />
+        <View style={{ flex: 1, justifyContent: "flex-end", padding: 11 }}>
+          <T
+            variant="eyebrow"
+            color={colors.neonBright}
+            numberOfLines={1}
+            style={{ fontSize: 10, letterSpacing: 1.2, fontFamily: fonts.bold, textShadowColor: "rgba(242,181,58,0.9)", textShadowRadius: 8, textShadowOffset: { width: 0, height: 0 } }}
+          >
+            {label}
+          </T>
+        </View>
+      </Pressable>
+    </View>
   );
 }
 

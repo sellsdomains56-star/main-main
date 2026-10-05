@@ -27,6 +27,10 @@ export const colors = {
   inkMuted: "rgba(244, 242, 238, 0.62)",
   inkLine: "rgba(244, 242, 238, 0.16)",
 
+  // Gold neon — a touch of light on the service tiles only
+  neon: "#F2B53A",
+  neonBright: "#FFD27A",
+
   // Status
   danger: "#B42318",
   dangerSoft: "rgba(180, 35, 24, 0.08)",
@@ -53,6 +57,12 @@ export const shadow = Platform.select({
 export const emphasis = Platform.select({
   web: { boxShadow: "0 0 0 1px #0B0B0B, 0 10px 28px rgba(0,0,0,0.08)" },
   default: { shadowColor: "#000", shadowOpacity: 0.1, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 4 },
+}) as object;
+
+/** Gold neon edge-light for the service tiles. */
+export const neonGlow = Platform.select({
+  web: { boxShadow: "0 0 0 1px rgba(255,210,122,0.55), 0 0 14px rgba(242,181,58,0.55), 0 0 32px rgba(242,181,58,0.25), inset 0 0 22px rgba(242,181,58,0.28)" },
+  default: { shadowColor: "#F2B53A", shadowOpacity: 0.75, shadowRadius: 12, shadowOffset: { width: 0, height: 0 }, elevation: 8 },
 }) as object;
 
 /** Lift for black buttons and floating controls. */
