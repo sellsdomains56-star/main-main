@@ -76,6 +76,19 @@ export type LocationType = "shop" | "home" | "video" | "phone";
 export const CONSULTATION_ID = "consultation";
 export const isConsultation = (b: Pick<Booking, "locationType">) => b.locationType === "video" || b.locationType === "phone";
 
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled";
+
+/** An alert in the app's inbox (also sent as a push notification on phones). */
+export interface AppNotification {
+  id: string;
+  kind: NotificationKind;
+  title: string;
+  body: string;
+  bookingId?: string;
+  read: boolean;
+  createdAt: string;
+}
+
 export type BookingStatus = "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled";
 
 export interface Booking {

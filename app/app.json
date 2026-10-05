@@ -47,7 +47,22 @@
       ],
       "expo-video",
       "expo-apple-authentication",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-notifications",
+        {
+          "color": "#0B0B0B"
+        }
+      ],
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "JB Always Fresh adds your appointments to your calendar so you get reminders before your barber arrives.",
+          "writeOnlyAccess": true,
+          "writeOnlyCalendarPermission": "JB Always Fresh adds your appointments to your calendar so you get reminders before your barber arrives.",
+          "remindersPermission": false
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": false

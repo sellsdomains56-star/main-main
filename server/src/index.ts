@@ -1,5 +1,6 @@
 import { config } from "./config.js";
 import { createApp } from "./app.js";
+import { startReminderLoop } from "./notify.js";
 import { demoPayments } from "./payments.js";
 
 createApp().listen(config.port, () => {
@@ -7,3 +8,4 @@ createApp().listen(config.port, () => {
   if (demoPayments) console.log("STRIPE_SECRET_KEY not set — payments run in demo mode.");
   if (!config.anthropicConfigured) console.log("ANTHROPIC_API_KEY not set — AI stylist disabled.");
 });
+startReminderLoop(); // "tomorrow" and "in 1 hour" alerts

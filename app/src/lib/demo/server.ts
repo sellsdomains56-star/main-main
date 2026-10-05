@@ -46,6 +46,8 @@ interface User { id: string; name: string; email: string; passwordHash: string; 
 interface Booking {
   id: string; customerId: string; barberId: string; serviceId: string; startsAt: string; endsAt: string;
   locationType: "shop" | "home" | "video" | "phone"; address: string; phone?: string; notes: string; amount: number; currency: string;
+  remindedDay?: boolean; remindedHour?: boolean;
+  demoOnTheWayAt?: number; // demo only: when to play the "barber is on the way" alert
   status: "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled"; reviewed: boolean; createdAt: string;
 }
 interface Review { id: string; barberId: string; customerId: string; customerName: string; bookingId: string; rating: number; comment: string; createdAt: string }
@@ -67,7 +69,9 @@ interface Saved {
   likes: Record<string, string[]>; // reelId -> user ids
   newBarbers: SeedBarber[];
   barberPatches: Record<string, Partial<SeedBarber>>;
+  notifications?: DemoNotification[];
 }
+interface DemoNotification { id: string; userId: string; kind: string; title: string; body: string; bookingId?: string; read: boolean; createdAt: string }
 
 const KEY = "jb_demo_state_v1";
 let seed: DemoData;
@@ -81,14 +85,14 @@ function load(data: DemoData) {
     if (raw) {
       const s = JSON.parse(raw) as Saved;
       if (s.v === 1) {
-        saved = s;
+        saved = { notifications: [], ...s };
         return;
       }
     }
   } catch {
     // private window or blocked storage: start fresh
   }
-  saved = { v: 1, users: [], sessions: {}, bookings: [], reviews: [], orders: [], tickets: [], conversations: [], likes: {}, newBarbers: [], barberPatches: {} };
+  saved = { v: 1, users: [], sessions: {}, bookings: [], reviews: [], orders: [], tickets: [], conversations: [], likes: {}, newBarbers: [], barberPatches: {}, notifications: [] };
 }
 
 function persist() {
@@ -226,6 +230,58 @@ function requireUser(token: string | null) {
   const u = currentUser(token);
   if (!u) throw new DemoError(401, "Please sign in.");
   return u;
+}
+
+// ---------- Alerts (mirrors server/src/notify.ts) ----------
+
+function notify(userId: string, n: { kind: string; title: string; body: string; bookingId?: string }) {
+  (saved.notifications ??= []).push({ id: newId(), userId, ...n, read: false, createdAt: new Date().toISOString() });
+}
+
+function alertDetails(b: Booking) {
+  const barber = getBarber(b.barberId);
+  const tz = timeZoneOf(barber);
+  const fmt = (o: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat("en-GB", { timeZone: tz, ...o }).format(new Date(b.startsAt));
+  return {
+    barber,
+    first: barber.name.split(" ")[0],
+    service: findService(barber, b.serviceId)?.name ?? CONSULTATION.name,
+    consult: b.serviceId === CONSULTATION.id,
+    when: `${fmt({ weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} (${barber.city} time)`,
+    time: fmt({ hour: "2-digit", minute: "2-digit" }),
+    where: { shop: `at ${barber.shopAddress}`, home: `at ${b.address}`, video: "by video call", phone: "by phone" }[b.locationType],
+  };
+}
+
+function bookingConfirmed(b: Booking) {
+  const d = alertDetails(b);
+  if (Date.parse(b.startsAt) - Date.now() < 24 * 3_600_000) b.remindedDay = true;
+  notify(b.customerId, { kind: "booking_confirmed", title: d.consult ? "Consultation booked" : "You're booked", body: `${d.service} with ${d.barber.name}, ${d.when}, ${d.where}.`, bookingId: b.id });
+  // The demo's barbers are fictional, so nobody taps "On my way" — play that alert shortly after booking.
+  if (b.locationType === "home") b.demoOnTheWayAt = Date.now() + 20_000;
+}
+
+function dueReminders(now = new Date()) {
+  for (const b of saved.bookings) {
+    if (b.status === "confirmed" && b.demoOnTheWayAt && now.getTime() >= b.demoOnTheWayAt) {
+      const d = alertDetails(b);
+      b.status = "on_the_way";
+      b.demoOnTheWayAt = undefined;
+      notify(b.customerId, { kind: "on_the_way", title: `${d.first} is on the way`, body: `Heading to ${b.address} for your ${d.time} ${d.service.toLowerCase()}. (Demo: in the app this arrives when your barber taps "On my way".)`, bookingId: b.id });
+      continue;
+    }
+    if (b.status !== "confirmed") continue;
+    const left = Date.parse(b.startsAt) - now.getTime();
+    if (left <= 0) continue;
+    const d = alertDetails(b);
+    if (!b.remindedHour && left <= 60 * 60_000) {
+      b.remindedHour = b.remindedDay = true;
+      notify(b.customerId, { kind: "reminder", title: `${d.service} in 1 hour`, body: `${d.service} with ${d.barber.name} at ${d.time}, ${d.where}.`, bookingId: b.id });
+    } else if (!b.remindedDay && left <= 24 * 3_600_000) {
+      b.remindedDay = true;
+      notify(b.customerId, { kind: "reminder", title: "Coming up", body: `${d.service} with ${d.barber.name}, ${d.when}, ${d.where}.`, bookingId: b.id });
+    }
+  }
 }
 
 /** The free 15-minute video or phone consultation every barber offers unless they turn it off. */
@@ -713,11 +769,32 @@ export function createDemoServer(data: DemoData) {
         status: consultation ? "confirmed" : "pending_payment", reviewed: false, createdAt: new Date().toISOString(),
       };
       saved.bookings.push(bk);
+      if (bk.status === "confirmed") bookingConfirmed(bk);
       persist();
       return { booking: bookingView(bk), clientSecret: null, demoPayments: true };
     }
+    // Alerts inbox
+    if (path === "/notifications" && method === "GET") {
+      const u = requireUser(token);
+      dueReminders();
+      persist();
+      const mine = (saved.notifications ?? []).filter((n) => n.userId === u.id);
+      return { unread: mine.filter((n) => !n.read).length, items: mine.slice(-50).reverse().map(({ userId: _u, ...n }) => n) };
+    }
+    if (path === "/notifications/read" && method === "POST") {
+      const u = requireUser(token);
+      const ids: string[] | undefined = body?.ids;
+      for (const n of saved.notifications ?? []) if (n.userId === u.id && (!ids || ids.includes(n.id))) n.read = true;
+      persist();
+      return undefined;
+    }
+    if (path === "/me/push-tokens") {
+      requireUser(token);
+      return undefined; // phones only — the demo page has no push
+    }
     if (path === "/bookings" && method === "GET") {
       const u = requireUser(token);
+      dueReminders();
       return saved.bookings.filter((b) => b.customerId === u.id || (u.barberId && b.barberId === u.barberId)).sort((a, b) => b.startsAt.localeCompare(a.startsAt)).map(bookingView);
     }
     if ((x = m(/^\/bookings\/([^/]+)(?:\/(payment|confirm-payment|cancel|status|review))?$/))) {
@@ -730,7 +807,10 @@ export function createDemoServer(data: DemoData) {
         case "payment":
           return { booking: bookingView(bk), clientSecret: null, demoPayments: true };
         case "confirm-payment":
-          if (bk.status === "pending_payment") bk.status = "confirmed";
+          if (bk.status === "pending_payment") {
+            bk.status = "confirmed";
+            bookingConfirmed(bk);
+          }
           break;
         case "cancel":
           if (bk.status === "completed" || bk.status === "cancelled") throw new DemoError(400, "This booking can't be cancelled.");
@@ -738,6 +818,13 @@ export function createDemoServer(data: DemoData) {
           break;
         case "status":
           if (u.barberId !== bk.barberId) throw new DemoError(404, "Booking not found.");
+          if (body?.status === "on_the_way" && bk.status !== "on_the_way") {
+            const d = alertDetails(bk);
+            notify(bk.customerId, { kind: "on_the_way", title: `${d.first} is on the way`, body: `Heading to ${bk.address} for your ${d.time} ${d.service.toLowerCase()}.`, bookingId: bk.id });
+          }
+          if (body?.status === "completed" && bk.status !== "completed" && bk.serviceId !== CONSULTATION.id) {
+            notify(bk.customerId, { kind: "completed", title: "How was your cut?", body: `Rate ${getBarber(bk.barberId).name} — it helps others choose.`, bookingId: bk.id });
+          }
           bk.status = body?.status;
           break;
         case "review": {

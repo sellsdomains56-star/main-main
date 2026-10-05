@@ -22,7 +22,7 @@ export function createSession(userId: string): string {
 }
 
 export function publicUser(user: User) {
-  const { passwordHash: _omit, ...rest } = user;
+  const { passwordHash: _omit, pushTokens: _tokens, appleSub: _apple, googleSub: _google, ...rest } = user;
   return rest;
 }
 

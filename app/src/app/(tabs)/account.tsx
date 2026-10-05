@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LocationSheet } from "../../components/LocationSheet";
 import { colors } from "../../components/theme";
 import { Avatar, Button, Card, Divider, ListRow, Loading, Row, Screen, Section, T } from "../../components/ui";
+import { useAlerts } from "../../lib/alerts";
 import { useAuth } from "../../lib/auth";
 import { APP_NAME, SHOP_NAME } from "../../lib/config";
 import { flag, useLocation } from "../../lib/location";
@@ -12,6 +13,7 @@ import { flag, useLocation } from "../../lib/location";
 export default function Account() {
   const insets = useSafeAreaInsets();
   const { user, loading, signOut } = useAuth();
+  const { unread } = useAlerts();
   const { place, country } = useLocation();
   const [sheet, setSheet] = useState(false);
   if (loading) return <Screen><Loading /></Screen>;
@@ -50,6 +52,12 @@ export default function Account() {
 
       <Section title="General">
         {user?.role !== "barber" && <ListRow icon="calendar-outline" title="My bookings" onPress={() => router.push("/bookings")} />}
+        <ListRow
+          icon="notifications-outline"
+          title="Alerts"
+          subtitle={unread ? `${unread} new` : "Bookings, reminders, barber on the way"}
+          onPress={() => router.push("/notifications")}
+        />
         <ListRow icon="bag-handle-outline" title={`${SHOP_NAME} orders`} onPress={() => router.push("/orders")} />
         <ListRow icon="location-outline" title="My city" subtitle={where} onPress={() => setSheet(true)} />
         <ListRow icon="sparkles-outline" title="AI Try-On" subtitle="See new styles on your own photo" onPress={() => router.push("/stylist")} />

@@ -9,7 +9,9 @@ import { clientSecretFor, createPaymentIntent, demoPayments, paymentSucceeded, r
 import { PRODUCTS, SHIPPING } from "./products.js";
 import { COUNTRIES } from "./seed.js";
 import { allSpecialties, searchBarbers } from "./search.js";
+import { barberOnTheWay, bookingCancelled, bookingCompleted, bookingConfirmed } from "./notify.js";
 import { registerAssistantRoutes } from "./routes/assistant.js";
+import { registerNotificationRoutes } from "./routes/notifications.js";
 import { registerPortfolioRoutes } from "./routes/portfolio.js";
 import { registerSupportRoutes } from "./routes/support.js";
 import { registerTryOnRoutes } from "./routes/tryon.js";
@@ -73,7 +75,10 @@ export function createApp() {
     }
     if (event.type === "payment_intent.succeeded") {
       const booking = db.bookings.find((b) => b.paymentIntentId === event.data.object.id);
-      if (booking && booking.status === "pending_payment") booking.status = "confirmed";
+      if (booking && booking.status === "pending_payment") {
+        booking.status = "confirmed";
+        bookingConfirmed(booking);
+      }
       const order = db.orders.find((o) => o.paymentIntentId === event.data.object.id);
       if (order && order.status === "pending_payment") order.status = "paid";
       save();
@@ -228,6 +233,7 @@ export function createApp() {
   });
 
   registerPortfolioRoutes(app);
+  registerNotificationRoutes(app);
   registerSupportRoutes(app);
   registerAssistantRoutes(app);
   registerTryOnRoutes(app);
@@ -340,6 +346,7 @@ export function createApp() {
     if (booking.amount === 0) {
       booking.status = "confirmed";
       db.bookings.push(booking);
+      bookingConfirmed(booking);
       save();
       res.status(201).json({ booking: bookingView(booking), clientSecret: null, demoPayments });
       return;
@@ -384,6 +391,7 @@ export function createApp() {
       const paid = demoPayments || (booking.paymentIntentId ? await paymentSucceeded(booking.paymentIntentId) : false);
       if (!paid) throw new HttpError(402, "Payment hasn't gone through yet.");
       booking.status = "confirmed";
+      bookingConfirmed(booking);
       save();
     }
     res.json(bookingView(booking));
@@ -393,8 +401,10 @@ export function createApp() {
     const booking = db.bookings.find((b) => b.id === req.params.id);
     if (!booking || !canAccess(req.user!.id, booking)) throw new HttpError(404, "Booking not found.");
     if (booking.status === "completed" || booking.status === "cancelled") throw new HttpError(400, "This booking can't be cancelled.");
-    if (booking.status !== "pending_payment" && booking.paymentIntentId) await refund(booking.paymentIntentId);
+    const wasConfirmed = booking.status !== "pending_payment";
+    if (wasConfirmed && booking.paymentIntentId) await refund(booking.paymentIntentId);
     booking.status = "cancelled";
+    bookingCancelled(booking, wasConfirmed, req.user!.id);
     save();
     res.json(bookingView(booking));
   });
@@ -406,7 +416,10 @@ export function createApp() {
     const booking = db.bookings.find((b) => b.id === req.params.id);
     if (!booking || user.role !== "barber" || booking.barberId !== user.barberId) throw new HttpError(404, "Booking not found.");
     if (!["confirmed", "on_the_way"].includes(booking.status)) throw new HttpError(400, "Only paid bookings can be updated.");
+    const changed = booking.status !== status;
     booking.status = status;
+    if (changed && status === "on_the_way") barberOnTheWay(booking);
+    if (changed && status === "completed") bookingCompleted(booking);
     save();
     res.json(bookingView(booking));
   });

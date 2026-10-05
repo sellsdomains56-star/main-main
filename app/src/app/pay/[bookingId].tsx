@@ -22,7 +22,7 @@ export default function Pay() {
 
   const onPaid = useCallback(async () => {
     await api.confirmPayment(bookingId);
-    router.replace("/bookings");
+    router.replace({ pathname: "/bookings", params: { booked: bookingId } });
   }, [bookingId]);
 
   if (error && !data) return <Screen><ErrorBox message={error} onRetry={load} /></Screen>;

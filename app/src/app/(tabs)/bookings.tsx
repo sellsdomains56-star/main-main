@@ -1,12 +1,14 @@
-import { router, useFocusEffect } from "expo-router";
+import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { Linking } from "react-native";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { colors } from "../../components/theme";
+import { AddToCalendar } from "../../components/AddToCalendar";
+import { colors, radius } from "../../components/theme";
 import { Avatar, Button, Card, EmptyState, ErrorBox, IconLine, Loading, Row, Screen, Segmented, T, Tag } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
+import { enablePush, pushState, type PushState } from "../../lib/push";
 import { dateTime, money, STATUS_LABEL } from "../../lib/format";
 import { isConsultation, type Booking } from "../../lib/types";
 
@@ -21,6 +23,11 @@ export default function Bookings() {
   const [error, setError] = useState<string | null>(null);
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
   const [confirmingCancel, setConfirmingCancel] = useState<string | null>(null); // in-app confirm (works on web too)
+  const { booked } = useLocalSearchParams<{ booked?: string }>(); // just booked: offer calendar + alerts
+  const [push, setPush] = useState<PushState>("unsupported");
+  useEffect(() => {
+    if (booked) pushState().then(setPush, () => {});
+  }, [booked]);
 
   const load = useCallback(() => {
     if (!user) return;
@@ -28,6 +35,8 @@ export default function Bookings() {
     api.bookings().then(setList, (e: Error) => setError(e.message));
   }, [user]);
   useFocusEffect(load);
+  // The "you're booked" card is shown once; leaving the tab clears it.
+  useFocusEffect(useCallback(() => () => booked && router.setParams({ booked: undefined }), [booked]));
 
   const header = <T variant="display" style={{ marginTop: insets.top + 8, marginBottom: 16 }}>Bookings</T>;
 
@@ -56,9 +65,27 @@ export default function Bookings() {
     }
   };
 
+  const justBooked = booked ? list?.find((b) => b.id === booked && b.status !== "cancelled") : undefined;
+
   return (
     <Screen>
       {header}
+      {justBooked && (
+        <Card tone="ink" style={{ padding: 18, borderRadius: radius.xl, marginBottom: 16 }}>
+          <T variant="eyebrow" color={colors.inkMuted}>You're booked</T>
+          <T variant="heading" color={colors.onInk} style={{ marginTop: 6 }}>
+            {justBooked.service?.name} with {justBooked.barber.name}
+          </T>
+          <T variant="caption" color={colors.inkMuted} style={{ marginTop: 4 }}>
+            {dateTime(justBooked.startsAt, justBooked.barber.timeZone)} ({justBooked.barber.city} time).{" "}
+            {justBooked.locationType === "home" ? "We'll alert you the day before, an hour before, and the moment your barber is on the way." : "We'll remind you the day before and an hour before."}
+          </T>
+          <Row gap={8} style={{ marginTop: 14, flexWrap: "wrap", alignItems: "flex-start" }}>
+            <AddToCalendar booking={justBooked} size="sm" variant="light" />
+            {push === "ask" && <Button title="Turn on alerts" icon="notifications-outline" size="sm" variant="light" onPress={async () => setPush(await enablePush(true))} />}
+          </Row>
+        </Card>
+      )}
       <Segmented value={tab} onChange={setTab} options={[{ value: "upcoming", label: "Upcoming" }, { value: "past", label: "Past" }]} />
       <View style={{ marginTop: 16 }}>
         {error && <ErrorBox message={error} onRetry={load} />}
@@ -103,6 +130,7 @@ export default function Bookings() {
               {isBarber && b.locationType === "phone" && !!b.phone && ["confirmed", "on_the_way"].includes(b.status) && (
                 <Button title={`Call ${b.customerName.split(" ")[0]}`} icon="call" size="md" onPress={() => Linking.openURL(`tel:${b.phone!.replace(/[^\d+]/g, "")}`)} />
               )}
+              {!isBarber && ["confirmed", "on_the_way"].includes(b.status) && b.id !== justBooked?.id && <AddToCalendar booking={b} />}
               {!isBarber && b.status === "pending_payment" && (
                 <Button title="Pay now" size="md" onPress={() => router.push({ pathname: "/pay/[bookingId]", params: { bookingId: b.id } })} />
               )}

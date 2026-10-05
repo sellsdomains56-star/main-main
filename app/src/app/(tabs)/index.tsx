@@ -11,6 +11,7 @@ import { ReelThumb } from "../../components/ReelThumb";
 import { colors, fonts, radius, raise } from "../../components/theme";
 import { ArrowButton, Avatar, Card, IconBadge, IconButton, Loading, Rating, Row, SearchBar, Section, styles, T, Tag, Timeline, type IconName } from "../../components/ui";
 import { api } from "../../lib/api";
+import { useAlerts } from "../../lib/alerts";
 import { useAuth } from "../../lib/auth";
 import { HERO_PHOTOS, SERVICE_PHOTOS, TRYON_PHOTO } from "../../lib/brandMedia";
 import { useCart } from "../../lib/cart";
@@ -28,6 +29,7 @@ export default function Home() {
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const { user } = useAuth();
+  const { unread } = useAlerts();
   const { count } = useCart();
   const { place, country } = useLocation();
   const { catalog } = useCatalog(place?.countryCode);
@@ -151,6 +153,7 @@ export default function Home() {
               </View>
               <Row gap={14}>
                 <LocationPill label="Book barbers in" />
+                {user && <IconButton icon="notifications-outline" label="Alerts" badge={unread} onPress={() => router.push("/notifications")} />}
                 <IconButton icon="bag-handle-outline" label="Cart" badge={count} onPress={() => router.push(count ? "/cart" : "/shop")} />
               </Row>
             </Row>
@@ -295,10 +298,12 @@ export default function Home() {
 /** Phone header: the JB logo, cart and account. */
 function TopBar({ count }: { count: number }) {
   const { user } = useAuth();
+  const { unread } = useAlerts();
   return (
     <Row style={{ justifyContent: "space-between", alignItems: "center" }}>
       <LogoLockup size={46} est={false} />
       <Row gap={8}>
+        {user && <IconButton icon="notifications-outline" label="Alerts" badge={unread} onPress={() => router.push("/notifications")} />}
         <IconButton icon="bag-handle-outline" label="Cart" badge={count} onPress={() => router.push(count ? "/cart" : "/shop")} />
         {user ? (
           <Pressable onPress={() => router.push("/account")} accessibilityLabel="Account">

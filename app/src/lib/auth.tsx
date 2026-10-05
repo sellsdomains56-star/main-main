@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { api, setAuthToken } from "./api";
+import { disablePush } from "./push";
 import { storage } from "./storage";
 import type { User } from "./types";
 
@@ -42,6 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signOut = useCallback(async () => {
+    await disablePush();
     await api.logout().catch(() => {});
     setAuthToken(null);
     await storage.remove(TOKEN_KEY);

@@ -222,3 +222,63 @@ test("Apple / Google sign-in rejects tokens the server can't verify", async () =
   const login = await call("/auth/login", { body: { email: "nobody@example.com", password: "x" } });
   assert.equal(login.status, 401);
 });
+
+test("alerts: confirmation for both sides, on-the-way, reminders, cancellation, inbox and push tokens", async () => {
+  const { sendDueReminders } = await import("./notify.js");
+  const customer = await call("/auth/register", { body: { name: "Alex Alert", email: "alex@example.com", password: "password123" } });
+  const barber = await call("/auth/register-barber", {
+    body: { name: "Remy Reminder", email: "remy@example.com", password: "password123", countryCode: "GB", city: "London", shopAddress: "1 Test St", haircutPrice: 2000, offersHomeVisits: true },
+  });
+  const barberId = barber.json.user.barberId;
+  const { json: profile } = await call(`/barbers/${barberId}`);
+  const date = nextWorkday();
+  const { json: avail } = await call(`/barbers/${barberId}/availability?date=${date}&serviceId=${profile.services[0].id}`);
+  const { json: created } = await call("/bookings", {
+    token: customer.json.token,
+    body: { barberId, serviceId: profile.services[0].id, startsAt: avail.slots[0], locationType: "home", address: "221B Baker Street" },
+  });
+  const bookingId = created.booking.id;
+
+  // Nothing yet: unpaid bookings don't alert anyone.
+  assert.equal((await call("/notifications", { token: barber.json.token })).json.unread, 0);
+  await call(`/bookings/${bookingId}/confirm-payment`, { method: "POST", token: customer.json.token });
+
+  const mine = (await call("/notifications", { token: customer.json.token })).json;
+  assert.equal(mine.items[0].kind, "booking_confirmed");
+  assert.equal(mine.items[0].title, "You're booked");
+  assert.match(mine.items[0].body, /221B Baker Street/);
+  const theirs = (await call("/notifications", { token: barber.json.token })).json;
+  assert.equal(theirs.items[0].kind, "new_booking");
+  assert.match(theirs.items[0].body, /Alex Alert booked/);
+
+  // Reminders fire once each: a day before, then an hour before.
+  const start = Date.parse(created.booking.startsAt);
+  sendDueReminders(new Date(start - 20 * 3_600_000));
+  sendDueReminders(new Date(start - 19 * 3_600_000));
+  sendDueReminders(new Date(start - 30 * 60_000));
+  const kinds = (await call("/notifications", { token: customer.json.token })).json.items.map((n: { kind: string; title: string }) => `${n.kind}:${n.title}`);
+  assert.deepEqual(kinds.filter((k: string) => k.startsWith("reminder")), ["reminder:Classic haircut in 1 hour", "reminder:Coming up"]);
+
+  // The barber sets off: the customer is told they're on the way.
+  await call(`/bookings/${bookingId}/status`, { token: barber.json.token, body: { status: "on_the_way" } });
+  const onWay = (await call("/notifications", { token: customer.json.token })).json.items[0];
+  assert.equal(onWay.kind, "on_the_way");
+  assert.equal(onWay.title, "Remy is on the way");
+
+  // Reading clears the badge.
+  await call("/notifications/read", { token: customer.json.token, body: {} });
+  assert.equal((await call("/notifications", { token: customer.json.token })).json.unread, 0);
+
+  // Push tokens: validated, moved to whoever signs in on that phone, never exposed.
+  assert.equal((await call("/me/push-tokens", { token: customer.json.token, body: { token: "nope" } })).status, 400);
+  assert.equal((await call("/me/push-tokens", { token: customer.json.token, body: { token: "ExponentPushToken[abc123]" } })).status, 204);
+  assert.equal((await call("/me", { token: customer.json.token })).json.pushTokens, undefined);
+
+  // Barber cancels: the customer hears about it (with the refund note).
+  await call(`/bookings/${bookingId}/cancel`, { method: "POST", token: barber.json.token });
+  const cancelled = (await call("/notifications", { token: customer.json.token })).json.items[0];
+  assert.equal(cancelled.kind, "cancelled");
+  assert.match(cancelled.body, /full refund/);
+  // Other people's alerts stay private.
+  assert.ok((await call("/notifications", { token: barber.json.token })).json.items.every((n: { body: string }) => !/full refund/.test(n.body)));
+});

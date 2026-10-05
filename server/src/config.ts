@@ -21,6 +21,9 @@ export const config = {
   openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
   openaiImageModel: process.env.OPENAI_IMAGE_MODEL || "gpt-image-2",
   tryOnDailyLimit: Number(process.env.TRYON_DAILY_LIMIT ?? 20),
+  // Push notifications go through Expo's push service; an access token is optional (enable "enhanced security" in Expo).
+  pushEnabled: process.env.NODE_ENV !== "test",
+  expoAccessToken: process.env.EXPO_ACCESS_TOKEN || undefined,
   // Sign in with Apple: the app's bundle ID (iOS) plus an optional Services ID for the website.
   appleAudiences: [process.env.APPLE_BUNDLE_ID || "com.alwaysfresh.app", process.env.APPLE_SERVICE_ID].filter((a): a is string => !!a),
   // Sign in with Google: OAuth client IDs (web, iOS, Android), comma-separated.

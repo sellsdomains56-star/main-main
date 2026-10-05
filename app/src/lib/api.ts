@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, LocationType, Order, Reel, Review, StyleAdvice, User } from "./types";
+import type { AppNotification, AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, LocationType, Order, Reel, Review, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -141,6 +141,10 @@ export const api = {
   },
   updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties" | "offersConsultations"> & { videoLink: string }>) =>
     request<Barber>("/barbers/me", { method: "PATCH", body }),
+  notifications: () => request<{ unread: number; items: AppNotification[] }>("/notifications"),
+  markNotificationsRead: (ids?: string[]) => request<void>("/notifications/read", { body: { ids } }),
+  addPushToken: (token: string) => request<void>("/me/push-tokens", { body: { token } }),
+  removePushToken: (token: string) => request<void>("/me/push-tokens", { method: "DELETE", body: { token } }),
   myBarberSettings: () => request<{ videoLink: string; offersConsultations: boolean }>("/barbers/me/settings"),
   addGalleryPhoto: (url: string, caption: string) => request<Barber>("/barbers/me/gallery", { body: { url, caption } }),
   removeGalleryPhoto: (id: string) => request<Barber>(`/barbers/me/gallery/${id}`, { method: "DELETE" }),

@@ -75,7 +75,7 @@ export default function Book() {
       const { booking } = await api.createBooking({ barberId: barber.id, serviceId, startsAt: slot, locationType, address, phone, notes });
       // Paid bookings go to Review & pay (Apple Pay / Google Pay); free consultations are confirmed already.
       if (booking.status === "pending_payment") router.replace({ pathname: "/pay/[bookingId]", params: { bookingId: booking.id } });
-      else router.replace("/bookings");
+      else router.replace({ pathname: "/bookings", params: { booked: booking.id } });
     } catch (e) {
       setError((e as Error).message);
       if (date) api.availability(barber.id, date, serviceId).then((r) => setSlots(r.slots), () => {});

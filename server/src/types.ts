@@ -66,6 +66,7 @@ export interface User {
   role: Role;
   appleSub?: string; // "Sign in with Apple" user id
   googleSub?: string; // "Sign in with Google" user id
+  pushTokens?: string[]; // Expo push tokens of the user's phones
   barberId?: string;
   countryCode?: string;
   city?: string;
@@ -89,6 +90,22 @@ export interface Booking {
   status: BookingStatus;
   paymentIntentId?: string;
   reviewed: boolean;
+  remindedDay?: boolean; // "tomorrow" reminder sent
+  remindedHour?: boolean; // "in an hour" reminder sent
+  createdAt: string;
+}
+
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled";
+
+/** An alert shown in the app's inbox and, when the user has a phone registered, sent as a push notification. */
+export interface AppNotification {
+  id: string;
+  userId: string;
+  kind: NotificationKind;
+  title: string;
+  body: string;
+  bookingId?: string;
+  read: boolean;
   createdAt: string;
 }
 
