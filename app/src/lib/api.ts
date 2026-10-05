@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AppNotification, AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, LocationType, Order, Reel, Review, StyleAdvice, User } from "./types";
+import type { AppNotification, AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, Hire, LocationType, Order, Reel, Review, Shop, ShopSummary, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -118,8 +118,24 @@ export const api = {
   setBookingStatus: (id: string, status: "on_the_way" | "completed") => request<Booking>(`/bookings/${id}/status`, { body: { status } }),
   review: (id: string, rating: number, comment: string) => request<Barber>(`/bookings/${id}/review`, { body: { rating, comment } }),
 
+  // Barbershops: book any barber, hire the whole shop, order for delivery
+  shops: (f: { country?: string; city?: string }) => request<ShopSummary[]>("/shops" + qs(f)),
+  shop: (id: string) => request<Shop>(`/shops/${id}`),
+  shopAvailability: (id: string, date: string, service: string) => request<{ timeZone: string; slots: string[] }>(`/shops/${id}/availability` + qs({ date, service })),
+  bookShop: (id: string, body: { service: string; startsAt: string; notes?: string }) =>
+    request<{ booking: Booking; clientSecret: string | null; demoPayments: boolean }>(`/shops/${id}/bookings`, { body }),
+  hireAvailability: (id: string, date: string, hours: number) => request<{ timeZone: string; slots: string[] }>(`/shops/${id}/hire-availability` + qs({ date, hours: String(hours) })),
+  createHire: (body: { shopId: string; startsAt: string; hours: number; guests: number; occasion: string; notes?: string }) =>
+    request<{ hire: Hire; clientSecret: string | null; demoPayments: boolean }>("/hires", { body }),
+  hires: () => request<Hire[]>("/hires"),
+  hirePayment: (id: string) => request<{ hire: Hire; clientSecret: string | null; demoPayments: boolean }>(`/hires/${id}/payment`),
+  confirmHirePayment: (id: string) => request<Hire>(`/hires/${id}/confirm-payment`, { method: "POST" }),
+  cancelHire: (id: string) => request<Hire>(`/hires/${id}/cancel`, { method: "POST" }),
+  shopOrders: () => request<Order[]>("/shop-orders"),
+  setOrderStatus: (id: string, status: "out_for_delivery" | "delivered") => request<Order>(`/orders/${id}/status`, { body: { status } }),
+
   products: (country?: string) => request<Catalog>("/products" + qs({ country })),
-  createOrder: (body: { countryCode: string; items: { productId: string; quantity: number }[]; shippingName: string; shippingAddress: string }) =>
+  createOrder: (body: { countryCode: string; items: { productId: string; quantity: number }[]; shippingName: string; shippingAddress: string; fulfilment?: "shipping" | "delivery"; shopId?: string }) =>
     request<{ order: Order; clientSecret: string | null; demoPayments: boolean }>("/orders", { body }),
   orders: () => request<Order[]>("/orders"),
   orderPayment: (id: string) => request<{ order: Order; clientSecret: string | null; demoPayments: boolean }>(`/orders/${id}/payment`),

@@ -1,4 +1,4 @@
-import type { Barber, Country } from "./types.js";
+import type { Barber, Country, Shop } from "./types.js";
 
 export const COUNTRIES: Country[] = [
   {
@@ -312,6 +312,19 @@ const BASE_BARBERS: SeedBarber[] = [
     specialties: ["taper", "buzz cut", "kids cut", "skin fade"], services: std("b33", 4500, 2500, 6500, 5500),
     offersHomeVisits: true, homeVisitFee: 3000, ...base, workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 22, ratingSum: 4.6 * 26, ratingCount: 26,
   },
+  // More chairs at the JB's Fresh flagships
+  {
+    id: "b34", name: "Theo Mensah", bio: "Tapers, waves and beard shaping at JB’s Fresh Peckham.",
+    photoUrl: photo(58), countryCode: "GB", city: "London", shopAddress: "88 Rye Lane, London SE15", lat: 51.469, lng: -0.069,
+    specialties: ["taper", "waves", "beard", "afro"], services: std("b34", 2200, 1100, 3200, 2600),
+    offersHomeVisits: false, homeVisitFee: 0, ...base, ratingSum: 4.8 * 58, ratingCount: 58,
+  },
+  {
+    id: "b35", name: "Zayn Haddad", bio: "Textured crops and hot towel shaves at JB’s Fresh Dubai Marina.",
+    photoUrl: photo(26), countryCode: "AE", city: "Dubai", shopAddress: "Marina Walk, Dubai Marina, Dubai", lat: 25.08, lng: 55.14,
+    specialties: ["textured crop", "hot towel shave", "beard", "skin fade"], services: std("b35", 8500, 4500, 12000, 9500),
+    offersHomeVisits: false, homeVisitFee: 0, ...base, workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 22, ratingSum: 4.7 * 31, ratingCount: 31,
+  },
 ];
 
 // Profile details per barber. Portfolio images are placeholders from scripts/make-demo-portfolio.sh.
@@ -349,14 +362,113 @@ const PROFILE: Record<string, { years: number; languages: string[]; gallery: num
   b31: { years: 14, languages: ["Arabic", "English"], gallery: [5, 8], transformations: [2] },
   b32: { years: 10, languages: ["Arabic", "English"], gallery: [6, 9], transformations: [3] },
   b33: { years: 8, languages: ["Malayalam", "English", "Hindi"], gallery: [7, 1], transformations: [4] },
+  b34: { years: 6, languages: ["English", "Twi"], gallery: [6, 4], transformations: [4] },
+  b35: { years: 7, languages: ["Arabic", "English", "French"], gallery: [3, 5], transformations: [3] },
 };
 
 const STYLE_NAMES = ["", "Skin fade", "Beard sculpt", "Textured crop", "Taper + waves", "Side part", "Braids"];
 
+// ---------- Barbershops ----------
+// Photos starting with "brand:" are the app's own shop photography (app/src/lib/brandMedia.ts).
+
+const shopBase = { workingDays: [1, 2, 3, 4, 5, 6], openHour: 9, closeHour: 19 };
+const gulfDays = { workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 22 };
+const ALL_PRODUCTS = ["p-pomade", "p-wax", "p-powder", "p-wave", "p-shampoo", "p-conditioner", "p-beard-oil", "p-beard-balm", "p-aftershave", "p-brush", "p-kit"];
+
+export const SHOPS: Shop[] = [
+  {
+    id: "s-london-peckham", name: "JB’s Fresh Peckham", photoUrl: "brand:hero-barber-bw",
+    about: "The JB’s Fresh flagship: fades and designs all day, and the full product wall.",
+    countryCode: "GB", city: "London", address: "88 Rye Lane, London SE15", lat: 51.469, lng: -0.069, phone: "+44 20 7946 0188",
+    ...shopBase, closeHour: 20,
+    privateHire: { pricePerHour: 15000, minHours: 2, maxHours: 8, maxGuests: 12 },
+    delivery: { fee: 399, freeFrom: 3000, etaMin: 45, radiusKm: 8 }, productIds: ALL_PRODUCTS,
+  },
+  {
+    id: "s-london-jermyn", name: "Shaw & Sons", photoUrl: "brand:tile-shave",
+    about: "Traditional Jermyn Street barbering: hot towels, straight razors and wedding-morning shaves.",
+    countryCode: "GB", city: "London", address: "12 Jermyn Street, London SW1", lat: 51.508, lng: -0.137, phone: "+44 20 7946 0112",
+    ...shopBase,
+    privateHire: { pricePerHour: 22000, minHours: 2, maxHours: 6, maxGuests: 8 },
+    delivery: null, productIds: ["p-shampoo", "p-beard-oil", "p-aftershave"],
+  },
+  {
+    id: "s-dubai-marina", name: "JB’s Fresh Dubai Marina", photoUrl: "brand:hero-golden-fade",
+    about: "Marina Walk flagship with sea views. Late opening, VIP room and same-hour delivery across the Marina and JBR.",
+    countryCode: "AE", city: "Dubai", address: "Marina Walk, Dubai Marina, Dubai", lat: 25.08, lng: 55.14, phone: "+971 4 555 0188",
+    ...gulfDays,
+    privateHire: { pricePerHour: 75000, minHours: 2, maxHours: 8, maxGuests: 15 },
+    delivery: { fee: 1500, freeFrom: 15000, etaMin: 40, radiusKm: 10 }, productIds: ALL_PRODUCTS,
+  },
+  {
+    id: "s-dubai-deira", name: "Deira Classic Barbers", photoUrl: "brand:tile-haircut",
+    about: "Old Deira barbering since 2009 — hot towel shaves and classic cuts.",
+    countryCode: "AE", city: "Dubai", address: "Al Rigga Road, Deira, Dubai", lat: 25.265, lng: 55.32, phone: "+971 4 555 0120",
+    ...gulfDays,
+    privateHire: null,
+    delivery: { fee: 1000, freeFrom: 10000, etaMin: 50, radiusKm: 6 }, productIds: ["p-pomade", "p-shampoo", "p-beard-oil", "p-aftershave"],
+  },
+  {
+    id: "s-abudhabi-corniche", name: "Corniche Gentlemen’s Lounge", photoUrl: "brand:hero-beard-trim",
+    about: "Gentleman’s grooming on the Corniche, with a private lounge for groom parties.",
+    countryCode: "AE", city: "Abu Dhabi", address: "Corniche Road West, Abu Dhabi", lat: 24.47, lng: 54.34, phone: "+971 2 555 0121",
+    ...gulfDays,
+    privateHire: { pricePerHour: 60000, minHours: 2, maxHours: 6, maxGuests: 10 },
+    delivery: { fee: 1500, freeFrom: 15000, etaMin: 60, radiusKm: 12 }, productIds: ALL_PRODUCTS,
+  },
+  {
+    id: "s-sharjah-majaz", name: "Al Majaz Barbers", photoUrl: "brand:tile-fade",
+    about: "Clean fades and beard line-ups on the Al Majaz waterfront.",
+    countryCode: "AE", city: "Sharjah", address: "Al Majaz Waterfront, Sharjah", lat: 25.326, lng: 55.388, phone: "+971 6 555 0123",
+    ...gulfDays,
+    privateHire: { pricePerHour: 40000, minHours: 2, maxHours: 5, maxGuests: 8 },
+    delivery: { fee: 1000, freeFrom: 10000, etaMin: 50, radiusKm: 8 }, productIds: ["p-pomade", "p-powder", "p-beard-oil", "p-beard-balm", "p-kit"],
+  },
+  {
+    id: "s-berlin-kreuzberg", name: "Fresh Kreuzberg", photoUrl: "brand:tile-styling",
+    about: "Kreuzberg’s fade studio — walk-ins welcome, Saturday parties on request.",
+    countryCode: "DE", city: "Berlin", address: "Oranienstraße 21, 10999 Berlin", lat: 52.5017, lng: 13.418, phone: "+49 30 5555 0121",
+    ...shopBase,
+    privateHire: { pricePerHour: 12000, minHours: 2, maxHours: 6, maxGuests: 10 },
+    delivery: { fee: 495, freeFrom: 3500, etaMin: 50, radiusKm: 6 }, productIds: ALL_PRODUCTS,
+  },
+  {
+    id: "s-nyc-bedford", name: "Bedford Ave Cuts", photoUrl: "brand:tile-beard",
+    about: "Brooklyn tapers, waves and braids prep on Bedford Ave.",
+    countryCode: "US", city: "New York", address: "220 Bedford Ave, Brooklyn, NY", lat: 40.717, lng: -73.957, phone: "+1 718 555 0110",
+    ...shopBase,
+    privateHire: { pricePerHour: 18000, minHours: 2, maxHours: 6, maxGuests: 10 },
+    delivery: { fee: 599, freeFrom: 4000, etaMin: 45, radiusKm: 5 }, productIds: ALL_PRODUCTS,
+  },
+  {
+    id: "s-paris-oberkampf", name: "Salon Oberkampf", photoUrl: "brand:tile-shave",
+    about: "Parisian precision on Rue Oberkampf — crops, tapers and beard design.",
+    countryCode: "FR", city: "Paris", address: "18 Rue Oberkampf, 75011 Paris", lat: 48.865, lng: 2.376, phone: "+33 1 55 55 01 12",
+    ...shopBase,
+    privateHire: null,
+    delivery: { fee: 495, freeFrom: 3500, etaMin: 50, radiusKm: 5 }, productIds: ["p-pomade", "p-wax", "p-shampoo", "p-beard-oil", "p-aftershave"],
+  },
+];
+
+/** Which seed barbers work at which shop. */
+const SHOP_TEAMS: Record<string, string[]> = {
+  "s-london-peckham": ["b5", "b34"],
+  "s-london-jermyn": ["b6"],
+  "s-dubai-marina": ["b19", "b35"],
+  "s-dubai-deira": ["b20"],
+  "s-abudhabi-corniche": ["b21"],
+  "s-sharjah-majaz": ["b23"],
+  "s-berlin-kreuzberg": ["b1"],
+  "s-nyc-bedford": ["b10"],
+  "s-paris-oberkampf": ["b12"],
+};
+
 export const BARBERS: Barber[] = BASE_BARBERS.map((b) => {
   const p = PROFILE[b.id] ?? { years: 5, languages: ["English"], gallery: [], transformations: [] };
+  const shop = SHOPS.find((s) => SHOP_TEAMS[s.id]?.includes(b.id));
   return {
     ...b,
+    ...(shop ? { shopId: shop.id } : {}),
     yearsExperience: p.years,
     languages: p.languages,
     gallery: p.gallery.map((n) => ({ id: `${b.id}-g${n}`, url: `/media/demo/g${n}.jpg`, caption: "" })),

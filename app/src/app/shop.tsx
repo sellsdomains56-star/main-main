@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { router, Stack } from "expo-router";
-import { useMemo, useState } from "react";
+import { router, Stack, useLocalSearchParams } from "expo-router";
+import { useEffect, useMemo, useState } from "react";
 import { Pressable, ScrollView, Text, useWindowDimensions, View } from "react-native";
 import { LocationPill } from "../components/LocationSheet";
 import { ProductArt } from "../components/ProductArt";
@@ -11,6 +11,8 @@ import { useCart } from "../lib/cart";
 import { SHOP_NAME } from "../lib/config";
 import { money } from "../lib/format";
 import { useLocation } from "../lib/location";
+import { api } from "../lib/api";
+import type { Shop as Barbershop } from "../lib/types";
 import { useCatalog } from "../lib/useCatalog";
 
 
@@ -18,11 +20,23 @@ export default function Shop() {
   const { width } = useWindowDimensions();
   const { place } = useLocation();
   const { catalog, error, reload } = useCatalog(place?.countryCode);
-  const { items, count, add, setQuantity } = useCart();
+  const { items, count, add, setQuantity, setDeliveryShop } = useCart();
   const [category, setCategory] = useState("All");
+  // Opened from a barbershop's page: its stock, delivered by its courier.
+  const { shopId } = useLocalSearchParams<{ shopId?: string }>();
+  const [barbershop, setBarbershop] = useState<Barbershop | null>(null);
+  useEffect(() => {
+    if (!shopId) return;
+    setDeliveryShop(shopId);
+    api.shop(shopId).then(setBarbershop, () => {});
+  }, [shopId, setDeliveryShop]);
 
-  const categories = useMemo(() => ["All", ...new Set(catalog?.products.map((p) => p.category) ?? [])], [catalog]);
-  const products = catalog?.products.filter((p) => category === "All" || p.category === category) ?? [];
+  const categories = useMemo(
+    () => ["All", ...new Set(catalog?.products.filter((p) => !barbershop || barbershop.products.some((x) => x.id === p.id)).map((p) => p.category) ?? [])],
+    [catalog, barbershop],
+  );
+  const stocked = (id: string) => !barbershop || barbershop.products.some((p) => p.id === id);
+  const products = catalog?.products.filter((p) => stocked(p.id) && (category === "All" || p.category === category)) ?? [];
   const cartTotal = catalog?.products.reduce((sum, p) => sum + p.price * (items[p.id] ?? 0), 0) ?? 0;
   const columns = Math.min(width, 760) > 560 ? 3 : 2;
   const cardWidth = (Math.min(width, 760) - 40 - 12 * (columns - 1)) / columns;
@@ -35,25 +49,35 @@ export default function Shop() {
         ) : undefined
       }
     >
-      <Stack.Screen options={{ headerRight: () => <IconButton icon="receipt-outline" label="My orders" tone="plain" onPress={() => router.push("/orders")} /> }} />
+      <Stack.Screen options={{ ...(barbershop ? { title: barbershop.name } : {}), headerRight: () => <IconButton icon="receipt-outline" label="My orders" tone="plain" onPress={() => router.push("/orders")} /> }} />
       <View style={{ backgroundColor: colors.ink, borderRadius: radius.xl, padding: 24, overflow: "hidden" }}>
-        <T variant="eyebrow" color={colors.inkMuted}>{SHOP_NAME}</T>
-        <Text style={{ fontFamily: fonts.display, color: colors.onInk, fontSize: 30, lineHeight: 33, letterSpacing: -1.2, marginTop: 10, maxWidth: "85%" }}>Buy all {SHOP_NAME} products</Text>
+        <T variant="eyebrow" color={colors.inkMuted}>{barbershop ? `Delivery · ${barbershop.name}` : SHOP_NAME}</T>
+        <Text style={{ fontFamily: fonts.display, color: colors.onInk, fontSize: 30, lineHeight: 33, letterSpacing: -1.2, marginTop: 10, maxWidth: "85%" }}>
+          {barbershop?.delivery ? `At your door in ~${barbershop.delivery.etaMin} min` : `Buy all ${SHOP_NAME} products`}
+        </Text>
         <T variant="caption" color={colors.inkMuted} style={{ marginTop: 8, maxWidth: "78%" }}>
-          The same pomades, oils and shampoos our barbers use — delivered to your door.
+          {barbershop ? `Straight off the shelf at ${barbershop.address}, by courier.` : "The same pomades, oils and shampoos our barbers use — delivered to your door."}
         </T>
         {catalog && (
           <Row gap={6} style={{ marginTop: 16 }}>
-            <Ionicons name="car-outline" size={15} color={colors.onInk} />
-            <T variant="small" color={colors.onInk} style={{ fontFamily: fonts.semibold }}>Free delivery over {money(catalog.shipping.freeFrom, catalog.currency)}</T>
+            <Ionicons name={barbershop ? "bicycle-outline" : "car-outline"} size={15} color={colors.onInk} />
+            <T variant="small" color={colors.onInk} style={{ fontFamily: fonts.semibold }}>
+              {barbershop?.delivery
+                ? barbershop.delivery.fee
+                  ? `Delivery ${money(barbershop.delivery.fee, catalog.currency)} · free over ${money(barbershop.delivery.freeFrom, catalog.currency)}`
+                  : "Free delivery"
+                : `Free delivery over ${money(catalog.shipping.freeFrom, catalog.currency)}`}
+            </T>
           </Row>
         )}
         <Ionicons name="bag-handle-outline" size={96} color="rgba(244,242,238,0.08)" style={{ position: "absolute", right: -4, bottom: -10 }} />
       </View>
 
-      <View style={{ marginTop: 16 }}>
-        <LocationPill label="Delivering to" />
-      </View>
+      {!barbershop && (
+        <View style={{ marginTop: 16 }}>
+          <LocationPill label="Delivering to" />
+        </View>
+      )}
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -20, marginTop: 6, marginBottom: -4 }} contentContainerStyle={{ gap: 8, paddingHorizontal: 20, paddingVertical: 10 }}>
         {categories.map((c) => <Pill key={c} label={c} selected={c === category} onPress={() => setCategory(c)} />)}

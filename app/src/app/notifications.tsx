@@ -39,6 +39,7 @@ export default function Notifications() {
 
   const open = (n: AppNotification) => {
     if (n.kind === "completed" && n.bookingId) router.push({ pathname: "/review/[bookingId]", params: { bookingId: n.bookingId } });
+    else if (n.orderId) router.push("/orders");
     else router.push("/bookings");
   };
 

@@ -33,6 +33,7 @@ Inter throughout. Headlines are **Inter Medium with tight tracking** (34px scree
 - **Slide to book:** `SlideToConfirm` — black track, white knob; Home's "Book appointment" (with `resetAfter`) and confirming bookings, then the official Apple Pay / Google Pay "Book" button pays. On phones keep it clear of the floating concierge button.
 - **Arrow CTA:** `ArrowButton` — black pill, arrow in a white circle (secondary calls to action).
 - **Timeline:** `Timeline` — "01 — FIND YOUR BARBER" with dots on a thin line; the current step has the black dot.
+- **Barbershop page:** a photo header with the name over a dark gradient, then numbered black action cards ("01 — Book a chair", "02 — Private hire", "03 — Delivery") with the arrow in a white circle. Shop tiles on Home reuse the photo-with-gradient look.
 - **Step flow:** `StepCard` + `StepConnector` (try-on, booking). Active step has the black edge, done steps a check, upcoming steps are dimmed.
 - **Photography:** the hero carousel (with dots), service tiles and AI Try-On panel use the photos listed in `src/lib/brandMedia.ts`; tiles without a photo fall back to line art on black.
 

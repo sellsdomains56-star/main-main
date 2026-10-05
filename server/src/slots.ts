@@ -1,5 +1,8 @@
 import type { Barber, Booking } from "./types.js";
 
+/** Anything that holds a barber's time: bookings, and private hires of their shop (see busy()). */
+export type Busy = Pick<Booking, "barberId" | "status" | "startsAt" | "endsAt">;
+
 /** Offset (ms) of `timeZone` from UTC at the given instant. */
 function tzOffset(instant: Date, timeZone: string): number {
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -29,7 +32,7 @@ export function availableSlots(
   timeZone: string,
   date: string,
   durationMin: number,
-  bookings: Booking[],
+  bookings: Busy[],
   now = new Date(),
 ): string[] {
   const weekday = new Date(`${date}T12:00:00Z`).getUTCDay();

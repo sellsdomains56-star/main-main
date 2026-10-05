@@ -15,6 +15,8 @@ export const ALERT_ICON: Record<NotificationKind, keyof typeof Ionicons.glyphMap
   reminder: "alarm-outline",
   completed: "star-outline",
   cancelled: "close-circle-outline",
+  order_update: "bicycle-outline",
+  hire: "storefront-outline",
 };
 
 /**

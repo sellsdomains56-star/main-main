@@ -1,3 +1,4 @@
+import { busy } from "./busy.js";
 import { availableToday, barberView, cityOf, findCountry } from "./common.js";
 import { db } from "./db.js";
 import { availableSlots } from "./slots.js";
@@ -32,7 +33,7 @@ function matchesText(b: Barber, q: string) {
 
 function freeOn(b: Barber, date: string) {
   const shortest = Math.min(...b.services.map((s) => s.durationMin));
-  return availableSlots(b, cityOf(b).timeZone, date, shortest, db.bookings).length > 0;
+  return availableSlots(b, cityOf(b).timeZone, date, shortest, busy()).length > 0;
 }
 
 export function searchBarbers(f: BarberFilters) {

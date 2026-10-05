@@ -1,8 +1,9 @@
 import { Stack, router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
+import { View } from "react-native";
+import { DayPicker } from "../../components/DayPicker";
 import { SlideToConfirm } from "../../components/SlideToConfirm";
-import { colors, fonts, radius } from "../../components/theme";
+import { colors } from "../../components/theme";
 import { Avatar, Button, ErrorBox, Field, IconLine, Loading, OptionRow, Pill, Row, Screen, StepCard, StepConnector, T, Wrap } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
@@ -174,30 +175,14 @@ export default function Book() {
 
         <StepCard step={consult ? 2 : 3} title="When?" state={slot ? "done" : "active"}>
           <T variant="caption" muted style={{ marginBottom: 10 }}>{barber.city} time{consult ? " · 15 minutes" : ""}</T>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginVertical: -10, marginHorizontal: -6 }} contentContainerStyle={{ gap: 8, paddingVertical: 10, paddingHorizontal: 6 }}>
-            {days.map((d) => {
-              const selected = d.date === date;
-              const [top, bottom] = d.label === "Today" ? ["Today", d.date.slice(8)] : d.label.split(" ").length === 2 ? orderParts(d.label) : [d.label, ""];
-              return (
-                <Pressable
-                  key={d.date}
-                  onPress={() => {
-                    setUserPickedDate(true);
-                    setDate(d.date);
-                  }}
-                  accessibilityState={{ selected }}
-                  accessibilityLabel={d.label}
-                  style={[
-                    { width: 58, paddingVertical: 10, borderRadius: radius.md, alignItems: "center", backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
-                    selected && { borderColor: colors.accent, backgroundColor: colors.accent },
-                  ]}
-                >
-                  <T variant="small" color={selected ? colors.inkMuted : colors.muted}>{top}</T>
-                  <T variant="heading" color={selected ? colors.onAccent : colors.text} style={{ fontFamily: fonts.semibold }}>{Number(bottom) || bottom}</T>
-                </Pressable>
-              );
-            })}
-          </ScrollView>
+          <DayPicker
+            days={days}
+            value={date}
+            onChange={(d) => {
+              setUserPickedDate(true);
+              setDate(d);
+            }}
+          />
           <View style={{ marginTop: 14 }}>
             {!slots && <Loading />}
             {slots?.length === 0 && <T muted>No free times this day — try another day.</T>}
@@ -223,10 +208,4 @@ export default function Book() {
       {error && <View style={{ marginTop: 16 }}><ErrorBox message={error} /></View>}
     </Screen>
   );
-}
-
-/** "Tue 6" / "6 Tue" → ["Tue", "6"] regardless of locale order. */
-function orderParts(label: string): [string, string] {
-  const [a, b] = label.split(" ");
-  return /^\d/.test(a) ? [b, a] : [a, b];
 }

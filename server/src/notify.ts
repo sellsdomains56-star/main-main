@@ -1,12 +1,14 @@
 import { config } from "./config.js";
 import { cityOf, CONSULTATION, findService, getBarber } from "./common.js";
 import { db, newId, save } from "./db.js";
-import type { AppNotification, Booking, NotificationKind } from "./types.js";
+import { SHOPS } from "./seed.js";
+import { shopTimeZone } from "./shops.js";
+import type { AppNotification, Booking, Hire, NotificationKind, Order } from "./types.js";
 
 const KEEP_PER_USER = 100;
 
 /** Stores an alert for the user's inbox and pushes it to their phones. */
-export function notify(userId: string, n: { kind: NotificationKind; title: string; body: string; bookingId?: string }): AppNotification {
+export function notify(userId: string, n: { kind: NotificationKind; title: string; body: string; bookingId?: string; orderId?: string; hireId?: string }): AppNotification {
   const item: AppNotification = { id: newId(), userId, ...n, read: false, createdAt: new Date().toISOString() };
   db.notifications.push(item);
   const mine = db.notifications.filter((x) => x.userId === userId);
@@ -28,7 +30,7 @@ async function sendPush(userId: string, item: AppNotification) {
     const res = await fetch("https://exp.host/--/api/v2/push/send", {
       method: "POST",
       headers: { "content-type": "application/json", accept: "application/json", ...(config.expoAccessToken ? { authorization: `Bearer ${config.expoAccessToken}` } : {}) },
-      body: JSON.stringify(tokens.map((to) => ({ to, title: item.title, body: item.body, sound: "default", channelId: "default", data: { notificationId: item.id, bookingId: item.bookingId, kind: item.kind } }))),
+      body: JSON.stringify(tokens.map((to) => ({ to, title: item.title, body: item.body, sound: "default", channelId: "default", data: { notificationId: item.id, bookingId: item.bookingId, orderId: item.orderId, hireId: item.hireId, kind: item.kind } }))),
     });
     const json = (await res.json()) as { data?: { status: string; details?: { error?: string } }[] };
     // Forget phones that uninstalled the app.
@@ -109,6 +111,50 @@ export function bookingCancelled(b: Booking, wasConfirmed: boolean, byUserId: st
     if (wasConfirmed && d.barberUserId) notify(d.barberUserId, { kind: "cancelled", title: "Booking cancelled", body: `${d.customerName} cancelled ${d.service}, ${d.when}.`, bookingId: b.id });
   } else {
     notify(b.customerId, { kind: "cancelled", title: "Booking cancelled", body: `${d.barber.name} cancelled ${d.service}, ${d.when}.${b.amount ? " You'll get a full refund." : ""}`, bookingId: b.id });
+  }
+}
+
+// ---------- Barbershops: private hire and delivery ----------
+
+/** People who work at a shop (barbers with an account), who see its hires and delivery orders. */
+export function shopStaff(shopId: string) {
+  const team = new Set(db.barbers.filter((b) => b.shopId === shopId).map((b) => b.id));
+  return db.users.filter((u) => u.role === "barber" && u.barberId && team.has(u.barberId));
+}
+
+function hireWhen(h: Hire) {
+  const shop = SHOPS.find((s) => s.id === h.shopId)!;
+  const when = new Intl.DateTimeFormat("en-GB", { timeZone: shopTimeZone(shop), weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(h.startsAt));
+  return { shop, when: `${when} (${shop.city} time)` };
+}
+
+export function hireConfirmed(h: Hire) {
+  const { shop, when } = hireWhen(h);
+  const customer = db.users.find((u) => u.id === h.customerId);
+  notify(h.customerId, { kind: "hire", title: `${shop.name} is yours`, body: `Private hire for ${h.guests} ${h.guests === 1 ? "guest" : "guests"}, ${when}, ${h.hours} hours.`, hireId: h.id });
+  for (const u of shopStaff(shop.id)) {
+    notify(u.id, { kind: "hire", title: "Shop booked for private hire", body: `${customer?.name ?? "A customer"} hired ${shop.name} for ${h.occasion.toLowerCase() || "a private event"}, ${when}, ${h.hours} hours.`, hireId: h.id });
+  }
+}
+
+export function hireCancelled(h: Hire, wasConfirmed: boolean) {
+  const { shop, when } = hireWhen(h);
+  if (!wasConfirmed) return;
+  for (const u of shopStaff(shop.id)) notify(u.id, { kind: "cancelled", title: "Private hire cancelled", body: `${shop.name}, ${when}. The chairs are open again.`, hireId: h.id });
+}
+
+/** Delivery orders: tell the customer at each step, and the shop when a new one comes in. */
+export function orderUpdate(o: Order) {
+  if (o.fulfilment !== "delivery" || !o.shopId) return;
+  const shop = SHOPS.find((s) => s.id === o.shopId)!;
+  const items = o.items.reduce((n, i) => n + i.quantity, 0);
+  if (o.status === "paid") {
+    notify(o.customerId, { kind: "order_update", title: "Order received", body: `${shop.name} is packing your ${items} ${items === 1 ? "item" : "items"}. Arrives in about ${shop.delivery?.etaMin ?? 60} min.`, orderId: o.id });
+    for (const u of shopStaff(shop.id)) notify(u.id, { kind: "order_update", title: "New delivery order", body: `${items} ${items === 1 ? "item" : "items"} to ${o.shippingAddress}.`, orderId: o.id });
+  } else if (o.status === "out_for_delivery") {
+    notify(o.customerId, { kind: "order_update", title: "Your order is on its way", body: `The courier has left ${shop.name} for ${o.shippingAddress}.`, orderId: o.id });
+  } else if (o.status === "delivered") {
+    notify(o.customerId, { kind: "order_update", title: "Delivered", body: `Your ${shop.name} order has arrived. Stay fresh.`, orderId: o.id });
   }
 }
 

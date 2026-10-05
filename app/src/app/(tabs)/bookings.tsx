@@ -9,10 +9,13 @@ import { Avatar, Button, Card, EmptyState, ErrorBox, IconLine, Loading, Row, Scr
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { enablePush, pushState, type PushState } from "../../lib/push";
-import { dateTime, money, STATUS_LABEL } from "../../lib/format";
-import { isConsultation, type Booking } from "../../lib/types";
+import { dateTime, money, STATUS_LABEL, time } from "../../lib/format";
+import { isConsultation, type Booking, type Hire, type Order } from "../../lib/types";
+import { ShopPhoto } from "../../components/ShopCard";
 
 const LOCATION_ICON = { shop: "storefront-outline", home: "home-outline", video: "videocam-outline", phone: "call-outline" } as const;
+
+const HIRE_LABEL: Record<Hire["status"], string> = { pending_payment: "Awaiting payment", confirmed: "Confirmed", completed: "Completed", cancelled: "Cancelled" };
 
 const tone = (s: Booking["status"]) => (s === "cancelled" ? "danger" : s === "confirmed" || s === "on_the_way" ? "accent" : "neutral");
 
@@ -20,10 +23,12 @@ export default function Bookings() {
   const insets = useSafeAreaInsets();
   const { user, loading: authLoading } = useAuth();
   const [list, setList] = useState<Booking[] | null>(null);
+  const [hires, setHires] = useState<Hire[]>([]);
+  const [deliveries, setDeliveries] = useState<Order[]>([]); // shop staff: delivery orders to send out
   const [error, setError] = useState<string | null>(null);
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
   const [confirmingCancel, setConfirmingCancel] = useState<string | null>(null); // in-app confirm (works on web too)
-  const { booked } = useLocalSearchParams<{ booked?: string }>(); // just booked: offer calendar + alerts
+  const { booked, hired } = useLocalSearchParams<{ booked?: string; hired?: string }>(); // just booked: offer calendar + alerts
   const [push, setPush] = useState<PushState>("unsupported");
   useEffect(() => {
     if (booked) pushState().then(setPush, () => {});
@@ -33,10 +38,12 @@ export default function Bookings() {
     if (!user) return;
     setError(null);
     api.bookings().then(setList, (e: Error) => setError(e.message));
+    api.hires().then(setHires, () => {});
+    if (user.role === "barber") api.shopOrders().then(setDeliveries, () => {});
   }, [user]);
   useFocusEffect(load);
   // The "you're booked" card is shown once; leaving the tab clears it.
-  useFocusEffect(useCallback(() => () => booked && router.setParams({ booked: undefined }), [booked]));
+  useFocusEffect(useCallback(() => () => (booked || hired) && router.setParams({ booked: undefined, hired: undefined }), [booked, hired]));
 
   const header = <T variant="display" style={{ marginTop: insets.top + 8, marginBottom: 16 }}>Bookings</T>;
 
@@ -66,6 +73,10 @@ export default function Bookings() {
   };
 
   const justBooked = booked ? list?.find((b) => b.id === booked && b.status !== "cancelled") : undefined;
+  const justHired = hired ? hires.find((h) => h.id === hired && h.status === "confirmed") : undefined;
+  const hireUpcoming = (h: Hire) => Date.parse(h.endsAt) >= now && h.status !== "cancelled" && h.status !== "completed";
+  const shownHires = hires.filter((h) => (tab === "upcoming" ? hireUpcoming(h) : !hireUpcoming(h)));
+  const openDeliveries = deliveries.filter((o) => o.status === "paid" || o.status === "out_for_delivery");
 
   return (
     <Screen>
@@ -86,11 +97,73 @@ export default function Bookings() {
           </Row>
         </Card>
       )}
+      {justHired && (
+        <Card tone="ink" style={{ padding: 18, borderRadius: radius.xl, marginBottom: 16 }}>
+          <T variant="eyebrow" color={colors.inkMuted}>The shop is yours</T>
+          <T variant="heading" color={colors.onInk} style={{ marginTop: 6 }}>{justHired.shop.name}, private hire</T>
+          <T variant="caption" color={colors.inkMuted} style={{ marginTop: 4 }}>
+            {dateTime(justHired.startsAt, justHired.shop.timeZone)}–{time(justHired.endsAt, justHired.shop.timeZone)} ({justHired.shop.city} time) for {justHired.guests} {justHired.guests === 1 ? "guest" : "guests"}. The team has been told.
+          </T>
+        </Card>
+      )}
+      {isBarber && openDeliveries.length > 0 && (
+        <View style={{ marginBottom: 18 }}>
+          <T variant="eyebrow" muted style={{ marginBottom: 8 }}>Shop deliveries</T>
+          {openDeliveries.map((o) => (
+            <Card key={o.id} style={{ marginBottom: 10 }}>
+              <Row style={{ justifyContent: "space-between" }}>
+                <T variant="strong">{o.shippingName}</T>
+                <Tag label={o.status === "paid" ? "To pack" : "Out for delivery"} tone="accent" icon="bicycle-outline" />
+              </Row>
+              <View style={{ marginTop: 8, gap: 4 }}>
+                <IconLine icon="location-outline">{o.shippingAddress}</IconLine>
+                <IconLine icon="bag-handle-outline" muted>{o.items.map((i) => `${i.quantity} × ${i.name}`).join(", ")}</IconLine>
+              </View>
+              <Row gap={8} style={{ marginTop: 12 }}>
+                {o.status === "paid" && <Button title="Out for delivery" icon="bicycle-outline" size="md" onPress={run(() => api.setOrderStatus(o.id, "out_for_delivery"))} />}
+                <Button title="Delivered" icon="checkmark" size="md" variant={o.status === "paid" ? "secondary" : "primary"} onPress={run(() => api.setOrderStatus(o.id, "delivered"))} />
+              </Row>
+            </Card>
+          ))}
+        </View>
+      )}
       <Segmented value={tab} onChange={setTab} options={[{ value: "upcoming", label: "Upcoming" }, { value: "past", label: "Past" }]} />
       <View style={{ marginTop: 16 }}>
         {error && <ErrorBox message={error} onRetry={load} />}
         {!list && !error && <Loading />}
-        {list && shown.length === 0 && (
+        {shownHires.map((h) => (
+          <Card key={h.id} style={{ marginBottom: 12 }}>
+            <Row gap={12}>
+              <ShopPhoto shop={h.shop} width={48} height={48} rounded={radius.md} />
+              <View style={{ flex: 1 }}>
+                <T variant="strong">{isBarber ? h.customerName : h.shop.name}</T>
+                <T variant="caption" muted>Private hire · {h.occasion || "Private event"} · {money(h.amount, h.currency)}</T>
+              </View>
+              <Tag label={HIRE_LABEL[h.status]} tone={h.status === "cancelled" ? "danger" : h.status === "confirmed" ? "accent" : "neutral"} />
+            </Row>
+            <View style={{ marginTop: 12, gap: 6 }}>
+              <IconLine icon="calendar-outline">{dateTime(h.startsAt, h.shop.timeZone)}–{time(h.endsAt, h.shop.timeZone)} ({h.shop.city} time)</IconLine>
+              <IconLine icon="people-outline">{h.guests} {h.guests === 1 ? "guest" : "guests"} · {h.shop.address}</IconLine>
+              {!!h.notes && <IconLine icon="document-text-outline" muted>{h.notes}</IconLine>}
+            </View>
+            {!isBarber && (h.status === "pending_payment" || h.status === "confirmed") && (
+              <Row gap={8} style={{ marginTop: 14, flexWrap: "wrap" }}>
+                {h.status === "pending_payment" && <Button title="Pay now" size="md" onPress={() => router.push({ pathname: "/hire/[hireId]", params: { hireId: h.id } })} />}
+                {confirmingCancel !== h.id && <Button title="Cancel" size="md" variant="ghost" onPress={() => setConfirmingCancel(h.id)} />}
+              </Row>
+            )}
+            {confirmingCancel === h.id && (
+              <View style={{ marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: colors.dangerSoft }}>
+                <T variant="caption">{h.status === "confirmed" ? "Cancel the private hire? You'll get a full refund." : "Cancel the private hire?"}</T>
+                <Row gap={8} style={{ marginTop: 10 }}>
+                  <Button title="Yes, cancel" size="sm" variant="danger" onPress={run(async () => { setConfirmingCancel(null); await api.cancelHire(h.id); })} />
+                  <Button title="Keep it" size="sm" variant="secondary" onPress={() => setConfirmingCancel(null)} />
+                </Row>
+              </View>
+            )}
+          </Card>
+        ))}
+        {list && shown.length === 0 && shownHires.length === 0 && (
           <EmptyState
             icon="cut-outline"
             title={tab === "upcoming" ? "Nothing booked yet" : "No past appointments"}
@@ -103,7 +176,7 @@ export default function Bookings() {
             <Row gap={12}>
               <Avatar uri={isBarber ? null : b.barber.photoUrl} name={isBarber ? b.customerName : b.barber.name} size={48} />
               <View style={{ flex: 1 }}>
-                <T variant="strong">{isBarber ? b.customerName : b.barber.name}</T>
+                <T variant="strong">{isBarber ? b.customerName : b.barber.name}{!isBarber && b.shop ? ` · ${b.shop.name}` : ""}</T>
                 <T variant="caption" muted>{b.service?.name} · {b.amount ? money(b.amount, b.currency) : "Free"}</T>
               </View>
               <Tag label={STATUS_LABEL[b.status]} tone={tone(b.status)} />

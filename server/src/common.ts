@@ -1,6 +1,7 @@
+import { busy } from "./busy.js";
 import { z } from "zod";
 import { db } from "./db.js";
-import { COUNTRIES } from "./seed.js";
+import { COUNTRIES, SHOPS } from "./seed.js";
 import { availableSlots } from "./slots.js";
 import type { Barber, Service } from "./types.js";
 
@@ -37,6 +38,7 @@ export function findService(b: Barber, serviceId: string): Service | undefined {
 
 export function barberView(b: Barber) {
   const country = findCountry(b.countryCode)!;
+  const shop = b.shopId ? SHOPS.find((s) => s.id === b.shopId) : undefined;
   return {
     id: b.id,
     name: b.name,
@@ -47,6 +49,7 @@ export function barberView(b: Barber) {
     city: b.city,
     timeZone: cityOf(b).timeZone,
     shopAddress: b.shopAddress,
+    shop: shop ? { id: shop.id, name: shop.name } : null, // the barbershop they work at
     lat: b.lat,
     lng: b.lng,
     specialties: b.specialties,
@@ -78,7 +81,7 @@ export function nextAvailable(b: Barber, now = new Date()): string | null {
   const tz = cityOf(b).timeZone;
   const shortest = Math.min(...b.services.map((s) => s.durationMin));
   for (const date of upcomingDates(tz, 14, now)) {
-    const slots = availableSlots(b, tz, date, shortest, db.bookings, now);
+    const slots = availableSlots(b, tz, date, shortest, busy(), now);
     if (slots.length) return slots[0];
   }
   return null;
@@ -88,7 +91,7 @@ export function nextAvailable(b: Barber, now = new Date()): string | null {
 export function availableToday(b: Barber, now = new Date()): boolean {
   const tz = cityOf(b).timeZone;
   const shortest = Math.min(...b.services.map((s) => s.durationMin));
-  return availableSlots(b, tz, upcomingDates(tz, 1, now)[0], shortest, db.bookings, now).length > 0;
+  return availableSlots(b, tz, upcomingDates(tz, 1, now)[0], shortest, busy(), now).length > 0;
 }
 
 export function parse<T extends z.ZodType>(schema: T, data: unknown): z.infer<T> {

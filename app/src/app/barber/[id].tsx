@@ -103,11 +103,23 @@ export default function BarberProfile() {
         <BarberMap pins={barberPins([barber])} height={200} placeName={barber.city} />
         <Row style={{ justifyContent: "space-between", marginTop: 10 }} gap={10}>
           <View style={{ flex: 1 }}>
-            <T variant="strong">{barber.shopAddress}</T>
-            <T variant="caption" muted>{barber.offersHomeVisits ? `Shop in ${barber.city} · also comes to you` : `Shop in ${barber.city}`}</T>
+            <T variant="strong">{barber.shop ? barber.shop.name : barber.shopAddress}</T>
+            <T variant="caption" muted>
+              {barber.shop ? `${barber.shopAddress}${barber.offersHomeVisits ? " · also comes to you" : ""}` : barber.offersHomeVisits ? `Shop in ${barber.city} · also comes to you` : `Shop in ${barber.city}`}
+            </T>
           </View>
           <Button title="Directions" icon="navigate-outline" size="sm" variant="secondary" onPress={() => Linking.openURL(directionsUrl(barber.lat, barber.lng, Platform.OS === "ios"))} />
         </Row>
+        {barber.shop && (
+          <Button
+            title={`See ${barber.shop.name}`}
+            icon="storefront-outline"
+            size="sm"
+            variant="ghost"
+            style={{ alignSelf: "flex-start", marginTop: 6 }}
+            onPress={() => router.push({ pathname: "/barbershop/[shopId]", params: { shopId: barber.shop!.id } })}
+          />
+        )}
       </View>
 
       <View style={{ marginTop: 22 }}>

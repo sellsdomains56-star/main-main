@@ -1,3 +1,4 @@
+import { busy } from "./busy.js";
 import cors from "cors";
 import express, { type ErrorRequestHandler } from "express";
 import { z } from "zod";
@@ -9,31 +10,21 @@ import { clientSecretFor, createPaymentIntent, demoPayments, paymentSucceeded, r
 import { PRODUCTS, SHIPPING } from "./products.js";
 import { COUNTRIES } from "./seed.js";
 import { allSpecialties, searchBarbers } from "./search.js";
-import { barberOnTheWay, bookingCancelled, bookingCompleted, bookingConfirmed } from "./notify.js";
+import { barberOnTheWay, bookingCancelled, bookingCompleted, bookingConfirmed, hireConfirmed, orderUpdate } from "./notify.js";
+import { deliveryFee, getShop } from "./shops.js";
+import { SHOPS } from "./seed.js";
 import { registerAssistantRoutes } from "./routes/assistant.js";
 import { registerNotificationRoutes } from "./routes/notifications.js";
 import { registerPortfolioRoutes } from "./routes/portfolio.js";
+import { registerShopRoutes } from "./routes/shops.js";
 import { registerSupportRoutes } from "./routes/support.js";
 import { registerTryOnRoutes } from "./routes/tryon.js";
+import { bookingView, NewBooking, placeBooking } from "./bookings.js";
 import { barberView, cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError, parse } from "./common.js";
 import { availableSlots } from "./slots.js";
 import { upsertSocialUser, verifyIdentityToken } from "./social.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
 import type { Barber, Booking, Order, Product, Reel } from "./types.js";
-
-function bookingView(b: Booking) {
-  const barber = getBarber(b.barberId);
-  const customer = db.users.find((u) => u.id === b.customerId);
-  return {
-    ...b,
-    paymentIntentId: undefined,
-    barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: cityOf(barber).timeZone },
-    customerName: customer?.name ?? "Customer",
-    service: findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined),
-    // Video consultations: the barber's Google Meet link, once the booking is confirmed.
-    videoLink: b.locationType === "video" && ["confirmed", "on_the_way"].includes(b.status) ? barber.videoLink ?? null : null,
-  };
-}
 
 function reelView(r: Reel, viewerId?: string) {
   const b = getBarber(r.barberId);
@@ -47,6 +38,17 @@ function reelView(r: Reel, viewerId?: string) {
     likedByMe: !!viewerId && r.likedBy.includes(viewerId),
     createdAt: r.createdAt,
     barber: { id: v.id, name: v.name, photoUrl: v.photoUrl, city: v.city, rating: v.rating, ratingCount: v.ratingCount, startingPrice: v.startingPrice, currency: v.currency, offersHomeVisits: v.offersHomeVisits },
+  };
+}
+
+/** Orders as the app sees them; delivery orders carry the shop and its delivery estimate. */
+function orderView(o: Order) {
+  const shop = o.shopId ? SHOPS.find((s) => s.id === o.shopId) : undefined;
+  return {
+    ...o,
+    paymentIntentId: undefined,
+    fulfilment: o.fulfilment ?? "shipping",
+    shop: shop ? { id: shop.id, name: shop.name, address: shop.address, phone: shop.phone, etaMin: shop.delivery?.etaMin ?? 60 } : null,
   };
 }
 
@@ -80,7 +82,15 @@ export function createApp() {
         bookingConfirmed(booking);
       }
       const order = db.orders.find((o) => o.paymentIntentId === event.data.object.id);
-      if (order && order.status === "pending_payment") order.status = "paid";
+      if (order && order.status === "pending_payment") {
+        order.status = "paid";
+        orderUpdate(order);
+      }
+      const hire = db.hires.find((h) => h.paymentIntentId === event.data.object.id);
+      if (hire && hire.status === "pending_payment") {
+        hire.status = "confirmed";
+        hireConfirmed(hire);
+      }
       save();
     }
     res.json({ received: true });
@@ -242,6 +252,7 @@ export function createApp() {
   registerSupportRoutes(app);
   registerAssistantRoutes(app);
   registerTryOnRoutes(app);
+  registerShopRoutes(app);
 
   // ---------- Barbers ----------
   app.get("/barbers", (req, res) => {
@@ -295,77 +306,13 @@ export function createApp() {
     const q = parse(z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), serviceId: z.string() }), req.query);
     const service = findService(barber, q.serviceId);
     if (!service) throw new HttpError(404, "Service not found.");
-    res.json({ timeZone: cityOf(barber).timeZone, slots: availableSlots(barber, cityOf(barber).timeZone, q.date, service.durationMin, db.bookings) });
+    res.json({ timeZone: cityOf(barber).timeZone, slots: availableSlots(barber, cityOf(barber).timeZone, q.date, service.durationMin, busy()) });
   });
 
   // ---------- Bookings & payments ----------
   app.post("/bookings", requireAuth, async (req, res) => {
-    const body = parse(
-      z.object({
-        barberId: z.string(),
-        serviceId: z.string(),
-        startsAt: z.string().datetime(),
-        locationType: z.enum(["shop", "home", "video", "phone"]),
-        address: z.string().default(""),
-        phone: z.string().trim().max(30).default(""),
-        notes: z.string().max(1000).default(""),
-      }),
-      req.body,
-    );
-    const barber = getBarber(body.barberId);
-    const service = findService(barber, body.serviceId);
-    if (!service) throw new HttpError(404, "Service not found.");
-    const consultation = service.id === CONSULTATION.id;
-    const remote = body.locationType === "video" || body.locationType === "phone";
-    if (consultation !== remote) {
-      throw new HttpError(400, consultation ? "Consultations are by video call or phone." : "Choose the shop or your place for this service.");
-    }
-    if (body.locationType === "home" && !barber.offersHomeVisits) throw new HttpError(400, "This barber doesn't do home visits.");
-    if (body.locationType === "home" && !body.address.trim()) throw new HttpError(400, "Please enter the address the barber should come to.");
-    if (body.locationType === "phone" && body.phone.replace(/[^\d]/g, "").length < 6) throw new HttpError(400, "Please enter the phone number your barber should call.");
-
-    const tz = cityOf(barber).timeZone;
-    const date = new Intl.DateTimeFormat("en-CA", { timeZone: tz }).format(new Date(body.startsAt));
-    const free = availableSlots(barber, tz, date, service.durationMin, db.bookings);
-    if (!free.includes(new Date(body.startsAt).toISOString())) throw new HttpError(409, "That time was just taken — please pick another slot.");
-
-    const start = new Date(body.startsAt);
-    const booking: Booking = {
-      id: newId(),
-      customerId: req.user!.id,
-      barberId: barber.id,
-      serviceId: service.id,
-      startsAt: start.toISOString(),
-      endsAt: new Date(start.getTime() + service.durationMin * 60_000).toISOString(),
-      locationType: body.locationType,
-      address: body.locationType === "home" ? body.address.trim() : body.locationType === "shop" ? barber.shopAddress : body.locationType === "video" ? "Video call · Google Meet" : "Phone call",
-      phone: body.locationType === "phone" ? body.phone : undefined,
-      notes: body.notes,
-      amount: service.price + (body.locationType === "home" ? barber.homeVisitFee : 0),
-      currency: findCountry(barber.countryCode)!.currency,
-      status: "pending_payment",
-      reviewed: false,
-      createdAt: new Date().toISOString(),
-    };
-    // Free bookings (consultations) are confirmed straight away — nothing to pay.
-    if (booking.amount === 0) {
-      booking.status = "confirmed";
-      db.bookings.push(booking);
-      bookingConfirmed(booking);
-      save();
-      res.status(201).json({ booking: bookingView(booking), clientSecret: null, demoPayments });
-      return;
-    }
-    const intent = await createPaymentIntent(`booking-${booking.id}`, booking.amount, booking.currency, {
-      kind: "booking",
-      bookingId: booking.id,
-      barberId: booking.barberId,
-      platformFee: String(Math.round((booking.amount * config.platformFeePercent) / 100)),
-    });
-    booking.paymentIntentId = intent?.id;
-    db.bookings.push(booking);
-    save();
-    res.status(201).json({ booking: bookingView(booking), clientSecret: intent?.clientSecret ?? null, demoPayments });
+    const { booking, clientSecret } = await placeBooking(req.user!.id, parse(NewBooking, req.body));
+    res.status(201).json({ booking: bookingView(booking), clientSecret, demoPayments });
   });
 
   app.get("/bookings", requireAuth, (req, res) => {
@@ -502,28 +449,64 @@ export function createApp() {
         items: z.array(z.object({ productId: z.string(), quantity: z.number().int().min(1).max(20) })).min(1),
         shippingName: z.string().trim().min(1, "Please enter a name for delivery"),
         shippingAddress: z.string().trim().min(5, "Please enter your delivery address"),
+        // "delivery": a barbershop nearby brings it by courier today. "shipping": posted from the JB's Fresh warehouse.
+        fulfilment: z.enum(["shipping", "delivery"]).default("shipping"),
+        shopId: z.string().optional(),
       }),
       req.body,
     );
     if (!findCountry(body.countryCode)) throw new HttpError(400, "We don't ship to that country yet.");
-    const currency = currencyFor(body.countryCode);
+    const shop = body.fulfilment === "delivery" ? getShop(body.shopId ?? "") : undefined;
+    if (shop && (!shop.delivery || shop.countryCode !== body.countryCode)) throw new HttpError(400, `${shop.name} doesn't deliver there.`);
+    const currency = shop ? findCountry(shop.countryCode)!.currency : currencyFor(body.countryCode);
     const items = body.items.map((i) => {
       const product = PRODUCTS.find((p) => p.id === i.productId);
       if (!product) throw new HttpError(404, "One of the products is no longer available.");
+      if (shop && !shop.productIds.includes(product.id)) throw new HttpError(400, `${shop.name} doesn't stock ${product.name}.`);
       return { productId: product.id, name: product.name, quantity: i.quantity, unitPrice: product.prices[currency] };
     });
     const subtotal = items.reduce((sum, i) => sum + i.unitPrice * i.quantity, 0);
-    const shipping = subtotal >= SHIPPING[currency].freeFrom ? 0 : SHIPPING[currency].fee;
+    const shipping = shop ? deliveryFee(shop, subtotal) : subtotal >= SHIPPING[currency].freeFrom ? 0 : SHIPPING[currency].fee;
     const order: Order = {
       id: newId(), customerId: req.user!.id, items, subtotal, shipping, amount: subtotal + shipping, currency,
+      fulfilment: body.fulfilment, shopId: shop?.id,
       shippingName: body.shippingName, shippingAddress: body.shippingAddress, countryCode: body.countryCode,
       status: "pending_payment", createdAt: new Date().toISOString(),
     };
-    const intent = await createPaymentIntent(`order-${order.id}`, order.amount, currency, { kind: "order", orderId: order.id });
+    const intent = await createPaymentIntent(`order-${order.id}`, order.amount, currency, { kind: "order", orderId: order.id, ...(shop ? { shopId: shop.id } : {}) });
     order.paymentIntentId = intent?.id;
     db.orders.push(order);
     save();
-    res.status(201).json({ order: { ...order, paymentIntentId: undefined }, clientSecret: intent?.clientSecret ?? null, demoPayments });
+    res.status(201).json({ order: orderView(order), clientSecret: intent?.clientSecret ?? null, demoPayments });
+  });
+
+  // Delivery orders for the barbershop the signed-in barber works at.
+  app.get("/shop-orders", requireAuth, (req, res) => {
+    const shopId = db.barbers.find((b) => b.id === req.user!.barberId)?.shopId;
+    if (req.user!.role !== "barber" || !shopId) {
+      res.json([]);
+      return;
+    }
+    res.json(
+      db.orders
+        .filter((o) => o.shopId === shopId && o.status !== "pending_payment")
+        .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+        .map(orderView),
+    );
+  });
+
+  // The shop moves a delivery along: out for delivery -> delivered.
+  app.post("/orders/:id/status", requireAuth, (req, res) => {
+    const { status } = parse(z.object({ status: z.enum(["out_for_delivery", "delivered"]) }), req.body);
+    const shopId = db.barbers.find((b) => b.id === req.user!.barberId)?.shopId;
+    const order = db.orders.find((o) => o.id === req.params.id);
+    if (!order || req.user!.role !== "barber" || !shopId || order.shopId !== shopId) throw new HttpError(404, "Order not found.");
+    if (!["paid", "out_for_delivery"].includes(order.status)) throw new HttpError(400, "Only paid orders can be updated.");
+    const changed = order.status !== status;
+    order.status = status;
+    if (changed) orderUpdate(order);
+    save();
+    res.json(orderView(order));
   });
 
   app.get("/orders", requireAuth, (req, res) => {
@@ -531,7 +514,7 @@ export function createApp() {
       db.orders
         .filter((o) => o.customerId === req.user!.id)
         .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-        .map((o) => ({ ...o, paymentIntentId: undefined })),
+        .map(orderView),
     );
   });
 
@@ -539,7 +522,7 @@ export function createApp() {
     const order = db.orders.find((o) => o.id === req.params.id && o.customerId === req.user!.id);
     if (!order) throw new HttpError(404, "Order not found.");
     const clientSecret = order.status === "pending_payment" && order.paymentIntentId ? await clientSecretFor(order.paymentIntentId) : null;
-    res.json({ order: { ...order, paymentIntentId: undefined }, clientSecret, demoPayments });
+    res.json({ order: orderView(order), clientSecret, demoPayments });
   });
 
   app.post("/orders/:id/confirm-payment", requireAuth, async (req, res) => {
@@ -549,9 +532,10 @@ export function createApp() {
       const paid = demoPayments || (order.paymentIntentId ? await paymentSucceeded(order.paymentIntentId) : false);
       if (!paid) throw new HttpError(402, "Payment hasn't gone through yet.");
       order.status = "paid";
+      orderUpdate(order);
       save();
     }
-    res.json({ ...order, paymentIntentId: undefined });
+    res.json(orderView(order));
   });
 
   // ---------- AI stylist ----------

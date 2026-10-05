@@ -54,6 +54,11 @@ export default function RootLayout() {
                   <Stack.Screen name="become-barber" options={{ title: "Join as a barber" }} />
                   <Stack.Screen name="post-reel" options={{ title: "New reel" }} />
                   <Stack.Screen name="notifications" options={{ title: "Alerts" }} />
+                  <Stack.Screen name="shops" options={{ title: "Barbershops" }} />
+                  <Stack.Screen name="barbershop/[shopId]/index" options={{ title: "" }} />
+                  <Stack.Screen name="barbershop/[shopId]/book" options={{ title: "Book a chair" }} />
+                  <Stack.Screen name="barbershop/[shopId]/hire" options={{ title: "Private hire" }} />
+                  <Stack.Screen name="hire/[hireId]" options={{ title: "Payment" }} />
                 </Stack>
                 <AlertBanner />
               </>

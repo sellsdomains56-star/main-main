@@ -15,6 +15,7 @@ export interface Barber {
   city: string;
   timeZone: string;
   shopAddress: string;
+  shop?: { id: string; name: string } | null; // the barbershop they work at; independent barbers have none
   lat: number; // shop location, for maps
   lng: number;
   specialties: string[];
@@ -78,7 +79,7 @@ export type LocationType = "shop" | "home" | "video" | "phone";
 export const CONSULTATION_ID = "consultation";
 export const isConsultation = (b: Pick<Booking, "locationType">) => b.locationType === "video" || b.locationType === "phone";
 
-export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled";
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire";
 
 /** An alert in the app's inbox (also sent as a push notification on phones). */
 export interface AppNotification {
@@ -87,6 +88,8 @@ export interface AppNotification {
   title: string;
   body: string;
   bookingId?: string;
+  orderId?: string; // delivery order updates
+  hireId?: string; // private hire
   read: boolean;
   createdAt: string;
 }
@@ -109,7 +112,60 @@ export interface Booking {
   reviewed: boolean;
   customerName: string;
   barber: { id: string; name: string; photoUrl: string; city: string; timeZone: string };
+  shop?: { id: string; name: string } | null; // at a barbershop's chair
   service?: Service;
+}
+
+/** A barbershop in a list. */
+export interface ShopSummary {
+  id: string;
+  name: string;
+  about: string;
+  photoUrl: string; // "brand:<name>" = the app's own photography, else a URL
+  countryCode: string;
+  city: string;
+  address: string;
+  lat: number;
+  lng: number;
+  currency: string;
+  rating: number | null;
+  ratingCount: number;
+  teamSize: number;
+  startingPrice: number | null;
+  offersPrivateHire: boolean;
+  offersDelivery: boolean;
+}
+
+/** The barbershop page. */
+export interface Shop extends ShopSummary {
+  phone: string;
+  timeZone: string;
+  workingDays: number[];
+  openHour: number;
+  closeHour: number;
+  menu: { key: string; name: string; durationMin: number; fromPrice: number }[]; // "any barber" services
+  team: Barber[];
+  privateHire: { pricePerHour: number; minHours: number; maxHours: number; maxGuests: number } | null;
+  delivery: { fee: number; freeFrom: number; etaMin: number; radiusKm: number } | null;
+  products: Product[];
+}
+
+/** The whole barbershop booked privately. */
+export interface Hire {
+  id: string;
+  shopId: string;
+  startsAt: string;
+  endsAt: string;
+  hours: number;
+  guests: number;
+  occasion: string;
+  notes: string;
+  amount: number;
+  currency: string;
+  status: "pending_payment" | "confirmed" | "completed" | "cancelled";
+  customerName: string;
+  shop: { id: string; name: string; address: string; city: string; photoUrl: string; timeZone: string };
+  createdAt: string;
 }
 
 export interface HaircutRecommendation {
@@ -158,7 +214,10 @@ export interface Order {
   currency: string;
   shippingName: string;
   shippingAddress: string;
-  status: "pending_payment" | "paid" | "shipped" | "cancelled";
+  /** shipping: paid → shipped. delivery (a barbershop's courier): paid → out_for_delivery → delivered. */
+  fulfilment: "shipping" | "delivery";
+  shop: { id: string; name: string; address: string; phone: string; etaMin: number } | null;
+  status: "pending_payment" | "paid" | "shipped" | "out_for_delivery" | "delivered" | "cancelled";
   createdAt: string;
 }
 

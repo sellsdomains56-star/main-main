@@ -41,7 +41,8 @@ js = js.replace(/"(\/assets\/[^"]+\.(png|jpg|ttf))"/g, (whole, path, ext) => {
 // Nothing inlined may close the <script> element early.
 const safe = (s) => s.replace(/<\/(script)/gi, "<\\/$1").replace(/<!--/g, "<\\!--");
 
-const page = `<title>JB Always Fresh</title>
+const page = `<meta charset="utf-8">
+<title>JB Always Fresh</title>
 <style>
   :root { --bg: #FAF8F4; }
   html, body { height: 100%; }

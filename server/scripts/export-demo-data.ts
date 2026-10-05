@@ -7,7 +7,7 @@ import { readFileSync } from "node:fs";
 import { FAQ, SUPPORT_EMAIL } from "../src/faq.js";
 import { PRODUCTS, SHIPPING } from "../src/products.js";
 import { DEMO_REELS } from "../src/reels.js";
-import { BARBERS, COUNTRIES } from "../src/seed.js";
+import { BARBERS, COUNTRIES, SHOPS } from "../src/seed.js";
 
 const MEDIA = new URL("../media/", import.meta.url);
 const TYPES: Record<string, string> = { jpg: "image/jpeg", png: "image/png", mp4: "video/mp4" };
@@ -30,6 +30,7 @@ const data = {
     transformations: b.transformations.map((t) => ({ ...t, beforeUrl: inline(t.beforeUrl), afterUrl: inline(t.afterUrl) })),
   })),
   reels: DEMO_REELS.map((r) => ({ id: r.id, barberId: r.barberId, videoUrl: inline(r.videoUrl), posterUrl: inline(r.posterUrl), caption: r.caption, likes: r.likedBy.length, createdAt: r.createdAt })),
+  shops: SHOPS,
   products: PRODUCTS,
   shipping: SHIPPING,
   faq: FAQ,

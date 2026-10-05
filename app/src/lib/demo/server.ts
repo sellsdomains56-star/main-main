@@ -19,7 +19,14 @@ interface SeedBarber {
   gallery: { id: string; url: string; caption: string }[];
   transformations: { id: string; beforeUrl: string; afterUrl: string; caption: string }[];
   workingDays: number[]; openHour: number; closeHour: number; ratingSum: number; ratingCount: number;
-  offersConsultations?: boolean; videoLink?: string;
+  offersConsultations?: boolean; videoLink?: string; shopId?: string;
+}
+interface SeedShop {
+  id: string; name: string; about: string; photoUrl: string; countryCode: string; city: string; address: string; lat: number; lng: number; phone: string;
+  workingDays: number[]; openHour: number; closeHour: number;
+  privateHire: { pricePerHour: number; minHours: number; maxHours: number; maxGuests: number } | null;
+  delivery: { fee: number; freeFrom: number; etaMin: number; radiusKm: number } | null;
+  productIds: string[];
 }
 interface SeedCountry { code: string; name: string; currency: string; cities: { name: string; timeZone: string; lat: number; lng: number }[] }
 interface SeedReel { id: string; barberId: string; videoUrl: string; posterUrl?: string; caption: string; likes: number; createdAt: string }
@@ -27,6 +34,7 @@ interface SeedProduct { id: string; name: string; category: string; emoji: strin
 export interface DemoData {
   countries: SeedCountry[];
   barbers: SeedBarber[];
+  shops: SeedShop[];
   reels: SeedReel[];
   products: SeedProduct[];
   shipping: Record<string, { fee: number; freeFrom: number }>;
@@ -55,7 +63,13 @@ interface Review { id: string; barberId: string; customerId: string; customerNam
 interface Order {
   id: string; customerId: string; items: { productId: string; name: string; quantity: number; unitPrice: number }[];
   subtotal: number; shipping: number; amount: number; currency: string; shippingName: string; shippingAddress: string;
-  status: "pending_payment" | "paid"; createdAt: string;
+  fulfilment?: "shipping" | "delivery"; shopId?: string;
+  demoOutAt?: number; demoDeliveredAt?: number; // demo only: when the pretend courier leaves and arrives
+  status: "pending_payment" | "paid" | "out_for_delivery" | "delivered"; createdAt: string;
+}
+interface Hire {
+  id: string; customerId: string; shopId: string; startsAt: string; endsAt: string; hours: number; guests: number; occasion: string; notes: string;
+  amount: number; currency: string; status: "pending_payment" | "confirmed" | "completed" | "cancelled"; createdAt: string;
 }
 interface Conversation { id: string; ownerKey: string; turns: { role: "user" | "assistant"; content: string }[]; display: ChatMessage[] }
 interface Saved {
@@ -71,8 +85,9 @@ interface Saved {
   newBarbers: SeedBarber[];
   barberPatches: Record<string, Partial<SeedBarber>>;
   notifications?: DemoNotification[];
+  hires?: Hire[];
 }
-interface DemoNotification { id: string; userId: string; kind: string; title: string; body: string; bookingId?: string; read: boolean; createdAt: string }
+interface DemoNotification { id: string; userId: string; kind: string; title: string; body: string; bookingId?: string; orderId?: string; hireId?: string; read: boolean; createdAt: string }
 
 const KEY = "jb_demo_state_v1";
 let seed: DemoData;
@@ -86,14 +101,14 @@ function load(data: DemoData) {
     if (raw) {
       const s = JSON.parse(raw) as Saved;
       if (s.v === 1) {
-        saved = { notifications: [], ...s };
+        saved = { notifications: [], hires: [], ...s };
         return;
       }
     }
   } catch {
     // private window or blocked storage: start fresh
   }
-  saved = { v: 1, users: [], sessions: {}, bookings: [], reviews: [], orders: [], tickets: [], conversations: [], likes: {}, newBarbers: [], barberPatches: {}, notifications: [] };
+  saved = { v: 1, users: [], sessions: {}, bookings: [], reviews: [], orders: [], tickets: [], conversations: [], likes: {}, newBarbers: [], barberPatches: {}, notifications: [], hires: [] };
 }
 
 function persist() {
@@ -142,7 +157,10 @@ function zonedTime(date: string, hour: number, minute: number, timeZone: string)
 function slots(b: SeedBarber, date: string, durationMin: number, now = new Date()) {
   const tz = timeZoneOf(b);
   if (!b.workingDays.includes(new Date(`${date}T12:00:00Z`).getUTCDay())) return [];
-  const taken = saved.bookings.filter((x) => x.barberId === b.id && x.status !== "cancelled").map((x) => [Date.parse(x.startsAt), Date.parse(x.endsAt)] as const);
+  const taken = [
+    ...saved.bookings.filter((x) => x.barberId === b.id && x.status !== "cancelled"),
+    ...(b.shopId ? (saved.hires ?? []).filter((h) => h.shopId === b.shopId && h.status !== "cancelled") : []), // a private hire books the whole team
+  ].map((x) => [Date.parse(x.startsAt), Date.parse(x.endsAt)] as const);
   const out: string[] = [];
   for (let min = b.openHour * 60; min + durationMin <= b.closeHour * 60; min += 30) {
     const start = zonedTime(date, Math.floor(min / 60), min % 60, tz);
@@ -180,7 +198,7 @@ function barberView(b: SeedBarber) {
   const r = rating(b);
   return {
     id: b.id, name: b.name, bio: b.bio, photoUrl: b.photoUrl, countryCode: b.countryCode, countryName: c.name, city: b.city,
-    timeZone: timeZoneOf(b), shopAddress: b.shopAddress, lat: b.lat, lng: b.lng, specialties: b.specialties, services: b.services,
+    timeZone: timeZoneOf(b), shopAddress: b.shopAddress, shop: shopRef(b.shopId), lat: b.lat, lng: b.lng, specialties: b.specialties, services: b.services,
     offersHomeVisits: b.offersHomeVisits, homeVisitFee: b.homeVisitFee, offersConsultations: b.offersConsultations !== false, hasVideoLink: !!b.videoLink,
     currency: c.currency, rating: r.rating, ratingCount: r.ratingCount,
     startingPrice: Math.min(...b.services.map((s) => s.price)), yearsExperience: b.yearsExperience, languages: b.languages,
@@ -218,6 +236,122 @@ function search(f: Filters) {
   return f.limit ? views.slice(0, f.limit) : views;
 }
 
+// ---------- Barbershops (mirrors server/src/shops.ts) ----------
+
+function getShop(id: string) {
+  const s = seed.shops.find((x) => x.id === id);
+  if (!s) throw new DemoError(404, "Barbershop not found.");
+  return s;
+}
+function shopRef(id?: string) {
+  const s = id ? seed.shops.find((x) => x.id === id) : undefined;
+  return s ? { id: s.id, name: s.name } : null;
+}
+const shopTz = (s: SeedShop) => country(s.countryCode)?.cities.find((c) => c.name === s.city)?.timeZone ?? "UTC";
+const shopCurrency = (s: SeedShop) => country(s.countryCode)!.currency;
+const team = (s: SeedShop) => allBarbers().filter((b) => b.shopId === s.id);
+const menuKey = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+function shopMenu(s: SeedShop) {
+  const menu = new Map<string, { key: string; name: string; durationMin: number; fromPrice: number }>();
+  for (const b of team(s)) {
+    for (const sv of b.services) {
+      const key = menuKey(sv.name);
+      const item = menu.get(key);
+      if (!item) menu.set(key, { key, name: sv.name, durationMin: sv.durationMin, fromPrice: sv.price });
+      else {
+        item.fromPrice = Math.min(item.fromPrice, sv.price);
+        item.durationMin = Math.max(item.durationMin, sv.durationMin);
+      }
+    }
+  }
+  return [...menu.values()].sort((a, b) => a.fromPrice - b.fromPrice);
+}
+
+function shopSlots(s: SeedShop, date: string, key: string) {
+  const all = new Set<string>();
+  for (const b of team(s)) {
+    const sv = b.services.find((x) => menuKey(x.name) === key);
+    if (sv) for (const t of slots(b, date, sv.durationMin)) all.add(t);
+  }
+  return [...all].sort();
+}
+
+function pickBarber(s: SeedShop, key: string, startsAt: string) {
+  const date = new Intl.DateTimeFormat("en-CA", { timeZone: shopTz(s) }).format(new Date(startsAt));
+  const iso = new Date(startsAt).toISOString();
+  return team(s)
+    .map((b) => ({ barber: b, service: b.services.find((x) => menuKey(x.name) === key) }))
+    .filter((x) => x.service && slots(x.barber, date, x.service.durationMin).includes(iso))
+    .sort((x, y) => rating(y.barber).raw - rating(x.barber).raw)[0];
+}
+
+function hireSlots(s: SeedShop, date: string, hours: number) {
+  if (!s.privateHire || !s.workingDays.includes(new Date(`${date}T12:00:00Z`).getUTCDay())) return [];
+  const ids = new Set(team(s).map((b) => b.id));
+  const blocked = [
+    ...saved.bookings.filter((b) => ids.has(b.barberId) && b.status !== "cancelled"),
+    ...(saved.hires ?? []).filter((h) => h.shopId === s.id && h.status !== "cancelled"),
+  ].map((x) => [Date.parse(x.startsAt), Date.parse(x.endsAt)] as const);
+  const out: string[] = [];
+  for (let h = s.openHour; h + hours <= s.closeHour; h++) {
+    const start = zonedTime(date, h, 0, shopTz(s)).getTime();
+    const end = start + hours * 3_600_000;
+    if (start < Date.now() + 24 * 3_600_000) continue; // a day's notice
+    if (blocked.some(([a, b]) => start < b && end > a)) continue;
+    out.push(new Date(start).toISOString());
+  }
+  return out;
+}
+
+function shopSummary(s: SeedShop) {
+  const t = team(s);
+  const views = t.map(rating);
+  const count = views.reduce((n, r) => n + r.ratingCount, 0);
+  const sum = t.reduce((n, b, i) => n + views[i].raw * views[i].ratingCount, 0);
+  const menu = shopMenu(s);
+  return {
+    id: s.id, name: s.name, about: s.about, photoUrl: s.photoUrl, countryCode: s.countryCode, city: s.city, address: s.address, lat: s.lat, lng: s.lng,
+    currency: shopCurrency(s), rating: count ? Math.round((sum / count) * 10) / 10 : null, ratingCount: count, teamSize: t.length,
+    startingPrice: menu.length ? menu[0].fromPrice : null, offersPrivateHire: !!s.privateHire, offersDelivery: !!s.delivery && s.productIds.length > 0,
+  };
+}
+
+function shopDetail(s: SeedShop) {
+  const cur = shopCurrency(s);
+  return {
+    ...shopSummary(s), phone: s.phone, timeZone: shopTz(s), workingDays: s.workingDays, openHour: s.openHour, closeHour: s.closeHour,
+    menu: shopMenu(s), team: team(s).map(barberView), privateHire: s.privateHire, delivery: s.delivery,
+    products: seed.products.filter((p) => s.productIds.includes(p.id)).map((p) => ({ id: p.id, name: p.name, category: p.category, emoji: p.emoji, description: p.description, price: p.prices[cur] ?? p.prices.eur, currency: cur })),
+  };
+}
+
+function hireView(h: Hire) {
+  const s = getShop(h.shopId);
+  return {
+    ...h,
+    status: h.status === "confirmed" && Date.parse(h.endsAt) < Date.now() ? "completed" : h.status,
+    shop: { id: s.id, name: s.name, address: s.address, city: s.city, photoUrl: s.photoUrl, timeZone: shopTz(s) },
+    customerName: saved.users.find((u) => u.id === h.customerId)?.name ?? "Customer",
+  };
+}
+
+function orderView(o: Order) {
+  const s = o.shopId ? seed.shops.find((x) => x.id === o.shopId) : undefined;
+  const { demoOutAt: _a, demoDeliveredAt: _b, ...rest } = o;
+  return { ...rest, fulfilment: o.fulfilment ?? "shipping", shop: s ? { id: s.id, name: s.name, address: s.address, phone: s.phone, etaMin: s.delivery?.etaMin ?? 60 } : null };
+}
+
+function orderAlert(o: Order) {
+  const s = o.shopId ? seed.shops.find((x) => x.id === o.shopId) : undefined;
+  if (o.fulfilment !== "delivery" || !s) return;
+  const n = o.items.reduce((t, i) => t + i.quantity, 0);
+  const demo = " (Demo: in the app the shop taps this when the courier leaves.)";
+  if (o.status === "paid") notify(o.customerId, { kind: "order_update", title: "Order received", body: `${s.name} is packing your ${n} ${n === 1 ? "item" : "items"}. Arrives in about ${s.delivery?.etaMin ?? 60} min.`, orderId: o.id });
+  if (o.status === "out_for_delivery") notify(o.customerId, { kind: "order_update", title: "Your order is on its way", body: `The courier has left ${s.name} for ${o.shippingAddress}.${demo}`, orderId: o.id });
+  if (o.status === "delivered") notify(o.customerId, { kind: "order_update", title: "Delivered", body: `Your ${s.name} order has arrived. Stay fresh.`, orderId: o.id });
+}
+
 // ---------- Helpers ----------
 
 const publicUser = (u: User) => ({ id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city });
@@ -235,7 +369,7 @@ function requireUser(token: string | null) {
 
 // ---------- Alerts (mirrors server/src/notify.ts) ----------
 
-function notify(userId: string, n: { kind: string; title: string; body: string; bookingId?: string }) {
+function notify(userId: string, n: { kind: string; title: string; body: string; bookingId?: string; orderId?: string; hireId?: string }) {
   (saved.notifications ??= []).push({ id: newId(), userId, ...n, read: false, createdAt: new Date().toISOString() });
 }
 
@@ -263,6 +397,19 @@ function bookingConfirmed(b: Booking) {
 }
 
 function dueReminders(now = new Date()) {
+  // The demo's shops are fictional, so play the courier's steps on a timer.
+  for (const o of saved.orders) {
+    if (o.status === "paid" && o.demoOutAt && now.getTime() >= o.demoOutAt) {
+      o.status = "out_for_delivery";
+      o.demoOutAt = undefined;
+      orderAlert(o);
+    }
+    if (o.status === "out_for_delivery" && o.demoDeliveredAt && now.getTime() >= o.demoDeliveredAt) {
+      o.status = "delivered";
+      o.demoDeliveredAt = undefined;
+      orderAlert(o);
+    }
+  }
   for (const b of saved.bookings) {
     if (b.status === "confirmed" && b.demoOnTheWayAt && now.getTime() >= b.demoOnTheWayAt) {
       const d = alertDetails(b);
@@ -294,6 +441,7 @@ function bookingView(b: Booking) {
   return {
     ...b,
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: timeZoneOf(barber) },
+    shop: b.locationType === "shop" ? shopRef(barber.shopId) : null,
     customerName: saved.users.find((u) => u.id === b.customerId)?.name ?? "Customer",
     service: findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined),
     videoLink: b.locationType === "video" && ["confirmed", "on_the_way"].includes(b.status) ? barber.videoLink ?? null : null,
@@ -864,6 +1012,79 @@ export function createDemoServer(data: DemoData) {
       return reelView(r, u.id);
     }
 
+    // Barbershops
+    if (path === "/shops") {
+      return seed.shops.filter((s) => (!q.country || s.countryCode === q.country) && (!q.city || s.city === q.city)).map(shopSummary).sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+    }
+    if ((x = m(/^\/shops\/([^/]+)\/availability$/))) {
+      const s = getShop(x[1]);
+      return { timeZone: shopTz(s), slots: shopSlots(s, q.date, q.service) };
+    }
+    if ((x = m(/^\/shops\/([^/]+)\/hire-availability$/))) {
+      const s = getShop(x[1]);
+      return { timeZone: shopTz(s), slots: hireSlots(s, q.date, Number(q.hours)) };
+    }
+    if ((x = m(/^\/shops\/([^/]+)\/bookings$/)) && method === "POST") {
+      const u = requireUser(token);
+      const s = getShop(x[1]);
+      const pick = pickBarber(s, String(body?.service), String(body?.startsAt));
+      if (!pick?.service) throw new DemoError(409, "That time was just taken — please pick another slot.");
+      const start = new Date(String(body?.startsAt));
+      const bk: Booking = {
+        id: newId(), customerId: u.id, barberId: pick.barber.id, serviceId: pick.service.id, startsAt: start.toISOString(),
+        endsAt: new Date(start.getTime() + pick.service.durationMin * 60_000).toISOString(), locationType: "shop", address: pick.barber.shopAddress,
+        notes: String(body?.notes ?? ""), amount: pick.service.price, currency: country(pick.barber.countryCode)!.currency,
+        status: "pending_payment", reviewed: false, createdAt: new Date().toISOString(),
+      };
+      saved.bookings.push(bk);
+      persist();
+      return { booking: bookingView(bk), clientSecret: null, demoPayments: true };
+    }
+    if ((x = m(/^\/shops\/([^/]+)$/))) return shopDetail(getShop(x[1]));
+
+    if (path === "/hires" && method === "POST") {
+      const u = requireUser(token);
+      const s = getShop(String(body?.shopId));
+      const terms = s.privateHire;
+      if (!terms) throw new DemoError(400, `${s.name} doesn't do private hire.`);
+      const hours = Number(body?.hours);
+      const guests = Number(body?.guests);
+      if (hours < terms.minHours || hours > terms.maxHours) throw new DemoError(400, `Private hire is ${terms.minHours}–${terms.maxHours} hours.`);
+      if (guests < 1 || guests > terms.maxGuests) throw new DemoError(400, `${s.name} fits up to ${terms.maxGuests} guests.`);
+      const start = new Date(String(body?.startsAt));
+      const date = new Intl.DateTimeFormat("en-CA", { timeZone: shopTz(s) }).format(start);
+      if (!hireSlots(s, date, hours).includes(start.toISOString())) throw new DemoError(409, "The shop isn't free for that whole time — please pick another start.");
+      const h: Hire = {
+        id: newId(), customerId: u.id, shopId: s.id, startsAt: start.toISOString(), endsAt: new Date(start.getTime() + hours * 3_600_000).toISOString(),
+        hours, guests, occasion: String(body?.occasion ?? ""), notes: String(body?.notes ?? ""), amount: terms.pricePerHour * hours, currency: shopCurrency(s),
+        status: "pending_payment", createdAt: new Date().toISOString(),
+      };
+      (saved.hires ??= []).push(h);
+      persist();
+      return { hire: hireView(h), clientSecret: null, demoPayments: true };
+    }
+    if (path === "/hires" && method === "GET") {
+      const u = requireUser(token);
+      return (saved.hires ?? []).filter((h) => h.customerId === u.id).sort((a, b) => b.startsAt.localeCompare(a.startsAt)).map(hireView);
+    }
+    if ((x = m(/^\/hires\/([^/]+)\/(payment|confirm-payment|cancel)$/))) {
+      const u = requireUser(token);
+      const h = (saved.hires ?? []).find((h) => h.id === x![1] && h.customerId === u.id);
+      if (!h) throw new DemoError(404, "Booking not found.");
+      if (x[2] === "payment") return { hire: hireView(h), clientSecret: null, demoPayments: true };
+      if (x[2] === "confirm-payment" && h.status === "pending_payment") {
+        h.status = "confirmed";
+        const s = getShop(h.shopId);
+        notify(u.id, { kind: "hire", title: `${s.name} is yours`, body: `Private hire for ${h.guests} ${h.guests === 1 ? "guest" : "guests"}, ${fmtLocal(h.startsAt, shopTz(s))} (${s.city} time), ${h.hours} hours.`, hireId: h.id });
+      }
+      if (x[2] === "cancel") {
+        if (h.status === "completed" || h.status === "cancelled") throw new DemoError(400, "This booking can't be cancelled.");
+        h.status = "cancelled";
+      }
+      persist();
+      return hireView(h);
+    }
+
     // Shop
     if (path === "/products") {
       const cur = currencyFor(q.country);
@@ -871,32 +1092,54 @@ export function createDemoServer(data: DemoData) {
     }
     if (path === "/orders" && method === "POST") {
       const u = requireUser(token);
-      const cur = currencyFor(body?.countryCode);
+      const shop = body?.fulfilment === "delivery" ? getShop(String(body?.shopId ?? "")) : undefined;
+      if (shop && (!shop.delivery || shop.countryCode !== body?.countryCode)) throw new DemoError(400, `${shop.name} doesn't deliver there.`);
+      const cur = shop ? shopCurrency(shop) : currencyFor(body?.countryCode);
       const items = (body?.items ?? []).map((i: { productId: string; quantity: number }) => {
         const p = seed.products.find((p) => p.id === i.productId);
         if (!p) throw new DemoError(404, "One of the products is no longer available.");
+        if (shop && !shop.productIds.includes(p.id)) throw new DemoError(400, `${shop.name} doesn't stock ${p.name}.`);
         return { productId: p.id, name: p.name, quantity: Number(i.quantity), unitPrice: p.prices[cur] };
       });
       if (String(body?.shippingAddress ?? "").trim().length < 5) throw new DemoError(400, "Please enter your delivery address.");
       const subtotal = items.reduce((t: number, i: { unitPrice: number; quantity: number }) => t + i.unitPrice * i.quantity, 0);
-      const shipping = subtotal >= seed.shipping[cur].freeFrom ? 0 : seed.shipping[cur].fee;
-      const o: Order = { id: newId(), customerId: u.id, items, subtotal, shipping, amount: subtotal + shipping, currency: cur, shippingName: String(body?.shippingName ?? ""), shippingAddress: String(body?.shippingAddress), status: "pending_payment", createdAt: new Date().toISOString() };
+      const terms = shop?.delivery ?? seed.shipping[cur];
+      const shipping = subtotal >= terms.freeFrom ? 0 : terms.fee;
+      const o: Order = {
+        id: newId(), customerId: u.id, items, subtotal, shipping, amount: subtotal + shipping, currency: cur,
+        fulfilment: shop ? "delivery" : "shipping", shopId: shop?.id,
+        shippingName: String(body?.shippingName ?? ""), shippingAddress: String(body?.shippingAddress), status: "pending_payment", createdAt: new Date().toISOString(),
+      };
       saved.orders.push(o);
       persist();
-      return { order: o, clientSecret: null, demoPayments: true };
+      return { order: orderView(o), clientSecret: null, demoPayments: true };
     }
     if (path === "/orders" && method === "GET") {
       const u = requireUser(token);
-      return saved.orders.filter((o) => o.customerId === u.id).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+      dueReminders();
+      persist();
+      return saved.orders.filter((o) => o.customerId === u.id).sort((a, b) => b.createdAt.localeCompare(a.createdAt)).map(orderView);
+    }
+    if (path === "/shop-orders") {
+      requireUser(token);
+      return []; // the demo's shops have no staff accounts
     }
     if ((x = m(/^\/orders\/([^/]+)\/(payment|confirm-payment)$/))) {
       const u = requireUser(token);
       const o = saved.orders.find((o) => o.id === x![1] && o.customerId === u.id);
       if (!o) throw new DemoError(404, "Order not found.");
-      if (x[2] === "payment") return { order: o, clientSecret: null, demoPayments: true };
-      o.status = "paid";
+      if (x[2] === "payment") return { order: orderView(o), clientSecret: null, demoPayments: true };
+      if (o.status === "pending_payment") {
+        o.status = "paid";
+        o.createdAt = new Date().toISOString(); // the delivery clock starts when it's paid
+        if (o.fulfilment === "delivery") {
+          o.demoOutAt = Date.now() + 20_000;
+          o.demoDeliveredAt = Date.now() + 50_000;
+        }
+        orderAlert(o);
+      }
       persist();
-      return o;
+      return orderView(o);
     }
 
     // Support

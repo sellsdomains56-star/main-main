@@ -46,6 +46,49 @@ export interface Barber {
   closeHour: number; // local time, exclusive
   ratingSum: number;
   ratingCount: number;
+  shopId?: string; // the barbershop they work at; independent barbers have none
+}
+
+/** A barbershop: its team are the barbers with this `shopId`. */
+export interface Shop {
+  id: string;
+  name: string;
+  about: string;
+  photoUrl: string;
+  countryCode: string;
+  city: string;
+  address: string;
+  lat: number;
+  lng: number;
+  phone: string;
+  workingDays: number[]; // 0 = Sunday
+  openHour: number; // local time
+  closeHour: number;
+  /** Hire the whole shop for a party, a wedding morning or a team day. Null = not offered. */
+  privateHire: { pricePerHour: number; minHours: number; maxHours: number; maxGuests: number } | null;
+  /** Courier delivery of the products this shop stocks. Null = not offered. */
+  delivery: { fee: number; freeFrom: number; etaMin: number; radiusKm: number } | null;
+  productIds: string[]; // JB's Fresh products in stock
+}
+
+export type HireStatus = "pending_payment" | "confirmed" | "completed" | "cancelled";
+
+/** The whole barbershop booked privately. */
+export interface Hire {
+  id: string;
+  customerId: string;
+  shopId: string;
+  startsAt: string; // ISO UTC
+  endsAt: string;
+  hours: number;
+  guests: number;
+  occasion: string;
+  notes: string;
+  amount: number; // minor units
+  currency: string;
+  status: HireStatus;
+  paymentIntentId?: string;
+  createdAt: string;
 }
 
 export interface PortfolioPhoto {
@@ -99,7 +142,7 @@ export interface Booking {
   createdAt: string;
 }
 
-export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled";
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire";
 
 /** An alert shown in the app's inbox and, when the user has a phone registered, sent as a push notification. */
 export interface AppNotification {
@@ -109,6 +152,8 @@ export interface AppNotification {
   title: string;
   body: string;
   bookingId?: string;
+  orderId?: string;
+  hireId?: string;
   read: boolean;
   createdAt: string;
 }
@@ -133,7 +178,8 @@ export interface Product {
   prices: Record<string, number>; // currency -> minor units
 }
 
-export type OrderStatus = "pending_payment" | "paid" | "shipped" | "cancelled";
+/** Shipped orders: paid → shipped. Delivery orders: paid → out_for_delivery → delivered. */
+export type OrderStatus = "pending_payment" | "paid" | "shipped" | "out_for_delivery" | "delivered" | "cancelled";
 
 export interface OrderItem {
   productId: string;
@@ -147,7 +193,9 @@ export interface Order {
   customerId: string;
   items: OrderItem[];
   subtotal: number;
-  shipping: number;
+  shipping: number; // shipping or delivery fee
+  fulfilment?: "shipping" | "delivery"; // missing = shipping (orders from before delivery existed)
+  shopId?: string; // delivery orders: the barbershop that delivers
   amount: number; // total charged, minor units
   currency: string;
   shippingName: string;

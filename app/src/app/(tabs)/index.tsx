@@ -8,6 +8,7 @@ import { BarberTile } from "../../components/BarberCard";
 import { LogoLockup } from "../../components/Brand";
 import { LocationPill } from "../../components/LocationSheet";
 import { BarberMap } from "../../components/map/BarberMap";
+import { ShopTile } from "../../components/ShopCard";
 import { barberPins } from "../../components/map/types";
 import { ReelThumb } from "../../components/ReelThumb";
 import { SlideToConfirm } from "../../components/SlideToConfirm";
@@ -21,7 +22,7 @@ import { useCart } from "../../lib/cart";
 import { APP_NAME, SHOP_NAME } from "../../lib/config";
 import { dateTime, money, STATUS_LABEL } from "../../lib/format";
 import { useLocation } from "../../lib/location";
-import type { Barber, Booking, Reel } from "../../lib/types";
+import type { Barber, Booking, Reel, ShopSummary } from "../../lib/types";
 import { useCatalog } from "../../lib/useCatalog";
 
 type ArtName = ComponentProps<typeof MaterialCommunityIcons>["name"];
@@ -38,6 +39,7 @@ export default function Home() {
   const { catalog } = useCatalog(place?.countryCode);
   const [barbers, setBarbers] = useState<Barber[] | null>(null);
   const [reels, setReels] = useState<Reel[] | null>(null);
+  const [shops, setShops] = useState<ShopSummary[]>([]);
   const [next, setNext] = useState<Booking | null>(null);
 
   useEffect(() => {
@@ -46,6 +48,7 @@ export default function Home() {
     const filter = { country: place.countryCode, city: place.city || undefined };
     api.barbers(filter).then(setBarbers, () => setBarbers([]));
     api.reels(filter).then(setReels, () => setReels([]));
+    api.shops(filter).then(setShops, () => setShops([]));
   }, [place]);
 
   useFocusEffect(
@@ -203,6 +206,19 @@ export default function Home() {
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: edge, gap: 14 }}>
                 {barbers.slice(0, 8).map((b) => <BarberTile key={b.id} barber={b} />)}
               </ScrollView>
+            )}
+
+            {shops.length > 0 && (
+              <>
+                <View style={block}>
+                  <Section eyebrow="Barbershops" title={`Book a shop in ${where}`} action={{ label: "See all", onPress: () => router.push("/shops") }}>
+                    <T variant="caption" muted style={{ marginTop: -6 }}>A chair with whoever's free, the whole shop for your event, or products delivered today.</T>
+                  </Section>
+                </View>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: edge, gap: 14 }}>
+                  {shops.slice(0, 6).map((s) => <ShopTile key={s.id} shop={s} width={wide ? 320 : 260} />)}
+                </ScrollView>
+              </>
             )}
 
             {!!barbers?.length && (

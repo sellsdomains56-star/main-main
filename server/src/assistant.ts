@@ -1,3 +1,4 @@
+import { busy } from "./busy.js";
 import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 import { barberView, cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError } from "./common.js";
@@ -207,7 +208,7 @@ export async function runTool(name: string, raw: unknown, ctx: TurnContext): Pro
       const service = findService(b, i.service_id);
       if (!service) throw new HttpError(404, "Unknown service id — call get_barber for the list.");
       const tz = cityOf(b).timeZone;
-      const slots = availableSlots(b, tz, i.date, service.durationMin, db.bookings);
+      const slots = availableSlots(b, tz, i.date, service.durationMin, busy());
       return slots.length
         ? { time_zone: tz, free_times: slots.map((s) => ({ starts_at: s, local: fmtLocal(s, tz) })) }
         : "No free times that day. Try another date.";
@@ -239,7 +240,7 @@ export async function runTool(name: string, raw: unknown, ctx: TurnContext): Pro
       const tz = cityOf(b).timeZone;
       const start = new Date(i.starts_at);
       const date = new Intl.DateTimeFormat("en-CA", { timeZone: tz }).format(start);
-      if (!availableSlots(b, tz, date, service.durationMin, db.bookings).includes(start.toISOString())) {
+      if (!availableSlots(b, tz, date, service.durationMin, busy()).includes(start.toISOString())) {
         throw new HttpError(409, "That time is no longer free — check availability again.");
       }
       ctx.actions.push({ type: "book", barberId: b.id, serviceId: service.id, startsAt: start.toISOString(), locationType: i.location_type });
