@@ -7,7 +7,7 @@ import { BarberCard } from "../../../components/BarberCard";
 import { BarberMap } from "../../../components/map/BarberMap";
 import { directionsUrl } from "../../../components/map/types";
 import { shopHours, ShopPhoto } from "../../../components/ShopCard";
-import { colors, fonts, radius } from "../../../components/theme";
+import { colors, fonts, radius, raise, shadow } from "../../../components/theme";
 import { Button, Divider, ErrorBox, IconLine, Loading, Rating, Row, Screen, styles, T } from "../../../components/ui";
 import { api } from "../../../lib/api";
 import { useCart } from "../../../lib/cart";
@@ -69,6 +69,7 @@ export default function ShopPage() {
       {/* What you can do here */}
       <View style={{ marginTop: 22, gap: 10 }}>
         <Action
+          tone="dark"
           icon="cut-outline"
           eyebrow="01 — Book a chair"
           title="Any barber, first free chair"
@@ -77,6 +78,7 @@ export default function ShopPage() {
         />
         {shop.privateHire && (
           <Action
+            tone="light"
             icon="sparkles-outline"
             eyebrow="02 — Private hire"
             title="Hire the whole shop"
@@ -86,6 +88,7 @@ export default function ShopPage() {
         )}
         {shop.delivery && shop.products.length > 0 && (
           <Action
+            tone={shop.privateHire ? "dark" : "light"}
             icon="bicycle-outline"
             eyebrow={`${shop.privateHire ? "03" : "02"} — Delivery`}
             title={`Products to your door in ~${shop.delivery.etaMin} min`}
@@ -142,24 +145,41 @@ export default function ShopPage() {
   );
 }
 
-function Action({ icon, eyebrow, title, body, onPress }: { icon: keyof typeof Ionicons.glyphMap; eyebrow: string; title: string; body: string; onPress: () => void }) {
+/** Dark and light cards take turns, each with a gold touch: the step number, the icon ring and the arrow. */
+function Action({ tone, icon, eyebrow, title, body, onPress }: { tone: "dark" | "light"; icon: keyof typeof Ionicons.glyphMap; eyebrow: string; title: string; body: string; onPress: () => void }) {
+  const dark = tone === "dark";
+  const gold = dark ? colors.neonBright : colors.goldInk;
   return (
     <Pressable
       onPress={onPress}
       accessibilityRole="button"
       accessibilityLabel={title}
-      style={({ pressed }) => [{ backgroundColor: colors.ink, borderRadius: radius.xl, padding: 18, flexDirection: "row", gap: 14, alignItems: "center", cursor: "pointer" } as object, pressed && styles.pressed]}
+      style={({ pressed }) => [
+        {
+          backgroundColor: dark ? colors.ink : colors.card,
+          borderRadius: radius.xl,
+          padding: 18,
+          flexDirection: "row",
+          gap: 14,
+          alignItems: "center",
+          borderWidth: 1,
+          borderColor: dark ? "rgba(255,210,122,0.35)" : "rgba(138,90,11,0.35)",
+          cursor: "pointer",
+        } as object,
+        dark ? raise : shadow,
+        pressed && styles.pressed,
+      ]}
     >
-      <View style={{ width: 46, height: 46, borderRadius: 23, borderWidth: 1, borderColor: colors.inkLine, alignItems: "center", justifyContent: "center" }}>
-        <Ionicons name={icon} size={22} color={colors.onInk} />
+      <View style={{ width: 46, height: 46, borderRadius: 23, borderWidth: 1.5, borderColor: dark ? colors.neon : colors.goldInk, alignItems: "center", justifyContent: "center" }}>
+        <Ionicons name={icon} size={22} color={gold} />
       </View>
       <View style={{ flex: 1 }}>
-        <T variant="eyebrow" color={colors.inkMuted}>{eyebrow}</T>
-        <T variant="strong" color={colors.onInk} style={{ marginTop: 4, fontFamily: fonts.semibold }}>{title}</T>
-        <T variant="caption" color={colors.inkMuted} style={{ marginTop: 2 }}>{body}</T>
+        <T variant="eyebrow" color={gold}>{eyebrow}</T>
+        <T variant="strong" color={dark ? colors.onInk : colors.text} style={{ marginTop: 4, fontFamily: fonts.semibold }}>{title}</T>
+        <T variant="caption" color={dark ? colors.inkMuted : colors.muted} style={{ marginTop: 2 }}>{body}</T>
       </View>
-      <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: colors.onInk, alignItems: "center", justifyContent: "center" }}>
-        <Ionicons name="arrow-forward" size={18} color={colors.ink} />
+      <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: dark ? colors.neon : colors.ink, alignItems: "center", justifyContent: "center" }}>
+        <Ionicons name="arrow-forward" size={18} color={dark ? colors.ink : colors.neonBright} />
       </View>
     </Pressable>
   );

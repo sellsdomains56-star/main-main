@@ -27,9 +27,10 @@ export const colors = {
   inkMuted: "rgba(244, 242, 238, 0.62)",
   inkLine: "rgba(244, 242, 238, 0.16)",
 
-  // Gold neon — a touch of light on the service tiles only
+  // Gold — a touch of light: service tiles, the barber wheel, barbershop action cards
   neon: "#F2B53A",
   neonBright: "#FFD27A",
+  goldInk: "#8A5A0B", // gold for text and lines on light backgrounds (≥4.5:1 on white)
 
   // Status
   danger: "#B42318",

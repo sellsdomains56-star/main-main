@@ -4,7 +4,7 @@ import { router, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useRef, useState, type ComponentProps } from "react";
 import { Image, Platform, Pressable, ScrollView, Text, useWindowDimensions, View, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BarberTile } from "../../components/BarberCard";
+import { BarberWheel } from "../../components/BarberWheel";
 import { LogoLockup } from "../../components/Brand";
 import { LocationPill } from "../../components/LocationSheet";
 import { BarberMap } from "../../components/map/BarberMap";
@@ -197,16 +197,12 @@ export default function Home() {
         {place && (
           <>
             <View style={block}>
-              <Section title={`Top rated in ${where}`} action={{ label: "See all", onPress: () => router.push("/explore") }}>
+              <Section eyebrow="Swipe the wheel" title={`Top rated in ${where}`} action={{ label: "See all", onPress: () => router.push("/explore") }}>
                 {!barbers && <Loading />}
                 {barbers?.length === 0 && <T muted>No barbers here yet — try another city.</T>}
               </Section>
             </View>
-            {!!barbers?.length && (
-              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: edge, gap: 14 }}>
-                {barbers.slice(0, 8).map((b) => <BarberTile key={b.id} barber={b} />)}
-              </ScrollView>
-            )}
+            {!!barbers?.length && <BarberWheel barbers={barbers.slice(0, 8)} width={sceneW} />}
 
             {shops.length > 0 && (
               <>
