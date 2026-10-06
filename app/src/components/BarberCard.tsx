@@ -2,7 +2,7 @@ import { router } from "expo-router";
 import { Pressable, View } from "react-native";
 import { money } from "../lib/format";
 import type { Barber } from "../lib/types";
-import { radius } from "./theme";
+import { colors, fonts, radius } from "./theme";
 import { Photo, Rating, Row, styles, T, Tag } from "./ui";
 
 const open = (id: string) => router.push({ pathname: "/barber/[id]", params: { id } });
@@ -54,16 +54,24 @@ export function BarberCard({ barber, showCountry, onPress }: { barber: Barber; s
   );
 }
 
+/** The solid-gold "#1" badge for the city's top-rated barber. */
+export function RankBadge() {
+  return (
+    <View accessibilityLabel="Number 1 in the city" style={{ height: 28, paddingHorizontal: 10, borderRadius: 14, backgroundColor: colors.gold, justifyContent: "center" }}>
+      <T variant="small" color={colors.ink} style={{ fontFamily: fonts.bold }}>#1</T>
+    </View>
+  );
+}
+
 /** Carousel tile: big photo on top. */
-export function BarberTile({ barber }: { barber: Barber }) {
+export function BarberTile({ barber, rank }: { barber: Barber; rank?: number }) {
   return (
     <Pressable onPress={() => open(barber.id)} style={({ pressed }) => [{ width: 168 }, pressed && styles.pressed]}>
       <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 168, height: 168 }} rounded={radius.lg} />
-      {barber.offersHomeVisits && (
-        <View style={{ position: "absolute", top: 10, left: 10 }}>
-          <Tag label="Comes to you" tone="light" icon="home-outline" />
-        </View>
-      )}
+      <Row gap={6} style={{ position: "absolute", top: 10, left: 10, right: 10 }}>
+        {rank === 1 && <RankBadge />}
+        {barber.offersHomeVisits && <Tag label="Comes to you" tone="light" icon="home-outline" />}
+      </Row>
       <T variant="strong" numberOfLines={1} style={{ marginTop: 10 }}>{barber.name}</T>
       <Row gap={6} style={{ marginTop: 2 }}>
         <Rating value={barber.rating} />

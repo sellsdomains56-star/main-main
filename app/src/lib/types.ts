@@ -71,7 +71,70 @@ export interface User {
   barberId?: string;
   countryCode?: string;
   city?: string;
+  preferences?: Preferences;
 }
+
+/** "My chair": how the customer likes their visit. Barbers see it on every booking. */
+export interface Preferences {
+  conversation?: "quiet" | "chatty" | "either";
+  drink?: string;
+  music?: string;
+  fragrance?: "none" | "light" | "classic";
+  allergies?: string;
+  standingCut?: string;
+}
+
+export type PlanId = "fresh" | "regular" | "black";
+
+export interface Plan {
+  id: PlanId;
+  name: string;
+  tagline: string;
+  price: number;
+  cutsPerPeriod: number | null; // null = unlimited
+  productDiscount: number;
+  freeHomeVisits: boolean;
+  perks: string[];
+}
+
+export interface Membership {
+  plan: PlanId;
+  name: string;
+  number: string;
+  since: string;
+  paidUntil: string;
+  active: boolean;
+  cutsLeft: number | null;
+  productDiscount: number;
+  freeHomeVisits: boolean;
+  perks: string[];
+}
+
+export interface GiftCard {
+  id: string;
+  code: string | null; // shown to the buyer once paid
+  amount: number;
+  currency: string;
+  toName: string;
+  toEmail: string;
+  message: string;
+  design: "noir" | "ivory";
+  status: "pending_payment" | "active" | "redeemed";
+  createdAt: string;
+}
+
+/** A Club membership, gift card or tip waiting for payment. */
+export interface Purchase {
+  id: string;
+  kind: "membership" | "gift" | "tip";
+  ref: string;
+  label: string;
+  amount: number;
+  currency: string;
+  status: "pending_payment" | "paid";
+}
+
+export type VenueKind = "home" | "hotel" | "yacht" | "office";
 
 /** shop / home = an appointment; video / phone = a free consultation. */
 export type LocationType = "shop" | "home" | "video" | "phone";
@@ -79,7 +142,7 @@ export type LocationType = "shop" | "home" | "video" | "phone";
 export const CONSULTATION_ID = "consultation";
 export const isConsultation = (b: Pick<Booking, "locationType">) => b.locationType === "video" || b.locationType === "phone";
 
-export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire";
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist";
 
 /** An alert in the app's inbox (also sent as a push notification on phones). */
 export interface AppNotification {
@@ -114,6 +177,14 @@ export interface Booking {
   barber: { id: string; name: string; photoUrl: string; city: string; timeZone: string };
   shop?: { id: string; name: string } | null; // at a barbershop's chair
   service?: Service;
+  coveredBy?: "membership"; // included in the Club plan
+  creditUsed?: number; // gift credit applied
+  tip?: number;
+  cutNotes?: string; // the barber's notes for next time
+  venue?: { kind: VenueKind; details: string };
+  guest?: { name: string; phone: string }; // booked for someone else
+  bookedBy?: string | null;
+  customerPreferences?: Preferences | null;
 }
 
 /** A barbershop in a list. */
@@ -216,6 +287,8 @@ export interface Order {
   shippingAddress: string;
   /** shipping: paid → shipped. delivery (a barbershop's courier): paid → out_for_delivery → delivered. */
   fulfilment: "shipping" | "delivery";
+  discount?: number; // Club member discount
+  creditUsed?: number;
   shop: { id: string; name: string; address: string; phone: string; etaMin: number } | null;
   status: "pending_payment" | "paid" | "shipped" | "out_for_delivery" | "delivered" | "cancelled";
   createdAt: string;
@@ -228,6 +301,10 @@ export interface Reel {
   caption: string;
   likes: number;
   likedByMe: boolean;
+  savedByMe: boolean;
+  comments: number;
+  views: number;
+  shares: number;
   createdAt: string;
   barber: Pick<Barber, "id" | "name" | "photoUrl" | "city" | "rating" | "ratingCount" | "startingPrice" | "currency" | "offersHomeVisits">;
 }
@@ -261,4 +338,14 @@ export interface BarberSearch {
   availableToday?: boolean;
   homeVisits?: boolean;
   sort?: "rating" | "price" | "soonest" | "experience";
+}
+
+export interface ReelComment {
+  id: string;
+  name: string;
+  text: string;
+  likes: number;
+  likedByMe: boolean;
+  mine: boolean;
+  createdAt: string;
 }

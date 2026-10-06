@@ -5,15 +5,36 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AddToCalendar } from "../../components/AddToCalendar";
 import { colors, radius } from "../../components/theme";
-import { Avatar, Button, Card, EmptyState, ErrorBox, IconLine, Loading, Row, Screen, Segmented, T, Tag } from "../../components/ui";
+import { Avatar, Button, Card, EmptyState, ErrorBox, Field, IconLine, Loading, Row, Screen, Segmented, T, Tag } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { enablePush, pushState, type PushState } from "../../lib/push";
 import { dateTime, money, STATUS_LABEL, time } from "../../lib/format";
-import { isConsultation, type Booking, type Hire, type Order } from "../../lib/types";
+import { isConsultation, type Booking, type Hire, type Order, type Preferences } from "../../lib/types";
 import { ShopPhoto } from "../../components/ShopCard";
 
 const LOCATION_ICON = { shop: "storefront-outline", home: "home-outline", video: "videocam-outline", phone: "call-outline" } as const;
+
+const VENUE_LABEL = { home: "Home", hotel: "Hotel", yacht: "Yacht", office: "Office" } as const;
+const VENUE_ICON = { home: "home-outline", hotel: "bed-outline", yacht: "boat-outline", office: "briefcase-outline" } as const;
+
+/** "quiet please · Espresso · No. 2 sides…" — what the barber should know. */
+function chairSummary(p: Preferences) {
+  return [
+    p.conversation === "quiet" ? "quiet please" : p.conversation === "chatty" ? "happy to chat" : null,
+    p.drink,
+    p.fragrance === "none" ? "no fragrance" : null,
+    p.allergies ? `allergies: ${p.allergies}` : null,
+    p.standingCut,
+    p.music ? `music: ${p.music}` : null,
+  ].filter(Boolean).join(" · ");
+}
+
+/** 10%, 15% and 20% of the price (or of the service, for Club cuts), rounded to whole units. */
+function tipOptions(b: Booking) {
+  const base = b.service?.price || b.amount || 2000;
+  return [0.1, 0.15, 0.2].map((r) => Math.max(100, Math.round((base * r) / 100) * 100));
+}
 
 const HIRE_LABEL: Record<Hire["status"], string> = { pending_payment: "Awaiting payment", confirmed: "Confirmed", completed: "Completed", cancelled: "Cancelled" };
 
@@ -28,6 +49,8 @@ export default function Bookings() {
   const [error, setError] = useState<string | null>(null);
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
   const [confirmingCancel, setConfirmingCancel] = useState<string | null>(null); // in-app confirm (works on web too)
+  const [tipping, setTipping] = useState<string | null>(null); // booking id with the tip picker open
+  const [notesDraft, setNotesDraft] = useState<Record<string, string>>({}); // barber's cut notes being written
   const { booked, hired } = useLocalSearchParams<{ booked?: string; hired?: string }>(); // just booked: offer calendar + alerts
   const [push, setPush] = useState<PushState>("unsupported");
   useEffect(() => {
@@ -191,7 +214,15 @@ export default function Bookings() {
                   {isBarber ? "Add your Google Meet link in My work so your client can join." : "Your barber will add the Google Meet link here before the call."}
                 </IconLine>
               )}
+              {b.venue && b.venue.kind !== "home" && <IconLine icon={VENUE_ICON[b.venue.kind]}>{VENUE_LABEL[b.venue.kind]}{b.venue.details ? ` · ${b.venue.details}` : ""}</IconLine>}
+              {b.venue?.kind === "home" && !!b.venue.details && <IconLine icon="key-outline" muted>{b.venue.details}</IconLine>}
+              {b.guest && <IconLine icon="people-outline" muted>{isBarber ? `Booked by ${b.bookedBy ?? "a customer"}${b.guest.phone ? ` · ${b.guest.name.split(" ")[0]}'s phone ${b.guest.phone}` : ""}` : `For ${b.guest.name}`}</IconLine>}
+              {b.coveredBy === "membership" && <IconLine icon="card-outline" muted>Included in The Club</IconLine>}
+              {!!b.creditUsed && <IconLine icon="gift-outline" muted>{money(b.creditUsed, b.currency)} gift credit used</IconLine>}
+              {isBarber && b.customerPreferences && chairSummary(b.customerPreferences) && <IconLine icon="person-outline">My chair: {chairSummary(b.customerPreferences)}</IconLine>}
               {!!b.notes && <IconLine icon="document-text-outline" muted>{b.notes}</IconLine>}
+              {!!b.cutNotes && !isBarber && <IconLine icon="cut-outline">Your barber's notes: {b.cutNotes}</IconLine>}
+              {!!b.tip && <IconLine icon="heart-outline" muted>{isBarber ? "Tipped" : "You tipped"} {money(b.tip, b.currency)}</IconLine>}
             </View>
             <Row gap={8} style={{ marginTop: 14, flexWrap: "wrap" }}>
               {b.locationType === "video" && !!b.videoLink && ["confirmed", "on_the_way"].includes(b.status) && (
@@ -215,12 +246,68 @@ export default function Bookings() {
                 <Button title="Rate your cut" icon="star" size="md" onPress={() => router.push({ pathname: "/review/[bookingId]", params: { bookingId: b.id } })} />
               )}
               {!isBarber && b.status === "completed" && (
-                <Button title={isConsultation(b) ? "Book the cut" : "Book again"} size="md" variant="secondary" onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: b.barber.id } })} />
+                <Button
+                  title={isConsultation(b) ? "Book the cut" : "Rebook exactly this"}
+                  icon="repeat"
+                  size="md"
+                  variant="secondary"
+                  onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: b.barber.id, ...(isConsultation(b) || !b.service ? {} : { serviceId: b.service.id }) } })}
+                />
+              )}
+              {!isBarber && b.status === "completed" && !isConsultation(b) && !b.tip && tipping !== b.id && (
+                <Button title="Leave a tip" icon="heart-outline" size="md" variant="ghost" onPress={() => setTipping(b.id)} />
               )}
               {["pending_payment", "confirmed"].includes(b.status) && confirmingCancel !== b.id && (
                 <Button title="Cancel" size="md" variant="ghost" onPress={() => setConfirmingCancel(b.id)} />
               )}
             </Row>
+            {tipping === b.id && (
+              <View style={{ marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: colors.surface }}>
+                <T variant="caption">Thank {b.barber.name.split(" ")[0]} — 100% goes to your barber.</T>
+                <Row gap={8} style={{ marginTop: 10, flexWrap: "wrap" }}>
+                  {tipOptions(b).map((amt) => (
+                    <Button
+                      key={amt}
+                      title={money(amt, b.currency).replace(/[.,]00$/, "")}
+                      size="sm"
+                      variant="secondary"
+                      onPress={run(async () => {
+                        const { purchase } = await api.tip(b.id, amt);
+                        setTipping(null);
+                        router.push({ pathname: "/checkout/[purchaseId]", params: { purchaseId: purchase.id } });
+                      })}
+                    />
+                  ))}
+                  <Button title="Not now" size="sm" variant="ghost" onPress={() => setTipping(null)} />
+                </Row>
+              </View>
+            )}
+            {isBarber && b.status === "completed" && (
+              <View style={{ marginTop: 12 }}>
+                <Field
+                  label="Notes for next time (the customer sees these)"
+                  value={notesDraft[b.id] ?? b.cutNotes ?? ""}
+                  onChangeText={(v) => setNotesDraft((d) => ({ ...d, [b.id]: v }))}
+                  placeholder="e.g. No. 2 sides, 1.5 inch on top, matte pomade"
+                  multiline
+                  style={{ marginBottom: 8 }}
+                />
+                {notesDraft[b.id] !== undefined && notesDraft[b.id] !== (b.cutNotes ?? "") && (
+                  <Button
+                    title="Save notes"
+                    size="sm"
+                    style={{ alignSelf: "flex-start" }}
+                    onPress={run(async () => {
+                      await api.setCutNotes(b.id, notesDraft[b.id]);
+                      setNotesDraft((d) => {
+                        const { [b.id]: _done, ...rest } = d;
+                        return rest;
+                      });
+                    })}
+                  />
+                )}
+              </View>
+            )}
             {confirmingCancel === b.id && (
               <View style={{ marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: colors.dangerSoft }}>
                 <T variant="caption">{b.status === "confirmed" ? "Cancel this booking? You'll get a full refund." : "Cancel this booking?"}</T>

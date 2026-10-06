@@ -21,6 +21,7 @@ interface SeedBarber {
   workingDays: number[]; openHour: number; closeHour: number; ratingSum: number; ratingCount: number;
   offersConsultations?: boolean; videoLink?: string; shopId?: string;
 }
+interface SeedPlan { id: "fresh" | "regular" | "black"; name: string; tagline: string; prices: Record<string, number>; cutsPerPeriod: number | null; productDiscount: number; freeHomeVisits: boolean; perks: string[] }
 interface SeedShop {
   id: string; name: string; about: string; photoUrl: string; countryCode: string; city: string; address: string; lat: number; lng: number; phone: string;
   workingDays: number[]; openHour: number; closeHour: number;
@@ -29,12 +30,18 @@ interface SeedShop {
   productIds: string[];
 }
 interface SeedCountry { code: string; name: string; currency: string; cities: { name: string; timeZone: string; lat: number; lng: number }[] }
-interface SeedReel { id: string; barberId: string; videoUrl: string; posterUrl?: string; caption: string; likes: number; createdAt: string }
+interface SeedReel {
+  id: string; barberId: string; videoUrl: string; posterUrl?: string; caption: string; likes: number; createdAt: string;
+  views?: number; shares?: number; comments?: { id: string; name: string; text: string; likes: number; createdAt: string }[];
+}
+interface DemoComment { id: string; userId: string; name: string; text: string; likedBy: string[]; createdAt: string }
 interface SeedProduct { id: string; name: string; category: string; emoji: string; description: string; prices: Record<string, number> }
 export interface DemoData {
   countries: SeedCountry[];
   barbers: SeedBarber[];
   shops: SeedShop[];
+  plans: SeedPlan[];
+  giftAmounts: Record<string, number[]>;
   reels: SeedReel[];
   products: SeedProduct[];
   shipping: Record<string, { fee: number; freeFrom: number }>;
@@ -51,21 +58,30 @@ export class DemoError extends Error {
 
 // ---------- State (changes are saved on this device) ----------
 
-interface User { id: string; name: string; email: string; passwordHash: string; role: "customer" | "barber"; barberId?: string; countryCode?: string; city?: string }
+interface User {
+  id: string; name: string; email: string; passwordHash: string; role: "customer" | "barber"; barberId?: string; countryCode?: string; city?: string;
+  preferences?: Record<string, string>;
+  credit?: Record<string, number>; // gift-card balance per currency
+  membership?: { plan: SeedPlan["id"]; number: string; currency: string; since: string; paidUntil: string };
+}
+interface GiftCard { id: string; code: string; amount: number; currency: string; buyerId: string; toName: string; toEmail: string; message: string; design: "noir" | "ivory"; status: "pending_payment" | "active" | "redeemed"; createdAt: string }
+interface Purchase { id: string; userId: string; kind: "membership" | "gift" | "tip"; ref: string; label: string; amount: number; currency: string; status: "pending_payment" | "paid" }
 interface Booking {
   id: string; customerId: string; barberId: string; serviceId: string; startsAt: string; endsAt: string;
   locationType: "shop" | "home" | "video" | "phone"; address: string; phone?: string; notes: string; amount: number; currency: string;
   remindedDay?: boolean; remindedHour?: boolean;
   demoOnTheWayAt?: number; // demo only: when to play the "barber is on the way" alert
   status: "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled"; reviewed: boolean; createdAt: string;
+  coveredBy?: "membership"; creditUsed?: number; tip?: number; cutNotes?: string;
+  venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; guest?: { name: string; phone: string };
 }
 interface Review { id: string; barberId: string; customerId: string; customerName: string; bookingId: string; rating: number; comment: string; createdAt: string }
 interface Order {
   id: string; customerId: string; items: { productId: string; name: string; quantity: number; unitPrice: number }[];
   subtotal: number; shipping: number; amount: number; currency: string; shippingName: string; shippingAddress: string;
-  fulfilment?: "shipping" | "delivery"; shopId?: string;
+  fulfilment?: "shipping" | "delivery"; shopId?: string; discount?: number; creditUsed?: number;
   demoOutAt?: number; demoDeliveredAt?: number; // demo only: when the pretend courier leaves and arrives
-  status: "pending_payment" | "paid" | "out_for_delivery" | "delivered"; createdAt: string;
+  status: "pending_payment" | "paid" | "out_for_delivery" | "delivered" | "cancelled"; createdAt: string;
 }
 interface Hire {
   id: string; customerId: string; shopId: string; startsAt: string; endsAt: string; hours: number; guests: number; occasion: string; notes: string;
@@ -82,10 +98,16 @@ interface Saved {
   tickets: { id: string; topic: string; email: string; message: string; createdAt: string }[];
   conversations: Conversation[];
   likes: Record<string, string[]>; // reelId -> user ids
+  saves?: Record<string, string[]>; // reelId -> user ids who saved it
+  reelComments?: Record<string, DemoComment[]>; // comments written on this device
+  reelStats?: Record<string, { views: number; shares: number }>;
   newBarbers: SeedBarber[];
   barberPatches: Record<string, Partial<SeedBarber>>;
   notifications?: DemoNotification[];
   hires?: Hire[];
+  giftCards?: GiftCard[];
+  purchases?: Purchase[];
+  waitlist?: { id: string; userId: string; barberId: string; date: string; notified: boolean; createdAt: string }[];
 }
 interface DemoNotification { id: string; userId: string; kind: string; title: string; body: string; bookingId?: string; orderId?: string; hireId?: string; read: boolean; createdAt: string }
 
@@ -354,7 +376,78 @@ function orderAlert(o: Order) {
 
 // ---------- Helpers ----------
 
-const publicUser = (u: User) => ({ id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city });
+const publicUser = (u: User) => ({ id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city, preferences: u.preferences });
+
+// ---------- The Club, gift cards (mirrors server/src/club.ts) ----------
+
+const clubCurrency = (code?: string) => {
+  const c = (code && country(code)?.currency) || "eur";
+  return seed.giftAmounts[c] ? c : "eur";
+};
+const DAY = 86_400_000;
+const activeMembership = (u?: User) => (u?.membership && Date.parse(u.membership.paidUntil) > Date.now() ? u.membership : null);
+const planOf = (id: string) => seed.plans.find((p) => p.id === id);
+
+function cutsUsed(u: User) {
+  const m = u.membership;
+  if (!m) return 0;
+  const end = Date.parse(m.paidUntil);
+  const periods = Math.max(1, Math.ceil((end - Date.now()) / (30 * DAY)));
+  const from = Math.max(end - periods * 30 * DAY, Date.parse(m.since));
+  return saved.bookings.filter((b) => b.customerId === u.id && b.coveredBy === "membership" && b.status !== "cancelled" && Date.parse(b.createdAt) >= from && Date.parse(b.createdAt) < from + 30 * DAY).length;
+}
+
+function membershipView(u: User) {
+  const m = u.membership;
+  if (!m) return null;
+  const plan = planOf(m.plan)!;
+  return {
+    plan: plan.id, name: plan.name, number: m.number, since: m.since, paidUntil: m.paidUntil, active: Date.parse(m.paidUntil) > Date.now(),
+    cutsLeft: plan.cutsPerPeriod === null ? null : Math.max(0, plan.cutsPerPeriod - cutsUsed(u)),
+    productDiscount: plan.productDiscount, freeHomeVisits: plan.freeHomeVisits, perks: plan.perks,
+  };
+}
+
+const CODE_CHARS = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+const block = () => Array.from({ length: 4 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join("");
+const giftView = (g: GiftCard, viewerId?: string) => ({ ...g, code: g.status !== "pending_payment" && g.buyerId === viewerId ? g.code : null, buyerId: undefined });
+
+function fulfil(p: Purchase) {
+  if (p.status === "paid") return;
+  p.status = "paid";
+  const u = saved.users.find((x) => x.id === p.userId);
+  if (p.kind === "membership" && u) {
+    const plan = planOf(p.ref)!;
+    const now = Date.now();
+    const cur = u.membership;
+    const live = cur && Date.parse(cur.paidUntil) > now;
+    const start = live && cur.plan === plan.id ? Date.parse(cur.paidUntil) : now;
+    u.membership = {
+      plan: plan.id, currency: p.currency,
+      number: cur?.number ?? `JB-${String(Math.floor(Math.random() * 10000)).padStart(4, "0")}-${String(Math.floor(Math.random() * 1000)).padStart(3, "0")}`,
+      since: live ? cur!.since : new Date(now).toISOString(), paidUntil: new Date(start + 30 * DAY).toISOString(),
+    };
+    notify(u.id, { kind: "club", title: `Welcome to The Club — ${plan.name}`, body: `Your member card is in Account → The Club. ${plan.perks[0]}.` });
+  }
+  if (p.kind === "gift") {
+    const g = (saved.giftCards ?? []).find((x) => x.id === p.ref);
+    if (g && g.status === "pending_payment") {
+      g.status = "active";
+      notify(p.userId, { kind: "gift", title: "Your gift card is ready", body: `Send ${g.toName} the code ${g.code}. They redeem it in Account → Gift cards.` });
+    }
+  }
+  if (p.kind === "tip") {
+    const b = saved.bookings.find((x) => x.id === p.ref);
+    if (b) b.tip = (b.tip ?? 0) + p.amount;
+  }
+}
+
+function newPurchase(userId: string, kind: Purchase["kind"], ref: string, label: string, amount: number, currency: string) {
+  const p: Purchase = { id: newId(), userId, kind, ref, label, amount, currency, status: "pending_payment" };
+  (saved.purchases ??= []).push(p);
+  persist();
+  return { purchase: p, clientSecret: null, demoPayments: true };
+}
 
 function currentUser(token: string | null) {
   const id = token ? saved.sessions[token] : undefined;
@@ -442,7 +535,9 @@ function bookingView(b: Booking) {
     ...b,
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: timeZoneOf(barber) },
     shop: b.locationType === "shop" ? shopRef(barber.shopId) : null,
-    customerName: saved.users.find((u) => u.id === b.customerId)?.name ?? "Customer",
+    customerName: b.guest?.name ?? saved.users.find((u) => u.id === b.customerId)?.name ?? "Customer",
+    bookedBy: b.guest ? saved.users.find((u) => u.id === b.customerId)?.name ?? null : null,
+    customerPreferences: saved.users.find((u) => u.id === b.customerId)?.preferences ?? null,
     service: findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined),
     videoLink: b.locationType === "video" && ["confirmed", "on_the_way"].includes(b.status) ? barber.videoLink ?? null : null,
   };
@@ -451,9 +546,13 @@ function bookingView(b: Booking) {
 function reelView(r: SeedReel, viewerId?: string) {
   const b = barberView(getBarber(r.barberId));
   const likedBy = saved.likes[r.id] ?? [];
+  const stats = saved.reelStats?.[r.id] ?? { views: 0, shares: 0 };
   return {
     id: r.id, videoUrl: r.videoUrl, posterUrl: r.posterUrl ?? null, caption: r.caption, likes: r.likes + likedBy.length,
     likedByMe: !!viewerId && likedBy.includes(viewerId), createdAt: r.createdAt,
+    savedByMe: !!viewerId && (saved.saves?.[r.id] ?? []).includes(viewerId),
+    comments: (r.comments?.length ?? 0) + (saved.reelComments?.[r.id]?.length ?? 0),
+    views: (r.views ?? 0) + stats.views, shares: (r.shares ?? 0) + stats.shares,
     barber: { id: b.id, name: b.name, photoUrl: b.photoUrl, city: b.city, rating: b.rating, ratingCount: b.ratingCount, startingPrice: b.startingPrice, currency: b.currency, offersHomeVisits: b.offersHomeVisits },
   };
 }
@@ -805,6 +904,12 @@ export function createDemoServer(data: DemoData) {
       return undefined;
     }
     if (path === "/me" && method === "GET") return publicUser(requireUser(token));
+    if (path === "/me/preferences" && method === "PATCH") {
+      const u = requireUser(token);
+      u.preferences = { ...u.preferences, ...(body as Record<string, string>) };
+      persist();
+      return publicUser(u);
+    }
     if (path === "/me" && method === "PATCH") {
       const u = requireUser(token);
       Object.assign(u, { name: body?.name ?? u.name, countryCode: body?.countryCode ?? u.countryCode, city: body?.city ?? u.city });
@@ -918,9 +1023,24 @@ export function createDemoServer(data: DemoData) {
         endsAt: new Date(start.getTime() + s.durationMin * 60_000).toISOString(), locationType,
         address: locationType === "home" ? String(body?.address).trim() : locationType === "shop" ? b.shopAddress : locationType === "video" ? "Video call · Google Meet" : "Phone call",
         phone: locationType === "phone" ? phone : undefined, notes: String(body?.notes ?? ""),
-        amount: s.price + (locationType === "home" ? b.homeVisitFee : 0), currency: country(b.countryCode)!.currency,
-        status: consultation ? "confirmed" : "pending_payment", reviewed: false, createdAt: new Date().toISOString(),
+        amount: 0, currency: country(b.countryCode)!.currency,
+        status: "pending_payment", reviewed: false, createdAt: new Date().toISOString(),
+        venue: locationType === "home" && body?.venue ? { kind: body.venue.kind, details: String(body.venue.details ?? "") } : undefined,
+        guest: body?.guest?.name ? { name: String(body.guest.name), phone: String(body.guest.phone ?? "") } : undefined,
       };
+      // The Club first, then gift credit (mirrors priceBooking on the server).
+      const m = activeMembership(u);
+      const plan = m ? planOf(m.plan)! : null;
+      const covered = !consultation && !!plan && (plan.cutsPerPeriod === null || cutsUsed(u) < plan.cutsPerPeriod);
+      const due = (covered ? 0 : s.price) + (locationType === "home" && !(plan?.freeHomeVisits && !consultation) ? b.homeVisitFee : 0);
+      const credit = Math.min(u.credit?.[bk.currency] ?? 0, due);
+      bk.amount = due - credit;
+      if (covered) bk.coveredBy = "membership";
+      if (credit) {
+        bk.creditUsed = credit;
+        u.credit = { ...u.credit, [bk.currency]: (u.credit?.[bk.currency] ?? 0) - credit };
+      }
+      if (bk.amount === 0) bk.status = "confirmed";
       saved.bookings.push(bk);
       if (bk.status === "confirmed") bookingConfirmed(bk);
       persist();
@@ -968,6 +1088,10 @@ export function createDemoServer(data: DemoData) {
         case "cancel":
           if (bk.status === "completed" || bk.status === "cancelled") throw new DemoError(400, "This booking can't be cancelled.");
           bk.status = "cancelled";
+          if (bk.creditUsed) {
+            const owner = saved.users.find((x) => x.id === bk.customerId);
+            if (owner) owner.credit = { ...owner.credit, [bk.currency]: (owner.credit?.[bk.currency] ?? 0) + bk.creditUsed };
+          }
           break;
         case "status":
           if (u.barberId !== bk.barberId) throw new DemoError(404, "Booking not found.");
@@ -1002,6 +1126,71 @@ export function createDemoServer(data: DemoData) {
       });
       return reels.map((r) => reelView(r, user?.id));
     }
+    if (path === "/reels/saved") {
+      const u = requireUser(token);
+      return [...memoryReels, ...seed.reels].filter((r) => (saved.saves?.[r.id] ?? []).includes(u.id)).map((r) => reelView(r, u.id));
+    }
+    if ((x = m(/^\/reels\/([^/]+)\/(save|view|share|report|comments)(?:\/([^/]+)(?:\/like)?)?$/))) {
+      const r = [...memoryReels, ...seed.reels].find((r) => r.id === x![1]);
+      if (!r) throw new DemoError(404, "Reel not found.");
+      const stats = ((saved.reelStats ??= {})[r.id] ??= { views: 0, shares: 0 });
+      switch (x[2]) {
+        case "view":
+          stats.views += 1;
+          persist();
+          return undefined;
+        case "share":
+          stats.shares += 1;
+          persist();
+          return undefined;
+        case "save": {
+          const u = requireUser(token);
+          const list = ((saved.saves ??= {})[r.id] ??= []);
+          saved.saves[r.id] = list.includes(u.id) ? list.filter((i) => i !== u.id) : [...list, u.id];
+          persist();
+          return reelView(r, u.id);
+        }
+        case "report": {
+          const u = requireUser(token);
+          saved.tickets.push({ id: newId(), topic: "other", email: u.email, message: `Reported reel ${r.id}: ${String(body?.reason ?? "")}`, createdAt: new Date().toISOString() });
+          persist();
+          return { ok: true };
+        }
+        case "comments": {
+          const mineList = ((saved.reelComments ??= {})[r.id] ??= []);
+          if (method === "GET" && !x[3]) {
+            const seeded = (r.comments ?? []).map((c) => ({ ...c, likedByMe: false, mine: false }));
+            const local = mineList.map((c) => ({ id: c.id, name: c.name, text: c.text, likes: c.likedBy.length, likedByMe: !!user && c.likedBy.includes(user.id), mine: c.userId === user?.id, createdAt: c.createdAt }));
+            return [...local, ...seeded].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+          }
+          const u = requireUser(token);
+          if (method === "POST" && !x[3]) {
+            const text = String(body?.text ?? "").trim().slice(0, 500);
+            if (!text) throw new DemoError(400, "Write a comment first.");
+            const c: DemoComment = { id: newId(), userId: u.id, name: u.name.split(" ")[0], text, likedBy: [], createdAt: new Date().toISOString() };
+            mineList.push(c);
+            persist();
+            return { id: c.id, name: c.name, text, likes: 0, likedByMe: false, mine: true, createdAt: c.createdAt };
+          }
+          const c = mineList.find((c) => c.id === x![3]);
+          if (method === "DELETE") {
+            if (c && c.userId === u.id) saved.reelComments[r.id] = mineList.filter((y) => y !== c);
+            persist();
+            return undefined;
+          }
+          // Liking a comment (sample comments can't be liked on the demo page).
+          if (!c) return { likes: 0, likedByMe: false };
+          c.likedBy = c.likedBy.includes(u.id) ? c.likedBy.filter((i) => i !== u.id) : [...c.likedBy, u.id];
+          persist();
+          return { likes: c.likedBy.length, likedByMe: c.likedBy.includes(u.id) };
+        }
+      }
+    }
+    if ((x = m(/^\/reels\/([^/]+)$/)) && method === "GET") {
+      const r = [...memoryReels, ...seed.reels].find((r) => r.id === x![1]);
+      if (!r) throw new DemoError(404, "Reel not found.");
+      return reelView(r, user?.id);
+    }
     if ((x = m(/^\/reels\/([^/]+)\/like$/))) {
       const u = requireUser(token);
       const r = [...memoryReels, ...seed.reels].find((r) => r.id === x![1]);
@@ -1010,6 +1199,102 @@ export function createDemoServer(data: DemoData) {
       saved.likes[r.id] = list.includes(u.id) ? list.filter((i) => i !== u.id) : [...list, u.id];
       persist();
       return reelView(r, u.id);
+    }
+
+    // The Club, gift cards, tips, notes, waitlist
+    if (path === "/club/plans") {
+      const cur = clubCurrency(q.country);
+      return { currency: cur, plans: seed.plans.map(({ prices, ...p }) => ({ ...p, price: prices[cur] })) };
+    }
+    if (path === "/club/me") {
+      const u = requireUser(token);
+      return { membership: membershipView(u), credit: u.credit ?? {} };
+    }
+    if (path === "/club/join" && method === "POST") {
+      const u = requireUser(token);
+      const plan = planOf(String(body?.plan));
+      if (!plan) throw new DemoError(400, "Pick a plan.");
+      const cur = u.membership?.currency ?? clubCurrency(body?.countryCode ?? u.countryCode);
+      return newPurchase(u.id, "membership", plan.id, `The Club — ${plan.name}, 30 days`, plan.prices[cur], cur);
+    }
+    if (path === "/gifts/amounts") {
+      const cur = clubCurrency(q.country);
+      return { currency: cur, amounts: seed.giftAmounts[cur] };
+    }
+    if (path === "/gifts" && method === "POST") {
+      const u = requireUser(token);
+      const cur = clubCurrency(body?.countryCode ?? u.countryCode);
+      const amount = Number(body?.amount);
+      if (!seed.giftAmounts[cur].includes(amount)) throw new DemoError(400, "Pick one of the gift card amounts.");
+      if (!String(body?.toName ?? "").trim()) throw new DemoError(400, "Who is it for?");
+      if (!/.+@.+\..+/.test(String(body?.toEmail ?? ""))) throw new DemoError(400, "Enter their email so we can send it");
+      const g: GiftCard = {
+        id: newId(), code: `JBF-${block()}-${block()}`, amount, currency: cur, buyerId: u.id, toName: String(body?.toName).trim(), toEmail: String(body?.toEmail).trim(),
+        message: String(body?.message ?? "").slice(0, 300), design: body?.design === "ivory" ? "ivory" : "noir", status: "pending_payment", createdAt: new Date().toISOString(),
+      };
+      (saved.giftCards ??= []).push(g);
+      return { ...newPurchase(u.id, "gift", g.id, `Gift card for ${g.toName}`, amount, cur), gift: giftView(g, u.id) };
+    }
+    if (path === "/gifts" && method === "GET") {
+      const u = requireUser(token);
+      return (saved.giftCards ?? []).filter((g) => g.buyerId === u.id && g.status !== "pending_payment").reverse().map((g) => giftView(g, u.id));
+    }
+    if (path === "/gifts/redeem") {
+      const u = requireUser(token);
+      const code = String(body?.code ?? "").toUpperCase().replace(/\s+/g, "");
+      const g = (saved.giftCards ?? []).find((x) => x.code === code);
+      if (!g || g.status === "pending_payment") throw new DemoError(404, "That code isn't valid. Check it and try again.");
+      if (g.status === "redeemed") throw new DemoError(409, "This gift card has already been used.");
+      g.status = "redeemed";
+      u.credit = { ...u.credit, [g.currency]: (u.credit?.[g.currency] ?? 0) + g.amount };
+      persist();
+      return { credit: u.credit, amount: g.amount, currency: g.currency };
+    }
+    if ((x = m(/^\/purchases\/([^/]+)\/(payment|confirm-payment)$/))) {
+      const u = requireUser(token);
+      const p = (saved.purchases ?? []).find((y) => y.id === x![1] && y.userId === u.id);
+      if (!p) throw new DemoError(404, "Payment not found.");
+      if (x[2] === "payment") return { purchase: p, clientSecret: null, demoPayments: true };
+      fulfil(p);
+      persist();
+      const g = p.kind === "gift" ? (saved.giftCards ?? []).find((y) => y.id === p.ref) : undefined;
+      return { purchase: p, gift: g ? giftView(g, u.id) : null, membership: membershipView(u) };
+    }
+    if ((x = m(/^\/bookings\/([^/]+)\/tip$/))) {
+      const u = requireUser(token);
+      const b = saved.bookings.find((y) => y.id === x![1] && y.customerId === u.id);
+      if (!b) throw new DemoError(404, "Booking not found.");
+      if (b.status !== "completed") throw new DemoError(400, "You can tip once the appointment is done.");
+      return newPurchase(u.id, "tip", b.id, `Tip for ${getBarber(b.barberId).name}`, Number(body?.amount), b.currency);
+    }
+    if ((x = m(/^\/bookings\/([^/]+)\/notes$/))) {
+      const u = requireUser(token);
+      const b = saved.bookings.find((y) => y.id === x![1] && u.barberId === y.barberId);
+      if (!b) throw new DemoError(404, "Booking not found.");
+      b.cutNotes = String(body?.cutNotes ?? "").slice(0, 500);
+      persist();
+      return { ok: true, cutNotes: b.cutNotes };
+    }
+    if (path === "/waitlist" && method === "POST") {
+      const u = requireUser(token);
+      const e = { id: newId(), userId: u.id, barberId: String(body?.barberId), date: String(body?.date), notified: false, createdAt: new Date().toISOString() };
+      (saved.waitlist ??= []).push(e);
+      persist();
+      return e;
+    }
+    if (path === "/waitlist" && method === "GET") {
+      const u = requireUser(token);
+      return (saved.waitlist ?? []).filter((w) => w.userId === u.id && !w.notified).map((w) => ({ ...w, barberName: getBarber(w.barberId).name }));
+    }
+    if ((x = m(/^\/orders\/([^/]+)\/cancel$/))) {
+      const u = requireUser(token);
+      const o = saved.orders.find((y) => y.id === x![1] && y.customerId === u.id);
+      if (!o) throw new DemoError(404, "Order not found.");
+      if (o.status !== "pending_payment") throw new DemoError(400, "Paid orders can't be cancelled here — contact support.");
+      o.status = "cancelled";
+      if (o.creditUsed) u.credit = { ...u.credit, [o.currency]: (u.credit?.[o.currency] ?? 0) + o.creditUsed };
+      persist();
+      return orderView(o);
     }
 
     // Barbershops
@@ -1105,11 +1390,26 @@ export function createDemoServer(data: DemoData) {
       const subtotal = items.reduce((t: number, i: { unitPrice: number; quantity: number }) => t + i.unitPrice * i.quantity, 0);
       const terms = shop?.delivery ?? seed.shipping[cur];
       const shipping = subtotal >= terms.freeFrom ? 0 : terms.fee;
+      const member = activeMembership(u);
+      const discount = member ? Math.round((subtotal * planOf(member.plan)!.productDiscount) / 100) : 0;
+      const due = subtotal - discount + shipping;
+      const creditUsed = Math.min(u.credit?.[cur] ?? 0, due);
+      if (creditUsed) u.credit = { ...u.credit, [cur]: (u.credit?.[cur] ?? 0) - creditUsed };
       const o: Order = {
-        id: newId(), customerId: u.id, items, subtotal, shipping, amount: subtotal + shipping, currency: cur,
+        id: newId(), customerId: u.id, items, subtotal, shipping, amount: due - creditUsed, currency: cur,
+        ...(discount ? { discount } : {}), ...(creditUsed ? { creditUsed } : {}),
         fulfilment: shop ? "delivery" : "shipping", shopId: shop?.id,
         shippingName: String(body?.shippingName ?? ""), shippingAddress: String(body?.shippingAddress), status: "pending_payment", createdAt: new Date().toISOString(),
       };
+      if (o.amount === 0) {
+        // Paid in full with gift credit.
+        o.status = "paid";
+        if (o.fulfilment === "delivery") {
+          o.demoOutAt = Date.now() + 20_000;
+          o.demoDeliveredAt = Date.now() + 50_000;
+        }
+        orderAlert(o);
+      }
       saved.orders.push(o);
       persist();
       return { order: orderView(o), clientSecret: null, demoPayments: true };

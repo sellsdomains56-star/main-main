@@ -29,7 +29,8 @@ export default function Pay() {
   if (!data) return <Screen><Loading /></Screen>;
   const { booking } = data;
   const amount = money(booking.amount, booking.currency);
-  const fee = booking.amount - (booking.service?.price ?? booking.amount);
+  const servicePrice = booking.coveredBy ? 0 : booking.service?.price ?? booking.amount;
+  const fee = Math.max(0, booking.amount + (booking.creditUsed ?? 0) - servicePrice);
 
   return (
     <Screen>
@@ -44,8 +45,9 @@ export default function Pay() {
           </View>
         </Row>
         <Divider />
-        <SummaryLine label={booking.service?.name ?? "Service"} value={money(booking.service?.price ?? booking.amount, booking.currency)} />
+        <SummaryLine label={booking.service?.name ?? "Service"} value={booking.coveredBy ? "Included · The Club" : money(servicePrice, booking.currency)} />
         {fee > 0 && <SummaryLine label="Home visit" value={money(fee, booking.currency)} />}
+        {!!booking.creditUsed && <SummaryLine label="Gift credit" value={`−${money(booking.creditUsed, booking.currency)}`} />}
         <View style={{ marginTop: 6 }}><IconLine icon={booking.locationType === "home" ? "home-outline" : "storefront-outline"} muted>{booking.address}</IconLine></View>
         <Divider />
         <SummaryLine label="Total" value={amount} strong />

@@ -117,6 +117,29 @@ export interface User {
   barberId?: string;
   countryCode?: string;
   city?: string;
+  preferences?: Preferences; // "My chair": what the barber should know before every visit
+  credit?: Record<string, number>; // gift-card balance per currency, minor units
+  membership?: Membership; // The Club
+}
+
+/** How the customer likes their visit, shown to the barber on each booking. */
+export interface Preferences {
+  conversation?: "quiet" | "chatty" | "either";
+  drink?: string; // e.g. "Espresso", "Still water"
+  music?: string;
+  fragrance?: "none" | "light" | "classic";
+  allergies?: string;
+  standingCut?: string; // "No. 2 on the sides, scissors on top"
+}
+
+export type PlanId = "fresh" | "regular" | "black";
+
+export interface Membership {
+  plan: PlanId;
+  number: string; // member number on the card, e.g. "JB-0427-118"
+  currency: string;
+  since: string; // ISO
+  paidUntil: string; // ISO; renewed by paying again (Stripe Billing in production)
 }
 
 export type BookingStatus = "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled";
@@ -139,10 +162,16 @@ export interface Booking {
   reviewed: boolean;
   remindedDay?: boolean; // "tomorrow" reminder sent
   remindedHour?: boolean; // "in an hour" reminder sent
+  coveredBy?: "membership"; // the service was included in the customer's Club plan
+  creditUsed?: number; // gift-card balance applied, minor units
+  tip?: number; // paid after the cut, minor units
+  cutNotes?: string; // the barber's notes for next time: guards, products, length
+  venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; // where a home visit happens
+  guest?: { name: string; phone: string }; // booked for someone else
   createdAt: string;
 }
 
-export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire";
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist";
 
 /** An alert shown in the app's inbox and, when the user has a phone registered, sent as a push notification. */
 export interface AppNotification {
@@ -194,6 +223,8 @@ export interface Order {
   items: OrderItem[];
   subtotal: number;
   shipping: number; // shipping or delivery fee
+  discount?: number; // Club member discount on the products, minor units
+  creditUsed?: number; // gift-card balance applied
   fulfilment?: "shipping" | "delivery"; // missing = shipping (orders from before delivery existed)
   shopId?: string; // delivery orders: the barbershop that delivers
   amount: number; // total charged, minor units
@@ -213,6 +244,19 @@ export interface Reel {
   posterUrl?: string;
   caption: string;
   likedBy: string[]; // user ids
+  savedBy?: string[]; // user ids who saved it to their collection
+  comments?: ReelComment[];
+  views?: number;
+  shares?: number;
+  createdAt: string;
+}
+
+export interface ReelComment {
+  id: string;
+  userId: string;
+  name: string; // first name, as shown
+  text: string;
+  likedBy: string[];
   createdAt: string;
 }
 
@@ -241,4 +285,45 @@ export interface Conversation {
   display: { role: "user" | "assistant"; text: string; actions?: unknown[]; at: string }[];
   createdAt: string;
   updatedAt: string;
+}
+
+/** A gift card someone bought; the recipient redeems the code into their credit. */
+export interface GiftCard {
+  id: string;
+  code: string; // e.g. "JBF-7K2Q-9MXA"
+  amount: number;
+  currency: string;
+  buyerId: string;
+  toName: string;
+  toEmail: string;
+  message: string;
+  design: "noir" | "ivory";
+  status: "pending_payment" | "active" | "redeemed";
+  redeemedBy?: string;
+  paymentIntentId?: string;
+  createdAt: string;
+}
+
+/** A payment that isn't a booking or an order: Club membership, gift card or tip. */
+export interface Purchase {
+  id: string;
+  userId: string;
+  kind: "membership" | "gift" | "tip";
+  ref: string; // plan id, gift card id or booking id
+  label: string;
+  amount: number;
+  currency: string;
+  status: "pending_payment" | "paid";
+  paymentIntentId?: string;
+  createdAt: string;
+}
+
+/** "Tell me if a time opens up" for a fully booked barber on one day. */
+export interface WaitlistEntry {
+  id: string;
+  userId: string;
+  barberId: string;
+  date: string; // barber-local YYYY-MM-DD
+  notified: boolean;
+  createdAt: string;
 }

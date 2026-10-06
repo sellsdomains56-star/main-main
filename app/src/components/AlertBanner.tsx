@@ -17,6 +17,10 @@ export const ALERT_ICON: Record<NotificationKind, keyof typeof Ionicons.glyphMap
   cancelled: "close-circle-outline",
   order_update: "bicycle-outline",
   hire: "storefront-outline",
+  club: "card-outline",
+  gift: "gift-outline",
+  tip: "heart-outline",
+  waitlist: "time-outline",
 };
 
 /**

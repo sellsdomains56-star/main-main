@@ -50,6 +50,15 @@ export default function Account() {
         </Section>
       )}
 
+      {user?.role !== "barber" && (
+        <Section title="Members">
+          <ListRow icon="card-outline" title="The Club" subtitle="Monthly cuts, member pricing, your member card" onPress={() => router.push("/club")} />
+          <ListRow icon="person-outline" title="My chair" subtitle="Quiet or chatty, your drink, your usual cut" onPress={() => router.push("/preferences")} />
+          <ListRow icon="gift-outline" title="Gift cards" subtitle="Send one, or redeem a code" onPress={() => router.push("/gifts")} />
+          <ListRow icon="bookmark-outline" title="Saved reels" subtitle="Your style board for the next cut" onPress={() => router.push("/reels")} />
+        </Section>
+      )}
+
       <Section title="General">
         {user?.role !== "barber" && <ListRow icon="calendar-outline" title="My bookings" onPress={() => router.push("/bookings")} />}
         <ListRow

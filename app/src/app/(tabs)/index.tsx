@@ -4,7 +4,7 @@ import { router, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useRef, useState, type ComponentProps } from "react";
 import { Image, Platform, Pressable, ScrollView, Text, useWindowDimensions, View, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BarberWheel } from "../../components/BarberWheel";
+import { BarberTile } from "../../components/BarberCard";
 import { LogoLockup } from "../../components/Brand";
 import { LocationPill } from "../../components/LocationSheet";
 import { BarberMap } from "../../components/map/BarberMap";
@@ -12,7 +12,7 @@ import { ShopTile } from "../../components/ShopCard";
 import { barberPins } from "../../components/map/types";
 import { ReelThumb } from "../../components/ReelThumb";
 import { SlideToConfirm } from "../../components/SlideToConfirm";
-import { colors, fonts, neonGlow, radius, raise } from "../../components/theme";
+import { colors, fonts, radius, raise } from "../../components/theme";
 import { Avatar, Card, IconBadge, IconButton, Loading, Rating, Row, SearchBar, Section, styles, T, Tag, Timeline, type IconName } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAlerts } from "../../lib/alerts";
@@ -189,7 +189,7 @@ export default function Home() {
 
           <Section eyebrow="More from JB" title="Fresh, your way">
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12 }}>
-              {MORE.map((m) => <MoreCard key={m.title} {...m} width={wide ? (contentW - 36) / 4 : (contentW - 12) / 2} />)}
+              {MORE.map((m) => <MoreCard key={m.title} {...m} width={wide ? (contentW - 24) / 3 : (contentW - 12) / 2} />)}
             </View>
           </Section>
         </View>
@@ -197,12 +197,16 @@ export default function Home() {
         {place && (
           <>
             <View style={block}>
-              <Section eyebrow="Swipe the wheel" title={`Top rated in ${where}`} action={{ label: "See all", onPress: () => router.push("/explore") }}>
+              <Section title={`Top rated in ${where}`} action={{ label: "See all", onPress: () => router.push("/explore") }}>
                 {!barbers && <Loading />}
                 {barbers?.length === 0 && <T muted>No barbers here yet — try another city.</T>}
               </Section>
             </View>
-            {!!barbers?.length && <BarberWheel barbers={barbers.slice(0, 8)} width={sceneW} />}
+            {!!barbers?.length && (
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: edge, gap: 14 }}>
+                {barbers.slice(0, 8).map((b, i) => <BarberTile key={b.id} barber={b} rank={i === 0 ? 1 : undefined} />)}
+              </ScrollView>
+            )}
 
             {shops.length > 0 && (
               <>
@@ -245,7 +249,7 @@ export default function Home() {
             {!!reels?.length && (
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: edge, gap: 12 }}>
                 {reels.slice(0, 10).map((r) => (
-                  <ReelThumb key={r.id} reel={r} onPress={() => router.push({ pathname: "/reels", params: { start: r.id } })} />
+                  <ReelThumb key={r.id} reel={r} onPress={() => router.push({ pathname: "/reel/[id]", params: { id: r.id, country: place.countryCode, city: place.city || undefined } })} />
                 ))}
               </ScrollView>
             )}
@@ -467,41 +471,28 @@ const SERVICES: { slot: keyof typeof SERVICE_PHOTOS; label: string; art: ArtName
 function ServiceTile({ slot, label, art, go, width }: (typeof SERVICES)[number] & { width: number }) {
   const photo = SERVICE_PHOTOS[slot];
   const h = width * 0.86;
-  // The glow lives on an outer frame so the clipped photo inside doesn't cut it off (iOS).
   return (
-    <View style={[{ width, height: h, borderRadius: 18 }, neonGlow]}>
-      <Pressable
-        onPress={go}
-        accessibilityRole="button"
-        accessibilityLabel={label}
-        style={({ pressed }) => [{ flex: 1, borderRadius: 18, overflow: "hidden", backgroundColor: colors.ink, borderWidth: 1, borderColor: "rgba(255,210,122,0.85)" }, pressed && styles.pressed]}
-      >
-        {photo ? (
-          <Image source={photo} resizeMode="cover" style={{ position: "absolute", width: "100%", height: "100%" }} />
-        ) : (
-          <>
-            <LinearGradient colors={["#2A2A2A", "#0B0B0B"]} start={{ x: 0.9, y: 0 }} end={{ x: 0.1, y: 1 }} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} />
-            <MaterialCommunityIcons name={art} size={width * 0.42} color="rgba(255,210,122,0.9)" style={{ position: "absolute", right: width * 0.1, top: width * 0.08 }} />
-          </>
-        )}
-        {/* Golden neon wash rising from the bottom edge */}
-        <LinearGradient
-          colors={["rgba(0,0,0,0)", "rgba(11,11,11,0.55)", "rgba(242,181,58,0.38)"]}
-          locations={[0, 0.55, 1]}
-          style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "70%" }}
-        />
-        <View style={{ flex: 1, justifyContent: "flex-end", padding: 11 }}>
-          <T
-            variant="eyebrow"
-            color={colors.neonBright}
-            numberOfLines={1}
-            style={{ fontSize: 10, letterSpacing: 1.2, fontFamily: fonts.bold, textShadowColor: "rgba(242,181,58,0.9)", textShadowRadius: 8, textShadowOffset: { width: 0, height: 0 } }}
-          >
-            {label}
-          </T>
-        </View>
-      </Pressable>
-    </View>
+    <Pressable
+      onPress={go}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      style={({ pressed }) => [{ width, height: h, borderRadius: 18, overflow: "hidden", backgroundColor: colors.ink }, pressed && styles.pressed]}
+    >
+      {photo ? (
+        <Image source={photo} resizeMode="cover" style={{ position: "absolute", width: "100%", height: "100%" }} />
+      ) : (
+        <>
+          <LinearGradient colors={["#2A2A2A", "#0B0B0B"]} start={{ x: 0.9, y: 0 }} end={{ x: 0.1, y: 1 }} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} />
+          <MaterialCommunityIcons name={art} size={width * 0.42} color="rgba(244,242,238,0.85)" style={{ position: "absolute", right: width * 0.1, top: width * 0.08 }} />
+        </>
+      )}
+      <LinearGradient colors={["rgba(0,0,0,0)", "rgba(11,11,11,0.8)"]} style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "60%" }} />
+      <View style={{ flex: 1, justifyContent: "flex-end", padding: 11 }}>
+        <T variant="eyebrow" color={colors.onInk} numberOfLines={1} style={{ fontSize: 10, letterSpacing: 1.2, fontFamily: fonts.bold }}>
+          {label}
+        </T>
+      </View>
+    </Pressable>
   );
 }
 
@@ -510,6 +501,8 @@ const MORE: { title: string; body: string; icon: IconName; go: () => void }[] = 
   { title: "Barber at home", body: "They come to you", icon: "home-outline", go: () => router.push({ pathname: "/explore", params: { home: "1" } }) },
   { title: "JB Concierge", body: "Ask anything, 24/7", icon: "chatbubble-ellipses-outline", go: () => router.push("/assistant") },
   { title: "Reels", body: "Watch barbers at work", icon: "play-outline", go: () => router.push("/reels") },
+  { title: "The Club", body: "Cuts every month", icon: "card-outline", go: () => router.push("/club") },
+  { title: "Gift cards", body: "Give a fresh cut", icon: "gift-outline", go: () => router.push("/gifts") },
 ];
 
 function MoreCard({ title, body, icon, go, width }: (typeof MORE)[number] & { width: number }) {

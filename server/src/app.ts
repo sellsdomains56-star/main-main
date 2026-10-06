@@ -3,19 +3,22 @@ import cors from "cors";
 import express, { type ErrorRequestHandler } from "express";
 import { z } from "zod";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { createSession, hashPassword, optionalAuth, publicUser, requireAuth, verifyPassword } from "./auth.js";
+import { createSession, hashPassword, publicUser, requireAuth, verifyPassword } from "./auth.js";
 import { config } from "./config.js";
 import { db, newId, save, UPLOADS_DIR } from "./db.js";
 import { clientSecretFor, createPaymentIntent, demoPayments, paymentSucceeded, refund, stripe } from "./payments.js";
 import { PRODUCTS, SHIPPING } from "./products.js";
 import { COUNTRIES } from "./seed.js";
 import { allSpecialties, searchBarbers } from "./search.js";
-import { barberOnTheWay, bookingCancelled, bookingCompleted, bookingConfirmed, hireConfirmed, orderUpdate } from "./notify.js";
+import { barberOnTheWay, bookingCancelled, bookingCompleted, bookingConfirmed, hireConfirmed, orderUpdate, waitlistOpened } from "./notify.js";
 import { deliveryFee, getShop } from "./shops.js";
 import { SHOPS } from "./seed.js";
 import { registerAssistantRoutes } from "./routes/assistant.js";
 import { registerNotificationRoutes } from "./routes/notifications.js";
 import { registerPortfolioRoutes } from "./routes/portfolio.js";
+import { registerClubRoutes } from "./routes/club.js";
+import { registerReelRoutes, reelView } from "./routes/reels.js";
+import { activeMembership, fulfil, getPlan, returnPerks } from "./club.js";
 import { registerShopRoutes } from "./routes/shops.js";
 import { registerSupportRoutes } from "./routes/support.js";
 import { registerTryOnRoutes } from "./routes/tryon.js";
@@ -25,21 +28,6 @@ import { availableSlots } from "./slots.js";
 import { upsertSocialUser, verifyIdentityToken } from "./social.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
 import type { Barber, Booking, Order, Product, Reel } from "./types.js";
-
-function reelView(r: Reel, viewerId?: string) {
-  const b = getBarber(r.barberId);
-  const v = barberView(b);
-  return {
-    id: r.id,
-    videoUrl: r.videoUrl,
-    posterUrl: r.posterUrl ?? null,
-    caption: r.caption,
-    likes: r.likedBy.length,
-    likedByMe: !!viewerId && r.likedBy.includes(viewerId),
-    createdAt: r.createdAt,
-    barber: { id: v.id, name: v.name, photoUrl: v.photoUrl, city: v.city, rating: v.rating, ratingCount: v.ratingCount, startingPrice: v.startingPrice, currency: v.currency, offersHomeVisits: v.offersHomeVisits },
-  };
-}
 
 /** Orders as the app sees them; delivery orders carry the shop and its delivery estimate. */
 function orderView(o: Order) {
@@ -86,6 +74,8 @@ export function createApp() {
         order.status = "paid";
         orderUpdate(order);
       }
+      const purchase = db.purchases.find((p) => p.paymentIntentId === event.data.object.id);
+      if (purchase) fulfil(purchase);
       const hire = db.hires.find((h) => h.paymentIntentId === event.data.object.id);
       if (hire && hire.status === "pending_payment") {
         hire.status = "confirmed";
@@ -253,6 +243,7 @@ export function createApp() {
   registerAssistantRoutes(app);
   registerTryOnRoutes(app);
   registerShopRoutes(app);
+  registerClubRoutes(app);
 
   // ---------- Barbers ----------
   app.get("/barbers", (req, res) => {
@@ -356,7 +347,9 @@ export function createApp() {
     const wasConfirmed = booking.status !== "pending_payment";
     if (wasConfirmed && booking.paymentIntentId) await refund(booking.paymentIntentId);
     booking.status = "cancelled";
+    returnPerks(booking);
     bookingCancelled(booking, wasConfirmed, req.user!.id);
+    if (wasConfirmed) waitlistOpened(booking);
     save();
     res.json(bookingView(booking));
   });
@@ -396,35 +389,7 @@ export function createApp() {
     res.status(201).json(barberView(barber));
   });
 
-  // ---------- Reels ----------
-  app.get("/reels", optionalAuth, (req, res) => {
-    const q = parse(z.object({ country: z.string().optional(), city: z.string().optional(), barberId: z.string().optional() }), req.query);
-    const barbersById = new Map(db.barbers.map((b) => [b.id, b]));
-    const list = db.reels.filter((r) => {
-      const b = barbersById.get(r.barberId);
-      return b && (!q.barberId || b.id === q.barberId) && (!q.country || b.countryCode === q.country) && (!q.city || b.city === q.city);
-    });
-    // Newest first, with a boost for popular reels.
-    const score = (r: Reel) => Date.parse(r.createdAt) / 3_600_000 + Math.log1p(r.likedBy.length) * 24;
-    res.json(list.sort((a, b) => score(b) - score(a)).map((r) => reelView(r, req.user?.id)));
-  });
-
-  app.post("/reels/:id/like", requireAuth, (req, res) => {
-    const reel = db.reels.find((r) => r.id === req.params.id);
-    if (!reel) throw new HttpError(404, "Reel not found.");
-    const me = req.user!.id;
-    reel.likedBy = reel.likedBy.includes(me) ? reel.likedBy.filter((id) => id !== me) : [...reel.likedBy, me];
-    save();
-    res.json(reelView(reel, me));
-  });
-
-  app.delete("/reels/:id", requireAuth, (req, res) => {
-    const reel = db.reels.find((r) => r.id === req.params.id);
-    if (!reel || reel.barberId !== req.user!.barberId) throw new HttpError(404, "Reel not found.");
-    db.reels = db.reels.filter((r) => r !== reel);
-    save();
-    res.status(204).end();
-  });
+  registerReelRoutes(app);
 
   // ---------- Shop: JB's Fresh products ----------
   const currencyFor = (country?: string) => {
@@ -467,17 +432,44 @@ export function createApp() {
     });
     const subtotal = items.reduce((sum, i) => sum + i.unitPrice * i.quantity, 0);
     const shipping = shop ? deliveryFee(shop, subtotal) : subtotal >= SHIPPING[currency].freeFrom ? 0 : SHIPPING[currency].fee;
+    // Club members save on products; gift-card credit pays what it can.
+    const member = activeMembership(req.user);
+    const discount = member ? Math.round((subtotal * getPlan(member.plan)!.productDiscount) / 100) : 0;
+    const due = subtotal - discount + shipping;
+    const creditUsed = Math.min(req.user!.credit?.[currency] ?? 0, due);
     const order: Order = {
-      id: newId(), customerId: req.user!.id, items, subtotal, shipping, amount: subtotal + shipping, currency,
+      id: newId(), customerId: req.user!.id, items, subtotal, shipping, amount: due - creditUsed, currency,
+      ...(discount ? { discount } : {}), ...(creditUsed ? { creditUsed } : {}),
       fulfilment: body.fulfilment, shopId: shop?.id,
       shippingName: body.shippingName, shippingAddress: body.shippingAddress, countryCode: body.countryCode,
       status: "pending_payment", createdAt: new Date().toISOString(),
     };
+    if (creditUsed) req.user!.credit = { ...req.user!.credit, [currency]: (req.user!.credit?.[currency] ?? 0) - creditUsed };
+    if (order.amount === 0) {
+      // Paid in full with gift-card credit.
+      order.status = "paid";
+      db.orders.push(order);
+      orderUpdate(order);
+      save();
+      res.status(201).json({ order: orderView(order), clientSecret: null, demoPayments });
+      return;
+    }
     const intent = await createPaymentIntent(`order-${order.id}`, order.amount, currency, { kind: "order", orderId: order.id, ...(shop ? { shopId: shop.id } : {}) });
     order.paymentIntentId = intent?.id;
     db.orders.push(order);
     save();
     res.status(201).json({ order: orderView(order), clientSecret: intent?.clientSecret ?? null, demoPayments });
+  });
+
+  // An unpaid order can be cancelled; any gift-card credit it held goes back.
+  app.post("/orders/:id/cancel", requireAuth, (req, res) => {
+    const order = db.orders.find((o) => o.id === req.params.id && o.customerId === req.user!.id);
+    if (!order) throw new HttpError(404, "Order not found.");
+    if (order.status !== "pending_payment") throw new HttpError(400, "Paid orders can't be cancelled here — contact support.");
+    order.status = "cancelled";
+    if (order.creditUsed) req.user!.credit = { ...req.user!.credit, [order.currency]: (req.user!.credit?.[order.currency] ?? 0) + order.creditUsed };
+    save();
+    res.json(orderView(order));
   });
 
   // Delivery orders for the barbershop the signed-in barber works at.

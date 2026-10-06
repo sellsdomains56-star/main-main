@@ -158,6 +158,20 @@ export function orderUpdate(o: Order) {
   }
 }
 
+/** A confirmed booking was cancelled: tell everyone waiting for that barber on that day. */
+export function waitlistOpened(b: Booking) {
+  const barber = getBarber(b.barberId);
+  const tz = cityOf(barber).timeZone;
+  const date = new Intl.DateTimeFormat("en-CA", { timeZone: tz }).format(new Date(b.startsAt));
+  const when = new Intl.DateTimeFormat("en-GB", { timeZone: tz, weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(b.startsAt));
+  for (const w of db.waitlist) {
+    if (w.notified || w.barberId !== b.barberId || w.date !== date || w.userId === b.customerId) continue;
+    w.notified = true;
+    notify(w.userId, { kind: "waitlist", title: `A time just opened with ${first(barber.name)}`, body: `${when} (${barber.city} time) is free again. Book it before someone else does.` });
+  }
+  save();
+}
+
 // ---------- Reminders ----------
 
 /** Sends the "tomorrow" (24h) and "in an hour" reminders that are due. Runs every minute. */

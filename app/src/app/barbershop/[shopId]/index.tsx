@@ -145,10 +145,10 @@ export default function ShopPage() {
   );
 }
 
-/** Dark and light cards take turns, each with a gold touch: the step number, the icon ring and the arrow. */
+/** Dark and light cards take turns: black and white only, the arrow in a contrasting circle. */
 function Action({ tone, icon, eyebrow, title, body, onPress }: { tone: "dark" | "light"; icon: keyof typeof Ionicons.glyphMap; eyebrow: string; title: string; body: string; onPress: () => void }) {
   const dark = tone === "dark";
-  const gold = dark ? colors.neonBright : colors.goldInk;
+  const fg = dark ? colors.onInk : colors.text;
   return (
     <Pressable
       onPress={onPress}
@@ -163,23 +163,23 @@ function Action({ tone, icon, eyebrow, title, body, onPress }: { tone: "dark" | 
           gap: 14,
           alignItems: "center",
           borderWidth: 1,
-          borderColor: dark ? "rgba(255,210,122,0.35)" : "rgba(138,90,11,0.35)",
+          borderColor: dark ? colors.ink : colors.border,
           cursor: "pointer",
         } as object,
         dark ? raise : shadow,
         pressed && styles.pressed,
       ]}
     >
-      <View style={{ width: 46, height: 46, borderRadius: 23, borderWidth: 1.5, borderColor: dark ? colors.neon : colors.goldInk, alignItems: "center", justifyContent: "center" }}>
-        <Ionicons name={icon} size={22} color={gold} />
+      <View style={{ width: 46, height: 46, borderRadius: 23, borderWidth: 1, borderColor: dark ? colors.inkLine : colors.border, alignItems: "center", justifyContent: "center" }}>
+        <Ionicons name={icon} size={22} color={fg} />
       </View>
       <View style={{ flex: 1 }}>
-        <T variant="eyebrow" color={gold}>{eyebrow}</T>
+        <T variant="eyebrow" color={dark ? colors.inkMuted : colors.muted}>{eyebrow}</T>
         <T variant="strong" color={dark ? colors.onInk : colors.text} style={{ marginTop: 4, fontFamily: fonts.semibold }}>{title}</T>
         <T variant="caption" color={dark ? colors.inkMuted : colors.muted} style={{ marginTop: 2 }}>{body}</T>
       </View>
-      <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: dark ? colors.neon : colors.ink, alignItems: "center", justifyContent: "center" }}>
-        <Ionicons name="arrow-forward" size={18} color={dark ? colors.ink : colors.neonBright} />
+      <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: dark ? colors.onInk : colors.ink, alignItems: "center", justifyContent: "center" }}>
+        <Ionicons name="arrow-forward" size={18} color={dark ? colors.ink : colors.onInk} />
       </View>
     </Pressable>
   );

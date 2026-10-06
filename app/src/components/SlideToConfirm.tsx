@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ActivityIndicator, Animated, PanResponder, View } from "react-native";
+import { success } from "../lib/haptics";
 import { colors, fonts, radius } from "./theme";
 import { T } from "./ui";
 
@@ -40,6 +41,7 @@ export function SlideToConfirm({ label, onConfirm, disabled, loading, disabledLa
         onPanResponderRelease: (_, g) => {
           if (max > 0 && g.dx >= max * 0.82) {
             Animated.timing(x, { toValue: max, duration: 120, useNativeDriver: false }).start(() => {
+              success();
               onConfirm();
               if (resetAfter) setTimeout(() => Animated.spring(x, { toValue: 0, useNativeDriver: false }).start(), 700);
             });

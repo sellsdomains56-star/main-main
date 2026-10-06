@@ -18,6 +18,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { resolveMedia } from "../lib/config";
 import { colors, emphasis, fonts, radius, raise, shadow } from "./theme";
+import { tick } from "../lib/haptics";
 
 export type IconName = keyof typeof Ionicons.glyphMap;
 
@@ -273,7 +274,13 @@ export function IconButton({ icon, onPress, label, badge, tone = "surface" }: { 
 export function Pill({ label, selected, onPress, icon }: { label: string; selected?: boolean; onPress?: () => void; icon?: IconName }) {
   return (
     <Pressable
-      onPress={onPress}
+      onPress={
+        onPress &&
+        (() => {
+          tick();
+          onPress();
+        })
+      }
       accessibilityState={{ selected }}
       style={({ pressed, focused }: { pressed: boolean; focused?: boolean }) => [styles.pill, selected && styles.pillSelected, pressed && styles.pressed, focused && styles.focusRing]}
     >
@@ -375,7 +382,7 @@ export function SearchBar({ value, onChangeText, placeholder, onPress, autoFocus
 export function Rating({ value, count, size = "caption", color = colors.text }: { value: number | null; count?: number; size?: "caption" | "strong"; color?: string }) {
   return (
     <Row gap={4}>
-      <Ionicons name="star" size={size === "strong" ? 16 : 13} color={color} />
+      <Ionicons name="star" size={size === "strong" ? 16 : 13} color={color === colors.text || color === colors.muted ? colors.goldInk : colors.gold} />
       <T variant={size} color={color} style={{ fontFamily: fonts.semibold }}>{value ? value.toFixed(1) : "New"}</T>
       {count !== undefined && value !== null && <T variant={size} color={color === colors.text ? colors.muted : color}>({count})</T>}
     </Row>

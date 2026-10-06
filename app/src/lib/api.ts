@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AppNotification, AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, Hire, LocationType, Order, Reel, Review, Shop, ShopSummary, StyleAdvice, User } from "./types";
+import type { AppNotification, AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Plan, Preferences, Purchase, VenueKind, Order, Reel, ReelComment, Review, Shop, ShopSummary, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -55,6 +55,16 @@ export const mediaUrl = resolveMedia;
 export const api = {
   reels: (f: { country?: string; city?: string; barberId?: string }) => request<Reel[]>("/reels" + qs(f)),
   likeReel: (id: string) => request<Reel>(`/reels/${id}/like`, { method: "POST" }),
+  saveReel: (id: string) => request<Reel>(`/reels/${id}/save`, { method: "POST" }),
+  savedReels: () => request<Reel[]>("/reels/saved"),
+  reel: (id: string) => request<Reel>(`/reels/${id}`),
+  viewReel: (id: string) => request<void>(`/reels/${id}/view`, { method: "POST" }),
+  shareReel: (id: string) => request<void>(`/reels/${id}/share`, { method: "POST" }),
+  reportReel: (id: string, reason: string) => request<{ ok: boolean }>(`/reels/${id}/report`, { body: { reason } }),
+  reelComments: (id: string) => request<ReelComment[]>(`/reels/${id}/comments`),
+  addReelComment: (id: string, text: string) => request<ReelComment>(`/reels/${id}/comments`, { body: { text } }),
+  likeReelComment: (id: string, cid: string) => request<{ likes: number; likedByMe: boolean }>(`/reels/${id}/comments/${cid}/like`, { method: "POST" }),
+  deleteReelComment: (id: string, cid: string) => request<void>(`/reels/${id}/comments/${cid}`, { method: "DELETE" }),
   deleteReel: (id: string) => request<void>(`/reels/${id}`, { method: "DELETE" }),
   async postReel(video: Blob, contentType: string, caption: string): Promise<Reel> {
     if (demo) {
@@ -108,7 +118,10 @@ export const api = {
   me: () => request<User>("/me"),
   updateMe: (body: Partial<Pick<User, "name" | "countryCode" | "city">>) => request<User>("/me", { method: "PATCH", body }),
 
-  createBooking: (body: { barberId: string; serviceId: string; startsAt: string; locationType: LocationType; address?: string; phone?: string; notes?: string }) =>
+  createBooking: (body: {
+    barberId: string; serviceId: string; startsAt: string; locationType: LocationType; address?: string; phone?: string; notes?: string;
+    venue?: { kind: VenueKind; details: string }; guest?: { name: string; phone: string };
+  }) =>
     request<{ booking: Booking; clientSecret: string | null; demoPayments: boolean }>("/bookings", { body }),
   bookings: () => request<Booking[]>("/bookings"),
   booking: (id: string) => request<Booking>(`/bookings/${id}`),
@@ -133,6 +146,23 @@ export const api = {
   cancelHire: (id: string) => request<Hire>(`/hires/${id}/cancel`, { method: "POST" }),
   shopOrders: () => request<Order[]>("/shop-orders"),
   setOrderStatus: (id: string, status: "out_for_delivery" | "delivered") => request<Order>(`/orders/${id}/status`, { body: { status } }),
+
+  // The Club, gift cards, tips, preferences, cut notes, waitlist
+  clubPlans: (country?: string) => request<{ currency: string; plans: Plan[] }>("/club/plans" + qs({ country })),
+  clubMe: () => request<{ membership: Membership | null; credit: Record<string, number> }>("/club/me"),
+  joinClub: (plan: string, countryCode?: string) => request<{ purchase: Purchase; clientSecret: string | null; demoPayments: boolean }>("/club/join", { body: { plan, countryCode } }),
+  giftAmounts: (country?: string) => request<{ currency: string; amounts: number[] }>("/gifts/amounts" + qs({ country })),
+  buyGift: (body: { amount: number; countryCode?: string; toName: string; toEmail: string; message: string; design: "noir" | "ivory" }) =>
+    request<{ purchase: Purchase; gift: GiftCard; clientSecret: string | null; demoPayments: boolean }>("/gifts", { body }),
+  gifts: () => request<GiftCard[]>("/gifts"),
+  redeemGift: (code: string) => request<{ credit: Record<string, number>; amount: number; currency: string }>("/gifts/redeem", { body: { code } }),
+  purchasePayment: (id: string) => request<{ purchase: Purchase; clientSecret: string | null; demoPayments: boolean }>(`/purchases/${id}/payment`),
+  confirmPurchase: (id: string) => request<{ purchase: Purchase; gift: GiftCard | null; membership: Membership | null }>(`/purchases/${id}/confirm-payment`, { method: "POST" }),
+  tip: (bookingId: string, amount: number) => request<{ purchase: Purchase; clientSecret: string | null; demoPayments: boolean }>(`/bookings/${bookingId}/tip`, { body: { amount } }),
+  setPreferences: (body: Preferences) => request<User>("/me/preferences", { method: "PATCH", body }),
+  setCutNotes: (bookingId: string, cutNotes: string) => request<{ ok: boolean }>(`/bookings/${bookingId}/notes`, { body: { cutNotes } }),
+  joinWaitlist: (barberId: string, date: string) => request<{ id: string }>("/waitlist", { body: { barberId, date } }),
+  cancelOrder: (id: string) => request<Order>(`/orders/${id}/cancel`, { method: "POST" }),
 
   products: (country?: string) => request<Catalog>("/products" + qs({ country })),
   createOrder: (body: { countryCode: string; items: { productId: string; quantity: number }[]; shippingName: string; shippingAddress: string; fulfilment?: "shipping" | "delivery"; shopId?: string }) =>

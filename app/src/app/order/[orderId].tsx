@@ -40,7 +40,9 @@ export default function PayOrder() {
         {order.items.map((i) => (
           <SummaryLine key={i.productId} label={`${i.quantity} × ${i.name}`} value={money(i.unitPrice * i.quantity, order.currency)} />
         ))}
+        {!!order.discount && <SummaryLine label="Club member discount" value={`−${money(order.discount, order.currency)}`} />}
         <SummaryLine label="Delivery" value={order.shipping ? money(order.shipping, order.currency) : "Free"} />
+        {!!order.creditUsed && <SummaryLine label="Gift credit" value={`−${money(order.creditUsed, order.currency)}`} />}
         <Divider />
         <SummaryLine label="Total" value={amount} strong />
         <View style={{ marginTop: 10 }}><IconLine icon="car-outline" muted>{order.shippingName}, {order.shippingAddress}</IconLine></View>

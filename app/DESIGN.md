@@ -14,7 +14,7 @@ Reference: the "Modern Barber" editorial site — monogram + spaced wordmark, a 
 | `text` #0B0B0B · `muted` #5E5A55 · `faint` #97928C | Text, secondary text, icons/placeholders only |
 | `accent` #0B0B0B / `onAccent` #FFFFFF | Primary buttons, selected chips and segments, radio dots, badges |
 | `ink` #0B0B0B / `onInk` #F4F2EE / `inkMuted` / `inkLine` | Black panels: hero, service tiles, AI Try-On and shop banners, tab bar, reels |
-| `neon` #F2B53A / `neonBright` #FFD27A + `neonGlow` | Gold touches only: the neon edge on the Home service tiles, the barber wheel's rank badge and centre-card edge, and the barbershop action cards. On light backgrounds use `goldInk` #8A5A0B for gold text and lines |
+| `gold` #C9A04A / `goldInk` #9A7114 | Gold, solid and rare: star ratings (`goldInk` on the light page, `gold` on dark), the "#1" badge, and the edge of the Black member card. No glows, no gold text blocks |
 
 Rules:
 - Two values do the work: off-white and black. Grey is for secondary text and hairlines only.
@@ -33,8 +33,9 @@ Inter throughout. Headlines are **Inter Medium with tight tracking** (34px scree
 - **Slide to book:** `SlideToConfirm` — black track, white knob; Home's "Book appointment" (with `resetAfter`) and confirming bookings, then the official Apple Pay / Google Pay "Book" button pays. On phones keep it clear of the floating concierge button.
 - **Arrow CTA:** `ArrowButton` — black pill, arrow in a white circle (secondary calls to action).
 - **Timeline:** `Timeline` — "01 — FIND YOUR BARBER" with dots on a thin line; the current step has the black dot.
-- **Barber wheel:** `BarberWheel` on Home — top-rated barbers snap one at a time to the centre, where the card is full size with a gold edge; neighbours tilt back and shrink. Gold "#1" rank badges.
-- **Barbershop page:** a photo header with the name over a dark gradient, then numbered action cards ("01 — Book a chair", "02 — Private hire", "03 — Delivery") that alternate dark and light, with gold step numbers, icon rings and arrow buttons. Shop tiles on Home reuse the photo-with-gradient look.
+- **Reels:** a 3-column grid (9:16 tiles, 2px gaps, view counts) under story circles; the full-screen viewer has Instagram's right rail (like, comment, share, save, ⋯), a thin progress line and dark bottom sheets (`ReelSheets.tsx`).
+- **Cards you hold:** `MemberCard` (Club) and `GiftCardArt` are credit-card proportioned (1.586:1) with the monogram, wide-tracked uppercase labels and a slow light sweep; the member card tilts when dragged.
+- **Barbershop page:** a photo header with the name over a dark gradient, then numbered action cards ("01 — Book a chair", "02 — Private hire", "03 — Delivery") that alternate dark and light, black and white only, with the arrow in a contrasting circle. Shop tiles on Home reuse the photo-with-gradient look.
 - **Step flow:** `StepCard` + `StepConnector` (try-on, booking). Active step has the black edge, done steps a check, upcoming steps are dimmed.
 - **Photography:** the hero carousel (with dots), service tiles and AI Try-On panel use the photos listed in `src/lib/brandMedia.ts`; tiles without a photo fall back to line art on black.
 

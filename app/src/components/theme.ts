@@ -27,10 +27,9 @@ export const colors = {
   inkMuted: "rgba(244, 242, 238, 0.62)",
   inkLine: "rgba(244, 242, 238, 0.16)",
 
-  // Gold — a touch of light: service tiles, the barber wheel, barbershop action cards
-  neon: "#F2B53A",
-  neonBright: "#FFD27A",
-  goldInk: "#8A5A0B", // gold for text and lines on light backgrounds (≥4.5:1 on white)
+  // Gold — used sparingly, always solid: star ratings and the "#1" badge
+  gold: "#C9A04A", // fills (#1 badge) and stars on dark
+  goldInk: "#9A7114", // stars on the light page (≥3:1 on bg)
 
   // Status
   danger: "#B42318",
@@ -58,12 +57,6 @@ export const shadow = Platform.select({
 export const emphasis = Platform.select({
   web: { boxShadow: "0 0 0 1px #0B0B0B, 0 10px 28px rgba(0,0,0,0.08)" },
   default: { shadowColor: "#000", shadowOpacity: 0.1, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 4 },
-}) as object;
-
-/** Gold neon edge-light for the service tiles. */
-export const neonGlow = Platform.select({
-  web: { boxShadow: "0 0 0 1px rgba(255,210,122,0.55), 0 0 14px rgba(242,181,58,0.55), 0 0 32px rgba(242,181,58,0.25), inset 0 0 22px rgba(242,181,58,0.28)" },
-  default: { shadowColor: "#F2B53A", shadowOpacity: 0.75, shadowRadius: 12, shadowOffset: { width: 0, height: 0 }, elevation: 8 },
 }) as object;
 
 /** Lift for black buttons and floating controls. */

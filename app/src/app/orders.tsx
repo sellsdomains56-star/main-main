@@ -83,7 +83,12 @@ export default function Orders() {
           {o.fulfilment === "delivery" && o.status !== "pending_payment" && o.status !== "cancelled" && <DeliveryTracker order={o} />}
           <Row style={{ justifyContent: "space-between", marginTop: 12 }}>
             <T variant="heading">{money(o.amount, o.currency)}</T>
-            {o.status === "pending_payment" && <Button title="Pay now" size="sm" onPress={() => router.push({ pathname: "/order/[orderId]", params: { orderId: o.id } })} />}
+            {o.status === "pending_payment" && (
+              <Row gap={6}>
+                <Button title="Cancel" size="sm" variant="ghost" onPress={() => api.cancelOrder(o.id).then(load, (e: Error) => setError(e.message))} />
+                <Button title="Pay now" size="sm" onPress={() => router.push({ pathname: "/order/[orderId]", params: { orderId: o.id } })} />
+              </Row>
+            )}
           </Row>
         </Card>
       ))}

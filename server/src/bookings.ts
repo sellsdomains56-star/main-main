@@ -3,6 +3,7 @@ import { busy } from "./busy.js";
 import { cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError } from "./common.js";
 import { config } from "./config.js";
 import { db, newId, save } from "./db.js";
+import { applyPerks, priceBooking } from "./club.js";
 import { bookingConfirmed } from "./notify.js";
 import { createPaymentIntent } from "./payments.js";
 import { SHOPS } from "./seed.js";
@@ -18,7 +19,9 @@ export function bookingView(b: Booking) {
     paymentIntentId: undefined,
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: cityOf(barber).timeZone },
     shop: shop ? { id: shop.id, name: shop.name } : null,
-    customerName: customer?.name ?? "Customer",
+    customerName: b.guest?.name ?? customer?.name ?? "Customer",
+    bookedBy: b.guest ? customer?.name ?? null : null,
+    customerPreferences: customer?.preferences ?? null, // "My chair": shown to the barber
     service: findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined),
     // Video consultations: the barber's Google Meet link, once the booking is confirmed.
     videoLink: b.locationType === "video" && ["confirmed", "on_the_way"].includes(b.status) ? barber.videoLink ?? null : null,
@@ -33,6 +36,10 @@ export const NewBooking = z.object({
   address: z.string().default(""),
   phone: z.string().trim().max(30).default(""),
   notes: z.string().max(1000).default(""),
+  // Home visits: what kind of place, and the details the barber needs to get in (room, berth, gate code…).
+  venue: z.object({ kind: z.enum(["home", "hotel", "yacht", "office"]), details: z.string().trim().max(300).default("") }).optional(),
+  // Booking for someone else (a guest, family member or client).
+  guest: z.object({ name: z.string().trim().min(1).max(60), phone: z.string().trim().max(30).default("") }).optional(),
 });
 
 /** Checks the slot is still free, stores the booking and starts the payment (free consultations confirm straight away). */
@@ -66,13 +73,19 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
     address: body.locationType === "home" ? body.address.trim() : body.locationType === "shop" ? barber.shopAddress : body.locationType === "video" ? "Video call · Google Meet" : "Phone call",
     phone: body.locationType === "phone" ? body.phone : undefined,
     notes: body.notes,
-    amount: service.price + (body.locationType === "home" ? barber.homeVisitFee : 0),
+    amount: 0, // priced below: Club coverage, then gift-card credit
     currency: findCountry(barber.countryCode)!.currency,
+    venue: body.locationType === "home" ? body.venue : undefined,
+    guest: body.guest,
     status: "pending_payment",
     reviewed: false,
     createdAt: new Date().toISOString(),
   };
-  // Free bookings (consultations) are confirmed straight away — nothing to pay.
+  const customer = db.users.find((u) => u.id === customerId);
+  const price = priceBooking(customer, barber, service, body.locationType, booking.currency);
+  booking.amount = price.amount;
+  if (customer) applyPerks(customer, booking, price.covered, price.creditUsed);
+  // Nothing left to pay (consultations, Club cuts, gift credit): confirmed straight away.
   if (booking.amount === 0) {
     booking.status = "confirmed";
     db.bookings.push(booking);
