@@ -1,0 +1,9 @@
+{
+  "name": "premiere-arabic-transcriber",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Adobe Premiere Pro panel that transcribes Arabic speech into captions.",
+  "scripts": {
+    "test": "node test/run-tests.js"
+  }
+}

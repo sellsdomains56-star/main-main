@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lets you inspect the panel in Chrome at http://localhost:8098 while Premiere is running. -->
+<ExtensionList>
+  <Extension Id="com.arabictranscriber.panel.main">
+    <HostList>
+      <Host Name="PPRO" Port="8098" />
+    </HostList>
+  </Extension>
+</ExtensionList>
