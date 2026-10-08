@@ -61,7 +61,7 @@
     </div>
   </div>`;
   document.body.insertAdjacentHTML('beforeend', `
-<footer class="site-footer" data-ridges>${footerCta}
+<footer class="site-footer" data-ridges="band">${footerCta}
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <svg viewBox="0 0 264 84" role="img" aria-label="HAVA"><use href="#hava-wordmark"/></svg>

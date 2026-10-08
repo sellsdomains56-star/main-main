@@ -1,0 +1,179 @@
+/* HAVA catalogue: A4 landscape. Same brand as the website: deep river blue, icy white, brushed gold,
+   Archivo wide for headlines, Bodoni Moda italic as the accent, and the brand-book mountains. */
+@page { size: 297mm 210mm; margin: 0; }
+:root {
+  --black: #03141C; --deep: #0A3A4C; --river: #0D4A60;
+  --ice: #CFE4EA; --fog: #F1F6F8; --pale: #EAF2F6; --ink: #0A2330;
+  --gold: #C9A66B; --gold-hi: #E8CF9C; --gold-ink: #85642C;
+  --mist: #8FADB9; --stone: #4A5F68;
+  --rule-ink: rgba(10, 35, 48, .16); --rule: rgba(207, 228, 234, .2);
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --accent: "Bodoni Moda", Didot, Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #777; }
+body { font-family: var(--display); font-size: 9.6pt; line-height: 1.55; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+img { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+
+.page { position: relative; width: 297mm; height: 210mm; overflow: hidden; break-after: page; padding: 16mm 18mm 22mm; isolation: isolate; }
+.page:last-child { break-after: auto; }
+.light { background: var(--pale); color: var(--ink); }
+.dark { background: var(--black); color: var(--fog); }
+.bleed { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.ridge { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 62mm; object-fit: cover; object-position: 50% 100%; z-index: -1; }
+
+/* Type */
+.eyebrow { display: inline-flex; align-items: center; gap: 3mm; font-weight: 700; font-size: 7pt; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-ink); }
+.eyebrow::before { content: ""; width: 8mm; height: .5mm; background: currentColor; }
+.dark .eyebrow, .cover .eyebrow, .back .eyebrow { color: var(--gold); }
+.display { font-weight: 800; font-stretch: 125%; text-transform: uppercase; letter-spacing: -.01em; line-height: .93; font-size: 34pt; }
+.display em, .name em, h3 em, td em { font-family: var(--accent); font-style: italic; font-weight: 500; font-stretch: 100%; text-transform: none; letter-spacing: 0; color: var(--gold-ink); }
+.dark .display em, .back .display em { color: var(--gold-hi); }
+.lead { font-size: 11pt; line-height: 1.6; color: var(--stone); max-width: 120mm; }
+.dark .lead { color: var(--ice); }
+.big { font-size: 14pt; line-height: 1.4; font-weight: 500; }
+p { max-width: 130mm; }
+
+/* Folio */
+.folio { position: absolute; left: 18mm; right: 18mm; bottom: 8mm; display: flex; align-items: center; gap: 5mm; font-size: 6.5pt; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--stone); }
+.folio .wordmark { width: 16mm; height: auto; color: var(--ink); }
+.folio .num { margin-left: auto; font-variant-numeric: tabular-nums; }
+.dark .folio { color: var(--ice); }
+.dark .folio .wordmark { color: var(--fog); }
+
+/* 1 · Cover */
+.cover { padding: 0; color: var(--fog); background: var(--black); }
+.cover-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(3, 20, 28, .55) 0%, transparent 22%, transparent 68%, rgba(3, 20, 28, .85) 100%); }
+.cover-top { position: absolute; top: 12mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; align-items: center; font-size: 7pt; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--ice); }
+.cover-top .wordmark { width: 30mm; color: var(--fog); }
+.cover-word { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 112mm 1fr; align-items: center; padding: 0 16mm; }
+.cover-word span { display: flex; gap: 7mm; }
+.cover-word span:first-child { justify-self: end; }
+.cover-word span:last-child { grid-column: 3; }
+.cover-word svg { height: 34mm; width: auto; overflow: visible; }
+.cover-word path { fill: none; stroke: var(--fog); stroke-width: 1.6; }
+.cover-foot { position: absolute; left: 0; right: 0; bottom: 14mm; text-align: center; }
+.cover-sub { display: inline-flex; align-items: center; gap: 6mm; font-size: 11pt; font-weight: 700; letter-spacing: .5em; text-transform: uppercase; color: var(--gold-hi); max-width: none; }
+.cover-sub::before, .cover-sub::after { content: ""; width: 14mm; height: .5mm; background: currentColor; }
+.cover-note { margin: 3mm auto 0; font-size: 8pt; letter-spacing: .2em; text-transform: uppercase; color: var(--ice); max-width: none; }
+
+/* 2 · Who is HAVA (split) */
+.split { display: grid; grid-template-columns: 1fr 112mm; gap: 14mm; padding-right: 0; padding-top: 0; padding-bottom: 0; }
+.split .copy { display: flex; flex-direction: column; justify-content: center; gap: 5mm; padding: 16mm 0 26mm; }
+.split .photo { position: relative; height: 210mm; }
+.split .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; margin-top: 3mm; }
+.pillars li { display: grid; gap: 1.5mm; padding-top: 3mm; border-top: .6mm solid var(--gold-ink); }
+.pillars b { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 7.5pt; letter-spacing: .06em; }
+.pillars span { font-size: 8pt; color: var(--stone); line-height: 1.45; }
+.who .display { font-size: 38pt; }
+
+/* 3 · Why Sweden */
+.why { color: var(--fog); }
+.bleed.dim { filter: brightness(.55); }
+.why-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(3, 20, 28, .82) 0%, rgba(3, 20, 28, .4) 60%, rgba(3, 20, 28, .25) 100%); }
+.why-head { display: grid; gap: 5mm; max-width: 150mm; }
+.why .display { font-size: 38pt; }
+.stats { position: absolute; left: 18mm; right: 18mm; bottom: 34mm; display: grid; grid-template-columns: repeat(4, 1fr); border-top: .6mm solid var(--gold); }
+.stat { display: grid; gap: 1.5mm; align-content: start; padding: 5mm 5mm 0 0; }
+.stat + .stat { padding-left: 5mm; border-left: 1px solid var(--rule); }
+.stat .n { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 26pt; line-height: 1; color: var(--fog); }
+.stat .n sup { font-size: 7pt; vertical-align: super; color: var(--gold); margin-left: 1mm; }
+.stat .u { font-size: 7pt; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.stat p { font-size: 8pt; color: var(--ice); line-height: 1.45; }
+.sources { position: absolute; left: 18mm; right: 18mm; bottom: 15mm; font-size: 6pt; color: var(--mist); max-width: none; }
+
+/* Section heads */
+.head { display: grid; gap: 4mm; margin-bottom: 9mm; }
+.head.row { grid-template-columns: 1fr 100mm; align-items: end; gap: 12mm; }
+.head .side { display: grid; gap: 4mm; }
+
+/* 4 · From sky to bottle */
+.chapters { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5mm; }
+.chapters article { display: grid; gap: 2mm; align-content: start; }
+.chapters .ph { height: 62mm; overflow: hidden; margin-bottom: 2mm; }
+.chapters .ph img { width: 100%; height: 100%; object-fit: cover; }
+.chapters .num, .lc .num { font-weight: 800; font-stretch: 125%; font-size: 8pt; letter-spacing: .14em; color: var(--gold-ink); }
+.chapters h3 { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 10pt; line-height: 1.1; }
+.chapters p { font-size: 8pt; color: var(--stone); line-height: 1.45; }
+
+/* 5 · Collection */
+.lineup { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5mm; }
+.lc { display: grid; grid-template-columns: auto 1fr; gap: 1.5mm 3mm; align-items: baseline; }
+.lc .ph { grid-column: 1 / -1; height: 82mm; overflow: hidden; margin-bottom: 2mm; background: #D6E3EA; }
+.lc .ph img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.22); }
+.lc h3 { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 10pt; line-height: 1.1; }
+.lc .size { grid-column: 2; font-size: 7pt; font-weight: 700; letter-spacing: .1em; color: var(--stone); }
+
+/* 6 · 7 · Products */
+.product { display: grid; grid-template-columns: 120mm 1fr; padding: 0; }
+.product.flip { grid-template-columns: 1fr 120mm; }
+.product .photo { position: relative; height: 210mm; }
+.product .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.product .copy { display: flex; flex-direction: column; justify-content: center; gap: 5mm; padding: 16mm 18mm 28mm 16mm; }
+.product.flip .copy { padding: 16mm 16mm 28mm 18mm; }
+.name { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 40pt; line-height: .92; }
+.sizecards { display: grid; grid-template-columns: repeat(3, 30mm); gap: 3mm; margin-top: 2mm; }
+.sizecards li { display: grid; gap: 1.5mm; padding: 3.5mm; border: .4mm solid var(--rule-ink); }
+.sizecards b { font-weight: 800; font-stretch: 125%; font-size: 15pt; line-height: 1; }
+.sizecards span { font-size: 6.5pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-ink); }
+.thumbs { display: grid; grid-template-columns: repeat(3, 30mm); gap: 3mm; }
+.thumbs img { width: 30mm; height: 40mm; object-fit: cover; transform: none; }
+
+/* 8 · Flavours */
+.badges { display: flex; flex-wrap: wrap; gap: 2mm; }
+.badges li { display: inline-flex; align-items: center; gap: 2mm; padding: 1.6mm 3mm; border: .35mm solid var(--rule-ink); border-radius: 10mm; font-size: 6.5pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.badges li::before { content: ""; width: 1.4mm; height: 1.4mm; border-radius: 50%; background: var(--gold-ink); }
+.ftiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm 7mm; }
+.ft { display: grid; grid-template-columns: 34mm 1fr; grid-template-rows: auto 1fr; gap: 1mm 4mm; align-items: start; }
+.ft .ph { grid-row: 1 / span 2; height: 25mm; overflow: hidden; }
+.ft .ph img { width: 100%; height: 100%; object-fit: cover; }
+.ft h3 { display: flex; align-items: center; gap: 2mm; padding-top: 1mm; font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 9pt; }
+.ft h3::before { content: ""; width: 2.2mm; height: 2.2mm; border-radius: 50%; background: var(--c); }
+.ft p { font-size: 7.5pt; color: var(--stone); line-height: 1.4; }
+.flavours .display { font-size: 36pt; }
+
+/* 9 · Range */
+.range { display: grid; grid-template-columns: 1fr 120mm; gap: 14mm; align-items: center; }
+.range .photo img { width: 100%; height: 118mm; object-fit: cover; }
+.range .copy { display: grid; gap: 6mm; }
+.spec { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+.spec th { text-align: left; font-size: 6.5pt; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ink); padding: 0 0 2mm; border-bottom: .6mm solid var(--ink); }
+.spec td { padding: 2.2mm 0; border-bottom: 1px solid var(--rule-ink); }
+.spec td.pn { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 8pt; }
+.note { font-size: 8pt; color: var(--stone); }
+
+/* 10 · Order */
+.order { display: grid; grid-template-columns: 92mm 1fr; gap: 12mm; }
+.steps { display: grid; align-content: start; gap: 5mm; }
+.steps ol { display: grid; gap: 4mm; counter-reset: s; margin-top: 2mm; }
+.steps li { display: grid; grid-template-columns: 9mm 1fr; gap: 1mm 3mm; counter-increment: s; }
+.steps li::before { content: "0" counter(s); grid-row: span 2; font-weight: 800; font-stretch: 125%; font-size: 12pt; color: var(--gold-ink); }
+.steps b { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 9pt; }
+.steps span { font-size: 8.5pt; color: var(--stone); }
+.steps .for { font-size: 8.5pt; color: var(--stone); padding-top: 3mm; border-top: .5mm solid var(--gold-ink); }
+.form { background: rgba(255, 255, 255, .82); padding: 7mm 8mm; border: 1px solid var(--rule-ink); }
+.form h3 { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 11pt; margin-bottom: 3mm; }
+.orderlist { font-size: 7.5pt; }
+.orderlist td { padding: 1.2mm 0; }
+.orderlist td.pn { font-size: 7pt; }
+.orderlist td.fill { width: 30mm; border-bottom: 1px solid var(--ink); }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm 8mm; margin-top: 5mm; }
+.field { display: grid; grid-template-columns: auto 1fr; gap: 3mm; align-items: end; font-size: 6.5pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-ink); }
+.field i { border-bottom: 1px solid var(--ink); height: 5mm; }
+.field.wide { grid-column: 1 / -1; }
+
+/* 11 · Back */
+.back { color: var(--fog); background: var(--black); padding: 18mm; }
+.back-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(3, 20, 28, .9) 0%, rgba(3, 20, 28, .55) 55%, rgba(3, 20, 28, .2) 100%); }
+.back-copy { display: grid; gap: 6mm; max-width: 140mm; margin-top: 18mm; }
+.back .display { font-size: 44pt; }
+.contact { display: grid; gap: 3mm; margin-top: 4mm; width: 110mm; }
+.cline { display: grid; grid-template-columns: 22mm 1fr; align-items: end; gap: 3mm; font-size: 7pt; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.cline b { font-size: 10pt; letter-spacing: 0; text-transform: none; color: var(--fog); }
+.cline i { border-bottom: 1px solid var(--ice); height: 6mm; opacity: .7; }
+.back-brand { position: absolute; left: 18mm; bottom: 16mm; display: flex; align-items: center; gap: 6mm; }
+.back-brand .wordmark { width: 38mm; color: var(--fog); }
+.back-brand p { font-size: 8pt; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--ice); max-width: none; }
+.back-brand .mark { width: 9mm; height: 9mm; color: var(--gold); }

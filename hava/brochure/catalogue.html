@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HAVA · Catalogue 2026</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..700&display=swap">
+<style>
+/* HAVA catalogue: A4 landscape. Same brand as the website: deep river blue, icy white, brushed gold,
+   Archivo wide for headlines, Bodoni Moda italic as the accent, and the brand-book mountains. */
+@page { size: 297mm 210mm; margin: 0; }
+:root {
+  --black: #03141C; --deep: #0A3A4C; --river: #0D4A60;
+  --ice: #CFE4EA; --fog: #F1F6F8; --pale: #EAF2F6; --ink: #0A2330;
+  --gold: #C9A66B; --gold-hi: #E8CF9C; --gold-ink: #85642C;
+  --mist: #8FADB9; --stone: #4A5F68;
+  --rule-ink: rgba(10, 35, 48, .16); --rule: rgba(207, 228, 234, .2);
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --accent: "Bodoni Moda", Didot, Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #777; }
+body { font-family: var(--display); font-size: 9.6pt; line-height: 1.55; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+img { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+
+.page { position: relative; width: 297mm; height: 210mm; overflow: hidden; break-after: page; padding: 16mm 18mm 22mm; isolation: isolate; }
+.page:last-child { break-after: auto; }
+.light { background: var(--pale); color: var(--ink); }
+.dark { background: var(--black); color: var(--fog); }
+.bleed { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.ridge { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 62mm; object-fit: cover; object-position: 50% 100%; z-index: -1; }
+
+/* Type */
+.eyebrow { display: inline-flex; align-items: center; gap: 3mm; font-weight: 700; font-size: 7pt; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-ink); }
+.eyebrow::before { content: ""; width: 8mm; height: .5mm; background: currentColor; }
+.dark .eyebrow, .cover .eyebrow, .back .eyebrow { color: var(--gold); }
+.display { font-weight: 800; font-stretch: 125%; text-transform: uppercase; letter-spacing: -.01em; line-height: .93; font-size: 34pt; }
+.display em, .name em, h3 em, td em { font-family: var(--accent); font-style: italic; font-weight: 500; font-stretch: 100%; text-transform: none; letter-spacing: 0; color: var(--gold-ink); }
+.dark .display em, .back .display em { color: var(--gold-hi); }
+.lead { font-size: 11pt; line-height: 1.6; color: var(--stone); max-width: 120mm; }
+.dark .lead { color: var(--ice); }
+.big { font-size: 14pt; line-height: 1.4; font-weight: 500; }
+p { max-width: 130mm; }
+
+/* Folio */
+.folio { position: absolute; left: 18mm; right: 18mm; bottom: 8mm; display: flex; align-items: center; gap: 5mm; font-size: 6.5pt; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--stone); }
+.folio .wordmark { width: 16mm; height: auto; color: var(--ink); }
+.folio .num { margin-left: auto; font-variant-numeric: tabular-nums; }
+.dark .folio { color: var(--ice); }
+.dark .folio .wordmark { color: var(--fog); }
+
+/* 1 · Cover */
+.cover { padding: 0; color: var(--fog); background: var(--black); }
+.cover-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(3, 20, 28, .55) 0%, transparent 22%, transparent 68%, rgba(3, 20, 28, .85) 100%); }
+.cover-top { position: absolute; top: 12mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; align-items: center; font-size: 7pt; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--ice); }
+.cover-top .wordmark { width: 30mm; color: var(--fog); }
+.cover-word { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 112mm 1fr; align-items: center; padding: 0 16mm; }
+.cover-word span { display: flex; gap: 7mm; }
+.cover-word span:first-child { justify-self: end; }
+.cover-word span:last-child { grid-column: 3; }
+.cover-word svg { height: 34mm; width: auto; overflow: visible; }
+.cover-word path { fill: none; stroke: var(--fog); stroke-width: 1.6; }
+.cover-foot { position: absolute; left: 0; right: 0; bottom: 14mm; text-align: center; }
+.cover-sub { display: inline-flex; align-items: center; gap: 6mm; font-size: 11pt; font-weight: 700; letter-spacing: .5em; text-transform: uppercase; color: var(--gold-hi); max-width: none; }
+.cover-sub::before, .cover-sub::after { content: ""; width: 14mm; height: .5mm; background: currentColor; }
+.cover-note { margin: 3mm auto 0; font-size: 8pt; letter-spacing: .2em; text-transform: uppercase; color: var(--ice); max-width: none; }
+
+/* 2 · Who is HAVA (split) */
+.split { display: grid; grid-template-columns: 1fr 112mm; gap: 14mm; padding-right: 0; padding-top: 0; padding-bottom: 0; }
+.split .copy { display: flex; flex-direction: column; justify-content: center; gap: 5mm; padding: 16mm 0 26mm; }
+.split .photo { position: relative; height: 210mm; }
+.split .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; margin-top: 3mm; }
+.pillars li { display: grid; gap: 1.5mm; padding-top: 3mm; border-top: .6mm solid var(--gold-ink); }
+.pillars b { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 7.5pt; letter-spacing: .06em; }
+.pillars span { font-size: 8pt; color: var(--stone); line-height: 1.45; }
+.who .display { font-size: 38pt; }
+
+/* 3 · Why Sweden */
+.why { color: var(--fog); }
+.bleed.dim { filter: brightness(.55); }
+.why-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(3, 20, 28, .82) 0%, rgba(3, 20, 28, .4) 60%, rgba(3, 20, 28, .25) 100%); }
+.why-head { display: grid; gap: 5mm; max-width: 150mm; }
+.why .display { font-size: 38pt; }
+.stats { position: absolute; left: 18mm; right: 18mm; bottom: 34mm; display: grid; grid-template-columns: repeat(4, 1fr); border-top: .6mm solid var(--gold); }
+.stat { display: grid; gap: 1.5mm; align-content: start; padding: 5mm 5mm 0 0; }
+.stat + .stat { padding-left: 5mm; border-left: 1px solid var(--rule); }
+.stat .n { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 26pt; line-height: 1; color: var(--fog); }
+.stat .n sup { font-size: 7pt; vertical-align: super; color: var(--gold); margin-left: 1mm; }
+.stat .u { font-size: 7pt; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.stat p { font-size: 8pt; color: var(--ice); line-height: 1.45; }
+.sources { position: absolute; left: 18mm; right: 18mm; bottom: 15mm; font-size: 6pt; color: var(--mist); max-width: none; }
+
+/* Section heads */
+.head { display: grid; gap: 4mm; margin-bottom: 9mm; }
+.head.row { grid-template-columns: 1fr 100mm; align-items: end; gap: 12mm; }
+.head .side { display: grid; gap: 4mm; }
+
+/* 4 · From sky to bottle */
+.chapters { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5mm; }
+.chapters article { display: grid; gap: 2mm; align-content: start; }
+.chapters .ph { height: 62mm; overflow: hidden; margin-bottom: 2mm; }
+.chapters .ph img { width: 100%; height: 100%; object-fit: cover; }
+.chapters .num, .lc .num { font-weight: 800; font-stretch: 125%; font-size: 8pt; letter-spacing: .14em; color: var(--gold-ink); }
+.chapters h3 { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 10pt; line-height: 1.1; }
+.chapters p { font-size: 8pt; color: var(--stone); line-height: 1.45; }
+
+/* 5 · Collection */
+.lineup { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5mm; }
+.lc { display: grid; grid-template-columns: auto 1fr; gap: 1.5mm 3mm; align-items: baseline; }
+.lc .ph { grid-column: 1 / -1; height: 82mm; overflow: hidden; margin-bottom: 2mm; background: #D6E3EA; }
+.lc .ph img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.22); }
+.lc h3 { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 10pt; line-height: 1.1; }
+.lc .size { grid-column: 2; font-size: 7pt; font-weight: 700; letter-spacing: .1em; color: var(--stone); }
+
+/* 6 · 7 · Products */
+.product { display: grid; grid-template-columns: 120mm 1fr; padding: 0; }
+.product.flip { grid-template-columns: 1fr 120mm; }
+.product .photo { position: relative; height: 210mm; }
+.product .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.product .copy { display: flex; flex-direction: column; justify-content: center; gap: 5mm; padding: 16mm 18mm 28mm 16mm; }
+.product.flip .copy { padding: 16mm 16mm 28mm 18mm; }
+.name { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 40pt; line-height: .92; }
+.sizecards { display: grid; grid-template-columns: repeat(3, 30mm); gap: 3mm; margin-top: 2mm; }
+.sizecards li { display: grid; gap: 1.5mm; padding: 3.5mm; border: .4mm solid var(--rule-ink); }
+.sizecards b { font-weight: 800; font-stretch: 125%; font-size: 15pt; line-height: 1; }
+.sizecards span { font-size: 6.5pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-ink); }
+.thumbs { display: grid; grid-template-columns: repeat(3, 30mm); gap: 3mm; }
+.thumbs img { width: 30mm; height: 40mm; object-fit: cover; transform: none; }
+
+/* 8 · Flavours */
+.badges { display: flex; flex-wrap: wrap; gap: 2mm; }
+.badges li { display: inline-flex; align-items: center; gap: 2mm; padding: 1.6mm 3mm; border: .35mm solid var(--rule-ink); border-radius: 10mm; font-size: 6.5pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.badges li::before { content: ""; width: 1.4mm; height: 1.4mm; border-radius: 50%; background: var(--gold-ink); }
+.ftiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm 7mm; }
+.ft { display: grid; grid-template-columns: 34mm 1fr; grid-template-rows: auto 1fr; gap: 1mm 4mm; align-items: start; }
+.ft .ph { grid-row: 1 / span 2; height: 25mm; overflow: hidden; }
+.ft .ph img { width: 100%; height: 100%; object-fit: cover; }
+.ft h3 { display: flex; align-items: center; gap: 2mm; padding-top: 1mm; font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 9pt; }
+.ft h3::before { content: ""; width: 2.2mm; height: 2.2mm; border-radius: 50%; background: var(--c); }
+.ft p { font-size: 7.5pt; color: var(--stone); line-height: 1.4; }
+.flavours .display { font-size: 36pt; }
+
+/* 9 · Range */
+.range { display: grid; grid-template-columns: 1fr 120mm; gap: 14mm; align-items: center; }
+.range .photo img { width: 100%; height: 118mm; object-fit: cover; }
+.range .copy { display: grid; gap: 6mm; }
+.spec { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+.spec th { text-align: left; font-size: 6.5pt; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ink); padding: 0 0 2mm; border-bottom: .6mm solid var(--ink); }
+.spec td { padding: 2.2mm 0; border-bottom: 1px solid var(--rule-ink); }
+.spec td.pn { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 8pt; }
+.note { font-size: 8pt; color: var(--stone); }
+
+/* 10 · Order */
+.order { display: grid; grid-template-columns: 92mm 1fr; gap: 12mm; }
+.steps { display: grid; align-content: start; gap: 5mm; }
+.steps ol { display: grid; gap: 4mm; counter-reset: s; margin-top: 2mm; }
+.steps li { display: grid; grid-template-columns: 9mm 1fr; gap: 1mm 3mm; counter-increment: s; }
+.steps li::before { content: "0" counter(s); grid-row: span 2; font-weight: 800; font-stretch: 125%; font-size: 12pt; color: var(--gold-ink); }
+.steps b { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 9pt; }
+.steps span { font-size: 8.5pt; color: var(--stone); }
+.steps .for { font-size: 8.5pt; color: var(--stone); padding-top: 3mm; border-top: .5mm solid var(--gold-ink); }
+.form { background: rgba(255, 255, 255, .82); padding: 7mm 8mm; border: 1px solid var(--rule-ink); }
+.form h3 { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 11pt; margin-bottom: 3mm; }
+.orderlist { font-size: 7.5pt; }
+.orderlist td { padding: 1.2mm 0; }
+.orderlist td.pn { font-size: 7pt; }
+.orderlist td.fill { width: 30mm; border-bottom: 1px solid var(--ink); }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm 8mm; margin-top: 5mm; }
+.field { display: grid; grid-template-columns: auto 1fr; gap: 3mm; align-items: end; font-size: 6.5pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-ink); }
+.field i { border-bottom: 1px solid var(--ink); height: 5mm; }
+.field.wide { grid-column: 1 / -1; }
+
+/* 11 · Back */
+.back { color: var(--fog); background: var(--black); padding: 18mm; }
+.back-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(3, 20, 28, .9) 0%, rgba(3, 20, 28, .55) 55%, rgba(3, 20, 28, .2) 100%); }
+.back-copy { display: grid; gap: 6mm; max-width: 140mm; margin-top: 18mm; }
+.back .display { font-size: 44pt; }
+.contact { display: grid; gap: 3mm; margin-top: 4mm; width: 110mm; }
+.cline { display: grid; grid-template-columns: 22mm 1fr; align-items: end; gap: 3mm; font-size: 7pt; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.cline b { font-size: 10pt; letter-spacing: 0; text-transform: none; color: var(--fog); }
+.cline i { border-bottom: 1px solid var(--ice); height: 6mm; opacity: .7; }
+.back-brand { position: absolute; left: 18mm; bottom: 16mm; display: flex; align-items: center; gap: 6mm; }
+.back-brand .wordmark { width: 38mm; color: var(--fog); }
+.back-brand p { font-size: 8pt; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--ice); max-width: none; }
+.back-brand .mark { width: 9mm; height: 9mm; color: var(--gold); }
+
+</style>
+</head>
+<body>
+<section class="page cover">
+  <img class="bleed" src="img/cover-waterfall.jpg" alt="">
+  <div class="cover-shade"></div>
+  <div class="cover-top"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Catalogue 2026</span></div>
+  <div class="cover-word" aria-hidden="true">
+    <span><svg viewBox="0 0 48 64"><path d="M4 2V62M44 2V62M4 32H44"/></svg><svg viewBox="0 0 60 64"><path d="M2 62L30 2L58 62"/></svg></span>
+    <span><svg viewBox="0 0 60 64"><path d="M2 2L30 62L58 2"/></svg><svg viewBox="0 0 60 64"><path d="M2 62L30 2L58 62"/></svg></span>
+  </div>
+  <div class="cover-foot">
+    <p class="cover-sub">Water from Sweden</p>
+    <p class="cover-note">Still &amp; sparkling water · Nine sparkling flavours</p>
+  </div></section>
+<section class="page light split who"><img class="ridge" src="img/ridge-ink.png" alt="">
+  <div class="copy">
+    <span class="eyebrow">Who is HAVA?</span>
+    <h1 class="display">Sweden, in a <em>bottle.</em></h1>
+    <p class="big">HAVA began with a simple idea: water this pure deserves a bottle as beautiful as the place it comes from.</p>
+    <p>HAVA is still and sparkling water from Sweden, a land of ancient granite, deep pine forest and around 100,000 lakes. We bottle it in heavy clear glass with a brushed gold cap and four letters, drawn as clean as the Swedish landscape. For the dinner table, the hotel room, the bar and the day.</p>
+    <ul class="pillars">
+      <li><b>Still &amp; sparkling</b><span>Soft and quiet, or with fine, lively bubbles.</span></li>
+      <li><b>Glass &amp; gold</b><span>Heavy clear glass, brushed gold caps, made for the table.</span></li>
+      <li><b>Nine flavours</b><span>Sparkling cans with natural fruit flavours and no preservatives.</span></li>
+    </ul>
+  </div>
+  <div class="photo"><img src="img/p/still-interior.jpg" style="object-position:66% 50%" alt=""></div><footer class="folio"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Water from Sweden</span><span class="num">02</span></footer></section>
+<section class="page dark why"><img class="ridge" src="img/ridge-ice.png" alt="">
+  <img class="bleed" src="img/lake-sunrise-dark.jpg" alt="">
+  <div class="why-shade"></div>
+  <div class="why-head">
+    <span class="eyebrow">Why Sweden</span>
+    <h2 class="display">Where HAVA <em>begins.</em></h2>
+    <p class="lead">Sweden is a land of ancient granite, deep pine forest and around 100,000 lakes. Rain and snowmelt sink slowly through the stone and come back up cold and clear.</p>
+  </div>
+  <div class="stats"><div class="stat"><span class="n">100,000<sup>1</sup></span><span class="u">Lakes</span><p>Sweden has nearly 100,000 lakes larger than one hectare.</p></div><div class="stat"><span class="n">69%<sup>2</sup></span><span class="u">Forest</span><p>Around 69 percent of Sweden&#x27;s land is covered by forest.</p></div><div class="stat"><span class="n">2<sup>3</sup></span><span class="u">Billion years</span><p>Most of Sweden&#x27;s bedrock is between 1.65 and 2 billion years old.</p></div><div class="stat"><span class="n">Top 10<sup>4</sup></span><span class="u">In the world</span><p>Sweden ranks in the world&#x27;s top 10 for safe drinking water and sanitation.</p></div></div>
+  <p class="sources">1 SMHI, Sveriges sjöar · 2 Swedish National Forest Inventory, via Statistics Sweden · 3 Geological Survey of Sweden (SGU) · 4 Yale Environmental Performance Index 2024, Sanitation &amp; Drinking Water (10th, score 98.5)</p><footer class="folio"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Water from Sweden</span><span class="num">03</span></footer></section>
+<section class="page light sky"><img class="ridge" src="img/ridge-ink.png" alt="">
+  <div class="head">
+    <span class="eyebrow">The source</span>
+    <h2 class="display">From sky to <em>bottle.</em></h2>
+  </div>
+  <div class="chapters"><article><div class="ph"><img src="img/p/lake.jpg" alt=""></div><span class="num">01</span><h3>Rain and snow</h3><p>Rain and winter snow fall on a quiet northern land of forest, lakes and open sky.</p></article><article><div class="ph"><img src="img/p/bottle-forest.jpg" alt=""></div><span class="num">02</span><h3>The forest</h3><p>Moss, roots and pine needles slow the water down on its way into the ground.</p></article><article><div class="ph"><img src="img/p/range-flatlay.jpg" alt=""></div><span class="num">03</span><h3>The stone</h3><p>Granite and gneiss, some of the oldest rock in Europe, give little to the water. It stays soft and light.</p></article><article><div class="ph"><img src="img/p/bottle-waterfall.jpg" alt=""></div><span class="num">04</span><h3>The ice</h3><p>The last ice sheet left long ridges of sand and gravel, eskers, that water passes through slowly and comes out clear.</p></article><article><div class="ph"><img src="img/p/still-arches.jpg" alt=""></div><span class="num">05</span><h3>The care</h3><p>In Sweden, drinking water is regulated as a food by the Swedish Food Agency.</p></article></div><footer class="folio"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Water from Sweden</span><span class="num">04</span></footer></section>
+<section class="page light collection"><img class="ridge" src="img/ridge-ink.png" alt="">
+  <div class="head row">
+    <div><span class="eyebrow">The collection</span><h2 class="display">Five ways to drink <em>HAVA.</em></h2></div>
+    <p class="lead">Glass bottles for the table, a light bottle for the day and a can for everywhere else.</p>
+  </div>
+  <div class="lineup"><article class="lc"><div class="ph"><img src="img/p/ice-still-1000.jpg" alt=""></div><span class="num">01</span><h3>HAVA <em>Still</em></h3><span class="size">1000 ml · Glass</span></article><article class="lc"><div class="ph"><img src="img/p/ice-still-700.jpg" alt=""></div><span class="num">02</span><h3>HAVA <em>Still</em></h3><span class="size">700 ml · Glass</span></article><article class="lc"><div class="ph"><img src="img/p/ice-still-500.jpg" alt=""></div><span class="num">03</span><h3>HAVA <em>Still</em></h3><span class="size">500 ml · Bottle</span></article><article class="lc"><div class="ph"><img src="img/p/ice-sparkling-700.jpg" alt=""></div><span class="num">04</span><h3>HAVA <em>Sparkling</em></h3><span class="size">700 ml · Glass</span></article><article class="lc"><div class="ph"><img src="img/p/flavours-blueberry.jpg" alt=""></div><span class="num">05</span><h3>Sparkling <em>flavours</em></h3><span class="size">330 ml · Can · 9 flavours</span></article></div><footer class="folio"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Water from Sweden</span><span class="num">05</span></footer></section>
+<section class="page light product"><img class="ridge" src="img/ridge-ink.png" alt="">
+  <div class="photo"><img src="img/p/ice-still-1000.jpg" alt=""></div>
+  <div class="copy">
+    <span class="eyebrow">01 · Still water</span>
+    <h2 class="name">HAVA <em>Still</em></h2>
+    <p class="big">Soft and quiet, for long dinners and slow mornings.</p>
+    <p>In heavy clear glass with a brushed gold cap, made to stand on the table. Three sizes, from the dining room to a bottle for the day.</p>
+    <ul class="sizecards"><li><b>1000</b><span>ml · Glass</span></li><li><b>700</b><span>ml · Glass</span></li><li><b>500</b><span>ml · Bottle</span></li></ul>
+    <div class="thumbs"><img src="img/p/ice-still-1000.jpg" alt=""><img src="img/p/ice-still-700.jpg" alt=""><img src="img/p/ice-still-500.jpg" alt=""></div>
+  </div><footer class="folio"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Water from Sweden</span><span class="num">06</span></footer></section>
+<section class="page light product flip"><img class="ridge" src="img/ridge-ink.png" alt="">
+  <div class="copy">
+    <span class="eyebrow">02 · Sparkling water</span>
+    <h2 class="name">HAVA <em>Sparkling</em></h2>
+    <p class="big">Fine, lively bubbles with a clean finish.</p>
+    <p>The same clear glass and gold cap, with fine, lively bubbles. Made for the aperitif, the dinner table and everything in between.</p>
+    <ul class="sizecards"><li><b>700</b><span>ml · Glass</span></li></ul>
+  </div>
+  <div class="photo"><img src="img/p/ice-sparkling-700.jpg" alt=""></div><footer class="folio"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Water from Sweden</span><span class="num">07</span></footer></section>
+<section class="page light flavours"><img class="ridge" src="img/ridge-ink.png" alt="">
+  <div class="head row">
+    <div><span class="eyebrow">03 · Sparkling flavours</span><h2 class="display">Nine <em>flavours.</em></h2></div>
+    <div class="side">
+      <p class="lead">Sparkling HAVA with natural fruit flavours and no preservatives. 330 ml cans.</p>
+      <ul class="badges"><li>Natural flavours</li><li>No preservatives</li><li>Swedish water</li></ul>
+    </div>
+  </div>
+  <div class="ftiles"><article class="ft" style="--c:#9ACD32"><div class="ph"><img src="img/p/flavours-lime.jpg" alt=""></div><h3>Lime</h3><p>Zesty and cool, with a squeeze of fresh lime.</p></article><article class="ft" style="--c:#D7263D"><div class="ph"><img src="img/p/flavours-strawberry.jpg" alt=""></div><h3>Strawberry</h3><p>Sweet and summery, like the first strawberries of June.</p></article><article class="ft" style="--c:#5B4BB7"><div class="ph"><img src="img/p/flavours-blueberry.jpg" alt=""></div><h3>Blueberry</h3><p>Deep and soft, like wild berries from the Swedish forest.</p></article><article class="ft" style="--c:#C2185B"><div class="ph"><img src="img/p/flavours-raspberry.jpg" alt=""></div><h3>Raspberry</h3><p>Bright and juicy, with a gentle tartness.</p></article><article class="ft" style="--c:#F0566B"><div class="ph"><img src="img/p/flavours-watermelon.jpg" alt=""></div><h3>Watermelon</h3><p>Light and fresh, for the hottest days of the year.</p></article><article class="ft" style="--c:#4E9A3E"><div class="ph"><img src="img/p/flavours-apple.jpg" alt=""></div><h3>Apple</h3><p>Crisp and clean, like an apple straight from the orchard.</p></article><article class="ft" style="--c:#F2A07B"><div class="ph"><img src="img/p/flavours-peach.jpg" alt=""></div><h3>Peach</h3><p>Soft and golden, with the gentle sweetness of ripe peach.</p></article><article class="ft" style="--c:#F28C1E"><div class="ph"><img src="img/p/flavours-orange.jpg" alt=""></div><h3>Orange</h3><p>Sunny and bright, with a twist of orange peel.</p></article><article class="ft" style="--c:#7D2E68"><div class="ph"><img src="img/p/flavours-berries.jpg" alt=""></div><h3>Mixed berries</h3><p>Raspberry, blueberry and blackberry, picked together.</p></article></div><footer class="folio"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Water from Sweden</span><span class="num">08</span></footer></section>
+<section class="page light range"><img class="ridge" src="img/ridge-ink.png" alt="">
+  <div class="photo"><img src="img/p/range-flatlay.jpg" alt=""></div>
+  <div class="copy">
+    <span class="eyebrow">The range</span>
+    <h2 class="display">Every <em>size.</em></h2>
+    <table class="spec"><thead><tr><th>Product</th><th>Size</th><th>Format</th></tr></thead><tbody><tr><td class="pn">HAVA <em>Still</em></td><td>1000 ml</td><td>Glass</td></tr><tr><td class="pn">HAVA <em>Still</em></td><td>700 ml</td><td>Glass</td></tr><tr><td class="pn">HAVA <em>Still</em></td><td>500 ml</td><td>Bottle</td></tr><tr><td class="pn">HAVA <em>Sparkling</em></td><td>700 ml</td><td>Glass</td></tr><tr><td class="pn">Sparkling <em>flavours</em></td><td>330 ml</td><td>Can</td></tr></tbody></table>
+    <p class="note"><b>Flavours:</b> Lime · Strawberry · Blueberry · Raspberry · Watermelon · Apple · Peach · Orange · Mixed berries.</p>
+  </div><footer class="folio"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Water from Sweden</span><span class="num">09</span></footer></section>
+<section class="page light order"><img class="ridge" src="img/ridge-ink.png" alt="">
+  <div class="steps">
+    <span class="eyebrow">Order</span>
+    <h2 class="display">How to <em>order.</em></h2>
+    <ol>
+      <li><b>Choose</b><span>Pick your products and quantities on the order form.</span></li>
+      <li><b>Send</b><span>Send the form to HAVA by email, or through the contact page on our website.</span></li>
+      <li><b>Receive</b><span>We reply with prices, minimum quantities and delivery dates.</span></li>
+    </ol>
+    <p class="for">For hotels, restaurants, shops and distributors.</p>
+  </div>
+  <div class="form">
+    <h3>Order form</h3>
+    <table class="spec orderlist"><thead><tr><th>Product</th><th>Size</th><th>Format</th><th>Quantity</th></tr></thead><tbody><tr><td class="pn">HAVA <em>Still</em></td><td>1000 ml</td><td>Glass</td><td class="fill"></td></tr><tr><td class="pn">HAVA <em>Still</em></td><td>700 ml</td><td>Glass</td><td class="fill"></td></tr><tr><td class="pn">HAVA <em>Still</em></td><td>500 ml</td><td>Bottle</td><td class="fill"></td></tr><tr><td class="pn">HAVA <em>Sparkling</em></td><td>700 ml</td><td>Glass</td><td class="fill"></td></tr><tr><td class="pn">Sparkling <em>Lime</em></td><td>330 ml</td><td>Can</td><td class="fill"></td></tr><tr><td class="pn">Sparkling <em>Strawberry</em></td><td>330 ml</td><td>Can</td><td class="fill"></td></tr><tr><td class="pn">Sparkling <em>Blueberry</em></td><td>330 ml</td><td>Can</td><td class="fill"></td></tr><tr><td class="pn">Sparkling <em>Raspberry</em></td><td>330 ml</td><td>Can</td><td class="fill"></td></tr><tr><td class="pn">Sparkling <em>Watermelon</em></td><td>330 ml</td><td>Can</td><td class="fill"></td></tr><tr><td class="pn">Sparkling <em>Apple</em></td><td>330 ml</td><td>Can</td><td class="fill"></td></tr><tr><td class="pn">Sparkling <em>Peach</em></td><td>330 ml</td><td>Can</td><td class="fill"></td></tr><tr><td class="pn">Sparkling <em>Orange</em></td><td>330 ml</td><td>Can</td><td class="fill"></td></tr><tr><td class="pn">Sparkling <em>Mixed berries</em></td><td>330 ml</td><td>Can</td><td class="fill"></td></tr></tbody></table>
+    <div class="fields"><div class="field"><span>Company</span><i></i></div><div class="field"><span>Contact name</span><i></i></div><div class="field"><span>Email</span><i></i></div><div class="field"><span>Phone</span><i></i></div><div class="field"><span>Delivery address</span><i></i></div><div class="field"><span>Delivery date</span><i></i></div><div class="field wide"><span>Notes</span><i></i></div><div class="field wide"><span></span><i></i></div></div>
+  </div><footer class="folio"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><span>Water from Sweden</span><span class="num">10</span></footer></section>
+<section class="page back"><img class="ridge" src="img/ridge-ice.png" alt="">
+  <img class="bleed" src="img/globe-sweden.jpg" alt="">
+  <div class="back-shade"></div>
+  <div class="back-copy">
+    <span class="eyebrow">From Sweden to the world</span>
+    <h2 class="display">Own the <em>moment.</em></h2>
+    <div class="contact"><div class="cline"><span>Email</span><i></i></div><div class="cline"><span>Phone</span><i></i></div><div class="cline"><span>Web</span><i></i></div></div>
+  </div>
+  <div class="back-brand"><svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2"><path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/><path d="M4 79H260" stroke-width="2.4"/></g></svg><p>The essence of Sweden.</p><svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M13.5 26.5L20 12.5L26.5 26.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div></section>
+</body>
+</html>

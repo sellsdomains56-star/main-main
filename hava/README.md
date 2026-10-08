@@ -13,7 +13,7 @@ A cinematic, multi-page site in plain HTML, CSS and JavaScript with no build ste
 | `flavours.html` | The flavour film, then one full screen per flavour: each can wipes up over the last as you scroll, with the list of names alongside. Then all nine as tiles and an order button. |
 | `source.html` | The source: opens on the film from the Swedish lakes out to the world, then why Sweden in numbers (lakes, forest, bedrock, world ranking), then "From sky to bottle" in five short chapters, with the sources listed at the end. |
 | `story.html` | Our story: the idea behind HAVA, with the bottle by the pool, under water and in the stone room. |
-| `faq.html` | Questions and answers about HAVA, the products and ordering, with buttons to get a quote or book a meeting. |
+| `faq.html` | Questions and answers about HAVA, the products and ordering, with buttons to get a quote, book a meeting or download the catalogue. |
 | `contact.html` | Two ways in: **Get a quote** (products, quantities, country) and **Book a meeting** (an online meeting with the team: preferred day, time and topic, in the visitor's time zone). `contact.html#meeting` opens the meeting form; `#quote`, `#still`, `#sparkling`, `#cans`, `#gift` and `#dist` open the quote form. |
 
 | Folder | What it is |
@@ -58,9 +58,16 @@ Every number on `source.html` comes from a public source, listed at the bottom o
 
 These are facts about Sweden. The page doesn't name a spring or make claims about HAVA's own analysis. Add those (and a lab report) once you have them.
 
+## The client catalogue (PDF)
+
+`brochure/HAVA-Catalogue-2026.pdf` is an 11-page A4 landscape catalogue for clients who want to order: the cover, Who is HAVA, Why Sweden (with sources), From sky to bottle, the collection, HAVA Still, HAVA Sparkling, the nine flavours, every size, how to order with an order form, and a back page. The Contact and FAQ pages link to it.
+
+- **Contact details:** the back page has blank lines for email, phone and web. Fill in `CONTACT` at the top of `brochure/build.py` and they print instead.
+- **To rebuild it:** in `brochure/`, run `python3 build.py && node print.js` (needs Playwright). The layout is in `catalogue.css`; the photos are compressed copies in `brochure/img/`.
+
 ## Publishing an update
 
-Every page loads its styles, scripts and films with a version tag (`?v=17`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
+Every page loads its styles, scripts and films with a version tag (`?v=18`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
 
 ## Menu and languages
 

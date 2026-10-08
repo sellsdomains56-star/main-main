@@ -1,7 +1,7 @@
 /* HAVA film (opens the Products page): it plays by itself, silently, whenever it is on screen.
    As you scroll on, the film tilts back in 3D and dims into the page. */
 (() => {
-  const FILM = { large: 'media/hava-film-1080.mp4?v=17', small: 'media/hava-film-720.mp4?v=17' };
+  const FILM = { large: 'media/hava-film-1080.mp4?v=18', small: 'media/hava-film-720.mp4?v=18' };
 
   const { reduceMotion } = window.HAVA;
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));

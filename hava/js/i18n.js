@@ -167,6 +167,8 @@ window.HAVA_I18N = {
 
       'nav.faq': 'FAQ',
       'cta.quote': 'Get a quote',
+      'cta.catalogue': 'Download the catalogue (PDF)',
+      'contact.catP': 'Our products, flavours and an order form, in one PDF.',
       'cta.meet': 'Book a meeting',
       'contact.quoteP': 'Prices, minimum quantities and delivery dates for your order.',
       'contact.meetP': 'A video call with the HAVA team, at a time that suits you.',
@@ -375,6 +377,8 @@ window.HAVA_I18N = {
 
       'nav.faq': 'الأسئلة',
       'cta.quote': 'اطلب عرض سعر',
+      'cta.catalogue': 'حمّل الكتالوج (PDF)',
+      'contact.catP': 'منتجاتنا ونكهاتنا ونموذج طلب، في ملف PDF واحد.',
       'cta.meet': 'احجز اجتماعًا',
       'contact.quoteP': 'الأسعار والحد الأدنى للكميات ومواعيد التوصيل لطلبك.',
       'contact.meetP': 'مكالمة فيديو مع فريق هافا، في الوقت الذي يناسبك.',
@@ -583,6 +587,8 @@ window.HAVA_I18N = {
 
       'nav.faq': 'FAQ',
       'cta.quote': 'Begär offert',
+      'cta.catalogue': 'Ladda ner katalogen (PDF)',
+      'contact.catP': 'Våra produkter, smaker och en beställningsblankett i en PDF.',
       'cta.meet': 'Boka ett möte',
       'contact.quoteP': 'Priser, minsta kvantiteter och leveransdatum för din beställning.',
       'contact.meetP': 'Ett videosamtal med HAVA-teamet, när det passar dig.',
@@ -791,6 +797,8 @@ window.HAVA_I18N = {
 
       'nav.faq': 'FAQ',
       'cta.quote': 'Demander un devis',
+      'cta.catalogue': 'Télécharger le catalogue (PDF)',
+      'contact.catP': 'Nos produits, nos saveurs et un bon de commande, dans un seul PDF.',
       'cta.meet': 'Prendre rendez-vous',
       'contact.quoteP': 'Prix, quantités minimales et délais de livraison pour votre commande.',
       'contact.meetP': "Un appel vidéo avec l'équipe HAVA, au moment qui vous convient.",
@@ -999,6 +1007,8 @@ window.HAVA_I18N = {
 
       'nav.faq': 'SSS',
       'cta.quote': 'Teklif al',
+      'cta.catalogue': 'Kataloğu indir (PDF)',
+      'contact.catP': 'Ürünlerimiz, aromalarımız ve sipariş formu tek bir PDF dosyasında.',
       'cta.meet': 'Toplantı ayarla',
       'contact.quoteP': 'Siparişiniz için fiyatlar, en az miktarlar ve teslim tarihleri.',
       'contact.meetP': 'Size uygun bir zamanda HAVA ekibiyle görüntülü görüşme.',
@@ -1207,6 +1217,8 @@ window.HAVA_I18N = {
 
       'nav.faq': '常见问题',
       'cta.quote': '获取报价',
+      'cta.catalogue': '下载产品目录（PDF）',
+      'contact.catP': '产品、风味与订购单，尽在一份 PDF。',
       'cta.meet': '预约会议',
       'contact.quoteP': '为您的订单提供价格、最低数量与交货日期。',
       'contact.meetP': '在您方便的时间，与 HAVA 团队进行视频通话。',
@@ -1415,6 +1427,8 @@ window.HAVA_I18N = {
 
       'nav.faq': 'FAQ',
       'cta.quote': 'Angebot anfordern',
+      'cta.catalogue': 'Katalog herunterladen (PDF)',
+      'contact.catP': 'Unsere Produkte, Sorten und ein Bestellformular in einem PDF.',
       'cta.meet': 'Termin buchen',
       'contact.quoteP': 'Preise, Mindestmengen und Liefertermine für Ihre Bestellung.',
       'contact.meetP': 'Ein Videogespräch mit dem HAVA-Team, wann es Ihnen passt.',

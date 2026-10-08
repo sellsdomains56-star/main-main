@@ -821,14 +821,14 @@ html[dir="rtl"] .ways b::after { content: "←"; }
 /* The brand-book drawing behind sections marked data-ridges: ice-blue lines on the dark sections,
    deep-blue lines on the icy ones. It draws in from the left; the lines near the pointer light up. */
 .has-ridges { position: relative; isolation: isolate; }
-.ridges { position: absolute; inset-inline: 0; bottom: 0; height: clamp(170px, 32vw, 460px); z-index: -1; pointer-events: none; color: var(--ridge-ink, #CFE4EA); }
-.ridges-full { top: 0; height: auto; }
+.ridges { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; color: var(--ridge-ink, #CFE4EA); }
+.ridges-band { top: auto; height: clamp(170px, 32vw, 460px); }
 .ridges svg { display: block; width: 100%; height: 100%; overflow: hidden; }
 .ridge-base { fill: currentColor; opacity: var(--ridge-base, .12); }
 .ridge-glow { fill: currentColor; opacity: var(--ridge-glow, .6); }
 .ridge-wipe { transform: translateX(-110%); transform-box: fill-box; transition: transform 3.4s cubic-bezier(.3, .55, .2, 1); }
 .ridges.in .ridge-wipe { transform: none; }
-.light .ridges { --ridge-ink: #0A2330; --ridge-base: .085; --ridge-glow: .4; }
+.light .ridges { --ridge-ink: #0A2330; --ridge-base: .07; --ridge-glow: .38; }
 /* Icy sections: the dark-section pieces in deep blue ink */
 .light .lcard-name em { color: var(--gold-ink); }
 .light .lcard-num, .light .chapter-num { color: var(--gold-ink); }
