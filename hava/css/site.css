@@ -299,6 +299,13 @@ html[dir="rtl"] a:hover .arrow::after, html[dir="rtl"] .arrow:hover::after { tra
 .section-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 28px 72px; align-items: end; margin-bottom: clamp(48px, 6vw, 88px); }
 .section-head > div { display: grid; gap: 1.4rem; justify-items: start; }
 @media (max-width: 860px) { .section-head { grid-template-columns: minmax(0, 1fr); } }
+/* A heading with more to say: label, title, text, badges and button in one column from the left;
+   the arrows sit at the right, just above the row they move. */
+.section-head.stack, .lineup-open .section-head.stack { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+.section-head.stack > div:first-child { gap: 1.3rem; }
+.section-head > .arrows { display: flex; }
+.section-head.stack .lead { max-width: 40rem; }
+.section-head.stack .btn { margin-top: .5rem; }
 .light { background: var(--pale); color: var(--ink); }
 .river { background: radial-gradient(70% 50% at 85% 0%, rgba(63, 107, 58, .22), transparent 70%), linear-gradient(180deg, var(--black) 0%, var(--deep-2) 30%, var(--river) 100%); }
 .light .eyebrow, .light .link-line { color: var(--gold-ink); }
@@ -516,7 +523,9 @@ html[dir="rtl"] .reel-sticky::after {
     linear-gradient(180deg, rgba(3, 20, 28, .55) 0%, transparent 20%);
 }
 .reel-ui { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px; padding-block: 112px 52px; }
-.reel-side { display: grid; gap: 1.4rem; justify-items: start; }
+/* --clear: the room left of the can (the can is max(13vw, 23.3svh) wide, centred), so names never touch it */
+.reel { --clear: calc(50vw - max(6.5vw, 11.65svh) - max(var(--gutter), (100vw - 1440px) / 2 + var(--gutter)) - 24px); }
+.reel-side { display: grid; gap: 1.4rem; justify-items: start; max-width: var(--clear); }
 .reel-names { list-style: none; padding: 0; display: grid; }
 .reel-names button {
   display: flex;
@@ -527,7 +536,7 @@ html[dir="rtl"] .reel-sticky::after {
   background: none;
   cursor: pointer;
   text-align: start;
-  font: 800 clamp(1.1rem, min(2.4vw, 4.4svh), 2.6rem)/1.08 var(--display);
+  font: 800 clamp(1rem, min(2.4vw, 4.4svh, calc(var(--clear) / 13)), 2.6rem)/1.08 var(--display);
   font-stretch: var(--wide);
   text-transform: var(--case);
   letter-spacing: -.005em;
@@ -555,6 +564,7 @@ html[dir="rtl"] .reel-bar span { transform-origin: right; }
   .reel-stage { bottom: 36%; }
   .reel-sticky::after, html[dir="rtl"] .reel-sticky::after { background: linear-gradient(180deg, rgba(3, 20, 28, .55) 0%, transparent 16%, transparent 50%, var(--black) 64%); }
   .reel-ui { grid-template-columns: minmax(0, 1fr); align-content: end; gap: 1rem; padding-block: 0 34px; }
+  .reel-side { max-width: none; }
   .reel-names { grid-template-areas: "n"; }
   .reel-names li { grid-area: n; opacity: 0; visibility: hidden; transition: opacity .5s var(--ease), visibility 0s .5s; }
   .reel-names li.on { opacity: 1; visibility: visible; transition: opacity .5s var(--ease); }

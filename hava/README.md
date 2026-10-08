@@ -57,7 +57,7 @@ These are facts about Sweden. The page doesn't name a spring or make claims abou
 
 ## Publishing an update
 
-Every page loads its styles, scripts and films with a version tag (`?v=13`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
+Every page loads its styles, scripts and films with a version tag (`?v=15`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
 
 ## Menu and languages
 

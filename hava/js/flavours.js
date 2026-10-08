@@ -21,7 +21,7 @@
   const film = document.querySelector('.ffilm-video');
   if (film) {
     film.muted = true;
-    film.src = window.innerWidth < 900 ? 'media/flavours-film-720.mp4?v=14' : 'media/flavours-film-1080.mp4?v=14';
+    film.src = window.innerWidth < 900 ? 'media/flavours-film-720.mp4?v=15' : 'media/flavours-film-1080.mp4?v=15';
     const play = () => film.play().catch(() => H.onFirstTouch(play));
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(([en]) => { if (en.isIntersecting) play(); else film.pause(); }, { threshold: 0.2 }).observe(film);
