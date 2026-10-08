@@ -108,7 +108,7 @@
   }
   function follow() {
     if (!autoplay) return;
-    window.scrollTo({ top: top() + (video.currentTime / video.duration) * span(), behavior: 'instant' });
+    window.HAVA.scrollTo(top() + (video.currentTime / video.duration) * span(), { immediate: true });
     requestAnimationFrame(follow);
   }
   function stopAutoplay() {
@@ -125,11 +125,11 @@
   });
 
   document.getElementById('film-discover').addEventListener('click', () => {
-    window.scrollTo({ top: top() + span() * 0.27, behavior: reduceMotion ? 'auto' : 'smooth' });
+    window.HAVA.scrollTo(top() + span() * 0.27, { duration: 2.4 });
   });
   document.getElementById('film-skip').addEventListener('click', () => {
     stopAutoplay();
-    window.scrollTo({ top: top() + film.offsetHeight, behavior: reduceMotion ? 'auto' : 'smooth' });
+    window.HAVA.scrollTo(top() + film.offsetHeight, { duration: 1.6 });
   });
 
   function scrub(p) {

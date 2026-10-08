@@ -142,7 +142,15 @@
     if (remember) store.set('hava-lang', lang);
     listeners.forEach(fn => fn(lang));
   }
-  window.HAVA = { t, store, reduceMotion, get lang() { return lang; }, onLang(fn) { listeners.push(fn); } };
+  window.HAVA = {
+    t, store, reduceMotion,
+    get lang() { return lang; },
+    onLang(fn) { listeners.push(fn); },
+    // js/motion.js replaces these with smooth-scrolling versions
+    scrollTo(y, opts = {}) { window.scrollTo({ top: y, behavior: opts.immediate || reduceMotion ? 'instant' : 'smooth' }); },
+    lockScroll() {},
+    velocity() { return 0; }
+  };
 
   const langBtn = document.querySelector('.lang-btn');
   const langMenu = document.querySelector('.lang-menu');
@@ -163,6 +171,7 @@
     menuLabel.dataset.i18n = open ? 'nav.close' : 'nav.menu';
     menuLabel.textContent = t(menuLabel.dataset.i18n);
     document.documentElement.style.overflow = open ? 'hidden' : '';
+    window.HAVA.lockScroll(open);
   }
   menuBtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
   menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });

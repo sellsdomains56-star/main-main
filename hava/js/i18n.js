@@ -43,6 +43,7 @@ window.HAVA_I18N = {
       'film.loadError': "This video format can't play in this browser. Try an MP4 (H.264) file.",
       'ui.prev': 'Previous',
       'ui.next': 'Next',
+      'ui.drag': 'Drag',
       'film.skip': 'Skip the film',
 
       'water.eyebrow': 'The water',
@@ -176,6 +177,7 @@ window.HAVA_I18N = {
       'film.loadError': 'لا يمكن تشغيل صيغة هذا الفيديو في هذا المتصفح. جرّب ملف MP4 (H.264).',
       'ui.prev': 'السابق',
       'ui.next': 'التالي',
+      'ui.drag': 'اسحب',
       'film.skip': 'تخطَّ الفيلم',
 
       'water.eyebrow': 'المياه',
@@ -309,6 +311,7 @@ window.HAVA_I18N = {
       'film.loadError': 'Det här videoformatet kan inte spelas i den här webbläsaren. Prova en MP4-fil (H.264).',
       'ui.prev': 'Föregående',
       'ui.next': 'Nästa',
+      'ui.drag': 'Dra',
       'film.skip': 'Hoppa över filmen',
 
       'water.eyebrow': 'Vattnet',
@@ -442,6 +445,7 @@ window.HAVA_I18N = {
       'film.loadError': 'Ce format vidéo ne peut pas être lu dans ce navigateur. Essayez un fichier MP4 (H.264).',
       'ui.prev': 'Précédent',
       'ui.next': 'Suivant',
+      'ui.drag': 'Glisser',
       'film.skip': 'Passer le film',
 
       'water.eyebrow': "L'eau",
@@ -575,6 +579,7 @@ window.HAVA_I18N = {
       'film.loadError': 'Bu video biçimi bu tarayıcıda oynatılamıyor. MP4 (H.264) dosyası deneyin.',
       'ui.prev': 'Önceki',
       'ui.next': 'Sonraki',
+      'ui.drag': 'Sürükle',
       'film.skip': 'Filmi geç',
 
       'water.eyebrow': 'Su',
@@ -708,6 +713,7 @@ window.HAVA_I18N = {
       'film.loadError': '此浏览器无法播放该视频格式。请尝试 MP4（H.264）文件。',
       'ui.prev': '上一个',
       'ui.next': '下一个',
+      'ui.drag': '拖动',
       'film.skip': '跳过影片',
 
       'water.eyebrow': '水',
@@ -841,6 +847,7 @@ window.HAVA_I18N = {
       'film.loadError': 'Dieses Videoformat kann in diesem Browser nicht abgespielt werden. Versuchen Sie eine MP4-Datei (H.264).',
       'ui.prev': 'Zurück',
       'ui.next': 'Weiter',
+      'ui.drag': 'Ziehen',
       'film.skip': 'Film überspringen',
 
       'water.eyebrow': 'Das Wasser',

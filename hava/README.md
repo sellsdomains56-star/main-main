@@ -20,11 +20,27 @@ A cinematic, multi-page site in plain HTML, CSS and JavaScript with no build ste
 | `css/site.css` | All styles. Colours, fonts and spacing are tokens at the top. |
 | `js/i18n.js` | All the copy in English, Arabic, Swedish, French, Turkish, Chinese and German. |
 | `js/site.js` | Header, full-screen menu, footer, language switch, film grain and scroll reveals (shared by every page). |
+| `js/motion.js` | The cinematic layer (shared by every page, see below). |
+| `js/vendor/lenis.min.js` | [Lenis](https://github.com/darkroomengineering/lenis) 1.3.26 for smooth scrolling (MIT licence in `js/vendor/LENIS-LICENSE.txt`). Kept in the repo, so the site needs no CDN. |
 | `js/film.js` | The home film. |
 | `js/cans.js`, `js/flavours.js` | The 3D flavour cans and the Flavours page. |
 | `js/contact.js` | The contact form. |
 | `assets/` | Photos and line artwork cropped from the HAVA brand book (`water_final_.pdf`). |
 | `media/` | The film goes here (see below). |
+
+## The cinematic layer
+
+`js/motion.js` adds the same feel to every page:
+
+- **Opening:** on the first page of a visit, the HAVA logo draws itself in white and gold over a counter, then the frame opens like a letterbox.
+- **Page changes:** a black curtain with the gold mark wipes up between pages and lifts on the next one.
+- **Scrolling:** smooth, weighted scrolling (Lenis), so the film and photos glide instead of jumping. Touch screens keep their native scrolling.
+- **Headlines:** big titles rise into view word by word.
+- **Photos:** page openers and framed photos drift slower than the page.
+- **Type band:** a band of giant "The essence of Sweden." on the home page runs with your scroll, faster when you scroll faster.
+- **Cursor (mouse only):** a gold ring that grows over links and shows a label over the film ("Scroll"), the chapters ("Explore") and the flavour can ("Drag"). Buttons lean toward the pointer.
+
+Visitors who ask their device for reduced motion get the site without any of this.
 
 ## Languages
 
