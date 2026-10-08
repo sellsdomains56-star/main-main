@@ -35,7 +35,8 @@ The globe button (or the menu on phones) and the footer switch between the seven
 - **What it does:** the HAVA letters fly past the camera, the letterbox bars open and the film plays as you scroll, with captions. At the end the frame tilts away in 3D into the chapters.
 - **Sound:** **Play with sound** plays the film at normal speed with sound and scrolls the page along with it. Scrolling or swiping stops it. The **Sound** button lets the film play with sound at the speed you scroll.
 - **Try a video now:** press **Load your video** on the home page, or drag a file onto the film. Any size works because the file never leaves the device. It only plays in that browser and is gone after a reload.
-- **Make it permanent:** save the video as `media/hava-film.mp4` and set `SCROLL_VIDEO = 'media/hava-film.mp4'` at the top of `js/film.js`. The load button then disappears for visitors.
+- **The film on the site now:** `media/hava-film-1080.mp4` (phones get `media/hava-film-720.mp4`), set in `SCROLL_VIDEO` at the top of `js/film.js`. It's an 8-second cut of the HAVA ad (`C0825.mp4`) with only the product shots: the ball, the court, the gold H, the cap, the water, the bottle and the "Own the moment" end card. The shots with the tennis player and Nike clothing are left out until the rights to show them are confirmed.
+- **Swapping the film:** put the new file in `media/` and change the two paths in `SCROLL_VIDEO`. Set them to `''` to show the photos and the **Load your video** button instead.
 - **Encode for smooth scrolling:** a scroll film needs frequent keyframes, or it jumps when scrubbed. This makes a 1080p MP4 that scrubs smoothly and keeps the sound:
 
   ```sh
@@ -47,7 +48,7 @@ The globe button (or the menu on phones) and the footer switch between the seven
 
 ## To do before going live
 
-- **The film:** add the HAVA video as described above.
+- **The full film:** the complete 30-second ad can replace the cut once the rights to show the player and the Nike clothing are confirmed.
 - **Flavours:** the five flavours, their colours and descriptions are proposals. The cans are drawn by the page, so a change of name or colour is a one-line edit in the `FLAVOURS` list in `js/cans.js`.
 - **Contact form:** it shows a thank-you message but sends nothing yet. Set `ORDER_ENDPOINT` in `js/contact.js` to a form service URL (for example Formspree) and messages are posted there as JSON, including the visitor's language.
 - **Contact details:** add an email address, phone number and Instagram link to the footer (in `js/site.js`) once they're confirmed.

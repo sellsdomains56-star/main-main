@@ -3,8 +3,8 @@
    Sound on: the film plays with sound at the speed you scroll and pauses when you stop.
    "Play with sound": the film plays at normal speed and the page scrolls along with it. */
 (() => {
-  // Put the film in hava/media/ and set its path here, e.g. 'media/hava-film.mp4'.
-  const SCROLL_VIDEO = '';
+  // The film, in two sizes: phones get the lighter one. Set both to '' to show the photos instead.
+  const SCROLL_VIDEO = { large: 'media/hava-film-1080.mp4', small: 'media/hava-film-720.mp4' };
 
   const { t, reduceMotion } = window.HAVA;
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
@@ -152,10 +152,13 @@
   }
 
   /* ---------- The picture ---------- */
-  const A = 0.18, B = 0.92, L = (B - A) / captions.length;
+  // With the film, the captions finish early so its own end card (HAVA, Own the moment) plays clean.
+  const A = 0.18;
+  const B = () => (ready ? 0.6 : 0.92);
   const capWeight = (k, p) => {
+    const L = (B() - A) / captions.length;
     const c = A + (k + 0.5) * L;
-    if (k === captions.length - 1 && p >= c) return 1;
+    if (!ready && k === captions.length - 1 && p >= c) return 1;
     return clamp(1 - (Math.abs(p - c) / L - 0.28) / 0.24, 0, 1);
   };
 
@@ -193,6 +196,7 @@
     plane.style.transform = `scale(${scale.toFixed(4)}) rotateY(${drift.toFixed(2)}deg) rotateX(${(-11 * exit).toFixed(2)}deg)`;
     plane.style.borderRadius = `${(26 * exit).toFixed(1)}px`;
 
+    const L = (B() - A) / captions.length;
     captions.forEach((li, k) => {
       const c = A + (k + 0.5) * L;
       li.style.opacity = capWeight(k, p).toFixed(3);
@@ -219,9 +223,10 @@
   window.addEventListener('resize', onScroll);
   window.HAVA.onLang(updateControls);
 
-  if (SCROLL_VIDEO) {
+  const filmSrc = SCROLL_VIDEO && (window.innerWidth < 900 ? SCROLL_VIDEO.small : SCROLL_VIDEO.large);
+  if (filmSrc) {
     tools.hidden = true;
-    useVideo(SCROLL_VIDEO);
+    useVideo(filmSrc);
   } else {
     note.hidden = false;
   }
