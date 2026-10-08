@@ -16,8 +16,6 @@ window.HAVA_I18N = {
       'nav.products': 'Products',
       'nav.flavours': 'Flavours',
       'nav.contact': 'Contact',
-      'nav.menu': 'Menu',
-      'nav.close': 'Close',
       'nav.source': 'The source',
 
       'lang.label': 'Language',
@@ -171,8 +169,6 @@ window.HAVA_I18N = {
       'nav.products': 'المنتجات',
       'nav.flavours': 'النكهات',
       'nav.contact': 'تواصل معنا',
-      'nav.menu': 'القائمة',
-      'nav.close': 'إغلاق',
       'nav.source': 'المصدر',
 
       'lang.label': 'اللغة',
@@ -326,8 +322,6 @@ window.HAVA_I18N = {
       'nav.products': 'Produkter',
       'nav.flavours': 'Smaker',
       'nav.contact': 'Kontakt',
-      'nav.menu': 'Meny',
-      'nav.close': 'Stäng',
       'nav.source': 'Källan',
 
       'lang.label': 'Språk',
@@ -481,8 +475,6 @@ window.HAVA_I18N = {
       'nav.products': 'Produits',
       'nav.flavours': 'Saveurs',
       'nav.contact': 'Contact',
-      'nav.menu': 'Menu',
-      'nav.close': 'Fermer',
       'nav.source': 'La source',
 
       'lang.label': 'Langue',
@@ -636,8 +628,6 @@ window.HAVA_I18N = {
       'nav.products': 'Ürünler',
       'nav.flavours': 'Aromalar',
       'nav.contact': 'İletişim',
-      'nav.menu': 'Menü',
-      'nav.close': 'Kapat',
       'nav.source': 'Kaynak',
 
       'lang.label': 'Dil',
@@ -791,8 +781,6 @@ window.HAVA_I18N = {
       'nav.products': '产品',
       'nav.flavours': '风味',
       'nav.contact': '联系我们',
-      'nav.menu': '菜单',
-      'nav.close': '关闭',
       'nav.source': '水源',
 
       'lang.label': '语言',
@@ -946,8 +934,6 @@ window.HAVA_I18N = {
       'nav.products': 'Produkte',
       'nav.flavours': 'Sorten',
       'nav.contact': 'Kontakt',
-      'nav.menu': 'Menü',
-      'nav.close': 'Schließen',
       'nav.source': 'Die Quelle',
 
       'lang.label': 'Sprache',

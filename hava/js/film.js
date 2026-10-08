@@ -1,4 +1,4 @@
-/* HAVA home film: it plays by itself, silently, whenever it is on screen.
+/* HAVA film (opens the Products page): it plays by itself, silently, whenever it is on screen.
    As you scroll on, the film tilts back in 3D and dims into the page. */
 (() => {
   const FILM = { large: 'media/hava-film-1080.mp4', small: 'media/hava-film-720.mp4' };
@@ -10,7 +10,7 @@
   const plane = film.querySelector('.film-plane');
   const dim = film.querySelector('.film-dim');
   const video = film.querySelector('.film-video');
-  const play = () => video.play().catch(() => {});
+  const play = () => video.play().catch(() => window.HAVA.onFirstTouch(play));
 
   // Click the film after it ends to watch it again.
   film.addEventListener('click', () => {

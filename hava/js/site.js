@@ -1,4 +1,4 @@
-/* HAVA — shared script for every page: header, menu, footer, languages, film grain and reveals.
+/* HAVA — shared script for every page: header, footer, languages, film grain and reveals.
    Each page sets <body data-page="..."> and loads js/i18n.js before this file. */
 (() => {
   const I18N = window.HAVA_I18N;
@@ -31,7 +31,7 @@
   </symbol>
 </svg>`);
 
-  /* ---------- Header, menu and footer ---------- */
+  /* ---------- Header and footer ---------- */
   const navLinks = NAV.map(([href, key, id, text]) =>
     `<a href="${href}" data-i18n="${key}"${id === page ? ' aria-current="page"' : ''}>${text}</a>`).join('');
   document.body.insertAdjacentHTML('afterbegin', `
@@ -46,13 +46,8 @@
       </button>
       <ul class="lang-menu lang-list" hidden></ul>
     </div>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu"><span data-i18n="nav.menu">Menu</span></button>
   </div>
 </header>
-<div class="menu" id="site-menu">
-  <ul>${NAV.map(([href, key, id, text]) => `<li><a href="${href}" data-i18n="${key}"${id === page ? ' aria-current="page"' : ''}>${text}</a></li>`).join('')}</ul>
-  <ul class="lang-list" aria-label="Language" data-i18n-attr="aria-label:lang.label"></ul>
-</div>
 <div class="grain" aria-hidden="true"></div>`);
 
   const footerCta = page === 'contact' ? '' : `
@@ -149,8 +144,13 @@
     // js/motion.js replaces these with smooth-scrolling versions
     scrollTo(y, opts = {}) { window.scrollTo({ top: y, behavior: opts.immediate || reduceMotion ? 'instant' : 'smooth' }); },
     lockScroll() {},
-    velocity() { return 0; }
+    velocity() { return 0; },
+    // Some browsers block autoplay (iPhone Low Power Mode); a film then starts on the visitor's first touch or scroll.
+    onFirstTouch(fn) {
+      ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(type => window.addEventListener(type, fn, { once: true, passive: true }));
+    }
   };
+  const H = window.HAVA;
 
   const langBtn = document.querySelector('.lang-btn');
   const langMenu = document.querySelector('.lang-menu');
@@ -162,26 +162,17 @@
   });
 
   const header = document.querySelector('.site-header');
-  const menu = document.getElementById('site-menu');
-  const menuBtn = document.querySelector('.menu-btn');
-  const menuLabel = menuBtn.querySelector('span');
-  function setMenu(open) {
-    menu.classList.toggle('open', open);
-    menuBtn.setAttribute('aria-expanded', String(open));
-    menuLabel.dataset.i18n = open ? 'nav.close' : 'nav.menu';
-    menuLabel.textContent = t(menuLabel.dataset.i18n);
-    document.documentElement.style.overflow = open ? 'hidden' : '';
-    window.HAVA.lockScroll(open);
-  }
-  menuBtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
-  menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+
+  // On narrow screens the links sit in a row under the logo; keep the current page in view.
+  const current = document.querySelector('.nav [aria-current="page"]');
+  if (current) current.scrollIntoView({ block: 'nearest', inline: 'center' });
 
   document.addEventListener('click', e => {
     const pick = e.target.closest('[data-lang]');
     if (pick) { setLang(pick.dataset.lang, true); closeLang(); return; }
     if (!e.target.closest('.lang')) closeLang();
   });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLang(); setMenu(false); } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLang(); });
 
   // The header stays clear over the opening frame and turns solid after it.
   const opening = document.querySelector('main > :first-child');
@@ -226,7 +217,7 @@
     v.muted = true;
     v.src = small && window.innerWidth < 900 ? small : large;
     if (reduceMotion) { v.removeAttribute('autoplay'); return; }
-    const play = () => v.play().catch(() => {});
+    const play = () => v.play().catch(() => H.onFirstTouch(play));
     if (!('IntersectionObserver' in window)) { play(); return; }
     new IntersectionObserver(([en]) => { if (en.isIntersecting) play(); else v.pause(); }, { threshold: 0.15 }).observe(v);
   });

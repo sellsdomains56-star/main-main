@@ -190,7 +190,7 @@ html[dir="rtl"] a:hover .arrow::after, html[dir="rtl"] .arrow:hover::after { tra
 .nav a:hover, .nav a[aria-current="page"] { opacity: 1; }
 .nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); }
 .lang { position: relative; }
-.lang-btn, .menu-btn {
+.lang-btn {
   display: inline-flex;
   align-items: center;
   gap: .55em;
@@ -235,30 +235,31 @@ html[dir="rtl"] a:hover .arrow::after, html[dir="rtl"] .arrow:hover::after { tra
 .lang-list button[aria-current="true"]::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
 .lang-list button[lang="ar"] { font-family: "IBM Plex Sans Arabic", "Noto Sans Arabic", Tahoma, sans-serif; }
 .lang-list button[lang="zh-Hans"] { font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; }
-.menu-btn { display: none; }
-.menu {
-  position: fixed;
-  inset: 0;
-  z-index: 65;
-  display: grid;
-  align-content: center;
-  gap: 2.6rem;
-  padding: calc(104px + env(safe-area-inset-top, 0px)) var(--gutter) 48px;
-  background: var(--black);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .45s var(--ease), visibility 0s .45s;
-}
-.menu.open { opacity: 1; visibility: visible; transition: opacity .45s var(--ease); }
-.menu ul { list-style: none; padding: 0; display: grid; gap: .3rem; }
-.menu a { font: 800 clamp(2rem, 9vw, 3.4rem)/1.1 var(--display); font-stretch: var(--wide); text-transform: var(--case); text-decoration: none; color: var(--fog); }
-.menu a[aria-current="page"] { color: var(--gold-hi); }
-.menu .lang-list { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
-.menu .lang-list button { width: auto; padding: .55rem .85rem; border: 1px solid var(--rule); font-size: .85rem; }
+/* Narrow screens: the links move to their own row under the logo, side by side. */
 @media (max-width: 1100px) {
-  .nav { display: none; }
-  .menu-btn { display: inline-flex; }
-  .bar .lang { display: none; }
+  .bar { flex-wrap: wrap; min-height: 0; row-gap: 0; padding-top: 12px; }
+  .brand svg { width: 96px; }
+  .nav {
+    order: 3;
+    flex: 0 0 100%;
+    gap: clamp(16px, 4.4vw, 36px);
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-top: 8px;
+    padding-bottom: 4px;
+    border-top: 1px solid var(--rule);
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: none; font-size: .66rem; letter-spacing: .12em; padding-block: .95em .85em; white-space: nowrap; }
+  .nav a:first-child { margin-inline-start: auto; }
+  .nav a:last-child { margin-inline-end: auto; }
+  .lang-btn { min-height: 38px; padding: 0 .85em; }
+}
+/* Phones: slightly narrower letters so all five links fit in one row; on very small screens they wrap. */
+@media (max-width: 560px) {
+  .nav { flex-wrap: wrap; justify-content: center; column-gap: 12px; overflow: visible; }
+  .nav a { font-size: .6rem; font-stretch: 85%; letter-spacing: .06em; }
+  .nav a:first-child, .nav a:last-child { margin-inline: 0; }
 }
 
 /* ---------- Page opener (inner pages) ---------- */
@@ -570,7 +571,7 @@ html[dir="rtl"] .reel-bar span { transform-origin: right; }
 @media (max-width: 860px) { .split { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- Products page: the whole collection first, then one screen per product ---------- */
-.lineup-open { padding-block: 140px clamp(72px, 9vw, 128px); background: radial-gradient(90% 55% at 50% 100%, var(--river) 0%, var(--black) 75%); }
+.lineup-open { padding-block: clamp(88px, 9vw, 140px) clamp(72px, 9vw, 128px); background: radial-gradient(90% 55% at 50% 100%, var(--river) 0%, var(--black) 75%); }
 .lineup-open .section-head { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; margin-bottom: clamp(36px, 4.4vw, 64px); }
 .lineup-open .display { font-size: clamp(2.6rem, 7vw, 7.2rem); }
 .lineup { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); }

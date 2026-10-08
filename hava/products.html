@@ -16,6 +16,17 @@
 <body data-page="products" data-title="nav.products">
 
 <main>
+  <section class="film" id="film" aria-label="HAVA">
+    <div class="film-sticky">
+      <div class="film-plane">
+        <video class="film-video" muted playsinline preload="auto" poster="assets/film-poster.webp"></video>
+        <div class="film-shade"></div>
+        <div class="film-dim"></div>
+      </div>
+      <span class="hero-cue" aria-hidden="true"></span>
+    </div>
+  </section>
+
   <section class="lineup-open">
     <div class="wrap">
       <div class="section-head">
@@ -58,10 +69,6 @@
         </a>
       </div>
     </div>
-  </section>
-
-  <section class="pfilm" aria-label="HAVA">
-    <video class="pfilm-video" data-src="media/hava-film-1080.mp4 media/hava-film-720.mp4" muted loop playsinline preload="metadata" poster="assets/film-poster.webp"></video>
   </section>
 
   <section class="product" id="still">
@@ -159,6 +166,7 @@
 <script src="js/i18n.js"></script>
 <script src="js/site.js"></script>
 <script src="js/motion.js"></script>
+<script src="js/film.js"></script>
 <script src="js/flavours.js"></script>
 </body>
 </html>
