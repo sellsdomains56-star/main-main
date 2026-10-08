@@ -12,7 +12,7 @@
   --moss: #3F6B3A;       /* the moss on the rocks */
   --ice: #CFE4EA;        /* spray and mist */
   --fog: #F1F6F8;
-  --pale: #DFEBF0;       /* light sections: pale ice blue */
+  --pale: #EAF2F6;       /* light sections: icy white */
   --ink: #0A2330;        /* deep blue ink on the light sections */
   --gold: #C9A66B;       /* brushed gold of the caps */
   --gold-hi: #E8CF9C;
@@ -285,6 +285,8 @@ html[dir="rtl"] a:hover .arrow::after, html[dir="rtl"] .arrow:hover::after { tra
 /* The source opens on a film instead of a photo */
 .page-hero > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; filter: brightness(.8); }
 .page-hero-film { min-height: 100vh; min-height: 100svh; }
+.page-hero-film .display { font-size: clamp(2.6rem, 6vw, 6.2rem); max-width: 12ch; }
+.page-hero-film .lead { max-width: 34rem; }
 @keyframes kenburns { from { transform: scale(1.12); } to { transform: scale(1); } }
 .page-hero::before {
   content: "";
@@ -327,8 +329,9 @@ html[dir="rtl"] a:hover .arrow::after, html[dir="rtl"] .arrow:hover::after { tra
 .frame.pre img { transform: scale(1.14); }
 
 /* ---------- Footer ---------- */
-.site-footer { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--black) 0%, var(--deep-2) 100%); border-top: 1px solid var(--rule); }
+.site-footer { position: relative; overflow: hidden; padding-bottom: clamp(120px, 16vw, 240px); background: linear-gradient(180deg, var(--black) 0%, var(--deep-2) 100%); border-top: 1px solid var(--rule); }
 .footer-cta { display: grid; justify-items: start; gap: 1.8rem; padding-block: var(--section); }
+.footer-cta .btns { gap: 12px; }
 .footer-cta .display { max-width: 14ch; }
 .footer-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 4fr); gap: 40px; padding-block: 56px; border-top: 1px solid var(--rule); }
 .footer-grid h2 { font: 700 .7rem/1.3 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
@@ -344,7 +347,6 @@ html[dir="rtl"] a:hover .arrow::after, html[dir="rtl"] .arrow:hover::after { tra
 .footer-langs button[aria-current="true"]::after { order: -1; }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-block: 24px; border-top: 1px solid var(--rule); font-size: .82rem; color: var(--mist); }
 .footer-base svg { width: 26px; height: 26px; color: var(--gold); }
-.footer-band { width: 100%; height: auto; opacity: .5; }
 @media (max-width: 860px) { .footer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .footer-brand { grid-column: 1 / -1; } }
 
 /* ---------- Home: the opening photo ---------- */
@@ -584,6 +586,7 @@ html[dir="rtl"] .reel-bar span { transform-origin: right; }
 @media (max-width: 860px) { .split { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- Products page: the whole collection first, then one screen per product ---------- */
+.lineup-open.light { background: var(--pale); }
 .lineup-open { padding-block: clamp(88px, 9vw, 140px) clamp(72px, 9vw, 128px); background: radial-gradient(90% 55% at 50% 100%, var(--river) 0%, var(--black) 75%); }
 .lineup-open .section-head { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; margin-bottom: clamp(36px, 4.4vw, 64px); }
 .lineup-open .display { font-size: clamp(2.6rem, 7vw, 7.2rem); }
@@ -607,6 +610,8 @@ html[dir="rtl"] .reel-bar span { transform-origin: right; }
 .pfilm-video { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: 100svh; object-fit: cover; }
 .product { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; min-height: 100svh; background: var(--black); }
 .product.flip { background: linear-gradient(180deg, var(--black), var(--deep-2)); }
+.product.light, .product.flip.light { background: var(--pale); }
+.product.flip.light { background: linear-gradient(180deg, var(--pale), #DDE9EF); }
 .product.flip .product-media { order: 2; }
 .product-copy {
   display: grid;
@@ -766,6 +771,81 @@ textarea.input { min-height: 6rem; resize: vertical; }
 .confirm .btn { justify-self: start; }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 560px) { .row { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- FAQ ---------- */
+.faq-page { padding-block: 150px var(--section); }
+.faq-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 112px); align-items: start; }
+.faq-head { position: sticky; top: 120px; display: grid; gap: 1.4rem; justify-items: start; }
+.faq-head .display { font-size: clamp(2.2rem, 3.6vw, 3.8rem); }
+.faq-cta { display: grid; gap: .9rem; justify-items: start; margin-top: 1.2rem; padding-top: 1.6rem; border-top: 2px solid var(--gold-ink); }
+.faq-cta h2 { font: 800 1.15rem/1.2 var(--display); font-stretch: var(--wide); text-transform: var(--case); }
+.faq-cta p { color: var(--stone); max-width: 30rem; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.faq-list { display: grid; }
+.faq-group { font: 700 .74rem/1.3 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--gold-ink); padding-block: 2.4rem .8rem; }
+.faq-group:first-child { padding-top: 0; }
+.qa { border-top: 1px solid var(--rule-ink); }
+.qa:last-of-type, .qa:has(+ .faq-group) { border-bottom: 1px solid var(--rule-ink); }
+.qa summary { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding-block: 1.25rem; cursor: pointer; list-style: none; font: 700 clamp(1.02rem, 1.3vw, 1.18rem)/1.35 var(--sans); }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::after { content: ""; flex: none; width: 14px; height: 14px; background: linear-gradient(currentColor, currentColor) center / 14px 2px no-repeat, linear-gradient(currentColor, currentColor) center / 2px 14px no-repeat; color: var(--gold-ink); transition: transform .35s var(--ease); }
+.qa[open] summary::after { transform: rotate(45deg); }
+.qa summary:hover { color: var(--gold-ink); }
+.qa p { padding-bottom: 1.4rem; max-width: 44rem; color: var(--stone); }
+@media (max-width: 860px) { .faq-grid { grid-template-columns: minmax(0, 1fr); } .faq-head { position: static; } }
+
+/* ---------- Contact on icy white: two ways in ---------- */
+.contact-page.light { background: var(--pale); }
+.contact-page.light::before, html[dir="rtl"] .contact-page.light::before { display: none; }
+.ways { list-style: none; padding: 0; display: grid; width: 100%; margin-top: .6rem; border-top: 1px solid var(--rule-ink); }
+.ways a { display: grid; gap: .25rem; padding: 1rem 0; border-bottom: 1px solid var(--rule-ink); text-decoration: none; }
+.ways b { display: flex; align-items: center; gap: .6rem; font: 800 .95rem/1.2 var(--display); font-stretch: var(--wide); text-transform: var(--case); }
+.ways b::after { content: "→"; color: var(--gold-ink); transition: transform .3s var(--ease); }
+html[dir="rtl"] .ways b::after { content: "←"; }
+.ways a:hover b::after { transform: translateX(5px); }
+.ways span { color: var(--stone); font-size: .95rem; }
+.light .panel { background: rgba(255, 255, 255, .78); border-color: var(--rule-ink); box-shadow: 0 40px 90px -50px rgba(10, 35, 48, .45); }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 5px; margin-bottom: 1.8rem; background: rgba(10, 35, 48, .06); }
+.tabs button { min-height: 46px; border: 0; background: none; font: 700 .72rem/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--stone); cursor: pointer; transition: background-color .3s, color .3s; }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--fog); }
+.light .input { color: var(--ink); border-bottom-color: var(--rule-ink); color-scheme: light; }
+.light .input::placeholder { color: var(--stone); }
+.light .label { color: var(--gold-ink); }
+.light .label small { color: var(--stone); }
+.light select.input option { background: #fff; color: var(--ink); }
+.light .form-error { color: #B3261E; }
+.light .confirm p { color: var(--stone); }
+.tz-note { font-size: .85rem; color: var(--stone); margin-top: -.6rem; }
+
+/* ---------- HAVA mountains (js/ridges.js) ---------- */
+/* The brand-book drawing behind sections marked data-ridges: ice-blue lines on the dark sections,
+   deep-blue lines on the icy ones. It draws in from the left; the lines near the pointer light up. */
+.has-ridges { position: relative; isolation: isolate; }
+.ridges { position: absolute; inset-inline: 0; bottom: 0; height: clamp(170px, 32vw, 460px); z-index: -1; pointer-events: none; color: var(--ridge-ink, #CFE4EA); }
+.ridges-full { top: 0; height: auto; }
+.ridges svg { display: block; width: 100%; height: 100%; overflow: hidden; }
+.ridge-base { fill: currentColor; opacity: var(--ridge-base, .12); }
+.ridge-glow { fill: currentColor; opacity: var(--ridge-glow, .6); }
+.ridge-wipe { transform: translateX(-110%); transform-box: fill-box; transition: transform 3.4s cubic-bezier(.3, .55, .2, 1); }
+.ridges.in .ridge-wipe { transform: none; }
+.light .ridges { --ridge-ink: #0A2330; --ridge-base: .085; --ridge-glow: .4; }
+/* Icy sections: the dark-section pieces in deep blue ink */
+.light .lcard-name em { color: var(--gold-ink); }
+.light .lcard-num, .light .chapter-num { color: var(--gold-ink); }
+.light .lcard-size, .light .caption, .light .chapter p, .light .stat p { color: var(--stone); }
+.light .lcard-media { background: #D6E3EA; }
+.light .size-cards button { border-color: var(--rule-ink); color: var(--ink); }
+.light .size-cards button:hover { border-color: var(--gold-ink); }
+.light .size-cards button[aria-pressed="true"] { border-color: var(--gold-ink); background: rgba(201, 166, 107, .16); }
+.light .size-cards button > span { color: var(--gold-ink); }
+.light .stat-n { color: var(--ink); }
+.light .stat-u { color: var(--gold-ink); }
+.light .stats { border-top-color: var(--gold-ink); }
+.light .stat { border-bottom-color: var(--rule-ink); }
+.light .stat:nth-child(odd) { border-inline-end-color: var(--rule-ink); }
+.light .chapter-stage { background: #D6E3EA; }
+.light .arrow-btn { border-color: var(--rule-ink); }
+.light .arrow-btn:hover { background: var(--ink); border-color: var(--ink); color: var(--fog); }
 
 /* ---------- Motion (js/motion.js) ---------- */
 /* Curtain between pages */

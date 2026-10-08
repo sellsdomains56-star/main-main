@@ -13,6 +13,7 @@
     ['flavours.html', 'nav.flavours', 'flavours', 'Flavours'],
     ['source.html', 'nav.source', 'source', 'The source'],
     ['story.html', 'story.eyebrow', 'story', 'Our story'],
+    ['faq.html', 'nav.faq', 'faq', 'FAQ'],
     ['contact.html', 'nav.contact', 'contact', 'Contact']
   ];
 
@@ -54,10 +55,13 @@
   <div class="wrap footer-cta">
     <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
     <h2 class="display" data-i18n="contact.title">Bring HAVA to your table</h2>
-    <a class="btn btn-gold arrow" href="contact.html" data-i18n="nav.contact">Contact</a>
+    <div class="btns">
+      <a class="btn btn-gold arrow" href="contact.html#quote" data-i18n="cta.quote">Get a quote</a>
+      <a class="btn arrow" href="contact.html#meeting" data-i18n="cta.meet">Book a meeting</a>
+    </div>
   </div>`;
   document.body.insertAdjacentHTML('beforeend', `
-<footer class="site-footer">${footerCta}
+<footer class="site-footer" data-ridges>${footerCta}
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <svg viewBox="0 0 264 84" role="img" aria-label="HAVA"><use href="#hava-wordmark"/></svg>
@@ -76,7 +80,6 @@
     <span data-i18n="footer.rights">© 2026 HAVA. Water from Sweden.</span>
     <svg aria-hidden="true"><use href="#hava-mark"/></svg>
   </div>
-  <img class="footer-band" src="assets/pattern-band.webp" width="2400" height="567" alt="" loading="lazy">
 </footer>`);
 
   document.querySelectorAll('.lang-list').forEach(list => {
@@ -177,11 +180,13 @@
 
   // The header stays clear over the opening frame and turns solid after it.
   const opening = document.querySelector('main > :first-child');
+  const openLight = !!(opening && opening.classList.contains('light'));
   let ticking = false;
   const updateHeader = () => {
     ticking = false;
     const limit = opening ? opening.offsetTop + opening.offsetHeight - 90 : 40;
-    header.classList.toggle('solid', window.scrollY > Math.max(40, limit));
+    // Pages that open on an icy section (FAQ, Contact) keep the dark header from the start.
+    header.classList.toggle('solid', openLight || window.scrollY > Math.max(40, limit));
   };
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(updateHeader); } }, { passive: true });
   updateHeader();

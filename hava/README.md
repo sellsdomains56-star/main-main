@@ -13,7 +13,8 @@ A cinematic, multi-page site in plain HTML, CSS and JavaScript with no build ste
 | `flavours.html` | The flavour film, then one full screen per flavour: each can wipes up over the last as you scroll, with the list of names alongside. Then all nine as tiles and an order button. |
 | `source.html` | The source: opens on the film from the Swedish lakes out to the world, then why Sweden in numbers (lakes, forest, bedrock, world ranking), then "From sky to bottle" in five short chapters, with the sources listed at the end. |
 | `story.html` | Our story: the idea behind HAVA, with the bottle by the pool, under water and in the stone room. |
-| `contact.html` | The contact form. Links like `contact.html#cans` preselect what the visitor is asking about. |
+| `faq.html` | Questions and answers about HAVA, the products and ordering, with buttons to get a quote or book a meeting. |
+| `contact.html` | Two ways in: **Get a quote** (products, quantities, country) and **Book a meeting** (an online meeting with the team: preferred day, time and topic, in the visitor's time zone). `contact.html#meeting` opens the meeting form; `#quote`, `#still`, `#sparkling`, `#cans`, `#gift` and `#dist` open the quote form. |
 
 | Folder | What it is |
 | --- | --- |
@@ -24,13 +25,14 @@ A cinematic, multi-page site in plain HTML, CSS and JavaScript with no build ste
 | `js/vendor/lenis.min.js` | [Lenis](https://github.com/darkroomengineering/lenis) 1.3.26 for smooth scrolling (MIT licence in `js/vendor/LENIS-LICENSE.txt`). Kept in the repo, so the site needs no CDN. |
 | `js/film.js` | The 3D scroll film at the top of Products. |
 | `js/flavours.js` | The flavour film, the full-screen flavours and the row of flavour tiles on Home. |
-| `js/contact.js` | The contact form. |
+| `js/contact.js` | The two contact forms. |
+| `js/ridges.js` | The mountain line drawing from the brand book, traced to a vector: it sits behind the icy sections and the footer, draws itself in from the left, lights up near the pointer and drifts as the page scrolls. |
 | `assets/` | HAVA photos: the bottles on ice (`ice-*.webp`), the brand-book shots, the pool, under-water and stone-room photos, the film posters, and the nine flavour photos in `assets/flavours/`. |
 | `media/` | The four films (waterfall, "Own the moment", source, flavours), each in 1080p and a lighter 720p for phones. |
 
 ## Design
 
-- **Colour:** taken from the waterfall photo. Deep river blue for the page with moss green in the gradients, pale ice blue for the light sections, and the brushed gold of the cap for labels and buttons.
+- **Colour:** taken from the waterfall photo. Films and photos open each page on deep river blue; the content sits on icy white with the brand-book mountains drawn in deep blue behind it; brushed gold for labels and buttons.
 - **Type:** Archivo for everything, wide and extra-bold in capitals for headlines, plain for reading. Bodoni Moda italic only as a gold accent (as in "HAVA *Still*").
 - **Layout:** one grid. Every section opens the same way (small gold label, big headline, short text) and every edge lines up with the logo.
 
@@ -58,7 +60,7 @@ These are facts about Sweden. The page doesn't name a spring or make claims abou
 
 ## Publishing an update
 
-Every page loads its styles, scripts and films with a version tag (`?v=16`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
+Every page loads its styles, scripts and films with a version tag (`?v=17`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
 
 ## Menu and languages
 
@@ -68,5 +70,5 @@ The five pages are always listed side by side in the header; on phones and table
 
 - **Flavour descriptions:** the one-line descriptions of the nine flavours are proposals. Change them in `js/i18n.js` (`fl.*`).
 - **"Natural flavours, no preservatives":** this is on the flavour pages because HAVA asked for it. Check it against the final ingredient list before launch, since food labelling rules require such claims to be accurate.
-- **Contact form:** it shows a thank-you message but sends nothing yet. Set `ORDER_ENDPOINT` in `js/contact.js` to a form service URL (for example Formspree) and messages are posted there as JSON, including the visitor's language.
+- **Contact forms:** they show a thank-you message but send nothing yet. Set `ORDER_ENDPOINT` in `js/contact.js` to a form service URL (for example Formspree) and quote and meeting requests are posted there as JSON, with the visitor's language and time zone. To use a booking calendar instead of the meeting form, set `CALENDAR_URL` (for example a Calendly link).
 - **Contact details:** add an email address, phone number and Instagram link to the footer (in `js/site.js`) once they're confirmed.
