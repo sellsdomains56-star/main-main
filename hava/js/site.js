@@ -145,9 +145,10 @@
     scrollTo(y, opts = {}) { window.scrollTo({ top: y, behavior: opts.immediate || reduceMotion ? 'instant' : 'smooth' }); },
     lockScroll() {},
     velocity() { return 0; },
-    // Some browsers block autoplay (iPhone Low Power Mode); a film then starts on the visitor's first touch or scroll.
+    // Some browsers and in-app viewers block autoplay (iPhone Low Power Mode, app web views). A film then starts
+    // on the visitor's first tap: only the end of a tap or click counts as a gesture that may start a video.
     onFirstTouch(fn) {
-      ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(type => window.addEventListener(type, fn, { once: true, passive: true }));
+      ['touchend', 'pointerup', 'click', 'keydown'].forEach(type => window.addEventListener(type, fn, { once: true, passive: true }));
     }
   };
   const H = window.HAVA;
