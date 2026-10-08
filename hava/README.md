@@ -9,9 +9,9 @@ A cinematic, multi-page site in plain HTML, CSS and JavaScript with no build ste
 | Page | What's on it |
 | --- | --- |
 | `index.html` | **Home.** Opens on the waterfall film with HAVA either side of the falls and "Water from Sweden" below. Then the collection, the nine flavours in a row, and the source. |
-| `products.html` | Opens on the "Own the moment" film as a 3D scroll: it fills the screen, then tilts back and dims as you scroll. Then the whole collection side by side, on ice: Still 1000, 700 and 500 ml, Sparkling 700 ml and the flavour cans. Then one full screen each for HAVA Still (the size buttons switch the bottle photo) and HAVA Sparkling, the nine flavours, and every size on the flat-lay. |
+| `products.html` | Opens on the "Own the moment" film as a 3D scroll: it fills the screen, then tilts back and dims as you scroll. Then the whole collection side by side, on ice: Still 1000, 700 and 500 ml, Sparkling 700 ml and the flavour cans. Then one full screen each for HAVA Still (the size buttons switch the bottle photo) and HAVA Sparkling, the nine flavours as the same one-screen-per-can scroll as the Flavours page, and every size on the flat-lay. |
 | `flavours.html` | The flavour film, then one full screen per flavour: each can wipes up over the last as you scroll, with the list of names alongside. Then all nine as tiles and an order button. |
-| `source.html` | The source: why Sweden, in numbers (lakes, forest, bedrock, world ranking), then "From sky to bottle" in five short chapters, with the sources listed at the end. |
+| `source.html` | The source: opens on the film from the Swedish lakes out to the world, then why Sweden in numbers (lakes, forest, bedrock, world ranking), then "From sky to bottle" in five short chapters, with the sources listed at the end. |
 | `story.html` | Our story: the idea behind HAVA, with the bottle by the pool, under water and in the stone room. |
 | `contact.html` | The contact form. Links like `contact.html#cans` preselect what the visitor is asking about. |
 
@@ -26,7 +26,7 @@ A cinematic, multi-page site in plain HTML, CSS and JavaScript with no build ste
 | `js/flavours.js` | The flavour film, the full-screen flavours and the row of flavour tiles on Home. |
 | `js/contact.js` | The contact form. |
 | `assets/` | HAVA photos: the bottles on ice (`ice-*.webp`), the brand-book shots, the pool, under-water and stone-room photos, the film posters, and the nine flavour photos in `assets/flavours/`. |
-| `media/` | The three films (waterfall, "Own the moment", flavours), each in 1080p and a lighter 720p for phones. |
+| `media/` | The four films (waterfall, "Own the moment", source, flavours), each in 1080p and a lighter 720p for phones. |
 
 ## Design
 
@@ -39,6 +39,7 @@ A cinematic, multi-page site in plain HTML, CSS and JavaScript with no build ste
 - All films play silently and only while they're on screen. The files carry no sound track. If a browser or an in-app viewer blocks autoplay (an iPhone in Low Power Mode does), the film starts on the visitor's first tap.
 - **Waterfall film** (`media/hero-waterfall-1080.mp4`, phones get `-720`): the 14-second loop behind the opening of Home. Until it starts, the opening is plain dark blue; there is no cover picture.
 - **"Own the moment" film** (`media/hava-film-1080.mp4`, phones get `-720`), opening the Products page: a 10.5-second cut of the "Own the moment" ad (`C0825.mp4`): the hand on the racket, the ball, the court, the bottle close-ups and the end card. The shots of the player are left out: he looks like Rafael Nadal and wears Nike and his personal logo, so showing him on HAVA's site reads as an endorsement by both. Use the full ad only with signed agreements from them. The film plays when you scroll to it, tilts back in 3D as you scroll on, and pauses when it's off screen.
+- **Source film** (`media/source-film-1080.mp4`, phones get `-720`): the 14-second film from the Swedish lakes, over the globe to the world, opening The source.
 - **Flavour film** (`media/flavours-film-1080.mp4`, phones get `-720`): the 25-second flavour ad, on a loop at the top of the Flavours page.
 - To change a film, put the new file in `media/` and change its path: the `data-src` of the video in the page (waterfall, Products film), the top of `js/film.js` (Products film) or `js/flavours.js` (flavour film).
 
@@ -57,7 +58,7 @@ These are facts about Sweden. The page doesn't name a spring or make claims abou
 
 ## Publishing an update
 
-Every page loads its styles, scripts and films with a version tag (`?v=15`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
+Every page loads its styles, scripts and films with a version tag (`?v=16`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
 
 ## Menu and languages
 
