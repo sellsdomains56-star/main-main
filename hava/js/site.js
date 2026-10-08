@@ -11,7 +11,6 @@
   const NAV = [
     ['products.html', 'nav.products', 'products', 'Products'],
     ['story.html', 'story.eyebrow', 'story', 'Our story'],
-    ['hotels.html', 'nav.hotels', 'hotels', 'Hotels'],
     ['contact.html', 'nav.contact', 'contact', 'Contact']
   ];
 

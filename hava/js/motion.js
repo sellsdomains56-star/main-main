@@ -53,7 +53,7 @@
   window.addEventListener('pageshow', e => { if (e.persisted) curtain.classList.remove('cover'); });
 
   /* ---------- Headlines rise word by word ---------- */
-  const SPLIT = '.display, .title, .scene-copy h2, .big-text';
+  const SPLIT = '.display, .title, .big-text';
   const watched = new WeakSet();
   const io = 'IntersectionObserver' in window
     ? new IntersectionObserver(entries => entries.forEach(en => {
@@ -92,7 +92,7 @@
   });
 
   /* ---------- Photos drift slower than the page ---------- */
-  const heroes = [...document.querySelectorAll('.page-hero > img, .band > img')];
+  const heroes = [...document.querySelectorAll('.page-hero > img')];
   const frames = [...document.querySelectorAll('.frame:not(.spot-media) img, .fullframe > img')];
   function drift() {
     const vh = window.innerHeight;

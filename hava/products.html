@@ -47,38 +47,23 @@
           <a class="btn btn-dark arrow" href="contact.html#sparkling" data-i18n="nav.contact">Contact</a>
         </div>
       </article>
-    </div>
-  </section>
-
-  <section class="fl-stage" id="flavours">
-    <div class="fl-glow"></div>
-    <div class="fl-ghost" id="fl-ghost" aria-hidden="true">LINGON</div>
-    <div class="fl-top">
-      <span class="eyebrow" data-i18n="flavours.eyebrow">Sparkling flavours</span>
-      <h2 class="title" data-i18n="flavours.title">Five flavours of Sweden</h2>
-    </div>
-    <canvas class="fl-canvas" id="fl-canvas" aria-hidden="true"></canvas>
-    <div class="fl-ui">
-      <div class="fl-now" aria-live="polite">
-        <h3 class="fl-name" id="fl-name" data-i18n="fl.lingon">Lingonberry</h3>
-        <p class="fl-sv" id="fl-sv" lang="sv">Lingon</p>
-        <p class="fl-desc" id="fl-desc" data-i18n="fl.lingon.p">Tart and bright, like the red berries of the autumn forest.</p>
-      </div>
-      <div class="fl-nav">
-        <p class="fl-hint" data-i18n="flavours.drag">Drag to turn the can</p>
-        <div class="fl-arrows">
-          <button class="fl-arrow" type="button" data-step="-1" aria-label="Previous" data-i18n-attr="aria-label:ui.prev">←</button>
-          <button class="fl-arrow" type="button" data-step="1" aria-label="Next" data-i18n-attr="aria-label:ui.next">→</button>
+      <article class="spot" id="flavours">
+        <div class="frame spot-media"><img src="assets/can-sparkling.webp" width="900" height="1350" loading="lazy" alt="HAVA Sparkling can" data-i18n-attr="alt:alt.can"></div>
+        <div class="spot-copy" data-reveal>
+          <span class="eyebrow" data-i18n="water.f3t">Five flavours</span>
+          <h2 class="spot-name" data-i18n="card.can.title">Sparkling flavours</h2>
+          <ul class="sizes"><li data-size="330" data-mat="can">330 ml · Can</li></ul>
+          <p class="lead" data-i18n="flavours.lead">Sparkling HAVA with a light taste of Nordic berries, flowers and garden. 330 ml cans.</p>
+          <ul class="flavour-list">
+            <li style="--c:#C24A5E"><b data-i18n="fl.lingon">Lingonberry</b><span lang="sv">Lingon</span></li>
+            <li style="--c:#D9962E"><b data-i18n="fl.hjortron">Cloudberry</b><span lang="sv">Hjortron</span></li>
+            <li style="--c:#A9B04C"><b data-i18n="fl.flader">Elderflower</b><span lang="sv">Fläder</span></li>
+            <li style="--c:#5462B0"><b data-i18n="fl.blabar">Wild blueberry</b><span lang="sv">Blåbär</span></li>
+            <li style="--c:#4C9A78"><b data-i18n="fl.gurka">Cucumber &amp; mint</b><span lang="sv">Gurka &amp; mynta</span></li>
+          </ul>
+          <a class="btn btn-dark arrow" href="contact.html#cans" data-i18n="flavours.cta">Order the flavours</a>
         </div>
-        <div class="fl-picker" role="group" aria-label="Choose a flavour" data-i18n-attr="aria-label:flavours.pick">
-          <button class="fl-pick" type="button" data-flavour="0" aria-pressed="true"><canvas aria-hidden="true"></canvas><span data-i18n="fl.lingon">Lingonberry</span></button>
-          <button class="fl-pick" type="button" data-flavour="1" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.hjortron">Cloudberry</span></button>
-          <button class="fl-pick" type="button" data-flavour="2" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.flader">Elderflower</span></button>
-          <button class="fl-pick" type="button" data-flavour="3" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.blabar">Wild blueberry</span></button>
-          <button class="fl-pick" type="button" data-flavour="4" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.gurka">Cucumber &amp; mint</span></button>
-        </div>
-        <a class="btn btn-gold arrow" href="contact.html#cans" data-i18n="flavours.cta">Order the flavours</a>
-      </div>
+      </article>
     </div>
   </section>
 
@@ -116,7 +101,5 @@
 <script src="js/i18n.js"></script>
 <script src="js/site.js"></script>
 <script src="js/motion.js"></script>
-<script src="js/cans.js"></script>
-<script src="js/flavours.js"></script>
 </body>
 </html>

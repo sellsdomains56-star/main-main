@@ -1,6 +1,4 @@
-/* HAVA home film: the film fills the first screen and plays with its sound.
-   Browsers only let a page play sound after the visitor clicks, taps or presses a key. If the first
-   play with sound is refused, the film plays silently and starts again with sound at that first touch.
+/* HAVA home film: the film fills the first screen and plays by itself, silently.
    As you scroll on, the film tilts back in 3D and dims into the page. */
 (() => {
   const FILM = { large: 'media/hava-film-1080.mp4', small: 'media/hava-film-720.mp4' };
@@ -12,44 +10,21 @@
   const plane = film.querySelector('.film-plane');
   const dim = film.querySelector('.film-dim');
   const video = film.querySelector('.film-video');
-  const hint = document.getElementById('film-hint');
-  const ACTIVATION = ['click', 'keydown', 'touchend'];
-  let soundOn = false, titleTimer = 0;
+  let titleTimer = 0;
 
-  const showTitle = on => film.classList.toggle('title-on', on);
-  const showHint = on => { hint.hidden = !on; film.classList.toggle('hint-on', on); };
-  // The title stays for a moment, then leaves the screen to the film.
-  const rolling = () => { clearTimeout(titleTimer); titleTimer = setTimeout(() => showTitle(false), 2600); };
-
-  function start() {
-    video.muted = false;
-    video.play()
-      .then(() => { soundOn = true; showHint(false); stopListening(); rolling(); })
-      .catch(() => {
-        video.muted = true;
-        video.play().then(rolling).catch(() => {});
-        showHint(true);
-      });
-  }
-  function withSound() {
-    if (soundOn) return;
-    soundOn = true;
-    showHint(false);
-    video.muted = false;
-    video.currentTime = 0;
-    showTitle(true);
-    video.play()
-      .then(() => { stopListening(); rolling(); })
-      .catch(() => { soundOn = false; video.muted = true; showHint(true); });
-  }
-  const stopListening = () => ACTIVATION.forEach(t => window.removeEventListener(t, withSound, true));
-  ACTIVATION.forEach(t => window.addEventListener(t, withSound, true));
+  // "HAVA, Water from Sweden" stays for a moment, then leaves the screen to the film.
+  const rolling = () => {
+    clearTimeout(titleTimer);
+    film.classList.add('title-on');
+    titleTimer = setTimeout(() => film.classList.remove('title-on'), 2600);
+  };
+  const play = () => video.play().then(rolling).catch(() => {});
 
   // Click the film after it ends to watch it again.
   film.addEventListener('click', () => {
     if (!video.ended) return;
     video.currentTime = 0;
-    video.play().then(rolling).catch(() => {});
+    play();
   });
 
   // Pause when the film is off screen, carry on when it comes back.
@@ -80,6 +55,7 @@
     render();
   }
 
+  video.muted = true;
   video.src = window.innerWidth < 900 ? FILM.small : FILM.large;
-  start();
+  play();
 })();
