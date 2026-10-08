@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="HAVA: still and sparkling water from Sweden. The essence of Sweden.">
-<meta name="theme-color" content="#051B19">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23051B19'/%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='%23C9A66B' stroke-width='1.6'/%3E%3Cpath d='M14.5 25.5L20 13.5L25.5 25.5' fill='none' stroke='%23C9A66B' stroke-width='1.8'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#03141C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2303141C'/%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='%23C9A66B' stroke-width='1.6'/%3E%3Cpath d='M14.5 25.5L20 13.5L25.5 25.5' fill='none' stroke='%23C9A66B' stroke-width='1.8'/%3E%3C/svg%3E">
 <title>HAVA · Products</title>
 <script>try{if(sessionStorage.getItem('hava-curtain'))document.documentElement.classList.add('curtain-in')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,38 +16,113 @@
 <body data-page="products" data-title="nav.products">
 
 <main>
-  <section class="page-hero">
-    <img src="assets/range-flatlay.webp" width="2200" height="1476" fetchpriority="high" alt="Four HAVA bottles lying in shallow water" data-i18n-attr="alt:alt.range">
+  <section class="lineup-open">
     <div class="wrap">
-      <span class="eyebrow" data-i18n="nav.products">Products</span>
-      <h1 class="display" data-i18n="range.title">The collection</h1>
-      <p class="lead" data-i18n="range.lead">Glass bottles for the table, a light bottle for the day and a can for everywhere else.</p>
+      <div class="section-head">
+        <div>
+          <span class="eyebrow" data-i18n="nav.products">Products</span>
+          <h1 class="display" data-i18n="range.title">The collection</h1>
+        </div>
+        <p class="lead" data-i18n="range.lead">Glass bottles for the table, a light bottle for the day and a can for everywhere else.</p>
+      </div>
+      <div class="lineup">
+        <a class="lcard" href="#still" data-pick="1000">
+          <span class="lcard-media"><img src="assets/ice-still-1000.webp" width="2000" height="1116" fetchpriority="high" alt="HAVA Still glass bottle" data-i18n-attr="alt:alt.still"></span>
+          <span class="lcard-num">01</span>
+          <span class="lcard-name">HAVA <em>Still</em></span>
+          <span class="lcard-size" data-size="1000" data-mat="glass">1000 ml · Glass</span>
+        </a>
+        <a class="lcard" href="#still" data-pick="700">
+          <span class="lcard-media"><img src="assets/ice-still-700.webp" width="2000" height="1116" alt="HAVA Still glass bottle" data-i18n-attr="alt:alt.still"></span>
+          <span class="lcard-num">02</span>
+          <span class="lcard-name">HAVA <em>Still</em></span>
+          <span class="lcard-size" data-size="700" data-mat="glass">700 ml · Glass</span>
+        </a>
+        <a class="lcard" href="#still" data-pick="500">
+          <span class="lcard-media"><img src="assets/ice-still-500.webp" width="2000" height="1116" alt="HAVA Still bottle" data-i18n-attr="alt:alt.still"></span>
+          <span class="lcard-num">03</span>
+          <span class="lcard-name">HAVA <em>Still</em></span>
+          <span class="lcard-size" data-size="500" data-mat="bottle">500 ml · Bottle</span>
+        </a>
+        <a class="lcard" href="#sparkling">
+          <span class="lcard-media"><img src="assets/ice-sparkling-700.webp" width="2000" height="1116" alt="HAVA Sparkling glass bottle" data-i18n-attr="alt:alt.sparkling"></span>
+          <span class="lcard-num">04</span>
+          <span class="lcard-name">HAVA <em>Sparkling</em></span>
+          <span class="lcard-size" data-size="700" data-mat="glass">700 ml · Glass</span>
+        </a>
+        <a class="lcard" href="#flavours">
+          <span class="lcard-media"><img src="assets/flavours/blueberry.webp" width="2000" height="1116" alt="HAVA Sparkling can" data-i18n-attr="alt:alt.can"></span>
+          <span class="lcard-num">05</span>
+          <span class="lcard-name" data-i18n="card.can.title">Sparkling flavours</span>
+          <span class="lcard-size" data-size="330" data-mat="can">330 ml · Can</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="section light">
-    <div class="wrap">
-      <article class="spot" id="still">
-        <div class="frame spot-media"><img src="assets/still-700.webp" width="900" height="1350" loading="lazy" alt="HAVA Still glass bottle" data-i18n-attr="alt:alt.still"></div>
-        <div class="spot-copy" data-reveal>
-          <span class="eyebrow" data-i18n="water.f1t">Still &amp; sparkling</span>
-          <h2 class="spot-name">HAVA <em>Still</em></h2>
-          <ul class="sizes"><li data-size="1000" data-mat="glass">1000 ml · Glass</li><li data-size="700" data-mat="glass">700 ml · Glass</li><li data-size="500" data-mat="bottle">500 ml · Bottle</li></ul>
-          <p class="lead" data-i18n="card.still.p">Soft and quiet, for long dinners and slow mornings.</p>
-          <a class="btn btn-dark arrow" href="contact.html#still" data-i18n="nav.contact">Contact</a>
-        </div>
-      </article>
-      <article class="spot flip" id="sparkling">
-        <div class="frame spot-media"><img src="assets/sparkling-700.webp" width="900" height="1349" loading="lazy" alt="HAVA Sparkling glass bottle" data-i18n-attr="alt:alt.sparkling"></div>
-        <div class="spot-copy" data-reveal>
-          <span class="eyebrow" data-i18n="water.f2t">Glass &amp; gold</span>
-          <h2 class="spot-name">HAVA <em>Sparkling</em></h2>
-          <ul class="sizes"><li data-size="700" data-mat="glass">700 ml · Glass</li></ul>
-          <p class="lead" data-i18n="card.sparkling.p">Fine, lively bubbles with a clean finish.</p>
-          <a class="btn btn-dark arrow" href="contact.html#sparkling" data-i18n="nav.contact">Contact</a>
-        </div>
-      </article>
+  <section class="pfilm" aria-label="HAVA">
+    <video class="pfilm-video" data-src="media/hava-film-1080.mp4 media/hava-film-720.mp4" muted loop playsinline preload="metadata" poster="assets/film-poster.webp"></video>
+  </section>
+
+  <section class="product" id="still">
+    <div class="frame product-media" data-switch>
+      <img class="on" data-size-img="1000" src="assets/ice-still-1000.webp" width="2000" height="1116" loading="lazy" alt="HAVA Still glass bottle, 1000 ml" data-i18n-attr="alt:alt.still">
+      <img data-size-img="700" src="assets/ice-still-700.webp" width="2000" height="1116" loading="lazy" alt="HAVA Still glass bottle, 700 ml" data-i18n-attr="alt:alt.still">
+      <img data-size-img="500" src="assets/ice-still-500.webp" width="2000" height="1116" loading="lazy" alt="HAVA Still bottle, 500 ml" data-i18n-attr="alt:alt.still">
     </div>
+    <div class="product-copy" data-reveal>
+      <span class="eyebrow"><span>01</span> <span data-i18n="prod.still.eyebrow">Still water</span></span>
+      <h2 class="spot-name">HAVA <em>Still</em></h2>
+      <p class="big-text" data-i18n="card.still.p">Soft and quiet, for long dinners and slow mornings.</p>
+      <p class="lead" data-i18n="prod.still.p">In heavy clear glass with a brushed gold cap, made to stand on the table. Three sizes, from long dinners to a bottle for the day.</p>
+      <ul class="size-cards"><li><button type="button" data-size-pick="1000" aria-pressed="true"><b>1000</b><span><span data-i18n="unit.ml">ml</span> · <span data-i18n="range.glass">Glass</span></span></button></li><li><button type="button" data-size-pick="700" aria-pressed="false"><b>700</b><span><span data-i18n="unit.ml">ml</span> · <span data-i18n="range.glass">Glass</span></span></button></li><li><button type="button" data-size-pick="500" aria-pressed="false"><b>500</b><span><span data-i18n="unit.ml">ml</span> · <span data-i18n="range.bottle">Bottle</span></span></button></li></ul>
+      <a class="btn btn-gold arrow" href="contact.html#still" data-i18n="prod.order">Order</a>
+    </div>
+  </section>
+
+  <section class="product flip" id="sparkling">
+    <div class="frame product-media"><img src="assets/ice-sparkling-700.webp" width="2000" height="1116" loading="lazy" alt="HAVA Sparkling glass bottle" data-i18n-attr="alt:alt.sparkling"></div>
+    <div class="product-copy" data-reveal>
+      <span class="eyebrow"><span>02</span> <span data-i18n="prod.sparkling.eyebrow">Sparkling water</span></span>
+      <h2 class="spot-name">HAVA <em>Sparkling</em></h2>
+      <p class="big-text" data-i18n="card.sparkling.p">Fine, lively bubbles with a clean finish.</p>
+      <p class="lead" data-i18n="prod.sparkling.p">The same clear glass and gold cap, with fine, lively bubbles. Made for the aperitif, the dinner table and everything in between.</p>
+      <ul class="size-cards"><li><button type="button" data-size-pick="700" aria-pressed="true"><b>700</b><span><span data-i18n="unit.ml">ml</span> · <span data-i18n="range.glass">Glass</span></span></button></li></ul>
+      <a class="btn btn-gold arrow" href="contact.html#sparkling" data-i18n="prod.order">Order</a>
+    </div>
+  </section>
+
+  <section class="section river" id="flavours">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow"><span>03</span> <span data-i18n="card.can.title">Sparkling flavours</span></span>
+          <h2 class="title" data-i18n="flavours.title">Nine flavours</h2>
+        </div>
+        <div class="head-side">
+          <p class="lead" data-i18n="flavours.lead">Sparkling HAVA with natural fruit flavours and no preservatives. 330 ml cans.</p>
+          <ul class="badges"><li data-i18n="nat.1">Natural flavours</li><li data-i18n="nat.2">No preservatives</li><li data-i18n="nat.3">Swedish water</li></ul>
+          <div class="head-actions">
+            <a class="btn btn-gold arrow" href="flavours.html" data-i18n="card.cta">See the flavours</a>
+            <div class="arrows">
+              <button class="arrow-btn" type="button" data-strip="-1" data-i18n-attr="aria-label:ui.prev" aria-label="Previous">←</button>
+              <button class="arrow-btn" type="button" data-strip="1" data-i18n-attr="aria-label:ui.next" aria-label="Next">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="fstrip">
+      <li><a class="ftile" href="flavours.html#lime" data-flavour="lime" style="--c:#9ACD32"><span class="ftile-media"><img src="assets/flavours/lime.webp" width="2000" height="1116" loading="lazy" alt=""></span><span class="ftile-name" data-i18n="fl.lime">Lime</span><span class="ftile-desc" data-i18n="fl.lime.p">Zesty and cool, with a squeeze of fresh lime.</span></a></li>
+      <li><a class="ftile" href="flavours.html#strawberry" data-flavour="strawberry" style="--c:#D7263D"><span class="ftile-media"><img src="assets/flavours/strawberry.webp" width="2000" height="1116" loading="lazy" alt=""></span><span class="ftile-name" data-i18n="fl.strawberry">Strawberry</span><span class="ftile-desc" data-i18n="fl.strawberry.p">Sweet and summery, like the first strawberries of June.</span></a></li>
+      <li><a class="ftile" href="flavours.html#blueberry" data-flavour="blueberry" style="--c:#5B4BB7"><span class="ftile-media"><img src="assets/flavours/blueberry.webp" width="2000" height="1116" loading="lazy" alt=""></span><span class="ftile-name" data-i18n="fl.blueberry">Blueberry</span><span class="ftile-desc" data-i18n="fl.blueberry.p">Deep and soft, like wild berries from the Swedish forest.</span></a></li>
+      <li><a class="ftile" href="flavours.html#raspberry" data-flavour="raspberry" style="--c:#C2185B"><span class="ftile-media"><img src="assets/flavours/raspberry.webp" width="2000" height="1116" loading="lazy" alt=""></span><span class="ftile-name" data-i18n="fl.raspberry">Raspberry</span><span class="ftile-desc" data-i18n="fl.raspberry.p">Bright and juicy, with a gentle tartness.</span></a></li>
+      <li><a class="ftile" href="flavours.html#watermelon" data-flavour="watermelon" style="--c:#F0566B"><span class="ftile-media"><img src="assets/flavours/watermelon.webp" width="2000" height="1116" loading="lazy" alt=""></span><span class="ftile-name" data-i18n="fl.watermelon">Watermelon</span><span class="ftile-desc" data-i18n="fl.watermelon.p">Light and fresh, for the hottest days of the year.</span></a></li>
+      <li><a class="ftile" href="flavours.html#apple" data-flavour="apple" style="--c:#4E9A3E"><span class="ftile-media"><img src="assets/flavours/apple.webp" width="2000" height="1116" loading="lazy" alt=""></span><span class="ftile-name" data-i18n="fl.apple">Apple</span><span class="ftile-desc" data-i18n="fl.apple.p">Crisp and clean, like an apple straight from the orchard.</span></a></li>
+      <li><a class="ftile" href="flavours.html#peach" data-flavour="peach" style="--c:#F2A07B"><span class="ftile-media"><img src="assets/flavours/peach.webp" width="2000" height="1116" loading="lazy" alt=""></span><span class="ftile-name" data-i18n="fl.peach">Peach</span><span class="ftile-desc" data-i18n="fl.peach.p">Soft and golden, with the gentle sweetness of ripe peach.</span></a></li>
+      <li><a class="ftile" href="flavours.html#orange" data-flavour="orange" style="--c:#F28C1E"><span class="ftile-media"><img src="assets/flavours/orange.webp" width="2000" height="1116" loading="lazy" alt=""></span><span class="ftile-name" data-i18n="fl.orange">Orange</span><span class="ftile-desc" data-i18n="fl.orange.p">Sunny and bright, with a twist of orange peel.</span></a></li>
+      <li><a class="ftile" href="flavours.html#berries" data-flavour="berries" style="--c:#7D2E68"><span class="ftile-media"><img src="assets/flavours/berries.webp" width="2000" height="1116" loading="lazy" alt=""></span><span class="ftile-name" data-i18n="fl.berries">Mixed berries</span><span class="ftile-desc" data-i18n="fl.berries.p">Raspberry, blueberry and blackberry, picked together.</span></a></li>
+    </ul>
   </section>
 
   <section class="section light" id="sizes">
@@ -84,5 +159,6 @@
 <script src="js/i18n.js"></script>
 <script src="js/site.js"></script>
 <script src="js/motion.js"></script>
+<script src="js/flavours.js"></script>
 </body>
 </html>

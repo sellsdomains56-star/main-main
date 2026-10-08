@@ -220,6 +220,28 @@
     });
   }
 
+  /* ---------- Silent films that loop while they're on screen (the waterfall, the film on Products) ---------- */
+  document.querySelectorAll('video[data-src]').forEach(v => {
+    const [large, small] = v.dataset.src.split(' ');
+    v.muted = true;
+    v.src = small && window.innerWidth < 900 ? small : large;
+    if (reduceMotion) { v.removeAttribute('autoplay'); return; }
+    const play = () => v.play().catch(() => {});
+    if (!('IntersectionObserver' in window)) { play(); return; }
+    new IntersectionObserver(([en]) => { if (en.isIntersecting) play(); else v.pause(); }, { threshold: 0.15 }).observe(v);
+  });
+
+  /* ---------- Products: the size buttons switch the bottle photo ---------- */
+  const pickSize = (product, size) => {
+    product.querySelectorAll('[data-size-pick]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.sizePick === size)));
+    product.querySelectorAll('[data-size-img]').forEach(img => img.classList.toggle('on', img.dataset.sizeImg === size));
+  };
+  document.querySelectorAll('[data-size-pick]').forEach(btn => btn.addEventListener('click', () => pickSize(btn.closest('.product'), btn.dataset.sizePick)));
+  document.querySelectorAll('.lcard[data-pick]').forEach(card => card.addEventListener('click', () => {
+    const product = document.querySelector(card.getAttribute('href'));
+    if (product) pickSize(product, card.dataset.pick);
+  }));
+
   /* ---------- From sky to bottle: the picture follows the chapter being read ---------- */
   const stage = document.querySelector('.chapter-stage');
   if (stage && 'IntersectionObserver' in window) {

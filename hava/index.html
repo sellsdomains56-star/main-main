@@ -5,8 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="HAVA: still and sparkling water from Sweden. The essence of Sweden.">
-<meta name="theme-color" content="#051B19">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23051B19'/%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='%23C9A66B' stroke-width='1.6'/%3E%3Cpath d='M14.5 25.5L20 13.5L25.5 25.5' fill='none' stroke='%23C9A66B' stroke-width='1.8'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#03141C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2303141C'/%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='%23C9A66B' stroke-width='1.6'/%3E%3Cpath d='M14.5 25.5L20 13.5L25.5 25.5' fill='none' stroke='%23C9A66B' stroke-width='1.8'/%3E%3C/svg%3E">
 <!-- /head-only -->
 <title>Hava</title>
 <script>try{if(sessionStorage.getItem('hava-curtain'))document.documentElement.classList.add('curtain-in')}catch(e){}</script>
@@ -19,7 +19,7 @@
 
 <main>
   <section class="hero" aria-labelledby="hero-title">
-    <img class="hero-img" src="assets/hero-waterfall.webp" width="2000" height="1116" fetchpriority="high" alt="A HAVA bottle in front of a waterfall" data-i18n-attr="alt:alt.waterfall">
+    <video class="hero-img" data-src="media/hero-waterfall-1080.mp4 media/hero-waterfall-720.mp4" muted loop playsinline autoplay preload="auto" poster="assets/hero-poster.webp" aria-hidden="true"></video>
     <div class="hero-word" aria-hidden="true"><span class="hw"><svg viewBox="0 0 48 64"><path d="M4 2V62M44 2V62M4 32H44"/></svg><svg viewBox="0 0 60 64"><path d="M2 62L30 2L58 62"/></svg></span><span class="hw"><svg viewBox="0 0 60 64"><path d="M2 2L30 62L58 2"/></svg><svg viewBox="0 0 60 64"><path d="M2 62L30 2L58 62"/></svg></span></div>
     <h1 class="hero-sub" id="hero-title"><span class="sr-only">HAVA. </span><span data-i18n="hero.eyebrow">Water from Sweden</span></h1>
     <span class="hero-cue" aria-hidden="true"></span>
@@ -46,19 +46,19 @@
       </div>
       <div class="cards">
         <a class="pcard" href="products.html#still">
-          <div class="pcard-media" style="background:#E8DAD5"><img src="assets/still-700.webp" width="900" height="1350" loading="lazy" alt="HAVA Still glass bottle" data-i18n-attr="alt:alt.still"></div>
+          <div class="pcard-media"><img src="assets/ice-still-1000.webp" width="2000" height="1116" loading="lazy" alt="HAVA Still glass bottle" data-i18n-attr="alt:alt.still"></div>
           <div class="pcard-head"><h3>HAVA Still</h3><span class="size">1000 · 700 · 500 ml</span></div>
           <p data-i18n="card.still.p">Soft and quiet, for long dinners and slow mornings.</p>
           <span class="link-line arrow" data-i18n="footer.explore">Explore</span>
         </a>
         <a class="pcard" href="products.html#sparkling">
-          <div class="pcard-media" style="background:#E2D6CE"><img src="assets/sparkling-700.webp" width="900" height="1349" loading="lazy" alt="HAVA Sparkling glass bottle" data-i18n-attr="alt:alt.sparkling"></div>
+          <div class="pcard-media"><img src="assets/ice-sparkling-700.webp" width="2000" height="1116" loading="lazy" alt="HAVA Sparkling glass bottle" data-i18n-attr="alt:alt.sparkling"></div>
           <div class="pcard-head"><h3>HAVA Sparkling</h3><span class="size">700 ml</span></div>
           <p data-i18n="card.sparkling.p">Fine, lively bubbles with a clean finish.</p>
           <span class="link-line arrow" data-i18n="footer.explore">Explore</span>
         </a>
         <a class="pcard" href="flavours.html">
-          <div class="pcard-media" style="background:#E2DAD5"><img src="assets/can-sparkling.webp" width="900" height="1350" loading="lazy" alt="HAVA Sparkling can" data-i18n-attr="alt:alt.can"></div>
+          <div class="pcard-media"><img src="assets/flavours/blueberry.webp" width="2000" height="1116" loading="lazy" alt="HAVA Sparkling can" data-i18n-attr="alt:alt.can"></div>
           <div class="pcard-head"><h3 data-i18n="card.can.title">Sparkling flavours</h3><span class="size">330 ml</span></div>
           <p data-i18n="card.can.p">330 ml of cold sparkling water, now in nine flavours.</p>
           <span class="link-line arrow" data-i18n="footer.explore">Explore</span>
@@ -75,7 +75,8 @@
           <h2 class="title" data-i18n="flavours.title">Nine flavours</h2>
         </div>
         <div class="head-side">
-          <p class="lead" data-i18n="flavours.lead">Sparkling HAVA with a light taste of fruit and berries. 330 ml cans.</p>
+          <p class="lead" data-i18n="flavours.lead">Sparkling HAVA with natural fruit flavours and no preservatives. 330 ml cans.</p>
+          <ul class="badges"><li data-i18n="nat.1">Natural flavours</li><li data-i18n="nat.2">No preservatives</li><li data-i18n="nat.3">Swedish water</li></ul>
           <div class="head-actions">
             <a class="btn btn-gold arrow" href="flavours.html" data-i18n="card.cta">See the flavours</a>
             <div class="arrows">
