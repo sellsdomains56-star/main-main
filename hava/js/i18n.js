@@ -14,6 +14,7 @@ window.HAVA_I18N = {
   strings: {
     en: {
       'nav.range': 'Range',
+      'nav.products': 'Products',
       'nav.flavours': 'Flavours',
       'nav.story': 'Story',
       'nav.hotels': 'Hotels',
@@ -34,6 +35,7 @@ window.HAVA_I18N = {
       'film.3': 'Cold, clear and calm.',
       'film.4': 'The essence of Sweden.',
       'film.hint': 'Scroll',
+      'film.tapSound': 'Click or tap for sound',
       'film.load': 'Load your video',
       'film.loadNote': 'Plays from this device only. Nothing is uploaded.',
       'film.play': 'Play with sound',
@@ -59,6 +61,7 @@ window.HAVA_I18N = {
       'range.eyebrow': 'The range',
       'range.title': 'The collection',
       'range.lead': 'Glass bottles for the table, a light bottle for the day and a can for everywhere else.',
+      'sizes.title': 'Every size',
       'range.glass': 'Glass',
       'range.bottle': 'Bottle',
       'range.can': 'Can',
@@ -148,6 +151,7 @@ window.HAVA_I18N = {
 
     ar: {
       'nav.range': 'المجموعة',
+      'nav.products': 'المنتجات',
       'nav.flavours': 'النكهات',
       'nav.story': 'قصتنا',
       'nav.hotels': 'الفنادق',
@@ -168,6 +172,7 @@ window.HAVA_I18N = {
       'film.3': 'باردة، صافية، هادئة.',
       'film.4': 'جوهر السويد.',
       'film.hint': 'مرّر للأسفل',
+      'film.tapSound': 'انقر أو المس لتشغيل الصوت',
       'film.load': 'حمّل الفيديو الخاص بك',
       'film.loadNote': 'يُعرض على هذا الجهاز فقط. لا يُرفع أي شيء.',
       'film.play': 'شغّل مع الصوت',
@@ -193,6 +198,7 @@ window.HAVA_I18N = {
       'range.eyebrow': 'المجموعة',
       'range.title': 'التشكيلة',
       'range.lead': 'زجاجات من الزجاج للمائدة، وزجاجة خفيفة ليومك، وعلبة لكل مكان آخر.',
+      'sizes.title': 'جميع الأحجام',
       'range.glass': 'زجاج',
       'range.bottle': 'زجاجة',
       'range.can': 'علبة',
@@ -282,6 +288,7 @@ window.HAVA_I18N = {
 
     sv: {
       'nav.range': 'Sortiment',
+      'nav.products': 'Produkter',
       'nav.flavours': 'Smaker',
       'nav.story': 'Historia',
       'nav.hotels': 'Hotell',
@@ -302,6 +309,7 @@ window.HAVA_I18N = {
       'film.3': 'Kallt, klart och stilla.',
       'film.4': 'Essensen av Sverige.',
       'film.hint': 'Scrolla',
+      'film.tapSound': 'Klicka eller tryck för ljud',
       'film.load': 'Ladda in din video',
       'film.loadNote': 'Spelas bara upp på den här enheten. Inget laddas upp.',
       'film.play': 'Spela med ljud',
@@ -327,6 +335,7 @@ window.HAVA_I18N = {
       'range.eyebrow': 'Sortimentet',
       'range.title': 'Kollektionen',
       'range.lead': 'Glasflaskor för bordet, en lätt flaska för dagen och en burk för allt annat.',
+      'sizes.title': 'Alla storlekar',
       'range.glass': 'Glas',
       'range.bottle': 'Flaska',
       'range.can': 'Burk',
@@ -416,6 +425,7 @@ window.HAVA_I18N = {
 
     fr: {
       'nav.range': 'Gamme',
+      'nav.products': 'Produits',
       'nav.flavours': 'Saveurs',
       'nav.story': 'Histoire',
       'nav.hotels': 'Hôtels',
@@ -436,6 +446,7 @@ window.HAVA_I18N = {
       'film.3': 'Froide, claire et calme.',
       'film.4': "L'essence de la Suède.",
       'film.hint': 'Faites défiler',
+      'film.tapSound': 'Cliquez ou touchez pour le son',
       'film.load': 'Charger votre vidéo',
       'film.loadNote': "Lue uniquement sur cet appareil. Rien n'est envoyé.",
       'film.play': 'Lire avec le son',
@@ -461,6 +472,7 @@ window.HAVA_I18N = {
       'range.eyebrow': 'La gamme',
       'range.title': 'La collection',
       'range.lead': 'Des bouteilles en verre pour la table, une bouteille légère pour la journée et une canette pour tout le reste.',
+      'sizes.title': 'Tous les formats',
       'range.glass': 'Verre',
       'range.bottle': 'Bouteille',
       'range.can': 'Canette',
@@ -550,6 +562,7 @@ window.HAVA_I18N = {
 
     tr: {
       'nav.range': 'Ürünler',
+      'nav.products': 'Ürünler',
       'nav.flavours': 'Aromalar',
       'nav.story': 'Hikâye',
       'nav.hotels': 'Oteller',
@@ -570,6 +583,7 @@ window.HAVA_I18N = {
       'film.3': 'Soğuk, berrak ve dingin.',
       'film.4': "İsveç'in özü.",
       'film.hint': 'Kaydırın',
+      'film.tapSound': 'Ses için tıklayın veya dokunun',
       'film.load': 'Videonuzu yükleyin',
       'film.loadNote': 'Yalnızca bu cihazda oynatılır. Hiçbir şey yüklenmez.',
       'film.play': 'Sesli oynat',
@@ -595,6 +609,7 @@ window.HAVA_I18N = {
       'range.eyebrow': 'Ürün yelpazesi',
       'range.title': 'Koleksiyon',
       'range.lead': 'Sofra için cam şişeler, gün için hafif bir şişe ve geri kalan her yer için bir kutu.',
+      'sizes.title': 'Tüm boyutlar',
       'range.glass': 'Cam',
       'range.bottle': 'Şişe',
       'range.can': 'Kutu',
@@ -684,6 +699,7 @@ window.HAVA_I18N = {
 
     zh: {
       'nav.range': '产品系列',
+      'nav.products': '产品',
       'nav.flavours': '风味',
       'nav.story': '品牌故事',
       'nav.hotels': '酒店',
@@ -704,6 +720,7 @@ window.HAVA_I18N = {
       'film.3': '冰凉、清澈、宁静。',
       'film.4': '瑞典的精髓。',
       'film.hint': '向下滚动',
+      'film.tapSound': '点击开启声音',
       'film.load': '载入您的视频',
       'film.loadNote': '仅在本设备播放，不会上传任何内容。',
       'film.play': '有声播放',
@@ -729,6 +746,7 @@ window.HAVA_I18N = {
       'range.eyebrow': '产品系列',
       'range.title': '臻选系列',
       'range.lead': '玻璃瓶适合餐桌，轻便瓶适合日常，易拉罐适合其他一切场合。',
+      'sizes.title': '全部规格',
       'range.glass': '玻璃瓶',
       'range.bottle': '瓶装',
       'range.can': '罐装',
@@ -818,6 +836,7 @@ window.HAVA_I18N = {
 
     de: {
       'nav.range': 'Sortiment',
+      'nav.products': 'Produkte',
       'nav.flavours': 'Sorten',
       'nav.story': 'Geschichte',
       'nav.hotels': 'Hotels',
@@ -838,6 +857,7 @@ window.HAVA_I18N = {
       'film.3': 'Kalt, klar und still.',
       'film.4': 'Die Essenz Schwedens.',
       'film.hint': 'Scrollen',
+      'film.tapSound': 'Klicken oder tippen für Ton',
       'film.load': 'Eigenes Video laden',
       'film.loadNote': 'Wird nur auf diesem Gerät abgespielt. Es wird nichts hochgeladen.',
       'film.play': 'Mit Ton abspielen',
@@ -863,6 +883,7 @@ window.HAVA_I18N = {
       'range.eyebrow': 'Das Sortiment',
       'range.title': 'Die Kollektion',
       'range.lead': 'Glasflaschen für den Tisch, eine leichte Flasche für den Tag und eine Dose für alles andere.',
+      'sizes.title': 'Alle Größen',
       'range.glass': 'Glas',
       'range.bottle': 'Flasche',
       'range.can': 'Dose',

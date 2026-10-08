@@ -4,7 +4,7 @@
   const { FLAVOURS, drawCan, fit, geometry, onReady } = window.HAVA_CANS;
   const { t, reduceMotion } = window.HAVA;
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
-  const stage = document.getElementById('stage');
+  const stage = document.getElementById('flavours');
   const canvas = document.getElementById('fl-canvas');
   const picks = [...document.querySelectorAll('.fl-pick')];
   const nameEl = document.getElementById('fl-name');
@@ -15,9 +15,7 @@
   let selected = 0, shown = 0, rot = -0.4, vel = 0, dragging = false, lastX = 0, lastT = 0, idleUntil = 0, spin = null;
   let view = null, visible = true, raf = 0, last = 0;
 
-  const box = () => (view.w < 860
-    ? { y: 84, w: view.w, h: Math.max(160, view.h * 0.86 - 84) }
-    : { y: view.h * 0.07, w: view.w, h: view.h * 0.8 });
+  const box = () => ({ y: 0, w: view.w, h: view.h });
 
   function draw() {
     if (!view) return;

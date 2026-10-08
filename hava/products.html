@@ -4,75 +4,90 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="HAVA: still and sparkling water from Sweden. The essence of Sweden.">
-<meta name="theme-color" content="#04101B">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2304101B'/%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='%23C9A66B' stroke-width='1.6'/%3E%3Cpath d='M14.5 25.5L20 13.5L25.5 25.5' fill='none' stroke='%23C9A66B' stroke-width='1.8'/%3E%3C/svg%3E">
-<title>HAVA · Collection</title>
+<meta name="theme-color" content="#040E17">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23040E17'/%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='%23C9A66B' stroke-width='1.6'/%3E%3Cpath d='M14.5 25.5L20 13.5L25.5 25.5' fill='none' stroke='%23C9A66B' stroke-width='1.8'/%3E%3C/svg%3E">
+<title>HAVA · Products</title>
 <script>try{if(sessionStorage.getItem('hava-curtain'))document.documentElement.classList.add('curtain-in')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..700&display=swap">
 <link rel="stylesheet" href="css/site.css">
 </head>
-<body data-page="collection" data-title="nav.range">
+<body data-page="products" data-title="nav.products">
 
 <main>
-  <section class="page-hero letterbox">
+  <section class="page-hero">
     <img src="assets/range-flatlay.webp" width="2200" height="1476" fetchpriority="high" alt="Four HAVA bottles lying in shallow water" data-i18n-attr="alt:alt.range">
     <div class="wrap">
-      <span class="eyebrow" data-i18n="range.eyebrow">The range</span>
+      <span class="eyebrow" data-i18n="nav.products">Products</span>
       <h1 class="display" data-i18n="range.title">The collection</h1>
       <p class="lead" data-i18n="range.lead">Glass bottles for the table, a light bottle for the day and a can for everywhere else.</p>
     </div>
-    <span class="scroll-cue" aria-hidden="true" data-i18n="film.hint">Scroll</span>
   </section>
 
-  <section class="section">
+  <section class="section light">
     <div class="wrap">
-      <article class="spot">
+      <article class="spot" id="still">
         <div class="frame spot-media"><img src="assets/still-700.webp" width="900" height="1350" loading="lazy" alt="HAVA Still glass bottle" data-i18n-attr="alt:alt.still"></div>
         <div class="spot-copy" data-reveal>
           <span class="eyebrow" data-i18n="water.f1t">Still &amp; sparkling</span>
           <h2 class="spot-name">HAVA <em>Still</em></h2>
-          <ul class="sizes">
-            <li data-size="1000" data-mat="glass">1000 ml · Glass</li>
-            <li data-size="700" data-mat="glass">700 ml · Glass</li>
-            <li data-size="500" data-mat="bottle">500 ml · Bottle</li>
-          </ul>
+          <ul class="sizes"><li data-size="1000" data-mat="glass">1000 ml · Glass</li><li data-size="700" data-mat="glass">700 ml · Glass</li><li data-size="500" data-mat="bottle">500 ml · Bottle</li></ul>
           <p class="lead" data-i18n="card.still.p">Soft and quiet, for long dinners and slow mornings.</p>
-          <a class="link-line arrow" href="contact.html#still" data-i18n="nav.contact">Contact</a>
+          <a class="btn btn-dark arrow" href="contact.html#still" data-i18n="nav.contact">Contact</a>
         </div>
       </article>
-
-      <article class="spot flip">
+      <article class="spot flip" id="sparkling">
         <div class="frame spot-media"><img src="assets/sparkling-700.webp" width="900" height="1349" loading="lazy" alt="HAVA Sparkling glass bottle" data-i18n-attr="alt:alt.sparkling"></div>
         <div class="spot-copy" data-reveal>
           <span class="eyebrow" data-i18n="water.f2t">Glass &amp; gold</span>
           <h2 class="spot-name">HAVA <em>Sparkling</em></h2>
           <ul class="sizes"><li data-size="700" data-mat="glass">700 ml · Glass</li></ul>
           <p class="lead" data-i18n="card.sparkling.p">Fine, lively bubbles with a clean finish.</p>
-          <a class="link-line arrow" href="contact.html#sparkling" data-i18n="nav.contact">Contact</a>
-        </div>
-      </article>
-
-      <article class="spot">
-        <div class="frame spot-media"><img src="assets/can-sparkling.webp" width="900" height="1350" loading="lazy" alt="HAVA Sparkling can" data-i18n-attr="alt:alt.can"></div>
-        <div class="spot-copy" data-reveal>
-          <span class="eyebrow" data-i18n="water.f3t">Five flavours</span>
-          <h2 class="spot-name" data-i18n="card.can.title">Sparkling flavours</h2>
-          <ul class="sizes"><li data-size="330" data-mat="can">330 ml · Can</li></ul>
-          <p class="lead" data-i18n="card.can.p">330 ml of cold sparkling water, now in five flavours.</p>
-          <a class="link-line arrow" href="flavours.html" data-i18n="card.cta">See the flavours</a>
+          <a class="btn btn-dark arrow" href="contact.html#sparkling" data-i18n="nav.contact">Contact</a>
         </div>
       </article>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0">
+  <section class="fl-stage" id="flavours">
+    <div class="fl-glow"></div>
+    <div class="fl-ghost" id="fl-ghost" aria-hidden="true">LINGON</div>
+    <div class="fl-top">
+      <span class="eyebrow" data-i18n="flavours.eyebrow">Sparkling flavours</span>
+      <h2 class="title" data-i18n="flavours.title">Five flavours of Sweden</h2>
+    </div>
+    <canvas class="fl-canvas" id="fl-canvas" aria-hidden="true"></canvas>
+    <div class="fl-ui">
+      <div class="fl-now" aria-live="polite">
+        <h3 class="fl-name" id="fl-name" data-i18n="fl.lingon">Lingonberry</h3>
+        <p class="fl-sv" id="fl-sv" lang="sv">Lingon</p>
+        <p class="fl-desc" id="fl-desc" data-i18n="fl.lingon.p">Tart and bright, like the red berries of the autumn forest.</p>
+      </div>
+      <div class="fl-nav">
+        <p class="fl-hint" data-i18n="flavours.drag">Drag to turn the can</p>
+        <div class="fl-arrows">
+          <button class="fl-arrow" type="button" data-step="-1" aria-label="Previous" data-i18n-attr="aria-label:ui.prev">←</button>
+          <button class="fl-arrow" type="button" data-step="1" aria-label="Next" data-i18n-attr="aria-label:ui.next">→</button>
+        </div>
+        <div class="fl-picker" role="group" aria-label="Choose a flavour" data-i18n-attr="aria-label:flavours.pick">
+          <button class="fl-pick" type="button" data-flavour="0" aria-pressed="true"><canvas aria-hidden="true"></canvas><span data-i18n="fl.lingon">Lingonberry</span></button>
+          <button class="fl-pick" type="button" data-flavour="1" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.hjortron">Cloudberry</span></button>
+          <button class="fl-pick" type="button" data-flavour="2" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.flader">Elderflower</span></button>
+          <button class="fl-pick" type="button" data-flavour="3" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.blabar">Wild blueberry</span></button>
+          <button class="fl-pick" type="button" data-flavour="4" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.gurka">Cucumber &amp; mint</span></button>
+        </div>
+        <a class="btn btn-gold arrow" href="contact.html#cans" data-i18n="flavours.cta">Order the flavours</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light" id="sizes">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <span class="eyebrow" data-i18n="water.eyebrow">The water</span>
-          <h2 class="title" data-i18n="water.title">Quiet, soft and cold. Water the way Sweden keeps it.</h2>
+          <span class="eyebrow" data-i18n="range.eyebrow">The range</span>
+          <h2 class="title" data-i18n="sizes.title">Every size</h2>
         </div>
         <p class="lead" data-i18n="water.p">HAVA comes from the Swedish landscape of granite, pine forest and clear lakes. Still or sparkling, in glass for the table or in a can for the day.</p>
       </div>
@@ -101,5 +116,7 @@
 <script src="js/i18n.js"></script>
 <script src="js/site.js"></script>
 <script src="js/motion.js"></script>
+<script src="js/cans.js"></script>
+<script src="js/flavours.js"></script>
 </body>
 </html>

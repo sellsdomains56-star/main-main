@@ -9,9 +9,8 @@
     set(key, value) { try { localStorage.setItem(key, value); } catch (e) { /* storage blocked */ } }
   };
   const NAV = [
-    ['collection.html', 'nav.range', 'collection', 'Range'],
-    ['flavours.html', 'nav.flavours', 'flavours', 'Flavours'],
-    ['story.html', 'nav.story', 'story', 'Story'],
+    ['products.html', 'nav.products', 'products', 'Products'],
+    ['story.html', 'story.eyebrow', 'story', 'Our story'],
     ['hotels.html', 'nav.hotels', 'hotels', 'Hotels'],
     ['contact.html', 'nav.contact', 'contact', 'Contact']
   ];
@@ -58,7 +57,7 @@
   const footerCta = page === 'contact' ? '' : `
   <div class="wrap footer-cta">
     <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
-    <h2 class="title" data-i18n="contact.title">Bring HAVA to your table</h2>
+    <h2 class="display" data-i18n="contact.title">Bring HAVA to your table</h2>
     <a class="btn btn-gold arrow" href="contact.html" data-i18n="nav.contact">Contact</a>
   </div>`;
   document.body.insertAdjacentHTML('beforeend', `
@@ -108,8 +107,8 @@
     return s;
   };
   const FONT_CSS = {
-    ar: 'https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap',
-    zh: 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap'
+    ar: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap',
+    zh: 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@500&display=swap'
   };
   function loadFonts(code) {
     if (!FONT_CSS[code] || document.querySelector(`link[data-font="${code}"]`)) return;
