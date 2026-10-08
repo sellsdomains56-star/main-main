@@ -41,6 +41,9 @@ window.HAVA_I18N = {
       'film.soundOn': 'Sound on',
       'film.soundOff': 'Sound off',
       'film.loadError': "This video format can't play in this browser. Try an MP4 (H.264) file.",
+      'ui.prev': 'Previous',
+      'ui.next': 'Next',
+      'film.skip': 'Skip the film',
 
       'water.eyebrow': 'The water',
       'water.title': 'Quiet, soft and cold. Water the way Sweden keeps it.',
@@ -96,6 +99,9 @@ window.HAVA_I18N = {
       'hotels.c2': 'The crate of six',
       'hotels.c3': 'The gift box',
       'hotels.cta': 'Become a partner',
+      'hotels.c1p': 'A bottle and a glass by the bed, ready when your guests come back.',
+      'hotels.c2p': 'Six gold-capped bottles in a light wooden crate, for the bar and the table.',
+      'hotels.c3p': 'One bottle in a lined box, for welcome gifts and special guests.',
 
       'contact.eyebrow': 'Contact',
       'contact.title': 'Bring HAVA to your table',
@@ -168,6 +174,9 @@ window.HAVA_I18N = {
       'film.soundOn': 'الصوت مفعّل',
       'film.soundOff': 'الصوت مغلق',
       'film.loadError': 'لا يمكن تشغيل صيغة هذا الفيديو في هذا المتصفح. جرّب ملف MP4 (H.264).',
+      'ui.prev': 'السابق',
+      'ui.next': 'التالي',
+      'film.skip': 'تخطَّ الفيلم',
 
       'water.eyebrow': 'المياه',
       'water.title': 'هادئة وناعمة وباردة. مياه كما تحفظها السويد.',
@@ -223,6 +232,9 @@ window.HAVA_I18N = {
       'hotels.c2': 'صندوق الست زجاجات',
       'hotels.c3': 'علبة الهدايا',
       'hotels.cta': 'كن شريكًا',
+      'hotels.c1p': 'زجاجة وكأس بجانب السرير، جاهزتان عند عودة ضيوفك.',
+      'hotels.c2p': 'ست زجاجات بأغطية ذهبية في صندوق خشبي فاتح، للبار والمائدة.',
+      'hotels.c3p': 'زجاجة واحدة في علبة مبطّنة، لهدايا الترحيب والضيوف المميزين.',
 
       'contact.eyebrow': 'تواصل معنا',
       'contact.title': 'اجعل HAVA على مائدتك',
@@ -295,6 +307,9 @@ window.HAVA_I18N = {
       'film.soundOn': 'Ljud på',
       'film.soundOff': 'Ljud av',
       'film.loadError': 'Det här videoformatet kan inte spelas i den här webbläsaren. Prova en MP4-fil (H.264).',
+      'ui.prev': 'Föregående',
+      'ui.next': 'Nästa',
+      'film.skip': 'Hoppa över filmen',
 
       'water.eyebrow': 'Vattnet',
       'water.title': 'Tyst, mjukt och kallt. Vatten så som Sverige bevarar det.',
@@ -350,6 +365,9 @@ window.HAVA_I18N = {
       'hotels.c2': 'Trälådan med sex flaskor',
       'hotels.c3': 'Presentasken',
       'hotels.cta': 'Bli partner',
+      'hotels.c1p': 'En flaska och ett glas vid sängen, redo när gästerna kommer tillbaka.',
+      'hotels.c2p': 'Sex flaskor med guldkapsyl i en ljus trälåda, för baren och bordet.',
+      'hotels.c3p': 'En flaska i en fodrad ask, för välkomstgåvor och särskilda gäster.',
 
       'contact.eyebrow': 'Kontakt',
       'contact.title': 'Ta HAVA till ditt bord',
@@ -422,6 +440,9 @@ window.HAVA_I18N = {
       'film.soundOn': 'Son activé',
       'film.soundOff': 'Son coupé',
       'film.loadError': 'Ce format vidéo ne peut pas être lu dans ce navigateur. Essayez un fichier MP4 (H.264).',
+      'ui.prev': 'Précédent',
+      'ui.next': 'Suivant',
+      'film.skip': 'Passer le film',
 
       'water.eyebrow': "L'eau",
       'water.title': "Douce, calme et froide. L'eau telle que la Suède la garde.",
@@ -477,6 +498,9 @@ window.HAVA_I18N = {
       'hotels.c2': 'La caisse de six',
       'hotels.c3': 'Le coffret cadeau',
       'hotels.cta': 'Devenir partenaire',
+      'hotels.c1p': 'Une bouteille et un verre près du lit, prêts au retour de vos clients.',
+      'hotels.c2p': 'Six bouteilles au bouchon doré dans une caisse en bois clair, pour le bar et la table.',
+      'hotels.c3p': 'Une bouteille dans un coffret doublé, pour les cadeaux de bienvenue et les invités de marque.',
 
       'contact.eyebrow': 'Contact',
       'contact.title': 'Invitez HAVA à votre table',
@@ -549,6 +573,9 @@ window.HAVA_I18N = {
       'film.soundOn': 'Ses açık',
       'film.soundOff': 'Ses kapalı',
       'film.loadError': 'Bu video biçimi bu tarayıcıda oynatılamıyor. MP4 (H.264) dosyası deneyin.',
+      'ui.prev': 'Önceki',
+      'ui.next': 'Sonraki',
+      'film.skip': 'Filmi geç',
 
       'water.eyebrow': 'Su',
       'water.title': "Sessiz, yumuşak ve soğuk. İsveç'in koruduğu gibi su.",
@@ -604,6 +631,9 @@ window.HAVA_I18N = {
       'hotels.c2': 'Altılı kasa',
       'hotels.c3': 'Hediye kutusu',
       'hotels.cta': 'İş ortağı olun',
+      'hotels.c1p': 'Yatağın yanında bir şişe ve bir bardak; misafirleriniz döndüğünde hazır.',
+      'hotels.c2p': 'Açık renk ahşap bir kasada altı altın kapaklı şişe; bar ve sofra için.',
+      'hotels.c3p': 'Astarlı bir kutuda tek şişe; hoş geldin hediyeleri ve özel misafirler için.',
 
       'contact.eyebrow': 'İletişim',
       'contact.title': "HAVA'yı sofranıza getirin",
@@ -676,6 +706,9 @@ window.HAVA_I18N = {
       'film.soundOn': '声音已开',
       'film.soundOff': '声音已关',
       'film.loadError': '此浏览器无法播放该视频格式。请尝试 MP4（H.264）文件。',
+      'ui.prev': '上一个',
+      'ui.next': '下一个',
+      'film.skip': '跳过影片',
 
       'water.eyebrow': '水',
       'water.title': '安静、柔和、冰凉。瑞典珍藏的水。',
@@ -731,6 +764,9 @@ window.HAVA_I18N = {
       'hotels.c2': '六瓶装木箱',
       'hotels.c3': '礼盒',
       'hotels.cta': '成为合作伙伴',
+      'hotels.c1p': '床边的一瓶水与一只水杯，静候宾客归来。',
+      'hotels.c2p': '浅色木箱中的六瓶金盖玻璃瓶，适合酒吧与餐桌。',
+      'hotels.c3p': '内衬礼盒中的一瓶水，用作欢迎礼物或款待贵宾。',
 
       'contact.eyebrow': '联系我们',
       'contact.title': '让 HAVA 登上您的餐桌',
@@ -803,6 +839,9 @@ window.HAVA_I18N = {
       'film.soundOn': 'Ton an',
       'film.soundOff': 'Ton aus',
       'film.loadError': 'Dieses Videoformat kann in diesem Browser nicht abgespielt werden. Versuchen Sie eine MP4-Datei (H.264).',
+      'ui.prev': 'Zurück',
+      'ui.next': 'Weiter',
+      'film.skip': 'Film überspringen',
 
       'water.eyebrow': 'Das Wasser',
       'water.title': 'Leise, weich und kalt. Wasser, wie Schweden es bewahrt.',
@@ -858,6 +897,9 @@ window.HAVA_I18N = {
       'hotels.c2': 'Die Sechserkiste',
       'hotels.c3': 'Die Geschenkbox',
       'hotels.cta': 'Partner werden',
+      'hotels.c1p': 'Eine Flasche und ein Glas am Bett, bereit, wenn Ihre Gäste zurückkommen.',
+      'hotels.c2p': 'Sechs Flaschen mit Goldverschluss in einer hellen Holzkiste, für Bar und Tisch.',
+      'hotels.c3p': 'Eine Flasche in einer ausgekleideten Box, für Willkommensgeschenke und besondere Gäste.',
 
       'contact.eyebrow': 'Kontakt',
       'contact.title': 'Bringen Sie HAVA an Ihren Tisch',

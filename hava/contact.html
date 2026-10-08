@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="HAVA: still and sparkling water from Sweden. The essence of Sweden.">
+<meta name="theme-color" content="#04101B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2304101B'/%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='%23C9A66B' stroke-width='1.6'/%3E%3Cpath d='M14.5 25.5L20 13.5L25.5 25.5' fill='none' stroke='%23C9A66B' stroke-width='1.8'/%3E%3C/svg%3E">
+<title>HAVA · Contact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body data-page="contact" data-title="nav.contact">
+
+<main>
+  <section class="contact-page">
+    <img src="assets/gift-box.webp" width="1600" height="1074" alt="">
+    <div class="wrap contact-grid">
+      <div class="contact-copy">
+        <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+        <h1 class="display" data-i18n="contact.title">Bring HAVA to your table</h1>
+        <p class="lead" data-i18n="contact.lead">For hotels, restaurants, shops and distributors. Tell us what you need and we'll reply with prices and delivery.</p>
+      </div>
+      <div class="panel">
+        <form class="form" id="contact-form" novalidate>
+          <div class="row">
+            <div class="field">
+              <label class="label" for="f-name" data-i18n="form.name">Name</label>
+              <input class="input" id="f-name" name="name" autocomplete="name" required placeholder="Your name" data-i18n-attr="placeholder:form.namePh">
+            </div>
+            <div class="field">
+              <label class="label" for="f-email" data-i18n="form.email">Email</label>
+              <input class="input" id="f-email" name="email" type="email" autocomplete="email" required placeholder="name@company.com" dir="ltr">
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label class="label" for="f-company"><span data-i18n="form.company">Company</span> <small data-i18n="form.optional">(optional)</small></label>
+              <input class="input" id="f-company" name="company" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label class="label" for="f-interest" data-i18n="form.interest">I'm interested in</label>
+              <select class="input" id="f-interest" name="interest">
+                <option value="still" data-i18n="opt.still">HAVA Still, glass</option>
+                <option value="sparkling" data-i18n="opt.sparkling">HAVA Sparkling, glass</option>
+                <option value="cans" data-i18n="opt.cans">Sparkling flavours, cans</option>
+                <option value="gift" data-i18n="opt.gift">Gift boxes</option>
+                <option value="dist" data-i18n="opt.dist">Distribution</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="f-message" data-i18n="form.message">Message</label>
+            <textarea class="input" id="f-message" name="message" rows="4" placeholder="Quantities, delivery address, dates…" data-i18n-attr="placeholder:form.messagePh"></textarea>
+          </div>
+          <div class="form-foot">
+            <button class="btn btn-gold arrow" type="submit" data-i18n="form.send">Send</button>
+            <p class="form-error" id="form-error" role="alert"></p>
+          </div>
+        </form>
+        <div class="confirm" id="form-confirm" tabindex="-1" hidden>
+          <h2 id="confirm-title"></h2>
+          <p id="confirm-text"></p>
+          <button class="btn" type="button" id="form-again" data-i18n="form.again">Send another message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="js/i18n.js"></script>
+<script src="js/site.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>
