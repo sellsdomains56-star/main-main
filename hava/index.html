@@ -1,409 +1,491 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <!-- head-only -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Hava is water from Sweden. Rent, kallt, klart: pure, cold and clear.">
-<meta name="theme-color" content="#08161D">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308161D'/%3E%3Cpath d='M16 5c4 6 7 10 7 14a7 7 0 0 1-14 0c0-4 3-8 7-14z' fill='%23CFE4EA'/%3E%3C/svg%3E">
+<meta name="description" content="HAVA: still and sparkling water from Sweden. The essence of Sweden.">
+<meta name="theme-color" content="#0D2B45">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%230D2B45'/%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='%23C9DDE4' stroke-width='1.6'/%3E%3Cpath d='M14.5 25.5L20 13.5L25.5 25.5' fill='none' stroke='%23C9DDE4' stroke-width='1.8'/%3E%3C/svg%3E">
 <!-- /head-only -->
 <title>Hava</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,500&family=Familjen+Grotesk:wght@400;500;600&family=Krona+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap">
 <style>
 :root {
-  /* Layout: surface to depth. A night-cold hero with the bottle in front of a submerged wordmark,
-     ice-white middle sections set off-centre, and a fjord-dark close. One deliberate look, not themed. */
-  --night: #08161D;      /* fjord at night: hero, manifesto, footer */
-  --night-glow: #12323F; /* light caught in the hero */
-  --deep: #0F2A36;       /* deep lake: the bottles */
-  --lake: #2E6E7C;       /* lake teal: caps, links, focus */
-  --ice: #CFE4EA;        /* ice: type and glow on dark */
-  --snow: #EEF4F5;       /* snow: the light ground */
-  --paper: #FAFCFC;      /* label paper */
-  --mist: #8FA9B2;       /* quiet text on dark */
-  --slate: #4A6068;      /* quiet text on light */
-  --rule-dark: rgba(207, 228, 234, .16);
-  --rule-light: rgba(8, 22, 29, .14);
+  /* Layout: a quiet gallery in the Voss manner. Fog-white rooms where the bottles are the art,
+     Deep Water bands for the drama (hero, scroll film, story, footer). Colours from the HAVA brand book. */
+  --deep: #0D2B45;      /* Deep Water */
+  --deep-2: #081D30;    /* Deep Water, darker, for gradients */
+  --ink: #1A1A1A;       /* Ink */
+  --fog: #F4F2ED;       /* Fog */
+  --paper: #FBFAF7;     /* paper, a step lighter than Fog */
+  --ice: #C9DDE4;       /* Glacial Ice */
+  --steel: #B8BCC0;     /* Steel */
+  --gold: #C2A06A;      /* brushed gold of the caps */
+  --stone: #59626A;     /* quiet text on light grounds */
+  --mist: #A3B7C4;      /* quiet text on Deep Water */
+  --rule: rgba(26, 26, 26, .12);
+  --rule-deep: rgba(201, 221, 228, .2);
+  --fl-bg: #F5E6E8;     /* set per flavour by the script */
+  --fl-text: #9C2E42;
 
-  --font-display: "Krona One", "Arial Black", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Familjen Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-serif: "Bodoni Moda", "Bodoni 72", Didot, Georgia, serif;
-
-  --step--1: .8125rem;
-  --step-0: 1.0625rem;
-  --step-1: 1.25rem;
-  --step-2: clamp(1.5rem, 2.4vw, 2rem);
-  --step-3: clamp(1.9rem, 3.6vw, 3rem);
-  --step-4: clamp(2.6rem, 5vw, 4.25rem);
-  --step-5: clamp(2.2rem, 6vw, 5rem);
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --track: .26em;
 
   color-scheme: light;
 }
+html[lang="ar"] {
+  --serif: "Amiri", "Noto Naskh Arabic", "Geeza Pro", serif;
+  --sans: "IBM Plex Sans Arabic", "Noto Sans Arabic", Tahoma, sans-serif;
+  --track: 0;
+}
+html[lang="zh-Hans"] {
+  --serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --track: .12em;
+}
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--snow);
-  color: var(--night);
-  font-family: var(--font-body);
-  font-size: var(--step-0);
-  line-height: 1.6;
+  background: var(--fog);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
-h1, h2, h3, p { margin: 0; }
-h1, h2, h3 { text-wrap: balance; font-weight: 400; }
-h2 { font-family: var(--font-display); font-size: var(--step-3); line-height: 1.08; letter-spacing: -.01em; }
+img { display: block; max-width: 100%; }
+h1, h2, h3, p, figure, ol, ul { margin: 0; }
+h1, h2, h3 { font-weight: 400; text-wrap: balance; }
 a { color: inherit; }
-:focus-visible { outline: 2px solid var(--lake); outline-offset: 3px; }
-.on-dark :focus-visible { outline-color: var(--ice); }
+button { font: inherit; color: inherit; }
 [hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-.wrap { width: min(1240px, 100%); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
-section { scroll-margin-top: 72px; }
-.section { padding-block: clamp(72px, 10vw, 140px); }
+.wrap { width: min(1320px, 100%); margin-inline: auto; padding-inline: clamp(16px, 4.5vw, 56px); }
+section[id] { scroll-margin-top: 72px; }
+.section { padding-block: clamp(80px, 11vw, 160px); }
+.on-deep { background: var(--deep); color: var(--fog); }
 
 .eyebrow {
-  display: block;
-  font-size: .75rem;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: .22em;
+  display: inline-flex;
+  align-items: center;
+  gap: .9em;
+  font: 600 .72rem/1.3 var(--sans);
+  letter-spacing: var(--track);
   text-transform: uppercase;
+  color: var(--stone);
 }
-.prose { display: grid; gap: 1.1rem; max-width: 34rem; }
-.prose p { color: var(--slate); }
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .6; flex: none; }
+.on-deep .eyebrow { color: var(--gold); }
+.h2 { font: 300 clamp(2.2rem, 4.6vw, 4.1rem)/1.06 var(--serif); letter-spacing: -.01em; }
+.lead { font-size: 1.06rem; color: var(--stone); max-width: 36rem; }
+.on-deep .lead { color: var(--mist); }
+html[lang="ar"] h1, html[lang="ar"] .h2, html[lang="ar"] .fl-name, html[lang="ar"] .film-captions li { line-height: 1.45; letter-spacing: 0; }
+html[lang="zh-Hans"] h1, html[lang="zh-Hans"] .h2, html[lang="zh-Hans"] .fl-name, html[lang="zh-Hans"] .film-captions li { line-height: 1.3; letter-spacing: .02em; }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: .6em;
-  font: 600 .8125rem/1 var(--font-body);
-  letter-spacing: .16em;
+  gap: .7em;
+  min-height: 48px;
+  padding: .95em 1.8em;
+  font: 600 .72rem/1 var(--sans);
+  letter-spacing: var(--track);
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1.1em 1.7em;
   border: 1px solid currentColor;
   background: transparent;
   color: inherit;
   cursor: pointer;
-  transition: background-color .25s, color .25s, border-color .25s;
+  transition: background-color .3s, color .3s, border-color .3s;
 }
-.btn-ice { background: var(--ice); border-color: var(--ice); color: var(--night); }
-.btn-ice:hover { background: var(--snow); border-color: var(--snow); }
-.btn-line:hover { background: rgba(207, 228, 234, .1); }
-.btn-ink { background: var(--night); border-color: var(--night); color: var(--snow); }
-.btn-ink:hover { background: var(--deep); border-color: var(--deep); }
+.btn-ice { background: var(--ice); border-color: var(--ice); color: var(--deep); }
+.btn-ice:hover { background: var(--fog); border-color: var(--fog); }
+.btn-line:hover { background: rgba(201, 221, 228, .14); }
+.btn-deep { background: var(--deep); border-color: var(--deep); color: var(--fog); }
+.btn-deep:hover { background: var(--deep-2); border-color: var(--deep-2); }
+.btn-outline { color: var(--deep); }
+.btn-outline:hover { background: var(--deep); color: var(--fog); }
+.arrow::after { content: "→"; font-size: 1.1em; letter-spacing: 0; transition: transform .3s; }
+html[dir="rtl"] .arrow::after { content: "←"; }
 
 /* Header */
 .site-header {
-  position: sticky;
-  top: env(safe-area-inset-top, 0px);
-  z-index: 50;
-  background: rgba(8, 22, 29, .8);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid var(--rule-dark);
-  color: var(--ice);
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 60;
+  padding-top: env(safe-area-inset-top, 0px);
+  color: var(--fog);
+  transition: background-color .4s, box-shadow .4s;
 }
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 64px; }
-.brand { font-family: var(--font-display); font-size: 1rem; letter-spacing: .34em; text-decoration: none; }
-.nav { display: flex; align-items: center; gap: clamp(16px, 3vw, 32px); }
-.nav ul { display: flex; gap: clamp(16px, 2.6vw, 28px); list-style: none; margin: 0; padding: 0; }
-.nav ul a { font-size: .875rem; text-decoration: none; opacity: .78; transition: opacity .2s; }
-.nav ul a:hover { opacity: 1; }
-.nav .btn { padding: .85em 1.2em; font-size: .75rem; }
-@media (max-width: 720px) { .nav ul { display: none; } }
+.site-header.solid, .site-header.menu-open {
+  background: rgba(13, 43, 69, .94);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--rule-deep);
+}
+.bar { display: flex; align-items: center; gap: clamp(14px, 2.6vw, 36px); min-height: 72px; }
+.brand { display: block; color: inherit; margin-inline-end: auto; }
+.brand svg { display: block; width: 96px; height: auto; }
+.nav { display: flex; align-items: center; gap: clamp(18px, 2.4vw, 34px); }
+.nav ul { display: flex; gap: clamp(18px, 2.4vw, 34px); list-style: none; margin: 0; padding: 0; }
+.nav a { font: 500 .72rem/1 var(--sans); letter-spacing: var(--track); text-transform: uppercase; text-decoration: none; opacity: .85; transition: opacity .2s; }
+.nav a:hover { opacity: 1; }
+.lang { position: relative; }
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  min-height: 40px;
+  padding: 0 .9em;
+  border: 1px solid var(--rule-deep);
+  background: transparent;
+  font: 600 .72rem/1 var(--sans);
+  letter-spacing: .14em;
+  cursor: pointer;
+}
+.lang-btn svg { width: 16px; height: 16px; }
+.lang-menu {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + 10px);
+  min-width: 12.5rem;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 24px 60px -20px rgba(8, 29, 48, .45);
+}
+.lang-menu button, .footer-langs button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .65rem .9rem;
+  border: 0;
+  background: none;
+  text-align: start;
+  font-size: .95rem;
+  cursor: pointer;
+}
+.lang-menu button:hover { background: var(--fog); }
+.lang-menu button[aria-current="true"]::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.lang-menu button[lang="ar"] { font-family: "IBM Plex Sans Arabic", "Noto Sans Arabic", Tahoma, sans-serif; }
+.lang-menu button[lang="zh-Hans"] { font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; }
+.menu-btn {
+  display: none;
+  min-height: 40px;
+  padding: 0 .9em;
+  border: 1px solid var(--rule-deep);
+  background: transparent;
+  font: 600 .72rem/1 var(--sans);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+@media (max-width: 900px) {
+  .menu-btn { display: inline-flex; align-items: center; }
+  .nav {
+    position: fixed;
+    inset-inline: 0;
+    top: calc(72px + env(safe-area-inset-top, 0px));
+    display: none;
+    padding: 12px clamp(16px, 4.5vw, 56px) 28px;
+    background: rgba(13, 43, 69, .97);
+  }
+  .nav.open { display: block; }
+  .nav ul { flex-direction: column; gap: 0; }
+  .nav ul a { display: block; padding-block: 1.05rem; border-bottom: 1px solid var(--rule-deep); font-size: .8rem; }
+}
 
 /* Hero */
 .hero {
   position: relative;
-  overflow: hidden;
-  background: radial-gradient(120% 80% at 50% 18%, var(--night-glow) 0%, var(--night) 62%);
-  color: var(--ice);
-  padding-block: 0 clamp(40px, 6vw, 72px);
-}
-.hero-stage {
-  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: end;
-  gap: clamp(24px, 4vw, 56px);
-  padding-top: clamp(28px, 5vw, 64px);
+  min-height: clamp(600px, 94vh, 940px);
+  padding-top: 96px;
+  background: var(--deep);
+  color: var(--fog);
+  overflow: hidden;
+  isolation: isolate;
 }
-.hero-word { position: absolute; left: 0; right: 0; top: clamp(4px, 1.5vw, 16px); z-index: 0; cursor: pointer; }
-.hero-word svg { display: block; width: 100%; height: auto; overflow: visible; }
-.hero-word text { font-family: var(--font-display); font-size: 320px; }
-.hero-copy { grid-column: 1; position: relative; z-index: 2; display: grid; gap: 1.25rem; max-width: 28rem; }
-.hero-copy .eyebrow { color: var(--mist); }
-.hero h1 { font-family: var(--font-serif); font-style: italic; font-size: var(--step-4); line-height: 1.02; letter-spacing: -.01em; }
-.hero-copy p { color: var(--mist); max-width: 25rem; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; padding-top: .5rem; }
-
-.bottle-wrap { grid-column: 2; position: relative; z-index: 1; height: clamp(400px, 46vw, 600px); aspect-ratio: 1 / 3; max-width: 100%; }
-.bottle-wrap::before {
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 45%;
+  z-index: -2;
+  animation: settle 2.6s cubic-bezier(.2, .7, .2, 1) both;
+}
+@keyframes settle { from { transform: scale(1.08); } to { transform: scale(1); } }
+.hero::after {
   content: "";
   position: absolute;
-  inset: 8% -130% 4%;
-  background: radial-gradient(closest-side, rgba(143, 200, 216, .3), transparent);
+  inset: 0;
   z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(8, 29, 48, .84) 0%, rgba(8, 29, 48, .45) 38%, rgba(8, 29, 48, 0) 64%),
+    linear-gradient(0deg, rgba(8, 29, 48, .7) 0%, rgba(8, 29, 48, 0) 45%);
 }
-.bottle-wrap::after {
-  content: "";
+.hero-inner { width: min(1320px, 100%); }
+.hero-copy { display: grid; gap: 1.4rem; max-width: 36rem; padding-bottom: clamp(56px, 10vh, 120px); }
+html[dir="rtl"] .hero::after {
+  background:
+    linear-gradient(270deg, rgba(8, 29, 48, .84) 0%, rgba(8, 29, 48, .5) 40%, rgba(8, 29, 48, 0) 66%),
+    linear-gradient(0deg, rgba(8, 29, 48, .7) 0%, rgba(8, 29, 48, 0) 45%);
+}
+.hero-copy .eyebrow { color: var(--ice); }
+.hero h1 { font: 300 clamp(3rem, 7vw, 6.4rem)/.98 var(--serif); letter-spacing: -.02em; }
+.hero-sub { color: var(--ice); font-size: 1.08rem; max-width: 28rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; padding-top: .6rem; }
+@media (max-width: 760px) {
+  .hero-img { object-position: 58% 40%; }
+  .hero::after { background: linear-gradient(0deg, rgba(8, 29, 48, .94) 0%, rgba(8, 29, 48, .6) 42%, rgba(8, 29, 48, .1) 75%); }
+  html[dir="rtl"] .hero::after { background: linear-gradient(0deg, rgba(8, 29, 48, .94) 0%, rgba(8, 29, 48, .6) 42%, rgba(8, 29, 48, .1) 75%); }
+}
+
+/* Scroll film: the video scrubs with the scroll. Until the video arrives, photos stand in. */
+.film { position: relative; height: 400vh; background: var(--deep-2); color: var(--fog); }
+.film-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; perspective: 1400px; }
+.film-media, .film-media > *, .scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.film-media { overflow: hidden; transform-origin: 50% 60%; will-change: transform; transform: scale(.86) rotateX(12deg); border-radius: 22px; }
+.film.drop .film-media { outline: 2px dashed var(--ice); outline-offset: -18px; }
+.film-video, .scene { object-fit: cover; }
+.scene { opacity: 0; will-change: opacity, transform; }
+.scene:first-child { opacity: 1; }
+.film.has-video .film-scenes { display: none; }
+.film-shade { background: linear-gradient(0deg, rgba(8, 29, 48, .82) 0%, rgba(8, 29, 48, .15) 52%, rgba(8, 29, 48, .4) 100%); }
+.film-captions { position: absolute; inset-inline: 0; bottom: clamp(56px, 13vh, 150px); list-style: none; padding: 0; height: 0; }
+.film-captions li {
   position: absolute;
-  left: -40%;
-  right: -40%;
-  bottom: -16px;
-  height: 30px;
-  background: radial-gradient(closest-side, rgba(207, 228, 234, .3), transparent);
+  inset-inline-start: clamp(16px, 4.5vw, 56px);
+  bottom: 0;
+  display: grid;
+  gap: 1rem;
+  width: min(15ch, calc(100% - 2 * clamp(16px, 4.5vw, 56px)));
+  font: 300 clamp(2.3rem, 5.6vw, 5.2rem)/1.04 var(--serif);
+  letter-spacing: -.01em;
+  opacity: 0;
+  will-change: opacity, transform;
 }
-.bottle-wrap .bottle { animation: float 7s ease-in-out infinite alternate; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .45)); }
-@keyframes float { from { transform: translateY(0); } to { transform: translateY(-10px); } }
-
-.hero-specs { grid-column: 3; justify-self: end; position: relative; z-index: 2; width: min(100%, 17rem); margin: 0; }
-.spec { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-block: .8rem; border-top: 1px solid var(--rule-dark); }
-.spec:last-child { border-bottom: 1px solid var(--rule-dark); }
-.spec dt { font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; color: var(--mist); }
-.spec dd { margin: 0; font-variant-numeric: tabular-nums; }
-
-@media (max-width: 860px) {
-  .hero-stage { grid-template-columns: minmax(0, 1fr); }
-  .bottle-wrap { grid-column: 1; grid-row: 1; justify-self: center; height: clamp(340px, 92vw, 460px); }
-  .hero-copy { grid-column: 1; grid-row: 2; }
-  .hero-specs { grid-column: 1; grid-row: 3; justify-self: stretch; width: 100%; }
-}
-
-/* The bottle drawing */
-.bottle { display: block; width: 100%; height: 100%; overflow: visible; }
-.lbl text { text-anchor: middle; fill: var(--label-ink); }
-.lbl-word { font-family: var(--font-display); font-size: 23px; letter-spacing: 3px; }
-.lbl-sub { font-family: var(--font-body); font-size: 7.5px; font-weight: 600; letter-spacing: 3.5px; }
-.lbl-meta { font-family: var(--font-body); font-size: 7.5px; font-weight: 500; letter-spacing: 1.8px; }
-.lbl-pant { font-family: var(--font-body); font-size: 5.5px; font-weight: 600; letter-spacing: 1px; }
-.lbl-rule, .lbl-ring { fill: none; stroke: var(--label-ink); stroke-opacity: .45; stroke-width: .8; }
-.v-stilla { --label: var(--snow); --label-ink: var(--night); --cap: var(--lake); }
-.v-kolsyrad { --label: var(--ice); --label-ink: var(--night); --cap: var(--night); }
-.v-glas { --label: var(--night); --label-ink: var(--ice); --cap: var(--night); }
-
-/* Marquee */
-.marquee { background: var(--ice); color: var(--night); overflow: hidden; border-block: 1px solid var(--rule-light); }
-.marquee-track { display: flex; width: max-content; animation: slide 40s linear infinite; }
-.marquee-group { display: flex; align-items: center; gap: 2.5rem; padding: 1.1rem 1.25rem; }
-.m { display: inline-flex; align-items: baseline; gap: .75rem; white-space: nowrap; }
-.m i { font-family: var(--font-serif); font-size: 1.6rem; line-height: 1; }
-.m span { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); }
-.m-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lake); flex: none; }
-@keyframes slide { to { transform: translateX(-50%); } }
-
-/* The source */
-.source .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
-.scene { position: relative; aspect-ratio: 4 / 5; max-width: 100%; margin: 0; background: var(--ice); }
-.scene canvas { display: block; width: 100%; height: 100%; }
-.scene figcaption {
-  position: absolute;
-  left: 16px;
-  bottom: 14px;
-  font-size: .75rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--snow);
-  font-variant-numeric: tabular-nums;
-}
-.source-copy { display: grid; gap: 1.5rem; min-width: 0; }
-.source-copy .eyebrow, .water .eyebrow, .order .eyebrow { color: var(--lake); }
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 1rem 0 0; padding-top: 24px; border-top: 1px solid var(--rule-light); }
-.stat { display: grid; gap: .35rem; align-content: start; }
-.stat dt { font-family: var(--font-display); font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.1; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.stat dd { margin: 0; font-size: .9rem; line-height: 1.45; color: var(--slate); }
-@media (max-width: 860px) { .source .wrap { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 560px) {
-  .stats { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .stat { grid-template-columns: 9.5rem minmax(0, 1fr); gap: 1rem; padding-block: .9rem; border-bottom: 1px solid var(--rule-light); }
-  .stat:last-child { border-bottom: 0; }
-}
-
-/* The bottles */
-.bottles { background: var(--deep); color: var(--ice); }
-.bottles-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(32px, 5vw, 56px); }
-.bottles-head > div { display: grid; gap: 1rem; }
-.bottles-head .eyebrow { color: var(--mist); }
-.bottles-head p { color: var(--mist); max-width: 26rem; }
-.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 24px); }
-.card { display: flex; flex-direction: column; border: 1px solid var(--rule-dark); min-width: 0; }
-.card-stage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: clamp(320px, 30vw, 400px);
-  padding-block: 28px;
-  background: radial-gradient(55% 50% at 50% 55%, rgba(143, 200, 216, .2), transparent 70%);
-  border-bottom: 1px solid var(--rule-dark);
-}
-.card-stage .bottle { width: auto; height: 100%; aspect-ratio: 1 / 3; max-width: 100%; transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
-.card:hover .card-stage .bottle { transform: translateY(-8px); }
-.card-body { display: flex; flex-direction: column; gap: .6rem; padding: 24px; flex: 1; }
-.card h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-family: var(--font-display); font-size: 1.2rem; }
-.card h3 small { font-family: var(--font-body); font-size: .875rem; color: var(--mist); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.card .sv { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; color: var(--ice); }
-.card p { color: var(--mist); }
-.card .btn { margin-top: auto; align-self: flex-start; }
-.card-body > p:last-of-type { margin-bottom: 1rem; }
-.bubbles circle { fill: rgba(255, 255, 255, .55); animation: rise var(--d, 4s) linear infinite; animation-delay: var(--delay, 0s); }
-@keyframes rise {
-  0% { transform: translateY(0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: .9; }
-  100% { transform: translateY(-400px); opacity: 0; }
-}
-@media (max-width: 860px) {
-  .cards { grid-template-columns: minmax(0, 1fr); }
-  .card { display: grid; grid-template-columns: 9rem minmax(0, 1fr); }
-  .card-stage { height: auto; min-height: 260px; border-bottom: 0; border-right: 1px solid var(--rule-dark); padding: 20px 0; }
-  .card-stage .bottle { height: 220px; }
-}
-@media (max-width: 420px) { .card { grid-template-columns: 6.5rem minmax(0, 1fr); } .card-body { padding: 18px; } }
+html[lang="zh-Hans"] .film-captions li, html[lang="ar"] .film-captions li { width: min(20ch, calc(100% - 32px)); }
+.film-captions li:first-child { opacity: 1; }
+.film-step { font: 600 .72rem/1 var(--sans); letter-spacing: var(--track); color: var(--gold); font-variant-numeric: tabular-nums; }
+.film-progress { position: absolute; inset-inline-end: clamp(16px, 4.5vw, 56px); top: 50%; width: 1px; height: 28vh; transform: translateY(-50%); background: var(--rule-deep); }
+.film-progress span { position: absolute; inset: 0; background: var(--ice); transform: scaleY(0); transform-origin: top; }
+.film-hint { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); font: 600 .66rem/1 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--ice); transition: opacity .4s; }
+.film-hint::after { content: ""; display: block; width: 1px; height: 34px; margin: 10px auto 0; background: currentColor; animation: drip 2s ease-in-out infinite; transform-origin: top; }
+@keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+.film-controls { position: absolute; inset-inline-end: clamp(16px, 4.5vw, 56px); top: calc(88px + env(safe-area-inset-top, 0px)); display: grid; justify-items: end; gap: 10px; max-width: min(22rem, calc(100% - 32px)); text-align: end; }
+.film-controls .btn { min-height: 42px; padding: .8em 1.3em; }
+.film-player { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.film-note { font-size: .78rem; color: var(--ice); text-shadow: 0 1px 10px rgba(0, 0, 0, .7); }
+.film-error { font-size: .85rem; color: #F2B8B8; }
+.btn svg { width: 15px; height: 15px; flex: none; }
+@media (max-width: 760px) { .film { height: 320vh; } }
 
 /* The water */
-.water .wrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 7vw, 112px); align-items: center; }
-.water-copy { display: grid; gap: 1.5rem; min-width: 0; }
-.pillars { list-style: none; margin: .5rem 0 0; padding: 0; }
-.pillar { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.4rem; border-top: 1px solid var(--rule-light); }
-.pillar:last-child { border-bottom: 1px solid var(--rule-light); }
-.pillar i { font-family: var(--font-serif); font-size: 2.1rem; line-height: 1; color: var(--lake); }
-.pillar h3 { font-family: var(--font-body); font-weight: 600; font-size: .8125rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .35rem; }
-.pillar p { color: var(--slate); }
-
-.label-card {
-  position: relative;
-  background: var(--paper);
-  border: 1px solid var(--rule-light);
-  padding: clamp(22px, 3vw, 34px);
-  transform: rotate(-1.5deg);
-  box-shadow: 0 40px 70px -40px rgba(8, 22, 29, .45);
-  font-size: .875rem;
-  min-width: 0;
+.intro-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(28px, 6vw, 96px); align-items: end; }
+.intro-head { display: grid; gap: 1.5rem; }
+.section.intro { padding-bottom: 0; }
+.intro-side { display: grid; gap: 1.6rem; justify-items: start; }
+.features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); margin-top: clamp(56px, 7vw, 96px); padding-top: 32px; border-top: 1px solid var(--rule); list-style: none; padding-inline: 0; }
+.feature { display: grid; gap: .55rem; align-content: start; }
+.feature svg { width: 30px; height: 30px; color: var(--gold); }
+.feature h3 { font: 600 .74rem/1.4 var(--sans); letter-spacing: var(--track); text-transform: uppercase; }
+.feature p { color: var(--stone); font-size: .95rem; }
+.ridge { width: 100%; height: auto; margin-top: clamp(56px, 8vw, 110px); filter: brightness(0); opacity: .13; }
+@media (max-width: 860px) {
+  .intro-grid { grid-template-columns: minmax(0, 1fr); }
+  .features { grid-template-columns: minmax(0, 1fr); gap: 28px; }
 }
-.label-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 14px; border-bottom: 2px solid var(--night); }
-.label-top b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; letter-spacing: .3em; }
-.label-top span { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); }
-.analysis { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; }
-.analysis caption { text-align: left; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--slate); padding-block: 6px 8px; caption-side: top; }
-.analysis th, .analysis td { padding-block: .45rem; border-bottom: 1px solid var(--rule-light); text-align: left; font-weight: 400; }
-.analysis td { text-align: right; white-space: nowrap; }
-.analysis .sym { color: var(--slate); padding-left: .5rem; }
-.analysis tfoot th, .analysis tfoot td { font-weight: 600; border-bottom: 0; }
-.label-notes { display: grid; gap: .2rem; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule-light); color: var(--slate); font-size: .8125rem; }
-.stamp {
+
+/* The range */
+.range { background: var(--paper); }
+.head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 64px; align-items: end; margin-bottom: clamp(40px, 5vw, 72px); }
+.head > div { display: grid; gap: 1.2rem; }
+.head .btn { justify-self: start; }
+.flatlay-img { position: relative; }
+.flatlay-img img { width: 100%; height: auto; aspect-ratio: 2200 / 1476; }
+.pin {
   position: absolute;
-  bottom: -22px;
-  right: -14px;
   display: grid;
   place-items: center;
-  width: 92px;
-  height: 92px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 1.5px solid var(--lake);
-  color: var(--lake);
-  background: var(--paper);
-  transform: rotate(12deg);
-  text-align: center;
-  font-size: .625rem;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  background: rgba(251, 250, 247, .92);
+  color: var(--deep);
+  font: 600 .8rem/1 var(--sans);
+  box-shadow: 0 8px 22px rgba(13, 43, 69, .28);
+  transition: transform .3s, background-color .3s, color .3s;
 }
+.pin::after { content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 1px solid rgba(251, 250, 247, .85); animation: ring 2.8s ease-out infinite; }
+@keyframes ring { from { transform: scale(.8); opacity: 1; } to { transform: scale(1.5); opacity: 0; } }
+.pin.on { background: var(--deep); color: var(--fog); transform: translate(-50%, -50%) scale(1.15); }
+.legend { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; padding: 0; margin-top: 28px; border-top: 1px solid var(--rule); }
+.legend li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .15rem 1rem; padding-block: 1.2rem; padding-inline-end: 1rem; transition: color .3s; }
+.legend .num { grid-row: span 2; font: 300 1.7rem/1 var(--serif); color: var(--gold); font-variant-numeric: tabular-nums; }
+.legend b { font: 400 1.15rem/1.3 var(--serif); }
+.legend .size { font-size: .85rem; color: var(--stone); }
+.legend li.on b { color: var(--deep); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 5px; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 32px); margin-top: clamp(72px, 9vw, 128px); }
+.card { display: grid; gap: .8rem; align-content: start; text-decoration: none; min-width: 0; }
+.card-media { overflow: hidden; aspect-ratio: 2 / 3; max-width: 100%; background: #E8DED9; }
+.card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.2, .7, .2, 1); }
+.card:hover .card-media img { transform: scale(1.04); }
+.card h3 { font: 400 1.65rem/1.15 var(--serif); margin-top: .6rem; }
+.card .sizes { font: 600 .7rem/1.3 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--stone); font-variant-numeric: tabular-nums; }
+.card p { color: var(--stone); }
+.card .more { display: inline-flex; align-items: center; gap: .7em; font: 600 .72rem/1 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--deep); margin-top: .3rem; }
 @media (max-width: 860px) {
-  .water .wrap { grid-template-columns: minmax(0, 1fr); }
-  .label-card { transform: none; margin-inline: 4px; }
-  .stamp { right: 4px; bottom: -28px; }
+  .head { grid-template-columns: minmax(0, 1fr); }
+  .legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(78%, 22rem); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; }
+  .card { scroll-snap-align: start; }
+  .pin { width: 28px; height: 28px; font-size: .72rem; }
 }
-@media (max-width: 420px) { .pillar { grid-template-columns: minmax(0, 1fr); gap: .5rem; } }
 
-/* Manifesto */
-.manifesto { background: var(--night); color: var(--ice); }
-.manifesto blockquote { margin: 0; display: grid; gap: 2rem; }
-.manifesto .lines { font-family: var(--font-serif); font-style: italic; font-size: var(--step-5); line-height: 1.06; letter-spacing: -.01em; }
-.manifesto .lines span { display: block; }
-.manifesto .lines span:nth-child(2) { padding-left: clamp(1rem, 8vw, 7rem); }
-.manifesto .lines span:nth-child(3) { padding-left: clamp(2rem, 16vw, 14rem); }
-.manifesto footer { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; color: var(--mist); padding-left: clamp(2rem, 16vw, 14rem); }
-.manifesto footer span:first-child { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; }
+/* Flavours */
+.flavours { background: var(--fl-bg); transition: background-color .9s ease; overflow: hidden; }
+.fl-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
+.fl-stage { position: relative; height: clamp(460px, 50vw, 660px); }
+.fl-stage canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: pan-y; }
+.fl-stage canvas:active { cursor: grabbing; }
+.fl-hint { position: absolute; inset-inline: 0; bottom: 0; text-align: center; font: 600 .66rem/1 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--stone); pointer-events: none; }
+.fl-info { display: grid; gap: 1.3rem; min-width: 0; }
+.fl-info .h2 { font-size: clamp(1.9rem, 3.2vw, 2.8rem); }
+.fl-current { display: grid; gap: .35rem; padding-block: 1.4rem; border-block: 1px solid var(--rule); }
+.fl-name { font: 300 clamp(2.6rem, 5.2vw, 4.4rem)/1 var(--serif); color: var(--fl-text); transition: color .8s; }
+.fl-sv { font: italic 300 1.3rem/1.3 "Newsreader", Georgia, serif; color: var(--stone); }
+.fl-desc { max-width: 30rem; color: #3A3F44; }
+.fl-picker { display: flex; flex-wrap: wrap; gap: 8px; }
+.fl-pick {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 6px;
+  width: 84px;
+  padding: 10px 4px 12px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, .38);
+  font: 500 .68rem/1.25 var(--sans);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color .3s, border-color .3s;
+}
+.fl-pick canvas { width: 40px; height: 86px; }
+.fl-pick:hover { background: rgba(255, 255, 255, .62); }
+.fl-pick[aria-pressed="true"] { border-color: var(--ink); background: rgba(255, 255, 255, .78); }
+.fl-info .btn { justify-self: start; }
+@media (max-width: 860px) {
+  .fl-grid { grid-template-columns: minmax(0, 1fr); }
+  .fl-stage { height: 440px; }
+  .fl-pick { width: calc((100% - 32px) / 5); min-width: 0; }
+}
 
-/* Order */
-.order .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
-.order-copy { display: grid; gap: 1.5rem; min-width: 0; }
-.steps { list-style: none; margin: .5rem 0 0; padding: 0; counter-reset: step; }
-.steps li { counter-increment: step; display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); padding-block: 1rem; border-top: 1px solid var(--rule-light); }
-.steps li:last-child { border-bottom: 1px solid var(--rule-light); }
-.steps li::before { content: counter(step); font-family: var(--font-display); color: var(--lake); }
+/* Story */
+.story-top { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.story-copy { display: grid; gap: 1.5rem; }
+.story-copy p { color: var(--mist); max-width: 32rem; }
+.story-lake img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.story-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 32px); width: min(100%, 60rem); margin-top: clamp(48px, 6vw, 96px); margin-inline-start: auto; }
+.story-pair figure { display: grid; gap: .9rem; }
+.story-pair img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.story-pair figcaption { font: 600 .7rem/1.3 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--mist); }
+@media (max-width: 860px) { .story-top { grid-template-columns: minmax(0, 1fr); } }
 
-.panel { background: var(--paper); border: 1px solid var(--rule-light); padding: clamp(20px, 4vw, 40px); min-width: 0; }
-.form { display: grid; gap: 1.25rem; }
-.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-.row-qty { grid-template-columns: minmax(0, 1fr) auto; }
-.field { display: grid; gap: .45rem; min-width: 0; margin: 0; padding: 0; border: 0; }
-.label { font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--slate); padding: 0; }
+/* Hotels */
+.mosaic { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(12px, 1.6vw, 20px); }
+.mosaic figure { position: relative; overflow: hidden; min-width: 0; }
+.mosaic .m1 { grid-row: span 2; }
+.mosaic img { width: 100%; height: 100%; object-fit: cover; }
+.mosaic .m2 img, .mosaic .m3 img { aspect-ratio: 3 / 2; }
+.mosaic figcaption { position: absolute; inset-inline-start: 18px; bottom: 16px; font: 600 .7rem/1.3 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--paper); text-shadow: 0 1px 12px rgba(0, 0, 0, .45); }
+@media (max-width: 760px) {
+  .mosaic { grid-template-columns: minmax(0, 1fr); }
+  .mosaic .m1 { grid-row: auto; }
+  .mosaic .m1 img { aspect-ratio: 3 / 2; }
+}
+
+/* Contact */
+.contact { background: var(--ice); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.contact-copy { display: grid; gap: 1.4rem; }
+.contact .lead { color: #34495A; }
+.contact .eyebrow { color: var(--deep); }
+.panel { background: var(--paper); padding: clamp(22px, 4vw, 44px); min-width: 0; }
+.form { display: grid; gap: 1.2rem; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+.field { display: grid; gap: .45rem; min-width: 0; }
+.label { font: 600 .7rem/1.3 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--stone); }
+.label small { font-weight: 400; letter-spacing: 0; text-transform: none; font-size: .78rem; }
 .input {
   width: 100%;
+  min-height: 3rem;
+  padding: .75rem .95rem;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: var(--fog);
+  color: var(--ink);
   font: inherit;
   font-size: 1rem;
-  color: var(--night);
-  background: var(--snow);
-  border: 1px solid var(--rule-light);
-  border-radius: 0;
-  padding: .8rem .95rem;
 }
-.input:focus { outline: 2px solid var(--lake); outline-offset: 1px; border-color: var(--lake); }
-.input::placeholder { color: var(--slate); opacity: .6; }
+.input:focus { outline: 2px solid var(--deep); outline-offset: 1px; border-color: var(--deep); }
+.input::placeholder { color: var(--stone); opacity: .65; }
 select.input {
   appearance: none;
   -webkit-appearance: none;
-  padding-right: 2.5rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2308161D' stroke-width='1.5'/%3E%3C/svg%3E");
+  padding-inline-end: 2.6rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230D2B45' stroke-width='1.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
 }
-textarea.input { resize: vertical; min-height: 6rem; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.chips label { padding: .55rem 1rem; border: 1px solid var(--rule-light); border-radius: 999px; font-size: .9rem; cursor: pointer; background: var(--snow); transition: background-color .2s, color .2s; }
-.chips label:hover { border-color: var(--night); }
-.chips input:checked + label { background: var(--night); border-color: var(--night); color: var(--snow); }
-.chips input:focus-visible + label { outline: 2px solid var(--lake); outline-offset: 2px; }
-.stepper { display: flex; border: 1px solid var(--rule-light); background: var(--snow); height: 100%; min-height: 3.1rem; }
-.stepper button { width: 2.75rem; border: 0; background: none; font: inherit; font-size: 1.25rem; color: var(--night); cursor: pointer; }
-.stepper button:hover { background: var(--ice); }
-.stepper input { width: 4ch; border: 0; background: transparent; text-align: center; font: inherit; font-variant-numeric: tabular-nums; color: var(--night); -moz-appearance: textfield; appearance: textfield; }
-.stepper input::-webkit-outer-spin-button, .stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+html[dir="rtl"] select.input { background-position: left 1rem center; }
+textarea.input { min-height: 7rem; resize: vertical; }
 .form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
-.form-error { color: #9B2C35; font-size: .9rem; min-height: 1.4em; }
+.form-error { min-height: 1.4em; color: #9B2C35; font-size: .9rem; }
 .confirm { display: grid; gap: 1rem; outline: none; }
-.confirm h3 { font-family: var(--font-serif); font-style: italic; font-size: var(--step-3); line-height: 1.05; }
-.confirm p { color: var(--slate); max-width: 32rem; }
-.confirm .btn { justify-self: start; margin-top: .5rem; }
-@media (max-width: 860px) { .order .wrap { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 560px) { .row { grid-template-columns: minmax(0, 1fr); } .row-qty { grid-template-columns: minmax(0, 1fr) auto; } }
+.confirm h3 { font: 300 clamp(2rem, 3.6vw, 3rem)/1.1 var(--serif); }
+.confirm p { color: var(--stone); }
+.confirm .btn { justify-self: start; }
+@media (max-width: 860px) { .contact-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .row { grid-template-columns: minmax(0, 1fr); } }
 
 /* Footer */
-.site-footer { background: var(--night); color: var(--ice); overflow: hidden; padding-top: clamp(56px, 8vw, 96px); }
-.footer-grid { display: grid; grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)); gap: 32px; padding-bottom: 40px; border-bottom: 1px solid var(--rule-dark); }
-.footer-grid h2 { font-size: 1rem; letter-spacing: .34em; }
-.footer-grid p, .footer-grid li { color: var(--mist); font-size: .9375rem; }
-.footer-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
-.footer-grid a { text-decoration: none; }
-.footer-grid a:hover { color: var(--ice); }
-.footer-grid .eyebrow { color: var(--ice); margin-bottom: .9rem; }
-.footer-brand { display: grid; gap: .8rem; align-content: start; }
-.footer-word { display: block; width: 100%; height: auto; margin-top: clamp(24px, 4vw, 48px); margin-bottom: -6%; }
-.footer-word text { font-family: var(--font-display); font-size: 320px; }
-@media (max-width: 640px) { .footer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .footer-brand { grid-column: 1 / -1; } }
+.site-footer { overflow: hidden; }
+.footer-top { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 4fr); gap: 40px; padding-block: clamp(64px, 8vw, 112px) 48px; }
+.footer-brand { display: grid; gap: 1.2rem; align-content: start; }
+.footer-brand svg { width: 150px; height: auto; }
+.footer-brand p { font: italic 300 1.35rem/1.4 var(--serif); color: var(--ice); }
+.site-footer h2 { font: 600 .7rem/1.3 var(--sans); letter-spacing: var(--track); text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+.site-footer ul a { color: var(--mist); text-decoration: none; }
+.site-footer ul a:hover { color: var(--fog); }
+.site-footer .footer-langs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 12px; }
+.footer-langs button { padding: .35rem 0; color: var(--mist); font-size: .92rem; justify-content: flex-start; }
+.footer-langs button:hover, .footer-langs button[aria-current="true"] { color: var(--fog); }
+.footer-langs button[aria-current="true"]::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+.footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 22px; border-top: 1px solid var(--rule-deep); font-size: .82rem; color: var(--mist); }
+.footer-base svg { width: 26px; height: 26px; color: var(--gold); }
+.footer-band { width: 100%; height: auto; }
+@media (max-width: 860px) { .footer-top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .footer-brand { grid-column: 1 / -1; } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -413,377 +495,292 @@ textarea.input { resize: vertical; min-height: 6rem; }
 </head>
 <body>
 
-<!-- Shared drawing: one bottle, reused in the hero and on every product card.
-     When the real bottle photo arrives it replaces this drawing. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <linearGradient id="g-glass" x1="0" x2="1" y1="0" y2="0">
-      <stop offset="0" stop-color="#CFE4EA" stop-opacity=".55"/>
-      <stop offset=".12" stop-color="#9CC9D6" stop-opacity=".16"/>
-      <stop offset=".5" stop-color="#CFE4EA" stop-opacity=".06"/>
-      <stop offset=".85" stop-color="#9CC9D6" stop-opacity=".18"/>
-      <stop offset="1" stop-color="#E6F3F6" stop-opacity=".6"/>
-    </linearGradient>
-    <linearGradient id="g-water" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="#8FC6D6" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#2E6E7C" stop-opacity=".4"/>
-    </linearGradient>
-    <linearGradient id="g-cyl" x1="0" x2="1" y1="0" y2="0">
-      <stop offset="0" stop-color="#000" stop-opacity=".35"/>
-      <stop offset=".18" stop-color="#fff" stop-opacity=".2"/>
-      <stop offset=".32" stop-color="#fff" stop-opacity="0"/>
-      <stop offset=".8" stop-color="#000" stop-opacity=".05"/>
-      <stop offset="1" stop-color="#000" stop-opacity=".4"/>
-    </linearGradient>
-    <linearGradient id="g-hl" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
-      <stop offset=".2" stop-color="#fff" stop-opacity=".75"/>
-      <stop offset=".8" stop-color="#fff" stop-opacity=".55"/>
-      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-    </linearGradient>
-    <clipPath id="bottle-clip">
-      <path d="M82 58H118V104C118 130 160 150 160 200V560Q160 585 135 585H65Q40 585 40 560V200C40 150 82 130 82 104Z"/>
-    </clipPath>
-    <symbol id="bottle" viewBox="0 0 200 600">
-      <ellipse cx="100" cy="588" rx="64" ry="7" fill="#000" opacity=".28"/>
-      <path d="M82 58H118V104C118 130 160 150 160 200V560Q160 585 135 585H65Q40 585 40 560V200C40 150 82 130 82 104Z" fill="url(#g-glass)"/>
-      <g clip-path="url(#bottle-clip)">
-        <rect x="0" y="150" width="200" height="450" fill="url(#g-water)"/>
-        <ellipse cx="100" cy="150" rx="46" ry="3.5" fill="#fff" opacity=".28"/>
-        <rect x="49" y="196" width="8" height="364" rx="4" fill="url(#g-hl)" opacity=".75"/>
-        <rect x="145" y="206" width="3" height="340" rx="1.5" fill="url(#g-hl)" opacity=".45"/>
-        <rect x="40" y="300" width="120" height="160" style="fill: var(--label, #EEF4F5)"/>
-        <rect x="40" y="300" width="120" height="160" fill="url(#g-cyl)"/>
-        <g id="drops"></g>
-      </g>
-      <path d="M82 58H118V104C118 130 160 150 160 200V560Q160 585 135 585H65Q40 585 40 560V200C40 150 82 130 82 104Z" fill="none" stroke="#E6F3F6" stroke-opacity=".5" stroke-width="1.2"/>
-      <rect x="80" y="64" width="40" height="5" rx="2.5" fill="#E6F3F6" opacity=".4"/>
-      <rect x="78" y="12" width="44" height="50" rx="5" style="fill: var(--cap, #2E6E7C)"/>
-      <path d="M85 17V57M90 17V57M95 17V57M100 17V57M105 17V57M110 17V57M115 17V57" stroke="#fff" stroke-opacity=".14" stroke-width="1.2"/>
-      <rect x="78" y="12" width="44" height="50" rx="5" fill="url(#g-cyl)"/>
-    </symbol>
-  </defs>
+  <symbol id="wordmark" viewBox="0 0 264 84">
+    <g fill="none" stroke="currentColor" stroke-width="4.2">
+      <path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/>
+      <path d="M4 79H260" stroke-width="2.4"/>
+    </g>
+  </symbol>
+  <symbol id="mark" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.3"/>
+    <path d="M13.5 26.5L20 12.5L26.5 26.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  </symbol>
 </svg>
 
-<header class="site-header on-dark">
-  <div class="wrap">
-    <a class="brand" href="#top" aria-label="Hava, back to top">HAVA</a>
-    <nav class="nav" aria-label="Main">
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="HAVA"><svg viewBox="0 0 264 84" aria-hidden="true"><use href="#wordmark"/></svg></a>
+    <nav class="nav" id="site-nav" aria-label="Main">
       <ul>
-        <li><a href="#source">The source</a></li>
-        <li><a href="#bottles">The bottles</a></li>
-        <li><a href="#water">The water</a></li>
+        <li><a href="#range" data-i18n="nav.range">Range</a></li>
+        <li><a href="#flavours" data-i18n="nav.flavours">Flavours</a></li>
+        <li><a href="#story" data-i18n="nav.story">Story</a></li>
+        <li><a href="#hotels" data-i18n="nav.hotels">Hotels</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
-      <a class="btn btn-ice" href="#order">Order</a>
     </nav>
+    <div class="lang">
+      <button class="lang-btn" id="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.1"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.5 5.2 8S6 12.5 8 14.5"/></g></svg>
+        <span id="lang-code">EN</span>
+      </button>
+      <ul class="lang-menu" id="lang-menu" hidden></ul>
+    </div>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span data-i18n="nav.menu">Menu</span></button>
   </div>
 </header>
 
 <main id="top">
 
-  <section class="hero on-dark" aria-labelledby="hero-title">
-    <div class="wrap hero-stage">
-      <div class="hero-word" aria-hidden="true">
-        <svg viewBox="0 0 1000 300">
-          <defs>
-            <linearGradient id="g-word" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0" stop-color="#CFE4EA" stop-opacity=".95"/>
-              <stop offset=".55" stop-color="#8FC6D6" stop-opacity=".45"/>
-              <stop offset=".9" stop-color="#8FC6D6" stop-opacity=".04"/>
-            </linearGradient>
-            <filter id="ripple" x="-5%" y="-25%" width="110%" height="150%">
-              <feTurbulence id="ripple-turb" type="fractalNoise" baseFrequency="0.004 0.02" numOctaves="2" seed="4" result="noise"/>
-              <feDisplacementMap id="ripple-disp" in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/>
-            </filter>
-          </defs>
-          <text id="hero-word-text" x="500" y="262" text-anchor="middle" textLength="990" lengthAdjust="spacingAndGlyphs" fill="url(#g-word)">HAVA</text>
-        </svg>
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="hero-img" src="assets/hero-underwater.webp" width="2400" height="1610" fetchpriority="high" alt="A HAVA Still bottle under water" data-i18n-attr="alt:alt.hero">
+    <div class="wrap hero-inner"><div class="hero-copy">
+      <span class="eyebrow" data-i18n="hero.eyebrow">Water from Sweden</span>
+      <h1 id="hero-title" data-i18n="hero.title">The essence of Sweden.</h1>
+      <p class="hero-sub" data-i18n="hero.sub">Still and sparkling water, born of Swedish bedrock.</p>
+      <div class="hero-actions">
+        <a class="btn btn-ice" href="#film" data-i18n="hero.cta">Discover</a>
+        <a class="btn btn-line" href="#flavours" data-i18n="hero.cta2">The flavours</a>
       </div>
+    </div></div>
+  </section>
 
-      <div class="hero-copy">
-        <span class="eyebrow"><span lang="sv">Vatten från Sverige</span> · Water from Sweden</span>
-        <h1 id="hero-title"><span class="sr-only">Hava. </span><span lang="sv">Rent, kallt, klart.</span></h1>
-        <p>Pure, cold and clear. Hava is water from Sweden, bottled with nothing added and nothing taken away.</p>
-        <div class="hero-actions">
-          <a class="btn btn-ice" href="#order">Order Hava</a>
-          <a class="btn btn-line" href="#source">The source</a>
+  <section class="film" id="film" aria-label="The HAVA story" data-i18n-attr="aria-label:film.label">
+    <div class="film-sticky">
+      <div class="film-media">
+        <video class="film-video" muted playsinline preload="auto" hidden></video>
+        <div class="film-scenes" aria-hidden="true">
+          <img class="scene" src="assets/lake.webp" alt="" loading="lazy">
+          <img class="scene" src="assets/bottle-forest.webp" alt="" loading="lazy">
+          <img class="scene" src="assets/bottle-waterfall.webp" alt="" loading="lazy">
+          <img class="scene" src="assets/hero-underwater.webp" alt="" loading="lazy">
         </div>
+        <div class="film-shade"></div>
       </div>
-
-      <div class="bottle-wrap">
-        <svg class="bottle v-stilla" viewBox="0 0 200 600" role="img" aria-label="A bottle of Hava Stilla, 500 ml">
-          <use href="#bottle"/>
-          <g class="lbl">
-            <text x="101.5" y="366" class="lbl-word">HAVA</text>
-            <text x="101.75" y="386" class="lbl-sub">SVERIGE</text>
-            <path d="M80 401H120" class="lbl-rule"/>
-            <text x="101" y="421" class="lbl-meta">STILLA · 500 ML</text>
-            <rect x="134" y="443" width="24" height="10" rx="5" class="lbl-ring"/>
-            <text x="146.5" y="450" class="lbl-pant">PANT</text>
-          </g>
-        </svg>
+      <ol class="film-captions">
+        <li><span class="film-step">01 / 04</span><span data-i18n="film.1">Born of Swedish bedrock.</span></li>
+        <li><span class="film-step">02 / 04</span><span data-i18n="film.2">Filtered by stone, forest and time.</span></li>
+        <li><span class="film-step">03 / 04</span><span data-i18n="film.3">Cold, clear and calm.</span></li>
+        <li><span class="film-step">04 / 04</span><span data-i18n="film.4">The essence of Sweden.</span></li>
+      </ol>
+      <div class="film-progress" aria-hidden="true"><span></span></div>
+      <div class="film-controls">
+        <div class="film-player" id="film-player" hidden>
+          <button class="btn btn-ice" id="film-play" type="button">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
+            <span data-i18n="film.play">Play with sound</span>
+          </button>
+          <button class="btn btn-line" id="film-sound" type="button" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6h3l4-3v10l-4-3H2z" fill="currentColor" stroke="none"/><path class="wave" d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.5a6 6 0 0 1 0 9"/></g></svg>
+            <span data-i18n="film.soundOff">Sound off</span>
+          </button>
+        </div>
+        <div class="film-loader" id="film-loader">
+          <button class="btn btn-line" id="film-load" type="button">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11V2M4.5 5.5L8 2l3.5 3.5M2.5 11v2.5h11V11" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+            <span data-i18n="film.load">Load your video</span>
+          </button>
+          <input class="sr-only" id="film-file" type="file" accept="video/*" tabindex="-1" aria-hidden="true">
+        </div>
+        <p class="film-note" id="film-note" data-i18n="film.loadNote">Plays from this device only. Nothing is uploaded.</p>
+        <p class="film-error" id="film-error" role="alert"></p>
       </div>
-
-      <dl class="hero-specs">
-        <div class="spec"><dt>Origin</dt><dd lang="sv">Sverige</dd></div>
-        <div class="spec"><dt>Bottle</dt><dd>500 ml</dd></div>
-        <div class="spec"><dt>Serve at</dt><dd>6–8 °C</dd></div>
-        <div class="spec"><dt>Taste</dt><dd>Soft, cold, clean</dd></div>
-      </dl>
+      <div class="film-hint" aria-hidden="true" data-i18n="film.hint">Scroll</div>
     </div>
   </section>
 
-  <div class="marquee" role="presentation">
-    <div class="marquee-track">
-      <div class="marquee-group">
-        <span class="m"><i lang="sv">Rent</i><span>Pure</span></span><span class="m-dot"></span>
-        <span class="m"><i lang="sv">Kallt</i><span>Cold</span></span><span class="m-dot"></span>
-        <span class="m"><i lang="sv">Klart</i><span>Clear</span></span><span class="m-dot"></span>
-        <span class="m"><i lang="sv">Från Sverige</i><span>From Sweden</span></span><span class="m-dot"></span>
-        <span class="m"><i lang="sv">Stilla &amp; kolsyrad</i><span>Still &amp; sparkling</span></span><span class="m-dot"></span>
-      </div>
-      <div class="marquee-group" aria-hidden="true">
-        <span class="m"><i lang="sv">Rent</i><span>Pure</span></span><span class="m-dot"></span>
-        <span class="m"><i lang="sv">Kallt</i><span>Cold</span></span><span class="m-dot"></span>
-        <span class="m"><i lang="sv">Klart</i><span>Clear</span></span><span class="m-dot"></span>
-        <span class="m"><i lang="sv">Från Sverige</i><span>From Sweden</span></span><span class="m-dot"></span>
-        <span class="m"><i lang="sv">Stilla &amp; kolsyrad</i><span>Still &amp; sparkling</span></span><span class="m-dot"></span>
-      </div>
-    </div>
-  </div>
-
-  <section class="section source" id="source" aria-labelledby="source-title">
+  <section class="section intro" id="water" aria-labelledby="water-title">
     <div class="wrap">
-      <figure class="scene">
-        <canvas id="scene" aria-label="Illustration: pine forest around a still Swedish lake under the midnight sun" role="img"></canvas>
-        <figcaption lang="sv">Sjö · juni · 23:40</figcaption>
-      </figure>
-      <div class="source-copy">
-        <span class="eyebrow"><span lang="sv">Källan</span> · The source</span>
-        <h2 id="source-title">From Swedish ground</h2>
-        <div class="prose">
-          <p>Sweden has about 100,000 lakes, long cold winters and some of the oldest bedrock in Europe. Rain and snowmelt sink slowly through sand, gravel and granite, and come out the other side cold and clear.</p>
-          <p>That slow trip through the ground is the whole recipe. We bottle Hava in Sweden and leave the water the way we found it.</p>
+      <div class="intro-grid">
+        <div class="intro-head">
+          <span class="eyebrow" data-i18n="water.eyebrow">The water</span>
+          <h2 class="h2" id="water-title" data-i18n="water.title">Quiet, soft and cold. Water the way Sweden keeps it.</h2>
         </div>
-        <dl class="stats">
-          <div class="stat"><dt>≈100,000</dt><dd>lakes in Sweden</dd></div>
-          <div class="stat"><dt>1.9 bn</dt><dd>years: the age of most Swedish bedrock</dd></div>
-          <div class="stat"><dt>6–8 °C</dt><dd>the temperature to drink it at</dd></div>
-        </dl>
+        <div class="intro-side">
+          <p class="lead" data-i18n="water.p">HAVA comes from the Swedish landscape of granite, pine forest and clear lakes. Still or sparkling, in glass for the table or in a can for the day.</p>
+        </div>
       </div>
+      <ul class="features">
+        <li class="feature"><svg aria-hidden="true"><use href="#mark"/></svg><h3 data-i18n="water.f1t">Still &amp; sparkling</h3><p data-i18n="water.f1">Soft and still, or with fine bubbles.</p></li>
+        <li class="feature"><svg aria-hidden="true"><use href="#mark"/></svg><h3 data-i18n="water.f2t">Glass &amp; gold</h3><p data-i18n="water.f2">Heavy glass bottles with brushed gold caps, made for the table.</p></li>
+        <li class="feature"><svg aria-hidden="true"><use href="#mark"/></svg><h3 data-i18n="water.f3t">Five flavours</h3><p data-i18n="water.f3">Sparkling cans with a taste of Nordic berries and flowers.</p></li>
+      </ul>
     </div>
+    <img class="ridge" src="assets/art-ridge.png" width="2400" height="152" alt="" loading="lazy">
   </section>
 
-  <section class="section bottles on-dark" id="bottles" aria-labelledby="bottles-title">
+  <section class="section range" id="range" aria-labelledby="range-title">
     <div class="wrap">
-      <div class="bottles-head">
+      <div class="head">
         <div>
-          <span class="eyebrow"><span lang="sv">Flaskorna</span> · The bottles</span>
-          <h2 id="bottles-title">Three bottles</h2>
+          <span class="eyebrow" data-i18n="range.eyebrow">The range</span>
+          <h2 class="h2" id="range-title" data-i18n="range.title">The collection</h2>
         </div>
-        <p>Still for every day, sparkling for dinner, and glass for the table.</p>
+        <p class="lead" data-i18n="range.lead">Glass bottles for the table, a light bottle for the day and a can for everywhere else.</p>
       </div>
+
+      <figure class="flatlay">
+        <div class="flatlay-img">
+          <img src="assets/range-flatlay.webp" width="2200" height="1476" loading="lazy" alt="Four HAVA bottles lying in shallow water" data-i18n-attr="alt:alt.range">
+          <span class="pin" data-pin="1" style="left:31%;top:16%" aria-hidden="true">1</span>
+          <span class="pin" data-pin="2" style="left:52.5%;top:22%" aria-hidden="true">2</span>
+          <span class="pin" data-pin="3" style="left:73%;top:25%" aria-hidden="true">3</span>
+          <span class="pin" data-pin="4" style="left:93%;top:36%" aria-hidden="true">4</span>
+        </div>
+        <figcaption>
+          <ol class="legend">
+            <li data-pin="1"><span class="num">1</span><b>HAVA Still</b><span class="size" data-size="1000" data-mat="glass">1000 ml · Glass</span></li>
+            <li data-pin="2"><span class="num">2</span><b>HAVA Still</b><span class="size" data-size="700" data-mat="glass">700 ml · Glass</span></li>
+            <li data-pin="3"><span class="num">3</span><b>HAVA Sparkling</b><span class="size" data-size="700" data-mat="glass">700 ml · Glass</span></li>
+            <li data-pin="4"><span class="num">4</span><b>HAVA Still</b><span class="size" data-size="500" data-mat="bottle">500 ml · Bottle</span></li>
+          </ol>
+        </figcaption>
+      </figure>
 
       <div class="cards">
-        <article class="card">
-          <div class="card-stage">
-            <svg class="bottle v-stilla" viewBox="0 0 200 600" role="img" aria-label="Hava Stilla bottle">
-              <use href="#bottle"/>
-              <g class="lbl">
-                <text x="101.5" y="366" class="lbl-word">HAVA</text>
-                <text x="101.75" y="386" class="lbl-sub">SVERIGE</text>
-                <path d="M80 401H120" class="lbl-rule"/>
-                <text x="101" y="421" class="lbl-meta">STILLA · 500 ML</text>
-                <rect x="134" y="443" width="24" height="10" rx="5" class="lbl-ring"/>
-                <text x="146.5" y="450" class="lbl-pant">PANT</text>
-              </g>
-            </svg>
-          </div>
-          <div class="card-body">
-            <h3>Hava Still <small>500 ml</small></h3>
-            <p class="sv" lang="sv">Stilla</p>
-            <p>Still water for every day: the desk, the gym bag, the long walk.</p>
-            <a class="btn btn-line" href="#order" data-product="stilla-500">Order this</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-stage">
-            <svg class="bottle v-kolsyrad" viewBox="0 0 200 600" role="img" aria-label="Hava Kolsyrad bottle with rising bubbles">
-              <use href="#bottle"/>
-              <g class="bubbles" id="bubbles" clip-path="url(#bottle-clip)"></g>
-              <g class="lbl">
-                <text x="101.5" y="366" class="lbl-word">HAVA</text>
-                <text x="101.75" y="386" class="lbl-sub">SVERIGE</text>
-                <path d="M80 401H120" class="lbl-rule"/>
-                <text x="101" y="421" class="lbl-meta">KOLSYRAD · 500 ML</text>
-                <rect x="134" y="443" width="24" height="10" rx="5" class="lbl-ring"/>
-                <text x="146.5" y="450" class="lbl-pant">PANT</text>
-              </g>
-            </svg>
-          </div>
-          <div class="card-body">
-            <h3>Hava Sparkling <small>500 ml</small></h3>
-            <p class="sv" lang="sv">Kolsyrad</p>
-            <p>Fine, lively bubbles. Made for long dinners and hot afternoons.</p>
-            <a class="btn btn-line" href="#order" data-product="kolsyrad-500">Order this</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-stage">
-            <svg class="bottle v-glas" viewBox="0 0 200 600" role="img" aria-label="Hava Glas bottle">
-              <use href="#bottle"/>
-              <g class="lbl">
-                <text x="101.5" y="366" class="lbl-word">HAVA</text>
-                <text x="101.75" y="386" class="lbl-sub">SVERIGE</text>
-                <path d="M80 401H120" class="lbl-rule"/>
-                <text x="101" y="421" class="lbl-meta">GLAS · 750 ML</text>
-              </g>
-            </svg>
-          </div>
-          <div class="card-body">
-            <h3>Hava Glass <small>750 ml</small></h3>
-            <p class="sv" lang="sv">Glas</p>
-            <p>Still water in a heavy glass bottle, for restaurant tables and good dinners at home.</p>
-            <a class="btn btn-line" href="#order" data-product="glas-750">Order this</a>
-          </div>
-        </article>
+        <a class="card" href="#contact" data-interest="still">
+          <div class="card-media" style="background:#E8DAD5"><img src="assets/still-700.webp" width="900" height="1350" loading="lazy" alt="HAVA Still glass bottle" data-i18n-attr="alt:alt.still"></div>
+          <span class="sizes">1000 · 700 · 500 ml</span>
+          <h3>HAVA Still</h3>
+          <p data-i18n="card.still.p">Soft and quiet, for long dinners and slow mornings.</p>
+        </a>
+        <a class="card" href="#contact" data-interest="sparkling">
+          <div class="card-media" style="background:#E2D6CE"><img src="assets/sparkling-700.webp" width="900" height="1349" loading="lazy" alt="HAVA Sparkling glass bottle" data-i18n-attr="alt:alt.sparkling"></div>
+          <span class="sizes">700 ml</span>
+          <h3>HAVA Sparkling</h3>
+          <p data-i18n="card.sparkling.p">Fine, lively bubbles with a clean finish.</p>
+        </a>
+        <a class="card" href="#flavours">
+          <div class="card-media" style="background:#E2DAD5"><img src="assets/can-sparkling.webp" width="900" height="1350" loading="lazy" alt="HAVA Sparkling can" data-i18n-attr="alt:alt.can"></div>
+          <span class="sizes">330 ml</span>
+          <h3 data-i18n="card.can.title">Sparkling flavours</h3>
+          <p data-i18n="card.can.p">330 ml of cold sparkling water, now in five flavours.</p>
+          <span class="more arrow" data-i18n="card.cta">See the flavours</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="section water" id="water" aria-labelledby="water-title">
-    <div class="wrap">
-      <div class="water-copy">
-        <span class="eyebrow"><span lang="sv">Vattnet</span> · The water</span>
-        <h2 id="water-title">What's in the bottle</h2>
-        <ul class="pillars">
-          <li class="pillar">
-            <i lang="sv">Rent</i>
-            <div><h3>Pure</h3><p>Rain and snowmelt filter slowly through Swedish sand, gravel and granite. By the time we bottle it, the ground has done the cleaning.</p></div>
-          </li>
-          <li class="pillar">
-            <i lang="sv">Kallt</i>
-            <div><h3>Cold</h3><p>Best at 6–8 °C. Keep it in the fridge, or sink it in a lake for an hour.</p></div>
-          </li>
-          <li class="pillar">
-            <i lang="sv">Klart</i>
-            <div><h3>Clear</h3><p>Low in minerals and soft on the tongue, with nothing added.</p></div>
-          </li>
-        </ul>
+  <section class="section flavours" id="flavours" aria-labelledby="flavours-title">
+    <div class="wrap fl-grid">
+      <div class="fl-stage">
+        <canvas id="can-stage" aria-hidden="true"></canvas>
+        <p class="fl-hint" data-i18n="flavours.drag">Drag to turn the can</p>
       </div>
-
-      <!-- Back label. Values are examples until the lab analysis for the source is in. -->
-      <aside class="label-card" aria-label="Back label with the water analysis">
-        <div class="stamp" aria-hidden="true"><span lang="sv">Exempel-<br>värden</span></div>
-        <div class="label-top"><b>HAVA</b><span lang="sv">Vatten från Sverige</span></div>
-        <table class="analysis">
-          <caption><span lang="sv">Analys</span> · Analysis, mg/l (sample values)</caption>
-          <tbody>
-            <tr><th scope="row">Calcium <span class="sym">Ca²⁺</span></th><td>12</td></tr>
-            <tr><th scope="row">Magnesium <span class="sym">Mg²⁺</span></th><td>2.0</td></tr>
-            <tr><th scope="row">Sodium <span class="sym">Na⁺</span></th><td>6.0</td></tr>
-            <tr><th scope="row">Potassium <span class="sym">K⁺</span></th><td>1.2</td></tr>
-            <tr><th scope="row">Bicarbonate <span class="sym">HCO₃⁻</span></th><td>40</td></tr>
-            <tr><th scope="row">Sulphate <span class="sym">SO₄²⁻</span></th><td>8.0</td></tr>
-            <tr><th scope="row">Chloride <span class="sym">Cl⁻</span></th><td>6.0</td></tr>
-          </tbody>
-          <tfoot>
-            <tr><th scope="row">Dry residue at 180 °C</th><td>72</td></tr>
-            <tr><th scope="row">pH</th><td>7.6</td></tr>
-          </tfoot>
-        </table>
-        <div class="label-notes" lang="sv">
-          <span>Bäst före: se kapsyl</span>
-          <span>Förvaras svalt och mörkt</span>
+      <div class="fl-info">
+        <span class="eyebrow" data-i18n="flavours.eyebrow">Sparkling flavours</span>
+        <h2 class="h2" id="flavours-title" data-i18n="flavours.title">Five flavours of Sweden</h2>
+        <p class="lead" data-i18n="flavours.lead">Sparkling HAVA with a light taste of Nordic berries, flowers and garden. 330 ml cans.</p>
+        <div class="fl-current" aria-live="polite">
+          <p class="fl-name" id="fl-name" data-i18n="fl.lingon">Lingonberry</p>
+          <p class="fl-sv" id="fl-sv" lang="sv">Lingon</p>
+          <p class="fl-desc" id="fl-desc" data-i18n="fl.lingon.p">Tart and bright, like the red berries of the autumn forest.</p>
         </div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section manifesto on-dark" aria-label="What we believe">
-    <div class="wrap">
-      <blockquote>
-        <p class="lines"><span>Find good water.</span><span>Keep it cold.</span><span>Leave it alone.</span></p>
-        <footer><span>Hava</span><span lang="sv">Hitta bra vatten. Håll det kallt. Låt det vara.</span></footer>
-      </blockquote>
-    </div>
-  </section>
-
-  <section class="section order" id="order" aria-labelledby="order-title">
-    <div class="wrap">
-      <div class="order-copy">
-        <span class="eyebrow"><span lang="sv">Beställ</span> · Order</span>
-        <h2 id="order-title">Order Hava</h2>
-        <div class="prose">
-          <p>For your home, office, restaurant, hotel or shop. Tell us what you need and we'll come back with prices and delivery dates.</p>
+        <div class="fl-picker" role="group" aria-label="Choose a flavour" data-i18n-attr="aria-label:flavours.pick">
+          <button class="fl-pick" type="button" data-flavour="0" aria-pressed="true"><canvas aria-hidden="true"></canvas><span data-i18n="fl.lingon">Lingonberry</span></button>
+          <button class="fl-pick" type="button" data-flavour="1" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.hjortron">Cloudberry</span></button>
+          <button class="fl-pick" type="button" data-flavour="2" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.flader">Elderflower</span></button>
+          <button class="fl-pick" type="button" data-flavour="3" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.blabar">Wild blueberry</span></button>
+          <button class="fl-pick" type="button" data-flavour="4" aria-pressed="false"><canvas aria-hidden="true"></canvas><span data-i18n="fl.gurka">Cucumber &amp; mint</span></button>
         </div>
-        <ol class="steps">
-          <li>Send us this form.</li>
-          <li>We reply with prices and delivery dates.</li>
-          <li>Your first cases of Hava arrive.</li>
-        </ol>
+        <a class="btn btn-deep" href="#contact" data-interest="cans" data-i18n="flavours.cta">Order the flavours</a>
       </div>
+    </div>
+  </section>
 
+  <section class="section on-deep story" id="story" aria-labelledby="story-title">
+    <div class="wrap">
+      <div class="story-top">
+        <div class="story-copy">
+          <span class="eyebrow" data-i18n="story.eyebrow">Our story</span>
+          <h2 class="h2" id="story-title" data-i18n="story.title">Born of Swedish bedrock.</h2>
+          <p data-i18n="story.p1">Sweden is a land of ancient granite, deep pine forest and around 100,000 lakes. Rain and snowmelt sink slowly through the stone and come back up cold and clear.</p>
+          <p data-i18n="story.p2">HAVA brings that water to your table, in clear glass with a brushed gold cap.</p>
+        </div>
+        <figure class="story-lake"><img src="assets/lake.webp" width="1200" height="1275" loading="lazy" alt="A misty lake and pine forest" data-i18n-attr="alt:alt.lake"></figure>
+      </div>
+      <div class="story-pair">
+        <figure>
+          <img src="assets/bottle-forest.webp" width="1100" height="1499" loading="lazy" alt="A HAVA bottle on a mossy rock in a pine forest" data-i18n-attr="alt:alt.forest">
+          <figcaption data-i18n="story.cap1">The forest</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/bottle-waterfall.webp" width="1100" height="1465" loading="lazy" alt="A HAVA bottle in front of a waterfall" data-i18n-attr="alt:alt.waterfall">
+          <figcaption data-i18n="story.cap2">The falls</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hotels" id="hotels" aria-labelledby="hotels-title">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyebrow" data-i18n="hotels.eyebrow">Hotels &amp; restaurants</span>
+          <h2 class="h2" id="hotels-title" data-i18n="hotels.title">Made for the table</h2>
+        </div>
+        <div>
+          <p class="lead" data-i18n="hotels.p">Gold-capped glass bottles for the dining room, wooden crates of six for the bar and gift boxes for your guests.</p>
+          <a class="btn btn-outline" href="#contact" data-interest="dist" data-i18n="hotels.cta">Become a partner</a>
+        </div>
+      </div>
+      <div class="mosaic">
+        <figure class="m1"><img src="assets/hotel-tray.webp" width="1600" height="1074" loading="lazy" alt="A HAVA bottle and glass on a hotel tray" data-i18n-attr="alt:alt.tray"><figcaption data-i18n="hotels.c1">Turndown service</figcaption></figure>
+        <figure class="m2"><img src="assets/crate.webp" width="1600" height="1074" loading="lazy" alt="A wooden HAVA crate with six bottles" data-i18n-attr="alt:alt.crate"><figcaption data-i18n="hotels.c2">The crate of six</figcaption></figure>
+        <figure class="m3"><img src="assets/gift-box.webp" width="1600" height="1074" loading="lazy" alt="A HAVA bottle in an open gift box" data-i18n-attr="alt:alt.gift"><figcaption data-i18n="hotels.c3">The gift box</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact-grid">
+      <div class="contact-copy">
+        <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+        <h2 class="h2" id="contact-title" data-i18n="contact.title">Bring HAVA to your table</h2>
+        <p class="lead" data-i18n="contact.lead">For hotels, restaurants, shops and distributors. Tell us what you need and we'll reply with prices and delivery.</p>
+      </div>
       <div class="panel">
-        <form class="form" id="order-form" novalidate>
+        <form class="form" id="contact-form" novalidate>
           <div class="row">
             <div class="field">
-              <label class="label" for="order-name">Name</label>
-              <input class="input" id="order-name" name="name" autocomplete="name" placeholder="Anna Lindqvist" required>
+              <label class="label" for="f-name" data-i18n="form.name">Name</label>
+              <input class="input" id="f-name" name="name" autocomplete="name" required placeholder="Your name" data-i18n-attr="placeholder:form.namePh">
             </div>
             <div class="field">
-              <label class="label" for="order-email">Email</label>
-              <input class="input" id="order-email" name="email" type="email" autocomplete="email" placeholder="anna@example.se" required>
+              <label class="label" for="f-email" data-i18n="form.email">Email</label>
+              <input class="input" id="f-email" name="email" type="email" autocomplete="email" required placeholder="name@company.com" dir="ltr">
             </div>
           </div>
-
-          <fieldset class="field">
-            <legend class="label">Ordering for</legend>
-            <div class="chips">
-              <input type="radio" name="type" id="type-home" value="home" checked><label for="type-home">Home</label>
-              <input type="radio" name="type" id="type-office" value="office"><label for="type-office">Office</label>
-              <input type="radio" name="type" id="type-restaurant" value="restaurant"><label for="type-restaurant">Restaurant</label>
-              <input type="radio" name="type" id="type-hotel" value="hotel"><label for="type-hotel">Hotel</label>
-              <input type="radio" name="type" id="type-shop" value="shop"><label for="type-shop">Shop</label>
-            </div>
-          </fieldset>
-
-          <div class="row row-qty">
+          <div class="row">
             <div class="field">
-              <label class="label" for="order-product">Bottle</label>
-              <select class="input" id="order-product" name="product">
-                <option value="stilla-500">Hava Still · 500 ml</option>
-                <option value="kolsyrad-500">Hava Sparkling · 500 ml</option>
-                <option value="glas-750">Hava Glass · 750 ml</option>
+              <label class="label" for="f-company"><span data-i18n="form.company">Company</span> <small data-i18n="form.optional">(optional)</small></label>
+              <input class="input" id="f-company" name="company" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label class="label" for="f-interest" data-i18n="form.interest">I'm interested in</label>
+              <select class="input" id="f-interest" name="interest">
+                <option value="still" data-i18n="opt.still">HAVA Still, glass</option>
+                <option value="sparkling" data-i18n="opt.sparkling">HAVA Sparkling, glass</option>
+                <option value="cans" data-i18n="opt.cans">Sparkling flavours, cans</option>
+                <option value="gift" data-i18n="opt.gift">Gift boxes</option>
+                <option value="dist" data-i18n="opt.dist">Distribution</option>
               </select>
             </div>
-            <div class="field">
-              <label class="label" for="order-qty">Cases</label>
-              <div class="stepper">
-                <button type="button" data-step="-1" aria-label="One case fewer">−</button>
-                <input id="order-qty" name="cases" type="number" inputmode="numeric" min="1" max="999" value="2" required>
-                <button type="button" data-step="1" aria-label="One case more">+</button>
-              </div>
-            </div>
           </div>
-
           <div class="field">
-            <label class="label" for="order-msg">Anything else <span style="text-transform:none;letter-spacing:0;font-weight:400">(optional)</span></label>
-            <textarea class="input" id="order-msg" name="message" rows="3" placeholder="Delivery address, dates, a standing weekly order…"></textarea>
+            <label class="label" for="f-message" data-i18n="form.message">Message</label>
+            <textarea class="input" id="f-message" name="message" rows="4" placeholder="Quantities, delivery address, dates…" data-i18n-attr="placeholder:form.messagePh"></textarea>
           </div>
-
           <div class="form-foot">
-            <button class="btn btn-ink" type="submit">Send request</button>
-            <p class="form-error" id="order-error" role="alert"></p>
+            <button class="btn btn-deep" type="submit" data-i18n="form.send">Send</button>
+            <p class="form-error" id="form-error" role="alert"></p>
           </div>
         </form>
-
-        <div class="confirm" id="order-confirm" tabindex="-1" hidden>
-          <h3 id="confirm-title">Tack.</h3>
+        <div class="confirm" id="form-confirm" tabindex="-1" hidden>
+          <h3 id="confirm-title"></h3>
           <p id="confirm-text"></p>
-          <button class="btn btn-ink" type="button" id="order-again">Send another request</button>
+          <button class="btn btn-outline" type="button" id="form-again" data-i18n="form.again">Send another message</button>
         </div>
       </div>
     </div>
@@ -791,254 +788,713 @@ textarea.input { resize: vertical; min-height: 6rem; }
 
 </main>
 
-<footer class="site-footer on-dark">
+<footer class="site-footer on-deep">
   <div class="wrap">
-    <div class="footer-grid">
+    <div class="footer-top">
       <div class="footer-brand">
-        <h2>HAVA</h2>
-        <p>Water from Sweden. <span lang="sv">Rent, kallt, klart.</span></p>
+        <svg viewBox="0 0 264 84" role="img" aria-label="HAVA"><use href="#wordmark"/></svg>
+        <p data-i18n="footer.tagline">The essence of Sweden.</p>
       </div>
       <div>
-        <span class="eyebrow">Explore</span>
+        <h2 data-i18n="footer.explore">Explore</h2>
         <ul>
-          <li><a href="#source">The source</a></li>
-          <li><a href="#bottles">The bottles</a></li>
-          <li><a href="#water">The water</a></li>
-          <li><a href="#order">Order</a></li>
+          <li><a href="#range" data-i18n="nav.range">Range</a></li>
+          <li><a href="#flavours" data-i18n="nav.flavours">Flavours</a></li>
+          <li><a href="#story" data-i18n="nav.story">Story</a></li>
+          <li><a href="#hotels" data-i18n="nav.hotels">Hotels</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </div>
       <div>
-        <span class="eyebrow">Hava</span>
-        <ul>
-          <li lang="sv">Sverige</li>
-          <li>© 2026 Hava</li>
-        </ul>
+        <h2 data-i18n="footer.language">Language</h2>
+        <ul class="footer-langs" id="footer-langs"></ul>
       </div>
     </div>
-    <svg class="footer-word" viewBox="0 0 1000 300" aria-hidden="true">
-      <text x="500" y="262" text-anchor="middle" textLength="990" lengthAdjust="spacingAndGlyphs" fill="none" stroke="#CFE4EA" stroke-opacity=".22" stroke-width="1.5">HAVA</text>
-    </svg>
+    <div class="footer-base">
+      <span data-i18n="footer.rights">© 2026 HAVA. Water from Sweden.</span>
+      <svg aria-hidden="true"><use href="#mark"/></svg>
+    </div>
   </div>
+  <img class="footer-band" src="assets/pattern-band.webp" width="2400" height="567" alt="" loading="lazy">
 </footer>
 
+<script src="i18n.js"></script>
 <script>
 (() => {
-  // Where order requests go once the site is live (e.g. a Formspree URL). Empty = confirmation only.
+  // Where contact requests go once the site is live (e.g. a Formspree URL). Empty = thank-you message only.
   const ORDER_ENDPOINT = '';
+  // The scroll film. Put the video in hava/media/ and set its path here, e.g. 'media/hava-scroll.mp4'.
+  const SCROLL_VIDEO = '';
 
+  const I18N = window.HAVA_I18N;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const NS = 'http://www.w3.org/2000/svg';
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+  const store = {
+    get(key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
+    set(key, value) { try { localStorage.setItem(key, value); } catch (e) { /* storage blocked */ } }
+  };
 
+  /* ---------- Language ---------- */
+  let lang = 'en';
+  const t = (key, vars) => {
+    const table = I18N.strings[lang] || I18N.strings.en;
+    let s = key in table ? table[key] : (key in I18N.strings.en ? I18N.strings.en[key] : key);
+    if (vars) s = s.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? vars[k] : ''));
+    return s;
+  };
+  const FONT_CSS = {
+    ar: 'https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap',
+    zh: 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap'
+  };
+  function loadFonts(code) {
+    if (!FONT_CSS[code] || document.querySelector(`link[data-font="${code}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = FONT_CSS[code];
+    link.dataset.font = code;
+    document.head.appendChild(link);
+  }
+
+  const langBtn = document.getElementById('lang-btn');
+  const langMenu = document.getElementById('lang-menu');
+  const footerLangs = document.getElementById('footer-langs');
+  I18N.languages.forEach(l => {
+    [langMenu, footerLangs].forEach(list => {
+      const li = document.createElement('li');
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.lang = l.tag;
+      b.dir = l.dir;
+      b.dataset.lang = l.code;
+      b.textContent = l.name;
+      li.appendChild(b);
+      list.appendChild(li);
+    });
+  });
+  const closeLangMenu = () => { langMenu.hidden = true; langBtn.setAttribute('aria-expanded', 'false'); };
+  langBtn.addEventListener('click', () => {
+    const open = langMenu.hidden;
+    langMenu.hidden = !open;
+    langBtn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', e => {
+    const pick = e.target.closest('[data-lang]');
+    if (pick) { setLang(pick.dataset.lang, true); closeLangMenu(); return; }
+    if (!e.target.closest('.lang')) closeLangMenu();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLangMenu(); closeMenu(); } });
+
+  function setLang(code, remember) {
+    const meta = I18N.languages.find(l => l.code === code) || I18N.languages[0];
+    lang = meta.code;
+    loadFonts(lang);
+    document.documentElement.lang = meta.tag;
+    document.documentElement.dir = meta.dir;
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+      el.dataset.i18nAttr.split(';').forEach(pair => {
+        const [attr, key] = pair.split(':');
+        el.setAttribute(attr, t(key));
+      });
+    });
+    document.querySelectorAll('[data-size]').forEach(el => {
+      el.textContent = `${el.dataset.size} ${t('unit.ml')} · ${t('range.' + el.dataset.mat)}`;
+    });
+    document.getElementById('lang-code').textContent = meta.code.toUpperCase();
+    document.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-current', String(b.dataset.lang === lang)));
+    renderFlavourText();
+    document.getElementById('form-error').textContent = '';
+    if (remember) store.set('hava-lang', lang);
+  }
+
+  /* ---------- Header and menu ---------- */
+  const header = document.querySelector('.site-header');
+  const nav = document.getElementById('site-nav');
+  const menuBtn = document.getElementById('menu-btn');
+  const menuLabel = menuBtn.querySelector('span');
+  function closeMenu() {
+    nav.classList.remove('open');
+    header.classList.remove('menu-open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuLabel.dataset.i18n = 'nav.menu';
+    menuLabel.textContent = t('nav.menu');
+  }
+  menuBtn.addEventListener('click', () => {
+    if (nav.classList.contains('open')) { closeMenu(); return; }
+    nav.classList.add('open');
+    header.classList.add('menu-open');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    menuLabel.dataset.i18n = 'nav.close';
+    menuLabel.textContent = t('nav.close');
+  });
+  nav.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
+
+  /* ---------- Scroll film ----------
+     The video scrubs with the scroll. With sound on, it plays at the speed you scroll and pauses
+     when you stop. "Play with sound" plays it at normal speed and scrolls the page along with it. */
+  const film = document.getElementById('film');
+  const filmMedia = film.querySelector('.film-media');
+  const scenes = [...film.querySelectorAll('.scene')];
+  const captions = [...film.querySelectorAll('.film-captions li')];
+  const filmBar = film.querySelector('.film-progress span');
+  const filmHint = film.querySelector('.film-hint');
+  const video = film.querySelector('.film-video');
+  const player = document.getElementById('film-player');
+  const playBtn = document.getElementById('film-play');
+  const soundBtn = document.getElementById('film-sound');
+  const loadBtn = document.getElementById('film-load');
+  const fileInput = document.getElementById('film-file');
+  const filmNote = document.getElementById('film-note');
+  const filmError = document.getElementById('film-error');
+  let videoReady = false, soundOn = false, autoplay = false, localUrl = '';
+  let lastTarget = 0, lastTick = 0, speed = 0, idleTimer = 0;
+
+  const filmSpan = () => film.offsetHeight - window.innerHeight;
+  const filmTop = () => film.getBoundingClientRect().top + window.scrollY;
+  const setLabel = (el, key) => { el.dataset.i18n = key; el.textContent = t(key); };
+
+  function updateFilmControls() {
+    player.hidden = !videoReady;
+    setLabel(playBtn.querySelector('span'), autoplay ? 'film.pause' : 'film.play');
+    setLabel(soundBtn.querySelector('span'), soundOn ? 'film.soundOn' : 'film.soundOff');
+    soundBtn.setAttribute('aria-pressed', String(soundOn));
+    soundBtn.querySelector('.wave').style.opacity = soundOn ? 1 : 0.25;
+  }
+
+  function useVideo(src) {
+    stopAutoplay();
+    videoReady = false;
+    film.classList.remove('has-video');
+    filmError.textContent = '';
+    video.muted = !soundOn;
+    video.src = src;
+    video.hidden = false;
+    video.load();
+  }
+  video.addEventListener('loadedmetadata', () => {
+    videoReady = true;
+    film.classList.add('has-video');
+    // Longer films get a longer scroll, so a normal scroll stays close to real time.
+    film.style.height = `${Math.round(clamp(video.duration * 30, 400, 2400))}vh`;
+    filmNote.hidden = !!SCROLL_VIDEO;
+    updateFilmControls();
+    renderFilm();
+  });
+  video.addEventListener('error', () => {
+    if (!video.getAttribute('src')) return;
+    videoReady = false;
+    film.classList.remove('has-video');
+    video.hidden = true;
+    filmError.textContent = t('film.loadError');
+    updateFilmControls();
+  });
+  video.addEventListener('ended', () => { if (autoplay) stopAutoplay(); });
+
+  function loadFile(file) {
+    if (!file || !/^video\//.test(file.type || 'video/')) return;
+    if (localUrl) URL.revokeObjectURL(localUrl);
+    localUrl = URL.createObjectURL(file);
+    useVideo(localUrl);
+  }
+  loadBtn.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+  film.addEventListener('dragover', e => { e.preventDefault(); film.classList.add('drop'); });
+  film.addEventListener('dragleave', e => { if (!film.contains(e.relatedTarget)) film.classList.remove('drop'); });
+  film.addEventListener('drop', e => {
+    e.preventDefault();
+    film.classList.remove('drop');
+    loadFile(e.dataTransfer.files[0]);
+  });
+
+  soundBtn.addEventListener('click', () => {
+    soundOn = !soundOn;
+    video.muted = !soundOn;
+    if (soundOn) {
+      // Unlock audio inside the click so later plays from scrolling are allowed.
+      video.play().then(() => { if (!autoplay) video.pause(); }).catch(() => {});
+    } else if (!autoplay) {
+      video.pause();
+    }
+    updateFilmControls();
+  });
+
+  function startAutoplay() {
+    if (!videoReady) return;
+    autoplay = true;
+    soundOn = true;
+    video.muted = false;
+    video.playbackRate = 1;
+    const span = filmSpan();
+    const p = clamp((window.scrollY - filmTop()) / span, 0, 1);
+    video.currentTime = p > 0.98 ? 0 : p * video.duration;
+    updateFilmControls();
+    video.play().then(() => requestAnimationFrame(follow)).catch(stopAutoplay);
+  }
+  function follow() {
+    if (!autoplay) return;
+    const y = filmTop() + (video.currentTime / video.duration) * filmSpan();
+    window.scrollTo({ top: y, behavior: 'instant' });
+    requestAnimationFrame(follow);
+  }
+  function stopAutoplay() {
+    if (!autoplay) return;
+    autoplay = false;
+    video.pause();
+    updateFilmControls();
+  }
+  playBtn.addEventListener('click', () => (autoplay ? stopAutoplay() : startAutoplay()));
+  window.addEventListener('wheel', stopAutoplay, { passive: true });
+  window.addEventListener('touchstart', e => { if (!e.target.closest('.film-controls')) stopAutoplay(); }, { passive: true });
+  window.addEventListener('keydown', e => {
+    if (autoplay && ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(e.key) && !e.target.closest('button')) stopAutoplay();
+  });
+
+  function scrubVideo(p) {
+    const target = p * Math.max(0, video.duration - 0.05);
+    const now = performance.now();
+    const dt = (now - lastTick) / 1000;
+    if (dt > 0 && dt < 0.5) speed = speed * 0.6 + ((target - lastTarget) / dt) * 0.4;
+    else speed = 0;
+    lastTarget = target;
+    lastTick = now;
+    if (soundOn && speed > 0.15) {
+      video.playbackRate = clamp(speed, 0.5, 2);
+      if (video.paused) video.play().catch(() => {});
+      if (Math.abs(video.currentTime - target) > 0.35) video.currentTime = target;
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => { if (!autoplay) video.pause(); }, 220);
+    } else {
+      if (!video.paused) video.pause();
+      if (Math.abs(video.currentTime - target) > 0.03) video.currentTime = target;
+    }
+  }
+
+  function renderFilm() {
+    const r = film.getBoundingClientRect();
+    const span = r.height - window.innerHeight;
+    if (r.bottom < 0 || r.top > window.innerHeight || span <= 0) {
+      if (videoReady && !autoplay && !video.paused) video.pause();
+      return;
+    }
+    const p = clamp(-r.top / span, 0, 1);
+    const n = captions.length;
+    const weight = k => {
+      const c = (k + 0.5) / n;
+      if ((k === 0 && p <= c) || (k === n - 1 && p >= c)) return 1;
+      const d = Math.abs(p - c) * n;
+      return clamp(1 - (d - 0.32) / 0.3, 0, 1);
+    };
+    captions.forEach((li, k) => {
+      li.style.opacity = weight(k);
+      li.style.transform = `translateY(${((p - (k + 0.5) / n) * n * -36).toFixed(1)}px)`;
+    });
+
+    // 3D: the film tilts in like a card, lies flat while it plays, and tilts away at the end.
+    const ease = v => 1 - Math.pow(1 - v, 3);
+    const flat = ease(clamp(p / 0.1, 0, 1)) * (1 - ease(clamp((p - 0.9) / 0.1, 0, 1)));
+    const tilt = (p < 0.5 ? 12 : -10) * (1 - flat);
+    filmMedia.style.transform = `scale(${(0.86 + 0.14 * flat).toFixed(4)}) rotateX(${tilt.toFixed(2)}deg)`;
+    filmMedia.style.borderRadius = `${(22 * (1 - flat)).toFixed(1)}px`;
+
+    if (videoReady) {
+      if (!autoplay) scrubVideo(p);
+    } else {
+      scenes.forEach((img, k) => {
+        const local = clamp((p - k / n) * n, 0, 1);
+        img.style.opacity = weight(k);
+        img.style.transform = `scale(${(1.14 - 0.12 * local).toFixed(4)}) translateY(${((0.5 - local) * 2).toFixed(2)}%)`;
+      });
+    }
+    filmBar.style.transform = `scaleY(${p.toFixed(4)})`;
+    filmHint.style.opacity = p < 0.03 ? 1 : 0;
+  }
+
+  if (SCROLL_VIDEO) {
+    document.getElementById('film-loader').hidden = true;
+    filmNote.hidden = true;
+    useVideo(SCROLL_VIDEO);
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      header.classList.toggle('solid', window.scrollY > 24);
+      renderFilm();
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  /* ---------- Range: pins and legend highlight each other ---------- */
+  document.querySelectorAll('.legend [data-pin], .pin').forEach(el => {
+    const mark = on => document.querySelectorAll(`[data-pin="${el.dataset.pin}"]`).forEach(x => x.classList.toggle('on', on));
+    el.addEventListener('mouseenter', () => mark(true));
+    el.addEventListener('mouseleave', () => mark(false));
+  });
+
+  /* ---------- Flavours: a can drawn as a turning cylinder ---------- */
+  const FLAVOURS = [
+    { key: 'lingon', sv: 'LINGON', svName: 'Lingon', en: 'LINGONBERRY', body: '#F2D8DC', art: '#B0384D', text: '#9C2E42', bg: '#F5E6E8' },
+    { key: 'hjortron', sv: 'HJORTRON', svName: 'Hjortron', en: 'CLOUDBERRY', body: '#F5E2C2', art: '#CC8526', text: '#8A5710', bg: '#F7ECDA' },
+    { key: 'flader', sv: 'FLÄDER', svName: 'Fläder', en: 'ELDERFLOWER', body: '#EDEFD3', art: '#949C3E', text: '#5F6620', bg: '#F1F2E1' },
+    { key: 'blabar', sv: 'BLÅBÄR', svName: 'Blåbär', en: 'WILD BLUEBERRY', body: '#D9DDF0', art: '#3D4A8F', text: '#36427F', bg: '#E5E7F2' },
+    { key: 'gurka', sv: 'GURKA & MYNTA', svName: 'Gurka & mynta', en: 'CUCUMBER & MINT', body: '#D9ECE1', art: '#3A8565', text: '#2B634B', bg: '#E4F0E9' }
+  ];
+  const flSection = document.getElementById('flavours');
+  const stage = document.getElementById('can-stage');
+  const picks = [...document.querySelectorAll('.fl-pick')];
+  const art = new Image();
+  const TW = 1100, TH = 900;
+  let textures = [];
+  let selected = 0, shown = 0;
+  let rot = -0.4, vel = 0, dragging = false, lastX = 0, lastT = 0, idleUntil = 0, spin = null;
+
+  function renderFlavourText() {
+    const fl = FLAVOURS[selected];
+    const name = document.getElementById('fl-name');
+    const desc = document.getElementById('fl-desc');
+    const sv = document.getElementById('fl-sv');
+    name.dataset.i18n = `fl.${fl.key}`;
+    desc.dataset.i18n = `fl.${fl.key}.p`;
+    name.textContent = t(name.dataset.i18n);
+    desc.textContent = t(desc.dataset.i18n);
+    sv.textContent = fl.svName;
+    sv.hidden = lang === 'sv';
+  }
+
+  const rgba = (hex, a) => {
+    const n = parseInt(hex.slice(1), 16);
+    return `rgba(${n >> 16}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+  };
   function seeded(seed) {
     return () => {
       seed = (seed + 0x6D2B79F5) | 0;
-      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      let v = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      v = (v + Math.imul(v ^ (v >>> 7), 61 | v)) ^ v;
+      return ((v ^ (v >>> 14)) >>> 0) / 4294967296;
     };
   }
-
-  // Condensation on the bottle (shared by every bottle on the page).
-  const drops = document.getElementById('drops');
-  if (drops) {
-    const r = seeded(11);
-    for (let i = 0; i < 30; i++) {
-      const x = 47 + r() * 106, y = 205 + r() * 360, s = 0.55 + r() * 1.1;
-      const g = document.createElementNS(NS, 'g');
-      g.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${s.toFixed(2)})`);
-      g.innerHTML = '<ellipse rx="2.4" ry="3.1" fill="#08161D" opacity=".14"/>' +
-        '<ellipse rx="2.1" ry="2.8" fill="#E6F3F6" opacity=".3"/>' +
-        '<ellipse cx="-.7" cy="-1.1" rx=".7" ry="1" fill="#fff" opacity=".9"/>';
-      drops.appendChild(g);
-    }
+  function spaced(ctx, str, x, y, gap) {
+    const chars = [...str];
+    const widths = chars.map(c => ctx.measureText(c).width);
+    let pos = x - (widths.reduce((a, b) => a + b, 0) + gap * (chars.length - 1)) / 2;
+    ctx.textAlign = 'left';
+    chars.forEach((c, i) => { ctx.fillText(c, pos, y); pos += widths[i] + gap; });
   }
-
-  // Bubbles in the sparkling bottle.
-  const bubbles = document.getElementById('bubbles');
-  if (bubbles) {
-    const r = seeded(5);
-    for (let i = 0; i < 22; i++) {
-      const c = document.createElementNS(NS, 'circle');
-      c.setAttribute('cx', (52 + r() * 96).toFixed(1));
-      c.setAttribute('cy', (560 + r() * 20).toFixed(1));
-      c.setAttribute('r', (0.9 + r() * 2.2).toFixed(1));
-      c.style.setProperty('--d', (3 + r() * 4).toFixed(2) + 's');
-      c.style.setProperty('--delay', (-r() * 7).toFixed(2) + 's');
-      bubbles.appendChild(c);
-    }
-  }
-
-  // The wordmark settles like water on load, and ripples again when touched.
-  const word = document.getElementById('hero-word-text');
-  const disp = document.getElementById('ripple-disp');
-  const turb = document.getElementById('ripple-turb');
-  let rippleFrame = 0;
-  function ripple(strength, duration) {
-    if (reduceMotion || !word) return;
-    cancelAnimationFrame(rippleFrame);
-    turb.setAttribute('seed', String(1 + Math.floor(Math.random() * 50)));
-    word.setAttribute('filter', 'url(#ripple)');
-    const start = performance.now();
-    const step = now => {
-      const p = Math.min(1, (now - start) / duration);
-      const k = Math.pow(1 - p, 3);
-      disp.setAttribute('scale', (strength * k).toFixed(2));
-      turb.setAttribute('baseFrequency', `${(0.004 + 0.004 * k).toFixed(4)} ${(0.02 + 0.035 * k).toFixed(4)}`);
-      if (p < 1) rippleFrame = requestAnimationFrame(step);
-      else word.removeAttribute('filter');
-    };
-    rippleFrame = requestAnimationFrame(step);
-  }
-  ripple(64, 2800);
-  const heroWord = document.querySelector('.hero-word');
-  if (heroWord) heroWord.addEventListener('pointerdown', () => ripple(30, 1700));
-
-  // The source: a Swedish lake at midsummer, drawn fresh at any size.
-  const canvas = document.getElementById('scene');
-  function drawScene() {
-    const w = canvas.clientWidth, h = canvas.clientHeight;
-    if (!w || !h) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(w * dpr);
-    canvas.height = Math.round(h * dpr);
-    const ctx = canvas.getContext('2d');
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const r = seeded(1906);
-    const horizon = h * 0.56;
-
-    const sky = ctx.createLinearGradient(0, 0, 0, horizon);
-    sky.addColorStop(0, '#B9D2DA');
-    sky.addColorStop(0.62, '#DCE8E9');
-    sky.addColorStop(1, '#F3E8DA');
-    ctx.fillStyle = sky;
-    ctx.fillRect(0, 0, w, horizon);
-
-    const sx = w * 0.66, sy = horizon - h * 0.06;
-    const glow = ctx.createRadialGradient(sx, sy, 0, sx, sy, w * 0.5);
-    glow.addColorStop(0, 'rgba(255, 236, 210, .85)');
-    glow.addColorStop(1, 'rgba(255, 236, 210, 0)');
-    ctx.fillStyle = glow;
-    ctx.fillRect(0, 0, w, horizon);
-    ctx.fillStyle = 'rgba(255, 247, 234, .95)';
+  function glyph(ctx, ch, cx, top, h, w) {
     ctx.beginPath();
-    ctx.arc(sx, sy, w * 0.035, 0, Math.PI * 2);
+    if (ch === 'H') {
+      ctx.moveTo(cx - w / 2, top); ctx.lineTo(cx - w / 2, top + h);
+      ctx.moveTo(cx + w / 2, top); ctx.lineTo(cx + w / 2, top + h);
+      ctx.moveTo(cx - w / 2, top + h / 2); ctx.lineTo(cx + w / 2, top + h / 2);
+    } else if (ch === 'A') {
+      ctx.moveTo(cx - w / 2, top + h); ctx.lineTo(cx, top); ctx.lineTo(cx + w / 2, top + h);
+    } else {
+      ctx.moveTo(cx - w / 2, top); ctx.lineTo(cx, top + h); ctx.lineTo(cx + w / 2, top);
+    }
+    ctx.stroke();
+  }
+  function markIcon(ctx, cx, cy, r) {
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx - r * .35, cy + r * .35); ctx.lineTo(cx, cy - r * .4); ctx.lineTo(cx + r * .35, cy + r * .35); ctx.stroke();
+  }
+
+  // One flat label per flavour: front centre at x = TW/2, the seam at the back.
+  function buildTexture(fl, index) {
+    const c = document.createElement('canvas');
+    c.width = TW; c.height = TH;
+    const x = c.getContext('2d');
+    x.fillStyle = fl.body;
+    x.fillRect(0, 0, TW, TH);
+    const sheen = x.createLinearGradient(0, 0, 0, TH);
+    sheen.addColorStop(0, 'rgba(255, 255, 255, .45)');
+    sheen.addColorStop(.45, 'rgba(255, 255, 255, 0)');
+    sheen.addColorStop(1, 'rgba(0, 0, 0, .05)');
+    x.fillStyle = sheen;
+    x.fillRect(0, 0, TW, TH);
+
+    if (art.complete && art.naturalWidth) {
+      const tint = document.createElement('canvas');
+      tint.width = art.naturalWidth; tint.height = art.naturalHeight;
+      const tg = tint.getContext('2d');
+      tg.drawImage(art, 0, 0);
+      tg.globalCompositeOperation = 'source-in';
+      tg.fillStyle = fl.art;
+      tg.fillRect(0, 0, tint.width, tint.height);
+      const ah = TW * tint.height / tint.width, ay = TH * .33;
+      x.globalAlpha = .5;
+      x.drawImage(tint, 0, ay, TW, ah);
+      x.globalAlpha = 1;
+      const fade = x.createLinearGradient(0, ay + ah * .78, 0, ay + ah + 2);
+      fade.addColorStop(0, rgba(fl.body, 0));
+      fade.addColorStop(1, fl.body);
+      x.fillStyle = fade;
+      x.fillRect(0, ay + ah * .78, TW, ah * .22 + 3);
+    }
+
+    const cx = TW / 2;
+    x.strokeStyle = '#1A1A1A';
+    x.lineCap = 'butt';
+    x.lineJoin = 'miter';
+    x.lineWidth = 6;
+    const lh = TH * .085, lw = lh * .82, gap = TH * .05;
+    let top = TH * .1;
+    ['H', 'A', 'V', 'A'].forEach(ch => { glyph(x, ch, cx, top, lh, ch === 'H' ? lw * .8 : lw); top += lh + gap; });
+    x.lineWidth = 2;
+    x.beginPath(); x.moveTo(cx - 58, TH * .672); x.lineTo(cx + 58, TH * .672); x.stroke();
+
+    const font = (w, s) => `${w} ${s}px Montserrat, "Helvetica Neue", Arial, sans-serif`;
+    x.textBaseline = 'alphabetic';
+    x.fillStyle = '#1A1A1A';
+    x.font = font(500, 30); spaced(x, fl.sv, cx, TH * .735, 6);
+    x.fillStyle = fl.text;
+    x.font = font(600, 14); spaced(x, fl.en, cx, TH * .775, 4);
+    x.fillStyle = '#1A1A1A';
+    x.font = font(500, 13); spaced(x, 'SPARKLING WATER', cx, TH * .812, 4);
+    x.font = font(400, 11); spaced(x, 'THE ESSENCE OF SWEDEN.', cx, TH * .848, 2.5);
+    spaced(x, '330ML', cx, TH * .882, 2.5);
+
+    // The back: the Λ mark, drawn on both edges so it wraps across the seam.
+    [0, TW].forEach(bx => {
+      x.strokeStyle = '#1A1A1A';
+      x.lineWidth = 2;
+      markIcon(x, bx, TH * .3, 30);
+      x.font = font(500, 13);
+      spaced(x, 'SWEDEN', bx, TH * .4, 4);
+    });
+
+    // Condensation.
+    const rnd = seeded(101 + index);
+    for (let i = 0; i < 170; i++) {
+      const dx = rnd() * TW, dy = TH * (.03 + rnd() * .94), s = 2 + rnd() * 5.5;
+      x.fillStyle = 'rgba(255, 255, 255, .42)';
+      x.beginPath(); x.ellipse(dx, dy, s * .8, s, 0, 0, Math.PI * 2); x.fill();
+      x.fillStyle = 'rgba(0, 0, 0, .07)';
+      x.beginPath(); x.ellipse(dx + s * .12, dy + s * .3, s * .7, s * .55, 0, 0, Math.PI); x.fill();
+      x.fillStyle = 'rgba(255, 255, 255, .9)';
+      x.beginPath(); x.arc(dx - s * .3, dy - s * .4, s * .24, 0, Math.PI * 2); x.fill();
+    }
+    return c;
+  }
+
+  function canGeometry(w, h) {
+    const Hc = h * .9;
+    const R = Math.min(w * .4, Hc / 5.3);
+    return { Hc, R, cx: w / 2, y0: (h - Hc) / 2 };
+  }
+
+  function drawCan(ctx, w, h, tex, angle) {
+    const { Hc, R, cx, y0 } = canGeometry(w, h);
+    const ry = R * .17, shoulder = Hc * .07, base = Hc * .05;
+    const yTop = y0 + ry, yB0 = y0 + shoulder + ry, yB1 = y0 + Hc - base - ry, yBot = y0 + Hc - ry;
+    ctx.clearRect(0, 0, w, h);
+
+    const floor = ctx.createRadialGradient(cx, yBot + ry * .4, R * .2, cx, yBot + ry * .4, R * 1.6);
+    floor.addColorStop(0, 'rgba(13, 43, 69, .26)');
+    floor.addColorStop(1, 'rgba(13, 43, 69, 0)');
+    ctx.fillStyle = floor;
+    ctx.beginPath(); ctx.ellipse(cx, yBot + ry * .4, R * 1.6, ry * 1.6, 0, 0, Math.PI * 2); ctx.fill();
+
+    // Label: thin vertical slices, each sampling the label at its angle on the cylinder.
+    const n = Math.max(40, Math.round(R));
+    const step = 2 * R / n, bodyH = yB1 + ry - yB0, turn = angle / (Math.PI * 2);
+    for (let i = 0; i < n; i++) {
+      const x0 = cx - R + i * step;
+      const a0 = Math.asin(clamp((x0 - cx) / R, -1, 1));
+      const a1 = Math.asin(clamp((x0 + step - cx) / R, -1, 1));
+      let sx = (0.5 + a0 / (Math.PI * 2) + turn) * TW;
+      sx = ((sx % TW) + TW) % TW;
+      const sw = Math.max(0.5, (a1 - a0) / (Math.PI * 2) * TW);
+      if (sx + sw <= TW) {
+        ctx.drawImage(tex, sx, 0, sw, TH, x0, yB0, step + .6, bodyH);
+      } else {
+        const first = TW - sx, k = first / sw;
+        ctx.drawImage(tex, sx, 0, first, TH, x0, yB0, step * k + .3, bodyH);
+        ctx.drawImage(tex, 0, 0, sw - first, TH, x0 + step * k, yB0, step * (1 - k) + .6, bodyH);
+      }
+    }
+
+    const shade = ctx.createLinearGradient(cx - R, 0, cx + R, 0);
+    shade.addColorStop(0, 'rgba(10, 20, 30, .45)');
+    shade.addColorStop(.08, 'rgba(10, 20, 30, .12)');
+    shade.addColorStop(.2, 'rgba(255, 255, 255, .26)');
+    shade.addColorStop(.3, 'rgba(255, 255, 255, .05)');
+    shade.addColorStop(.62, 'rgba(255, 255, 255, 0)');
+    shade.addColorStop(.86, 'rgba(10, 20, 30, .12)');
+    shade.addColorStop(1, 'rgba(10, 20, 30, .5)');
+    ctx.fillStyle = shade;
+    ctx.fillRect(cx - R, yB0, 2 * R, bodyH);
+
+    const metal = ctx.createLinearGradient(cx - R, 0, cx + R, 0);
+    metal.addColorStop(0, '#6E757C');
+    metal.addColorStop(.16, '#DCE0E4');
+    metal.addColorStop(.26, '#F6F7F8');
+    metal.addColorStop(.45, '#BCC2C7');
+    metal.addColorStop(.75, '#A4ABB1');
+    metal.addColorStop(1, '#5F666D');
+    ctx.fillStyle = metal;
+
+    ctx.beginPath();
+    ctx.moveTo(cx - R, yB1);
+    ctx.ellipse(cx, yB1, R, ry, 0, Math.PI, 0, true);
+    ctx.bezierCurveTo(cx + R, yB1 + base * .5, cx + R * .9, yBot - ry * .1, cx + R * .86, yBot);
+    ctx.ellipse(cx, yBot, R * .86, ry * .86, 0, 0, Math.PI, false);
+    ctx.bezierCurveTo(cx - R * .9, yBot - ry * .1, cx - R, yB1 + base * .5, cx - R, yB1);
     ctx.fill();
 
-    const ridge = (seed, base, amp) => {
-      const k = seeded(seed), a = k() * 6.28, b = k() * 6.28, c = k() * 6.28;
-      return x => base - amp * (0.55 * Math.sin(x / w * 3.1 + a) + 0.3 * Math.sin(x / w * 7.3 + b) + 0.15 * Math.sin(x / w * 15.7 + c));
-    };
-    const band = (fn, color) => {
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.moveTo(0, horizon);
-      for (let x = 0; x <= w; x += 4) ctx.lineTo(x, fn(x));
-      ctx.lineTo(w, horizon);
-      ctx.closePath();
-      ctx.fill();
-    };
-    const fir = (x, base, ht) => {
-      const wd = ht * 0.36, n = 7, d = ht * 0.012;
-      const y = i => base - ht + ht * 0.9 * (i / n);
-      const half = i => wd * 0.5 * (i / n);
-      ctx.beginPath();
-      ctx.moveTo(x, base - ht);
-      for (let i = 1; i < n; i++) { ctx.lineTo(x + half(i), y(i)); ctx.lineTo(x + half(i) * 0.35, y(i) + d); }
-      ctx.lineTo(x + half(n), y(n));
-      ctx.lineTo(x + wd * 0.05, y(n));
-      ctx.lineTo(x + wd * 0.05, base);
-      ctx.lineTo(x - wd * 0.05, base);
-      ctx.lineTo(x - wd * 0.05, y(n));
-      ctx.lineTo(x - half(n), y(n));
-      for (let i = n - 1; i >= 1; i--) { ctx.lineTo(x - half(i) * 0.35, y(i) + d); ctx.lineTo(x - half(i), y(i)); }
-      ctx.closePath();
-      ctx.fill();
-    };
+    ctx.beginPath();
+    ctx.moveTo(cx - R * .86, yTop);
+    ctx.ellipse(cx, yTop, R * .86, ry * .86, 0, Math.PI, 0, true);
+    ctx.bezierCurveTo(cx + R * .9, yTop + shoulder * .35, cx + R, yB0 - shoulder * .35, cx + R, yB0);
+    ctx.ellipse(cx, yB0, R, ry, 0, 0, Math.PI, false);
+    ctx.bezierCurveTo(cx - R, yB0 - shoulder * .35, cx - R * .9, yTop + shoulder * .35, cx - R * .86, yTop);
+    ctx.fill();
 
-    band(ridge(3, horizon - h * 0.13, h * 0.05), 'rgba(46, 110, 124, .24)');
-    const mid = ridge(7, horizon - h * 0.03, h * 0.02);
-    band(mid, 'rgba(31, 72, 82, .55)');
-    ctx.fillStyle = 'rgba(31, 72, 82, .7)';
-    for (let x = -8; x < w + 8; x += 4 + r() * 7) fir(x, mid(x) + 3, h * (0.035 + r() * 0.035));
+    const lid = ctx.createLinearGradient(cx - R, yTop - ry, cx + R, yTop + ry);
+    lid.addColorStop(0, '#C9CED3');
+    lid.addColorStop(.45, '#F4F5F6');
+    lid.addColorStop(1, '#AEB4BA');
+    ctx.fillStyle = lid;
+    ctx.beginPath(); ctx.ellipse(cx, yTop, R * .86, ry * .86, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(80, 88, 96, .5)';
+    ctx.lineWidth = Math.max(1, R * .02);
+    ctx.beginPath(); ctx.ellipse(cx, yTop + ry * .08, R * .74, ry * .66, 0, 0, Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = 'rgba(150, 158, 166, .9)';
+    ctx.beginPath(); ctx.ellipse(cx, yTop - ry * .05, R * .16, ry * .26, 0, 0, Math.PI * 2); ctx.fill();
 
-    const mist = ctx.createLinearGradient(0, horizon - h * 0.08, 0, horizon);
-    mist.addColorStop(0, 'rgba(238, 244, 245, 0)');
-    mist.addColorStop(1, 'rgba(238, 244, 245, .45)');
-    ctx.fillStyle = mist;
-    ctx.fillRect(0, horizon - h * 0.08, w, h * 0.08);
-
-    ctx.fillStyle = '#0F2A36';
-    for (let x = -12; x < w * 0.4; x += 7 + r() * 12) fir(x, horizon + 2, h * (0.1 + r() * 0.14) * (1 - x / w));
-    for (let x = w * 0.84; x < w + 12; x += 7 + r() * 12) fir(x, horizon + 2, h * (0.08 + r() * 0.1));
-
-    // Lake: mirror the shore, darken with depth, then add the light on the water.
-    ctx.save();
-    ctx.translate(0, horizon * 2);
-    ctx.scale(1, -1);
-    ctx.globalAlpha = 0.6;
-    ctx.drawImage(canvas, 0, 0, canvas.width, Math.round(horizon * dpr), 0, 0, w, horizon);
-    ctx.restore();
-    const lake = ctx.createLinearGradient(0, horizon, 0, h);
-    lake.addColorStop(0, 'rgba(185, 210, 218, .35)');
-    lake.addColorStop(1, 'rgba(15, 42, 54, .78)');
-    ctx.fillStyle = lake;
-    ctx.fillRect(0, horizon, w, h - horizon);
-    for (let i = 0; i < 110; i++) {
-      const depth = Math.pow(r(), 1.5);
-      const y = horizon + 2 + depth * (h - horizon);
-      const nearSun = r() < 0.45;
-      const x = nearSun ? sx + (r() - 0.5) * w * (0.08 + depth * 0.35) : r() * w;
-      const len = w * (0.01 + r() * 0.06) * (1 + depth * 2);
-      ctx.fillStyle = nearSun ? `rgba(255, 240, 220, ${0.35 + r() * 0.4})` : `rgba(255, 255, 255, ${0.08 + r() * 0.18})`;
-      ctx.fillRect(x - len / 2, y, len, Math.max(1, depth * 2));
-    }
-    ctx.fillStyle = 'rgba(8, 22, 29, .35)';
-    ctx.fillRect(0, horizon, w, 1);
-  }
-  if (canvas) {
-    drawScene();
-    let pending = 0;
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(() => { cancelAnimationFrame(pending); pending = requestAnimationFrame(drawScene); }).observe(canvas);
-    } else {
-      window.addEventListener('resize', drawScene);
-    }
+    const glint = ctx.createLinearGradient(cx - R * .66, 0, cx - R * .46, 0);
+    glint.addColorStop(0, 'rgba(255, 255, 255, 0)');
+    glint.addColorStop(.5, 'rgba(255, 255, 255, .36)');
+    glint.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    ctx.fillStyle = glint;
+    ctx.fillRect(cx - R * .66, yB0 + ry, R * .2, yB1 - yB0 - ry);
   }
 
-  // Order form.
-  const form = document.getElementById('order-form');
-  const product = document.getElementById('order-product');
-  const qty = document.getElementById('order-qty');
-  const error = document.getElementById('order-error');
-  const confirmBox = document.getElementById('order-confirm');
+  function fit(canvas) {
+    const box = canvas.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.max(1, Math.round(box.width * dpr));
+    canvas.height = Math.max(1, Math.round(box.height * dpr));
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { ctx, w: box.width, h: box.height };
+  }
 
-  document.querySelectorAll('[data-product]').forEach(link => {
-    link.addEventListener('click', () => { product.value = link.dataset.product; });
-  });
-
-  document.querySelectorAll('[data-step]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const next = (parseInt(qty.value, 10) || 0) + Number(btn.dataset.step);
-      qty.value = String(Math.min(999, Math.max(1, next)));
+  let main = null, visible = false, raf = 0, last = 0;
+  function drawThumbs() {
+    picks.forEach((btn, i) => {
+      const f = fit(btn.querySelector('canvas'));
+      if (textures[i]) drawCan(f.ctx, f.w, f.h, textures[i], 0);
     });
+  }
+  function buildAll() {
+    textures = FLAVOURS.map(buildTexture);
+    drawThumbs();
+    kick();
+  }
+
+  function frame(now) {
+    raf = 0;
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    if (!dragging) {
+      if (spin) {
+        const p = clamp((now - spin.start) / spin.dur, 0, 1);
+        rot = spin.from + (1 - Math.pow(1 - p, 3)) * Math.PI * 2;
+        if (p >= 0.5) shown = selected;
+        if (p >= 1) spin = null;
+      } else {
+        rot += vel * dt;
+        vel *= Math.pow(0.04, dt);
+        if (!reduceMotion && now > idleUntil) rot += 0.3 * dt;
+      }
+    }
+    if (main && textures[shown]) drawCan(main.ctx, main.w, main.h, textures[shown], rot);
+    const moving = dragging || spin || Math.abs(vel) > 0.02 || !reduceMotion;
+    if (visible && moving) raf = requestAnimationFrame(frame);
+  }
+  function kick() {
+    if (raf) return;
+    last = performance.now();
+    raf = requestAnimationFrame(frame);
+  }
+
+  function selectFlavour(i) {
+    if (i === selected) return;
+    selected = i;
+    const fl = FLAVOURS[i];
+    flSection.style.setProperty('--fl-bg', fl.bg);
+    flSection.style.setProperty('--fl-text', fl.text);
+    picks.forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
+    renderFlavourText();
+    if (reduceMotion) { shown = i; } else { spin = { start: performance.now(), dur: 900, from: rot }; }
+    kick();
+  }
+  picks.forEach((b, i) => b.addEventListener('click', () => selectFlavour(i)));
+
+  stage.addEventListener('pointerdown', e => {
+    dragging = true; spin = null; shown = selected; vel = 0;
+    lastX = e.clientX; lastT = performance.now();
+    stage.setPointerCapture(e.pointerId);
+    kick();
+  });
+  stage.addEventListener('pointermove', e => {
+    if (!dragging || !main) return;
+    const now = performance.now();
+    const dx = e.clientX - lastX;
+    const R = canGeometry(main.w, main.h).R;
+    rot -= dx / R;
+    vel = (-dx / R) / Math.max(0.008, (now - lastT) / 1000);
+    lastX = e.clientX; lastT = now;
+    kick();
+  });
+  const release = () => { if (!dragging) return; dragging = false; idleUntil = performance.now() + 2500; kick(); };
+  stage.addEventListener('pointerup', release);
+  stage.addEventListener('pointercancel', release);
+
+  main = fit(stage);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      visible = entries[0].isIntersecting;
+      if (visible) kick();
+    }, { rootMargin: '100px' }).observe(stage);
+  } else {
+    visible = true;
+  }
+  let resizeTimer = 0;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { main = fit(stage); drawThumbs(); kick(); }, 120);
   });
 
-  const messages = {
-    'order-name': 'Add your name so we know who to write back to.',
-    'order-email': 'Add an email address we can reply to, like anna@example.se.',
-    'order-qty': 'Choose between 1 and 999 cases.'
-  };
+  art.addEventListener('load', buildAll);
+  art.src = 'assets/art-mountains.png';
+  buildAll();
+  if (document.fonts && document.fonts.load) {
+    document.fonts.load('500 30px Montserrat').then(buildAll, () => {});
+  }
 
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
-    error.textContent = '';
-    const invalid = form.querySelector(':invalid');
-    if (invalid) {
-      error.textContent = messages[invalid.id] || 'Check the highlighted field.';
-      invalid.focus();
-      return;
-    }
+  /* ---------- Contact form ---------- */
+  const form = document.getElementById('contact-form');
+  const errorBox = document.getElementById('form-error');
+  const confirmBox = document.getElementById('form-confirm');
+  const interest = document.getElementById('f-interest');
+  document.querySelectorAll('[data-interest]').forEach(link => {
+    link.addEventListener('click', () => { interest.value = link.dataset.interest; });
+  });
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    errorBox.textContent = '';
+    const name = document.getElementById('f-name');
+    const email = document.getElementById('f-email');
+    if (!name.value.trim()) { errorBox.textContent = t('form.errName'); name.focus(); return; }
+    if (!email.value.trim() || !email.checkValidity()) { errorBox.textContent = t('form.errEmail'); email.focus(); return; }
     const data = Object.fromEntries(new FormData(form));
+    data.language = lang;
     if (ORDER_ENDPOINT) {
       try {
         const res = await fetch(ORDER_ENDPOINT, {
@@ -1048,28 +1504,28 @@ textarea.input { resize: vertical; min-height: 6rem; }
         });
         if (!res.ok) throw new Error(String(res.status));
       } catch (err) {
-        error.textContent = "Your request didn't go through. Check your connection and try again.";
+        errorBox.textContent = t('form.failed');
         return;
       }
     }
-    const cases = Number(data.cases);
-    const firstName = String(data.name).trim().split(/\s+/)[0];
-    const productName = product.options[product.selectedIndex].text;
-    document.getElementById('confirm-title').textContent = `Tack, ${firstName}.`;
-    document.getElementById('confirm-text').textContent =
-      `We have your request for ${cases} ${cases === 1 ? 'case' : 'cases'} of ${productName} for your ${data.type}. ` +
-      `We'll reply to ${data.email} with prices and delivery dates.`;
+    document.getElementById('confirm-title').textContent = t('form.thanks', { name: data.name.trim().split(/\s+/)[0] });
+    document.getElementById('confirm-text').textContent = t('form.thanksText', { email: data.email.trim() });
     form.hidden = true;
     confirmBox.hidden = false;
     confirmBox.focus();
   });
-
-  document.getElementById('order-again').addEventListener('click', () => {
+  document.getElementById('form-again').addEventListener('click', () => {
     form.reset();
     confirmBox.hidden = true;
     form.hidden = false;
-    document.getElementById('order-name').focus();
+    document.getElementById('f-name').focus();
   });
+
+  /* ---------- Start in the visitor's language ---------- */
+  let fromQuery = null;
+  try { fromQuery = new URLSearchParams(window.location.search).get('lang'); } catch (e) { /* no query */ }
+  const startLang = [fromQuery, store.get('hava-lang')].find(c => c && I18N.languages.some(l => l.code === c)) || 'en';
+  setLang(startLang, false);
 })();
 </script>
 </body>
