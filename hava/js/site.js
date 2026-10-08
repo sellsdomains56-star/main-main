@@ -212,12 +212,10 @@
     });
   }
 
-  /* ---------- Silent films that loop while they're on screen (the waterfall, the film on Products) ---------- */
-  document.querySelectorAll('video[data-src]').forEach(v => {
-    const [large, small] = v.dataset.src.split(' ');
+  /* ---------- Silent films that loop while they're on screen (the waterfall at the top of Home) ---------- */
+  // The film plays even with Reduce Motion switched on: it is the opening of the site, not decoration.
+  document.querySelectorAll('video[data-ambient]').forEach(v => {
     v.muted = true;
-    v.src = small && window.innerWidth < 900 ? small : large;
-    if (reduceMotion) { v.removeAttribute('autoplay'); return; }
     const play = () => v.play().catch(() => H.onFirstTouch(play));
     if (!('IntersectionObserver' in window)) { play(); return; }
     new IntersectionObserver(([en]) => { if (en.isIntersecting) play(); else v.pause(); }, { threshold: 0.15 }).observe(v);

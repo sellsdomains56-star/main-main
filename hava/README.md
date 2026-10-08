@@ -37,7 +37,7 @@ A cinematic, multi-page site in plain HTML, CSS and JavaScript with no build ste
 ## The films
 
 - All films play silently and only while they're on screen. The files carry no sound track. If a browser or an in-app viewer blocks autoplay (an iPhone in Low Power Mode does), the film starts on the visitor's first tap.
-- **Waterfall film** (`media/hero-waterfall-1080.mp4`, phones get `-720`): the 14-second loop behind the opening of Home. `assets/hero-poster.webp` shows until it starts.
+- **Waterfall film** (`media/hero-waterfall-1080.mp4`, phones get `-720`): the 14-second loop behind the opening of Home. Until it starts, the opening is plain dark blue; there is no cover picture.
 - **"Own the moment" film** (`media/hava-film-1080.mp4`, phones get `-720`), opening the Products page: a 10.5-second cut of the "Own the moment" ad (`C0825.mp4`): the hand on the racket, the ball, the court, the bottle close-ups and the end card. The shots of the player are left out: he looks like Rafael Nadal and wears Nike and his personal logo, so showing him on HAVA's site reads as an endorsement by both. Use the full ad only with signed agreements from them. The film plays when you scroll to it, tilts back in 3D as you scroll on, and pauses when it's off screen.
 - **Flavour film** (`media/flavours-film-1080.mp4`, phones get `-720`): the 25-second flavour ad, on a loop at the top of the Flavours page.
 - To change a film, put the new file in `media/` and change its path: the `data-src` of the video in the page (waterfall, Products film), the top of `js/film.js` (Products film) or `js/flavours.js` (flavour film).
