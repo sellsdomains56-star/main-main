@@ -55,6 +55,10 @@ Every number on `source.html` comes from a public source, listed at the bottom o
 
 These are facts about Sweden. The page doesn't name a spring or make claims about HAVA's own analysis. Add those (and a lab report) once you have them.
 
+## Publishing an update
+
+Every page loads its styles, scripts and films with a version tag (`?v=13`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
+
 ## Menu and languages
 
 The five pages are always listed side by side in the header; on phones and tablets they sit in a row under the logo. The globe button and the footer switch between the seven languages. Arabic switches the whole site to right-to-left. The choice is remembered on that device, and `?lang=ar` (or `sv`, `fr`, `tr`, `zh`, `de`) on any page opens it in a language directly. To change any text, edit `js/i18n.js`. Every language has the same keys, and anything missing falls back to English.
