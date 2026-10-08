@@ -10,6 +10,8 @@
   };
   const NAV = [
     ['products.html', 'nav.products', 'products', 'Products'],
+    ['flavours.html', 'nav.flavours', 'flavours', 'Flavours'],
+    ['source.html', 'nav.source', 'source', 'The source'],
     ['story.html', 'story.eyebrow', 'story', 'Our story'],
     ['contact.html', 'nav.contact', 'contact', 'Contact']
   ];
@@ -216,6 +218,18 @@
     revealables.forEach(el => {
       if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pre'); io.observe(el); }
     });
+  }
+
+  /* ---------- From sky to bottle: the picture follows the chapter being read ---------- */
+  const stage = document.querySelector('.chapter-stage');
+  if (stage && 'IntersectionObserver' in window) {
+    const pics = [...stage.querySelectorAll('img')];
+    const io = new IntersectionObserver(entries => entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const i = Number(en.target.dataset.chapter);
+      pics.forEach((img, k) => img.classList.toggle('on', k === i));
+    }), { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('.chapter').forEach(c => io.observe(c));
   }
 
   /* ---------- Numbered pins and their legend light up together ---------- */
