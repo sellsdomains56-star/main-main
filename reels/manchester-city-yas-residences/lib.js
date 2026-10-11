@@ -4,15 +4,16 @@
 // Everything draws into the global `ctx` and is a pure function of time.
 // ---------------------------------------------------------------------------
 const W = 1080, H = 1920, FPS = 30, DUR = 46.72, CX = 540;
-const C = {
-  bg: '#2E6FC4',
-  ink: '#FFFFFF',
-  dim: 'rgba(255,255,255,0.72)',
-  mute: 'rgba(255,255,255,0.42)',
-  faint: 'rgba(255,255,255,0.20)',
-  gold: '#6DACDE',            // legacy name: now the brochure sky blue
-  sky: '#6DACDE', skyDeep: '#3E7AB1', blue: '#2E6FC4', navy: '#0F2E5C', pale: '#CFE6FA',
-  goldSoft: 'rgba(109,172,222,0.25)',
+const C = {                      // the Abu Dhabi look: near-black, warm ivory, gold
+  bg: '#08080A',
+  ink: '#F3EFE6',
+  dim: 'rgba(243,239,230,0.62)',
+  mute: 'rgba(243,239,230,0.30)',
+  faint: 'rgba(243,239,230,0.14)',
+  gold: '#E9C47C',
+  goldSoft: 'rgba(233,196,124,0.16)',
+  panel: '#141417',
+  sky: '#E9C47C', skyDeep: '#C9A45C', blue: '#E9C47C', navy: '#08080A', pale: '#F3EFE6',   // (names from the earlier blue brochure style, now gold / black / ivory)
 };
 
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -41,13 +42,15 @@ function setCtx(c, ss) { ctx = c; SS = ss; }
 
 // ---- fonts ----------------------------------------------------------------
 const TS = 1.0;
+const BOLD = (w, min = 700) => Math.max(min, w);                      // bold only: no light weights, no italics
+const INTER = '"Inter Display","Inter",sans-serif';
 const F = {
-  c: (w, s) => `${w} ${s}px "Barlow Condensed","Archivo",sans-serif`,   // brochure headline: condensed caps
-  a: (w, s) => `${w} ${s}px "Archivo","Inter",sans-serif`,                // brochure body
-  d: (w, s) => `${w} ${s}px "Archivo","Inter Display",sans-serif`,
-  t: (w, s) => `${w} ${+(s * TS).toFixed(1)}px "Archivo","Inter",sans-serif`,   // small text
-  i: s => `italic 400 ${s}px "Instrument Serif",serif`,            // serif italic accent
-  r: s => `400 ${s}px "Instrument Serif",serif`,
+  c: (w, s) => `${BOLD(w)} ${s}px ${INTER}`,                               // headlines / numbers
+  a: (w, s) => `${BOLD(w)} ${s}px ${INTER}`,                               // labels
+  d: (w, s) => `${BOLD(w)} ${s}px ${INTER}`,
+  t: (w, s) => `${BOLD(w)} ${+(s * TS).toFixed(1)}px ${INTER}`,
+  i: s => `800 ${s}px ${INTER}`,
+  r: s => `800 ${s}px ${INTER}`,
 };
 
 // ---- text -----------------------------------------------------------------

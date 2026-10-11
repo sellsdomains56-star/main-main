@@ -202,10 +202,11 @@ def build_sfx():
     tt = wt('S1', r'^OHANA', 0, 0.85); place(buf, tt - 0.25, pop(700, 0.18), 0.16); place(buf, tt - 0.2, swipe(0.5), 0.18); place(buf, tt + 0.1, ping(1568, 1.0), 0.16)
     # S2: aerial ken-burns, the two chips
     place(buf, wt('S2', r'^FIRST', 0, 0.3) - 0.1, pop(600, 0.18), 0.22); place(buf, wt('S2', r'^CANAL', 0, 0.9) - 0.1, pop(760, 0.18), 0.24); place(buf, wt('S2', r'^CANAL', 0, 0.9) - 0.1, ping(1318, 0.9), 0.14)
-    # S3: pins drop + camera moves + airport chip
+    # S3: satellite flyover - pins land, the routes draw themselves, the airport chip
     s3 = SEG['S3']['a']; tF, tC, tA, tM = wt('S3', r'^FERRARI', 0, 0.45), wt('S3', r'^CIRCUIT', 0, 0.6), wt('S3', r'^AIRPORT', 0, 0.8), wt('S3', r'^(10|TEN)', 0, 0.88)
-    for tp, f in [(s3 + 0.15, 440), (tF - 0.05, 620), (tC - 0.05, 700)]: place(buf, tp, pop(f, 0.2), 0.34); place(buf, tp, thump(90, 0.3), 0.16); place(buf, tp + 0.1, ping(1760, 0.8), 0.14)
-    for tp in [tF - 0.25, tC - 0.1, tA - 0.1]: place(buf, tp, swipe(0.5), 0.26)
+    for tp, f in [(s3 + 0.35, 440), (tF - 0.05, 620), (tC - 0.05, 700), (tA - 0.05, 560)]: place(buf, tp, pop(f, 0.2), 0.34); place(buf, tp, thump(90, 0.3), 0.16)
+    for tp in [tF - 0.2, tC - 0.2, tA - 0.1]: place(buf, tp, swipe(0.5), 0.26)
+    place(buf, s3 + 0.1, riser(0.6), 0.2)
     place(buf, tM - 0.15, pop(800, 0.2), 0.30); place(buf, tM - 0.15, ping(1318, 1.0), 0.18)
     # S4: house types (cuts) + 170 ha masterplan
     tT, tD, tV, tH4 = SEG['S4']['a'], wt('S4', r'^DUPLEXES', 0, 0.3), wt('S4', r'^VILLAS', 0, 0.45), wt('S4', r'^(170|ONE|HUNDRED)', 0, 0.78)
@@ -215,7 +216,7 @@ def build_sfx():
     # S5: 55 % open space, then three amenities
     tL, tAc, tP, tO = wt('S5', r'^CRYSTAL', 0, 0.45), wt('S5', r'^TRAINING', 0, 0.62), wt('S5', r'^(PROMENADE|CANAL)', 0, 0.8), wt('S5', r'^(HALF|OPEN)', 0, 0.18)
     place(buf, tO - 0.05, thump(58, 0.8), 0.40); count_ticks(buf, tO - 0.05, tO + 0.95, 12, f0=1250, gain=0.18)
-    for tp in [tL - 0.05, tAc - 0.28, tP - 0.1]: place(buf, tp - 0.15, swipe(0.3), 0.28); place(buf, tp, thump(72, 0.4), 0.28); place(buf, tp + 0.12, pop(700, 0.18), 0.20)
+    for tp in [tL - 0.05, tAc - 0.28, tP - 0.1]: place(buf, tp - 0.15, swipe(0.3), 0.28); place(buf, tp, thump(72, 0.4), 0.28)
     # price per sq ft: bars grow with count ticks, the -25% stamp, then the chart fills out and the scarcity stat
     P1, P2, P3 = SEG['P1']['a'], SEG['P2']['a'], SEG['P3']['a']
     tMc, tOr = wt('P1', r'^1,?852', 0, 0.5) - 0.1, wt('P1', r'^(TWENTY|25)', 0, 0.6) - 0.05; tSt = max(tOr + 0.5, wt('P1', r'PERCENT|%', 0, 0.72) - 0.05)
