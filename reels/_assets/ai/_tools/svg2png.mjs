@@ -1,0 +1,17 @@
+import { createRequire } from 'node:module';
+import fs from 'node:fs';
+const require = createRequire(import.meta.url);
+const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+const [svgPath, out, widthArg] = process.argv.slice(2);
+const W = +(widthArg || 1200);
+const svg = fs.readFileSync(svgPath, 'utf8');
+const b64 = Buffer.from(svg).toString('base64');
+const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-sandbox', '--disable-gpu'] });
+const page = await browser.newPage({ viewport: { width: W + 40, height: 800 }, deviceScaleFactor: 1 });
+await page.setContent(`<html><body style="margin:0;background:transparent"><img id="i" src="data:image/svg+xml;base64,${b64}" style="display:block;width:${W}px;height:auto"></body></html>`);
+await page.waitForFunction(() => document.getElementById('i').complete && document.getElementById('i').naturalWidth > 0);
+const el = await page.$('#i');
+const bb = await el.boundingBox();
+console.log('box', JSON.stringify(bb));
+await page.screenshot({ path: out, omitBackground: true, clip: { x: 0, y: 0, width: bb.width, height: Math.ceil(bb.height) } });
+await browser.close();

@@ -1,0 +1,537 @@
+[
+  {
+    "id": "fitch_khaleej",
+    "file": "fitch_khaleej.png",
+    "kind": "article",
+    "shows": "Khaleej Times masthead + nav (Real Estate), breadcrumb, full headline, lead skyline photo (Burj Khalifa/Downtown), subhead, published date and byline",
+    "source_url": "https://www.khaleejtimes.com/business/property/dubai-property-prices-to-drop-after-peak",
+    "outlet": "Khaleej Times",
+    "date": "2025-05-29",
+    "text": "Dubai property prices could drop up to 15% as they hit peak, report says",
+    "supports": "Claim 1: Fitch warned in 2025 of a possible correction of up to ~15% in Dubai property prices (second half of 2025 or 2026).",
+    "currency_or_figures_note": "Subhead: \"Property supply in Dubai will grow 16% compared to a 5% increase in population, says Fitch\". Published Thu 29 May 2025, 3:43 PM (updated 4:40 PM), by Waheed Abbas. Headline wording is \"could drop up to 15%\"; body says the correction \"should not exceed 15 per cent\" and is expected in 2H 2025 or 2026. A forecast, not an outcome.",
+    "license": "Not openly licensed. Screenshot of a copyrighted news/government web page captured live on 2026-10-11, shown unaltered for news commentary/criticism (fair use / fair dealing). Credit the outlet on screen.",
+    "attribution": "Khaleej Times, 29 May 2025 (Waheed Abbas)",
+    "key_text_bbox": [
+      122,
+      506,
+      1431,
+      366
+    ],
+    "key_text_bboxes": {
+      "headline": [
+        122,
+        506,
+        1431,
+        366
+      ],
+      "subhead": [
+        122,
+        2099,
+        1452,
+        118
+      ]
+    },
+    "size": [
+      2400,
+      2408
+    ]
+  },
+  {
+    "id": "fitch_khaleej_quote",
+    "file": "fitch_khaleej_quote.png",
+    "kind": "article",
+    "shows": "Close crop of the same Khaleej Times article body: opening paragraph, Fitch supply paragraph and the Fitch Ratings quote about the correction (real page text, no widgets)",
+    "source_url": "https://www.khaleejtimes.com/business/property/dubai-property-prices-to-drop-after-peak",
+    "outlet": "Khaleej Times",
+    "date": "2025-05-29",
+    "text": "\"The correction, which we expect in the second half of 2025 or 2026 should not exceed 15 per cent, especially if there are more delays in project completion,\" said analysts at Fitch Ratings.",
+    "supports": "Claim 1: Fitch warned of a correction up to 15% in 2H 2025 / 2026 (this is the verbatim quote that carries the \"through 2026\" timing).",
+    "currency_or_figures_note": "Also visible: \"A correction is expected soon with prices likely to drop not more than 15 per cent\"; supply +16% in 2025-2027 vs ~5% population growth. Percentages only, no currency.",
+    "license": "Not openly licensed. Screenshot of a copyrighted news/government web page captured live on 2026-10-11, shown unaltered for news commentary/criticism (fair use / fair dealing). Credit the outlet on screen.",
+    "attribution": "Khaleej Times, 29 May 2025 (Waheed Abbas)",
+    "key_text_bbox": [
+      62,
+      336,
+      1485,
+      88
+    ],
+    "key_text_bboxes": {
+      "quote_sentence": [
+        62,
+        336,
+        1485,
+        88
+      ],
+      "opening_sentence": [
+        157,
+        32,
+        1355,
+        88
+      ]
+    },
+    "size": [
+      1600,
+      504
+    ]
+  },
+  {
+    "id": "fitch_gulfnews",
+    "file": "fitch_gulfnews.png",
+    "kind": "article",
+    "shows": "Gulf News masthead, breadcrumb, headline, standfirst, date/byline, AFP skyline photo and the lead paragraph (second source for the Fitch warning)",
+    "source_url": "https://gulfnews.com/business/property/dubai-property-prices-to-start-dropping-before-2025-ends-but-no-major-plunge-seen-in-2026-1.500144872",
+    "outlet": "Gulf News",
+    "date": "2025-05-29",
+    "text": "Dubai property prices to start dropping before 2025 ends, but no major plunge seen in 2026: Fitch",
+    "supports": "Claim 1 (second source): Fitch expects a moderate correction of no more than 15% starting in 2H 2025. CAUTION: this headline says \"no major plunge seen in 2026\", i.e. a softer framing than Khaleej Times - use the lead paragraph, not only the headline.",
+    "currency_or_figures_note": "Lead: \"Dubai's red-hot property market is poised for a moderate correction starting in the second half of 2025, according to Fitch Ratings. However, the anticipated price drop-estimated at no more than 15%-is not expected to destabilize the market or impact the credit ratings of UAE banks and homebuilders.\" Last updated May 29, 2025 | 14:46, Justin Varghese. Photo: AFP.",
+    "license": "Not openly licensed. Screenshot of a copyrighted news/government web page captured live on 2026-10-11, shown unaltered for news commentary/criticism (fair use / fair dealing). Credit the outlet on screen.",
+    "attribution": "Gulf News, 29 May 2025 (Justin Varghese); photo AFP",
+    "key_text_bbox": [
+      50,
+      2233,
+      1389,
+      102
+    ],
+    "key_text_bboxes": {
+      "headline": [
+        50,
+        166,
+        1294,
+        252
+      ],
+      "lead_15pct_sentence": [
+        50,
+        2233,
+        1389,
+        102
+      ],
+      "lead_first_sentence": [
+        50,
+        2173,
+        1379,
+        102
+      ],
+      "date": [
+        50,
+        626,
+        477,
+        36
+      ]
+    },
+    "size": [
+      1530,
+      2494
+    ]
+  },
+  {
+    "id": "fitch_ratings_own",
+    "file": "fitch_ratings_own.png",
+    "kind": "article",
+    "shows": "Fitch Ratings' own research page: logo, nav, 'Special Report', title, date and the public abstract",
+    "source_url": "https://www.fitchratings.com/research/corporate-finance/dubai-real-estate-market-risks-28-05-2025",
+    "outlet": "Fitch Ratings",
+    "date": "2025-05-28",
+    "text": "Dubai real estate prices rose 60% from 2022 to 1Q25. A moderate price correction of up to 15% is expected in 2H25–2026. Banks and homebuilders are well-prepared to absorb potential risks.",
+    "supports": "Claim 1 (primary source): Fitch itself expects a moderate correction of up to 15% in 2H25-2026.",
+    "currency_or_figures_note": "Special Report \"Dubai Real Estate Market Risks\", Wed 28 May 2025, 10:34 AM ET. The full report is behind a login (Access Report); only the abstract is public. The page also carries Fitch's italic disclaimer that the abstract may have been AI-generated (left in the capture, it is part of the real page). Percentages only, no currency.",
+    "license": "Not openly licensed. Screenshot of Fitch Ratings public web page captured live on 2026-10-11, unaltered, for commentary (fair use / fair dealing). Fitch Ratings is a trademark of Fitch Ratings, Inc.",
+    "attribution": "Fitch Ratings, \"Dubai Real Estate Market Risks\", 28 May 2025",
+    "key_text_bbox": [
+      352,
+      729,
+      1357,
+      89
+    ],
+    "key_text_bboxes": {
+      "abstract_15pct_sentence": [
+        352,
+        729,
+        1357,
+        89
+      ],
+      "title": [
+        352,
+        487,
+        1250,
+        104
+      ],
+      "date": [
+        352,
+        630,
+        470,
+        38
+      ]
+    },
+    "size": [
+      2400,
+      1170
+    ]
+  },
+  {
+    "id": "aed917_dubaimediaoffice",
+    "file": "aed917_dubaimediaoffice.png",
+    "kind": "article",
+    "shows": "Government of Dubai Media Office news page: header, breadcrumb, headline, date, hero photo (Dubai Frame) and the opening paragraph with the figure",
+    "source_url": "https://www.mediaoffice.ae/en/news/2026/january/12-01/dubais-real-estate-market-records-new-historic-milestone",
+    "outlet": "Government of Dubai Media Office (official)",
+    "date": "2026-01-12",
+    "text": "Dubai's real estate market records new historic milestone with transactions exceeding AED917 billion in 2025",
+    "supports": "Claim 2: Dubai recorded over 917 billion in real-estate transactions in 2025.",
+    "currency_or_figures_note": "CURRENCY = AED (UAE dirhams), not USD. PERIOD = calendar year 2025 (full-year). Body: \"over 270,000 transactions worth AED 917 billion, up 20% year on year\". Roughly USD 250 bn at 3.6725 AED/USD (my conversion, not in the source). Note Gulf News on 1 Jan 2026 quoted a preliminary DLD total of Dh919bn / 275,442 transactions; the official 12 Jan release says AED917bn - use 917.",
+    "license": "Government of Dubai Media Office page captured live on 2026-10-11, shown unaltered. Copyright/terms of the Government of Dubai Media Office; use as editorial citation of an official release, credit the source on screen.",
+    "attribution": "Government of Dubai Media Office, 12 Jan 2026",
+    "key_text_bbox": [
+      54,
+      436,
+      1623,
+      325
+    ],
+    "key_text_bboxes": {
+      "headline": [
+        54,
+        436,
+        1623,
+        325
+      ],
+      "body_sentence": [
+        54,
+        2158,
+        1511,
+        95
+      ],
+      "date": [
+        106,
+        778,
+        609,
+        48
+      ]
+    },
+    "size": [
+      2400,
+      2366
+    ]
+  },
+  {
+    "id": "aed917_gulfnews",
+    "file": "aed917_gulfnews.png",
+    "kind": "article",
+    "shows": "Gulf News masthead, breadcrumb, headline, standfirst, date/byline, Dubai Marina photo and opening paragraph",
+    "source_url": "https://gulfnews.com/business/property/dubais-real-estate-market-hits-record-dh917b-in-2025-1.500406141",
+    "outlet": "Gulf News",
+    "date": "2026-01-12",
+    "text": "Dubai's real estate market hits record Dh917b in 2025",
+    "supports": "Claim 2 (second source): Dh917 billion of real-estate transactions in 2025, +20%, citing Dubai Land Department data.",
+    "currency_or_figures_note": "CURRENCY = AED (Gulf News writes \"Dh\"). PERIOD = 2025 full year. Standfirst: \"Strong investor confidence drives 20% growth, bringing Dubai closer to Dh1t target by 2033\". Article body (below the crop): total real estate transactions reached Dh917 billion in 2025, ~270,000 transactions, real estate investments Dh680 billion (+29%). Last updated January 12, 2026 | 19:38, Huda Ata, Special to Gulf News. Photo: Shutterstock.",
+    "license": "Not openly licensed. Screenshot of a copyrighted news/government web page captured live on 2026-10-11, shown unaltered for news commentary/criticism (fair use / fair dealing). Credit the outlet on screen.",
+    "attribution": "Gulf News, 12 Jan 2026 (Huda Ata); photo Shutterstock",
+    "key_text_bbox": [
+      50,
+      166,
+      1424,
+      168
+    ],
+    "key_text_bboxes": {
+      "headline": [
+        50,
+        166,
+        1424,
+        168
+      ],
+      "date": [
+        252,
+        542,
+        321,
+        36
+      ]
+    },
+    "size": [
+      1530,
+      2352
+    ]
+  },
+  {
+    "id": "geopolitics_thenational",
+    "file": "geopolitics_thenational.png",
+    "kind": "article",
+    "shows": "The National: header, section tag, lead photo (Downtown Dubai towers), headline, standfirst, byline/date and the first two paragraphs",
+    "source_url": "https://www.thenationalnews.com/business/property/2026/10/07/dubai-home-sale-transactions-fall-in-third-quarter-due-to-regional-uncertainty/",
+    "outlet": "The National",
+    "date": "2026-10-07",
+    "text": "Dubai home sale transactions fall in third quarter amid regional uncertainty - \"The volume and value of residential property transactions in Dubai fell sharply in the third quarter of this year as buyers became 'more cautious' amid regional uncertainty over the Iran war, according to a new report.\"",
+    "supports": "Claim 3: geopolitical tension (the Iran war, begun late Feb 2026) is hitting Dubai property transactions and buyer confidence in 2026. (Tourism is only mentioned in passing in the article; see tourism_cnn for tourism.)",
+    "currency_or_figures_note": "Q3 2026 (Jul-Sep): residential sales Dh72.6 billion ($19.7 billion), down 47% on the same period last year; 34,000 transactions, down 38% (Cavendish Maxwell report). Not in the crop but in the article: 9M 2026 volumes -23% to 112,580, value -27% to Dh292bn; S&P cites DLD data - sales transactions averaged 12,644/month Mar-Sep 2026, down 26% vs Jan-Feb; prices down 5-15% from end-2025 to Sep 2026. Article attributes the cooling to \"regional uncertainty over the Iran war\"; the report itself also says part of the fall reflects a registration lag.",
+    "license": "Not openly licensed. Screenshot of a copyrighted news/government web page captured live on 2026-10-11, shown unaltered for news commentary/criticism (fair use / fair dealing). Credit the outlet on screen.",
+    "attribution": "The National, 7 Oct 2026 (Fareed Rahman); data: Cavendish Maxwell",
+    "key_text_bbox": [
+      437,
+      1912,
+      699,
+      46
+    ],
+    "key_text_bboxes": {
+      "iran_war_phrase": [
+        437,
+        1912,
+        699,
+        46
+      ],
+      "q3_figures": [
+        437,
+        2022,
+        1449,
+        108
+      ],
+      "headline": [
+        437,
+        1098,
+        1485,
+        334
+      ],
+      "date": [
+        549,
+        1620,
+        262,
+        40
+      ]
+    },
+    "size": [
+      2400,
+      2384
+    ]
+  },
+  {
+    "id": "tourism_cnn",
+    "file": "tourism_cnn.png",
+    "kind": "article",
+    "shows": "CNN Travel masthead/nav, breadcrumb, headline, date/byline, lead photo (Dubai Creek abra boats, Getty) and first two paragraphs",
+    "source_url": "https://www.cnn.com/2026/07/28/travel/dubai-launches-tourism-incentive-after-iran-strikes",
+    "outlet": "CNN",
+    "date": "2026-07-28",
+    "text": "Dubai launches $800 incentive scheme to lure back tourists after Iran strikes - \"visitor numbers have dropped precipitously as a result of the recent US and Israeli war on Iran, with hotel occupancy rates decreasing from 80% to a projected 10% in the months after the emirate was the target of missile attacks in March.\"",
+    "supports": "Claim 3: the Iran conflict hit Dubai tourism (visitors, hotel occupancy) in 2026.",
+    "currency_or_figures_note": "The \"$800\" in the headline is a tourist-reward scheme (\"A Dubai Invite\", up to AED 3,000 ~ $816 per resident who nominates guests) - NOT the 2.5bn economic package. Dubai logged 19.59 million international visitors in 2025. Occupancy 80% -> \"projected 10%\" is a projection quoted by CNN (the Moody's forecast), not a measured figure.",
+    "license": "Not openly licensed. Screenshot of a copyrighted news/government web page captured live on 2026-10-11, shown unaltered for news commentary/criticism (fair use / fair dealing). Credit the outlet on screen.",
+    "attribution": "CNN, 28 Jul 2026 (Tamara Hardingham-Gill); photo Benjamin Cremel/Getty Images",
+    "key_text_bbox": [
+      96,
+      2464,
+      1319,
+      176
+    ],
+    "key_text_bboxes": {
+      "visitor_drop_sentence": [
+        96,
+        2464,
+        1319,
+        176
+      ],
+      "headline": [
+        96,
+        226,
+        1950,
+        226
+      ]
+    },
+    "size": [
+      2400,
+      2740
+    ]
+  },
+  {
+    "id": "incentives_dubaimediaoffice",
+    "file": "incentives_dubaimediaoffice.png",
+    "kind": "article",
+    "shows": "Government of Dubai Media Office news page (tall): header, breadcrumb, headline, date, official portrait of Sheikh Hamdan bin Mohammed, and the first paragraphs of the release",
+    "source_url": "https://mediaoffice.ae/en/news/2026/may/21-05/hamdan-bin-mohammed",
+    "outlet": "Government of Dubai Media Office (official)",
+    "date": "2026-05-21",
+    "text": "Hamdan bin Mohammed approves second, larger AED1.5 billion economic incentives package - \"Combined with the first AED1 billion package approved at The Executive Council's meeting in late March, the new package brings the total value of incentives introduced in under two months to AED2.5 billion.\"",
+    "supports": "Claim 4: Dubai government introduced ~2.5 billion of economic incentives, spanning real estate and construction.",
+    "currency_or_figures_note": "CURRENCY = AED. AED2.5 billion is the CUMULATIVE total of two packages (AED1 billion approved late March 2026 + AED1.5 billion approved 21 May 2026); the May package alone is AED1.5 billion (33 initiatives, 3-12 months each). Sectors listed: \"government fees and services, tourism, trade and logistics, real estate, construction, education, and arts and cultural activities\". The only concrete construction measure in the text: retention security on government supply contracts cut from 10% to 2%. WARNING: the portrait on the page is Crown Prince Sheikh Hamdan, not Sheikh Mohammed.",
+    "license": "Government of Dubai Media Office page captured live on 2026-10-11, shown unaltered. Copyright/terms of the Government of Dubai Media Office; use as editorial citation of an official release, credit the source on screen.",
+    "attribution": "Government of Dubai Media Office, 21 May 2026",
+    "key_text_bbox": [
+      54,
+      3188,
+      1511,
+      144
+    ],
+    "key_text_bboxes": {
+      "aed2_5bn_sentence": [
+        54,
+        3188,
+        1511,
+        144
+      ],
+      "real_estate_construction": [
+        489,
+        3528,
+        375,
+        46
+      ],
+      "headline": [
+        54,
+        436,
+        1756,
+        325
+      ],
+      "date": [
+        106,
+        778,
+        543,
+        48
+      ]
+    },
+    "size": [
+      2400,
+      3862
+    ]
+  },
+  {
+    "id": "incentives_dubaimediaoffice_text",
+    "file": "incentives_dubaimediaoffice_text.png",
+    "kind": "article",
+    "shows": "Text-only close crop of the same Media Office release: the AED2.5 billion sentence and the sector list (real estate, construction)",
+    "source_url": "https://mediaoffice.ae/en/news/2026/may/21-05/hamdan-bin-mohammed",
+    "outlet": "Government of Dubai Media Office (official)",
+    "date": "2026-05-21",
+    "text": "...approved a second package of economic incentives valued at AED1.5 billion. Combined with the first AED1 billion package ... the new package brings the total value of incentives introduced in under two months to AED2.5 billion. ... The package spans a range of sectors, including government fees and services, tourism, trade and logistics, real estate, construction, education, and arts and cultural activities.",
+    "supports": "Claim 4: ~2.5 billion (AED) of incentives incl. real estate and construction.",
+    "currency_or_figures_note": "AED, cumulative AED1bn (late March 2026) + AED1.5bn (21 May 2026) = AED2.5bn.",
+    "license": "Government of Dubai Media Office page captured live on 2026-10-11, shown unaltered. Copyright/terms of the Government of Dubai Media Office; use as editorial citation of an official release, credit the source on screen.",
+    "attribution": "Government of Dubai Media Office, 21 May 2026",
+    "key_text_bbox": [
+      34,
+      179,
+      1511,
+      144
+    ],
+    "key_text_bboxes": {
+      "aed2_5bn_sentence": [
+        34,
+        179,
+        1511,
+        144
+      ],
+      "real_estate_construction": [
+        469,
+        519,
+        375,
+        46
+      ],
+      "sector_sentence": [
+        34,
+        470,
+        1511,
+        95
+      ]
+    },
+    "size": [
+      1600,
+      830
+    ]
+  },
+  {
+    "id": "incentives_khaleej",
+    "file": "incentives_khaleej.png",
+    "kind": "article",
+    "shows": "Khaleej Times masthead, headline, lead photo (Downtown/Burj Lake pool), photo caption, subhead listing sectors, date/byline, opening paragraphs",
+    "source_url": "https://www.khaleejtimes.com/business/dubais-dh25-billion-package-protects-jobs-and-boosts-key-sectors",
+    "outlet": "Khaleej Times",
+    "date": "2026-05-22",
+    "text": "Dubai's new Dh1.5 billion package protects jobs and boosts key sectors, say analysts - \"...the new package brings the total value of incentives introduced in under two months to Dh2.5 billion.\"",
+    "supports": "Claim 4: Dh2.5 billion of incentives in total incl. real estate and construction (subhead: \"Key sectors such as tourism and hospitality, real estate, trade and customs, SMEs, education, aviation, construction, and arts and culture will receive support\").",
+    "currency_or_figures_note": "CURRENCY = AED (KT writes \"Dh\"). Headline says Dh1.5 billion (the second package); the Dh2.5 billion total (with the first Dh1 billion package of late March) is in the first paragraph and the photo caption. Published Fri 22 May 2026, 9:01 AM, Waheed Abbas.",
+    "license": "Not openly licensed. Screenshot of a copyrighted news/government web page captured live on 2026-10-11, shown unaltered for news commentary/criticism (fair use / fair dealing). Credit the outlet on screen.",
+    "attribution": "Khaleej Times, 22 May 2026 (Waheed Abbas); photo KT File",
+    "key_text_bbox": [
+      122,
+      2846,
+      1480,
+      88
+    ],
+    "key_text_bboxes": {
+      "dh2_5bn_sentence": [
+        122,
+        2846,
+        1480,
+        88
+      ],
+      "headline": [
+        122,
+        506,
+        1471,
+        366
+      ],
+      "subhead_sectors": [
+        122,
+        2199,
+        1408,
+        175
+      ]
+    },
+    "size": [
+      2400,
+      2964
+    ]
+  },
+  {
+    "id": "logo_fitch_ratings",
+    "file": "logo_fitch_ratings.png",
+    "kind": "logo",
+    "shows": "Fitch Ratings wordmark, transparent PNG (rendered from Commons SVG at 1200 px wide)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Fitch_Ratings_logo.svg",
+    "outlet": "Fitch Ratings",
+    "date": null,
+    "text": "FitchRatings",
+    "supports": "Item 1 attribution/bug",
+    "currency_or_figures_note": null,
+    "license": "Wikimedia Commons: public domain (PD-textlogo, below threshold of originality in the US). Fitch Ratings is a registered trademark; use only to identify Fitch.",
+    "attribution": "Fitch Ratings logo (Wikimedia Commons, vector by Marsupilami)",
+    "key_text_bbox": null,
+    "size": [
+      1200,
+      251
+    ]
+  },
+  {
+    "id": "logo_khaleej_times",
+    "file": "logo_khaleej_times.png",
+    "kind": "logo",
+    "shows": "Khaleej Times black-letter masthead, transparent PNG (rendered from Commons SVG at 1200 px wide). Black artwork: place on a light background.",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Khaleej_Times_(2019-07-28).svg",
+    "outlet": "Khaleej Times",
+    "date": "2019-07-28",
+    "text": "Khaleej Times",
+    "supports": "Items 1 and 4 attribution/bug",
+    "currency_or_figures_note": null,
+    "license": "Wikimedia Commons: PD-textlogo / PD-generic (masthead taken from the front page of 28 Jul 2019). Khaleej Times is a trademark; use only to identify the outlet.",
+    "attribution": "Khaleej Times masthead (Wikimedia Commons)",
+    "key_text_bbox": null,
+    "size": [
+      1200,
+      213
+    ]
+  },
+  {
+    "id": "logo_dubai_land_department",
+    "file": "logo_dubai_land_department.png",
+    "kind": "logo",
+    "shows": "Dubai Land Department logo (colour), transparent PNG rendered at 1200 px wide from the official SVG",
+    "source_url": "https://dubailand.gov.ae/assets/img/land_department.svg",
+    "outlet": "Dubai Land Department",
+    "date": null,
+    "text": "Dubai Land Department (Arabic + English)",
+    "supports": "Item 2 attribution/bug (DLD data)",
+    "currency_or_figures_note": null,
+    "license": "NOT on Wikimedia Commons (searched: no DLD logo file). Taken from the official dubailand.gov.ae website; trademark/copyright of Dubai Land Department / Government of Dubai. Not freely licensed - editorial identification only. A white variant exists at https://dubailand.gov.ae/assets/img/land_department-white.svg (not rendered).",
+    "attribution": "Dubai Land Department (dubailand.gov.ae)",
+    "key_text_bbox": null,
+    "size": [
+      1200,
+      283
+    ]
+  }
+]

@@ -1,0 +1,733 @@
+[
+ {
+  "id": "trump_portrait",
+  "file": "trump_portrait.jpg",
+  "kind": "photo",
+  "shows": "Official 2025 presidential portrait of Donald J. Trump (dark background, navy suit, red tie, flag lapel pin).",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Official_Presidential_Portrait_of_President_Donald_J._Trump_(2025).jpg",
+  "outlet": "Wikimedia Commons (official White House portrait)",
+  "date": "2025 (Commons date 2025-06-02)",
+  "text": "",
+  "supports": "Identifies Donald Trump as the President behind the Super Intelligence / SI order.",
+  "notes": "Original JPG as hosted by Commons, 1638x2048, not edited. Direct file: https://upload.wikimedia.org/wikipedia/commons/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg . The same portrait is on whitehouse.gov (https://www.whitehouse.gov/wp-content/uploads/2025/06/President-Donald-Trump-Official-Presidential-Portrait.png, 3000x1688 canvas with transparent sides; portrait area only 1348x1688), so the Commons file is the larger copy. A larger 2550x3300 file, \"January 2025 Official Presidential Portrait of Donald J. Trump.jpg\" (Commons, PD, LoC ppbd.11614), exists but could not be downloaded: Wikimedia answered HTTP 429 with a 10-minute penalty.",
+  "license": "Public domain (US federal government work; Commons tag \"Public domain\", Copyrighted: False)",
+  "attribution": "Official White House portrait, photographer Daniel Torok (as credited on Commons). Attribution not required.",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   1638,
+   2048
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "truth_post_si_enemy",
+  "file": "truth_post_si_enemy.png",
+  "kind": "post",
+  "shows": "Trump's Truth Social post of 8 Oct 2026: anyone who says 'Artificial Intelligence' instead of 'Super Intelligence' is 'THE ENEMY!'.",
+  "source_url": "https://www.trumpstruth.org/statuses/42201",
+  "original_url": "https://truthsocial.com/@realDonaldTrump/117406176604364910",
+  "truth_social_status_id": "117406176604364910",
+  "author": "Donald J. Trump (@realDonaldTrump)",
+  "outlet": "Truth Social via Trump's Truth archive (trumpstruth.org)",
+  "date": "2026-10-08T12:14:00-04:00 (16:14 UTC)",
+  "text": "The White House considers anyone that uses the term, “Artificial Intelligence,” as opposed to the highly accepted new and more accurate term, “Super Intelligence,” THE ENEMY! President DONALD J. TRUMP",
+  "supports": "Trump is pushing 'Super Intelligence' / 'SI' as the new official name for AI and treats 'AI' as the wrong word.",
+  "notes": "Captured from the Trump's Truth archive (trumpstruth.org, a project of Defending Democracy Together), which mirrors the post and links the original. truthsocial.com itself returned a Cloudflare bot challenge (HTTP 403) from this network, so the live Truth Social page could not be captured; the archive page is a real capture of the real post (nothing retyped or edited). The profile-picture slot was hidden because Truth Social's image CDN also returned 403 (it rendered as a broken-image icon); name, handle, date and text are untouched. Also covered by Forbes (2026-10-08, 'Trump Calls Anyone Who Says AI Instead Of Super Intelligence An Enemy') and Axios (2026-10-08); those pages were not capturable (403).",
+  "license": "Public statement by the US President on Truth Social, shown via a third-party archive. Not an openly licensed asset (use as news/commentary).",
+  "attribution": "Donald J. Trump on Truth Social; archive: trumpstruth.org",
+  "key_text_bbox": [
+   103,
+   268,
+   937,
+   290
+  ],
+  "extra_bboxes": {},
+  "size": [
+   1144,
+   668
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "truth_post_si_name_poll",
+  "file": "truth_post_si_name_poll.png",
+  "kind": "post",
+  "shows": "Trump's Truth Social post of 21 Sep 2026 asking followers to choose between 'SUPER INTELLIGENCE' and 'SUPERIOR INTELLIGENCE'.",
+  "source_url": "https://www.trumpstruth.org/statuses/41829",
+  "original_url": "https://truthsocial.com/@realDonaldTrump/117309799376551907",
+  "truth_social_status_id": "117309799376551907",
+  "author": "Donald J. Trump (@realDonaldTrump)",
+  "outlet": "Truth Social via Trump's Truth archive (trumpstruth.org)",
+  "date": "2026-09-21T11:44:00-04:00",
+  "text": "Which name do we like for the new phenomena — SUPER INTELLIGENCE VS. SUPERIOR INTELLIGENCE? President DONALD J. TRUMP",
+  "supports": "Origin of the rename: Trump polled his followers on the new name for AI (Newsweek reports 50,000+ responses, 65% for 'super intelligence').",
+  "notes": "Captured from the Trump's Truth archive (trumpstruth.org, a project of Defending Democracy Together), which mirrors the post and links the original. truthsocial.com itself returned a Cloudflare bot challenge (HTTP 403) from this network, so the live Truth Social page could not be captured; the archive page is a real capture of the real post (nothing retyped or edited). The profile-picture slot was hidden because Truth Social's image CDN also returned 403 (it rendered as a broken-image icon); name, handle, date and text are untouched. The poll results are NOT visible in this capture; the 65% / 50,000 figures come from Newsweek's article (see news_newsweek_si_order.png), not from this post.",
+  "license": "Public statement by the US President on Truth Social, shown via a third-party archive. Not an openly licensed asset (use as news/commentary).",
+  "attribution": "Donald J. Trump on Truth Social; archive: trumpstruth.org",
+  "key_text_bbox": [
+   103,
+   268,
+   887,
+   174
+  ],
+  "extra_bboxes": {},
+  "size": [
+   1144,
+   556
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "truth_post_super_intelligence_force",
+  "file": "truth_post_super_intelligence_force.png",
+  "kind": "post",
+  "shows": "Trump's Truth Social post of 4 Oct 2026 announcing the 'Super Intelligence Force' (SIF).",
+  "source_url": "https://www.trumpstruth.org/statuses/42126",
+  "original_url": "https://truthsocial.com/@realDonaldTrump/117382616783706638",
+  "truth_social_status_id": "117382616783706638",
+  "author": "Donald J. Trump (@realDonaldTrump)",
+  "outlet": "Truth Social via Trump's Truth archive (trumpstruth.org)",
+  "date": "2026-10-04T08:23:00-04:00",
+  "text": "Following the Historic White House Accord on Super Intelligence, where the World's most important Technology Companies came together, and confirmed their responsibilities to the American People, I am announcing the formation of the Super Intelligence Force (SIF).",
+  "supports": "The administration is institutionalising 'Super Intelligence' (a federal Super Intelligence Force led by Jay Clayton, Andrew Ferguson, Emil Michael and Scott Kupor, reporting to the President and Chief of Staff).",
+  "notes": "Captured from the Trump's Truth archive (trumpstruth.org, a project of Defending Democracy Together), which mirrors the post and links the original. truthsocial.com itself returned a Cloudflare bot challenge (HTTP 403) from this network, so the live Truth Social page could not be captured; the archive page is a real capture of the real post (nothing retyped or edited). The profile-picture slot was hidden because Truth Social's image CDN also returned 403 (it rendered as a broken-image icon); name, handle, date and text are untouched. Long post; the key sentence is the first one (top of the card).",
+  "license": "Public statement by the US President on Truth Social, shown via a third-party archive. Not an openly licensed asset (use as news/commentary).",
+  "attribution": "Donald J. Trump on Truth Social; archive: trumpstruth.org",
+  "key_text_bbox": [
+   103,
+   268,
+   937,
+   400
+  ],
+  "extra_bboxes": {},
+  "size": [
+   1144,
+   1840
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "truth_post_eo_images",
+  "file": "truth_post_eo_images.png",
+  "kind": "post",
+  "shows": "Trump's Truth Social image post of 29 Sep 2026 (8:11 PM): the text of the executive order 'Inaugurating the Era of Super Intelligence' posted as three page images.",
+  "source_url": "https://www.trumpstruth.org/statuses/42026",
+  "original_url": "https://truthsocial.com/@realDonaldTrump/117357090030899348",
+  "truth_social_status_id": "117357090030899348",
+  "author": "Donald J. Trump (@realDonaldTrump)",
+  "outlet": "Truth Social via Trump's Truth archive (trumpstruth.org)",
+  "date": "2026-09-29T20:11:00-04:00",
+  "text": "(image-only post) Page 2 reads: Sec. 2. Implementation. (a) ... executive departments and agencies (agencies) shall use “Super Intelligence” and “SI” in place of “Artificial Intelligence” and “AI” in official correspondence, public communications, websites, reports, policy documents, and other non-statutory documents within the executive branch.",
+  "supports": "Trump himself posted the executive order making 'Super Intelligence' / 'SI' the official term in the executive branch.",
+  "notes": "Captured from the Trump's Truth archive (trumpstruth.org, a project of Defending Democracy Together), which mirrors the post and links the original. truthsocial.com itself returned a Cloudflare bot challenge (HTTP 403) from this network, so the live Truth Social page could not be captured; the archive page is a real capture of the real post (nothing retyped or edited). The profile-picture slot was hidden because Truth Social's image CDN also returned 403 (it rendered as a broken-image icon); name, handle, date and text are untouched. The post has no caption text, only the three images (they are the real attachments; full-size copies are eo_page1/2/3 below). The grid shows the page thumbnails cropped the way the archive renders them.",
+  "license": "Public statement by the US President on Truth Social, shown via a third-party archive. Not an openly licensed asset (use as news/commentary). The attached document itself is a US federal government work (public domain).",
+  "attribution": "Donald J. Trump on Truth Social; archive: trumpstruth.org",
+  "key_text_bbox": [
+   620,
+   262,
+   390,
+   170
+  ],
+  "extra_bboxes": {},
+  "size": [
+   1144,
+   1276
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "eo_page1",
+  "file": "eo_page1_inaugurating_era_of_super_intelligence.jpg",
+  "kind": "post",
+  "shows": "Page 1 of the signed executive order 'Inaugurating the Era of Super Intelligence' (title, Section 1 Purpose).",
+  "source_url": "https://www.trumpstruth.org/statuses/42026",
+  "original_url": "https://truthsocial.com/@realDonaldTrump/117357090030899348",
+  "outlet": "Truth Social (Trump) / White House",
+  "date": "2026-09-29",
+  "text": "EXECUTIVE ORDER / INAUGURATING THE ERA OF SUPER INTELLIGENCE ... As these capabilities continue to improve, they increasingly represent not merely artificial intelligence, but a new era of Super Intelligence.",
+  "supports": "The executive order exists and is titled 'Inaugurating the Era of Super Intelligence'.",
+  "notes": "Real attachment image of Trump's own Truth Social post (https://truthsocial.com/@realDonaldTrump/117357090030899348, 2026-09-29 8:11 PM EDT), downloaded from the archive's attachment store (truth-archive.us-iad-1.linodeobjects.com). Native resolution, not upscaled or edited. Official text of the same order: whitehouse.gov (see whitehouse_eo_14434_header.png).",
+  "license": "Public domain (US federal government document, Executive Order 14434)",
+  "attribution": "The White House",
+  "key_text_bbox": [
+   86,
+   880,
+   614,
+   100
+  ],
+  "extra_bboxes": {
+   "title": [
+    196,
+    118,
+    400,
+    24
+   ]
+  },
+  "size": [
+   794,
+   1294
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "eo_page2",
+  "file": "eo_page2_implementation.jpg",
+  "kind": "post",
+  "shows": "Page 2 of the executive order: the policy sentence and Sec. 2 Implementation (agencies shall use 'Super Intelligence' and 'SI' in place of 'Artificial Intelligence' and 'AI').",
+  "source_url": "https://www.trumpstruth.org/statuses/42026",
+  "original_url": "https://truthsocial.com/@realDonaldTrump/117357090030899348",
+  "outlet": "Truth Social (Trump) / White House",
+  "date": "2026-09-29",
+  "text": "the executive branch shall use the terms \"Super Intelligence\" and \"SI\" in place of \"Artificial Intelligence\" and \"AI\" and will not acknowledge the usage of \"Artificial Intelligence\" and \"AI\" in any applicable setting. Sec. 2. Implementation. (a) ... shall use \"Super Intelligence\" and \"SI\" in place of \"Artificial Intelligence\" and \"AI\" in official correspondence, public communications, websites, reports, policy documents, and other non-statutory documents within the executive branch.",
+  "supports": "The US executive branch is ordered to use 'Super Intelligence' / 'SI' instead of 'Artificial Intelligence' / 'AI'.",
+  "notes": "Real attachment image of Trump's own Truth Social post (https://truthsocial.com/@realDonaldTrump/117357090030899348, 2026-09-29 8:11 PM EDT), downloaded from the archive's attachment store (truth-archive.us-iad-1.linodeobjects.com). Native resolution, not upscaled or edited. Official text of the same order: whitehouse.gov (see whitehouse_eo_14434_header.png). Sec. 2(b): nothing requires altering previously issued regulations, contracts or historical documents. Binding only on the executive branch, 'to the maximum extent permitted by law'.",
+  "license": "Public domain (US federal government document, Executive Order 14434)",
+  "attribution": "The White House",
+  "key_text_bbox": [
+   90,
+   238,
+   595,
+   205
+  ],
+  "extra_bboxes": {
+   "policy_sentence": [
+    90,
+    98,
+    570,
+    135
+   ]
+  },
+  "size": [
+   797,
+   1289
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "eo_page3",
+  "file": "eo_page3_general_provisions.jpg",
+  "kind": "post",
+  "shows": "Page 3 of the executive order: general provisions, Trump's signature and 'THE WHITE HOUSE, September 29, 2026.'",
+  "source_url": "https://www.trumpstruth.org/statuses/42026",
+  "original_url": "https://truthsocial.com/@realDonaldTrump/117357090030899348",
+  "outlet": "Truth Social (Trump) / White House",
+  "date": "2026-09-29",
+  "text": "THE WHITE HOUSE, September 29, 2026. (signature)",
+  "supports": "The order was signed on 29 September 2026.",
+  "notes": "Real attachment image of Trump's own Truth Social post (https://truthsocial.com/@realDonaldTrump/117357090030899348, 2026-09-29 8:11 PM EDT), downloaded from the archive's attachment store (truth-archive.us-iad-1.linodeobjects.com). Native resolution, not upscaled or edited. Official text of the same order: whitehouse.gov (see whitehouse_eo_14434_header.png).",
+  "license": "Public domain (US federal government document, Executive Order 14434)",
+  "attribution": "The White House",
+  "key_text_bbox": [
+   290,
+   1020,
+   350,
+   220
+  ],
+  "extra_bboxes": {
+   "date_line": [
+    80,
+    1176,
+    232,
+    70
+   ]
+  },
+  "size": [
+   792,
+   1296
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "whitehouse_eo_14434_header",
+  "file": "whitehouse_eo_14434_header.png",
+  "kind": "article",
+  "shows": "Official White House page for Executive Order 14434, 'Inaugurating the Era of Super Intelligence' (masthead, title banner, date, opening of the text).",
+  "source_url": "https://www.whitehouse.gov/presidential-actions/2026/09/inaugurating-the-era-of-super-intelligence/",
+  "outlet": "The White House (whitehouse.gov)",
+  "date": "2026-09-29",
+  "text": "INAUGURATING THE ERA OF SUPER INTELLIGENCE | Executive Orders | September 29, 2026 | EXECUTIVE ORDER 14434",
+  "supports": "Primary source: the US executive order that makes 'Super Intelligence' / 'SI' the official term in the executive branch.",
+  "notes": "Captured 2026-10-11 at 1100 px viewport, dpr 2. Removed for the capture: the \"Welcome to the Golden Age\" email sign-up pop-up, the floating \"Click to listen\" button and the left share bar. Page text verified against the capture (EO 14434, 2026-09-29).",
+  "license": "Public domain (US federal government work)",
+  "attribution": "The White House",
+  "key_text_bbox": [
+   59,
+   746,
+   2083,
+   160
+  ],
+  "extra_bboxes": {
+   "date": [
+    1112,
+    963,
+    277,
+    52
+   ],
+   "eo_number": [
+    836,
+    1250,
+    527,
+    56
+   ]
+  },
+  "size": [
+   2200,
+   1890
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "whitehouse_eo_14434_sec2",
+  "file": "whitehouse_eo_14434_sec2.png",
+  "kind": "article",
+  "shows": "Close crop of the official EO text: the policy sentence and Sec. 2 Implementation.",
+  "source_url": "https://www.whitehouse.gov/presidential-actions/2026/09/inaugurating-the-era-of-super-intelligence/",
+  "outlet": "The White House (whitehouse.gov)",
+  "date": "2026-09-29",
+  "text": "Sec. 2. Implementation. (a) To the maximum extent permitted by law, executive departments and agencies (agencies) shall use “Super Intelligence” and “SI” in place of “Artificial Intelligence” and “AI” in official correspondence, public communications, websites, reports, policy documents, and other non-statutory documents within the executive branch.",
+  "supports": "Executive branch must use 'Super Intelligence' / 'SI' instead of 'Artificial Intelligence' / 'AI' in official communications.",
+  "notes": "Text crop only (no masthead); pair with whitehouse_eo_14434_header.png for the page identity. Order applies to non-statutory documents; Sec. 2(b) exempts previously issued regulations, contracts, grants and historical documents.",
+  "license": "Public domain (US federal government work)",
+  "attribution": "The White House",
+  "key_text_bbox": [
+   20,
+   317,
+   1573,
+   224
+  ],
+  "extra_bboxes": {
+   "policy_sentence": [
+    20,
+    98,
+    1569,
+    169
+   ]
+  },
+  "size": [
+   1740,
+   584
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "news_foxbusiness_si_order",
+  "file": "news_foxbusiness_si_order.png",
+  "kind": "article",
+  "shows": "Fox Business: 'Trump signs executive order rebranding AI as 'Super Intelligence' as tech titans ink separate SI accord'.",
+  "source_url": "https://www.foxbusiness.com/politics/trump-signs-executive-order-rebranding-ai-super-intelligence-tech-titans-ink-separate-accord",
+  "outlet": "Fox Business",
+  "author": "Sophia Compton",
+  "date": "2026-09-29T21:52:00-04:00",
+  "text": "Trump signs executive order rebranding AI as 'Super Intelligence' as tech titans ink separate SI accord. President Donald Trump on Tuesday signed an executive order directing the federal government to replace the term \"artificial intelligence\" with \"Super Intelligence\" across the executive branch, cementing a rebranding effort he has championed in recent weeks.",
+  "supports": "Trump signed an executive order (29 Sep 2026) replacing 'artificial intelligence' with 'Super Intelligence' across the executive branch.",
+  "notes": "Masthead, 'Published September 29, 2026 9:52pm EDT', headline, subhead, byline and first paragraphs are all in the capture. Removed for the capture: the 'Recommended Videos' strip, the ad slot and the lead video (its thumbnail did not load and showed a broken-image icon), so this capture has no lead photo. Also in the text: the order tells agencies to 'no longer acknowledge' the terms 'artificial intelligence' and 'AI', per the White House. (The page's browser title is 'President Trump orders federal agencies to replace AI with 'Super Intelligence''.)",
+  "license": "Not an openly licensed asset: screenshot of a third-party page used for news/commentary (fair use / fair dealing). Keep the outlet visible and do not alter the text.",
+  "attribution": "Fox Business / Sophia Compton",
+  "key_text_bbox": [
+   40,
+   796,
+   1538,
+   162
+  ],
+  "extra_bboxes": {
+   "headline": [
+    49,
+    250,
+    1541,
+    268
+   ],
+   "no_longer_acknowledge": [
+    40,
+    1236,
+    1542,
+    110
+   ]
+  },
+  "size": [
+   1640,
+   1600
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "news_newsweek_si_order",
+  "file": "news_newsweek_si_order.png",
+  "kind": "article",
+  "shows": "Newsweek: 'Why Does Trump Prefer Using 'SI' Versus 'AI'? What We Know on New Order' (Trump signed an order replacing 'artificial intelligence' and 'AI' with 'Super Intelligence' and 'SI').",
+  "source_url": "https://www.newsweek.com/ai-politics/trump-picks-si-over-ai-12504600",
+  "outlet": "Newsweek",
+  "author": "Jennifer Radcliffe",
+  "date": "2026-09-30T00:14:00-04:00",
+  "text": "President Donald Trump signed an executive order Tuesday directing federal agencies to stop using the terms \"artificial intelligence\" and \"AI\" in official communications, policy documents and correspondence, replacing them with \"Super Intelligence\" and \"SI.\"",
+  "supports": "Trump signed an executive order (Tue 29 Sep 2026) making 'Super Intelligence' / 'SI' the terms federal agencies must use.",
+  "notes": "On-page headline is 'Why Does Trump Prefer Using 'SI' Versus 'AI'? What We Know on New Order' (the HTML title / social title is \"Trump signs 'Super Intelligence' executive order\"). Removed for the capture: the cookie/privacy dialog and the lead video player (it showed 'Media Error' in headless Chromium), so the capture has no lead photo; a blank band remains where the video sat. Same article reports: Trump polled followers, 50,000+ responses, 65% preferred 'super intelligence'; the order applies to non-statutory executive-branch documents.",
+  "license": "Not an openly licensed asset: screenshot of a third-party page used for news/commentary (fair use / fair dealing). Keep the outlet visible and do not alter the text.",
+  "attribution": "Newsweek / Jennifer Radcliffe",
+  "key_text_bbox": [
+   172,
+   1131,
+   1348,
+   231
+  ],
+  "extra_bboxes": {
+   "headline": [
+    172,
+    319,
+    1354,
+    182
+   ]
+  },
+  "size": [
+   1720,
+   1850
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "ms_uae_15bn_blog",
+  "file": "ms_uae_15bn_blog.png",
+  "kind": "article",
+  "shows": "Microsoft On the Issues post by Brad Smith: \"Microsoft's $15.2 billion USD investment in the UAE\" (headline, date, byline, hero photo, G42 and total-investment paragraphs).",
+  "source_url": "https://blogs.microsoft.com/on-the-issues/2025/11/03/microsofts-15-2-billion-usd-investment-in-the-uae/",
+  "outlet": "Microsoft On the Issues (blogs.microsoft.com)",
+  "author": "Brad Smith, Vice Chair & President",
+  "date": "2025-11-03",
+  "text": "All told, Microsoft will invest $15.2 billion USD in the UAE between the start of this initiative in 2023 and the end of this decade, in 2029.",
+  "supports": "Microsoft's US$15.2 billion investment in the UAE (2023 to 2029) and its partnership with Abu Dhabi's G42.",
+  "notes": "VERIFIED FROM THE PAGE. Currency: US dollars ('$15.2 billion USD' in the headline). Period: cumulative from the start of the initiative in 2023 to the end of 2029 (NOT 'new money from 2025'). Breakdown on the page: just over $7.3bn already invested/spent 2023 to end-2025 (includes the $1.5bn equity investment in G42, >$4.6bn data-centre capex, >$1.2bn local opex/COGS) plus >$7.9bn from 2026 to end-2029 (>$5.5bn capex, almost $2.4bn opex/COGS). 'This is not money raised in the UAE. It's money we're spending in the UAE.' G42 is described as 'the UAE's sovereign AI company'. Also on the page: 21,500 A100-equivalent GPUs already in-country plus licences for 60,400 more A100-equivalents (GB300), UAE leads the world in per-capita AI usage (59.4%). Do not confuse with Microsoft's separate Sept 24 2026 Middle East framework (>$10bn across Kuwait, Qatar, Saudi Arabia, UAE to 2030). Capture removed the right-hand 'Related stories' column only.",
+  "license": "Not an openly licensed asset: screenshot of a third-party page used for news/commentary (fair use / fair dealing). Keep the outlet visible and do not alter the text.",
+  "attribution": "Microsoft / Brad Smith",
+  "key_text_bbox": [
+   174,
+   1872,
+   1168,
+   94
+  ],
+  "extra_bboxes": {
+   "headline": [
+    174,
+    250,
+    877,
+    178
+   ],
+   "g42_sentence": [
+    174,
+    1704,
+    1137,
+    94
+   ]
+  },
+  "size": [
+   1520,
+   2240
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "ms_uae_engineering_center_blog",
+  "file": "ms_uae_engineering_center_blog.png",
+  "kind": "article",
+  "shows": "Same Microsoft On the Issues post, 'Investing in talent' section: the Global Engineering Development Center in Abu Dhabi.",
+  "source_url": "https://blogs.microsoft.com/on-the-issues/2025/11/03/microsofts-15-2-billion-usd-investment-in-the-uae/",
+  "outlet": "Microsoft On the Issues (blogs.microsoft.com)",
+  "author": "Brad Smith, Vice Chair & President",
+  "date": "2025-11-03",
+  "text": "This year, we established the Global Engineering Development Center in Abu Dhabi to attract world-class tech talent to the UAE.",
+  "supports": "Microsoft has established an engineering development center in Abu Dhabi to attract international tech talent.",
+  "notes": "Section crop (no masthead); pair with ms_uae_15bn_blog.png. Same page also says Microsoft's UAE team is almost 1,000 people from 40 nationalities, nearly 100 of them engineers. 'This year' = 2025.",
+  "license": "Not an openly licensed asset: screenshot of a third-party page used for news/commentary (fair use / fair dealing). Keep the outlet visible and do not alter the text.",
+  "attribution": "Microsoft / Brad Smith",
+  "key_text_bbox": [
+   94,
+   592,
+   1103,
+   94
+  ],
+  "extra_bboxes": {
+   "heading": [
+    94,
+    30,
+    364,
+    64
+   ]
+  },
+  "size": [
+   1400,
+   904
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "ms_engineering_center_abu_dhabi_source",
+  "file": "ms_engineering_center_abu_dhabi_source.png",
+  "kind": "article",
+  "shows": "Microsoft Source press release (24 Sep 2024): 'Microsoft expands its Global Engineering Development Center's footprint to the UAE's capital, Abu Dhabi'.",
+  "source_url": "https://news.microsoft.com/source/2024/09/24/microsoft-expands-its-global-engineering-development-centers-footprint-to-the-uaes-capital-abu-dhabi/",
+  "outlet": "Microsoft Source (news.microsoft.com)",
+  "author": "Microsoft Source",
+  "date": "2024-09-24",
+  "text": "...the new Microsoft Engineering Development Center will build on these efforts by not only creating cutting-edge technologies in the region but also attracting top tech talent from around the world to develop tailored solutions that tackle pressing challenges in critical industries globally.",
+  "supports": "Microsoft's engineering development center in Abu Dhabi, set up to attract international tech talent (tied to the G42 partnership).",
+  "notes": "Announcement date is 24 Sep 2024 (future tense: 'will be established'); Microsoft's Nov 2025 post says it was established 'this year' (2025). Described as 'one of Microsoft's first engineering centers to be launched in the Arab world' (editor's note on the page). Page also names the G42 partnership as instrumental. Captured at 820 px viewport so the body column fills the frame; crop ends before the Satya Nadella quote.",
+  "license": "Not an openly licensed asset: screenshot of a third-party page used for news/commentary (fair use / fair dealing). Keep the outlet visible and do not alter the text.",
+  "attribution": "Microsoft",
+  "key_text_bbox": [
+   72,
+   1639,
+   1483,
+   290
+  ],
+  "extra_bboxes": {
+   "headline": [
+    72,
+    240,
+    1415,
+    312
+   ],
+   "announcement_sentence": [
+    72,
+    997,
+    1474,
+    175
+   ]
+  },
+  "size": [
+   1640,
+   2336
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "news_thenational_ms_uae_15bn",
+  "file": "news_thenational_ms_uae_15bn.png",
+  "kind": "article",
+  "shows": "The National: 'Microsoft pledges $15 billion investment as US approves Nvidia chips for UAE' (lead photo of Brad Smith with Abu Dhabi leaders).",
+  "source_url": "https://www.thenationalnews.com/business/economy/2025/11/03/microsoft-to-invest-152bn-in-the-uae-between-2023-to-2029-to-support-ai-and-cloud-infrastructure/",
+  "outlet": "The National (thenationalnews.com)",
+  "author": "Aarti Nagraj",
+  "date": "2025-11-03",
+  "text": "Microsoft pledges $15 billion investment as US approves Nvidia chips for UAE. Microsoft is to invest nearly $8 billion in the UAE between 2026 and 2029 to support artificial intelligence and cloud infrastructure development.",
+  "supports": "Independent news coverage of Microsoft's ~US$15 billion UAE commitment (Nov 2025).",
+  "notes": "CAUTION: the headline rounds to '$15 billion' but the lede says 'nearly $8 billion ... between 2026 and 2029' (the forward part). The article body (not visible in this crop) states the new $7.9bn follows $7.3bn spent 2023 to end-2025 = $15.2bn, and that the $1.5bn G42 stake is included. Currency is US dollars. Removed for the capture: the 'Register for free' modal and the 'Most popular' sidebar.",
+  "license": "Not an openly licensed asset: screenshot of a third-party page used for news/commentary (fair use / fair dealing). Keep the outlet visible and do not alter the text.",
+  "attribution": "The National / Aarti Nagraj",
+  "key_text_bbox": [
+   395,
+   1205,
+   1300,
+   350
+  ],
+  "extra_bboxes": {
+   "lede": [
+    395,
+    1943,
+    1283,
+    186
+   ],
+   "date": [
+    507,
+    1775,
+    318,
+    56
+   ]
+  },
+  "size": [
+   2150,
+   2160
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "logo_microsoft",
+  "file": "logo_microsoft.png",
+  "kind": "logo",
+  "shows": "Microsoft logo: four coloured squares plus grey wordmark (current 2012 logo).",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Microsoft_logo_(2012).svg",
+  "vector_file": "logo_microsoft.svg",
+  "outlet": "Wikimedia Commons (Microsoft Corporation)",
+  "date": "2012 logo",
+  "text": "",
+  "supports": "Identifies Microsoft.",
+  "notes": "Trademark of its owner; use only to identify the company/outlet. Transparent PNG, vector SVG kept alongside where available. Rendered from the Commons SVG at 1200 px wide. The wordmark is mid-grey (#737373): put it on a light panel, it is weak on dark backgrounds.",
+  "license": "Public domain per Commons (simple geometry/text); trademarked",
+  "attribution": "Microsoft Corporation (Commons: Jason Wells)",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   1200,
+   256
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "logo_truth_social",
+  "file": "logo_truth_social.png",
+  "kind": "logo",
+  "shows": "Truth Social wordmark (navy \"TRUTH\" over \"SOCIAL\").",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Truth_Social_logo.svg",
+  "outlet": "Wikimedia Commons (Trump Media & Technology Group)",
+  "date": "",
+  "text": "",
+  "supports": "Identifies Truth Social as the platform of the posts.",
+  "notes": "Trademark of its owner; use only to identify the company/outlet. Transparent PNG, vector SVG kept alongside where available. 1280 px wide PNG from Commons' own thumbnail renderer (the original SVG download was rate-limited with HTTP 429). Navy on transparent: needs a light background.",
+  "license": "Public domain per Commons; trademarked",
+  "attribution": "Trump Media & Technology Group",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   1280,
+   393
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "logo_forbes",
+  "file": "logo_forbes.png",
+  "kind": "logo",
+  "shows": "Forbes wordmark (blue).",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Forbes_logo.svg",
+  "vector_file": "logo_forbes.svg",
+  "outlet": "Wikimedia Commons (Forbes, Inc.)",
+  "date": "",
+  "text": "",
+  "supports": "Identifies Forbes.",
+  "notes": "Trademark of its owner; use only to identify the company/outlet. Transparent PNG, vector SVG kept alongside where available. Only useful as an outlet bug: the Forbes article itself could not be captured (access blocked).",
+  "license": "Public domain per Commons; trademarked",
+  "attribution": "Forbes, Inc.",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   1200,
+   324
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "logo_axios",
+  "file": "logo_axios.png",
+  "kind": "logo",
+  "shows": "Axios logo (2020 version, dark wordmark with blue slash).",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Axios_logo_(2020).svg",
+  "vector_file": "logo_axios.svg",
+  "outlet": "Wikimedia Commons (Axios Media)",
+  "date": "2020 logo",
+  "text": "",
+  "supports": "Identifies Axios.",
+  "notes": "Trademark of its owner; use only to identify the company/outlet. Transparent PNG, vector SVG kept alongside where available. Only useful as an outlet bug: the Axios articles could not be captured (Cloudflare 403).",
+  "license": "Public domain per Commons; trademarked",
+  "attribution": "Axios Media",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   1200,
+   305
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "logo_g42",
+  "file": "logo_g42.png",
+  "kind": "logo",
+  "shows": "G42 logo (dark green 'G' with teal '42').",
+  "source_url": "https://www.g42.ai/application/themes/G42/dist/images/logo.png",
+  "outlet": "G42 (g42.ai official site)",
+  "date": "",
+  "text": "",
+  "supports": "Identifies G42, Abu Dhabi's AI company and Microsoft's partner.",
+  "notes": "Trademark of its owner; use only to identify the company/outlet. Transparent PNG, vector SVG kept alongside where available. No G42 logo exists on Wikimedia Commons, so this is the official 492x290 transparent PNG from g42.ai, upscaled 2.4x (Lanczos) to 1200 px wide: edges are slightly soft. The dark 'G' (#2e342e) is weak on dark backgrounds.",
+  "license": "Trademark of G42; used to identify the company (no open licence)",
+  "attribution": "G42",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   1200,
+   707
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "photo_reem_island_sunset",
+  "file": "photo_reem_island_sunset.jpg",
+  "kind": "photo",
+  "shows": "Al Reem Island (Abu Dhabi) towers and mangroves at sunset.",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Al_reem_island.jpg",
+  "outlet": "Wikimedia Commons",
+  "date": "2018-09-05",
+  "text": "",
+  "supports": "Visual of Abu Dhabi real estate (Reem Island) for the property-investor angle.",
+  "notes": "Real photograph from Wikimedia Commons. CC BY-SA 4.0 requires credit (see attribution) and share-alike for adaptations; keep the credit on screen or in the caption. 3840x2560 Commons thumbnail of the 5000x3333 original (the original download was rate-limited). Colour-graded/HDR look. Landscape: crop or pan for 1080x1920.",
+  "license": "CC BY-SA 4.0",
+  "attribution": "Photo: Sa7er90, via Wikimedia Commons, CC BY-SA 4.0",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   3840,
+   2560
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "photo_reem_skyline_central_park",
+  "file": "photo_reem_skyline_central_park.jpg",
+  "kind": "photo",
+  "shows": "Al Reem Island skyline from Al Reem Central Park at dusk.",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Al_Reem_Island_Skyline_from_Al_Reem_Central_Park.jpg",
+  "outlet": "Wikimedia Commons",
+  "date": "2024-10-04",
+  "text": "",
+  "supports": "Visual of Abu Dhabi real estate (Reem Island skyline).",
+  "notes": "Real photograph from Wikimedia Commons. CC BY-SA 4.0 requires credit (see attribution) and share-alike for adaptations; keep the credit on screen or in the caption. 1920x1080 Commons thumbnail of the 2364x1330 original. Very dark, heavily graded orange/green look.",
+  "license": "CC BY-SA 4.0",
+  "attribution": "Photo: Yusuf Elbohoty, via Wikimedia Commons, CC BY-SA 4.0",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   1920,
+   1080
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "photo_reem_towers_vertical",
+  "file": "photo_reem_towers_vertical.jpg",
+  "kind": "photo",
+  "shows": "Tall Reem Island towers over mangroves at sunset (near-square, suits vertical framing).",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Reem_island_01.jpg",
+  "outlet": "Wikimedia Commons",
+  "date": "2017-11-26",
+  "text": "",
+  "supports": "Visual of Abu Dhabi real estate (Reem Island).",
+  "notes": "Real photograph from Wikimedia Commons. CC BY-SA 4.0 requires credit (see attribution) and share-alike for adaptations; keep the credit on screen or in the caption. 1920x2119 Commons thumbnail of the 3307x3650 original. Heavily post-processed (long-exposure / motion-blur look in clouds and trees): use as a stylised backdrop only.",
+  "license": "CC BY-SA 4.0",
+  "attribution": "Photo: Nancysaade, via Wikimedia Commons, CC BY-SA 4.0",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   1920,
+   2119
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ },
+ {
+  "id": "photo_al_maryah_island",
+  "file": "photo_al_maryah_island.jpg",
+  "kind": "photo",
+  "shows": "Al Maryah Island (Abu Dhabi) waterfront with the Cleveland Clinic Abu Dhabi building, seen across the water.",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Al_Mariah_Island-_Abudhabi.jpg",
+  "outlet": "Wikimedia Commons",
+  "date": "2021-05-12",
+  "text": "",
+  "supports": "Visual of Abu Dhabi real estate (Al Maryah Island).",
+  "notes": "Real photograph from Wikimedia Commons. CC BY-SA 4.0 requires credit (see attribution) and share-alike for adaptations; keep the credit on screen or in the caption. 1920x1080 Commons thumbnail of the 4032x2268 original. A daytime phone photo, not a full 'skyline'; no better CC-licensed Al Maryah skyline was found on Commons.",
+  "license": "CC BY-SA 4.0",
+  "attribution": "Photo: MAVARIZ, via Wikimedia Commons, CC BY-SA 4.0",
+  "key_text_bbox": null,
+  "extra_bboxes": {},
+  "size": [
+   1920,
+   1080
+  ],
+  "bbox_format": "[x, y, w, h] in pixels of the file (origin top-left); padded ~8 px around the text"
+ }
+]

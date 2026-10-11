@@ -23,7 +23,7 @@ function buildScenes() {
     when: tw(/^WHEN$/, 0, 28.15), comp: tw(/^COMPANIES$/, 0, 28.42), hire: tw(/^HIRE$/, 0, 30.08), engs: tw(/^ENGINEERS/, 0, 30.24), execs: tw(/^EXECUTIVES/, 0, 30.82), skill: tw(/^SKILLED$/, 0, 31.74),
     those: tw(/^THOSE$/, 0, 32.86), somew: tw(/^SOMEWHERE$/, 0, 33.68), pot: tw(/^POTENTIAL$/, 0, 35.54), rental1: tw(/^RENTAL$/, 0, 35.82),
     you: tw(/^YOU$/, 0, 36.84, 36.5), resid: tw(/^RESIDENTIAL$/, 0, 37.96), near: tw(/^NEAR$/, 0, 38.84), reem: tw(/^REEM$/, 0, 41.62), maryah: tw(/^MARYAH$/, 0, 43.14),
-    buy: tw(/^BUY$/, 0, 43.9), entry: tw(/^ENTRY$/, 0, 44.82), actual: tw(/^ACTUAL$/, 0, 46.16), rentalD: tw(/^RENTAL$/, 1, 46.54, 46.0), and2: tw(/^AND$/, 0, 47.46, 47.4), benefit: tw(/^BENEFIT$/, 0, 47.9, 47.4), rentalI: tw(/^RENTAL$/, 0, 48.66, 48.4), cap: tw(/^CAPITAL$/, 0, 49.58),
+    buy: tw(/^BUY$/, 0, 43.9), entry: tw(/^ENTRY$/, 0, 44.82), actual: tw(/^ACTUAL$/, 0, 46.16), rentalD: tw(/^RENTAL$/, 0, 46.54, 46.0), and2: tw(/^AND$/, 0, 47.46, 47.4), benefit: tw(/^BENEFIT$/, 0, 47.9, 47.4), rentalI: tw(/^RENTAL$/, 0, 48.66, 48.4), cap: tw(/^CAPITAL$/, 0, 49.58),
     shortlist: tw(/^SHORTLIST$/, 0, 51.32), msg: tw(/^MESSAGE$/, 0, 55.1), me: tw(/^ME\.?$/, 0, 55.38, 55.0),
   };
   const FACE_SEGS = [[0, K.donald2 - 0.02], [K.buy - 0.02, K.and2 - 0.01]];

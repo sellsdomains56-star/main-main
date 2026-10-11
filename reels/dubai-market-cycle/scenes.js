@@ -139,7 +139,7 @@ function buildScenes() {
     outlines: [{ key: 'palm', t0: palmT0, t1: palmT1 }],
     pins: [{ lon: 55.1345, lat: 25.1173, t: palmT1 - 0.1, title: 'PALM JUMEIRAH' }, { lon: 55.2744, lat: 25.1972, t: K.chasing, title: 'DOWNTOWN DUBAI', sub: 'BURJ KHALIFA' }],
     top(t) {
-      badge(t, 'sheikh', 250, 470, 96, K.sheikh - 0.2, 'SHEIKH MOHAMMED', { out: K.burst - 0.1, fx: 0.5, fy: 0.3 });
+      badge(t, 'sheikh', 250, 470, 96, K.sheikh - 0.2, 'SHEIKH MOHAMMED', { out: K.burst - 0.1, fx: 0.47, fy: 0.19, zoom: 2.3 });
       bw(t, 'THE BUBBLE ANALOGY', 345, K.bubble - 0.1, { size: 54, ls: 6, color: C.gold, out: K.burst - 0.1 });
       bubble(t, 745, 560, 118, K.bubble, K.burst);
       bw(t, 'CHASING IT', 600, K.chasing - 0.1, { size: 92, ls: 2, hl: true });
