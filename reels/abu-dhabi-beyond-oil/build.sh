@@ -19,6 +19,13 @@ python3 -I matte_raw.py 120 1399 && python3 -I matte_post.py 120 1399
 # 3) map (OpenStreetMap data, (c) OpenStreetMap contributors, ODbL)
 [ -f build/map/uae.osm.pbf ] || curl -L -o build/map/uae.osm.pbf https://download.openstreetmap.fr/extracts/asia/united_arab_emirates-latest.osm.pbf
 [ -f build/map/map.json ] || python3 -I map_extract.py build/map/uae.osm.pbf build/map/map.json
+# 3b) satellite tiles for the map scenes + island outlines + the developers' renders (see README for the sources)
+python3 -I extract_outlines.py
+node fetch_tiles.mjs
+mkdir -p build/photos
+[ -f build/photos/talay.jpg ] || curl -sSL -o build/photos/talay.jpg "https://media.zawya.com/prod/images/gm_preview/02eb3428889a-talay-marsa-al-saadiyat-1.jpg"
+[ -f build/photos/yasriva.jpg ] || curl -sSL -o build/photos/yasriva.jpg "https://media.zawya.com/prod/images/gm_preview/71eb07e8e309-aldaryas-riva-reserve-3.jpg"
+[ -f build/photos/hudayriyat.jpg ] || curl -sSL -o build/photos/hudayriyat.jpg "https://www.modon.com/images/modoncorporatelibraries/banners/hudayriyat-island.jpeg"
 # 4) voice envelope (drives the gold rim light) + sound design (footage audio, effects shifted 0.04 s to match the graphics timing)
 python3 -I - <<'PY'
 import numpy as np, subprocess, json

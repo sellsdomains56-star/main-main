@@ -4,14 +4,15 @@
 // Everything draws into the global `ctx` and is a pure function of time.
 // ---------------------------------------------------------------------------
 const W = 1080, H = 1920, FPS = 30, DUR = 46.72, CX = 540;
-const C = {
-  bg: '#08080A',
-  ink: '#F3EFE6',
-  dim: 'rgba(243,239,230,0.46)',
-  mute: 'rgba(243,239,230,0.26)',
-  faint: 'rgba(243,239,230,0.12)',
-  gold: '#E9C47C',
-  goldSoft: 'rgba(233,196,124,0.16)',
+const C = {                      // charcoal + warm ivory + muted champagne (no pure black, no yellow gold)
+  bg: '#141518',
+  ink: '#F5F2EC',
+  dim: 'rgba(245,242,236,0.72)',
+  mute: 'rgba(245,242,236,0.42)',
+  faint: 'rgba(245,242,236,0.20)',
+  gold: '#CDBF9F',
+  goldSoft: 'rgba(205,191,159,0.18)',
+  panel: '#1E2024',
 };
 
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -104,7 +105,7 @@ function line(x1, y1, x2, y2, o = {}) {
 function dot(x, y, r, color = C.ink, alpha = 1) {
   ctx.save(); ctx.globalAlpha *= alpha; ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
 }
-function glow(x, y, r, color = '233,196,124', a = 0.25) {
+function glow(x, y, r, color = '205,191,159', a = 0.25) {
   if (a <= 0.003) return;
   const g = ctx.createRadialGradient(x, y, 0, x, y, r);
   g.addColorStop(0, `rgba(${color},${a})`); g.addColorStop(1, `rgba(${color},0)`);
@@ -228,7 +229,7 @@ function logo(key, x, y, size, o = {}) {
     const L = WORDMARKS[key];
     T(L.main, left + w / 2, y + size * 0.34, { font: L.mainFont(size), ls: L.ls * size, color, align: 'center' });
     if (L.sub) {
-      const subSize = Math.max(11, size * (L.subScale || 0.2));
+      const subSize = Math.max(30, size * (L.subScale || 0.3));
       T(L.sub, left + w / 2, y + size * 0.34 + size * (L.subScale ? 0.62 : 0.5), { font: F.t(600, subSize), ls: L.subLs * subSize, color: C.dim, align: 'center' });
     }
   }
@@ -236,7 +237,7 @@ function logo(key, x, y, size, o = {}) {
   if (useShine) {
     const bw = w * 0.45, cx = lerp(left - bw, left + w + bw, E.inOut2(shine));
     const g = ctx.createLinearGradient(cx - bw / 2, y - h, cx + bw / 2, y + h);
-    g.addColorStop(0, 'rgba(233,196,124,0)'); g.addColorStop(0.5, 'rgba(255,236,190,0.95)'); g.addColorStop(1, 'rgba(233,196,124,0)');
+    g.addColorStop(0, 'rgba(205,191,159,0)'); g.addColorStop(0.5, 'rgba(255,248,230,0.9)'); g.addColorStop(1, 'rgba(205,191,159,0)');
     ctx.save(); ctx.globalCompositeOperation = 'source-atop'; ctx.fillStyle = g; ctx.fillRect(left - 40, y - h, w + 80, h * 2); ctx.restore();
     const oc2 = ctx; ctx = main;
     ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha *= alpha; ctx.drawImage(_off, 0, 0); ctx.restore();

@@ -1,12 +1,10 @@
 'use strict';
 // ---------------------------------------------------------------------------
-// Karaoke-style captions: a short phrase sits dim, each word lights up on the
-// exact moment it is spoken. Key words (numbers, brands) light up gold.
+// Big, plain captions: a short phrase, each word pops in on the beat it is spoken and the spoken word sits in a pill.
 // ---------------------------------------------------------------------------
 let WORDS = [];   // {text, t, end, chunk}
 let CHUNKS = [];  // {a, b, words:[idx...], lines:[[idx...]], layout}
 
-const KEY = /^(\d|AED|US\$|trillion|billion|Mubadala|ADIA|Aldar|Aldar's|Modon's|Talay|Yas|Riva|Reserve|Hudayriyat|Golf|Estates|GDP|beyond|Portugal's)/i;
 
 function parseTiming(txt) {
   let chunk = -1; const words = [];
@@ -32,11 +30,11 @@ function parseTiming(txt) {
   });
 }
 
-const CAP = { size: 68, maxW: 840, lh: 80, y: 1340 };   // y / scale are driven by main.js (face vs half-and-half)
-const CAP_GOLD = '#F6CE76', CAP_HOT = '#FFE08A';
+const CAP = { size: 92, maxW: 900, lh: 108 };
+const CAP_PILL = '#DDD1B4', CAP_INK = '#17181B';
 function layoutChunk(c) {
   if (c.layout) return c.layout;
-  const font = F.d(800, CAP.size), sp = M(' ', font) + 12;
+  const font = F.d(800, CAP.size), sp = M(' ', font) + 16;
   const ws = c.words.map(i => ({ i, txt: WORDS[i].text.toUpperCase(), w: M(WORDS[i].text.toUpperCase(), font, -1) }));
   const total = ws.reduce((a, b) => a + b.w, 0) + sp * (ws.length - 1);
   let lines = [ws];
@@ -44,7 +42,7 @@ function layoutChunk(c) {
     let best = 1, bestDiff = 1e9;
     for (let k = 1; k < ws.length; k++) {
       const a = ws.slice(0, k).reduce((s, x) => s + x.w, 0) + sp * (k - 1), b = ws.slice(k).reduce((s, x) => s + x.w, 0) + sp * (ws.length - k - 1);
-      const d = Math.abs(a - b); if (d < bestDiff && a <= CAP.maxW + 60 && b <= CAP.maxW + 60) { bestDiff = d; best = k; }
+      const d = Math.abs(a - b); if (d < bestDiff) { bestDiff = d; best = k; }
     }
     lines = [ws.slice(0, best), ws.slice(best)];
   }
@@ -52,27 +50,31 @@ function layoutChunk(c) {
   return c.layout;
 }
 
-// Fv: 1 = face full-screen, 0 = half-and-half.  Words pop in on the beat; the word being spoken lights up.
+// Fv: 1 = face full-screen, 0 = graphics beat.  Words pop in on the beat; the word being spoken sits in a pill.
 function drawCaptions(tg, Fv = 1) {
-  const y0 = lerp(1470, 1335, Fv), sc = 1.08;
+  const y0 = lerp(1500, 1380, Fv);
   for (const c of CHUNKS) {
     if (tg < c.a - 0.001 || tg > c.b + 0.2) continue;
     const outP = c.hardEnd ? prog(tg, c.b - 0.02, c.b + 0.06) : E.in2(prog(tg, c.b, c.b + 0.16));
     const alpha = 1 - outP; if (alpha <= 0.003) continue;
-    const L = layoutChunk(c), nLines = L.lines.length, baseY = y0 - (nLines - 1) * CAP.lh * 0.5 * sc;
+    const L = layoutChunk(c), nLines = L.lines.length, baseY = y0 - (nLines - 1) * CAP.lh * 0.5;
     ctx.save(); ctx.globalAlpha *= alpha; ctx.font = L.font; ctx.letterSpacing = '-1px'; ctx.textAlign = 'center'; ctx.lineJoin = 'round'; ctx.miterLimit = 2;
     L.lines.forEach((ln, li) => {
-      let x = CX - (ln.w * sc) / 2; const y = baseY + li * CAP.lh * sc;
+      let x = CX - ln.w / 2; const y = baseY + li * CAP.lh;
       for (const wd of ln.L) {
-        const W_ = WORDS[wd.i], age = tg - W_.t, cx_ = x + (wd.w * sc) / 2; x += (wd.w + L.sp) * sc;
+        const W_ = WORDS[wd.i], age = tg - W_.t, cx_ = x + wd.w / 2; x += wd.w + L.sp;
         if (age < -0.02) continue;
         const next = WORDS[wd.i + 1], isCur = !(next && next.chunk === W_.chunk && tg >= next.t - 0.02);
-        const p = E.back(prog(age, 0, 0.2)), s = lerp(0.55, 1, p) * (1 + 0.08 * Math.exp(-age * 9)) * sc, a = ea(age, -0.02, 0.07);
-        const key = KEY.test(W_.text), col = key ? CAP_GOLD : isCur ? CAP_HOT : '#FFFFFF';
+        const p = E.back(prog(age, 0, 0.2)), s = lerp(0.6, 1, p), a = ea(age, -0.02, 0.07);
         ctx.save(); ctx.translate(cx_, y); ctx.scale(s, s); ctx.globalAlpha *= a;
-        ctx.shadowColor = 'rgba(0,0,0,0.55)'; ctx.shadowBlur = 16 * SS; ctx.shadowOffsetY = 4 * SS;
-        ctx.lineWidth = 13; ctx.strokeStyle = 'rgba(6,6,8,0.94)'; ctx.strokeText(wd.txt, 0, 0);
-        ctx.shadowColor = 'transparent'; ctx.fillStyle = col; ctx.fillText(wd.txt, 0, 0);
+        if (isCur) {                                                       // the word being spoken: dark text in a champagne pill
+          rr(-wd.w / 2 - 22, -CAP.size * 0.8, wd.w + 44, CAP.size * 1.06, 24); ctx.fillStyle = CAP_PILL; ctx.shadowColor = 'rgba(0,0,0,0.45)'; ctx.shadowBlur = 18 * SS; ctx.shadowOffsetY = 5 * SS; ctx.fill();
+          ctx.shadowColor = 'transparent'; ctx.fillStyle = CAP_INK; ctx.fillText(wd.txt, 0, 0);
+        } else {
+          ctx.shadowColor = 'rgba(0,0,0,0.55)'; ctx.shadowBlur = 16 * SS; ctx.shadowOffsetY = 4 * SS;
+          ctx.lineWidth = 15; ctx.strokeStyle = 'rgba(12,13,15,0.92)'; ctx.strokeText(wd.txt, 0, 0);
+          ctx.shadowColor = 'transparent'; ctx.fillStyle = '#FFFFFF'; ctx.fillText(wd.txt, 0, 0);
+        }
         ctx.restore();
       }
     });

@@ -1,5 +1,6 @@
 """Sound design for the reel: processed voiceover + SFX cut to the animation cues (+ optional ambient music bed).
-   python3 -I audio.py <voice.wav 48k> <out_mix.wav> [--music] [--sfx-only]
+   python3 -I audio.py <voice.wav 48k> <out_mix.wav> [--glitch | --clean] [--music] [--sfx-only] [--offset s]
+   default = very soft effects (airy whooshes, low thuds, gentle chimes, barely above the room); --clean / --glitch = the older, louder sets
    Everything is synthesised with numpy (no samples), so it is fully reproducible."""
 import sys, subprocess
 import numpy as np
@@ -8,7 +9,7 @@ SR = 48000
 SFX_OFFSET = 0.0                       # --offset 0.04 : shift every effect later (graphics were timed on the voiceover file, not the footage audio)
 if '--offset' in sys.argv:
     _i = sys.argv.index('--offset'); SFX_OFFSET = float(sys.argv[_i + 1]); del sys.argv[_i:_i + 2]
-GLITCH = '--clean' not in sys.argv            # swap the clean effects for digital-glitch ones (bit-crush, stutter, static, tape-stop)
+GLITCH = '--glitch' in sys.argv            # swap the clean effects for digital-glitch ones (bit-crush, stutter, static, tape-stop)
 SFX_ONLY = '--sfx-only' in sys.argv    # write just the sound effects (no voice, no music) as they sit in the reel mix
 WITH_MUSIC = '--music' in sys.argv      # ambient pad + bell plucks; off by default (voice + SFX only)
 DUR = 46.72
@@ -160,6 +161,33 @@ if GLITCH:                                         # rebind the effect library; 
     whoosh_clean, thump_clean, bell_clean = whoosh, thump, bell
     whoosh, swipe, thump, click, tick, pop, ping, bell, riser, boom, crash, swell, shimmer = g_whoosh, g_swipe, g_thump, g_click, g_tick, g_pop, g_ping, g_bell, g_riser, g_boom, g_crash, g_swell, g_shimmer
 
+# ------------------------------------------------------------------ soft effects (the default): quiet, rounded, never sharp
+def s_whoosh(dur=0.7):
+    n = int(dur * SR); y = shaped_noise(n, 450, 1700, 1.6); t = tarr(n) / dur
+    return fade(fft_filter(y * np.sin(np.pi * np.clip(t, 0, 1)) ** 2.4, hi=3200), 0.02, 0.1)
+def s_thud(f=70, dur=0.6):
+    n = int(dur * SR); t = tarr(n); fe = f * (1 + 0.35 * np.exp(-t / 0.06))
+    return fade(np.sin(2 * np.pi * np.cumsum(fe) / SR) * np.exp(-t / 0.18) * np.minimum(1, t / 0.012), 0.0, 0.08)
+def s_chime(f=1175, dur=1.6):
+    n = int(dur * SR); t = tarr(n)
+    y = (np.sin(2 * np.pi * f * t) + 0.3 * np.sin(2 * np.pi * f * 2.0 * t) + 0.12 * np.sin(2 * np.pi * f * 3.0 * t)) * np.exp(-t / 0.5)
+    return fade(y * np.minimum(1, t / 0.012), 0, 0.2)
+def s_tap(f=330, dur=0.3):
+    n = int(dur * SR); t = tarr(n)
+    return fade(np.sin(2 * np.pi * f * t) * np.exp(-t / 0.07) * np.minimum(1, t / 0.006), 0, 0.05)
+
+def build_sfx_soft():
+    buf = np.zeros((N, 2))
+    for i, t in enumerate([5.62, 8.95, 11.77, 13.86, 16.21, 21.91, 24.46, 26.26, 28.19, 31.30, 37.90, 42.20]):        # scene changes: a breath of air
+        place(buf, t - 0.35, s_whoosh(0.7), 0.13, pan=(-0.2 if i % 2 else 0.2))
+    place(buf, 4.88, s_thud(78, 0.6), 0.22)                                                                              # OUTDATED stamp
+    place(buf, 8.59, s_thud(66, 0.7), 0.16)                                                                              # "...beyond oil."
+    for t in [9.3, 22.85, 23.36, 26.9]: place(buf, t, s_tap(330, 0.3), 0.12)                                             # pins land on the map
+    for t in [16.05, 25.40, 28.95]: place(buf, t, s_chime(1175, 1.6), 0.07)                                              # a number finishes counting
+    place(buf, 40.0, s_thud(60, 0.9), 0.17)                                                                              # the ring grows past the oil dot
+    place(buf, 45.30, s_whoosh(0.5), 0.10); place(buf, 45.53, s_chime(1568, 1.6), 0.08)                                  # message sent
+    return buf
+
 # ------------------------------------------------------------------ mixing helpers
 def place(buf, t0, sig, gain=1.0, pan=0.0):
     i = int(round((t0 + SFX_OFFSET) * SR));
@@ -294,11 +322,11 @@ def main(voice_path, out_path):
     duck_sfx = 1 - 0.22 * smooth_env(np.clip(env, 0, 1), 90).clip(0, 1)
 
     if SFX_ONLY: duck_sfx[:] = 1.0      # no voice in this stem, so nothing to duck under
-    bed = build_bed() if WITH_MUSIC else np.zeros((N, 2)); sfx = build_sfx()   # music bed is opt-in (--music)
+    bed = build_bed() if WITH_MUSIC else np.zeros((N, 2)); LOUD = GLITCH or '--clean' in sys.argv; sfx = build_sfx() if LOUD else build_sfx_soft()   # music bed is opt-in (--music)
     ir = make_reverb()
-    bed_wet = convolve(bed, ir) * 0.55; sfx_wet = convolve(sfx, ir) * 0.30
+    bed_wet = convolve(bed, ir) * 0.55; sfx_wet = convolve(sfx, ir) * (0.30 if LOUD else 0.45)
     bed_mix = (bed * 0.8 + bed_wet) * duck_bed[:, None]
-    sfx_mix = (sfx + sfx_wet) * duck_sfx[:, None] * (0.58 if GLITCH else 0.72)
+    sfx_mix = (sfx + sfx_wet) * duck_sfx[:, None] * ((0.58 if GLITCH else 0.72) if LOUD else 1.0)
     # fade the bed in/out and tail the end
     bed_mix[:, :] *= np.minimum(1, tarr(N) / 1.2)[:, None] * np.clip((DUR + 0.6 - tarr(N)) / 1.0, 0, 1)[:, None]
     mix = (sfx_mix if SFX_ONLY else vb * 1.0 + bed_mix * 1.0 + sfx_mix * 1.0)
