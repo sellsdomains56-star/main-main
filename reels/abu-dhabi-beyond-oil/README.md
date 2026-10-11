@@ -19,6 +19,7 @@ Everything is generated from code, so any beat can be retimed or restyled and th
 | 42.2 | CTA | Shortlist card ticks off, DM typed, **SENT** |
 
 Karaoke captions light up on the exact spoken word (keywords in gold). Sound design: whooshes on every cut, count-up ticks, logo hits, check-mark pings — all synthesised in `audio.py` (no samples).
+The mix is voice + SFX only; the optional ambient music bed is off by default (`python3 audio.py in.wav out.wav --music` turns it on).
 Final mix is normalised to −14 LUFS / −1.5 dBTP.
 
 ## Rebuild
