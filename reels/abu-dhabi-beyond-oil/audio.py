@@ -204,8 +204,14 @@ def convolve(x, ir):
     return out
 
 def smooth_env(x, ms):
-    k = int(ms / 1000 * SR); w = np.hanning(k * 2 + 1); w /= w.sum()
-    return np.convolve(np.abs(x), w, mode='same')
+    """|x| smoothed with two cascaded moving averages (~hann-like), O(N) via cumulative sums."""
+    k = max(1, int(ms / 1000 * SR))
+    y = np.abs(x)
+    for _ in range(2):
+        c = np.cumsum(np.concatenate([[0.0], y])); idx = np.arange(len(y))
+        lo = np.clip(idx - k, 0, len(y)); hi = np.clip(idx + k + 1, 0, len(y))
+        y = (c[hi] - c[lo]) / np.maximum(1, hi - lo)
+    return y
 
 def main(voice_path, out_path):
     # voice: gentle clean-up chain (hp, compressor, presence), decoded to float
