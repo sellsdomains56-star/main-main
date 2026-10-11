@@ -1,0 +1,1064 @@
+{
+"fps": 30,
+"frames": 2063,
+"voice_dur": 68.76666666666667,
+"dur": 71.767,
+"words": [
+{
+"t": 0.0,
+"e": 0.24,
+"text": "Abdullah,",
+"chunk": 0
+},
+{
+"t": 0.4,
+"e": 0.66,
+"text": "everyone",
+"chunk": 1
+},
+{
+"t": 0.66,
+"e": 0.94,
+"text": "keeps",
+"chunk": 1
+},
+{
+"t": 0.94,
+"e": 1.2,
+"text": "saying",
+"chunk": 1
+},
+{
+"t": 1.2,
+"e": 1.26,
+"text": "the",
+"chunk": 2
+},
+{
+"t": 1.2,
+"e": 1.42,
+"text": "Dubai",
+"chunk": 2
+},
+{
+"t": 1.42,
+"e": 1.66,
+"text": "property",
+"chunk": 2
+},
+{
+"t": 1.66,
+"e": 2.04,
+"text": "market",
+"chunk": 3
+},
+{
+"t": 2.04,
+"e": 2.22,
+"text": "is",
+"chunk": 3
+},
+{
+"t": 2.22,
+"e": 2.38,
+"text": "about",
+"chunk": 3
+},
+{
+"t": 2.38,
+"e": 2.5,
+"text": "to",
+"chunk": 4
+},
+{
+"t": 2.5,
+"e": 2.76,
+"text": "collapse.",
+"chunk": 4
+},
+{
+"t": 2.88,
+"e": 3.04,
+"text": "Are",
+"chunk": 5
+},
+{
+"t": 3.04,
+"e": 3.16,
+"text": "we",
+"chunk": 5
+},
+{
+"t": 3.16,
+"e": 3.36,
+"text": "heading",
+"chunk": 5
+},
+{
+"t": 3.36,
+"e": 3.64,
+"text": "for",
+"chunk": 6
+},
+{
+"t": 3.64,
+"e": 3.9,
+"text": "another",
+"chunk": 6
+},
+{
+"t": 3.9,
+"e": 4.36,
+"text": "2008?",
+"chunk": 6
+},
+{
+"t": 4.66,
+"e": 4.86,
+"text": "We've",
+"chunk": 7
+},
+{
+"t": 4.86,
+"e": 5.12,
+"text": "heard",
+"chunk": 7
+},
+{
+"t": 5.12,
+"e": 5.28,
+"text": "these",
+"chunk": 7
+},
+{
+"t": 5.28,
+"e": 5.7,
+"text": "warnings",
+"chunk": 8
+},
+{
+"t": 5.7,
+"e": 5.98,
+"text": "for",
+"chunk": 8
+},
+{
+"t": 5.98,
+"e": 6.38,
+"text": "almost",
+"chunk": 8
+},
+{
+"t": 6.38,
+"e": 6.66,
+"text": "20",
+"chunk": 9
+},
+{
+"t": 6.66,
+"e": 6.98,
+"text": "years.",
+"chunk": 9
+},
+{
+"t": 7.14,
+"e": 7.3,
+"text": "In",
+"chunk": 10
+},
+{
+"t": 7.3,
+"e": 7.9,
+"text": "2008,",
+"chunk": 10
+},
+{
+"t": 8.1,
+"e": 8.3,
+"text": "Dubai",
+"chunk": 11
+},
+{
+"t": 8.3,
+"e": 8.76,
+"text": "experienced",
+"chunk": 11
+},
+{
+"t": 8.76,
+"e": 9.14,
+"text": "a",
+"chunk": 11
+},
+{
+"t": 9.14,
+"e": 9.36,
+"text": "major",
+"chunk": 12
+},
+{
+"t": 9.36,
+"e": 9.72,
+"text": "property",
+"chunk": 12
+},
+{
+"t": 9.72,
+"e": 10.12,
+"text": "crash.",
+"chunk": 12
+},
+{
+"t": 10.3,
+"e": 10.46,
+"text": "Then",
+"chunk": 13
+},
+{
+"t": 10.46,
+"e": 10.58,
+"text": "in",
+"chunk": 13
+},
+{
+"t": 10.58,
+"e": 10.94,
+"text": "2014,",
+"chunk": 13
+},
+{
+"t": 11.2,
+"e": 11.48,
+"text": "prices",
+"chunk": 14
+},
+{
+"t": 11.48,
+"e": 11.94,
+"text": "peaked",
+"chunk": 14
+},
+{
+"t": 11.94,
+"e": 12.22,
+"text": "again,",
+"chunk": 14
+},
+{
+"t": 12.36,
+"e": 12.62,
+"text": "followed",
+"chunk": 15
+},
+{
+"t": 12.62,
+"e": 12.86,
+"text": "by",
+"chunk": 15
+},
+{
+"t": 12.86,
+"e": 13.1,
+"text": "years",
+"chunk": 15
+},
+{
+"t": 13.1,
+"e": 13.34,
+"text": "of",
+"chunk": 16
+},
+{
+"t": 13.34,
+"e": 13.62,
+"text": "correction.",
+"chunk": 16
+},
+{
+"t": 13.88,
+"e": 14.04,
+"text": "In",
+"chunk": 17
+},
+{
+"t": 14.04,
+"e": 14.48,
+"text": "2020,",
+"chunk": 17
+},
+{
+"t": 14.76,
+"e": 15.04,
+"text": "COVID",
+"chunk": 18
+},
+{
+"t": 15.04,
+"e": 15.4,
+"text": "pushed",
+"chunk": 18
+},
+{
+"t": 15.4,
+"e": 15.58,
+"text": "the",
+"chunk": 18
+},
+{
+"t": 15.58,
+"e": 15.88,
+"text": "market",
+"chunk": 19
+},
+{
+"t": 15.88,
+"e": 16.12,
+"text": "down",
+"chunk": 19
+},
+{
+"t": 16.12,
+"e": 16.5,
+"text": "even",
+"chunk": 19
+},
+{
+"t": 16.5,
+"e": 16.86,
+"text": "further.",
+"chunk": 20
+},
+{
+"t": 17.06,
+"e": 17.22,
+"text": "Then",
+"chunk": 21
+},
+{
+"t": 17.22,
+"e": 17.46,
+"text": "Dubai",
+"chunk": 21
+},
+{
+"t": 17.46,
+"e": 17.9,
+"text": "recovered,",
+"chunk": 21
+},
+{
+"t": 18.2,
+"e": 18.4,
+"text": "with",
+"chunk": 22
+},
+{
+"t": 18.4,
+"e": 20.0,
+"text": "the",
+"chunk": 22
+},
+{
+"t": 20.0,
+"e": 20.24,
+"text": "property",
+"chunk": 22
+},
+{
+"t": 20.24,
+"e": 20.74,
+"text": "prices",
+"chunk": 23
+},
+{
+"t": 20.74,
+"e": 21.1,
+"text": "rising",
+"chunk": 23
+},
+{
+"t": 21.1,
+"e": 21.46,
+"text": "roughly",
+"chunk": 23
+},
+{
+"t": 21.46,
+"e": 22.04,
+"text": "60%",
+"chunk": 24
+},
+{
+"t": 22.38,
+"e": 22.8,
+"text": "between",
+"chunk": 24
+},
+{
+"t": 22.8,
+"e": 23.4,
+"text": "2022",
+"chunk": 24
+},
+{
+"t": 23.4,
+"e": 23.88,
+"text": "and",
+"chunk": 25
+},
+{
+"t": 23.88,
+"e": 24.22,
+"text": "early",
+"chunk": 25
+},
+{
+"t": 24.22,
+"e": 24.78,
+"text": "2025.",
+"chunk": 25
+},
+{
+"t": 24.78,
+"e": 25.36,
+"text": "In",
+"chunk": 26
+},
+{
+"t": 25.36,
+"e": 25.88,
+"text": "2025,",
+"chunk": 26
+},
+{
+"t": 26.06,
+"e": 26.36,
+"text": "Fitch",
+"chunk": 27
+},
+{
+"t": 26.36,
+"e": 26.64,
+"text": "warned",
+"chunk": 27
+},
+{
+"t": 26.64,
+"e": 26.96,
+"text": "of",
+"chunk": 27
+},
+{
+"t": 26.96,
+"e": 27.08,
+"text": "a",
+"chunk": 28
+},
+{
+"t": 27.08,
+"e": 27.5,
+"text": "possible",
+"chunk": 28
+},
+{
+"t": 27.5,
+"e": 27.86,
+"text": "15%",
+"chunk": 28
+},
+{
+"t": 28.16,
+"e": 28.62,
+"text": "correction",
+"chunk": 29
+},
+{
+"t": 28.62,
+"e": 29.06,
+"text": "through",
+"chunk": 29
+},
+{
+"t": 29.06,
+"e": 29.8,
+"text": "2026.",
+"chunk": 30
+},
+{
+"t": 30.04,
+"e": 30.34,
+"text": "Yet",
+"chunk": 31
+},
+{
+"t": 30.34,
+"e": 30.6,
+"text": "Dubai",
+"chunk": 31
+},
+{
+"t": 30.6,
+"e": 30.8,
+"text": "still",
+"chunk": 31
+},
+{
+"t": 30.8,
+"e": 31.26,
+"text": "recorded",
+"chunk": 32
+},
+{
+"t": 31.26,
+"e": 31.54,
+"text": "over",
+"chunk": 32
+},
+{
+"t": 31.54,
+"e": 32.46,
+"text": "917",
+"chunk": 32
+},
+{
+"t": 32.46,
+"e": 33.02,
+"text": "billion",
+"chunk": 33
+},
+{
+"t": 33.02,
+"e": 33.32,
+"text": "in",
+"chunk": 33
+},
+{
+"t": 33.32,
+"e": 33.44,
+"text": "real",
+"chunk": 33
+},
+{
+"t": 33.44,
+"e": 33.62,
+"text": "estate",
+"chunk": 34
+},
+{
+"t": 33.62,
+"e": 34.02,
+"text": "transactions",
+"chunk": 34
+},
+{
+"t": 34.02,
+"e": 34.52,
+"text": "in",
+"chunk": 35
+},
+{
+"t": 34.52,
+"e": 34.84,
+"text": "2025",
+"chunk": 35
+},
+{
+"t": 34.84,
+"e": 35.36,
+"text": "and",
+"chunk": 35
+},
+{
+"t": 35.36,
+"e": 36.1,
+"text": "2026.",
+"chunk": 36
+},
+{
+"t": 36.42,
+"e": 37.06,
+"text": "Geopolitical",
+"chunk": 37
+},
+{
+"t": 37.06,
+"e": 37.36,
+"text": "tensions",
+"chunk": 37
+},
+{
+"t": 37.36,
+"e": 37.74,
+"text": "brought",
+"chunk": 38
+},
+{
+"t": 37.74,
+"e": 38.1,
+"text": "another",
+"chunk": 38
+},
+{
+"t": 38.1,
+"e": 38.46,
+"text": "serious",
+"chunk": 39
+},
+{
+"t": 38.46,
+"e": 38.88,
+"text": "challenge,",
+"chunk": 39
+},
+{
+"t": 38.88,
+"e": 39.3,
+"text": "affecting",
+"chunk": 40
+},
+{
+"t": 39.3,
+"e": 39.84,
+"text": "tourism,",
+"chunk": 40
+},
+{
+"t": 40.16,
+"e": 40.54,
+"text": "investor",
+"chunk": 41
+},
+{
+"t": 40.54,
+"e": 41.08,
+"text": "confidence,",
+"chunk": 41
+},
+{
+"t": 41.32,
+"e": 41.6,
+"text": "and",
+"chunk": 42
+},
+{
+"t": 41.6,
+"e": 41.86,
+"text": "property",
+"chunk": 42
+},
+{
+"t": 41.86,
+"e": 42.44,
+"text": "transactions.",
+"chunk": 43
+},
+{
+"t": 42.82,
+"e": 42.96,
+"text": "But",
+"chunk": 44
+},
+{
+"t": 42.96,
+"e": 43.2,
+"text": "Dubai",
+"chunk": 44
+},
+{
+"t": 43.2,
+"e": 43.34,
+"text": "is",
+"chunk": 44
+},
+{
+"t": 43.34,
+"e": 43.74,
+"text": "responding.",
+"chunk": 45
+},
+{
+"t": 43.98,
+"e": 44.24,
+"text": "The",
+"chunk": 46
+},
+{
+"t": 44.24,
+"e": 44.5,
+"text": "government",
+"chunk": 46
+},
+{
+"t": 44.5,
+"e": 45.12,
+"text": "introduced",
+"chunk": 47
+},
+{
+"t": 45.12,
+"e": 45.52,
+"text": "2.5",
+"chunk": 47
+},
+{
+"t": 45.92,
+"e": 46.26,
+"text": "billion",
+"chunk": 48
+},
+{
+"t": 46.26,
+"e": 46.68,
+"text": "in",
+"chunk": 48
+},
+{
+"t": 46.68,
+"e": 47.0,
+"text": "economic",
+"chunk": 48
+},
+{
+"t": 47.0,
+"e": 47.78,
+"text": "incentives,",
+"chunk": 49
+},
+{
+"t": 48.02,
+"e": 48.34,
+"text": "including",
+"chunk": 50
+},
+{
+"t": 48.34,
+"e": 48.84,
+"text": "support",
+"chunk": 50
+},
+{
+"t": 48.84,
+"e": 49.16,
+"text": "for",
+"chunk": 50
+},
+{
+"t": 49.16,
+"e": 49.32,
+"text": "real",
+"chunk": 51
+},
+{
+"t": 49.32,
+"e": 49.56,
+"text": "estate",
+"chunk": 51
+},
+{
+"t": 49.56,
+"e": 49.9,
+"text": "and",
+"chunk": 51
+},
+{
+"t": 49.9,
+"e": 50.28,
+"text": "construction.",
+"chunk": 52
+},
+{
+"t": 50.28,
+"e": 50.72,
+"text": "You",
+"chunk": 53
+},
+{
+"t": 50.72,
+"e": 51.0,
+"text": "guys",
+"chunk": 53
+},
+{
+"t": 51.0,
+"e": 51.22,
+"text": "need",
+"chunk": 53
+},
+{
+"t": 51.22,
+"e": 51.34,
+"text": "to",
+"chunk": 54
+},
+{
+"t": 51.34,
+"e": 51.72,
+"text": "understand",
+"chunk": 54
+},
+{
+"t": 51.72,
+"e": 52.16,
+"text": "that",
+"chunk": 54
+},
+{
+"t": 52.16,
+"e": 52.66,
+"text": "corrections",
+"chunk": 55
+},
+{
+"t": 52.66,
+"e": 53.08,
+"text": "are",
+"chunk": 55
+},
+{
+"t": 53.08,
+"e": 53.36,
+"text": "part",
+"chunk": 55
+},
+{
+"t": 53.36,
+"e": 53.58,
+"text": "of",
+"chunk": 56
+},
+{
+"t": 53.58,
+"e": 53.84,
+"text": "every",
+"chunk": 56
+},
+{
+"t": 53.84,
+"e": 54.18,
+"text": "property",
+"chunk": 56
+},
+{
+"t": 54.18,
+"e": 54.62,
+"text": "cycle.",
+"chunk": 57
+},
+{
+"t": 54.62,
+"e": 55.1,
+"text": "Watch",
+"chunk": 58
+},
+{
+"t": 55.1,
+"e": 55.36,
+"text": "future",
+"chunk": 58
+},
+{
+"t": 55.36,
+"e": 55.84,
+"text": "supply,",
+"chunk": 58
+},
+{
+"t": 55.84,
+"e": 56.32,
+"text": "rental",
+"chunk": 59
+},
+{
+"t": 56.32,
+"e": 56.78,
+"text": "demand,",
+"chunk": 59
+},
+{
+"t": 56.78,
+"e": 57.28,
+"text": "and",
+"chunk": 60
+},
+{
+"t": 57.28,
+"e": 57.48,
+"text": "your",
+"chunk": 60
+},
+{
+"t": 57.48,
+"e": 57.76,
+"text": "entry",
+"chunk": 60
+},
+{
+"t": 57.76,
+"e": 58.08,
+"text": "price.",
+"chunk": 61
+},
+{
+"t": 58.08,
+"e": 58.66,
+"text": "That's",
+"chunk": 62
+},
+{
+"t": 58.66,
+"e": 58.78,
+"text": "where",
+"chunk": 62
+},
+{
+"t": 58.78,
+"e": 59.3,
+"text": "investment",
+"chunk": 63
+},
+{
+"t": 59.3,
+"e": 59.86,
+"text": "decisions",
+"chunk": 63
+},
+{
+"t": 59.86,
+"e": 60.34,
+"text": "should",
+"chunk": 64
+},
+{
+"t": 60.34,
+"e": 60.52,
+"text": "start.",
+"chunk": 64
+},
+{
+"t": 60.52,
+"e": 60.88,
+"text": "And",
+"chunk": 65
+},
+{
+"t": 60.88,
+"e": 61.16,
+"text": "remember",
+"chunk": 65
+},
+{
+"t": 61.16,
+"e": 61.5,
+"text": "Sheikh",
+"chunk": 65
+},
+{
+"t": 61.5,
+"e": 61.8,
+"text": "Mohammed",
+"chunk": 66
+},
+{
+"t": 61.8,
+"e": 62.06,
+"text": "bin",
+"chunk": 66
+},
+{
+"t": 62.06,
+"e": 62.54,
+"text": "Rashid's",
+"chunk": 66
+},
+{
+"t": 62.54,
+"e": 62.74,
+"text": "famous",
+"chunk": 67
+},
+{
+"t": 62.74,
+"e": 63.16,
+"text": "bubble",
+"chunk": 67
+},
+{
+"t": 63.16,
+"e": 63.54,
+"text": "analogy.",
+"chunk": 68
+},
+{
+"t": 63.54,
+"e": 64.2,
+"text": "People",
+"chunk": 69
+},
+{
+"t": 64.2,
+"e": 64.7,
+"text": "expected",
+"chunk": 69
+},
+{
+"t": 64.7,
+"e": 65.32,
+"text": "Dubai's",
+"chunk": 70
+},
+{
+"t": 65.32,
+"e": 65.56,
+"text": "bubble",
+"chunk": 70
+},
+{
+"t": 65.56,
+"e": 65.82,
+"text": "to",
+"chunk": 70
+},
+{
+"t": 65.82,
+"e": 66.26,
+"text": "burst,",
+"chunk": 71
+},
+{
+"t": 66.26,
+"e": 66.54,
+"text": "but",
+"chunk": 72
+},
+{
+"t": 66.54,
+"e": 66.92,
+"text": "eventually",
+"chunk": 72
+},
+{
+"t": 66.92,
+"e": 67.44,
+"text": "found",
+"chunk": 72
+},
+{
+"t": 67.44,
+"e": 67.76,
+"text": "themselves",
+"chunk": 73
+},
+{
+"t": 67.76,
+"e": 68.22,
+"text": "chasing",
+"chunk": 73
+},
+{
+"t": 68.22,
+"e": 68.56,
+"text": "it.",
+"chunk": 74
+}
+]
+}

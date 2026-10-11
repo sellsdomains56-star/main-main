@@ -1,0 +1,102 @@
+'use strict';
+// ---------------------------------------------------------------------------
+// Compositor (the Abu Dhabi look). Two kinds of beat, crossfaded:
+//   FACE      he is full-screen (4K source, reframed), warm grade, punch-in / zoom-out moves, small black-on-white captions
+//   GRAPHICS  no person: one calm hero per beat - type / number scenes, real satellite flyovers (satmap.js)
+// scenes.js defines buildScenes(): { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues }.   window.prepare(t) loads what a frame needs, window.draw(t) renders it.
+// ---------------------------------------------------------------------------
+let TL = null, GRID = null, NOISE_PAT = null, FOOT = null, FOOT_K = -1, CFG = null;
+const OUTLINES = {};
+const GRID_STEP = 60, PIV = [430, 760];                     // zoom pivot: his face stays in frame when punching in
+const HERO_Y = 700, HERO_H = 1000, HERO_MAX = 1.08;         // a text scene's content box is centred at HERO_Y and scaled to fit HERO_H (captions sit below)
+const pad5 = n => String(n).padStart(5, '0');
+
+function faceF(t) {                                          // 1 on the face beats, 0 on the graphics beats
+  let f = 0;
+  for (const [a, b] of CFG.FACE_SEGS) f += (a <= 0.001 ? 1 : E.inOut3(prog(t, a - 0.12, a + 0.28))) - E.inOut3(prog(t, b - 0.12, b + 0.28));
+  return clamp(f);
+}
+function faceZoom(t) {                                       // a slow push over each face beat + a quick punch on key words
+  let z = 1.05;
+  for (const [a, b] of CFG.FACE_SEGS) if (t >= a - 0.4 && t <= b + 0.4) z = lerp(1.05, 1.13, prog(t, a, b));
+  for (const [t0, am] of CFG.PUNCHES) if (t > t0) z += am * Math.exp(-(t - t0) * 6) * (1 - Math.exp(-(t - t0) * 40));
+  return z;
+}
+function initAssets() {
+  GRID = document.createElement('canvas'); GRID.width = W * SS; GRID.height = (H + GRID_STEP) * SS;
+  const g = GRID.getContext('2d'); g.scale(SS, SS); g.fillStyle = 'rgba(243,239,230,1)';
+  for (let y = 0; y < H + GRID_STEP; y += GRID_STEP) for (let x = GRID_STEP / 2; x < W; x += GRID_STEP) { g.beginPath(); g.arc(x, y, 1.5, 0, Math.PI * 2); g.fill(); }
+  const n = document.createElement('canvas'); n.width = n.height = 256;
+  const nc = n.getContext('2d'), id = nc.createImageData(256, 256), r = rng(7);
+  for (let i = 0; i < id.data.length; i += 4) { const v = (r() * 255) | 0; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
+  nc.putImageData(id, 0, 0); NOISE_PAT = ctx.createPattern(n, 'repeat');
+}
+function drawBG(t) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
+  glow(180 + 70 * Math.sin(t * 0.21), 700 + 40 * Math.cos(t * 0.17), 820, '233,196,124', 0.05);
+  glow(900 + 60 * Math.cos(t * 0.19), 1400 + 50 * Math.sin(t * 0.23), 900, '233,196,124', 0.035);
+  ctx.save(); ctx.globalAlpha = 0.07; ctx.drawImage(GRID, 0, -((t * 7) % GRID_STEP), W, H + GRID_STEP); ctx.restore();
+  const v = ctx.createRadialGradient(CX, 1000, 360, CX, 1000, 1250); v.addColorStop(0, 'rgba(8,8,10,0)'); v.addColorStop(1, 'rgba(8,8,10,0.92)');
+  ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+}
+// him: the full frame, only in the FACE beats (fades through the cut into / out of the graphics)
+function drawPerson(t, F) {
+  if (F <= 0.002 || !FOOT) return;
+  const S = faceZoom(t), bv = E.inOut2(F), g = bv * bv;
+  ctx.save(); ctx.globalAlpha *= bv; ctx.translate(PIV[0], PIV[1]); ctx.scale(S, S); ctx.translate(-PIV[0], -PIV[1]); ctx.drawImage(FOOT, 0, 0, W, H); ctx.restore();
+  ctx.save(); ctx.globalAlpha = 0.24 * g; ctx.globalCompositeOperation = 'soft-light'; ctx.fillStyle = '#E9C47C'; ctx.fillRect(0, 0, W, H); ctx.restore();   // warm grade
+  const vg = ctx.createRadialGradient(CX, 800, 300, CX, 800, 1100); vg.addColorStop(0, 'rgba(8,8,10,0)'); vg.addColorStop(1, `rgba(8,8,10,${0.5 * g})`);
+  ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+  const tg1 = ctx.createLinearGradient(0, 0, 0, 300); tg1.addColorStop(0, `rgba(8,8,10,${0.45 * g})`); tg1.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = tg1; ctx.fillRect(0, 0, W, 300);
+  const y0 = 1050, y1 = 1400, sg = ctx.createLinearGradient(0, y0, 0, H);                  // bottom scrim under the captions
+  sg.addColorStop(0, 'rgba(8,8,10,0)'); sg.addColorStop(clamp((y1 - y0) / (H - y0)), `rgba(8,8,10,${0.8 * g})`); sg.addColorStop(1, `rgba(8,8,10,${0.92 * g})`);
+  ctx.fillStyle = sg; ctx.fillRect(0, y0, W, H - y0);
+}
+function runScene(sc, t) {
+  if (sc.kind === 'sat') return runSat(sc, t);
+  const { a, b } = sc;
+  if (t < a - 0.1 || t > b + 0.3) return;
+  const inA = ea(t, a - 0.08, a + 0.2, E.out2), inD = (1 - ea(t, a - 0.08, a + 0.55, E.out4)) * 56;
+  const outA = sc.last ? 0 : prog(t, b - 0.16, b + 0.1), outD = sc.last ? 0 : E.in3(prog(t, b - 0.16, b + 0.25)) * 46;
+  const alpha = inA * (1 - outA); if (alpha <= 0.002) return;
+  const mid = (sc.box[0] + sc.box[1]) / 2, fit = Math.min(HERO_MAX, HERO_H / (sc.box[1] - sc.box[0])), z = fit * (1 + 0.02 * prog(t, a, b));
+  ctx.save(); ctx.globalAlpha *= alpha; ctx.translate(CX, HERO_Y + inD - outD); ctx.scale(z, z); ctx.translate(-CX, -mid); sc.fn(t); ctx.restore();
+}
+function drawGrain(frame) {
+  const r = rng(frame * 2654435761 % 4294967296), ox = (r() * 256) | 0, oy = (r() * 256) | 0;
+  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 0.045; ctx.globalCompositeOperation = 'overlay';
+  ctx.translate(-ox, -oy); ctx.fillStyle = NOISE_PAT; ctx.fillRect(0, 0, W * SS + 256, H * SS + 256); ctx.restore();
+}
+function draw(t) {
+  const F = faceF(t);
+  ctx.setTransform(SS, 0, 0, SS, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.letterSpacing = '0px';
+  drawBG(t);
+  const A = Math.pow(1 - F, 1.3);
+  ctx.save(); ctx.globalAlpha *= Math.min(1, A * 1.6); for (const sc of CFG.SCENES) runScene(sc, t); ctx.restore();
+  drawPerson(t, F);
+  for (const ov of CFG.OVERLAYS) ov(t);
+  drawCaptions(t, F);
+  drawGrain(Math.round(t * FPS));
+  const fa = 1 - ea(t, 0, 0.1, E.out2), fb = ea(t, DUR - 0.22, DUR - 0.02, E.in2), k = Math.max(fa, fb);
+  if (k > 0.002) { ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = k; ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W * SS, H * SS); ctx.restore(); }
+}
+async function prepare(t) {
+  const load = src => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
+  const jobs = [], k = clamp(Math.round(t * FPS), 0, TL.frames - 1);
+  if (faceF(t) > 0.001 && !(k === FOOT_K && FOOT)) jobs.push(load(`build/footage/f_${pad5(k)}.jpg`).then(im => { FOOT = im; FOOT_K = k; }));
+  for (const sc of CFG.SCENES) if (sc.kind === 'sat' && t >= sc.a - 0.2 && t <= sc.b + 0.5) jobs.push(satEnsure(SAT_SCENES[sc.id], t));
+  await Promise.all(jobs);
+}
+async function boot() {
+  const q = new URLSearchParams(location.search), ss = +q.get('ss') || 1, cv = document.getElementById('c');
+  cv.width = Math.round(W * ss); cv.height = Math.round(H * ss); cv.style.width = W + 'px'; cv.style.height = H + 'px'; setCtx(cv.getContext('2d'), ss);
+  TL = await (await fetch('timeline.json')).json(); DUR = TL.dur; parseTimeline(TL);
+  try { Object.assign(OUTLINES, await (await fetch('outlines.json')).json()); } catch (e) { /* no island outlines in this reel */ }
+  await Promise.all([700, 800].flatMap(w => [document.fonts.load(`${w} 40px "Inter Display"`), document.fonts.load(`${w} 40px "Inter"`)]));
+  await loadLogos();
+  CFG = buildScenes();
+  initAssets();
+  window.draw = draw; window.prepare = prepare; window.READY = true;
+  if (q.get('t')) { await prepare(+q.get('t')); draw(+q.get('t')); }
+}
+boot();
