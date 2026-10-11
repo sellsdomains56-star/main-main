@@ -1,10 +1,11 @@
 """Sound design for the reel: processed voiceover + SFX cut to the animation cues (+ optional ambient music bed).
-   python3 -I audio.py <voice.wav 48k> <out_mix.wav> [--music]
+   python3 -I audio.py <voice.wav 48k> <out_mix.wav> [--music] [--sfx-only]
    Everything is synthesised with numpy (no samples), so it is fully reproducible."""
 import sys, subprocess
 import numpy as np
 
 SR = 48000
+SFX_ONLY = '--sfx-only' in sys.argv    # write just the sound effects (no voice, no music) as they sit in the reel mix
 WITH_MUSIC = '--music' in sys.argv      # ambient pad + bell plucks; off by default (voice + SFX only)
 DUR = 46.72
 N = int((DUR + 1.5) * SR)
@@ -225,6 +226,7 @@ def main(voice_path, out_path):
     duck_bed = 1 - 0.58 * smooth_env(np.clip(env, 0, 1), 140).clip(0, 1)
     duck_sfx = 1 - 0.22 * smooth_env(np.clip(env, 0, 1), 90).clip(0, 1)
 
+    if SFX_ONLY: duck_sfx[:] = 1.0      # no voice in this stem, so nothing to duck under
     bed = build_bed() if WITH_MUSIC else np.zeros((N, 2)); sfx = build_sfx()   # music bed is opt-in (--music)
     ir = make_reverb()
     bed_wet = convolve(bed, ir) * 0.55; sfx_wet = convolve(sfx, ir) * 0.30
@@ -232,7 +234,7 @@ def main(voice_path, out_path):
     sfx_mix = (sfx + sfx_wet) * duck_sfx[:, None] * 0.72
     # fade the bed in/out and tail the end
     bed_mix[:, :] *= np.minimum(1, tarr(N) / 1.2)[:, None] * np.clip((DUR + 0.6 - tarr(N)) / 1.0, 0, 1)[:, None]
-    mix = vb * 1.0 + bed_mix * 1.0 + sfx_mix * 1.0
+    mix = (sfx_mix if SFX_ONLY else vb * 1.0 + bed_mix * 1.0 + sfx_mix * 1.0)
     db = lambda x: 20 * np.log10(np.sqrt((x[: int(DUR * SR)] ** 2).mean()) + 1e-9)
     pkdb = lambda x: 20 * np.log10(np.abs(x[: int(DUR * SR)]).max() + 1e-9)
     print(f'stems  rms dBFS / peak dBFS:  voice {db(vb):.1f}/{pkdb(vb):.1f}   bed {db(bed_mix):.1f}/{pkdb(bed_mix):.1f}   sfx {db(sfx_mix):.1f}/{pkdb(sfx_mix):.1f}')
