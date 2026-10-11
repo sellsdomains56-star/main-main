@@ -8,7 +8,7 @@ SR = 48000
 SFX_OFFSET = 0.0                       # --offset 0.04 : shift every effect later (graphics were timed on the voiceover file, not the footage audio)
 if '--offset' in sys.argv:
     _i = sys.argv.index('--offset'); SFX_OFFSET = float(sys.argv[_i + 1]); del sys.argv[_i:_i + 2]
-GLITCH = '--glitch' in sys.argv            # swap the clean effects for digital-glitch ones (bit-crush, stutter, static, tape-stop)
+GLITCH = '--clean' not in sys.argv            # swap the clean effects for digital-glitch ones (bit-crush, stutter, static, tape-stop)
 SFX_ONLY = '--sfx-only' in sys.argv    # write just the sound effects (no voice, no music) as they sit in the reel mix
 WITH_MUSIC = '--music' in sys.argv      # ambient pad + bell plucks; off by default (voice + SFX only)
 DUR = 46.72
@@ -178,59 +178,52 @@ def count_ticks(buf, a0, a1, n=13, f0=1250, gain=0.16):
 # ------------------------------------------------------------------ cue sheet (seconds, from the animation)
 def build_sfx():
     buf = np.zeros((N, 2))
-    # scene transitions
-    for i, t in enumerate([5.62, 8.95, 11.77, 13.86, 16.21, 21.91, 24.46, 26.26, 28.19, 31.30, 37.90, 42.20]):    # layout cuts + scene changes
-        place(buf, t - 0.28, whoosh(0.62, up=(i % 2 == 0)), 0.34, pan=(-0.25 if i % 2 else 0.25))
-        place(buf, t + 0.02, thump(70, 0.35), 0.16)
-    # 1 question: the oil line, the crash, the question mark
-    place(buf, 0.20, tick(900), 0.10)
-    place(buf, 1.38, crash(1.1), 0.62); place(buf, 1.38, shimmer(), 0.12)
-    place(buf, 2.35, swell(1.5), 0.30); place(buf, 2.9, boom(1.6), 0.35)
-    # 2 outdated
-    place(buf, 4.70, swipe(0.3), 0.4); place(buf, 4.88, thump(78, 0.5), 0.6); place(buf, 4.88, click(), 0.4)               # zoom punch + stamp
-    place(buf, 1.45, swipe(0.25), 0.35); place(buf, 29.55, swipe(0.25), 0.35)                                            # punch-in swooshes
-    for k in range(10): place(buf, 5.95 + k * 0.265, tick(2100 if k % 5 else 2600), 0.07)           # timeline ticks
-    place(buf, 7.27, pop(520), 0.18); place(buf, 7.65, pop(620), 0.18); place(buf, 8.13, swipe(0.4), 0.30)
-    place(buf, 8.59, boom(1.8), 0.55); place(buf, 8.59, bell(587, 2.6), 0.20); place(buf, 8.59, shimmer(), 0.22)
-    # 3 Mubadala
-    place(buf, 8.95, thump(62, 0.9), 0.55); place(buf, 9.55, shimmer(1.6), 0.28)
-    count_ticks(buf, 9.78, 10.98, 14); place(buf, 11.12, pop(700), 0.14)
-    place(buf, 11.80, swipe(0.4), 0.3); place(buf, 11.95, swipe(0.5), 0.26); place(buf, 12.25, swipe(0.5), 0.2)
-    place(buf, 13.15, ping(1175, 1.4), 0.2)
-    # 4 ADIA
-    place(buf, 13.86, thump(58, 0.9), 0.55); place(buf, 14.3, shimmer(1.6), 0.28)
-    for k in range(10): place(buf, 14.45 + k * 0.07, tick(1700 + k * 60), 0.05)
+    # scene changes: whoosh in, soft thump
+    for i, t in enumerate([5.62, 8.95, 11.77, 13.86, 16.21, 21.91, 24.46, 26.26, 28.19, 31.30, 37.90, 42.20]):
+        place(buf, t - 0.28, whoosh(0.62, up=(i % 2 == 0)), 0.30, pan=(-0.25 if i % 2 else 0.25))
+        place(buf, t + 0.02, thump(70, 0.35), 0.13)
+    # opening (him): punch-in on "collapsed", the OUTDATED stamp
+    place(buf, 1.45, swipe(0.25), 0.30)
+    place(buf, 4.70, swipe(0.3), 0.36); place(buf, 4.88, thump(78, 0.5), 0.55); place(buf, 4.88, click(), 0.35)
+    # building wealth beyond oil
+    place(buf, 7.27, pop(520), 0.16); place(buf, 7.65, pop(620), 0.16); place(buf, 8.13, swipe(0.4), 0.26)
+    place(buf, 8.59, boom(1.6), 0.45); place(buf, 8.59, shimmer(), 0.18)
+    # Mubadala
+    place(buf, 8.95, thump(62, 0.9), 0.45); place(buf, 9.55, shimmer(1.6), 0.22)
+    count_ticks(buf, 9.78, 10.98, 14); place(buf, 11.12, pop(700), 0.12)
+    # vs Portugal
+    place(buf, 11.95, swipe(0.5), 0.24); place(buf, 12.25, swipe(0.5), 0.2); place(buf, 13.15, ping(1175, 1.4), 0.2)
+    # ADIA
+    place(buf, 13.86, thump(58, 0.9), 0.45); place(buf, 14.3, shimmer(1.6), 0.22)
     count_ticks(buf, 15.19, 16.05, 10, f0=1400)
-    # 5 ecosystem
-    for t, f in [(16.84, 740), (17.32, 830), (17.78, 740), (18.33, 880)]: place(buf, t, pop(f), 0.30)
-    place(buf, 18.84, riser(0.4), 0.2); place(buf, 18.88, ping(1046, 1.2), 0.22)
-    for t, f in [(19.13, 523), (20.11, 587)]: place(buf, t, pop(f, 0.22), 0.34); place(buf, t, thump(90, 0.3), 0.14)
-    place(buf, 20.87, pop(784, 0.25), 0.34); place(buf, 21.1, ping(1568, 1.3), 0.26); place(buf, 21.1, shimmer(), 0.2)
-    # 6 Aldar
-    place(buf, 22.29, thump(66, 0.8), 0.5); place(buf, 22.9, shimmer(1.4), 0.24)
-    place(buf, 22.85, click(), 0.5); place(buf, 22.85, pop(420, 0.2), 0.22); place(buf, 23.36, click(), 0.5); place(buf, 23.36, pop(500, 0.2), 0.22)
-    count_ticks(buf, 24.72, 25.40, 7, f0=1300); place(buf, 25.45, tick(1800), 0.1); place(buf, 25.85, pop(660), 0.16)
-    # 7 Modon
-    place(buf, 26.43, thump(62, 0.9), 0.55); place(buf, 27.05, shimmer(1.4), 0.24)
-    place(buf, 26.90, click(), 0.5); place(buf, 26.90, pop(440, 0.2), 0.22)
-    count_ticks(buf, 28.19, 28.95, 13, f0=1350, gain=0.17)
-    place(buf, 29.28, pop(600), 0.16)
-    for k in range(9): place(buf, 29.58 + k * 0.085, tick(1500 + k * 140), 0.12)
-    place(buf, 30.40, ping(1568, 1.3), 0.26)
-    # 8 criteria
+    # AI / technology / infrastructure / businesses -> companies, jobs, housing demand
+    for t, f in [(16.84, 740), (17.32, 830), (17.78, 740), (18.33, 880)]: place(buf, t, pop(f), 0.26)
+    place(buf, 18.84, riser(0.4), 0.16); place(buf, 18.88, ping(1046, 1.2), 0.20)
+    for t, f in [(19.13, 523), (20.11, 587)]: place(buf, t, pop(f, 0.22), 0.30); place(buf, t, thump(90, 0.3), 0.12)
+    place(buf, 20.87, pop(784, 0.25), 0.30); place(buf, 21.1, ping(1568, 1.3), 0.22); place(buf, 21.1, shimmer(), 0.16)
+    # Aldar -> Talay, Yas Riva Reserve
+    place(buf, 22.29, thump(66, 0.8), 0.42); place(buf, 22.9, shimmer(1.4), 0.2)
+    place(buf, 22.85, click(), 0.4); place(buf, 22.85, pop(420, 0.2), 0.2); place(buf, 23.36, click(), 0.4); place(buf, 23.36, pop(500, 0.2), 0.2)
+    # AED 5B+
+    count_ticks(buf, 24.72, 25.40, 7, f0=1300); place(buf, 25.45, tick(1800), 0.1); place(buf, 25.85, pop(660), 0.14)
+    # Modon -> Hudayriyat
+    place(buf, 26.43, thump(62, 0.9), 0.45); place(buf, 27.05, shimmer(1.4), 0.2)
+    place(buf, 26.90, click(), 0.4); place(buf, 26.90, pop(440, 0.2), 0.2)
+    # AED 13B+ within days
+    count_ticks(buf, 28.19, 28.95, 13, f0=1350, gain=0.17); place(buf, 29.28, pop(600), 0.14); place(buf, 30.40, ping(1568, 1.3), 0.22)
+    # what to look for
     for t, f in [(33.47, 587), (34.92, 659), (36.22, 740)]:
-        place(buf, t, pop(f, 0.22), 0.34); place(buf, t, thump(88, 0.3), 0.15)
-    for t in [33.9, 35.35, 36.65]: place(buf, t, ping(1760, 0.9), 0.20)
-    # 9 bigger than oil
+        place(buf, t, pop(f, 0.22), 0.30); place(buf, t, thump(88, 0.3), 0.12); place(buf, t + 0.4, ping(1760, 0.9), 0.16)
+    # bigger than oil (him): the dot, then the ring grows past it
     place(buf, 38.57, ping(988, 1.4), 0.18)
-    place(buf, 39.13, riser(0.9), 0.5); place(buf, 40.0, boom(2.2), 0.62); place(buf, 40.0, shimmer(1.8), 0.26)
-    place(buf, 40.85, swell(1.2), 0.22); place(buf, 41.43, ping(1175, 1.2), 0.20); place(buf, 41.77, tick(2000), 0.1)
-    # 10 CTA
+    place(buf, 39.13, riser(0.9), 0.4); place(buf, 40.0, boom(2.2), 0.5); place(buf, 40.0, shimmer(1.8), 0.2)
+    place(buf, 41.43, ping(1175, 1.2), 0.18)
+    # DM me
     for k in range(4): place(buf, 42.94 + k * 0.22, tick(1600 + k * 120), 0.10)
-    for k in range(4): place(buf, 44.10 + k * 0.16, ping(1568 + k * 130, 0.7), 0.13)
-    for k in range(9): place(buf, 45.06 + k * 0.047, click(rng.uniform(2400, 3600)), 0.22)
-    place(buf, 45.53, whoosh(0.5, True, 1.2), 0.40); place(buf, 45.53, pop(900, 0.2), 0.36)
-    place(buf, 46.05, bell(1175, 2.0), 0.22); place(buf, 46.18, bell(1568, 2.0), 0.20); place(buf, 46.3, bell(1760, 2.0), 0.18)
+    for k in range(4): place(buf, 44.10 + k * 0.16, ping(1568 + k * 130, 0.7), 0.12)
+    for k in range(9): place(buf, 45.06 + k * 0.047, click(rng.uniform(2400, 3600)), 0.2)
+    place(buf, 45.53, whoosh(0.5, True, 1.2), 0.36); place(buf, 45.53, pop(900, 0.2), 0.32)
+    place(buf, 46.05, bell(1175, 2.0), 0.2); place(buf, 46.18, bell(1568, 2.0), 0.18); place(buf, 46.3, bell(1760, 2.0), 0.16)
     return buf
 
 def build_bed():

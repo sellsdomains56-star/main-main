@@ -4,7 +4,7 @@
 // A fly-to camera glides between the places he names; pins ripple in on the word, arcs link them.
 // ---------------------------------------------------------------------------
 const MAPD = { ready: false, coarse: null, fine: null, major: null, minor: null, places: null };
-const MAP_CY = 1000;                     // screen y of the camera centre (just above his head)
+const MAP_CY = 1250;                     // screen y of the camera centre: the pin sits under the hero graphic, above the captions
 const merc = lat => Math.log(Math.tan(Math.PI / 4 + lat * Math.PI / 360)) * 180 / Math.PI;
 
 function polysPath(polys) {
@@ -66,10 +66,7 @@ const PINS = [
   { key: 'hudayriyat', t: 26.90, label: 'HUDAYRIYAT GOLF ESTATES', sub: 'HUDAYRIYAT ISLAND', side: 1 },
 ];
 // arcs from the Al Maryah hub, drawn as the flywheel spins up
-const ARCS = [
-  { a: 'mubadala', b: 'adia', t0: 13.3, t1: 14.2 },
-  { a: 'mubadala', b: 'talay', t0: 19.13, t1: 19.9 }, { a: 'mubadala', b: 'yas', t0: 20.11, t1: 20.9 }, { a: 'mubadala', b: 'hudayriyat', t0: 20.87, t1: 21.7 },
-];
+const ARCS = [];                       // (the flywheel arcs were removed: calmer map)
 
 function mapAt(t, tg, A) {
   if (!MAPD.ready || A <= 0.003) return;
@@ -103,9 +100,9 @@ function mapAt(t, tg, A) {
 
   // soft scrim so the graphics on top stay readable
   ctx.save(); ctx.globalAlpha *= A;
-  const g = ctx.createLinearGradient(0, 0, 0, 1060);
-  g.addColorStop(0, 'rgba(8,8,10,0.9)'); g.addColorStop(0.22, 'rgba(8,8,10,0.74)'); g.addColorStop(0.62, 'rgba(8,8,10,0.6)'); g.addColorStop(1, 'rgba(8,8,10,0.16)');
-  ctx.fillStyle = g; ctx.fillRect(0, 0, W, 1060); ctx.restore();
+  const g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, 'rgba(8,8,10,0.88)'); g.addColorStop(0.2, 'rgba(8,8,10,0.72)'); g.addColorStop(0.5, 'rgba(8,8,10,0.5)'); g.addColorStop(0.68, 'rgba(8,8,10,0.34)'); g.addColorStop(0.8, 'rgba(8,8,10,0.62)'); g.addColorStop(1, 'rgba(8,8,10,0.9)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.restore();
 
   // arcs + pins
   ctx.save(); ctx.globalAlpha *= A;
@@ -143,7 +140,7 @@ function mapLabels(tg, A) {
   for (const pin of PINS) {
     const e = ea(tg, pin.t + 0.15, pin.t + 0.7, E.out3) * (1 - smoothStep(0.2, 0.34, _cam.w)); if (e <= 0.01) continue;
     const [x, y] = proj(P[pin.key].lon, P[pin.key].lat);
-    if (x < 40 || x > W - 40 || y < 560 || y > 1040) continue;      // only label pins that sit in the open band above his head
+    if (x < 40 || x > W - 40 || y < 1100 || y > 1400) continue;      // only label pins that sit in the band between the hero graphic and the captions
     const side = x > 700 ? -1 : x < 380 ? 1 : pin.side, lx = x + side * 34, ly = y - 26;
     line(x + side * 10, y - 8, lx, ly + 6, { color: 'rgba(233,196,124,0.7)', w: 1.5, alpha: e });
     const al = side > 0 ? 'left' : 'right';

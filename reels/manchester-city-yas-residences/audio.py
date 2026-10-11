@@ -189,6 +189,7 @@ def build_sfx():
     buf = np.zeros((N, 2)); S = TL['segs']
     # every cut: whoosh in, thump + a burst of digital clicks on the frame the glitch slices hit
     for i, s in enumerate(S[1:]):
+        if s.get('cont'): continue                                   # same scene continues (price chart): no cut
         a = s['a']; place(buf, a - 0.24, whoosh(0.55, up=(i % 2 == 0)), 0.30, pan=(-0.25 if i % 2 else 0.25)); place(buf, a, thump(66, 0.4), 0.30)
         for k in range(4): place(buf, a + 0.012 + k * 0.036, click(rng.uniform(2400, 4200)), 0.20)
     # hook: "6 BILLION" / "72 HOURS" slam in behind him, punch on each stat word
@@ -202,12 +203,12 @@ def build_sfx():
     # S2: aerial ken-burns, the two chips
     place(buf, wt('S2', r'^FIRST', 0, 0.3) - 0.1, pop(600, 0.18), 0.22); place(buf, wt('S2', r'^CANAL', 0, 0.9) - 0.1, pop(760, 0.18), 0.24); place(buf, wt('S2', r'^CANAL', 0, 0.9) - 0.1, ping(1318, 0.9), 0.14)
     # S3: pins drop + camera moves + airport chip
-    s3 = SEG['S3']['a']; tF, tC, tA, tM = wt('S3', r'^FERRARI', 0, 0.45), wt('S3', r'^CIRCUIT', 0, 0.6), wt('S3', r'^AIRPORT', 0, 0.8), wt('S3', r'^TEN', 0, 0.88)
+    s3 = SEG['S3']['a']; tF, tC, tA, tM = wt('S3', r'^FERRARI', 0, 0.45), wt('S3', r'^CIRCUIT', 0, 0.6), wt('S3', r'^AIRPORT', 0, 0.8), wt('S3', r'^(10|TEN)', 0, 0.88)
     for tp, f in [(s3 + 0.15, 440), (tF - 0.05, 620), (tC - 0.05, 700)]: place(buf, tp, pop(f, 0.2), 0.34); place(buf, tp, thump(90, 0.3), 0.16); place(buf, tp + 0.1, ping(1760, 0.8), 0.14)
     for tp in [tF - 0.25, tC - 0.1, tA - 0.1]: place(buf, tp, swipe(0.5), 0.26)
     place(buf, tM - 0.15, pop(800, 0.2), 0.30); place(buf, tM - 0.15, ping(1318, 1.0), 0.18)
     # S4: house types (cuts) + 170 ha masterplan
-    tT, tD, tV, tH4 = SEG['S4']['a'], wt('S4', r'^DUPLEXES', 0, 0.3), wt('S4', r'^VILLAS', 0, 0.45), wt('S4', r'^(ONE|HUNDRED)', 0, 0.78)
+    tT, tD, tV, tH4 = SEG['S4']['a'], wt('S4', r'^DUPLEXES', 0, 0.3), wt('S4', r'^VILLAS', 0, 0.45), wt('S4', r'^(170|ONE|HUNDRED)', 0, 0.78)
     for tp in [tT, tD, tV]: place(buf, tp + 0.1, pop(640, 0.2), 0.26)
     for tp in [tD, tV]: place(buf, tp - 0.12, swipe(0.28), 0.30); place(buf, tp, thump(70, 0.35), 0.26)
     place(buf, tH4 - 0.02, thump(58, 0.9), 0.45); count_ticks(buf, tH4 + 0.05, tH4 + 0.95, 12, f0=1300, gain=0.18); place(buf, tH4 + 0.97, shimmer(1.2), 0.22)
@@ -215,6 +216,17 @@ def build_sfx():
     tL, tAc, tP, tO = wt('S5', r'^CRYSTAL', 0, 0.45), wt('S5', r'^TRAINING', 0, 0.62), wt('S5', r'^(PROMENADE|CANAL)', 0, 0.8), wt('S5', r'^(HALF|OPEN)', 0, 0.18)
     place(buf, tO - 0.05, thump(58, 0.8), 0.40); count_ticks(buf, tO - 0.05, tO + 0.95, 12, f0=1250, gain=0.18)
     for tp in [tL - 0.05, tAc - 0.28, tP - 0.1]: place(buf, tp - 0.15, swipe(0.3), 0.28); place(buf, tp, thump(72, 0.4), 0.28); place(buf, tp + 0.12, pop(700, 0.18), 0.20)
+    # price per sq ft: bars grow with count ticks, the -25% stamp, then the chart fills out and the scarcity stat
+    P1, P2, P3 = SEG['P1']['a'], SEG['P2']['a'], SEG['P3']['a']
+    tMc, tOr = wt('P1', r'^1,?852', 0, 0.5) - 0.1, wt('P1', r'^(TWENTY|25)', 0, 0.6) - 0.05; tSt = max(tOr + 0.5, wt('P1', r'PERCENT|%', 0, 0.72) - 0.05)
+    place(buf, P1 + 0.1, swipe(0.4), 0.26); count_ticks(buf, tMc, tMc + 1.35, 14, f0=1250, gain=0.16)
+    count_ticks(buf, tOr, tOr + 0.85, 10, f0=1100, gain=0.15)
+    place(buf, tSt, thump(56, 0.9), 0.55); place(buf, tSt, crash(0.8), 0.25); place(buf, tSt + 0.05, shimmer(1.3), 0.22); place(buf, tSt + 0.1, pop(760, 0.2), 0.22)
+    tApt, tM3, tFirst = wt('P2', r'^AVERAGE', 0, 0.35) - 0.1, P2 + 0.28, wt('P2', r'^FIRST', 0, 0.62) - 0.1
+    place(buf, P2, swipe(0.5), 0.26); count_ticks(buf, tM3, tM3 + 0.8, 8, f0=1200, gain=0.14); count_ticks(buf, tApt, tApt + 0.8, 8, f0=1050, gain=0.13)
+    place(buf, tFirst, pop(820, 0.2), 0.28); place(buf, tFirst, ping(1568, 1.0), 0.18)
+    place(buf, P3 + 0.1, thump(58, 0.8), 0.40); count_ticks(buf, P3 + 0.1, P3 + 1.1, 12, f0=1300, gain=0.17)
+    place(buf, P3 + 0.5, pop(700, 0.2), 0.24); place(buf, wt('P3', r'^SCARCE', 0, 0.5) - 0.1, pop(560, 0.2), 0.26)
     # S6: quick montage, then the stamp "6 BILLION / IN 72 HOURS"
     s6 = SEG['S6']['a']
     for k in range(3): place(buf, s6 + k * 0.2, tick(1800 + k * 200), 0.20); place(buf, s6 + k * 0.2, thump(80, 0.2), 0.18)

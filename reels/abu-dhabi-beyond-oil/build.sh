@@ -26,7 +26,7 @@ x = np.frombuffer(subprocess.run(['ffmpeg','-v','error','-i','build/voice48k.wav
 n = len(x)//160; e = np.sqrt((x[:n*160].reshape(n,160)**2).mean(1)); k = np.hanning(9); e = np.convolve(e, k/k.sum(), mode='same')
 json.dump([round(float(v),3) for v in np.clip(e/np.percentile(e,95),0,1)], open('build/voice_env.json','w'))
 PY
-python3 -I audio.py build/voice48k.wav build/mix.wav --offset 0.04
+python3 -I audio.py build/voice48k.wav build/mix.wav --offset 0.04          # glitch-style SFX (add --clean for the clean set)
 # 5) render + encode
 [ -d build/frames ] || node render.mjs --out build/frames --workers "${WORKERS:-4}" --ss 1.5
 ffmpeg -y -v error -framerate 30 -i build/frames/f_%05d.png -i build/mix.wav \

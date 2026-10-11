@@ -192,7 +192,7 @@ function shotS2(t, seg) {
 }
 const PINS = [{ k: 'site', nx: 0.5075, ny: 0.579, name: 'MANCHESTER CITY YAS RESIDENCES', main: true }, { k: 'ferrari', nx: 0.499, ny: 0.322, name: 'FERRARI WORLD' }, { k: 'circuit', nx: 0.335, ny: 0.35, name: 'YAS MARINA CIRCUIT' }];
 function shotS3(t, seg) {
-  const lt = t - seg.a, tF = wt('S3', /^FERRARI/, 0, 0.45), tC = wt('S3', /^CIRCUIT/, 0, 0.6), tA = wt('S3', /^AIRPORT/, 0, 0.8), tM = wt('S3', /^TEN/, 0, 0.88);
+  const lt = t - seg.a, tF = wt('S3', /^FERRARI/, 0, 0.45), tC = wt('S3', /^CIRCUIT/, 0, 0.6), tA = wt('S3', /^AIRPORT/, 0, 0.8), tM = wt('S3', /^(10|TEN)/, 0, 0.88);
   const key = [[0, { zoom: 1.0, fx: 0.5, fy: 0.45 }], [0.55, { zoom: 1.45, fx: 0.5075, fy: 0.55 }], [tF - seg.a - 0.25, { zoom: 1.45, fx: 0.5075, fy: 0.55 }], [tF - seg.a + 0.45, { zoom: 1.8, fx: 0.5, fy: 0.34 }], [tC - seg.a - 0.1, { zoom: 1.8, fx: 0.5, fy: 0.34 }], [tC - seg.a + 0.5, { zoom: 1.8, fx: 0.36, fy: 0.37 }], [tA - seg.a - 0.1, { zoom: 1.8, fx: 0.36, fy: 0.37 }], [tA - seg.a + 0.6, { zoom: 1.0, fx: 0.5, fy: 0.45 }], [seg.b - seg.a, { zoom: 1.08, fx: 0.5, fy: 0.45 }]];
   let cam = key[0][1]; for (let i = 0; i < key.length - 1; i++) if (lt >= key[i][0] && lt <= key[i + 1][0]) { const u = E.inOut3(prog(lt, key[i][0], key[i + 1][0])); const a = key[i][1], b = key[i + 1][1]; cam = { zoom: lerp(a.zoom, b.zoom, u), fx: lerp(a.fx, b.fx, u), fy: lerp(a.fy, b.fy, u) }; } if (lt > key[key.length - 1][0]) cam = key[key.length - 1][1];
   const m = cover(IMG.p10, { ...cam, region: [0, 0, 1, 0.733] }); grade(0.0, 0.7);
@@ -208,7 +208,7 @@ function shotS3(t, seg) {
   chip('AIRPORT  ·  10–15 MIN', CX, 1190, t, tM - 0.15, { size: 56, fill: '#fff', color: C.blue });
 }
 function shotS4(t, seg) {
-  const d = seg.b - seg.a, tT = seg.a, tD = wt('S4', /^DUPLEXES/, 0, 0.3), tV = wt('S4', /^VILLAS/, 0, 0.45), tB = wt('S4', /^BEDROOMS/, 0, 0.6), tH = wt('S4', /^(ONE|HUNDRED)/, 0, 0.78);
+  const d = seg.b - seg.a, tT = seg.a, tD = wt('S4', /^DUPLEXES/, 0, 0.3), tV = wt('S4', /^VILLAS/, 0, 0.45), tB = wt('S4', /^BEDROOMS/, 0, 0.6), tH = wt('S4', /^(170|ONE|HUNDRED)/, 0, 0.78);
   const frames = [[tT, 'p26', { fx: 0.5, fy: 0.5 }, '2–3 BEDROOMS', null], [tD, 'p47', { fx: 0.5, fy: 0.55 }, '3 BEDROOMS', null], [tV, 'p61', { fx: 0.5, fy: 0.5 }, '4–5 BEDROOMS', null]];
   let cur = frames[0]; for (const f of frames) if (t >= f[0] - 1e-6) cur = f;
   if (t >= tH - 0.02) {                                     // masterplan + 170 ha
@@ -263,7 +263,75 @@ function shotEND(t, seg) {
   }
   chip('FOR PHASE 2 DETAILS', CX, 1430, t, tP - 0.1, { size: 64, fill: C.sky, color: '#fff' });
 }
-const SHOTS = { S1: shotS1, S2: shotS2, S3: shotS3, S4: shotS4, S5: shotS5, S6: shotS6, END: shotEND };
+// ---- price per sq ft (Phase 2 investment study p.4, AED per sq ft of built-up area) -------------------------------------------
+// MC Yas townhouses 1,852 / 1,908 vs Orchids townhouse 2,470 (-25%) and Yas luxury apartments avg 2,393.
+const PR = { orch: { name: 'ORCHIDS TOWNHOUSE  ·  JUN 2026', v: 2470, mc: false }, apt: { name: 'YAS LUXURY APARTMENTS  ·  AVERAGE', v: 2393, mc: false },
+             mc3: { name: 'MC YAS  ·  3BR TOWNHOUSE', v: 1908, mc: true }, mc2: { name: 'MC YAS  ·  2BR TOWNHOUSE', v: 1852, mc: true } };
+const PX0 = 90, PXK = 900 / 2470, PBH = 104;
+const fmtN = n => Math.round(n).toLocaleString('en-US');
+function priceBar(r, y, g, t) {                                // r: row, y: bar centre line, g: growth 0..1
+  if (g <= 0.003) return;
+  const w = Math.max(PBH, PXK * r.v * g), e = ea(g, 0, 0.25);
+  ctx.save(); ctx.globalAlpha *= e;
+  T(r.name, PX0 + 6, y - PBH / 2 - 16, { font: F.a(600, 25), ls: 5, color: '#fff', align: 'left', alpha: r.mc ? 1 : 0.88 });
+  ctx.shadowColor = 'rgba(15,46,92,0.4)'; ctx.shadowBlur = r.mc ? 34 : 18; rr(PX0, y - PBH / 2, w, PBH, 28);
+  ctx.fillStyle = r.mc ? '#FFFFFF' : 'rgba(15,46,92,0.58)'; ctx.fill(); ctx.shadowColor = 'transparent';
+  if (!r.mc) { ctx.strokeStyle = 'rgba(255,255,255,0.28)'; ctx.lineWidth = 2; ctx.stroke(); }
+  T(fmtN(r.v * g), PX0 + w - 26, y + 27, { font: F.c(800, 84), ls: 1, color: r.mc ? C.blue : '#fff', align: 'right', alpha: ea(g, 0.3, 0.6) });
+  ctx.restore();
+}
+function shotPrice(t, seg) {
+  const P1 = segById('P1'), P2 = segById('P2'), lt = t - P1.a; drawSilk(t, 1.7);
+  const u = ea(t, P2.a, P2.a + 0.55, E.inOut3);
+  const yOrch = lerp(520, 470, u), yMc2 = lerp(1060, 1060, u), yApt = 665, yMc3 = 860;
+  const tMc = wt('P1', /^1,?852/, 0, 0.5) - 0.1, tOr = wt('P1', /^(TWENTY|25)/, 0, 0.6) - 0.05, tSt = Math.max(tOr + 0.5, wt('P1', /PERCENT|%/, 0, 0.72) - 0.05);
+  const tApt = wt('P2', /^AVERAGE/, 0, 0.35) - 0.1, tM3 = P2.a + 0.28, tFirst = wt('P2', /^FIRST/, 0, 0.62) - 0.1;
+  // title block
+  const te = ea(t, P1.a, P1.a + 0.45, E.out4);
+  T('SOURCES: OHANA PHASE 2 PRICE LIST  ·  THE ORCHIDS (METROPOLITAN)', CX, 112, { font: F.a(500, 19), ls: 3, color: '#fff', alpha: 0.7 * te });
+  T("YAS APARTMENTS: CHRISTIE'S H1 2026", CX, 140, { font: F.a(500, 19), ls: 3, color: '#fff', alpha: 0.7 * te });
+  ctx.save(); ctx.globalAlpha *= te; ctx.translate(CX, 268 + (1 - te) * 30); ctx.font = F.c(800, 128); ctx.textAlign = 'center'; ctx.letterSpacing = '2px'; ctx.lineJoin = 'round';
+  ctx.shadowColor = 'rgba(15,60,130,0.5)'; ctx.shadowBlur = 40; ctx.lineWidth = 14; ctx.strokeStyle = 'rgba(15,60,130,0.35)'; ctx.strokeText('PRICE PER SQ FT', 0, 0); ctx.shadowColor = 'transparent'; ctx.fillStyle = '#fff'; ctx.fillText('PRICE PER SQ FT', 0, 0); ctx.restore();
+  T('BUILT-UP AREA  ·  AED', CX, 322, { font: F.a(600, 26), ls: 10, color: '#fff', alpha: 0.9 * te });
+  // rows
+  const gOr = ea(t, tOr, tOr + 0.85, E.out4), gMc2 = ea(t, tMc, tMc + 1.35, E.out4), gApt = ea(t, tApt, tApt + 0.8, E.out4), gM3 = ea(t, tM3, tM3 + 0.8, E.out4);
+  priceBar(PR.orch, yOrch, gOr, t);
+  priceBar({ ...PR.apt }, yApt, gApt, t);
+  priceBar(PR.mc3, yMc3, gM3, t);
+  priceBar(PR.mc2, yMc2, gMc2, t);
+  // the gap to Orchids: dashed ghost bar on the 2BR row + guide line
+  const xOr = PX0 + PXK * PR.orch.v, xMc = PX0 + PXK * PR.mc2.v, gg = ea(t, tSt - 0.05, tSt + 0.5, E.out3);
+  if (gg > 0.004) {
+    line(xOr, yOrch + PBH / 2 + 4, xOr, yMc2 - PBH / 2 - 4, { color: '#fff', w: 2.5, alpha: 0.55 * gg, dash: [10, 9] });
+    ctx.save(); ctx.globalAlpha *= gg; ctx.setLineDash([14, 10]); ctx.lineWidth = 3; ctx.strokeStyle = '#fff'; rr(xMc + 8, yMc2 - PBH / 2, (xOr - xMc) - 8, PBH, 24); ctx.fillStyle = 'rgba(255,255,255,0.14)'; ctx.fill(); ctx.stroke(); ctx.restore();
+    T('−25%', (xMc + xOr) / 2 + 4, yMc2 + 25, { font: F.c(800, 74), ls: 1, color: '#fff', alpha: gg * ea(t, P2.a + 0.2, P2.a + 0.6) });
+    // big stamp between the two rows, folds into the ghost bar when the chart fills out
+    const big = gg * (1 - ea(t, P2.a - 0.05, P2.a + 0.4)), bs = lerp(1.18, 1, ea(t, tSt - 0.05, tSt + 0.35, E.out4));
+    if (big > 0.004) {
+      ctx.save(); ctx.globalAlpha *= big; ctx.translate(CX, 850); ctx.scale(bs, bs); ctx.font = F.c(800, 330); ctx.textAlign = 'center'; ctx.letterSpacing = '2px'; ctx.lineJoin = 'round';
+      ctx.shadowColor = 'rgba(15,60,130,0.55)'; ctx.shadowBlur = 44; ctx.lineWidth = 18; ctx.strokeStyle = 'rgba(15,60,130,0.4)'; ctx.strokeText('−25%', 0, 0); ctx.shadowColor = 'transparent'; ctx.fillStyle = '#fff'; ctx.fillText('−25%', 0, 0); ctx.restore();
+      ctx.save(); ctx.globalAlpha *= big; chip('PER SQ FT', CX, 918, t, tSt + 0.1, { size: 44, fill: C.sky, color: '#fff' }); ctx.restore();
+    }
+  }
+  chip('FIRST MAN CITY-BRANDED WATERFRONT', CX, 1205, t, tFirst, { size: 44, fill: '#fff', color: C.blue });
+}
+function shotP3(t, seg) {
+  const lt = t - seg.a, d = seg.b - seg.a, fx = cutFx(lt, { z0: 1.12, flash: 0.0 });
+  ctx.save(); ctx.translate(CX, H / 2); ctx.scale(fx.z, fx.z); ctx.translate(-CX, -H / 2);
+  cover(IMG.p26, { zoom: 1.02 + 0.1 * prog(lt, 0, d), fx: 0.5, fy: 0.5 }); ctx.restore(); grade(0.1, 0.74);
+  ctx.fillStyle = 'rgba(15,46,92,0.42)'; ctx.fillRect(0, 0, W, H);
+  const t0 = seg.a + 0.1, e = ea(t, t0, t0 + 1.0, E.out3), al = ea(t, t0 - 0.04, t0 + 0.22);
+  if (al > 0.004) {
+    label('AED', CX, 610, t, t0, { size: 40, ls: 26 });
+    const txt = `${(3.7 * e).toFixed(1)}–${(5.3 * e).toFixed(1)}M`; let size = 250; const w = M(txt, F.c(800, size), 2); size = Math.min(size, size * 980 / w);
+    ctx.save(); ctx.globalAlpha *= al; ctx.translate(CX, 840); ctx.scale(lerp(1.12, 1, ea(t, t0, t0 + 0.3, E.out4)), lerp(1.12, 1, ea(t, t0, t0 + 0.3, E.out4)));
+    ctx.font = F.c(800, size); ctx.textAlign = 'center'; ctx.letterSpacing = '2px'; ctx.lineJoin = 'round'; ctx.shadowColor = 'rgba(15,46,92,0.55)'; ctx.shadowBlur = 40; ctx.lineWidth = 16; ctx.strokeStyle = 'rgba(15,46,92,0.5)'; ctx.strokeText(txt, 0, 0);
+    ctx.shadowColor = 'transparent'; ctx.fillStyle = '#fff'; ctx.fillText(txt, 0, 0); ctx.restore();
+  }
+  chip('FAMILY TOWNHOUSES', CX, 980, t, t0 + 0.4, { size: 60, fill: '#fff', color: C.blue });
+  chip('IN SHORT SUPPLY', CX, 1082, t, wt('P3', /^SCARCE/, 0, 0.5) - 0.1, { size: 50, fill: C.sky, color: '#fff' });
+}
+const SHOTS = { S1: shotS1, S2: shotS2, S3: shotS3, S4: shotS4, S5: shotS5, P1: shotPrice, P2: shotPrice, P3: shotP3, S6: shotS6, END: shotEND };
 
 // ---- frame --------------------------------------------------------------------------------------------------------------------------
 function drawGrain(frame) {
@@ -275,12 +343,12 @@ function draw(t) {
   ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
   const seg = segAt(t), lt = t - seg.a;
   // little punch on every cut + on the stat words
-  let z = 1 + 0.035 * Math.exp(-lt * 9);
+  let z = seg.cont ? 1 : 1 + 0.035 * Math.exp(-lt * 9);
   ctx.save(); ctx.translate(CX, H / 2); ctx.scale(z, z); ctx.translate(-CX, -H / 2);
   if (seg.type === 'cam') drawCam(t, seg); else (SHOTS[seg.id] || shotS1)(t, seg);
   ctx.restore();
   drawCaptions(t, seg.id === 'END' ? 1690 : CAP.y);
-  if (seg !== TL.segs[0]) { flash(Math.exp(-lt * 16) * 0.35); glitch(t, seg.a, 0.18, 1); }
+  if (seg !== TL.segs[0] && !seg.cont) { flash(Math.exp(-lt * 16) * 0.35); glitch(t, seg.a, 0.18, 1); }
   drawGrain(Math.round(t * FPS));
   const fa = 1 - ea(t, 0, 0.1), fb = ea(t, TL.dur - 0.3, TL.dur - 0.02, E.in2), k = Math.max(fa, fb);
   if (k > 0.002) { ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = k; ctx.fillStyle = '#5D9ED8'; ctx.fillRect(0, 0, W * SS, H * SS); ctx.restore(); }

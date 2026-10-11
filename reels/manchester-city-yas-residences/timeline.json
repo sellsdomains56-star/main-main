@@ -1,5 +1,5 @@
 {
- "dur": 42.541,
+ "dur": 50.108,
  "fps": 30,
  "segs": [
   {
@@ -17,11 +17,11 @@
    "type": "shot",
    "line": "L1",
    "a": 4.6,
-   "b": 7.066,
+   "b": 7.112,
    "audio": {
     "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/L1.wav",
-    "start": 0.40370833333333334,
-    "end": 2.8693333333333335,
+    "start": 0.41020833333333334,
+    "end": 2.9226666666666667,
     "at": 4.6
    }
   },
@@ -29,88 +29,128 @@
    "id": "S2",
    "type": "shot",
    "line": "L2",
-   "a": 7.226,
-   "b": 11.23,
+   "a": 7.272,
+   "b": 11.277,
    "audio": {
     "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/L2.wav",
     "start": 0.3904166666666667,
     "end": 4.394666666666667,
-    "at": 7.226
+    "at": 7.272
    }
   },
   {
    "id": "S3",
    "type": "shot",
    "line": "L3",
-   "a": 11.39,
-   "b": 16.164,
+   "a": 11.437,
+   "b": 16.21,
    "audio": {
     "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/L3.wav",
     "start": 0.5382916666666666,
     "end": 5.312,
-    "at": 11.39
+    "at": 11.437
    }
   },
   {
    "id": "S4",
    "type": "shot",
    "line": "L4",
-   "a": 16.324,
-   "b": 23.866,
+   "a": 16.37,
+   "b": 20.952,
    "audio": {
     "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/L4.wav",
-    "start": 0.0,
-    "end": 7.542857142857144,
-    "at": 16.324
+    "start": 0.432625,
+    "end": 5.014208333333333,
+    "at": 16.37
    }
   },
   {
    "id": "S5",
    "type": "shot",
    "line": "L5",
-   "a": 24.026,
-   "b": 32.784,
+   "a": 21.112,
+   "b": 26.643,
    "audio": {
     "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/L5.wav",
-    "start": 0.0,
-    "end": 8.757142857142858,
-    "at": 24.026
+    "start": 0.3887083333333333,
+    "end": 5.92,
+    "at": 21.112
+   }
+  },
+  {
+   "id": "P1",
+   "type": "shot",
+   "line": "L7",
+   "a": 26.803,
+   "b": 34.108,
+   "audio": {
+    "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/L7.wav",
+    "start": 0.374125,
+    "end": 7.678916666666667,
+    "at": 26.803
+   }
+  },
+  {
+   "id": "P2",
+   "type": "shot",
+   "line": "L8",
+   "cont": true,
+   "a": 34.268,
+   "b": 39.381,
+   "audio": {
+    "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/L8.wav",
+    "start": 0.401625,
+    "end": 5.514666666666667,
+    "at": 34.268
+   }
+  },
+  {
+   "id": "P3",
+   "type": "shot",
+   "line": "L9",
+   "a": 39.541,
+   "b": 43.131,
+   "audio": {
+    "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/L9.wav",
+    "start": 0.39358333333333334,
+    "end": 3.9832083333333332,
+    "at": 39.541
    }
   },
   {
    "id": "S6",
    "type": "shot",
    "line": "L6",
-   "a": 32.944,
-   "b": 35.201,
+   "a": 43.291,
+   "b": 44.491,
    "audio": {
     "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/L6.wav",
-    "start": 0.0,
-    "end": 2.257142857142857,
-    "at": 32.944
+    "start": 0.34933333333333333,
+    "end": 1.5492083333333333,
+    "at": 43.291
    }
   },
   {
    "id": "closer",
    "type": "cam",
    "clip": "closer",
-   "a": 35.361,
-   "b": 37.291,
-   "c0": 2.1,
-   "src_a": 10.45,
+   "a": 44.651,
+   "b": 46.431,
+   "c0": 2.25,
+   "src_a": 10.6,
    "src_b": 12.38
   },
   {
    "id": "END",
    "type": "shot",
    "line": "CTA",
-   "a": 37.391,
-   "b": 42.291,
+   "a": 46.531,
+   "b": 49.858,
    "audio": {
     "file": "/home/user/main-main/reels/manchester-city-yas-residences/build/lines/CTA.wav",
-    "start": 0.0,
-    "end": 3.8,
-    "at": 37.391
+    "start": 0.5302916666666667,
+    "end": 2.7571666666666665,
+    "at": 46.531
    }
   }
  ],
@@ -208,668 +248,962 @@
   },
   {
    "t": 4.6,
-   "e": 4.94,
+   "e": 4.77,
    "text": "BECAUSE",
    "seg": "S1",
    "chunk": 5
   },
   {
-   "t": 4.94,
-   "e": 5.153,
+   "t": 4.77,
+   "e": 5.03,
    "text": "THIS",
    "seg": "S1",
    "chunk": 5
   },
   {
-   "t": 5.153,
-   "e": 5.28,
+   "t": 5.03,
+   "e": 5.19,
    "text": "IS",
    "seg": "S1",
    "chunk": 5
   },
   {
-   "t": 5.28,
-   "e": 5.748,
+   "t": 5.19,
+   "e": 5.57,
    "text": "MANCHESTER",
    "seg": "S1",
    "chunk": 6
   },
   {
-   "t": 5.748,
-   "e": 5.96,
-   "text": "CITY",
+   "t": 5.57,
+   "e": 5.95,
+   "text": "CITY,",
    "seg": "S1",
    "chunk": 6
   },
   {
-   "t": 5.96,
+   "t": 6.01,
    "e": 6.13,
    "text": "YAS",
    "seg": "S1",
-   "chunk": 6
+   "chunk": 7
   },
   {
    "t": 6.13,
-   "e": 6.641,
+   "e": 6.61,
    "text": "RESIDENCES,",
    "seg": "S1",
    "chunk": 7
   },
   {
-   "t": 6.641,
-   "e": 6.768,
+   "t": 6.61,
+   "e": 6.75,
    "text": "BY",
    "seg": "S1",
    "chunk": 8
   },
   {
-   "t": 6.768,
-   "e": 7.066,
+   "t": 6.75,
+   "e": 7.01,
    "text": "OHANA.",
    "seg": "S1",
    "chunk": 8
   },
   {
-   "t": 7.226,
-   "e": 7.408,
+   "t": 7.272,
+   "e": 7.382,
    "text": "THE",
    "seg": "S2",
    "chunk": 9
   },
   {
-   "t": 7.408,
-   "e": 7.772,
+   "t": 7.382,
+   "e": 7.762,
    "text": "WORLD'S",
    "seg": "S2",
    "chunk": 9
   },
   {
-   "t": 7.772,
-   "e": 8.045,
+   "t": 7.762,
+   "e": 7.882,
    "text": "FIRST",
    "seg": "S2",
    "chunk": 9
   },
   {
-   "t": 8.045,
-   "e": 8.545,
+   "t": 7.882,
+   "e": 8.262,
    "text": "MANCHESTER",
    "seg": "S2",
    "chunk": 10
   },
   {
-   "t": 8.545,
-   "e": 8.773,
+   "t": 8.262,
+   "e": 8.662,
    "text": "CITY",
    "seg": "S2",
    "chunk": 10
   },
   {
-   "t": 8.773,
-   "e": 9.182,
+   "t": 8.662,
+   "e": 9.062,
    "text": "INSPIRED",
    "seg": "S2",
-   "chunk": 10
+   "chunk": 11
   },
   {
-   "t": 9.182,
-   "e": 9.728,
+   "t": 9.062,
+   "e": 9.582,
    "text": "RESIDENTIAL",
    "seg": "S2",
    "chunk": 11
   },
   {
-   "t": 9.728,
-   "e": 10.32,
+   "t": 9.582,
+   "e": 10.082,
    "text": "DESTINATION,",
    "seg": "S2",
-   "chunk": 11
+   "chunk": 12
   },
   {
-   "t": 10.32,
-   "e": 10.593,
+   "t": 10.082,
+   "e": 10.522,
    "text": "RIGHT",
-   "seg": "S2",
-   "chunk": 12
-  },
-  {
-   "t": 10.593,
-   "e": 10.729,
-   "text": "ON",
-   "seg": "S2",
-   "chunk": 12
-  },
-  {
-   "t": 10.729,
-   "e": 10.911,
-   "text": "YAS",
-   "seg": "S2",
-   "chunk": 12
-  },
-  {
-   "t": 10.911,
-   "e": 11.23,
-   "text": "CANAL.",
    "seg": "S2",
    "chunk": 13
   },
   {
-   "t": 11.39,
-   "e": 11.705,
+   "t": 10.522,
+   "e": 10.722,
+   "text": "ON",
+   "seg": "S2",
+   "chunk": 13
+  },
+  {
+   "t": 10.722,
+   "e": 10.882,
+   "text": "YAS",
+   "seg": "S2",
+   "chunk": 13
+  },
+  {
+   "t": 10.882,
+   "e": 11.122,
+   "text": "CANAL.",
+   "seg": "S2",
+   "chunk": 14
+  },
+  {
+   "t": 11.437,
+   "e": 11.618,
    "text": "YOU'RE",
    "seg": "S3",
-   "chunk": 14
+   "chunk": 15
   },
   {
-   "t": 11.705,
-   "e": 12.065,
+   "t": 11.618,
+   "e": 11.798,
    "text": "MINUTES",
    "seg": "S3",
-   "chunk": 14
+   "chunk": 15
   },
   {
-   "t": 12.065,
-   "e": 12.291,
+   "t": 11.798,
+   "e": 12.078,
    "text": "FROM",
    "seg": "S3",
-   "chunk": 14
+   "chunk": 15
   },
   {
-   "t": 12.291,
-   "e": 12.651,
+   "t": 12.078,
+   "e": 12.358,
    "text": "FERRARI",
    "seg": "S3",
-   "chunk": 15
+   "chunk": 16
   },
   {
-   "t": 12.651,
-   "e": 12.921,
+   "t": 12.358,
+   "e": 12.698,
    "text": "WORLD",
    "seg": "S3",
-   "chunk": 15
+   "chunk": 16
   },
   {
-   "t": 12.921,
-   "e": 13.101,
+   "t": 12.698,
+   "e": 12.858,
    "text": "AND",
    "seg": "S3",
-   "chunk": 15
+   "chunk": 16
   },
   {
-   "t": 13.101,
-   "e": 13.281,
+   "t": 12.858,
+   "e": 13.018,
    "text": "YAS",
    "seg": "S3",
-   "chunk": 16
+   "chunk": 17
   },
   {
-   "t": 13.281,
-   "e": 13.597,
+   "t": 13.018,
+   "e": 13.258,
    "text": "MARINA",
    "seg": "S3",
-   "chunk": 16
+   "chunk": 17
   },
   {
-   "t": 13.597,
-   "e": 14.002,
+   "t": 13.258,
+   "e": 13.638,
    "text": "CIRCUIT,",
    "seg": "S3",
-   "chunk": 16
+   "chunk": 17
   },
   {
-   "t": 14.002,
-   "e": 14.182,
+   "t": 13.958,
+   "e": 14.298,
    "text": "AND",
    "seg": "S3",
-   "chunk": 17
+   "chunk": 18
   },
   {
-   "t": 14.182,
-   "e": 14.362,
+   "t": 14.298,
+   "e": 14.418,
    "text": "THE",
    "seg": "S3",
-   "chunk": 17
+   "chunk": 18
   },
   {
-   "t": 14.362,
-   "e": 14.722,
+   "t": 14.418,
+   "e": 14.678,
    "text": "AIRPORT",
    "seg": "S3",
-   "chunk": 17
+   "chunk": 18
   },
   {
-   "t": 14.722,
-   "e": 14.858,
+   "t": 14.678,
+   "e": 14.918,
    "text": "IS",
-   "seg": "S3",
-   "chunk": 18
-  },
-  {
-   "t": 14.858,
-   "e": 15.038,
-   "text": "TEN",
-   "seg": "S3",
-   "chunk": 18
-  },
-  {
-   "t": 15.038,
-   "e": 15.173,
-   "text": "TO",
-   "seg": "S3",
-   "chunk": 18
-  },
-  {
-   "t": 15.173,
-   "e": 15.533,
-   "text": "FIFTEEN",
    "seg": "S3",
    "chunk": 19
   },
   {
-   "t": 15.533,
-   "e": 15.893,
+   "t": 14.918,
+   "e": 15.138,
+   "text": "10\u201315",
+   "seg": "S3",
+   "chunk": 19
+  },
+  {
+   "t": 15.578,
+   "e": 15.798,
    "text": "MINUTES",
    "seg": "S3",
    "chunk": 19
   },
   {
-   "t": 15.893,
-   "e": 16.164,
+   "t": 15.798,
+   "e": 16.058,
    "text": "AWAY.",
    "seg": "S3",
-   "chunk": 19
-  },
-  {
-   "t": 16.324,
-   "e": 17.22,
-   "text": "TOWNHOUSES,",
-   "seg": "S4",
    "chunk": 20
   },
   {
-   "t": 17.22,
-   "e": 17.892,
+   "t": 16.37,
+   "e": 16.818,
+   "text": "TOWNHOUSES,",
+   "seg": "S4",
+   "chunk": 21
+  },
+  {
+   "t": 17.058,
+   "e": 17.518,
    "text": "DUPLEXES",
    "seg": "S4",
-   "chunk": 21
+   "chunk": 22
   },
   {
-   "t": 17.892,
-   "e": 18.191,
+   "t": 17.518,
+   "e": 17.618,
    "text": "AND",
    "seg": "S4",
-   "chunk": 21
+   "chunk": 22
   },
   {
-   "t": 18.191,
-   "e": 18.788,
+   "t": 17.618,
+   "e": 17.938,
    "text": "VILLAS,",
    "seg": "S4",
-   "chunk": 21
+   "chunk": 22
   },
   {
-   "t": 18.788,
-   "e": 19.161,
+   "t": 17.938,
+   "e": 18.218,
    "text": "FROM",
    "seg": "S4",
-   "chunk": 22
+   "chunk": 23
   },
   {
-   "t": 19.161,
-   "e": 19.46,
-   "text": "TWO",
+   "t": 18.218,
+   "e": 18.398,
+   "text": "2",
    "seg": "S4",
-   "chunk": 22
+   "chunk": 23
   },
   {
-   "t": 19.46,
-   "e": 19.684,
+   "t": 18.398,
+   "e": 18.478,
    "text": "TO",
    "seg": "S4",
-   "chunk": 22
-  },
-  {
-   "t": 19.684,
-   "e": 20.058,
-   "text": "FIVE",
-   "seg": "S4",
    "chunk": 23
   },
   {
-   "t": 20.058,
-   "e": 20.804,
+   "t": 18.478,
+   "e": 18.698,
+   "text": "5",
+   "seg": "S4",
+   "chunk": 24
+  },
+  {
+   "t": 18.698,
+   "e": 18.978,
    "text": "BEDROOMS,",
    "seg": "S4",
-   "chunk": 23
+   "chunk": 24
   },
   {
-   "t": 20.804,
-   "e": 21.327,
+   "t": 18.978,
+   "e": 19.378,
    "text": "ACROSS",
    "seg": "S4",
-   "chunk": 24
+   "chunk": 25
   },
   {
-   "t": 21.327,
-   "e": 21.626,
-   "text": "ONE",
-   "seg": "S4",
-   "chunk": 24
-  },
-  {
-   "t": 21.626,
-   "e": 22.223,
-   "text": "HUNDRED",
-   "seg": "S4",
-   "chunk": 24
-  },
-  {
-   "t": 22.223,
-   "e": 22.522,
-   "text": "AND",
+   "t": 19.378,
+   "e": 20.318,
+   "text": "170",
    "seg": "S4",
    "chunk": 25
   },
   {
-   "t": 22.522,
-   "e": 23.12,
-   "text": "SEVENTY",
-   "seg": "S4",
-   "chunk": 25
-  },
-  {
-   "t": 23.12,
-   "e": 23.866,
+   "t": 20.318,
+   "e": 20.878,
    "text": "HECTARES.",
    "seg": "S4",
    "chunk": 25
   },
   {
-   "t": 24.026,
-   "e": 24.398,
+   "t": 21.112,
+   "e": 21.303,
    "text": "MORE",
    "seg": "S5",
    "chunk": 26
   },
   {
-   "t": 24.398,
-   "e": 24.769,
+   "t": 21.303,
+   "e": 21.463,
    "text": "THAN",
    "seg": "S5",
    "chunk": 26
   },
   {
-   "t": 24.769,
-   "e": 25.14,
+   "t": 21.463,
+   "e": 21.703,
    "text": "HALF",
    "seg": "S5",
    "chunk": 26
   },
   {
-   "t": 25.14,
-   "e": 25.362,
+   "t": 21.703,
+   "e": 21.843,
    "text": "OF",
    "seg": "S5",
    "chunk": 27
   },
   {
-   "t": 25.362,
-   "e": 25.585,
+   "t": 21.843,
+   "e": 21.943,
    "text": "IT",
    "seg": "S5",
    "chunk": 27
   },
   {
-   "t": 25.585,
-   "e": 25.808,
+   "t": 21.943,
+   "e": 22.043,
    "text": "IS",
    "seg": "S5",
    "chunk": 27
   },
   {
-   "t": 25.808,
-   "e": 26.179,
+   "t": 22.043,
+   "e": 22.223,
    "text": "OPEN",
    "seg": "S5",
    "chunk": 28
   },
   {
-   "t": 26.179,
-   "e": 26.698,
+   "t": 22.223,
+   "e": 22.563,
    "text": "SPACE,",
    "seg": "S5",
    "chunk": 28
   },
   {
-   "t": 26.698,
-   "e": 27.069,
+   "t": 22.843,
+   "e": 22.983,
    "text": "WITH",
    "seg": "S5",
    "chunk": 29
   },
   {
-   "t": 27.069,
-   "e": 27.218,
+   "t": 22.983,
+   "e": 23.063,
    "text": "A",
    "seg": "S5",
    "chunk": 29
   },
   {
-   "t": 27.218,
-   "e": 27.811,
+   "t": 23.063,
+   "e": 23.323,
    "text": "CRYSTAL",
    "seg": "S5",
    "chunk": 29
   },
   {
-   "t": 27.811,
-   "e": 28.405,
+   "t": 23.323,
+   "e": 23.723,
    "text": "LAGOON,",
    "seg": "S5",
    "chunk": 30
   },
   {
-   "t": 28.405,
-   "e": 28.553,
+   "t": 23.943,
+   "e": 23.993,
    "text": "A",
    "seg": "S5",
    "chunk": 31
   },
   {
-   "t": 28.553,
-   "e": 29.37,
+   "t": 23.983,
+   "e": 24.303,
    "text": "MANCHESTER",
    "seg": "S5",
    "chunk": 31
   },
   {
-   "t": 29.37,
-   "e": 29.741,
+   "t": 24.303,
+   "e": 24.763,
    "text": "CITY",
    "seg": "S5",
    "chunk": 31
   },
   {
-   "t": 29.741,
-   "e": 30.409,
+   "t": 24.763,
+   "e": 25.083,
    "text": "TRAINING",
    "seg": "S5",
    "chunk": 32
   },
   {
-   "t": 30.409,
-   "e": 31.077,
+   "t": 25.083,
+   "e": 25.443,
    "text": "ACADEMY,",
    "seg": "S5",
    "chunk": 32
   },
   {
-   "t": 31.077,
-   "e": 31.374,
+   "t": 25.443,
+   "e": 25.783,
    "text": "AND",
    "seg": "S5",
    "chunk": 33
   },
   {
-   "t": 31.374,
-   "e": 31.522,
+   "t": 25.783,
+   "e": 25.883,
    "text": "A",
    "seg": "S5",
    "chunk": 33
   },
   {
-   "t": 31.522,
-   "e": 31.967,
+   "t": 25.883,
+   "e": 26.123,
    "text": "CANAL",
    "seg": "S5",
    "chunk": 33
   },
   {
-   "t": 31.967,
-   "e": 32.784,
+   "t": 26.123,
+   "e": 26.623,
    "text": "PROMENADE.",
    "seg": "S5",
    "chunk": 34
   },
   {
-   "t": 32.944,
-   "e": 33.529,
-   "text": "THAT'S",
-   "seg": "S6",
+   "t": 26.803,
+   "e": 26.949,
+   "text": "PRICE",
+   "seg": "P1",
    "chunk": 35
   },
   {
-   "t": 33.529,
-   "e": 33.947,
-   "text": "WHAT",
-   "seg": "S6",
+   "t": 26.949,
+   "e": 27.169,
+   "text": "PER",
+   "seg": "P1",
    "chunk": 35
   },
   {
-   "t": 33.947,
-   "e": 34.783,
-   "text": "INVESTORS",
-   "seg": "S6",
+   "t": 27.169,
+   "e": 27.429,
+   "text": "SQUARE",
+   "seg": "P1",
    "chunk": 35
   },
   {
-   "t": 34.783,
-   "e": 35.201,
-   "text": "SAW.",
-   "seg": "S6",
+   "t": 27.429,
+   "e": 27.689,
+   "text": "FOOT",
+   "seg": "P1",
    "chunk": 36
   },
   {
-   "t": 35.531,
-   "e": 35.971,
+   "t": 27.689,
+   "e": 28.009,
+   "text": "STARTS",
+   "seg": "P1",
+   "chunk": 36
+  },
+  {
+   "t": 28.009,
+   "e": 28.229,
+   "text": "AT",
+   "seg": "P1",
+   "chunk": 36
+  },
+  {
+   "t": 28.229,
+   "e": 28.409,
+   "text": "JUST",
+   "seg": "P1",
+   "chunk": 37
+  },
+  {
+   "t": 28.409,
+   "e": 30.089,
+   "text": "1,852",
+   "seg": "P1",
+   "chunk": 37
+  },
+  {
+   "t": 30.089,
+   "e": 31.069,
+   "text": "DIRHAMS,",
+   "seg": "P1",
+   "chunk": 37
+  },
+  {
+   "t": 31.269,
+   "e": 31.349,
+   "text": "WHICH",
+   "seg": "P1",
+   "chunk": 38
+  },
+  {
+   "t": 31.349,
+   "e": 31.469,
+   "text": "IS",
+   "seg": "P1",
+   "chunk": 38
+  },
+  {
+   "t": 31.469,
+   "e": 31.969,
+   "text": "25%",
+   "seg": "P1",
+   "chunk": 38
+  },
+  {
+   "t": 32.329,
+   "e": 32.549,
+   "text": "BELOW",
+   "seg": "P1",
+   "chunk": 39
+  },
+  {
+   "t": 32.549,
+   "e": 32.749,
+   "text": "THE",
+   "seg": "P1",
+   "chunk": 39
+  },
+  {
+   "t": 32.749,
+   "e": 32.989,
+   "text": "LATEST",
+   "seg": "P1",
+   "chunk": 39
+  },
+  {
+   "t": 32.989,
+   "e": 33.389,
+   "text": "ORCHIDS",
+   "seg": "P1",
+   "chunk": 40
+  },
+  {
+   "t": 33.389,
+   "e": 33.909,
+   "text": "TOWNHOUSES.",
+   "seg": "P1",
+   "chunk": 40
+  },
+  {
+   "t": 34.268,
+   "e": 34.526,
+   "text": "THAT'S",
+   "seg": "P2",
+   "chunk": 41
+  },
+  {
+   "t": 34.526,
+   "e": 34.706,
+   "text": "EVEN",
+   "seg": "P2",
+   "chunk": 41
+  },
+  {
+   "t": 34.706,
+   "e": 35.006,
+   "text": "BELOW",
+   "seg": "P2",
+   "chunk": 41
+  },
+  {
+   "t": 35.006,
+   "e": 35.226,
+   "text": "THE",
+   "seg": "P2",
+   "chunk": 42
+  },
+  {
+   "t": 35.226,
+   "e": 35.526,
+   "text": "AVERAGE",
+   "seg": "P2",
+   "chunk": 42
+  },
+  {
+   "t": 35.526,
+   "e": 35.766,
+   "text": "YAS",
+   "seg": "P2",
+   "chunk": 42
+  },
+  {
+   "t": 35.766,
+   "e": 36.146,
+   "text": "LUXURY",
+   "seg": "P2",
+   "chunk": 43
+  },
+  {
+   "t": 36.146,
+   "e": 36.646,
+   "text": "APARTMENT,",
+   "seg": "P2",
+   "chunk": 43
+  },
+  {
+   "t": 36.646,
+   "e": 37.086,
+   "text": "FOR",
+   "seg": "P2",
+   "chunk": 44
+  },
+  {
+   "t": 37.086,
+   "e": 37.246,
+   "text": "THE",
+   "seg": "P2",
+   "chunk": 44
+  },
+  {
+   "t": 37.246,
+   "e": 37.446,
+   "text": "FIRST",
+   "seg": "P2",
+   "chunk": 44
+  },
+  {
+   "t": 37.446,
+   "e": 37.806,
+   "text": "MANCHESTER",
+   "seg": "P2",
+   "chunk": 45
+  },
+  {
+   "t": 37.806,
+   "e": 38.486,
+   "text": "CITY-BRANDED",
+   "seg": "P2",
+   "chunk": 46
+  },
+  {
+   "t": 38.486,
+   "e": 39.026,
+   "text": "WATERFRONT",
+   "seg": "P2",
+   "chunk": 47
+  },
+  {
+   "t": 39.026,
+   "e": 39.266,
+   "text": "PROJECT.",
+   "seg": "P2",
+   "chunk": 47
+  },
+  {
+   "t": 39.541,
+   "e": 39.648,
+   "text": "AND",
+   "seg": "P3",
+   "chunk": 48
+  },
+  {
+   "t": 39.648,
+   "e": 39.948,
+   "text": "FAMILY",
+   "seg": "P3",
+   "chunk": 48
+  },
+  {
+   "t": 39.948,
+   "e": 40.448,
+   "text": "TOWNHOUSES",
+   "seg": "P3",
+   "chunk": 48
+  },
+  {
+   "t": 40.448,
+   "e": 40.628,
+   "text": "AT",
+   "seg": "P3",
+   "chunk": 49
+  },
+  {
+   "t": 40.628,
+   "e": 40.788,
+   "text": "THIS",
+   "seg": "P3",
+   "chunk": 49
+  },
+  {
+   "t": 40.788,
+   "e": 41.068,
+   "text": "LEVEL",
+   "seg": "P3",
+   "chunk": 49
+  },
+  {
+   "t": 41.068,
+   "e": 41.228,
+   "text": "ARE",
+   "seg": "P3",
+   "chunk": 50
+  },
+  {
+   "t": 41.228,
+   "e": 41.448,
+   "text": "SCARCE",
+   "seg": "P3",
+   "chunk": 50
+  },
+  {
+   "t": 41.448,
+   "e": 41.768,
+   "text": "ACROSS",
+   "seg": "P3",
+   "chunk": 50
+  },
+  {
+   "t": 41.768,
+   "e": 42.168,
+   "text": "RECENT",
+   "seg": "P3",
+   "chunk": 51
+  },
+  {
+   "t": 42.168,
+   "e": 42.448,
+   "text": "ABU",
+   "seg": "P3",
+   "chunk": 51
+  },
+  {
+   "t": 42.448,
+   "e": 42.748,
+   "text": "DHABI",
+   "seg": "P3",
+   "chunk": 51
+  },
+  {
+   "t": 42.748,
+   "e": 42.968,
+   "text": "LAUNCHES.",
+   "seg": "P3",
+   "chunk": 52
+  },
+  {
+   "t": 43.291,
+   "e": 43.421,
+   "text": "THAT",
+   "seg": "S6",
+   "chunk": 53
+  },
+  {
+   "t": 43.421,
+   "e": 43.561,
+   "text": "IS",
+   "seg": "S6",
+   "chunk": 53
+  },
+  {
+   "t": 43.561,
+   "e": 43.701,
+   "text": "WHAT",
+   "seg": "S6",
+   "chunk": 53
+  },
+  {
+   "t": 43.701,
+   "e": 43.801,
+   "text": "THE",
+   "seg": "S6",
+   "chunk": 54
+  },
+  {
+   "t": 43.801,
+   "e": 44.061,
+   "text": "INVESTORS",
+   "seg": "S6",
+   "chunk": 54
+  },
+  {
+   "t": 44.061,
+   "e": 44.361,
+   "text": "SAW.",
+   "seg": "S6",
+   "chunk": 54
+  },
+  {
+   "t": 44.671,
+   "e": 45.111,
    "text": "AND",
    "seg": "closer",
-   "chunk": 37
+   "chunk": 55
   },
   {
-   "t": 35.971,
-   "e": 36.171,
+   "t": 45.111,
+   "e": 45.311,
    "text": "PHASE",
    "seg": "closer",
-   "chunk": 37
+   "chunk": 55
   },
   {
-   "t": 36.171,
-   "e": 36.471,
+   "t": 45.311,
+   "e": 45.611,
    "text": "2",
    "seg": "closer",
-   "chunk": 37
+   "chunk": 55
   },
   {
-   "t": 36.471,
-   "e": 36.611,
+   "t": 45.611,
+   "e": 45.751,
    "text": "IS",
    "seg": "closer",
-   "chunk": 38
+   "chunk": 56
   },
   {
-   "t": 36.611,
-   "e": 36.871,
+   "t": 45.751,
+   "e": 46.011,
    "text": "DROPPING",
    "seg": "closer",
-   "chunk": 38
+   "chunk": 56
   },
   {
-   "t": 36.871,
-   "e": 37.271,
+   "t": 46.011,
+   "e": 46.411,
    "text": "NOW",
    "seg": "closer",
-   "chunk": 38
+   "chunk": 56
   },
   {
-   "t": 37.391,
-   "e": 37.943,
+   "t": 46.531,
+   "e": 46.7,
    "text": "COMMENT",
    "seg": "END",
-   "chunk": 39
+   "chunk": 57
   },
   {
-   "t": 37.943,
-   "e": 38.358,
+   "t": 46.7,
+   "e": 47.02,
    "text": "CITY,",
    "seg": "END",
-   "chunk": 39
+   "chunk": 57
   },
   {
-   "t": 38.358,
-   "e": 38.634,
+   "t": 47.02,
+   "e": 47.22,
    "text": "AND",
    "seg": "END",
-   "chunk": 40
+   "chunk": 58
   },
   {
-   "t": 38.634,
-   "e": 38.98,
-   "text": "I'LL",
+   "t": 47.22,
+   "e": 47.34,
+   "text": "I",
    "seg": "END",
-   "chunk": 40
+   "chunk": 58
   },
   {
-   "t": 38.98,
-   "e": 39.325,
+   "t": 47.34,
+   "e": 47.48,
+   "text": "WILL",
+   "seg": "END",
+   "chunk": 58
+  },
+  {
+   "t": 47.48,
+   "e": 47.7,
    "text": "SEND",
    "seg": "END",
-   "chunk": 40
+   "chunk": 59
   },
   {
-   "t": 39.325,
-   "e": 39.602,
+   "t": 47.7,
+   "e": 47.8,
    "text": "YOU",
    "seg": "END",
-   "chunk": 41
+   "chunk": 59
   },
   {
-   "t": 39.602,
-   "e": 39.878,
+   "t": 47.8,
+   "e": 47.92,
    "text": "THE",
    "seg": "END",
-   "chunk": 41
+   "chunk": 59
   },
   {
-   "t": 39.878,
-   "e": 40.293,
-   "text": "PHASE",
+   "t": 48.1,
+   "e": 48.26,
+   "text": "PHASE 2",
    "seg": "END",
-   "chunk": 41
+   "chunk": 60
   },
   {
-   "t": 40.293,
-   "e": 40.569,
-   "text": "TWO",
-   "seg": "END",
-   "chunk": 42
-  },
-  {
-   "t": 40.569,
-   "e": 41.191,
+   "t": 48.26,
+   "e": 48.56,
    "text": "DETAILS.",
    "seg": "END",
-   "chunk": 42
+   "chunk": 60
   }
  ]
 }

@@ -54,7 +54,7 @@ function layoutChunk(c) {
 
 // Fv: 1 = face full-screen, 0 = half-and-half.  Words pop in on the beat; the word being spoken lights up.
 function drawCaptions(tg, Fv = 1) {
-  const y0 = lerp(1500, 1335, Fv), sc = lerp(0.9, 1.08, Fv);
+  const y0 = lerp(1470, 1335, Fv), sc = 1.08;
   for (const c of CHUNKS) {
     if (tg < c.a - 0.001 || tg > c.b + 0.2) continue;
     const outP = c.hardEnd ? prog(tg, c.b - 0.02, c.b + 0.06) : E.in2(prog(tg, c.b, c.b + 0.16));
