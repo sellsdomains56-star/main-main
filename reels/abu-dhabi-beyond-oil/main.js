@@ -55,10 +55,12 @@ function initAssets() {
 }
 
 function drawBG(t) {
-  const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#202226'); g.addColorStop(0.5, '#17181B'); g.addColorStop(1, '#101113');
-  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-  glow(CX, 560, 900, '190,196,206', 0.07 + 0.012 * Math.sin(t * 0.5));                  // one soft cool light, barely moving
-  const v = ctx.createRadialGradient(CX, 900, 420, CX, 900, 1300); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,0.5)');
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
+  glow(180 + 70 * Math.sin(t * 0.21), 700 + 40 * Math.cos(t * 0.17), 820, '233,196,124', 0.05);
+  glow(900 + 60 * Math.cos(t * 0.19), 1400 + 50 * Math.sin(t * 0.23), 900, '233,196,124', 0.035);
+  ctx.save(); ctx.globalAlpha = 0.07; ctx.drawImage(GRID, 0, -((t * 7) % GRID_STEP), W, H + GRID_STEP); ctx.restore();
+  const v = ctx.createRadialGradient(CX, 1000, 360, CX, 1000, 1250);
+  v.addColorStop(0, 'rgba(8,8,10,0)'); v.addColorStop(1, 'rgba(8,8,10,0.92)');
   ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
 }
 
@@ -68,14 +70,14 @@ function drawPerson(t, tg, F) {
   const S = zface(tg), ay = 770, bv = E.inOut2(F);
   ctx.save(); ctx.globalAlpha *= bv; ctx.translate(CX, ay); ctx.scale(S, S); ctx.translate(-CX, -ay); ctx.drawImage(FOOT, 0, 0, W, H); ctx.restore();
   const g = bv * bv;
-  ctx.save(); ctx.globalAlpha = 0.5 * g; ctx.globalCompositeOperation = 'saturation'; ctx.fillStyle = '#808080'; ctx.fillRect(0, 0, W, H); ctx.restore();   // a little less saturated: calmer, more neutral
-  const vg = ctx.createRadialGradient(CX, 800, 300, CX, 800, 1100); vg.addColorStop(0, 'rgba(12,13,15,0)'); vg.addColorStop(1, `rgba(12,13,15,${0.55 * g})`);
+  ctx.save(); ctx.globalAlpha = 0.24 * g; ctx.globalCompositeOperation = 'soft-light'; ctx.fillStyle = '#E9C47C'; ctx.fillRect(0, 0, W, H); ctx.restore();   // warm grade
+  const vg = ctx.createRadialGradient(CX, 800, 300, CX, 800, 1100); vg.addColorStop(0, 'rgba(8,8,10,0)'); vg.addColorStop(1, `rgba(8,8,10,${0.55 * g})`);
   ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
-  const tg1 = ctx.createLinearGradient(0, 0, 0, 330); tg1.addColorStop(0, `rgba(12,13,15,${0.5 * g})`); tg1.addColorStop(1, 'rgba(12,13,15,0)');
+  const tg1 = ctx.createLinearGradient(0, 0, 0, 330); tg1.addColorStop(0, `rgba(8,8,10,${0.5 * g})`); tg1.addColorStop(1, 'rgba(8,8,10,0)');
   ctx.fillStyle = tg1; ctx.fillRect(0, 0, W, 330);
   // bottom scrim under the captions
   const y0 = 900, y1 = 1260, sg = ctx.createLinearGradient(0, y0, 0, H);
-  sg.addColorStop(0, 'rgba(12,13,15,0)'); sg.addColorStop(clamp((y1 - y0) / (H - y0)), `rgba(12,13,15,${0.84 * g})`); sg.addColorStop(1, `rgba(12,13,15,${0.94 * g})`);
+  sg.addColorStop(0, 'rgba(8,8,10,0)'); sg.addColorStop(clamp((y1 - y0) / (H - y0)), `rgba(8,8,10,${0.84 * g})`); sg.addColorStop(1, `rgba(8,8,10,${0.94 * g})`);
   ctx.fillStyle = sg; ctx.fillRect(0, y0, W, H - y0);
 }
 

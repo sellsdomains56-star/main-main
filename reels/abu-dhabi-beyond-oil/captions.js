@@ -1,6 +1,6 @@
 'use strict';
 // ---------------------------------------------------------------------------
-// Big, plain captions: a short phrase, each word pops in on the beat it is spoken and the spoken word sits in a pill.
+// Captions: small, bold, black on white. One short phrase at a time.
 // ---------------------------------------------------------------------------
 let WORDS = [];   // {text, t, end, chunk}
 let CHUNKS = [];  // {a, b, words:[idx...], lines:[[idx...]], layout}
@@ -27,15 +27,15 @@ function parseTiming(txt) {
     const next = CHUNKS[i + 1] ? WORDS[CHUNKS[i + 1].words[0]].t - 0.04 : DUR;
     c.b = Math.min(next, last.end + 0.45);
     c.hardEnd = next - c.b < 0.02; // chunk is replaced immediately by the next
+    c.gap = next - c.b;            // room before the next phrase starts: the fade-out must finish inside it (no two captions on screen at once)
   });
 }
 
-const CAP = { size: 92, maxW: 900, lh: 108 };
-const CAP_PILL = '#DDD1B4', CAP_INK = '#17181B';
+const CAP = { size: 58, maxW: 860, lh: 82, padX: 26, boxH: 74, r: 16 };
 function layoutChunk(c) {
   if (c.layout) return c.layout;
-  const font = F.d(800, CAP.size), sp = M(' ', font) + 16;
-  const ws = c.words.map(i => ({ i, txt: WORDS[i].text.toUpperCase(), w: M(WORDS[i].text.toUpperCase(), font, -1) }));
+  const font = F.d(800, CAP.size), txt = i => WORDS[i].text.toUpperCase(), sp = M(' ', font);
+  const ws = c.words.map(i => ({ i, txt: txt(i), w: M(txt(i), font, 0) }));
   const total = ws.reduce((a, b) => a + b.w, 0) + sp * (ws.length - 1);
   let lines = [ws];
   if (total > CAP.maxW) {                       // balanced split into two lines
@@ -46,37 +46,24 @@ function layoutChunk(c) {
     }
     lines = [ws.slice(0, best), ws.slice(best)];
   }
-  c.layout = { font, sp, lines: lines.map(L => ({ L, w: L.reduce((s, x) => s + x.w, 0) + sp * (L.length - 1) })) };
+  c.layout = { font, lines: lines.map(L => ({ txt: L.map(x => x.txt).join(' '), w: L.reduce((s, x) => s + x.w, 0) + sp * (L.length - 1) })) };
   return c.layout;
 }
 
-// Fv: 1 = face full-screen, 0 = graphics beat.  Words pop in on the beat; the word being spoken sits in a pill.
+// Fv: 1 = face full-screen, 0 = graphics beat.  Plain, small, bold: each line is black text on a white box; the phrase simply appears and goes.
 function drawCaptions(tg, Fv = 1) {
   const y0 = lerp(1500, 1380, Fv);
   for (const c of CHUNKS) {
     if (tg < c.a - 0.001 || tg > c.b + 0.2) continue;
-    const outP = c.hardEnd ? prog(tg, c.b - 0.02, c.b + 0.06) : E.in2(prog(tg, c.b, c.b + 0.16));
-    const alpha = 1 - outP; if (alpha <= 0.003) continue;
+    const outP = c.hardEnd ? (tg >= c.b ? 1 : 0) : E.in2(prog(tg, c.b, c.b + Math.min(0.12, Math.max(0.02, c.gap - 0.02))));
+    const inP = ea(tg, c.a, c.a + 0.07, E.out3), alpha = inP * (1 - outP); if (alpha <= 0.003) continue;
     const L = layoutChunk(c), nLines = L.lines.length, baseY = y0 - (nLines - 1) * CAP.lh * 0.5;
-    ctx.save(); ctx.globalAlpha *= alpha; ctx.font = L.font; ctx.letterSpacing = '-1px'; ctx.textAlign = 'center'; ctx.lineJoin = 'round'; ctx.miterLimit = 2;
+    ctx.save(); ctx.globalAlpha *= alpha; ctx.translate(0, (1 - inP) * 12); ctx.font = L.font; ctx.letterSpacing = '0px'; ctx.textAlign = 'center';
     L.lines.forEach((ln, li) => {
-      let x = CX - ln.w / 2; const y = baseY + li * CAP.lh;
-      for (const wd of ln.L) {
-        const W_ = WORDS[wd.i], age = tg - W_.t, cx_ = x + wd.w / 2; x += wd.w + L.sp;
-        if (age < -0.02) continue;
-        const next = WORDS[wd.i + 1], isCur = !(next && next.chunk === W_.chunk && tg >= next.t - 0.02);
-        const p = E.back(prog(age, 0, 0.2)), s = lerp(0.6, 1, p), a = ea(age, -0.02, 0.07);
-        ctx.save(); ctx.translate(cx_, y); ctx.scale(s, s); ctx.globalAlpha *= a;
-        if (isCur) {                                                       // the word being spoken: dark text in a champagne pill
-          rr(-wd.w / 2 - 22, -CAP.size * 0.8, wd.w + 44, CAP.size * 1.06, 24); ctx.fillStyle = CAP_PILL; ctx.shadowColor = 'rgba(0,0,0,0.45)'; ctx.shadowBlur = 18 * SS; ctx.shadowOffsetY = 5 * SS; ctx.fill();
-          ctx.shadowColor = 'transparent'; ctx.fillStyle = CAP_INK; ctx.fillText(wd.txt, 0, 0);
-        } else {
-          ctx.shadowColor = 'rgba(0,0,0,0.55)'; ctx.shadowBlur = 16 * SS; ctx.shadowOffsetY = 4 * SS;
-          ctx.lineWidth = 15; ctx.strokeStyle = 'rgba(12,13,15,0.92)'; ctx.strokeText(wd.txt, 0, 0);
-          ctx.shadowColor = 'transparent'; ctx.fillStyle = '#FFFFFF'; ctx.fillText(wd.txt, 0, 0);
-        }
-        ctx.restore();
-      }
+      const y = baseY + li * CAP.lh, bw = ln.w + CAP.padX * 2;
+      ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.4)'; ctx.shadowBlur = 16 * SS; ctx.shadowOffsetY = 4 * SS;
+      rr(CX - bw / 2, y - CAP.size * 0.76 - (CAP.boxH - CAP.size) / 2 + 4, bw, CAP.boxH, CAP.r); ctx.fillStyle = '#FFFFFF'; ctx.fill(); ctx.restore();
+      ctx.fillStyle = '#0A0A0B'; ctx.fillText(ln.txt, CX, y);
     });
     ctx.restore();
   }

@@ -24,6 +24,9 @@ function wordRow(words, times, y, t, o = {}) {
     x += (ws[i] + gap) * k[i];
   });
 }
+function Tfit(str, x, y, o, maxW) {                      // text that shrinks to fit maxW
+  const w = M(str, o.font, o.ls || 0); T(str, x, y, { ...o, sx: Math.min(1, maxW / w) * (o.sx || 1) });
+}
 function coverImg(im, x, y, w, h, o = {}) {
   const { fx = 0.5, fy = 0.5, zoom = 1 } = o, s = Math.max(w / im.width, h / im.height) * zoom, sw = w / s, sh = h / s;
   ctx.drawImage(im, clamp(fx * im.width - sw / 2, 0, im.width - sw), clamp(fy * im.height - sh / 2, 0, im.height - sh), sw, sh, x, y, w, h);
@@ -46,10 +49,10 @@ function photoCard(parts, x, y, w, h, t, a0) {
 function sceneBeyond(t) {
   const tla = ea(t, 5.85, 6.4), tl = ea(t, 5.85, 8.55, E.inOut2);
   line(90, 560, 90 + 900 * tl, 560, { color: C.gold, w: 4, alpha: tla * 0.9 });                       // a thin line draws across: decades
-  const f1 = F.d(300, 132), f2 = F.d(600, 132), wB = M('Building', f1, -3), wW = M('wealth', f2, -3), sp = M(' ', f1);
-  const x = CX - (wB + sp + wW) / 2, eB = enter(t, 7.27, 0.6, 46), eW = enter(t, 7.65, 0.6, 46);
-  T('Building', x + wB / 2, 750 + eB.dy, { font: f1, ls: -3, alpha: eB.a });
-  T('wealth', x + wB + sp + wW / 2, 750 + eW.dy, { font: f2, ls: -3, alpha: eW.a });
+  const f1 = F.d(700, 124), f2 = F.d(800, 124), wB = M('Building', f1, -3), wW = M('wealth', f2, -3), sp = M(' ', f1), k = Math.min(1, 940 / (wB + sp + wW));
+  const x = CX - ((wB + sp + wW) * k) / 2, eB = enter(t, 7.27, 0.6, 46), eW = enter(t, 7.65, 0.6, 46);
+  T('Building', x + (wB * k) / 2, 750 + eB.dy, { font: f1, ls: -3, alpha: eB.a, sx: k });
+  T('wealth', x + (wB + sp) * k + (wW * k) / 2, 750 + eW.dy, { font: f2, ls: -3, alpha: eW.a, sx: k });
   const fb = F.i(220), wby = M('beyond', fb), wo = M('oil.', fb), spb = M(' ', fb), tot2 = wby + spb + wo, s2 = Math.min(1, 940 / tot2), xb = CX - (tot2 * s2) / 2;
   const eY = enter(t, 8.13, 0.7, 60);
   T('beyond', xb + (wby * s2) / 2, 990 + eY.dy, { font: fb, color: C.gold, alpha: eY.a, sx: s2 });
@@ -78,7 +81,7 @@ function sceneBars(t) {
 
 // ----------------------------------------------------------------------------- number blocks
 function counterGroup(t, o) {
-  const font = F.d(300, 300), nW = numberWidth(o.fin, font, -6), fs = F.i(170), sW = M(o.suffix, fs), gap = 14, tot = nW + gap + sW, x0 = -tot / 2;
+  const font = F.d(800, 280), nW = numberWidth(o.fin, font, -6), fs = F.i(150), sW = M(o.suffix, fs), gap = 14, tot = nW + gap + sW, x0 = -tot / 2;
   const v = o.val * ea(t, o.a0, o.a1, E.out3), na = ea(t, o.a0 - 0.05, o.a0 + 0.3);
   drawNumber(numberStr(v, o.dec), o.fin, x0, 95, { font, alpha: na, ls: -6 });
   const eS = ea(t, o.a1 - 0.2, o.a1 + 0.3, E.out5);
@@ -149,7 +152,7 @@ function sceneStat13(t) {
 // ------------------------------------------------------------ what to look for
 function sceneCriteria(t) {
   const eh = enter(t, 32.74, 0.6, 30);
-  T('properties with', CX, 470 + eh.dy, { font: F.i(128), color: C.ink, alpha: eh.a });
+  Tfit('properties with', CX, 470 + eh.dy, { font: F.i(116), color: C.ink, alpha: eh.a }, 900);
   const rows = [['tag', 'Competitive', 'entry prices', 33.47], ['house', 'Strong', 'rental demand', 34.92], ['chart', 'Long-term', 'appreciation', 36.22]];
   rows.forEach(([ic, a, b, t0], i) => {
     const y = 700 + i * 195, nextT = rows[i + 1] ? rows[i + 1][3] : 99, act = ea(t, t0, t0 + 0.6, E.out4), op = lerp(1, 0.5, ea(t, nextT, nextT + 0.5));
@@ -159,7 +162,7 @@ function sceneCriteria(t) {
     ctx.save(); ctx.beginPath(); ctx.rect(250, y - 100, 780 * act, 220); ctx.clip();
     const dy = (1 - act) * 22;
     T(a, 252, y + dy, { font: F.d(600, 92), ls: -2, align: 'left', color: C.ink });
-    T(b, 252, y + 78 + dy, { font: F.i(84), align: 'left', color: C.gold });
+    T(b, 252, y + 78 + dy, { font: F.i(76), align: 'left', color: C.gold });
     ctx.restore(); ctx.restore();
   });
 }
@@ -168,7 +171,7 @@ function sceneCriteria(t) {
 function sceneCTA(t) {
   const send = 45.53, ce = ea(t, 42.3, 43.0, E.out4);
   ctx.save(); ctx.globalAlpha *= ce; ctx.translate(0, (1 - ce) * 40);
-  T('Want my shortlist?', CX, 560, { font: F.i(120), color: C.ink });
+  Tfit('Want my shortlist?', CX, 560, { font: F.i(112), color: C.ink }, 900);
   ctx.restore();
   const sent = ea(t, send, send + 0.35), ia = ea(t, 43.2, 43.8, E.out4), iy = 1200;
   ctx.save(); ctx.globalAlpha *= ia;

@@ -1,6 +1,6 @@
 """Sound design for the reel: processed voiceover + SFX cut to the animation cues (+ optional ambient music bed).
-   python3 -I audio.py <voice.wav 48k> <out_mix.wav> [--glitch | --clean] [--music] [--sfx-only] [--offset s]
-   default = very soft effects (airy whooshes, low thuds, gentle chimes, barely above the room); --clean / --glitch = the older, louder sets
+   python3 -I audio.py <voice.wav 48k> <out_mix.wav> [--soft | --clean] [--music] [--sfx-only] [--offset s]
+   default = the glitch-style effects (bit-crush, stutter, tape-stop); --clean = the plain synthesised set; --soft = very quiet airy whooshes / thuds / chimes
    Everything is synthesised with numpy (no samples), so it is fully reproducible."""
 import sys, subprocess
 import numpy as np
@@ -9,7 +9,7 @@ SR = 48000
 SFX_OFFSET = 0.0                       # --offset 0.04 : shift every effect later (graphics were timed on the voiceover file, not the footage audio)
 if '--offset' in sys.argv:
     _i = sys.argv.index('--offset'); SFX_OFFSET = float(sys.argv[_i + 1]); del sys.argv[_i:_i + 2]
-GLITCH = '--glitch' in sys.argv            # swap the clean effects for digital-glitch ones (bit-crush, stutter, static, tape-stop)
+SOFT = '--soft' in sys.argv; GLITCH = not SOFT and '--clean' not in sys.argv            # swap the clean effects for digital-glitch ones (bit-crush, stutter, static, tape-stop)
 SFX_ONLY = '--sfx-only' in sys.argv    # write just the sound effects (no voice, no music) as they sit in the reel mix
 WITH_MUSIC = '--music' in sys.argv      # ambient pad + bell plucks; off by default (voice + SFX only)
 DUR = 46.72
@@ -218,7 +218,7 @@ def build_sfx():
     place(buf, 8.59, boom(1.6), 0.45); place(buf, 8.59, shimmer(), 0.18)
     # Mubadala
     place(buf, 8.95, thump(62, 0.9), 0.45); place(buf, 9.55, shimmer(1.6), 0.22)
-    count_ticks(buf, 9.78, 10.98, 14); place(buf, 11.12, pop(700), 0.12)
+    place(buf, 9.3, pop(620), 0.22); place(buf, 9.3, click(), 0.3)                                        # the pin lands on Al Maryah
     # vs Portugal
     place(buf, 11.95, swipe(0.5), 0.24); place(buf, 12.25, swipe(0.5), 0.2); place(buf, 13.15, ping(1175, 1.4), 0.2)
     # ADIA
@@ -247,8 +247,6 @@ def build_sfx():
     place(buf, 39.13, riser(0.9), 0.4); place(buf, 40.0, boom(2.2), 0.5); place(buf, 40.0, shimmer(1.8), 0.2)
     place(buf, 41.43, ping(1175, 1.2), 0.18)
     # DM me
-    for k in range(4): place(buf, 42.94 + k * 0.22, tick(1600 + k * 120), 0.10)
-    for k in range(4): place(buf, 44.10 + k * 0.16, ping(1568 + k * 130, 0.7), 0.12)
     for k in range(9): place(buf, 45.06 + k * 0.047, click(rng.uniform(2400, 3600)), 0.2)
     place(buf, 45.53, whoosh(0.5, True, 1.2), 0.36); place(buf, 45.53, pop(900, 0.2), 0.32)
     place(buf, 46.05, bell(1175, 2.0), 0.2); place(buf, 46.18, bell(1568, 2.0), 0.18); place(buf, 46.3, bell(1760, 2.0), 0.16)
@@ -322,7 +320,7 @@ def main(voice_path, out_path):
     duck_sfx = 1 - 0.22 * smooth_env(np.clip(env, 0, 1), 90).clip(0, 1)
 
     if SFX_ONLY: duck_sfx[:] = 1.0      # no voice in this stem, so nothing to duck under
-    bed = build_bed() if WITH_MUSIC else np.zeros((N, 2)); LOUD = GLITCH or '--clean' in sys.argv; sfx = build_sfx() if LOUD else build_sfx_soft()   # music bed is opt-in (--music)
+    bed = build_bed() if WITH_MUSIC else np.zeros((N, 2)); LOUD = not SOFT; sfx = build_sfx() if LOUD else build_sfx_soft()   # music bed is opt-in (--music)
     ir = make_reverb()
     bed_wet = convolve(bed, ir) * 0.55; sfx_wet = convolve(sfx, ir) * (0.30 if LOUD else 0.45)
     bed_mix = (bed * 0.8 + bed_wet) * duck_bed[:, None]

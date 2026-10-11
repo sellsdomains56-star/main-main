@@ -67,10 +67,10 @@ function satDraw(sc, tg) {
   }
   // grade: a little less saturated, a little darker, so the line work and type sit on it
   ctx.globalCompositeOperation = 'saturation'; ctx.globalAlpha = 0.2; ctx.fillStyle = '#808080'; ctx.fillRect(0, 0, W, H);
-  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(14,15,18,0.05)'; ctx.fillRect(0, 0, W, H);
-  if (sc.veil === 'tl') { const gv = ctx.createRadialGradient(0, 380, 0, 0, 380, 980); gv.addColorStop(0, 'rgba(12,13,16,0.92)'); gv.addColorStop(0.6, 'rgba(12,13,16,0.55)'); gv.addColorStop(1, 'rgba(12,13,16,0)'); ctx.fillStyle = gv; ctx.fillRect(0, 0, W, H); }   // open sea at the coverage edge: let it fall into shadow
-  const gt = ctx.createLinearGradient(0, 0, 0, 640); gt.addColorStop(0, 'rgba(14,15,18,0.82)'); gt.addColorStop(1, 'rgba(14,15,18,0)'); ctx.fillStyle = gt; ctx.fillRect(0, 0, W, 640);
-  const gb = ctx.createLinearGradient(0, 1180, 0, H); gb.addColorStop(0, 'rgba(14,15,18,0)'); gb.addColorStop(0.45, 'rgba(14,15,18,0.78)'); gb.addColorStop(1, 'rgba(14,15,18,0.92)'); ctx.fillStyle = gb; ctx.fillRect(0, 1180, W, H - 1180);
+  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(8,8,10,0.05)'; ctx.fillRect(0, 0, W, H);
+  if (sc.veil === 'tl') { const gv = ctx.createRadialGradient(0, 380, 0, 0, 380, 980); gv.addColorStop(0, 'rgba(8,8,10,0.92)'); gv.addColorStop(0.6, 'rgba(8,8,10,0.55)'); gv.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = gv; ctx.fillRect(0, 0, W, H); }   // open sea at the coverage edge: let it fall into shadow
+  const gt = ctx.createLinearGradient(0, 0, 0, 640); gt.addColorStop(0, 'rgba(8,8,10,0.82)'); gt.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = gt; ctx.fillRect(0, 0, W, 640);
+  const gb = ctx.createLinearGradient(0, 1180, 0, H); gb.addColorStop(0, 'rgba(8,8,10,0)'); gb.addColorStop(0.45, 'rgba(8,8,10,0.78)'); gb.addColorStop(1, 'rgba(8,8,10,0.92)'); ctx.fillStyle = gb; ctx.fillRect(0, 1180, W, H - 1180);
   ctx.restore();
   return cam;
 }
@@ -78,9 +78,9 @@ function satOutline(cam, pts, p, color = C.gold) {                // animated tr
   if (p <= 0.001) return;
   const P = pts.map(([lo, la]) => satProj(cam, lo, la));
   ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  if (p >= 0.995) { ctx.beginPath(); P.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); ctx.fillStyle = 'rgba(205,191,159,0.16)'; ctx.fill(); }
+  if (p >= 0.995) { ctx.beginPath(); P.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); ctx.fillStyle = 'rgba(233,196,124,0.16)'; ctx.fill(); }
   strokePoly(P, p, { color: 'rgba(8,9,11,0.6)', w: 13 });
-  ctx.shadowColor = 'rgba(205,191,159,0.9)'; ctx.shadowBlur = 16 * SS; const hd = strokePoly(P, p, { color, w: 6 }); ctx.shadowColor = 'transparent';
+  ctx.shadowColor = 'rgba(233,196,124,0.9)'; ctx.shadowBlur = 16 * SS; const hd = strokePoly(P, p, { color, w: 6 }); ctx.shadowColor = 'transparent';
   if (hd && p < 0.995) { glow(hd.x, hd.y, 60, '255,246,222', 0.55); dot(hd.x, hd.y, 7, '#FFF8E6'); }
   ctx.restore();
 }
@@ -91,7 +91,7 @@ function satPin(x, y, t, a0, title, sub) {                         // pin + one 
   dot(x, y, 20 * e, 'rgba(255,255,255,0.95)'); dot(x, y, 11 * e, C.gold);
   const f1 = F.d(700, 50), f2 = F.d(500, 36), w1 = M(title, f1, 1), w2 = sub ? M(sub, f2, 1) : 0, pw = Math.max(w1, w2) + 70, ph = sub ? 124 : 84;
   const lx = Math.min(W - 40 - pw / 2, Math.max(40 + pw / 2, x)), ly = y + 40 + (1 - e) * 20;
-  ctx.save(); ctx.globalAlpha *= al; rr(lx - pw / 2, ly, pw, ph, 22); ctx.fillStyle = 'rgba(16,17,20,0.86)'; ctx.fill(); ctx.strokeStyle = 'rgba(205,191,159,0.7)'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.globalAlpha *= al; rr(lx - pw / 2, ly, pw, ph, 22); ctx.fillStyle = 'rgba(8,8,10,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(233,196,124,0.7)'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
   T(title, lx, ly + 58, { font: f1, ls: 1, color: '#FFFFFF', alpha: al });
   if (sub) T(sub, lx, ly + 100, { font: f2, ls: 1, color: C.gold, alpha: al });
 }

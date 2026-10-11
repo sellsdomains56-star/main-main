@@ -5,7 +5,7 @@ graphics, map, cutout, sound — is generated from code, so any beat can be reti
 
 ## The edit
 
-Clean cut for easy reading (big type, one hero per beat, charcoal + ivory + muted champagne). He is on screen in only two beats
+Clean cut for easy reading (bold type only, one hero per beat, the original near-black + ivory + gold palette). He is on screen in only two beats
 (full-screen face, punch-in / zoom-out moves, bold captions); the rest are graphics, real satellite flyovers and the developers' own
 renders, with his voice carrying on underneath (edit list = `SEG` in `main.js`, scene list = `SCENES` in `scenes.js`).
 
@@ -25,14 +25,14 @@ renders, with his voice carrying on underneath (edit list = `SEG` in `main.js`, 
 | 37.9 – 42.2 | **FACE** | OIL is a dot; the economy ring grows past it |
 | 42.2 – 46.7 | text | "Want my shortlist?" - DM typed, sent |
 
-* **Captions**: very large, bold all-caps, each word pops on the beat; the spoken word sits in a champagne pill.
+* **Captions**: small, bold all-caps, black text on a white box, one short phrase at a time (`captions.js`).
 * **Satellite**: Esri World Imagery tiles (`fetch_tiles.mjs` downloads exactly the tiles the camera needs into `build/tiles/`), flown by the
   deterministic camera in `satmap.js`; island outlines from OpenStreetMap (`extract_outlines.py` → `outlines.json`) are drawn on top.
   Imagery © Esri, Maxar, Earthstar Geographics (shown on screen).
 * **Real images**: the developers' own press renders - Talay and Yas Riva Reserve (Aldar press releases on Zawya), Hudayriyat Golf Estates
   (modon.com). They are not committed (copyrighted); `build/photos/{talay,yasriva,hudayriyat}.jpg`.
-* **Sound**: his own footage audio + a handful of very soft effects (airy whooshes on scene changes, low thuds, gentle chimes), no music.
-  `audio.py … --clean` / `--glitch` give the older, louder sets. Mix normalised to −14 LUFS / −1.5 dBTP.
+* **Sound**: his own footage audio + glitch-style effects (bit-crush, stutter, tape-stop) cut to the scenes, no music.
+  `audio.py … --clean` = the plain synthesised set, `--soft` = very quiet whooshes / thuds / chimes. Mix normalised to −14 LUFS / −1.5 dBTP.
 
 ## Rebuild
 
