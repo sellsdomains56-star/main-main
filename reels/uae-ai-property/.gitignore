@@ -5,3 +5,4 @@ stills/
 *.mp4
 cues.json
 sat_scenes.json
+*.log
