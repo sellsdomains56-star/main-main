@@ -1,66 +1,39 @@
 {
-"src": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/in4/raw.mp4",
-"audio48": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/in4/a48.wav",
-"segments": [
-[
-0.0,
-2.96
-],
-[
-3.02,
-4.74
-],
-[
-4.8,
-7.38
-],
-[
-7.5,
-10.6
-],
-[
-10.66,
-14.24
-],
-[
-14.3,
-17.5
-],
-[
-17.52,
-25.62
-],
-[
-26.55,
-27.3
-],
-[
-27.46,
-31.42
-],
-[
-34.1,
-40.58
-],
-[
-40.97,
-47.46
-],
-[
-47.56,
-48.58
-],
-[
-50.0,
-56.5
-],
-[
-57.14,
-67.34
-],
-[
-99.58,
-107.7
-]
-]
+ "src": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/in4/raw.mp4",
+ "audio48": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/in4/a48.wav",
+ "segments": [
+  [
+   0.0,
+   18.66
+  ],
+  [
+   20.21,
+   25.27
+  ],
+  [
+   26.68,
+   31.3
+  ],
+  [
+   34.36,
+   40.42
+  ],
+  [
+   41.0,
+   48.73
+  ],
+  [
+   50.16,
+   56.46
+  ],
+  [
+   57.37,
+   67.26
+  ],
+  [
+   99.69,
+   107.58
+  ]
+ ],
+ "note": "cut points sit in the silences between phrases (energy minima, see edl_tools.py); left out: the Arabic asides (18.7-20.2 \"ونعيد من عند\", Thabit, Anzil, zain, yalla), the false start / retakes, director chat"
 }
