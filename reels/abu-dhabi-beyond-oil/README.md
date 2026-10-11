@@ -5,28 +5,28 @@ graphics, map, cutout, sound — is generated from code, so any beat can be reti
 
 ## The edit
 
-The reel alternates two looks, with a punch-zoom move at every cut (edit list = `SEG` in `main.js`):
+Calm cut: he is on screen in only two beats (full-screen face, punch-in / zoom-out moves, bold captions); everything else is one
+hero graphic per beat on top of the live Abu Dhabi map, with his voice carrying on underneath (edit list = `SEG` in `main.js`).
 
 | Time | Look | What happens |
 |------|------|--------------|
-| 0.0 – 5.6 | **FACE** | He listens while the question is asked; oil-price line crashes on "collapsed" (punch-in + shake), gold **?**; **OUTDATED** stamp slams in on the word |
-| 5.6 – 11.8 | **SPLIT** | Live map of Abu Dhabi behind; "decades → *beyond oil.*"; Mubadala logo + **AED 1.4T** count-up; map flies to Al Maryah Island |
-| 11.8 – 13.9 | **FACE** | Mubadala vs Portugal's GDP bars over his face |
-| 13.9 – 24.5 | **SPLIT** | ADIA (Corniche) gauge → **US$ 1.1T**; AI · Technology · Infrastructure · Businesses → companies · jobs · housing demand (arcs spread from Al Maryah); Aldar → Talay (Saadiyat) + Yas Riva Reserve (Yas Island) |
-| 24.5 – 26.3 | **FACE** | **AED 5B+** combined sales |
-| 26.3 – 28.2 | **SPLIT** | Modon → Hudayriyat Island pin |
-| 28.2 – 31.3 | **FACE** | **AED 13B+**, "within days" bar fills |
-| 31.3 – 37.9 | **SPLIT** | Entry prices · rental demand · long-term appreciation, map pulses |
-| 37.9 – 42.2 | **FACE** | OIL is a dot; the economy rings out around him (zoom-out) |
-| 42.2 – 46.7 | **SPLIT** | Shortlist card, DM typed, **SENT** |
+| 0.0 – 5.6 | **FACE** | The question; **OUTDATED** stamp on the word |
+| 5.6 – 8.95 | graphics | decades line → "Building wealth *beyond oil.*" |
+| 8.95 – 11.8 | graphics | Mubadala logo + **AED 1.4T** count-up, map flies to Al Maryah |
+| 11.8 – 13.9 | graphics | Mubadala vs Portugal's GDP bars |
+| 13.9 – 16.2 | graphics | ADIA (Corniche) ring → **US$ 1.1T** |
+| 16.2 – 21.9 | graphics | AI · Technology · Infrastructure · Businesses → companies · jobs · housing demand |
+| 21.9 – 26.3 | graphics | Aldar → Talay + Yas Riva Reserve; **AED 5B+** |
+| 26.3 – 31.3 | graphics | Modon → Hudayriyat; **AED 13B+** within days |
+| 31.3 – 37.9 | graphics | entry prices · rental demand · long-term appreciation |
+| 37.9 – 42.2 | **FACE** | OIL is a dot; the economy ring grows past it |
+| 42.2 – 46.7 | graphics | shortlist card, DM typed, sent |
 
-* **SPLIT**: he is lifted out of his background (RMBG-1.4 matte, edge-refined) and stands smaller in the lower half, in front of the
-  map, with a gold rim light that pulses with his voice. Graphics + map in the upper half.
 * **Captions**: bold all-caps, outlined, each word pops on the beat, the spoken word lights up, keywords in gold.
 * **Map**: real OpenStreetMap coastline/islands/roads (© OpenStreetMap contributors, ODbL) drawn in the reel's style; a fly-to camera
   glides between the places he names (`CAM` in `map.js`), pins ripple in on the word.
-* **Sound**: his own footage audio + synthesised effects (whooshes on cuts, count ticks, stamp, pings). Music bed is **off**
-  (`audio.py … --music` turns it on). Mix normalised to −14 LUFS / −1.5 dBTP.
+* **Sound**: his own footage audio + synthesised glitch-style effects (`audio.py … --clean` for the clean set). Music bed is **off**
+  (`--music` turns it on). Mix normalised to −14 LUFS / −1.5 dBTP.
 
 ## Rebuild
 
