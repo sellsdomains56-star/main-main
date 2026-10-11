@@ -3,7 +3,7 @@
 // Pages switch with the URL hash instead of separate files.
 //
 //   node wepink-gcc/scripts/build-single.mjs [out.html]
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -16,8 +16,16 @@ const brand = ["logo.svg", "logo-white.svg", "favicon.svg"];
 const inlineBrand = (text) => brand.reduce((t, f) => t.split(`assets/brand/${f}`).join(dataUri(`assets/brand/${f}`)), text);
 const script = (text) => `<script>\n${inlineBrand(text).replace(/<\/script/gi, "<\\/script")}\n</script>`;
 
+// Campaign photos and packshots referenced in data.js are inlined too.
+const inlinePhotos = (text) =>
+  text.replace(/"(assets\/(?:photos|products)\/[^"]+\.(jpe?g|png|webp))"/g, (m, path, ext) => {
+    if (!existsSync(join(root, path))) return m;
+    const type = ext === "jpg" ? "jpeg" : ext;
+    return `"data:image/${type};base64,${readFileSync(join(root, path)).toString("base64")}"`;
+  });
+
 const css = read("assets/css/styles.css");
-const js = ["data.js", "i18n.js", "art.js", "app.js", "pages.js"].map((f) => script(read(`assets/js/${f}`)));
+const js = ["data.js", "i18n.js", "art.js", "app.js", "pages.js"].map((f) => script(inlinePhotos(read(`assets/js/${f}`))));
 const head = read("index.html").match(/<head>([\s\S]*?)<\/head>/)[1];
 const meta = head
   .split("\n")

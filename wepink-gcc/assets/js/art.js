@@ -54,11 +54,18 @@ window.WP_ART = (function () {
     const o = opts || {};
     const cx = x + w / 2;
     const fs = o.fs || 22;
+    // Long names wrap onto two lines and shrink to fit the label.
+    const words = String(line).split(" ");
+    const lines = line.length > 10 && words.length > 1 ? [words[0], words.slice(1).join(" ")] : [line];
+    const longest = Math.max(...lines.map((l) => l.length));
+    const ls = Math.min(o.ls || 14, (w - 14) / (longest * 0.62));
+    const nameY = lines.length > 1 ? [0.52, 0.52 + (ls * 1.15) / h] : [0.58];
+    const typeY = lines.length > 1 ? nameY[1] + 0.15 : 0.76;
     return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.rx || 10}" fill="#fff" fill-opacity="${o.op || 0.94}"/>
-      <text x="${cx}" y="${y + h * 0.34}" text-anchor="middle" font-family="${FONT}" font-weight="800" font-size="${fs}" letter-spacing="-0.5" fill="${color}">wepink</text>
-      <text x="${cx}" y="${y + h * 0.58}" text-anchor="middle" font-family="${FONT}" font-weight="700" font-size="${o.ls || 14}" fill="${INK}">${esc(line)}</text>
-      <text x="${cx}" y="${y + h * 0.76}" text-anchor="middle" font-family="${FONT}" font-weight="600" font-size="${o.ts || 8}" letter-spacing="1.6" fill="${INK}" fill-opacity=".62">${esc(type.toUpperCase())}</text>
-      ${size ? `<text x="${cx}" y="${y + h * 0.9}" text-anchor="middle" font-family="${FONT}" font-weight="500" font-size="${o.ts || 8}" fill="${INK}" fill-opacity=".5">${esc(size)}</text>` : ""}`;
+      <text x="${cx}" y="${y + h * (lines.length > 1 ? 0.3 : 0.34)}" text-anchor="middle" font-family="${FONT}" font-weight="800" font-size="${fs}" letter-spacing="-0.5" fill="${color}">wepink</text>
+      ${lines.map((l, i) => `<text x="${cx}" y="${y + h * nameY[i]}" text-anchor="middle" font-family="${FONT}" font-weight="700" font-size="${ls.toFixed(1)}" fill="${INK}">${esc(l)}</text>`).join("")}
+      <text x="${cx}" y="${y + h * typeY}" text-anchor="middle" font-family="${FONT}" font-weight="600" font-size="${o.ts || 8}" letter-spacing="1.6" fill="${INK}" fill-opacity=".62">${esc(type.toUpperCase())}</text>
+      ${size ? `<text x="${cx}" y="${y + h * Math.min(0.94, typeY + 0.14)}" text-anchor="middle" font-family="${FONT}" font-weight="500" font-size="${o.ts || 8}" fill="${INK}" fill-opacity=".5">${esc(size)}</text>` : ""}`;
   }
 
   const shapes = {

@@ -13,6 +13,25 @@ window.WP_DATA = (function () {
     instagram: "https://www.instagram.com/wepink/",
     tiktok: "https://www.tiktok.com/@wepink",
     returnsDays: 14,
+
+    // Campaign photos. Put the official files from the wepink brand team in
+    // assets/photos/ and set the paths, e.g. virginiaHero: "assets/photos/virginia-hero.jpg".
+    // Until a path is set, a designed placeholder is shown instead.
+    photos: {
+      virginiaHero: "", // tall portrait of Virginia Fonseca for the home page hero
+      virginiaPortrait: "", // second portrait for the "Created by Virginia" section
+      campaign: "", // wide campaign image for the "Made to be noticed" band
+    },
+
+    // Referral & ambassador programme (placeholder terms — set with the franchise).
+    referral: {
+      friendDiscountPct: 10, // friends get this % off their first order with a code
+      tiers: [
+        { id: "pink", name: { en: "Pink", ar: "بينك" }, minOrders: 0, pct: 10 },
+        { id: "hot", name: { en: "Hot Pink", ar: "هوت بينك" }, minOrders: 20, pct: 15 },
+        { id: "diamond", name: { en: "Diamond", ar: "دايموند" }, minOrders: 50, pct: 20 },
+      ],
+    },
   };
 
   // Each country sets its own free-delivery threshold and delivery fee in
@@ -100,204 +119,208 @@ window.WP_DATA = (function () {
   };
 
   const categories = [
-    { id: "body-splash", name: { en: "Body Splash", ar: "بودي سبلاش" }, blurb: { en: "Light, layerable, all-day", ar: "خفيف وقابل للدمج وطوال اليوم" }, art: "splash", color: "#E6007E", color2: "#FF8CC6" },
-    { id: "perfume", name: { en: "Perfume", ar: "العطور" }, blurb: { en: "Long-lasting eau de parfum", ar: "أو دو بارفان يدوم طويلًا" }, art: "perfume", color: "#9E0B5A", color2: "#E9B872" },
-    { id: "body-care", name: { en: "Body Care", ar: "العناية بالجسم" }, blurb: { en: "Lotions & body butters", ar: "لوشن وزبدة الجسم" }, art: "lotion", color: "#F49AC1", color2: "#FFFFFF" },
-    { id: "hair-mist", name: { en: "Hair Mist", ar: "عطر الشعر" }, blurb: { en: "Scent that moves with you", ar: "عطر يتحرك معكِ" }, art: "mist", color: "#C77DFF", color2: "#FFE3EF" },
-    { id: "gift-sets", name: { en: "Gift Sets", ar: "أطقم الهدايا" }, blurb: { en: "Wrapped in pink, ready to give", ar: "مغلّفة بالوردي وجاهزة للإهداء" }, art: "set", color: "#E6007E", color2: "#FFD1E6" },
+    { id: "perfume", name: { en: "VF Perfumes", ar: "عطور VF" }, blurb: { en: "The Virginia Fonseca line", ar: "مجموعة فيرجينيا فونسيكا" }, art: "perfume" },
+    { id: "body-splash", name: { en: "Body Splash", ar: "بودي سبلاش" }, blurb: { en: "Brazil's favourite ritual", ar: "طقس البرازيل المفضل" }, art: "splash" },
+    { id: "men", name: { en: "For Him", ar: "للرجال" }, blurb: { en: "Woody, fresh, magnetic", ar: "خشبي ومنعش وجذّاب" }, art: "splash" },
+    { id: "body-care", name: { en: "Body Care", ar: "العناية بالجسم" }, blurb: { en: "Perfumed body cream", ar: "كريم جسم معطّر" }, art: "lotion" },
+    { id: "gift-sets", name: { en: "Gift Sets", ar: "أطقم الهدايا" }, blurb: { en: "Wrapped in pink, ready to give", ar: "مغلّفة بالوردي وجاهزة للإهداء" }, art: "set" },
   ];
 
   const families = {
     sweet: { en: "Sweet & gourmand", ar: "حلو وشهي" },
     floral: { en: "Floral & fruity", ar: "زهري وفاكهي" },
-    fresh: { en: "Fresh & clean", ar: "منعش ونظيف" },
+    fresh: { en: "Fresh & aquatic", ar: "منعش ومائي" },
     warm: { en: "Warm & oriental", ar: "دافئ وشرقي" },
+    woody: { en: "Woody & aromatic", ar: "خشبي وعطري" },
   };
 
   // Notes are [en, ar] pairs.
   const N = {
-    vanilla: ["Vanilla", "فانيلا"], caramel: ["Caramel", "كراميل"], praline: ["Praline", "برالين"],
-    amber: ["Amber", "عنبر"], tonka: ["Tonka bean", "حبوب التونكا"], pear: ["Pear", "كمثرى"],
-    peony: ["Peony", "فاوانيا"], musk: ["White musk", "مسك أبيض"], bergamot: ["Bergamot", "برغموت"],
-    jasmine: ["Jasmine", "ياسمين"], sea: ["Sea notes", "نفحات بحرية"], citrus: ["Citrus", "حمضيات"],
-    cedar: ["Cedarwood", "خشب الأرز"], sugar: ["Spun sugar", "غزل البنات"], sandal: ["Sandalwood", "خشب الصندل"],
-    pepper: ["Pink pepper", "فلفل وردي"], rose: ["Rose", "ورد"], patchouli: ["Patchouli", "باتشولي"],
-    oud: ["Oud", "عود"], saffron: ["Saffron", "زعفران"], berries: ["Red berries", "توت أحمر"],
-    coconut: ["Coconut", "جوز الهند"], lychee: ["Lychee", "ليتشي"], orange: ["Orange blossom", "زهر البرتقال"],
-    mint: ["Mint", "نعناع"], lily: ["Water lily", "زنبق الماء"],
+    pear: ["Pear", "كمثرى"], orangeBlossom: ["Orange blossom", "زهر البرتقال"], amber: ["Amber", "عنبر"],
+    patchouli: ["Patchouli", "باتشولي"], pinkPepper: ["Pink pepper", "فلفل وردي"], bergamot: ["Bergamot", "برغموت"],
+    mandarin: ["Mandarin", "يوسفي"], sambac: ["Jasmine sambac", "ياسمين سامباك"], lavender: ["Lavender", "لافندر"],
+    peony: ["Peony", "فاوانيا"], musk: ["Musk", "مسك"], praline: ["Praline", "برالين"], blackberry: ["Blackberry", "توت أسود"],
+    tuberose: ["Tuberose", "مسك الروم"], vanilla: ["Vanilla", "فانيلا"], jasmine: ["Jasmine", "ياسمين"],
+    muguet: ["Lily of the valley", "زنبق الوادي"], sandalwood: ["Sandalwood", "خشب الصندل"], apple: ["Apple", "تفاح"],
+    freesia: ["Freesia", "فريزيا"], rose: ["Rose", "ورد"], woods: ["Woody notes", "نفحات خشبية"], suede: ["Suede", "جلد السويد"],
+    grapefruit: ["Grapefruit peel", "قشر الجريب فروت"], turkishRose: ["Turkish rose", "ورد تركي"], whiteAmber: ["White amber", "عنبر أبيض"],
+    benzoin: ["Benzoin", "بنزوين"], tangerine: ["Tangerine", "تانجرين"], cassis: ["Cassis", "كشمش أسود"], ylang: ["Ylang-ylang", "يلانغ يلانغ"],
+    strawberry: ["Strawberry", "فراولة"], orange: ["Orange", "برتقال"], plum: ["Plum", "برقوق"], violet: ["Violet", "بنفسج"],
+    damaskRose: ["Damask rose", "ورد دمشقي"], yellowFruits: ["Yellow fruits", "فواكه صفراء"], gardenia: ["Gardenia", "غاردينيا"],
+    herbs: ["Herbs", "أعشاب"], sweetWoods: ["Sweet woods", "أخشاب حلوة"],
   };
 
   const T = {
+    colonia: { en: "Eau de Cologne", ar: "كولونيا معطّرة" },
     splash: { en: "Body Splash", ar: "بودي سبلاش" },
-    perfume: { en: "Eau de Parfum", ar: "أو دو بارفان" },
-    lotion: { en: "Body Lotion", ar: "لوشن الجسم" },
-    butter: { en: "Body Butter", ar: "زبدة الجسم" },
-    mist: { en: "Hair Mist", ar: "عطر الشعر" },
+    cream: { en: "Body Cream", ar: "كريم الجسم" },
     set: { en: "Gift Set", ar: "طقم هدايا" },
   };
 
-  // Sample catalogue — replace names, sizes, notes and prices with the
-  // official GCC range from the brand before launch.
+  // The wepink range as sold in Brazil (names, sizes and scent notes from the
+  // brand's listings). GCC prices are placeholders in AED: set the real ones
+  // with the franchise before launch. Add `image: "assets/products/<id>.webp"`
+  // to show the official packshot instead of the drawn bottle.
   const products = [
     {
-      id: "obsessed-body-splash", cat: "body-splash", type: "splash", art: "splash", line: "Obsessed",
-      size: "200 ml", price: 69, family: "sweet", color: "#E6007E", color2: "#FF8CC6", badge: "bestseller",
-      notes: { top: [N.berries, N.pear], heart: [N.praline, N.caramel], base: [N.vanilla, N.musk] },
+      id: "vf-golden", cat: "perfume", type: "colonia", art: "perfume", line: "VF Golden",
+      size: "75 ml", price: 199, family: "warm", color: "#C9962E", color2: "#F6DFA4", badge: "new",
+      notes: { top: [N.pinkPepper, N.bergamot, N.mandarin], heart: [N.sambac, N.lavender, N.peony], base: [N.amber, N.musk, N.praline] },
       desc: {
-        en: "The one everyone asks about. A sugary, glowing cloud of red berries, praline and creamy vanilla that clings to skin and clothes all day.",
-        ar: "العطر الذي يسأل عنه الجميع. سحابة حلوة ومشرقة من التوت الأحمر والبرالين والفانيلا الكريمية تدوم على البشرة والملابس طوال اليوم.",
+        en: "Liquid gold. Pink pepper and mandarin melt into jasmine sambac and peony, then settle into warm amber, musk and praline. Floral oriental, made for evenings.",
+        ar: "ذهب سائل. فلفل وردي ويوسفي يذوبان في ياسمين سامباك والفاوانيا، ثم يستقران على عنبر دافئ ومسك وبرالين. زهري شرقي للمساء.",
       },
     },
     {
-      id: "warm-body-splash", cat: "body-splash", type: "splash", art: "splash", line: "Warm",
-      size: "200 ml", price: 69, family: "warm", color: "#C2562B", color2: "#F4B183",
-      notes: { top: [N.orange, N.pepper], heart: [N.amber, N.tonka], base: [N.vanilla, N.sandal] },
+      id: "vf", cat: "perfume", type: "colonia", art: "perfume", line: "VF",
+      size: "75 ml", price: 189, family: "floral", color: "#D1006F", color2: "#FFC2DF", badge: "bestseller",
+      notes: { top: [N.pear, N.orangeBlossom], heart: [N.jasmine], base: [N.amber, N.patchouli] },
       desc: {
-        en: "A golden-hour hug: amber and tonka bean wrapped in soft vanilla and sandalwood. Cosy, addictive, made for evenings.",
-        ar: "عناق وقت الغروب: عنبر وحبوب التونكا ملفوفة بفانيلا ناعمة وخشب الصندل. دافئ ومُدمن ومثالي للمساء.",
+        en: "The original signature from Virginia Fonseca. Juicy pear and orange blossom over a sensual base of amber and patchouli.",
+        ar: "العطر الأصلي المميز من فيرجينيا فونسيكا. كمثرى ريّانة وزهر البرتقال فوق قاعدة حسية من العنبر والباتشولي.",
       },
     },
     {
-      id: "liberte-body-splash", cat: "body-splash", type: "splash", art: "splash", line: "Liberté",
-      size: "200 ml", price: 69, family: "floral", color: "#F06FA8", color2: "#FFD1E6", badge: "new",
-      notes: { top: [N.pear, N.lychee], heart: [N.peony, N.rose], base: [N.musk] },
+      id: "vf-tropical", cat: "perfume", type: "colonia", art: "perfume", line: "VF Tropical",
+      size: "75 ml", price: 189, family: "sweet", color: "#F0533F", color2: "#FFC9A8",
+      notes: { top: [N.blackberry, N.mandarin], heart: [N.sambac, N.tuberose], base: [N.vanilla, N.musk] },
       desc: {
-        en: "Juicy pear and lychee over a bouquet of peony and rose. Bright, flirty and impossible not to notice.",
-        ar: "كمثرى وليتشي منعشة فوق باقة من الفاوانيا والورد. مشرق ومرح ولا يمكن تجاهله.",
+        en: "Sun on skin. Blackberry and mandarin, a heart of jasmine sambac and tuberose, and a soft vanilla-musk trail.",
+        ar: "شمس على البشرة. توت أسود ويوسفي، وقلب من ياسمين سامباك ومسك الروم، وأثر ناعم من الفانيلا والمسك.",
       },
     },
     {
-      id: "infinity-body-splash", cat: "body-splash", type: "splash", art: "splash", line: "Infinity",
-      size: "200 ml", price: 69, family: "floral", color: "#8E6BD6", color2: "#D8C8FF",
-      notes: { top: [N.bergamot], heart: [N.jasmine, N.orange], base: [N.musk, N.cedar] },
+      id: "vf-aqua", cat: "perfume", type: "colonia", art: "perfume", line: "VF Aqua",
+      size: "75 ml", price: 189, family: "fresh", color: "#2A9BC4", color2: "#C9EEF8",
+      notes: { heart: [N.jasmine, N.muguet, N.peony], base: [N.patchouli, N.musk, N.amber, N.sandalwood] },
       desc: {
-        en: "Clean jasmine and orange blossom on a bed of white musk. Soft, elegant and easy to wear every single day.",
-        ar: "ياسمين نقي وزهر البرتقال على قاعدة من المسك الأبيض. ناعم وأنيق وسهل الاستخدام كل يوم.",
+        en: "The signature, turned breezy. A fresh floral of jasmine, lily of the valley and peony on patchouli, musk and sandalwood.",
+        ar: "العطر المميز بنسخة منعشة. زهري منعش من الياسمين وزنبق الوادي والفاوانيا على باتشولي ومسك وخشب الصندل.",
       },
     },
     {
-      id: "aqua-body-splash", cat: "body-splash", type: "splash", art: "splash", line: "Aqua",
-      size: "200 ml", price: 69, family: "fresh", color: "#1FA5C9", color2: "#A6E6F5",
-      notes: { top: [N.citrus, N.mint], heart: [N.sea, N.lily], base: [N.cedar, N.musk] },
+      id: "vf-bloom", cat: "perfume", type: "colonia", art: "perfume", line: "VF Bloom",
+      size: "75 ml", price: 199, family: "floral", color: "#EC5C9A", color2: "#FFD6E8",
       desc: {
-        en: "A splash of sea air and citrus for the hottest days. Keep it in the fridge and thank us in August.",
-        ar: "رذاذ من نسيم البحر والحمضيات لأشد الأيام حرارة. احتفظي به في الثلاجة وستشكريننا في أغسطس.",
+        en: "A fruity floral bouquet from the VF line — bright, romantic and made to be noticed.",
+        ar: "باقة زهرية فاكهية من مجموعة VF — مشرقة ورومانسية ومصممة لتلفت الأنظار.",
       },
     },
     {
-      id: "vanilla-body-splash", cat: "body-splash", type: "splash", art: "splash", line: "Vanilla",
-      size: "200 ml", price: 69, family: "sweet", color: "#D9A65B", color2: "#FBE6C2", badge: "bestseller",
-      notes: { top: [N.sugar], heart: [N.vanilla, N.coconut], base: [N.sandal, N.musk] },
+      id: "vf-body-splash", cat: "body-splash", type: "splash", art: "splash", line: "VF",
+      size: "200 ml", price: 79, family: "floral", color: "#D1006F", color2: "#FF9CCB",
+      notes: { top: [N.yellowFruits], heart: [N.jasmine], base: [N.amber, N.patchouli] },
       desc: {
-        en: "Pure, creamy vanilla with a sprinkle of spun sugar and coconut. The comfort scent that went viral.",
-        ar: "فانيلا كريمية نقية مع لمسة من غزل البنات وجوز الهند. عطر الراحة الذي انتشر في كل مكان.",
+        en: "Virginia's signature in a body splash: yellow fruits and jasmine on amber and patchouli, for that wrapped-in-VF feeling all day.",
+        ar: "توقيع فيرجينيا في بودي سبلاش: فواكه صفراء وياسمين على عنبر وباتشولي، لإحساس VF طوال اليوم.",
       },
     },
     {
-      id: "vf-eau-de-parfum", cat: "perfume", type: "perfume", art: "perfume", line: "VF",
-      size: "100 ml", price: 159, family: "sweet", color: "#B0005E", color2: "#E9B872", badge: "bestseller",
-      notes: { top: [N.pepper, N.berries], heart: [N.rose, N.praline], base: [N.vanilla, N.patchouli] },
+      id: "celebrate-life", cat: "body-splash", type: "splash", art: "splash", line: "Celebrate Life",
+      size: "200 ml", price: 79, family: "sweet", color: "#E86FA4", color2: "#FFD3E6", badge: "bestseller",
+      notes: { top: [N.pinkPepper, N.apple, N.freesia], heart: [N.jasmine, N.rose, N.muguet], base: [N.praline, N.musk, N.suede] },
       desc: {
-        en: "The signature. Pink pepper and rose melt into praline, vanilla and patchouli for a trail that lasts from morning coffee to midnight.",
-        ar: "العطر المميز. فلفل وردي وورد يذوبان في البرالين والفانيلا والباتشولي ليتركوا أثرًا يدوم من قهوة الصباح حتى منتصف الليل.",
+        en: "Sweet, soft and impossible to forget. Pink pepper and apple, a bouquet of jasmine and rose, then praline and suede on the skin.",
+        ar: "حلو وناعم ولا يُنسى. فلفل وردي وتفاح، وباقة من الياسمين والورد، ثم برالين وجلد السويد على البشرة.",
       },
     },
     {
-      id: "vf-aqua-eau-de-parfum", cat: "perfume", type: "perfume", art: "perfume", line: "VF Aqua",
-      size: "100 ml", price: 159, family: "fresh", color: "#2A8FB8", color2: "#DDE7EE",
-      notes: { top: [N.bergamot, N.citrus], heart: [N.sea, N.jasmine], base: [N.musk, N.cedar] },
+      id: "vanilla-cuddle", cat: "body-splash", type: "splash", art: "splash", line: "Vanilla Cuddle",
+      size: "200 ml", price: 79, family: "sweet", color: "#D9A65B", color2: "#FBE6C2", badge: "bestseller",
+      notes: { top: [N.tangerine, N.cassis], heart: [N.ylang, N.jasmine], base: [N.vanilla, N.musk] },
       desc: {
-        en: "The signature, turned breezy. Sparkling bergamot and sea notes over clean musk — fresh but never forgettable.",
-        ar: "العطر المميز بنسخة منعشة. برغموت متألق ونفحات بحرية فوق مسك نقي — منعش لكنه لا يُنسى.",
+        en: "A warm hug in a bottle. Tangerine and cassis over ylang-ylang and jasmine, melting into creamy vanilla and musk.",
+        ar: "عناق دافئ في زجاجة. تانجرين وكشمش أسود فوق يلانغ يلانغ وياسمين، يذوبان في فانيلا كريمية ومسك.",
       },
     },
     {
-      id: "pink-oud-eau-de-parfum", cat: "perfume", type: "perfume", art: "perfume", line: "Pink Oud",
-      size: "100 ml", price: 189, family: "warm", color: "#5E0B33", color2: "#D4A85A", badge: "exclusive",
-      notes: { top: [N.saffron, N.pepper], heart: [N.rose, N.amber], base: [N.oud, N.vanilla] },
+      id: "scarlette-radiance", cat: "body-splash", type: "splash", art: "splash", line: "Scarlette Radiance",
+      size: "200 ml", price: 79, family: "floral", color: "#E0245E", color2: "#FFC4D3", badge: "new",
+      notes: { top: [N.grapefruit, N.bergamot, N.pear], heart: [N.turkishRose, N.peony, N.vanilla], base: [N.whiteAmber, N.sandalwood, N.benzoin] },
       desc: {
-        en: "Made for the Gulf. Saffron and Taif-style rose over smooth oud and vanilla — wepink sweetness with an oriental soul.",
-        ar: "صُنع للخليج. زعفران وورد طائفي فوق عود ناعم وفانيلا — حلاوة wepink بروح شرقية.",
+        en: "Radiant and red-hot. Bergamot and pear open onto Turkish rose and peony, with white amber and sandalwood glowing underneath.",
+        ar: "مشرق ومتوهج. برغموت وكمثرى ينفتحان على ورد تركي وفاوانيا، مع عنبر أبيض وخشب صندل يتوهجان في العمق.",
       },
     },
     {
-      id: "obsessed-body-lotion", cat: "body-care", type: "lotion", art: "lotion", line: "Obsessed",
-      size: "200 ml", price: 59, family: "sweet", color: "#E6007E", color2: "#FFE3EF",
-      notes: { top: [N.berries], heart: [N.praline], base: [N.vanilla, N.musk] },
+      id: "scarlette", cat: "body-splash", type: "splash", art: "splash", line: "Scarlette",
+      size: "200 ml", price: 79, family: "sweet", color: "#C8102E", color2: "#FFB3BE",
+      notes: { top: [N.strawberry, N.orange, N.plum], heart: [N.violet, N.jasmine], base: [N.vanilla, N.musk, N.amber] },
       desc: {
-        en: "Fast-absorbing body lotion in our most-loved scent. Moisturises for 24 hours and makes your body splash last longer.",
-        ar: "لوشن سريع الامتصاص بعطرنا الأكثر حبًا. يرطب لمدة 24 ساعة ويجعل البودي سبلاش يدوم أطول.",
+        en: "Strawberry, orange and plum, a touch of violet, and a vanilla-amber finish. Playful, juicy, a little bit dangerous.",
+        ar: "فراولة وبرتقال وبرقوق، ولمسة من البنفسج، وختام من الفانيلا والعنبر. مرح وريّان وفيه شيء من الخطر.",
       },
     },
     {
-      id: "liberte-body-lotion", cat: "body-care", type: "lotion", art: "lotion", line: "Liberté",
-      size: "200 ml", price: 59, family: "floral", color: "#F06FA8", color2: "#FFFFFF",
-      notes: { top: [N.pear], heart: [N.peony, N.rose], base: [N.musk] },
+      id: "fatal-rouge", cat: "body-splash", type: "splash", art: "splash", line: "Fatal Rouge",
+      size: "200 ml", price: 79, family: "floral", color: "#8E0B2C", color2: "#F7A8BC",
+      notes: { top: [N.cassis, N.pinkPepper], heart: [N.damaskRose], base: [N.vanilla, N.sandalwood] },
       desc: {
-        en: "Silky lotion with peony and pear. Light enough for summer, rich enough for air-conditioned offices.",
-        ar: "لوشن حريري بالفاوانيا والكمثرى. خفيف بما يكفي للصيف وغني بما يكفي للمكاتب المكيّفة.",
+        en: "The red lipstick of scents. Cassis and pink pepper on damask rose, with a sweet woody vanilla trail.",
+        ar: "أحمر الشفاه بين العطور. كشمش أسود وفلفل وردي على ورد دمشقي، مع أثر خشبي حلو من الفانيلا.",
       },
     },
     {
-      id: "vanilla-body-butter", cat: "body-care", type: "butter", art: "jar", line: "Vanilla",
-      size: "200 g", price: 79, family: "sweet", color: "#D9A65B", color2: "#FFF4E2", badge: "new",
-      notes: { top: [N.sugar], heart: [N.vanilla], base: [N.coconut, N.sandal] },
+      id: "king-blue", cat: "men", type: "splash", art: "splash", line: "King Blue",
+      size: "200 ml", price: 79, family: "woody", color: "#1E4FA8", color2: "#A9C3F0",
+      notes: { top: [N.bergamot, N.herbs], base: [N.patchouli, N.amber] },
       desc: {
-        en: "A whipped body butter with shea and coconut oil. Melts into skin and leaves a soft vanilla glow.",
-        ar: "زبدة جسم مخفوقة بزبدة الشيا وزيت جوز الهند. تذوب في البشرة وتترك توهجًا ناعمًا بالفانيلا.",
+        en: "Fresh and confident. Bergamot and herbs on a slightly sweet base of patchouli and amber.",
+        ar: "منعش وواثق. برغموت وأعشاب على قاعدة حلوة قليلًا من الباتشولي والعنبر.",
       },
     },
     {
-      id: "obsessed-hair-mist", cat: "hair-mist", type: "mist", art: "mist", line: "Obsessed",
-      size: "100 ml", price: 49, family: "sweet", color: "#E6007E", color2: "#FFD1E6",
-      notes: { top: [N.berries], heart: [N.praline], base: [N.vanilla] },
+      id: "king-blue-deep", cat: "men", type: "splash", art: "splash", line: "King Blue Deep",
+      size: "200 ml", price: 79, family: "woody", color: "#0F2C6B", color2: "#8FA8DA", badge: "bestseller",
+      notes: { top: [N.bergamot], heart: [N.gardenia], base: [N.vanilla, N.sandalwood] },
       desc: {
-        en: "Alcohol-free hair perfume with a touch of argan oil. Scent that moves when you do — perfect under a shayla too.",
-        ar: "عطر شعر خالٍ من الكحول مع لمسة من زيت الأرغان. عطر يتحرك معكِ — ومثالي تحت الشيلة أيضًا.",
+        en: "Masculine elegance. Bergamot and gardenia, closing on an enveloping base of vanilla and sandalwood.",
+        ar: "أناقة رجولية. برغموت وغاردينيا، تختم بقاعدة دافئة من الفانيلا وخشب الصندل.",
       },
     },
     {
-      id: "pink-oud-hair-mist", cat: "hair-mist", type: "mist", art: "mist", line: "Pink Oud",
-      size: "100 ml", price: 59, family: "warm", color: "#5E0B33", color2: "#E8C98F", badge: "exclusive",
-      notes: { top: [N.saffron], heart: [N.rose], base: [N.oud, N.vanilla] },
+      id: "lion-noir", cat: "men", type: "splash", art: "splash", line: "Lion Noir",
+      size: "200 ml", price: 79, family: "woody", color: "#1B1A1F", color2: "#D4B26A",
+      notes: { top: [N.pinkPepper], heart: [N.jasmine], base: [N.sweetWoods] },
       desc: {
-        en: "Our Gulf exclusive, made gentle for hair. Rose and soft oud that lingers on every turn of the head.",
-        ar: "حصريتنا الخليجية بتركيبة لطيفة للشعر. ورد وعود ناعم يبقى مع كل التفاتة.",
+        en: "Dark, citrus-woody and magnetic. Pink pepper and jasmine over sweet woods.",
+        ar: "داكن وخشبي حمضي وجذّاب. فلفل وردي وياسمين فوق أخشاب حلوة.",
       },
     },
     {
-      id: "obsessed-ritual-set", cat: "gift-sets", type: "set", art: "set", line: "Obsessed Ritual",
-      size: { en: "Splash 200 ml · Lotion 200 ml · Hair mist 100 ml", ar: "سبلاش 200 مل · لوشن 200 مل · عطر شعر 100 مل" },
-      price: 149, compareAt: 177, family: "sweet", color: "#E6007E", color2: "#FFD1E6", badge: "bestseller",
-      notes: { top: [N.berries], heart: [N.praline], base: [N.vanilla] },
+      id: "body-cream-vf-27", cat: "body-care", type: "cream", art: "lotion", line: "VF 2.7",
+      size: "200 ml", price: 69, family: "warm", color: "#E46AA0", color2: "#FFE3EF",
       desc: {
-        en: "Lotion, splash, hair mist — the full Obsessed layering ritual in a pink keepsake box.",
-        ar: "لوشن وسبلاش وعطر شعر — طقوس Obsessed الكاملة في علبة وردية للذكرى.",
+        en: "Perfumed body cream from the VF line. A floral oriental that moisturises and makes every splash and perfume last longer.",
+        ar: "كريم جسم معطّر من مجموعة VF. زهري شرقي يرطّب ويجعل البودي سبلاش والعطر يدومان أطول.",
       },
     },
     {
-      id: "discovery-trio", cat: "gift-sets", type: "set", art: "set", line: "Discovery Trio",
-      size: { en: "3 × Body splash 50 ml", ar: "3 × بودي سبلاش 50 مل" },
-      price: 89, family: "floral", color: "#F06FA8", color2: "#FFF0F6",
-      notes: { top: [N.pear, N.citrus], heart: [N.peony, N.jasmine], base: [N.vanilla, N.musk] },
+      id: "vf-signature-set", cat: "gift-sets", type: "set", art: "set", line: "VF Signature Set",
+      size: { en: "VF 75 ml · VF body splash 200 ml · Body Cream VF 2.7", ar: "VF 75 مل · بودي سبلاش VF 200 مل · كريم VF 2.7" },
+      price: 299, compareAt: 337, family: "floral", color: "#D1006F", color2: "#F6DFA4", badge: "exclusive",
+      notes: { top: [N.pear, N.yellowFruits], heart: [N.jasmine], base: [N.amber, N.patchouli] },
       desc: {
-        en: "Obsessed, Liberté and Aqua in travel sizes. The easiest way to find your signature — or to gift three moods at once.",
-        ar: "Obsessed وLiberté وAqua بأحجام السفر. أسهل طريقة لاكتشاف عطركِ المميز — أو لإهداء ثلاثة أمزجة دفعة واحدة.",
+        en: "The full VF ritual — cream, splash, perfume — in a pink keepsake box with a handwritten card.",
+        ar: "طقوس VF الكاملة — كريم وسبلاش وعطر — في علبة وردية للذكرى مع بطاقة مكتوبة بخط اليد.",
       },
     },
     {
-      id: "eid-gift-box", cat: "gift-sets", type: "set", art: "set", line: "Eid Gift Box",
-      size: { en: "Pink Oud EDP 100 ml · Vanilla splash 200 ml · Vanilla butter 200 g", ar: "بينك عود 100 مل · سبلاش فانيلا 200 مل · زبدة فانيلا 200 غ" },
-      price: 279, compareAt: 337, family: "warm", color: "#5E0B33", color2: "#E8C98F", badge: "exclusive",
-      notes: { top: [N.saffron], heart: [N.rose, N.vanilla], base: [N.oud, N.sandal] },
+      id: "splash-trio", cat: "gift-sets", type: "set", art: "set", line: "Splash Trio",
+      size: { en: "Celebrate Life · Vanilla Cuddle · Scarlette Radiance, 200 ml each", ar: "Celebrate Life · Vanilla Cuddle · Scarlette Radiance، 200 مل لكل منها" },
+      price: 199, compareAt: 237, family: "sweet", color: "#E86FA4", color2: "#FFF0F6", badge: "exclusive",
+      notes: { top: [N.pinkPepper, N.tangerine, N.bergamot], heart: [N.jasmine, N.turkishRose], base: [N.vanilla, N.praline, N.whiteAmber] },
       desc: {
-        en: "Our most generous gift: Pink Oud, Vanilla body splash and body butter, wrapped with a handwritten card.",
-        ar: "هديتنا الأكثر سخاءً: بينك عود وبودي سبلاش الفانيلا وزبدة الجسم، مغلفة مع بطاقة مكتوبة بخط اليد.",
+        en: "Three of Brazil's most-loved splashes in one pink box. Layer them, gift them, or keep all three.",
+        ar: "ثلاثة من أكثر أنواع البودي سبلاش حبًا في البرازيل في علبة وردية واحدة. ادمجيها أو أهديها أو احتفظي بها كلها.",
       },
     },
   ];
 
-  products.forEach((p) => { p.typeName = T[p.type]; });
+  products.forEach((p) => {
+    p.typeName = T[p.type];
+    p.notes = p.notes || {};
+  });
 
   const stores = [
     { country: "AE", city: ["Dubai", "دبي"], label: { en: "Flagship store", ar: "المتجر الرئيسي" } },

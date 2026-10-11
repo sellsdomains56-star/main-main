@@ -31,7 +31,7 @@ window.WP = (function () {
    * hash instead: shop.html?c=perfume becomes #/shop?c=perfume.
    */
   const SINGLE = !!window.WP_SINGLE;
-  const PAGE_LINK = /^(index|shop|product|stores|about|help|checkout)\.html(\?[^#]*)?(#.*)?$/;
+  const PAGE_LINK = /^(index|shop|product|stores|about|help|checkout|earn)\.html(\?[^#]*)?(#.*)?$/;
   function route() {
     if (!SINGLE) return { page: document.body.dataset.page, params: new URLSearchParams(location.search) };
     const m = location.hash.match(/^#\/([a-z]+)(?:\?([^#]*))?/);
@@ -65,6 +65,32 @@ window.WP = (function () {
     cart: store.get("cart", []).filter((i) => D.products.some((p) => p.id === i.id)),
   };
   if (!D.countries[state.country]) state.country = "AE";
+
+  /* ---------- referral codes ----------
+   * A link with ?ref=CODE saves the friend's code; checkout applies it.
+   * Codes aren't checked against a server yet, so any well-formed code works.
+   */
+  const ref = {
+    clean(code) {
+      const c = String(code || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+      return c.length >= 4 && c.length <= 16 ? c : "";
+    },
+    get() {
+      return store.get("ref", "");
+    },
+    set(code) {
+      const c = ref.clean(code);
+      if (c) store.set("ref", c);
+      return c;
+    },
+    clear() {
+      store.set("ref", "");
+    },
+    pct() {
+      return D.config.referral.friendDiscountPct;
+    },
+  };
+  const incomingRef = ref.set(params.get("ref"));
 
   /* ---------- helpers ---------- */
   const esc = (s) =>
@@ -215,16 +241,16 @@ window.WP = (function () {
 
   /* ---------- header & footer ---------- */
   function navLinks() {
-    const cats = ["body-splash", "perfume", "body-care", "gift-sets"].map((id) => D.categories.find((c) => c.id === id));
+    const cats = ["perfume", "body-splash", "men", "gift-sets"].map((id) => D.categories.find((c) => c.id === id));
     return [
       { href: "shop.html", label: t("nav.shop"), key: "shop" },
       ...cats.map((c) => ({ href: `shop.html?c=${c.id}`, label: L(c.name), key: "cat:" + c.id })),
-      { href: "stores.html", label: t("nav.stores"), key: "stores" },
+      { href: "earn.html", label: t("nav.earn"), key: "earn", hot: true },
     ];
   }
   function isActive(key) {
     const { page, params } = route();
-    if (key === "stores") return page === "stores";
+    if (key === "stores" || key === "earn") return page === key;
     if (key === "shop") return page === "shop" && !params.get("c");
     if (key.startsWith("cat:")) return page === "shop" && params.get("c") === key.slice(4);
     return false;
@@ -232,7 +258,8 @@ window.WP = (function () {
 
   function renderHeader() {
     const c = country();
-    const msgs = [t("announce.1", { amount: money(country().freeOver) }), t("announce.2"), t("announce.3")];
+    const maxPct = Math.max(...D.config.referral.tiers.map((x) => x.pct));
+    const msgs = [t("announce.1", { amount: money(country().freeOver) }), t("announce.4", { pct: ref.pct(), max: maxPct }), t("announce.2"), t("announce.3")];
     const links = navLinks();
     document.getElementById("app-header").innerHTML = `
       <a class="skip-link" href="#main">${esc(t("nav.skip"))}</a>
@@ -245,11 +272,12 @@ window.WP = (function () {
             <button class="icon-btn menu-btn" type="button" data-open="menu" aria-label="${esc(t("nav.menu"))}">${icon("menu")}</button>
             <button class="icon-btn search-start" type="button" data-open="search" aria-label="${esc(t("nav.search"))}">${icon("search")}</button>
             <nav class="nav-primary" aria-label="Primary">
-              ${links.map((l) => `<a href="${l.href}"${isActive(l.key) ? ' aria-current="page"' : ""}>${esc(l.label)}</a>`).join("")}
+              ${links.map((l) => `<a href="${l.href}"${l.hot ? ' class="nav-hot"' : ""}${isActive(l.key) ? ' aria-current="page"' : ""}>${l.hot ? icon("sparkle") : ""}${esc(l.label)}</a>`).join("")}
             </nav>
           </div>
           <a class="logo" href="index.html" aria-label="wepink ${esc(L(D.config.region))}">
-            <img src="assets/brand/logo.svg" alt="wepink" width="132" height="38">
+            <img class="logo-pink" src="assets/brand/logo.svg" alt="wepink" width="132" height="38">
+            <img class="logo-light" src="assets/brand/logo-white.svg" alt="" width="132" height="38">
             <span class="logo-region">${esc(L(D.config.region))}</span>
           </a>
           <div class="header-end">
@@ -303,6 +331,7 @@ window.WP = (function () {
             <nav class="footer-col" aria-label="${esc(t("footer.company"))}">
               <h2>${esc(t("footer.company"))}</h2>
               <a href="about.html">${esc(t("footer.about"))}</a>
+              <a href="earn.html">${esc(t("footer.earn"))}</a>
               <a href="stores.html">${esc(t("footer.storesLink"))}</a>
               <button class="footer-region" type="button" data-open="region">${icon("globe")}<span>${esc(L(c.name))} · ${esc(c.currency)}</span></button>
             </nav>
@@ -352,7 +381,8 @@ window.WP = (function () {
         </div>
         <nav class="menu-links" aria-label="Mobile">
           ${links.map((l) => `<a href="${l.href}">${esc(l.label)}${icon("arrow", "flip")}</a>`).join("")}
-          <a href="shop.html?c=hair-mist">${esc(L(D.categories.find((x) => x.id === "hair-mist").name))}${icon("arrow", "flip")}</a>
+          <a href="shop.html?c=body-care">${esc(L(D.categories.find((x) => x.id === "body-care").name))}${icon("arrow", "flip")}</a>
+          <a href="stores.html">${esc(t("nav.stores"))}${icon("arrow", "flip")}</a>
           <a href="about.html">${esc(t("nav.about"))}${icon("arrow", "flip")}</a>
           <a href="help.html">${esc(t("nav.help"))}${icon("arrow", "flip")}</a>
         </nav>
@@ -429,6 +459,7 @@ window.WP = (function () {
         <p>${icon(left ? "truck" : "check")}<span>${esc(left ? t("bag.freeProgress", { amount: money(left) }) : t("bag.freeDone"))}</span></p>
         <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><span style="width:${pct}%"></span></div>
       </div>
+      ${ref.get() ? `<p class="bag-code">${icon("sparkle")}<span>${esc(t("bag.code", { code: ref.get(), pct: ref.pct() }))}</span></p>` : ""}
       <ul class="bag-lines">
         ${items
           .map(
@@ -464,7 +495,7 @@ window.WP = (function () {
     if (!el) return;
     const query = q.trim().toLowerCase();
     if (!query) {
-      const popular = ["Obsessed", "Vanilla", "VF", "Pink Oud", L(D.categories[4].name)];
+      const popular = ["VF Golden", "Vanilla Cuddle", "Celebrate Life", "King Blue", L(D.categories.find((c) => c.id === "gift-sets").name)];
       el.innerHTML = `<p class="eyebrow">${esc(t("search.popular"))}</p>
         <div class="pill-row">${popular.map((w) => `<button class="pill" type="button" data-search="${esc(w)}">${esc(w)}</button>`).join("")}</div>`;
       return;
@@ -574,7 +605,7 @@ window.WP = (function () {
       const body = document.getElementById("quiz-body");
       const q =
         n === 1
-          ? { key: "family", title: t("quiz.q1"), opts: [["sweet", t("quiz.q1a"), "#E6007E"], ["floral", t("quiz.q1b"), "#F06FA8"], ["fresh", t("quiz.q1c"), "#1FA5C9"], ["warm", t("quiz.q1d"), "#5E0B33"]] }
+          ? { key: "family", title: t("quiz.q1"), opts: [["sweet", t("quiz.q1a"), "#E6007E"], ["floral", t("quiz.q1b"), "#F06FA8"], ["fresh", t("quiz.q1c"), "#1FA5C9"], ["warm", t("quiz.q1d"), "#8E0B2C"], ["woody", t("quiz.q1e"), "#0F2C6B"]] }
           : { key: "wear", title: t("quiz.q2"), opts: [["splash", t("quiz.q2a"), "#FF8CC6"], ["perfume", t("quiz.q2b"), "#B0005E"], ["set", t("quiz.q2c"), "#E9B872"]] };
       body.innerHTML = `<p class="eyebrow">${esc(t("quiz.step", { n }))}</p>
         <h3 class="quiz-q">${esc(q.title)}</h3>
@@ -591,7 +622,7 @@ window.WP = (function () {
     },
     result() {
       const { family, wear } = quiz.answers;
-      const typeCat = { splash: "body-splash", perfume: "perfume", set: "gift-sets" }[wear];
+      const typeCat = family === "woody" ? "men" : { splash: "body-splash", perfume: "perfume", set: "gift-sets" }[wear];
       const pool = D.products.filter((p) => p.family === family);
       const best = pool.find((p) => p.cat === typeCat) || pool[0] || D.products[0];
       const also = pool.filter((p) => p !== best).slice(0, 2);
@@ -737,6 +768,7 @@ window.WP = (function () {
     html.dir = state.lang === "ar" ? "rtl" : "ltr";
     const page = route().page;
     document.body.dataset.page = page;
+    html.dataset.page = page;
     renderHeader();
     renderLayers();
     // A fresh <main> each render, so page listeners never pile up.
@@ -755,9 +787,10 @@ window.WP = (function () {
   function init() {
     bind();
     render();
+    if (incomingRef) setTimeout(() => toast(t("ref.welcome", { code: incomingRef, pct: ref.pct() })), 600);
   }
 
-  return { init, render, route, SINGLE, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, data: D, art: ART };
+  return { init, render, route, SINGLE, ref, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());
