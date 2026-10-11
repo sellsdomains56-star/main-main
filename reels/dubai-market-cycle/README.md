@@ -29,7 +29,8 @@ Currency: the spoken "917 billion" and "2.5 billion" are AED in the official sou
 - Dubai Media Office, 12 Jan 2026: https://www.mediaoffice.ae/en/news/2026/january/12-01/dubais-real-estate-market-records-new-historic-milestone
 - The National, 7 Oct 2026: https://www.thenationalnews.com/business/property/2026/10/07/dubai-home-sale-transactions-fall-in-third-quarter-due-to-regional-uncertainty/
 - Dubai Media Office, 21 May 2026: https://mediaoffice.ae/en/news/2026/may/21-05/hamdan-bin-mohammed
-- Sheikh Mohammed bin Rashid portrait: see the manifest for author / licence.
+- Sheikh Mohammed bin Rashid portrait: photo by President.gov.ua (Office of the President of Ukraine), 15 Feb 2021, **CC BY 4.0** (credit required), cropped from the Wikimedia Commons original.
+- Sources note: the AED 917 billion is the Dubai Media Office figure for the full year **2025**; the AED 2.5 billion is the cumulative total of two incentive packages (AED 1 billion + AED 1.5 billion).
 Imagery (c) Esri, Maxar, Earthstar Geographics (on screen); Palm outline from OpenStreetMap (ODbL).
 
 ## Rebuild

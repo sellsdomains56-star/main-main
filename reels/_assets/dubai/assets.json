@@ -478,6 +478,82 @@
     ]
   },
   {
+    "id": "photo_sheikh_mohammed",
+    "file": "sheikh_mohammed_bin_rashid.jpg",
+    "kind": "photo",
+    "shows": "Portrait-style crop of Sheikh Mohammed bin Rashid Al Maktoum (UAE Vice President, Prime Minister and Ruler of Dubai) in front of the UAE flag, sharp, face centred, 830x1000",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Meeting_of_Volodymyr_Zelensky_and_Mohammed_bin_Rashid_Al_Maktoum_(15-02-2021).jpg",
+    "outlet": "Wikimedia Commons / President.gov.ua (Office of the President of Ukraine)",
+    "date": "2021-02-15",
+    "text": null,
+    "supports": "Visual of the Ruler of Dubai (Sheikh Mohammed bin Rashid Al Maktoum), who is quoted in the AED917bn announcement (items 2 and 5).",
+    "currency_or_figures_note": "I cropped this myself from the 3000x2000 Commons original (crop box x1500-2330, y300-1300 px; the other person in the frame, Volodymyr Zelensky, is excluded). The Commons-made derivative of the same photo is only 662x802 (File:Mohammed_bin_Rashid_Al_Maktoum_(15-02-2021).jpg), so this crop is higher resolution. Caption on Commons: 'H. H. Sheikh Mohammed bin Rashid Al Maktoum, the Vice-President and Prime Minister of the UAE, and the Ruler of Dubai.' Photo is from 15 Feb 2021.",
+    "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Commons note: licence valid for photos published on president.gov.ua before 4 Oct 2022 (this one qualifies). Changes made: cropped.",
+    "attribution": "Photo: President.gov.ua (Office of the President of Ukraine), CC BY 4.0, via Wikimedia Commons; cropped.",
+    "key_text_bbox": null,
+    "size": [
+      830,
+      1000
+    ]
+  },
+  {
+    "id": "photo_dubai_skyline_night",
+    "file": "dubai_skyline_night_burj_khalifa.jpg",
+    "kind": "photo",
+    "shows": "Night skyline across the Business Bay water with the Burj Khalifa and colourful reflections, 3840x2560",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Dubai_skyline_unsplash.jpg",
+    "outlet": "Wikimedia Commons (originally Unsplash)",
+    "date": "2016-04-30",
+    "text": null,
+    "supports": "General Dubai skyline / Burj Khalifa B-roll (item 5).",
+    "currency_or_figures_note": "File is the Commons 3840 px rendition of the 5760x3840 original (the original-size download was blocked by Wikimedia rate limiting, HTTP 429, so the 3840 px thumbnail was used). Commons warns that the UAE has no freedom of panorama: the file is licensed as a broad skyline view; do not crop tight onto a single building.",
+    "license": "CC0 1.0 (public domain dedication; Unsplash photo published before 5 June 2017).",
+    "attribution": "Photo: Robert Bock (Unsplash) via Wikimedia Commons, CC0 - credit optional.",
+    "key_text_bbox": null,
+    "size": [
+      3840,
+      2560
+    ]
+  },
+  {
+    "id": "photo_palm_jumeirah_iss",
+    "file": "palm_jumeirah_world_islands_iss.jpg",
+    "kind": "photo",
+    "shows": "View from the International Space Station of the Dubai coast with, from left, The World Islands, Palm Jumeirah and Palm Jebel Ali, 3840x2560",
+    "source_url": "https://commons.wikimedia.org/wiki/File:ISS-59_World_Islands,_Palm_Jumeirah_and_Palm_Jebel_Ali,_Dubai.jpg",
+    "outlet": "NASA via Wikimedia Commons",
+    "date": "2019-05-29",
+    "text": null,
+    "supports": "Palm Jumeirah aerial (item 5).",
+    "currency_or_figures_note": "Real photograph taken by an ISS Expedition 59 crew member (NASA photo ID ISS059-E-078929), an oblique orbital view, not a helicopter/drone shot. File is the Commons 3840 px rendition of the 5568x3712 original (original-size download blocked by Wikimedia 429). Note: the Flickr copy of this picture currently shows a non-commercial licence, but NASA astronaut photography is US public domain and Commons tags it PD-USGov-NASA.",
+    "license": "Public domain (US Government / NASA work).",
+    "attribution": "Photo: NASA / ISS Expedition 59 crew (ISS059-E-078929), via Wikimedia Commons.",
+    "key_text_bbox": null,
+    "size": [
+      3840,
+      2560
+    ]
+  },
+  {
+    "id": "photo_dubai_construction_2008",
+    "file": "dubai_construction_2008.jpg",
+    "kind": "photo",
+    "shows": "Crane, truck and a worker on a Dubai building site, with towers still under construction (Dubai Marina) on the horizon, 17 January 2008, 1920x1440",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Dubai_under_construction.jpg",
+    "outlet": "Wikimedia Commons (own work of the author)",
+    "date": "2008-01-17",
+    "text": null,
+    "supports": "Evokes the 2008 pre-crash Dubai construction boom (item 5, optional). It does NOT show abandoned or stalled towers; I could not find a freely licensed photo of that on Commons.",
+    "currency_or_figures_note": "Commons description: 'Dubai Marina in background, Mina Jebel Ali in foreground. Construction is ubiquitous in Dubai, UAE.' File is the Commons 1920 px rendition of the 3648x2736 original (original-size download blocked by Wikimedia 429). The colours are strongly processed by the photographer.",
+    "license": "CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/) - attribution required, adaptations must be shared under the same/compatible licence.",
+    "attribution": "Photo: Basil D Soufi, CC BY-SA 3.0, via Wikimedia Commons.",
+    "key_text_bbox": null,
+    "size": [
+      1920,
+      1440
+    ]
+  },
+  {
     "id": "logo_fitch_ratings",
     "file": "logo_fitch_ratings.png",
     "kind": "logo",
