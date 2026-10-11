@@ -64,7 +64,7 @@ function questionOverlay(t, A) {
   const qa = ea(t, 2.55, 3.3, E.out3), qs = lerp(0.86, 1, ea(t, 2.55, 3.6, E.out5)), pulse = 1 + 0.012 * Math.sin(t * 2.4);
   if (qa > 0.003) {
     glow(CX, 1130, 380, '233,196,124', 0.14 * qa);
-    ctx.save(); ctx.translate(CX + 6, 1250); ctx.scale(qs * pulse, qs * pulse); ctx.font = F.i(430); ctx.textAlign = 'center';
+    ctx.save(); ctx.translate(CX + 6, 1245); ctx.scale(qs * pulse, qs * pulse); ctx.font = F.i(350); ctx.textAlign = 'center';
     ctx.globalAlpha *= qa; ctx.fillStyle = 'rgba(233,196,124,0.16)'; ctx.fillText('?', 0, 0);
     ctx.lineWidth = 4; ctx.strokeStyle = C.gold; ctx.lineJoin = 'round'; ctx.strokeText('?', 0, 0); ctx.restore();
   }
@@ -77,26 +77,6 @@ function glowLine(pts, a) {   // soft halo under the price line so it reads over
 
 // ------------------------------------------------------------- 2. "OUTDATED"
 function sceneOutdated(t) {
-  const o1 = ea(t, 4.55, 5.05, E.out4), x1 = ea(t, 5.5, 5.95, E.inOut2);
-  const a1 = o1 * (1 - x1);
-  if (a1 > 0.002) {
-    const ty = 760 - x1 * 60 + (1 - o1) * 30;
-    T('THE OLD ARGUMENT', CX, 570 + (1 - o1) * 20 - x1 * 30, { font: F.t(600, 22), ls: 14, color: C.dim, alpha: a1 });
-    const dimK = 1 - 0.5 * ea(t, 5.25, 5.55);
-    const w = M('An oil economy', F.i(176));
-    T('An oil economy', CX, ty, { font: F.i(176), color: C.ink, alpha: a1 * dimK });
-    const sp = ea(t, 4.86, 5.2, E.out4);
-    line(CX - w / 2 - 24, ty - 56, CX - w / 2 - 24 + (w + 48) * sp, ty - 56, { color: C.gold, w: 8, alpha: a1 });
-    // stamp on "argument"
-    const sA = ea(t, 5.2, 5.38, E.out2), sK = lerp(1.7, 1, ea(t, 5.2, 5.5, E.out5));
-    ctx.save(); ctx.translate(CX + 150, ty + 150 - x1 * 20); ctx.rotate(-0.06); ctx.scale(sK, sK);
-    ctx.globalAlpha *= sA * a1;
-    const sw = M('OUTDATED', F.d(700, 54), 12) + 56;
-    ctx.strokeStyle = C.gold; ctx.lineWidth = 4; rr(-sw / 2, -50, sw, 100, 10); ctx.stroke();
-    ctx.lineWidth = 1.5; rr(-sw / 2 + 9, -41, sw - 18, 82, 6); ctx.stroke();
-    T('OUTDATED', 0, 19, { font: F.d(700, 54), ls: 12, color: C.gold });
-    ctx.restore();
-  }
   // decades timeline
   const tl = ea(t, 5.85, 8.55, E.inOut2), tla = ea(t, 5.85, 6.4);
   const ly = 585;
@@ -152,8 +132,7 @@ function sceneMubadala(t) {
   const lp = ea(t, 8.95, 9.6, E.out4);
   logo('mubadala', CX, 440, 84, { alpha: ea(t, 8.95, 9.2), reveal: lp, shine: prog(t, 9.55, 10.5) });
   const hw = 460 * ea(t, 9.25, 9.95, E.out4); line(CX - hw / 2, 540, CX + hw / 2, 540, { color: C.mute, w: 1.5 });
-  const sh = ea(t, 11.77, 12.5, E.inOut3);
-  ctx.save(); ctx.translate(CX, lerp(880, 735, sh)); const sc = lerp(1, 0.6, sh); ctx.scale(sc, sc);
+  ctx.save(); ctx.translate(CX, 880);
   const e0 = enter(t, 9.78, 0.5, 20);
   T('AED', 0, -215 + e0.dy, { font: F.t(600, 40), ls: 20, color: C.gold, alpha: e0.a });
   counterGroup(t, { val: 1.4, dec: 1, fin: '1.4', suffix: 'T', a0: 9.78, a1: 10.98 });
@@ -164,23 +143,6 @@ function sceneMubadala(t) {
   T('TRILLION', tx, 190 + eT.dy, { font: f, ls: 16, color: C.ink, alpha: eT.a * 0.92 });
   T('IN ASSETS', tx + l1 / 2 + g + l2 / 2, 190 + eA.dy, { font: f, ls: 16, color: C.gold, alpha: eA.a });
   ctx.restore();
-  // comparison bars
-  const BX0 = 90, BW = 900, by1 = 1030, by2 = 1150;
-  const e1 = enter(t, 11.88, 0.5, 20), e2 = enter(t, 12.2, 0.5, 20);
-  T('MUBADALA', BX0, by1 - 30 + e1.dy, { font: F.t(600, 22), ls: 10, color: C.dim, align: 'left', alpha: e1.a });
-  T('AED 1.4T', BX0 + BW, by1 - 30 + e1.dy, { font: F.t(600, 22), ls: 10, color: C.gold, align: 'right', alpha: e1.a });
-  T('PORTUGAL · ANNUAL GDP', BX0, by2 - 30 + e2.dy, { font: F.t(600, 22), ls: 10, color: C.dim, align: 'left', alpha: e2.a });
-  rr(BX0, by1, BW, 16, 8); ctx.save(); ctx.globalAlpha *= e1.a; ctx.fillStyle = C.faint; ctx.fill(); ctx.restore();
-  rr(BX0, by2, BW, 16, 8); ctx.save(); ctx.globalAlpha *= e2.a; ctx.fillStyle = C.faint; ctx.fill(); ctx.restore();
-  const b1 = ea(t, 11.95, 12.65, E.out4), b2 = ea(t, 12.25, 13.0, E.out4), pw = 0.78;
-  if (b1 > 0.002) { rr(BX0, by1, BW * b1, 16, 8); ctx.fillStyle = C.gold; ctx.fill(); glow(BX0 + BW * b1, by1 + 8, 70, '233,196,124', 0.25); }
-  if (b2 > 0.002) { rr(BX0, by2, BW * pw * b2, 16, 8); ctx.save(); ctx.fillStyle = 'rgba(243,239,230,0.7)'; ctx.fill(); ctx.restore(); }
-  // "more than" bracket
-  const bk = ea(t, 13.15, 13.7, E.out4), xm = BX0 + BW * pw;
-  if (bk > 0) {
-    line(xm, by1 - 14, xm, by2 + 30, { color: C.gold, w: 2, dash: [5, 6], alpha: bk });
-    T('MORE THAN', xm + 12 + (BX0 + BW - xm - 12) / 2, by2 + 54, { font: F.t(600, 21), ls: 12, color: C.gold, alpha: bk });
-  }
 }
 
 // -------------------------------------------------------------------- 4. ADIA
@@ -295,10 +257,11 @@ function branch(t, a0, a1, x, y0, y1, ymid) {
 }
 function bigNumber(t, o) {
   // o: {overT, aed, val, dec, fin, suffix, a0, a1, y}
-  ctx.save(); ctx.translate(CX, o.y); ctx.scale(0.8, 0.8);
+  const sc = o.sc || 0.8;
+  ctx.save(); ctx.translate(CX, o.y); ctx.scale(sc, sc);
   const e0 = enter(t, o.overT, 0.5, 18);
   const f = F.t(600, 38), wo = M('OVER', f, 18), wa = M(o.aed, f, 18), g = 30, tt = wo + g + wa;
-  T('OVER', -tt / 2 + wo / 2, -205 + e0.dy, { font: f, ls: 18, color: C.dim, alpha: e0.a });
+  T('OVER', -tt / 2 + wo / 2, -205 + e0.dy, { font: f, ls: 18, color: C.ink, alpha: e0.a * 0.9 });
   const e1 = enter(t, o.aedT, 0.5, 18);
   T(o.aed, -tt / 2 + wo + g + wa / 2, -205 + e1.dy, { font: f, ls: 18, color: C.gold, alpha: e1.a });
   counterGroup(t, { val: o.val, dec: o.dec, fin: o.fin, suffix: o.suffix, a0: o.a0, a1: o.a1 });
@@ -308,33 +271,21 @@ function bigNumber(t, o) {
 function sceneAldar(t) {
   logo('aldar', CX, 435, 96, { alpha: ea(t, 22.29, 22.5), reveal: ea(t, 22.29, 22.95, E.out4), shine: prog(t, 22.9, 23.8) });
   const hw = 420 * ea(t, 22.5, 23.1, E.out4); line(CX - hw / 2, 545, CX + hw / 2, 545, { color: C.mute, w: 1.5 });
-  const dim = 1 - 0.45 * ea(t, 24.46, 24.9);
+  const dim = 1;
   branch(t, 22.55, 22.9, 300, 565, 580, 572); branch(t, 23.05, 23.4, 780, 565, 580, 572);
   projectTile(300, 700, 440, 240, t, 22.85, r => { logo('talay', 0, 4, 0, { fitH: 196, reveal: r }); }, { dim });
   projectTile(780, 700, 440, 240, t, 23.36, r => {
     logo('yas', 0, -28, 0, { fitH: 122, reveal: r });
     T('RIVA RESERVE', 0, 78, { font: F.d(600, 27), ls: 15, color: C.ink, alpha: ea(t, 23.6, 24.1) });
   }, { dim });
-  bigNumber(t, { aed: 'AED', overT: 24.46, aedT: 24.62, val: 5, dec: 0, fin: '5', suffix: 'B+', a0: 24.72, a1: 25.4, y: 1042 });
-  wordRow(['IN SALES', 'COMBINED'], [25.45, 25.85], 1190, t, { colors: [C.dim, C.gold], ls: 14, size: 24 });
 }
 
 function sceneModon(t) {
   logo('modon', CX, 435, 96, { alpha: ea(t, 26.43, 26.6), reveal: ea(t, 26.43, 27.05, E.out4), shine: prog(t, 27.05, 27.95) });
   const hw = 420 * ea(t, 26.6, 27.2, E.out4); line(CX - hw / 2, 545, CX + hw / 2, 545, { color: C.mute, w: 1.5 });
-  const dim = 1 - 0.45 * ea(t, 27.94, 28.4);
+  const dim = 1;
   branch(t, 26.65, 27.0, 540, 565, 605, 585);
   projectCard('hudayriyat', 540, 670, 760, 130, t, 26.9, { size: 46, dim, icon: 'flag' });
-  bigNumber(t, { aed: 'AED', overT: 27.94, aedT: 28.05, val: 13, dec: 0, fin: '13', suffix: 'B+', a0: 28.19, a1: 28.95, y: 1000 });
-  wordRow(['IN SALES', 'WITHIN DAYS', 'OF LAUNCH'], [28.9, 29.28, 29.95], 1140, t, { colors: [C.dim, C.gold, C.dim], ls: 12, size: 22, gap: 26 });
-  // days ticks fill fast
-  const n = 9, sz = 34, gp = 16, rw = n * sz + (n - 1) * gp; const x0 = CX - rw / 2, ty = 1192;
-  for (let i = 0; i < n; i++) {
-    const a = ea(t, 29.2 + i * 0.03, 29.5 + i * 0.03), f = ea(t, 29.58 + i * 0.085, 29.58 + i * 0.085 + 0.2, E.out2);
-    ctx.save(); ctx.globalAlpha *= a; rr(x0 + i * (sz + gp), ty, sz, sz, 8); ctx.strokeStyle = C.mute; ctx.lineWidth = 2; ctx.stroke();
-    if (f > 0) { ctx.globalAlpha *= f; ctx.fillStyle = C.gold; rr(x0 + i * (sz + gp) + 5, ty + 5, sz - 10, sz - 10, 5); ctx.fill(); }
-    ctx.restore();
-  }
 }
 
 // ------------------------------------------------------------ 8. WHAT TO LOOK FOR
@@ -370,32 +321,6 @@ function sceneCriteria(t) {
     icon('check', 944, y, 16, { p: ea(t, tc + 0.55, tc + 1.0), color: C.gold, w: 3.6 });
     ctx.restore();
   });
-}
-
-// ---------------------------------------------------- 9. BIGGER THAN OIL
-function sceneBigger(t) {
-  const cy = 800;
-  const oa = ea(t, 37.96, 38.5, E.out4);
-  // ripples from "but"
-  for (let k = 0; k < 5; k++) {
-    const rp = prog(t, 39.13 + k * 0.2, 39.13 + k * 0.2 + 2.6);
-    ring(CX, cy, 50 + 1100 * E.out3(rp), { color: C.ink, w: 1.5, alpha: rp > 0 ? 0.32 * (1 - rp) : 0 });
-  }
-  // the big economy ring
-  const gr = ea(t, 40.0, 41.9, E.out4), R2 = 50 + 760 * gr, ga = ea(t, 39.95, 40.3) * (1 - 0.75 * prog(R2, 480, 800));
-  if (ga > 0.002) {
-    glow(CX, cy, R2 * 1.25, '233,196,124', 0.2 * ga);
-    ring(CX, cy, R2, { color: C.gold, w: 3, alpha: ga });
-    ring(CX, cy, R2 * 0.72, { color: C.gold, w: 1.5, alpha: ga * 0.35 });
-    ring(CX, cy, R2 * 0.46, { color: C.gold, w: 1.5, alpha: ga * 0.25 });
-  }
-  // the oil dot
-  const pulse = 1 + 0.35 * Math.sin(Math.PI * clamp((t - 38.57) / 0.5)) + 0.4 * Math.sin(Math.PI * clamp((t - 41.43) / 0.5));
-  ring(CX, cy, 44, { color: C.ink, w: 2.5, alpha: 0.9, a0: -Math.PI / 2, a1: -Math.PI / 2 + Math.PI * 2 * oa });
-  dot(CX, cy, 13 * pulse, C.ink, oa);
-  T('OIL', CX, cy + 100, { font: F.t(600, 24), ls: 16, color: C.ink, alpha: oa * 0.85 });
-  label('ABU DHABI ECONOMY', CX, 520, t, 40.0, { ls: 18, color: C.gold, size: 24 });
-  label('TODAY', CX, cy + 150, t, 41.77, { ls: 22, color: C.gold, size: 22 });
 }
 
 // ---------------------------------------------------------------- 10. CTA
@@ -466,15 +391,98 @@ function sceneCTA(t) {
   }
 }
 
-// box = [top, bottom] of each scene's content in its own coordinates; main.js centres it in the lower zone
+// Half-and-half sections only (the full-face sections use the overlays below).
+// box = [top, bottom] of the content in its own coordinates; main.js centres it in the upper zone.
 const SCENES = [
-  { id: 'outdated', a: 4.55, b: 8.95, fn: sceneOutdated, box: [500, 1075] },
-  { id: 'mubadala', a: 8.95, b: 13.85, fn: sceneMubadala, box: [380, 1218] },
-  { id: 'adia', a: 13.85, b: 16.21, fn: sceneAdia, box: [365, 1222] },
+  { id: 'outdated', a: 5.62, b: 8.95, fn: sceneOutdated, box: [500, 1075] },
+  { id: 'mubadala', a: 8.95, b: 11.77, fn: sceneMubadala, box: [380, 1100] },
+  { id: 'adia', a: 13.86, b: 16.21, fn: sceneAdia, box: [365, 1222] },
   { id: 'ecosystem', a: 16.21, b: 21.91, fn: sceneEcosystem, box: [440, 1205] },
-  { id: 'aldar', a: 21.91, b: 26.26, fn: sceneAldar, box: [385, 1205] },
-  { id: 'modon', a: 26.26, b: 31.3, fn: sceneModon, box: [380, 1238] },
+  { id: 'aldar', a: 21.91, b: 24.46, fn: sceneAldar, box: [385, 830] },
+  { id: 'modon', a: 26.26, b: 28.19, fn: sceneModon, box: [380, 740] },
   { id: 'criteria', a: 31.3, b: 37.9, fn: sceneCriteria, box: [425, 1200] },
-  { id: 'bigger', a: 37.9, b: 42.2, fn: sceneBigger, box: [470, 1010] },
   { id: 'cta', a: 42.2, b: 46.72, fn: sceneCTA, box: [440, 1232], last: true },
 ];
+
+// ===================================================================================
+// Full-face overlays (drawn in screen coordinates over the footage)
+// ===================================================================================
+const segA = (t, a, b, i = 0.25, o = 0.25) => ea(t, a, a + i) * (1 - ea(t, b - o, b));
+
+function ovOutdated(t) {                      // "...an OUTDATED argument."  stamp slams in on the word
+  const A = segA(t, 4.6, 5.7, 0.2, 0.25); if (A <= 0.003) return;
+  const p = ea(t, 4.86, 5.16, E.out5), a = ea(t, 4.86, 5.0, E.out2);
+  ctx.save(); ctx.globalAlpha *= A * a; ctx.translate(CX, 1120); ctx.rotate(-0.07); ctx.scale(lerp(1.9, 1, p), lerp(1.9, 1, p));
+  const f = F.d(800, 78), sw = M('OUTDATED', f, 14) + 80;
+  ctx.fillStyle = 'rgba(8,8,10,0.62)'; rr(-sw / 2, -68, sw, 136, 16); ctx.fill();
+  ctx.strokeStyle = C.gold; ctx.lineWidth = 6; rr(-sw / 2, -68, sw, 136, 16); ctx.stroke();
+  ctx.lineWidth = 2; rr(-sw / 2 + 12, -56, sw - 24, 112, 10); ctx.stroke();
+  T('OUTDATED', 0, 28, { font: f, ls: 14, color: C.gold });
+  ctx.restore();
+  const rp = prog(t, 4.86, 5.5); if (rp > 0 && rp < 1) ring(CX, 1120, 40 + 520 * E.out3(rp), { color: C.gold, w: 4, alpha: (1 - rp) * 0.7 * A });
+}
+
+function ovBars(t) {                          // Mubadala vs Portugal's GDP, over his face-to-camera moment
+  const A = segA(t, 11.77, 13.86, 0.3, 0.3); if (A <= 0.003) return;
+  ctx.save(); ctx.globalAlpha *= A;
+  const BX0 = 90, BW = 900, by1 = 1090, by2 = 1210;
+  ctx.fillStyle = 'rgba(8,8,10,0.62)'; rr(60, by1 - 70, 960, 300, 28); ctx.fill();
+  const e1 = enter(t, 11.88, 0.5, 20), e2 = enter(t, 12.2, 0.5, 20);
+  T('MUBADALA', BX0, by1 - 30 + e1.dy, { font: F.t(700, 22), ls: 10, color: C.ink, align: 'left', alpha: e1.a });
+  T('AED 1.4T', BX0 + BW, by1 - 30 + e1.dy, { font: F.t(700, 22), ls: 10, color: C.gold, align: 'right', alpha: e1.a });
+  T('PORTUGAL · ANNUAL GDP', BX0, by2 - 30 + e2.dy, { font: F.t(700, 22), ls: 10, color: C.ink, align: 'left', alpha: e2.a });
+  rr(BX0, by1, BW, 18, 9); ctx.save(); ctx.globalAlpha *= e1.a; ctx.fillStyle = 'rgba(243,239,230,0.14)'; ctx.fill(); ctx.restore();
+  rr(BX0, by2, BW, 18, 9); ctx.save(); ctx.globalAlpha *= e2.a; ctx.fillStyle = 'rgba(243,239,230,0.14)'; ctx.fill(); ctx.restore();
+  const b1 = ea(t, 11.95, 12.65, E.out4), b2 = ea(t, 12.25, 13.0, E.out4), pw = 0.78;
+  if (b1 > 0.002) { rr(BX0, by1, BW * b1, 18, 9); ctx.fillStyle = C.gold; ctx.fill(); glow(BX0 + BW * b1, by1 + 9, 70, '233,196,124', 0.25); }
+  if (b2 > 0.002) { rr(BX0, by2, BW * pw * b2, 18, 9); ctx.save(); ctx.fillStyle = 'rgba(243,239,230,0.78)'; ctx.fill(); ctx.restore(); }
+  const bk = ea(t, 13.15, 13.7, E.out4), xm = BX0 + BW * pw;
+  if (bk > 0) {
+    line(xm, by1 - 14, xm, by2 + 34, { color: C.gold, w: 2.5, dash: [5, 6], alpha: bk });
+    T('MORE THAN', xm + 12 + (BX0 + BW - xm - 12) / 2, by2 + 62, { font: F.t(700, 22), ls: 12, color: C.gold, alpha: bk });
+  }
+  ctx.restore();
+}
+
+function ovStat(t, o) {                       // big count-up over his face
+  const A = segA(t, o.a, o.b, 0.3, 0.3); if (A <= 0.003) return;
+  ctx.save(); ctx.globalAlpha *= A; bigNumber(t, o.num); ctx.restore();
+}
+const ovStat5 = t => {
+  ovStat(t, { a: 24.46, b: 26.26, num: { aed: 'AED', overT: 24.46, aedT: 24.62, val: 5, dec: 0, fin: '5', suffix: 'B+', a0: 24.72, a1: 25.4, y: 1135, sc: 0.62 } });
+  const A = segA(t, 24.46, 26.26, 0.3, 0.3); if (A > 0.003) { ctx.save(); ctx.globalAlpha *= A; wordRow(['IN SALES', 'COMBINED'], [25.45, 25.85], 1250, t, { colors: [C.ink, C.gold], ls: 14, size: 26 }); ctx.restore(); }
+};
+const ovStat13 = t => {
+  ovStat(t, { a: 28.19, b: 31.3, num: { aed: 'AED', overT: 27.94, aedT: 28.05, val: 13, dec: 0, fin: '13', suffix: 'B+', a0: 28.19, a1: 28.95, y: 1100, sc: 0.62 } });
+  const A = segA(t, 28.19, 31.3, 0.3, 0.3); if (A <= 0.003) return;
+  ctx.save(); ctx.globalAlpha *= A;
+  wordRow(['IN SALES', 'WITHIN DAYS', 'OF LAUNCH'], [28.9, 29.28, 29.95], 1212, t, { colors: [C.ink, C.gold, C.ink], ls: 12, size: 24, gap: 26 });
+  const n = 9, sz = 28, gp = 14, rw = n * sz + (n - 1) * gp, x0 = CX - rw / 2, ty = 1242;
+  for (let i = 0; i < n; i++) {                // "within days": the bar fills fast
+    const a = ea(t, 29.2 + i * 0.03, 29.5 + i * 0.03), f = ea(t, 29.58 + i * 0.085, 29.58 + i * 0.085 + 0.2, E.out2);
+    ctx.save(); ctx.globalAlpha *= a; rr(x0 + i * (sz + gp), ty, sz, sz, 7); ctx.strokeStyle = 'rgba(243,239,230,0.45)'; ctx.lineWidth = 2; ctx.stroke();
+    if (f > 0) { ctx.globalAlpha *= f; ctx.fillStyle = C.gold; rr(x0 + i * (sz + gp) + 4, ty + 4, sz - 8, sz - 8, 4); ctx.fill(); }
+    ctx.restore();
+  }
+  ctx.restore();
+};
+
+function ovBigger(t) {                        // oil is a dot; the economy rings out around him
+  const A = segA(t, 37.9, 42.2, 0.25, 0.3); if (A <= 0.003) return;
+  const cy = 1030;
+  ctx.save(); ctx.globalAlpha *= A;
+  for (let k = 0; k < 5; k++) {
+    const rp = prog(t, 39.13 + k * 0.2, 39.13 + k * 0.2 + 2.6);
+    ring(CX, cy, 50 + 1100 * E.out3(rp), { color: C.ink, w: 2, alpha: rp > 0 ? 0.35 * (1 - rp) : 0 });
+  }
+  const gr = ea(t, 40.0, 41.9, E.out4), R2 = 50 + 760 * gr, ga = ea(t, 39.95, 40.3) * (1 - 0.6 * prog(R2, 480, 800));
+  if (ga > 0.002) { glow(CX, cy, R2 * 1.2, '233,196,124', 0.16 * ga); ring(CX, cy, R2, { color: C.gold, w: 4, alpha: ga }); ring(CX, cy, R2 * 0.7, { color: C.gold, w: 2, alpha: ga * 0.4 }); }
+  const oa = ea(t, 37.96, 38.5, E.out4), pulse = 1 + 0.35 * Math.sin(Math.PI * clamp((t - 38.57) / 0.5)) + 0.4 * Math.sin(Math.PI * clamp((t - 41.43) / 0.5));
+  ctx.fillStyle = 'rgba(8,8,10,0.55)'; ctx.beginPath(); ctx.arc(CX, cy, 74, 0, 7); ctx.globalAlpha *= oa; ctx.fill(); ctx.globalAlpha /= Math.max(oa, 1e-3);
+  ring(CX, cy, 44, { color: C.ink, w: 3, alpha: 0.95 * oa, a0: -Math.PI / 2, a1: -Math.PI / 2 + Math.PI * 2 * oa });
+  dot(CX, cy, 13 * pulse, C.ink, oa);
+  T('OIL', CX, cy + 112, { font: F.t(700, 26), ls: 16, color: C.ink, alpha: oa });
+  label('ABU DHABI ECONOMY', CX, 470, t, 40.0, { ls: 18, color: C.gold, size: 26 });
+  label('TODAY', CX, cy + 170, t, 41.77, { ls: 22, color: C.gold, size: 24 });
+  ctx.restore();
+}

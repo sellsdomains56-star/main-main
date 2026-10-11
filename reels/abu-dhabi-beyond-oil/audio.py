@@ -109,7 +109,7 @@ def count_ticks(buf, a0, a1, n=13, f0=1250, gain=0.16):
 def build_sfx():
     buf = np.zeros((N, 2))
     # scene transitions
-    for i, t in enumerate([4.55, 8.95, 13.85, 16.21, 21.91, 26.26, 31.30, 37.90, 42.20]):
+    for i, t in enumerate([5.62, 8.95, 11.77, 13.86, 16.21, 21.91, 24.46, 26.26, 28.19, 31.30, 37.90, 42.20]):    # layout cuts + scene changes
         place(buf, t - 0.28, whoosh(0.62, up=(i % 2 == 0)), 0.34, pan=(-0.25 if i % 2 else 0.25))
         place(buf, t + 0.02, thump(70, 0.35), 0.16)
     # 1 question: the oil line, the crash, the question mark
@@ -117,7 +117,8 @@ def build_sfx():
     place(buf, 1.38, crash(1.1), 0.62); place(buf, 1.38, shimmer(), 0.12)
     place(buf, 2.35, swell(1.5), 0.30); place(buf, 2.9, boom(1.6), 0.35)
     # 2 outdated
-    place(buf, 4.86, swipe(0.34), 0.45); place(buf, 5.20, thump(78, 0.5), 0.5); place(buf, 5.20, click(), 0.4)
+    place(buf, 4.70, swipe(0.3), 0.4); place(buf, 4.88, thump(78, 0.5), 0.6); place(buf, 4.88, click(), 0.4)               # zoom punch + stamp
+    place(buf, 1.45, swipe(0.25), 0.35); place(buf, 29.55, swipe(0.25), 0.35)                                            # punch-in swooshes
     for k in range(10): place(buf, 5.95 + k * 0.265, tick(2100 if k % 5 else 2600), 0.07)           # timeline ticks
     place(buf, 7.27, pop(520), 0.18); place(buf, 7.65, pop(620), 0.18); place(buf, 8.13, swipe(0.4), 0.30)
     place(buf, 8.59, boom(1.8), 0.55); place(buf, 8.59, bell(587, 2.6), 0.20); place(buf, 8.59, shimmer(), 0.22)

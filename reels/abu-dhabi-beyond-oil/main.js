@@ -1,29 +1,54 @@
 'use strict';
 // ---------------------------------------------------------------------------
-// Compositor. Two layouts, one continuous move between them:
-//   FULL  (0 -> 4.4 s)   the speaker full-screen while the interviewer asks; graphic overlaid on the footage
-//   SPLIT (5.0 s -> end) the footage tucks into a rounded top panel (gold rim that pulses with his voice),
-//                        the graphic scenes play in the lower zone at ~85 %.
-// window.prepare(t) loads the footage frame, window.draw(t) renders one frame; READY flips when assets load.
+// Compositor.  The reel alternates between two looks, with a punchy zoom move between them:
+//   FACE   he is full-screen, big bold captions, punch-in / zoom-out moves, stat overlays on top
+//   SPLIT  half-and-half: graphics + the live Abu Dhabi map on top, he sits smaller below, lifted out of his
+//          background (RMBG matte) so he stands in front of the map
+// window.prepare(t) loads the footage frame (+ matte), window.draw(t) renders one frame.
 // ---------------------------------------------------------------------------
-let GRID = null, NOISE = null, NOISE_PAT = null;
+let GRID = null, NOISE = null, NOISE_PAT = null, PL = null;
 const GRID_STEP = 60;
 
-const OFFSET = 0.04;                  // footage audio sits one frame after the voiceover the graphics were timed on
-const SPLIT_A = 4.40, SPLIT_B = 5.05; // full -> split transition (graphics time)
-const PB = 760;                       // bottom edge of the face panel in split mode
-const FOOT_SHIFT = -310;              // footage slides up this much so the face clears the IG top bar
-const ZONE_T = 826, ZONE_B = 1552, ZONE_C = (ZONE_T + ZONE_B) / 2, GS = 0.85;
-let FOOT = null, FOOT_K = -1, ENV = null;
+const OFFSET = 0.04;                      // footage audio sits one frame after the voiceover file the graphics were timed on
+// edit decision list (graphics time): [start, end, 1 = FACE | 0 = SPLIT]
+const SEG = [[0, 5.62, 1], [5.62, 11.77, 0], [11.77, 13.86, 1], [13.86, 24.46, 0], [24.46, 26.26, 1],
+  [26.26, 28.19, 0], [28.19, 31.30, 1], [31.30, 37.90, 0], [37.90, 42.20, 1], [42.20, 99, 0]];
+const TR_A = 0.14, TR_B = 0.34;           // a layout change starts just before the cut and settles just after
+const ZONE_T = 262, ZONE_B = 1040, ZONE_C = (ZONE_T + ZONE_B) / 2, GS = 0.9;   // upper half-and-half zone for the graphics
+const SPLIT_S = 0.64;                     // his scale when sitting in the lower half
+let FOOT = null, FOOT_M = null, FOOT_K = -1, ENV = null;
+
+function faceF(tg) {
+  let f = SEG[0][2];
+  for (let i = 1; i < SEG.length; i++) {
+    const b = SEG[i][0]; if (tg < b - TR_A) break;
+    f = lerp(SEG[i - 1][2], SEG[i][2], ea(tg, b - TR_A, b + TR_B, E.inOut3));
+  }
+  return f;
+}
+// zoom moves on the full-face shots: [time, zoom]. Punch-ins land on the word; slow pushes and zoom-outs between.
+const FZ = [[0, 1.0], [1.28, 1.045], [1.52, 1.17], [2.9, 1.11], [4.3, 1.07], [4.74, 1.08], [4.92, 1.22], [5.62, 1.16],
+  [11.77, 1.17], [12.5, 1.08], [13.86, 1.15], [24.46, 1.1], [26.26, 1.03], [28.19, 1.04], [29.5, 1.09], [29.68, 1.16], [31.3, 1.1],
+  [37.9, 1.27], [41.3, 1.02], [42.2, 1.0]];
+function zface(tg) {
+  if (tg <= FZ[0][0]) return FZ[0][1];
+  for (let i = 0; i < FZ.length - 1; i++) if (tg <= FZ[i + 1][0]) return lerp(FZ[i][1], FZ[i + 1][1], E.inOut2(prog(tg, FZ[i][0], FZ[i + 1][0])));
+  return FZ[FZ.length - 1][1];
+}
+// small "breathing" pulses on his lower-half size, on key words
+const PULSES = [[6.80, .035], [8.13, .04], [8.95, .045], [10.46, .05], [13.86, .045], [14.65, .035], [16.21, .04], [19.13, .04], [20.11, .04],
+  [21.91, .04], [22.85, .035], [23.36, .035], [26.43, .045], [26.90, .04], [31.36, .04], [33.47, .04], [34.92, .04], [36.22, .04], [42.94, .03], [45.06, .04], [45.53, .055]];
+const splitS = tg => SPLIT_S * (1 + PULSES.reduce((a, [t0, am]) => a + (tg > t0 ? am * Math.exp(-(tg - t0) * 7) * (1 - Math.exp(-(tg - t0) * 45)) : 0), 0));
 
 async function prepare(t) {
-  const k = clamp(Math.round(t * FPS), 0, 1399);
-  if (k === FOOT_K && FOOT) return;
-  const img = new Image(); img.src = `build/footage/f_${String(k).padStart(5, '0')}.jpg`;
-  await img.decode(); FOOT = img; FOOT_K = k;
+  const k = clamp(Math.round(t * FPS), 0, 1399), tg = Math.max(0, t - OFFSET), needM = faceF(tg) < 0.999 && k >= 120;
+  if (k === FOOT_K && FOOT && (!needM || FOOT_M)) return;
+  const load = src => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
+  const pad = String(k).padStart(5, '0');
+  const [f, m] = await Promise.all([load(`build/footage/f_${pad}.jpg`), needM ? load(`build/matte/m_${pad}.png`) : Promise.resolve(null)]);
+  FOOT = f; FOOT_M = m; FOOT_K = k;
 }
 const envAt = t => (ENV ? ENV[clamp(Math.round(t * 100), 0, ENV.length - 1)] : 0.4);
-const splitP = tg => E.inOut3(prog(tg, SPLIT_A, SPLIT_B));
 
 function initAssets() {
   GRID = document.createElement('canvas'); GRID.width = W * SS; GRID.height = (H + GRID_STEP) * SS;
@@ -34,75 +59,49 @@ function initAssets() {
   for (let i = 0; i < id.data.length; i += 4) { const v = (r() * 255) | 0; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
   n.putImageData(id, 0, 0);
   NOISE_PAT = ctx.createPattern(NOISE, 'repeat');
+  PL = document.createElement('canvas'); PL.width = ctx.canvas.width; PL.height = ctx.canvas.height;
 }
 
 function drawBG(t) {
-  glow(180 + 70 * Math.sin(t * 0.21), 1100 + 40 * Math.cos(t * 0.17), 820, '233,196,124', 0.055);
-  glow(900 + 60 * Math.cos(t * 0.19), 1400 + 50 * Math.sin(t * 0.23), 900, '233,196,124', 0.04);
-  ctx.save(); ctx.globalAlpha = 0.085; ctx.drawImage(GRID, 0, -((t * 7) % GRID_STEP), W, H + GRID_STEP); ctx.restore();
-  const v = ctx.createRadialGradient(CX, 1150, 360, CX, 1150, 1250);
+  glow(180 + 70 * Math.sin(t * 0.21), 700 + 40 * Math.cos(t * 0.17), 820, '233,196,124', 0.05);
+  glow(900 + 60 * Math.cos(t * 0.19), 1400 + 50 * Math.sin(t * 0.23), 900, '233,196,124', 0.035);
+  ctx.save(); ctx.globalAlpha = 0.07; ctx.drawImage(GRID, 0, -((t * 7) % GRID_STEP), W, H + GRID_STEP); ctx.restore();
+  const v = ctx.createRadialGradient(CX, 1000, 360, CX, 1000, 1250);
   v.addColorStop(0, 'rgba(8,8,10,0)'); v.addColorStop(1, 'rgba(8,8,10,0.92)');
   ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
 }
 
-// bottom outline of the face panel (rounded corners), used for the rim light + progress bar
-function seamPath(pb, r) { ctx.beginPath(); ctx.moveTo(0, pb - r); ctx.arcTo(0, pb, r, pb, r); ctx.lineTo(W - r, pb); ctx.arcTo(W, pb, W, pb - r, r); }
-
-function drawFootage(t, tg, P, jolt) {
-  const pb = lerp(H, PB, P), r = 58 * P, env = envAt(t);
-  ctx.save();
-  ctx.beginPath(); ctx.roundRect(0, -120, W, pb + 120, [0, 0, r, r]); ctx.clip();
-  ctx.fillStyle = '#0b0b0d'; ctx.fillRect(0, 0, W, pb);
-  // slow push-in anchored on the face, with a jolt on the oil crash
-  const z = 1 + 0.045 * prog(tg, 0, DUR) + 0.03 * jolt, ay = lerp(770, 460, P), fy = lerp(0, FOOT_SHIFT, P);
-  ctx.save(); ctx.translate(CX, ay); ctx.scale(z, z); ctx.translate(-CX, -ay);
-  if (FOOT) ctx.drawImage(FOOT, 0, fy, W, H);
-  ctx.restore();
-  // grade: warm gold cast on the highlights, soft vignette, scrims for the HUD and captions
-  ctx.save(); ctx.globalCompositeOperation = 'soft-light'; ctx.fillStyle = 'rgba(233,196,124,0.24)'; ctx.fillRect(0, 0, W, pb); ctx.restore();
-  const vg = ctx.createRadialGradient(CX, ay, 300, CX, ay, 980); vg.addColorStop(0, 'rgba(8,8,10,0)'); vg.addColorStop(1, 'rgba(8,8,10,0.55)');
-  ctx.fillStyle = vg; ctx.fillRect(0, 0, W, pb);
-  const tg1 = ctx.createLinearGradient(0, 0, 0, 330); tg1.addColorStop(0, 'rgba(8,8,10,0.62)'); tg1.addColorStop(1, 'rgba(8,8,10,0)');
-  ctx.fillStyle = tg1; ctx.fillRect(0, 0, W, 330);
-  const bh = lerp(840, 330, P), bg1 = ctx.createLinearGradient(0, pb - bh, 0, pb); bg1.addColorStop(0, 'rgba(8,8,10,0)'); bg1.addColorStop(1, `rgba(8,8,10,${lerp(0.92, 0.84, P)})`);
-  ctx.fillStyle = bg1; ctx.fillRect(0, pb - bh, W, bh);
-  ctx.restore();
-  if (P < 0.01) return;
-  // rim light + progress along the panel edge, pulsing with the voice
-  ctx.save(); ctx.globalAlpha *= P;
-  const gl = ctx.createLinearGradient(0, pb, 0, pb + 100); gl.addColorStop(0, `rgba(233,196,124,${0.10 + 0.16 * env})`); gl.addColorStop(1, 'rgba(233,196,124,0)');
-  ctx.fillStyle = gl; ctx.fillRect(0, pb, W, 100);
-  seamPath(pb, r); ctx.strokeStyle = 'rgba(243,239,230,0.2)'; ctx.lineWidth = 2; ctx.stroke();
-  const px = W * clamp(t / DUR);
-  ctx.save(); ctx.beginPath(); ctx.rect(0, pb - 90, px, 180); ctx.clip();
-  seamPath(pb, r); ctx.strokeStyle = C.gold; ctx.lineWidth = 3.5; ctx.shadowColor = 'rgba(233,196,124,0.95)'; ctx.shadowBlur = 14 + 34 * env; ctx.stroke(); ctx.restore();
-  glow(px, pb, 70, '233,196,124', 0.45 + 0.4 * env); dot(px, pb, 5.5, '#FFF3D0', 1);
-  ctx.restore();
-}
-
-// full-screen HUD (question beat)
-function drawHUDFull(t, tg, A) {
-  if (A <= 0.003) return;
-  const a = ea(t, 0.0, 0.5) * A;
-  T('01', 84, 312, { font: F.i(58), color: C.gold, align: 'left', alpha: a });
-  T('ABU DHABI — BEYOND OIL', 150, 306, { font: F.t(600, 19), ls: 9, color: C.ink, align: 'left', alpha: a * 0.7 });
-  const pulse = 0.65 + 0.35 * Math.sin(t * 5), w = M('INTERVIEWER', F.t(600, 19), 9);
-  T('INTERVIEWER', 996, 306, { font: F.t(600, 19), ls: 9, color: C.ink, align: 'right', alpha: a * 0.95 });
-  dot(996 - w - 22, 298, 6, C.gold, a * pulse);
-  const p = clamp(t / DUR);
-  line(84, 350, 996, 350, { color: 'rgba(243,239,230,0.25)', w: 2, alpha: a });
-  line(84, 350, 84 + 912 * p, 350, { color: C.ink, w: 2, alpha: a * 0.9 });
-  dot(84 + 912 * p, 350, 4, C.gold, a);
-}
-// split HUD: one slim row between the face panel and the graphics
-function drawHUDSeam(t, P) {
-  if (P <= 0.003) return;
-  const y = lerp(H, PB, P) + 50, A = P * P;          // the row rides the panel edge while it slides up
-  const pulse = 0.65 + 0.35 * Math.sin(t * 5), w = M('ABDULLAH', F.t(600, 17), 8);
-  T('01', 56, y + 6, { font: F.i(44), color: C.gold, align: 'left', alpha: A });
-  T('ABU DHABI — BEYOND OIL', 104, y, { font: F.t(600, 17), ls: 8, color: C.ink, align: 'left', alpha: A * 0.68 });
-  T('ABDULLAH', 1024, y, { font: F.t(600, 17), ls: 8, color: C.ink, align: 'right', alpha: A * 0.95 });
-  dot(1024 - w - 20, y - 7, 5, C.gold, A * pulse);
+// him: the full frame (with his room) in FACE shots, the matte cutout in SPLIT shots, blended through the move
+function drawPerson(t, tg, F) {
+  if (!FOOT) return;
+  const env = envAt(t), S = lerp(splitS(tg), zface(tg), F), ay = lerp(H, 770, F), bv = E.inOut2(F);
+  const place = c => { c.translate(CX, ay); c.scale(S, S); c.translate(-CX, -ay); };
+  if (F < 0.999 && FOOT_M) {
+    const o = PL.getContext('2d');
+    o.setTransform(1, 0, 0, 1, 0, 0); o.globalCompositeOperation = 'source-over'; o.clearRect(0, 0, PL.width, PL.height);
+    o.setTransform(SS, 0, 0, SS, 0, 0); o.save(); place(o);
+    o.drawImage(FOOT, 0, 0, W, H);
+    o.globalCompositeOperation = 'destination-in'; o.drawImage(FOOT_M, 0, 0, W, H);          // keep only him
+    o.globalCompositeOperation = 'destination-out';                                            // melt the table away
+    const tf = o.createLinearGradient(0, 1600, 0, 1765); tf.addColorStop(0, 'rgba(0,0,0,0)'); tf.addColorStop(1, 'rgba(0,0,0,1)');
+    o.fillStyle = tf; o.fillRect(0, 1585, W, H - 1585); o.restore();
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.shadowColor = `rgba(233,196,124,${0.22 + 0.3 * env})`; ctx.shadowBlur = 40 * SS;       // gold rim that breathes with his voice
+    ctx.drawImage(PL, 0, 0); ctx.restore();
+  }
+  if (bv > 0.002) {
+    ctx.save(); ctx.globalAlpha *= bv; place(ctx); ctx.drawImage(FOOT, 0, 0, W, H); ctx.restore();
+    const g = bv * bv;
+    ctx.save(); ctx.globalAlpha = 0.24 * g; ctx.globalCompositeOperation = 'soft-light'; ctx.fillStyle = '#E9C47C'; ctx.fillRect(0, 0, W, H); ctx.restore();   // warm grade
+    const vg = ctx.createRadialGradient(CX, 800, 300, CX, 800, 1100); vg.addColorStop(0, 'rgba(8,8,10,0)'); vg.addColorStop(1, `rgba(8,8,10,${0.55 * g})`);
+    ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+    const tg1 = ctx.createLinearGradient(0, 0, 0, 330); tg1.addColorStop(0, `rgba(8,8,10,${0.5 * g})`); tg1.addColorStop(1, 'rgba(8,8,10,0)');
+    ctx.fillStyle = tg1; ctx.fillRect(0, 0, W, 330);
+  }
+  // bottom scrim: melts his torso into black under the captions (taller on face shots, where stats sit over his chest)
+  const y0 = lerp(1380, 900, F), y1 = lerp(1700, 1260, F), sg = ctx.createLinearGradient(0, y0, 0, H);
+  sg.addColorStop(0, 'rgba(8,8,10,0)'); sg.addColorStop(clamp((y1 - y0) / (H - y0)), 'rgba(8,8,10,0.84)'); sg.addColorStop(1, 'rgba(8,8,10,0.94)');
+  ctx.fillStyle = sg; ctx.fillRect(0, y0, W, H - y0);
 }
 
 function runScene(sc, t) {
@@ -113,8 +112,7 @@ function runScene(sc, t) {
   const alpha = inA * (1 - outA);
   if (alpha <= 0.002) return;
   const mid = (sc.box[0] + sc.box[1]) / 2, z = 1 + 0.02 * prog(t, a, b);
-  ctx.save();
-  ctx.globalAlpha *= alpha;
+  ctx.save(); ctx.globalAlpha *= alpha;
   ctx.translate(CX, ZONE_C + inD - outD); ctx.scale(GS * z, GS * z); ctx.translate(-CX, -mid);
   sc.fn(t);
   ctx.restore();
@@ -129,21 +127,28 @@ function drawGrain(frame) {
 }
 
 function draw(t) {
-  const tg = Math.max(0, t - OFFSET), P = splitP(tg);
+  const tg = Math.max(0, t - OFFSET), F = faceF(tg);
   ctx.setTransform(SS, 0, 0, SS, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.letterSpacing = '0px';
   ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
   drawBG(tg);
   const jolt = tg > 1.38 && tg < 2.2 ? Math.exp(-(tg - 1.38) * 8) : 0;
   ctx.save(); ctx.translate(Math.sin(tg * 93) * 10 * jolt, Math.cos(tg * 71) * 8 * jolt);
-  // lower graphics zone (clipped); the footage panel is drawn over it and retracts to reveal it
-  ctx.save(); ctx.beginPath(); ctx.rect(0, ZONE_T - 10, W, ZONE_B - ZONE_T + 10); ctx.clip();
+  // upper half: the live map and the graphics scenes
+  const A = Math.pow(1 - F, 1.3);
+  mapAt(t, tg, A);
+  ctx.save(); ctx.beginPath(); ctx.rect(0, ZONE_T - 24, W, ZONE_B - ZONE_T + 50); ctx.clip();
+  ctx.globalAlpha *= Math.min(1, A * 1.6);
   for (const sc of SCENES) runScene(sc, tg);
   ctx.restore();
-  drawFootage(t, tg, P, jolt);
+  mapLabels(tg, A);
+  // him
+  drawPerson(t, tg, F);
+  // full-face overlays
   questionOverlay(tg, 1 - prog(tg, 4.2, 4.65));
-  drawHUDFull(t, tg, 1 - P); drawHUDSeam(t, P);
-  CAP.y = lerp(1376, 724, P);
-  drawCaptions(tg);
+  ovOutdated(tg); ovBars(tg); ovStat5(tg); ovStat13(tg); ovBigger(tg);
+  drawCaptions(tg, F);
+  // cut flash
+  for (const s of SEG) { const b = s[0]; if (b > 0 && b < 60 && tg > b - 0.02 && tg < b + 0.35) { ctx.save(); ctx.globalAlpha = 0.16 * Math.exp(-(tg - b) * 12); ctx.fillStyle = '#FFE9B8'; ctx.fillRect(0, 0, W, H); ctx.restore(); } }
   ctx.restore();
   if (jolt > 0.01 && tg < 1.5) { ctx.save(); ctx.globalAlpha = 0.2 * Math.exp(-(tg - 1.38) * 16); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H); ctx.restore(); }
   drawGrain(Math.round(t * FPS));
@@ -161,9 +166,9 @@ async function boot() {
   try { ENV = await (await fetch('build/voice_env.json')).json(); } catch (e) { ENV = null; }
   await Promise.all([
     document.fonts.load('italic 400 100px "Instrument Serif"'), document.fonts.load('400 100px "Instrument Serif"'),
-    ...[300, 400, 500, 600, 700].flatMap(w => [document.fonts.load(`${w} 40px "Inter Display"`), document.fonts.load(`${w} 40px "Inter"`)]),
+    ...[300, 400, 500, 600, 700, 800].flatMap(w => [document.fonts.load(`${w} 40px "Inter Display"`), document.fonts.load(`${w} 40px "Inter"`)]),
   ]);
-  await loadLogos();
+  await loadLogos(); await loadMap();
   initAssets();
   window.draw = draw; window.prepare = prepare; window.READY = true;
   if (q.get('t')) { await prepare(+q.get('t')); draw(+q.get('t')); }

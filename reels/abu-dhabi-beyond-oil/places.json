@@ -1,0 +1,37 @@
+{
+ "mubadala": {
+  "name": "Al Maryah Island",
+  "lat": 24.5021,
+  "lon": 54.3902
+ },
+ "adia": {
+  "name": "Corniche, Al Markaziyah",
+  "lat": 24.4861,
+  "lon": 54.3516
+ },
+ "talay": {
+  "name": "Saadiyat Island",
+  "lat": 24.5475,
+  "lon": 54.441
+ },
+ "yas": {
+  "name": "Yas Island",
+  "lat": 24.4864,
+  "lon": 54.6091
+ },
+ "aldar": {
+  "name": "Al Raha Beach",
+  "lat": 24.4859,
+  "lon": 54.6009
+ },
+ "hudayriyat": {
+  "name": "Hudayriyat Island",
+  "lat": 24.4171,
+  "lon": 54.3603
+ },
+ "abudhabi": {
+  "name": "Abu Dhabi",
+  "lat": 24.4539,
+  "lon": 54.3773
+ }
+}

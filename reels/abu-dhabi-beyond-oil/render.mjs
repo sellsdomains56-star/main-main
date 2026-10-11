@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, { 'content-type': MIME[path.extname(p)] || 'application/octet-stream' }); fs.createReadStream(p).pipe(res);
 });
 await new Promise(r => server.listen(0, '127.0.0.1', r));
-const base = `http://127.0.0.1:${server.address().port}/index.html?ss=${ss}`;
+const base = `http://127.0.0.1:${server.address().port}/index.html?ss=${ss}${args.layout ? '&layout=' + args.layout : ''}`;
 
 let jobs;
 if (args.stills) jobs = String(args.stills).split(',').map(s => ({ t: +s, name: `still_${(+s).toFixed(2).padStart(5, '0')}.png` }));

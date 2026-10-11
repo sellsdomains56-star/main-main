@@ -1,41 +1,49 @@
 # Abu Dhabi — Beyond Oil (reel 01)
 
-46.7 s vertical reel (1080×1920, 30 fps) cut to the supplied voiceover. Minimal, dark, one gold accent.
-Everything is generated from code, so any beat can be retimed or restyled and the reel re-rendered.
+46.7 s vertical reel (1080×1920, 30 fps) edited from the interview footage + voiceover. Everything — cuts, zooms, captions,
+graphics, map, cutout, sound — is generated from code, so any beat can be retimed and the reel re-rendered.
 
-## What's in it
+## The edit
 
-| Time | Beat | Visual |
-|------|------|--------|
-| 0.0 | The question | Oil-price line draws, **crashes on "collapsed"** (screen shake, ripple, ghosted OIL drops), giant gold **?** |
-| 4.5 | "Outdated argument" | "An oil economy" struck through, OUTDATED stamp, decades timeline, **beyond oil.** ring burst |
-| 9.0 | Mubadala | Logo wipe + shine, **AED 1.4T** count-up, bar comparison vs Portugal's GDP |
-| 13.9 | ADIA | Logo, tick-ring gauge fills to **US$ 1.1T** |
-| 16.2 | The flywheel | AI · Technology · Infrastructure · Businesses → companies · jobs · housing demand |
-| 21.9 | Aldar | Talay + Yas Riva Reserve tiles, **AED 5B+** combined sales |
-| 26.3 | Modon | Hudayriyat Golf Estates, **AED 13B+** with a "within days" tick bar |
-| 31.3 | What to look for | Entry prices · rental demand · long-term appreciation (check-marks draw on) |
-| 37.9 | Bigger than oil | A single OIL dot inside an expanding economy ring |
-| 42.2 | CTA | Shortlist card ticks off, DM typed, **SENT** |
+The reel alternates two looks, with a punch-zoom move at every cut (edit list = `SEG` in `main.js`):
 
-Karaoke captions light up on the exact spoken word (keywords in gold). Sound design: whooshes on every cut, count-up ticks, logo hits, check-mark pings — all synthesised in `audio.py` (no samples).
-The mix is voice + SFX only; the optional ambient music bed is off by default (`python3 audio.py in.wav out.wav --music` turns it on).
-Final mix is normalised to −14 LUFS / −1.5 dBTP.
+| Time | Look | What happens |
+|------|------|--------------|
+| 0.0 – 5.6 | **FACE** | He listens while the question is asked; oil-price line crashes on "collapsed" (punch-in + shake), gold **?**; **OUTDATED** stamp slams in on the word |
+| 5.6 – 11.8 | **SPLIT** | Live map of Abu Dhabi behind; "decades → *beyond oil.*"; Mubadala logo + **AED 1.4T** count-up; map flies to Al Maryah Island |
+| 11.8 – 13.9 | **FACE** | Mubadala vs Portugal's GDP bars over his face |
+| 13.9 – 24.5 | **SPLIT** | ADIA (Corniche) gauge → **US$ 1.1T**; AI · Technology · Infrastructure · Businesses → companies · jobs · housing demand (arcs spread from Al Maryah); Aldar → Talay (Saadiyat) + Yas Riva Reserve (Yas Island) |
+| 24.5 – 26.3 | **FACE** | **AED 5B+** combined sales |
+| 26.3 – 28.2 | **SPLIT** | Modon → Hudayriyat Island pin |
+| 28.2 – 31.3 | **FACE** | **AED 13B+**, "within days" bar fills |
+| 31.3 – 37.9 | **SPLIT** | Entry prices · rental demand · long-term appreciation, map pulses |
+| 37.9 – 42.2 | **FACE** | OIL is a dot; the economy rings out around him (zoom-out) |
+| 42.2 – 46.7 | **SPLIT** | Shortlist card, DM typed, **SENT** |
+
+* **SPLIT**: he is lifted out of his background (RMBG-1.4 matte, edge-refined) and stands smaller in the lower half, in front of the
+  map, with a gold rim light that pulses with his voice. Graphics + map in the upper half.
+* **Captions**: bold all-caps, outlined, each word pops on the beat, the spoken word lights up, keywords in gold.
+* **Map**: real OpenStreetMap coastline/islands/roads (© OpenStreetMap contributors, ODbL) drawn in the reel's style; a fly-to camera
+  glides between the places he names (`CAM` in `map.js`), pins ripple in on the word.
+* **Sound**: his own footage audio + synthesised effects (whooshes on cuts, count ticks, stamp, pings). Music bed is **off**
+  (`audio.py … --music` turns it on). Mix normalised to −14 LUFS / −1.5 dBTP.
 
 ## Rebuild
 
 ```bash
-./build.sh /path/to/voiceover.mp4 abu-dhabi-beyond-oil.mp4
+./build.sh /path/to/interview-footage.mp4 abu-dhabi-beyond-oil-final-edit.mp4
 ```
 
-Needs: `ffmpeg`, `node` + `playwright` (Chromium), `python3` with `numpy` and `Pillow`, and the **Inter** font installed
-(Instrument Serif ships in `fonts/`). Preview any moment: `node render.mjs --out stills --stills 3.4,9.9,26.9`.
+Needs `ffmpeg`, `node` + `playwright` (Chromium), Python 3 with `numpy Pillow opencv-contrib-python onnxruntime shapely osmium`,
+and the **Inter** font installed (Instrument Serif ships in `fonts/`). Preview any moment:
+`node render.mjs --out stills --ss 1 --stills 3.4,9.9,26.9` (after the footage / matte / map steps in `build.sh` have run).
 
 ## Files
 
-- `timing.txt` — word-by-word timings (voiceover ASR + the script, hand-tuned). `|` lines start a new caption chunk.
-- `scenes.js` — the ten hero scenes; `captions.js` — karaoke captions; `main.js` — background, HUD, transitions, grain.
-- `lib.js` — easing, text, icons, logo drawing. `audio.py` — sound design + mix. `render.mjs` — frame renderer.
-- `logos/source/*` — the logo artwork supplied; `prep_logos.py` keys them to transparent PNGs in `logos/`.
-  **Aldar** and **Hudayriyat** logos were not supplied, so they are typographic marks. Drop `logos/aldar.png` /
-  `logos/hudayriyat.png` (transparent background) and they are picked up automatically.
+- `timing.txt` — word timings (voiceover ASR + the script, hand-tuned); `|` starts a caption chunk.
+- `main.js` — compositor: edit list, footage + cutout layer, zoom moves, layering. `scenes.js` — half-and-half scenes and face overlays.
+  `captions.js` — captions. `map.js` — map camera, pins, arcs. `lib.js` — easing, text, icons, logos.
+- `matte_raw.py` / `matte_post.py` — speaker cutout. `map_extract.py` — OSM → vector map. `places.json` — pin coordinates.
+- `audio.py` — sound design + mix. `render.mjs` — frame renderer. `prep_logos.py` + `logos/` — supplied logo artwork keyed to transparent PNGs.
+  **Aldar** and **Hudayriyat** logos were not supplied, so they are typographic marks; drop `logos/aldar.png` / `logos/hudayriyat.png`
+  (transparent background) and they are picked up automatically.
