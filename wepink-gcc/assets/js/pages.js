@@ -3,7 +3,6 @@ window.WP_PAGES = (function () {
   const W = window.WP;
   const D = W.data;
   const { t, L, esc, icon, money, local, moneyAED, priceOf, card, media, badge, priceHTML, sizeText } = W;
-  const params = new URLSearchParams(location.search);
   const byId = (id) => D.products.find((p) => p.id === id);
   const cat = (id) => D.categories.find((c) => c.id === id);
   const featured = () => [...D.products].sort((a, b) => (b.badge === "bestseller") - (a.badge === "bestseller"));
@@ -223,6 +222,7 @@ window.WP_PAGES = (function () {
 
   /* ---------------- shop ---------------- */
   function shop(main) {
+    const params = W.route().params;
     const s = { c: params.get("c") || "", f: params.get("f") || "", sort: params.get("sort") || "featured" };
     if (s.c && !cat(s.c)) s.c = "";
     const c = s.c ? cat(s.c) : null;
@@ -238,9 +238,8 @@ window.WP_PAGES = (function () {
       if (s.c) q.set("c", s.c);
       if (s.f) q.set("f", s.f);
       if (s.sort !== "featured") q.set("sort", s.sort);
-      history.replaceState(null, "", "shop.html" + (q.toString() ? "?" + q : ""));
-      params.delete("c");
-      if (s.c) params.set("c", s.c);
+      const query = q.toString() ? "?" + q : "";
+      history.replaceState(null, "", W.SINGLE ? "#/shop" + query : "shop.html" + query);
     }
     function draw() {
       const items = list();
@@ -251,6 +250,7 @@ window.WP_PAGES = (function () {
       main.querySelectorAll("[data-cat]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cat === s.c)));
       const cc = s.c ? cat(s.c) : null;
       main.querySelector("#shop-title").textContent = cc ? L(cc.name) : t("shop.title");
+      document.title = `${cc ? L(cc.name) : t("shop.title")} · wepink ${L(D.config.region)}`;
       main.querySelector("#shop-lead").textContent = cc ? L(cc.blurb) : t("shop.lead");
       main.querySelector("#crumb-current").textContent = cc ? L(cc.name) : t("shop.title");
       document.querySelectorAll(".nav-primary a").forEach((a) => {
@@ -323,7 +323,7 @@ window.WP_PAGES = (function () {
 
   /* ---------------- product ---------------- */
   function product(main) {
-    const p = byId(params.get("id"));
+    const p = byId(W.route().params.get("id"));
     if (!p) {
       main.innerHTML = `<section class="section"><div class="container empty-state"><h1 class="h2">${esc(t("pdp.notFound"))}</h1><a class="btn btn-primary" href="shop.html">${esc(t("pdp.back"))}</a></div></section>`;
       return t("pdp.notFound");

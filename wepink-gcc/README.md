@@ -14,6 +14,14 @@ cd wepink-gcc && python3 -m http.server 8080
 
 Then open http://localhost:8080. Add `?lang=ar` or `?country=SA` to any URL to preview Arabic or another country.
 
+### One-file preview
+
+```bash
+node wepink-gcc/scripts/build-single.mjs   # → wepink-gcc/dist/wepink-gulf.html
+```
+
+Builds the whole store as a single HTML file (styles, scripts and logos inlined) that opens with a double-click, no server needed, and can be sent to the client as an attachment. Pages switch with the address hash (`#/shop?c=perfume`). Fonts load from Google Fonts when online.
+
 ## Pages
 
 | Page | What's on it |

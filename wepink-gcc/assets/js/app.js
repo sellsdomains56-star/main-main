@@ -25,8 +25,39 @@ window.WP = (function () {
     },
   };
 
+  /* ---------- routing ----------
+   * Normally each page is its own HTML file. The single-file build
+   * (scripts/build-single.mjs) sets window.WP_SINGLE and routes with the
+   * hash instead: shop.html?c=perfume becomes #/shop?c=perfume.
+   */
+  const SINGLE = !!window.WP_SINGLE;
+  const PAGE_LINK = /^(index|shop|product|stores|about|help|checkout)\.html(\?[^#]*)?(#.*)?$/;
+  function route() {
+    if (!SINGLE) return { page: document.body.dataset.page, params: new URLSearchParams(location.search) };
+    const m = location.hash.match(/^#\/([a-z]+)(?:\?([^#]*))?/);
+    const page = m && window.WP_PAGES && window.WP_PAGES[m[1]] ? m[1] : "home";
+    return { page, params: new URLSearchParams(m && m[2] ? m[2] : "") };
+  }
+  let pendingAnchor = "";
+  function navigate(href) {
+    const m = href.match(PAGE_LINK);
+    const page = m[1] === "index" ? "home" : m[1];
+    pendingAnchor = m[3] ? m[3].slice(1) : "";
+    const next = "#/" + page + (m[2] || "");
+    if (location.hash === next) afterNavigate();
+    else location.hash = next;
+  }
+  function afterNavigate() {
+    closeAll(true);
+    render();
+    const target = pendingAnchor && document.getElementById(pendingAnchor);
+    pendingAnchor = "";
+    if (target) target.scrollIntoView();
+    else window.scrollTo(0, 0);
+  }
+
   /* ---------- state ---------- */
-  const params = new URLSearchParams(location.search);
+  const params = route().params;
   const browserAr = (navigator.language || "").toLowerCase().startsWith("ar");
   const state = {
     lang: ["en", "ar"].includes(params.get("lang")) ? params.get("lang") : store.get("lang", browserAr ? "ar" : "en"),
@@ -192,7 +223,7 @@ window.WP = (function () {
     ];
   }
   function isActive(key) {
-    const page = document.body.dataset.page;
+    const { page, params } = route();
     if (key === "stores") return page === "stores";
     if (key === "shop") return page === "shop" && !params.get("c");
     if (key.startsWith("cat:")) return page === "shop" && params.get("c") === key.slice(4);
@@ -585,6 +616,29 @@ window.WP = (function () {
 
   /* ---------- events ---------- */
   function bind() {
+    if (SINGLE) {
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("a[href]");
+        if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || a.target === "_blank") return;
+        const href = a.getAttribute("href");
+        if (href.startsWith("#") && !href.startsWith("#/")) {
+          // In-page anchors (the skip link) must not change the route.
+          const target = document.getElementById(href.slice(1));
+          if (target) {
+            e.preventDefault();
+            target.focus({ preventScroll: true });
+            target.scrollIntoView();
+          }
+          return;
+        }
+        if (!PAGE_LINK.test(href)) return;
+        e.preventDefault();
+        navigate(href);
+      });
+      window.addEventListener("hashchange", () => {
+        if (!location.hash || location.hash.startsWith("#/")) afterNavigate();
+      });
+    }
     document.addEventListener("click", (e) => {
       const el = e.target.closest("[data-open],[data-close],[data-add],[data-qty],[data-remove],[data-lang-toggle],[data-country],[data-search],[data-quiz],[data-quiz-restart]");
       if (!el) return;
@@ -681,10 +735,14 @@ window.WP = (function () {
     const html = document.documentElement;
     html.lang = state.lang;
     html.dir = state.lang === "ar" ? "rtl" : "ltr";
+    const page = route().page;
+    document.body.dataset.page = page;
     renderHeader();
     renderLayers();
-    const page = document.body.dataset.page;
-    const main = document.getElementById("main");
+    // A fresh <main> each render, so page listeners never pile up.
+    const old = document.getElementById("main");
+    const main = old.cloneNode(false);
+    old.replaceWith(main);
     const fn = window.WP_PAGES && window.WP_PAGES[page];
     if (fn) {
       const title = fn(main);
@@ -699,7 +757,7 @@ window.WP = (function () {
     render();
   }
 
-  return { init, render, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, data: D, art: ART };
+  return { init, render, route, SINGLE, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());
