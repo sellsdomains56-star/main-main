@@ -1,0 +1,185 @@
+# start-time(s)  displayed-word          (derived from the voiceover: ASR anchors + script, hand-tuned)
+# a line starting with "|" begins a new caption chunk
+|
+0.17 Abdullah,
+0.62 if
+0.74 oil
+0.98 prices
+|
+1.38 collapsed
+1.72 tomorrow,
+|
+2.23 would
+2.56 Abu
+2.72 Dhabi's
+2.88 economy
+|
+3.17 actually
+3.95 survive?
+|
+4.55 That's
+4.68 an
+4.81 outdated
+5.20 argument.
+|
+5.62 Abu
+5.80 Dhabi
+6.10 has
+6.47 spent
+|
+6.80 decades
+7.27 building
+7.65 wealth
+|
+8.13 beyond
+8.59 oil.
+|
+8.95 Mubadala
+9.30 alone
+9.44 manages
+|
+9.78 AED
+10.02 1.4
+10.46 trillion
+11.12 in
+11.30 assets,
+|
+11.77 more
+11.98 than
+12.23 Portugal's
+|
+12.83 annual
+13.20 GDP.
+|
+13.86 ADIA
+14.37 manages
+14.55 an
+14.65 estimated
+|
+15.19 US$1.1
+15.80 trillion.
+|
+16.21 Investments
+16.77 in
+16.84 AI,
+|
+17.32 technology,
+17.78 infrastructure,
+|
+18.17 and
+18.33 businesses
+18.84 attract
+|
+19.13 companies,
+19.78 create
+20.11 jobs,
+|
+20.44 and
+20.55 increase
+20.87 housing
+21.35 demand.
+|
+21.91 Look
+22.11 at
+22.29 Aldar's
+|
+22.85 Talay
+23.23 and
+23.36 Yas
+23.60 Riva
+23.95 Reserve
+|
+24.46 over
+24.62 AED
+24.72 5
+25.03 billion
+|
+25.45 in
+25.60 sales
+25.85 combined.
+|
+26.26 Or
+26.43 Modon's
+|
+26.90 Hudayriyat
+27.30 Golf
+27.61 Estates
+|
+27.94 over
+28.05 AED
+28.19 13
+28.60 billion
+|
+28.90 in
+29.06 sales
+29.28 within
+29.58 days
+|
+29.95 of
+30.15 launch.
+|
+31.36 You
+31.55 guys
+31.95 should
+32.16 be
+32.28 looking
+|
+32.55 at
+32.74 properties
+33.28 with
+|
+33.47 competitive
+34.15 entry
+34.40 prices,
+|
+34.92 strong
+35.28 rental
+35.65 demand,
+|
+36.22 and
+36.35 long-term
+36.68 appreciation
+|
+37.26 potential.
+|
+37.96 Oil
+38.14 still
+38.57 matters,
+|
+39.13 but
+39.30 Abu
+39.60 Dhabi's
+40.00 economy
+|
+40.38 is
+40.60 much
+40.92 bigger
+|
+41.17 than
+41.43 oil
+41.77 today.
+|
+42.21 If
+42.31 you
+42.44 want
+42.62 to
+42.70 know
+|
+42.94 which
+43.10 Abu
+43.27 Dhabi
+43.44 projects
+|
+43.88 are
+44.10 worth
+44.29 your
+44.58 money,
+|
+45.06 message
+45.38 me.
+|
+45.53 I'll
+45.63 send
+45.88 you
+46.01 my
+46.14 shortlist.
