@@ -46,18 +46,34 @@ Builds the whole store as a single HTML file (styles, scripts and logos inlined)
 - **Scent finder quiz**, search (by name, type or note), a bag drawer with a free-delivery progress bar, and a country/currency picker.
 - Keyboard and screen-reader friendly (focus trapping in dialogs, labelled controls, visible focus), respects reduced motion, and works from 360 px phones to wide desktops.
 
+## The catalogue
+
+All 389 products come from wepink Brazil's own store (wepink.com.br runs on VTEX, whose public catalogue API lists every product with photos and descriptions):
+
+```bash
+python3 wepink-gcc/scripts/import_catalog.py fetch /tmp/wepink-raw   # download the catalogue
+python3 wepink-gcc/scripts/import_catalog.py build /tmp/wepink-raw   # normalise + download 2 photos each
+python3 wepink-gcc/scripts/cutout.py                                 # cut bottles out of the studio backdrop
+python3 wepink-gcc/scripts/import_catalog.py js                      # write assets/js/catalog.js
+```
+
+- **Left out:** the 18 "Wehot" intimate-wellness products, which are restricted or prohibited in several GCC markets.
+- **English and Arabic copy** lives in `data/translations.json` (names, taglines, descriptions, scent notes), translated from the Portuguese and reviewed for the Gulf: references to alcohol (whisky, cognac and rum notes) were removed. Re-running the import keeps it.
+- **Photos:** `assets/products/<id>.webp` are the brand's studio shots (600 px). `assets/products/cutout/` holds the same bottles cut out of their white backdrop, which the store stages on its own scenes (spotlight, floor shadow, reflection, glow). 348 products have a clean cut-out; pale or clear bottles that don't cut out cleanly use the studio photo blended into the tint. Re-cut a product from a chosen photo with `python3 scripts/cutout.py <id>@1`.
+- **Virginia Fonseca:** `assets/photos/` holds two portraits cropped from wepink's own campaign banners.
+- **Prices** are GCC placeholders by product type (body splash AED 79, eau de cologne AED 189, body cream AED 69…), not conversions of Brazilian prices.
+
 ## Before launch — what to replace
 
-1. **Virginia Fonseca's photos:** the hero, the "Created by Virginia Fonseca" section and the campaign band are built for her official campaign photos. Get licensed images from the wepink brand team (her image rights are contractual, so don't use photos taken from the internet), put them in `assets/photos/` and set the paths in `config.photos` in `data.js`. Until then the hero shows the products on a lit stage and the Virginia section shows a VF monogram.
-2. **Logo:** replace `assets/brand/logo.svg` (pink), `logo-white.svg` (dark backgrounds) and `favicon.svg` with the official files from the wepink brand kit. The current wordmark is a stand-in set in Plus Jakarta Sans.
+1. **Image rights:** the product photos and Virginia Fonseca's portraits come from wepink Brazil's own site and campaigns. Confirm in writing with the brand that the franchise may use them in the GCC (her image rights are contractual), or swap in the GCC campaign shots in `assets/photos/` (`config.photos` in `data.js`).
+2. **Logo:** `assets/brand/logo.svg` is wepink's official logo from their site (with white and ink versions generated from it).
 3. **Brand colours:** set the official pink and supporting colours in the `:root` blocks of `assets/css/styles.css` (the campaign colours are in the "Noir pink" block at the end).
-4. **Products:** `assets/js/data.js` carries wepink's real range — the VF line (VF, VF Golden, VF Tropical, VF Aqua, VF Bloom), body splashes (VF, Celebrate Life, Vanilla Cuddle, Scarlette Radiance, Scarlette, Fatal Rouge), the men's range (King Blue, King Blue Deep, Lion Noir) and Body Cream VF 2.7 — with names, sizes and scent notes taken from the brand's listings. Check them against the official product sheets, and confirm which products the franchise will carry. The two gift sets (VF Signature Set, Splash Trio) are bundles of real products put together for the Gulf.
-5. **Product photos:** the bottles are drawn in SVG. Put the official packshots in `assets/products/` and add `image: "assets/products/vf-golden.webp"` to a product; the photo then replaces the drawing everywhere.
-6. **Prices:** GCC prices are placeholders. Set them in AED (`price`) or per currency (`prices: { SAR: 205, KWD: 16.5 }`). Check the KWD rate, which isn't pegged to the dollar.
-7. **Referral terms:** the friend discount (10%), commission tiers (10 / 15 / 20%) and perks are placeholders in `config.referral` and `i18n.js`.
-8. **Contact details:** WhatsApp number, email, Instagram and TikTok in `config` at the top of `data.js`.
-9. **Stores:** the store list in `data.js` (all are "opening soon" for now).
-10. **Copy:** the brand story, the Virginia Fonseca text, and the delivery/returns promises in `i18n.js` need sign-off from the brand.
+4. **Products:** confirm which of the 389 products the franchise will carry and their GCC registration status; remove the rest from `data/catalog-source.json` (or filter them in `import_catalog.py`) and re-run the `js` step.
+5. **Prices:** GCC prices are placeholders by product type. Set them in `price_of()` in `import_catalog.py`, or per product and currency in the catalogue (`prices: { SAR: 205, KWD: 16.5 }`). Check the KWD rate, which isn't pegged to the dollar.
+6. **Referral terms:** the friend discount (10%), commission tiers (10 / 15 / 20%) and perks are placeholders in `config.referral` and `i18n.js`.
+7. **Contact details:** WhatsApp number, email, Instagram and TikTok in `config` at the top of `data.js`.
+8. **Stores:** the store list in `data.js` (all are "opening soon" for now).
+9. **Copy:** the brand story, the Virginia Fonseca text, and the delivery/returns promises in `i18n.js` need sign-off from the brand.
 
 ## Going live
 

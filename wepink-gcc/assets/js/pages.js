@@ -2,8 +2,9 @@
 window.WP_PAGES = (function () {
   const W = window.WP;
   const D = W.data;
-  const { t, L, esc, icon, money, local, moneyAED, priceOf, card, media, badge, priceHTML, sizeText } = W;
+  const { t, L, esc, icon, money, local, moneyAED, priceOf, card, media, badge, priceHTML, sizeText, pname, fullName } = W;
   const byId = (id) => D.products.find((p) => p.id === id);
+  const FRAG = (p) => !["makeup", "skincare", "haircare", "set", "bodycare"].includes(p.type);
   const cat = (id) => D.categories.find((c) => c.id === id);
   const featured = () => [...D.products].sort((a, b) => (b.badge === "bestseller") - (a.badge === "bestseller"));
 
@@ -85,13 +86,14 @@ window.WP_PAGES = (function () {
 
   /* ---------------- home ---------------- */
   function home(main) {
-    const star = byId("vf-golden");
-    const icons = ["vf-golden", "celebrate-life", "vanilla-cuddle", "king-blue-deep"].map(byId);
+    const F = D.featured;
+    const star = byId(F.star);
+    const icons = F.icons.map(byId).filter(Boolean);
     const sets = D.products.filter((p) => p.cat === "gift-sets");
     const fromSet = Math.min(...sets.map((p) => p.price));
-    const ritual = [byId("body-cream-vf-27"), byId("vf-body-splash"), byId("vf")];
-    const vfLine = D.products.filter((p) => p.cat === "perfume");
-    const catArt = { perfume: "vf", "body-splash": "scarlette-radiance", men: "king-blue-deep", "body-care": "body-cream-vf-27", "gift-sets": "vf-signature-set" };
+    const ritual = F.ritual.map(byId).filter(Boolean);
+    const vfLine = D.products.filter((p) => p.type === "colonia" && /^VF\b/.test(p.line)).slice(0, 8);
+    const catArt = F.categories;
     const cities = [...new Map(D.stores.map((s) => [s.city[0], s])).values()];
     const tiers = D.config.referral.tiers;
     const heroPhoto = photo("virginiaHero", t("hn.photoCaption"));
@@ -122,19 +124,19 @@ window.WP_PAGES = (function () {
             ${
               heroPhoto
                 ? `<figure class="portrait-arch">${heroPhoto}<figcaption>${esc(t("hn.photoCaption"))}</figcaption></figure>
-                   <div class="float-bottle" aria-hidden="true">${W.art.art(star)}</div>`
+                   <div class="float-bottle" aria-hidden="true">${W.art.art(star, { eager: true })}</div>`
                 : `<div class="stage" aria-hidden="true">
                     <span class="beam"></span><span class="halo"></span><span class="pedestal"></span>
-                    <div class="stage-bottle sb-left">${W.art.art(byId("vf-body-splash"))}</div>
-                    <div class="stage-bottle sb-right">${W.art.art(byId("body-cream-vf-27"))}</div>
-                    <div class="stage-bottle sb-main">${W.art.art(star)}</div>
+                    <div class="stage-bottle sb-left">${W.art.art(byId(F.stage[0]), { eager: true })}</div>
+                    <div class="stage-bottle sb-right">${W.art.art(byId(F.stage[2]), { eager: true })}</div>
+                    <div class="stage-bottle sb-main">${W.art.art(byId(F.stage[1]), { eager: true })}</div>
                   </div>`
             }
             <a class="glass-card" href="product.html?id=${star.id}">
               ${media(star, "media-xs")}
               <span class="glass-card-text">
                 <span class="eyebrow">${esc(t("hero.cardEyebrow"))}</span>
-                <strong>${esc(star.line)}</strong>
+                <strong>${esc(pname(star))}</strong>
                 <span class="price">${esc(money(priceOf(star)))}</span>
               </span>
               <span class="glass-card-go">${icon("arrow", "flip")}</span>
@@ -159,11 +161,11 @@ window.WP_PAGES = (function () {
                 <a class="icon-media" href="product.html?id=${p.id}" tabindex="-1" aria-hidden="true">${badge(p)}<span class="icon-glow"></span>${W.art.art(p)}</a>
                 <div class="icon-body">
                   <p class="card-type">${esc(L(p.typeName))} · ${esc(sizeText(p))}</p>
-                  <h3 class="icon-name"><a href="product.html?id=${p.id}">${esc(p.line)}</a></h3>
+                  <h3 class="icon-name"><a href="product.html?id=${p.id}">${esc(pname(p))}</a></h3>
                   <p class="icon-notes">${esc(notesLine(p))}</p>
                   <div class="icon-foot">
                     <span class="price">${esc(money(priceOf(p)))}</span>
-                    <button class="btn-add btn-add-glow" type="button" data-add="${esc(p.id)}" aria-label="${esc(t("card.addLabel", { name: p.line + " " + L(p.typeName) }))}">${icon("plus")}<span>${esc(t("card.add"))}</span></button>
+                    <button class="btn-add btn-add-glow" type="button" data-add="${esc(p.id)}" aria-label="${esc(t("card.addLabel", { name: fullName(p) }))}">${icon("plus")}<span>${esc(t("card.add"))}</span></button>
                   </div>
                 </div>
               </article>`
@@ -184,7 +186,9 @@ window.WP_PAGES = (function () {
           <div class="cat-grid">
             ${D.categories
               .map((c, i) => {
-                const p = byId(catArt[c.id]);
+                // Prefer a staged cut-out for the tile; fall back to any product in the category.
+                const pick = byId(catArt[c.id]);
+                const p = pick && pick.cutout ? pick : D.products.find((x) => x.cat === c.id && x.cutout) || pick || D.products.find((x) => x.cat === c.id);
                 return `<a class="cat-tile" href="shop.html?c=${c.id}" style="--c:${p.color};--c2:${p.color2};--d:${i * 60}ms" data-reveal>
                   <span class="cat-art">${W.art.art(p)}</span>
                   <span class="cat-text"><strong>${esc(L(c.name))}</strong><span>${esc(L(c.blurb))}</span></span>
@@ -230,12 +234,12 @@ window.WP_PAGES = (function () {
                 ${media(p, "media-ritual")}
                 <h3>${esc(t("home.ritual" + (i + 1)))}</h3>
                 <p>${esc(t("home.ritual" + (i + 1) + "b"))}</p>
-                <a href="product.html?id=${p.id}" class="ritual-link">${esc(p.line)} ${esc(L(p.typeName))} · ${esc(money(priceOf(p)))}</a>
+                <a href="product.html?id=${p.id}" class="ritual-link">${esc(fullName(p))} · ${esc(money(priceOf(p)))}</a>
               </li>`
               )
               .join("")}
           </ol>
-          <div class="ritual-cta" data-reveal><a class="btn btn-light btn-lg" href="product.html?id=vf-signature-set">${esc(t("home.ritualCta"))}${icon("arrow", "flip")}</a></div>
+          <div class="ritual-cta" data-reveal><a class="btn btn-light btn-lg" href="product.html?id=${F.ritualSet}">${esc(t("home.ritualCta"))}${icon("arrow", "flip")}</a></div>
         </div>
       </section>
 
@@ -246,9 +250,9 @@ window.WP_PAGES = (function () {
           <div class="campaign-copy" data-reveal>
             <h2 id="cb-title" class="display-noir display-md">${esc(t("cb.title1"))} <em>${esc(t("cb.title2"))}</em></h2>
             <p class="lead-noir">${esc(t("cb.lead"))}</p>
-            <a class="btn btn-glow btn-lg" href="product.html?id=vf-golden">${esc(t("cb.cta"))}${icon("arrow", "flip")}</a>
+            <a class="btn btn-glow btn-lg" href="shop.html?c=perfume">${esc(t("cb.cta"))}${icon("arrow", "flip")}</a>
           </div>
-          ${campaign ? "" : `<div class="campaign-bottle" aria-hidden="true" data-reveal style="--d:120ms">${W.art.art(byId("fatal-rouge"))}</div>`}
+          ${campaign ? "" : `<div class="campaign-trio" aria-hidden="true" data-reveal style="--d:120ms">${F.campaign.map((id, i) => `<div class="ct ct${i + 1}">${W.art.art(byId(id), { eager: true })}</div>`).join("")}<span class="ct-glow"></span></div>`}
         </div>
       </section>
 
@@ -272,7 +276,7 @@ window.WP_PAGES = (function () {
               <p>${esc(t("home.giftLead", { amount: moneyAED(fromSet) }))}</p>
               <a class="btn btn-primary" href="shop.html?c=gift-sets">${esc(t("home.giftCta"))}${icon("arrow", "flip")}</a>
             </div>
-            <div class="promo-art">${W.art.art(byId("vf-signature-set"))}</div>
+            <div class="promo-art">${W.art.art(byId(F.giftSet))}</div>
           </article>
         </div>
       </section>
@@ -579,11 +583,13 @@ window.WP_PAGES = (function () {
       const query = q.toString() ? "?" + q : "";
       history.replaceState(null, "", W.SINGLE ? "#/shop" + query : "shop.html" + query);
     }
+    let shown = 48;
     function draw() {
       const items = list();
       main.querySelector("#shop-count").textContent = t("shop.count", { n: items.length });
+      main.querySelector("#shop-more").innerHTML = items.length > shown ? `<button class="btn btn-ghost btn-lg" type="button" data-more>${esc(t("shop.more", { n: items.length - shown }))}</button>` : "";
       main.querySelector("#shop-grid").innerHTML = items.length
-        ? items.map(card).join("")
+        ? items.slice(0, shown).map(card).join("")
         : `<div class="empty-state"><p>${esc(t("shop.empty"))}</p><button class="btn btn-ghost" type="button" data-reset>${esc(t("shop.reset"))}</button></div>`;
       main.querySelectorAll("[data-cat]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cat === s.c)));
       const cc = s.c ? cat(s.c) : null;
@@ -631,12 +637,19 @@ window.WP_PAGES = (function () {
       <div class="container">
         <p class="muted small shop-count" id="shop-count" aria-live="polite"></p>
         <div class="product-grid" id="shop-grid"></div>
+        <div class="shop-more" id="shop-more"></div>
       </div>
       ${perks()}`;
 
     main.addEventListener("click", (e) => {
+      if (e.target.closest("[data-more]")) {
+        shown += 48;
+        draw();
+        return;
+      }
       const b = e.target.closest("[data-cat],[data-reset]");
       if (!b) return;
+      shown = 48;
       if (b.hasAttribute("data-reset")) {
         s.c = "";
         s.f = "";
@@ -647,6 +660,7 @@ window.WP_PAGES = (function () {
     });
     main.querySelector("#shop-family").addEventListener("change", (e) => {
       s.f = e.target.value;
+      shown = 48;
       sync();
       draw();
     });
@@ -668,7 +682,12 @@ window.WP_PAGES = (function () {
     }
     const c = W.country();
     const cc = cat(p.cat);
-    const how = { splash: "howSplash", colonia: "howPerfume", cream: "howLotion", set: "howSet" }[p.type];
+    const how = { splash: "howSplash", colonia: "howPerfume", hairmist: "howMist", cream: "howLotion", lotion: "howLotion", butter: "howLotion", bodyoil: "howLotion", set: "howSet" }[p.type];
+    // Gallery: the staged cut-out first, then the studio photos (local, then the brand's CDN).
+    const shots = [];
+    if (p.cutout) shots.push({ cls: "cut", src: p.cutout });
+    (p.images || []).forEach((src) => shots.push({ cls: "photo", src }));
+    (p.remote || []).slice((p.images || []).length).forEach((src) => shots.push({ cls: "photo", src }));
     const related = [
       ...D.products.filter((x) => x !== p && x.line.split(" ")[0] === p.line.split(" ")[0]),
       ...D.products.filter((x) => x !== p && x.family === p.family),
@@ -682,18 +701,28 @@ window.WP_PAGES = (function () {
 
     main.innerHTML = `
       <div class="container">
-        ${crumbs([["wepink", "index.html"], [L(cc.name), "shop.html?c=" + cc.id], [p.line]])}
+        ${crumbs([["wepink", "index.html"], [L(cc.name), "shop.html?c=" + cc.id], [pname(p)]])}
       </div>
       <section class="container pdp">
         <div class="pdp-gallery">
-          <div class="pdp-media" style="--c:${p.color};--c2:${p.color2}">
+          <div class="pdp-media media" style="--c:${p.color};--c2:${p.color2}">
             ${badge(p)}
-            ${W.art.art(p)}
+            <div class="pdp-stage" id="pdp-stage">${W.art.art(p, { eager: true })}</div>
           </div>
+          ${
+            shots.length > 1
+              ? `<div class="pdp-thumbs" role="group" aria-label="${esc(t("pdp.photos"))}">${shots
+                  .map(
+                    (sh, i) => `<button type="button" class="pdp-thumb media${i === 0 ? " is-on" : ""}" style="--c:${p.color};--c2:${p.color2}" data-shot="${i}" aria-label="${esc(t("pdp.photoN", { n: i + 1 }))}"><img class="${sh.cls}" src="${esc(sh.src)}" alt="" loading="lazy"></button>`
+                  )
+                  .join("")}</div>`
+              : ""
+          }
         </div>
         <div class="pdp-info">
-          <p class="card-type">${esc(L(p.typeName))} · ${esc(L(D.families[p.family]))}</p>
-          <h1 class="h1 pdp-title">${esc(p.line)}</h1>
+          <p class="card-type">${esc(L(p.typeName))}${p.family ? ` · ${esc(L(D.families[p.family]))}` : ""}</p>
+          <h1 class="h1 pdp-title">${esc(pname(p))}</h1>
+          ${p.tagline && L(p.tagline) ? `<p class="pdp-tagline">${esc(L(p.tagline))}</p>` : ""}
           <p class="pdp-size">${esc(sizeText(p))}</p>
           <div class="pdp-price">${priceHTML(p)}</div>
           <p class="muted small">${esc(c.vat ? t("pdp.vat") : t("pdp.vatNone", { country: L(c.short) }))}</p>
@@ -721,10 +750,10 @@ window.WP_PAGES = (function () {
               <summary>${esc(t("pdp.notes"))}${icon("chevron")}</summary>
               <dl class="notes">${notesHTML}</dl>
             </details>` : ""}
-            <details${notesHTML ? "" : " open"}>
+            ${how ? `<details${notesHTML ? "" : " open"}>
               <summary>${esc(t("pdp.how"))}${icon("chevron")}</summary>
               <p>${esc(t("pdp." + how))}</p>
-            </details>
+            </details>` : ""}
             <details>
               <summary>${esc(t("pdp.details"))}${icon("chevron")}</summary>
               <p>${esc(t("pdp.detailsBody"))}</p>
@@ -740,6 +769,13 @@ window.WP_PAGES = (function () {
         </div>
       </section>`;
 
+    main.querySelectorAll("[data-shot]").forEach((b) =>
+      b.addEventListener("click", () => {
+        const sh = shots[+b.dataset.shot];
+        main.querySelector("#pdp-stage").innerHTML = `<img class="${sh.cls}" src="${esc(sh.src)}" alt="">`;
+        main.querySelectorAll("[data-shot]").forEach((x) => x.classList.toggle("is-on", x === b));
+      })
+    );
     const qtyEl = main.querySelector("[data-qty-value]");
     main.querySelectorAll("[data-step]").forEach((b) =>
       b.addEventListener("click", () => {
@@ -761,8 +797,8 @@ window.WP_PAGES = (function () {
       }
       const base = location.href.split("#")[0].split("?")[0];
       const link = W.SINGLE ? `${base}#/product?id=${p.id}&ref=${amb.code}` : `${base}?id=${p.id}&ref=${amb.code}`;
-      const text = t("pdp.shareMsg", { name: p.line, link });
-      if (navigator.share) navigator.share({ title: `wepink ${p.line}`, text, url: link }).catch(() => {});
+      const text = t("pdp.shareMsg", { name: pname(p), link });
+      if (navigator.share) navigator.share({ title: `wepink ${pname(p)}`, text, url: link }).catch(() => {});
       else window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank", "noopener");
     });
 
@@ -777,12 +813,13 @@ window.WP_PAGES = (function () {
     ld.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Product",
-      name: `wepink ${p.line} ${p.typeName.en}`,
+      name: `wepink ${p.line}${FRAG(p) ? " " + p.typeName.en : ""}`,
+      image: p.cutout || p.image,
       brand: { "@type": "Brand", name: "wepink" },
       description: p.desc.en,
       offers: { "@type": "Offer", priceCurrency: c.currency, price: priceOf(p), availability: "https://schema.org/InStock" },
     });
-    return p.type === "set" ? p.line : `${p.line} ${L(p.typeName)}`;
+    return fullName(p);
   }
 
   /* ---------------- stores ---------------- */
@@ -894,7 +931,7 @@ window.WP_PAGES = (function () {
             <a class="btn btn-primary btn-lg" href="shop.html">${esc(t("about.cta"))}${icon("arrow", "flip")}</a>
           </div>
           <div class="about-visual" aria-hidden="true">
-            ${["vanilla-cuddle", "vf-golden", "body-cream-vf-27", "king-blue-deep"].map((id, i) => `<div class="about-tile t${i + 1}" style="--c:${byId(id).color};--c2:${byId(id).color2}">${W.art.art(byId(id))}</div>`).join("")}
+            ${D.featured.about.map((id, i) => `<div class="about-tile t${i + 1}" style="--c:${byId(id).color};--c2:${byId(id).color2}">${W.art.art(byId(id))}</div>`).join("")}
           </div>
         </div>
       </section>
@@ -1014,7 +1051,7 @@ window.WP_PAGES = (function () {
         .map(
           (i) => `<li>
           <span class="sum-thumb">${media(i.p, "media-xs")}<span class="sum-qty">${i.qty}</span></span>
-          <span class="sum-name"><strong>${esc(i.p.line)}</strong><span class="muted small">${esc(L(i.p.typeName))} · ${esc(sizeText(i.p))}</span></span>
+          <span class="sum-name"><strong>${esc(pname(i.p))}</strong><span class="muted small">${esc(L(i.p.typeName))} · ${esc(sizeText(i.p))}</span></span>
           <span class="price">${esc(money(priceOf(i.p) * i.qty))}</span>
         </li>`
         )
@@ -1126,7 +1163,7 @@ window.WP_PAGES = (function () {
       const phone = `${c.dial} ${f.phone}`;
       const lines = [
         t("co.waIntro", { id }),
-        ...items.map((i) => `• ${i.qty} × ${i.p.line} ${L(i.p.typeName)} — ${money(priceOf(i.p) * i.qty)}`),
+        ...items.map((i) => `• ${i.qty} × ${fullName(i.p)} — ${money(priceOf(i.p) * i.qty)}`),
         disc ? `${t("co.discount", { code })}: − ${money(disc)}` : "",
         `${t("co.total")}: ${money(total)}`,
         `${f.name} · ${phone}`,

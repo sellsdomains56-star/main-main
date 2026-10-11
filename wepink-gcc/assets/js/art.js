@@ -1,6 +1,5 @@
-/* wepink Gulf — product renderings drawn as SVG.
- * Used until the brand's packshots arrive: set `image: "assets/products/x.webp"`
- * on a product in data.js and the photo is shown instead.
+/* wepink Gulf — product visuals: real photos when the catalogue has them,
+ * otherwise a bottle drawn in SVG.
  */
 window.WP_ART = (function () {
   let uid = 0;
@@ -144,8 +143,13 @@ window.WP_ART = (function () {
 
   function art(p, opts) {
     const o = opts || {};
-    if (p.image && !o.noImage) {
-      return `<img src="${esc(p.image)}" alt="" loading="lazy" decoding="async">`;
+    // Real products: the cut-out bottle staged on our own backdrop, or the
+    // studio photo blended into the tint when no clean cut-out exists.
+    if (!o.noImage && (p.cutout || p.image)) {
+      const lazy = o.eager ? "eager" : "lazy";
+      return p.cutout
+        ? `<img class="cut" src="${esc(p.cutout)}" alt="" loading="${lazy}" decoding="async">`
+        : `<img class="photo" src="${esc(p.image)}" alt="" loading="${lazy}" decoding="async">`;
     }
     const id = "a" + ++uid;
     const shape = shapes[p.art] || shapes.splash;

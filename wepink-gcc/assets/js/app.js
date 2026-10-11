@@ -110,6 +110,10 @@ window.WP = (function () {
   }
 
   const country = () => D.countries[state.country];
+  const FRAGRANCE = new Set(["colonia", "splash", "cream", "lotion", "hairmist", "bodyoil", "scrub", "butter", "shower", "soap", "rollon"]);
+  // Display name: fragrance names stay in Latin script; other products have an Arabic name.
+  const pname = (p) => (state.lang === "ar" && p.lineAr ? p.lineAr : p.line);
+  const fullName = (p) => (FRAGRANCE.has(p.type) ? `${p.line} ${L(p.typeName)}` : pname(p));
   const product = (id) => D.products.find((p) => p.id === id);
 
   // Local price for an AED amount (or a product's own override).
@@ -229,11 +233,11 @@ window.WP = (function () {
       <a class="card-media" href="${url}" tabindex="-1" aria-hidden="true">${badge(p)}${media(p)}</a>
       <div class="card-body">
         <p class="card-type">${esc(L(p.typeName))}</p>
-        <h3 class="card-title"><a href="${url}">${esc(p.line)}</a></h3>
+        <h3 class="card-title"><a href="${url}">${esc(pname(p))}</a></h3>
         <p class="card-size">${esc(sizeText(p))}</p>
         <div class="card-foot">
           <div class="card-price">${priceHTML(p)}</div>
-          <button class="btn-add" type="button" data-add="${esc(p.id)}" aria-label="${esc(t("card.addLabel", { name: p.line + " " + L(p.typeName) }))}">${icon("plus")}<span>${esc(t("card.add"))}</span></button>
+          <button class="btn-add" type="button" data-add="${esc(p.id)}" aria-label="${esc(t("card.addLabel", { name: fullName(p) }))}">${icon("plus")}<span>${esc(t("card.add"))}</span></button>
         </div>
       </div>
     </article>`;
@@ -381,7 +385,7 @@ window.WP = (function () {
         </div>
         <nav class="menu-links" aria-label="Mobile">
           ${links.map((l) => `<a href="${l.href}">${esc(l.label)}${icon("arrow", "flip")}</a>`).join("")}
-          <a href="shop.html?c=body-care">${esc(L(D.categories.find((x) => x.id === "body-care").name))}${icon("arrow", "flip")}</a>
+          ${["body-care", "hair", "makeup", "skincare"].map((id) => `<a href="shop.html?c=${id}">${esc(L(D.categories.find((x) => x.id === id).name))}${icon("arrow", "flip")}</a>`).join("")}
           <a href="stores.html">${esc(t("nav.stores"))}${icon("arrow", "flip")}</a>
           <a href="about.html">${esc(t("nav.about"))}${icon("arrow", "flip")}</a>
           <a href="help.html">${esc(t("nav.help"))}${icon("arrow", "flip")}</a>
@@ -466,7 +470,7 @@ window.WP = (function () {
             (i) => `<li class="bag-line">
           <a class="bag-thumb" href="product.html?id=${encodeURIComponent(i.p.id)}" tabindex="-1" aria-hidden="true">${media(i.p, "media-sm")}</a>
           <div class="bag-info">
-            <p class="bag-name"><a href="product.html?id=${encodeURIComponent(i.p.id)}">${esc(i.p.line)}</a></p>
+            <p class="bag-name"><a href="product.html?id=${encodeURIComponent(i.p.id)}">${esc(pname(i.p))}</a></p>
             <p class="muted small">${esc(L(i.p.typeName))} · ${esc(sizeText(i.p))}</p>
             <div class="bag-row">
               <div class="stepper" role="group" aria-label="${esc(t("pdp.qty"))}">
@@ -495,7 +499,7 @@ window.WP = (function () {
     if (!el) return;
     const query = q.trim().toLowerCase();
     if (!query) {
-      const popular = ["VF Golden", "Vanilla Cuddle", "Celebrate Life", "King Blue", L(D.categories.find((c) => c.id === "gift-sets").name)];
+      const popular = ["VF Golden", "Ghadan", "Celebrate Life", "King Blue", L(D.categories.find((c) => c.id === "gift-sets").name)];
       el.innerHTML = `<p class="eyebrow">${esc(t("search.popular"))}</p>
         <div class="pill-row">${popular.map((w) => `<button class="pill" type="button" data-search="${esc(w)}">${esc(w)}</button>`).join("")}</div>`;
       return;
@@ -504,9 +508,9 @@ window.WP = (function () {
     const score = (p) => {
       const cat = D.categories.find((c) => c.id === p.cat).name;
       const fields = [
-        [3, [p.line]],
+        [3, [p.line, p.lineAr || ""]],
         [2, [p.typeName.en, p.typeName.ar, cat.en, cat.ar, D.families[p.family].en, D.families[p.family].ar]],
-        [1, [].concat(...Object.values(p.notes).map((arr) => arr.flat()))],
+        [1, [].concat(...Object.values(p.notes).map((arr) => arr.flat()), p.tagline ? [p.tagline.en, p.tagline.ar] : [])],
       ];
       let total = 0;
       for (const w of words) {
@@ -524,7 +528,7 @@ window.WP = (function () {
           .map(
             (p) => `<li><a href="product.html?id=${encodeURIComponent(p.id)}">
             ${media(p, "media-xs")}
-            <span class="search-text"><strong>${esc(p.line)}</strong><span class="muted small">${esc(L(p.typeName))} · ${esc(sizeText(p))}</span></span>
+            <span class="search-text"><strong>${esc(pname(p))}</strong><span class="muted small">${esc(L(p.typeName))} · ${esc(sizeText(p))}</span></span>
             <span class="price">${esc(money(priceOf(p)))}</span></a></li>`
           )
           .join("")}</ul>`
@@ -623,7 +627,7 @@ window.WP = (function () {
     result() {
       const { family, wear } = quiz.answers;
       const typeCat = family === "woody" ? "men" : { splash: "body-splash", perfume: "perfume", set: "gift-sets" }[wear];
-      const pool = D.products.filter((p) => p.family === family);
+      const pool = D.products.filter((p) => p.family === family && (family === "woody" || p.gender !== "masculino"));
       const best = pool.find((p) => p.cat === typeCat) || pool[0] || D.products[0];
       const also = pool.filter((p) => p !== best).slice(0, 2);
       const body = document.getElementById("quiz-body");
@@ -632,7 +636,7 @@ window.WP = (function () {
           ${media(best, "media-quiz")}
           <div>
             <p class="card-type">${esc(L(best.typeName))} · ${esc(L(D.families[best.family]))}</p>
-            <h3 class="quiz-name">${esc(best.line)}</h3>
+            <h3 class="quiz-name">${esc(pname(best))}</h3>
             <p class="muted">${esc(L(best.desc))}</p>
             <div class="quiz-actions">
               <span class="price-lg">${esc(money(priceOf(best)))}</span>
@@ -640,7 +644,7 @@ window.WP = (function () {
             </div>
           </div>
         </div>
-        ${also.length ? `<p class="eyebrow quiz-also">${esc(t("quiz.also"))}</p><div class="quiz-mini">${also.map((p) => `<a href="product.html?id=${encodeURIComponent(p.id)}">${media(p, "media-xs")}<span><strong>${esc(p.line)}</strong><span class="muted small">${esc(L(p.typeName))}</span></span></a>`).join("")}</div>` : ""}
+        ${also.length ? `<p class="eyebrow quiz-also">${esc(t("quiz.also"))}</p><div class="quiz-mini">${also.map((p) => `<a href="product.html?id=${encodeURIComponent(p.id)}">${media(p, "media-xs")}<span><strong>${esc(pname(p))}</strong><span class="muted small">${esc(L(p.typeName))}</span></span></a>`).join("")}</div>` : ""}
         <button class="link-btn" type="button" data-quiz-restart>${esc(t("quiz.restart"))}</button>`;
     },
   };
@@ -790,7 +794,7 @@ window.WP = (function () {
     if (incomingRef) setTimeout(() => toast(t("ref.welcome", { code: incomingRef, pct: ref.pct() })), 600);
   }
 
-  return { init, render, route, SINGLE, ref, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, data: D, art: ART };
+  return { init, render, route, SINGLE, ref, pname, fullName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());

@@ -24,8 +24,21 @@ const inlinePhotos = (text) =>
     return `"data:image/${type};base64,${readFileSync(join(root, path)).toString("base64")}"`;
   });
 
+// Studio photos load from the brand's CDN in the one-file build (the cut-outs
+// and campaign photos are inlined), which keeps the file small enough to share.
+const catalogJs = (() => {
+  const text = read("assets/js/catalog.js");
+  const rows = JSON.parse(text.slice(text.indexOf("["), text.lastIndexOf("]") + 1));
+  for (const p of rows) {
+    const remote = p.remote || [];
+    if (p.image && remote[0]) p.image = remote[0];
+    if (p.images) p.images = p.images.map((src, i) => remote[i] || src);
+  }
+  return "window.WP_CATALOG = " + JSON.stringify(rows) + ";";
+})();
+
 const css = read("assets/css/styles.css");
-const js = ["data.js", "i18n.js", "art.js", "app.js", "pages.js"].map((f) => script(inlinePhotos(read(`assets/js/${f}`))));
+const js = [catalogJs, ...["data.js", "i18n.js", "art.js", "app.js", "pages.js"].map((f) => read(`assets/js/${f}`))].map((text) => script(inlinePhotos(text)));
 const head = read("index.html").match(/<head>([\s\S]*?)<\/head>/)[1];
 const meta = head
   .split("\n")
