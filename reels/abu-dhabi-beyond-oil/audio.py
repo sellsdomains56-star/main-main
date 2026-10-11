@@ -8,6 +8,7 @@ SR = 48000
 SFX_OFFSET = 0.0                       # --offset 0.04 : shift every effect later (graphics were timed on the voiceover file, not the footage audio)
 if '--offset' in sys.argv:
     _i = sys.argv.index('--offset'); SFX_OFFSET = float(sys.argv[_i + 1]); del sys.argv[_i:_i + 2]
+GLITCH = '--glitch' in sys.argv            # swap the clean effects for digital-glitch ones (bit-crush, stutter, static, tape-stop)
 SFX_ONLY = '--sfx-only' in sys.argv    # write just the sound effects (no voice, no music) as they sit in the reel mix
 WITH_MUSIC = '--music' in sys.argv      # ambient pad + bell plucks; off by default (voice + SFX only)
 DUR = 46.72
@@ -89,6 +90,75 @@ def swell(dur=1.2):
 def shimmer(dur=1.4):
     n = int(dur * SR); y = sum(sine(f, n, rng.uniform(0, 6)) * a for f, a in [(2093, 0.5), (3136, 0.35), (4186, 0.25), (5274, 0.12)])
     return fade(y * exp_env(n, 0.45) * 0.5, 0.004, 0.1)
+
+
+# ------------------------------------------------------------------ glitch effects (same names/signatures as the clean ones)
+def crush(x, bits=6, down=4):
+    """bit-depth + sample-rate reduction: the classic digital-corruption sound"""
+    y = np.repeat(x[::down], down)[: len(x)] if down > 1 else x.copy()
+    q = 2 ** (bits - 1); return np.round(np.clip(y, -1, 1) * q) / q
+def gate(x, rate=30.0, duty=0.55, seed=None):
+    """random stutter gate: chops the signal into 1/rate slices and drops some of them"""
+    r = np.random.default_rng(seed); n = len(x); seg = max(8, int(SR / rate)); g = np.ones(n)
+    for i in range(0, n, seg):
+        if r.random() > duty: g[i:i + seg] = 0
+    return x * g
+def repeat_slice(x, at, seg, reps):
+    """buffer-repeat glitch: freeze a short slice and loop it"""
+    a = int(at * SR); l = int(seg * SR); sl = x[a:a + l]
+    if len(sl) < 10: return x
+    y = x.copy(); end = min(len(y), a + l * reps); y[a:end] = np.tile(sl, reps + 1)[: end - a]; return y
+def norm(x, pk=0.9): return x / (np.abs(x).max() + 1e-9) * pk
+
+def g_whoosh(dur=0.6, up=True, band=1.6):
+    y = whoosh_clean(dur, up, band); n = len(y)
+    return norm(gate(crush(y, 5, 5), 36, 0.72)) * np.sin(np.pi * np.clip(tarr(n) / dur, 0, 1)) ** 0.8
+def g_swipe(dur=0.3): return g_whoosh(dur, True, 1.0) * 0.85
+def g_thump(f=58, dur=0.7):
+    y = thump_clean(f, dur); n = len(y)
+    return norm(np.tanh(crush(y * 3.0, 5, 3) * 1.6)) * exp_env(n, 0.2)
+def g_click(f=3200, dur=0.03):
+    n = int(dur * SR); sq = np.sign(sine(rng.uniform(2200, 5200), n)); return fade(crush(sq * exp_env(n, 0.006) * 0.8 + white(n) * exp_env(n, 0.004) * 0.3, 4, 2), 0, 0.004)
+def g_tick(f=1500):                              # modem-style data blip
+    n = int(0.045 * SR); f1 = rng.uniform(900, 3600); sq = np.sign(sine(f1, n)) * 0.6 + np.sign(sine(f1 * 1.5, n)) * 0.25
+    return fade(crush(sq * exp_env(n, 0.016), 4, 3), 0.0005, 0.008)
+def g_pop(f=640, dur=0.16):                       # digital zap
+    n = int(dur * SR); y = chirp(f * 3.2, f * 0.9, n) * exp_env(n, 0.05); return fade(crush(np.sign(y) * 0.6 + y * 0.4, 4, 4), 0.001, 0.02)
+def g_ping(f=1568, dur=1.1):                      # glitched chime: pitch jitter + crush + stutter tail
+    n = int(min(dur, 0.7) * SR); t = tarr(n); jit = np.repeat(rng.uniform(0.97, 1.03, n // 900 + 2), 900)[:n]
+    y = np.sin(2 * np.pi * np.cumsum(f * jit) / SR) * exp_env(n, 0.16) + 0.4 * np.sin(2 * np.pi * np.cumsum(f * 2.01 * jit) / SR) * exp_env(n, 0.09)
+    return fade(gate(crush(y, 6, 3), 22, 0.8), 0.001, 0.05)
+def g_bell(f=880, dur=2.2):
+    y = bell_clean(f, min(dur, 1.0)); return fade(gate(crush(y, 5, 4), 18, 0.75), 0.002, 0.08)
+def g_riser(dur=0.9):                              # stutter rate accelerates as it rises
+    n = int(dur * SR); t = tarr(n) / dur; y = shaped_noise(n, 180, 9000, 1.8) * t ** 2 + 0.5 * np.sign(chirp(160, 1600, n)) * t ** 2.5
+    out = np.zeros(n)
+    pos = 0
+    while pos < n:
+        u = pos / n; rate = 4 + 40 * u; seg = max(40, int(SR / rate)); keep = rng.random() < 0.55 + 0.4 * u
+        if keep: out[pos:pos + seg] = y[pos:pos + seg]
+        pos += seg
+    return fade(norm(crush(out, 5, 3)) * (0.3 + 0.7 * t), 0.005, 0.03)
+def g_boom(dur=1.6):
+    n = int(dur * SR); y = thump_clean(44, dur) * 1.2 + fft_filter(white(n), hi=900) * exp_env(n, 0.3) * 0.7
+    y = np.tanh(crush(y * 2.5, 5, 3)); return fade(norm(y) * exp_env(n, 0.5), 0.002, 0.2)
+def g_crash(dur=1.0):                              # tape-stop + buffer repeats
+    n = int(dur * SR); t = tarr(n); y = chirp(1100, 45, n) * np.exp(-t / 0.45) + fft_filter(white(n), hi=2500) * np.exp(-t / 0.2) * 0.8 + thump_clean(52, dur) * 0.8
+    y = repeat_slice(y, 0.12, 0.045, 5); y = repeat_slice(y, 0.42, 0.03, 4)
+    return fade(norm(crush(y, 5, 3)) , 0.001, 0.1)
+def g_swell(dur=1.2):
+    n = int(dur * SR); t = tarr(n) / dur; y = sum(np.sign(sine(f, n)) * a for f, a in [(73.4, .5), (110, .35), (147.5, .3), (221, .15)])
+    return fade(gate(crush(y, 5, 6), 14, 0.8) * (np.sin(np.pi * t) ** 2) * 0.5, 0.01, 0.1)
+def g_shimmer(dur=1.4):                            # scattered digital sparkle
+    n = int(dur * SR); y = np.zeros(n)
+    for _ in range(26):
+        a = rng.integers(0, int(n * 0.8)); l = int(rng.uniform(0.012, 0.05) * SR); f = rng.uniform(2500, 7000)
+        y[a:a + l] += np.sign(sine(f, l)) * np.hanning(l) * rng.uniform(0.2, 0.6)
+    return fade(crush(y, 4, 2) * exp_env(n, 0.5) * 0.7, 0.002, 0.1)
+
+if GLITCH:                                         # rebind the effect library; build_sfx() picks these up by name
+    whoosh_clean, thump_clean, bell_clean = whoosh, thump, bell
+    whoosh, swipe, thump, click, tick, pop, ping, bell, riser, boom, crash, swell, shimmer = g_whoosh, g_swipe, g_thump, g_click, g_tick, g_pop, g_ping, g_bell, g_riser, g_boom, g_crash, g_swell, g_shimmer
 
 # ------------------------------------------------------------------ mixing helpers
 def place(buf, t0, sig, gain=1.0, pan=0.0):
@@ -235,7 +305,7 @@ def main(voice_path, out_path):
     ir = make_reverb()
     bed_wet = convolve(bed, ir) * 0.55; sfx_wet = convolve(sfx, ir) * 0.30
     bed_mix = (bed * 0.8 + bed_wet) * duck_bed[:, None]
-    sfx_mix = (sfx + sfx_wet) * duck_sfx[:, None] * 0.72
+    sfx_mix = (sfx + sfx_wet) * duck_sfx[:, None] * (0.58 if GLITCH else 0.72)
     # fade the bed in/out and tail the end
     bed_mix[:, :] *= np.minimum(1, tarr(N) / 1.2)[:, None] * np.clip((DUR + 0.6 - tarr(N)) / 1.0, 0, 1)[:, None]
     mix = (sfx_mix if SFX_ONLY else vb * 1.0 + bed_mix * 1.0 + sfx_mix * 1.0)
