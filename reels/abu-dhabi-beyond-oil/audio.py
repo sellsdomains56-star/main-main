@@ -5,6 +5,9 @@ import sys, subprocess
 import numpy as np
 
 SR = 48000
+SFX_OFFSET = 0.0                       # --offset 0.04 : shift every effect later (graphics were timed on the voiceover file, not the footage audio)
+if '--offset' in sys.argv:
+    _i = sys.argv.index('--offset'); SFX_OFFSET = float(sys.argv[_i + 1]); del sys.argv[_i:_i + 2]
 SFX_ONLY = '--sfx-only' in sys.argv    # write just the sound effects (no voice, no music) as they sit in the reel mix
 WITH_MUSIC = '--music' in sys.argv      # ambient pad + bell plucks; off by default (voice + SFX only)
 DUR = 46.72
@@ -89,7 +92,7 @@ def shimmer(dur=1.4):
 
 # ------------------------------------------------------------------ mixing helpers
 def place(buf, t0, sig, gain=1.0, pan=0.0):
-    i = int(round(t0 * SR));
+    i = int(round((t0 + SFX_OFFSET) * SR));
     if i < 0 or i >= len(buf): return
     sig = sig[: len(buf) - i]
     l = np.cos((pan + 1) * np.pi / 4); r = np.sin((pan + 1) * np.pi / 4)

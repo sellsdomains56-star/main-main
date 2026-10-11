@@ -32,7 +32,7 @@ function parseTiming(txt) {
   });
 }
 
-const CAP = { size: 64, maxW: 900, lh: 86, y: 1376 };
+const CAP = { size: 56, maxW: 940, lh: 74, y: 1376 };   // y is animated by main.js (full-screen -> split)
 function layoutChunk(c) {
   if (c.layout) return c.layout;
   const font = F.d(600, CAP.size), sp = M(' ', font) + 9;

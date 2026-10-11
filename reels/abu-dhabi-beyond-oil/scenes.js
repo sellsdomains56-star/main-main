@@ -25,7 +25,7 @@ function wordRow(words, times, y, t, o = {}) {
   });
 }
 
-// ---------------------------------------------------------------- 1. QUESTION
+// ---------------------------------------------------------------- 1. QUESTION (overlay on full-screen footage)
 const CHART_BR = 0.52;
 function chartPt(u) {
   const x = lerp(90, 990, u);
@@ -36,40 +36,43 @@ function chartPt(u) {
   return [x, y0 + (1110 - y0) * drop - (v > 0.5 ? 26 * Math.sin((v - 0.5) * 18) * Math.pow(1 - v, 2) : 0)];
 }
 const CHART = Array.from({ length: 481 }, (_, i) => chartPt(i / 480));
-
-function sceneQuestion(t) {
-  const sh = t > 1.38 && t < 2.1 ? Math.exp(-(t - 1.38) * 8) : 0;
-  ctx.save(); ctx.translate(Math.sin(t * 93) * 12 * sh, Math.cos(t * 71) * 9 * sh);
-  const ia = ea(t, 0.05, 0.7);
-  const dimQ = 1 - 0.82 * ea(t, 2.45, 3.1);
-  const wm = ea(t, 0.0, 0.7) * (1 - ea(t, 1.38, 2.2, E.in2)), wmD = E.in3(prog(t, 1.38, 2.2)) * 110;
-  T('OIL', CX, 1010 + wmD, { font: F.i(660), color: C.ink, alpha: 0.075 * wm, sx: 1 + 0.04 * prog(t, 0, 1.4) });
-  // legend
-  icon('drop', 112, 528, 25, { p: ea(t, 0.05, 0.8, E.out2), w: 3, alpha: ia * dimQ });
-  T('OIL PRICE', 156, 537, { font: F.t(600, 22), ls: 8, color: C.dim, align: 'left', alpha: ia * dimQ });
-  for (let k = 0; k < 5; k++) line(90, 640 + k * 120, 990, 640 + k * 120, { color: C.faint, w: 1, dash: [2, 10], alpha: ia * 0.9 * dimQ });
-  // the line
+const qmap = ([x, y]) => [x, 975 + (y - 680) * 0.7];       // squeeze the chart into the band over the table
+function questionOverlay(t, A) {
+  if (A <= 0.003) return;
+  ctx.save(); ctx.globalAlpha *= A;
+  const ia = ea(t, 0.1, 0.7), dimQ = 1 - 0.8 * ea(t, 2.5, 3.1);
+  icon('drop', 112, 925, 22, { p: ea(t, 0.1, 0.8, E.out2), w: 3, alpha: ia * dimQ });
+  T('OIL PRICE', 150, 934, { font: F.t(600, 21), ls: 8, color: C.ink, align: 'left', alpha: ia * dimQ * 0.85 });
+  for (let k = 0; k < 4; k++) line(90, 990 + k * 75, 990, 990 + k * 75, { color: 'rgba(243,239,230,0.16)', w: 1, dash: [2, 10], alpha: ia * dimQ });
   const u = t < 1.38 ? CHART_BR * ea(t, 0.12, 1.38, E.lin) : CHART_BR + (1 - CHART_BR) * ea(t, 1.38, 2.15, E.out3);
-  const n = Math.floor(u * 480), pts = CHART.slice(0, n + 1); pts.push(chartPt(u));
+  const n = Math.floor(u * 480), pts = CHART.slice(0, n + 1).map(qmap); pts.push(qmap(chartPt(u)));
   if (pts.length > 1) {
     const crash = t > 1.38;
-    strokePoly(pts, 1, { color: C.ink, w: 6.5, alpha: dimQ });
+    glowLine(pts, dimQ);
+    strokePoly(pts, 1, { color: C.ink, w: 6, alpha: dimQ });
     const hd = pts[pts.length - 1];
-    glow(hd[0], hd[1], 90, '243,239,230', 0.22 * dimQ);
+    glow(hd[0], hd[1], 90, '243,239,230', 0.25 * dimQ);
     dot(hd[0], hd[1], 9, crash ? C.gold : C.ink, dimQ);
     if (crash) {
-      const bp = chartPt(CHART_BR), rp = prog(t, 1.38, 2.0);
-      ring(bp[0], bp[1], 20 + 200 * E.out3(rp), { color: C.gold, w: 3, alpha: (1 - rp) * 0.8 });
-      ring(bp[0], bp[1], 20 + 120 * E.out3(clamp(rp * 1.3)), { color: C.ink, w: 2, alpha: (1 - rp) * 0.5 });
+      const bp = qmap(chartPt(CHART_BR)), rp = prog(t, 1.38, 2.0);
+      ring(bp[0], bp[1], 20 + 190 * E.out3(rp), { color: C.gold, w: 3, alpha: (1 - rp) * 0.85 });
+      ring(bp[0], bp[1], 20 + 110 * E.out3(clamp(rp * 1.3)), { color: C.ink, w: 2, alpha: (1 - rp) * 0.5 });
     }
   }
-  label('TOMORROW', 905, 1175, t, 1.74, { ls: 12, size: 21, color: C.dim, alpha: dimQ });
+  label('TOMORROW', 905, 1262, t, 1.74, { ls: 12, size: 20, color: C.ink, alpha: dimQ * 0.7 });
+  // the question mark: a gold outline that fills in, over his chest
+  const qa = ea(t, 2.55, 3.3, E.out3), qs = lerp(0.86, 1, ea(t, 2.55, 3.6, E.out5)), pulse = 1 + 0.012 * Math.sin(t * 2.4);
+  if (qa > 0.003) {
+    glow(CX, 1130, 380, '233,196,124', 0.14 * qa);
+    ctx.save(); ctx.translate(CX + 6, 1250); ctx.scale(qs * pulse, qs * pulse); ctx.font = F.i(430); ctx.textAlign = 'center';
+    ctx.globalAlpha *= qa; ctx.fillStyle = 'rgba(233,196,124,0.16)'; ctx.fillText('?', 0, 0);
+    ctx.lineWidth = 4; ctx.strokeStyle = C.gold; ctx.lineJoin = 'round'; ctx.strokeText('?', 0, 0); ctx.restore();
+  }
   ctx.restore();
-  // the big question mark
-  const qa = ea(t, 2.55, 3.3, E.out3), qs = lerp(0.82, 1, ea(t, 2.55, 3.6, E.out5));
-  const pulse = 1 + 0.012 * Math.sin(t * 2.4);
-  glow(CX, 800, 620, '233,196,124', 0.16 * qa);
-  T('?', CX + 8, 1135, { font: F.i(950), color: C.gold, alpha: qa * 0.96, sx: qs * pulse, sy: qs * pulse });
+}
+function glowLine(pts, a) {   // soft halo under the price line so it reads over the footage
+  if (a <= 0.003) return;
+  ctx.save(); ctx.globalAlpha *= 0.28 * a; strokePoly(pts, 1, { color: C.ink, w: 16 }); ctx.restore();
 }
 
 // ------------------------------------------------------------- 2. "OUTDATED"
@@ -463,15 +466,15 @@ function sceneCTA(t) {
   }
 }
 
+// box = [top, bottom] of each scene's content in its own coordinates; main.js centres it in the lower zone
 const SCENES = [
-  { id: 'question', a: 0, b: 4.55, fn: sceneQuestion, first: true },
-  { id: 'outdated', a: 4.55, b: 8.95, fn: sceneOutdated },
-  { id: 'mubadala', a: 8.95, b: 13.85, fn: sceneMubadala },
-  { id: 'adia', a: 13.85, b: 16.21, fn: sceneAdia },
-  { id: 'ecosystem', a: 16.21, b: 21.91, fn: sceneEcosystem },
-  { id: 'aldar', a: 21.91, b: 26.26, fn: sceneAldar },
-  { id: 'modon', a: 26.26, b: 31.3, fn: sceneModon },
-  { id: 'criteria', a: 31.3, b: 37.9, fn: sceneCriteria },
-  { id: 'bigger', a: 37.9, b: 42.2, fn: sceneBigger },
-  { id: 'cta', a: 42.2, b: 46.72, fn: sceneCTA, last: true },
+  { id: 'outdated', a: 4.55, b: 8.95, fn: sceneOutdated, box: [500, 1075] },
+  { id: 'mubadala', a: 8.95, b: 13.85, fn: sceneMubadala, box: [380, 1218] },
+  { id: 'adia', a: 13.85, b: 16.21, fn: sceneAdia, box: [365, 1222] },
+  { id: 'ecosystem', a: 16.21, b: 21.91, fn: sceneEcosystem, box: [440, 1205] },
+  { id: 'aldar', a: 21.91, b: 26.26, fn: sceneAldar, box: [385, 1205] },
+  { id: 'modon', a: 26.26, b: 31.3, fn: sceneModon, box: [380, 1238] },
+  { id: 'criteria', a: 31.3, b: 37.9, fn: sceneCriteria, box: [425, 1200] },
+  { id: 'bigger', a: 37.9, b: 42.2, fn: sceneBigger, box: [470, 1010] },
+  { id: 'cta', a: 42.2, b: 46.72, fn: sceneCTA, box: [440, 1232], last: true },
 ];

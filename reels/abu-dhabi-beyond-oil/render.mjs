@@ -16,7 +16,7 @@ const FPS = 30, DUR = 46.72, N = Math.round(DUR * FPS);
 const ss = +(args.ss || 1), workers = +(args.workers || 4), outDir = path.resolve(args.out || 'frames');
 fs.mkdirSync(outDir, { recursive: true });
 
-const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.txt': 'text/plain', '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.png': 'image/png' };
+const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.txt': 'text/plain', '.json': 'application/json', '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg' };
 const server = http.createServer((req, res) => {
   const p = path.join(here, decodeURIComponent(req.url.split('?')[0]).replace(/^\/+/, '') || 'index.html');
   if (!p.startsWith(here) || !fs.existsSync(p) || fs.statSync(p).isDirectory()) { res.writeHead(404); return res.end(); }
@@ -37,7 +37,7 @@ async function worker(id, list) {
   await page.goto(base); await page.waitForFunction('window.READY === true', null, { timeout: 30000 });
   let done = 0;
   for (const j of list) {
-    await page.evaluate(t => window.draw(t), j.t);
+    await page.evaluate(async t => { await window.prepare(t); window.draw(t); }, j.t);
     await page.screenshot({ path: path.join(outDir, j.name), type: 'png', clip: { x: 0, y: 0, width: 1080, height: 1920 } });
     if (++done % 50 === 0) console.log(`worker ${id}: ${done}/${list.length}`);
   }

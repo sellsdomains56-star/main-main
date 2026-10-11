@@ -39,9 +39,10 @@ let ctx = null, SS = 1;
 function setCtx(c, ss) { ctx = c; SS = ss; }
 
 // ---- fonts ----------------------------------------------------------------
+const TS = 1.16;   // scale for small Inter text: the graphics are drawn at ~85% in split mode
 const F = {
   d: (w, s) => `${w} ${s}px "Inter Display","Inter",sans-serif`,   // large display sans
-  t: (w, s) => `${w} ${s}px "Inter","Inter Display",sans-serif`,   // small text
+  t: (w, s) => `${w} ${+(s * TS).toFixed(1)}px "Inter","Inter Display",sans-serif`,   // small text
   i: s => `italic 400 ${s}px "Instrument Serif",serif`,            // serif italic accent
   r: s => `400 ${s}px "Instrument Serif",serif`,
 };
