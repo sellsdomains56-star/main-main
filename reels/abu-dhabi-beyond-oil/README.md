@@ -18,8 +18,7 @@ Everything is generated from code, so any beat can be retimed or restyled and th
 | 37.9 | Bigger than oil | A single OIL dot inside an expanding economy ring |
 | 42.2 | CTA | Shortlist card ticks off, DM typed, **SENT** |
 
-Karaoke captions light up on the exact spoken word (keywords in gold). Sound design: ambient bed that ducks under the
-voice, whooshes on every cut, count-up ticks, logo hits, check-mark pings — all synthesised in `audio.py` (no samples).
+Karaoke captions light up on the exact spoken word (keywords in gold). Sound design: whooshes on every cut, count-up ticks, logo hits, check-mark pings — all synthesised in `audio.py` (no samples).
 Final mix is normalised to −14 LUFS / −1.5 dBTP.
 
 ## Rebuild

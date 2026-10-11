@@ -1,10 +1,11 @@
-"""Sound design for the reel: processed voiceover + ambient bed + SFX cut to the animation cues.
-   python3 -I audio.py <voice.wav 48k> <out_mix.wav>
+"""Sound design for the reel: processed voiceover + SFX cut to the animation cues (+ optional ambient music bed).
+   python3 -I audio.py <voice.wav 48k> <out_mix.wav> [--music]
    Everything is synthesised with numpy (no samples), so it is fully reproducible."""
 import sys, subprocess
 import numpy as np
 
 SR = 48000
+WITH_MUSIC = '--music' in sys.argv      # ambient pad + bell plucks; off by default (voice + SFX only)
 DUR = 46.72
 N = int((DUR + 1.5) * SR)
 rng = np.random.default_rng(11)
@@ -224,7 +225,7 @@ def main(voice_path, out_path):
     duck_bed = 1 - 0.58 * smooth_env(np.clip(env, 0, 1), 140).clip(0, 1)
     duck_sfx = 1 - 0.22 * smooth_env(np.clip(env, 0, 1), 90).clip(0, 1)
 
-    bed = build_bed(); sfx = build_sfx()
+    bed = build_bed() if WITH_MUSIC else np.zeros((N, 2)); sfx = build_sfx()   # music bed is opt-in (--music)
     ir = make_reverb()
     bed_wet = convolve(bed, ir) * 0.55; sfx_wet = convolve(sfx, ir) * 0.30
     bed_mix = (bed * 0.8 + bed_wet) * duck_bed[:, None]
@@ -246,4 +247,5 @@ def main(voice_path, out_path):
     print('wrote', out_path, round(len(mix) / SR, 2), 's')
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    main(args[0], args[1])
