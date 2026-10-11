@@ -70,15 +70,14 @@ function buildScenes() {
 
   // ---- 2. Fitch: a possible 15% correction through 2026 ------------------------------------------------------------------------
   const f1 = K.yet - 0.12;
-  add({ id: 'fitch', a: c1, b: f1, box: [380, 1180], fn(t) {
-    const dim = 1 - 0.55 * ea(t, K.poss, K.poss + 0.4);
-    bw(t, 'IN 2025', 450, K.in2025 - 0.1, { size: 56, ls: 14, color: C.dim, w: 700, alpha: dim });
-    bw(t, 'FITCH WARNED', 590, K.fitch - 0.1, { size: 112, ls: 2, alpha: dim });
-    bigNumber(t, { pre: 'POSSIBLE CORRECTION', preT: K.poss - 0.1, val: 15, dec: 0, fin: '15', suffix: '%', a0: K.p15 - 0.1, a1: K.p15 + 0.65, y: 940, sc: 0.8 });
-    icon('up', 790, 855, 54, { p: ea(t, K.p15 + 0.6, K.p15 + 1.1), color: C.gold, w: 7, rot: Math.PI, alpha: ea(t, K.p15 + 0.6, K.p15 + 0.9) });
-    bw(t, 'THROUGH 2026', 1130, K.thru - 0.1, { size: 84, ls: 8, color: C.gold });
+  add({ id: 'fitch', a: c1, b: f1, box: [330, 1270], fn(t) {
+    card(t, 'kt', { x: 120, y: 340, w: 840, h: 560, a: c1 + 0.05, out: f1 - 0.3, from: [220, 60], rot: -2.2, fit: 'cover', fy: 0.42, chip: 'KHALEEJ TIMES · MAY 2025', zoom: [1, 1.04],
+      focus: { bbox: [45, 1230, 1300, 400], t0: K.fitch, t1: K.fitch + 0.9, zoom: 1.08 }, hl: { bbox: [255, 1375, 450, 100], t0: K.p15 - 0.15, t1: K.p15 + 0.5, color: '#FFC93C' } });
+    bigNumber(t, { pre: 'POSSIBLE CORRECTION', preT: K.poss - 0.1, val: 15, dec: 0, fin: '15', suffix: '%', a0: K.p15 - 0.1, a1: K.p15 + 0.65, y: 1085, sc: 0.62 });
+    icon('up', 770, 1085, 42, { p: ea(t, K.p15 + 0.6, K.p15 + 1.1), color: C.gold, w: 7, rot: Math.PI, alpha: ea(t, K.p15 + 0.6, K.p15 + 0.9) });
+    bw(t, 'THROUGH 2026', 1240, K.thru - 0.1, { size: 66, ls: 8, color: C.gold });
   } });
-  cues.push({ k: 'count', t: K.p15 - 0.1, t1: K.p15 + 0.65, n: 9 });
+  cues.push({ k: 'count', t: K.p15 - 0.1, t1: K.p15 + 0.65, n: 9 }, { k: 'wh', t: c1 + 0.05, d: 0.45 });
 
   // ---- 3. over 917 billion in real estate transactions ---------------------------------------------------------------------------
   const g0 = K.geo - 0.08;
@@ -161,5 +160,5 @@ function buildScenes() {
   // ---- overlay on his first face beat: "ANOTHER 2008?" ----------------------------------------------------------------------------
   const OVERLAYS = [ovStamp('ANOTHER 2008?', K.q2008, K.q2008 + 1.5, { y: 1040, size: 96 })];
   cues.push({ k: 'stamp', t: K.q2008 });
-  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues };
+  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES: { kt: 'assets/test_kt.png' } };
 }

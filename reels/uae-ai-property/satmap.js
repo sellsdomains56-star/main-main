@@ -82,12 +82,12 @@ function satOutline(cam, pts, p, color = C.gold) {                // animated tr
   ctx.restore();
 }
 function satPin(x, y, t, a0, title, sub) {                         // pin + one pulse + a big, plain label
-  const e = ea(t, a0, a0 + 0.45, E.back), al = ea(t, a0, a0 + 0.25) * (1 - ea(y, 1400, 1480)) * ea(y, 330, 420) * ea(x, -40, 40) * (1 - ea(x, W - 40, W + 40)); if (al <= 0.003) return;
+  const e = ea(t, a0, a0 + 0.45, E.back), al = ea(t, a0, a0 + 0.25) * (1 - ea(y, 1250, 1330)) * ea(y, 300, 380) * ea(x, 100, 190) * (1 - ea(x, SAFE.x1 - 60, SAFE.x1 + 20)); if (al <= 0.003) return;
   const u = ((t - a0) / 2.0) % 1;
   ring(x, y, 16 + 70 * E.out3(u), { color: '#FFFFFF', w: 3, alpha: (1 - u) * 0.7 * al });
   dot(x, y, 20 * e, 'rgba(255,255,255,0.95)'); dot(x, y, 11 * e, C.gold);
   const f1 = F.d(700, 50), f2 = F.d(500, 36), w1 = M(title, f1, 1), w2 = sub ? M(sub, f2, 1) : 0, pw = Math.max(w1, w2) + 70, ph = sub ? 124 : 84;
-  const lx = Math.min(W - 40 - pw / 2, Math.max(40 + pw / 2, x)), ly = y + 40 + (1 - e) * 20;
+  const lx = Math.min(SAFE.x1 - pw / 2, Math.max(SAFE.x0 + pw / 2, x)), ly = y + 40 + (1 - e) * 20;
   ctx.save(); ctx.globalAlpha *= al; rr(lx - pw / 2, ly, pw, ph, 22); ctx.fillStyle = 'rgba(8,8,10,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(233,196,124,0.7)'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
   T(title, lx, ly + 58, { font: f1, ls: 1, color: '#FFFFFF', alpha: al });
   if (sub) T(sub, lx, ly + 100, { font: f2, ls: 1, color: C.gold, alpha: al });

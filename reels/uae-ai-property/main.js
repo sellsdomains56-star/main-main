@@ -8,7 +8,7 @@
 let TL = null, GRID = null, NOISE_PAT = null, FOOT = null, FOOT_K = -1, CFG = null;
 const OUTLINES = {};
 const GRID_STEP = 60, PIV = [430, 760];                     // zoom pivot: his face stays in frame when punching in
-const HERO_Y = 700, HERO_H = 1000, HERO_MAX = 1.08;         // a text scene's content box is centred at HERO_Y and scaled to fit HERO_H (captions sit below)
+const HERO_Y = 800, HERO_H = 940, HERO_MAX = 1.08;          // a scene's content box is centred at HERO_Y and scaled to fit HERO_H: that is y 330-1270, inside the Reels safe zone (captions sit at ~1372)
 const pad5 = n => String(n).padStart(5, '0');
 
 function faceF(t) {                                          // 1 on the face beats, 0 on the graphics beats
@@ -31,6 +31,19 @@ function initAssets() {
   for (let i = 0; i < id.data.length; i += 4) { const v = (r() * 255) | 0; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
   nc.putImageData(id, 0, 0); NOISE_PAT = ctx.createPattern(n, 'repeat');
 }
+let DUST = null;
+function drawDust(t) {                                           // a few slow motes of light, parallax by size: keeps the black alive without adding clutter
+  if (!DUST) { const r = rng(21); DUST = Array.from({ length: 26 }, () => ({ x: r() * W, y: r() * H, s: 1.2 + r() * 2.6, v: 6 + r() * 16, ph: r() * 6.28, a: 0.10 + r() * 0.22 })); }
+  ctx.save(); for (const d of DUST) { const y = ((d.y - t * d.v) % H + H) % H, x = d.x + Math.sin(t * 0.3 + d.ph) * 22; ctx.globalAlpha = d.a * (0.7 + 0.3 * Math.sin(t * 1.3 + d.ph)); ctx.fillStyle = d.s > 2.4 ? '#E9C47C' : '#F3EFE6'; ctx.beginPath(); ctx.arc(x, y, d.s, 0, 7); ctx.fill(); } ctx.restore();
+}
+function drawCutSweep(t) {                                       // a quick gold light sweep across the screen on every beat change
+  for (const tc of CFG.CUTS || []) {
+    const p = prog(t, tc - 0.2, tc + 0.32); if (p <= 0 || p >= 1) continue;
+    const y = lerp(-300, H + 300, E.inOut2(p)), a = Math.sin(Math.PI * p) * 0.34, g = ctx.createLinearGradient(0, y - 260, 0, y + 260);
+    g.addColorStop(0, 'rgba(233,196,124,0)'); g.addColorStop(0.5, `rgba(255,236,190,${a})`); g.addColorStop(1, 'rgba(233,196,124,0)');
+    ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = g; ctx.fillRect(0, y - 260, W, 520); ctx.restore();
+  }
+}
 function drawBG(t) {
   ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
   glow(180 + 70 * Math.sin(t * 0.21), 700 + 40 * Math.cos(t * 0.17), 820, '233,196,124', 0.05);
@@ -38,6 +51,7 @@ function drawBG(t) {
   ctx.save(); ctx.globalAlpha = 0.07; ctx.drawImage(GRID, 0, -((t * 7) % GRID_STEP), W, H + GRID_STEP); ctx.restore();
   const v = ctx.createRadialGradient(CX, 1000, 360, CX, 1000, 1250); v.addColorStop(0, 'rgba(8,8,10,0)'); v.addColorStop(1, 'rgba(8,8,10,0.92)');
   ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+  drawDust(t);
 }
 // him: the full frame, only in the FACE beats (fades through the cut into / out of the graphics)
 function drawPerson(t, F) {
@@ -56,10 +70,10 @@ function runScene(sc, t) {
   if (sc.kind === 'sat') return runSat(sc, t);
   const { a, b } = sc;
   if (t < a - 0.1 || t > b + 0.3) return;
-  const inA = ea(t, a - 0.08, a + 0.2, E.out2), inD = (1 - ea(t, a - 0.08, a + 0.55, E.out4)) * 56;
+  const inA = ea(t, a - 0.08, a + 0.18, E.out2), inD = (1 - ea(t, a - 0.08, a + 0.5, E.out5)) * 96;
   const outA = sc.last ? 0 : prog(t, b - 0.16, b + 0.1), outD = sc.last ? 0 : E.in3(prog(t, b - 0.16, b + 0.25)) * 46;
   const alpha = inA * (1 - outA); if (alpha <= 0.002) return;
-  const mid = (sc.box[0] + sc.box[1]) / 2, fit = Math.min(HERO_MAX, HERO_H / (sc.box[1] - sc.box[0])), z = fit * (1 + 0.02 * prog(t, a, b));
+  const mid = (sc.box[0] + sc.box[1]) / 2, fit = Math.min(HERO_MAX, HERO_H / (sc.box[1] - sc.box[0])), z = fit * (1 + 0.045 * prog(t, a, b)) * lerp(0.94, 1, ea(t, a - 0.08, a + 0.5, E.out5));
   ctx.save(); ctx.globalAlpha *= alpha; ctx.translate(CX, HERO_Y + inD - outD); ctx.scale(z, z); ctx.translate(-CX, -mid); sc.fn(t); ctx.restore();
 }
 function drawGrain(frame) {
@@ -75,6 +89,7 @@ function draw(t) {
   ctx.save(); ctx.globalAlpha *= Math.min(1, A * 1.6); for (const sc of CFG.SCENES) runScene(sc, t); ctx.restore();
   drawPerson(t, F);
   for (const ov of CFG.OVERLAYS) ov(t);
+  drawCutSweep(t);
   drawCaptions(t, F);
   drawGrain(Math.round(t * FPS));
   const fa = 1 - ea(t, 0, 0.1, E.out2), fb = ea(t, DUR - 0.22, DUR - 0.02, E.in2), k = Math.max(fa, fb);
@@ -95,6 +110,7 @@ async function boot() {
   await Promise.all([700, 800].flatMap(w => [document.fonts.load(`${w} 40px "Inter Display"`), document.fonts.load(`${w} 40px "Inter"`)]));
   await loadLogos();
   CFG = buildScenes();
+  await Promise.all(Object.entries(CFG.IMAGES || {}).map(([id, src]) => new Promise(res => { const im = new Image(); im.onload = () => { IMG[id] = im; res(); }; im.onerror = () => { console.error('image missing: ' + src); res(); }; im.src = src; })));
   initAssets();
   window.draw = draw; window.prepare = prepare; window.READY = true;
   if (q.get('t')) { await prepare(+q.get('t')); draw(+q.get('t')); }

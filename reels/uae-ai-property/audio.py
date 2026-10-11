@@ -1,6 +1,6 @@
 """Sound design for the reel: processed voiceover + SFX cut to the animation cues (+ optional ambient music bed).
-   python3 -I audio.py <voice.wav 48k> <out_mix.wav> [--soft | --clean] [--music] [--sfx-only] [--offset s]
-   default = the glitch-style effects (bit-crush, stutter, tape-stop); --clean = the plain synthesised set; --soft = very quiet airy whooshes / thuds / chimes
+   python3 -I audio.py <voice.wav 48k> <out_mix.wav> [--soft | --clean | --glitch] [--music] [--sfx-only] [--offset s]
+   default = soft air whooshes only (quiet, nothing tonal); --glitch = the glitch-style effects (bit-crush, stutter, tape-stop); --clean = the plain synthesised set; --soft = quiet whooshes / thuds / chimes
    Everything is synthesised with numpy (no samples), so it is fully reproducible."""
 import sys, subprocess
 import numpy as np
@@ -9,7 +9,7 @@ SR = 48000
 SFX_OFFSET = 0.0                       # --offset 0.04 : shift every effect later (graphics were timed on the voiceover file, not the footage audio)
 if '--offset' in sys.argv:
     _i = sys.argv.index('--offset'); SFX_OFFSET = float(sys.argv[_i + 1]); del sys.argv[_i:_i + 2]
-SOFT = '--soft' in sys.argv; GLITCH = not SOFT and '--clean' not in sys.argv            # swap the clean effects for digital-glitch ones (bit-crush, stutter, static, tape-stop)
+SOFT = '--soft' in sys.argv; GLITCH = '--glitch' in sys.argv            # swap the clean effects for digital-glitch ones (bit-crush, stutter, static, tape-stop)
 SFX_ONLY = '--sfx-only' in sys.argv    # write just the sound effects (no voice, no music) as they sit in the reel mix
 WITH_MUSIC = '--music' in sys.argv      # ambient pad + bell plucks; off by default (voice + SFX only)
 import json, os
@@ -190,6 +190,31 @@ def build_sfx_soft():
     place(buf, 45.30, s_whoosh(0.5), 0.10); place(buf, 45.53, s_chime(1568, 1.6), 0.08)                                  # message sent
     return buf
 
+
+# ------------------------------------------------------------------ the default: soft air whooshes only, barely felt
+def air(dur=0.6, up=True, hi=4200, lo=220, oct_w=2.6):
+    """a soft sweep of band-limited air: smooth swell and decay, no hard attack, nothing tonal."""
+    n = int(dur * SR); f0, f1 = (420, 2400) if up else (2400, 420)
+    x = fft_filter(shaped_noise(n, f0, f1, oct_w), lo=lo, hi=hi)
+    t = np.arange(n) / n; env = np.sin(np.pi * t ** 0.85) ** 2
+    return fade(x / (np.abs(x).max() + 1e-9) * env, 0.01, 0.08)
+
+def build_sfx_air(G=1.4):                              # G scales the whole set (1.0 = very faint)
+    buf = np.zeros((N, 2)); flip = 0
+    for c in CUES:
+        k, t = c['k'], c['t']
+        if k == 'cut':
+            flip += 1; d = c.get('d', 0.62); place(buf, t - d * 0.55, air(d, up=(flip % 2 == 0)), 0.060 * G, pan=(-0.2 if flip % 2 else 0.2))
+        elif k == 'wh':                                   # an element sweeping in: a shorter, quieter whoosh
+            d = c.get('d', 0.4); place(buf, t - d * 0.5, air(d, up=c.get('up', True), hi=5200), c.get('g', 0.040) * G, pan=c.get('pan', 0.0))
+        elif k == 'stamp':
+            place(buf, t - 0.22, air(0.36, True, hi=5600), 0.052 * G)
+        elif k in ('pin', 'pop'):
+            place(buf, t - 0.12, air(0.30, False, hi=5000), 0.034 * G)
+        elif k == 'send':
+            place(buf, t - 0.05, air(0.46, True, hi=5600), 0.048 * G)
+    return buf
+
 # ------------------------------------------------------------------ mixing helpers
 def place(buf, t0, sig, gain=1.0, pan=0.0):
     i = int(round((t0 + SFX_OFFSET) * SR));
@@ -266,9 +291,10 @@ def main(voice_path, out_path):
     vmono = vb.mean(1); env = smooth_env(vmono, 60); env = env / (np.percentile(env, 95) + 1e-9)
     duck_sfx = 1 - 0.22 * smooth_env(np.clip(env, 0, 1), 90).clip(0, 1)
     if SFX_ONLY: duck_sfx[:] = 1.0
-    LOUD = not SOFT; sfx = build_sfx() if LOUD else build_sfx()
+    AIR = not SOFT and '--glitch' not in sys.argv and '--clean' not in sys.argv
+    sfx = build_sfx_air() if AIR else build_sfx()
     ir = make_reverb(); sfx_wet = convolve(sfx, ir) * 0.30
-    sfx_mix = (sfx + sfx_wet) * duck_sfx[:, None] * (0.58 if GLITCH else 0.72)
+    sfx_mix = (sfx + sfx_wet) * duck_sfx[:, None] * (1.0 if AIR else (0.58 if GLITCH else 0.72))
     mix = sfx_mix if SFX_ONLY else vb + sfx_mix
     db = lambda x: 20 * np.log10(np.sqrt((x[: int(DUR * SR)] ** 2).mean()) + 1e-9)
     print(f'stems rms dBFS: voice {db(vb):.1f}  sfx {db(sfx_mix):.1f}')

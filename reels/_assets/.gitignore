@@ -1,0 +1,8 @@
+# third-party screenshots / photos / logos (not committed - see each reel README for sources)
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.svg
+*.log
+node_modules/

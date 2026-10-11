@@ -19,7 +19,7 @@ function parseTimeline(tl) {
   });
 }
 
-const CAP = { size: 58, maxW: 860, lh: 82, padX: 26, boxH: 74, r: 16 };
+const CAP = { size: 58, maxW: 820, lh: 82, padX: 26, boxH: 74, r: 16 };
 function layoutChunk(c) {
   if (c.layout) return c.layout;
   const font = F.d(800, CAP.size), txt = i => WORDS[i].text.toUpperCase(), sp = M(' ', font);
@@ -40,7 +40,7 @@ function layoutChunk(c) {
 
 // Fv: 1 = face full-screen, 0 = graphics beat.  Black bold text on a white box per line; the phrase appears and goes.
 function drawCaptions(tg, Fv = 1) {
-  const y0 = lerp(1500, 1380, Fv);
+  const y0 = 1372;                                   // one row for every beat, inside the Reels safe zone (the app's caption/UI zone starts ~1440)
   for (const c of CHUNKS) {
     if (tg < c.a - 0.001 || tg > c.b + 0.2) continue;
     const outP = c.hardEnd ? (tg >= c.b ? 1 : 0) : E.in2(prog(tg, c.b, c.b + Math.min(0.12, Math.max(0.02, c.gap - 0.02))));
