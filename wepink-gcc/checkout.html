@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Checkout · wepink Gulf</title>
+  <meta name="description" content="Secure checkout for wepink Gulf.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#E6007E">
+  <meta property="og:site_name" content="wepink Gulf">
+  <meta property="og:title" content="Checkout · wepink Gulf">
+  <meta property="og:description" content="Secure checkout for wepink Gulf.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>
+    // Set language and direction before first paint so Arabic visitors never see a flash of English layout.
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search).get("lang");
+        var l = q || JSON.parse(localStorage.getItem("wpg.lang") || "null") || ((navigator.language || "").toLowerCase().indexOf("ar") === 0 ? "ar" : "en");
+        if (l === "ar") { document.documentElement.lang = "ar"; document.documentElement.dir = "rtl"; }
+      } catch (e) {}
+    })();
+  </script>
+  <script defer src="assets/js/data.js"></script>
+  <script defer src="assets/js/i18n.js"></script>
+  <script defer src="assets/js/art.js"></script>
+  <script defer src="assets/js/app.js"></script>
+  <script defer src="assets/js/pages.js"></script>
+</head>
+<body data-page="checkout">
+  <div id="app-header"></div>
+  <main id="main" tabindex="-1"></main>
+  <div id="app-footer"></div>
+  <noscript><p style="padding:24px;text-align:center">Please enable JavaScript to shop wepink Gulf. · يرجى تفعيل JavaScript للتسوق.</p></noscript>
+</body>
+</html>
