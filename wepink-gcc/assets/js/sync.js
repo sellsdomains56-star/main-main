@@ -187,7 +187,7 @@ window.WP_SYNC = (function () {
   function fromRow(r) {
     const b = base.get(r.id);
     const own = Array.isArray(r.images) && r.images.length > 0;
-    const scene = own && r.photo_style === "scene";
+    const scene = own ? r.photo_style === "scene" : !!(b && b.scene);
     const images = own ? r.images : (b && b.images) || [];
     return {
       id: r.id,
@@ -211,7 +211,7 @@ window.WP_SYNC = (function () {
       images,
       cutout: r.cutout || (own && !scene ? "" : (b && b.cutout) || ""),
       scene,
-      packshots: scene ? (b && b.images) || [] : [],
+      packshots: scene ? (b && (b.packshots || b.images)) || [] : [],
       remote: own ? [] : (b && b.remote) || [],
       source: r.source || undefined,
       typeName: T[r.type] || T.bodycare,

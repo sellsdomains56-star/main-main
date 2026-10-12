@@ -234,6 +234,20 @@ window.WP = (function () {
     if (!p.badge) return "";
     return `<span class="badge badge-${p.badge}">${esc(t("badge." + p.badge))}</span>`;
   }
+  // A campaign shot that can't load falls back to the product's cut-out (see art.js).
+  document.addEventListener(
+    "error",
+    (e) => {
+      const img = e.target;
+      if (!img || img.tagName !== "IMG" || !img.dataset.fb) return;
+      const fb = img.dataset.fb;
+      delete img.dataset.fb;
+      img.className = img.className.replace("scene", "cut");
+      img.src = fb;
+    },
+    true
+  );
+
   function media(p, cls) {
     return `<div class="media ${cls || ""}" style="--c:${p.color};--c2:${p.color2}">${ART.art(p)}</div>`;
   }

@@ -40,6 +40,8 @@ window.WP_DATA = (function () {
       club: "assets/photos/campaign/satin-vf.webp", // the Club pop-up
       earn: "assets/photos/campaign/red-stripe.webp", // Earn with wepink hero
       about: "assets/photos/campaign/golden-hour.webp", // About page
+      earnBand: "assets/photos/campaign/pink-bags.webp", // the ambassador band on the home page
+      gift: "assets/photos/campaign/gift-box.webp", // the gifting promo on the home page
     },
 
     // Homepage film: "Enter the pink universe" (Seedance 2.5, 30 s, 16:9). It plays muted on a
@@ -181,7 +183,13 @@ window.WP_DATA = (function () {
 
   // The catalogue is generated from wepink Brazil by scripts/import_catalog.py
   // (assets/js/catalog.js). GCC prices there are placeholders by product type.
-  const products = (window.WP_CATALOG || []).map((p) => Object.assign({}, p, { typeName: T[p.type] || T.bodycare, notes: p.notes || {} }));
+  // Every catalogue product also has its Nano Banana Pro campaign shot in assets/products/hero/,
+  // shown first everywhere; the studio photos follow on the product page.
+  const products = (window.WP_CATALOG || []).map((p) => {
+    const hero = "assets/products/hero/" + p.id + ".webp";
+    const studio = p.images && p.images.length ? p.images : p.image ? [p.image] : [];
+    return Object.assign({}, p, { typeName: T[p.type] || T.bodycare, notes: p.notes || {}, scene: true, image: hero, images: [hero], packshots: studio });
+  });
 
   // Products the home page features (ids from catalog.js).
   const featured = {
@@ -211,6 +219,17 @@ window.WP_DATA = (function () {
       { photo: "assets/photos/campaign/golden-hour.webp", product: "colonia-liberte-nuit-100-ml", cat: "perfume", title: { en: "After golden hour", ar: "بعد الساعة الذهبية" } },
       { photo: "assets/photos/campaign/red-stripe.webp", product: "colonia-red-obsidian-100-ml", cat: "perfume", title: { en: "Seen in red", ar: "حضورٌ بالأحمر" } },
     ],
+    // Campaign photos for the "Shop by ritual" tiles (`pos` frames them in the tile).
+    categoryPhotos: {
+      perfume: { src: "assets/photos/campaign/giant-heaven.webp", pos: "50% 40%" },
+      "body-splash": { src: "assets/photos/campaign/peach.webp", pos: "50% 50%" },
+      men: { src: "assets/photos/campaign/chess.webp", pos: "68% 50%" },
+      "body-care": { src: "assets/photos/campaign/fruit-creams.webp", pos: "50% 45%" },
+      hair: { src: "assets/photos/campaign/hair-silk.webp", pos: "50% 50%" },
+      makeup: { src: "assets/photos/campaign/torn-lip.webp", pos: "50% 45%" },
+      skincare: { src: "assets/photos/campaign/beach.webp", pos: "50% 40%" },
+      "gift-sets": { src: "assets/photos/campaign/gift-box.webp", pos: "50% 50%" },
+    },
     categories: {
       perfume: "colonia-vf-75-ml",
       "body-splash": "splash-celebrate-life-200-ml",

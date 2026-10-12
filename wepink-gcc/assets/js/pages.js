@@ -170,7 +170,10 @@ window.WP_PAGES = (function () {
       ${
         film
           ? `<section class="film" aria-label="${esc(t("film.label"))}">
-        <video class="film-video" muted loop playsinline preload="none"${film.poster ? ` poster="${esc(film.poster)}"` : ""} aria-hidden="true"></video>
+        <div class="film-frame">
+          <video class="film-video" muted loop playsinline preload="none"${film.poster ? ` poster="${esc(film.poster)}"` : ""} aria-hidden="true"></video>
+          <button class="film-play" type="button" data-film-play hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span>${esc(t("film.play"))}</span></button>
+        </div>
         <div class="film-shade" aria-hidden="true"></div>
         <div class="container film-bar">
           <p class="eyebrow eyebrow-glow">${icon("sparkle")}${esc(t("film.eyebrow"))}</p>
@@ -205,7 +208,7 @@ window.WP_PAGES = (function () {
             ${
               heroPhoto
                 ? `<figure class="portrait-arch">${heroPhoto}<figcaption>${esc(t("hn.photoCaption"))}</figcaption></figure>
-                   <div class="float-bottle" aria-hidden="true">${W.art.art(star, { eager: true, stage: true })}</div>`
+                   ${star.scene ? "" : `<div class="float-bottle" aria-hidden="true">${W.art.art(star, { eager: true, stage: true })}</div>`}`
                 : `<div class="stage" aria-hidden="true">
                     <span class="beam"></span><span class="halo"></span><span class="pedestal"></span>
                     <div class="stage-bottle sb-left">${W.art.art(pick(F.stage[0]), { eager: true, stage: true })}</div>
@@ -270,8 +273,9 @@ window.WP_PAGES = (function () {
                 // Prefer a staged cut-out for the tile; fall back to any product in the category.
                 const pick = byId(catArt[c.id]);
                 const p = pick && pick.cutout ? pick : D.products.find((x) => x.cat === c.id && x.cutout) || pick || D.products.find((x) => x.cat === c.id);
-                return `<a class="cat-tile" href="shop.html?c=${c.id}" style="--c:${p.color};--c2:${p.color2};--d:${i * 60}ms" data-reveal>
-                  <span class="cat-art">${W.art.art(p, { stage: true })}</span>
+                const cp = (F.categoryPhotos || {})[c.id];
+                return `<a class="cat-tile${cp ? " has-photo" : ""}" href="shop.html?c=${c.id}" style="--c:${p.color};--c2:${p.color2};--d:${i * 60}ms" data-reveal>
+                  ${cp ? `<img class="cat-photo" src="${esc(cp.src)}" alt="" loading="lazy" decoding="async"${cp.pos ? ` style="object-position:${esc(cp.pos)}"` : ""}>` : `<span class="cat-art">${W.art.art(p, { stage: true })}</span>`}
                   <span class="cat-text"><strong>${esc(L(c.name))}</strong><span>${esc(L(c.blurb))}</span></span>
                   <span class="cat-go">${icon("arrow", "flip")}</span>
                 </a>`;
@@ -359,7 +363,7 @@ window.WP_PAGES = (function () {
               <p>${esc(t("home.giftLead", { amount: money(fromSet) }))}</p>
               <a class="btn btn-primary" href="shop.html?c=gift-sets">${esc(t("home.giftCta"))}${icon("arrow", "flip")}</a>
             </div>
-            <div class="promo-art">${W.art.art(pick(F.giftSet), { stage: true })}</div>
+            <div class="promo-art${D.config.photos.gift ? " promo-photo" : ""}">${D.config.photos.gift ? photo("gift", "") : W.art.art(pick(F.giftSet), { stage: true })}</div>
           </article>
         </div>
       </section>
@@ -373,7 +377,10 @@ window.WP_PAGES = (function () {
             <p class="lead-noir">${esc(t("earn.lead", { pct: W.ref.pct(), max: tiers[tiers.length - 1].pct }))}</p>
             <a class="btn btn-light btn-lg" href="earn.html">${esc(t("earn.cta"))}${icon("arrow", "flip")}</a>
           </div>
-          ${ambassadorCard({ code: "YOURNAME" + W.ref.pct(), tier: tiers[tiers.length - 1] })}
+          <div class="earn-visual${D.config.photos.earnBand ? " has-photo" : ""}">
+            ${D.config.photos.earnBand ? `<figure class="portrait-arch earn-arch">${photo("earnBand", "")}</figure>` : ""}
+            ${ambassadorCard({ code: "YOURNAME" + W.ref.pct(), tier: tiers[tiers.length - 1] })}
+          </div>
         </div>
       </section>
 
@@ -459,25 +466,58 @@ window.WP_PAGES = (function () {
     </div>`;
   }
 
-  // Starts the homepage film once the page has loaded (poster until then). If the video
-  // can't load (the one-file build opened on its own) or people prefer reduced motion,
-  // the poster stays.
+  // Loads the homepage film once the page has loaded (poster until then) and plays it muted
+  // on a loop for every visitor. When a browser blocks autoplay (a phone in low power mode),
+  // a Play button shows instead. The one-file build carries the film inline, and inline or
+  // same-folder files play from a blob, which every browser can seek.
   function playFilm(main, film) {
     const video = main.querySelector(".film-video");
-    if (!video || !film || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!video || !film) return;
     const sound = main.querySelector("[data-film-sound]");
-    const start = () => {
-      video.src = film.srcMobile && matchMedia("(max-width: 900px)").matches ? film.srcMobile : film.src;
-      video.play().then(() => (sound.hidden = false), () => {});
+    const playBtn = main.querySelector("[data-film-play]");
+    const label = () => {
+      sound.setAttribute("aria-pressed", String(!video.muted));
+      sound.querySelector("span").textContent = t(video.muted ? "film.soundOn" : "film.soundOff");
     };
+    const playing = () => {
+      sound.hidden = false;
+      playBtn.hidden = true;
+      label();
+    };
+    let loaded = null;
+    const load = () =>
+      (loaded =
+        loaded ||
+        (() => {
+          const src = film.srcMobile && matchMedia("(max-width: 900px)").matches ? film.srcMobile : film.src;
+          const blob = /^data:/.test(src) ? Promise.resolve(dataBlob(src)) : W.SINGLE ? fetch(src).then((r) => (r.ok ? r.blob() : Promise.reject(r.status))) : null;
+          return blob ? blob.then((b) => (video.src = URL.createObjectURL(b))) : Promise.resolve((video.src = src));
+        })());
+    const start = () =>
+      load().then(
+        () => video.play().then(playing, () => (playBtn.hidden = false)),
+        () => {}
+      );
     if (document.readyState === "complete") start();
     else addEventListener("load", start, { once: true });
+    playBtn.addEventListener("click", () => {
+      video.muted = false;
+      load()
+        .then(() => video.play())
+        .then(playing, () => {});
+    });
     sound.addEventListener("click", () => {
       video.muted = !video.muted;
       if (video.paused) video.play().catch(() => {});
-      sound.setAttribute("aria-pressed", String(!video.muted));
-      sound.querySelector("span").textContent = t(video.muted ? "film.soundOn" : "film.soundOff");
+      label();
     });
+  }
+  function dataBlob(uri) {
+    const comma = uri.indexOf(",");
+    const bin = atob(uri.slice(comma + 1));
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new Blob([bytes], { type: uri.slice(5, uri.indexOf(";")) || "video/mp4" });
   }
 
   /* ---------------- earn ---------------- */

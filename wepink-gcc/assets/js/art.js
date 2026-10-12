@@ -148,7 +148,9 @@ window.WP_ART = (function () {
     if (!o.noImage && (p.cutout || p.image)) {
       const lazy = o.eager ? "eager" : "lazy";
       // Campaign scenes fill the frame; staged spots (o.stage) keep the cut-out.
-      if (p.scene && p.image && !(o.stage && p.cutout)) return `<img class="scene" src="${esc(p.image)}" alt="" loading="${lazy}" decoding="async">`;
+      // Campaign shots everywhere; the cut-out stands in if the shot can't load (the
+      // one-file build opened on its own).
+      if (p.scene && p.image) return `<img class="scene" src="${esc(p.image)}" alt="" loading="${lazy}" decoding="async"${p.cutout ? ` data-fb="${esc(p.cutout)}"` : ""}>`;
       return p.cutout
         ? `<img class="cut" src="${esc(p.cutout)}" alt="" loading="${lazy}" decoding="async">`
         : `<img class="photo" src="${esc(p.image)}" alt="" loading="${lazy}" decoding="async">`;

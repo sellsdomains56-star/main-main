@@ -26,6 +26,13 @@ const inlinePhotos = (text) =>
     return `"data:image/${type};base64,${readFileSync(join(root, path)).toString("base64")}"`;
   });
 
+// The home page film travels inside the one-file build: its 720p file plays at every width
+// there (the 1080p file would make the page too big to share).
+const inlineFilm = (text) =>
+  text.replace(/film: \{ src: "[^"]*", srcMobile: "([^"]+)"/, (m, mobile) =>
+    existsSync(join(root, mobile)) ? `film: { src: "data:video/mp4;base64,${readFileSync(join(root, mobile)).toString("base64")}", srcMobile: ""` : m
+  );
+
 // Studio photos load from the brand's CDN in the one-file build (the cut-outs
 // and campaign photos are inlined), which keeps the file small enough to share.
 const catalogJs = (() => {
@@ -40,7 +47,7 @@ const catalogJs = (() => {
 })();
 
 const css = read("assets/css/styles.css");
-const js = [catalogJs, ...["data.js", "sync.js", "i18n.js", "art.js", "app.js", "pages.js"].map((f) => read(`assets/js/${f}`))].map((text) => script(inlinePhotos(text)));
+const js = [catalogJs, ...["data.js", "sync.js", "i18n.js", "art.js", "app.js", "pages.js"].map((f) => read(`assets/js/${f}`))].map((text) => script(inlinePhotos(inlineFilm(text))));
 const head = read("index.html").match(/<head>([\s\S]*?)<\/head>/)[1];
 const meta = head
   .split("\n")
