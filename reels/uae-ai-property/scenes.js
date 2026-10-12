@@ -33,7 +33,7 @@ function buildScenes() {
   // ---- 1. AI -> SI: the quick morph (SI is one more letter out) -------------------------------------------------------------------
   const s1a = FACE_SEGS[0][1], s1b = K.official - 0.05;
   add({ id: 'si', a: s1a, b: s1b, box: [330, 1270], fn(t) {
-    card(t, 'poll', { x: 120, y: 345, w: 840, h: 408, a: s1a + 0.04, out: s1b - 0.3, from: [-260, 40], rot: -2, fit: 'cover', zoom: [1, 1.035], chip: 'TRUTH SOCIAL · SEP 21, 2026', hl: { bbox: [116, 336, 388, 34], t0: K.super - 0.1, t1: K.super + 0.5 } });
+    card(t, 'poll', { x: 140, y: 345, w: 800, h: 408, a: s1a + 0.04, out: s1b - 0.3, from: [-260, 40], rot: -2, fit: 'cover', zoom: [1, 1.035], chip: 'TRUTH SOCIAL · SEP 21, 2026', hl: { bbox: [116, 336, 388, 34], t0: K.super - 0.1, t1: K.super + 0.5 } });
     const out = 1 - ea(t, K.si - 0.12, K.si + 0.2), inn = ea(t, K.si - 0.08, K.si + 0.34, E.out5), e0 = ea(t, s1a + 0.25, s1a + 0.8, E.out4);
     T('AI', CX, 1015 + (1 - e0) * 60, { font: F.d(800, 250), ls: -8, color: C.ink, alpha: e0 * out, sx: lerp(1, 0.9, 1 - out) });
     T('SI', CX, 1015, { font: F.d(800, 250), ls: -8, color: C.gold, alpha: inn, sx: lerp(1.35, 1, inn), sy: lerp(1.35, 1, inn) });
@@ -44,8 +44,8 @@ function buildScenes() {
   // ---- 2. ...the official term across the US executive branch (the White House's own page + the order's text) -------------------------------------------
   const s2a = s1b, s2b = K.but - 0.05;
   add({ id: 'eo', a: s2a, b: s2b, box: [330, 1270], fn(t) {
-    card(t, 'whhdr', { x: 120, y: 360, w: 840, h: 350, a: s2a + 0.04, out: s2b - 0.3, from: [-260, 40], rot: -1.8, fit: 'cover', fy: 0.42, zoom: [1, 1.04], chip: 'THE WHITE HOUSE · EO 14434' });
-    card(t, 'wheo', { x: 120, y: 760, w: 840, h: 282, a: K.across - 0.35, out: s2b - 0.3, from: [260, 40], rot: 1.6, fit: 'cover', fy: 0, zoom: [1, 1.04],
+    card(t, 'whhdr', { x: 140, y: 360, w: 800, h: 350, a: s2a + 0.04, out: s2b - 0.3, from: [-260, 40], rot: -1.8, fit: 'cover', fy: 0.42, zoom: [1, 1.04], chip: 'THE WHITE HOUSE · EO 14434' });
+    card(t, 'wheo', { x: 140, y: 760, w: 800, h: 282, a: K.across - 0.35, out: s2b - 0.3, from: [260, 40], rot: 1.6, fit: 'cover', fy: 0, zoom: [1, 1.04],
       focus: { bbox: [20, 60, 1300, 200], t0: K.across - 0.3, t1: K.across + 0.5, zoom: 1.0 }, hl: { bbox: [28, 168, 1240, 38], t0: K.across + 0.1, t1: K.across + 0.8 } });
     bw(t, 'OFFICIAL TERM FOR AI', 1110, K.official - 0.1, { size: 44, ls: 8, color: C.dim, w: 700 });
     bw(t, 'US EXECUTIVE BRANCH', 1210, K.across, { size: 76, ls: 2, hl: true });
@@ -67,7 +67,7 @@ function buildScenes() {
   // ---- 4. Microsoft: ~US$15.2 billion (Microsoft's own post) -------------------------------------------------------------------------
   const s4b = K.incl + 0.2;
   add({ id: 'msft', a: s3b, b: s4b, box: [330, 1270], fn(t) {
-    card(t, 'ms15', { x: 120, y: 360, w: 840, h: 500, a: s3b + 0.04, out: s4b - 0.3, from: [240, 60], rot: -2, fit: 'cover', fy: 0, zoom: [1, 1.035], chip: 'MICROSOFT · NOV 2025',
+    card(t, 'ms15', { x: 140, y: 360, w: 800, h: 500, a: s3b + 0.04, out: s4b - 0.3, from: [240, 60], rot: -2, fit: 'cover', fy: 0, zoom: [1, 1.035], chip: 'MICROSOFT · NOV 2025',
       focus: { bbox: [170, 245, 900, 190], t0: K.msft + 0.3, t1: K.msft + 1.2, zoom: 1.08 }, hl: { bbox: [186, 262, 856, 70], t0: K.fig - 0.1, t1: K.fig + 0.55 } });
     bigNumber(t, { pre: 'INVESTING AROUND', preT: K.around - 0.4, val: 15.2, dec: 1, fin: '15.2', suffix: '', a0: K.fig, a1: K.fig + 0.85, y: 1040, sc: 0.6 });
     bw(t, 'US$ BILLION', 1200, K.bill - 0.05, { size: 66, ls: 12, color: C.gold });
@@ -80,7 +80,7 @@ function buildScenes() {
     bw(t, 'INCLUDING ITS PARTNERSHIP WITH', 395, K.incl + 0.15, { size: 44, ls: 5, color: C.dim, w: 700 });
     bw(t, "ABU DHABI'S", 500, K.abu1 - 0.05, { size: 96, ls: 2 });
     bw(t, 'G42', 725, K.g42 - 0.2, { size: 180, ls: -2, hl: true });
-    card(t, 'ms15', { x: 120, y: 840, w: 840, h: 420, a: s4b + 0.2, out: s5b - 0.2, from: [0, 160], rot: 1.2, fit: 'cover', zoom: [1.0, 1.03], chip: 'MICROSOFT · NOV 2025',
+    card(t, 'ms15', { x: 140, y: 840, w: 800, h: 420, a: s4b + 0.2, out: s5b - 0.2, from: [0, 160], rot: 1.2, fit: 'cover', zoom: [1.0, 1.03], chip: 'MICROSOFT · NOV 2025',
       focus: { bbox: [170, 1545, 1100, 300], t0: s4b - 1, t1: s4b - 0.5, zoom: 1.0 }, hl: { bbox: [420, 1757, 64, 34], t0: K.g42 - 0.2, t1: K.g42 + 0.4 } });
   } });
   cues.push({ k: 'wh', t: K.g42 - 0.25, d: 0.3 });
@@ -88,7 +88,7 @@ function buildScenes() {
   // ---- 6. the engineering development center in Abu Dhabi -> attracting international tech talent ----------------------------------------
   const s6b = K.when - 0.05;
   add({ id: 'center', a: s5b, b: s6b, box: [330, 1270], fn(t) {
-    card(t, 'mseng', { x: 120, y: 340, w: 840, h: 700, a: s5b + 0.04, out: s6b - 0.3, from: [-250, 40], rot: -1.6, fit: 'cover', fy: 0, zoom: [1, 1.04], chip: 'MICROSOFT SOURCE · SEP 2024',
+    card(t, 'mseng', { x: 140, y: 340, w: 800, h: 700, a: s5b + 0.04, out: s6b - 0.3, from: [-250, 40], rot: -1.6, fit: 'cover', fy: 0, zoom: [1, 1.04], chip: 'MICROSOFT SOURCE · SEP 2024',
       focus: [{ bbox: [70, 255, 1500, 300], t0: K.eng - 0.3, t1: K.eng + 0.5, zoom: 1.0 }, { bbox: [70, 1740, 1500, 150], t0: K.attr - 0.35, t1: K.attr + 0.45, zoom: 1.0 }],
       hl: [{ bbox: [773, 273, 590, 75], t0: K.eng, t1: K.eng + 0.5 }, { bbox: [86, 371, 700, 75], t0: K.dev, t1: K.dev + 0.6 }, { bbox: [690, 1829, 860, 37], t0: K.intl - 0.1, t1: K.intl + 0.8 }] });
     bw(t, 'DEVELOPMENT CENTER · ABU DHABI', 1120, K.dev - 0.1, { size: 54, ls: 3, out: K.attr - 0.1 });

@@ -15,9 +15,9 @@ const C = {                      // the original palette: near-black, warm ivory
   panel: '#141417',
 };
 
-// Instagram Reels safe zone: the top ~270 px (title bar), the bottom ~480 px (caption / buttons) and a ~120 px strip on the right (like / comment / share) get covered by the app's UI.
+// Instagram Reels safe zone (1080x1920): the top 220 px, the bottom 450 px and a 100 px strip on the right (like / comment / share) get covered by the app's UI.
 // Every caption, graphic and label stays inside SAFE (the full-bleed video and map imagery may run to the edges).
-const SAFE = { x0: 120, x1: 960, y0: 300, y1: 1420, w: 840 };
+const SAFE = { x0: 130, x1: 950, y0: 300, y1: 1420, w: 820 };
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, t) => a + (b - a) * t;
 const prog = (t, a, b) => clamp((t - a) / (b - a));

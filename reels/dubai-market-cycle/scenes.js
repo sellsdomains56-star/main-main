@@ -73,7 +73,7 @@ function buildScenes() {
   // ---- 2. Fitch (Khaleej Times): a possible 15% correction through 2026 ------------------------------------------------------------------
   const f1 = K.yet - 0.1;
   add({ id: 'fitch', a: c1, b: f1, box: [330, 1270], fn(t) {
-    card(t, 'kt', { x: 120, y: 360, w: 840, h: 560, a: c1 + 0.04, out: f1 - 0.3, from: [250, 60], rot: -2.2, fit: 'cover', fy: 0, chip: 'KHALEEJ TIMES · MAY 2025', zoom: [1, 1.035],
+    card(t, 'kt', { x: 140, y: 360, w: 800, h: 560, a: c1 + 0.04, out: f1 - 0.3, from: [250, 60], rot: -2.2, fit: 'cover', fy: 0, chip: 'KHALEEJ TIMES · MAY 2025', zoom: [1, 1.035],
       focus: { bbox: [110, 470, 1560, 420], t0: K.fitch - 0.2, t1: K.fitch + 0.8, zoom: 1.0 }, hl: { bbox: [352, 636, 440, 116], t0: K.p15 - 0.1, t1: K.p15 + 0.5 } });
     bigNumber(t, { pre: 'POSSIBLE CORRECTION', preT: K.poss - 0.1, val: 15, dec: 0, fin: '15', suffix: '%', a0: K.p15 - 0.1, a1: K.p15 + 0.65, y: 1100, sc: 0.62 });
     icon('up', 775, 1100, 42, { p: ea(t, K.p15 + 0.6, K.p15 + 1.1), color: C.gold, w: 7, rot: Math.PI, alpha: ea(t, K.p15 + 0.6, K.p15 + 0.9) });
@@ -84,7 +84,7 @@ function buildScenes() {
   // ---- 3. over AED 917 billion in real-estate transactions (Dubai Media Office) --------------------------------------------------------------
   const g0 = K.geo - 0.08;
   add({ id: 'volume', a: f1, b: g0, box: [330, 1270], fn(t) {
-    card(t, 'aed', { x: 120, y: 360, w: 840, h: 500, a: f1 + 0.04, out: g0 - 0.3, from: [-250, 60], rot: 2, fit: 'cover', fy: 0, chip: 'DUBAI MEDIA OFFICE · JAN 2026', zoom: [1, 1.035],
+    card(t, 'aed', { x: 140, y: 360, w: 800, h: 500, a: f1 + 0.04, out: g0 - 0.3, from: [-250, 60], rot: 2, fit: 'cover', fy: 0, chip: 'DUBAI MEDIA OFFICE · JAN 2026', zoom: [1, 1.035],
       focus: { bbox: [30, 430, 1400, 320], t0: K.over - 0.3, t1: K.over + 0.5, zoom: 1.0 }, hl: { bbox: [478, 638, 600, 92], t0: K.n917, t1: K.n917 + 0.9, color: '#FFC93C', mode: 'multiply' } });
     bigNumber(t, { pre: 'OVER AED', preT: K.over - 0.1, val: 917, dec: 0, fin: '917', suffix: '', a0: K.n917 - 0.05, a1: K.n917 + 0.9, y: 1030, sc: 0.6 });
     bw(t, 'BILLION · REAL ESTATE', 1195, K.bil1 - 0.05, { size: 54, ls: 6, color: C.gold });
@@ -94,7 +94,7 @@ function buildScenes() {
   // ---- 4. geopolitical tensions -> tourism, investor confidence, property transactions (The National) ------------------------------------------
   const r0 = K.but - 0.05;
   add({ id: 'geo', a: g0, b: r0, box: [330, 1270], fn(t) {
-    card(t, 'geo', { x: 120, y: 350, w: 840, h: 560, a: g0 + 0.04, out: r0 - 0.3, from: [250, 60], rot: -2, fit: 'cover', fy: 0.4, chip: 'THE NATIONAL · OCT 2026', zoom: [1, 1.035],
+    card(t, 'geo', { x: 140, y: 350, w: 800, h: 560, a: g0 + 0.04, out: r0 - 0.3, from: [250, 60], rot: -2, fit: 'cover', fy: 0.4, chip: 'THE NATIONAL · OCT 2026', zoom: [1, 1.035],
       focus: { bbox: [380, 1020, 1560, 380], t0: K.geo - 0.1, t1: K.geo + 0.8, zoom: 1.0 }, hl: [{ bbox: [1160, 1223, 620, 92], t0: K.affect - 0.4, t1: K.affect + 0.3 }, { bbox: [436, 1336, 520, 76], t0: K.affect - 0.1, t1: K.affect + 0.5 }] });
     pillRow(t, 'plane', 'TOURISM', 985, K.tour - 0.15, { h: 104, size: 52 });
     pillRow(t, 'briefcase', 'INVESTOR CONFIDENCE', 1105, K.inv - 0.15, { h: 104, size: 52 });
@@ -107,7 +107,7 @@ function buildScenes() {
   add({ id: 'incent', a: r0, b: face1, box: [330, 1270], fn(t) {
     bw(t, 'DUBAI IS', 640, K.but, { size: 130, ls: 2, out: K.govt - 0.1 });
     bw(t, 'RESPONDING', 790, K.but + 0.25, { size: 130, ls: 2, hl: true, out: K.govt - 0.1 });
-    card(t, 'inc', { x: 120, y: 380, w: 840, h: 436, a: K.govt - 0.05, out: face1 - 0.3, from: [0, 160], rot: 1.6, fit: 'cover', chip: 'DUBAI MEDIA OFFICE · MAY 2026', zoom: [1, 1.04],
+    card(t, 'inc', { x: 140, y: 380, w: 800, h: 436, a: K.govt - 0.05, out: face1 - 0.3, from: [0, 160], rot: 1.6, fit: 'cover', chip: 'DUBAI MEDIA OFFICE · MAY 2026', zoom: [1, 1.04],
       focus: [{ bbox: [20, 150, 800, 300], t0: K.n25 - 0.5, t1: K.n25 + 0.2, zoom: 1.0 }, { bbox: [200, 480, 800, 120], t0: K.incl - 0.2, t1: K.incl + 0.5, zoom: 1.0 }],
       hl: [{ bbox: [34, 285, 226, 34], t0: K.n25, t1: K.n25 + 0.6 }, { bbox: [468, 527, 384, 40], t0: K.re - 0.1, t1: K.re + 0.6 }] });
     const nout = 1 - ea(t, K.incl - 0.15, K.incl + 0.15);

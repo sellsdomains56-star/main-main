@@ -8,7 +8,7 @@
 let TL = null, GRID = null, NOISE_PAT = null, FOOT = null, FOOT_K = -1, CFG = null;
 const OUTLINES = {};
 const GRID_STEP = 60, PIV = [430, 760];                     // zoom pivot: his face stays in frame when punching in
-const HERO_Y = 800, HERO_H = 940, HERO_MAX = 1.08;          // a scene's content box is centred at HERO_Y and scaled to fit HERO_H: that is y 330-1270, inside the Reels safe zone (captions sit at ~1372)
+const HERO_Y = 800, HERO_H = 940, HERO_MAX = 1.0;          // a scene's content box is centred at HERO_Y and scaled to fit HERO_H: that is y 330-1270, inside the Reels safe zone (captions sit at ~1372)
 const pad5 = n => String(n).padStart(5, '0');
 
 function faceF(t) {                                          // 1 on the face beats, 0 on the graphics beats
@@ -73,7 +73,7 @@ function runScene(sc, t) {
   const inA = ea(t, a - 0.08, a + 0.18, E.out2), inD = (1 - ea(t, a - 0.08, a + 0.5, E.out5)) * 96;
   const outA = sc.last ? 0 : prog(t, b - 0.16, b + 0.1), outD = sc.last ? 0 : E.in3(prog(t, b - 0.16, b + 0.25)) * 46;
   const alpha = inA * (1 - outA); if (alpha <= 0.002) return;
-  const mid = (sc.box[0] + sc.box[1]) / 2, fit = Math.min(HERO_MAX, HERO_H / (sc.box[1] - sc.box[0])), z = fit * (1 + 0.045 * prog(t, a, b)) * lerp(0.94, 1, ea(t, a - 0.08, a + 0.5, E.out5));
+  const mid = (sc.box[0] + sc.box[1]) / 2, fit = Math.min(HERO_MAX, HERO_H / (sc.box[1] - sc.box[0])), z = fit * (1 + 0.03 * prog(t, a, b)) * lerp(0.94, 1, ea(t, a - 0.08, a + 0.5, E.out5));
   ctx.save(); ctx.globalAlpha *= alpha; ctx.translate(CX, HERO_Y + inD - outD); ctx.scale(z, z); ctx.translate(-CX, -mid); sc.fn(t); ctx.restore();
 }
 function drawGrain(frame) {

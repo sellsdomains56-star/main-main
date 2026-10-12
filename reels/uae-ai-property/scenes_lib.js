@@ -89,8 +89,8 @@ function iconRow(t, ic, a, b, y, t0, nextT, o = {}) {
 function ovStamp(txt, tHit, tEnd, o = {}) {
   return t => {
     const A = ea(t, tHit - 0.2, tHit, E.lin) * (1 - ea(t, tEnd - 0.25, tEnd, E.lin)); if (A <= 0.003) return;
-    const p = ea(t, tHit, tHit + 0.3, E.out5), a = ea(t, tHit, tHit + 0.14, E.out2), f = F.d(800, o.size || 108), sw = M(txt, f, 10) + 90;
-    ctx.save(); ctx.globalAlpha *= A * a; ctx.translate(CX, o.y || 1060); ctx.rotate(o.rot ?? -0.05); ctx.scale(lerp(1.7, 1, p), lerp(1.7, 1, p));
+    const p = ea(t, tHit, tHit + 0.3, E.out5), a = ea(t, tHit, tHit + 0.14, E.out2), f = F.d(800, o.size || 108), sw = M(txt, f, 10) + 90, kf = Math.min(1, (SAFE.w - 40) / sw);
+    ctx.save(); ctx.globalAlpha *= A * a; ctx.translate(CX, o.y || 1060); ctx.rotate(o.rot ?? -0.05); ctx.scale(lerp(1.7, 1, p) * kf, lerp(1.7, 1, p) * kf);
     ctx.fillStyle = 'rgba(20,21,24,0.82)'; rr(-sw / 2, -92, sw, 184, 22); ctx.fill();
     ctx.strokeStyle = C.gold; ctx.lineWidth = 7; rr(-sw / 2, -92, sw, 184, 22); ctx.stroke();
     T(txt, 0, 38, { font: f, ls: 10, color: C.gold });
