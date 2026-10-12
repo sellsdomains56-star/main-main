@@ -1,0 +1,39 @@
+{
+ "src": "raw.mp4",
+ "audio48": "a48.wav",
+ "segments": [
+  [
+   0.0,
+   18.66
+  ],
+  [
+   20.21,
+   25.27
+  ],
+  [
+   26.68,
+   31.3
+  ],
+  [
+   34.36,
+   40.42
+  ],
+  [
+   41.0,
+   48.73
+  ],
+  [
+   50.16,
+   56.46
+  ],
+  [
+   57.37,
+   67.26
+  ],
+  [
+   99.69,
+   107.58
+  ]
+ ],
+ "note": "cut points sit in the silences between phrases (energy minima, see edl_tools.py); left out: the Arabic asides (18.7-20.2 \"\u0648\u0646\u0639\u064a\u062f \u0645\u0646 \u0639\u0646\u062f\", Thabit, Anzil, zain, yalla), the false start / retakes, director chat"
+}

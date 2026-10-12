@@ -1,0 +1,8 @@
+Abu Dhabi Reel Studio - install
+================================
+Claude.ai / Claude desktop:  Settings > Capabilities > Skills > Upload skill > choose abu-dhabi-reel-studio.skill
+Claude Code (CLI / web):     unzip abu-dhabi-reel-studio.skill -d ~/.claude/skills/      (or <project>/.claude/skills/)
+Then say, for example:
+  "Make a reel about <project / topic>. Here is the price list: ..."          -> script + beat plan first
+  "Here is my voice recording and my hook clip - edit it in the Abu Dhabi style" -> full edit
+The edit needs: ffmpeg, Node 22 + playwright (Chromium), Python 3 with numpy, Pillow, faster-whisper, ~8 GB free disk.
