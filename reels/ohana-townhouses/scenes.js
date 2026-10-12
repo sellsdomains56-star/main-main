@@ -89,7 +89,7 @@ function buildScenes() {
       T('−25%', gx + 6 + (FULL - r1.len) / 2, r1.by + 66, { font: F.d(800, 48), color: C.gold, alpha: ea(t, K.pct25, K.pct25 + 0.3) }); ctx.restore();
       line(X0 + FULL, r1.by + 100, X0 + FULL, 872 + 0, { color: C.gold, w: 3, dash: [10, 10], alpha: gp * 0.8 });
     }
-    bw(t, '25% CHEAPER', 1160, K.pct25 - 0.15, { size: 124, ls: 2, hl: true });
+    bw(t, '25% CHEAPER', 1160, K.pct25 - 0.15, { size: 112, ls: 2, hl: true, maxW: 740 });
     SRC(t);
   } });
   cues.push({ k: 'wh', t: K.orchids - 0.2, d: 0.3 }, { k: 'stamp', t: K.pct25 - 0.1, g: 0.5 });
@@ -129,7 +129,7 @@ function buildScenes() {
   const s6a = K.you - 0.04;
   add({ id: 'prog', a: s5a, b: s6a, box: [330, 1270], fn(t) {
     bw(t, 'EMIRATI BROKER PROGRAMME', 385, K.emirati - 0.1, { size: 62, ls: 2, hl: true });
-    card(t, 'cbn', { x: 140, y: 495, w: 800, h: 510, a: s5a + 0.04, out: s6a - 0.3, from: [-250, 50], rot: -1.6, fit: 'cover', fy: 0, zoom: [1, 1.03], chip: 'CONSTRUCTION BUSINESS NEWS ME · 1 OCT 2026',
+    card(t, 'cbn', { x: 140, y: 495, w: 800, h: 510, a: s5a + 0.04, out: s6a - 0.3, from: [-250, 50], rot: -1.6, fit: 'cover', fy: 0, zoom: [1, 1.03], chip: 'CONSTRUCTION BUSINESS NEWS ME',
       focus: [{ bbox: [72, 690, 1270, 170], t0: s5a + 0.6, t1: s5a + 1.3, zoom: 1.12 }, { bbox: [365, 3973, 489, 32], t0: K.emirati2 - 0.3, t1: K.emirati2 + 0.7, zoom: 1.45 }, { bbox: [308, 4031, 629, 31], t0: K.bookings - 0.6, t1: K.bookings + 0.1, zoom: 1.2 }],
       hl: [{ bbox: [1113, 701, 226, 67], t0: K.emirati, t1: K.emirati + 0.45 }, { bbox: [74, 789, 630, 69], t0: K.broker, t1: K.broker + 0.6 },
         { bbox: [365, 3973, 489, 32], t0: K.first - 0.05, t1: K.first + 0.8 }, { bbox: [308, 4031, 629, 31], t0: K.bookings - 0.1, t1: K.bookings + 0.9 }] });

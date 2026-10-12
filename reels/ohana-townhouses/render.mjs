@@ -31,10 +31,10 @@ if (args.stills) jobs = String(args.stills).split(',').map(s => ({ t: +s, name: 
 else { const a = +(args.from ?? 0), b = +(args.to ?? N - 1); jobs = []; for (let f = a; f <= b; f++) jobs.push({ t: f / FPS, name: `f_${String(f).padStart(5, '0')}.png` }); }
 
 async function worker(id, list) {
-  const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/opt/pw-browsers/chromium', args: ['--no-sandbox', '--disable-gpu', '--font-render-hinting=none'] });
-  let page = null;
-  const open = async () => {                                         // (re)open the page: a crashed tab is replaced, the frame retried
-    if (page) await page.close().catch(() => {});
+  let browser = null, page = null;
+  const open = async () => {                                         // (re)open the browser + page: a crashed tab / browser is replaced, the frame retried
+    if (browser) await browser.close().catch(() => {});
+    browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/opt/pw-browsers/chromium', args: ['--no-sandbox', '--disable-gpu', '--font-render-hinting=none'] });
     page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: ss });
     page.on('pageerror', e => console.error('[pageerror]', e.message));
     page.on('console', m => { if (m.type() === 'error') console.error('[console]', m.text()); });

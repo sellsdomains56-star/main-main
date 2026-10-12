@@ -13,9 +13,9 @@ for f in files:
     if t < MAP[1] or t > tl['dur'] - 0.4: continue
     a = np.asarray(Image.open(f).convert('L').resize((540, 960))).astype(int)
     mask = a > 70
-    zones = {'left': mask[:, :50], 'right': mask[:, 480:], 'top': mask[:110, :], 'bottom': mask[1010 // 2 + 0:, :] if False else mask[800:, :]}
+    zones = {'left': mask[:, :35], 'right': mask[:, 490:], 'top': mask[:110, :], 'bottom': mask[800:, :]}      # the user's zone: right 100 px, top 220 px, bottom 450 px (left taken as 70 px)
     # bottom: captions live at y~1300-1380 (px 650-690 in the half-res frame); everything below the caption zone (y > 1430) must be empty
-    zones['bottom'] = mask[715:, :]
+    zones['bottom'] = mask[735:, :]
     hit = {z: int(m.sum()) for z, m in zones.items() if m.sum() > 12}
     if hit: bad += 1; print(f'{t:6.2f}s', hit)
 print('scanned', len(files), 'frames,', bad, 'with content in the unsafe margins')
