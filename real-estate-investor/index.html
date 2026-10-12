@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Off-Plan Investor Calculator</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14181f;--mute:#5d6675;--line:#dfe3e9;--acc:#0b6b5c;--warn:#b45309;--bad:#b91c1c}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1318;--card:#171c23;--ink:#e8ecf1;--mute:#9aa4b2;--line:#2a323d;--acc:#34d3b0;--warn:#f59e0b;--bad:#f87171}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,sans-serif}
+main{max-width:1000px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:8px 0}h2{font-size:16px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+label{display:block;font-size:12px;color:var(--mute)}input,select,textarea{width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+button{background:var(--acc);color:#fff;border:0;border-radius:6px;padding:10px 16px;font:inherit;cursor:pointer}
+@media (prefers-color-scheme:dark){button{color:#06201a}}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left}
+.kpi{font-size:22px;font-weight:600}.mute{color:var(--mute);font-size:13px}.warn{color:var(--warn)}.bad{color:var(--bad)}.ok{color:var(--acc)}
+.tabs button{background:transparent;color:var(--ink);border:1px solid var(--line);margin-right:6px}.tabs button.on{background:var(--acc);color:#fff}
+</style>
+</head>
+<body>
+<main>
+<h1>Off-Plan Investor Calculator</h1>
+<p class="mute">Abu Dhabi off-plan analysis. Results are only as good as your inputs: no tool can guarantee 100% accuracy. Verify every figure against the SPA, the developer's escrow-registered plan and official sources (ADREC/DARI).</p>
+
+<div class="tabs"><button class="on" data-t="calc">Calculator</button><button data-t="island">Island study</button><button data-t="data">Data source</button></div>
+
+<section id="calc">
+<div class="card"><h2>Project</h2><div class="grid">
+<div><label>Purchase price (AED)</label><input id="price" type="number" value="2000000"></div>
+<div><label>Size (sq ft)</label><input id="sqft" type="number" value="1000"></div>
+<div><label>Booking + down payment %</label><input id="down" type="number" value="20"></div>
+<div><label>During construction % (equal instalments)</label><input id="constr" type="number" value="40"></div>
+<div><label>On handover %</label><input id="hand" type="number" value="40"></div>
+<div><label>Months to handover</label><input id="months" type="number" value="36"></div>
+<div><label>Registration/transfer fee %</label><input id="reg" type="number" value="2" step="0.1"></div>
+<div><label>Agent/other fees %</label><input id="agent" type="number" value="2" step="0.1"></div>
+<div><label>Annual rent (AED, after handover)</label><input id="rent" type="number" value="130000"></div>
+<div><label>Service charge (AED/sq ft/yr)</label><input id="sc" type="number" value="14"></div>
+<div><label>Vacancy %</label><input id="vac" type="number" value="8"></div>
+<div><label>Annual price growth %</label><input id="g" type="number" value="4" step="0.5"></div>
+<div><label>Hold after handover (years)</label><input id="hold" type="number" value="5"></div>
+<div><label>Selling cost %</label><input id="sell" type="number" value="2" step="0.5"></div>
+</div>
+<p><label>Upload payment plan (CSV: <code>month,amount</code>). Overrides the % split above.</label><input id="file" type="file" accept=".csv,.txt"></p>
+<button id="run">Calculate</button></div>
+<div id="out"></div>
+</section>
+
+<section id="island" hidden>
+<div class="card"><h2>Al Hudayriyat Island: study framework</h2>
+<p class="mute">Enter verified benchmark data in the table; the app scores it. No market figures are pre-filled because they must come from your data source, not from a template.</p>
+<table id="bench"><tr><th>Metric</th><th>Value</th><th>Weight</th></tr></table>
+<p><button id="score">Score</button> <span id="scoreOut" class="kpi"></span></p>
+<h2>Checks that matter for any island off-plan</h2>
+<ul>
+<li>Freehold status and the exact plot/title type for the unit.</li>
+<li>Developer track record: handovers on time, past delays.</li>
+<li>Escrow account registered with the regulator; payments only to it.</li>
+<li>Infrastructure timeline: bridge/road access, utilities, retail, schools.</li>
+<li>Supply pipeline vs. rental demand on the island.</li>
+<li>Service charge vs. comparable communities.</li>
+<li>Exit liquidity: resale transactions in similar units.</li>
+</ul></div>
+</section>
+
+<section id="data" hidden>
+<div class="card"><h2>DXP Interact connector</h2>
+<p class="mute">Paste the endpoint and key once the API docs are available. The key stays in this browser tab and is not stored.</p>
+<div class="grid"><div><label>Base URL</label><input id="dxUrl" placeholder="https://..."></div>
+<div><label>API key</label><input id="dxKey" type="password"></div></div>
+<p class="warn">Not connected: the response format is unknown. Send the API docs and the adapter in <code>app.js</code> section DXP will be completed.</p></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id),n=id=>+$(id).value||0,f=x=>Math.round(x).toLocaleString();
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+ ['calc','island','data'].forEach(t=>$(t).hidden=t!==b.dataset.t)});
+let custom=null;
+$('file').onchange=async e=>{const t=await e.target.files[0].text();
+ custom=t.trim().split(/\r?\n/).map(l=>l.split(',').map(s=>+s.trim())).filter(r=>r.length>=2&&!r.some(isNaN)).map(r=>({m:r[0],a:r[1]}))};
+function irr(cf){ // cf: [{m,a}], monthly
+ const npv=r=>cf.reduce((s,c)=>s+c.a/Math.pow(1+r,c.m/12),0);
+ let lo=-0.9,hi=5;if(npv(lo)*npv(hi)>0)return null;
+ for(let i=0;i<200;i++){const m=(lo+hi)/2;npv(lo)*npv(m)<=0?hi=m:lo=m}return (lo+hi)/2}
+$('run').onclick=()=>{
+ const P=n('price'),S=n('sqft'),H=n('months'),hold=n('hold');
+ let plan=[];
+ if(custom&&custom.length){plan=custom.map(c=>({m:c.m,a:c.a}))}
+ else{const d=P*n('down')/100,c=P*n('constr')/100,h=P*n('hand')/100,k=Math.max(1,Math.round(H/3));
+  plan.push({m:0,a:d});for(let i=1;i<=k;i++)plan.push({m:Math.round(H*i/k)-(i===k?1:0),a:c/k});plan.push({m:H,a:h})}
+ const paid=plan.reduce((s,c)=>s+c.a,0), gap=P-paid;
+ const fees=P*(n('reg')+n('agent'))/100;
+ const cf=plan.map(c=>({m:c.m,a:-c.a}));cf[0].a-=fees;
+ const net=n('rent')*(1-n('vac')/100)-n('sc')*S;
+ const yrs=Math.max(1,hold);
+ for(let y=1;y<=yrs;y++)cf.push({m:H+y*12,a:net});
+ const exit=P*Math.pow(1+n('g')/100,H/12+yrs)*(1-n('sell')/100);
+ cf.push({m:H+yrs*12,a:exit});
+ const inv=P+fees,R=irr(cf),gy=n('rent')/P*100,ny=net/inv*100;
+ const profit=cf.reduce((s,c)=>s+c.a,0);
+ const warn=[];
+ if(Math.abs(gap)>1)warn.push(`Payment plan totals AED ${f(paid)}, not the price (gap AED ${f(gap)}). Check it.`);
+ if(ny<4)warn.push('Net yield below 4%: returns depend heavily on price growth.');
+ if(n('sc')*S>n('rent')*0.25)warn.push('Service charges exceed 25% of rent.');
+ if(n('g')>6)warn.push('Growth assumption above 6%/yr is aggressive; run a 0% case.');
+ if(R!==null&&R<0.08)warn.push('IRR under 8%: weak against lower-risk alternatives.');
+ $('out').innerHTML=`<div class="card"><h2>Result</h2><div class="grid">
+ <div><div class="mute">Gross yield</div><div class="kpi">${gy.toFixed(1)}%</div></div>
+ <div><div class="mute">Net yield on total cost</div><div class="kpi">${ny.toFixed(1)}%</div></div>
+ <div><div class="mute">IRR (levered by plan)</div><div class="kpi">${R===null?'n/a':(R*100).toFixed(1)+'%'}</div></div>
+ <div><div class="mute">Total profit</div><div class="kpi">AED ${f(profit)}</div></div>
+ <div><div class="mute">Price per sq ft</div><div class="kpi">${f(P/S)}</div></div>
+ <div><div class="mute">Entry fees</div><div class="kpi">AED ${f(fees)}</div></div></div>
+ <p class="mute">Exit value AED ${f(exit)} after ${yrs} yr hold. Net annual rent AED ${f(net)}.</p>
+ ${warn.map(w=>`<p class="warn">⚠ ${w}</p>`).join('')||'<p class="ok">No red flags from the checks.</p>'}
+ <h2>Cash flow</h2><table><tr><th>Month</th><th>AED</th></tr>${cf.map(c=>`<tr><td>${c.m}</td><td class="${c.a<0?'bad':'ok'}">${f(c.a)}</td></tr>`).join('')}</table></div>`};
+// Island scorecard
+const metrics=['Net rental yield %','Price vs. nearby comparables (-ve = cheaper)','Supply pipeline (units vs. demand)','Developer delivery record (1-10)','Infrastructure readiness (1-10)','Resale liquidity (1-10)'];
+const t=$('bench');metrics.forEach((m,i)=>{const r=t.insertRow();r.innerHTML=`<td>${m}</td><td><input id="bv${i}" type="number"></td><td><input id="bw${i}" type="number" value="1"></td>`});
+$('score').onclick=()=>{const norm=[v=>v/8,v=>-v/15,v=>v/10,v=>v/10,v=>v/10,v=>v/10];
+ let s=0,w=0;metrics.forEach((_,i)=>{const v=$('bv'+i).value;if(v==='')return;const x=Math.max(0,Math.min(1,norm[i](+v))),wt=+$('bw'+i).value||0;s+=x*wt;w+=wt});
+ $('scoreOut').textContent=w?`Score ${(s/w*100).toFixed(0)}/100`:'Enter values'};
+</script>
+</body>
+</html>
