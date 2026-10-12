@@ -22,7 +22,7 @@ ALIASES = {
     "area": ["area", "area_name_en", "community", "district", "location"],
     "type": ["type", "property_type_en", "prop_type", "unit_type"],
     "price_aed": ["price_aed", "actual_worth", "trans_value", "price", "amount"],
-    "size_sqft": ["size_sqft", "procedure_area", "area_sqft", "size"],
+    "size_sqft": ["size_sqft", "area_sqft", "size"],
 }
 
 def normalize(row):
