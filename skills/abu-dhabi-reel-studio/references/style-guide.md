@@ -10,7 +10,7 @@ Everything here is already implemented in `scripts/engine/` (lib.js, main.js, ca
 | ink | warm ivory `#F3EFE6`; dim ivory `rgba(243,239,230,.62)` for secondary lines |
 | accent | gold `#E9C47C` (key words, bars for "ours", rings, pins, outlines) |
 | type | **bold only**: Inter Display 700-800 for display, Inter 700 for small text; no light weights, no italics. Kinetic type slides up out of a mask (`bw`); the key word sits in a gold box with black text (`hl`) |
-| captions | 58 px, 800 weight, **black text on a white rounded box**, one short phrase at a time (<= 3 words, <= 21 chars), baseline ~y 1372, fade in/out with the voice |
+| captions | 58 px, 800 weight, **white bold text on a frosted-glass pill** (the scene behind is copied, blurred and darkened - backdrop blur - with a hairline border and faint sheen), one short phrase at a time (<= 3 words, <= 21 chars), pill centre y 1352, text centred by CAP HEIGHT so it sits exactly in the middle of the pill, fade in/out with the voice. `CAP.style = 'bar'` gives the old black-on-white box (first reels); the user asked for the glass look: "remove the white bar, blurry nice effect, clean, readable, comfortable for the eye" |
 | cards | real pictures/pages on a rounded ivory card with shadow, slight rotation (+-2 deg), slide in from the side, slow push, a black chip with a gold dot naming the source above the top-left corner |
 | marker | `hl`: a yellow multiply-blend highlighter that wipes across the exact words |
 | face beat | him full-screen from the 4K source reframed, warm grade (gold soft-light 24%), vignette, bottom scrim under the captions, a slow push plus a small punch on key words, gold/ivory boxed title words slam in as he says them |
@@ -20,7 +20,7 @@ Everything here is already implemented in `scripts/engine/` (lib.js, main.js, ca
 ## 2. Instagram Reels safe zone (non-negotiable - the user sent the diagram)
 Instagram's UI covers the **top 220 px, bottom 450 px and the right 100 px** (and about 70 px on the left to be safe).
 - Content (text, cards, bars, pins, labels): x 130-950, y 330-1270.
-- Captions: baseline y ~1372 (box ~1300-1380). Esri credit line y 1440.
+- Captions: pill centre y 1352 (pill ~1310-1394; two-line phrases stack with a 94 px pitch). Esri credit line y 1440.
 - Full-bleed things (face video, satellite imagery, backgrounds) may run to the edges; **text and graphics may not**.
 - Scenes are drawn in a box centred at y 800 and scaled to fit at most 1.0 (never up-scale a scene: that is how earlier versions leaked to x 1005). Cards: x 140, w 800 (+5% push still stays < 980). Chips: keep the text short - a long source chip ran to x 1046 once.
 - `safe_scan.py` checks the rendered frames: slide-ins of 1-2 frames and the cut sweep are fine; anything that stays is a bug.
