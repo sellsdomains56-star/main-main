@@ -4960,3 +4960,28 @@ html[lang="ar"] .pdp-tagline {
     display: none; /* the menu has "My account" on the smallest phones */
   }
 }
+
+/* ---------- campaign scenes (full-frame product shots) ---------- */
+.media img.scene,
+.pdp-stage img.scene,
+.icon-media img.scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none;
+  transition: transform 0.7s var(--ease);
+}
+.media:has(img.scene)::before,
+.media:has(img.scene)::after,
+.icon-media:has(img.scene) .icon-glow {
+  display: none;
+}
+.icon-media:has(img.scene) {
+  overflow: hidden;
+}
+.card:hover .media img.scene,
+.icon-card:hover .icon-media img.scene {
+  transform: scale(1.045);
+}

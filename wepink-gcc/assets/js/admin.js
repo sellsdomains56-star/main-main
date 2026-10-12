@@ -584,9 +584,10 @@
     const isNew = !row;
     const d = row
       ? JSON.parse(JSON.stringify(row))
-      : { id: "", active: true, sort: Math.max(0, ...S.products.map((p) => p.sort || 0)) + 10, cat: "body-splash", type: "splash", line: "", line_ar: "", size: "", family: "", gender: "feminino", badge: "new", color: "#F06FA8", color2: "#FCE4EF", price: 79, compare_at: null, prices: null, tagline: { en: "", ar: "" }, description: { en: "", ar: "" }, notes: {}, images: null, cutout: null };
+      : { id: "", active: true, sort: Math.max(0, ...S.products.map((p) => p.sort || 0)) + 10, cat: "body-splash", type: "splash", line: "", line_ar: "", size: "", family: "", gender: "feminino", badge: "new", color: "#F06FA8", color2: "#FCE4EF", price: 79, compare_at: null, prices: null, tagline: { en: "", ar: "" }, description: { en: "", ar: "" }, notes: {}, images: null, cutout: null, photo_style: null };
     let images = d.images && d.images.length ? d.images.slice() : null; // null = the store's original photos
-    let cutFirst = !!(images && d.cutout && d.cutout === images[0]);
+    // photo: shown as it is · cut: transparent cut-out staged on the pink scenes · scene: campaign shot that fills the frame
+    let style = images && d.cutout && d.cutout === images[0] ? "cut" : d.photo_style === "scene" ? "scene" : "photo";
     const tl = d.tagline || {};
     const ds = d.description || {};
     const nt = d.notes || {};
@@ -667,7 +668,13 @@
         ${
           built
             ? `<p class="small muted">${list.length ? "These are the photos that came with the store. Uploading replaces them." : "No photos yet — the store draws a bottle in the product's colours until you add one."}</p>`
-            : `<label class="check"><input type="checkbox" data-cut ${cutFirst ? "checked" : ""}>The main photo has a transparent background (the store stages it on its pink scenes)</label>
+            : `<label class="field"><span>Photo style</span><select data-style>${[
+                ["photo", "Product photo — shown as it is"],
+                ["cut", "Cut-out with a transparent background — staged on the pink scenes"],
+                ["scene", "Campaign scene — the photo fills the frame"],
+              ]
+                .map(([k, l]) => `<option value="${k}"${style === k ? " selected" : ""}>${l}</option>`)
+                .join("")}</select></label>
                ${CATALOG.has(d.id) ? `<button class="link" type="button" data-orig>Go back to the original photos</button>` : ""}`
         }`;
     }
@@ -705,7 +712,7 @@
       }
       if (e.target.closest("[data-orig]")) {
         images = null;
-        cutFirst = false;
+        style = "photo";
         return drawPhotos();
       }
       if (e.target.closest("[data-del]")) {
@@ -720,7 +727,7 @@
       if (e.target.closest("[data-save]")) save(e.target.closest("[data-save]"));
     });
     dr.addEventListener("change", async (e) => {
-      if (e.target.matches("[data-cut]")) cutFirst = e.target.checked;
+      if (e.target.matches("[data-style]")) style = e.target.value;
       if (e.target.matches('#add-photo input[type="file"]') && e.target.files.length) {
         const box = dr.querySelector("#add-photo");
         box.classList.add("busy");
@@ -776,7 +783,8 @@
         description: { en: f.ds_en.value.trim(), ar: f.ds_ar.value.trim() },
         notes: { top: textNotes(f.n_top.value), heart: textNotes(f.n_heart.value), base: textNotes(f.n_base.value) },
         images: images && images.length ? images : null,
-        cutout: images && images.length && cutFirst ? images[0] : null,
+        cutout: images && images.length && style === "cut" ? images[0] : null,
+        photo_style: images && images.length ? (style === "scene" ? "scene" : "studio") : null,
       };
       btn.disabled = true;
       msg.textContent = "";
@@ -839,6 +847,7 @@
     ["notes_heart", (p) => notesText((p.notes || {}).heart).replace(/\n/g, "; ")],
     ["notes_base", (p) => notesText((p.notes || {}).base).replace(/\n/g, "; ")],
     ["image_urls", (p) => (p.images || []).join(" ")],
+    ["photo_style", (p) => (!p.images || !p.images.length ? "" : p.cutout && p.cutout === p.images[0] ? "cutout" : p.photo_style === "scene" ? "scene" : "photo")],
     ["exact_prices", (p) => (p.prices ? Object.entries(p.prices).map(([k, v]) => `${k}=${v}`).join(" ") : "")],
   ];
   function exportProducts() {
@@ -876,6 +885,12 @@
         if (has("description_en") || has("description_ar")) o.description = { en: r.description_en || "", ar: r.description_ar || "" };
         if (has("notes_top") || has("notes_heart") || has("notes_base")) o.notes = { top: notes(r.notes_top), heart: notes(r.notes_heart), base: notes(r.notes_base) };
         set("image_urls", "images", (v) => (v ? v.split(/[\s|]+/).filter((u) => /^https?:\/\//.test(u)) : null));
+        if (has("photo_style")) {
+          const v = String(r.photo_style || "").trim().toLowerCase();
+          const imgs = "images" in o ? o.images : existing && existing.images;
+          o.photo_style = imgs && imgs.length ? (v === "scene" ? "scene" : "studio") : null;
+          o.cutout = imgs && imgs.length && /^cut/.test(v) ? imgs[0] : null;
+        }
         set("exact_prices", "prices", (v) => {
           const px = {};
           String(v || "")

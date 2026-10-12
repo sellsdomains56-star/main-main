@@ -147,6 +147,8 @@ window.WP_ART = (function () {
     // studio photo blended into the tint when no clean cut-out exists.
     if (!o.noImage && (p.cutout || p.image)) {
       const lazy = o.eager ? "eager" : "lazy";
+      // Campaign scenes fill the frame; staged spots (o.stage) keep the cut-out.
+      if (p.scene && p.image && !(o.stage && p.cutout)) return `<img class="scene" src="${esc(p.image)}" alt="" loading="${lazy}" decoding="async">`;
       return p.cutout
         ? `<img class="cut" src="${esc(p.cutout)}" alt="" loading="${lazy}" decoding="async">`
         : `<img class="photo" src="${esc(p.image)}" alt="" loading="${lazy}" decoding="async">`;

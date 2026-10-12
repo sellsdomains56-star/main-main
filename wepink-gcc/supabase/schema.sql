@@ -98,6 +98,7 @@ create table public.products (
   notes jsonb,        -- {"top": [["Pink pepper", "فلفل وردي"]], "heart": [], "base": []}
   images text[],      -- null: the photos that ship with the site
   cutout text,        -- transparent-background photo, staged on the store's scenes
+  photo_style text check (photo_style in ('studio', 'scene')), -- scene: campaign shots that fill the frame
   source text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()

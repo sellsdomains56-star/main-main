@@ -170,7 +170,7 @@ window.WP_SYNC = (function () {
       }),
   };
 
-  const COLS = "id,cat,type,line,line_ar,size,family,gender,badge,color,color2,price,compare_at,prices,tagline,description,notes,images,cutout,source";
+  const COLS = "id,cat,type,line,line_ar,size,family,gender,badge,color,color2,price,compare_at,prices,tagline,description,notes,images,cutout,photo_style,source";
   async function fetchProducts() {
     const rows = [];
     for (let from = 0; ; from += 1000) {
@@ -182,9 +182,12 @@ window.WP_SYNC = (function () {
 
   /* ---------- applying database rows to the store ---------- */
   // A row with no images of its own keeps the photos that ship with the site.
+  // Campaign scenes ("scene") are full-frame shots; the original cut-out and
+  // packshots stay available for staged spots and the product gallery.
   function fromRow(r) {
     const b = base.get(r.id);
     const own = Array.isArray(r.images) && r.images.length > 0;
+    const scene = own && r.photo_style === "scene";
     const images = own ? r.images : (b && b.images) || [];
     return {
       id: r.id,
@@ -206,7 +209,9 @@ window.WP_SYNC = (function () {
       notes: r.notes || {},
       image: images[0],
       images,
-      cutout: r.cutout || (own ? "" : (b && b.cutout) || ""),
+      cutout: r.cutout || (own && !scene ? "" : (b && b.cutout) || ""),
+      scene,
+      packshots: scene ? (b && b.images) || [] : [],
       remote: own ? [] : (b && b.remote) || [],
       source: r.source || undefined,
       typeName: T[r.type] || T.bodycare,

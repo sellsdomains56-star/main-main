@@ -145,12 +145,12 @@ window.WP_PAGES = (function () {
             ${
               heroPhoto
                 ? `<figure class="portrait-arch">${heroPhoto}<figcaption>${esc(t("hn.photoCaption"))}</figcaption></figure>
-                   <div class="float-bottle" aria-hidden="true">${W.art.art(star, { eager: true })}</div>`
+                   <div class="float-bottle" aria-hidden="true">${W.art.art(star, { eager: true, stage: true })}</div>`
                 : `<div class="stage" aria-hidden="true">
                     <span class="beam"></span><span class="halo"></span><span class="pedestal"></span>
-                    <div class="stage-bottle sb-left">${W.art.art(pick(F.stage[0]), { eager: true })}</div>
-                    <div class="stage-bottle sb-right">${W.art.art(pick(F.stage[2]), { eager: true })}</div>
-                    <div class="stage-bottle sb-main">${W.art.art(pick(F.stage[1]), { eager: true })}</div>
+                    <div class="stage-bottle sb-left">${W.art.art(pick(F.stage[0]), { eager: true, stage: true })}</div>
+                    <div class="stage-bottle sb-right">${W.art.art(pick(F.stage[2]), { eager: true, stage: true })}</div>
+                    <div class="stage-bottle sb-main">${W.art.art(pick(F.stage[1]), { eager: true, stage: true })}</div>
                   </div>`
             }
             <a class="glass-card" href="product.html?id=${star.id}">
@@ -211,7 +211,7 @@ window.WP_PAGES = (function () {
                 const pick = byId(catArt[c.id]);
                 const p = pick && pick.cutout ? pick : D.products.find((x) => x.cat === c.id && x.cutout) || pick || D.products.find((x) => x.cat === c.id);
                 return `<a class="cat-tile" href="shop.html?c=${c.id}" style="--c:${p.color};--c2:${p.color2};--d:${i * 60}ms" data-reveal>
-                  <span class="cat-art">${W.art.art(p)}</span>
+                  <span class="cat-art">${W.art.art(p, { stage: true })}</span>
                   <span class="cat-text"><strong>${esc(L(c.name))}</strong><span>${esc(L(c.blurb))}</span></span>
                   <span class="cat-go">${icon("arrow", "flip")}</span>
                 </a>`;
@@ -273,7 +273,7 @@ window.WP_PAGES = (function () {
             <p class="lead-noir">${esc(t("cb.lead"))}</p>
             <a class="btn btn-glow btn-lg" href="shop.html?c=perfume">${esc(t("cb.cta"))}${icon("arrow", "flip")}</a>
           </div>
-          ${campaign ? "" : `<div class="campaign-trio" aria-hidden="true" data-reveal style="--d:120ms">${F.campaign.map((id, i) => `<div class="ct ct${i + 1}">${W.art.art(pick(id), { eager: true })}</div>`).join("")}<span class="ct-glow"></span></div>`}
+          ${campaign ? "" : `<div class="campaign-trio" aria-hidden="true" data-reveal style="--d:120ms">${F.campaign.map((id, i) => `<div class="ct ct${i + 1}">${W.art.art(pick(id), { eager: true, stage: true })}</div>`).join("")}<span class="ct-glow"></span></div>`}
         </div>
       </section>
 
@@ -297,7 +297,7 @@ window.WP_PAGES = (function () {
               <p>${esc(t("home.giftLead", { amount: money(fromSet) }))}</p>
               <a class="btn btn-primary" href="shop.html?c=gift-sets">${esc(t("home.giftCta"))}${icon("arrow", "flip")}</a>
             </div>
-            <div class="promo-art">${W.art.art(pick(F.giftSet))}</div>
+            <div class="promo-art">${W.art.art(pick(F.giftSet), { stage: true })}</div>
           </article>
         </div>
       </section>
@@ -767,9 +767,16 @@ window.WP_PAGES = (function () {
     const how = { splash: "howSplash", colonia: "howPerfume", hairmist: "howMist", cream: "howLotion", lotion: "howLotion", butter: "howLotion", bodyoil: "howLotion", set: "howSet" }[p.type];
     // Gallery: the staged cut-out first, then the studio photos (local, then the brand's CDN).
     const shots = [];
-    if (p.cutout) shots.push({ cls: "cut", src: p.cutout });
-    (p.images || []).forEach((src) => shots.push({ cls: "photo", src }));
-    (p.remote || []).slice((p.images || []).length).forEach((src) => shots.push({ cls: "photo", src }));
+    if (p.scene) {
+      // Campaign shots first, then the real packshots.
+      p.images.forEach((src) => shots.push({ cls: "scene", src }));
+      if (p.cutout) shots.push({ cls: "cut", src: p.cutout });
+      (p.packshots || []).forEach((src) => shots.push({ cls: "photo", src }));
+    } else {
+      if (p.cutout) shots.push({ cls: "cut", src: p.cutout });
+      (p.images || []).forEach((src) => shots.push({ cls: "photo", src }));
+      (p.remote || []).slice((p.images || []).length).forEach((src) => shots.push({ cls: "photo", src }));
+    }
     const related = [
       ...D.products.filter((x) => x !== p && x.line.split(" ")[0] === p.line.split(" ")[0]),
       ...D.products.filter((x) => x !== p && x.family === p.family),
@@ -1024,7 +1031,7 @@ window.WP_PAGES = (function () {
             <a class="btn btn-primary btn-lg" href="shop.html">${esc(t("about.cta"))}${icon("arrow", "flip")}</a>
           </div>
           <div class="about-visual" aria-hidden="true">
-            ${D.featured.about.map(pick).map((p, i) => `<div class="about-tile t${i + 1}" style="--c:${p.color};--c2:${p.color2}">${W.art.art(p)}</div>`).join("")}
+            ${D.featured.about.map(pick).map((p, i) => `<div class="about-tile t${i + 1}" style="--c:${p.color};--c2:${p.color2}">${W.art.art(p, { stage: true })}</div>`).join("")}
           </div>
         </div>
       </section>
