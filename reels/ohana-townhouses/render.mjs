@@ -32,17 +32,23 @@ else { const a = +(args.from ?? 0), b = +(args.to ?? N - 1); jobs = []; for (let
 
 async function worker(id, list) {
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/opt/pw-browsers/chromium', args: ['--no-sandbox', '--disable-gpu', '--font-render-hinting=none'] });
-  const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: ss });
-  page.on('pageerror', e => console.error('[pageerror]', e.message));
-  page.on('console', m => { if (m.type() === 'error') console.error('[console]', m.text()); });
-  await page.goto(base); await page.waitForFunction('window.READY === true', null, { timeout: 30000 });
+  let page = null;
+  const open = async () => {                                         // (re)open the page: a crashed tab is replaced, the frame retried
+    if (page) await page.close().catch(() => {});
+    page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: ss });
+    page.on('pageerror', e => console.error('[pageerror]', e.message));
+    page.on('console', m => { if (m.type() === 'error') console.error('[console]', m.text()); });
+    await page.goto(base); await page.waitForFunction('window.READY === true', null, { timeout: 30000 });
+  };
+  await open();
   let done = 0;
   for (const j of list) {
+    if (args.skip && fs.existsSync(path.join(outDir, j.name)) && fs.statSync(path.join(outDir, j.name)).size > 20000) { done++; continue; }   // resume: keep frames already rendered
     for (let tries = 0; ; tries++) {
       try {
         await page.evaluate(async t => { await window.prepare(t); window.draw(t); }, j.t);
         await page.screenshot({ path: path.join(outDir, j.name), type: 'png', clip: { x: 0, y: 0, width: 1080, height: 1920 } }); break;
-      } catch (e) { if (tries >= 4) throw e; console.error('[retry]', j.name, String(e.message).split('\n')[0]); await new Promise(r => setTimeout(r, 600)); }
+      } catch (e) { if (tries >= 4) throw e; console.error('[retry]', j.name, String(e.message).split('\n')[0]); await new Promise(r => setTimeout(r, 600)); if (/crash|closed|Target/i.test(String(e.message))) await open(); }
     }
     if (++done % 50 === 0) console.log(`worker ${id}: ${done}/${list.length}`);
   }
