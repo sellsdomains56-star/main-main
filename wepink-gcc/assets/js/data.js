@@ -42,6 +42,10 @@ window.WP_DATA = (function () {
       about: "assets/photos/campaign/golden-hour.webp", // About page
     },
 
+    // Homepage film: "Enter the pink universe" (Seedance 2.5, 30 s, 16:9). It plays muted on a
+    // loop at the very top of the home page; phones get the 720p file. Clear `src` to hide it.
+    film: { src: "assets/video/wepink-hero-1080.mp4", srcMobile: "assets/video/wepink-hero-720.mp4", poster: "assets/photos/film-poster.jpg" },
+
     // Referral & ambassador programme (placeholder terms — set with the franchise).
     referral: {
       friendDiscountPct: 10, // friends get this % off their first order with a code

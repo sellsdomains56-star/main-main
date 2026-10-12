@@ -5328,3 +5328,106 @@ html[lang="ar"] .pdp-tagline {
     display: none;
   }
 }
+
+/* ---------- homepage film ---------- */
+/* The film opens the home page under the see-through header (the noir hero below it
+   then sits in the normal flow). */
+.film {
+  position: relative;
+  margin-top: calc(var(--header-h) * -1);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--noir);
+  color: #fff;
+}
+.film + .hero-noir {
+  margin-top: 0;
+  padding-top: clamp(64px, 8vw, 110px);
+}
+.film-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 100svh;
+  object-fit: cover;
+  background: var(--noir);
+}
+.film::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  height: calc(var(--header-h) * 2);
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(14, 3, 8, 0.6), rgba(14, 3, 8, 0));
+}
+.film-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(14, 3, 8, 0) 58%, rgba(14, 3, 8, 0.78) 100%);
+}
+.film-bar {
+  position: absolute;
+  z-index: 2;
+  inset-inline: 0;
+  bottom: clamp(18px, 3vw, 44px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.film-bar .eyebrow {
+  margin: 0;
+}
+.film-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.film-sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: background 0.2s var(--ease);
+}
+.film-sound:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+.film-sound[hidden] {
+  display: none;
+}
+.film-sound .icon {
+  width: 16px;
+  height: 16px;
+}
+@media (max-width: 720px) {
+  /* phones: a square crop of the film's centre, the bar under it */
+  .film-video {
+    aspect-ratio: 1 / 1;
+  }
+  .film-shade {
+    display: none;
+  }
+  .film-bar {
+    position: static;
+    padding-block: 14px 18px;
+  }
+  .film-actions,
+  .film-actions .btn {
+    flex: 1 1 auto;
+  }
+}

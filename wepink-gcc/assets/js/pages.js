@@ -164,8 +164,24 @@ window.WP_PAGES = (function () {
     const heroPhoto = photo("virginiaHero", t("hn.photoCaption"));
     const portrait = photo("virginiaPortrait", t("hn.photoCaption"));
     const campaign = photo("campaign", "", "campaign-img");
+    const film = D.config.film && D.config.film.src ? D.config.film : null;
 
     main.innerHTML = `
+      ${
+        film
+          ? `<section class="film" aria-label="${esc(t("film.label"))}">
+        <video class="film-video" muted loop playsinline preload="none"${film.poster ? ` poster="${esc(film.poster)}"` : ""} aria-hidden="true"></video>
+        <div class="film-shade" aria-hidden="true"></div>
+        <div class="container film-bar">
+          <p class="eyebrow eyebrow-glow">${icon("sparkle")}${esc(t("film.eyebrow"))}</p>
+          <div class="film-actions">
+            <button class="film-sound" type="button" data-film-sound aria-pressed="false" hidden>${icon("sparkle")}<span>${esc(t("film.soundOn"))}</span></button>
+            <a class="btn btn-glow" href="shop.html">${esc(t("film.cta"))}${icon("arrow", "flip")}</a>
+          </div>
+        </div>
+      </section>`
+          : ""
+      }
       <section class="hero-noir">
         ${satin()}
         <div class="grain" aria-hidden="true"></div>
@@ -398,6 +414,8 @@ window.WP_PAGES = (function () {
         </div>
       </section>`;
 
+    playFilm(main, film);
+
     const form = main.querySelector(".news-form");
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -439,6 +457,27 @@ window.WP_PAGES = (function () {
       <span class="amb-ping p1">${icon("bag")}<span>+ ${esc(money(local(27)))}</span></span>
       <span class="amb-ping p2">${icon("sparkle")}<span>+ ${esc(money(local(41)))}</span></span>
     </div>`;
+  }
+
+  // Starts the homepage film once the page has loaded (poster until then). If the video
+  // can't load (the one-file build opened on its own) or people prefer reduced motion,
+  // the poster stays.
+  function playFilm(main, film) {
+    const video = main.querySelector(".film-video");
+    if (!video || !film || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const sound = main.querySelector("[data-film-sound]");
+    const start = () => {
+      video.src = film.srcMobile && matchMedia("(max-width: 900px)").matches ? film.srcMobile : film.src;
+      video.play().then(() => (sound.hidden = false), () => {});
+    };
+    if (document.readyState === "complete") start();
+    else addEventListener("load", start, { once: true });
+    sound.addEventListener("click", () => {
+      video.muted = !video.muted;
+      if (video.paused) video.play().catch(() => {});
+      sound.setAttribute("aria-pressed", String(!video.muted));
+      sound.querySelector("span").textContent = t(video.muted ? "film.soundOn" : "film.soundOff");
+    });
   }
 
   /* ---------------- earn ---------------- */
