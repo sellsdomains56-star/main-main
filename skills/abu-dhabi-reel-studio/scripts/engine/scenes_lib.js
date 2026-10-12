@@ -52,7 +52,7 @@ function sceneChat(t, o) {                                              // o: {h
   const typed = o.msg.slice(0, Math.floor(o.msg.length * ea(t, o.typeA, o.typeB, E.lin) + 0.0001));
   T(typed, X0 + 56, iy + 20, { font: F.d(700, 64), color: C.ink, align: 'left', alpha: 1 - sent });
   if (t < send) { const cur = (Math.floor(t * 2.4) % 2 === 0) ? 1 : 0.15, cw2 = M(typed, F.d(700, 64)); line(X0 + 56 + cw2 + 8, iy - 34, X0 + 56 + cw2 + 8, iy + 34, { color: C.gold, w: 4, alpha: cur }); }
-  T('Message…', X0 + 56, iy + 20, { font: F.d(700, 64), color: C.mute, align: 'left', alpha: (1 - ea(t, o.typeA, o.typeA + 0.06)) * (1 - sent) });
+  T(o.ph || 'Message…', X0 + 56, iy + 20, { font: F.d(700, 64), color: C.mute, align: 'left', alpha: (1 - ea(t, o.typeA, o.typeA + 0.06)) * (1 - sent) });
   dot(X1 - 70, iy, 52, C.gold, 1); icon('plane', X1 - 70, iy, 22, { p: 1, color: '#17181B', w: 4.5, rot: -0.5 + 0.5 * sent });
   ctx.restore();
   const b1 = ea(t, send, send + 0.5, E.out4);

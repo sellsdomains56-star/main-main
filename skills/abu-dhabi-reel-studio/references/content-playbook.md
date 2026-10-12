@@ -16,6 +16,9 @@ Defaults if unanswered: 45-60 s, UAE investors/buyers as audience, English, call
 - Anything you cannot verify: leave it out, or tell the user plainly in the hand-over ("could not verify X, left it out"). Never present a projection as a fact (cash-on-cash returns were left out for this reason).
 - Advertising rules for property in the UAE (permits, licence numbers, regulator wording) differ by emirate and change - remind the user to check them before posting; do not assert specifics you have not read.
 
+## 2b. When a recording arrives: check what was SAID against the fact base
+Transcribe first, then compare every spoken figure with the sources. Real cases: the hook was recorded as "72 billion in just 48 hours" while the sources say Dh6 billion in 72 hours (the numbers got swapped); a claim "80% of this launch consists of townhouses" and the three scenario values (4.33 / 4.73 / 5.31 million) came from the user's own study and could not be found in public sources; "below 5 million" had no currency spoken. Rule: never put an unverified or contradicted number on screen as a hero. If the recording contradicts a verified source, use the user's own correct take for that line (e.g. the on-camera hook they already recorded) or ask for a re-record, and say so plainly in the hand-over. Numbers that come only from the user's own study are shown with the source "INVESTMENT STUDY"; projections get "MODELLED SCENARIOS · NOT A GUARANTEE". Currency not spoken: show the unit on screen from the source and flag it.
+
 ## 3. The hook (first ~4 s, he is on camera)
 - One sentence, a question or a surprising claim with a **concrete number**: "Why did investors put 6 billion into this project in just 72 hours?"
 - It must be *his* words in *his* take (the face beat). Pick the take whose first word starts clean; cut start ~60 ms before the first word, end after the last word has decayed (`edl_tools.py env`).

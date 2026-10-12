@@ -9,7 +9,7 @@ if '--skip' in sys.argv:
     i = sys.argv.index('--skip'); SKIP = [tuple(map(float, r.split('-'))) for r in sys.argv[i + 1].split(',')]; del sys.argv[i:i + 2]
 d = sys.argv[1]; step = int(sys.argv[2]) if len(sys.argv) > 2 else 5
 tl = json.load(open('timeline.json')); fps = 30
-files = sorted(glob.glob(f'{d}/f_*.png'))[::step]
+files = sorted(glob.glob(f'{d}/f_*.png') + glob.glob(f'{d}/f_*.jpg'))[::step]
 bad = 0
 for f in files:
     k = int(f.split('_')[-1].split('.')[0]); t = k / fps

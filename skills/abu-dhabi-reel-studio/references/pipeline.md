@@ -5,7 +5,7 @@ Contents: 0 requirements, 1 scaffold, 2 prepare voice + footage, 3 words and tim
 ## 0. Requirements
 - `ffmpeg`/`ffprobe`, Node 22 + `playwright` with Chromium (set `PLAYWRIGHT_PATH` / `CHROMIUM_PATH` if not in the usual place), Python 3 with `numpy Pillow faster-whisper` (the ASR model large-v3 downloads on first use, ~3 GB, CPU int8 is fine).
 - Inter fonts are bundled in `scripts/engine/fonts/` (SIL OFL) and loaded by `index.html`.
-- **Disk**: a 50 s reel is ~1500 PNG frames of ~2.4 MB = ~3.6 GB. Keep >= 8 GB free. In the cloud sandbox the writable disk is a fixed allowance: when it is spent, Chromium dies with "Target crashed" and writes blank frames. `df -h .` before rendering; delete `build/frames` of reels already delivered.
+- **Disk**: a 50 s reel is ~1500 PNG frames of ~2.4 MB = ~3.6 GB (JPEG frames with `--fmt jpg`: ~0.7 GB). Keep >= 8 GB free for png. In the cloud sandbox the writable disk is a fixed allowance: when it is spent, Chromium dies with "Target crashed" and writes blank frames. `df -h .` before rendering; delete `build/frames` of reels already delivered.
 - Network: Esri tiles (`server.arcgisonline.com`), OSM Nominatim (outlines), the sites you capture. Behind a proxy use `HTTPS_PROXY` (shot.mjs reads it).
 
 ## 1. Scaffold
@@ -28,7 +28,7 @@ Choose `--hook-start/--hook-end` from the energy envelope: `python3 -I edl_tools
 ## 3. Words and timeline
 1. `python3 -I asr_words.py build/voice48k.wav build/words_raw.json "Proper, Names, Places"` - the prompt biases spelling of names. If the output skips a stretch or drifts into another language (it does on long or mixed-language takes), use `asr_windows.py build/voice48k.wav build/words_raw.json 0-26,25-32,32.5-41` (overlapping windows, English forced).
 2. Write `script.txt` = the words as spoken, figures as `{display|spoken}` (`{6|six}`, `{1,852|one thousand eight hundred and fifty-two}`), punctuation after the closing brace stays attached. Hook words come first. It must match the *recording* word for word (difflib aligns it to the ASR words; the printed "matched N of M" should be ~97%+).
-3. `python3 -I make_timeline.py 2.0` -> `timeline.json` {dur, frames, words:[{t,e,text,chunk}]}. The argument is the silent end card (s) after the voice, used for the chat reply. Caption chunks: <= 3 words, <= 21 chars, break after , . ? ! : . Display tokens with digits are timed from the ASR numerals; spelled-out numbers are slow in speech, so a figure's `e` can be 1.5 s long (that is right).
+3. `python3 -I make_timeline.py 2.0 && python3 -I snap_onsets.py` -> `timeline.json`. `snap_onsets.py` moves word starts that Whisper placed too early after a pause (it often puts the first word of a sentence ~0.3-0.5 s before the sound) to the real speech onset, so captions land on the word; always run it after make_timeline (make_timeline rewrites the file). {dur, frames, words:[{t,e,text,chunk}]}. The argument is the silent end card (s) after the voice, used for the chat reply. Caption chunks: <= 3 words, <= 21 chars, break after , . ? ! : . Display tokens with digits are timed from the ASR numerals; spelled-out numbers are slow in speech, so a figure's `e` can be 1.5 s long (that is right).
 4. Spot-check: `python3 -c "import json;t=json.load(open('timeline.json'));print(' '.join('%s@%.2f'%(w['text'],w['t']) for w in t['words']))"`. These are the anchors for `wt()` in scenes.js.
 
 ## 4. Real material
@@ -47,9 +47,9 @@ Console `404` lines about `logos/` are harmless (typographic fallback).
 
 ## 7. Full render
 ```
-node render.mjs --out build/frames --workers 3 --ss 1.5 --skip
+node render.mjs --out build/frames --workers 4 --ss 1.5 --fmt jpg --skip      # --fmt jpg: ~8 fps and 1/4 of the disk (png: ~2 fps, 2.4 MB/frame); stills/encode.sh/safe_scan handle both
 ```
-Frames = round(timeline.dur x 30) - note `timeline.json.frames` is the *voice* length; the render uses `dur`. ~2 fps with 3-4 workers (about 12 min for 50 s). `--skip` resumes and keeps good frames; a crashed tab is reopened and the frame retried. `--from/--to` render a range - re-render only the affected range after a fix (delete those frames, run with `--skip`). Run long jobs in the background with a PID file and wait with an `until ! kill -0 $(cat pid); do sleep 10; done` loop in a background shell (no foreground `sleep`, no `pkill` patterns).
+Frames = round(timeline.dur x 30) - note `timeline.json.frames` is the *voice* length; the render uses `dur`. png ~2 fps (12 min for 50 s), jpg ~8 fps (6 min for 95 s). `--skip` resumes and keeps good frames; a crashed tab is reopened and the frame retried. `--from/--to` render a range - re-render only the affected range after a fix (delete those frames, run with `--skip`). Run long jobs in the background with a PID file and wait with an `until ! kill -0 $(cat pid); do sleep 10; done` loop in a background shell (no foreground `sleep`, no `pkill` patterns).
 
 ## 8. Audio
 `python3 -I audio.py build/voice48k.wav build/mix.wav` -> voice + very quiet whooshes from `cues.json` (prints stem levels: voice ~ -22, sfx ~ -48 dBFS).

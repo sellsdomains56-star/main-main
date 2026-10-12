@@ -1,5 +1,5 @@
 // Frame renderer: drives headless Chromium through window.draw(t) and saves PNGs.
-//   node render.mjs --out frames --workers 4 [--ss 1] [--from 0 --to 1401]
+//   node render.mjs --out frames --workers 4 [--ss 1] [--from 0 --to 1401] [--fmt jpg] [--skip]
 //   node render.mjs --out stills --stills 0.5,3.2,9.4 [--ss 1]
 import { createRequire } from 'node:module';
 import http from 'node:http';
@@ -17,6 +17,7 @@ const args = Object.fromEntries(process.argv.slice(2).reduce((a, v, i, arr) => (
 const here = path.dirname(fileURLToPath(import.meta.url));
 const TL = JSON.parse(fs.readFileSync(path.join(here, 'timeline.json'), 'utf8'));
 const FPS = TL.fps || 30, DUR = TL.dur, N = Math.round(DUR * FPS);
+const EXT = args.fmt === 'jpg' ? 'jpg' : 'png';                 // --fmt jpg: quality-95 JPEG frames (about 1/4 of the disk and faster); png = lossless
 const ss = +(args.ss || 1), workers = +(args.workers || 4), outDir = path.resolve(args.out || 'frames');
 fs.mkdirSync(outDir, { recursive: true });
 
@@ -30,8 +31,8 @@ await new Promise(r => server.listen(0, '127.0.0.1', r));
 const base = `http://127.0.0.1:${server.address().port}/index.html?ss=${ss}${args.layout ? '&layout=' + args.layout : ''}`;
 
 let jobs;
-if (args.stills) jobs = String(args.stills).split(',').map(s => ({ t: +s, name: `still_${(+s).toFixed(2).padStart(5, '0')}.png` }));
-else { const a = +(args.from ?? 0), b = +(args.to ?? N - 1); jobs = []; for (let f = a; f <= b; f++) jobs.push({ t: f / FPS, name: `f_${String(f).padStart(5, '0')}.png` }); }
+if (args.stills) jobs = String(args.stills).split(',').map(s => ({ t: +s, name: `still_${(+s).toFixed(2).padStart(5, '0')}.${EXT}` }));
+else { const a = +(args.from ?? 0), b = +(args.to ?? N - 1); jobs = []; for (let f = a; f <= b; f++) jobs.push({ t: f / FPS, name: `f_${String(f).padStart(5, '0')}.${EXT}` }); }
 
 async function worker(id, list) {
   let browser = null, page = null;
@@ -46,11 +47,11 @@ async function worker(id, list) {
   await open();
   let done = 0;
   for (const j of list) {
-    if (args.skip && fs.existsSync(path.join(outDir, j.name)) && fs.statSync(path.join(outDir, j.name)).size > 20000) { done++; continue; }   // resume: keep frames already rendered
+    if (args.skip && fs.existsSync(path.join(outDir, j.name)) && fs.statSync(path.join(outDir, j.name)).size > (EXT === 'jpg' ? 8000 : 20000)) { done++; continue; }   // resume: keep frames already rendered
     for (let tries = 0; ; tries++) {
       try {
         await page.evaluate(async t => { await window.prepare(t); window.draw(t); }, j.t);
-        await page.screenshot({ path: path.join(outDir, j.name), type: 'png', clip: { x: 0, y: 0, width: 1080, height: 1920 } }); break;
+        await page.screenshot({ path: path.join(outDir, j.name), type: EXT === 'jpg' ? 'jpeg' : 'png', ...(EXT === 'jpg' ? { quality: 95 } : {}), clip: { x: 0, y: 0, width: 1080, height: 1920 } }); break;
       } catch (e) { if (tries >= 4) throw e; console.error('[retry]', j.name, String(e.message).split('\n')[0]); await new Promise(r => setTimeout(r, 600)); if (/crash|closed|Target/i.test(String(e.message))) await open(); }
     }
     if (++done % 50 === 0) console.log(`worker ${id}: ${done}/${list.length}`);

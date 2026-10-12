@@ -60,7 +60,7 @@ add({ id: 'map', kind: 'sat', a: s1a, b: s1b, cfg: {
 - `ovStamp(...)` as an overlay: a rotated gold-outlined stamp ("ANOTHER 2008?", "OUTDATED").
 
 ## 9. Chat CTA (last scene)
-`sceneChat(t, {head, sub, show, typeA, typeB, send, msg, reply})`: headline ("Price list?"), a message field where `msg` is typed from `typeA` to `typeB`, sent at `send`, answered with `reply`. Type the keyword while he says it; `send` = when he finishes; the end card (the `extra` seconds of make_timeline) shows the answer.
+`sceneChat(t, {head, sub, show, typeA, typeB, send, msg, reply, ph})` (`ph` = field placeholder, e.g. `'Add a comment…'` when the call to action is "write X in the comments"; default `'Message…'`): headline ("Price list?"), a message field where `msg` is typed from `typeA` to `typeB`, sent at `send`, answered with `reply`. Type the keyword while he says it; `send` = when he finishes; the end card (the `extra` seconds of make_timeline) shows the answer.
 
 ## 10. Sound cues
 `cues.push({k: 'wh', t, d: 0.4, g: 0.04, up: true})` whoosh (an element sweeping in); `{k: 'stamp', t}`, `{k: 'pin', t}`, `{k: 'send', t}`; `cut` is added by `add()` at every scene start. 20-35 cues per reel is about right. They are synthesised air sweeps at about -48 dBFS: do not try to make them louder.
