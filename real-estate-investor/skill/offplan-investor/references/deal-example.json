@@ -1,0 +1,5 @@
+{"price": 2000000, "sqft": 1000, "handover_month": 36,
+ "plan": [[0, 400000], [12, 266667], [24, 266667], [35, 266666], [36, 800000]],
+ "fees_pct": 4, "annual_rent": 130000, "service_charge_psf": 14, "vacancy_pct": 8,
+ "growth_pct": 4, "hold_years": 5, "selling_cost_pct": 2,
+ "what_if": {"sell_at_handover": {"hold": 0}, "rent_minus_15pct": {"rent": 110500}}}
