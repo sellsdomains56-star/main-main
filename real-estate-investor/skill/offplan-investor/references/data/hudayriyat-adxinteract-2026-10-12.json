@@ -1,0 +1,40 @@
+{
+  "source": "ADX Interact, Al Hidayriyyat Real Estate Report",
+  "url": "https://adxinteract.com/area/al-hidayriyyat",
+  "retrieved": "2026-10-12",
+  "how": "Single page fetched once; only a robots.txt-allowed aggregate page. Values extracted automatically, not hand-checked. Verify on the page before relying on them.",
+  "period": "2026 (to ~12 Oct)",
+  "headline": {
+    "sales_analysed": 3451, "total_value_aed": 28850000000,
+    "median_psf_aed": 1901, "offplan_share_pct": 100,
+    "offplan_avg_ticket_aed": 8360000, "gross_yield": null,
+    "yoy_price_change_pct_as_published": 324.6
+  },
+  "by_bedrooms": [
+    {"beds": "1", "sales": 249, "median_price_aed": 2340000, "psf_aed": 2340},
+    {"beds": "2", "sales": 337, "median_price_aed": 3680000, "psf_aed": 2250},
+    {"beds": "3", "sales": 497, "median_price_aed": 4230000, "psf_aed": 1924},
+    {"beds": "4", "sales": 804, "median_price_aed": 7370000, "psf_aed": 1927},
+    {"beds": "5", "sales": 711, "median_price_aed": 10130000, "psf_aed": 1755},
+    {"beds": "6+", "sales": 355, "median_price_aed": 21370000, "psf_aed": 1337}
+  ],
+  "top_projects_2026": [
+    {"project": "Hudayriyat Golf Estates - Townhomes", "sales_2026": 650, "sales_2025": null, "median_price_aed": 4930000, "psf_aed": 1924},
+    {"project": "Al Naseem", "sales_2026": 509, "sales_2025": 219, "median_price_aed": 9570000, "psf_aed": 1150},
+    {"project": "Wadeem (Plots)", "sales_2026": 498, "sales_2025": 1369, "median_price_aed": 3350000, "psf_aed": 418},
+    {"project": "Bashayer Residences - Phases 3 and 4", "sales_2026": 319, "sales_2025": null, "median_price_aed": 3550000, "psf_aed": 2325},
+    {"project": "Bashayer Residences", "sales_2026": 309, "sales_2025": null, "median_price_aed": 3440000, "psf_aed": 2171},
+    {"project": "Nawayef East B", "sales_2026": 290, "sales_2025": 197, "median_price_aed": 11670000, "psf_aed": 2330},
+    {"project": "Hudayriyat Golf Estates - Villas", "sales_2026": 221, "sales_2025": null, "median_price_aed": 10400000, "psf_aed": 1823},
+    {"project": "Nawayef West B", "sales_2026": 152, "sales_2025": 84, "median_price_aed": 19560000, "psf_aed": 1818},
+    {"project": "Bashayer Villas - Phase 2", "sales_2026": 147, "sales_2025": 1, "median_price_aed": 7670000, "psf_aed": 1947},
+    {"project": "Bashayer Residences - Phases 5 and 6", "sales_2026": 111, "sales_2025": null, "median_price_aed": 3900000, "psf_aed": 2533}
+  ],
+  "data_quality_flags": [
+    "Bedroom rows sum to 2,953 sales but the page says 3,451 (498 unexplained, possibly plots).",
+    "+324.6% YoY is published but likely distorted by the mix: 2025 was dominated by Wadeem plots at about AED 418/sq ft. Hypothesis only, not confirmed.",
+    "Page says YoY is omitted when the prior base is under 5 sales, yet shows +14600% for a base of 1.",
+    "Unit of the YoY figure is ambiguous (per sq m vs per sq ft).",
+    "No rental yield, rents, developer names, or yearly series on the page."
+  ]
+}
