@@ -1,10 +1,10 @@
-Campaign photos from wepink Brazil's own banners (cropped, then sharpened with a 4K upscale that keeps them as they are).
-Confirm GCC usage rights with the brand before launch. Paths are set in assets/js/data.js → config.photos and featured.looks.
+Photos used on the store. Paths are set in assets/js/data.js → config.photos and featured.looks.
 
+Virginia Fonseca (real photos from wepink Brazil's own campaign banners — confirm GCC usage rights with the brand):
 - virginia-hero.jpg      tall portrait for the home page hero
 - virginia-portrait.jpg  second portrait for the "Created by Virginia Fonseca" section
-- look-onyx.webp         holding VF Onyx Body Splash — "Virginia's picks", Body Splash shop strip, Earn page
-- look-heaven.webp       holding Heaven Pink Eau de Cologne — "Virginia's picks", Perfumes shop strip, Club pop-up
-- look-kits.webp         the body splash kit campaign — "Virginia's picks", Gift Sets shop strip
-- look-elegance.webp     the Elegance set campaign — "Virginia's picks", Hair shop strip, About page
-- campaign.jpg (optional) wide image for the "Made to be noticed" band
+
+campaign/ — the wepink Gulf campaign: 12 editorial images made with Nano Banana Pro (4K) around the real
+products, with an AI model who is not Virginia or any real person. They fill the home page lookbook, the
+"Made to be noticed" band (chess.webp), the top of each shop category, the product pages of the products
+in them, the Earn and About pages and the Club pop-up.

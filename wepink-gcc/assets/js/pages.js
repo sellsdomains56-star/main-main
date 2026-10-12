@@ -106,9 +106,10 @@ window.WP_PAGES = (function () {
   }
   // Campaign looks (data.js → featured.looks) whose product is still in the store.
   const looks = () => (D.featured.looks || []).map((l) => Object.assign({}, l, { p: byId(l.product) })).filter((l) => l.p);
+  const lookOf = (p) => looks().find((l) => l.p === p || (l.also || []).includes(p.id));
   const thumbOf = (p) => p.cutout || p.image || "";
   function looksSection() {
-    const list = looks();
+    const list = looks().filter((l) => l.home);
     if (!list.length) return "";
     return `<section class="section looks" aria-labelledby="looks-title">
         <div class="container">
@@ -719,7 +720,7 @@ window.WP_PAGES = (function () {
         : `<div class="empty-state"><p>${esc(t("shop.empty"))}</p><button class="btn btn-ghost" type="button" data-reset>${esc(t("shop.reset"))}</button></div>`;
       main.querySelectorAll("[data-cat]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cat === s.c)));
       const cc = s.c ? cat(s.c) : null;
-      const look = s.c ? looks().find((l) => l.cat === s.c) : null;
+      const look = s.c ? looks().find((l) => l.cat === s.c && !l.home) || looks().find((l) => l.cat === s.c) : null;
       main.querySelector("#shop-look").innerHTML = look ? lookStrip(look) : "";
       main.querySelector("#shop-title").textContent = cc ? L(cc.name) : t("shop.title");
       document.title = `${cc ? L(cc.name) : t("shop.title")} · wepink ${L(D.config.region)}`;
@@ -829,7 +830,7 @@ window.WP_PAGES = (function () {
       (p.remote || []).slice((p.images || []).length).forEach((src) => shots.push({ cls: "photo", src }));
     }
     // Products from the campaign also show the campaign photo, after their own campaign shots.
-    const look = looks().find((l) => l.p === p);
+    const look = lookOf(p);
     const lookShot = look ? Math.min(shots.length, p.scene ? p.images.length : 1) : -1;
     if (look) shots.splice(lookShot, 0, { cls: "scene look", src: look.photo });
     const related = [

@@ -3580,6 +3580,7 @@ html[lang="ar"] .monogram-name {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 78% 50%;
   z-index: 0;
 }
 .campaign.has-photo::before {
@@ -3589,8 +3590,28 @@ html[lang="ar"] .monogram-name {
   z-index: 1;
   background: linear-gradient(90deg, rgba(14, 3, 8, 0.85), rgba(14, 3, 8, 0.2) 70%);
 }
-[dir="rtl"] .campaign.has-photo::before {
-  background: linear-gradient(270deg, rgba(14, 3, 8, 0.85), rgba(14, 3, 8, 0.2) 70%);
+/* The photo keeps its products on the right, so in Arabic the copy stays on the left too. */
+[dir="rtl"] .campaign.has-photo .campaign-grid {
+  direction: ltr;
+}
+[dir="rtl"] .campaign.has-photo .campaign-copy {
+  direction: rtl;
+  max-width: 520px;
+}
+@media (max-width: 900px) {
+  /* phones: copy on top, the bottles in the lower part of the picture */
+  .campaign.has-photo .campaign-grid {
+    align-items: start;
+    min-height: 800px;
+  }
+  .campaign.has-photo .campaign-img {
+    top: auto;
+    height: 60%;
+    object-position: 80% 50%;
+  }
+  .campaign.has-photo::before {
+    background: linear-gradient(180deg, var(--noir) 0%, var(--noir) 38%, rgba(14, 3, 8, 0.45) 50%, rgba(14, 3, 8, 0) 66%);
+  }
 }
 .campaign-grid {
   position: relative;

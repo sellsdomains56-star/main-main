@@ -35,10 +35,11 @@ window.WP_DATA = (function () {
     photos: {
       virginiaHero: "assets/photos/virginia-hero.jpg", // tall portrait of Virginia Fonseca for the home page hero
       virginiaPortrait: "assets/photos/virginia-portrait.jpg", // second portrait for the "Created by Virginia" section
-      campaign: "", // wide campaign image for the "Made to be noticed" band
-      club: "assets/photos/look-heaven.webp", // the Club pop-up
-      earn: "assets/photos/look-onyx.webp", // Earn with wepink hero
-      about: "assets/photos/look-elegance.webp", // About page
+      // Campaign images (assets/photos/campaign/): an AI model, not Virginia, with the real products.
+      campaign: "assets/photos/campaign/chess.webp", // wide campaign image for the "Made to be noticed" band
+      club: "assets/photos/campaign/satin-vf.webp", // the Club pop-up
+      earn: "assets/photos/campaign/red-stripe.webp", // Earn with wepink hero
+      about: "assets/photos/campaign/golden-hour.webp", // About page
     },
 
     // Referral & ambassador programme (placeholder terms — set with the franchise).
@@ -188,14 +189,23 @@ window.WP_DATA = (function () {
     campaign: ["colonia-ruby-rhodolite-100-ml", "colonia-ghadan-100-ml", "colonia-celebrate-life-100-ml"],
     giftSet: "set-kit-linha-vf-golden",
     about: ["splash-vanilla-cuddle-200-ml", "colonia-vf-golden-75-ml", "colonia-ghadan-100-ml", "splash-king-blue-deep-200-ml"],
-    // "Virginia's picks": campaign photos from wepink's own banners, each with the
-    // product she holds in it. They also appear on that product's page and as a
-    // strip at the top of its category in the shop. `pos` frames the photo in cards.
+    // The campaign: editorial images (Nano Banana Pro, 4K) built around real products.
+    // `home` ones fill the home page lookbook; the others head their category in the
+    // shop (`cat`). Every product in a picture (`product`, then `also`) shows it on
+    // its page with an "As seen in the campaign" badge. `pos` frames it in cards.
     looks: [
-      { photo: "assets/photos/look-onyx.webp", product: "splash-vf-onyx-200-ml", cat: "body-splash", pos: "50% 12%", title: { en: "Her everyday mist", ar: "رذاذها اليومي" } },
-      { photo: "assets/photos/look-heaven.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "50% 58%", title: { en: "Her signature pink", ar: "عطرها الوردي المميّز" } },
-      { photo: "assets/photos/look-kits.webp", product: "set-kit-body-splash-vf-golden-fatal-black-for-her-eternal-heaven-santal", cat: "gift-sets", pos: "50% 10%", title: { en: "Her night-out four", ar: "رباعيّتها للسهرة" } },
-      { photo: "assets/photos/look-elegance.webp", product: "haircare-booster-repair-oleo-capilar-30-ml", cat: "hair", pos: "50% 10%", title: { en: "Her hair secret", ar: "سرّ شعرها" } },
+      { photo: "assets/photos/campaign/satin-vf.webp", product: "colonia-vf-75-ml", cat: "perfume", home: true, pos: "50% 30%", title: { en: "Wrapped in pink", ar: "ملفوفة بالوردي" } },
+      { photo: "assets/photos/campaign/red-studio.webp", product: "colonia-fatal-black-for-her-100-ml", cat: "perfume", home: true, pos: "60% 50%", title: { en: "Power, bottled", ar: "القوة في زجاجة" } },
+      { photo: "assets/photos/campaign/sit-golden.webp", product: "splash-vf-golden-200-ml", cat: "body-splash", home: true, pos: "50% 40%", title: { en: "Golden, all day", ar: "ذهبية طوال اليوم" } },
+      { photo: "assets/photos/campaign/crown.webp", product: "colonia-liberte-dore-100-ml", cat: "perfume", home: true, pos: "50% 30%", title: { en: "Crowned in gold", ar: "متوّجة بالذهب" } },
+      { photo: "assets/photos/campaign/giant-heaven.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "50% 45%", title: { en: "Bigger than life", ar: "أكبر من الحياة" } },
+      { photo: "assets/photos/campaign/peach.webp", product: "splash-perfect-pear-peach-200-ml", cat: "body-splash", title: { en: "Squeeze the day", ar: "اعتصري يومكِ" } },
+      { photo: "assets/photos/campaign/fruit-creams.webp", product: "cream-vf-golden-200-ml", also: ["cream-ruby-rhodolite-200-ml", "cream-obsessed-200-ml"], cat: "body-care", title: { en: "Freshly stacked", ar: "طبقات من الانتعاش" } },
+      { photo: "assets/photos/campaign/torn-lip.webp", product: "makeup-lip-oil-jujuba-3-5-g", cat: "makeup", title: { en: "Tear into colour", ar: "انطلقي نحو اللون" } },
+      { photo: "assets/photos/campaign/beach.webp", product: "skincare-protetor-solar-fps-50-suncare-30ml-we-pink-30-ml", cat: "skincare", title: { en: "Sun-kissed, protected", ar: "مشرقة ومحميّة" } },
+      { photo: "assets/photos/campaign/chess.webp", product: "colonia-king-blue-deep-100-ml", also: ["colonia-ruby-rhodolite-100-ml"], cat: "men", title: { en: "Make your move", ar: "حان دورك" } },
+      { photo: "assets/photos/campaign/golden-hour.webp", product: "colonia-liberte-nuit-100-ml", cat: "perfume", title: { en: "After golden hour", ar: "بعد الساعة الذهبية" } },
+      { photo: "assets/photos/campaign/red-stripe.webp", product: "colonia-red-obsidian-100-ml", cat: "perfume", title: { en: "Seen in red", ar: "حضورٌ بالأحمر" } },
     ],
     categories: {
       perfume: "colonia-vf-75-ml",
