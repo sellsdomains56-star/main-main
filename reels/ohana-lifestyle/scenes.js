@@ -1,7 +1,7 @@
 'use strict';
 // ---------------------------------------------------------------------------
 // Scenes for "Ohana townhouses - why townhouses" (Abu Dhabi look + real material). 94.6 s.
-// FACE (him, on camera) 0-4.2 = his hook; then one hero per beat: satellite flight to the site, brochure picture + counter, price bars,
+// Voice only (no on-camera beat). One hero per beat: satellite flight to the site, brochure picture + counter, price bars,
 // real news pages as animated cards with marker highlights (Khaleej Times, WAM, Disney, Zawya, Construction Business News ME),
 // a reason chain, an 80% gauge, three scenario bars from the investment study, payment timeline, two gauges, a comment call-to-action.
 // Everything stays inside SAFE: content y 330-1270, x 130-950; captions at y~1372.
@@ -13,7 +13,6 @@ function buildScenes() {
 
   // ---- key times (from the spoken words)
   const K = {
-    six: tw(/^6$/, 0, 1.06), n72: tw(/^72$/, 0, 3.14),
     ohana: tw(/^OHANA$/, 0, 4.96), th: tw(/^TOWNHOUSES$/, 0, 5.28), diff: tw(/^DIFFERENT\.$/, 0, 5.98),
     two: tw(/^TWO-BEDROOM$/, 0, 6.9), fig1: tw(/^1,852/, 0, 8.28), sqft: tw(/^SQUARE$/, 0, 9.98),
     newest: tw(/^NEWEST$/, 0, 10.84), orchids: tw(/^ORCHIDS,$/, 0, 11.94), fig2: tw(/^2,470/, 0, 14.87), so: tw(/^SO$/, 0, 16.86), pct25: tw(/^25%$/, 0, 18.04),
@@ -32,19 +31,18 @@ function buildScenes() {
     uae: tw(/^UAE$/, 0, 83.12), pct30: tw(/^30%/, 0, 84.14), else: tw(/^ELSE$/, 0, 86.04), pct35: tw(/^35%/, 0, 86.54),
     if: tw(/^IF$/, 0, 87.34), study3: tw(/^STUDY$/, 1, 89.42), comments: tw(/^COMMENTS$/, 0, 90.0), report: tw(/^REPORT\.$/, 0, 91.44),
   };
-  const HOOK_END = 4.17;
-  const FACE_SEGS = [[0, HOOK_END]], PUNCHES = [[K.six, 0.06], [K.n72, 0.06]];
+  const FACE_SEGS = [], PUNCHES = [];                                   // voice only: no on-camera beat in this reel
   const IMAGES = { th_a: 'assets/th_a.jpg', cbn: 'assets/cbn.png', kt6: 'assets/kt6.png', wam: 'assets/orchids.png', disney: 'assets/disney.png', phase2: 'assets/phase2.png' };
   const X0 = SAFE.x0;
 
   // ---- 1. satellite flight to the site on Yas Canal, Yas Island -------------------------------------------------------------------------
-  const s1a = HOOK_END, s1b = K.two - 0.06;
+  const s1a = 0, s1b = K.two - 0.06;
   SAT_SCENES.map = { a: s1a, b: s1b + 0.6, veil: 'top', keys: [[0, 54.605, 24.474, 12.55], [1.5, 54.616, 24.4725, 13.45], [(s1b - s1a) + 0.4, 54.6222, 24.4715, 14.35]] };
   add({ id: 'map', kind: 'sat', a: s1a, b: s1b, cfg: {
-    outlines: [{ key: 'yas', t0: s1a + 0.15, t1: K.ohana + 0.55 }],
+    outlines: [{ key: 'yas', t0: s1a + 0.5, t1: K.ohana + 0.55 }],
     pins: [{ lon: 54.6220, lat: 24.4720, t: K.ohana, title: 'OHANA', sub: 'YAS CANAL · YAS ISLAND' }, { lon: 54.6074, lat: 24.4837, t: K.diff + 0.15, title: 'FERRARI WORLD' }],
     top(t) {
-      bw(t, 'YAS ISLAND · ABU DHABI', 375, s1a + 0.1, { size: 42, ls: 6, color: C.dim, w: 700 });
+      bw(t, 'YAS ISLAND · ABU DHABI', 375, s1a + 0.3, { size: 42, ls: 6, color: C.dim, w: 700 });
       bw(t, 'OHANA TOWNHOUSES', 455, K.ohana - 0.1, { size: 74, ls: 2, hl: true });
       bw(t, 'ARE DIFFERENT', 535, K.diff - 0.1, { size: 62, ls: 4, color: C.gold });
     } } });
@@ -235,8 +233,6 @@ function buildScenes() {
   } });
   cues.push({ k: 'send', t: send });
 
-  // ---- overlay on his face beat: the hook, "6 BILLION" / "IN 72 HOURS" slamming in as he says them -----------------------------------------------------------
-  const OVERLAYS = [ovHook([['6 BILLION', K.six - 0.05, 'box'], ['IN 72 HOURS', K.n72 - 0.05, 'ivory']], { out: HOOK_END - 0.2, size: 100, y: 400 })];
-  cues.push({ k: 'stamp', t: K.six - 0.05 }, { k: 'stamp', t: K.n72 - 0.05 });
+  const OVERLAYS = [];
   return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, PIV: [540, 1500], FOOT_MAX: 124 };
 }
