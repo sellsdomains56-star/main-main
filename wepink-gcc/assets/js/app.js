@@ -466,7 +466,7 @@ window.WP = (function () {
 
       <div class="layer modal modal-center modal-club" id="layer-club" role="dialog" aria-modal="true" aria-labelledby="club-title" hidden>
         <div class="club-art" aria-hidden="true">
-          ${D.config.photos.virginiaPortrait ? `<img class="club-photo" src="${esc(D.config.photos.virginiaPortrait)}" alt="" loading="lazy">` : ""}
+          ${D.config.photos.club || D.config.photos.virginiaPortrait ? `<img class="club-photo" src="${esc(D.config.photos.club || D.config.photos.virginiaPortrait)}" alt="" loading="lazy">` : ""}
           <img src="assets/brand/logo-white.svg" alt="" width="120" height="35">
           <span class="club-glow"></span>
           <ul class="club-perks">

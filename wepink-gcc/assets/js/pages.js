@@ -104,6 +104,49 @@ window.WP_PAGES = (function () {
     const src = D.config.photos && D.config.photos[key];
     return src ? `<img class="${cls || ""}" src="${esc(src)}" alt="${esc(alt)}" loading="${key === "virginiaHero" ? "eager" : "lazy"}" decoding="async">` : "";
   }
+  // Campaign looks (data.js → featured.looks) whose product is still in the store.
+  const looks = () => (D.featured.looks || []).map((l) => Object.assign({}, l, { p: byId(l.product) })).filter((l) => l.p);
+  const thumbOf = (p) => p.cutout || p.image || "";
+  function looksSection() {
+    const list = looks();
+    if (!list.length) return "";
+    return `<section class="section looks" aria-labelledby="looks-title">
+        <div class="container">
+          <div class="looks-head" data-reveal>
+            <p class="eyebrow">${icon("sparkle")}${esc(t("looks.eyebrow"))}</p>
+            <h2 id="looks-title" class="h2">${esc(t("looks.title"))}</h2>
+            <p class="lead">${esc(t("looks.lead"))}</p>
+          </div>
+          <div class="looks-grid">
+            ${list
+              .map(
+                (l, i) => `<a class="look" href="product.html?id=${l.p.id}" data-reveal style="--d:${i * 90}ms">
+              <img class="look-img" src="${esc(l.photo)}" alt="${esc(L(l.title))}" loading="lazy" decoding="async"${l.pos ? ` style="object-position:${esc(l.pos)}"` : ""}>
+              <span class="look-shade" aria-hidden="true"></span>
+              <span class="look-num" aria-hidden="true">0${i + 1}</span>
+              <span class="look-copy">
+                <span class="look-title">${esc(L(l.title))}</span>
+                <span class="look-product">
+                  ${thumbOf(l.p) ? `<img class="look-thumb" src="${esc(thumbOf(l.p))}" alt="" loading="lazy">` : ""}
+                  <span class="look-meta"><strong>${esc(fullName(l.p))}</strong><span>${esc(money(priceOf(l.p)))}</span></span>
+                  <span class="look-go">${icon("arrow", "flip")}</span>
+                </span>
+              </span>
+            </a>`
+              )
+              .join("")}
+          </div>
+        </div>
+      </section>`;
+  }
+  function lookStrip(l) {
+    return `<a class="look-strip" href="product.html?id=${l.p.id}">
+        <img class="look-strip-img" src="${esc(l.photo)}" alt="" loading="lazy">
+        <span class="look-strip-copy"><span class="eyebrow">${icon("sparkle")}${esc(t("looks.pick"))}</span><strong>${esc(fullName(l.p))}</strong><span class="muted">${esc(L(l.title))} · ${esc(money(priceOf(l.p)))}</span></span>
+        ${thumbOf(l.p) ? `<img class="look-strip-thumb" src="${esc(thumbOf(l.p))}" alt="" loading="lazy">` : ""}
+        <span class="btn btn-primary look-strip-cta">${esc(t("looks.shop"))}${icon("arrow", "flip")}</span>
+      </a>`;
+  }
 
   /* ---------------- home ---------------- */
   function home(main) {
@@ -239,6 +282,8 @@ window.WP_PAGES = (function () {
           </div>
         </div>
       </section>
+
+      ${looksSection()}
 
       <section class="section ritual" aria-labelledby="ritual-title">
         <div class="container">
@@ -486,7 +531,10 @@ window.WP_PAGES = (function () {
               <a class="btn btn-glass btn-lg" href="#calc" data-jump="calc">${esc(t("earn.ctaCalc"))}</a>
             </div>
           </div>
-          ${ambassadorCard({ code: amb ? amb.code : "YOURNAME" + R.friendDiscountPct, tier: tiers[tiers.length - 1] })}
+          <div class="earn-visual${D.config.photos.earn ? " has-photo" : ""}">
+            ${D.config.photos.earn ? `<figure class="portrait-arch earn-arch">${photo("earn", "")}</figure>` : ""}
+            ${ambassadorCard({ code: amb ? amb.code : "YOURNAME" + R.friendDiscountPct, tier: tiers[tiers.length - 1] })}
+          </div>
         </div>
       </section>
 
@@ -671,6 +719,8 @@ window.WP_PAGES = (function () {
         : `<div class="empty-state"><p>${esc(t("shop.empty"))}</p><button class="btn btn-ghost" type="button" data-reset>${esc(t("shop.reset"))}</button></div>`;
       main.querySelectorAll("[data-cat]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cat === s.c)));
       const cc = s.c ? cat(s.c) : null;
+      const look = s.c ? looks().find((l) => l.cat === s.c) : null;
+      main.querySelector("#shop-look").innerHTML = look ? lookStrip(look) : "";
       main.querySelector("#shop-title").textContent = cc ? L(cc.name) : t("shop.title");
       document.title = `${cc ? L(cc.name) : t("shop.title")} · wepink ${L(D.config.region)}`;
       main.querySelector("#shop-lead").textContent = cc ? L(cc.blurb) : t("shop.lead");
@@ -713,6 +763,7 @@ window.WP_PAGES = (function () {
         </div>
       </div>
       <div class="container">
+        <div id="shop-look"></div>
         <p class="muted small shop-count" id="shop-count" aria-live="polite"></p>
         <div class="product-grid" id="shop-grid"></div>
         <div class="shop-more" id="shop-more"></div>
@@ -777,6 +828,10 @@ window.WP_PAGES = (function () {
       (p.images || []).forEach((src) => shots.push({ cls: "photo", src }));
       (p.remote || []).slice((p.images || []).length).forEach((src) => shots.push({ cls: "photo", src }));
     }
+    // Products from the campaign also show the campaign photo, after their own campaign shots.
+    const look = looks().find((l) => l.p === p);
+    const lookShot = look ? Math.min(shots.length, p.scene ? p.images.length : 1) : -1;
+    if (look) shots.splice(lookShot, 0, { cls: "scene look", src: look.photo });
     const related = [
       ...D.products.filter((x) => x !== p && x.line.split(" ")[0] === p.line.split(" ")[0]),
       ...D.products.filter((x) => x !== p && x.family === p.family),
@@ -811,6 +866,7 @@ window.WP_PAGES = (function () {
         <div class="pdp-info">
           <p class="card-type">${esc(L(p.typeName))}${p.family ? ` · ${esc(L(D.families[p.family]))}` : ""}</p>
           <h1 class="h1 pdp-title">${esc(pname(p))}</h1>
+          ${look ? `<button class="pdp-pick" type="button" data-shot="${lookShot}">${look.photo ? `<img src="${esc(look.photo)}" alt="" loading="lazy">` : ""}<span><strong>${esc(t("looks.pick"))}</strong>${esc(t("looks.seen"))}</span></button>` : ""}
           ${p.tagline && L(p.tagline) ? `<p class="pdp-tagline">${esc(L(p.tagline))}</p>` : ""}
           <p class="pdp-size">${esc(sizeText(p))}</p>
           <div class="pdp-price">${priceHTML(p)}</div>
@@ -862,7 +918,7 @@ window.WP_PAGES = (function () {
       b.addEventListener("click", () => {
         const sh = shots[+b.dataset.shot];
         main.querySelector("#pdp-stage").innerHTML = `<img class="${sh.cls}" src="${esc(sh.src)}" alt="">`;
-        main.querySelectorAll("[data-shot]").forEach((x) => x.classList.toggle("is-on", x === b));
+        main.querySelectorAll(".pdp-thumb[data-shot]").forEach((x) => x.classList.toggle("is-on", x.dataset.shot === b.dataset.shot));
       })
     );
     const qtyEl = main.querySelector("[data-qty-value]");
@@ -1030,9 +1086,16 @@ window.WP_PAGES = (function () {
             <p class="muted">${esc(t("about.p2"))}</p>
             <a class="btn btn-primary btn-lg" href="shop.html">${esc(t("about.cta"))}${icon("arrow", "flip")}</a>
           </div>
-          <div class="about-visual" aria-hidden="true">
+          ${
+            D.config.photos.about
+              ? `<div class="about-visual has-photo" aria-hidden="true">
+            <figure class="about-photo">${photo("about", "")}</figure>
+            ${D.featured.about.slice(0, 2).map(pick).map((p) => `<div class="about-tile" style="--c:${p.color};--c2:${p.color2}">${W.art.art(p, { stage: true })}</div>`).join("")}
+          </div>`
+              : `<div class="about-visual" aria-hidden="true">
             ${D.featured.about.map(pick).map((p, i) => `<div class="about-tile t${i + 1}" style="--c:${p.color};--c2:${p.color2}">${W.art.art(p, { stage: true })}</div>`).join("")}
-          </div>
+          </div>`
+          }
         </div>
       </section>
       <section class="section section-tint">

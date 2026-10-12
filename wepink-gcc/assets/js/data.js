@@ -36,6 +36,9 @@ window.WP_DATA = (function () {
       virginiaHero: "assets/photos/virginia-hero.jpg", // tall portrait of Virginia Fonseca for the home page hero
       virginiaPortrait: "assets/photos/virginia-portrait.jpg", // second portrait for the "Created by Virginia" section
       campaign: "", // wide campaign image for the "Made to be noticed" band
+      club: "assets/photos/look-heaven.webp", // the Club pop-up
+      earn: "assets/photos/look-onyx.webp", // Earn with wepink hero
+      about: "assets/photos/look-elegance.webp", // About page
     },
 
     // Referral & ambassador programme (placeholder terms — set with the franchise).
@@ -185,6 +188,15 @@ window.WP_DATA = (function () {
     campaign: ["colonia-ruby-rhodolite-100-ml", "colonia-ghadan-100-ml", "colonia-celebrate-life-100-ml"],
     giftSet: "set-kit-linha-vf-golden",
     about: ["splash-vanilla-cuddle-200-ml", "colonia-vf-golden-75-ml", "colonia-ghadan-100-ml", "splash-king-blue-deep-200-ml"],
+    // "Virginia's picks": campaign photos from wepink's own banners, each with the
+    // product she holds in it. They also appear on that product's page and as a
+    // strip at the top of its category in the shop. `pos` frames the photo in cards.
+    looks: [
+      { photo: "assets/photos/look-onyx.webp", product: "splash-vf-onyx-200-ml", cat: "body-splash", pos: "50% 12%", title: { en: "Her everyday mist", ar: "رذاذها اليومي" } },
+      { photo: "assets/photos/look-heaven.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "50% 58%", title: { en: "Her signature pink", ar: "عطرها الوردي المميّز" } },
+      { photo: "assets/photos/look-kits.webp", product: "set-kit-body-splash-vf-golden-fatal-black-for-her-eternal-heaven-santal", cat: "gift-sets", pos: "50% 10%", title: { en: "Her night-out four", ar: "رباعيّتها للسهرة" } },
+      { photo: "assets/photos/look-elegance.webp", product: "haircare-booster-repair-oleo-capilar-30-ml", cat: "hair", pos: "50% 10%", title: { en: "Her hair secret", ar: "سرّ شعرها" } },
+    ],
     categories: {
       perfume: "colonia-vf-75-ml",
       "body-splash": "splash-celebrate-life-200-ml",

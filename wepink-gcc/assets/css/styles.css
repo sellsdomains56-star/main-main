@@ -4985,3 +4985,325 @@ html[lang="ar"] .pdp-tagline {
 .icon-card:hover .icon-media img.scene {
   transform: scale(1.045);
 }
+
+/* ---------- Virginia's picks: campaign photos with the product in them ---------- */
+.looks-head {
+  max-width: 640px;
+  margin-bottom: 36px;
+}
+.looks-head .eyebrow,
+.look-strip-copy .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--pink);
+}
+.looks-head .eyebrow .icon,
+.look-strip-copy .eyebrow .icon {
+  width: 15px;
+  height: 15px;
+}
+.looks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.look {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4.4;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background: var(--wine);
+  box-shadow: 0 30px 60px -30px rgba(120, 0, 60, 0.55);
+}
+.look-img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 10%;
+  transition: transform 0.9s var(--ease);
+}
+.look:hover .look-img {
+  transform: scale(1.06);
+}
+.look-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(14, 3, 8, 0.3), transparent 20%), linear-gradient(180deg, rgba(14, 3, 8, 0) 42%, rgba(14, 3, 8, 0.85) 100%), linear-gradient(0deg, rgba(255, 46, 147, 0.25), transparent 38%);
+}
+.look-num {
+  position: absolute;
+  top: 16px;
+  inset-inline-start: 18px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 30px;
+  line-height: 1;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+.look-copy {
+  position: absolute;
+  inset-inline: 12px;
+  bottom: 12px;
+  display: grid;
+  gap: 10px;
+}
+.look-title {
+  padding-inline: 6px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(21px, 1.8vw, 27px);
+  line-height: 1.1;
+}
+.look-product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: background 0.3s var(--ease);
+}
+.look:hover .look-product {
+  background: rgba(255, 255, 255, 0.24);
+}
+.look-thumb {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 3px;
+  border-radius: 11px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.92);
+}
+.look-meta {
+  min-width: 0;
+  display: grid;
+  font-size: 12.5px;
+  line-height: 1.3;
+}
+.look-meta strong {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.look-meta span {
+  opacity: 0.85;
+}
+.look-go {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-inline-start: auto;
+  border-radius: 50%;
+  background: var(--hot);
+}
+.look-go .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* shop: "Virginia's pick" strip at the top of a category */
+.look-strip {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 4px 0 22px;
+  padding: 10px 16px 10px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: linear-gradient(110deg, var(--blush), var(--white) 72%);
+  transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.look-strip:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+.look-strip-img {
+  flex: none;
+  width: 84px;
+  height: 106px;
+  border-radius: 999px 999px 16px 16px;
+  object-fit: cover;
+  object-position: 50% 10%;
+}
+.look-strip-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.look-strip-copy .eyebrow {
+  margin: 0;
+}
+.look-strip-copy strong {
+  font-size: 18px;
+}
+.look-strip-thumb {
+  flex: none;
+  width: 70px;
+  height: 70px;
+  margin-inline-start: auto;
+  object-fit: contain;
+}
+.look-strip-cta {
+  flex: none;
+}
+
+/* product page: "Virginia's pick" */
+.pdp-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2px 0 8px;
+  padding: 4px 16px 4px 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--blush);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  text-align: start;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.pdp-pick:hover {
+  background: #ffd3e6;
+}
+.pdp-pick img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 8%;
+}
+.pdp-pick span {
+  display: grid;
+  line-height: 1.3;
+}
+.pdp-pick strong {
+  color: var(--pink);
+}
+/* the whole campaign photo, face and product, on the product's tint */
+.pdp-stage img.look {
+  object-fit: contain;
+}
+.pdp-thumb img.look {
+  object-position: 50% 12%;
+}
+
+/* earn: campaign photo behind the ambassador card */
+.earn-visual.has-photo {
+  position: relative;
+  display: grid;
+  justify-items: end;
+}
+.earn-arch {
+  width: min(78%, 420px);
+  margin: 0;
+}
+.earn-arch img {
+  object-position: 50% 8%;
+}
+.earn-visual.has-photo .amb-card-wrap {
+  position: absolute;
+  z-index: 2;
+  inset-inline-start: 0;
+  bottom: 7%;
+  width: 72%;
+  padding: 0;
+}
+.earn-visual.has-photo .amb-card {
+  width: 100%;
+}
+.earn-visual.has-photo .amb-ping.p2 {
+  top: -30px;
+  bottom: auto;
+  inset-inline-start: 8%;
+}
+
+/* about: campaign photo with two products */
+.about-visual.has-photo {
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+.about-photo {
+  grid-row: span 2;
+  margin: 0;
+  aspect-ratio: 3 / 4.3;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: 0 40px 80px -40px rgba(120, 0, 60, 0.55);
+}
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 12%;
+}
+.about-visual.has-photo .about-tile {
+  aspect-ratio: auto;
+  height: 100%;
+}
+
+@media (max-width: 1180px) {
+  .looks-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .earn-visual.has-photo {
+    justify-items: center;
+    padding-bottom: 40px;
+  }
+  .earn-arch {
+    width: min(74%, 360px);
+  }
+  .earn-visual.has-photo .amb-card-wrap {
+    inset-inline: 0;
+    bottom: 0;
+    width: min(86%, 380px);
+    margin-inline: auto;
+  }
+}
+@media (max-width: 640px) {
+  .looks-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .looks-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .look {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+  .look-strip {
+    gap: 14px;
+  }
+  .look-strip-img {
+    width: 64px;
+    height: 82px;
+  }
+  .look-strip-thumb,
+  .look-strip-cta {
+    display: none;
+  }
+}
