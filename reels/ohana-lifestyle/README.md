@@ -5,21 +5,21 @@ Voice: the supplied recording `d447e240-1y32uw_mp4.mp4` (90.4 s, audio only), cl
 
 | Time | What happens |
 |------|--------------|
-| 0 - 4.9 | satellite flight over Yas Island, outline + pin OHANA (Yas Canal), Ferrari World for orientation; captions only for the opening line |
-| 4.9 - 8.8 | brochure picture + count-up **1,852** per sq ft (two-bedroom townhouse) |
-| 8.8 - 17 | bars: Ohana vs The Orchids (approx. 2,470), dashed gap **25% cheaper** |
-| 17 - 21 | even cheaper than the average luxury apartment on Yas (2,393) |
-| 21 - 26.3 | but why townhouses? recent townhouse launches on Yas have been limited |
-| 26.3 - 30 | strong demand (Khaleej Times: Dh6 billion in 72 hours, marker) + selling out within days (WAM: The Orchids townhouses sold out, AED 680 million, marker) |
-| 30 - 36.3 | lower entry price than villas -> wider pool of buyers -> (potentially) easier resale |
-| 36.3 - 41.5 | previous launches = villas (struck) / Ohana phase 2 is different (Zawya press release, marker on the unit types) |
-| 41.5 - 47 | **80%** gauge: townhouses; many below 5 million |
-| 47 - 51 | Disney on Yas Island (Disney's own announcement, marker on "Yas Island") |
-| 51 - 56.5 | investment study, three scenarios, 2-bedroom townhouse, handover 2029 |
-| 56.5 - 70.5 | scenario bars 4.33 / 4.73 / 5.31 million (labelled "modelled scenarios - not a guarantee") |
-| 70.5 - 76.5 | Emirati Broker Program (Construction Business News ME, markers on first access / bookings at launches) |
-| 76.5 - 81 | payment plan: 5% every six months, the rest at handover 2029 |
-| 81 - 85.5 | UAE nationals 30% / everyone else 35% before handover |
+| 0 - 5.1 | satellite flight over Yas Island, outline + pin OHANA (Yas Canal), Ferrari World for orientation; captions only for the opening line |
+| 5.1 - 9.0 | brochure picture + count-up **1,852** per sq ft (two-bedroom townhouse) |
+| 9.0 - 17.8 | bars: Ohana vs The Orchids (approx. 2,470), dashed gap **25% cheaper** |
+| 17.8 - 21.8 | even cheaper than the average luxury apartment on Yas (2,393) |
+| 21.8 - 26.7 | but why townhouses? recent townhouse launches on Yas have been limited |
+| 26.7 - 30.3 | strong demand (Khaleej Times: Dh6 billion in 72 hours, marker) + selling out within days (WAM: The Orchids townhouses sold out, AED 680 million, marker) |
+| 30.3 - 37.0 | lower entry price than villas -> wider pool of buyers -> (potentially) easier resale |
+| 37.0 - 42.1 | previous launches = villas (struck) / Ohana phase 2 is different (Zawya press release, marker on the unit types) |
+| 42.1 - 47.3 | **80%** gauge: townhouses; many below 5 million |
+| 47.3 - 51.1 | Disney on Yas Island (Disney's own announcement, marker on "Yas Island") |
+| 51.1 - 57.2 | investment study, three scenarios, 2-bedroom townhouse, handover 2029 |
+| 57.2 - 71.0 | scenario bars 4.33 / 4.73 / 5.31 million (labelled "modelled scenarios - not a guarantee") |
+| 71.0 - 77.1 | Emirati Broker Program (Construction Business News ME, markers on first access / bookings at launches) |
+| 77.1 - 81.3 | payment plan: 5% every six months, the rest at handover 2029 |
+| 81.3 - 85.5 | UAE nationals 30% / everyone else 35% before handover |
 | 85.5 - 92.8 | call to action: "study" typed into a comment field, answered "Full report" |
 
 ## Facts and caveats
