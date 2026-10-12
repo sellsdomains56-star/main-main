@@ -216,9 +216,32 @@ window.WP = (function () {
     leaf: '<path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19 13 11"/>',
     heart: '<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/>',
     user: '<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-4 4-6 7.5-6s6.3 2 7.5 6"/>',
+    moon: '<path d="M19.5 14.6A7.8 7.8 0 0 1 9.4 4.5a7.8 7.8 0 1 0 10.1 10.1Z"/>',
+    sun: '<circle cx="12" cy="12" r="3.8"/><path d="M12 2.8v2M12 19.2v2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M2.8 12h2M19.2 12h2M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"/>',
   };
   function icon(name, cls) {
     return `<svg class="icon ${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${P[name] || ""}</svg>`;
+  }
+
+  /* ---------- black / white ----------
+   * The page head sets data-tone before first paint (saved choice, else the
+   * device's dark/light setting); this keeps the buttons and the choice in step. */
+  const tone = {
+    get: () => (document.documentElement.dataset.tone === "noir" ? "noir" : "blanc"),
+    set(v) {
+      const html = document.documentElement;
+      html.classList.add("tone-shift");
+      html.dataset.tone = v;
+      store.set("tone", v);
+      document.querySelectorAll("[data-tone-toggle]").forEach((b) => (b.outerHTML = toneButton(b.dataset.cls, b.hasAttribute("data-labelled"))));
+      clearTimeout(tone.timer);
+      tone.timer = setTimeout(() => html.classList.remove("tone-shift"), 500);
+    },
+  };
+  function toneButton(cls, labelled) {
+    const noir = tone.get() === "noir";
+    const label = t(noir ? "nav.toWhite" : "nav.toBlack");
+    return `<button class="${cls}" type="button" data-tone-toggle data-cls="${cls}"${labelled ? " data-labelled" : ""} aria-label="${esc(label)}" title="${esc(label)}">${icon(noir ? "sun" : "moon")}${labelled ? `<span>${esc(t(noir ? "nav.white" : "nav.black"))}</span>` : ""}</button>`;
   }
 
   /* ---------- product UI ---------- */
@@ -313,9 +336,10 @@ window.WP = (function () {
           </a>
           <div class="header-end">
             <button class="chip-btn region-btn" type="button" data-open="region" aria-label="${esc(t("nav.region"))}: ${esc(L(c.name))}">
-              ${icon("globe")}<span>${esc(L(c.short))} · ${esc(c.symbol[state.lang])}</span>
+              ${icon("globe")}<span class="rb-code">${esc(L(c.short))}</span><span class="rb-cur">${esc(c.symbol[state.lang])}</span>
             </button>
             <button class="chip-btn lang-btn" type="button" data-lang-toggle lang="${state.lang === "ar" ? "en" : "ar"}" aria-label="${esc(t("nav.languageLabel"))}"><span class="lang-full">${esc(t("nav.language"))}</span><span class="lang-short" aria-hidden="true">${state.lang === "ar" ? "EN" : "ع"}</span></button>
+            ${toneButton("icon-btn tone-btn")}
             <button class="icon-btn search-end" type="button" data-open="search" aria-label="${esc(t("nav.search"))}">${icon("search")}</button>
             ${SYNC.live ? accountButton() : ""}
             <button class="icon-btn bag-btn" type="button" data-open="bag" aria-label="${esc(t("nav.bag"))}">
@@ -423,6 +447,7 @@ window.WP = (function () {
         <div class="menu-foot">
           <button class="chip-btn" type="button" data-open="region">${icon("globe")}<span>${esc(L(c.name))} · ${esc(c.currency)}</span></button>
           <button class="chip-btn" type="button" data-lang-toggle lang="${state.lang === "ar" ? "en" : "ar"}">${esc(t("nav.language"))}</button>
+          ${toneButton("chip-btn", true)}
         </div>
       </aside>
 
@@ -975,7 +1000,7 @@ window.WP = (function () {
       });
     }
     document.addEventListener("click", (e) => {
-      const el = e.target.closest("[data-open],[data-close],[data-add],[data-qty],[data-remove],[data-lang-toggle],[data-country],[data-search],[data-quiz],[data-quiz-restart]");
+      const el = e.target.closest("[data-open],[data-close],[data-add],[data-qty],[data-remove],[data-lang-toggle],[data-tone-toggle],[data-country],[data-search],[data-quiz],[data-quiz-restart]");
       if (!el) return;
       if (el.hasAttribute("data-open")) {
         e.preventDefault();
@@ -996,6 +1021,8 @@ window.WP = (function () {
         bag.setQty(el.getAttribute("data-remove"), 0);
       } else if (el.hasAttribute("data-lang-toggle")) {
         setLang(state.lang === "ar" ? "en" : "ar");
+      } else if (el.hasAttribute("data-tone-toggle")) {
+        tone.set(tone.get() === "noir" ? "blanc" : "noir");
       } else if (el.hasAttribute("data-country")) {
         setCountry(el.getAttribute("data-country"));
       } else if (el.hasAttribute("data-search")) {
@@ -1090,6 +1117,104 @@ window.WP = (function () {
     els.forEach((el) => io.observe(el));
   }
 
+  /* ---------- silk: fine pink threads drifting behind the page ----------
+   * Two satin ribbons, each a bundle of hairline threads that twist as they
+   * travel, with a few glints running along them. One fixed canvas under all
+   * content (sections with their own background cover it); it sleeps while
+   * the tab is hidden and runs at half speed for reduced-motion settings. */
+  function silk() {
+    const cv = document.createElement("canvas");
+    cv.className = "silk";
+    cv.setAttribute("aria-hidden", "true");
+    document.body.prepend(cv);
+    const ctx = cv.getContext && cv.getContext("2d");
+    if (!ctx) return cv.remove();
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const TAU = Math.PI * 2;
+    const ribbons = [
+      { from: 0.16, to: 0.66, amp: 0.08, waves: 0.8, speed: 0.035, spread: 0.15, twists: 1.1, spin: 0.05, phase: 0, glints: [0, 0.45] },
+      { from: 0.9, to: 0.34, amp: 0.06, waves: 1.1, speed: -0.028, spread: 0.11, twists: 1.5, spin: -0.04, phase: 2.4, glints: [0.2, 0.7] },
+    ];
+    let w = 0;
+    let h = 0;
+    let dpr = 1;
+    let raf = 0;
+    let last = 0;
+    const start = performance.now();
+    function size() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      cv.width = Math.round(w * dpr);
+      cv.height = Math.round(h * dpr);
+    }
+    // centre line and half-width of a ribbon at x (0..1), in pixels
+    function at(r, x, time, drift) {
+      const y = r.from + (r.to - r.from) * x + r.amp * Math.sin(TAU * (x * r.waves + time * r.speed) + r.phase + drift);
+      const twist = Math.cos(TAU * (x * r.twists + time * r.spin) + r.phase);
+      return [y * h, twist * r.spread * h * 0.5];
+    }
+    function draw(now) {
+      raf = requestAnimationFrame(draw);
+      if (now - last < 33) return; // ~30 fps is plenty for a slow drift
+      last = now;
+      const time = ((now - start) / 1000) * (calm ? 0.5 : 1);
+      const noir = document.documentElement.dataset.tone === "noir";
+      const drift = (window.scrollY || 0) * 0.0012;
+      const threads = w < 720 ? 22 : 34;
+      const steps = Math.max(40, Math.round(w / 14));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = noir ? "lighter" : "source-over";
+      ctx.lineWidth = noir ? 0.8 : 0.7;
+      for (const r of ribbons) {
+        const g = ctx.createLinearGradient(0, 0, w, 0);
+        const rgb = noir ? "255, 46, 147" : "230, 0, 126";
+        g.addColorStop(0, `rgba(${rgb}, 0)`);
+        g.addColorStop(0.18, `rgba(${rgb}, 1)`);
+        g.addColorStop(0.55, noir ? "rgba(255, 140, 198, 1)" : `rgba(${rgb}, 1)`);
+        g.addColorStop(0.85, `rgba(${rgb}, 1)`);
+        g.addColorStop(1, `rgba(${rgb}, 0)`);
+        ctx.strokeStyle = g;
+        const line = [];
+        for (let s = 0; s <= steps; s++) line.push(at(r, s / steps, time, drift));
+        for (let i = 0; i < threads; i++) {
+          const u = (i / (threads - 1)) * 2 - 1; // -1 edge .. +1 edge
+          ctx.globalAlpha = (noir ? 0.2 : 0.16) * (1 - 0.65 * Math.abs(u));
+          ctx.beginPath();
+          for (let s = 0; s <= steps; s++) {
+            const [y, half] = line[s];
+            const x = (s / steps) * w;
+            s ? ctx.lineTo(x, y + u * half) : ctx.moveTo(x, y + u * half);
+          }
+          ctx.stroke();
+        }
+        // glints gliding along the ribbon
+        ctx.globalAlpha = 1;
+        for (const off of r.glints) {
+          const x = (((time * 0.045 + off) % 1) + 1) % 1;
+          const [y] = at(r, x, time, drift);
+          const px = x * w;
+          const edge = Math.min(1, x * 6, (1 - x) * 6);
+          const glow = ctx.createRadialGradient(px, y, 0, px, y, 22);
+          glow.addColorStop(0, noir ? `rgba(255, 220, 238, ${0.9 * edge})` : `rgba(255, 255, 255, ${0.95 * edge})`);
+          glow.addColorStop(0.25, `rgba(${rgb}, ${(noir ? 0.45 : 0.28) * edge})`);
+          glow.addColorStop(1, `rgba(${rgb}, 0)`);
+          ctx.fillStyle = glow;
+          ctx.fillRect(px - 22, y - 22, 44, 44);
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+    size();
+    window.addEventListener("resize", size);
+    document.addEventListener("visibilitychange", () => {
+      cancelAnimationFrame(raf);
+      if (!document.hidden) raf = requestAnimationFrame(draw);
+    });
+    raf = requestAnimationFrame(draw);
+  }
+
   /* ---------- render ---------- */
   function render() {
     const html = document.documentElement;
@@ -1116,6 +1241,7 @@ window.WP = (function () {
   function init() {
     bind();
     render();
+    silk();
     // Products, prices and settings from the database: re-render if anything
     // the shopper can see changed, unless they're mid-way through a form.
     SYNC.onChange((changed) => {

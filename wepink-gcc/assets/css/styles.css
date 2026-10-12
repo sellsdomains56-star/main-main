@@ -14,6 +14,16 @@
   --white: #ffffff;
   --gold: #d4a85a;
 
+  /* theme tokens: white by default; html[data-tone="noir"] swaps them for black */
+  --bg: #ffffff;
+  --fg: var(--ink);
+  --surface: #ffffff;
+  --inv: var(--ink);
+  --on-inv: #ffffff;
+  --glass: rgba(255, 255, 255, 0.9);
+  --stage: #ffffff;
+  --accent-ink: var(--pink-600);
+
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
 
@@ -49,8 +59,8 @@ html.is-locked {
 }
 body {
   margin: 0;
-  background: var(--white);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--fg);
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.6;
@@ -173,7 +183,7 @@ fieldset {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 html[lang="ar"] .eyebrow {
   letter-spacing: 0;
@@ -184,7 +194,7 @@ html[lang="ar"] .eyebrow {
   align-items: center;
   gap: 8px;
   padding: 8px 14px 8px 12px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 999px;
   box-shadow: var(--shadow-sm);
@@ -294,12 +304,12 @@ html[lang="ar"] :is(.h1, .h2, .h3) {
   cursor: progress;
 }
 .btn-ghost {
-  border-color: var(--ink);
-  color: var(--ink);
+  border-color: var(--fg);
+  color: var(--fg);
 }
 .btn-ghost:hover {
-  background: var(--ink);
-  color: #fff;
+  background: var(--inv);
+  color: var(--on-inv);
 }
 .btn-ghost .icon {
   color: var(--pink);
@@ -308,8 +318,8 @@ html[lang="ar"] :is(.h1, .h2, .h3) {
   color: var(--pink-300);
 }
 .btn-dark {
-  background: var(--ink);
-  color: #fff;
+  background: var(--inv);
+  color: var(--on-inv);
 }
 .btn-dark:hover {
   background: var(--pink-600);
@@ -327,14 +337,14 @@ html[lang="ar"] :is(.h1, .h2, .h3) {
   gap: 12px;
 }
 .link-btn {
-  color: var(--ink);
+  color: var(--fg);
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: var(--line);
 }
 .link-btn:hover {
-  color: var(--pink-600);
+  color: var(--accent-ink);
   text-decoration-color: currentColor;
 }
 .link-arrow {
@@ -342,7 +352,7 @@ html[lang="ar"] :is(.h1, .h2, .h3) {
   align-items: center;
   gap: 8px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--fg);
   white-space: nowrap;
 }
 .link-arrow .icon {
@@ -351,7 +361,7 @@ html[lang="ar"] :is(.h1, .h2, .h3) {
   transition: transform 0.2s var(--ease);
 }
 .link-arrow:hover {
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .link-arrow:hover .icon {
   transform: translateX(4px);
@@ -366,12 +376,12 @@ html[lang="ar"] :is(.h1, .h2, .h3) {
   width: 44px;
   height: 44px;
   border-radius: 999px;
-  color: var(--ink);
+  color: var(--fg);
   transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 .icon-btn:hover {
   background: var(--blush);
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .icon-btn-light {
   color: #fff;
@@ -391,7 +401,7 @@ html[lang="ar"] :is(.h1, .h2, .h3) {
   border: 1px solid var(--line);
   font-size: 13px;
   font-weight: 700;
-  background: #fff;
+  background: var(--surface);
   transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 .chip-btn .icon {
@@ -400,7 +410,7 @@ html[lang="ar"] :is(.h1, .h2, .h3) {
 }
 .chip-btn:hover {
   border-color: var(--pink);
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .lang-btn {
   font-family: "Almarai", var(--font-sans);
@@ -446,7 +456,7 @@ html[lang="ar"] .lang-btn {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--glass);
   backdrop-filter: saturate(1.4) blur(14px);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
   border-bottom: 1px solid transparent;
@@ -502,7 +512,7 @@ html[lang="ar"] .lang-btn {
   transform: scaleX(1);
 }
 .nav-primary a[aria-current="page"] {
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .logo {
   display: inline-flex;
@@ -518,7 +528,7 @@ html[lang="ar"] .lang-btn {
   font-weight: 800;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--fg);
   padding-inline-start: 10px;
   border-inline-start: 1.5px solid var(--line);
   line-height: 1.4;
@@ -585,7 +595,7 @@ html[lang="ar"] .marquee-track {
 /* ---------- perks ---------- */
 .perks {
   border-bottom: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface);
 }
 .perks-grid {
   display: grid;
@@ -606,7 +616,7 @@ html[lang="ar"] .marquee-track {
   padding: 11px;
   border-radius: 50%;
   background: var(--blush);
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .perk-title {
   font-weight: 800;
@@ -654,7 +664,7 @@ html[lang="ar"] .marquee-track {
   aspect-ratio: 4 / 4.4;
   padding: 18px;
   border-radius: var(--r-lg);
-  background: radial-gradient(90% 70% at 50% 25%, color-mix(in srgb, var(--c2) 55%, #fff) 0%, color-mix(in srgb, var(--c) 20%, #fff) 80%);
+  background: radial-gradient(90% 70% at 50% 25%, color-mix(in srgb, var(--c2) 55%, var(--stage)) 0%, color-mix(in srgb, var(--c) 20%, var(--stage)) 80%);
   overflow: hidden;
   isolation: isolate;
 }
@@ -721,7 +731,7 @@ html[lang="ar"] .marquee-track {
 .card {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--surface);
   border-radius: var(--r-lg);
   border: 1px solid var(--line);
   overflow: hidden;
@@ -741,7 +751,7 @@ html[lang="ar"] .marquee-track {
   height: 100%;
   display: grid;
   place-items: center;
-  background: radial-gradient(110% 85% at 50% 18%, color-mix(in srgb, var(--c2) 42%, #fff) 0%, color-mix(in srgb, var(--c) 15%, #fff) 72%);
+  background: radial-gradient(110% 85% at 50% 18%, color-mix(in srgb, var(--c2) 42%, var(--stage)) 0%, color-mix(in srgb, var(--c) 15%, var(--stage)) 72%);
   overflow: hidden;
 }
 .media .art,
@@ -809,7 +819,7 @@ html[lang="ar"] .badge {
 .badge-soon {
   position: static;
   background: var(--blush);
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .card-body {
   display: flex;
@@ -836,7 +846,7 @@ html[lang="ar"] .card-type {
   margin-top: 2px;
 }
 .card-title a:hover {
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .card-size {
   font-size: 13px;
@@ -877,7 +887,7 @@ html[lang="ar"] .card-type {
   padding-inline: 12px 16px;
   border-radius: 999px;
   background: var(--blush);
-  color: var(--pink-600);
+  color: var(--accent-ink);
   font-weight: 800;
   font-size: 14px;
   transition: background-color 0.2s, color 0.2s;
@@ -1061,7 +1071,7 @@ html[lang="ar"] .card-type {
   align-items: center;
   gap: 12px;
   padding: 14px 16px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 18px;
 }
@@ -1099,7 +1109,7 @@ html[lang="ar"] .card-type {
   display: flex;
   gap: 8px;
   padding: 6px;
-  background: #fff;
+  background: var(--surface);
   border-radius: 999px;
 }
 .news-form input {
@@ -1110,7 +1120,7 @@ html[lang="ar"] .card-type {
   padding: 0 18px;
   border-radius: 999px;
   background: transparent;
-  color: var(--ink);
+  color: var(--fg);
   outline: none;
 }
 .news-form:focus-within {
@@ -1277,7 +1287,7 @@ html[lang="ar"] .footer-col h2 {
 .layer {
   position: fixed;
   z-index: 70;
-  background: #fff;
+  background: var(--surface);
   display: flex;
   flex-direction: column;
 }
@@ -1477,7 +1487,7 @@ html[lang="ar"] .footer-col h2 {
   height: 38px;
   border-radius: 50%;
   background: var(--blush);
-  color: var(--pink-600);
+  color: var(--accent-ink);
   font-size: 12px;
   font-weight: 800;
 }
@@ -1635,7 +1645,7 @@ html[lang="ar"] .footer-col h2 {
   gap: 8px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .bag-gift .icon {
   width: 18px;
@@ -1816,10 +1826,10 @@ html[lang="ar"] .footer-col h2 {
   color: var(--line);
 }
 .crumbs a:hover {
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .crumbs [aria-current] {
-  color: var(--ink);
+  color: var(--fg);
   font-weight: 600;
 }
 .pill-row {
@@ -1832,19 +1842,19 @@ html[lang="ar"] .footer-col h2 {
   padding: 0 18px;
   border-radius: 999px;
   border: 1.5px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   font-weight: 700;
   font-size: 14px;
   white-space: nowrap;
   transition: border-color 0.2s, background-color 0.2s, color 0.2s;
 }
 .pill:hover {
-  border-color: var(--ink);
+  border-color: var(--fg);
 }
 .pill[aria-pressed="true"] {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
+  background: var(--inv);
+  border-color: var(--inv);
+  color: var(--on-inv);
 }
 .shop-tools {
   display: flex;
@@ -1870,7 +1880,7 @@ html[lang="ar"] .footer-col h2 {
   padding-inline: 16px 40px;
   border: 1.5px solid var(--line);
   border-radius: 999px;
-  background: #fff;
+  background: var(--surface);
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
@@ -1929,7 +1939,7 @@ html[lang="ar"] .footer-col h2 {
   border-radius: var(--r-xl);
   display: grid;
   place-items: center;
-  background: radial-gradient(90% 75% at 50% 20%, color-mix(in srgb, var(--c2) 48%, #fff) 0%, color-mix(in srgb, var(--c) 20%, #fff) 80%);
+  background: radial-gradient(90% 75% at 50% 20%, color-mix(in srgb, var(--c2) 48%, var(--stage)) 0%, color-mix(in srgb, var(--c) 20%, var(--stage)) 80%);
   overflow: hidden;
 }
 .pdp-media .badge {
@@ -2016,7 +2026,7 @@ html[lang="ar"] .footer-col h2 {
 }
 .pdp-service strong {
   display: block;
-  color: var(--ink);
+  color: var(--fg);
   font-size: 15px;
 }
 .accordion details {
@@ -2067,7 +2077,7 @@ html[lang="ar"] .footer-col h2 {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--fg);
 }
 html[lang="ar"] .note-row dt {
   letter-spacing: 0;
@@ -2082,7 +2092,7 @@ html[lang="ar"] .note-row dt {
   padding: 6px 12px;
   border-radius: 999px;
   background: var(--blush);
-  color: var(--pink-600);
+  color: var(--accent-ink);
   font-weight: 700;
   font-size: 13px;
 }
@@ -2101,7 +2111,7 @@ html[lang="ar"] .note-row dt {
   padding: 22px;
   border-radius: var(--r-lg);
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   transition: box-shadow 0.25s, border-color 0.25s;
 }
 .store-card:hover {
@@ -2126,7 +2136,7 @@ html[lang="ar"] .note-row dt {
 }
 .store-card .link-arrow {
   margin-top: 14px;
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .form-split {
   display: grid;
@@ -2141,7 +2151,7 @@ html[lang="ar"] .note-row dt {
   margin-top: 36px;
   padding: 24px;
   border-radius: var(--r);
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
 }
 .partner-box h3 {
@@ -2160,12 +2170,12 @@ html[lang="ar"] .note-row dt {
   gap: 16px;
   padding: clamp(22px, 3vw, 36px);
   border-radius: var(--r-lg);
-  background: #fff;
+  background: var(--surface);
   box-shadow: var(--shadow);
 }
 .form-msg {
   font-weight: 700;
-  color: var(--pink-600);
+  color: var(--accent-ink);
   min-height: 1em;
 }
 
@@ -2186,7 +2196,7 @@ html[lang="ar"] .note-row dt {
   padding: 0 16px;
   border: 1.5px solid var(--line);
   border-radius: 14px;
-  background: #fff;
+  background: var(--surface);
   font-size: 16px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -2429,7 +2439,7 @@ html[lang="ar"] .note-row dt {
   font-size: 20px;
 }
 .sum-total dt {
-  color: var(--ink);
+  color: var(--fg);
   font-weight: 800;
 }
 .sum-total dd {
@@ -2491,7 +2501,7 @@ html[lang="ar"] .note-row dt {
   border-radius: var(--r-lg);
   display: grid;
   place-items: center;
-  background: radial-gradient(90% 75% at 50% 20%, color-mix(in srgb, var(--c2) 50%, #fff) 0%, color-mix(in srgb, var(--c) 22%, #fff) 80%);
+  background: radial-gradient(90% 75% at 50% 20%, color-mix(in srgb, var(--c2) 50%, var(--stage)) 0%, color-mix(in srgb, var(--c) 22%, var(--stage)) 80%);
 }
 .about-tile .art {
   width: 78%;
@@ -2509,7 +2519,7 @@ html[lang="ar"] .note-row dt {
 .value {
   padding: 28px 24px;
   border-radius: var(--r-lg);
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
 }
 .value h3 {
@@ -2540,7 +2550,7 @@ html[lang="ar"] .note-row dt {
   padding: 26px;
   border-radius: var(--r-lg);
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   transition: box-shadow 0.25s, border-color 0.25s;
 }
 a.contact-card:hover {
@@ -2553,7 +2563,7 @@ a.contact-card:hover {
   padding: 9px;
   border-radius: 50%;
   background: var(--blush);
-  color: var(--pink-600);
+  color: var(--accent-ink);
   margin-bottom: 12px;
 }
 .contact-card strong {
@@ -2564,9 +2574,9 @@ a.contact-card:hover {
   font-size: 14px;
 }
 .contact-wa {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
+  background: var(--inv);
+  border-color: var(--inv);
+  color: var(--on-inv);
 }
 .contact-wa span {
   color: rgba(255, 255, 255, 0.7);
@@ -2977,7 +2987,7 @@ html[lang="ar"] em {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--pink-600);
+  color: var(--accent-ink);
 }
 .nav-hot .icon {
   width: 15px;
@@ -3550,7 +3560,7 @@ html[lang="ar"] .monogram-name {
   padding: 0 16px;
   border-radius: 999px;
   border: 1.5px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   font-weight: 700;
   font-size: 14px;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -3837,7 +3847,7 @@ html[lang="ar"] :is(.amb-tier, .amb-label) {
   padding: 0 16px;
   border-radius: 999px;
   border: 1.5px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -3856,7 +3866,7 @@ html[lang="ar"] :is(.amb-tier, .amb-label) {
   padding: 12px 14px;
   border-radius: 14px;
   border: 1.5px dashed var(--pink-300);
-  background: #fff;
+  background: var(--surface);
   font-weight: 700;
   font-size: 14px;
 }
@@ -3869,7 +3879,7 @@ html[lang="ar"] :is(.amb-tier, .amb-label) {
 }
 .sum-disc dd,
 .sum-disc dt {
-  color: var(--pink-600) !important;
+  color: var(--accent-ink) !important;
 }
 
 /* earn page */
@@ -3883,7 +3893,7 @@ html[lang="ar"] :is(.amb-tier, .amb-label) {
   padding: 30px 28px;
   border-radius: var(--r-lg);
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface);
 }
 .step-num {
   position: absolute;
@@ -3932,7 +3942,7 @@ html[lang="ar"] :is(.amb-tier, .amb-label) {
   font-weight: 700;
 }
 .range-head output {
-  color: var(--pink-600);
+  color: var(--accent-ink);
   font-weight: 800;
   white-space: nowrap;
 }
@@ -4091,7 +4101,7 @@ html[lang="ar"] :is(.amb-tier, .amb-label) {
   height: 24px;
   border-radius: 7px;
   border: 1.5px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   color: transparent;
   transition: background-color 0.15s, border-color 0.15s;
 }
@@ -4113,7 +4123,7 @@ html[lang="ar"] :is(.amb-tier, .amb-label) {
   gap: 14px;
   padding: clamp(22px, 3vw, 36px);
   border-radius: var(--r-lg);
-  background: #fff;
+  background: var(--surface);
   box-shadow: var(--shadow);
 }
 .dash-code {
@@ -4665,14 +4675,14 @@ html[lang="ar"] .pdp-tagline {
   gap: 14px;
   padding: 18px 20px;
   border-radius: 22px;
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 24px 60px -20px rgba(28, 10, 20, 0.45), 0 0 0 1px var(--line);
   font-size: 14px;
   line-height: 1.5;
   animation: consent-in 0.5s var(--ease) both 0.8s;
 }
 .consent a {
-  color: var(--pink-600);
+  color: var(--accent-ink);
   text-decoration: underline;
 }
 .consent-btns {
@@ -4856,7 +4866,7 @@ html[lang="ar"] .pdp-tagline {
   padding: 10px 14px;
   border-radius: 14px;
   background: var(--petal);
-  color: var(--pink-600);
+  color: var(--accent-ink);
   font-weight: 700;
   font-size: 14px;
 }
@@ -4965,7 +4975,7 @@ html[lang="ar"] .pdp-tagline {
   padding: 2px 10px;
   border-radius: 999px;
   background: var(--blush);
-  color: var(--pink-600);
+  color: var(--accent-ink);
   font-size: 11.5px;
   font-weight: 800;
 }
@@ -5150,7 +5160,7 @@ html[lang="ar"] .pdp-tagline {
   padding: 10px 16px 10px 10px;
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
-  background: linear-gradient(110deg, var(--blush), var(--white) 72%);
+  background: linear-gradient(110deg, var(--blush), var(--bg) 72%);
   transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
 }
 .look-strip:hover {
@@ -5197,7 +5207,7 @@ html[lang="ar"] .pdp-tagline {
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--blush);
-  color: var(--ink);
+  color: var(--fg);
   font: inherit;
   font-size: 13px;
   text-align: start;
@@ -5529,4 +5539,134 @@ html[lang="ar"] .pdp-tagline {
   aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: 20px;
+}
+
+/* ---------- region chip: one tidy line ---------- */
+.chip-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.region-btn {
+  gap: 0;
+  padding: 0 14px 0 12px;
+}
+.region-btn .icon {
+  width: 16px;
+  height: 16px;
+  margin-inline-end: 8px;
+  opacity: 0.75;
+}
+.rb-code {
+  letter-spacing: 0.04em;
+}
+.rb-cur {
+  margin-inline-start: 10px;
+  padding-inline-start: 10px;
+  border-inline-start: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.72;
+}
+@media (max-width: 1100px) {
+  .rb-cur {
+    display: none;
+  }
+}
+
+/* ---------- black / white switch ---------- */
+.tone-btn .icon {
+  transition: transform 0.5s var(--ease);
+}
+.tone-btn:hover .icon {
+  transform: rotate(-24deg);
+}
+html.tone-shift,
+html.tone-shift *,
+html.tone-shift *::before,
+html.tone-shift *::after {
+  transition: background-color 0.45s var(--ease), color 0.45s var(--ease), border-color 0.45s var(--ease) !important;
+}
+@media (max-width: 720px) {
+  .header-end .tone-btn {
+    display: none;
+  }
+}
+
+/* The black version: same layout, every surface and text token swapped. */
+html[data-tone="noir"] {
+  color-scheme: dark;
+  --bg: #0b0408;
+  --fg: #f7e9f0;
+  --surface: #150a10;
+  --petal: #1a0b14;
+  --blush: #2b0f20;
+  --line: #3a2131;
+  --muted: #b996a9;
+  --inv: #f7e9f0;
+  --on-inv: #1c0a14;
+  --glass: rgba(11, 4, 8, 0.84);
+  --stage: #1a0912;
+  --accent-ink: #ff7ab8;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.75);
+}
+html[data-tone="noir"] .media::before {
+  background: radial-gradient(55% 42% at 50% 34%, rgba(255, 140, 198, 0.14), rgba(255, 140, 198, 0) 72%);
+}
+html[data-tone="noir"] .look-thumb {
+  background: rgba(21, 10, 16, 0.92);
+}
+html[data-tone="noir"] .promo-gift {
+  background: linear-gradient(140deg, #2a1a0c 0%, #1a0f08 100%);
+}
+html[data-tone="noir"] .promo-gift .eyebrow {
+  color: #f3c77a;
+}
+html[data-tone="noir"] .bnpl {
+  background: #0c241b;
+}
+html[data-tone="noir"] :is(.bnpl .icon, .free) {
+  color: #4fdca4;
+}
+html[data-tone="noir"] .field-error {
+  color: #ff7b8f;
+}
+html[data-tone="noir"] .field input[aria-invalid="true"] {
+  border-color: #ff7b8f;
+}
+html[data-tone="noir"] .acct-status.st-delivered {
+  background: #0c241b;
+  color: #4fdca4;
+}
+html[data-tone="noir"] :is(.acct-status.st-cancelled, .acct-status.st-returned) {
+  background: #2a2228;
+}
+html[data-tone="noir"] .pdp-pick:hover {
+  background: var(--blush);
+}
+html[data-tone="noir"] :is(.site-footer, .announce) {
+  background: #000;
+}
+html[data-tone="noir"] .site-footer {
+  border-top: 1px solid var(--line);
+}
+html[data-tone="noir"] .is-scrolled .site-header {
+  box-shadow: 0 6px 24px -18px rgba(0, 0, 0, 0.9);
+}
+html[data-tone="noir"] ::selection {
+  background: var(--pink);
+  color: #fff;
+}
+
+/* ---------- silk: fine pink threads drifting behind the shop ---------- */
+.silk {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+html[data-tone="noir"] .contact-wa span {
+  color: rgba(28, 10, 20, 0.65);
 }

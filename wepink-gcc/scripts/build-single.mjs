@@ -70,6 +70,11 @@ ${css}
         var l = q || JSON.parse(localStorage.getItem("wpg.lang") || "null") || ((navigator.language || "").toLowerCase().indexOf("ar") === 0 ? "ar" : "en");
         if (l === "ar") { document.documentElement.lang = "ar"; document.documentElement.dir = "rtl"; }
       } catch (e) {}
+      try {
+        var tone = JSON.parse(localStorage.getItem("wpg.tone") || "null");
+      } catch (e) {}
+      if (tone !== "noir" && tone !== "blanc") tone = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "noir" : "blanc";
+      document.documentElement.setAttribute("data-tone", tone);
     })();
   </script>
 </head>
