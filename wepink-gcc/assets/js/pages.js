@@ -4,6 +4,27 @@ window.WP_PAGES = (function () {
   const D = W.data;
   const { t, L, esc, icon, money, local, moneyAED, priceOf, card, media, badge, priceHTML, sizeText, pname, fullName } = W;
   const byId = (id) => D.products.find((p) => p.id === id);
+  // Home-page picks fall back to another product from the same category when
+  // one is hidden or removed in the admin panel.
+  const myAmbassador = () => {
+    const a = W.store.get("amb", null);
+    return a && a.code && (a.token || !W.sync.live) ? a : null;
+  };
+  // Signed-in shoppers: fill in what their account already knows.
+  function prefill(form) {
+    const me = W.store.get("account", null);
+    if (!form || !me) return;
+    const set = (name, v) => form[name] && v && !form[name].value && (form[name].value = v);
+    const dial = W.country().dial.replace(/\D/g, "");
+    const ph = String(me.phone || "").replace(/\D/g, "");
+    set("name", me.name);
+    set("email", me.email);
+    set("phone", ph.startsWith(dial) ? ph.slice(dial.length) : ph);
+  }
+  const pick = (id) => {
+    const want = (window.WP_CATALOG || []).find((p) => p.id === id);
+    return byId(id) || (want && D.products.find((p) => p.cat === want.cat)) || D.products[0];
+  };
   const FRAG = (p) => !["makeup", "skincare", "haircare", "set", "bodycare"].includes(p.type);
   const cat = (id) => D.categories.find((c) => c.id === id);
   const featured = () => [...D.products].sort((a, b) => (b.badge === "bestseller") - (a.badge === "bestseller"));
@@ -87,10 +108,10 @@ window.WP_PAGES = (function () {
   /* ---------------- home ---------------- */
   function home(main) {
     const F = D.featured;
-    const star = byId(F.star);
+    const star = pick(F.star);
     const icons = F.icons.map(byId).filter(Boolean);
     const sets = D.products.filter((p) => p.cat === "gift-sets");
-    const fromSet = Math.min(...sets.map((p) => p.price));
+    const fromSet = sets.length ? Math.min(...sets.map(priceOf)) : 0;
     const ritual = F.ritual.map(byId).filter(Boolean);
     const vfLine = D.products.filter((p) => p.type === "colonia" && /^VF\b/.test(p.line)).slice(0, 8);
     const catArt = F.categories;
@@ -127,9 +148,9 @@ window.WP_PAGES = (function () {
                    <div class="float-bottle" aria-hidden="true">${W.art.art(star, { eager: true })}</div>`
                 : `<div class="stage" aria-hidden="true">
                     <span class="beam"></span><span class="halo"></span><span class="pedestal"></span>
-                    <div class="stage-bottle sb-left">${W.art.art(byId(F.stage[0]), { eager: true })}</div>
-                    <div class="stage-bottle sb-right">${W.art.art(byId(F.stage[2]), { eager: true })}</div>
-                    <div class="stage-bottle sb-main">${W.art.art(byId(F.stage[1]), { eager: true })}</div>
+                    <div class="stage-bottle sb-left">${W.art.art(pick(F.stage[0]), { eager: true })}</div>
+                    <div class="stage-bottle sb-right">${W.art.art(pick(F.stage[2]), { eager: true })}</div>
+                    <div class="stage-bottle sb-main">${W.art.art(pick(F.stage[1]), { eager: true })}</div>
                   </div>`
             }
             <a class="glass-card" href="product.html?id=${star.id}">
@@ -252,7 +273,7 @@ window.WP_PAGES = (function () {
             <p class="lead-noir">${esc(t("cb.lead"))}</p>
             <a class="btn btn-glow btn-lg" href="shop.html?c=perfume">${esc(t("cb.cta"))}${icon("arrow", "flip")}</a>
           </div>
-          ${campaign ? "" : `<div class="campaign-trio" aria-hidden="true" data-reveal style="--d:120ms">${F.campaign.map((id, i) => `<div class="ct ct${i + 1}">${W.art.art(byId(id), { eager: true })}</div>`).join("")}<span class="ct-glow"></span></div>`}
+          ${campaign ? "" : `<div class="campaign-trio" aria-hidden="true" data-reveal style="--d:120ms">${F.campaign.map((id, i) => `<div class="ct ct${i + 1}">${W.art.art(pick(id), { eager: true })}</div>`).join("")}<span class="ct-glow"></span></div>`}
         </div>
       </section>
 
@@ -273,10 +294,10 @@ window.WP_PAGES = (function () {
             <div class="promo-copy">
               <p class="eyebrow">${esc(t("home.giftEyebrow"))}</p>
               <h2 class="h3">${esc(t("home.giftTitle"))}</h2>
-              <p>${esc(t("home.giftLead", { amount: moneyAED(fromSet) }))}</p>
+              <p>${esc(t("home.giftLead", { amount: money(fromSet) }))}</p>
               <a class="btn btn-primary" href="shop.html?c=gift-sets">${esc(t("home.giftCta"))}${icon("arrow", "flip")}</a>
             </div>
-            <div class="promo-art">${W.art.art(byId(F.giftSet))}</div>
+            <div class="promo-art">${W.art.art(pick(F.giftSet))}</div>
           </article>
         </div>
       </section>
@@ -342,9 +363,19 @@ window.WP_PAGES = (function () {
         return;
       }
       input.removeAttribute("aria-invalid");
-      W.store.set("newsletter", input.value.trim());
-      form.reset();
-      msg.textContent = t("home.newsThanks");
+      const email = input.value.trim();
+      const btn = form.querySelector("button");
+      const done = () => {
+        W.store.set("newsletter", email);
+        form.reset();
+        msg.textContent = t("home.newsThanks");
+      };
+      if (!W.sync.live) return done();
+      btn.disabled = true;
+      W.sync
+        .rpc("save_contact", { p: Object.assign({ source: "newsletter", email, country: W.state.country, lang: W.state.lang, marketing: true }, W.sync.context()) })
+        .then(done, () => (msg.textContent = t("form.failed")))
+        .then(() => (btn.disabled = false));
     });
     return "";
   }
@@ -389,12 +420,12 @@ window.WP_PAGES = (function () {
         <div class="btn-row">
           <a class="btn btn-wa" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">${icon("chat")}${esc(t("earn.shareWa"))}</a>
         </div>
-        <dl class="dash-stats">
-          <div><dt>${esc(t("earn.statClicks"))}</dt><dd>0</dd></div>
-          <div><dt>${esc(t("earn.statOrders"))}</dt><dd>0</dd></div>
-          <div><dt>${esc(t("earn.statEarned"))}</dt><dd>${esc(money(0))}</dd></div>
+        <dl class="dash-stats" id="dash-stats">
+          <div><dt>${esc(t("earn.statClicks"))}</dt><dd data-stat="clicks">0</dd></div>
+          <div><dt>${esc(t("earn.statOrders"))}</dt><dd data-stat="orders">0</dd></div>
+          <div><dt>${esc(t("earn.statEarned"))}</dt><dd data-stat="earned">${esc(money(0))}</dd></div>
         </dl>
-        <p class="demo-note">${icon("shield")}<span>${esc(t("earn.demo"))}</span></p>
+        <p class="demo-note" id="dash-note">${icon("shield")}<span>${esc(t(W.sync.live ? "earn.live" : "earn.demo"))}</span></p>
         <button class="link-btn small" type="button" data-amb-reset>${esc(t("earn.reset"))}</button>
       </div>`;
     }
@@ -415,7 +446,31 @@ window.WP_PAGES = (function () {
       </form>`;
     }
 
-    const amb = W.store.get("amb", null);
+    // Live numbers for the signed-up ambassador on this device.
+    function loadStats(a) {
+      if (!W.sync.live || !a.token) return;
+      W.sync.rpc("ambassador_stats", { p_code: a.code, p_token: a.token }).then((st) => {
+        const box = main.querySelector("#dash-stats");
+        const note = main.querySelector("#dash-note span");
+        if (!box) return;
+        if (!st) {
+          note.textContent = t("earn.notFound");
+          return;
+        }
+        const set = (k, v) => (box.querySelector(`[data-stat="${k}"]`).textContent = v);
+        set("clicks", st.clicks);
+        set("orders", st.orders);
+        set("earned", money(local(Number(st.earnedAed) + Number(st.paidAed))));
+        note.textContent =
+          st.status === "paused"
+            ? t("earn.paused")
+            : Number(st.pendingAed)
+            ? t("earn.pending", { amount: money(local(Number(st.pendingAed))) })
+            : t("earn.live");
+      }, () => {});
+    }
+
+    const amb = myAmbassador();
     main.innerHTML = `
       <section class="hero-noir earn-hero">
         ${satin()}
@@ -550,15 +605,38 @@ window.WP_PAGES = (function () {
       agreeErr.textContent = agree.checked ? "" : t("earn.required");
       if (!agree.checked) ok = false;
       if (!ok) return;
-      const first = form.name.value.trim().split(/\s+/)[0].toUpperCase().replace(/[^A-Z]/g, "").slice(0, 10);
-      const code = (first.length >= 3 ? first : "PINK" + Math.floor(100 + Math.random() * 900)) + R.friendDiscountPct;
-      const a = { code, name: form.name.value.trim(), handle: form.handle.value.trim(), at: Date.now() };
-      W.store.set("amb", a);
-      slot.innerHTML = dashboard(a);
-      const cardCode = main.querySelector(".earn-hero .amb-code");
-      if (cardCode) cardCode.textContent = code;
-      slot.scrollIntoView({ behavior: "smooth", block: "center" });
+      const a = { name: form.name.value.trim(), handle: form.handle.value.trim(), at: Date.now() };
+      const show = () => {
+        W.store.set("amb", a);
+        slot.innerHTML = dashboard(a);
+        const cardCode = main.querySelector(".earn-hero .amb-code");
+        if (cardCode) cardCode.textContent = a.code;
+        slot.scrollIntoView({ behavior: "smooth", block: "center" });
+        loadStats(a);
+      };
+      if (!W.sync.live) {
+        // Offline preview: make up a code from the first name.
+        const first = a.name.split(/\s+/)[0].toUpperCase().replace(/[^A-Z]/g, "").slice(0, 10);
+        a.code = (first.length >= 3 ? first : "PINK" + Math.floor(100 + Math.random() * 900)) + R.friendDiscountPct;
+        return show();
+      }
+      const btn = form.querySelector("[type=submit]");
+      btn.disabled = true;
+      const entry = { name: a.name, handle: a.handle, phone: `${c.dial}${form.phone.value.replace(/\D/g, "")}`, email: form.email.value.trim(), country: W.state.country, lang: W.state.lang };
+      W.sync.rpc("register_ambassador", { p: Object.assign(entry, W.sync.context()) }).then(
+        (r) => {
+          a.code = r.code;
+          a.token = r.token;
+          show();
+        },
+        () => {
+          btn.disabled = false;
+          agreeErr.textContent = t("form.failed");
+        }
+      );
     });
+    if (amb) loadStats(amb);
+    else prefill(main.querySelector("#amb-form"));
     return t("footer.earn");
   }
 
@@ -676,6 +754,10 @@ window.WP_PAGES = (function () {
   /* ---------------- product ---------------- */
   function product(main) {
     const p = byId(W.route().params.get("id"));
+    if (!p && W.sync.pending()) {
+      main.innerHTML = `<section class="section"><div class="container empty-state" data-sync-wait><span class="spinner" aria-hidden="true"></span><p class="muted">${esc(t("pdp.loading"))}</p></div></section>`;
+      return t("pdp.loading");
+    }
     if (!p) {
       main.innerHTML = `<section class="section"><div class="container empty-state"><h1 class="h2">${esc(t("pdp.notFound"))}</h1><a class="btn btn-primary" href="shop.html">${esc(t("pdp.back"))}</a></div></section>`;
       return t("pdp.notFound");
@@ -786,7 +868,7 @@ window.WP_PAGES = (function () {
 
     // Share & earn: ambassadors share with their code; everyone else is invited to join.
     main.querySelector("[data-share]").addEventListener("click", () => {
-      const amb = W.store.get("amb", null);
+      const amb = myAmbassador();
       if (!amb) {
         const a = document.createElement("a");
         a.href = "earn.html";
@@ -816,7 +898,7 @@ window.WP_PAGES = (function () {
       name: `wepink ${p.line}${FRAG(p) ? " " + p.typeName.en : ""}`,
       image: p.cutout || p.image,
       brand: { "@type": "Brand", name: "wepink" },
-      description: p.desc.en,
+      description: p.desc ? p.desc.en || p.desc.ar : undefined,
       offers: { "@type": "Offer", priceCurrency: c.currency, price: priceOf(p), availability: "https://schema.org/InStock" },
     });
     return fullName(p);
@@ -906,11 +988,22 @@ window.WP_PAGES = (function () {
       const name = form.name.value.trim();
       const cityKey = form.city.value;
       const city = L(D.stores.find((s) => s.city[0] === cityKey).city);
-      const list = W.store.get("interest", []);
-      list.push({ name, phone: c.dial + form.phone.value.trim(), city: cityKey, at: Date.now() });
-      W.store.set("interest", list);
-      form.reset();
-      form.querySelector(".form-msg").textContent = t("stores.thanks", { name: name.split(" ")[0], city });
+      const phone = c.dial + form.phone.value.replace(/\D/g, "");
+      const msg = form.querySelector(".form-msg");
+      const btn = form.querySelector("[type=submit]");
+      const done = () => {
+        const list = W.store.get("interest", []);
+        list.push({ name, phone, city: cityKey, at: Date.now() });
+        W.store.set("interest", list);
+        form.reset();
+        msg.textContent = t("stores.thanks", { name: name.split(" ")[0], city });
+      };
+      if (!W.sync.live) return done();
+      btn.disabled = true;
+      W.sync
+        .rpc("save_contact", { p: Object.assign({ source: "stores", name, phone, country: W.state.country, lang: W.state.lang, details: { storeCity: cityKey } }, W.sync.context()) })
+        .then(done, () => (msg.textContent = t("form.failed")))
+        .then(() => (btn.disabled = false));
     });
     draw();
     return t("stores.title");
@@ -931,7 +1024,7 @@ window.WP_PAGES = (function () {
             <a class="btn btn-primary btn-lg" href="shop.html">${esc(t("about.cta"))}${icon("arrow", "flip")}</a>
           </div>
           <div class="about-visual" aria-hidden="true">
-            ${D.featured.about.map((id, i) => `<div class="about-tile t${i + 1}" style="--c:${byId(id).color};--c2:${byId(id).color2}">${W.art.art(byId(id))}</div>`).join("")}
+            ${D.featured.about.map(pick).map((p, i) => `<div class="about-tile t${i + 1}" style="--c:${p.color};--c2:${p.color2}">${W.art.art(p)}</div>`).join("")}
           </div>
         </div>
       </section>
@@ -971,40 +1064,19 @@ window.WP_PAGES = (function () {
             ${faqs.map((n, i) => `<details${i === 0 ? " open" : ""}><summary>${esc(t("help.q" + n))}${icon("chevron")}</summary><p>${esc(t("help.a" + n, vars))}</p></details>`).join("")}
           </div>
         </div>
+      </section>
+      <section class="section section-tint" id="privacy">
+        <div class="container narrow privacy">
+          <h2 class="h2">${esc(t("privacy.title"))}</h2>
+          ${[1, 2, 3, 4, 5].map((n) => `<p>${esc(t("privacy.p" + n, { email: D.config.email }))}</p>`).join("")}
+          ${W.sync.live ? `<button class="btn btn-ghost" type="button" data-cookies>${esc(t("consent.settings"))}</button>` : ""}
+        </div>
       </section>`;
     return t("help.title");
   }
 
   /* ---------------- checkout ---------------- */
-  function validate(form) {
-    let first = null;
-    form.querySelectorAll("input[required], select[required], textarea[required]").forEach((input) => {
-      const field = input.closest(".field");
-      let msg = "";
-      const v = input.value.trim();
-      if (!v) msg = t("co.required");
-      else if (input.type === "email" && !/^\S+@\S+\.\S+$/.test(v)) msg = t("co.invalidEmail");
-      else if (input.type === "tel" && !/^[0-9\s-]{7,12}$/.test(v)) msg = t("co.invalidPhone");
-      let err = field && field.querySelector(".field-error");
-      if (msg) {
-        input.setAttribute("aria-invalid", "true");
-        if (field && !err) {
-          err = document.createElement("p");
-          err.className = "field-error";
-          err.id = input.id + "-err";
-          field.appendChild(err);
-          input.setAttribute("aria-describedby", err.id);
-        }
-        if (err) err.textContent = msg;
-        if (!first) first = input;
-      } else {
-        input.removeAttribute("aria-invalid");
-        if (err) err.textContent = "";
-      }
-    });
-    if (first) first.focus();
-    return !first;
-  }
+  const validate = W.validate;
 
   // Clear a field's error as soon as the shopper fixes it.
   document.addEventListener("input", (e) => {
@@ -1071,7 +1143,7 @@ window.WP_PAGES = (function () {
         <div class="checkout-main">
           ${crumbs([["wepink", "index.html"], [t("bag.title"), "shop.html"], [t("co.title")]])}
           <h1 class="h1">${esc(t("co.title"))}</h1>
-          <p class="demo-note">${icon("shield")}<span>${esc(t("co.demo"))}</span></p>
+          <p class="demo-note">${icon("shield")}<span>${esc(t(W.sync.live ? "co.live" : "co.demo"))}</span></p>
           <form id="co-form" novalidate>
             <fieldset>
               <legend>${esc(t("co.contact"))}</legend>
@@ -1082,6 +1154,7 @@ window.WP_PAGES = (function () {
                   <div class="input-prefix"><span dir="ltr">${esc(c.dial)}</span><input id="co-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" dir="ltr" required></div>
                 </div>
               </div>
+              <label class="check"><input type="checkbox" name="marketing"><span class="check-box">${icon("check")}</span><span>${esc(t("co.marketing"))}</span></label>
             </fieldset>
             <fieldset>
               <legend>${esc(t("co.address"))}</legend>
@@ -1139,9 +1212,17 @@ window.WP_PAGES = (function () {
     main.addEventListener("submit", (e) => {
       if (e.target.id !== "code-form") return;
       e.preventDefault();
-      const code = W.ref.set(e.target.querySelector("input").value);
-      sumEl.innerHTML = summary(code ? "" : t("co.codeInvalid"));
-      if (!code) sumEl.querySelector("#co-code").focus();
+      const typed = e.target.querySelector("input").value;
+      e.target.querySelector("button").disabled = true;
+      W.ref.check(typed).then((code) => {
+        if (code) W.ref.set(code);
+        sumEl.innerHTML = summary(code ? "" : t(W.ref.clean(typed) ? "co.codeUnknown" : "co.codeInvalid"));
+        if (!code) {
+          const input = sumEl.querySelector("#co-code");
+          input.value = typed;
+          input.focus();
+        }
+      });
     });
     main.addEventListener("click", (e) => {
       if (!e.target.closest("[data-code-remove]")) return;
@@ -1150,34 +1231,36 @@ window.WP_PAGES = (function () {
     });
 
     const form = main.querySelector("#co-form");
+    prefill(form);
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (!validate(form)) return;
       const btn = form.querySelector(".co-submit");
       btn.disabled = true;
       btn.querySelector("span").textContent = t("co.placing");
-      const id = "WPG-" + String(Math.floor(100000 + Math.random() * 900000));
       const items = W.bag.items();
-      const { code, disc, total } = totals();
+      const { sub, del, code, disc, total } = totals();
       const f = Object.fromEntries(new FormData(form).entries());
       const phone = `${c.dial} ${f.phone}`;
-      const lines = [
-        t("co.waIntro", { id }),
-        ...items.map((i) => `• ${i.qty} × ${fullName(i.p)} — ${money(priceOf(i.p) * i.qty)}`),
-        disc ? `${t("co.discount", { code })}: − ${money(disc)}` : "",
-        `${t("co.total")}: ${money(total)}`,
-        `${f.name} · ${phone}`,
-        `${f.street}${f.apt ? ", " + f.apt : ""}, ${f.area}, ${f.city}, ${L(c.name)}`,
-        `${t("co.payment")}: ${L(D.payNames[f.pay])}`,
-        f.gift ? `${t("co.gift")}: ${f.gift}` : "",
-      ].filter(Boolean);
-      const wa = `https://wa.me/${D.config.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
-      const orders = W.store.get("orders", []);
-      orders.push({ id, at: Date.now(), country: W.state.country, items: items.map((i) => ({ id: i.p.id, qty: i.qty })), total, code, currency: c.currency });
-      W.store.set("orders", orders);
 
-      setTimeout(() => {
+      function finish(id) {
+        const lines = [
+          t("co.waIntro", { id }),
+          ...items.map((i) => `• ${i.qty} × ${fullName(i.p)} — ${money(priceOf(i.p) * i.qty)}`),
+          disc ? `${t("co.discount", { code })}: − ${money(disc)}` : "",
+          `${t("co.total")}: ${money(total)}`,
+          `${f.name} · ${phone}`,
+          `${f.street}${f.apt ? ", " + f.apt : ""}, ${f.area}, ${f.city}, ${L(c.name)}`,
+          `${t("co.payment")}: ${L(D.payNames[f.pay])}`,
+          f.gift ? `${t("co.gift")}: ${f.gift}` : "",
+        ].filter(Boolean);
+        const wa = `https://wa.me/${D.config.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
+        const orders = W.store.get("orders", []);
+        orders.push({ id, at: Date.now(), country: W.state.country, items: items.map((i) => ({ id: i.p.id, qty: i.qty })), total, code, currency: c.currency });
+        W.store.set("orders", orders);
         W.bag.clear();
+        // The friend discount is for a first order.
+        if (code) W.ref.clear();
         main.innerHTML = `<section class="section"><div class="container thanks">
           <span class="thanks-icon">${icon("check")}</span>
           <h1 class="h1">${esc(t("co.thanksTitle", { name: f.name.split(" ")[0] }))}</h1>
@@ -1188,7 +1271,30 @@ window.WP_PAGES = (function () {
           </div>
         </div></section>`;
         window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 700);
+      }
+
+      // Without the database (or if it can't be reached) the order still goes
+      // through WhatsApp with a number made here.
+      const localId = "WPG-" + String(Math.floor(100000 + Math.random() * 900000));
+      if (!W.sync.live) return setTimeout(() => finish(localId), 700);
+      const order = {
+        country: W.state.country,
+        lang: W.state.lang,
+        code: code || undefined,
+        items: items.map((i) => ({ id: i.p.id, name: fullName(i.p), qty: i.qty, price: priceOf(i.p) })),
+        subtotal: sub,
+        discount: disc,
+        delivery: del,
+        total,
+        payment: f.pay,
+        gift: f.gift || undefined,
+        marketing: f.marketing === "on",
+        customer: { name: f.name.trim(), email: f.email.trim(), phone, city: f.city, area: f.area, street: f.street, apt: f.apt, notes: f.notes },
+      };
+      W.sync.rpc("place_order", { p: Object.assign(order, W.sync.context()) }).then(
+        (r) => finish(r.number),
+        () => finish(localId)
+      );
     });
     return t("co.title");
   }

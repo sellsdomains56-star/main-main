@@ -2371,6 +2371,7 @@ html[lang="ar"] .note-row dt {
   border-radius: var(--r-lg);
   background: var(--petal);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
 }
 .sum-lines {
@@ -4466,4 +4467,496 @@ html[lang="ar"] .pdp-tagline {
   display: flex;
   justify-content: center;
   padding-bottom: 72px;
+}
+
+/* ---------- wepink Club, cookie consent & live data ---------- */
+.btn-sm {
+  height: 40px;
+  padding: 0 18px;
+  font-size: 14px;
+}
+.footer-club {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: linear-gradient(100deg, var(--pink), var(--hot));
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: start;
+  box-shadow: var(--shadow-pink);
+}
+.footer-club .icon {
+  width: 16px;
+  height: 16px;
+}
+.footer-club:hover {
+  filter: brightness(1.08);
+}
+.footer-cookies {
+  color: inherit;
+  font-weight: 500;
+  font-size: inherit;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+}
+
+.modal-club {
+  width: min(880px, 100% - 32px);
+  max-height: min(92vh, 780px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  overflow: hidden;
+  padding: 0;
+}
+.club-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 32px;
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(90% 60% at 100% 0%, rgba(255, 46, 147, 0.75), transparent 70%),
+    radial-gradient(80% 60% at 0% 100%, rgba(230, 0, 126, 0.55), transparent 70%),
+    var(--noir);
+}
+.club-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--grain);
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+}
+.club-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+.club-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(14, 3, 8, 0.94) 18%, rgba(14, 3, 8, 0.25) 58%, rgba(14, 3, 8, 0.55) 100%),
+    radial-gradient(70% 50% at 100% 0%, rgba(255, 46, 147, 0.45), transparent 70%);
+}
+.club-glow {
+  position: absolute;
+  inset-inline-end: -60px;
+  top: 30%;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 140, 198, 0.55), transparent 65%);
+  filter: blur(8px);
+  z-index: -1;
+}
+.club-perks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.club-perks li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 15px;
+}
+.club-perks .icon {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  padding: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.club-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: auto;
+}
+.modal-club .layer-head {
+  padding: 26px 26px 6px;
+}
+.modal-club h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.1;
+  font-weight: 600;
+  margin: 4px 0 6px;
+}
+.club-body {
+  padding: 10px 26px 26px;
+}
+.club-form {
+  display: grid;
+  gap: 14px;
+}
+.club-form .optional {
+  color: var(--muted);
+  font-weight: 500;
+}
+.club-privacy {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+.club-privacy a {
+  text-decoration: underline;
+}
+.club-done {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 24px 0;
+  text-align: center;
+}
+
+.consent {
+  position: fixed;
+  z-index: 55;
+  inset-inline-start: 20px;
+  bottom: 20px;
+  width: min(420px, 100% - 40px);
+  display: grid;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 24px 60px -20px rgba(28, 10, 20, 0.45), 0 0 0 1px var(--line);
+  font-size: 14px;
+  line-height: 1.5;
+  animation: consent-in 0.5s var(--ease) both 0.8s;
+}
+.consent a {
+  color: var(--pink-600);
+  text-decoration: underline;
+}
+.consent-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+@keyframes consent-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid var(--blush);
+  border-top-color: var(--pink);
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.privacy {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+.privacy p {
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .modal-club {
+    grid-template-columns: minmax(0, 1fr);
+    overflow: auto;
+  }
+  .club-art {
+    padding: 22px 24px;
+    gap: 16px;
+  }
+  .club-perks {
+    gap: 8px;
+  }
+  .club-perks li {
+    font-size: 13px;
+  }
+  .club-perks .icon {
+    width: 30px;
+    height: 30px;
+    padding: 7px;
+  }
+  .club-main {
+    overflow: visible;
+  }
+  .consent {
+    inset-inline: 12px;
+    bottom: 12px;
+    width: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .consent,
+  .spinner {
+    animation: none;
+  }
+}
+.modal-club .eyebrow {
+  text-transform: none; /* keep "wepink" in lowercase */
+  letter-spacing: 0.04em;
+}
+
+/* ---------- shopper accounts (Google / Apple sign-in) ---------- */
+.account-btn .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.avatar-initial {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--hot));
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+}
+.account-btn .avatar-initial {
+  width: 30px;
+  height: 30px;
+}
+.account-btn.is-in {
+  box-shadow: 0 0 0 2px var(--pink-300);
+}
+.menu-links .menu-account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-align: start;
+}
+.menu-links .menu-account span {
+  flex: 1;
+}
+.menu-links .menu-account .icon {
+  color: var(--pink);
+  width: 20px;
+  height: 20px;
+}
+.modal-account {
+  width: min(480px, 100% - 32px);
+}
+.modal-account h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-top: 4px;
+}
+.modal-account .eyebrow {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+.acct-body {
+  display: grid;
+  gap: 14px;
+  padding: 6px 24px 26px;
+}
+.oauth {
+  display: grid;
+  gap: 10px;
+}
+.btn-oauth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 54px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15.5px;
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease), background-color 0.15s;
+}
+.btn-oauth:hover {
+  transform: translateY(-1px);
+}
+.btn-oauth .brand-ic {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+.btn-google {
+  background: #fff;
+  color: #1f1f1f;
+  border: 1.5px solid #dadce0;
+}
+.btn-google:hover {
+  box-shadow: 0 6px 18px -8px rgba(0, 0, 0, 0.3);
+}
+.btn-apple {
+  background: #000;
+  color: #fff;
+}
+.btn-apple:hover {
+  background: #1d1d1f;
+}
+.acct-msg:empty {
+  display: none;
+}
+.acct-msg {
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--petal);
+  color: var(--pink-600);
+  font-weight: 700;
+  font-size: 14px;
+}
+.acct-or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+.acct-or::before,
+.acct-or::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.acct-legal {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+.acct-legal a {
+  text-decoration: underline;
+}
+.acct-loading {
+  display: grid;
+  place-items: center;
+  padding: 40px 0;
+}
+.acct-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 20px;
+  background: var(--petal);
+}
+.acct-head > div {
+  display: grid;
+  min-width: 0;
+}
+.acct-head strong {
+  font-size: 17px;
+}
+.acct-head .muted {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.acct-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+.acct-avatar.avatar-initial {
+  font-size: 20px;
+}
+.acct-via {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.acct-via .brand-ic {
+  width: 13px;
+  height: 13px;
+}
+.acct-form {
+  display: grid;
+  gap: 14px;
+}
+.acct-orders h3 {
+  margin-bottom: 8px;
+}
+.acct-orders ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.acct-orders li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+.acct-orders li > span:first-child {
+  display: grid;
+}
+.acct-order-end {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+}
+.acct-status {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--blush);
+  color: var(--pink-600);
+  font-size: 11.5px;
+  font-weight: 800;
+}
+.acct-status.st-delivered {
+  background: #e3f6ec;
+  color: #0d7a4f;
+}
+.acct-status.st-cancelled,
+.acct-status.st-returned {
+  background: #f1eef0;
+  color: var(--muted);
+}
+.acct-out {
+  justify-self: center;
+}
+@media (max-width: 380px) {
+  .header-end .account-btn {
+    display: none; /* the menu has "My account" on the smallest phones */
+  }
 }

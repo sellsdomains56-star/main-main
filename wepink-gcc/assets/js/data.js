@@ -14,6 +14,21 @@ window.WP_DATA = (function () {
     tiktok: "https://www.tiktok.com/@wepink",
     returnsDays: 14,
 
+    // The store's database (Supabase): products, prices and settings edited in
+    // admin.html, plus orders, ambassadors and customers. The key is the
+    // public "publishable" key, safe in the browser (the database only lets
+    // shoppers read live products and send forms). Clear url to run offline
+    // from catalog.js alone.
+    supabase: {
+      url: "https://jkhtnytpkkqwnmhvgfmm.supabase.co",
+      key: "sb_publishable_9qcxp-JSXW4pBzUhL5rVZg_iUIrjMte",
+    },
+
+    // Every product price goes up by this % (prices in the catalogue stay as
+    // set; the admin panel changes this in Settings). Exact local prices set
+    // on a product (`prices: { SAR: 89 }`) are shown as they are.
+    pricing: { markupPct: 5 },
+
     // Campaign photos of Virginia Fonseca, cropped from wepink's own campaign
     // banners — confirm GCC usage rights with the brand before launch. Clear a
     // path to fall back to the designed placeholder.
@@ -195,5 +210,5 @@ window.WP_DATA = (function () {
     { country: "OM", city: ["Muscat", "مسقط"], label: { en: "Store", ar: "متجر" } },
   ];
 
-  return { config, countries, payNames, categories, families, products, featured, stores };
+  return { config, countries, payNames, categories, families, types: T, products, featured, stores };
 })();

@@ -5,6 +5,7 @@ window.WP = (function () {
   const D = window.WP_DATA;
   const I = window.WP_I18N;
   const ART = window.WP_ART;
+  const SYNC = window.WP_SYNC;
 
   /* ---------- storage (never required: private windows may block it) ---------- */
   const store = {
@@ -50,6 +51,7 @@ window.WP = (function () {
   function afterNavigate() {
     closeAll(true);
     render();
+    SYNC.trackPage(pageInfo());
     const target = pendingAnchor && document.getElementById(pendingAnchor);
     pendingAnchor = "";
     if (target) target.scrollIntoView();
@@ -62,13 +64,14 @@ window.WP = (function () {
   const state = {
     lang: ["en", "ar"].includes(params.get("lang")) ? params.get("lang") : store.get("lang", browserAr ? "ar" : "en"),
     country: D.countries[params.get("country")] ? params.get("country") : store.get("country", "AE"),
-    cart: store.get("cart", []).filter((i) => D.products.some((p) => p.id === i.id)),
+    cart: store.get("cart", []).filter((i) => i && typeof i.id === "string" && i.qty > 0),
   };
   if (!D.countries[state.country]) state.country = "AE";
 
   /* ---------- referral codes ----------
    * A link with ?ref=CODE saves the friend's code; checkout applies it.
-   * Codes aren't checked against a server yet, so any well-formed code works.
+   * With the database connected, only active ambassadors' codes are accepted;
+   * without it (or offline), any well-formed code is.
    */
   const ref = {
     clean(code) {
@@ -89,8 +92,14 @@ window.WP = (function () {
     pct() {
       return D.config.referral.friendDiscountPct;
     },
+    // Resolves to the clean code when it can be used, or "".
+    check(code) {
+      const c = ref.clean(code);
+      if (!c || !SYNC.live) return Promise.resolve(c);
+      return SYNC.rpc("check_ref", { p_code: c }).then((ok) => (ok ? c : ""), () => c);
+    },
   };
-  const incomingRef = ref.set(params.get("ref"));
+  const incomingRef = ref.clean(params.get("ref"));
 
   /* ---------- helpers ---------- */
   const esc = (s) =>
@@ -116,7 +125,9 @@ window.WP = (function () {
   const fullName = (p) => (FRAGRANCE.has(p.type) ? `${p.line} ${L(p.typeName)}` : pname(p));
   const product = (id) => D.products.find((p) => p.id === id);
 
-  // Local price for an AED amount (or a product's own override).
+  // Store-wide price increase (config.pricing, set in the admin panel).
+  const markup = () => 1 + (Number(D.config.pricing && D.config.pricing.markupPct) || 0) / 100;
+  // Local price for an AED amount (or a product's own exact local price).
   function local(aed, p) {
     const c = country();
     if (p && p.prices && p.prices[c.currency] != null) return p.prices[c.currency];
@@ -128,7 +139,8 @@ window.WP = (function () {
     const n = Number(amount).toLocaleString("en-US", { minimumFractionDigits: c.decimals, maximumFractionDigits: c.decimals });
     return state.lang === "ar" ? `${n} ${c.symbol.ar}` : `${c.symbol.en} ${n}`;
   }
-  const priceOf = (p) => local(p.price, p);
+  const priceOf = (p) => local(p.price * markup(), p);
+  const wasOf = (p) => local(p.compareAt * markup());
   const moneyAED = (aed) => money(local(aed));
 
   /* ---------- bag ---------- */
@@ -137,7 +149,7 @@ window.WP = (function () {
       return state.cart.map((i) => ({ ...i, p: product(i.id) })).filter((i) => i.p);
     },
     count() {
-      return state.cart.reduce((n, i) => n + i.qty, 0);
+      return bag.items().reduce((n, i) => n + i.qty, 0);
     },
     subtotal() {
       return bag.items().reduce((s, i) => s + priceOf(i.p) * i.qty, 0);
@@ -203,6 +215,7 @@ window.WP = (function () {
     shield: '<path d="M12 3 19.5 6v5.6c0 4.4-3.1 8.2-7.5 9.4-4.4-1.2-7.5-5-7.5-9.4V6L12 3Z"/><path d="m8.8 12 2.3 2.3 4.2-4.6"/>',
     leaf: '<path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19 13 11"/>',
     heart: '<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/>',
+    user: '<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-4 4-6 7.5-6s6.3 2 7.5 6"/>',
   };
   function icon(name, cls) {
     return `<svg class="icon ${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${P[name] || ""}</svg>`;
@@ -225,7 +238,7 @@ window.WP = (function () {
     return `<div class="media ${cls || ""}" style="--c:${p.color};--c2:${p.color2}">${ART.art(p)}</div>`;
   }
   function priceHTML(p) {
-    return `<span class="price">${esc(money(priceOf(p)))}</span>${p.compareAt ? `<s class="price-was">${esc(money(local(p.compareAt)))}</s>` : ""}`;
+    return `<span class="price">${esc(money(priceOf(p)))}</span>${p.compareAt ? `<s class="price-was">${esc(money(wasOf(p)))}</s>` : ""}`;
   }
   function card(p) {
     const url = `product.html?id=${encodeURIComponent(p.id)}`;
@@ -290,6 +303,7 @@ window.WP = (function () {
             </button>
             <button class="chip-btn lang-btn" type="button" data-lang-toggle lang="${state.lang === "ar" ? "en" : "ar"}" aria-label="${esc(t("nav.languageLabel"))}"><span class="lang-full">${esc(t("nav.language"))}</span><span class="lang-short" aria-hidden="true">${state.lang === "ar" ? "EN" : "ع"}</span></button>
             <button class="icon-btn search-end" type="button" data-open="search" aria-label="${esc(t("nav.search"))}">${icon("search")}</button>
+            ${SYNC.live ? accountButton() : ""}
             <button class="icon-btn bag-btn" type="button" data-open="bag" aria-label="${esc(t("nav.bag"))}">
               ${icon("bag")}<span class="bag-count" data-bag-count ${bag.count() ? "" : "hidden"}>${bag.count()}</span>
             </button>
@@ -337,6 +351,7 @@ window.WP = (function () {
               <a href="about.html">${esc(t("footer.about"))}</a>
               <a href="earn.html">${esc(t("footer.earn"))}</a>
               <a href="stores.html">${esc(t("footer.storesLink"))}</a>
+              <button class="footer-club" type="button" data-open="club">${icon("sparkle")}<span>${esc(t("club.footer"))}</span></button>
               <button class="footer-region" type="button" data-open="region">${icon("globe")}<span>${esc(L(c.name))} · ${esc(c.currency)}</span></button>
             </nav>
           </div>
@@ -346,7 +361,7 @@ window.WP = (function () {
           </div>
           <div class="footer-bottom">
             <p>${esc(t("footer.rights", { year }))}</p>
-            <p><a href="help.html">${esc(t("footer.privacy"))}</a> · <a href="help.html">${esc(t("footer.terms"))}</a></p>
+            <p><a href="help.html#privacy">${esc(t("footer.privacy"))}</a> · <a href="help.html#faq">${esc(t("footer.terms"))}</a>${SYNC.live ? ` · <button class="link-btn footer-cookies" type="button" data-cookies>${esc(t("consent.settings"))}</button>` : ""}</p>
           </div>
         </div>
       </footer>`;
@@ -389,6 +404,7 @@ window.WP = (function () {
           <a href="stores.html">${esc(t("nav.stores"))}${icon("arrow", "flip")}</a>
           <a href="about.html">${esc(t("nav.about"))}${icon("arrow", "flip")}</a>
           <a href="help.html">${esc(t("nav.help"))}${icon("arrow", "flip")}</a>
+          ${SYNC.live ? `<button type="button" class="menu-account" data-open="account">${icon("user")}<span>${esc(SYNC.auth.signedIn() ? t("acct.my") : t("acct.signIn"))}</span>${icon("arrow", "flip")}</button>` : ""}
         </nav>
         <div class="menu-foot">
           <button class="chip-btn" type="button" data-open="region">${icon("globe")}<span>${esc(L(c.name))} · ${esc(c.currency)}</span></button>
@@ -437,9 +453,278 @@ window.WP = (function () {
         <div id="quiz-body"></div>
       </div>
 
-      <div class="toasts" id="toasts" role="status" aria-live="polite"></div>`;
+      <div class="layer modal modal-center modal-account" id="layer-account" role="dialog" aria-modal="true" aria-labelledby="acct-title" hidden>
+        <div class="layer-head">
+          <div>
+            <p class="eyebrow">wepink ${esc(L(D.config.region))}</p>
+            <h2 id="acct-title">${esc(t("acct.title"))}</h2>
+          </div>
+          <button class="icon-btn" type="button" data-close aria-label="${esc(t("nav.close"))}">${icon("close")}</button>
+        </div>
+        <div class="acct-body" id="acct-body"></div>
+      </div>
+
+      <div class="layer modal modal-center modal-club" id="layer-club" role="dialog" aria-modal="true" aria-labelledby="club-title" hidden>
+        <div class="club-art" aria-hidden="true">
+          ${D.config.photos.virginiaPortrait ? `<img class="club-photo" src="${esc(D.config.photos.virginiaPortrait)}" alt="" loading="lazy">` : ""}
+          <img src="assets/brand/logo-white.svg" alt="" width="120" height="35">
+          <span class="club-glow"></span>
+          <ul class="club-perks">
+            <li>${icon("sparkle")}<span>${esc(t("club.perk1"))}</span></li>
+            <li>${icon("gift")}<span>${esc(t("club.perk2"))}</span></li>
+            <li>${icon("heart")}<span>${esc(t("club.perk3"))}</span></li>
+          </ul>
+        </div>
+        <div class="club-main">
+          <div class="layer-head">
+            <div>
+              <p class="eyebrow">${esc(t("club.eyebrow"))}</p>
+              <h2 id="club-title">${esc(t("club.title"))}</h2>
+              <p class="muted">${esc(t("club.lead"))}</p>
+            </div>
+            <button class="icon-btn" type="button" data-close aria-label="${esc(t("nav.close"))}">${icon("close")}</button>
+          </div>
+          <div class="club-body" id="club-body">${clubBody()}</div>
+        </div>
+      </div>
+
+      <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+      ${consentBanner()}`;
     renderBagDrawer();
     renderSearch("");
+  }
+
+  /* ---------- shopper accounts: Google / Apple sign-in ---------- */
+  const LOGO = {
+    google:
+      '<svg class="brand-ic" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>',
+    apple:
+      '<svg class="brand-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>',
+  };
+  const initial = (u) => esc(((u && (u.name || u.email)) || "?").trim().charAt(0).toUpperCase());
+  function avatar(u, cls) {
+    return u && u.avatar ? `<img class="${cls}" src="${esc(u.avatar)}" alt="" referrerpolicy="no-referrer">` : `<span class="${cls} avatar-initial" aria-hidden="true">${initial(u)}</span>`;
+  }
+  function accountButton() {
+    const u = SYNC.auth.user();
+    return `<button class="icon-btn account-btn${u ? " is-in" : ""}" type="button" data-open="account" aria-label="${esc(u ? t("acct.my") : t("acct.signIn"))}">${u ? avatar(u, "avatar") : icon("user")}</button>`;
+  }
+  function birthdayFields(value, id) {
+    const [m, d] = String(value || "").split("-");
+    const months = Array.from({ length: 12 }, (_, i) => new Date(2024, i, 1).toLocaleString(state.lang === "ar" ? "ar-AE" : "en-GB", { month: "long" }));
+    return `<div class="field"><span class="label" id="${id}">${esc(t("club.birthday"))} <span class="optional">${esc(t("club.optional"))}</span></span>
+        <div class="field-row" role="group" aria-labelledby="${id}">
+          <label class="select select-block"><select name="bday" aria-label="${esc(t("club.day"))}"><option value="">${esc(t("club.day"))}</option>${Array.from({ length: 31 }, (_, i) => `<option${+d === i + 1 ? " selected" : ""}>${i + 1}</option>`).join("")}</select>${icon("chevron")}</label>
+          <label class="select select-block"><select name="bmonth" aria-label="${esc(t("club.month"))}"><option value="">${esc(t("club.month"))}</option>${months.map((name, i) => `<option value="${i + 1}"${+m === i + 1 ? " selected" : ""}>${esc(name)}</option>`).join("")}</select>${icon("chevron")}</label>
+        </div>
+      </div>`;
+  }
+  const pad2 = (n) => String(n).padStart(2, "0");
+  const birthdayOf = (form) => (form.bday.value && form.bmonth.value ? `${pad2(form.bmonth.value)}-${pad2(form.bday.value)}` : "");
+
+  function renderAccount(msg) {
+    const el = document.getElementById("acct-body");
+    if (!el) return;
+    const title = document.getElementById("acct-title");
+    if (!SYNC.auth.signedIn()) {
+      title.textContent = t("acct.title");
+      el.innerHTML = `<p class="muted">${esc(t("acct.lead"))}</p>
+        <div class="oauth">
+          <button class="btn-oauth btn-google" type="button" data-signin="google">${LOGO.google}<span>${esc(t("acct.google"))}</span></button>
+          <button class="btn-oauth btn-apple" type="button" data-signin="apple">${LOGO.apple}<span>${esc(t("acct.apple"))}</span></button>
+        </div>
+        <p class="acct-msg" role="status">${esc(msg || "")}</p>
+        <p class="acct-or"><span>${esc(t("acct.or"))}</span></p>
+        <button class="btn btn-ghost btn-block" type="button" data-open="club">${icon("sparkle")}${esc(t("acct.club"))}</button>
+        <p class="acct-legal">${esc(t("acct.legal"))} <a href="help.html#privacy">${esc(t("consent.more"))}</a></p>`;
+      return;
+    }
+    const show = (a) => {
+      const u = SYNC.auth.user();
+      title.textContent = t("acct.hi", { name: ((a && a.name) || u.name || "").split(" ")[0] || "wepink" });
+      el.innerHTML = a ? accountHTML(a, msg) : `<div class="acct-loading"><span class="spinner" aria-hidden="true"></span></div>`;
+    };
+    show(store.get("account", null));
+    SYNC.auth.account().then(
+      (a) => {
+        const typing = el.contains(document.activeElement) && /INPUT|SELECT/.test(document.activeElement.tagName);
+        if (!typing && document.getElementById("acct-body") === el) show(a);
+        refreshAccountButton();
+      },
+      () => {
+        if (SYNC.auth.signedIn()) return; // a network hiccup: keep what's shown
+        renderAccount(t("acct.expired"));
+        refreshAccountButton();
+      }
+    );
+  }
+  function accountHTML(a, msg) {
+    const c = country();
+    const u = Object.assign({}, SYNC.auth.user(), { name: a.name, email: a.email, avatar: a.avatar });
+    const dial = c.dial.replace(/\D/g, "");
+    const phone = String(a.phone || "").replace(/\D/g, "");
+    const local = phone.startsWith(dial) ? phone.slice(dial.length) : phone;
+    const via = { google: "Google", apple: "Apple" }[a.provider] || "";
+    const orders = a.orders || [];
+    return `<div class="acct-head">${avatar(u, "acct-avatar")}<div><strong>${esc(a.name || u.email)}</strong><span class="muted small" dir="ltr">${esc(a.email || "")}</span>${via ? `<span class="acct-via">${LOGO[a.provider] || ""}${esc(t("acct.via", { provider: via }))}</span>` : ""}</div></div>
+      <form class="acct-form" id="acct-form" novalidate>
+        <div class="field"><label for="ac-name">${esc(t("club.name"))}</label><input id="ac-name" name="name" autocomplete="name" required value="${esc(a.name || "")}"></div>
+        <div class="field"><label for="ac-phone">${esc(t("club.phone"))}</label>
+          <div class="input-prefix"><span dir="ltr">${esc(c.dial)}</span><input id="ac-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" dir="ltr" value="${esc(local)}"></div>
+        </div>
+        ${birthdayFields(a.birthday, "ac-bday")}
+        <label class="check"><input type="checkbox" name="marketing" ${a.marketing ? "checked" : ""}><span class="check-box">${icon("check")}</span><span>${esc(t("club.agree"))}</span></label>
+        <button class="btn btn-primary btn-block" type="submit">${esc(t("acct.save"))}</button>
+        <p class="form-msg" role="status">${esc(msg || "")}</p>
+      </form>
+      <div class="acct-orders">
+        <h3 class="h3">${esc(t("acct.orders"))}</h3>
+        ${
+          orders.length
+            ? `<ul>${orders
+                .map((o) => {
+                  const cur = Object.values(D.countries).find((x) => x.currency === o.currency) || c;
+                  const total = Number(o.total).toLocaleString("en-US", { minimumFractionDigits: cur.decimals, maximumFractionDigits: cur.decimals });
+                  return `<li><span><strong dir="ltr">${esc(o.number)}</strong><span class="muted small">${esc(new Date(o.date).toLocaleDateString(state.lang === "ar" ? "ar-AE-u-nu-latn" : "en-GB", { day: "numeric", month: "short", year: "numeric" }))} · ${esc(t("acct.items", { n: o.items }))}</span></span><span class="acct-order-end"><span class="acct-status st-${esc(o.status)}">${esc(t("acct.st." + o.status))}</span><span class="price">${esc(state.lang === "ar" ? `${total} ${cur.symbol.ar}` : `${cur.symbol.en} ${total}`)}</span></span></li>`;
+                })
+                .join("")}</ul>`
+            : `<p class="muted">${esc(t("acct.noOrders"))}</p>`
+        }
+      </div>
+      <button class="link-btn small acct-out" type="button" data-signout>${esc(t("acct.signOut"))}</button>`;
+  }
+  function refreshAccountButton() {
+    const b = document.querySelector(".account-btn");
+    if (b) b.outerHTML = accountButton();
+  }
+  function submitAccount(form) {
+    if (!validate(form)) return;
+    const msg = form.querySelector(".form-msg");
+    const digits = form.phone.value.replace(/\D/g, "");
+    if (digits && !/^[0-9\s-]{7,12}$/.test(form.phone.value.trim())) {
+      msg.textContent = t("co.invalidPhone");
+      return form.phone.focus();
+    }
+    const btn = form.querySelector("[type=submit]");
+    btn.disabled = true;
+    SYNC.auth
+      .save({ name: form.name.value.trim(), phone: digits ? country().dial + digits : "", birthday: birthdayOf(form), marketing: form.marketing.checked, country: state.country, lang: state.lang })
+      .then(
+        () => renderAccount(t("acct.saved")),
+        () => {
+          btn.disabled = false;
+          msg.textContent = t("form.failed");
+        }
+      );
+  }
+
+  /* ---------- wepink Club (sign-up for offers) & cookie consent ---------- */
+  function clubBody() {
+    if (store.get("club", "") === "joined") {
+      return `<div class="club-done"><span class="thanks-icon">${icon("check")}</span><h3 class="h3">${esc(t("club.doneTitle"))}</h3><p class="muted">${esc(t("club.doneLead"))}</p>
+        <button class="btn btn-primary btn-block" type="button" data-close>${esc(t("club.doneCta"))}</button></div>`;
+    }
+    const c = country();
+    const me = store.get("account", null) || {};
+    return `<form class="club-form" id="club-form" novalidate>
+      <div class="field"><label for="cl-name">${esc(t("club.name"))}</label><input id="cl-name" name="name" autocomplete="name" required value="${esc(me.name || "")}"></div>
+      <div class="field"><label for="cl-phone">${esc(t("club.phone"))}</label>
+        <div class="input-prefix"><span dir="ltr">${esc(c.dial)}</span><input id="cl-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" dir="ltr" required></div>
+      </div>
+      <div class="field"><label for="cl-email">${esc(t("club.email"))} <span class="optional">${esc(t("club.optional"))}</span></label><input id="cl-email" name="email" type="email" autocomplete="email" dir="ltr" value="${esc(me.email || "")}"></div>
+      ${birthdayFields(me.birthday, "cl-bday")}
+      <label class="check"><input type="checkbox" name="agree" id="cl-agree"><span class="check-box">${icon("check")}</span><span>${esc(t("club.agree"))}</span></label>
+      <p class="field-error" id="cl-agree-err"></p>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">${icon("sparkle")}<span>${esc(t("club.submit"))}</span></button>
+      <p class="club-privacy">${esc(t("club.privacy"))} <a href="help.html#privacy">${esc(t("consent.more"))}</a></p>
+    </form>`;
+  }
+  function submitClub(form) {
+    let ok = validate(form);
+    const email = form.email.value.trim();
+    const emailField = form.email.closest(".field");
+    let err = emailField.querySelector(".field-error");
+    if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+      if (!err) emailField.insertAdjacentHTML("beforeend", `<p class="field-error"></p>`);
+      emailField.querySelector(".field-error").textContent = t("co.invalidEmail");
+      form.email.setAttribute("aria-invalid", "true");
+      if (ok) form.email.focus();
+      ok = false;
+    } else if (err) err.textContent = "";
+    const agreeErr = form.querySelector("#cl-agree-err");
+    agreeErr.textContent = form.agree.checked ? "" : t("club.agreeErr");
+    if (!form.agree.checked) ok = false;
+    if (!ok) return;
+    const btn = form.querySelector("[type=submit]");
+    btn.disabled = true;
+    const c = country();
+    const birthday = birthdayOf(form) || undefined;
+    const done = () => {
+      store.set("club", "joined");
+      document.getElementById("club-body").innerHTML = clubBody();
+      const b = document.querySelector("#club-body [data-close]");
+      if (b) b.focus();
+    };
+    const entry = Object.assign(
+      { source: "club", name: form.name.value.trim(), phone: `${c.dial}${form.phone.value.replace(/\D/g, "")}`, email, country: state.country, lang: state.lang, marketing: true, details: birthday ? { birthday } : {} },
+      SYNC.context()
+    );
+    if (!SYNC.live) return done();
+    SYNC.rpc("save_contact", { p: entry }).then(done, () => {
+      btn.disabled = false;
+      agreeErr.textContent = t("form.failed");
+    });
+  }
+  function scheduleClub() {
+    if (store.get("club", "") === "joined" || Date.now() - store.get("clubShown", 0) < 7 * 864e5) return;
+    setTimeout(() => {
+      const busy = ["checkout", "earn"].includes(route().page) || document.querySelector("#app-layers .layer:not([hidden])") || (document.activeElement && document.activeElement.closest && document.activeElement.closest("form"));
+      if (busy) return;
+      store.set("clubShown", Date.now());
+      open("club");
+    }, 15000);
+  }
+  function consentBanner() {
+    if (!SYNC.live || SYNC.consent.get()) return "";
+    return `<div class="consent" id="consent" role="region" aria-label="${esc(t("consent.label"))}">
+      <p><strong>${esc(t("consent.title"))}</strong> ${esc(t("consent.text"))} <a href="help.html#privacy">${esc(t("consent.more"))}</a></p>
+      <div class="consent-btns">
+        <button class="btn btn-ghost btn-sm" type="button" data-consent="no">${esc(t("consent.no"))}</button>
+        <button class="btn btn-primary btn-sm" type="button" data-consent="yes">${esc(t("consent.yes"))}</button>
+      </div>
+    </div>`;
+  }
+  const pageInfo = () => ({ page: route().page, country: state.country, lang: state.lang, ref: ref.get() || undefined });
+
+  /* ---------- forms ---------- */
+  function validate(form) {
+    let first = null;
+    form.querySelectorAll("input[required], select[required], textarea[required]").forEach((input) => {
+      const field = input.closest(".field");
+      let msg = "";
+      const v = input.value.trim();
+      if (!v) msg = t("co.required");
+      else if (input.type === "email" && !/^\S+@\S+\.\S+$/.test(v)) msg = t("co.invalidEmail");
+      else if (input.type === "tel" && !/^[0-9\s-]{7,12}$/.test(v)) msg = t("co.invalidPhone");
+      let err = field && field.querySelector(".field-error");
+      if (msg) {
+        input.setAttribute("aria-invalid", "true");
+        if (field && !err) {
+          err = document.createElement("p");
+          err.className = "field-error";
+          err.id = input.id + "-err";
+          field.appendChild(err);
+          input.setAttribute("aria-describedby", err.id);
+        }
+        if (err) err.textContent = msg;
+        if (!first) first = input;
+      } else {
+        input.removeAttribute("aria-invalid");
+        if (err) err.textContent = "";
+      }
+    });
+    if (first) first.focus();
+    return !first;
   }
 
   function renderBagDrawer() {
@@ -509,7 +794,7 @@ window.WP = (function () {
       const cat = D.categories.find((c) => c.id === p.cat).name;
       const fields = [
         [3, [p.line, p.lineAr || ""]],
-        [2, [p.typeName.en, p.typeName.ar, cat.en, cat.ar, D.families[p.family].en, D.families[p.family].ar]],
+        [2, [p.typeName.en, p.typeName.ar, cat.en, cat.ar, ...(D.families[p.family] ? [D.families[p.family].en, D.families[p.family].ar] : [])]],
         [1, [].concat(...Object.values(p.notes).map((arr) => arr.flat()), p.tagline ? [p.tagline.en, p.tagline.ar] : [])],
       ];
       let total = 0;
@@ -549,6 +834,7 @@ window.WP = (function () {
       layer.classList.add("is-on");
     });
     if (name === "quiz") quiz.start();
+    if (name === "account") renderAccount();
     const focusEl = name === "search" ? document.getElementById("search-input") : layer.querySelector("button, a, input, select, textarea");
     setTimeout(() => focusEl && focusEl.focus(), 60);
   }
@@ -712,6 +998,31 @@ window.WP = (function () {
     document.addEventListener("input", (e) => {
       if (e.target.id === "search-input") renderSearch(e.target.value);
     });
+    document.addEventListener("click", (e) => {
+      const yes = e.target.closest("[data-consent]");
+      if (yes) {
+        SYNC.consent.set(yes.dataset.consent);
+        const banner = document.getElementById("consent");
+        if (banner) banner.remove();
+        if (yes.dataset.consent === "yes") SYNC.trackPage(pageInfo());
+      } else if (e.target.closest("[data-cookies]")) {
+        SYNC.consent.set(null);
+        renderLayers();
+      } else if (e.target.closest("[data-signin]")) {
+        const provider = e.target.closest("[data-signin]").dataset.signin;
+        const name = provider === "apple" ? "Apple" : "Google";
+        SYNC.auth.signIn(provider).catch((err) => renderAccount(t(err.code === "file" ? "acct.needSite" : err.code === "disabled" ? "acct.disabled" : "form.failed", { provider: name })));
+      } else if (e.target.closest("[data-signout]")) {
+        SYNC.auth.signOut();
+        closeAll(true);
+        render();
+        toast(t("acct.signedOut"));
+      }
+    });
+    document.addEventListener("submit", (e) => {
+      if (e.target.id === "club-form") (e.preventDefault(), submitClub(e.target));
+      if (e.target.id === "acct-form") (e.preventDefault(), submitAccount(e.target));
+    });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeAll();
       if (e.key === "Tab") trapFocus(e);
@@ -791,10 +1102,60 @@ window.WP = (function () {
   function init() {
     bind();
     render();
-    if (incomingRef) setTimeout(() => toast(t("ref.welcome", { code: incomingRef, pct: ref.pct() })), 600);
+    // Products, prices and settings from the database: re-render if anything
+    // the shopper can see changed, unless they're mid-way through a form.
+    SYNC.onChange((changed) => {
+      const waiting = document.querySelector("#main [data-sync-wait]");
+      if (!changed && !waiting) return;
+      const busy =
+        route().page === "checkout" ||
+        document.querySelector("#app-layers .layer:not([hidden])") ||
+        (document.activeElement && document.activeElement.closest && document.activeElement.closest("#main form"));
+      if (busy && !waiting) return bag.save();
+      const y = window.scrollY;
+      render();
+      window.scrollTo(0, y);
+    });
+    SYNC.boot();
+    SYNC.trackPage(pageInfo());
+    if (incomingRef) {
+      ref.check(incomingRef).then((code) => {
+        if (!code) return;
+        ref.set(code);
+        toast(t("ref.welcome", { code, pct: ref.pct() }));
+        // Count the visit on the ambassador's link once per browser session.
+        try {
+          if (SYNC.live && !sessionStorage.getItem("wpg.click." + code)) {
+            sessionStorage.setItem("wpg.click." + code, "1");
+            SYNC.rpc("track_ref_click", { p_code: code }).catch(() => {});
+          }
+        } catch (e) {
+          /* storage blocked */
+        }
+      });
+    }
+    // Back from Google / Apple: load (and create) their account, then ask for
+    // the details a sign-in doesn't give us (WhatsApp, birthday, offers).
+    const notice = SYNC.auth.notice();
+    SYNC.auth.clearNotice();
+    if (notice === "signedIn") {
+      SYNC.auth.account().then(
+        (a) => {
+          refreshAccountButton();
+          toast(t("acct.welcome", { name: (a.name || a.email || "").split(" ")[0] }));
+          if (!a.phone) open("account");
+        },
+        () => toast(t("form.failed"))
+      );
+    } else if (notice) {
+      setTimeout(() => toast(t("acct.failed")), 400);
+    } else if (SYNC.auth.signedIn()) {
+      SYNC.auth.account().then(refreshAccountButton, () => refreshAccountButton());
+    }
+    if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, ref, pname, fullName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, data: D, art: ART };
+  return { init, render, route, SINGLE, ref, pname, fullName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());
