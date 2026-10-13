@@ -47,7 +47,7 @@ const catalogJs = (() => {
 })();
 
 const css = read("assets/css/styles.css");
-const js = [catalogJs, ...["data.js", "sync.js", "i18n.js", "art.js", "silk.js", "app.js", "pages.js"].map((f) => read(`assets/js/${f}`))].map((text) => script(inlinePhotos(inlineFilm(text))));
+const js = [catalogJs, ...["data.js", "sync.js", "i18n.js", "art.js", "silk.js", "app.js", "assistant.js", "pages.js"].map((f) => read(`assets/js/${f}`))].map((text) => script(inlinePhotos(inlineFilm(text))));
 const head = read("index.html").match(/<head>([\s\S]*?)<\/head>/)[1];
 const meta = head
   .split("\n")

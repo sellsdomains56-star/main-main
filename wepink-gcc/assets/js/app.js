@@ -1162,12 +1162,14 @@ window.WP = (function () {
     state.lang = lang;
     store.set("lang", lang);
     render();
+    if (window.WP_ASSIST) window.WP_ASSIST.refresh();
   }
   function setCountry(code) {
     state.country = code;
     store.set("country", code);
     closeAll(true);
     render();
+    if (window.WP_ASSIST) window.WP_ASSIST.refresh();
   }
 
   /* ---------- reveal on scroll ---------- */

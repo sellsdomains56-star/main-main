@@ -1192,27 +1192,73 @@ window.WP_PAGES = (function () {
 
   /* ---------------- help ---------------- */
   function help(main) {
-    const faqs = [1, 2, 3, 4, 5, 6];
-    const vars = { free: money(W.country().freeOver), fee: money(W.country().fee), days: D.config.returnsDays };
+    const c = W.country();
+    const vars = {
+      free: money(c.freeOver), fee: money(c.fee), days: D.config.returnsDays, delivery: L(c.delivery),
+      country: L(c.name), vat: c.vat, hours: D.config.hours, email: D.config.email,
+    };
+    const wa = (text) => `https://wa.me/${D.config.whatsapp}${text ? "?text=" + encodeURIComponent(text) : ""}`;
+    const waNumber = "+" + D.config.whatsapp.replace(/^(\d{3})(\d{2})(\d{3})(\d+)$/, "$1 $2 $3 $4");
     main.innerHTML = `
-      <section class="page-head">
+      <section class="page-head page-head-pink help-head">
         <div class="container">
           ${crumbs([["wepink", "index.html"], [t("help.title")]])}
           <h1 class="h1">${esc(t("help.title"))}</h1>
           <p class="muted">${esc(t("help.lead"))}</p>
+          <label class="help-search">${icon("search")}<span class="sr-only">${esc(t("help.search"))}</span><input id="help-q" type="search" autocomplete="off" placeholder="${esc(t("help.search"))}"></label>
+          <div class="help-topics" role="group" aria-label="${esc(t("help.topics"))}">
+            <button class="pill" type="button" data-topic="" aria-pressed="true">${esc(t("help.all"))}</button>
+            ${D.faq.map((g) => `<button class="pill" type="button" data-topic="${g.id}" aria-pressed="false">${icon(g.icon)}${esc(L(g.title))}</button>`).join("")}
+          </div>
         </div>
       </section>
-      <section class="container contact-grid">
-        <a class="contact-card contact-wa" href="https://wa.me/${D.config.whatsapp}" target="_blank" rel="noopener">${icon("chat")}<strong>${esc(t("help.whatsapp"))}</strong><span>${esc(t("help.whatsappB"))}</span></a>
-        <a class="contact-card" href="mailto:${D.config.email}">${icon("mail")}<strong>${esc(t("help.email"))}</strong><span dir="ltr">${esc(D.config.email)}</span></a>
-        <div class="contact-card">${icon("clock")}<strong dir="ltr">10:00 – 22:00</strong><span>${esc(t("help.hours"))}</span></div>
-      </section>
-      <section class="section" id="faq">
+      <section class="section help-faq" id="faq">
         <div class="container narrow">
-          <h2 class="h2">${esc(t("help.faqTitle"))}</h2>
-          <div class="accordion accordion-lg">
-            ${faqs.map((n, i) => `<details${i === 0 ? " open" : ""}><summary>${esc(t("help.q" + n))}${icon("chevron")}</summary><p>${esc(t("help.a" + n, vars))}</p></details>`).join("")}
+          ${D.faq
+            .map(
+              (g) => `<div class="faq-topic" data-group="${g.id}">
+                <h2 class="h3 faq-topic-title">${icon(g.icon)}${esc(L(g.title))}</h2>
+                <div class="accordion accordion-lg">
+                  ${g.items.map((it) => `<details><summary>${esc(fill(L(it.q), vars))}${icon("chevron")}</summary><p>${esc(fill(L(it.a), vars))}</p></details>`).join("")}
+                </div>
+              </div>`
+            )
+            .join("")}
+          <p class="faq-none muted" hidden></p>
+        </div>
+      </section>
+      <section class="section section-tint" id="contact">
+        <div class="container">
+          <div class="section-head"><div><h2 class="h2">${esc(t("help.stillTitle"))}</h2><p class="muted">${esc(t("help.stillLead"))}</p></div></div>
+          <div class="contact-grid">
+            <a class="contact-card contact-wa" href="${wa()}" target="_blank" rel="noopener">${icon("chat")}<strong>${esc(t("help.whatsapp"))}</strong><span dir="ltr">${esc(waNumber)}</span><span>${esc(t("help.whatsappB"))}</span></a>
+            <a class="contact-card" href="mailto:${D.config.email}">${icon("mail")}<strong>${esc(t("help.email"))}</strong><span dir="ltr">${esc(D.config.email)}</span></a>
+            <div class="contact-card">${icon("clock")}<strong dir="ltr">${esc(D.config.hours)}</strong><span>${esc(t("help.hours"))}</span></div>
+            <button class="contact-card contact-ai" type="button" data-open="assistant">${icon("sparkle")}<strong>${esc(t("help.assistant"))}</strong><span>${esc(t("help.assistantB"))}</span></button>
           </div>
+        </div>
+      </section>
+      <section class="section" id="request">
+        <div class="container narrow">
+          <h2 class="h2">${esc(t("help.reqTitle"))}</h2>
+          <p class="muted">${esc(t("help.reqLead", vars))}</p>
+          <form class="card-form req-form" id="req-form" novalidate>
+            <div class="field-row">
+              <div class="field"><label for="r-order">${esc(t("help.reqOrder"))}</label><input id="r-order" name="order" autocomplete="off" dir="ltr" placeholder="WPG-" required></div>
+              <div class="field"><label for="r-type">${esc(t("help.reqType"))}</label>
+                <div class="select"><select id="r-type" name="type" required>
+                  ${["exchange", "return", "damaged", "other"].map((k) => `<option value="${k}">${esc(t("help.reqType_" + k))}</option>`).join("")}
+                </select>${icon("chevron")}</div></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label for="r-name">${esc(t("stores.name"))}</label><input id="r-name" name="name" autocomplete="name" required></div>
+              <div class="field"><label for="r-phone">${esc(t("stores.phone"))}</label>
+                <div class="input-prefix"><span dir="ltr">${esc(c.dial)}</span><input id="r-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" dir="ltr" required></div></div>
+            </div>
+            <div class="field"><label for="r-msg">${esc(t("help.reqMsg"))}</label><textarea id="r-msg" name="msg" rows="3" placeholder="${esc(t("help.reqMsgPh"))}"></textarea></div>
+            <button class="btn btn-primary" type="submit">${icon("chat")}<span>${esc(t("help.reqSubmit"))}</span></button>
+            <p class="small muted">${esc(t("help.reqNote"))}</p>
+          </form>
         </div>
       </section>
       <section class="section section-tint" id="privacy">
@@ -1222,7 +1268,62 @@ window.WP_PAGES = (function () {
           ${W.sync.live ? `<button class="btn btn-ghost" type="button" data-cookies>${esc(t("consent.settings"))}</button>` : ""}
         </div>
       </section>`;
+
+    // search and topics
+    const q = main.querySelector("#help-q");
+    const none = main.querySelector(".faq-none");
+    let topic = "";
+    function filter() {
+      const words = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let shown = 0;
+      main.querySelectorAll(".faq-topic").forEach((g) => {
+        let any = false;
+        const inTopic = !topic || g.dataset.group === topic;
+        g.querySelectorAll("details").forEach((d) => {
+          const text = d.textContent.toLowerCase();
+          const hit = inTopic && words.every((w) => text.includes(w));
+          d.hidden = !hit;
+          if (words.length) d.open = hit;
+          if (hit) any = true;
+        });
+        g.hidden = !any;
+        if (any) shown++;
+      });
+      none.hidden = !!shown;
+      none.textContent = shown ? "" : t("help.none", { q: q.value.trim() });
+    }
+    q.addEventListener("input", filter);
+    main.querySelector(".help-topics").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-topic]");
+      if (!b) return;
+      topic = b.dataset.topic;
+      main.querySelectorAll("[data-topic]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      filter();
+    });
+
+    // exchange / return request: ready-made message for our WhatsApp
+    const form = main.querySelector("#req-form");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!validate(form)) return;
+      const f = form.elements;
+      const text = [
+        t("help.reqWaIntro"),
+        `${t("help.reqOrder")}: ${f.order.value.trim()}`,
+        `${t("help.reqType")}: ${t("help.reqType_" + f.type.value)}`,
+        `${t("stores.name")}: ${f.name.value.trim()}`,
+        `${t("stores.phone")}: ${c.dial} ${f.phone.value.trim()}`,
+        f.msg.value.trim() ? `${t("help.reqMsg")}: ${f.msg.value.trim()}` : "",
+      ].filter(Boolean).join("\n");
+      form.innerHTML = `<div class="req-done">${icon("check")}<h3 class="h3">${esc(t("help.reqReady"))}</h3><p class="muted">${esc(t("help.reqReadyB"))}</p>
+        <a class="btn btn-primary" href="${wa(text)}" target="_blank" rel="noopener">${icon("chat")}<span>${esc(t("help.reqSend"))}</span></a></div>`;
+    });
     return t("help.title");
+  }
+
+  // "{name}" placeholders in data copy (the help centre's answers)
+  function fill(text, vars) {
+    return String(text).replace(/\{(\w+)\}/g, (m, k) => (vars[k] != null ? vars[k] : m));
   }
 
   /* ---------------- checkout ---------------- */

@@ -10,6 +10,7 @@ window.WP_DATA = (function () {
     region: { en: "Gulf", ar: "الخليج" },
     whatsapp: "971500000000", // placeholder: client's WhatsApp Business number
     email: "care@wepink-gulf.com", // placeholder
+    hours: "10:00 – 22:00", // customer care, every day, Gulf time
     instagram: "https://www.instagram.com/wepink/",
     tiktok: "https://www.tiktok.com/@wepink",
     returnsDays: 14,
@@ -28,6 +29,12 @@ window.WP_DATA = (function () {
     // set; the admin panel changes this in Settings). Exact local prices set
     // on a product (`prices: { SAR: 89 }`) are shown as they are.
     pricing: { markupPct: 5 },
+
+    // The beauty assistant answers from the help centre and the catalogue in
+    // the browser. Point `endpoint` at a language-model service (see README,
+    // "Beauty assistant") to let it hold a real conversation; it falls back to
+    // the built-in answers whenever the service can't be reached.
+    assistant: { endpoint: "" },
 
     // Campaign photos of Virginia Fonseca, cropped from wepink's own campaign
     // banners — confirm GCC usage rights with the brand before launch. Clear a
@@ -242,6 +249,99 @@ window.WP_DATA = (function () {
     },
   };
 
+  // Help centre, modelled on wepink Brazil's "Central de Ajuda" and adapted to
+  // the Gulf. {free}, {fee}, {days}, {delivery}, {country}, {vat}, {hours} and
+  // {email} are filled in for the shopper's country. Confirm refund and
+  // exchange times with the franchise before launch.
+  const faq = [
+    {
+      id: "orders", icon: "truck", title: { en: "Orders & delivery", ar: "الطلبات والتوصيل" },
+      items: [
+        { q: { en: "Which countries do you deliver to?", ar: "إلى أي الدول توصلون؟" },
+          a: { en: "The UAE, Saudi Arabia, Qatar, Kuwait, Bahrain and Oman. Choose your country at the top of the page to see local prices, payment options and delivery times.", ar: "الإمارات والسعودية وقطر والكويت والبحرين وعُمان. اختاري دولتكِ أعلى الصفحة لرؤية الأسعار المحلية وطرق الدفع ومواعيد التوصيل." } },
+        { q: { en: "How long does delivery take?", ar: "كم تستغرق مدة التوصيل؟" },
+          a: { en: "To {country}: {delivery}. You'll see the date for your address at checkout.", ar: "إلى {country}: {delivery}. ستظهر لكِ مدة التوصيل لعنوانكِ عند إتمام الطلب." } },
+        { q: { en: "How much is delivery?", ar: "كم تكلفة التوصيل؟" },
+          a: { en: "Free on orders over {free}; below that it's {fee}.", ar: "مجاني للطلبات فوق {free}، وأقل من ذلك تكلفته {fee}." } },
+        { q: { en: "How do I track my order?", ar: "كيف أتابع طلبي؟" },
+          a: { en: "We message you on WhatsApp at every step: confirmed, packed, out for delivery. Signed in with Google or Apple? Your orders are under My account. Tracking can take up to 72 working hours to update after dispatch.", ar: "نراسلكِ على واتساب في كل خطوة: تأكيد الطلب، التجهيز، الخروج للتوصيل. إذا سجّلتِ الدخول عبر جوجل أو آبل ستجدين طلباتكِ في حسابي. قد يستغرق تحديث التتبع حتى 72 ساعة عمل بعد الشحن." } },
+        { q: { en: "I entered the wrong address. Can I change it?", ar: "أدخلتُ عنوانًا خاطئًا، هل يمكنني تغييره؟" },
+          a: { en: "Yes, until the order is out for delivery. WhatsApp us your order number and the right address and we'll update it.", ar: "نعم، طالما لم يخرج الطلب للتوصيل. أرسلي لنا رقم الطلب والعنوان الصحيح على واتساب وسنحدّثه." } },
+        { q: { en: "Do you deliver outside the Gulf?", ar: "هل توصلون خارج الخليج؟" },
+          a: { en: "Not yet. wepink Gulf delivers to the six GCC countries only.", ar: "ليس بعد. يوصل wepink الخليج إلى دول مجلس التعاون الست فقط." } },
+      ],
+    },
+    {
+      id: "payment", icon: "cash", title: { en: "Payment", ar: "الدفع" },
+      items: [
+        { q: { en: "Which payment methods can I use?", ar: "ما طرق الدفع المتاحة؟" },
+          a: { en: "Visa and Mastercard, Apple Pay, mada (KSA), KNET (Kuwait), BenefitPay (Bahrain), tabby and Tamara instalments, and cash on delivery. Checkout shows the ones available in {country}.", ar: "فيزا وماستركارد وApple Pay ومدى (السعودية) وكي نت (الكويت) وبنفت باي (البحرين) والتقسيط مع تابي وتمارا، والدفع عند الاستلام. تظهر لكِ عند الدفع الطرق المتاحة في {country}." } },
+        { q: { en: "Can I pay cash on delivery?", ar: "هل يمكنني الدفع عند الاستلام؟" },
+          a: { en: "Yes, in every country we deliver to. Pay the courier in cash when your order arrives.", ar: "نعم، في كل الدول التي نوصل إليها. ادفعي نقدًا لمندوب التوصيل عند وصول طلبكِ." } },
+        { q: { en: "How do tabby and Tamara work?", ar: "كيف يعمل تابي وتمارا؟" },
+          a: { en: "Choose tabby or Tamara at checkout to split your order into interest-free payments. Approval takes seconds and there are no fees when you pay on time.", ar: "اختاري تابي أو تمارا عند الدفع لتقسيم طلبكِ على دفعات بدون فوائد. الموافقة خلال ثوانٍ ولا رسوم عند السداد في الموعد." } },
+        { q: { en: "Is it safe to pay on this site?", ar: "هل الدفع على الموقع آمن؟" },
+          a: { en: "Yes. Card payments go through an encrypted, PCI-compliant payment gateway with fraud checks; we never see or store your card number.", ar: "نعم. تتم مدفوعات البطاقات عبر بوابة دفع مشفّرة ومتوافقة مع معايير PCI مع أنظمة للحماية من الاحتيال، ولا نرى رقم بطاقتكِ ولا نحفظه." } },
+        { q: { en: "Do prices include VAT?", ar: "هل تشمل الأسعار ضريبة القيمة المضافة؟" },
+          a: { en: "Yes. Prices in {country} include VAT at {vat}% where it applies.", ar: "نعم. تشمل الأسعار في {country} ضريبة القيمة المضافة بنسبة {vat}٪ حيث تنطبق." } },
+      ],
+    },
+    {
+      id: "returns", icon: "returns", title: { en: "Returns & refunds", ar: "الإرجاع والاسترداد" },
+      items: [
+        { q: { en: "What is your returns policy?", ar: "ما هي سياسة الإرجاع؟" },
+          a: { en: "Unopened products can be returned within {days} days of delivery. Opened fragrance can't be returned for hygiene reasons.", ar: "يمكن إرجاع المنتجات غير المفتوحة خلال {days} يومًا من التوصيل. لا يمكن إرجاع العطور المفتوحة لأسباب صحية." } },
+        { q: { en: "How do I ask for an exchange or a return?", ar: "كيف أطلب استبدالًا أو إرجاعًا؟" },
+          a: { en: "Fill in the request form at the bottom of this page, or WhatsApp us your order number. We'll arrange the pickup.", ar: "املئي نموذج الطلب أسفل هذه الصفحة، أو أرسلي لنا رقم الطلب على واتساب، وسنرتّب الاستلام." } },
+        { q: { en: "How long does a refund take?", ar: "كم يستغرق استرداد المبلغ؟" },
+          a: { en: "Up to 7 working days after the return reaches us, back to the way you paid. Cash-on-delivery orders are refunded by bank transfer or store credit.", ar: "حتى 7 أيام عمل بعد وصول المرتجع إلينا، إلى نفس وسيلة الدفع. وتُسترد طلبات الدفع عند الاستلام بتحويل بنكي أو رصيد في المتجر." } },
+        { q: { en: "My order arrived damaged or wrong.", ar: "وصل طلبي تالفًا أو غير صحيح." },
+          a: { en: "We're sorry! WhatsApp us a photo within 48 hours and we'll send a replacement at no cost. A new tracking code follows within 7 working days.", ar: "نعتذر! أرسلي لنا صورة على واتساب خلال 48 ساعة وسنرسل بديلًا مجانًا، ويصلكِ رمز التتبع الجديد خلال 7 أيام عمل." } },
+      ],
+    },
+    {
+      id: "products", icon: "leaf", title: { en: "Products & safety", ar: "المنتجات والسلامة" },
+      items: [
+        { q: { en: "Are your products authentic?", ar: "هل منتجاتكم أصلية؟" },
+          a: { en: "Yes. wepink Gulf is the official franchise, and every product ships from our regional warehouse.", ar: "نعم. wepink الخليج هو الامتياز الرسمي، وكل منتج يُشحن من مستودعنا الإقليمي." } },
+        { q: { en: "Are the products dermatologically tested?", ar: "هل المنتجات مختبرة جلديًا؟" },
+          a: { en: "Yes. wepink products are dermatologically tested and go through strict quality control, so you can use them with confidence.", ar: "نعم. منتجات wepink مختبرة جلديًا وتخضع لرقابة جودة صارمة، لتستخدميها بثقة واطمئنان." } },
+        { q: { en: "Are they tested on animals?", ar: "هل تُختبر على الحيوانات؟" },
+          a: { en: "Never. wepink doesn't test on animals and doesn't allow its suppliers to.", ar: "أبدًا. لا تختبر wepink منتجاتها على الحيوانات ولا تسمح لمورّديها بذلك." } },
+        { q: { en: "Can I use them while pregnant or breastfeeding?", ar: "هل يمكنني استخدامها أثناء الحمل أو الرضاعة؟" },
+          a: { en: "Please check with your doctor before using any product during pregnancy or breastfeeding, or if you have allergies.", ar: "يُرجى استشارة طبيبكِ قبل استخدام أي منتج أثناء الحمل أو الرضاعة، أو إذا كانت لديكِ حساسية." } },
+        { q: { en: "What if I have an allergic reaction?", ar: "ماذا أفعل عند حدوث رد فعل تحسسي؟" },
+          a: { en: "Stop using the product straight away and see a doctor if it doesn't settle. Then WhatsApp us, and our care team will guide you through the next steps.", ar: "توقفي عن استخدام المنتج فورًا وراجعي الطبيب إذا استمرت الأعراض، ثم راسلينا على واتساب وسيرشدكِ فريق العناية إلى الخطوات التالية." } },
+        { q: { en: "Do the scents last in the heat?", ar: "هل تدوم العطور في الحر؟" },
+          a: { en: "Body splashes are light by design, so layer them over the matching body cream and refresh through the day. For a longer trail, finish with the eau de cologne.", ar: "البودي سبلاش خفيف بطبيعته، لذا ضعيه فوق كريم الجسم المطابق وجدّديه خلال اليوم. ولأثر أطول، اختمي بالكولونيا." } },
+      ],
+    },
+    {
+      id: "about", icon: "sparkle", title: { en: "About wepink", ar: "عن wepink" },
+      items: [
+        { q: { en: "Who is wepink?", ar: "من هي wepink؟" },
+          a: { en: "wepink is the Brazilian fragrance and beauty house co-founded by Virginia Fonseca: body splashes, perfumes and body care that make every day feel special. wepink Gulf is its official franchise in the GCC.", ar: "wepink دار عطور وجمال برازيلية شاركت في تأسيسها فيرجينيا فونسيكا: بودي سبلاش وعطور ومنتجات عناية بالجسم تجعل كل يوم مميزًا. وwepink الخليج هو امتيازها الرسمي في دول الخليج." } },
+        { q: { en: "Where can I buy safely?", ar: "أين أشتري بأمان؟" },
+          a: { en: "On this website, through our official WhatsApp and, soon, in our Gulf stores. Products bought anywhere else aren't guaranteed to be authentic.", ar: "على هذا الموقع، وعبر واتساب الرسمي، وقريبًا في متاجرنا في الخليج. لا نضمن أصالة المنتجات المشتراة من أي مكان آخر." } },
+        { q: { en: "Do you have stores?", ar: "هل لديكم متاجر؟" },
+          a: { en: "Our first Gulf stores are on the way. Register on the Stores page and we'll invite you to the opening.", ar: "متاجرنا الأولى في الخليج في الطريق. سجّلي في صفحة المتاجر وسندعوكِ إلى الافتتاح." } },
+      ],
+    },
+    {
+      id: "account", icon: "user", title: { en: "Account, Club & ambassadors", ar: "الحساب والنادي والسفيرات" },
+      items: [
+        { q: { en: "Do I need an account to order?", ar: "هل أحتاج حسابًا لأطلب؟" },
+          a: { en: "No. You can check out as a guest. Sign in with Google or Apple to see your orders and fill in your details faster.", ar: "لا. يمكنكِ الطلب كضيفة، أو سجّلي الدخول عبر جوجل أو آبل لرؤية طلباتكِ وتعبئة بياناتكِ أسرع." } },
+        { q: { en: "I signed up with the wrong email. Can I change it?", ar: "سجّلتُ ببريد إلكتروني خاطئ، هل يمكنني تغييره؟" },
+          a: { en: "Yes. WhatsApp us or email {email} from your new address and we'll update it.", ar: "نعم. راسلينا على واتساب أو على {email} من بريدكِ الجديد وسنحدّثه." } },
+        { q: { en: "What is the wepink Club?", ar: "ما هو نادي wepink؟" },
+          a: { en: "Our free list for first news of launches, offers and a birthday treat on WhatsApp. Join from the footer; you can leave any time.", ar: "قائمتنا المجانية لأول أخبار الإصدارات والعروض وهدية عيد الميلاد على واتساب. انضمي من أسفل الصفحة ويمكنكِ المغادرة متى شئتِ." } },
+        { q: { en: "How do I become an ambassador?", ar: "كيف أصبح سفيرة؟" },
+          a: { en: "Sign up on the Earn page to get your own code. Your friends get a discount on their first order and you earn commission on every order they place.", ar: "سجّلي في صفحة اربحي معنا لتحصلي على كودكِ الخاص. تحصل صديقاتكِ على خصم على طلبهن الأول وتربحين عمولة على كل طلب." } },
+      ],
+    },
+  ];
+
   const stores = [
     { country: "AE", city: ["Dubai", "دبي"], label: { en: "Flagship store", ar: "المتجر الرئيسي" } },
     { country: "AE", city: ["Abu Dhabi", "أبوظبي"], label: { en: "Store", ar: "متجر" } },
@@ -255,5 +355,5 @@ window.WP_DATA = (function () {
     { country: "OM", city: ["Muscat", "مسقط"], label: { en: "Store", ar: "متجر" } },
   ];
 
-  return { config, countries, payNames, categories, families, types: T, products, featured, stores };
+  return { config, countries, payNames, categories, families, types: T, products, featured, stores, faq };
 })();
