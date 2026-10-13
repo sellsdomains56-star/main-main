@@ -2923,22 +2923,33 @@ html[lang="ar"] em {
   font-weight: 600;
   letter-spacing: -0.015em;
 }
-.card-title,
-.icon-name,
-.pdp-title,
-.quiz-name,
 .dash-code {
   font-family: "Bodoni Moda", var(--font-display);
   font-style: italic;
   font-weight: 500;
   letter-spacing: -0.01em;
 }
+/* Product names: the clean sans of the labels, upright, so they read at a glance. */
+.card-title,
+.icon-name,
+.pdp-title,
+.quiz-name,
+.glass-card-text strong,
+.look-meta strong,
+.look-strip-copy strong {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
 .card-title {
-  font-size: 23px;
+  font-size: 19px;
 }
 .pdp-title {
-  font-size: clamp(44px, 5.4vw, 76px);
-  line-height: 1;
+  font-size: clamp(34px, 3.8vw, 54px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
 }
 
 /* buttons */
@@ -3343,10 +3354,7 @@ html[lang="ar"] .display-noir {
   color: var(--pink-300);
 }
 .glass-card-text strong {
-  font-family: "Bodoni Moda", var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
 }
 .glass-card-go {
   display: grid;
@@ -3452,8 +3460,8 @@ html[lang="ar"] .display-noir {
   color: rgba(255, 255, 255, 0.55);
 }
 .icon-name {
-  font-size: 30px;
-  line-height: 1.1;
+  font-size: 24px;
+  line-height: 1.15;
   margin: 4px 0 6px;
 }
 .icon-name a:hover {
@@ -5663,10 +5671,83 @@ html[data-tone="noir"] ::selection {
   position: fixed;
   inset: 0;
   z-index: -1;
+  pointer-events: none;
+}
+.silk canvas {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
 }
 html[data-tone="noir"] .contact-wa span {
   color: rgba(28, 10, 20, 0.65);
+}
+
+/* ---------- the pink loading line ---------- */
+.nav-line {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 200;
+  height: 3px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--pink-300), var(--pink) 45%, var(--hot));
+  box-shadow: 0 0 14px rgba(230, 0, 126, 0.75), 0 0 4px rgba(255, 46, 147, 0.9);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+}
+[dir="rtl"] .nav-line {
+  transform-origin: right center;
+}
+.nav-line.is-running {
+  opacity: 1;
+  animation: nav-run 2.6s cubic-bezier(0.08, 0.7, 0.2, 1) forwards;
+}
+.nav-line.is-done {
+  opacity: 0;
+  transform: scaleX(1);
+  transition: transform 0.28s ease-out, opacity 0.45s ease 0.28s;
+}
+@keyframes nav-run {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(0.86);
+  }
+}
+
+/* ---------- the silk shows through the page's own tints ---------- */
+html.has-silk .section-tint {
+  background: color-mix(in srgb, var(--petal) 45%, transparent);
+}
+html.has-silk .page-head-pink {
+  background: radial-gradient(60% 100% at 100% 0%, color-mix(in srgb, var(--blush) 55%, transparent), transparent 70%);
+}
+html.has-silk :is(.about-hero, .virginia) {
+  background-color: transparent;
+}
+html.has-silk .perks {
+  background: color-mix(in srgb, var(--surface) 62%, transparent);
+}
+html.has-silk .look-strip {
+  background: linear-gradient(110deg, color-mix(in srgb, var(--blush) 70%, transparent), transparent 72%);
+}
+/* on the black version the home page's dark bands are the silk itself */
+html.has-silk[data-tone="noir"] :is(.hero-noir, .icons, .ritual) {
+  background-color: transparent;
+}
+html.has-silk[data-tone="noir"] .newsletter {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* the loading line still runs, like the brand marquee */
+  .nav-line.is-running {
+    animation-duration: 2.6s !important;
+  }
+  .nav-line.is-done {
+    transition-duration: 0.28s, 0.45s !important;
+  }
 }

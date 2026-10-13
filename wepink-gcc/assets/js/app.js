@@ -39,8 +39,61 @@ window.WP = (function () {
     const page = m && window.WP_PAGES && window.WP_PAGES[m[1]] ? m[1] : "home";
     return { page, params: new URLSearchParams(m && m[2] ? m[2] : "") };
   }
+  /* The pink line that runs across the top while the next page loads. A
+   * normal page link starts it and the next page finishes it; in the
+   * single-file build the route change does both. */
+  const loader = {
+    el: null,
+    began: 0,
+    mount() {
+      if (this.el) return;
+      this.el = document.createElement("div");
+      this.el.className = "nav-line";
+      this.el.setAttribute("aria-hidden", "true");
+      document.body.appendChild(this.el);
+      let arriving = false;
+      try {
+        arriving = sessionStorage.getItem("wpg.nav") === "1";
+        sessionStorage.removeItem("wpg.nav");
+      } catch (e) {
+        /* ignore */
+      }
+      if (arriving) {
+        this.el.style.transform = "scaleX(0.7)";
+        this.el.style.opacity = "1";
+        requestAnimationFrame(() => this.finish());
+      }
+    },
+    start() {
+      const el = this.el;
+      if (!el) return;
+      clearTimeout(this.timer);
+      el.className = "nav-line";
+      el.removeAttribute("style");
+      void el.offsetWidth; // restart the run
+      el.classList.add("is-running");
+      this.began = performance.now();
+    },
+    finish() {
+      const el = this.el;
+      if (!el) return;
+      const wait = Math.max(0, 320 - (performance.now() - this.began));
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        el.style.transform = getComputedStyle(el).transform;
+        el.style.opacity = "1";
+        el.classList.remove("is-running");
+        void el.offsetWidth;
+        el.classList.add("is-done");
+        el.removeAttribute("style");
+        this.timer = setTimeout(() => (el.className = "nav-line"), 800);
+      }, wait);
+    },
+  };
+
   let pendingAnchor = "";
   function navigate(href) {
+    loader.start();
     const m = href.match(PAGE_LINK);
     const page = m[1] === "index" ? "home" : m[1];
     pendingAnchor = m[3] ? m[3].slice(1) : "";
@@ -56,6 +109,7 @@ window.WP = (function () {
     pendingAnchor = "";
     if (target) target.scrollIntoView();
     else window.scrollTo(0, 0);
+    loader.finish();
   }
 
   /* ---------- state ---------- */
@@ -978,6 +1032,23 @@ window.WP = (function () {
 
   /* ---------- events ---------- */
   function bind() {
+    loader.mount();
+    if (!SINGLE) {
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("a[href]");
+        if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === "_blank" || a.hasAttribute("download")) return;
+        if (!PAGE_LINK.test(a.getAttribute("href")) || a.origin !== location.origin) return;
+        if (a.pathname === location.pathname && a.search === location.search) return;
+        loader.start();
+        try {
+          sessionStorage.setItem("wpg.nav", "1");
+        } catch (err) {
+          /* ignore */
+        }
+      });
+      // back/forward from the browser's cache: don't leave the line hanging
+      window.addEventListener("pageshow", (e) => e.persisted && loader.finish());
+    }
     if (SINGLE) {
       document.addEventListener("click", (e) => {
         const a = e.target.closest("a[href]");
@@ -1119,104 +1190,6 @@ window.WP = (function () {
     els.forEach((el) => io.observe(el));
   }
 
-  /* ---------- silk: fine pink threads drifting behind the page ----------
-   * Two satin ribbons, each a bundle of hairline threads that twist as they
-   * travel, with a few glints running along them. One fixed canvas under all
-   * content (sections with their own background cover it); it sleeps while
-   * the tab is hidden and runs at half speed for reduced-motion settings. */
-  function silk() {
-    const cv = document.createElement("canvas");
-    cv.className = "silk";
-    cv.setAttribute("aria-hidden", "true");
-    document.body.prepend(cv);
-    const ctx = cv.getContext && cv.getContext("2d");
-    if (!ctx) return cv.remove();
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const TAU = Math.PI * 2;
-    const ribbons = [
-      { from: 0.16, to: 0.66, amp: 0.08, waves: 0.8, speed: 0.035, spread: 0.15, twists: 1.1, spin: 0.05, phase: 0, glints: [0, 0.45] },
-      { from: 0.9, to: 0.34, amp: 0.06, waves: 1.1, speed: -0.028, spread: 0.11, twists: 1.5, spin: -0.04, phase: 2.4, glints: [0.2, 0.7] },
-    ];
-    let w = 0;
-    let h = 0;
-    let dpr = 1;
-    let raf = 0;
-    let last = 0;
-    const start = performance.now();
-    function size() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = window.innerWidth;
-      h = window.innerHeight;
-      cv.width = Math.round(w * dpr);
-      cv.height = Math.round(h * dpr);
-    }
-    // centre line and half-width of a ribbon at x (0..1), in pixels
-    function at(r, x, time, drift) {
-      const y = r.from + (r.to - r.from) * x + r.amp * Math.sin(TAU * (x * r.waves + time * r.speed) + r.phase + drift);
-      const twist = Math.cos(TAU * (x * r.twists + time * r.spin) + r.phase);
-      return [y * h, twist * r.spread * h * 0.5];
-    }
-    function draw(now) {
-      raf = requestAnimationFrame(draw);
-      if (now - last < 33) return; // ~30 fps is plenty for a slow drift
-      last = now;
-      const time = ((now - start) / 1000) * (calm ? 0.5 : 1);
-      const noir = document.documentElement.dataset.tone === "noir";
-      const drift = (window.scrollY || 0) * 0.0012;
-      const threads = w < 720 ? 22 : 34;
-      const steps = Math.max(40, Math.round(w / 14));
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, w, h);
-      ctx.globalCompositeOperation = noir ? "lighter" : "source-over";
-      ctx.lineWidth = noir ? 0.8 : 0.7;
-      for (const r of ribbons) {
-        const g = ctx.createLinearGradient(0, 0, w, 0);
-        const rgb = noir ? "255, 46, 147" : "230, 0, 126";
-        g.addColorStop(0, `rgba(${rgb}, 0)`);
-        g.addColorStop(0.18, `rgba(${rgb}, 1)`);
-        g.addColorStop(0.55, noir ? "rgba(255, 140, 198, 1)" : `rgba(${rgb}, 1)`);
-        g.addColorStop(0.85, `rgba(${rgb}, 1)`);
-        g.addColorStop(1, `rgba(${rgb}, 0)`);
-        ctx.strokeStyle = g;
-        const line = [];
-        for (let s = 0; s <= steps; s++) line.push(at(r, s / steps, time, drift));
-        for (let i = 0; i < threads; i++) {
-          const u = (i / (threads - 1)) * 2 - 1; // -1 edge .. +1 edge
-          ctx.globalAlpha = (noir ? 0.2 : 0.16) * (1 - 0.65 * Math.abs(u));
-          ctx.beginPath();
-          for (let s = 0; s <= steps; s++) {
-            const [y, half] = line[s];
-            const x = (s / steps) * w;
-            s ? ctx.lineTo(x, y + u * half) : ctx.moveTo(x, y + u * half);
-          }
-          ctx.stroke();
-        }
-        // glints gliding along the ribbon
-        ctx.globalAlpha = 1;
-        for (const off of r.glints) {
-          const x = (((time * 0.045 + off) % 1) + 1) % 1;
-          const [y] = at(r, x, time, drift);
-          const px = x * w;
-          const edge = Math.min(1, x * 6, (1 - x) * 6);
-          const glow = ctx.createRadialGradient(px, y, 0, px, y, 22);
-          glow.addColorStop(0, noir ? `rgba(255, 220, 238, ${0.9 * edge})` : `rgba(255, 255, 255, ${0.95 * edge})`);
-          glow.addColorStop(0.25, `rgba(${rgb}, ${(noir ? 0.45 : 0.28) * edge})`);
-          glow.addColorStop(1, `rgba(${rgb}, 0)`);
-          ctx.fillStyle = glow;
-          ctx.fillRect(px - 22, y - 22, 44, 44);
-        }
-      }
-      ctx.globalAlpha = 1;
-    }
-    size();
-    window.addEventListener("resize", size);
-    document.addEventListener("visibilitychange", () => {
-      cancelAnimationFrame(raf);
-      if (!document.hidden) raf = requestAnimationFrame(draw);
-    });
-    raf = requestAnimationFrame(draw);
-  }
-
   /* ---------- render ---------- */
   function render() {
     const html = document.documentElement;
@@ -1243,7 +1216,7 @@ window.WP = (function () {
   function init() {
     bind();
     render();
-    silk();
+    if (window.WP_SILK) window.WP_SILK.start();
     // Products, prices and settings from the database: re-render if anything
     // the shopper can see changed, unless they're mid-way through a form.
     SYNC.onChange((changed) => {
