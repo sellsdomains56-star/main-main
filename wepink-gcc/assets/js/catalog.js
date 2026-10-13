@@ -30,37 +30,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrance as precious as gold, making every moment unforgettable",
-   "ar": "عطر ثمين كالذهب يجعل كل لحظة لا تُنسى"
+   "ar": "عطر ثمين كالذهب يجعل كل لحظة لا تُنسى",
+   "pt": "Uma fragrância preciosa como ouro, que torna cada momento inesquecível"
   },
   "desc": {
    "en": "VF Golden Body Splash celebrates the wonderful essence of life's happiest moments with a captivating fragrance that stirs desire. Its oriental olfactory path opens with vibrant pink pepper and mandarin, paired with the classic elegance of jasmine sambac. It finishes with sweet praline and woody amber, leaving a joyful, extraordinary trail.",
-   "ar": "يحتفي معطر الجسم في إف جولدن بالجوهر الرائع لأسعد اللحظات، بعطر ساحر يأسر الحواس ويثير الرغبة. ينطلق مساره العطري الشرقي بنفحات نابضة بالحياة من الفلفل الوردي واليوسفي، تمتزج بالأناقة الكلاسيكية للياسمين سامباك. ويختتم بحلاوة البرالين وطابع العنبر الخشبي، تاركاً أثراً مبهجاً واستثنائياً أينما حلّ."
+   "ar": "يحتفي معطر الجسم في إف جولدن بالجوهر الرائع لأسعد اللحظات، بعطر ساحر يأسر الحواس ويثير الرغبة. ينطلق مساره العطري الشرقي بنفحات نابضة بالحياة من الفلفل الوردي واليوسفي، تمتزج بالأناقة الكلاسيكية للياسمين سامباك. ويختتم بحلاوة البرالين وطابع العنبر الخشبي، تاركاً أثراً مبهجاً واستثنائياً أينما حلّ.",
+   "pt": "O Desodorante Colônia Body Splash Wepink VF Golden celebra a essência maravilhosa dos momentos mais felizes, instigando desejo em uma fragrância encantadora aos sentidos. Sua fragrância revive um caminho olfativo oriental às notas vibrantes de pimenta rosa e mandarina, aliadas ao estilo clássico e elegante do jasmim sambac. Finaliza no doce do praline e o amadeirado do âmbar, revelando uma essência alegre e extraordinária por onde passar."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Jasmine sambac",
-     "ياسمين سامباك"
+     "ياسمين سامباك",
+     "Jasmim sambac"
     ]
    ],
    "base": [
     [
      "Praline",
-     "برالين"
+     "برالين",
+     "Praliné"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -94,37 +101,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Reveal the boldness of beautifully scented skin",
-   "ar": "اكشفي عن جرأة بشرة فوّاحة بالعطر"
+   "ar": "اكشفي عن جرأة بشرة فوّاحة بالعطر",
+   "pt": "Revele a ousadia de uma pele bem perfumada"
   },
   "desc": {
    "en": "A sensual essence brimming with elegance, Obsessed Body Splash represents the festive, sexy and desired woman. Its floral woody fragrance brings a sense of well-being, with a touch of cherry intertwined with citrus notes, moving to noble gardenia alongside the sweetness of honey and caramel for an effortless delight to the senses.",
-   "ar": "جوهر حسّي يفيض بالأناقة، يجسّد معطر الجسم أوبسيسد المرأة المفعمة بالبهجة والجاذبية والمرغوبة. يمنح عطره الزهري الخشبي إحساساً بالراحة، بلمسة من الكرز تتشابك مع النفحات الحمضية، لينتقل إلى نُبل الغاردينيا إلى جانب حلاوة العسل والكراميل، في متعة عفوية للحواس."
+   "ar": "جوهر حسّي يفيض بالأناقة، يجسّد معطر الجسم أوبسيسد المرأة المفعمة بالبهجة والجاذبية والمرغوبة. يمنح عطره الزهري الخشبي إحساساً بالراحة، بلمسة من الكرز تتشابك مع النفحات الحمضية، لينتقل إلى نُبل الغاردينيا إلى جانب حلاوة العسل والكراميل، في متعة عفوية للحواس.",
+   "pt": "A essência sensual que transborda elegância e representa a mulher festiva, sexy e desejada. O Body Splash Obsessed Desodorante Colônia tem uma fragrância que oferece uma sensação de bem-estar, em um caminho floral amadeirado, com um toque de cereja entrelaçado em notas cítricas, seguindo para a nobreza da gardênia, que ganha espaço junto a doçura das notas de mel e caramelo para um deleite despretensioso aos sentidos."
   },
   "notes": {
    "top": [
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ],
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ]
    ],
    "heart": [
     [
      "Gardenia",
-     "غاردينيا"
+     "غاردينيا",
+     "Gardênia"
     ]
    ],
    "base": [
     [
      "Honey",
-     "عسل"
+     "عسل",
+     "Mel"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -158,11 +172,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "For memorable women",
-   "ar": "لنساء لا يُنسَين"
+   "ar": "لنساء لا يُنسَين",
+   "pt": "Para mulheres memoráveis"
   },
   "desc": {
    "en": "Fatal Black For Her Body Splash celebrates authenticity with a scent shaped by the beauty of flowers, which release a sweet aura of seduction into the air. It is made for modern, memorable women who are unafraid to make their presence felt, and it is full of surprises.",
-   "ar": "يحتفي معطر الجسم فيتال بلاك فور هير بالأصالة من خلال عبير مستوحى من جمال الأزهار التي تنشر في الأجواء هالة عذبة من الإغراء. صُمّم هذا العطر للمرأة العصرية التي لا تُنسى ولا تخشى أن تفرض حضورها، وهو عطر حافل بالمفاجآت."
+   "ar": "يحتفي معطر الجسم فيتال بلاك فور هير بالأصالة من خلال عبير مستوحى من جمال الأزهار التي تنشر في الأجواء هالة عذبة من الإغراء. صُمّم هذا العطر للمرأة العصرية التي لا تُنسى ولا تخشى أن تفرض حضورها، وهو عطر حافل بالمفاجآت.",
+   "pt": "Explore sua própria autenticidade com o Desodorante Colônia Body Splash Wepink Fatal Black For Her, um aroma moldado na beleza das flores, que liberam uma doce aura de sedução no ar. Esta fragrância é feita para mulheres modernas, memoráveis, sem medo de se impor. Você vai se surpreender."
   },
   "source": "https://www.wepink.com.br/body-splash-fatal-black-for-her-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -194,11 +210,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Happily ever after starts now!",
-   "ar": "السعادة الأبدية تبدأ الآن!"
+   "ar": "السعادة الأبدية تبدأ الآن!",
+   "pt": "O felizes para sempre começa agora!"
   },
   "desc": {
    "en": "Heaven Bride Body Splash is a floral oriental fragrance inspired by the beginning of happily ever after.",
-   "ar": "معطر الجسم هيفن برايد عطر زهري شرقي مستوحى من بداية حكاية السعادة الأبدية."
+   "ar": "معطر الجسم هيفن برايد عطر زهري شرقي مستوحى من بداية حكاية السعادة الأبدية.",
+   "pt": "O Body Splash Wepink Heaven Bride é uma fragrância floral oriental inspirada no começo do felizes para sempre."
   },
   "source": "https://www.wepink.com.br/body-splash-heaven-bride-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -231,27 +249,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrance as precious as gold",
-   "ar": "عطر ثمين كالذهب"
+   "ar": "عطر ثمين كالذهب",
+   "pt": "Uma fragrância tão preciosa quanto o ouro"
   },
   "desc": {
    "en": "VF Golden Cologne celebrates the extraordinary essence of life's happiest moments in a vibrant, enchanting fragrance. Its oriental composition opens with joyful, delicate bergamot, blended with festive notes of peony and jasmine sambac. It evolves into an unforgettable floral heart and finishes on a sweet, woody base, revealing an exclusive and powerful beauty.",
-   "ar": "تحتفي كولونيا في إف جولدن بالجوهر الاستثنائي لأسعد اللحظات، بعطر نابض بالحياة يأسر الحواس. تنطلق تركيبتها الشرقية ببهجة البرغموت ورقّته، ممتزجاً بالنفحات الاحتفالية الأنيقة للفاوانيا والياسمين سامباك. ثم تتطور إلى قلب زهري لا يُنسى، وتختتم بقاعدة حلوة وخشبية، كاشفةً عن جمال حصري وقوي."
+   "ar": "تحتفي كولونيا في إف جولدن بالجوهر الاستثنائي لأسعد اللحظات، بعطر نابض بالحياة يأسر الحواس. تنطلق تركيبتها الشرقية ببهجة البرغموت ورقّته، ممتزجاً بالنفحات الاحتفالية الأنيقة للفاوانيا والياسمين سامباك. ثم تتطور إلى قلب زهري لا يُنسى، وتختتم بقاعدة حلوة وخشبية، كاشفةً عن جمال حصري وقوي.",
+   "pt": "O Desodorante Colônia Wepink VF Golden celebra a essência extraordinária dos momentos mais felizes, em uma fragrância vibrante e encantadora aos sentidos. Sua fragrância oriental inicia com a alegria e delicadeza da bergamota, mesclando elegância nas notas festivas de peônia e jasmim sambac. Evolui em um coração floral inesquecível e finaliza em um fundo doce e amadeirado, revelando uma beleza exclusiva e poderosa."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "Jasmine sambac",
-     "ياسمين سامباك"
+     "ياسمين سامباك",
+     "Jasmim sambac"
     ]
    ]
   },
@@ -285,31 +308,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Celebrate extraordinary well-being",
-   "ar": "احتفي بإحساس استثنائي بالراحة"
+   "ar": "احتفي بإحساس استثنائي بالراحة",
+   "pt": "Celebre o extraordinário bem-estar"
   },
   "desc": {
    "en": "Celebrate Life Body Splash reflects a unique, genuine beauty, with a sweet, soft scent for those who shine while celebrating the good side of life. It opens with fresh notes and a vibrant touch of pink pepper, moving to a romantic floral heart of lily of the valley, rose and jasmine, before a seductive, soft woody signature.",
-   "ar": "يعكس معطر الجسم سيليبريت لايف جمالاً فريداً وصادقاً، بعبير حلو وناعم صُمّم لمن يتألقون وهم يحتفون بالجانب المشرق من الحياة. ينطلق بنفحات منعشة ولمسة نابضة من الفلفل الوردي، لينتقل إلى قلب زهري رومانسي من زنبق الوادي والورد والياسمين، قبل أن يستقر على بصمة خشبية ناعمة وآسرة."
+   "ar": "يعكس معطر الجسم سيليبريت لايف جمالاً فريداً وصادقاً، بعبير حلو وناعم صُمّم لمن يتألقون وهم يحتفون بالجانب المشرق من الحياة. ينطلق بنفحات منعشة ولمسة نابضة من الفلفل الوردي، لينتقل إلى قلب زهري رومانسي من زنبق الوادي والورد والياسمين، قبل أن يستقر على بصمة خشبية ناعمة وآسرة.",
+   "pt": "Celebre o extraordinário, refletindo uma beleza única, verdadeira e cheia de bem-estar com o Body Splash Celebrate Life Desodorante Colônia. Um aroma doce e suave, especialmente feito para pessoas que brilham ao comemorar o lado bom da vida! Sua fragrância é um tributo olfativo, inicia com notas suaves e frescas, acompanhadas de um toque vibrante de pimenta rosa. No coração, um bouquet floral adiciona uma dimensão romântica e elegante de lírio-do-vale, rosa e jasmim. A assinatura é marcada por notas envolventes e sedutoras, em uma dimensão amadeirada e suave."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -342,33 +371,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Elegance lies in the details",
-   "ar": "الأناقة تكمن في التفاصيل"
+   "ar": "الأناقة تكمن في التفاصيل",
+   "pt": "A elegância está nos detalhes"
   },
   "desc": {
    "en": "Cèdre Raffi Cologne is a woody floral fragrance that is sophisticated, elegant and contemporary. It combines bergamot, iris, cedar and musk.",
-   "ar": "كولونيا سيدر رافي عطر خشبي زهري راقٍ وأنيق وعصري. تجمع تركيبتها بين البرغموت والسوسن والأرز والمسك."
+   "ar": "كولونيا سيدر رافي عطر خشبي زهري راقٍ وأنيق وعصري. تجمع تركيبتها بين البرغموت والسوسن والأرز والمسك.",
+   "pt": "Wepink Cèdre Raffi combina bergamota, íris, cedro e musk em uma fragrância amadeirada floral, sofisticada, elegante e contemporânea."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Iris",
-     "سوسن"
+     "سوسن",
+     "Íris"
     ]
    ],
    "base": [
     [
      "Cedar",
-     "أرز"
+     "أرز",
+     "Cedro"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -402,85 +437,104 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A new atmosphere, the same essence",
-   "ar": "أجواء جديدة، والجوهر ذاته"
+   "ar": "أجواء جديدة، والجوهر ذاته",
+   "pt": "Uma nova atmosfera, a mesma essência"
   },
   "desc": {
    "en": "Heaven Pink Cologne captures that hard-to-explain moment when everything feels lighter and more beautiful. This feminine fragrance opens with a luminous fruity blend of peach, pear, blackberry, mandarin and grapefruit, blossoming into a sophisticated bouquet of lily of the valley, jasmine, rose, orange blossom, freesia, ylang-ylang, magnolia, tuberose, peony and violet. It settles on an enveloping base of creamy woods and vanilla.",
-   "ar": "تجسّد كولونيا هيفن بينك ذلك الإحساس الذي يصعب وصفه، حين يبدو كل شيء أخف وأجمل. ينطلق هذا العطر الأنثوي بمزيج فاكهي مشرق من الخوخ والكمثرى والتوت الأسود واليوسفي والجريب فروت، ليتفتّح في باقة راقية من زنبق الوادي والياسمين والورد وزهر البرتقال والفريزيا واليلانغ يلانغ والماغنوليا ومسك الروم والفاوانيا والبنفسج. ثم يستقر على قاعدة مريحة وآسرة من الأخشاب الكريمية والفانيليا."
+   "ar": "تجسّد كولونيا هيفن بينك ذلك الإحساس الذي يصعب وصفه، حين يبدو كل شيء أخف وأجمل. ينطلق هذا العطر الأنثوي بمزيج فاكهي مشرق من الخوخ والكمثرى والتوت الأسود واليوسفي والجريب فروت، ليتفتّح في باقة راقية من زنبق الوادي والياسمين والورد وزهر البرتقال والفريزيا واليلانغ يلانغ والماغنوليا ومسك الروم والفاوانيا والبنفسج. ثم يستقر على قاعدة مريحة وآسرة من الأخشاب الكريمية والفانيليا.",
+   "pt": "Existe uma sensação difícil de explicar: quando tudo parece mais leve e mais bonito. Heaven Pink nasceu para traduzir exatamente esse momento. Uma fragrância feminina que combina a luminosidade das frutas, a delicadeza de um bouquet floral e a cremosidade das madeiras e da baunilha. Uma composição que começa fresca e vibrante, ganha corpo com flores sofisticadas e encontra, no fundo, uma assinatura confortável e envolvente. Logo nos primeiros instantes, Pêssego, Pera, Amora, Mandarina e Toranja criam uma abertura frutada e luminosa. A mistura traz um frescor alegre, com diferentes nuances que se encontram e se complementam, como uma explosão de cores em um céu claro. Então, as flores aparecem. Lírio-do-vale, Jasmim, Rosa, Flor de Laranjeira, Frésia, Ylang-Ylang, Magnólia, Tuberosa, Peônia e Violeta formam o coração do Heaven Pink. Um bouquet expressivo e sofisticado, em que cada flor contribui para construir uma feminilidade elegante, delicada e cheia de presença. Mas é na evolução que a fragrância encontra sua personalidade. Musk, Cedro, Sândalo e Baunilha entram em cena trazendo profundidade, calor e uma textura cremosa à composição. A baunilha suaviza as madeiras, enquanto o musk envolve a pele e cria um acabamento confortável, fazendo com que a fragrância permaneça de maneira delicada e marcante. Heaven Pink é feito de contrastes que funcionam juntos: a fruta encontra a flor, o frescor encontra a cremosidade e a delicadeza encontra a presença. É uma fragrância para quem gosta de mudar de atmosfera sem precisar mudar quem é. Para dias leves, encontros especiais ou simplesmente para aquele momento em que você quer se sentir bem consigo mesma. Heaven Pink não segue uma única versão de feminilidade. Ele deixa espaço para você descobrir a sua. Porque ser feminina também é poder transitar entre diferentes nuances, escolher como quer se sentir e deixar que a sua fragrância conte um pouco da sua história. Uma nova forma de vestir a leveza."
   },
   "notes": {
    "top": [
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ],
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Blackberry",
-     "توت أسود"
+     "توت أسود",
+     "Amora"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ],
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Ylang-ylang",
-     "يلانغ يلانغ"
+     "يلانغ يلانغ",
+     "Ylang-ylang"
     ],
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ],
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ]
    ],
    "base": [
     [
      "Woods",
-     "أخشاب"
+     "أخشاب",
+     "Madeiras"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -513,65 +567,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "For men who see sophistication as a form of expression",
-   "ar": "للرجال الذين يرون في الرقي أسلوباً للتعبير"
+   "ar": "للرجال الذين يرون في الرقي أسلوباً للتعبير",
+   "pt": "Para homens que enxergam a sofisticação como uma forma de expressão"
   },
   "desc": {
    "en": "King Blue Supreme Body Splash was created for men whose presence speaks for itself, in an intense fragrance of power, sophistication and authenticity. It opens with exotic passion fruit, fruity notes, Turkish rose and precious saffron, while oud, benzoin and Indonesian patchouli form a rich heart. Leather, Akigalawood, amber, vanilla and labdanum create an intense, memorable signature.",
-   "ar": "صُمّم معطر الجسم كينج بلو سوبريم للرجال الذين يتحدث حضورهم عنهم، بعطر مكثّف يجسّد القوة والرقي والأصالة. ينطلق بانتعاش الباشن فروت الاستوائي والنفحات الفاكهية وأناقة الورد التركي ولمسة الزعفران الثمينة، بينما يشكّل العود والجاوي والباتشولي الإندونيسي قلباً غنياً. أما الجلد والأكيغالاوود والعنبر والفانيليا واللادن، فتصنع بصمة مكثّفة لا تُنسى."
+   "ar": "صُمّم معطر الجسم كينج بلو سوبريم للرجال الذين يتحدث حضورهم عنهم، بعطر مكثّف يجسّد القوة والرقي والأصالة. ينطلق بانتعاش الباشن فروت الاستوائي والنفحات الفاكهية وأناقة الورد التركي ولمسة الزعفران الثمينة، بينما يشكّل العود والجاوي والباتشولي الإندونيسي قلباً غنياً. أما الجلد والأكيغالاوود والعنبر والفانيليا واللادن، فتصنع بصمة مكثّفة لا تُنسى.",
+   "pt": "O Desodorante Colônia Body Splash Wepink King Blue Supreme foi criado para homens que não precisam elevar a voz para demonstrar sua força. Sua presença fala por si, marcada por confiança, elegância e uma personalidade impossível de ignorar. Para eles nasceu King Blue Supreme, uma fragrância intensa que traduz poder, sofisticação e autenticidade em cada detalhe. Sua abertura surpreende pelo contraste entre o frescor exótico do Maracujá, o brilho das Notas Frutadas, a elegância da Rosa Turca e o toque precioso do Açafrão. Uma combinação vibrante que desperta os sentidos e cria uma primeira impressão marcante. No coração, o caráter sofisticado do Oud, do Benjoim e do Patchouli da Indonésia revela uma composição rica, envolvente e cheia de personalidade. Um encontro entre madeiras nobres e resinas que traduz profundidade e refinamento. Ao fundo, Couro, Akigalawood, Âmbar, Baunilha e Ládano constroem uma assinatura intensa e memorável, deixando um rastro elegante que permanece na pele e na memória. King Blue Supreme é uma fragrância para homens que enxergam a sofisticação como uma forma de expressão. Um Oriental marcante, criado para quem faz da confiança sua maior virtude e transforma cada presença em um momento inesquecível. Porque algumas fragrâncias acompanham o homem. King Blue Supreme revela quem ele realmente é."
   },
   "notes": {
    "top": [
     [
      "Passion fruit",
-     "باشن فروت"
+     "باشن فروت",
+     "Maracujá"
     ],
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ],
     [
      "Turkish rose",
-     "ورد تركي"
+     "ورد تركي",
+     "Rosa turca"
     ],
     [
      "Saffron",
-     "زعفران"
+     "زعفران",
+     "Açafrão"
     ]
    ],
    "heart": [
     [
      "Oud",
-     "عود"
+     "عود",
+     "Oud"
     ],
     [
      "Benzoin",
-     "جاوي"
+     "جاوي",
+     "Benjoim"
     ],
     [
      "Indonesian patchouli",
-     "باتشولي إندونيسي"
+     "باتشولي إندونيسي",
+     "Patchouli da Indonésia"
     ]
    ],
    "base": [
     [
      "Leather",
-     "جلد"
+     "جلد",
+     "Couro"
     ],
     [
      "Akigalawood",
-     "أكيغالاوود"
+     "أكيغالاوود",
+     "Akigalawood"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Labdanum",
-     "لادن"
+     "لادن",
+     "Ládano"
     ]
    ]
   },
@@ -603,53 +671,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A luminous fruity floral that wraps the skin in elegance and comfort",
-   "ar": "عطر زهري فاكهي مشرق يغمر البشرة بالأناقة والراحة"
+   "ar": "عطر زهري فاكهي مشرق يغمر البشرة بالأناقة والراحة",
+   "pt": "Um floral frutado luminoso que envolve a pele com elegância e conforto"
   },
   "desc": {
    "en": "Fatal White Body Splash expresses an elegant, confident femininity for the woman who needs no excess to make her presence felt. It opens with luminous citrus freshness and fruity nuances, followed by a floral heart of rose, peony and white flowers. Soft, velvety musky notes with amber, moss and vanilla wrap the skin in comfort and elegance.",
-   "ar": "يعبّر معطر الجسم فيتال وايت عن أنوثة أنيقة وواثقة، للمرأة التي لا تحتاج إلى المبالغة لتفرض حضورها. ينطلق بانتعاش حمضي مشرق ولمسات فاكهية، يليه قلب زهري من الورد والفاوانيا والأزهار البيضاء. ثم تغمر نفحات المسك الناعمة المخملية مع العنبر والطحلب والفانيليا البشرة بالراحة والأناقة."
+   "ar": "يعبّر معطر الجسم فيتال وايت عن أنوثة أنيقة وواثقة، للمرأة التي لا تحتاج إلى المبالغة لتفرض حضورها. ينطلق بانتعاش حمضي مشرق ولمسات فاكهية، يليه قلب زهري من الورد والفاوانيا والأزهار البيضاء. ثم تغمر نفحات المسك الناعمة المخملية مع العنبر والطحلب والفانيليا البشرة بالراحة والأناقة.",
+   "pt": "O Body Splash Fatal White traduz uma feminilidade elegante, segura e naturalmente envolvente. É uma fragrância para a mulher que não precisa de excessos para marcar presença, ela conquista pelo olhar, pela postura e pelo rastro que deixa no ar. A saída revela um frescor luminoso e cítrico, com nuances frutadas que despertam os sentidos de forma leve e sofisticada. Em seguida, o coração floral se impõe com delicadeza: rosa, peônia e flores brancas criam uma aura feminina, romântica e contemporânea, equilibrando suavidade e personalidade. No fundo, notas almiscaradas, levemente doces e aveludadas, combinadas ao âmbar, musgo e baunilha, envolvem a pele com conforto e elegância, prolongando a fragrância de forma íntima e memorável. Fatal White é para a mulher que transita entre a doçura e a força, que aprecia perfumes limpos, florais e sofisticados; aqueles que falam baixo, mas são impossíveis de esquecer."
   },
   "notes": {
    "top": [
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ],
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "White flowers",
-     "أزهار بيضاء"
+     "أزهار بيضاء",
+     "Flores brancas"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Moss",
-     "طحلب"
+     "طحلب",
+     "Musgo"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -683,11 +762,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A divine invitation",
-   "ar": "دعوة سماوية"
+   "ar": "دعوة سماوية",
+   "pt": "Um convite divino"
   },
   "desc": {
    "en": "Heaven Blue Body Splash opens the way to new sensory experiences with a divinely complex fragrance that still brings unmatched peace and serenity, like a luxurious spa session. It is a true universe of discoveries and contrasts, designed to awaken one's most refined side.",
-   "ar": "يفتح معطر الجسم هيفن بلو الأبواب أمام تجارب حسية جديدة ومذهلة، بعطر معقّد على نحو سماوي يمنح في الوقت ذاته سكينة وصفاءً لا مثيل لهما، كجلسة فاخرة في منتجع صحي. إنه عالم حقيقي من الاكتشافات والتناقضات، يوقظ أرقى ما في من يضعه."
+   "ar": "يفتح معطر الجسم هيفن بلو الأبواب أمام تجارب حسية جديدة ومذهلة، بعطر معقّد على نحو سماوي يمنح في الوقت ذاته سكينة وصفاءً لا مثيل لهما، كجلسة فاخرة في منتجع صحي. إنه عالم حقيقي من الاكتشافات والتناقضات، يوقظ أرقى ما في من يضعه.",
+   "pt": "Abra-se para novas e incríveis experiências sensoriais com o Desodorante Colônia Body Splash Wepink Heaven Blue, uma fragrância divinamente complexa, mas sem deixar de trazer paz e serenidade inigualáveis, como numa sessão luxuosa no spa. Um verdadeiro universo de descobertas e contrastes, para despertar o que há de mais refinado em você."
   },
   "source": "https://www.wepink.com.br/body-splash-heaven-blue-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -718,11 +799,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "An exclusive formula for powerful hair care",
-   "ar": "تركيبة حصرية لعناية فائقة بالشعر"
+   "ar": "تركيبة حصرية لعناية فائقة بالشعر",
+   "pt": "Fórmula exclusiva para cuidar dos cabelos com potência"
   },
   "desc": {
    "en": "Booster Repair Hair Oil features an exclusive formula created to care for hair with power.",
-   "ar": "يتميّز زيت الشعر بوستر ريبير بتركيبة حصرية صُمّمت للعناية بالشعر بقوة وفعالية."
+   "ar": "يتميّز زيت الشعر بوستر ريبير بتركيبة حصرية صُمّمت للعناية بالشعر بقوة وفعالية.",
+   "pt": "O Óleo Capilar Wepink Booster Repair tem uma fórmula exclusiva, criada para cuidar dos cabelos com potência."
   },
   "source": "https://www.wepink.com.br/booster-repair-oleo-capilar-30ml---wepink/p",
   "notes": {}
@@ -755,29 +838,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Magnetic, captivating and absolutely fatal",
-   "ar": "مغناطيسي، آسر، وفتّاك بكل معنى الكلمة"
+   "ar": "مغناطيسي، آسر، وفتّاك بكل معنى الكلمة",
+   "pt": "Magnético, arrebatador e absolutamente fatal"
   },
   "desc": {
    "en": "Fatal Black For Her Cologne celebrates the woman who knows her worth and is unafraid to show her feminine strength. Sweet and captivating, it feels like liquid gold on the skin, radiant and intriguing. Lush white flowers, vibrant rose and mineral musk intertwine in an extraordinary composition that shines like a precious treasure.",
-   "ar": "تحتفي كولونيا فيتال بلاك فور هير بالمرأة التي تدرك قيمتها ولا تخشى إظهار قوتها الأنثوية. عطر حلو وآسر، كالذهب السائل على البشرة، مشرق ومثير للفضول. تتشابك فيه الأزهار البيضاء الفاخرة والورد النابض بالحياة والمسك المعدني في تركيبة استثنائية تتلألأ ككنز ثمين."
+   "ar": "تحتفي كولونيا فيتال بلاك فور هير بالمرأة التي تدرك قيمتها ولا تخشى إظهار قوتها الأنثوية. عطر حلو وآسر، كالذهب السائل على البشرة، مشرق ومثير للفضول. تتشابك فيه الأزهار البيضاء الفاخرة والورد النابض بالحياة والمسك المعدني في تركيبة استثنائية تتلألأ ككنز ثمين.",
+   "pt": "O Desodorante Colônia Fatal Black For Her é a celebração da mulher que sabe o próprio valor e não tem medo de exibir sua força feminina. Doce e arrebatador, é como ouro líquido na pele, radiante e instigante. Um aroma que envolve e encanta em segundos, revelando-se irresistível e absolutamente fatal. Flores brancas exuberantes, rosa vibrante e musk mineral se entrelaçam em uma composição extraordinária, que reluz como um tesouro precioso. Fatal Black For Her não é apenas uma fragrância, é uma afirmação: custaria uma fortuna ser tão única, mas a sensação de usar é impagável."
   },
   "notes": {
    "top": [
     [
      "White flowers",
-     "أزهار بيضاء"
+     "أزهار بيضاء",
+     "Flores brancas"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ],
    "base": [
     [
      "Mineral musk",
-     "مسك معدني"
+     "مسك معدني",
+     "Almíscar mineral"
     ]
    ]
   },
@@ -811,37 +899,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your new obsession, an exclusive luxury of love",
-   "ar": "هوسك الجديد، فخامة حصرية من الحب"
+   "ar": "هوسك الجديد، فخامة حصرية من الحب",
+   "pt": "Sua nova obsessão, um luxo exclusivo do amor"
   },
   "desc": {
    "en": "Obsessed Exclusive Pink Body Splash exudes true sensual luxury in a classic, charming oriental floral scent. Its first spray reveals the allure of fig and pink pepper, wrapped in the elegance of jasmine and the timeless finesse of tuberose. Its radiance evolves into an unforgettable finishing touch of sandalwood.",
-   "ar": "يفيض معطر الجسم أوبسيسد إكسكلوسيف بينك بفخامة حسية حقيقية، في عبير شرقي زهري كلاسيكي مفعم بالسحر. تكشف رشّته الأولى عن سحر التين والفلفل الوردي، ملفوفاً بأناقة الياسمين ورقيّ مسك الروم الخالد. ثم يتطور إشراقه إلى لمسة ختامية لا تُنسى من خشب الصندل."
+   "ar": "يفيض معطر الجسم أوبسيسد إكسكلوسيف بينك بفخامة حسية حقيقية، في عبير شرقي زهري كلاسيكي مفعم بالسحر. تكشف رشّته الأولى عن سحر التين والفلفل الوردي، ملفوفاً بأناقة الياسمين ورقيّ مسك الروم الخالد. ثم يتطور إشراقه إلى لمسة ختامية لا تُنسى من خشب الصندل.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Obsessed Exclusive Pink exala um verdadeiro luxo sensual, sabendo conquistar em um clássico aroma Oriental, Floral e cheio de charme. Sua primeira borrifada exala o encanto do Figo e da Pimenta Rosa, envolvendo na elegância do Jasmim e na finesse atemporal da Tuberosa. Seu brilho evolui no toque final inesquecível do Sândalo, um verdadeiro luxo à parte."
   },
   "notes": {
    "top": [
     [
      "Fig",
-     "تين"
+     "تين",
+     "Figo"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ]
    ],
    "base": [
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -874,31 +969,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Celebrate extraordinary hydration!",
-   "ar": "احتفي بترطيب استثنائي!"
+   "ar": "احتفي بترطيب استثنائي!",
+   "pt": "Celebre uma hidratação extraordinária!"
   },
   "desc": {
    "en": "VF Golden Body Cream provides hydration, nourishment and firmness, as its formula helps support collagen production and cell renewal while leaving skin looking healthy and glowing. Its floral fragrance opens with vibrant pink pepper and mandarin, evolves into an elegant floral heart and finishes with sweet praline and woody amber.",
-   "ar": "يمنح كريم الجسم في إف جولدن البشرة الترطيب والتغذية والتماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجدد الخلايا، مع إضفاء مظهر صحي ومشرق على البشرة. ينطلق عطره الزهري بنفحات نابضة من الفلفل الوردي واليوسفي، ثم يتطور إلى قلب زهري أنيق، ويختتم بحلاوة البرالين وطابع العنبر الخشبي."
+   "ar": "يمنح كريم الجسم في إف جولدن البشرة الترطيب والتغذية والتماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجدد الخلايا، مع إضفاء مظهر صحي ومشرق على البشرة. ينطلق عطره الزهري بنفحات نابضة من الفلفل الوردي واليوسفي، ثم يتطور إلى قلب زهري أنيق، ويختتم بحلاوة البرالين وطابع العنبر الخشبي.",
+   "pt": "A Loção Desodorante Body Cream Wepink VF Golden tem um toque extraordinário, que proporciona hidratação, nutrição e firmeza, pois sua composição auxilia na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhoso. Sua fragrância celebra a essência dos momentos mais alegres em um caminho olfativo Floral, iniciando nas vibrantes notas de Pimenta Rosa, Mandarina e evoluindo em um coração Floral elegante. Finaliza no doce do Praline e o amadeirado do Âmbar, instigando desejo em um aroma encantador aos sentidos."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ]
    ],
    "base": [
     [
      "Praline",
-     "برالين"
+     "برالين",
+     "Praliné"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -932,61 +1033,74 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Express determination in the best way",
-   "ar": "عبّري عن عزيمتك بأجمل صورة"
+   "ar": "عبّري عن عزيمتك بأجمل صورة",
+   "pt": "Transmita determinação da melhor forma"
   },
   "desc": {
    "en": "Infinity Body Splash captures the essence of a woman who chases her dreams in a floral woody amber fragrance. Its notes include blackberry blossom, sweet orange, lemon, jasmine, freesia, lily of the valley, amber, moss, cedar, patchouli and vanilla. It brings a sense of empowerment at any time of day, with sweetness and energy.",
-   "ar": "يجسّد معطر الجسم إنفينيتي جوهر المرأة التي تسعى وراء أحلامها، بعطر زهري خشبي عنبري. تضم نفحاته زهر التوت الأسود والبرتقال الحلو والليمون والياسمين والفريزيا وزنبق الوادي والعنبر والطحلب والأرز والباتشولي والفانيليا. ويرافقها إحساس بالتمكين في أي وقت من اليوم، بعذوبة وحيوية."
+   "ar": "يجسّد معطر الجسم إنفينيتي جوهر المرأة التي تسعى وراء أحلامها، بعطر زهري خشبي عنبري. تضم نفحاته زهر التوت الأسود والبرتقال الحلو والليمون والياسمين والفريزيا وزنبق الوادي والعنبر والطحلب والأرز والباتشولي والفانيليا. ويرافقها إحساس بالتمكين في أي وقت من اليوم، بعذوبة وحيوية.",
+   "pt": "O Body Splash Infinity Desodorante Colônia tem a essência de uma mulher que corre atrás dos seus sonhos, em notas olfativas de flores de amora, laranja doce, limão, jasmim, frésia, lírio-do-vale, âmbar, musgo, cedro, patchouli e baunilha, com um caminho olfativo de Floral Amadeirado Ambarado. O empoderamento acompanhará em qualquer parte do dia, com doçura e disposição."
   },
   "notes": {
    "top": [
     [
      "Blackberry blossom",
-     "زهر التوت الأسود"
+     "زهر التوت الأسود",
+     "Flor de amora"
     ],
     [
      "Sweet orange",
-     "برتقال حلو"
+     "برتقال حلو",
+     "Laranja doce"
     ],
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Moss",
-     "طحلب"
+     "طحلب",
+     "Musgo"
     ],
     [
      "Cedar",
-     "أرز"
+     "أرز",
+     "Cedro"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -1020,47 +1134,57 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Five precious vanillas in a single bottle",
-   "ar": "خمسة أنواع ثمينة من الفانيليا في زجاجة واحدة"
+   "ar": "خمسة أنواع ثمينة من الفانيليا في زجاجة واحدة",
+   "pt": "Cinco baunilhas preciosas em um único frasco"
   },
   "desc": {
    "en": "Celebrating five years of a brand that has found its place in so many lives, VF 5th Anniversary Body Splash puts vanilla at the center, from luminous to creamy and delicate to deep. It opens with bergamot, orange blossom, peach and 10x Concentrated Vanilla. In the heart, Madagascar Bourbon Vanilla Absolute meets intense Vanilla Noir, with delicate freesia and jasmine.",
-   "ar": "احتفاءً بمرور خمس سنوات على علامة وجدت مكانها في حياة الكثيرين، يضع معطر الجسم في إف فيفث أنيفيرسري الفانيليا في صميم التجربة، كاشفاً عنها بتفسيرات متعددة من الإشراق إلى القوام الكريمي، ومن الرقة إلى العمق. ينطلق بالبرغموت وزهر البرتقال والخوخ والفانيليا المركّزة 10x. وفي القلب، يلتقي مطلق فانيليا بوربون من مدغشقر بكثافة فانيليا نوار، برفقة رقة الفريزيا والياسمين."
+   "ar": "احتفاءً بمرور خمس سنوات على علامة وجدت مكانها في حياة الكثيرين، يضع معطر الجسم في إف فيفث أنيفيرسري الفانيليا في صميم التجربة، كاشفاً عنها بتفسيرات متعددة من الإشراق إلى القوام الكريمي، ومن الرقة إلى العمق. ينطلق بالبرغموت وزهر البرتقال والخوخ والفانيليا المركّزة 10x. وفي القلب، يلتقي مطلق فانيليا بوربون من مدغشقر بكثافة فانيليا نوار، برفقة رقة الفريزيا والياسمين.",
+   "pt": "Algumas histórias são feitas para serem lembradas. E quando uma história chega a cinco anos, ela já carrega muito mais do que o tempo. Carrega conquistas, transformações, momentos compartilhados e tudo aquilo que fez parte da construção de uma marca que encontrou o seu lugar na vida de tantas pessoas. Para celebrar essa trajetória, nasce o VF 5th Anniversary Edition. Uma criação especial que coloca a Baunilha no centro da experiência e revela a riqueza dessa matéria-prima em diferentes interpretações: da luminosidade à cremosidade, da delicadeza à profundidade. Logo nas primeiras notas, a composição surpreende com a combinação de Bergamota, Flor de Laranjeira, Pêssego e Baunilha Concentrada 10x. Uma abertura luminosa e envolvente, em que a Baunilha já aparece mostrando que veio para ocupar o centro da cena. No coração, ela ganha novas dimensões. A Baunilha Absoluta Bourbon de Madagascar encontra a intensidade da Baunilha Noir, acompanhada pela delicadeza da Frésia e do Jasmim e pela elegância do Cedro. É nesse momento que a fragrância revela sua personalidade: sofisticada, envolvente e marcante sem perder a delicadeza. Ao fundo, a Baunilha permanece e se transforma mais uma vez. Vanilina, Creme de Baunilha, Madeira Cashmere, Ládano, Fava Tonka, Âmbar e Musk criam uma base cremosa, quente e profunda, deixando uma assinatura que envolve a pele e prolonga a sensação de estar diante de algo especial. VF 5th Anniversary Edition. Uma criação feita para celebrar o que já vivemos e tudo o que ainda vamos viver."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ],
     [
      "10x Concentrated Vanilla",
-     "فانيليا مركّزة 10x"
+     "فانيليا مركّزة 10x",
+     "Baunilha concentrada 10x"
     ]
    ],
    "heart": [
     [
      "Madagascar Bourbon Vanilla Absolute",
-     "مطلق فانيليا بوربون من مدغشقر"
+     "مطلق فانيليا بوربون من مدغشقر",
+     "Baunilha absoluta Bourbon de Madagascar"
     ],
     [
      "Vanilla Noir",
-     "فانيليا نوار"
+     "فانيليا نوار",
+     "Baunilha Noir"
     ],
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -1093,47 +1217,57 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Five precious vanillas in a single bottle",
-   "ar": "خمسة أنواع ثمينة من الفانيليا في زجاجة واحدة"
+   "ar": "خمسة أنواع ثمينة من الفانيليا في زجاجة واحدة",
+   "pt": "Cinco baunilhas preciosas em um único frasco"
   },
   "desc": {
    "en": "Celebrating five years of a brand that has found its place in so many lives, VF 5th Anniversary Edition Cologne puts vanilla at the center, from luminous to creamy and delicate to deep. It opens with bergamot, orange blossom, peach and 10x Concentrated Vanilla. In the heart, Madagascar Bourbon Vanilla Absolute meets intense Vanilla Noir, with delicate freesia and jasmine.",
-   "ar": "احتفاءً بمرور خمس سنوات على علامة وجدت مكانها في حياة الكثيرين، تضع كولونيا في إف فيفث أنيفيرسري إيديشن الفانيليا في صميم التجربة، كاشفةً عنها بتفسيرات متعددة من الإشراق إلى القوام الكريمي، ومن الرقة إلى العمق. تنطلق بالبرغموت وزهر البرتقال والخوخ والفانيليا المركّزة 10x. وفي القلب، يلتقي مطلق فانيليا بوربون من مدغشقر بكثافة فانيليا نوار، برفقة رقة الفريزيا والياسمين."
+   "ar": "احتفاءً بمرور خمس سنوات على علامة وجدت مكانها في حياة الكثيرين، تضع كولونيا في إف فيفث أنيفيرسري إيديشن الفانيليا في صميم التجربة، كاشفةً عنها بتفسيرات متعددة من الإشراق إلى القوام الكريمي، ومن الرقة إلى العمق. تنطلق بالبرغموت وزهر البرتقال والخوخ والفانيليا المركّزة 10x. وفي القلب، يلتقي مطلق فانيليا بوربون من مدغشقر بكثافة فانيليا نوار، برفقة رقة الفريزيا والياسمين.",
+   "pt": "Algumas histórias são feitas para serem lembradas. E quando uma história chega a cinco anos, ela já carrega muito mais do que o tempo. Carrega conquistas, transformações, momentos compartilhados e tudo aquilo que fez parte da construção de uma marca que encontrou o seu lugar na vida de tantas pessoas. Para celebrar essa trajetória, nasce o VF 5th Anniversary Edition. Uma criação especial que coloca a Baunilha no centro da experiência e revela a riqueza dessa matéria-prima em diferentes interpretações: da luminosidade à cremosidade, da delicadeza à profundidade. Logo nas primeiras notas, a composição surpreende com a combinação de Bergamota, Flor de Laranjeira, Pêssego e Baunilha Concentrada 10x. Uma abertura luminosa e envolvente, em que a Baunilha já aparece mostrando que veio para ocupar o centro da cena. No coração, ela ganha novas dimensões. A Baunilha Absoluta Bourbon de Madagascar encontra a intensidade da Baunilha Noir, acompanhada pela delicadeza da Frésia e do Jasmim e pela elegância do Cedro. É nesse momento que a fragrância revela sua personalidade: sofisticada, envolvente e marcante sem perder a delicadeza. Ao fundo, a Baunilha permanece e se transforma mais uma vez. Vanilina, Creme de Baunilha, Madeira Cashmere, Ládano, Fava Tonka, Âmbar e Musk criam uma base cremosa, quente e profunda, deixando uma assinatura que envolve a pele e prolonga a sensação de estar diante de algo especial. VF 5th Anniversary Edition. Uma criação feita para celebrar o que já vivemos e tudo o que ainda vamos viver."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ],
     [
      "10x Concentrated Vanilla",
-     "فانيليا مركّزة 10x"
+     "فانيليا مركّزة 10x",
+     "Baunilha concentrada 10x"
     ]
    ],
    "heart": [
     [
      "Madagascar Bourbon Vanilla Absolute",
-     "مطلق فانيليا بوربون من مدغشقر"
+     "مطلق فانيليا بوربون من مدغشقر",
+     "Baunilha absoluta Bourbon de Madagascar"
     ],
     [
      "Vanilla Noir",
-     "فانيليا نوار"
+     "فانيليا نوار",
+     "Baunilha Noir"
     ],
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -1166,11 +1300,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with an authentic fruity floral oriental touch",
-   "ar": "تغذية عميقة وتماسك بلمسة أصيلة من العطر الفاكهي الزهري الشرقي"
+   "ar": "تغذية عميقة وتماسك بلمسة أصيلة من العطر الفاكهي الزهري الشرقي",
+   "pt": "Nutrição profunda e firmeza com o toque autêntico do frutado floral oriental"
   },
   "desc": {
    "en": "Fatal Black For Her Body Cream turns the body care routine into a true ritual of sophistication and power. Its ultra-nourishing formula was developed with a selected blend of premium extracts and oils that directly help support collagen production and cell renewal.",
-   "ar": "يحوّل كريم الجسم فيتال بلاك فور هير روتين العناية بالجسم إلى طقس حقيقي من الرقي والقوة. طُوّرت تركيبته فائقة التغذية بمزيج مختار من المستخلصات والزيوت الفاخرة التي تساعد مباشرةً على دعم إنتاج الكولاجين وتجدد الخلايا."
+   "ar": "يحوّل كريم الجسم فيتال بلاك فور هير روتين العناية بالجسم إلى طقس حقيقي من الرقي والقوة. طُوّرت تركيبته فائقة التغذية بمزيج مختار من المستخلصات والزيوت الفاخرة التي تساعد مباشرةً على دعم إنتاج الكولاجين وتجدد الخلايا.",
+   "pt": "A Loção Desodorante Body Cream Wepink Fatal Black For Her é o segredo para transformar a sua rotina de cuidados corporais em um verdadeiro ritual de sofisticação e poder. Sua fórmula ultra-nutritiva foi desenvolvida com um blend selecionado de extratos e óleos premium que prestam auxílio direto na produção de colágeno e na regeneração celular."
   },
   "source": "https://www.wepink.com.br/body-cream-fatal-black-for-her-desodorante-hidratante-200ml---wepink/p",
   "notes": {}
@@ -1198,53 +1334,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrance that envelops, warms and lingers",
-   "ar": "عطر يحتضن ويدفئ ويبقى"
+   "ar": "عطر يحتضن ويدفئ ويبقى",
+   "pt": "Uma fragrância que envolve, aquece e permanece"
   },
   "desc": {
    "en": "Eternal Cherish Cologne celebrates the woman who embraces, inspires and turns love into presence. It opens with spicy cinnamon oil, delicate jasmine and vibrant pink pepper, while the heart pairs light lily of the valley with cashmeran and amber for texture and depth. Warm, creamy elemi oil, musk and vanilla create a soft, velvety and addictive trail.",
-   "ar": "تحتفي كولونيا إيترنال تشيريش بالمرأة التي تحتضن وتُلهم وتحوّل الحب إلى حضور. تنطلق بدفء زيت القرفة المتبّل ورقة الياسمين ولمسة الفلفل الوردي النابضة، بينما يجمع القلب بين خفّة زنبق الوادي والكشميران والعنبر اللذين يضفيان القوام والعمق. ثم تصنع نفحات زيت الإليمي والمسك والفانيليا الدافئة الكريمية أثراً ناعماً ومخملياً يصعب مقاومته."
+   "ar": "تحتفي كولونيا إيترنال تشيريش بالمرأة التي تحتضن وتُلهم وتحوّل الحب إلى حضور. تنطلق بدفء زيت القرفة المتبّل ورقة الياسمين ولمسة الفلفل الوردي النابضة، بينما يجمع القلب بين خفّة زنبق الوادي والكشميران والعنبر اللذين يضفيان القوام والعمق. ثم تصنع نفحات زيت الإليمي والمسك والفانيليا الدافئة الكريمية أثراً ناعماً ومخملياً يصعب مقاومته.",
+   "pt": "O Desodorante Colônia Wepink Eternal Cherish é uma celebração da mulher que acolhe, inspira e transforma amor em presença. Uma fragrância que traduz afeto em cada nota, revelando uma assinatura envolvente, elegante e profundamente marcante. Sua abertura combina o calor especiado do óleo de canela com a delicadeza do jasmim e o toque vibrante da pimenta rosa, criando uma primeira impressão intensa, acolhedora e sofisticada. É um convite sensorial que desperta os sentidos com equilíbrio entre força e suavidade. No coração, a fragrância revela uma faceta ainda mais envolvente, onde o lírio-do-vale floresce com leveza enquanto o cashmeran e o âmbar trazem textura e profundidade. Um acorde que abraça a pele com elegância, criando uma sensação de conforto refinado e feminilidade atemporal. Ao fundo, notas quentes e cremosas ganham protagonismo. O óleo de elemi se une ao musk e à baunilha para construir um rastro macio, aveludado e viciante, que permanece na pele de forma delicada e inesquecível. Eternal Cherish é uma fragrância que envolve, aquece e permanece."
   },
   "notes": {
    "top": [
     [
      "Cinnamon oil",
-     "زيت القرفة"
+     "زيت القرفة",
+     "Óleo de canela"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Cashmeran",
-     "كشميران"
+     "كشميران",
+     "Cashmeran"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ],
    "base": [
     [
      "Elemi oil",
-     "زيت الإليمي"
+     "زيت الإليمي",
+     "Óleo de elemi"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -1273,53 +1420,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrance that envelops, warms and lingers",
-   "ar": "عطر يحتضن ويدفئ ويبقى"
+   "ar": "عطر يحتضن ويدفئ ويبقى",
+   "pt": "Uma fragrância que envolve, aquece e permanece"
   },
   "desc": {
    "en": "Eternal Cherish Body Splash celebrates the woman who embraces, inspires and turns love into presence. It opens with spicy cinnamon oil, delicate jasmine and vibrant pink pepper, while the heart pairs light lily of the valley with cashmeran and amber for texture and depth. Warm, creamy elemi oil, musk and vanilla create a soft, velvety and addictive trail.",
-   "ar": "يحتفي معطر الجسم إيترنال تشيريش بالمرأة التي تحتضن وتُلهم وتحوّل الحب إلى حضور. ينطلق بدفء زيت القرفة المتبّل ورقة الياسمين ولمسة الفلفل الوردي النابضة، بينما يجمع القلب بين خفّة زنبق الوادي والكشميران والعنبر اللذين يضفيان القوام والعمق. ثم تصنع نفحات زيت الإليمي والمسك والفانيليا الدافئة الكريمية أثراً ناعماً ومخملياً يصعب مقاومته."
+   "ar": "يحتفي معطر الجسم إيترنال تشيريش بالمرأة التي تحتضن وتُلهم وتحوّل الحب إلى حضور. ينطلق بدفء زيت القرفة المتبّل ورقة الياسمين ولمسة الفلفل الوردي النابضة، بينما يجمع القلب بين خفّة زنبق الوادي والكشميران والعنبر اللذين يضفيان القوام والعمق. ثم تصنع نفحات زيت الإليمي والمسك والفانيليا الدافئة الكريمية أثراً ناعماً ومخملياً يصعب مقاومته.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Eternal Cherish é uma celebração da mulher que acolhe, inspira e transforma amor em presença. Uma fragrância que traduz afeto em cada nota, revelando uma assinatura envolvente, elegante e profundamente marcante. Sua abertura combina o calor especiado do óleo de canela com a delicadeza do jasmim e o toque vibrante da pimenta rosa, criando uma primeira impressão intensa, acolhedora e sofisticada. É um convite sensorial que desperta os sentidos com equilíbrio entre força e suavidade. No coração, a fragrância revela uma faceta ainda mais envolvente, onde o lírio-do-vale floresce com leveza enquanto o cashmeran e o âmbar trazem textura e profundidade. Um acorde que abraça a pele com elegância, criando uma sensação de conforto refinado e feminilidade atemporal. Ao fundo, notas quentes e cremosas ganham protagonismo. O óleo de elemi se une ao musk e à baunilha para construir um rastro macio, aveludado e viciante, que permanece na pele de forma delicada e inesquecível. Eternal Cherish é uma fragrância que envolve, aquece e permanece."
   },
   "notes": {
    "top": [
     [
      "Cinnamon oil",
-     "زيت القرفة"
+     "زيت القرفة",
+     "Óleo de canela"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Cashmeran",
-     "كشميران"
+     "كشميران",
+     "Cashmeran"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ],
    "base": [
     [
      "Elemi oil",
-     "زيت الإليمي"
+     "زيت الإليمي",
+     "Óleo de elemi"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -1352,53 +1510,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect balance between citrus freshness and woody depth",
-   "ar": "توازن مثالي بين الانتعاش الحمضي والعمق الخشبي"
+   "ar": "توازن مثالي بين الانتعاش الحمضي والعمق الخشبي",
+   "pt": "O equilíbrio perfeito entre o frescor do cítrico e a profundidade amadeirada"
   },
   "desc": {
    "en": "Lauv Green Body Splash expresses balance at its most sophisticated, uniting vibrant freshness with elegant depth. Mandarin, ginger, lavandin and sage open with luminous, aromatic clarity, followed by a heart of light florals and cedar with lily of the valley and orange blossom. An oakmoss accord joins cedar in a green, earthy, elegant base with a clean, subtle yet distinctive trail.",
-   "ar": "يجسّد معطر الجسم لاف جرين التوازن في أرقى صوره، جامعاً بين الانتعاش النابض والعمق الأنيق. ينطلق باليوسفي والزنجبيل واللافاندين والمريمية في افتتاحية مشرقة وعطرية، يليها قلب من الأزهار الخفيفة والأرز مع زنبق الوادي وزهر البرتقال. ثم يلتقي أكورد طحلب البلوط بالأرز في قاعدة خضراء ترابية أنيقة تترك أثراً نظيفاً، خفيفاً ولكنه مميز."
+   "ar": "يجسّد معطر الجسم لاف جرين التوازن في أرقى صوره، جامعاً بين الانتعاش النابض والعمق الأنيق. ينطلق باليوسفي والزنجبيل واللافاندين والمريمية في افتتاحية مشرقة وعطرية، يليها قلب من الأزهار الخفيفة والأرز مع زنبق الوادي وزهر البرتقال. ثم يلتقي أكورد طحلب البلوط بالأرز في قاعدة خضراء ترابية أنيقة تترك أثراً نظيفاً، خفيفاً ولكنه مميز.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Lauv Green expressa o equilíbrio em sua forma mais sofisticada. Uma fragrância que une frescor vibrante e profundidade elegante, traduzindo modernidade com naturalidade. Logo na abertura, a mandarina entrega um frescor cítrico luminoso, energizante e refinado. O gengibre acrescenta um toque especiado sutil, trazendo personalidade e dinamismo, enquanto o lavandin e a sálvia revelam uma faceta aromática limpa, que transmite clareza e confiança imediata. No coração, notas florais leves se encontram com a estrutura do cedro, criando uma sensação de frescor sofisticado e contemporâneo. O lírio-do-vale e a flor de laranjeira adicionam delicadeza equilibrada, mantendo a fragrância luminosa, mas com presença. No fundo, o acorde de musgo de carvalho se une ao cedro em uma base verde, terrosa e elegante. O resultado é um acabamento limpo, estruturado e confortável; um rastro sutil, porém marcante, que transmite segurança sem excessos. Lauv Green é para quem valoriza equilíbrio. Para homens e mulheres modernos, confiantes e autênticos, que gostam de fragrâncias frescas com profundidade e personalidade."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ],
     [
      "Ginger",
-     "زنجبيل"
+     "زنجبيل",
+     "Gengibre"
     ],
     [
      "Lavandin",
-     "لافاندين"
+     "لافاندين",
+     "Lavandin"
     ],
     [
      "Sage",
-     "مريمية"
+     "مريمية",
+     "Sálvia"
     ]
    ],
    "heart": [
     [
      "Cedar",
-     "أرز"
+     "أرز",
+     "Cedro"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ],
    "base": [
     [
      "Oakmoss",
-     "طحلب البلوط"
+     "طحلب البلوط",
+     "Musgo de carvalho"
     ],
     [
      "Cedar",
-     "أرز"
+     "أرز",
+     "Cedro"
     ]
    ]
   },
@@ -1430,11 +1599,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Cut to make an impact",
-   "ar": "مصقول ليُبهر"
+   "ar": "مصقول ليُبهر",
+   "pt": "Lapidado para impactar"
   },
   "desc": {
    "en": "Ruby Rhodolite Cologne captures the strength of a woman guided by her own intensity. This vibrant fragrance, full of passion, courage and authenticity, was created for the woman who refuses to fit any mold and turns her presence into an impact. It is pure energy, expressed not in words but on the skin.",
-   "ar": "تجسّد كولونيا روبي رودولايت قوة المرأة التي يقودها عنفوانها. عطر نابض بالحياة يفيض بالشغف والشجاعة والأصالة، ابتُكر للمرأة التي ترفض القوالب الجاهزة وتجعل من حضورها أثراً لا يُنسى. إنها طاقة خالصة لا تُوصف بالكلمات، بل تتجلّى على البشرة."
+   "ar": "تجسّد كولونيا روبي رودولايت قوة المرأة التي يقودها عنفوانها. عطر نابض بالحياة يفيض بالشغف والشجاعة والأصالة، ابتُكر للمرأة التي ترفض القوالب الجاهزة وتجعل من حضورها أثراً لا يُنسى. إنها طاقة خالصة لا تُوصف بالكلمات، بل تتجلّى على البشرة.",
+   "pt": "O Desodorante Colônia Wepink Ruby Rhodolite traduz a força de quem vive guiada pela própria intensidade. Uma fragrância vibrante, carregada de paixão, coragem e autenticidade, criada para a mulher que não se adapta a moldes e faz da própria presença um impacto. Ruby Rhodolite é energia em estado puro! Não se define em palavras, se manifesta na pele. Não segue direções, impõe o próprio caminho."
   },
   "source": "https://www.wepink.com.br/desod-col-ruby-rhodolite-100-ml---wepink-439/p",
   "notes": {}
@@ -1467,29 +1638,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A floral oriental fragrance, cut to make an impact",
-   "ar": "عطر زهري شرقي مصقول ليُبهر"
+   "ar": "عطر زهري شرقي مصقول ليُبهر",
+   "pt": "Uma fragrância floral oriental, lapidada para impactar"
   },
   "desc": {
    "en": "Ruby Rhodolite Body Splash captures the strength of a woman guided by her own intensity, in a vibrant fragrance of passion, courage and authenticity. Its floral oriental composition combines the bright freshness of pitaya, the juicy touch of cherry and the striking magnetism of patchouli. The result is sophisticated, intense and enveloping, balancing delicacy and power.",
-   "ar": "يجسّد معطر الجسم روبي رودولايت قوة المرأة التي يقودها عنفوانها، بعطر نابض بالحياة يفيض بالشغف والشجاعة والأصالة. تجمع تركيبته الزهرية الشرقية بين الانتعاش المشرق لفاكهة التنين ولمسة الكرز العصيرية وجاذبية الباتشولي الآسرة. والنتيجة عطر راقٍ ومكثّف وآسر يوازن بين الرقة والقوة بمقدار مثالي."
+   "ar": "يجسّد معطر الجسم روبي رودولايت قوة المرأة التي يقودها عنفوانها، بعطر نابض بالحياة يفيض بالشغف والشجاعة والأصالة. تجمع تركيبته الزهرية الشرقية بين الانتعاش المشرق لفاكهة التنين ولمسة الكرز العصيرية وجاذبية الباتشولي الآسرة. والنتيجة عطر راقٍ ومكثّف وآسر يوازن بين الرقة والقوة بمقدار مثالي.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Ruby Rhodolite traduz a força de quem vive guiada pela própria intensidade. Uma fragrância vibrante, carregada de paixão, coragem e autenticidade, criada para a mulher que não se adapta a moldes e faz da própria presença um impacto. Com um caminho olfativo Floral Oriental, Ruby Rhodolite combina o frescor iluminado da Pitaya com o toque suculento da Cereja e o magnetismo marcante do Patchouli. O resultado é uma fragrância sofisticada, intensa e envolvente, que equilibra delicadeza e potência na medida certa. Ruby Rhodolite é energia em estado puro. Não se define em palavras, se manifesta na pele. Não segue direções, impõe o próprio caminho."
   },
   "notes": {
    "top": [
     [
      "Pitaya",
-     "فاكهة التنين"
+     "فاكهة التنين",
+     "Pitaya"
     ]
    ],
    "heart": [
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ]
    ]
   },
@@ -1523,11 +1699,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The most divine hydration!",
-   "ar": "ترطيب سماوي لا مثيل له!"
+   "ar": "ترطيب سماوي لا مثيل له!",
+   "pt": "A mais divina hidratação!"
   },
   "desc": {
    "en": "Heaven Blue Body Cream leaves skin hydrated, nourished and firm, thanks to a special formula that helps support collagen production and cell renewal. Its blend of oils and extracts keeps skin looking healthy and glowing.",
-   "ar": "يمنح كريم الجسم هيفن بلو البشرة ترطيباً وتغذية وتماسكاً، بفضل تركيبة خاصة تساعد على دعم إنتاج الكولاجين وتجدد الخلايا. كما يحافظ مزيجه من الزيوت والمستخلصات على مظهر صحي ومشرق للبشرة."
+   "ar": "يمنح كريم الجسم هيفن بلو البشرة ترطيباً وتغذية وتماسكاً، بفضل تركيبة خاصة تساعد على دعم إنتاج الكولاجين وتجدد الخلايا. كما يحافظ مزيجه من الزيوت والمستخلصات على مظهر صحي ومشرق للبشرة.",
+   "pt": "A Loção Desodorante Body Cream Wepink Heaven Blue é ideal para deixar sua pele hidratada, nutrida e firme, graças à sua composição que tem uma fórmula especial para auxiliar na produção de colágeno e na regeneração celular. Além disso, seu mix de óleos e extratos deixam sua pele com um aspecto sempre saudável e brilhoso."
   },
   "source": "https://www.wepink.com.br/body-cream-heaven-blue-200ml---wepink-428/p",
   "notes": {}
@@ -1558,11 +1736,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Impossible to resist!",
-   "ar": "يستحيل مقاومته!"
+   "ar": "يستحيل مقاومته!",
+   "pt": "Impossível resistir!"
   },
   "desc": {
    "en": "Infinity Tawny Body Splash concentrates all the juiciness of fruit into a deliciously sweet, balanced and satisfying scent. Its notes are masterfully combined for endless ways to wear it.",
-   "ar": "يجمع معطر الجسم إنفينيتي توني كل عصارة الفاكهة في عبير حلو شهي ومتوازن ومُرضٍ. تمتزج نفحاته ببراعة لتمنح إمكانيات لا حصر لها للاستخدام."
+   "ar": "يجمع معطر الجسم إنفينيتي توني كل عصارة الفاكهة في عبير حلو شهي ومتوازن ومُرضٍ. تمتزج نفحاته ببراعة لتمنح إمكانيات لا حصر لها للاستخدام.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Infinity Tawny concentra toda a suculência das frutas em sua fragrância, para que você tenha em suas mãos um aroma deliciosamente doce, equilibrado e satisfatório. Suas notas são combinadas com maestria para infinitas possibilidades de uso. Impossível resistir!"
   },
   "source": "https://www.wepink.com.br/body-splash-infinity-tawny-200ml---wepink-416/p",
   "notes": {}
@@ -1594,11 +1774,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Definitive elegance",
-   "ar": "أناقة مطلقة"
+   "ar": "أناقة مطلقة",
+   "pt": "Elegância em definitivo"
   },
   "desc": {
    "en": "Martin Body Splash captures the aura of the multifaceted man in a bottle. Its scent is sweet and pleasant on the surface, yet hides more exciting mysteries in its depths, waiting to be revealed.",
-   "ar": "يختزل معطر الجسم مارتن في زجاجته هالة الرجل متعدد الأوجه. عبير حلو ومحبّب في ظاهره، لكنه يخفي في أعماقه أسراراً أكثر إثارة تنتظر من يكشفها."
+   "ar": "يختزل معطر الجسم مارتن في زجاجته هالة الرجل متعدد الأوجه. عبير حلو ومحبّب في ظاهره، لكنه يخفي في أعماقه أسراراً أكثر إثارة تنتظر من يكشفها.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Martin condensa em seu frasco a aura do homem multifacetado. Um aroma doce e agradável em sua superfície, mas escondendo mistérios mais empolgantes em suas profundezas. Você tem a coragem de revelá-los?"
   },
   "source": "https://www.wepink.com.br/body-splash-martin-200ml/p",
   "notes": {}
@@ -1629,33 +1811,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The peace of paradise",
-   "ar": "سكينة الفردوس"
+   "ar": "سكينة الفردوس",
+   "pt": "A paz do paraíso"
   },
   "desc": {
    "en": "Heaven Blue Cologne is a divine invitation to daydreaming and new sensory experiences, born from the power of imagination. It pairs the freshness of citrus notes with a deep, sophisticated base for those who seek balance and inspiration. Notes of black tea, amber and precious woods reflect the freedom to explore new horizons with a sense of calm.",
-   "ar": "كولونيا هيفن بلو دعوة سماوية إلى أحلام اليقظة وتجارب حسية جديدة، وُلدت من قوة الخيال. تجمع بين انتعاش النفحات الحمضية وقاعدة عميقة وراقية لمن يبحث عن التوازن والإلهام في كل تفصيل. وتعكس نفحات الشاي الأسود والعنبر والأخشاب الفاخرة حرية استكشاف آفاق جديدة في أجواء من الهدوء."
+   "ar": "كولونيا هيفن بلو دعوة سماوية إلى أحلام اليقظة وتجارب حسية جديدة، وُلدت من قوة الخيال. تجمع بين انتعاش النفحات الحمضية وقاعدة عميقة وراقية لمن يبحث عن التوازن والإلهام في كل تفصيل. وتعكس نفحات الشاي الأسود والعنبر والأخشاب الفاخرة حرية استكشاف آفاق جديدة في أجواء من الهدوء.",
+   "pt": "O Desodorante Colônia Wepink Heaven Blue é um convite divino ao devaneio e a novas experiências sensoriais. Ele nasce da imaginação, essa força silenciosa que move sonhos, cria possibilidades e transforma o ordinário em extraordinário. Criado para elevar o espírito, Heaven Blue une o frescor das notas cítricas a um fundo profundo e sofisticado, revelando uma fragrância feita para quem busca equilíbrio e inspiração em cada detalhe. Suas notas de chá preto, âmbar e madeiras nobres refletem a liberdade de explorar novos horizontes e o prazer de descobrir a própria essência em meio à calma."
   },
   "notes": {
    "top": [
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ]
    ],
    "heart": [
     [
      "Black tea",
-     "شاي أسود"
+     "شاي أسود",
+     "Chá preto"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Precious woods",
-     "أخشاب فاخرة"
+     "أخشاب فاخرة",
+     "Madeiras nobres"
     ]
    ]
   },
@@ -1689,21 +1877,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A perfect balance of radiance and elegance",
-   "ar": "توازن مثالي بين البريق والأناقة"
+   "ar": "توازن مثالي بين البريق والأناقة",
+   "pt": "Um perfeito equilíbrio de brilho e elegância"
   },
   "desc": {
    "en": "Ruby Ametist Body Splash shines like the most precious stone, revealing life's radiance in an elegant scent. Its mystical freshness brings bergamot and orange blossom, unfolding into a floral heart. It finishes on a majestic sweet and woody base.",
-   "ar": "يتألق معطر الجسم روبي أميثيست كأثمن الأحجار الكريمة، كاشفاً عن بريق الحياة في عبير مفعم بالأناقة. يحمل انتعاشه الغامض سحر البرغموت وزهر البرتقال، لينتقل إلى قلب زهري ساحر. ويختتم بقاعدة مهيبة حلوة وخشبية."
+   "ar": "يتألق معطر الجسم روبي أميثيست كأثمن الأحجار الكريمة، كاشفاً عن بريق الحياة في عبير مفعم بالأناقة. يحمل انتعاشه الغامض سحر البرغموت وزهر البرتقال، لينتقل إلى قلب زهري ساحر. ويختتم بقاعدة مهيبة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Ruby Ametist reluz como a pedra mais preciosa, revelando o brilho da vida em um aroma cheio de elegância. Seu místico frescor envolve as maravilhas da Bergamota e da Flor de Laranjeira, exalando então as maravilhas de um coração floral. Finaliza no fundo majestoso, doce e amadeirado, perfeito para te fazer brilhar."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ]
   },
@@ -1736,33 +1928,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The king who commands every path to victory",
-   "ar": "الملك الذي يمتلك دروب النصر"
+   "ar": "الملك الذي يمتلك دروب النصر",
+   "pt": "O rei que domina os caminhos para triunfar a vitória"
   },
   "desc": {
    "en": "King Blue Deep Body Splash celebrates the living essence of masculine elegance, enjoying life with a modern, sophisticated touch. Its woody fragrance, worthy of a true king, expresses power through notes of gardenia and bergamot. It finishes on a majestic base of vanilla and sandalwood, revealing a charming, exclusive man wherever he goes.",
-   "ar": "يحتفي معطر الجسم كينج بلو ديب بالجوهر الحي للأناقة الرجالية التي تستمتع بالحياة بلمسة عصرية وراقية. يجسّد عطره الخشبي، الجدير بملك حقيقي، القوة من خلال نفحات الغاردينيا والبرغموت. ويختتم بقاعدة مهيبة من الفانيليا وخشب الصندل، كاشفاً عن رجل ساحر ومتفرّد أينما حلّ."
+   "ar": "يحتفي معطر الجسم كينج بلو ديب بالجوهر الحي للأناقة الرجالية التي تستمتع بالحياة بلمسة عصرية وراقية. يجسّد عطره الخشبي، الجدير بملك حقيقي، القوة من خلال نفحات الغاردينيا والبرغموت. ويختتم بقاعدة مهيبة من الفانيليا وخشب الصندل، كاشفاً عن رجل ساحر ومتفرّد أينما حلّ.",
+   "pt": "O Desodorante Colônia Body Splash Wepink King Blue Deep aprecia a essência viva da elegância masculina, que desfruta da vida com um toque moderno e sofisticado. Sua fragrância revela um caminho olfativo amadeirado e digno de um verdadeiro rei, manifestando poder nas notas de gardênia e bergamota. Finaliza em um fundo majestoso de baunilha e sândalo, revelando o homem charmoso e exclusivo por onde passar."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Gardenia",
-     "غاردينيا"
+     "غاردينيا",
+     "Gardênia"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -1794,41 +1992,49 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Absolute purity wrapped in elegance",
-   "ar": "نقاء مطلق يكتنفه الرقي"
+   "ar": "نقاء مطلق يكتنفه الرقي",
+   "pt": "A absoluta pureza envolta em elegância"
   },
   "desc": {
    "en": "Pure Pear Cologne exudes a contemporary, unwavering elegance that reflects the strength and grace of the modern woman. Its composition harmonizes the freshness of fruit with delicate white flowers such as freesia, jasmine and rose petals, wrapped in the refined warmth of musk and vanilla. It is a luminous, distinctive and memorable fragrance.",
-   "ar": "تفيض كولونيا بيور بير بأناقة عصرية راسخة تعكس قوة المرأة العصرية ورقّتها. تمزج تركيبتها بتناغم بين انتعاش الفاكهة ورقة الأزهار البيضاء مثل الفريزيا والياسمين وبتلات الورد، ملفوفةً بدفء المسك والفانيليا الراقي. إنه عطر مشرق ومتميّز لا يُنسى."
+   "ar": "تفيض كولونيا بيور بير بأناقة عصرية راسخة تعكس قوة المرأة العصرية ورقّتها. تمزج تركيبتها بتناغم بين انتعاش الفاكهة ورقة الأزهار البيضاء مثل الفريزيا والياسمين وبتلات الورد، ملفوفةً بدفء المسك والفانيليا الراقي. إنه عطر مشرق ومتميّز لا يُنسى.",
+   "pt": "O Desodorante Colônia Wepink Pure Pear exala uma elegância contemporânea e inabalável, traduzindo a força e a graça da mulher moderna. Sua composição harmoniza o frescor das frutas com a delicadeza das flores brancas, como frésia, jasmim e pétalas de rosa, envoltas pelo calor refinado do musk e da baunilha. Uma fragrância luminosa, distinta e memorável, criada para quem inspira confiança e deixa sua marca por onde passa."
   },
   "notes": {
    "top": [
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ]
    ],
    "heart": [
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Rose petals",
-     "بتلات الورد"
+     "بتلات الورد",
+     "Pétalas de rosa"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -1860,25 +2066,30 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A powerful scent to awaken a striking energy",
-   "ar": "عبير قوي يوقظ طاقتك المميزة"
+   "ar": "عبير قوي يوقظ طاقتك المميزة",
+   "pt": "Um poderoso aroma para despertar sua energia marcante"
   },
   "desc": {
    "en": "Lion Blanc Body Splash celebrates the strength and elegance of the masculine essence, like a fierce lion that never gives up on its goals. Its woody scent evolves through powerful notes of jasmine, nutmeg and a fierce touch of cardamom. It finishes on a sweet, ambery and unforgettable base full of sophistication and charm.",
-   "ar": "يحتفي معطر الجسم ليون بلان بقوة الجوهر الرجالي وأناقته، كأسد جسور لا يتخلى أبداً عن أهدافه. يتطور عبيره الخشبي عبر نفحات قوية من الياسمين وجوزة الطيب ولمسة جريئة من الهيل. ويختتم بقاعدة حلوة عنبرية لا تُنسى، مفعمة بالرقي والجاذبية."
+   "ar": "يحتفي معطر الجسم ليون بلان بقوة الجوهر الرجالي وأناقته، كأسد جسور لا يتخلى أبداً عن أهدافه. يتطور عبيره الخشبي عبر نفحات قوية من الياسمين وجوزة الطيب ولمسة جريئة من الهيل. ويختتم بقاعدة حلوة عنبرية لا تُنسى، مفعمة بالرقي والجاذبية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Lion Blanc aprecia a força e elegância da essência masculina, como um leão voraz que nunca desiste de seus objetivos. Seu caminho olfativo amadeirado revela um aroma que atrai por onde passar, evoluindo em notas poderosas de Jasmim, noz-moscada e um toque feroz de Cardamomo. Finaliza em um fundo doce, ambarado e inesquecível, cheio de sofisticação e charme."
   },
   "notes": {
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Nutmeg",
-     "جوزة الطيب"
+     "جوزة الطيب",
+     "Noz-moscada"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ]
    ]
   },
@@ -1910,31 +2121,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Make emotions last forever!",
-   "ar": "خلّدي مشاعرك!"
+   "ar": "خلّدي مشاعرك!",
+   "pt": "Eternize emoções!"
   },
   "desc": {
    "en": "Heaven Bride Cologne invites the celebration of the most beautiful memory, honoring the bride's radiance in an unforgettable floral oriental scent. It opens with fresh bergamot and an enveloping touch of anise, leading to a beautiful floral heart. It finishes with a joyful union of vanilla and patchouli, saying yes to the essence of eternal love.",
-   "ar": "تدعو كولونيا هيفن برايد إلى الاحتفاء بأجمل الذكريات، مجسّدةً إشراقة العروس في عبير زهري شرقي لا يُنسى. تنطلق بانتعاش البرغموت ولمسة اليانسون الآسرة، لتمضي نحو قلب زهري بديع. وتختتم باتحاد مبهج بين الفانيليا والباتشولي، لتقول نعم لجوهر الحب الأبدي."
+   "ar": "تدعو كولونيا هيفن برايد إلى الاحتفاء بأجمل الذكريات، مجسّدةً إشراقة العروس في عبير زهري شرقي لا يُنسى. تنطلق بانتعاش البرغموت ولمسة اليانسون الآسرة، لتمضي نحو قلب زهري بديع. وتختتم باتحاد مبهج بين الفانيليا والباتشولي، لتقول نعم لجوهر الحب الأبدي.",
+   "pt": "O felizes para sempre começa agora! O Desodorante Colônia Wepink Heaven Bride convida a celebrar a mais linda memória, exaltando o brilho da noiva em um aroma Floral, Oriental e inesquecível. Prepare seu coração para o frescor da Bergamota e o toque envolvente do Anis, que segue rumo à felicidade no mais belo coração floral. Finaliza na união alegre da Baunilha e do Patchouli, dizendo sim à essência de um eterno amor."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Anise",
-     "يانسون"
+     "يانسون",
+     "Anis"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ]
    ]
   },
@@ -1966,37 +2183,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The elegance of mystery, an essence of you",
-   "ar": "أناقة الغموض، جوهر يشبهك"
+   "ar": "أناقة الغموض، جوهر يشبهك",
+   "pt": "A elegância do mistério, uma essência de você"
   },
   "desc": {
    "en": "Mysterious, sexy, desired and elegant, Obsessed Cologne represents the woman who reveals her boldness in a magical way, sets her own rules and leaves everyone enchanted. This sensual, daring fragrance opens with cherry intertwined with citrus, moving to noble gardenia alongside sweet honey and caramel for an effortless delight to the senses.",
-   "ar": "غامضة وجذابة ومرغوبة وأنيقة، تجسّد كولونيا أوبسيسد المرأة التي تكشف عن جرأتها بطريقة ساحرة، وتضع قواعدها الخاصة، فتأسر كل من حولها. يبدأ هذا العطر الحسّي الجريء بلمسة من الكرز تتشابك مع الحمضيات، لينتقل إلى نُبل الغاردينيا إلى جانب حلاوة العسل والكراميل، في متعة عفوية للحواس."
+   "ar": "غامضة وجذابة ومرغوبة وأنيقة، تجسّد كولونيا أوبسيسد المرأة التي تكشف عن جرأتها بطريقة ساحرة، وتضع قواعدها الخاصة، فتأسر كل من حولها. يبدأ هذا العطر الحسّي الجريء بلمسة من الكرز تتشابك مع الحمضيات، لينتقل إلى نُبل الغاردينيا إلى جانب حلاوة العسل والكراميل، في متعة عفوية للحواس.",
+   "pt": "Misteriosa, sexy, desejada e elegante, o Obsessed Desodorante Colônia representa a mulher que é um verdadeiro escândalo e revela a sua ousadia de forma mágica, deixando todos encantados, pois dita suas próprias regras, evidenciando suas qualidades que sempre a torna única. A fragrância sensual e ousada começa com o toque de cereja entrelaçado pelos cítricos, seguindo para a nobreza da gardênia, que ganha espaço junto a doçura das notas de mel e caramelo, finalizando para um deleite despretensioso aos sentidos."
   },
   "notes": {
    "top": [
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ],
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ]
    ],
    "heart": [
     [
      "Gardenia",
-     "غاردينيا"
+     "غاردينيا",
+     "Gardênia"
     ]
    ],
    "base": [
     [
      "Honey",
-     "عسل"
+     "عسل",
+     "Mel"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -2029,27 +2253,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Well-being as refreshing as nature",
-   "ar": "إحساس بالراحة منعش كالطبيعة"
+   "ar": "إحساس بالراحة منعش كالطبيعة",
+   "pt": "Um bem-estar refrescante como a natureza"
   },
   "desc": {
    "en": "Vanilla Hope Body Splash evokes life's happiest moments with a refreshing touch of almond and jasmine. It evolves into a vibrant heart of joyful heliotrope, celebrating the strength of nature, and finishes on a sweet, woody base that combines energy, beauty and well-being.",
-   "ar": "يستحضر معطر الجسم فانيلا هوب أسعد لحظات الحياة بلمسة منعشة من اللوز والياسمين. ثم يتطور إلى قلب نابض ببهجة الهليوتروب، محتفياً بقوة الطبيعة، ويختتم بقاعدة حلوة وخشبية تجمع بين الحيوية والجمال والإحساس بالراحة."
+   "ar": "يستحضر معطر الجسم فانيلا هوب أسعد لحظات الحياة بلمسة منعشة من اللوز والياسمين. ثم يتطور إلى قلب نابض ببهجة الهليوتروب، محتفياً بقوة الطبيعة، ويختتم بقاعدة حلوة وخشبية تجمع بين الحيوية والجمال والإحساس بالراحة.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Vanilla Hope remete aos momentos mais alegres da vida, através de seu toque refrescante em notas de amêndoa e jasmim. Evolui em um coração vibrante na alegria do heliotrópio, celebrando a força da natureza por onde passar. Finaliza em um fundo doce e amadeirado, combinando energia, beleza e muito bem-estar."
   },
   "notes": {
    "top": [
     [
      "Almond",
-     "لوز"
+     "لوز",
+     "Amêndoa"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "heart": [
     [
      "Heliotrope",
-     "هليوتروب"
+     "هليوتروب",
+     "Heliotrópio"
     ]
    ]
   },
@@ -2082,23 +2311,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Breathe in the classic and the unique!",
-   "ar": "استنشق الكلاسيكية والتفرّد!"
+   "ar": "استنشق الكلاسيكية والتفرّد!",
+   "pt": "Inspire o clássico e único!"
   },
   "desc": {
    "en": "Its fougère fragrance represents masculine exclusivity and sophistication, keeping a classic style with intense notes of nutmeg and cinnamon.",
-   "ar": "يجسّد عطره من فئة الفوجير التفرّد والرقي الرجالي، محافظاً على الطابع الكلاسيكي بنفحات مكثّفة من جوزة الطيب والقرفة."
+   "ar": "يجسّد عطره من فئة الفوجير التفرّد والرقي الرجالي، محافظاً على الطابع الكلاسيكي بنفحات مكثّفة من جوزة الطيب والقرفة.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Bourbon celebra o homem de essência destemida e voraz. Sua fragrância fougère representa a exclusividade e sofisticação masculina, sem nunca deixar de lado o estilo clássico em notas intensas de noz-moscada e canela. Finaliza em um fundo fresco e amadeirado, celebrando as grandes conquistas."
   },
   "notes": {
    "top": [
     [
      "Nutmeg",
-     "جوزة الطيب"
+     "جوزة الطيب",
+     "Noz-moscada"
     ]
    ],
    "heart": [
     [
      "Cinnamon",
-     "قرفة"
+     "قرفة",
+     "Canela"
     ]
    ]
   },
@@ -2131,23 +2364,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A paradise on earth",
-   "ar": "جنة على الأرض"
+   "ar": "جنة على الأرض",
+   "pt": "Um paraíso na terra"
   },
   "desc": {
    "en": "Heaven Cologne is an invitation to a delicate, joyful universe, on a sensory journey that feels like being transported to paradise. Its floral scent rises towards happiness with elegant notes of mandarin and orange blossom, finishing on a sweet, woody base for a light, heady charm.",
-   "ar": "كولونيا هيفن دعوة إلى عالم رقيق ومبهج، في رحلة حسية كأنها انتقال إلى الفردوس. يرتقي جوهرها نحو السعادة في مسار عطري زهري مع نفحات أنيقة من اليوسفي وزهر البرتقال، وتختتم بقاعدة حلوة وخشبية تمنحها سحر عطر خفيف وآسر."
+   "ar": "كولونيا هيفن دعوة إلى عالم رقيق ومبهج، في رحلة حسية كأنها انتقال إلى الفردوس. يرتقي جوهرها نحو السعادة في مسار عطري زهري مع نفحات أنيقة من اليوسفي وزهر البرتقال، وتختتم بقاعدة حلوة وخشبية تمنحها سحر عطر خفيف وآسر.",
+   "pt": "O Desodorante Colônia Wepink Heaven é um convite a um universo delicado e alegre, em uma jornada sensorial capaz de transportar ao paraíso. Sua essência ascende à felicidade em um caminho olfativo floral, evoluindo em notas elegantes de mandarina e flor de laranjeira. Finaliza em um fundo doce e amadeirado, trazendo o encanto de uma fragrância leve e inebriante."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ]
   },
@@ -2180,21 +2417,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The comfort of a sweet hug!",
-   "ar": "دفء عناق عذب!"
+   "ar": "دفء عناق عذب!",
+   "pt": "O aconchego de um doce abraço!"
   },
   "desc": {
    "en": "Vanilla Hug Body Splash awakens feminine power through an enveloping fruity touch of plum and mandarin, bringing the comfort of a sweet embrace.",
-   "ar": "يوقظ معطر الجسم فانيلا هاج القوة الأنثوية بلمسة فاكهية آسرة من البرقوق واليوسفي، تمنح دفء عناق عذب."
+   "ar": "يوقظ معطر الجسم فانيلا هاج القوة الأنثوية بلمسة فاكهية آسرة من البرقوق واليوسفي، تمنح دفء عناق عذب.",
+   "pt": "O Desodorante Colônia Body Splash Vanilla Hug desperta o poder feminino, através de seu toque frutado envolvente em notas de ameixa e mandarina."
   },
   "notes": {
    "top": [
     [
      "Plum",
-     "برقوق"
+     "برقوق",
+     "Ameixa"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ]
    ]
   },
@@ -2227,23 +2468,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A touch of true tenderness!",
-   "ar": "لمسة من الحنان الصادق!"
+   "ar": "لمسة من الحنان الصادق!",
+   "pt": "O toque de um verdadeiro carinho!"
   },
   "desc": {
    "en": "Vanilla Cuddle Body Splash represents feminine authenticity through a sophisticated floral touch of tangerine and jasmine. It celebrates strength and conveys passion wherever it goes, combining desire and delicacy over a sweet, woody base.",
-   "ar": "يجسّد معطر الجسم فانيلا كادل الأصالة الأنثوية بلمسة زهرية راقية من التانجرين والياسمين. يحتفي بالقوة وينشر الشغف أينما حلّ، جامعاً بين الرغبة والرقة على قاعدة حلوة وخشبية."
+   "ar": "يجسّد معطر الجسم فانيلا كادل الأصالة الأنثوية بلمسة زهرية راقية من التانجرين والياسمين. يحتفي بالقوة وينشر الشغف أينما حلّ، جامعاً بين الرغبة والرقة على قاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash Vanilla Cuddle representa a autenticidade feminina, através de toque floral sofisticado em notas de Tangerina e Jasmim. Deixe-se celebrar sua força e transmitir paixão onde passar, combinando desejo e delicadeza em fundo doce e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Tangerine",
-     "تانجرين"
+     "تانجرين",
+     "Tangerina"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -2277,11 +2522,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Be wonderful and confident!",
-   "ar": "كوني رائعة وواثقة!"
+   "ar": "كوني رائعة وواثقة!",
+   "pt": "Be wonderful and confident!"
   },
   "desc": {
    "en": "Wonderful Body Splash is a world full of desire and curiosity, where a fearless woman defies every label and breaks conventions, radiating glow and well-being.",
-   "ar": "معطر الجسم وندرفل عالم مفعم بالرغبات والفضول، تتحدى فيه امرأة جريئة كل التصنيفات وتكسر الأعراف، لتشعّ بريقاً وإحساساً بالراحة."
+   "ar": "معطر الجسم وندرفل عالم مفعم بالرغبات والفضول، تتحدى فيه امرأة جريئة كل التصنيفات وتكسر الأعراف، لتشعّ بريقاً وإحساساً بالراحة.",
+   "pt": "O Desodorante Colônia Body Splash Wonderful Wepink é um mundo cheio de desejos e curiosidade, onde uma mulher destemida desafia todos os rótulos e quebra convenções, irradiando brilho e bem-estar."
   },
   "source": "https://www.wepink.com.br/body-splash-wonderful-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -2313,29 +2560,35 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The subtle beauty of well-being",
-   "ar": "الجمال الرقيق للإحساس بالراحة"
+   "ar": "الجمال الرقيق للإحساس بالراحة",
+   "pt": "A beleza sutil de um bem-estar"
   },
   "desc": {
    "en": "VF Bloom Body Splash is an ode to feminine delicacy, with touches of well-being and elegance that celebrate a love of life. Its fruity floral path opens with a citrus burst of bergamot and grapefruit, blended with juicy peach and delicate coconut. It then glides into a floral heart over a sweet, woody base with a sensual touch.",
-   "ar": "معطر الجسم في إف بلوم قصيدة تتغنّى بالرقة الأنثوية، بلمسات من الراحة والأناقة تحتفي بحب الحياة. ينطلق مساره الزهري الفاكهي بانفجار حمضي من البرغموت والجريب فروت، ممزوجاً بعصارة الخوخ ورقة جوز الهند. ثم ينساب نحو قلب زهري على قاعدة حلوة وخشبية تضفي لمسة حسية."
+   "ar": "معطر الجسم في إف بلوم قصيدة تتغنّى بالرقة الأنثوية، بلمسات من الراحة والأناقة تحتفي بحب الحياة. ينطلق مساره الزهري الفاكهي بانفجار حمضي من البرغموت والجريب فروت، ممزوجاً بعصارة الخوخ ورقة جوز الهند. ثم ينساب نحو قلب زهري على قاعدة حلوة وخشبية تضفي لمسة حسية.",
+   "pt": "O Body Splash VF Bloom Desodorante Colônia é uma ode à delicadeza feminina, com toques de bem-estar e elegância, festejando o amor à vida. Personificando uma essência jovem, encantadora e sofisticada. Sua jornada olfativa possui o caminho olfativo Floral Frutado, proporcionando uma experiência única e suave. Inicia com a captura da alegria em um mix de frutas, em uma explosão cítrica da bergamota e toranja, misturada com a suculência do pêssego e a delicadeza do coco. Deslizando para um coração floral, em um fundo doce e amadeirado trazendo um toque sensual."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ],
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ],
     [
      "Coconut",
-     "جوز الهند"
+     "جوز الهند",
+     "Coco"
     ]
    ]
   },
@@ -2367,35 +2620,42 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Celebrate perfumed, hydrated skin",
-   "ar": "احتفي ببشرة معطّرة ومرطّبة"
+   "ar": "احتفي ببشرة معطّرة ومرطّبة",
+   "pt": "Celebre uma pele perfumada e hidratada"
   },
   "desc": {
    "en": "Celebrate Life Body Cream offers essential hydration with a soft, smooth touch, along with nourishment and firmness, as its formula helps support collagen production and cell renewal. Its sweet fruity oriental scent opens with fresh apple, a floral touch and pink pepper, moving to a heart of lily of the valley, rose and jasmine and a softly sweet woody signature.",
-   "ar": "يمنح كريم الجسم سيليبريت لايف البشرة ترطيباً أساسياً بلمسة ناعمة وخفيفة، إلى جانب التغذية والتماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجدد الخلايا. ينطلق عبيره الفاكهي الشرقي الحلو بانتعاش التفاح ولمسة زهرية والفلفل الوردي، لينتقل إلى قلب من زنبق الوادي والورد والياسمين، وبصمة خشبية ذات حلاوة ناعمة."
+   "ar": "يمنح كريم الجسم سيليبريت لايف البشرة ترطيباً أساسياً بلمسة ناعمة وخفيفة، إلى جانب التغذية والتماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجدد الخلايا. ينطلق عبيره الفاكهي الشرقي الحلو بانتعاش التفاح ولمسة زهرية والفلفل الوردي، لينتقل إلى قلب من زنبق الوادي والورد والياسمين، وبصمة خشبية ذات حلاوة ناعمة.",
+   "pt": "A loção corporal Body Cream Celebrate Life Desodorante Hidratante celebra uma hidratação essencial para a sua pele. O seu toque macio e suave vai proporcionar também nutrição e firmeza, pois sua composição auxilia na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhoso. Seu aroma suave e adocicado é uma elevação ao divino, em seu caminho olfativo Frutado Oriental começa com o frescor da maçã, um toque floral e pimenta rosa. No coração, as notas florais adicionam uma dimensão romântica e elegante de lírio-do-vale, rosa e jasmim. A assinatura é marcada por notas envolventes e sedutoras, em uma dimensão amadeirada com suave doçura."
   },
   "notes": {
    "top": [
     [
      "Apple",
-     "تفاح"
+     "تفاح",
+     "Maçã"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -2427,31 +2687,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Scented hydration, ideal for everyday well-being",
-   "ar": "ترطيب معطّر مثالي لإحساس يومي بالراحة"
+   "ar": "ترطيب معطّر مثالي لإحساس يومي بالراحة",
+   "pt": "Uma hidratação perfumada e ideal para o seu bem-estar no dia a dia"
   },
   "desc": {
    "en": "Obsessed Body Cream has a soft touch that provides hydration, nourishment and firmness, with a unique formula that helps support collagen production and cell renewal for healthy, glowing-looking skin. Its floral woody fragrance opens with cherry intertwined with citrus and moves to a sweet base of honey and caramel.",
-   "ar": "يتميّز كريم الجسم أوبسيسد بلمسة ناعمة تمنح البشرة الترطيب والتغذية والتماسك، فيما تساعد تركيبته الفريدة على دعم إنتاج الكولاجين وتجدد الخلايا لبشرة تبدو صحية ومشرقة. ينطلق عطره الزهري الخشبي بلمسة من الكرز تتشابك مع الحمضيات، لينتقل إلى قاعدة حلوة من العسل والكراميل."
+   "ar": "يتميّز كريم الجسم أوبسيسد بلمسة ناعمة تمنح البشرة الترطيب والتغذية والتماسك، فيما تساعد تركيبته الفريدة على دعم إنتاج الكولاجين وتجدد الخلايا لبشرة تبدو صحية ومشرقة. ينطلق عطره الزهري الخشبي بلمسة من الكرز تتشابك مع الحمضيات، لينتقل إلى قاعدة حلوة من العسل والكراميل.",
+   "pt": "A loção corporal Body Cream Obsessed Desodorante Hidratante tem um toque macio, proporciona hidratação, nutrição e firmeza à pele. Sua fórmula única auxilia na produção de colágeno e na regeneração celular, deixando a pele com um aspecto saudável e brilhoso. Com notas olfativas refinadas, envoltas em um caminho olfativo Floral Amadeirado, iniciado por um toque de cereja entrelaçado por cítricos, seguindo para um fundo adocicado de mel e caramelo, resultando em uma fragrância super agradável para deixar sua pele perfumada."
   },
   "notes": {
    "top": [
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ],
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ]
    ],
    "base": [
     [
      "Honey",
-     "عسل"
+     "عسل",
+     "Mel"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -2485,27 +2751,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Let your noblest essence overflow",
-   "ar": "دعي جوهرك الأنبل يفيض"
+   "ar": "دعي جوهرك الأنبل يفيض",
+   "pt": "Transborde a sua essência mais nobre"
   },
   "desc": {
    "en": "Liberté Cologne has a unique essence that overflows with freedom, elegance and well-being. Its fragrance reveals enchanting nuances and mysterious facets, with touches of pink pepper, grapefruit and noble flowers, highlighted by the renowned queen of perfumery, French Centifolia rose.",
-   "ar": "تتميّز كولونيا ليبرتيه بجوهر فريد يفيض بالحرية والأناقة والإحساس بالراحة. يكشف عطرها عن تفاصيل ساحرة وجوانب غامضة، بلمسات من الفلفل الوردي والجريب فروت والأزهار النبيلة، وفي مقدمتها ملكة العطور الشهيرة، وردة سنتيفوليا الفرنسية."
+   "ar": "تتميّز كولونيا ليبرتيه بجوهر فريد يفيض بالحرية والأناقة والإحساس بالراحة. يكشف عطرها عن تفاصيل ساحرة وجوانب غامضة، بلمسات من الفلفل الوردي والجريب فروت والأزهار النبيلة، وفي مقدمتها ملكة العطور الشهيرة، وردة سنتيفوليا الفرنسية.",
+   "pt": "O Desodorante Colônia Liberté é um produto com a essência única que transborda liberdade, elegância e bem-estar! Sua fragrância tem nuances encantadoras e misteriosas facetas, com toques de pimenta rosa, toranja e flores nobres, com grande destaque para a reconhecida rainha da perfumaria, a Rosa Francesa Centifolia."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ],
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ]
    ],
    "heart": [
     [
      "French Centifolia rose",
-     "ورد سنتيفوليا الفرنسي"
+     "ورد سنتيفوليا الفرنسي",
+     "Rosa francesa centifolia"
     ]
    ]
   },
@@ -2537,31 +2808,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The king who masters the art of enchanting everyone",
-   "ar": "الملك الذي يتقن فن أسر الجميع"
+   "ar": "الملك الذي يتقن فن أسر الجميع",
+   "pt": "O rei que domina a essência de encantar todos"
   },
   "desc": {
    "en": "King Blue Body Splash carries the essence of victory to overcome every challenge, a masculine fragrance that inspires triumph, modernity, charm and elegance. Its woody path balances the senses with bergamot and herbs over a sweet base of patchouli and amber. It offers a refreshing sensation for men who seek well-being.",
-   "ar": "يحمل معطر الجسم كينج بلو جوهر الانتصار لتجاوز كل التحديات، وهو عطر رجالي يلهم النصر والعصرية والجاذبية والأناقة. يوازن مساره الخشبي الحواس بالبرغموت والأعشاب على قاعدة حلوة من الباتشولي والعنبر. ويمنح إحساساً منعشاً للرجال الباحثين عن الإحساس بالراحة."
+   "ar": "يحمل معطر الجسم كينج بلو جوهر الانتصار لتجاوز كل التحديات، وهو عطر رجالي يلهم النصر والعصرية والجاذبية والأناقة. يوازن مساره الخشبي الحواس بالبرغموت والأعشاب على قاعدة حلوة من الباتشولي والعنبر. ويمنح إحساساً منعشاً للرجال الباحثين عن الإحساس بالراحة.",
+   "pt": "O Desodorante Colônia Body Splash King Blue tem a essência da vitória para superar todos os desafios. A fragrância masculina que inspira triunfo, modernidade, charme e elegância, tem o caminho olfativo amadeirado, equilibrando os sentidos com a bergamota e ervas, em um fundo adocicado com patchouli e âmbar. O Body Splash King Blue foi desenvolvido para completar com excelência o seu jeito de se cuidar, proporcionando uma sensação refrescante para homens que procuram bem-estar."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Herbs",
-     "أعشاب"
+     "أعشاب",
+     "Ervas"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -2595,11 +2872,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Impossible to go unnoticed",
-   "ar": "حضور يستحيل تجاهله"
+   "ar": "حضور يستحيل تجاهله",
+   "pt": "Impossível passar despercebido"
   },
   "desc": {
    "en": "Yahya Aneeq Cologne is a floral fruity fragrance with a presence that is impossible to overlook.",
-   "ar": "كولونيا يحيى أنيق عطر زهري فاكهي بحضور يستحيل تجاهله."
+   "ar": "كولونيا يحيى أنيق عطر زهري فاكهي بحضور يستحيل تجاهله.",
+   "pt": "O Desodorante Colônia Wepink Yahya Aneeq é uma fragrância floral frutada, com uma presença impossível de passar despercebida."
   },
   "source": "https://www.wepink.com.br/desod-col-yahya-aneeq-100ml---wepink-598/p",
   "notes": {}
@@ -2632,43 +2911,52 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "To turn every encounter into a memorable experience",
-   "ar": "لتحوّل كل لقاء إلى تجربة لا تُنسى"
+   "ar": "لتحوّل كل لقاء إلى تجربة لا تُنسى",
+   "pt": "Para transformar cada encontro em uma experiência memorável"
   },
   "desc": {
    "en": "Wonbloom Fever Cologne is made for women who live every moment intensely, turning red fruits, luminous flowers and irresistible creaminess into a modern, feminine signature. It opens with a joyful burst of raspberry, mandarin, blueberry and blackberries, followed by a sophisticated heart of orange blossom, magnolia and French lavender, which adds a modern touch that balances the composition.",
-   "ar": "صُمّمت كولونيا وونبلوم فيفر للمرأة التي تعيش كل لحظة بشغف، فتحوّل الفواكه الحمراء والأزهار المشرقة والقوام الكريمي الذي لا يُقاوم إلى بصمة عصرية أنثوية. تنطلق بانفجار فاكهي مبهج من توت العليق واليوسفي والتوت الأزرق والتوت الأسود، يليه قلب راقٍ من زهر البرتقال والماغنوليا واللافندر الفرنسي الذي يضفي لمسة عصرية توازن التركيبة."
+   "ar": "صُمّمت كولونيا وونبلوم فيفر للمرأة التي تعيش كل لحظة بشغف، فتحوّل الفواكه الحمراء والأزهار المشرقة والقوام الكريمي الذي لا يُقاوم إلى بصمة عصرية أنثوية. تنطلق بانفجار فاكهي مبهج من توت العليق واليوسفي والتوت الأزرق والتوت الأسود، يليه قلب راقٍ من زهر البرتقال والماغنوليا واللافندر الفرنسي الذي يضفي لمسة عصرية توازن التركيبة.",
+   "pt": "Algumas fragrâncias despertam os sentidos. Outras despertam uma nova versão de quem as usa. Wonbloom Fever nasce para mulheres que vivem a intensidade de cada momento, transformando frutas vermelhas, flores luminosas e uma cremosidade irresistível em uma assinatura moderna, feminina e inesquecível. Sua abertura combina a doçura vibrante da Framboesa, da Mandarina, do Mirtilo e das Amoras, revelando uma explosão frutada envolvente que transmite leveza, alegria e personalidade. Uma saída luminosa e cheia de energia, capaz de conquistar desde o primeiro instante. No coração, Flor de Laranjeira, Magnólia e Lavanda Francesa revelam uma feminilidade sofisticada e contemporânea. As flores trazem delicadeza e elegância, enquanto a lavanda adiciona um toque moderno que equilibra perfeitamente toda a composição. Essa combinação entre frutas e flores cria uma experiência olfativa confortável, refinada e extremamente envolvente. À medida que evolui sobre a pele, Wonbloom Fever revela sua faceta mais envolvente. Baunilha, Musk, Sândalo e um delicado Acorde Lactônico adicionam cremosidade e conforto, criando um rastro macio, acolhedor e irresistível. Os acordes lactônicos trazem uma textura aveludada inspirada na cremosidade do leite e do creme, tornando toda a experiência ainda mais sofisticada. Mais do que uma combinação de notas, Wonbloom Fever é uma fragrância que acompanha diferentes momentos do dia com naturalidade. Jovem, elegante e envolvente, traduz uma feminilidade contemporânea que equilibra frescor, doçura e sofisticação em perfeita harmonia. Criada para mulheres que gostam de deixar boas lembranças por onde passam, Wonbloom Fever transforma cada encontro em uma experiência memorável."
   },
   "notes": {
    "top": [
     [
      "Raspberry",
-     "توت العليق"
+     "توت العليق",
+     "Framboesa"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ],
     [
      "Blueberry",
-     "توت أزرق"
+     "توت أزرق",
+     "Mirtilo"
     ],
     [
      "Blackberry",
-     "توت أسود"
+     "توت أسود",
+     "Amora"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ],
     [
      "French lavender",
-     "لافندر فرنسي"
+     "لافندر فرنسي",
+     "Lavanda francesa"
     ]
    ]
   },
@@ -2700,11 +2988,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the touch of Fatal Black For Her",
-   "ar": "تغذية عميقة وتماسك بلمسة فيتال بلاك فور هير"
+   "ar": "تغذية عميقة وتماسك بلمسة فيتال بلاك فور هير",
+   "pt": "Nutrição profunda e firmeza com o toque da manteiga Fatal Black For Her"
   },
   "desc": {
    "en": "Fatal Black For Her Body Butter turns self-care into a ritual of power, sweetness and seduction. Its rich, silky texture forms a protective layer that helps retain moisture for prolonged hydration and nourishment, while hydrating and antioxidant actives help skin look firmer, more even and radiant. A satin glow and a fruity floral oriental fragrance complete the experience.",
-   "ar": "تحوّل زبدة الجسم فيتال بلاك فور هير العناية الذاتية إلى طقس من القوة والعذوبة والإغراء. يشكّل قوامها الغني والحريري طبقة واقية تساعد على حبس الرطوبة لترطيب مطوّل وتغذية، فيما تساعد مكوّناتها المرطّبة والمضادة للأكسدة على منح البشرة مظهراً أكثر تماسكاً وتجانساً وإشراقاً. ويكتمل الإحساس بلمعان ساتاني وعطر فاكهي زهري شرقي."
+   "ar": "تحوّل زبدة الجسم فيتال بلاك فور هير العناية الذاتية إلى طقس من القوة والعذوبة والإغراء. يشكّل قوامها الغني والحريري طبقة واقية تساعد على حبس الرطوبة لترطيب مطوّل وتغذية، فيما تساعد مكوّناتها المرطّبة والمضادة للأكسدة على منح البشرة مظهراً أكثر تماسكاً وتجانساً وإشراقاً. ويكتمل الإحساس بلمعان ساتاني وعطر فاكهي زهري شرقي.",
+   "pt": "A Manteiga Corporal Body Butter Wepink Fatal Black For Her transforma o autocuidado em um ritual de poder, doçura e sedução. Sua textura intensa, sedosa e aveludada desliza suavemente sobre a pele, formando uma camada protetora que ajuda a reter a umidade e proporciona hidratação prolongada, nutrição e conforto, especialmente para peles que precisam de um cuidado mais intenso. Sua fórmula combina ativos hidratantes e antioxidantes que auxiliam na manutenção de uma pele com aparência mais firme, uniforme, macia e radiante, contribuindo para a proteção contra os efeitos dos radicais livres e para a prevenção dos sinais do envelhecimento precoce. O sensorial é completado por um brilho acetinado e pela fragrância Frutada Floral Oriental, que combina flores, frutas vibrantes e notas quentes em uma assinatura doce, envolvente e inesquecível."
   },
   "source": "https://www.wepink.com.br/body-butter-fatal-black-for-her-250gr---wepink-551/p",
   "notes": {}
@@ -2736,65 +3026,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "For men who see sophistication as a form of expression",
-   "ar": "للرجال الذين يرون في الرقي أسلوباً للتعبير"
+   "ar": "للرجال الذين يرون في الرقي أسلوباً للتعبير",
+   "pt": "Para homens que enxergam a sofisticação como uma forma de expressão"
   },
   "desc": {
    "en": "King Blue Supreme Cologne was created for men whose presence speaks for itself, in an intense fragrance of power, sophistication and authenticity. It opens with exotic passion fruit, fruity notes, Turkish rose and saffron, while oud, benzoin and Indonesian patchouli form a rich heart. Leather, Akigalawood, amber, vanilla and labdanum create an intense signature that lingers on the skin and in memory.",
-   "ar": "صُمّمت كولونيا كينج بلو سوبريم للرجال الذين يتحدث حضورهم عنهم، بعطر مكثّف يجسّد القوة والرقي والأصالة. تنطلق بانتعاش الباشن فروت الاستوائي والنفحات الفاكهية وأناقة الورد التركي ولمسة الزعفران الثمينة، بينما يشكّل العود والجاوي والباتشولي الإندونيسي قلباً غنياً. أما الجلد والأكيغالاوود والعنبر والفانيليا واللادن، فتصنع بصمة مكثّفة تبقى على البشرة وفي الذاكرة."
+   "ar": "صُمّمت كولونيا كينج بلو سوبريم للرجال الذين يتحدث حضورهم عنهم، بعطر مكثّف يجسّد القوة والرقي والأصالة. تنطلق بانتعاش الباشن فروت الاستوائي والنفحات الفاكهية وأناقة الورد التركي ولمسة الزعفران الثمينة، بينما يشكّل العود والجاوي والباتشولي الإندونيسي قلباً غنياً. أما الجلد والأكيغالاوود والعنبر والفانيليا واللادن، فتصنع بصمة مكثّفة تبقى على البشرة وفي الذاكرة.",
+   "pt": "Existem homens que não precisam elevar a voz para demonstrar sua força. Sua presença fala por si, marcada por confiança, elegância e uma personalidade impossível de ignorar. Para eles nasceu King Blue Supreme, uma fragrância intensa que traduz poder, sofisticação e autenticidade em cada detalhe. Sua abertura surpreende pelo contraste entre o frescor exótico do Maracujá, o brilho das Notas Frutadas, a elegância da Rosa Turca e o toque precioso do Açafrão. Uma combinação vibrante que desperta os sentidos e cria uma primeira impressão marcante. No coração, o caráter sofisticado do Oud, do Benjoim e do Patchouli da Indonésia revela uma composição rica, envolvente e cheia de personalidade. Um encontro entre madeiras nobres e resinas que traduz profundidade e refinamento. Ao fundo, Couro, Akigalawood, Âmbar, Baunilha e Ládano constroem uma assinatura intensa e memorável, deixando um rastro elegante que permanece na pele e na memória. King Blue Supreme é uma fragrância para homens que enxergam a sofisticação como uma forma de expressão. Um Oriental marcante, criado para quem faz da confiança sua maior virtude e transforma cada presença em um momento inesquecível. Porque algumas fragrâncias acompanham o homem. King Blue Supreme revela quem ele realmente é."
   },
   "notes": {
    "top": [
     [
      "Passion fruit",
-     "باشن فروت"
+     "باشن فروت",
+     "Maracujá"
     ],
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ],
     [
      "Turkish rose",
-     "ورد تركي"
+     "ورد تركي",
+     "Rosa turca"
     ],
     [
      "Saffron",
-     "زعفران"
+     "زعفران",
+     "Açafrão"
     ]
    ],
    "heart": [
     [
      "Oud",
-     "عود"
+     "عود",
+     "Oud"
     ],
     [
      "Benzoin",
-     "جاوي"
+     "جاوي",
+     "Benjoim"
     ],
     [
      "Indonesian patchouli",
-     "باتشولي إندونيسي"
+     "باتشولي إندونيسي",
+     "Patchouli da Indonésia"
     ]
    ],
    "base": [
     [
      "Leather",
-     "جلد"
+     "جلد",
+     "Couro"
     ],
     [
      "Akigalawood",
-     "أكيغالاوود"
+     "أكيغالاوود",
+     "Akigalawood"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Labdanum",
-     "لادن"
+     "لادن",
+     "Ládano"
     ]
    ]
   },
@@ -2826,11 +3130,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn your bath into a premium ritual.",
-   "ar": "حوّلي حمّامك إلى طقس فاخر."
+   "ar": "حوّلي حمّامك إلى طقس فاخر.",
+   "pt": "Transforme seu banho em um ritual premium"
   },
   "desc": {
    "en": "Obsessed Lovely Body Scrub is an exfoliating body scrub from the Obsessed Lovely line. It turns bath time into a premium ritual.",
-   "ar": "مقشّر الجسم أوبسيسد لافلي هو مقشّر للجسم من مجموعة أوبسيسد لافلي. يحوّل وقت الاستحمام إلى طقس فاخر."
+   "ar": "مقشّر الجسم أوبسيسد لافلي هو مقشّر للجسم من مجموعة أوبسيسد لافلي. يحوّل وقت الاستحمام إلى طقس فاخر.",
+   "pt": "O Esfoliante Corporal Body Scrub Wepink Obsessed Lovely é o esfoliante da linha Obsessed Lovely. Ele transforma o seu banho em um ritual premium."
   },
   "source": "https://www.wepink.com.br/body-scrub-obessed-lovely-450gr---wepink-fs1152329/p",
   "notes": {}
@@ -2861,11 +3167,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect union of lush flowers, vibrant fruits and a sophisticated creamy base.",
-   "ar": "المزيج المثالي بين زهور غنّاء وفواكه نابضة بالحيوية وقاعدة كريمية راقية."
+   "ar": "المزيج المثالي بين زهور غنّاء وفواكه نابضة بالحيوية وقاعدة كريمية راقية.",
+   "pt": "A união perfeita entre flores exuberantes, frutas vibrantes e um fundo cremoso sofisticado"
   },
   "desc": {
    "en": "VF Tropical Cologne is a fragrance that captures the essence of the Brazilian woman: warm, striking and full of personality. Inspired by women who turn presence into memory, it reveals an enveloping signature for those who love to be remembered wherever they go.",
-   "ar": "كولونيا في إف تروبيكال عطر يجسّد جوهر المرأة البرازيلية: دافئة ولافتة ومفعمة بالشخصية. وهي مستوحاة من المرأة التي تحوّل حضورها إلى ذكرى، لتكشف عن بصمة آسرة لمن تحب أن تُذكَر أينما حلّت."
+   "ar": "كولونيا في إف تروبيكال عطر يجسّد جوهر المرأة البرازيلية: دافئة ولافتة ومفعمة بالشخصية. وهي مستوحاة من المرأة التي تحوّل حضورها إلى ذكرى، لتكشف عن بصمة آسرة لمن تحب أن تُذكَر أينما حلّت.",
+   "pt": "O Desodorante Colônia Wepink VF Tropical é uma fragrância que traduz a essência da mulher brasileira: calorosa, marcante e cheia de personalidade. Inspirada em quem transforma presença em memória, revela uma assinatura envolvente para mulheres que gostam de ser lembradas por onde passam."
   },
   "source": "https://www.wepink.com.br/desod-colvftropical-75-ml---wepink-526/p",
   "notes": {}
@@ -2897,49 +3205,59 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fruity floral amber made for intense nights.",
-   "ar": "عطر زهري عنبري بلمسة فاكهية صُمّم لليالٍ مفعمة بالشغف."
+   "ar": "عطر زهري عنبري بلمسة فاكهية صُمّم لليالٍ مفعمة بالشغف.",
+   "pt": "Um floramber frutado feito para noites intensas"
   },
   "desc": {
    "en": "Velours Pourpre Body Splash was created for women who turn presence into a signature: an intense, elegant fragrance that leaves an unforgettable trail. It opens with sweet cherry wrapped in rich cassis and syrupy nuances, followed by a refined heart of rose, orange blossom and creamy almond. At the base, patchouli, leather and vanilla add depth and mystery.",
-   "ar": "صُمّم رذاذ الجسم المعطّر فيلور بوربر للمرأة التي تحوّل حضورها إلى بصمة خاصة، فهو عطر مكثّف وأنيق يترك أثرًا لا يُنسى. يفتتح بحلاوة الكرز الممزوجة بعمق الكشمش الأسود ولمسات حلوة غنية، يليها قلب راقٍ من الورد وزهر البرتقال واللوز الكريمي. وفي القاعدة، يضفي الباتشولي والجلد والفانيليا عمقًا وغموضًا."
+   "ar": "صُمّم رذاذ الجسم المعطّر فيلور بوربر للمرأة التي تحوّل حضورها إلى بصمة خاصة، فهو عطر مكثّف وأنيق يترك أثرًا لا يُنسى. يفتتح بحلاوة الكرز الممزوجة بعمق الكشمش الأسود ولمسات حلوة غنية، يليها قلب راقٍ من الورد وزهر البرتقال واللوز الكريمي. وفي القاعدة، يضفي الباتشولي والجلد والفانيليا عمقًا وغموضًا.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Velours Pourpre foi criado para mulheres que transformam presença em assinatura. Uma fragrância intensa, elegante e envolvente, que desperta os sentidos desde a primeira borrifada e deixa um rastro impossível de esquecer. A abertura traz a doçura marcante da Cereja envolvida pela profundidade sofisticada do Cassis e nuances adocicadas, criando um início sedutor, vibrante e extremamente feminino. É aquele primeiro impacto que chama atenção imediatamente, equilibrando sensualidade e sofisticação na medida certa. No coração, a fragrância revela uma construção floral refinada e luminosa. A Rosa e a Flor de Laranjeira se unem à cremosidade delicada da Amêndoa, trazendo textura, feminilidade e um toque elegante que abraça a pele com suavidade e intensidade ao mesmo tempo. Ao fundo, Velours Pourpre ganha ainda mais profundidade e personalidade. O Patchouli adiciona estrutura e sofisticação, enquanto o Couro cria uma faceta intensa e misteriosa. A Baunilha finaliza a experiência com um toque quente, confortável e irresistivelmente viciante, deixando uma assinatura marcante e memorável. Uma fragrância feita para noites intensas, encontros especiais e mulheres que sabem o poder que possuem. Velours Pourpre — A noite em sua versão mais sofisticada!"
   },
   "notes": {
    "top": [
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ],
     [
      "Cassis",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Cassis"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Almond",
-     "لوز"
+     "لوز",
+     "Amêndoa"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Leather",
-     "جلد"
+     "جلد",
+     "Couro"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -2972,29 +3290,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the authentic touch of pitaya and vanilla.",
-   "ar": "تغذية عميقة وشدّ للبشرة مع لمسة أصيلة من فاكهة التنين والفانيليا."
+   "ar": "تغذية عميقة وشدّ للبشرة مع لمسة أصيلة من فاكهة التنين والفانيليا.",
+   "pt": "Nutrição profunda e firmeza com o toque autêntico da pitaya e baunilha"
   },
   "desc": {
    "en": "Ruby Rhodolite Body Cream delivers intense hydration, with actives that help support collagen production and cell renewal for nourished, firmer skin with a silky finish. Its texture glides on comfortably, leaving a lingering cozy feel. The fragrance brings together pitaya, jasmine and vanilla in an energy that stays, a manifesto of authenticity.",
-   "ar": "يمنح كريم الجسم روبي رودولايت ترطيبًا مكثفًا بفضل مكونات فعّالة تساعد على إنتاج الكولاجين وتجديد الخلايا، لبشرة مغذّاة وأكثر تماسكًا بلمسة نهائية حريرية. ينساب قوامه بسلاسة ويترك إحساسًا ممتدًا بالدفء والراحة. ويجمع عطره بين فاكهة التنين والياسمين والفانيليا في طاقة تدوم، كبيان للأصالة."
+   "ar": "يمنح كريم الجسم روبي رودولايت ترطيبًا مكثفًا بفضل مكونات فعّالة تساعد على إنتاج الكولاجين وتجديد الخلايا، لبشرة مغذّاة وأكثر تماسكًا بلمسة نهائية حريرية. ينساب قوامه بسلاسة ويترك إحساسًا ممتدًا بالدفء والراحة. ويجمع عطره بين فاكهة التنين والياسمين والفانيليا في طاقة تدوم، كبيان للأصالة.",
+   "pt": "Sinta o toque de hidratação intensa da Loção Desodorante Body Cream Wepink Ruby Rhodolite. Seus ativos auxiliam na produção de colágeno e na regeneração celular, promovendo nutrição e firmeza com um acabamento sedoso na pele. A textura desliza com conforto e deixa uma sensação de aconchego prolongado, ideal para acompanhar a sua rotina. Na fragrância, Pitaya, Jasmim e Baunilha se encontram e criam uma energia que permanece, como um manifesto de autenticidade para quem traça o próprio caminho."
   },
   "notes": {
    "top": [
     [
      "Pitaya",
-     "فاكهة التنين"
+     "فاكهة التنين",
+     "Pitaya"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -3028,47 +3351,57 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A sophisticated, elegant woody scent that is hard to forget.",
-   "ar": "عطر خشبي راقٍ وأنيق يصعب نسيانه."
+   "ar": "عطر خشبي راقٍ وأنيق يصعب نسيانه.",
+   "pt": "Um amadeirado sofisticado e elegante que é difícil de esquecer"
   },
   "desc": {
    "en": "Heaven Santal & Fig Body Splash expresses a modern, balanced and naturally sophisticated elegance, blending freshness, spice and creaminess. Bergamot, cardamom, black pepper and violet leaves create a bright, aromatic opening. At the heart, creamy fig is balanced by cedar and cedar leaves, while iris adds a refined powdery touch.",
-   "ar": "يعبّر رذاذ الجسم المعطّر هيفن سانتال آند فيج عن أناقة عصرية ومتوازنة وراقية بطبيعتها، تمزج بين الانتعاش والتوابل والقوام الكريمي. تبدأ الافتتاحية مشرقة وعطرية بالبرغموت والهيل والفلفل الأسود وأوراق البنفسج. وفي القلب، يتوازن التين الكريمي مع الأرز وأوراق الأرز، بينما يضيف السوسن لمسة بودرية راقية."
+   "ar": "يعبّر رذاذ الجسم المعطّر هيفن سانتال آند فيج عن أناقة عصرية ومتوازنة وراقية بطبيعتها، تمزج بين الانتعاش والتوابل والقوام الكريمي. تبدأ الافتتاحية مشرقة وعطرية بالبرغموت والهيل والفلفل الأسود وأوراق البنفسج. وفي القلب، يتوازن التين الكريمي مع الأرز وأوراق الأرز، بينما يضيف السوسن لمسة بودرية راقية.",
+   "pt": "O Body Splash Wepink Heaven Santal & Fig traduz uma elegância moderna, equilibrada e naturalmente sofisticada. Uma fragrância que revela presença sem esforço, combinando frescor, especiarias e cremosidade em uma assinatura envolvente e marcante. A abertura desperta os sentidos com um frescor luminoso e aromático. A bergamota traz leveza e brilho, enquanto o cardamomo e a pimenta-do-reino adicionam um toque especiado quente e sofisticado. As folhas de violeta complementam com uma nuance verde e elegante, criando um início vibrante, refinado e cheio de personalidade. No coração, a fragrância revela sua faceta mais envolvente e contemporânea. O figo cremoso surge como protagonista, trazendo uma textura macia e levemente adocicada, equilibrada pelas notas de cedro e folhas de cedro, que reforçam a estrutura amadeirada. A presença da íris adiciona um toque atalcado e sofisticado, criando um acorde elegante, confortável e profundamente harmonioso. Ao fundo, a fragrância ganha profundidade e calor. O sândalo da Nova Caledônia se destaca com sua cremosidade envolvente, enquanto o patchouli, o musk e o âmbar constroem uma base quente, sofisticada e duradoura. É um rastro elegante, limpo e marcante na medida certa, que permanece na pele com naturalidade e refinamento. Com acordes que transitam entre o amadeirado sofisticado, o especiado quente e o frescor aromático, Heaven Santal & Fig cria uma fragrância contemporânea, versátil e memorável, perfeita para quem valoriza discrição com presença e elegância sem excessos. Heaven Santal & Fig é para quem entende que o verdadeiro impacto está nos detalhes. Elegante e difícil de esquecer."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ],
     [
      "Black pepper",
-     "فلفل أسود"
+     "فلفل أسود",
+     "Pimenta-preta"
     ],
     [
      "Violet leaves",
-     "أوراق البنفسج"
+     "أوراق البنفسج",
+     "Folhas de violeta"
     ]
    ],
    "heart": [
     [
      "Fig",
-     "تين"
+     "تين",
+     "Figo"
     ],
     [
      "Cedar",
-     "أرز"
+     "أرز",
+     "Cedro"
     ],
     [
      "Cedar leaves",
-     "أوراق الأرز"
+     "أوراق الأرز",
+     "Folhas de cedro"
     ],
     [
      "Iris",
-     "سوسن"
+     "سوسن",
+     "Íris"
     ]
    ]
   },
@@ -3102,11 +3435,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A sophisticated, elegant woody scent that is hard to forget.",
-   "ar": "عطر خشبي راقٍ وأنيق يصعب نسيانه."
+   "ar": "عطر خشبي راقٍ وأنيق يصعب نسيانه.",
+   "pt": "Um amadeirado sofisticado e elegante que é difícil de esquecer"
   },
   "desc": {
    "en": "Heaven Santal & Fig Cologne expresses a modern, balanced and naturally sophisticated elegance. It reveals effortless presence, combining freshness, spice and creaminess in an enveloping, distinctive signature.",
-   "ar": "تعبّر كولونيا هيفن سانتال آند فيج عن أناقة عصرية ومتوازنة وراقية بطبيعتها. وتكشف عن حضور لافت بلا تكلّف، إذ تمزج بين الانتعاش والتوابل والقوام الكريمي في بصمة آسرة ومميّزة."
+   "ar": "تعبّر كولونيا هيفن سانتال آند فيج عن أناقة عصرية ومتوازنة وراقية بطبيعتها. وتكشف عن حضور لافت بلا تكلّف، إذ تمزج بين الانتعاش والتوابل والقوام الكريمي في بصمة آسرة ومميّزة.",
+   "pt": "O Desodorante Colônia Wepink Heaven Santal & Fig traduz uma elegância moderna, equilibrada e naturalmente sofisticada. Uma fragrância que revela presença sem esforço, combinando frescor, especiarias e cremosidade em uma assinatura envolvente e marcante."
   },
   "source": "https://www.wepink.com.br/desod-col-heaven-santal-e-fig-100-ml---wepink-463/p",
   "notes": {}
@@ -3138,65 +3473,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A feminine, sophisticated and naturally striking fruity floral.",
-   "ar": "عطر زهري فاكهي أنثوي وراقٍ ولافت بطبيعته."
+   "ar": "عطر زهري فاكهي أنثوي وراقٍ ولافت بطبيعته.",
+   "pt": "Um floral frutado feminino, sofisticado e naturalmente marcante"
   },
   "desc": {
    "en": "My We Belle Body Splash balances freshness, femininity and sophistication in a luminous fruity floral. Juicy pear, bergamot, violet leaves and red berries open the scent, leading to a creamy white floral heart of orange blossom, tuberose, jasmine and lily of the valley. Vanilla and amber, warmed by sandalwood and cedar, leave a cozy, memorable trail.",
-   "ar": "يوازن رذاذ الجسم المعطّر ماي وي بيل بين الانتعاش والأنوثة والرقي في تركيبة زهرية فاكهية مشرقة. تفتتحه الكمثرى العصيرية والبرغموت وأوراق البنفسج والتوت الأحمر، وصولًا إلى قلب كريمي من الزهور البيضاء يضم زهر البرتقال ومسك الروم والياسمين وزنبق الوادي. أما الفانيليا والعنبر، اللذان يدفئهما خشب الصندل والأرز، فيتركان أثرًا دافئًا لا يُنسى."
+   "ar": "يوازن رذاذ الجسم المعطّر ماي وي بيل بين الانتعاش والأنوثة والرقي في تركيبة زهرية فاكهية مشرقة. تفتتحه الكمثرى العصيرية والبرغموت وأوراق البنفسج والتوت الأحمر، وصولًا إلى قلب كريمي من الزهور البيضاء يضم زهر البرتقال ومسك الروم والياسمين وزنبق الوادي. أما الفانيليا والعنبر، اللذان يدفئهما خشب الصندل والأرز، فيتركان أثرًا دافئًا لا يُنسى.",
+   "pt": "O Desodorante Colônia Body Splash Wepink My We Belle traduz a elegância em uma fragrância que equilibra frescor, feminilidade e sofisticação. Inspirado na mulher que encanta pela naturalidade, ele revela uma composição floral frutada luminosa e envolvente. A abertura traz a suculência vibrante da Pera, envolvida pelo brilho cítrico da Bergamota e pelo toque delicado das Folhas de Violeta e Frutas Vermelhas, criando uma explosão fresca, levemente doce e irresistivelmente feminina. No coração, um buquê de flores brancas ganha protagonismo: Flor de Laranjeira, Tuberosa, Jasmim e Lírio-do-vale se unem em uma construção floral branca cremosa, sofisticada e luminosa. A tuberosa adiciona profundidade elegante, enquanto o jasmim e a flor de laranjeira trazem refinamento e leveza radiante. Ao fundo, a fragrância encontra conforto e sensualidade na combinação envolvente de Baunilha e Âmbar, aquecidos por Sândalo e Cedro, criando um rastro aconchegante, delicado e memorável. Um aroma que encanta pela harmonia entre frescor vibrante e conforto envolvente — feito para mulheres que não precisam exagerar para serem notadas."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Violet leaves",
-     "أوراق البنفسج"
+     "أوراق البنفسج",
+     "Folhas de violeta"
     ],
     [
      "Red berries",
-     "توت أحمر"
+     "توت أحمر",
+     "Frutas vermelhas"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ],
     [
      "Cedar",
-     "أرز"
+     "أرز",
+     "Cedro"
     ]
    ]
   },
@@ -3228,11 +3577,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Freshness in every petal.",
-   "ar": "انتعاش في كل بتلة."
+   "ar": "انتعاش في كل بتلة.",
+   "pt": "Frescor em cada pétala!"
   },
   "desc": {
    "en": "Haylas Body Splash is like living in a fairy tale, where flowers dance lightly around you, kissing the skin and leaving a scent that relaxes and brings a smile. The fragrance offers a feeling of deep comfort that leaves you more inclined to enjoy the day.",
-   "ar": "رذاذ الجسم المعطّر هيلاس أشبه بالعيش في حكاية خيالية، حيث تتراقص الزهور برقة من حولك، تلامس البشرة وتترك عبيرًا يبعث على الاسترخاء ويرسم الابتسامة. ويمنح هذا العطر إحساسًا عميقًا بالراحة يجعلك أكثر إقبالًا على الاستمتاع بيومك."
+   "ar": "رذاذ الجسم المعطّر هيلاس أشبه بالعيش في حكاية خيالية، حيث تتراقص الزهور برقة من حولك، تلامس البشرة وتترك عبيرًا يبعث على الاسترخاء ويرسم الابتسامة. ويمنح هذا العطر إحساسًا عميقًا بالراحة يجعلك أكثر إقبالًا على الاستمتاع بيومك.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Haylas é como viver num conto de fadas, onde as flores dançam levemente ao seu redor, beijando a pele e deixando um aroma que relaxa e faz sorrir. Esta fragrância traz sensação de conforto profundo e nos deixa mais dispostos a apreciar o dia."
   },
   "source": "https://www.wepink.com.br/body-splash-haylas-200ml---wepink-401/p",
   "notes": {}
@@ -3264,11 +3615,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Unrivaled luxury.",
-   "ar": "فخامة لا مثيل لها."
+   "ar": "فخامة لا مثيل لها.",
+   "pt": "Luxo sem igual"
   },
   "desc": {
    "en": "Feive Body Splash offers sophistication like never before, with a scent inspired by the very finest of high society. It is a true olfactory experience that evokes unrivaled sensations of luxury and wealth, a perfect combination of every subtlety needed for an unforgettable scent.",
-   "ar": "يقدّم رذاذ الجسم المعطّر فيف رقيًا لم تعهديه من قبل، بعبير مستوحى من صفوة المجتمع الراقي. إنه تجربة عطرية حقيقية تأخذك إلى أحاسيس لا مثيل لها من الفخامة والثراء، ومزيج مثالي من كل التفاصيل الدقيقة التي يتطلبها عطر لا يُنسى."
+   "ar": "يقدّم رذاذ الجسم المعطّر فيف رقيًا لم تعهديه من قبل، بعبير مستوحى من صفوة المجتمع الراقي. إنه تجربة عطرية حقيقية تأخذك إلى أحاسيس لا مثيل لها من الفخامة والثراء، ومزيج مثالي من كل التفاصيل الدقيقة التي يتطلبها عطر لا يُنسى.",
+   "pt": "Experimente sofisticação como você nunca viu no Desodorante Colônia Body Splash Wepink Feive, com seu aroma inspirado na mais fina nata da sociedade. Essa é uma verdadeira experiência olfativa que te levará a sensações de luxo e riqueza sem iguais. Uma combinação perfeita de todas as sutilezas necessárias para um aroma inesquecível."
   },
   "source": "https://www.wepink.com.br/body-splash-feive-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -3292,11 +3645,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The VF Golden line, together in one set.",
-   "ar": "مجموعة في إف جولدن مجتمعة في طقم واحد."
+   "ar": "مجموعة في إف جولدن مجتمعة في طقم واحد.",
+   "pt": "A linha VF Golden reunida em um só kit"
   },
   "desc": {
    "en": "This set from the VF Golden line includes VF Golden Body Cream and VF Golden Body Splash. It brings the collection's products together in a single kit.",
-   "ar": "يضم هذا الطقم من مجموعة في إف جولدن كريم الجسم في إف جولدن ورذاذ الجسم المعطّر في إف جولدن. ويجمع منتجات المجموعة معًا في طقم واحد."
+   "ar": "يضم هذا الطقم من مجموعة في إف جولدن كريم الجسم في إف جولدن ورذاذ الجسم المعطّر في إف جولدن. ويجمع منتجات المجموعة معًا في طقم واحد.",
+   "pt": "Este kit da linha VF Golden inclui o Body Cream VF Golden e o Body Splash VF Golden. Ele reúne os produtos da coleção em um só kit."
   },
   "source": "https://www.wepink.com.br/kit-vf-golden--body-cream-vf-golden--body-splash-vf-golden---wepink-84790/p",
   "notes": {}
@@ -3327,29 +3682,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Noble hydration for your skin.",
-   "ar": "ترطيب ملؤه الفخامة لبشرتك."
+   "ar": "ترطيب ملؤه الفخامة لبشرتك.",
+   "pt": "Uma hidratação cheia de nobreza para a sua pele"
   },
   "desc": {
    "en": "Liberté Body Cream moisturizes, nourishes and firms with a soft, smooth touch, thanks to a blend of actives that helps support collagen production, cell renewal and the fight against premature aging. Its floral bouquet scent unfolds with enchanting, mysterious hints of pink pepper, grapefruit and noble flowers, leaving skin fragrant, healthy-looking and radiant.",
-   "ar": "يمنح كريم الجسم ليبرتيه بشرتك الترطيب والتغذية والشد بلمسة ناعمة ورقيقة، بفضل مزيج من المكونات الفعّالة التي تساعد على إنتاج الكولاجين وتجديد الخلايا ومكافحة علامات التقدم المبكر في السن. ويتبع عطره مسار باقة زهرية بلمسات ساحرة وغامضة من الفلفل الوردي والجريب فروت والأزهار النبيلة، ليترك البشرة معطّرة بمظهر صحي ومشرق."
+   "ar": "يمنح كريم الجسم ليبرتيه بشرتك الترطيب والتغذية والشد بلمسة ناعمة ورقيقة، بفضل مزيج من المكونات الفعّالة التي تساعد على إنتاج الكولاجين وتجديد الخلايا ومكافحة علامات التقدم المبكر في السن. ويتبع عطره مسار باقة زهرية بلمسات ساحرة وغامضة من الفلفل الوردي والجريب فروت والأزهار النبيلة، ليترك البشرة معطّرة بمظهر صحي ومشرق.",
+   "pt": "A loção corporal Body Cream Liberté Desodorante Hidratante transborda cuidados essenciais para sua pele. Com o seu toque macio e suave, proporciona hidratação, nutrição e firmeza à pele, pois seu blend de ativos auxilia na produção de colágeno, na regeneração celular e no combate ao envelhecimento precoce. Suas notas possuem um caminho Floral Bouquet envolvido em nuances encantadoras e misteriosas, com toques de pimenta rosa, toranja e flores nobres. Sua pele ficará perfumada, com um aspecto saudável e brilhoso."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ]
    ],
    "base": [
     [
      "Noble flowers",
-     "أزهار نبيلة"
+     "أزهار نبيلة",
+     "Flores nobres"
     ]
    ]
   },
@@ -3382,33 +3742,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The scent of determined, transformative women.",
-   "ar": "عبير المرأة الطموحة التي تصنع التغيير."
+   "ar": "عبير المرأة الطموحة التي تصنع التغيير.",
+   "pt": "O cheiro das mulheres determinadas e transformadoras"
   },
   "desc": {
    "en": "VF Cologne is made for authentic, feminine women who are determined and transformative, living intensely, without labels and unafraid to be themselves. Its essence expresses a striking personality through notes of yellow fruits paired with jasmine, while a sweeter, chic base of amber and patchouli sets the creation apart.",
-   "ar": "صُمّمت كولونيا في إف للمرأة الأصيلة والأنثوية، الطموحة التي تصنع التغيير وتعيش بشغف، بلا قيود ولا خوف من أن تكون على حقيقتها. ويعبّر جوهرها عن شخصية لافتة من خلال نفحات الفواكه الصفراء الممتزجة بالياسمين، فيما تمنحها قاعدة العنبر والباتشولي الأكثر حلاوة وأناقة طابعها المميّز."
+   "ar": "صُمّمت كولونيا في إف للمرأة الأصيلة والأنثوية، الطموحة التي تصنع التغيير وتعيش بشغف، بلا قيود ولا خوف من أن تكون على حقيقتها. ويعبّر جوهرها عن شخصية لافتة من خلال نفحات الفواكه الصفراء الممتزجة بالياسمين، فيما تمنحها قاعدة العنبر والباتشولي الأكثر حلاوة وأناقة طابعها المميّز.",
+   "pt": "O VF Desodorante Colônia é feito para mulheres autênticas e femininas. Descreve o perfil de uma pessoa determinada, transformadora, que vive intensamente, sem rótulos e sem medo de ser quem é. Sua essência representa sua personalidade marcante através de notas olfativas de frutas amarelas, associadas ao Jasmim, com o fundo mais adocicado e chique do Âmbar e do Patchouli trazendo o diferencial para essa criação."
   },
   "notes": {
    "top": [
     [
      "Yellow fruits",
-     "فواكه صفراء"
+     "فواكه صفراء",
+     "Frutas amarelas"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ]
    ]
   },
@@ -3441,37 +3807,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn every day into a wonderful bloom.",
-   "ar": "اجعلي كل يوم تفتّحًا رائعًا."
+   "ar": "اجعلي كل يوم تفتّحًا رائعًا.",
+   "pt": "Transforme cada dia em um florescer maravilhoso"
   },
   "desc": {
    "en": "Wonbloom Body Splash has the ideal scent to make an impression wherever you are. Tangerine and mandarin bring freshness and elegance before giving way to iconic jasmine. Amber and caramel complete this precious fragrance, designed down to every detail for powerful women.",
-   "ar": "يحمل رذاذ الجسم المعطّر وونبلوم العبير المثالي لتتألقي أينما كنتِ. يضفي اليوسفي والماندرين انتعاشًا وأناقة قبل أن يفسحا المجال للياسمين الأيقوني. ثم يكتمل هذا العطر النفيس بالعنبر والكراميل، وقد صُمّم بأدق تفاصيله للمرأة القوية."
+   "ar": "يحمل رذاذ الجسم المعطّر وونبلوم العبير المثالي لتتألقي أينما كنتِ. يضفي اليوسفي والماندرين انتعاشًا وأناقة قبل أن يفسحا المجال للياسمين الأيقوني. ثم يكتمل هذا العطر النفيس بالعنبر والكراميل، وقد صُمّم بأدق تفاصيله للمرأة القوية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Wonbloom tem o aroma ideal para que você arrase onde estiver. Suas notas de Tangerina e Mandarina trazem frescor e elegância, para em seguida dar espaço ao icônico Jasmim. O Âmbar e o Caramelo finalizam com perfeição esta fragrância imbuída de preciosidade, pensada em cada detalhe para as mulheres poderosas."
   },
   "notes": {
    "top": [
     [
      "Tangerine",
-     "يوسفي"
+     "يوسفي",
+     "Tangerina"
     ],
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -3504,27 +3877,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Exude the charm of a joyful scent.",
-   "ar": "انثري سحر عبير مفعم بالبهجة."
+   "ar": "انثري سحر عبير مفعم بالبهجة.",
+   "pt": "Exale o charme de um aroma alegre"
   },
   "desc": {
    "en": "One Touch Silk Body Splash is like an affectionate touch that embraces and enchants, reviving the joy of romance in a floral fruity scent. It opens with charming blackberry and a refreshing hint of strawberry, evolves into a beautiful floral heart and finishes on an enchanting vanilla base.",
-   "ar": "رذاذ الجسم المعطّر ون تاتش سيلك أشبه بلمسة حنان تحتضن وتسحر، ويعيد بهجة الرومانسية في عبير زهري فاكهي. يفتتح بالتوت الأسود الساحر ولمسة منعشة من الفراولة، ثم يتطور إلى قلب زهري جميل، ويختتم بقاعدة آسرة من الفانيليا."
+   "ar": "رذاذ الجسم المعطّر ون تاتش سيلك أشبه بلمسة حنان تحتضن وتسحر، ويعيد بهجة الرومانسية في عبير زهري فاكهي. يفتتح بالتوت الأسود الساحر ولمسة منعشة من الفراولة، ثم يتطور إلى قلب زهري جميل، ويختتم بقاعدة آسرة من الفانيليا.",
+   "pt": "O Desodorante Colônia Body Splash Wepink One Touch Silk é como um toque de carinho que envolve e encanta, revivendo a alegria de um romance em um aroma Floral e Frutado. Sua fragrância inicia na charmosa Amora e um toque refrescante de Morango, evoluindo na beleza de um coração floral. Finaliza em um fundo encantador de Baunilha, florescendo um amor inesquecível."
   },
   "notes": {
    "top": [
     [
      "Blackberry",
-     "توت أسود"
+     "توت أسود",
+     "Amora"
     ],
     [
      "Strawberry",
-     "فراولة"
+     "فراولة",
+     "Morango"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -3555,11 +3933,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Refresh yourself with charm and lightness.",
-   "ar": "انتعاش يفيض بالسحر والخفة."
+   "ar": "انتعاش يفيض بالسحر والخفة.",
+   "pt": "Refresque-se em encanto e leveza"
   },
   "desc": {
    "en": "Perfect Pear Body Cream has a soft touch, delicately made to moisturize, nourish and firm. Its formula helps support collagen production and cell renewal, leaving skin healthy-looking and radiant for a refreshing sense of well-being. Its floral scent exudes a feminine, elegant essence over a sweet, woody base.",
-   "ar": "يتميّز كريم الجسم بيرفكت بير بلمسة ناعمة صُمّمت بعناية للترطيب والتغذية والشد. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، لتمنح البشرة مظهرًا صحيًا ومشرقًا وإحساسًا منعشًا بالراحة. ويفوح عطره الزهري بجوهر أنثوي أنيق على قاعدة حلوة وخشبية."
+   "ar": "يتميّز كريم الجسم بيرفكت بير بلمسة ناعمة صُمّمت بعناية للترطيب والتغذية والشد. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، لتمنح البشرة مظهرًا صحيًا ومشرقًا وإحساسًا منعشًا بالراحة. ويفوح عطره الزهري بجوهر أنثوي أنيق على قاعدة حلوة وخشبية.",
+   "pt": "A Loção Desodorante Body Cream Wepink Perfect Pear possui um toque macio, delicadamente feito para hidratação, nutrição e firmeza. Sua composição auxilia na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhoso, para quem deseja um bem-estar refrescante. Sua jornada sensorial segue um caminho olfativo Floral, exalando uma essência feminina e elegante em um fundo doce e amadeirado."
   },
   "source": "https://www.wepink.com.br/body-cream-perfect-pear-200-ml---wepink-199/p",
   "notes": {}
@@ -3591,27 +3971,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A pleasant, nourishing sensory experience for your skin every day.",
-   "ar": "تجربة حسية ممتعة ومغذّية لبشرتك كل يوم."
+   "ar": "تجربة حسية ممتعة ومغذّية لبشرتك كل يوم.",
+   "pt": "Um sensorial agradável e nutritivo para sua pele todos os dias"
   },
   "desc": {
    "en": "Infinity Body Cream offers an infinitely pleasant sensory experience, with a soft touch that helps keep skin moisturized, nourished and smooth. Anti-aging components and vitamin E help regenerate the skin and bring a sense of well-being. Its notes blend flowers, a sweet base, patchouli and amber, conveying empowerment, passion and sweetness.",
-   "ar": "يقدّم كريم الجسم إنفينيتي تجربة حسية ممتعة بلا حدود، بلمسة ناعمة تساعد على ترطيب البشرة وتغذيتها ومنحها النعومة. وتساعد مكوناته المضادة لعلامات التقدم في السن وفيتامين إي على تجديد البشرة ومنح إحساس بالراحة. وتمزج نفحاته بين الزهور وقاعدة حلوة والباتشولي والعنبر، لتعبّر عن القوة والشغف والعذوبة."
+   "ar": "يقدّم كريم الجسم إنفينيتي تجربة حسية ممتعة بلا حدود، بلمسة ناعمة تساعد على ترطيب البشرة وتغذيتها ومنحها النعومة. وتساعد مكوناته المضادة لعلامات التقدم في السن وفيتامين إي على تجديد البشرة ومنح إحساس بالراحة. وتمزج نفحاته بين الزهور وقاعدة حلوة والباتشولي والعنبر، لتعبّر عن القوة والشغف والعذوبة.",
+   "pt": "Body Cream Infinity Desodorante Hidratante proporciona um sensorial infinitamente agradável. Em um toque suave, vai auxiliar em uma pele hidratada, nutrida e macia, pois tem componentes de ação contra o envelhecimento e Vitamina E, que vão ajudar a regenerar a pele e oferecer uma sensação de bem-estar. Suas notas olfativas contêm um mix de flores, um fundo adocicado, patchouli e âmbar. Elas transmitem empoderamento, paixão e doçura, levando disposição para o seu dia a dia."
   },
   "notes": {
    "heart": [
     [
      "Floral blend",
-     "مزيج زهري"
+     "مزيج زهري",
+     "Mix de flores"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -3642,27 +4027,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A manifesto of passion, sweetness and empowerment.",
-   "ar": "بيان من الشغف والعذوبة والقوة."
+   "ar": "بيان من الشغف والعذوبة والقوة.",
+   "pt": "Um manifesto de paixão, doçura e empoderamento"
   },
   "desc": {
    "en": "Infinity Cologne carries the essence of the determined woman who chases her dreams. Its notes blend flowers, a sweet base, patchouli and amber for a truly special touch. It is a manifesto of passion, sweetness and empowerment in a feminine fragrance made for shining.",
-   "ar": "تحمل كولونيا إنفينيتي جوهر المرأة الطموحة التي تسعى وراء أحلامها، وتمزج نفحاتها بين الزهور وقاعدة حلوة والباتشولي والعنبر لتمنحها لمسة خاصة. إنها بيان من الشغف والعذوبة والقوة في عطر أنثوي صُمّم لتتألقي."
+   "ar": "تحمل كولونيا إنفينيتي جوهر المرأة الطموحة التي تسعى وراء أحلامها، وتمزج نفحاتها بين الزهور وقاعدة حلوة والباتشولي والعنبر لتمنحها لمسة خاصة. إنها بيان من الشغف والعذوبة والقوة في عطر أنثوي صُمّم لتتألقي.",
+   "pt": "O Infinity Desodorante Colônia tem a essência da mulher determinada que corre atrás dos seus sonhos representadas através de suas notas olfativas, que contém um mix de flores, fundo adocicado, patchouli e âmbar, proporcionando um toque todo especial para essa criação. Um manifesto de paixão, doçura e empoderamento numa fragrância feminina ideal para você brilhar."
   },
   "notes": {
    "heart": [
     [
      "Floral blend",
-     "مزيج زهري"
+     "مزيج زهري",
+     "Mix de flores"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -3695,33 +4085,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Exude authenticity and power.",
-   "ar": "أصالة وقوة تفوح في كل لحظة."
+   "ar": "أصالة وقوة تفوح في كل لحظة.",
+   "pt": "Exale autenticidade e poder"
   },
   "desc": {
    "en": "One Touch Cologne was developed for people who go after their goals, bringing glamour to special moments with grit, strength, authenticity and power. Its essence expresses a striking personality through notes of selected fruits and a blend of flowers, while a sweet base of patchouli and vanilla sets the creation apart.",
-   "ar": "طُوّرت كولونيا ون تاتش لمن يسعون وراء أهدافهم، لتضفي البريق على اللحظات المميزة بروح من العزيمة والقوة والأصالة. ويعبّر جوهرها عن شخصية لافتة من خلال نفحات من فواكه مختارة ومزيج من الزهور، فيما تمنحها قاعدة حلوة من الباتشولي والفانيليا طابعها المميّز."
+   "ar": "طُوّرت كولونيا ون تاتش لمن يسعون وراء أهدافهم، لتضفي البريق على اللحظات المميزة بروح من العزيمة والقوة والأصالة. ويعبّر جوهرها عن شخصية لافتة من خلال نفحات من فواكه مختارة ومزيج من الزهور، فيما تمنحها قاعدة حلوة من الباتشولي والفانيليا طابعها المميّز.",
+   "pt": "O One Touch Desodorante Colônia foi desenvolvido para pessoas que vão atrás dos seus objetivos. Glamour para marcar momentos especiais exalando garra, força, autenticidade e poder. Descreve exatamente o perfil de uma pessoa determinada, transformadora, que vive intensamente, sem rótulos e sem medo de ser quem é. Sua essência representa uma personalidade marcante através de notas olfativas de frutas selecionadas e um mix de flores. O fundo adocicado, com patchouli e baunilha, traz um diferencial para essa criação."
   },
   "notes": {
    "top": [
     [
      "Selected fruits",
-     "فواكه مختارة"
+     "فواكه مختارة",
+     "Frutas selecionadas"
     ]
    ],
    "heart": [
     [
      "Floral blend",
-     "مزيج زهري"
+     "مزيج زهري",
+     "Mix de flores"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -3753,21 +4149,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The sweet freshness of well-being.",
-   "ar": "الانتعاش العذب للشعور بالراحة."
+   "ar": "الانتعاش العذب للشعور بالراحة.",
+   "pt": "O doce frescor de um bem-estar!"
   },
   "desc": {
    "en": "Perfect Pear Cologne embodies the classic and delicate in fragrance, with a light, citrusy essence that conveys feminine strength and subtlety. Its fruity touch over a blend of flowers reinterprets a natural, elegant lifestyle, finishing with notes of patchouli and amber.",
-   "ar": "تجسّد كولونيا بيرفكت بير الطابع الكلاسيكي الرقيق في عالم العطور، بجوهر خفيف وحمضي يعبّر عن قوة المرأة ورقتها. وتعيد لمستها الفاكهية الممزوجة بالزهور تعريف أسلوب الحياة الطبيعي والأنيق، لتختتم بنفحات من الباتشولي والعنبر."
+   "ar": "تجسّد كولونيا بيرفكت بير الطابع الكلاسيكي الرقيق في عالم العطور، بجوهر خفيف وحمضي يعبّر عن قوة المرأة ورقتها. وتعيد لمستها الفاكهية الممزوجة بالزهور تعريف أسلوب الحياة الطبيعي والأنيق، لتختتم بنفحات من الباتشولي والعنبر.",
+   "pt": "O Desodorante Colônia Perfect Pear representa o clássico e delicado em fragrância, com uma essência leve e cítrica capaz de representar a força e sutileza feminina. Através de seu toque frutado em um mix de flores, ressignifica o estilo de vida natural e elegante, finalizando com notas olfativas de Patchouli e Âmbar."
   },
   "notes": {
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -3801,33 +4201,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Extends the feel-good sensation of your bath and leaves skin scented.",
-   "ar": "يطيل إحساس الانتعاش بعد الاستحمام ويترك البشرة معطّرة."
+   "ar": "يطيل إحساس الانتعاش بعد الاستحمام ويترك البشرة معطّرة.",
+   "pt": "Prolonga a sensação de bem-estar do banho e deixa a pele perfumada"
   },
   "desc": {
    "en": "Virginia Fonseca's VF Body Splash brings a unique sense of well-being to your body-care ritual, with a striking yet delicate scent of yellow fruits paired with jasmine over a sweeter, chic base of amber and patchouli. It was developed to perfectly complete the way you care for yourself.",
-   "ar": "يمنحك رذاذ الجسم المعطّر في إف من فيرجينيا فونسيكا إحساسًا فريدًا بالراحة ضمن طقوس العناية بجسمك، بعبير لافت ورقيق من الفواكه الصفراء الممتزجة بالياسمين، على قاعدة أكثر حلاوة وأناقة من العنبر والباتشولي. وقد طُوّر ليكمل بامتياز أسلوبك في العناية بنفسك."
+   "ar": "يمنحك رذاذ الجسم المعطّر في إف من فيرجينيا فونسيكا إحساسًا فريدًا بالراحة ضمن طقوس العناية بجسمك، بعبير لافت ورقيق من الفواكه الصفراء الممتزجة بالياسمين، على قاعدة أكثر حلاوة وأناقة من العنبر والباتشولي. وقد طُوّر ليكمل بامتياز أسلوبك في العناية بنفسك.",
+   "pt": "Viva uma experiência única no seu ritual de cuidados com o corpo. O Body Splash Virginia Fonseca Desodorante Colônia oferece uma sensação única de bem-estar, combinada com o aroma marcante e delicado das frutas amarelas, associadas ao Jasmim, e o fundo mais adocicado e chique do Âmbar e do Patchouli. O Body Splash VF foi desenvolvido para completar com excelência o seu jeito de se cuidar."
   },
   "notes": {
    "top": [
     [
      "Yellow fruits",
-     "فواكه صفراء"
+     "فواكه صفراء",
+     "Frutas amarelas"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ]
    ]
   },
@@ -3860,53 +4266,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection.",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم."
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم.",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "Absolute Titanium Body Splash is made for men who win people over instantly and stay in the memory long after they leave, offering a contemporary take on masculine elegance. Lemon, mint and green apple open with invigorating freshness, while geranium and lavender form a refined aromatic floral heart. Cedar, vanilla, vetiver and moss build an intense yet comfortable base.",
-   "ar": "صُمّم رذاذ الجسم المعطّر أبسولوت تيتانيوم للرجل الذي يأسر من اللحظة الأولى ويبقى في الذاكرة طويلًا بعد رحيله، مقدّمًا رؤية عصرية للأناقة الرجالية. يفتتح بانتعاش حيوي من الليمون والنعناع والتفاح الأخضر، بينما تشكّل إبرة الراعي والخزامى قلبًا عطريًا زهريًا راقيًا. ويبني الأرز والفانيليا ونجيل الهند والطحلب قاعدة مكثّفة ومريحة في آن."
+   "ar": "صُمّم رذاذ الجسم المعطّر أبسولوت تيتانيوم للرجل الذي يأسر من اللحظة الأولى ويبقى في الذاكرة طويلًا بعد رحيله، مقدّمًا رؤية عصرية للأناقة الرجالية. يفتتح بانتعاش حيوي من الليمون والنعناع والتفاح الأخضر، بينما تشكّل إبرة الراعي والخزامى قلبًا عطريًا زهريًا راقيًا. ويبني الأرز والفانيليا ونجيل الهند والطحلب قاعدة مكثّفة ومريحة في آن.",
+   "pt": "Algumas presenças são construídas pelo tempo. Outras são percebidas imediatamente. Absolute Titanium nasce para homens que unem essas duas características: conquistam no primeiro instante e permanecem na memória muito depois de partirem. Sua composição revela uma interpretação contemporânea da elegância masculina, equilibrando frescor, intensidade e sofisticação em uma assinatura marcante e versátil. A abertura combina a energia vibrante do Limão, o frescor aromático da Menta e a suculência da Maçã Verde, criando uma sensação revigorante que desperta os sentidos e transmite confiança desde o primeiro momento. No coração, Gerânio e Lavanda revelam uma faceta refinada e naturalmente elegante. O encontro entre acordes aromáticos e florais traz equilíbrio à composição, traduzindo uma masculinidade moderna, segura e cheia de personalidade. Ao fundo, Cedro, Baunilha, Vetiver e Musgo constroem uma assinatura intensa e confortável. As madeiras nobres encontram nuances quentes e envolventes, criando um rastro sofisticado que permanece na pele com profundidade e presença. Absolute Titanium foi criado para homens que fazem da elegância um estilo de vida. Uma criação que equilibra frescor, força e sofisticação em uma composição atemporal, capaz de acompanhar diferentes momentos sem perder sua identidade. Porque o verdadeiro legado não está apenas no que se conquista. Está na marca que se deixa por onde se passa."
   },
   "notes": {
    "top": [
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ],
     [
      "Mint",
-     "نعناع"
+     "نعناع",
+     "Menta"
     ],
     [
      "Green apple",
-     "تفاح أخضر"
+     "تفاح أخضر",
+     "Maçã verde"
     ]
    ],
    "heart": [
     [
      "Geranium",
-     "إبرة الراعي"
+     "إبرة الراعي",
+     "Gerânio"
     ],
     [
      "Lavender",
-     "خزامى"
+     "خزامى",
+     "Lavanda"
     ]
    ],
    "base": [
     [
      "Cedar",
-     "أرز"
+     "أرز",
+     "Cedro"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Vetiver",
-     "نجيل الهند"
+     "نجيل الهند",
+     "Vetiver"
     ],
     [
      "Moss",
-     "طحلب"
+     "طحلب",
+     "Musgo"
     ]
    ]
   },
@@ -3938,11 +4355,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "More lightness, less oil and flawless hair anytime.",
-   "ar": "خفة أكبر، ودهون أقل، وشعر مثالي في أي وقت."
+   "ar": "خفة أكبر، ودهون أقل، وشعر مثالي في أي وقت.",
+   "pt": "Mais leveza, menos oleosidade e um cabelo impecável a qualquer momento"
   },
   "desc": {
    "en": "My Hair Dry Shampoo Spray is a no-rinse solution for quick root touch-ups, removing excess oil and neutralizing heavy shine in seconds. Its smart formula revives hair between washes, releasing a sophisticated fragrance that restores freshness and keeps strands feeling clean, light and loose throughout the day.",
-   "ar": "بخاخ الشامبو الجاف ماي هير حلّ لا يحتاج إلى شطف للمسات سريعة عند الجذور، إذ يزيل الدهون الزائدة ويخفّف اللمعان المثقل في ثوانٍ. وتنعش تركيبته الذكية الشعر بين مرات الغسل، مطلقةً عطرًا راقيًا يجدد الانتعاش ويحافظ على إحساس الشعر بالنظافة والخفة والانسيابية طوال اليوم."
+   "ar": "بخاخ الشامبو الجاف ماي هير حلّ لا يحتاج إلى شطف للمسات سريعة عند الجذور، إذ يزيل الدهون الزائدة ويخفّف اللمعان المثقل في ثوانٍ. وتنعش تركيبته الذكية الشعر بين مرات الغسل، مطلقةً عطرًا راقيًا يجدد الانتعاش ويحافظ على إحساس الشعر بالنظافة والخفة والانسيابية طوال اليوم.",
+   "pt": "O Shampoo a Seco Wepink My Hair Spray é o segredo definitivo para dominar o ritmo da vida moderna e transformar o visual em poucos segundos. Feito para você que exige fios impecáveis a qualquer hora, este produto sem enxágue é a solução perfeita para retoques rápidos na raiz, eliminando o excesso de oleosidade e neutralizando o brilho pesado. Sua fórmula inteligente revitaliza o cabelo entre as lavagens, liberando uma fragrância sofisticada que renova o frescor e mantém aquela sensação de fios limpos, leves e totalmente soltos ao longo do dia. A dose máxima de praticidade e eficiência que faltava para manter a sua confiança no topo, onde quer que você esteja."
   },
   "source": "https://www.wepink.com.br/shampoo-a-seco-wepink-my-hair-spray---wepink-9600001/p",
   "notes": {}
@@ -3970,11 +4389,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The care your skin deserves, every day.",
-   "ar": "العناية التي تستحقها بشرتك، كل يوم."
+   "ar": "العناية التي تستحقها بشرتك، كل يوم.",
+   "pt": "O cuidado que sua pele merece, todos os dias"
   },
   "desc": {
    "en": "The One Touch Silk Clean Bar is a bar soap from the One Touch Silk line. It brings the care your skin deserves to your everyday routine.",
-   "ar": "صابونة كلين بار من مجموعة ون تاتش سيلك هي صابونة صلبة للعناية بالبشرة. وتمنح بشرتك العناية التي تستحقها ضمن روتينك اليومي."
+   "ar": "صابونة كلين بار من مجموعة ون تاتش سيلك هي صابونة صلبة للعناية بالبشرة. وتمنح بشرتك العناية التي تستحقها ضمن روتينك اليومي.",
+   "pt": "O Sabonete em Barra Clean Bar One Touch Silk é o sabonete da linha One Touch Silk. Ele leva para a sua rotina o cuidado que a sua pele merece."
   },
   "source": "https://www.wepink.com.br/sabonete-em-barra-one-touch-silk---wepink-prd00011/p",
   "notes": {}
@@ -4004,29 +4425,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Nourishment and firmness with the authentic touch of orchid and amber crystals.",
-   "ar": "تغذية وشدّ مع لمسة أصيلة من الأوركيد وبلورات العنبر."
+   "ar": "تغذية وشدّ مع لمسة أصيلة من الأوركيد وبلورات العنبر.",
+   "pt": "Nutrição e firmeza com o toque autêntico da orquídea e cristais de âmbar"
   },
   "desc": {
    "en": "Fatal White Body Cream offers delicate, fragrant hydration that nourishes and firms the skin, leaving it soft and luminous. Its formula helps support collagen production and cell renewal for a healthy-looking glow throughout the day. The fragrance unites tangerine, orchid and amber crystals in a sweet, velvety feminine signature.",
-   "ar": "يمنح كريم الجسم فيتال وايت ترطيبًا رقيقًا ومعطّرًا يغذّي البشرة ويشدّها، ويتركها ناعمة ومشرقة. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا لمظهر صحي ومتألق طوال اليوم. ويجمع عطره بين اليوسفي والأوركيد وبلورات العنبر في بصمة أنثوية حلوة ومخملية."
+   "ar": "يمنح كريم الجسم فيتال وايت ترطيبًا رقيقًا ومعطّرًا يغذّي البشرة ويشدّها، ويتركها ناعمة ومشرقة. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا لمظهر صحي ومتألق طوال اليوم. ويجمع عطره بين اليوسفي والأوركيد وبلورات العنبر في بصمة أنثوية حلوة ومخملية.",
+   "pt": "Sinta a hidratação mais delicada e perfumada com a Loção Desodorante Body Cream Wepink Fatal White, criada para nutrir a pele, firmar e deixar um toque macio e luminoso. Sua composição auxilia na produção de colágeno e na regeneração celular, revelando um aspecto saudável e brilhante ao longo do dia. A fragrância une Tangerina, Orquídea e Cristais de Âmbar em uma assinatura feminina, doce e aveludada, perfeita para marcar presença com sutileza."
   },
   "notes": {
    "top": [
     [
      "Tangerine",
-     "يوسفي"
+     "يوسفي",
+     "Tangerina"
     ]
    ],
    "heart": [
     [
      "Orchid",
-     "أوركيد"
+     "أوركيد",
+     "Orquídea"
     ]
    ],
    "base": [
     [
      "Amber crystals",
-     "بلورات العنبر"
+     "بلورات العنبر",
+     "Cristais de âmbar"
     ]
    ]
   },
@@ -4058,11 +4484,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the authentic touch of floral oriental.",
-   "ar": "تغذية عميقة وشدّ مع لمسة أصيلة من العبير الزهري الشرقي."
+   "ar": "تغذية عميقة وشدّ مع لمسة أصيلة من العبير الزهري الشرقي.",
+   "pt": "Nutrição profunda e firmeza com o toque autêntico do floral oriental"
   },
   "desc": {
    "en": "VF 2.7 Birthday Edition Body Cream wraps the skin in a celebration of care. Its formula helps support collagen production and cell renewal, delivering intense hydration for firmer, nourished, healthy-looking skin with a velvety feel. The floral oriental fragrance leaves a sophisticated, enveloping trail to accompany a new chapter with light and confidence.",
-   "ar": "يغمر كريم الجسم في إف 2.7 بيرثداي إيديشن بشرتك باحتفاء حقيقي بالعناية. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، مانحةً ترطيبًا مكثفًا لبشرة أكثر تماسكًا وتغذية بمظهر صحي ولمسة مخملية. ويترك عطره الزهري الشرقي أثرًا راقيًا وآسرًا يرافقك في مرحلة جديدة مفعمة بالإشراق والثقة."
+   "ar": "يغمر كريم الجسم في إف 2.7 بيرثداي إيديشن بشرتك باحتفاء حقيقي بالعناية. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، مانحةً ترطيبًا مكثفًا لبشرة أكثر تماسكًا وتغذية بمظهر صحي ولمسة مخملية. ويترك عطره الزهري الشرقي أثرًا راقيًا وآسرًا يرافقك في مرحلة جديدة مفعمة بالإشراق والثقة.",
+   "pt": "Envolva sua pele em uma celebração de cuidado com a Loção Desodorante Body Cream Wepink VF 2.7 Birthday Edition. Sua fórmula auxilia na produção de colágeno e na regeneração celular, promovendo hidratação intensa e deixando a pele mais firme, nutrida e com aspecto saudável, enquanto a textura macia desliza suavemente e proporciona um toque aveludado e confortável. A fragrância Floral Oriental revela um rastro sofisticado e envolvente, perfeito para acompanhar esse novo ciclo com muita luz e confiança."
   },
   "source": "https://www.wepink.com.br/body-cream-vf-27-200ml---wepink-520/p",
   "notes": {}
@@ -4095,49 +4523,59 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect meeting of intensity and sophistication.",
-   "ar": "اللقاء المثالي بين القوة والرقي."
+   "ar": "اللقاء المثالي بين القوة والرقي.",
+   "pt": "O encontro perfeito entre intensidade e sofisticação"
   },
   "desc": {
    "en": "Macchiato Body Splash celebrates enveloping sophistication and striking contrasts, created for those who love intense experiences. Mandarin meets black pepper and pink pepper in a bright, spicy opening, followed by a heart of rose and orange blossom wrapped in creamy vanilla. A café latte accord and warm amber notes form a comfortable, memorable base with a cozy trail.",
-   "ar": "يحتفي رذاذ الجسم المعطّر ماكياتو بالرقي الآسر والتناقضات اللافتة، وقد صُمّم لعشّاق التجارب المفعمة بالحيوية. يلتقي الماندرين بالفلفل الأسود والفلفل الوردي في افتتاحية مشرقة ومتبّلة، يليها قلب من الورد وزهر البرتقال يغلّفه قوام الفانيليا الكريمي. ويشكّل أكورد الكافيه لاتيه والنفحات العنبرية الدافئة قاعدة مريحة لا تُنسى تترك أثرًا دافئًا."
+   "ar": "يحتفي رذاذ الجسم المعطّر ماكياتو بالرقي الآسر والتناقضات اللافتة، وقد صُمّم لعشّاق التجارب المفعمة بالحيوية. يلتقي الماندرين بالفلفل الأسود والفلفل الوردي في افتتاحية مشرقة ومتبّلة، يليها قلب من الورد وزهر البرتقال يغلّفه قوام الفانيليا الكريمي. ويشكّل أكورد الكافيه لاتيه والنفحات العنبرية الدافئة قاعدة مريحة لا تُنسى تترك أثرًا دافئًا.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Macchiato é uma celebração da sofisticação envolvente, dos contrastes marcantes e dos momentos que despertam os sentidos. Uma fragrância criada para pessoas que apreciam experiências intensas e transformam sua presença em uma assinatura inesquecível. Sua abertura revela a combinação vibrante da Mandarina com a intensidade da Pimenta Preta e da Pimenta Rosa. Um início luminoso e especiado que desperta os sentidos com energia, personalidade e elegância. No coração, Rosa e Flor de Laranjeira florescem em perfeita harmonia, envolvidas pela cremosidade irresistível da Baunilha. Essa combinação traduz delicadeza e sofisticação, criando um acorde floral envolvente que equilibra suavidade e intensidade. Ao fundo, o Acorde de Café Latte se encontra com o calor das Notas Ambaradas, revelando uma base confortável, sofisticada e memorável. O resultado é um rastro quente e envolvente que permanece na pele e desperta sensações de aconchego e elegância. Macchiato é uma fragrância criada para quem valoriza personalidade, autenticidade e momentos que ficam na memória."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ],
     [
      "Black pepper",
-     "فلفل أسود"
+     "فلفل أسود",
+     "Pimenta-preta"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ],
    "base": [
     [
      "Café latte accord",
-     "أكورد الكافيه لاتيه"
+     "أكورد الكافيه لاتيه",
+     "Acorde de café latte"
     ],
     [
      "Amber notes",
-     "نفحات عنبرية"
+     "نفحات عنبرية",
+     "Notas ambaradas"
     ]
    ]
   },
@@ -4171,49 +4609,59 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect meeting of intensity and sophistication.",
-   "ar": "اللقاء المثالي بين القوة والرقي."
+   "ar": "اللقاء المثالي بين القوة والرقي.",
+   "pt": "O encontro perfeito entre intensidade e sofisticação"
   },
   "desc": {
    "en": "Macchiato Cologne celebrates enveloping sophistication and striking contrasts, created for those who love intense experiences. A bright, spicy opening of mandarin, black pepper and pink pepper leads to a heart of rose and orange blossom wrapped in creamy vanilla. A café latte accord meets warm amber notes in a comfortable, memorable base.",
-   "ar": "تحتفي كولونيا ماكياتو بالرقي الآسر والتناقضات اللافتة، وقد صُمّمت لعشّاق التجارب المفعمة بالحيوية. تنطلق بافتتاحية مشرقة ومتبّلة من الماندرين والفلفل الأسود والفلفل الوردي، وصولًا إلى قلب من الورد وزهر البرتقال يغلّفه قوام الفانيليا الكريمي. ويلتقي أكورد الكافيه لاتيه بالنفحات العنبرية الدافئة في قاعدة مريحة لا تُنسى."
+   "ar": "تحتفي كولونيا ماكياتو بالرقي الآسر والتناقضات اللافتة، وقد صُمّمت لعشّاق التجارب المفعمة بالحيوية. تنطلق بافتتاحية مشرقة ومتبّلة من الماندرين والفلفل الأسود والفلفل الوردي، وصولًا إلى قلب من الورد وزهر البرتقال يغلّفه قوام الفانيليا الكريمي. ويلتقي أكورد الكافيه لاتيه بالنفحات العنبرية الدافئة في قاعدة مريحة لا تُنسى.",
+   "pt": "O Desodorante Colônia Wepink Macchiato é uma celebração da sofisticação envolvente, dos contrastes marcantes e dos momentos que despertam os sentidos. Uma fragrância criada para pessoas que apreciam experiências intensas e transformam sua presença em uma assinatura inesquecível. Sua abertura revela a combinação vibrante da Mandarina com a intensidade da Pimenta Preta e da Pimenta Rosa. Um início luminoso e especiado que desperta os sentidos com energia, personalidade e elegância. No coração, Rosa e Flor de Laranjeira florescem em perfeita harmonia, envolvidas pela cremosidade irresistível da Baunilha. Essa combinação traduz delicadeza e sofisticação, criando um acorde floral envolvente que equilibra suavidade e intensidade. Ao fundo, o Acorde de Café Latte se encontra com o calor das Notas Ambaradas, revelando uma base confortável, sofisticada e memorável. O resultado é um rastro quente e envolvente que permanece na pele e desperta sensações de aconchego e elegância. Macchiato é uma fragrância criada para quem valoriza personalidade, autenticidade e momentos que ficam na memória."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ],
     [
      "Black pepper",
-     "فلفل أسود"
+     "فلفل أسود",
+     "Pimenta-preta"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ],
    "base": [
     [
      "Café latte accord",
-     "أكورد الكافيه لاتيه"
+     "أكورد الكافيه لاتيه",
+     "Acorde de café latte"
     ],
     [
      "Amber notes",
-     "نفحات عنبرية"
+     "نفحات عنبرية",
+     "Notas ambaradas"
     ]
    ]
   },
@@ -4244,43 +4692,52 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The fruity floriental that turns delicacy into presence.",
-   "ar": "عطر زهري شرقي فاكهي يحوّل الرقة إلى حضور لافت."
+   "ar": "عطر زهري شرقي فاكهي يحوّل الرقة إلى حضور لافت.",
+   "pt": "O floriental frutado que transforma delicadeza em presença"
   },
   "desc": {
    "en": "Cassera Cologne celebrates sophisticated, luminous femininity, created for women who enchant effortlessly. Juicy plum, radiant bergamot and delicate peach create a vibrant, elegant first impression. At the heart, peony, mimosa, lily of the valley and jasmine form a refined floral bouquet that balances freshness, romance and timeless sophistication.",
-   "ar": "تحتفي كولونيا كاسيرا بأنوثة راقية ومشرقة، وقد صُمّمت للمرأة التي تأسر دون عناء. يمنح البرقوق العصيري والبرغموت المشرق والخوخ الرقيق انطباعًا أول نابضًا بالحيوية والأناقة. وفي القلب، تشكّل الفاوانيا والميموزا وزنبق الوادي والياسمين باقة زهرية راقية توازن بين الانتعاش والرومانسية والرقي الخالد."
+   "ar": "تحتفي كولونيا كاسيرا بأنوثة راقية ومشرقة، وقد صُمّمت للمرأة التي تأسر دون عناء. يمنح البرقوق العصيري والبرغموت المشرق والخوخ الرقيق انطباعًا أول نابضًا بالحيوية والأناقة. وفي القلب، تشكّل الفاوانيا والميموزا وزنبق الوادي والياسمين باقة زهرية راقية توازن بين الانتعاش والرومانسية والرقي الخالد.",
+   "pt": "O Desodorante Colônia Wepink Cassera é uma celebração da feminilidade sofisticada, luminosa e naturalmente envolvente. Uma fragrância que traduz delicadeza em presença e transforma suavidade em uma assinatura inesquecível. Criada para mulheres que encantam sem esforço, Cassera revela um equilíbrio perfeito entre frescor frutado, flores elegantes e uma cremosidade confortável que abraça a pele. Sua abertura combina a suculência sofisticada da ameixa com o frescor radiante da bergamota e a doçura delicada do pêssego, criando uma primeira impressão vibrante, feminina e irresistivelmente elegante. Um início luminoso que desperta os sentidos com leveza e personalidade. No coração, a fragrância floresce de maneira delicada e refinada. A peônia, a mimosa, o lírio-do-vale e o jasmim se unem em um bouquet floral sofisticado, revelando uma feminilidade elegante e acolhedora. É um acorde que envolve a pele com suavidade, trazendo equilíbrio entre frescor, romantismo e sofisticação atemporal. Ao fundo, notas quentes e cremosas ganham protagonismo. O sândalo e o benjoim adicionam profundidade e conforto, enquanto o praliné e o musk criam um rastro macio, envolvente e delicadamente viciante. O resultado é uma assinatura elegante e memorável, que permanece na pele como uma lembrança sofisticada e inesquecível. Cassera é uma fragrância que ilumina, envolve e permanece."
   },
   "notes": {
    "top": [
     [
      "Plum",
-     "برقوق"
+     "برقوق",
+     "Ameixa"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ]
    ],
    "heart": [
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "Mimosa",
-     "ميموزا"
+     "ميموزا",
+     "Mimosa"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -4312,29 +4769,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Wish.",
-   "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا ويش."
+   "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا ويش.",
+   "pt": "Nutrição profunda e firmeza com o abraço acolhedor de Vanilla Wish"
   },
   "desc": {
    "en": "Vanilla Wish Body Cream combines delicacy, care and hydration to reveal the skin you have always wanted. Its formula helps support collagen production and cell renewal, while a blend of selected oils and extracts leaves skin soft, healthy-looking and luminous. Notes of freesia, jasmine and musk add a bold, vibrant and authentic touch to self-care.",
-   "ar": "يجمع كريم الجسم فانيلا ويش بين الرقة والعناية والترطيب ليكشف عن البشرة التي طالما حلمتِ بها. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، بينما يمنح مزيج من الزيوت والمستخلصات المختارة البشرة نعومة ومظهرًا صحيًا مشرقًا. وتضفي نفحات الفريزيا والياسمين والمسك لمسة جريئة ونابضة بالحيوية والأصالة على لحظات عنايتك بنفسك."
+   "ar": "يجمع كريم الجسم فانيلا ويش بين الرقة والعناية والترطيب ليكشف عن البشرة التي طالما حلمتِ بها. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، بينما يمنح مزيج من الزيوت والمستخلصات المختارة البشرة نعومة ومظهرًا صحيًا مشرقًا. وتضفي نفحات الفريزيا والياسمين والمسك لمسة جريئة ونابضة بالحيوية والأصالة على لحظات عنايتك بنفسك.",
+   "pt": "A Loção Desodorante Body Cream Wepink Vanilla Wish revela a pele que você sempre desejou, combinando delicadeza, cuidado e hidratação. Sua fórmula auxilia na produção de colágeno e na regeneração celular, enquanto o mix de óleos e extratos selecionados proporciona maciez e um aspecto saudável e luminoso. A fragrância revela notas de Frésia, Jasmim e Musk, trazendo um toque ousado, vibrante e cheio de autenticidade para o seu momento de autocuidado."
   },
   "notes": {
    "top": [
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -4366,11 +4828,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Soft.",
-   "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا سوفت."
+   "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا سوفت.",
+   "pt": "Nutrição profunda e firmeza com o abraço acolhedor de Vanilla Soft"
   },
   "desc": {
    "en": "Vanilla Soft Body Cream deeply moisturizes, leaving skin comfortable and fragrant. Its formula helps support collagen production and cell renewal, while a blend of selected oils and extracts provides softness and a healthy, luminous look. The fruity oriental fragrance completes the experience with a delicate, deeply comforting touch.",
-   "ar": "يرطّب كريم الجسم فانيلا سوفت البشرة بعمق ويتركها مريحة ومعطّرة. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، بينما يمنح مزيج من الزيوت والمستخلصات المختارة نعومة ومظهرًا صحيًا مشرقًا. ويكتمل هذا الإحساس بعطر شرقي فاكهي يضفي لمسة رقيقة تبعث على الدفء والراحة."
+   "ar": "يرطّب كريم الجسم فانيلا سوفت البشرة بعمق ويتركها مريحة ومعطّرة. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، بينما يمنح مزيج من الزيوت والمستخلصات المختارة نعومة ومظهرًا صحيًا مشرقًا. ويكتمل هذا الإحساس بعطر شرقي فاكهي يضفي لمسة رقيقة تبعث على الدفء والراحة.",
+   "pt": "Sinta o deleite da Loção Desodorante Body Cream Wepink Vanilla Soft, que hidrata profundamente e deixa a pele confortável e perfumada. Sua composição auxilia na produção de colágeno e na regeneração celular, enquanto o mix de óleos e extratos selecionados proporciona maciez e um aspecto saudável e luminoso. A fragrância Oriental Frutada completa a experiência com um toque delicado e extremamente acolhedor."
   },
   "source": "https://www.wepink.com.br/body-cream-locao-hid-desodvanillasoft-200-ml---wepink-489/p",
   "notes": {}
@@ -4394,11 +4858,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Obsessed line, together in one set.",
-   "ar": "مجموعة أوبسيسد مجتمعة في طقم واحد."
+   "ar": "مجموعة أوبسيسد مجتمعة في طقم واحد.",
+   "pt": "A linha Obsessed reunida em um só kit"
   },
   "desc": {
    "en": "The Obsessed Collection Set brings together products from the Obsessed line in a single kit. It offers a convenient way to discover the line's products together.",
-   "ar": "يجمع طقم مجموعة أوبسيسد منتجات من مجموعة أوبسيسد في طقم واحد. ويقدّم طريقة سهلة لاكتشاف منتجات المجموعة معًا."
+   "ar": "يجمع طقم مجموعة أوبسيسد منتجات من مجموعة أوبسيسد في طقم واحد. ويقدّم طريقة سهلة لاكتشاف منتجات المجموعة معًا.",
+   "pt": "O Kit Linha Obsessed reúne produtos da linha Obsessed em um só kit. Uma forma prática de conhecer os produtos da linha juntos."
   },
   "source": "https://www.wepink.com.br/kit-linha-obsessed---wepink-125353/p",
   "notes": {}
@@ -4422,11 +4888,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Heaven Blue line, together in one set.",
-   "ar": "مجموعة هيفن بلو مجتمعة في طقم واحد."
+   "ar": "مجموعة هيفن بلو مجتمعة في طقم واحد.",
+   "pt": "A linha Heaven Blue reunida em um só kit"
   },
   "desc": {
    "en": "The Heaven Blue Collection Set brings together products from the Heaven Blue line in a single kit. It offers a convenient way to discover the line's products together.",
-   "ar": "يجمع طقم مجموعة هيفن بلو منتجات من مجموعة هيفن بلو في طقم واحد. ويقدّم طريقة سهلة لاكتشاف منتجات المجموعة معًا."
+   "ar": "يجمع طقم مجموعة هيفن بلو منتجات من مجموعة هيفن بلو في طقم واحد. ويقدّم طريقة سهلة لاكتشاف منتجات المجموعة معًا.",
+   "pt": "O Kit Linha Heaven Blue reúne produtos da linha Heaven Blue em um só kit. Uma forma prática de conhecer os produtos da linha juntos."
   },
   "source": "https://www.wepink.com.br/kit-linha-heaven-blue---wepink-125352/p",
   "notes": {}
@@ -4456,21 +4924,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Oriental elegance in every movement of your hair.",
-   "ar": "أناقة شرقية في كل حركة من حركات شعرك."
+   "ar": "أناقة شرقية في كل حركة من حركات شعرك.",
+   "pt": "Elegância oriental em cada movimento do seu cabelo"
   },
   "desc": {
    "en": "Celebrate Life Hair Mist leaves hair shinier, protected and fragrant all day, celebrating a unique, true and extraordinary beauty. Its oriental scent brings comfort and well-being to the hair, opening with fresh apple and a dazzling touch of pink pepper before a magical floral heart and a sweet, elegant woody base.",
-   "ar": "يمنح عطر الشعر سيليبريت لايف شعرك لمعانًا وحماية وعبيرًا طوال اليوم، احتفاءً بجمال فريد وحقيقي واستثنائي. ويضفي عبيره الشرقي إحساسًا بالراحة على الشعر، إذ يفتتح بانتعاش التفاح ولمسة مبهرة من الفلفل الوردي، يليها قلب زهري ساحر وقاعدة خشبية حلوة تفيض بالأناقة."
+   "ar": "يمنح عطر الشعر سيليبريت لايف شعرك لمعانًا وحماية وعبيرًا طوال اليوم، احتفاءً بجمال فريد وحقيقي واستثنائي. ويضفي عبيره الشرقي إحساسًا بالراحة على الشعر، إذ يفتتح بانتعاش التفاح ولمسة مبهرة من الفلفل الوردي، يليها قلب زهري ساحر وقاعدة خشبية حلوة تفيض بالأناقة.",
+   "pt": "O Desodorante Capilar Hair Mist Wepink Celebrate Life é o melhor para cabelos mais brilhantes, protegidos e perfumados durante o dia todo, celebrando uma beleza única, verdadeira e extraordinária. Seu aroma Oriental proporciona uma sensação de conforto e bem-estar aos fios, sendo um tributo olfativo com o frescor da Maçã e o toque deslumbrante da Pimenta Rosa. Em um mágico coração floral, finaliza em um fundo doce, amadeirado e cheio de elegância."
   },
   "notes": {
    "top": [
     [
      "Apple",
-     "تفاح"
+     "تفاح",
+     "Maçã"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ]
   },
@@ -4504,57 +4976,69 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Where intensity celebrates, sophistication becomes eternal.",
-   "ar": "حيث تحتفي الجرأة، ويخلد الرقي."
+   "ar": "حيث تحتفي الجرأة، ويخلد الرقي.",
+   "pt": "Onde a intensidade celebra, a sofisticação se eterniza"
   },
   "desc": {
    "en": "VF 2.7 Birthday Edition Body Splash celebrates your essence, your strength and everything still to come. Grapefruit, bergamot, pear and pink pepper create a radiant, modern opening, while creamy tuberose meets orange blossom at the heart, with vetiver adding depth. Sandalwood and patchouli form a warm, structured base, wrapped in soft musk.",
-   "ar": "يحتفي رذاذ الجسم المعطّر في إف 2.7 بيرثداي إيديشن بجوهرك وقوتك وبكل ما هو آتٍ. يشكّل الجريب فروت والبرغموت والكمثرى والفلفل الوردي افتتاحية مشرقة وعصرية، بينما يلتقي مسك الروم الكريمي بزهر البرتقال في القلب، ويضيف نجيل الهند عمقًا وتوازنًا. ويصنع خشب الصندل والباتشولي قاعدة دافئة ومتماسكة يغلّفها المسك الناعم."
+   "ar": "يحتفي رذاذ الجسم المعطّر في إف 2.7 بيرثداي إيديشن بجوهرك وقوتك وبكل ما هو آتٍ. يشكّل الجريب فروت والبرغموت والكمثرى والفلفل الوردي افتتاحية مشرقة وعصرية، بينما يلتقي مسك الروم الكريمي بزهر البرتقال في القلب، ويضيف نجيل الهند عمقًا وتوازنًا. ويصنع خشب الصندل والباتشولي قاعدة دافئة ومتماسكة يغلّفها المسك الناعم.",
+   "pt": "O Desodorante Colônia Body Splash Wepink VF 2.7 Birthday Edition é uma celebração da sua essência, da sua força e de tudo aquilo que ainda está por vir. Uma fragrância que traduz transformação, brilho e intensidade em cada nota, marcando um novo ciclo com sofisticação e presença. Na abertura, o frescor vibrante da toranja se encontra com a luminosidade da bergamota e a suculência da pera, criando um início radiante e envolvente. A pimenta rosa adiciona um toque especiado moderno, despertando os sentidos com elegância e personalidade. No coração, a fragrância revela sua faceta mais sofisticada e feminina. A tuberosa surge intensa e cremosa, envolvida pela delicadeza da flor de laranjeira, enquanto o vetiver adiciona profundidade e equilíbrio, criando um bouquet floral marcante e contemporâneo. Ao fundo, a assinatura se torna ainda mais envolvente e memorável. O sândalo e o patchouli trazem uma base quente e estruturada, enquanto o musk envolve a pele com um toque macio e sofisticado. O resultado é um rastro elegante, intenso e absolutamente inesquecível. O VF 2.7 Birthday Edition é ideal para quem busca uma fragrância floral oriental, com presença marcante e sofisticação moderna. Onde a intensidade celebra, a sofisticação se eterniza."
   },
   "notes": {
    "top": [
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Vetiver",
-     "نجيل الهند"
+     "نجيل الهند",
+     "Vetiver"
     ]
    ],
    "base": [
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -4587,29 +5071,35 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Where intensity celebrates, sophistication becomes eternal.",
-   "ar": "حيث تحتفي الجرأة، ويخلد الرقي."
+   "ar": "حيث تحتفي الجرأة، ويخلد الرقي.",
+   "pt": "Onde a intensidade celebra, a sofisticação se eterniza"
   },
   "desc": {
    "en": "VF 2.7 Birthday Edition Cologne celebrates your essence, your strength and everything still to come, marking a new chapter with sophistication and presence. It opens with vibrant grapefruit, luminous bergamot and juicy pear, while pink pepper adds a modern spicy touch.",
-   "ar": "تحتفي كولونيا في إف 2.7 بيرثداي إيديشن بجوهرك وقوتك وبكل ما هو آتٍ، لتفتتح مرحلة جديدة بالرقي والحضور. وتنطلق بانتعاش الجريب فروت وإشراقة البرغموت وعصارة الكمثرى، بينما يضيف الفلفل الوردي لمسة متبّلة عصرية."
+   "ar": "تحتفي كولونيا في إف 2.7 بيرثداي إيديشن بجوهرك وقوتك وبكل ما هو آتٍ، لتفتتح مرحلة جديدة بالرقي والحضور. وتنطلق بانتعاش الجريب فروت وإشراقة البرغموت وعصارة الكمثرى، بينما يضيف الفلفل الوردي لمسة متبّلة عصرية.",
+   "pt": "O Desodorante Colônia Wepink VF 2.7 Birthday Edition é uma celebração da sua essência, da sua força e de tudo aquilo que ainda está por vir. Uma fragrância que traduz transformação, brilho e intensidade em cada nota, marcando um novo ciclo com sofisticação e presença. Na abertura, o frescor vibrante da toranja se encontra com a luminosidade da bergamota e a suculência da pera, criando um início radiante e envolvente. A pimenta rosa adiciona um toque especiado moderno, despertando os sentidos com elegância e personalidade."
   },
   "notes": {
    "top": [
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ]
   },
@@ -4641,11 +5131,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Luxury and hydration in a single gesture.",
-   "ar": "الفخامة والترطيب في لمسة واحدة."
+   "ar": "الفخامة والترطيب في لمسة واحدة.",
+   "pt": "Luxo e hidratação em um só gesto"
   },
   "desc": {
    "en": "Feive Body Cream leaves skin moisturized, nourished and firm, thanks to a special formula that helps support collagen production and cell renewal. Its blend of oils and extracts keeps skin looking healthy and radiant.",
-   "ar": "يترك كريم الجسم فيف بشرتك مرطّبة ومغذّاة ومشدودة، بفضل تركيبة خاصة تساعد على إنتاج الكولاجين وتجديد الخلايا. ويحافظ مزيجه من الزيوت والمستخلصات على مظهر صحي ومشرق للبشرة."
+   "ar": "يترك كريم الجسم فيف بشرتك مرطّبة ومغذّاة ومشدودة، بفضل تركيبة خاصة تساعد على إنتاج الكولاجين وتجديد الخلايا. ويحافظ مزيجه من الزيوت والمستخلصات على مظهر صحي ومشرق للبشرة.",
+   "pt": "A Loção Desodorante Body Cream Wepink Feive é ideal para deixar sua pele hidratada, nutrida e firme, graças à sua composição que tem uma fórmula especial para auxiliar na produção de colágeno e na regeneração celular. Além disso, seu mix de óleos e extratos deixam sua pele com um aspecto sempre saudável e brilhoso."
   },
   "source": "https://www.wepink.com.br/body-cream-feive-200ml---wepink-465/p",
   "notes": {}
@@ -4677,69 +5169,84 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Masculine presence revealed in an aromatic amber fougère.",
-   "ar": "حضور رجولي يتجلّى في عطر فوجير عنبري عطري."
+   "ar": "حضور رجولي يتجلّى في عطر فوجير عنبري عطري.",
+   "pt": "Presença masculina que se revela no fougère âmbar aromático"
   },
   "desc": {
    "en": "Castillo Cologne captures the essence of the contemporary man: confident, sophisticated and naturally striking. Bergamot and green bergamot meet cardamom and ginger in a vibrant opening, while clary sage, geranium, orange blossom, Tunisian orange blossom and Lavender Diva form an aromatic heart. A woody amber accord, patchouli, vanilla and cocoa add warmth and depth at the base.",
-   "ar": "تجسّد كولونيا كاستيلو جوهر الرجل العصري: واثق وراقٍ ولافت بطبيعته. يلتقي البرغموت والبرغموت الأخضر بالهيل والزنجبيل في افتتاحية نابضة بالحيوية، بينما تشكّل المريمية المسكية وإبرة الراعي وزهر البرتقال وزهر البرتقال التونسي وخزامى ديفا قلبًا عطريًا متناغمًا. ويضفي أكورد العنبر الخشبي والباتشولي والفانيليا والكاكاو دفئًا وعمقًا على القاعدة."
+   "ar": "تجسّد كولونيا كاستيلو جوهر الرجل العصري: واثق وراقٍ ولافت بطبيعته. يلتقي البرغموت والبرغموت الأخضر بالهيل والزنجبيل في افتتاحية نابضة بالحيوية، بينما تشكّل المريمية المسكية وإبرة الراعي وزهر البرتقال وزهر البرتقال التونسي وخزامى ديفا قلبًا عطريًا متناغمًا. ويضفي أكورد العنبر الخشبي والباتشولي والفانيليا والكاكاو دفئًا وعمقًا على القاعدة.",
+   "pt": "O Desodorante Colônia Castillo Essence traduz a essência do homem contemporâneo: seguro, sofisticado e naturalmente marcante. Uma fragrância que equilibra frescor e intensidade, revelando uma masculinidade elegante que não precisa se impor. Na saída, o brilho cítrico da bergamota e da bergamota verde se encontra com o frescor especiado do cardamomo e do gengibre, criando uma abertura vibrante e envolvente. Um convite imediato à presença, com um toque moderno e refinado que desperta os sentidos. No coração, a fragrância se desenvolve com harmonia e profundidade. A sálvia-esclareia e o gerânio trazem um frescor aromático sofisticado, enquanto a flor de laranjeira e sua versão tunisiana revelam uma faceta mais luminosa e elegante. O toque de lavender diva completa essa construção com equilíbrio e serenidade. Ao fundo, a assinatura se intensifica. O acorde âmbar amadeirado se une ao patchouli, trazendo estrutura e profundidade, enquanto a baunilha e o cacau adicionam um toque quente e envolvente, criando um rastro memorável, confortável e ao mesmo tempo ousado. Castillo Essence é mais do que uma fragrância: é uma extensão da sua identidade. Um aroma que acompanha, marca e permanece. Uma presença que se revela."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Green bergamot",
-     "برغموت أخضر"
+     "برغموت أخضر",
+     "Bergamota verde"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ],
     [
      "Ginger",
-     "زنجبيل"
+     "زنجبيل",
+     "Gengibre"
     ]
    ],
    "heart": [
     [
      "Clary sage",
-     "مريمية مسكية"
+     "مريمية مسكية",
+     "Sálvia-esclareia"
     ],
     [
      "Geranium",
-     "إبرة الراعي"
+     "إبرة الراعي",
+     "Gerânio"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Tunisian orange blossom",
-     "زهر البرتقال التونسي"
+     "زهر البرتقال التونسي",
+     "Flor de laranjeira tunisiana"
     ],
     [
      "Lavender Diva",
-     "خزامى ديفا"
+     "خزامى ديفا",
+     "Lavender Diva"
     ]
    ],
    "base": [
     [
      "Woody amber accord",
-     "أكورد العنبر الخشبي"
+     "أكورد العنبر الخشبي",
+     "Acorde âmbar amadeirado"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Cocoa",
-     "كاكاو"
+     "كاكاو",
+     "Cacau"
     ]
    ]
   },
@@ -4772,49 +5279,59 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fruity floral that charms with delicacy and leaves an elegant trail.",
-   "ar": "عطر زهري فاكهي يأسر برقّته ويترك أثرًا أنيقًا أينما حلّ."
+   "ar": "عطر زهري فاكهي يأسر برقّته ويترك أثرًا أنيقًا أينما حلّ.",
+   "pt": "Um floral frutado que encanta com delicadeza e deixa rastro elegante por onde passa"
   },
   "desc": {
    "en": "Wonbloom Charm Body Splash expresses a light, sophisticated and naturally radiant femininity. Juicy pear and bergamot open with bright, delicately sweet freshness, leading to an elegant heart of rose, iris and lily of the valley with a soft powdery touch. Vanilla, cedar and musk form a comfortable musky base that embraces the skin with subtle warmth.",
-   "ar": "يعبّر رذاذ الجسم المعطّر وونبلوم تشارم عن أنوثة خفيفة وراقية ومشرقة بطبيعتها. تفتتحه الكمثرى العصيرية والبرغموت بانتعاش مشرق وحلاوة رقيقة، وصولًا إلى قلب أنيق من الورد والسوسن وزنبق الوادي بلمسة بودرية ناعمة. وتشكّل الفانيليا والأرز والمسك قاعدة مسكية مريحة تحتضن البشرة بدفء رقيق."
+   "ar": "يعبّر رذاذ الجسم المعطّر وونبلوم تشارم عن أنوثة خفيفة وراقية ومشرقة بطبيعتها. تفتتحه الكمثرى العصيرية والبرغموت بانتعاش مشرق وحلاوة رقيقة، وصولًا إلى قلب أنيق من الورد والسوسن وزنبق الوادي بلمسة بودرية ناعمة. وتشكّل الفانيليا والأرز والمسك قاعدة مسكية مريحة تحتضن البشرة بدفء رقيق.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Wonbloom Charm traduz uma feminilidade leve, sofisticada e naturalmente radiante. Uma fragrância que envolve sem esforço, revelando charme e delicadeza com presença marcante. A abertura fresca e frutada desperta os sentidos com brilho e leveza. A pera suculenta encontra a bergamota em uma combinação luminosa e envolvente, criando um início vibrante, feminino e delicadamente adocicado. No coração, a rosa se destaca com elegância moderna, acompanhada pela íris e pelo lírio-do-vale. O resultado é um floral refinado, levemente atalcado, que transmite romantismo maduro e sofisticação natural. A íris traz textura e profundidade cremosa, enquanto o buquê floral mantém a fragrância luminosa e harmoniosa. Ao fundo, notas de baunilha, cedro e musk constroem um acorde almiscarado e confortável. É um rastro macio, envolvente e elegante, que abraça a pele com calor sutil e presença duradoura."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Iris",
-     "سوسن"
+     "سوسن",
+     "Íris"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Cedar",
-     "أرز"
+     "أرز",
+     "Cedro"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -4848,37 +5365,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The fresh fruity floral that is the right choice for you.",
-   "ar": "العطر الزهري الفاكهي المنعش الذي يمثّل خيارك الأمثل."
+   "ar": "العطر الزهري الفاكهي المنعش الذي يمثّل خيارك الأمثل.",
+   "pt": "O floral frutado fresco que é a escolha certa para você"
   },
   "desc": {
    "en": "VF Choices Delight Body Splash reveals a luminous, sophisticated femininity full of personality, reflecting the confidence of a woman who knows exactly who she is. Bright citrus notes meet green, aromatic nuances in a radiant opening, while jasmine and fresh floral accords form a refined heart. Woody and musky notes build a comfortable base.",
-   "ar": "يكشف رذاذ الجسم المعطّر في إف تشويسز ديلايت عن أنوثة مشرقة وراقية مفعمة بالشخصية، تعكس ثقة امرأة تعرف تمامًا من تكون. تلتقي النفحات الحمضية المشرقة بلمسات خضراء وعطرية في افتتاحية متألقة، بينما يشكّل الياسمين والأكوردات الزهرية المنعشة قلبًا راقيًا. وتبني النفحات الخشبية والمسكية قاعدة مريحة."
+   "ar": "يكشف رذاذ الجسم المعطّر في إف تشويسز ديلايت عن أنوثة مشرقة وراقية مفعمة بالشخصية، تعكس ثقة امرأة تعرف تمامًا من تكون. تلتقي النفحات الحمضية المشرقة بلمسات خضراء وعطرية في افتتاحية متألقة، بينما يشكّل الياسمين والأكوردات الزهرية المنعشة قلبًا راقيًا. وتبني النفحات الخشبية والمسكية قاعدة مريحة.",
+   "pt": "O Body Splash Wepink VF Choices Delight revela uma feminilidade luminosa, sofisticada e cheia de personalidade. Uma fragrância que equilibra frescor, elegância e leveza, traduzindo a confiança de quem sabe exatamente quem é. Porque quando autenticidade e charme caminham juntos, a resposta é clara: você é a escolha certa. A abertura desperta os sentidos com um frescor vibrante e energizante. Notas cítricas luminosas se unem a nuances verdes e aromáticas, criando um início radiante, leve e extremamente envolvente. É um frescor elegante que transmite vitalidade imediata e sensação de liberdade. No coração, flores delicadas revelam a verdadeira identidade da fragrância. O jasmim se encontra com acordes florais frescos e modernos, criando um floral refinado e equilibrado. Esse buquê elegante traz feminilidade natural e uma sofisticação sutil, mantendo a fragrância luminosa e harmoniosa ao longo da evolução. Ao fundo, notas amadeiradas e almiscaradas constroem uma base confortável e envolvente. O toque de musk e madeiras suaves adiciona profundidade e elegância, criando um rastro limpo, sofisticado e memorável, que permanece na pele com suavidade e personalidade. VF Choices Delight é para mulheres que confiam em suas escolhas, que carregam leveza na atitude e elegância na presença. Uma fragrância fresca, refinada e marcante na medida certa."
   },
   "notes": {
    "top": [
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ],
     [
      "Green notes",
-     "نفحات خضراء"
+     "نفحات خضراء",
+     "Notas verdes"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ],
     [
      "Musky notes",
-     "نفحات مسكية"
+     "نفحات مسكية",
+     "Notas almiscaradas"
     ]
    ]
   },
@@ -4908,11 +5432,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A luminous fruity floral that wraps the skin in elegance and comfort.",
-   "ar": "عطر زهري فاكهي مشرق يغلّف البشرة بالأناقة والراحة."
+   "ar": "عطر زهري فاكهي مشرق يغلّف البشرة بالأناقة والراحة.",
+   "pt": "Um floral frutado luminoso que envolve a pele com elegância e conforto"
   },
   "desc": {
    "en": "Fatal White Cologne expresses an elegant, confident and naturally captivating femininity. It is a fragrance for the woman who needs no excess to make her presence felt, winning hearts with her gaze, her poise and the trail she leaves in the air.",
-   "ar": "تعبّر كولونيا فيتال وايت عن أنوثة أنيقة وواثقة وآسرة بطبيعتها. إنها عطر للمرأة التي لا تحتاج إلى المبالغة لتفرض حضورها، فهي تأسر بنظرتها وحضورها الواثق والأثر الذي تتركه في الأجواء."
+   "ar": "تعبّر كولونيا فيتال وايت عن أنوثة أنيقة وواثقة وآسرة بطبيعتها. إنها عطر للمرأة التي لا تحتاج إلى المبالغة لتفرض حضورها، فهي تأسر بنظرتها وحضورها الواثق والأثر الذي تتركه في الأجواء.",
+   "pt": "O Desodorante Colônia Wepink Fatal White traduz uma feminilidade elegante, segura e naturalmente envolvente. É uma fragrância para a mulher que não precisa de excessos para marcar presença, ela conquista pelo olhar, pela postura e pelo rastro que deixa no ar."
   },
   "source": "https://www.wepink.com.br/desod-col-fatal-white-100-ml---wepink-446/p",
   "notes": {}
@@ -4945,57 +5471,69 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Class, presence and sophistication with the vibrant freshness of elegant flowers.",
-   "ar": "رقي وحضور وأناقة مع الانتعاش النابض للزهور الأنيقة."
+   "ar": "رقي وحضور وأناقة مع الانتعاش النابض للزهور الأنيقة.",
+   "pt": "Classe, presença e sofisticação com o frescor vibrante de flores elegantes"
   },
   "desc": {
    "en": "Feive Celestial Cologne was created for women who express elegance in every detail. Its floral oriental scent opens with fresh pear, ginger and tangerine, followed by a heart of lily of the valley, orange blossom and rose. A warm base of labdanum, benzoin, amber and sandalwood adds depth and comfort, leaving an elegant trail.",
-   "ar": "صُمّمت كولونيا فيف سيليستيال للمرأة التي تعبّر عن أناقتها في كل تفصيل. يفتتح عطرها الزهري الشرقي بنفحات منعشة من الكمثرى والزنجبيل واليوسفي، يليها قلب من زنبق الوادي وزهر البرتقال والورد. وتضفي قاعدة دافئة من اللادن واللبان الجاوي والعنبر وخشب الصندل عمقًا وراحة، تاركةً أثرًا أنيقًا."
+   "ar": "صُمّمت كولونيا فيف سيليستيال للمرأة التي تعبّر عن أناقتها في كل تفصيل. يفتتح عطرها الزهري الشرقي بنفحات منعشة من الكمثرى والزنجبيل واليوسفي، يليها قلب من زنبق الوادي وزهر البرتقال والورد. وتضفي قاعدة دافئة من اللادن واللبان الجاوي والعنبر وخشب الصندل عمقًا وراحة، تاركةً أثرًا أنيقًا.",
+   "pt": "O Desodorante Colônia Wepink Feive Celestial foi criado para mulheres que expressam elegância em cada detalhe e fazem da própria presença um símbolo de estilo. Sua fragrância Floral Oriental se abre com notas frescas e vibrantes de pera, gengibre e tangerina, despertando os sentidos logo no primeiro contato com a pele. No coração, flores delicadas como lírio-do-vale, flor de laranjeira e rosa revelam uma feminilidade sofisticada e cheia de personalidade. O fundo quente e envolvente de ládano, benjoim, âmbar e sândalo traz profundidade e conforto, deixando um rastro elegante que acompanha a rotina com leveza e refinamento. Feive Celestial é mais do que uma fragrância: é um convite diário para viver o luxo do seu jeito, com autenticidade, força e delicadeza na medida certa."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Ginger",
-     "زنجبيل"
+     "زنجبيل",
+     "Gengibre"
     ],
     [
      "Tangerine",
-     "يوسفي"
+     "يوسفي",
+     "Tangerina"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ],
    "base": [
     [
      "Labdanum",
-     "لادن"
+     "لادن",
+     "Ládano"
     ],
     [
      "Benzoin",
-     "لبان جاوي"
+     "لبان جاوي",
+     "Benjoim"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -5029,57 +5567,69 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Class, presence and sophistication with the vibrant freshness of elegant flowers.",
-   "ar": "رقي وحضور وأناقة مع الانتعاش النابض للزهور الأنيقة."
+   "ar": "رقي وحضور وأناقة مع الانتعاش النابض للزهور الأنيقة.",
+   "pt": "Classe, presença e sofisticação com o frescor vibrante de flores elegantes"
   },
   "desc": {
    "en": "Feive Celestial Body Splash was created for women who express elegance in every detail. Its floral oriental scent opens with fresh pear, ginger and tangerine, leading to a heart of lily of the valley, orange blossom and rose. A warm base of labdanum, benzoin, amber and sandalwood brings depth and comfort for an elegant trail.",
-   "ar": "صُمّم رذاذ الجسم المعطّر فيف سيليستيال للمرأة التي تعبّر عن أناقتها في كل تفصيل. يفتتح عطره الزهري الشرقي بنفحات منعشة من الكمثرى والزنجبيل واليوسفي، وصولًا إلى قلب من زنبق الوادي وزهر البرتقال والورد. وتمنح قاعدة دافئة من اللادن واللبان الجاوي والعنبر وخشب الصندل عمقًا وراحة لأثر أنيق."
+   "ar": "صُمّم رذاذ الجسم المعطّر فيف سيليستيال للمرأة التي تعبّر عن أناقتها في كل تفصيل. يفتتح عطره الزهري الشرقي بنفحات منعشة من الكمثرى والزنجبيل واليوسفي، وصولًا إلى قلب من زنبق الوادي وزهر البرتقال والورد. وتمنح قاعدة دافئة من اللادن واللبان الجاوي والعنبر وخشب الصندل عمقًا وراحة لأثر أنيق.",
+   "pt": "O Body Splash Wepink Feive Celestial foi criado para mulheres que expressam elegância em cada detalhe e fazem da própria presença um símbolo de estilo. Sua fragrância Floral Oriental se abre com notas frescas e vibrantes de pera, gengibre e tangerina, despertando os sentidos logo no primeiro contato com a pele. No coração, flores delicadas como lírio-do-vale, flor de laranjeira e rosa revelam uma feminilidade sofisticada e cheia de personalidade. O fundo quente e envolvente de ládano, benjoim, âmbar e sândalo traz profundidade e conforto, deixando um rastro elegante que acompanha a rotina com leveza e refinamento. Feive Celestial é mais do que um body splash: é um convite diário para viver o luxo do seu jeito, com autenticidade, força e delicadeza na medida certa."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Ginger",
-     "زنجبيل"
+     "زنجبيل",
+     "Gengibre"
     ],
     [
      "Tangerine",
-     "يوسفي"
+     "يوسفي",
+     "Tangerina"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ],
    "base": [
     [
      "Labdanum",
-     "لادن"
+     "لادن",
+     "Ládano"
     ],
     [
      "Benzoin",
-     "لبان جاوي"
+     "لبان جاوي",
+     "Benjoim"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -5112,11 +5662,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The golden light of freedom.",
-   "ar": "النور الذهبي للحرية."
+   "ar": "النور الذهبي للحرية.",
+   "pt": "A luz dourada da liberdade"
   },
   "desc": {
    "en": "Liberté Doré Cologne is a jewel created for those who shine naturally, with elegance and sophistication in every step. The fragrance is a scented expression of the golden light that accompanies the freedom to be one's best self, a magnificent piece for any collection.",
-   "ar": "كولونيا ليبرتيه دوريه جوهرة صُمّمت لمن يتألقون بطبيعتهم، بأناقة ورقي في كل خطوة. هذا العطر تعبير عطري عن النور الذهبي الذي يرافق حرية كل إنسان في أن يكون أفضل نسخة من نفسه، وقطعة رائعة تُضاف إلى مجموعتك."
+   "ar": "كولونيا ليبرتيه دوريه جوهرة صُمّمت لمن يتألقون بطبيعتهم، بأناقة ورقي في كل خطوة. هذا العطر تعبير عطري عن النور الذهبي الذي يرافق حرية كل إنسان في أن يكون أفضل نسخة من نفسه، وقطعة رائعة تُضاف إلى مجموعتك.",
+   "pt": "O Desodorante Colônia Wepink Liberté Doré é uma joia criada para quem brilha naturalmente, com elegância e sofisticação em cada passo. Esta fragrância é a representação aromática da luz dourada que acompanha a liberdade que cada um tem de ser sua melhor versão. Uma peça magnífica para sua coleção."
   },
   "source": "https://www.wepink.com.br/desod-col-liberte-dore-100ml---wepink-419/p",
   "notes": {}
@@ -5148,45 +5700,54 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The new face of sophistication.",
-   "ar": "الوجه الجديد للرقي."
+   "ar": "الوجه الجديد للرقي.",
+   "pt": "A nova face da sofisticação"
   },
   "desc": {
    "en": "Martin Cologne celebrates Madagascar vanilla in its most luxurious and enveloping form, rich, warm and dense at the center of the composition. Spicy cardamom and cinnamon blend with elegant orange blossom, while a base of amber, musk and precious woods adds depth and magnetism. The result is an addictive, commanding and seductive expression of masculine power and elegance.",
-   "ar": "تحتفي كولونيا مارتن بفانيليا مدغشقر في أكثر صورها فخامة وإحاطة، غنية ودافئة وكثيفة في قلب التركيبة. تمتزج لمسة الهيل والقرفة المتبّلة بأناقة زهر البرتقال، بينما تمنح قاعدة من العنبر والمسك والأخشاب النفيسة عمقًا وجاذبية. والنتيجة عبير آسر ومهيب يجسّد قوة الرجل وأناقته."
+   "ar": "تحتفي كولونيا مارتن بفانيليا مدغشقر في أكثر صورها فخامة وإحاطة، غنية ودافئة وكثيفة في قلب التركيبة. تمتزج لمسة الهيل والقرفة المتبّلة بأناقة زهر البرتقال، بينما تمنح قاعدة من العنبر والمسك والأخشاب النفيسة عمقًا وجاذبية. والنتيجة عبير آسر ومهيب يجسّد قوة الرجل وأناقته.",
+   "pt": "O Desodorante Colônia Wepink Martin é uma celebração da baunilha de Madagascar em sua forma mais luxuosa e envolvente. Rica, quente e densa, ela é o centro de uma composição que exala presença e sofisticação. O toque picante do cardamomo e da canela se mistura à elegância da flor de laranjeira, enquanto o fundo de âmbar, musk e madeiras nobres dá profundidade e magnetismo. O resultado é um aroma viciante, imponente e absolutamente sedutor. A tradução perfeita do poder e da elegância masculina."
   },
   "notes": {
    "top": [
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ],
     [
      "Cinnamon",
-     "قرفة"
+     "قرفة",
+     "Canela"
     ]
    ],
    "heart": [
     [
      "Madagascar vanilla",
-     "فانيليا مدغشقر"
+     "فانيليا مدغشقر",
+     "Baunilha de Madagascar"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Precious woods",
-     "أخشاب نفيسة"
+     "أخشاب نفيسة",
+     "Madeiras nobres"
     ]
    ]
   },
@@ -5217,11 +5778,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Skin as soft as silk.",
-   "ar": "بشرة ناعمة كالحرير."
+   "ar": "بشرة ناعمة كالحرير.",
+   "pt": "Pele macia como a seda"
   },
   "desc": {
    "en": "One Touch Silk Body Cream is carefully formulated to help support collagen production and cell renewal, leaving skin healthy-looking and radiant. It scents the skin with a wonderful blend of flowers and fruits for a fresh feeling all day long.",
-   "ar": "صُمّم كريم الجسم ون تاتش سيلك بعناية ليساعد على إنتاج الكولاجين وتجديد الخلايا، فيمنح البشرة مظهرًا صحيًا ومشرقًا. ويعطّر البشرة بمزيج رائع من الزهور والفواكه لإحساس بالانتعاش طوال اليوم."
+   "ar": "صُمّم كريم الجسم ون تاتش سيلك بعناية ليساعد على إنتاج الكولاجين وتجديد الخلايا، فيمنح البشرة مظهرًا صحيًا ومشرقًا. ويعطّر البشرة بمزيج رائع من الزهور والفواكه لإحساس بالانتعاش طوال اليوم.",
+   "pt": "Receba a hidratação que você merece com a Loção Desodorante Body Cream Wepink One Touch Silk, elaborada cuidadosamente para que sua composição forneça auxílio na produção de colágeno e regeneração celular, deixando assim sua pele saudável e brilhosa o tempo todo. Tudo fica melhor ainda com a sua pele perfumada por um mix maravilhoso de flores e frutas, para ficar com aquela sensação de frescor o dia inteiro."
   },
   "source": "https://www.wepink.com.br/body-cream-one-touch-silk-200ml---wepink-383/p",
   "notes": {}
@@ -5257,11 +5820,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The art of perfumery elevated to perfection.",
-   "ar": "فن صناعة العطور في أسمى درجات الكمال."
+   "ar": "فن صناعة العطور في أسمى درجات الكمال.",
+   "pt": "A arte da perfumaria elevada à perfeição"
   },
   "desc": {
    "en": "Feive Cologne awakens your most refined, eccentric side with a grand, sovereign fragrance created without sparing any effort. More than a fragrance, it is a sensory experience worthy of high society, blending ingredients with unrivaled mastery in an olfactory journey that transcends the limits of luxury.",
-   "ar": "أيقظي جانبك الأكثر رقيًا وتفرّدًا مع كولونيا فيف، العطر المهيب الذي ابتُكر دون ادّخار أي جهد. فهو ليس مجرد عطر، بل تجربة حسية تليق بصفوة المجتمع، تمزج المكونات ببراعة لا مثيل لها في رحلة عطرية تتجاوز حدود الفخامة."
+   "ar": "أيقظي جانبك الأكثر رقيًا وتفرّدًا مع كولونيا فيف، العطر المهيب الذي ابتُكر دون ادّخار أي جهد. فهو ليس مجرد عطر، بل تجربة حسية تليق بصفوة المجتمع، تمزج المكونات ببراعة لا مثيل لها في رحلة عطرية تتجاوز حدود الفخامة.",
+   "pt": "Desperte o seu lado mais excentricamente refinado com o Desodorante Colônia Wepink Feive, uma fragrância grandiosa, soberana, e criada sem medir esforços. Esta não é apenas uma fragrância, mas sim uma experiência sensorial digna dos membros da mais alta sociedade. Experiencie um aroma de ingredientes combinados com maestria sem igual, para que cada partícula de sua alma fique banhada em uma viagem olfativa que transcende os limites do luxo."
   },
   "source": "https://www.wepink.com.br/desod-col-feive-100ml---wepink-388/p",
   "notes": {}
@@ -5291,37 +5856,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Scented hair with a bold, elegant aroma.",
-   "ar": "شعر معطّر بعبير جريء وأنيق."
+   "ar": "شعر معطّر بعبير جريء وأنيق.",
+   "pt": "Cabelos perfumados em um aroma ousado e elegante"
   },
   "desc": {
    "en": "Obsessed Hair Mist leaves hair shinier, protected and fragrant all day, capturing the essence of a festive woman who knows what she wants. Its chypre scent opens with cherry and blood orange, wrapped in a blend of citrus notes, before honey and caramel bring a sweet delight to the senses.",
-   "ar": "يمنح عطر الشعر أوبسيسد شعرك لمعانًا وحماية وعبيرًا طوال اليوم، مجسّدًا جوهر المرأة المحبّة للاحتفال التي تعرف ما تريد. يفتتح عبيره الشيبر بالكرز والبرتقال الدموي، ملتفًّا بمزيج من النفحات الحمضية، قبل أن يضفي العسل والكراميل متعة حلوة على الحواس."
+   "ar": "يمنح عطر الشعر أوبسيسد شعرك لمعانًا وحماية وعبيرًا طوال اليوم، مجسّدًا جوهر المرأة المحبّة للاحتفال التي تعرف ما تريد. يفتتح عبيره الشيبر بالكرز والبرتقال الدموي، ملتفًّا بمزيج من النفحات الحمضية، قبل أن يضفي العسل والكراميل متعة حلوة على الحواس.",
+   "pt": "O Desodorante Capilar Hair Mist Wepink Obsessed é o melhor para cabelos mais brilhantes, protegidos e perfumados durante o dia todo, junto à essência da mulher festiva e que sabe o que quer. Seu aroma Chipre revela um bem-estar envolvente no desejo da Cereja e da Laranja Sanguínea. Envolve-se em um mix de notas cítricas que se entrelaçam em puro desejo e sensualidade, manifestando um doce deleite aos sentidos nas notas de Mel e Caramelo."
   },
   "notes": {
    "top": [
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ],
     [
      "Blood orange",
-     "برتقال دموي"
+     "برتقال دموي",
+     "Laranja sanguínea"
     ]
    ],
    "heart": [
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ]
    ],
    "base": [
     [
      "Honey",
-     "عسل"
+     "عسل",
+     "Mel"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -5353,11 +5925,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Essential cleansing for your everyday routine.",
-   "ar": "تنظيف أساسي لروتينك اليومي."
+   "ar": "تنظيف أساسي لروتينك اليومي.",
+   "pt": "Limpeza essencial para o seu dia a dia"
   },
   "desc": {
    "en": "Cleanser Essential Facial Wash was developed to perfectly complete the way you care for yourself. Its exclusive formula, suitable for all skin types, deeply cleanses with high astringent power and acts as a natural toner for the face.",
-   "ar": "طُوّر غسول الوجه كلينزر إسنشال ليكمل بامتياز روتين عنايتك بنفسك. وتركيبته الحصرية مناسبة لجميع أنواع البشرة، إذ تمنح تنظيفًا عميقًا بقدرة قابضة عالية وتعمل كتونر طبيعي للوجه."
+   "ar": "طُوّر غسول الوجه كلينزر إسنشال ليكمل بامتياز روتين عنايتك بنفسك. وتركيبته الحصرية مناسبة لجميع أنواع البشرة، إذ تمنح تنظيفًا عميقًا بقدرة قابضة عالية وتعمل كتونر طبيعي للوجه.",
+   "pt": "O Sabonete Facial Essencial Cleanser foi desenvolvido para completar com excelência o seu jeito de se cuidar. Criamos uma fórmula exclusiva para todos os tipos de pele que traz uma limpeza profunda com alto poder adstringente e um tônico natural para seu rosto."
   },
   "source": "https://www.wepink.com.br/sabonete-facial-cleanser-essential/p",
   "notes": {}
@@ -5388,11 +5962,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Brazil's best-loved little pink favorite.",
-   "ar": "المفضّل الوردي الأكثر حبًا في البرازيل."
+   "ar": "المفضّل الوردي الأكثر حبًا في البرازيل.",
+   "pt": "O rosinha mais amado do Brasil"
   },
   "desc": {
    "en": "The 10-in-1 Facial Serum is complete care in a single product. Its exclusive, high-tech formula combines 10 powerful actives, including hyaluronic acid, vitamin C, retinol and hydrolyzed collagen, for deep hydration, a more even tone, anti-aging action and visibly healthier skin. Its light, easy-to-apply texture suits all skin types.",
-   "ar": "سيروم الوجه 10 في 1 عناية متكاملة في منتج واحد. تجمع تركيبته الحصرية عالية التقنية 10 مكونات فعّالة، منها حمض الهيالورونيك وفيتامين سي والريتينول والكولاجين المُحلَّل مائيًا، لترطيب عميق وتوحيد لون البشرة وعمل مضاد لعلامات التقدم في السن وبشرة أكثر صحة بشكل واضح. ويتميّز بقوام خفيف وسهل الاستخدام يناسب جميع أنواع البشرة."
+   "ar": "سيروم الوجه 10 في 1 عناية متكاملة في منتج واحد. تجمع تركيبته الحصرية عالية التقنية 10 مكونات فعّالة، منها حمض الهيالورونيك وفيتامين سي والريتينول والكولاجين المُحلَّل مائيًا، لترطيب عميق وتوحيد لون البشرة وعمل مضاد لعلامات التقدم في السن وبشرة أكثر صحة بشكل واضح. ويتميّز بقوام خفيف وسهل الاستخدام يناسب جميع أنواع البشرة.",
+   "pt": "O Sérum Facial 10 em 1 Wepink é o seu cuidado completo em um só produto. Desenvolvido com uma fórmula exclusiva e altamente tecnológica, ele combina 10 ativos poderosos que entregam hidratação profunda, uniformização do tom, ação antienvelhecimento e uma pele visivelmente mais saudável. Com ácido hialurônico, vitamina C, retinol, colágeno hidrolisado e muito mais, ele é o aliado perfeito para quem busca praticidade sem abrir mão de resultados reais. Tudo isso em uma textura leve, fácil de aplicar e ideal para todos os tipos de pele."
   },
   "source": "https://www.wepink.com.br/serum-10-em-1-wepink-40ml/p",
   "notes": {}
@@ -5422,11 +5998,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Liberté Exclusif Antiperspirant Roll-on offers an invigorating combination of freshness, lasting protection and 72-hour hydration. Its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral oriental path.",
-   "ar": "يقدّم مزيل العرق ومضاد التعرّق ماي بروتكشن ليبرتيه إكسكلوسيف رول أون مزيجاً منعشاً يجمع بين النضارة والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعطر فريد وحصري مُهدى إلى المرأة الأصيلة صانعة التغيير، في رحلة عطرية زهرية شرقية آسرة."
+   "ar": "يقدّم مزيل العرق ومضاد التعرّق ماي بروتكشن ليبرتيه إكسكلوسيف رول أون مزيجاً منعشاً يجمع بين النضارة والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعطر فريد وحصري مُهدى إلى المرأة الأصيلة صانعة التغيير، في رحلة عطرية زهرية شرقية آسرة.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Liberté Exclusif oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas. Sua fórmula exclusiva também contribui para uniformizar o tom da pele. Tudo isso, em uma essência única e exclusiva, dedicada à mulher autêntica e transformadora, percorrendo um fascinante caminho olfativo floral oriental."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-liberte-exclusif-50-ml---wepink-367/p",
   "notes": {}
@@ -5456,11 +6034,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Obsessed Exclusive Pink Antiperspirant Roll-on breathes luxury and exclusivity, with 72-hour protection for living every day intensely. Its exclusive formula, combined with an unmistakably floral scent, offers everything needed to follow the daily routine worry-free.",
-   "ar": "يفيض مزيل العرق ومضاد التعرّق ماي بروتكشن أوبسيسد إكسكلوسيف بينك رول أون بالفخامة والتميّز، مع حماية لمدة 72 ساعة لعيش كل يوم بشغف. وتمنح تركيبته الحصرية، مع رائحته الزهرية المميّزة، كل ما يلزم لمتابعة الروتين اليومي دون قلق."
+   "ar": "يفيض مزيل العرق ومضاد التعرّق ماي بروتكشن أوبسيسد إكسكلوسيف بينك رول أون بالفخامة والتميّز، مع حماية لمدة 72 ساعة لعيش كل يوم بشغف. وتمنح تركيبته الحصرية، مع رائحته الزهرية المميّزة، كل ما يلزم لمتابعة الروتين اليومي دون قلق.",
+   "pt": "Respire luxo e exclusividade com o Desodorante Antitranspirante Roll-on Myprotection Wepink Obsessed Exclusive Pink, com 72h de proteção para que você viva intensamente todos os dias. Sua fórmula exclusiva, aliada ao seu aroma inegavelmente floral, oferece tudo o que você precisa para seguir sua rotina sem preocupações."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-obsessed-exclusive-pink-50-ml-368/p",
   "notes": {}
@@ -5489,11 +6069,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn your bath into a premium ritual",
-   "ar": "حمّام يتحوّل إلى طقس فاخر"
+   "ar": "حمّام يتحوّل إلى طقس فاخر",
+   "pt": "Transforme seu banho em um ritual premium"
   },
   "desc": {
    "en": "The Liberté Exclusif Body Scrub makes self-care moments even more special, exfoliating and moisturizing in just the right measure, removing impurities and leaving skin super soft. With aloe vera, almond oil and rosehip oil, it provides deep hydration, powerful nourishment and renewed skin, wrapped in the delicious floral and fruity fragrance of the Liberté Exclusif line.",
-   "ar": "يجعل مقشّر الجسم ليبرتيه إكسكلوسيف بودي سكراب لحظات العناية الذاتية أكثر تميّزاً، إذ يقشّر البشرة ويرطّبها بالقدر المثالي، ويزيل الشوائب ويتركها ناعمة للغاية. وبفضل الألوفيرا وزيت اللوز وزيت ثمر الورد البري، يمنح ترطيباً عميقاً وتغذية فائقة وبشرة متجدّدة، مع عطر مجموعة ليبرتيه إكسكلوسيف الشهي بنفحات الزهور والفواكه."
+   "ar": "يجعل مقشّر الجسم ليبرتيه إكسكلوسيف بودي سكراب لحظات العناية الذاتية أكثر تميّزاً، إذ يقشّر البشرة ويرطّبها بالقدر المثالي، ويزيل الشوائب ويتركها ناعمة للغاية. وبفضل الألوفيرا وزيت اللوز وزيت ثمر الورد البري، يمنح ترطيباً عميقاً وتغذية فائقة وبشرة متجدّدة، مع عطر مجموعة ليبرتيه إكسكلوسيف الشهي بنفحات الزهور والفواكه.",
+   "pt": "O Body Scrub Liberté Exclusif chegou para deixar seu momento de autocuidado ainda mais especial! Ele esfolia e hidrata na medida certa, elimina as impurezas e deixa a pele super macia e com um toque irresistível. Com Aloe Vera, Óleo de Amêndoas e Óleo de Rosa Mosqueta, ele garante hidratação profunda, nutrição poderosa e uma pele renovada. E o melhor: tem aquela fragrância deliciosa de flores e frutas da linha Liberté Exclusif, que transforma seu banho em um momento de autocuidado exclusivo e só seu."
   },
   "source": "https://www.wepink.com.br/body-scrub-liberte-exclusif-450gr---wepink-360/p",
   "notes": {}
@@ -5529,11 +6111,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Femininity in its most intense form",
-   "ar": "الأنوثة في أشدّ صورها حضوراً"
+   "ar": "الأنوثة في أشدّ صورها حضوراً",
+   "pt": "A feminilidade em sua forma mais intensa"
   },
   "desc": {
    "en": "Obsessed Intense Deodorant Cologne makes nights more intense, a sensual portrait of a powerful, respected woman. Its sweetness lingers in the air and blends with the warmth of the skin to heighten femininity, like the first date of a great passion. Shaped by pure obsession, this fragrance lets delicacy give way to voracity.",
-   "ar": "تزداد الليالي شغفاً مع كولونيا أوبسيسد إنتنس، الصورة الحسّية لامرأة قوية تحظى بالاحترام. تحوم حلاوتها في المكان وتمتزج بدفء الجسد لتعزّز الأنوثة، كأنها اللقاء الأول لحبّ عظيم. وفي هذا العطر المصوغ من الهوس الخالص، تفسح الرقّة المجال لشغف جامح."
+   "ar": "تزداد الليالي شغفاً مع كولونيا أوبسيسد إنتنس، الصورة الحسّية لامرأة قوية تحظى بالاحترام. تحوم حلاوتها في المكان وتمتزج بدفء الجسد لتعزّز الأنوثة، كأنها اللقاء الأول لحبّ عظيم. وفي هذا العطر المصوغ من الهوس الخالص، تفسح الرقّة المجال لشغف جامح.",
+   "pt": "As noites ficarão mais intensas com o Desodorante Colônia Wepink Obsessed Intense, o retrato sensual de uma mulher poderosa e respeitada. Sua doçura irá pairar no ambiente e se misturar ao calor do seu corpo para intensificar sua feminilidade, como no primeiro encontro de uma grande paixão. A delicadeza dará lugar à voracidade com esta fragrância moldada na mais pura obsessão. Prepare-se!"
   },
   "source": "https://www.wepink.com.br/desod-col-obsessed-intense-100ml---wepink-361/p",
   "notes": {}
@@ -5565,11 +6149,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Essential repair for healthier hair",
-   "ar": "إصلاح أساسي لشعر أكثر صحة"
+   "ar": "إصلاح أساسي لشعر أكثر صحة",
+   "pt": "Uma reparação essencial para fios mais saudáveis"
   },
   "desc": {
    "en": "My Hair Ultra Repair Conditioner detangles easily, deeply hydrates and restores strength and elasticity with D-Panthenol, Indian gooseberry extract and avocado, camellia and green tea oils. Designed for chemically treated hair, it combines lanolin, hyper-protein and a cross-linking complex to form a protective film that controls frizz, reduces split ends and repairs damage. Hair is left soft, shiny and scented all day.",
-   "ar": "يسهّل بلسم ماي هير ألترا ريبير فكّ تشابك الشعر ويرطّبه بعمق، ويعيد إليه القوة والمرونة بفضل الدي-بانثينول ومستخلص الأملا (عنب الثعلب الهندي) وزيوت الأفوكادو والكاميليا والشاي الأخضر. صُمّم للشعر المعالج كيميائياً، ويجمع بين اللانولين والبروتين الفائق ومركّب الربط المتقاطع ليكوّن طبقة واقية تتحكّم في التجعّد وتقلّل تقصّف الأطراف وتصلح التلف. والنتيجة شعر ناعم ولامع ومعطّر طوال اليوم."
+   "ar": "يسهّل بلسم ماي هير ألترا ريبير فكّ تشابك الشعر ويرطّبه بعمق، ويعيد إليه القوة والمرونة بفضل الدي-بانثينول ومستخلص الأملا (عنب الثعلب الهندي) وزيوت الأفوكادو والكاميليا والشاي الأخضر. صُمّم للشعر المعالج كيميائياً، ويجمع بين اللانولين والبروتين الفائق ومركّب الربط المتقاطع ليكوّن طبقة واقية تتحكّم في التجعّد وتقلّل تقصّف الأطراف وتصلح التلف. والنتيجة شعر ناعم ولامع ومعطّر طوال اليوم.",
+   "pt": "O Condicionador Wepink My Hair Ultra Repair é o aliado perfeito para deixar seus fios alinhados, macios e com um brilho incrível. Ele desembaraça fácil, hidrata profundamente e devolve força e elasticidade graças ao D-Pantenol, ao extrato natural de groselha indiana e aos óleos vegetais de abacate, camélia e chá verde. Com uma tecnologia pensada para cabelos quimicamente tratados, ele combina lanolina, hiper proteína, complexo reticulante e um blend vegetal poderoso que cria uma película protetora, controla o frizz, reduz pontas duplas e repara as áreas mais danificadas da fibra capilar. O resultado? Fios mais saudáveis, sedosos e protegidos, com um toque perfumado que dura o dia inteiro."
   },
   "source": "https://www.wepink.com.br/condicionador-my-hair-ultra-repair-250ml---wepink-328/p",
   "notes": {}
@@ -5601,11 +6187,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Essential cleansing for healthier hair",
-   "ar": "تنظيف أساسي لشعر أكثر صحة"
+   "ar": "تنظيف أساسي لشعر أكثر صحة",
+   "pt": "Uma limpeza essencial para fios mais saudáveis"
   },
   "desc": {
    "en": "My Hair Ultra Repair Shampoo gently cleanses while delivering intense hydration, shine and softness with aloe vera and green tea extracts. Working from root to tip, it repairs damage, reduces split ends and strengthens even chemically treated hair, while hyper-protein and cross-linking complex technology supports healthy growth, combats hair loss and protects against new damage. A refreshing touch leaves hair soft and scented all day.",
-   "ar": "ينظّف شامبو ماي هير ألترا ريبير الشعر بلطف ويمنحه ترطيباً مكثّفاً ولمعاناً ونعومة بفضل مستخلصات الألوفيرا والشاي الأخضر. يعمل من الجذور حتى الأطراف ليصلح التلف ويقلّل تقصّف الأطراف ويقوّي حتى الشعر المعالج كيميائياً، فيما تدعم تقنية البروتين الفائق ومركّب الربط المتقاطع النمو الصحي وتكافح التساقط وتحمي من التلف الجديد. وتترك لمسته المنعشة الشعر ناعماً ومعطّراً طوال اليوم."
+   "ar": "ينظّف شامبو ماي هير ألترا ريبير الشعر بلطف ويمنحه ترطيباً مكثّفاً ولمعاناً ونعومة بفضل مستخلصات الألوفيرا والشاي الأخضر. يعمل من الجذور حتى الأطراف ليصلح التلف ويقلّل تقصّف الأطراف ويقوّي حتى الشعر المعالج كيميائياً، فيما تدعم تقنية البروتين الفائق ومركّب الربط المتقاطع النمو الصحي وتكافح التساقط وتحمي من التلف الجديد. وتترك لمسته المنعشة الشعر ناعماً ومعطّراً طوال اليوم.",
+   "pt": "O Shampoo Wepink My Hair Ultra Repair é o primeiro passo para conquistar fios brilhantes e saudáveis todos os dias. Ele limpa com suavidade enquanto entrega hidratação intensa, brilho e maciez graças aos extratos de aloe vera e chá verde. Sua fórmula poderosa age da raiz às pontas, reparando danos, reduzindo pontas duplas e fortalecendo até os cabelos quimicamente tratados. Com tecnologia avançada de hiper proteína e complexo reticulante, ajuda no crescimento saudável, combate a queda e protege contra novos danos. E para completar, tem um toque refrescante que deixa aquela sensação deliciosa de frescor, com fios macios, soltinhos e perfumados o dia todo."
   },
   "source": "https://www.wepink.com.br/shampoo-my-hair-ultra-repair-250ml---wepink-327/p",
   "notes": {}
@@ -5637,27 +6225,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A shining universe of charm and freshness!",
-   "ar": "عالم متألّق من السحر والانتعاش!"
+   "ar": "عالم متألّق من السحر والانتعاش!",
+   "pt": "Um universo brilhante de encanto e frescor!"
   },
   "desc": {
    "en": "Infinity Cosmik Body Splash is a true universe of charm and beauty, a mystical scent that awakens desire and sophistication. Its chypre, floral and fruity journey opens with lush blackcurrant and rose, evolving into a noble touch of jasmine. Radiant and uplifting, it settles into a sweet, woody base, a scent as enchanting as the stars.",
-   "ar": "يمثّل بخاخ الجسم إنفينيتي كوزميك عالماً حقيقياً من السحر والجمال، بعبير غامض يوقظ الرغبة والرقيّ. تبدأ رحلته العطرية الشيبرية الزهرية الفاكهية بنفحات غنية من الكشمش الأسود والورد، ثم تتطوّر إلى لمسة راقية من الياسمين. ويختتم ببريق وإحساس بالراحة في قاعدة حلوة وخشبية، عبير ساحر كالنجوم."
+   "ar": "يمثّل بخاخ الجسم إنفينيتي كوزميك عالماً حقيقياً من السحر والجمال، بعبير غامض يوقظ الرغبة والرقيّ. تبدأ رحلته العطرية الشيبرية الزهرية الفاكهية بنفحات غنية من الكشمش الأسود والورد، ثم تتطوّر إلى لمسة راقية من الياسمين. ويختتم ببريق وإحساس بالراحة في قاعدة حلوة وخشبية، عبير ساحر كالنجوم.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Infinity Cosmik é um verdadeiro universo de encanto e beleza, em uma essência mística que desperta desejo e sofisticação. Sua jornada sensorial chipre, floral e frutada inicia nas notas exuberantes de groselha preta e rosas, evoluindo no toque mais nobre de jasmim. Com muito brilho e bem-estar, finaliza em fundo doce e amadeirado, um aroma encantador como as estrelas."
   },
   "notes": {
    "top": [
     [
      "Blackcurrant",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Groselha preta"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -5688,27 +6281,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Exude delicacy and sweetness with an enchanting touch",
-   "ar": "رقّة وعذوبة بلمسة ساحرة"
+   "ar": "رقّة وعذوبة بلمسة ساحرة",
+   "pt": "Exale delicadeza e doçura com um toque que encanta"
   },
   "desc": {
    "en": "One Touch Silk Deodorant Cologne is a delicate, affectionate touch, a joyful scent that revives the essence of romance. Its floral and fruity fragrance opens with charming bergamot and fresh strawberry, evolving into an enchanting floral heart. It finishes on a soft, sweet vanilla base, unfolding an unforgettable feminine essence.",
-   "ar": "تمنح كولونيا ون تاتش سيلك لمسة رقيقة من الحنان، بعبير مبهج يُحيي جوهر الرومانسية. يبدأ عطرها الزهري الفاكهي بسحر البرغموت وانتعاش الفراولة، ثم يتطوّر إلى قلب زهري ساحر. ويختتم بقاعدة ناعمة وحلوة من الفانيليا، ليُزهر جوهراً أنثوياً لا يُنسى."
+   "ar": "تمنح كولونيا ون تاتش سيلك لمسة رقيقة من الحنان، بعبير مبهج يُحيي جوهر الرومانسية. يبدأ عطرها الزهري الفاكهي بسحر البرغموت وانتعاش الفراولة، ثم يتطوّر إلى قلب زهري ساحر. ويختتم بقاعدة ناعمة وحلوة من الفانيليا، ليُزهر جوهراً أنثوياً لا يُنسى.",
+   "pt": "Sinta um toque delicado de carinho com o Desodorante Colônia Wepink One Touch Silk, um aroma alegre que revive a essência de um romance. Sua fragrância Floral e Frutada inicia no charme da Bergamota e no frescor do Morango, evoluindo em um coração floral encantador. Finaliza em um fundo doce e suave de Baunilha, florescendo a essência feminina inesquecível."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Strawberry",
-     "فراولة"
+     "فراولة",
+     "Morango"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -5740,23 +6338,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment with heavenly freshness on your skin",
-   "ar": "تغذية عميقة وانتعاش سماوي على بشرتك"
+   "ar": "تغذية عميقة وانتعاش سماوي على بشرتك",
+   "pt": "Nutrição profunda com o frescor do paraíso na sua pele"
   },
   "desc": {
    "en": "Heaven Body Cream is a creamy, delicate deodorant lotion that moisturizes, nourishes and firms. Its composition helps support collagen production and cell regeneration, leaving skin looking healthy and glowing for a joyful, refreshing sense of well-being. Its heavenly floral fragrance rises with light notes of mandarin and orange blossom, finishing on a captivating sweet, woody base.",
-   "ar": "يتميّز كريم الجسم هيفن بقوامه الكريمي الرقيق الذي يرطّب البشرة ويغذّيها ويمنحها التماسك. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق لإحساس مبهج ومنعش بالراحة. ويرتقي عطره الزهري السماوي بنفحات خفيفة من الماندرين وزهر البرتقال، ليختتم بقاعدة حلوة وخشبية آسرة."
+   "ar": "يتميّز كريم الجسم هيفن بقوامه الكريمي الرقيق الذي يرطّب البشرة ويغذّيها ويمنحها التماسك. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق لإحساس مبهج ومنعش بالراحة. ويرتقي عطره الزهري السماوي بنفحات خفيفة من الماندرين وزهر البرتقال، ليختتم بقاعدة حلوة وخشبية آسرة.",
+   "pt": "A Loção Desodorante Body Cream Wepink Heaven possui um toque cremoso e delicado em hidratação, nutrição e firmeza. Sua composição auxilia na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhoso, para quem deseja um bem-estar alegre e refrescante. Sua fragrância Floral é capaz de transportar ao paraíso, ascendendo ao leve aroma das notas de Mandarina e Flor de Laranjeira. Finaliza em um fundo doce e amadeirado, inebriante e encantador."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ]
   },
@@ -5789,31 +6391,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A scent worthy of a rare jewel",
-   "ar": "عبير يليق بجوهرة نادرة"
+   "ar": "عبير يليق بجوهرة نادرة",
+   "pt": "O aroma digno de uma joia rara"
   },
   "desc": {
    "en": "Ruby Body Splash reveals the most precious essence, awakening the valuable charm of being a woman. A fruity floriental fragrance that captivates with intensity and desire, it opens with heady notes of mandarin and cherry. It evolves into an unforgettable floral heart and finishes with sweet vanilla and the bright, woody touch of cedar leaves, exuding precious freshness.",
-   "ar": "يكشف بخاخ الجسم روبي عن أثمن ما في الجوهر، ليوقظ السحر الثمين للأنوثة. بعطر زهري شرقي فاكهي يأسر بالشغف والرغبة، يبدأ بنفحات آسرة من الماندرين والكرز، ثم يتطوّر إلى قلب زهري لا يُنسى، ويختتم بحلاوة الفانيليا ولمسة أوراق الأرز الخشبية المتألّقة، ناشراً انتعاشاً ثميناً."
+   "ar": "يكشف بخاخ الجسم روبي عن أثمن ما في الجوهر، ليوقظ السحر الثمين للأنوثة. بعطر زهري شرقي فاكهي يأسر بالشغف والرغبة، يبدأ بنفحات آسرة من الماندرين والكرز، ثم يتطوّر إلى قلب زهري لا يُنسى، ويختتم بحلاوة الفانيليا ولمسة أوراق الأرز الخشبية المتألّقة، ناشراً انتعاشاً ثميناً.",
+   "pt": "Revele sua essência mais preciosa com o Desodorante Colônia Body Splash Wepink Ruby, um aroma para despertar o valioso encanto de ser mulher. Em uma fragrância Floriental Frutada, sabe conquistar com muita intensidade e desejo, iniciando pelas notas inebriantes de Mandarina e Cereja. Evolui em um coração floral inesquecível, finaliza no doce da Baunilha e no amadeirado e brilhante das Folhas de Cedro, exalando um precioso frescor."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ],
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Cedar leaves",
-     "أوراق الأرز"
+     "أوراق الأرز",
+     "Folhas de cedro"
     ]
    ]
   },
@@ -5846,27 +6454,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The exclusive charm of a precious essence",
-   "ar": "السحر الحصري لجوهر ثمين"
+   "ar": "السحر الحصري لجوهر ثمين",
+   "pt": "O encanto exclusivo de uma essência valiosa"
   },
   "desc": {
    "en": "Ruby Deodorant Cologne awakens elegance and desire in a floriental, fruity and heady essence, a precious charm that draws attention wherever it goes. It opens with bright notes of mandarin and cherry, evolving into a precious, intense touch of jasmine. It finishes on a sweet, woody, unforgettable base, a scent worthy of a rare jewel.",
-   "ar": "توقظ كولونيا روبي الأناقة والرغبة بعبير زهري شرقي فاكهي آسر للحواس، وسحر ثمين يجذب الأنظار أينما حلّ. يبدأ عطرها بتألّق نفحات الماندرين والكرز، ثم يتطوّر إلى لمسة ثمينة ومكثّفة من الياسمين، ويختتم بقاعدة حلوة وخشبية لا تُنسى، عبير يليق بجوهرة نادرة."
+   "ar": "توقظ كولونيا روبي الأناقة والرغبة بعبير زهري شرقي فاكهي آسر للحواس، وسحر ثمين يجذب الأنظار أينما حلّ. يبدأ عطرها بتألّق نفحات الماندرين والكرز، ثم يتطوّر إلى لمسة ثمينة ومكثّفة من الياسمين، ويختتم بقاعدة حلوة وخشبية لا تُنسى، عبير يليق بجوهرة نادرة.",
+   "pt": "O Desodorante Colônia Wepink Ruby desperta elegância e desejo em uma essência Floriental, Frutada e inebriante aos sentidos, em um encanto valioso que atrai olhares por onde passar. Sua fragrância inicia no brilho das notas de Mandarina e Cereja, evoluindo em um toque precioso e intenso de Jasmim. Finaliza em um fundo doce, amadeirado e inesquecível, um aroma digno de uma joia rara como você."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ],
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -5898,27 +6511,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Renew yourself with a gentle scent",
-   "ar": "عبير ناعم يمنحك التجدّد"
+   "ar": "عبير ناعم يمنحك التجدّد",
+   "pt": "Renove-se em um aroma suave"
   },
   "desc": {
    "en": "Lavanda Serene Body Splash is an ideal companion for moments of rest, with a unique scent that relaxes the senses. Its fragrance helps restore sleep through its calming properties, combined with the refreshing touch of lavender oil. All on an unmistakable floral path, unfolding in charming notes of mandarin and jasmine and finishing on a sweet, woody base.",
-   "ar": "يُعدّ بخاخ الجسم لافاندا سيرين الرفيق الأمثل للحظات الراحة، بعبير فريد يبعث الاسترخاء في الحواس. يساعد عطره على استعادة النوم بفضل خصائصه المهدّئة، مع لمسة منعشة من زيت اللافندر. وكل ذلك في مسار عطري زهري مميّز، يتجلّى بنفحات ساحرة من الماندرين والياسمين، ويختتم بقاعدة حلوة وخشبية."
+   "ar": "يُعدّ بخاخ الجسم لافاندا سيرين الرفيق الأمثل للحظات الراحة، بعبير فريد يبعث الاسترخاء في الحواس. يساعد عطره على استعادة النوم بفضل خصائصه المهدّئة، مع لمسة منعشة من زيت اللافندر. وكل ذلك في مسار عطري زهري مميّز، يتجلّى بنفحات ساحرة من الماندرين والياسمين، ويختتم بقاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Lavanda Serene é o seu melhor aliado para os momentos de descanso, em um aroma único e relaxante aos sentidos. Sua fragrância auxilia na restauração do sono com suas propriedades calmantes, unido ao toque refrescante do óleo de lavanda. Tudo isso, em um caminho olfativo floral inconfundível, evoluindo nas notas encantadoras de mandarina, jasmim e o deleite perfeito de um fundo doce e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Lavender",
-     "لافندر"
+     "لافندر",
+     "Lavanda"
     ],
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -5949,11 +6567,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Essential for clean, healthy, beautiful skin!",
-   "ar": "ضرورية لبشرة نظيفة وصحية وجميلة!"
+   "ar": "ضرورية لبشرة نظيفة وصحية وجميلة!",
+   "pt": "Essencial para uma pele limpa, saudável e bonita!"
   },
   "desc": {
    "en": "Cleansing Wipes makeup remover wipes are made especially for the skincare routine: they remove impurities, cleanse deeply, hydrate, take off waterproof makeup and help control oiliness. All with a soft touch suitable for all skin types.",
-   "ar": "صُمّمت مناديل كلينزينج وايبس المبلّلة لإزالة المكياج خصيصاً لروتين العناية بالبشرة، فهي تزيل الشوائب وتنظّف بعمق وترطّب وتزيل المكياج المقاوم للماء وتساعد على التحكّم في الإفرازات الدهنية. وكل ذلك بلمسة ناعمة مثالية لجميع أنواع البشرة."
+   "ar": "صُمّمت مناديل كلينزينج وايبس المبلّلة لإزالة المكياج خصيصاً لروتين العناية بالبشرة، فهي تزيل الشوائب وتنظّف بعمق وترطّب وتزيل المكياج المقاوم للماء وتساعد على التحكّم في الإفرازات الدهنية. وكل ذلك بلمسة ناعمة مثالية لجميع أنواع البشرة.",
+   "pt": "Os Lenços Umedecidos Demaquilantes Wepink Cleansing Wipes são especialmente feitos para a rotina de cuidados da sua pele, pois eliminam as impurezas, limpam profundamente, hidratam, removem maquiagem à prova d'água e ajudam no controle da oleosidade. Tudo isso, em um toque macio e ideal para todos os tipos de pele."
   },
   "source": "https://www.wepink.com.br/lenco-demaquilante-exclusive----wepink-lenc-car-001/p",
   "notes": {}
@@ -5985,43 +6605,52 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Express your free spirit in a radiant essence",
-   "ar": "روحك الحرّة في عبير متألّق"
+   "ar": "روحك الحرّة في عبير متألّق",
+   "pt": "Transmita seu espírito livre em uma brilhante essência"
   },
   "desc": {
    "en": "Virginia Fonseca's VF Aqua Deodorant Cologne has a solar fragrance that represents a free, bold and radiant spirit, the essence of someone unbound, living intensely and ready to fulfill their own desires. Its notes feature an elegant floral bouquet of jasmine, lily of the valley and peony, over a striking base of patchouli, musk, sweet amber and the sophisticated signature of sandalwood.",
-   "ar": "تتميّز كولونيا في إف أكوا من فيرجينيا فونسيكا بعطر مشمس يجسّد روحاً حرّة وجريئة ومتألّقة، جوهر شخصية متحرّرة من القيود تعيش بشغف وتسعى لتحقيق رغباتها. تضمّ نفحاتها باقة زهرية أنيقة من الياسمين وزنبق الوادي والفاوانيا، فوق قاعدة لافتة من الباتشولي والمسك وحلاوة العنبر، مع البصمة الراقية لخشب الصندل."
+   "ar": "تتميّز كولونيا في إف أكوا من فيرجينيا فونسيكا بعطر مشمس يجسّد روحاً حرّة وجريئة ومتألّقة، جوهر شخصية متحرّرة من القيود تعيش بشغف وتسعى لتحقيق رغباتها. تضمّ نفحاتها باقة زهرية أنيقة من الياسمين وزنبق الوادي والفاوانيا، فوق قاعدة لافتة من الباتشولي والمسك وحلاوة العنبر، مع البصمة الراقية لخشب الصندل.",
+   "pt": "O Virginia Fonseca Aqua Desodorante Colônia tem uma fragrância solar, que representa um espírito livre, ousado e brilhante. A essência de uma pessoa sem amarras, vivendo com intensidade e pronta para realizar seus próprios desejos. Suas notas olfativas contam com a elegância do bouquet floral, trazendo o melhor do jasmim, muguet e da peônia. Em um fundo marcante, com a presença do patchouli, do musk, da doçura do âmbar e a assinatura sofisticada do sândalo."
   },
   "notes": {
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -6052,31 +6681,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The king who masters the art of captivating everyone",
-   "ar": "الملك الذي يُتقن فنّ أسر الجميع"
+   "ar": "الملك الذي يُتقن فنّ أسر الجميع",
+   "pt": "O rei que domina a essência de encantar a todos"
   },
   "desc": {
    "en": "King Blue Deodorant Cologne captures the essence of the victorious man who overcomes his challenges. This masculine fragrance inspires triumphant power and leaves its mark, expressed in pure energy and modernity. Its woody path conveys confidence, elegance and charm, balancing the senses with bergamot and herbs over a sweet base of patchouli and amber.",
-   "ar": "تجسّد كولونيا كينج بلو جوهر الرجل المنتصر الذي يتغلّب على تحدّياته. عطر رجالي يلهم القوة الظافرة ويترك بصمته، متجلّياً في طاقة خالصة وحداثة. يبثّ مساره العطري الخشبي الثقة والأناقة والجاذبية، موازناً الحواس بالبرغموت والأعشاب فوق قاعدة حلوة من الباتشولي والعنبر."
+   "ar": "تجسّد كولونيا كينج بلو جوهر الرجل المنتصر الذي يتغلّب على تحدّياته. عطر رجالي يلهم القوة الظافرة ويترك بصمته، متجلّياً في طاقة خالصة وحداثة. يبثّ مساره العطري الخشبي الثقة والأناقة والجاذبية، موازناً الحواس بالبرغموت والأعشاب فوق قاعدة حلوة من الباتشولي والعنبر.",
+   "pt": "O King Blue Desodorante Colônia tem a essência do homem vitorioso que supera seus desafios. A fragrância masculina inspira poder triunfante e deixa sua marca, manifestando-se em pura energia e modernidade. Suas notas olfativas têm um caminho amadeirado, que transmitem confiança, elegância e charme. Equilibrando os sentidos com a bergamota e ervas, em um fundo adocicado com patchouli e âmbar."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Herbs",
-     "أعشاب"
+     "أعشاب",
+     "Ervas"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -6109,21 +6744,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A special touch of care and well-being for every day",
-   "ar": "لمسة مميّزة من العناية والراحة لكل يوم"
+   "ar": "لمسة مميّزة من العناية والراحة لكل يوم",
+   "pt": "Um toque especial no cuidado e bem-estar para o seu dia a dia"
   },
   "desc": {
    "en": "One Touch Body Cream complements the self-care routine with a smooth, moisturizing texture that helps keep skin healthy, beautiful and scented. It contains nano vitamin E, which boosts regeneration and hydration and helps fight premature aging. Its notes convey strength, femininity and determination, blending selected fruits, a mix of flowers, patchouli and vanilla over a sweet base.",
-   "ar": "يكمّل كريم الجسم ون تاتش روتين العناية الذاتية بقوامه الناعم المرطّب الذي يساعد على الحفاظ على بشرة صحية وجميلة ومعطّرة. يحتوي على نانو فيتامين إي الذي يعزّز قدرة البشرة على التجدّد والترطيب ويساعد على مكافحة الشيخوخة المبكرة. وتبثّ نفحاته القوة والأنوثة والعزيمة، بمزيج من فواكه مختارة وتشكيلة من الزهور والباتشولي والفانيليا فوق قاعدة حلوة."
+   "ar": "يكمّل كريم الجسم ون تاتش روتين العناية الذاتية بقوامه الناعم المرطّب الذي يساعد على الحفاظ على بشرة صحية وجميلة ومعطّرة. يحتوي على نانو فيتامين إي الذي يعزّز قدرة البشرة على التجدّد والترطيب ويساعد على مكافحة الشيخوخة المبكرة. وتبثّ نفحاته القوة والأنوثة والعزيمة، بمزيج من فواكه مختارة وتشكيلة من الزهور والباتشولي والفانيليا فوق قاعدة حلوة.",
+   "pt": "O Body Cream One Touch Desodorante Hidratante veio para complementar a sua linha de autocuidado. Com uma textura suave e hidratante, o creme vai auxiliar para uma pele saudável, bonita e perfumada. Pois contém nano vitamina E, que potencializa a capacidade de regeneração, hidratação e ajuda a combater o envelhecimento precoce. Suas notas olfativas transmitem força, feminilidade e determinação, em uma essência de frutas selecionadas, um mix de flores, patchouli e baunilha, em um fundo adocicado."
   },
   "notes": {
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -6157,21 +6796,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Exude power and well-being",
-   "ar": "عبير يفيض بالقوة والراحة"
+   "ar": "عبير يفيض بالقوة والراحة",
+   "pt": "Exale poder e bem-estar"
   },
   "desc": {
    "en": "One Touch Body Splash conveys femininity and strength in a striking yet delicate essence. Its notes feature a mix of flowers, selected fruits, patchouli and vanilla over a sweet base. Ideal for every moment.",
-   "ar": "يجسّد بخاخ الجسم ون تاتش الأنوثة والقوة بعبير لافت ورقيق في آن واحد. تضمّ نفحاته مزيجاً من الزهور وفواكه مختارة والباتشولي والفانيليا فوق قاعدة حلوة. مثالي لكل اللحظات."
+   "ar": "يجسّد بخاخ الجسم ون تاتش الأنوثة والقوة بعبير لافت ورقيق في آن واحد. تضمّ نفحاته مزيجاً من الزهور وفواكه مختارة والباتشولي والفانيليا فوق قاعدة حلوة. مثالي لكل اللحظات.",
+   "pt": "Transmita feminilidade e força, com uma essência marcante e delicada. O Body Splash One Touch Desodorante Colônia tem notas olfativas de um mix de flores, frutas selecionadas, patchouli, baunilha, em um fundo adocicado. Ideal para todos os seus momentos."
   },
   "notes": {
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -6205,11 +6848,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect balance of care and well-being for every day",
-   "ar": "توازن مثالي بين العناية والراحة لكل يوم"
+   "ar": "توازن مثالي بين العناية والراحة لكل يوم",
+   "pt": "Equilíbrio perfeito entre cuidado e bem-estar para o seu dia a dia"
   },
   "desc": {
    "en": "The Virginia Fonseca VF Body Cream is a highly effective, soothing cream for skin in need of self-care, offering the best in hydration and well-being. It contains a blend of extracts, almond oil and encapsulated nano vitamin E, with a unique, enveloping texture.",
-   "ar": "كريم الجسم في إف من فيرجينيا فونسيكا كريم فعّال ومهدّئ للغاية للبشرة التي تحتاج إلى عناية ذاتية، يقدّم الأفضل في الترطيب والراحة. يحتوي على مزيج من المستخلصات وزيت اللوز ونانو فيتامين إي المغلّف، بقوام فريد يغلّف البشرة."
+   "ar": "كريم الجسم في إف من فيرجينيا فونسيكا كريم فعّال ومهدّئ للغاية للبشرة التي تحتاج إلى عناية ذاتية، يقدّم الأفضل في الترطيب والراحة. يحتوي على مزيج من المستخلصات وزيت اللوز ونانو فيتامين إي المغلّف، بقوام فريد يغلّف البشرة.",
+   "pt": "O Body Cream Virginia Fonseca é o creme mais eficiente e suavizante para peles que precisam de autocuidado. Ele tem o melhor para hidratação e bem-estar. Contém um blend de extratos, óleo de amêndoas e nano vitamina E encapsulada. Possui uma textura única e envolvente."
   },
   "source": "https://www.wepink.com.br/the-body-cream-vf/p",
   "notes": {}
@@ -6239,53 +6884,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The mystery that awakens irresistible desire",
-   "ar": "غموض يوقظ رغبة لا تُقاوم"
+   "ar": "غموض يوقظ رغبة لا تُقاوم",
+   "pt": "O mistério que desperta um desejo irresistível"
   },
   "desc": {
    "en": "Fatal Rouge Deodorant Cologne celebrates the fearless, fatal essence of the modern woman. Its elegant fragrance opens with cassis, pink pepper and green mandarin, followed by a captivating floral heart of Damask rose, red berries and jasmine petals. It finishes with the woody fatal blow of sandalwood and musk, balanced by just the right intensity of vanilla cream.",
-   "ar": "تحتفي كولونيا فيتال روج بالجوهر الجريء والآسر الذي تحمله المرأة العصرية. يبدأ عطرها الأنيق بنفحات الكشمش الأسود والفلفل الوردي والماندرين الأخضر، يليها قلب زهري آسر من الورد الدمشقي والتوت الأحمر وبتلات الياسمين في تباين مثالي. ويختتم بلمسة خشبية حاسمة من خشب الصندل والمسك، مع الكثافة المثالية لكريمة الفانيليا."
+   "ar": "تحتفي كولونيا فيتال روج بالجوهر الجريء والآسر الذي تحمله المرأة العصرية. يبدأ عطرها الأنيق بنفحات الكشمش الأسود والفلفل الوردي والماندرين الأخضر، يليها قلب زهري آسر من الورد الدمشقي والتوت الأحمر وبتلات الياسمين في تباين مثالي. ويختتم بلمسة خشبية حاسمة من خشب الصندل والمسك، مع الكثافة المثالية لكريمة الفانيليا.",
+   "pt": "O Desodorante Colônia Wepink Fatal Rouge aprecia a essência destemida e fatal que a mulher moderna carrega consigo. Sua fragrância elegante se destaca por seu topo com notas de cassis, pimenta rosa e mandarina verde, além de seu corpo floral cativante com notas de rosa damascena, frutas vermelhas e pétalas de jasmim, trazendo o contraste perfeito. Finaliza no golpe fatal amadeirado do sândalo e musk, com a intensidade certa do creme de baunilha."
   },
   "notes": {
    "top": [
     [
      "Cassis",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Cassis"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ],
     [
      "Green mandarin",
-     "ماندرين أخضر"
+     "ماندرين أخضر",
+     "Mandarina verde"
     ]
    ],
    "heart": [
     [
      "Damask rose",
-     "ورد دمشقي"
+     "ورد دمشقي",
+     "Rosa damascena"
     ],
     [
      "Red berries",
-     "توت أحمر"
+     "توت أحمر",
+     "Frutas vermelhas"
     ],
     [
      "Jasmine petals",
-     "بتلات الياسمين"
+     "بتلات الياسمين",
+     "Pétalas de jasmim"
     ]
    ],
    "base": [
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Vanilla cream",
-     "كريمة الفانيليا"
+     "كريمة الفانيليا",
+     "Creme de baunilha"
     ]
    ]
   },
@@ -6317,11 +6973,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Hydration full of confidence, seduction and passion",
-   "ar": "ترطيب يفيض بالثقة والجاذبية والشغف"
+   "ar": "ترطيب يفيض بالثقة والجاذبية والشغف",
+   "pt": "Uma hidratação cheia de confiança, sedução e paixão"
   },
   "desc": {
    "en": "One Touch Warm Body Cream, wrapped in seduction and authenticity, offers a soft touch that moisturizes, nourishes and firms. Its composition helps support collagen production and cell regeneration, leaving skin looking healthy and glowing. Its enchanting sensory journey evolves into a mix of flowers and finishes on sweet, woody notes, exuding personality and sophistication.",
-   "ar": "يمنح كريم الجسم ون تاتش وورم، المفعم بالجاذبية والأصالة، لمسة ناعمة ترطّب البشرة وتغذّيها وتمنحها التماسك. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. وتتطوّر رحلته العطرية الساحرة إلى مزيج من الزهور، لتختتم بنفحات حلوة وخشبية تفيض بالشخصية والرقيّ."
+   "ar": "يمنح كريم الجسم ون تاتش وورم، المفعم بالجاذبية والأصالة، لمسة ناعمة ترطّب البشرة وتغذّيها وتمنحها التماسك. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. وتتطوّر رحلته العطرية الساحرة إلى مزيج من الزهور، لتختتم بنفحات حلوة وخشبية تفيض بالشخصية والرقيّ.",
+   "pt": "A Loção Desodorante Body Cream Wepink One Touch Warm, envolvido em sedução e autenticidade, proporciona um toque macio, proporcionando hidratação, nutrição e firmeza. Sua composição auxilia na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhoso. Sua jornada sensorial encantadora inicia em um caminho olfativo deslumbrante, evoluindo para um mix de flores, e finalizando em notas doces e amadeiradas, exalando personalidade e sofisticação."
   },
   "source": "https://www.wepink.com.br/body-cream-one-touch-warm-200ml---wepink-094/p",
   "notes": {}
@@ -6353,23 +7011,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "An exclusive, sophisticated toast to the senses",
-   "ar": "تحية حصرية وراقية للحواس"
+   "ar": "تحية حصرية وراقية للحواس",
+   "pt": "Uma homenagem exclusiva e sofisticada aos sentidos"
   },
   "desc": {
    "en": "Its fougère fragrance represents the exclusivity of sophisticated men who never set aside classic style, with notes of nutmeg and cinnamon finishing on a fresh, woody base.",
-   "ar": "يجسّد عطرها من فئة الفوجير تميّز الرجال الراقين الذين لا يتخلّون أبداً عن الأسلوب الكلاسيكي، بنفحات من جوزة الطيب والقرفة تختتم بقاعدة منعشة وخشبية."
+   "ar": "يجسّد عطرها من فئة الفوجير تميّز الرجال الراقين الذين لا يتخلّون أبداً عن الأسلوب الكلاسيكي، بنفحات من جوزة الطيب والقرفة تختتم بقاعدة منعشة وخشبية.",
+   "pt": "O Desodorante Colônia Wepink Bourbon celebra a essência masculina destemida e voraz. Sua fragrância fougère representa a exclusividade de homens sofisticados, nunca deixando de lado o estilo clássico em notas de noz-moscada e canela, finalizando em um fundo fresco e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Nutmeg",
-     "جوزة الطيب"
+     "جوزة الطيب",
+     "Noz-moscada"
     ]
    ],
    "heart": [
     [
      "Cinnamon",
-     "قرفة"
+     "قرفة",
+     "Canela"
     ]
    ]
   },
@@ -6404,31 +7066,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Baby, rock your trip!",
-   "ar": "تألّقي في رحلتك يا عزيزتي!"
+   "ar": "تألّقي في رحلتك يا عزيزتي!",
+   "pt": "Baby, arrase na sua viagem!"
   },
   "desc": {
    "en": "My Trip Three Body Splash is a refined journey for the senses, conveying confidence for every moment. Its olfactory experience opens with a refreshing touch of apple and lily of the valley, moving into a delicate, elegant floral bouquet. It concludes on a soft base with sweet, woody notes of patchouli and caramel.",
-   "ar": "يمثّل بخاخ الجسم ماي تريب ثري رحلة راقية للحواس تبثّ الثقة في كل لحظة. تبدأ تجربته العطرية بلمسة منعشة من التفاح وزنبق الوادي، ثم تنتقل إلى باقة زهرية رقيقة وأنيقة، وتختتم بقاعدة ناعمة بنفحات حلوة وخشبية من الباتشولي والكراميل."
+   "ar": "يمثّل بخاخ الجسم ماي تريب ثري رحلة راقية للحواس تبثّ الثقة في كل لحظة. تبدأ تجربته العطرية بلمسة منعشة من التفاح وزنبق الوادي، ثم تنتقل إلى باقة زهرية رقيقة وأنيقة، وتختتم بقاعدة ناعمة بنفحات حلوة وخشبية من الباتشولي والكراميل.",
+   "pt": "O Desodorante Colônia Body Splash MyTrip Three é uma jornada refinada aos sentidos, transmitindo confiança para todos os momentos. Sua experiência olfativa inicia com um toque refrescante entrelaçado em notas de maçã e lírio-do-vale, seguindo para um bouquet floral delicado e elegante. Conclui em um fundo suave, com notas doces e amadeiradas de patchouli e caramelo."
   },
   "notes": {
    "top": [
     [
      "Apple",
-     "تفاح"
+     "تفاح",
+     "Maçã"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -6460,25 +7128,30 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The scent that radiates the finest magnetism",
-   "ar": "عبير يتألّق بجاذبية آسرة"
+   "ar": "عبير يتألّق بجاذبية آسرة",
+   "pt": "O aroma que reluz o melhor magnetismo"
   },
   "desc": {
    "en": "Obsessed Gold Body Cream has a soft touch that moisturizes, nourishes and firms, as its composition helps support collagen production and cell regeneration, leaving skin looking healthy and glowing. Its floral oriental scent opens with a touch of fruit, moving into a floral heart of grand gardenia and delicate neroli and jasmine, finishing pleasantly on a sweet, woody note.",
-   "ar": "يتميّز كريم الجسم أوبسيسد جولد بلمسة ناعمة ترطّب البشرة وتغذّيها وتمنحها التماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. يبدأ عبيره الزهري الشرقي بلمسة من الفواكه، ثم ينتقل إلى قلب زهري تزيّنه فخامة الغاردينيا ورقّة النيرولي والياسمين، ويختتم بعبير حلو وخشبي آسر."
+   "ar": "يتميّز كريم الجسم أوبسيسد جولد بلمسة ناعمة ترطّب البشرة وتغذّيها وتمنحها التماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. يبدأ عبيره الزهري الشرقي بلمسة من الفواكه، ثم ينتقل إلى قلب زهري تزيّنه فخامة الغاردينيا ورقّة النيرولي والياسمين، ويختتم بعبير حلو وخشبي آسر.",
+   "pt": "A Loção corporal Body Cream Wepink Obsessed Gold Desodorante Hidratante tem um toque macio, que proporciona hidratação, nutrição e firmeza, pois sua composição auxilia na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhoso. Seu aroma evoca notas exuberantes em um caminho olfativo Floral Oriental, começa com toque de frutas, em um coração floral composto pela grandeza da gardênia e a delicadeza do néroli e jasmim, finalizando agradavelmente com um aroma doce e amadeirado."
   },
   "notes": {
    "heart": [
     [
      "Gardenia",
-     "غاردينيا"
+     "غاردينيا",
+     "Gardênia"
     ],
     [
      "Neroli",
-     "نيرولي"
+     "نيرولي",
+     "Néroli"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -6511,17 +7184,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A final note of well-being and shine",
-   "ar": "نفحة ختامية من الراحة والتألّق"
+   "ar": "نفحة ختامية من الراحة والتألّق",
+   "pt": "Uma nota final de bem-estar e brilho"
   },
   "desc": {
    "en": "Infinity Plim Body Splash is a unique, enveloping sensory experience that connects a surreal world full of wonders to a multifaceted personality, exuding well-being and unforgettable shine with unmatched elegance. Its fruity chypre journey opens with a fruity mix and a touch of ginger, moving into a lush floral heart and finishing on sweet, woody notes.",
-   "ar": "يقدّم بخاخ الجسم إنفينيتي بليم تجربة حسّية فريدة وآسرة تربط عالماً خيالياً مليئاً بالعجائب بشخصية متعدّدة الأوجه، فيفيض بالراحة وبريق لا يُنسى وهالة من الأناقة لا مثيل لها. تبدأ رحلته الشيبرية الفاكهية بمزيج من الفواكه ولمسة من الزنجبيل، ثم تنتقل إلى قلب زهري غني، وتختتم بنفحات حلوة وخشبية."
+   "ar": "يقدّم بخاخ الجسم إنفينيتي بليم تجربة حسّية فريدة وآسرة تربط عالماً خيالياً مليئاً بالعجائب بشخصية متعدّدة الأوجه، فيفيض بالراحة وبريق لا يُنسى وهالة من الأناقة لا مثيل لها. تبدأ رحلته الشيبرية الفاكهية بمزيج من الفواكه ولمسة من الزنجبيل، ثم تنتقل إلى قلب زهري غني، وتختتم بنفحات حلوة وخشبية.",
+   "pt": "O Body Splash Infinity Plim Desodorante Colônia é uma experiência sensorial única e envolvente, que conecta um mundo surreal e cheio de maravilhas a uma pessoa multifacetada. Esta fragrância exala bem-estar e um brilho inesquecível, com uma aura de elegância inigualável. Sua jornada sensorial segue o caminho olfativo Chipre Frutado, revelando um blend complexo de notas. Inicia com um mix frutado e um toque de gengibre, seguindo para um coração floral exuberante e finaliza com notas doces e amadeiradas."
   },
   "notes": {
    "top": [
     [
      "Ginger",
-     "زنجبيل"
+     "زنجبيل",
+     "Gengibre"
     ]
    ]
   },
@@ -6554,25 +7230,30 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A mysterious, enchanting scent for well-being",
-   "ar": "عبير غامض وساحر للراحة"
+   "ar": "عبير غامض وساحر للراحة",
+   "pt": "Um aroma misterioso e encantador para o bem-estar"
   },
   "desc": {
    "en": "With a mystical, effervescent and sensual charm, VF Choices Body Splash is an invitation to the freedom of being oneself, adding a touch of mystery, adventure and well-being. Its fresh chypre journey opens with fruity notes, moving into a blossoming heart where violet, jasmine and rose take over, and ends on a mysterious, seductive trail of woody and sweet touches.",
-   "ar": "بسحره الغامض والمتّقد والحسّي، يُعدّ بخاخ الجسم في إف تشويسز دعوة مثالية إلى حرية التعبير عن الذات، مضيفاً لمسة من الغموض والمغامرة والراحة. تبدأ رحلته الشيبرية المنعشة بنفحات فاكهية، ثم تنتقل إلى قلب تتفتّح فيه الزهور ويسوده عبير البنفسج والياسمين والورد، وتختتم بأثر غامض مفعم بالجاذبية بلمسات خشبية وحلوة."
+   "ar": "بسحره الغامض والمتّقد والحسّي، يُعدّ بخاخ الجسم في إف تشويسز دعوة مثالية إلى حرية التعبير عن الذات، مضيفاً لمسة من الغموض والمغامرة والراحة. تبدأ رحلته الشيبرية المنعشة بنفحات فاكهية، ثم تنتقل إلى قلب تتفتّح فيه الزهور ويسوده عبير البنفسج والياسمين والورد، وتختتم بأثر غامض مفعم بالجاذبية بلمسات خشبية وحلوة.",
+   "pt": "A essência que possui um encanto místico, efervescente e sensual, o Body Splash VF Choices Desodorante Colônia é um convite perfeito para a liberdade de ser quem é, dando um toque de mistério, aventura e bem-estar. Feito para inspirar a mulher mística que há dentro de você! A jornada sensorial dessa fragrância desenha um caminho Chipre Fresh, inicia com notas frutadas, seguindo para um coração que desperta o desabrochar das flores, onde a aura da violeta, jasmim e rosa dominam o ambiente. Finalizando em uma trilha misteriosa cheia de sedução, com toques amadeirados e doces."
   },
   "notes": {
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ]
   },
@@ -6603,29 +7284,35 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Beauty in the subtle blossoming of a scent",
-   "ar": "الجمال في تفتّح العبير الرقيق"
+   "ar": "الجمال في تفتّح العبير الرقيق",
+   "pt": "A beleza no sutil florescer do aroma"
   },
   "desc": {
    "en": "VF Bloom Deodorant Cologne is an ode to feminine delicacy with touches of sensuality and elegance, celebrating love of life like spring. It opens with a joyful citrus burst of bergamot and grapefruit blended with juicy peach and delicate coconut. A romantic, elegant floral heart leads to a sweet, woody base with a sensual touch.",
-   "ar": "تمثّل كولونيا في إف بلوم قصيدة للرقّة الأنثوية بلمسات من الحسّية والأناقة، تحتفي بحب الحياة كربيع جميل. تبدأ بمزيج مبهج من الفواكه وانفجار حمضي من البرغموت والجريب فروت، ممزوجاً بعصارة الخوخ ورقّة جوز الهند. وفي القلب تناغم زهري يحتضن جانباً رومانسياً وأنيقاً، يقود إلى قاعدة حلوة وخشبية بلمسة حسّية."
+   "ar": "تمثّل كولونيا في إف بلوم قصيدة للرقّة الأنثوية بلمسات من الحسّية والأناقة، تحتفي بحب الحياة كربيع جميل. تبدأ بمزيج مبهج من الفواكه وانفجار حمضي من البرغموت والجريب فروت، ممزوجاً بعصارة الخوخ ورقّة جوز الهند. وفي القلب تناغم زهري يحتضن جانباً رومانسياً وأنيقاً، يقود إلى قاعدة حلوة وخشبية بلمسة حسّية.",
+   "pt": "O VF Bloom é uma ode à delicadeza feminina com toques de sensualidade e elegância, que exalta o amor à vida como uma bela primavera. Seu aroma personifica uma aura jovem e encantadora, com um sorriso vibrante e sofisticado. Sua experiência olfativa é única e suave, começa com a captura da alegria em um mix de frutas, em uma explosão cítrica da bergamota e toranja, misturada com a suculência do pêssego e a delicadeza do coco. No coração, uma harmonia floral abraça um lado romântico e elegante. Seguindo para um fundo doce e amadeirado trazendo conforto com um toque sensual."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ],
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ],
     [
      "Coconut",
-     "جوز الهند"
+     "جوز الهند",
+     "Coco"
     ]
    ]
   },
@@ -6659,31 +7346,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Celebrate the extraordinary in life with a unique scent",
-   "ar": "احتفاء بروعة الحياة في عبير فريد"
+   "ar": "احتفاء بروعة الحياة في عبير فريد",
+   "pt": "Celebre o extraordinário da vida em um aroma único"
   },
   "desc": {
    "en": "A sweet tribute to celebration, Celebrate Life Deodorant Cologne is made for those who shine by always celebrating the good side of life. It opens with soft, fresh notes and a vibrant touch of pink pepper, while a heart of lily of the valley, rose and jasmine adds romance and elegance. Its signature is an enveloping, seductive woody accord with gentle sweetness.",
-   "ar": "تحية عذبة للاحتفال، صُمّمت كولونيا سيليبريت لايف لمن يتألّقون باحتفائهم الدائم بالجانب المشرق من الحياة. تبدأ بنفحات ناعمة ومنعشة تصحبها لمسة نابضة من الفلفل الوردي، فيما يضفي القلب المكوّن من زنبق الوادي والورد والياسمين بُعداً رومانسياً وأنيقاً. وتتجلّى بصمتها في نفحات خشبية آسرة بحلاوة ناعمة."
+   "ar": "تحية عذبة للاحتفال، صُمّمت كولونيا سيليبريت لايف لمن يتألّقون باحتفائهم الدائم بالجانب المشرق من الحياة. تبدأ بنفحات ناعمة ومنعشة تصحبها لمسة نابضة من الفلفل الوردي، فيما يضفي القلب المكوّن من زنبق الوادي والورد والياسمين بُعداً رومانسياً وأنيقاً. وتتجلّى بصمتها في نفحات خشبية آسرة بحلاوة ناعمة.",
+   "pt": "Um doce tributo à celebração, o Celebrate Life Desodorante Colônia tem a essência de festejar o extraordinário, refletindo uma beleza única e verdadeira por todos os lugares por onde é transmitido. Excepcionalmente feito para pessoas que brilham ao comemorar sempre o lado bom da vida! Uma expressão olfativa que eleva ao divino, inicia com notas suaves e frescas, acompanhadas de um toque vibrante de pimenta rosa. No coração, as notas florais adicionam uma dimensão romântica e elegante de lírio-do-vale, rosa e jasmim. A assinatura é marcada por notas envolventes e sedutoras, em uma dimensão amadeirada com suave doçura."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -6716,23 +7409,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Awaken the best hydration for your skin",
-   "ar": "أفضل ترطيب يوقظ بشرتك"
+   "ar": "أفضل ترطيب يوقظ بشرتك",
+   "pt": "Desperte a melhor hidratação para a sua pele"
   },
   "desc": {
    "en": "Red Body Cream awakens hydration, nourishment and firmness, as its composition helps support collagen production and cell regeneration, all with a soft touch that leaves skin looking healthy and glowing. Its refined floral oriental notes open with citrusy blood orange, move into a meeting of flowers and finish with a woody essence and a sweet touch of praline.",
-   "ar": "يوقظ كريم الجسم ريد الترطيب والتغذية والتماسك في البشرة، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وكل ذلك بلمسة ناعمة تترك البشرة بمظهر صحي ومشرق. تبدأ نفحاته الزهرية الشرقية الراقية بعبير البرتقال الدموي الحمضي، ثم تلتقي بالزهور، وتختتم بجوهر خشبي ولمسة حلوة من البرالين."
+   "ar": "يوقظ كريم الجسم ريد الترطيب والتغذية والتماسك في البشرة، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وكل ذلك بلمسة ناعمة تترك البشرة بمظهر صحي ومشرق. تبدأ نفحاته الزهرية الشرقية الراقية بعبير البرتقال الدموي الحمضي، ثم تلتقي بالزهور، وتختتم بجوهر خشبي ولمسة حلوة من البرالين.",
+   "pt": "O Body Cream Red Desodorante Hidratante é um creme corporal que desperta hidratação, nutrição e firmeza na pele, pois sua composição auxilia na produção de colágeno e na regeneração celular. Tudo isso, proporcionado em um toque macio, que deixará a sua pele com um aspecto saudável e brilhoso. Suas notas refinadas têm um caminho olfativo Floral Oriental, iniciado pelo aroma cítrico da blood orange, seguindo para o encontro das flores, finalizando com uma essência amadeirada e um toque doce de praline."
   },
   "notes": {
    "top": [
     [
      "Blood orange",
-     "برتقال دموي"
+     "برتقال دموي",
+     "Laranja sanguínea"
     ]
    ],
    "base": [
     [
      "Praline",
-     "برالين"
+     "برالين",
+     "Praliné"
     ]
    ]
   },
@@ -6766,17 +7463,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A heady elixir that will envelop you",
-   "ar": "إكسير آسر يغمرك بعبيره"
+   "ar": "إكسير آسر يغمرك بعبيره",
+   "pt": "Um elixir inebriante que vai te envolver"
   },
   "desc": {
    "en": "Pureblixx Deodorant Cologne is a heady, enveloping elixir that enchants wherever it goes, overflowing with lightness, sophistication and self-confidence. Its scent combines citrus fruits led by glamorous Sicilian lemon, contrasted by a floral heart and a sweet, woody base that evokes the warm, fresh breeze of a sunset by the sea.",
-   "ar": "تمثّل كولونيا بيوربليكس إكسيراً آسراً وغامراً يسحر الجميع أينما حلّ، ويفيض بالخفّة والرقيّ والثقة بالنفس بأسلوب نابض بالحيوية. يجمع عبيرها بين الفواكه الحمضية بقيادة الليمون الصقلي الفاتن، يقابلها قلب زهري وقاعدة حلوة وخشبية تستحضر نسيم الغروب الدافئ والمنعش على البحر."
+   "ar": "تمثّل كولونيا بيوربليكس إكسيراً آسراً وغامراً يسحر الجميع أينما حلّ، ويفيض بالخفّة والرقيّ والثقة بالنفس بأسلوب نابض بالحيوية. يجمع عبيرها بين الفواكه الحمضية بقيادة الليمون الصقلي الفاتن، يقابلها قلب زهري وقاعدة حلوة وخشبية تستحضر نسيم الغروب الدافئ والمنعش على البحر.",
+   "pt": "O Pureblixx tem um elixir inebriante e envolvente, sua essência encanta a todos por onde passa, transbordando leveza, sofisticação e autoconfiança de uma forma vibrante. Seu aroma é composto por uma combinação de frutas cítricas, lideradas pelo glamoroso limão siciliano, em contraponto ao coração floral, além do fundo adocicado e amadeirado, que trazem a brisa quente e fresca de um pôr do sol no mar."
   },
   "notes": {
    "top": [
     [
      "Sicilian lemon",
-     "ليمون صقلي"
+     "ليمون صقلي",
+     "Limão siciliano"
     ]
    ]
   },
@@ -6810,11 +7510,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A radiant fragrance that awakens desire and sophistication",
-   "ar": "عطر متألّق يوقظ الرغبة والرقيّ"
+   "ar": "عطر متألّق يوقظ الرغبة والرقيّ",
+   "pt": "Uma fragrância radiante que desperta desejo e sofisticação"
   },
   "desc": {
    "en": "Red Body Splash awakens a new passion with a striking, seductive fragrance that represents someone who stands out and draws attention wherever they go. Following a floral oriental path, its notes blend a mix of flowers over a sweet, woody base for a unique sense of well-being. For the best experience, it can be paired with the complete Red line.",
-   "ar": "يوقظ بخاخ الجسم ريد شغفاً جديداً بعطر لافت وجذّاب يجسّد الشخصية المتميّزة التي تجذب الأنظار أينما حلّت. يتّبع مساراً عطرياً زهرياً شرقياً تمتزج فيه تشكيلة من الزهور فوق قاعدة حلوة وخشبية، لإحساس فريد بالراحة. وللحصول على أفضل تجربة، يُنصح باستخدامه مع مجموعة ريد الكاملة."
+   "ar": "يوقظ بخاخ الجسم ريد شغفاً جديداً بعطر لافت وجذّاب يجسّد الشخصية المتميّزة التي تجذب الأنظار أينما حلّت. يتّبع مساراً عطرياً زهرياً شرقياً تمتزج فيه تشكيلة من الزهور فوق قاعدة حلوة وخشبية، لإحساس فريد بالراحة. وللحصول على أفضل تجربة، يُنصح باستخدامه مع مجموعة ريد الكاملة.",
+   "pt": "O despertar de uma nova paixão com o Body Splash Red Desodorante Colônia, uma fragrância marcante e sedutora, que representa a pessoa que se destaca e atrai olhares por onde passa. Com o caminho olfativo floral oriental, suas notas contêm um mix de flores em um fundo doce e amadeirado, tudo isso, para proporcionar uma sensação de bem-estar única para você. Para uma melhor experiência, utilize a linha completa Red."
   },
   "source": "https://www.wepink.com.br/body-splash-red/p",
   "notes": {}
@@ -6846,11 +7548,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect union of juicy fruits and enveloping hydration",
-   "ar": "اتحاد مثالي بين عصارة الفواكه والترطيب الغامر"
+   "ar": "اتحاد مثالي بين عصارة الفواكه والترطيب الغامر",
+   "pt": "A união perfeita da suculência das frutas com uma hidratação envolvente"
   },
   "desc": {
    "en": "Infinity Tawny Body Cream wraps the skin in sweetness, with a blend of oils and extracts that moisturize and leave skin looking healthy, vigorous and glowing. Its fragrance combines juicy fruits with floral delicacy, creating an enveloping trail that awakens infinite, delicious sensations.",
-   "ar": "يغلّف كريم الجسم إنفينيتي توني البشرة بالعذوبة، بمزيج من الزيوت والمستخلصات التي ترطّبها وتمنحها مظهراً صحياً وحيوياً ومشرقاً. ويجمع عطره بين عصارة الفواكه ورقّة الزهور، ليترك أثراً آسراً يوقظ أحاسيس شهية لا متناهية."
+   "ar": "يغلّف كريم الجسم إنفينيتي توني البشرة بالعذوبة، بمزيج من الزيوت والمستخلصات التي ترطّبها وتمنحها مظهراً صحياً وحيوياً ومشرقاً. ويجمع عطره بين عصارة الفواكه ورقّة الزهور، ليترك أثراً آسراً يوقظ أحاسيس شهية لا متناهية.",
+   "pt": "Envolva-se na doçura da Loção Desodorante Body Cream Wepink Infinity Tawny, com blend de óleos e extratos que proporcionam hidratação, deixando a pele com aspecto saudável e vigoroso. Sua composição deixa a pele com um aspecto saudável e brilhoso, enquanto a fragrância combina a suculência das frutas com a delicadeza floral, criando um rastro envolvente que desperta infinitas e deliciosas sensações."
   },
   "source": "https://www.wepink.com.br/body-cream-infinity-tawny-200ml---wepink-580/p",
   "notes": {}
@@ -6881,11 +7585,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Heaven Blue",
-   "ar": "قوام الكريمة المخفوقة بعبير هيفن بلو"
+   "ar": "قوام الكريمة المخفوقة بعبير هيفن بلو",
+   "pt": "Textura de chantilly com o cheirinho do Heaven Blue"
   },
   "desc": {
    "en": "Shower Dream Heaven Blue Bath Foam takes bath time to another level. Its ultra-creamy whipped texture wraps the skin in a soft, scented foam that gently cleanses impurities while helping maintain deep hydration, a silky touch and a glow effect. The citrus aromatic fragrance evokes peace, freshness and mystery, turning self-care into a divine, spa-like experience.",
-   "ar": "ترتقي رغوة الاستحمام شاور دريم هيفن بلو بلحظات الاستحمام إلى مستوى آخر. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة البشرة برغوة ناعمة ومعطّرة تزيل الشوائب بلطف، وتساعد في الوقت نفسه على الحفاظ على الترطيب العميق والملمس الحريري وتأثير الإشراقة. ويبعث عطرها الحمضي العطري إحساساً بالسكينة والانتعاش والغموض، ليحوّل العناية الذاتية إلى تجربة سماوية أشبه بمنتجع خاص."
+   "ar": "ترتقي رغوة الاستحمام شاور دريم هيفن بلو بلحظات الاستحمام إلى مستوى آخر. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة البشرة برغوة ناعمة ومعطّرة تزيل الشوائب بلطف، وتساعد في الوقت نفسه على الحفاظ على الترطيب العميق والملمس الحريري وتأثير الإشراقة. ويبعث عطرها الحمضي العطري إحساساً بالسكينة والانتعاش والغموض، ليحوّل العناية الذاتية إلى تجربة سماوية أشبه بمنتجع خاص.",
+   "pt": "Deixe o banho alcançar outro estado com a Espuma de Banho Wepink Shower Dream Heaven Blue. Sua textura ultracremosa de chantilly envolve a pele em uma espuma macia e perfumada, promovendo uma limpeza suave que remove impurezas enquanto ajuda a manter a hidratação profunda, o toque sedoso e o efeito glow. A fragrância Cítrica Aromática desperta uma sensação de paz, frescor e mistério, transportando o autocuidado para uma experiência divina, como um spa relaxante só seu."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-heaven-blue---wepink-pat11566/p",
   "notes": {}
@@ -6918,11 +7624,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrance for women who light up everything around them",
-   "ar": "عطر للمرأة التي تضيء كل ما حولها"
+   "ar": "عطر للمرأة التي تضيء كل ما حولها",
+   "pt": "Uma fragrância para mulheres que iluminam tudo ao seu redor"
   },
   "desc": {
    "en": "Not every fragrance reveals its true beauty at the first spray; the most extraordinary ones choose to evolve. Scarlette Radiance is born of this philosophy, a creation where light, texture and depth coexist in perfect balance, revealing new facets on the skin. Made for women who see beauty in the details, it is a luminous floral with an amber signature.",
-   "ar": "لا تكشف كل العطور عن جمالها الحقيقي من الرشّة الأولى، فأكثرها استثنائية يختار أن يتطوّر. ومن هذه الفلسفة وُلد سكارليت راديانس، إبداع يتعايش فيه الضوء والملمس والعمق في توازن مثالي، كاشفاً عن جوانب جديدة عند ملامسته البشرة. صُمّم للمرأة التي ترى الجمال في التفاصيل، وهو عطر زهري مضيء ببصمة عنبرية."
+   "ar": "لا تكشف كل العطور عن جمالها الحقيقي من الرشّة الأولى، فأكثرها استثنائية يختار أن يتطوّر. ومن هذه الفلسفة وُلد سكارليت راديانس، إبداع يتعايش فيه الضوء والملمس والعمق في توازن مثالي، كاشفاً عن جوانب جديدة عند ملامسته البشرة. صُمّم للمرأة التي ترى الجمال في التفاصيل، وهو عطر زهري مضيء ببصمة عنبرية.",
+   "pt": "Nem todas as fragrâncias revelam sua verdadeira beleza na primeira borrifada. As mais extraordinárias escolhem evoluir. Scarlette Radiance nasce dessa filosofia. Uma criação onde luz, textura e profundidade convivem em perfeito equilíbrio, revelando novas facetas conforme encontra a pele. Criado para mulheres que reconhecem a beleza nos detalhes, Scarlette Radiance traduz a essência da alta perfumaria contemporânea em uma composição luminosa, elegante e atemporal. Uma criação floral luminosa de assinatura ambarada, onde cada evolução revela uma nova expressão de sofisticação."
   },
   "source": "https://www.wepink.com.br/desod-col-scarlette-radiance---wepink-535/p",
   "notes": {}
@@ -6952,23 +7660,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A self-care ritual that goes beyond the bath",
-   "ar": "طقس عناية ذاتية يتجاوز حدود الاستحمام"
+   "ar": "طقس عناية ذاتية يتجاوز حدود الاستحمام",
+   "pt": "Um ritual de autocuidado que transcende o banho"
   },
   "desc": {
    "en": "Feive Body Scrub elevates care to a new level of luxury and sophistication. Its formula contains actives that renew the skin and provide lasting hydration, extending the feeling of vitality well beyond the bath.",
-   "ar": "يرتقي مقشّر الجسم فيف بودي سكراب بالعناية إلى مستوى جديد من الفخامة والرقيّ. تحتوي تركيبته على مكوّنات فعّالة تجدّد البشرة وتمنحها ترطيباً يدوم، لتمتدّ الحيوية إلى ما بعد الاستحمام بكثير."
+   "ar": "يرتقي مقشّر الجسم فيف بودي سكراب بالعناية إلى مستوى جديد من الفخامة والرقيّ. تحتوي تركيبته على مكوّنات فعّالة تجدّد البشرة وتمنحها ترطيباً يدوم، لتمتدّ الحيوية إلى ما بعد الاستحمام بكثير.",
+   "pt": "O Esfoliante Corporal Body Scrub Wepink Feive eleva o cuidado a um novo patamar de luxo e sofisticação. Sua fórmula contém ativos que renovam a pele e garantem hidratação duradoura, prolongando a sensação de vitalidade muito além do banho. A fragrância refinada do Musk Oriental ganha vida com notas de Caramelo e Âmbar, transformando seu ritual em uma experiência que transcende os limites do esplendor."
   },
   "notes": {
    "heart": [
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -6999,11 +7711,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Scarlette Antiperspirant Roll-on delivers up to 72 hours of protection, freshness and hydration in an intense, striking experience. Its formula helps even out tone and improve the appearance of the underarms, while helping boost ceramide synthesis. Its floral gourmand fragrance adds an enveloping, powerful touch for those who live with attitude and drive.",
-   "ar": "يوفّر مزيل العرق ومضاد التعرّق ماي بروتكشن سكارليت رول أون حماية تصل إلى 72 ساعة مع الانتعاش والترطيب في تجربة مكثّفة ولافتة. تساعد تركيبته على توحيد لون منطقة الإبطين وتحسين مظهرها، إلى جانب المساعدة في تعزيز إنتاج السيراميد. ويضفي عطره الزهري الغورماند لمسة آسرة وقوية لمن يعيشون بثقة وإصرار على تحقيق أهدافهم."
+   "ar": "يوفّر مزيل العرق ومضاد التعرّق ماي بروتكشن سكارليت رول أون حماية تصل إلى 72 ساعة مع الانتعاش والترطيب في تجربة مكثّفة ولافتة. تساعد تركيبته على توحيد لون منطقة الإبطين وتحسين مظهرها، إلى جانب المساعدة في تعزيز إنتاج السيراميد. ويضفي عطره الزهري الغورماند لمسة آسرة وقوية لمن يعيشون بثقة وإصرار على تحقيق أهدافهم.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Scarlette entrega proteção por até 72 horas, frescor e hidratação em uma experiência intensa e marcante. Sua fórmula ajuda a uniformizar o tom e melhorar a aparência das axilas, além de auxiliar no aumento da síntese de ceramidas. Com fragrância Floral Gourmand, traz um toque envolvente e poderoso para quem vive com atitude e vontade de fazer acontecer."
   },
   "source": "https://www.wepink.com.br/desodorante-antitranspirante-roll-on-scarlette-50ml---wepink/p",
   "notes": {}
@@ -7027,11 +7741,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Fatal Black For Her line, together in one set",
-   "ar": "مجموعة فيتال بلاك فور هير في طقم واحد"
+   "ar": "مجموعة فيتال بلاك فور هير في طقم واحد",
+   "pt": "A linha Fatal Black For Her reunida em um só kit"
   },
   "desc": {
    "en": "The Fatal Black For Her Collection Set brings together products from the Fatal Black For Her line in a single kit. An easy way to enjoy the line's products together.",
-   "ar": "يجمع طقم مجموعة فيتال بلاك فور هير منتجات من مجموعة فيتال بلاك فور هير في طقم واحد. طريقة سهلة للاستمتاع بمنتجات المجموعة معاً."
+   "ar": "يجمع طقم مجموعة فيتال بلاك فور هير منتجات من مجموعة فيتال بلاك فور هير في طقم واحد. طريقة سهلة للاستمتاع بمنتجات المجموعة معاً.",
+   "pt": "O Kit Linha Fatal Black For Her reúne produtos da linha Fatal Black For Her em um só kit. Uma maneira fácil de aproveitar os produtos da linha juntos."
   },
   "source": "https://www.wepink.com.br/kit-linha-fatal-black-for-her---wepink-105474/p",
   "notes": {}
@@ -7059,17 +7775,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The care your skin deserves, every day",
-   "ar": "العناية التي تستحقها بشرتك كل يوم"
+   "ar": "العناية التي تستحقها بشرتك كل يوم",
+   "pt": "O cuidado que sua pele merece, todos os dias"
   },
   "desc": {
    "en": "Clean Bar Auretx Bar Soap turns bathing into a ritual of sophistication. Its creamy lather gently cleanses, leaving skin soft and scented with intense red berries that evolve into a floral heart and reveal a sweet, woody base. A striking experience that accompanies the daily routine with the energy of someone born to lead.",
-   "ar": "يحوّل صابون كلين بار أوريتكس الاستحمام إلى طقس من الرقيّ. تنظّف رغوته الكريمية البشرة بلطف، وتتركها ناعمة ومعطّرة بكثافة التوت الأحمر الذي يتطوّر إلى قلب زهري ويكشف عن قاعدة حلوة وخشبية. تجربة لافتة ترافق الروتين اليومي بطاقة من وُلد ليقود."
+   "ar": "يحوّل صابون كلين بار أوريتكس الاستحمام إلى طقس من الرقيّ. تنظّف رغوته الكريمية البشرة بلطف، وتتركها ناعمة ومعطّرة بكثافة التوت الأحمر الذي يتطوّر إلى قلب زهري ويكشف عن قاعدة حلوة وخشبية. تجربة لافتة ترافق الروتين اليومي بطاقة من وُلد ليقود.",
+   "pt": "Sinta a limpeza envolvente do Sabonete em Barra Clean Bar Wepink Auretx, que transforma o banho em um ritual de sofisticação. Sua espuma cremosa limpa suavemente, deixando a pele macia e perfumada pela intensidade das frutas vermelhas, que evoluem em um coração floral e revelam um fundo doce e amadeirado. Uma experiência marcante que acompanha sua rotina com a energia de quem nasceu para liderar."
   },
   "notes": {
    "top": [
     [
      "Red berries",
-     "توت أحمر"
+     "توت أحمر",
+     "Frutas vermelhas"
     ]
    ]
   },
@@ -7101,11 +7820,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the cozy embrace of Vanilla Hope",
-   "ar": "تغذية عميقة وتماسك في احتضان فانيلا هوب الدافئ"
+   "ar": "تغذية عميقة وتماسك في احتضان فانيلا هوب الدافئ",
+   "pt": "Nutrição profunda e firmeza com o abraço acolhedor de Vanilla Hope"
   },
   "desc": {
    "en": "Vanilla Hope Body Cream wraps the skin in refreshing charm, with selected oils and extracts that deeply moisturize and leave skin more radiant and luminous. Its formula helps support collagen production and cell regeneration, leaving skin soft and revitalized, while the fragrance celebrates the strength of nature with a light, energizing feel.",
-   "ar": "يغلّف كريم الجسم فانيلا هوب البشرة بسحر منعش، بفضل زيوت ومستخلصات مختارة ترطّبها بعمق وتمنحها مزيداً من النضارة والإشراق. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتترك البشرة ناعمة ومفعمة بالحيوية، فيما يحتفي عطره بقوة الطبيعة ويبعث إحساساً خفيفاً ومنعشاً بالطاقة."
+   "ar": "يغلّف كريم الجسم فانيلا هوب البشرة بسحر منعش، بفضل زيوت ومستخلصات مختارة ترطّبها بعمق وتمنحها مزيداً من النضارة والإشراق. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتترك البشرة ناعمة ومفعمة بالحيوية، فيما يحتفي عطره بقوة الطبيعة ويبعث إحساساً خفيفاً ومنعشاً بالطاقة.",
+   "pt": "Envolva-se no encanto refrescante da Loção Desodorante Body Cream Wepink Vanilla Hope, com óleos e extratos selecionados que hidratam profundamente e deixam a pele com mais viço e luminosidade. Sua fórmula auxilia na produção de colágeno e na regeneração celular, deixando-a macia e revitalizada, enquanto a fragrância celebra a força da natureza e emana uma sensação leve e energizante."
   },
   "source": "https://www.wepink.com.br/body-cream-locao-hid-desod-hope-200-ml---wepink-487/p",
   "notes": {}
@@ -7136,29 +7857,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the cozy embrace of Vanilla Dream",
-   "ar": "تغذية عميقة وتماسك في احتضان فانيلا دريم الدافئ"
+   "ar": "تغذية عميقة وتماسك في احتضان فانيلا دريم الدافئ",
+   "pt": "Nutrição profunda e firmeza com o abraço acolhedor de Vanilla Dream"
   },
   "desc": {
    "en": "Vanilla Dream Body Cream is a dream of hydration and fragrance for the body. Its formula helps support collagen production and cell regeneration, leaving skin deeply hydrated, nourished and soft with a healthy, luminous look. The fragrance reveals notes of tropical fruits and honey accords, joined by delicate jasmine for a cozy, caring experience.",
-   "ar": "كريم الجسم فانيلا دريم حلم من الترطيب والعطر للجسم. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتترك البشرة مرطّبة بعمق ومغذّاة وناعمة بمظهر صحي ومشرق. ويكشف عطره عن نفحات الفواكه الاستوائية ولمسات العسل التي تمتزج برقّة الياسمين لتجربة دافئة مفعمة بالحنان."
+   "ar": "كريم الجسم فانيلا دريم حلم من الترطيب والعطر للجسم. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتترك البشرة مرطّبة بعمق ومغذّاة وناعمة بمظهر صحي ومشرق. ويكشف عطره عن نفحات الفواكه الاستوائية ولمسات العسل التي تمتزج برقّة الياسمين لتجربة دافئة مفعمة بالحنان.",
+   "pt": "A Loção Desodorante Body Cream Wepink Vanilla Dream é um sonho de hidratação e perfumação para o corpo. Com fórmula que auxilia na produção de colágeno e na regeneração celular, deixa a pele profundamente hidratada, nutrida e macia, com aspecto saudável e luminoso. A fragrância revela notas de Frutas Tropicais e acordes de Mel, que se unem à delicadeza do Jasmim para criar uma experiência acolhedora e cheia de carinho."
   },
   "notes": {
    "top": [
     [
      "Tropical fruits",
-     "فواكه استوائية"
+     "فواكه استوائية",
+     "Frutas tropicais"
     ]
    ],
    "heart": [
     [
      "Honey",
-     "عسل"
+     "عسل",
+     "Mel"
     ]
    ],
    "base": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -7184,39 +7910,47 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A citrus and floral burst for protected, shiny, unforgettable hair",
-   "ar": "انفجار حمضي وزهري لشعر محميّ ولامع لا يُنسى"
+   "ar": "انفجار حمضي وزهري لشعر محميّ ولامع لا يُنسى",
+   "pt": "Uma explosão cítrica e floral para fios protegidos, brilhantes e inesquecíveis"
   },
   "desc": {
    "en": "VF Choices Hair Mist keeps hair protected, shiny and scented all day with a citrus burst of lemon, orange and mandarin that opens the way to a captivating floral heart of jasmine, violet and rose. The best choice for the hair.",
-   "ar": "يحافظ معطّر الشعر في إف تشويسز هير ميست على الشعر محمياً ولامعاً ومعطّراً طوال اليوم، بانفجار حمضي من الليمون والبرتقال والماندرين يمهّد الطريق لقلب زهري آسر من الياسمين والبنفسج والورد. الخيار الأمثل للشعر."
+   "ar": "يحافظ معطّر الشعر في إف تشويسز هير ميست على الشعر محمياً ولامعاً ومعطّراً طوال اليوم، بانفجار حمضي من الليمون والبرتقال والماندرين يمهّد الطريق لقلب زهري آسر من الياسمين والبنفسج والورد. الخيار الأمثل للشعر.",
+   "pt": "O Desodorante Capilar Hair Mist Wepink VF Choices garante que seus cabelos fiquem sempre protegidos e brilhantes. E melhor ainda, o dia todo perfumados com uma explosão cítrica de Limão, Laranja e Mandarina, que abrem o caminho para um apaixonante coração floral de Jasmim, Violeta e Rosa. A melhor escolha para o seu cabelo."
   },
   "notes": {
    "top": [
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ],
     [
      "Orange",
-     "برتقال"
+     "برتقال",
+     "Laranja"
     ],
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ]
   },
@@ -7242,31 +7976,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The sophistication of Arabian jasmine in every movement of your hair",
-   "ar": "رقيّ الياسمين العربي في كل حركة لشعرك"
+   "ar": "رقيّ الياسمين العربي في كل حركة لشعرك",
+   "pt": "A sofisticação do jasmim-árabe em cada movimento do seu cabelo"
   },
   "desc": {
    "en": "One Touch Hair Mist adds the finishing touch to the hair, leaving it protected and glossy while releasing a powerful fruity fragrance of pear and raspberry. These lead along the olfactory path to the unmatched sophistication of Arabian jasmine and white lily, all designed for the well-being of the hair.",
-   "ar": "يضفي معطّر الشعر ون تاتش هير ميست اللمسة الأخيرة على الشعر، فيتركه محمياً ولامعاً ويفوح منه عطر فاكهي قوي من الكمثرى وتوت العليق، يقود في مساره العطري إلى الرقيّ الفريد للياسمين العربي والزنبق الأبيض. كل ذلك مصمّم لعناية مثالية بالشعر."
+   "ar": "يضفي معطّر الشعر ون تاتش هير ميست اللمسة الأخيرة على الشعر، فيتركه محمياً ولامعاً ويفوح منه عطر فاكهي قوي من الكمثرى وتوت العليق، يقود في مساره العطري إلى الرقيّ الفريد للياسمين العربي والزنبق الأبيض. كل ذلك مصمّم لعناية مثالية بالشعر.",
+   "pt": "Aplique o toque final nos seus cabelos com o Desodorante Capilar Hair Mist Wepink One Touch. Além de deixar seus fios protegidos e reluzentes, ele exala uma poderosa fragrância frutada de Pera e Framboesa, que seguem em seu caminho olfativo para a sofisticação inigualável do Jasmim-Árabe e do Lírio Branco. Tudo pensado para o bem-estar dos seus fios!"
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Raspberry",
-     "توت العليق"
+     "توت العليق",
+     "Framboesa"
     ]
    ],
    "heart": [
     [
      "Arabian jasmine",
-     "ياسمين عربي"
+     "ياسمين عربي",
+     "Jasmim-árabe"
     ],
     [
      "White lily",
-     "زنبق أبيض"
+     "زنبق أبيض",
+     "Lírio branco"
     ]
    ]
   },
@@ -7292,17 +8032,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The delicacy of pear and violet in a mist of shine and protection",
-   "ar": "رقّة الكمثرى والبنفسج في رذاذ من اللمعان والحماية"
+   "ar": "رقّة الكمثرى والبنفسج في رذاذ من اللمعان والحماية",
+   "pt": "A delicadeza da pera e da violeta em uma névoa de brilho e proteção"
   },
   "desc": {
    "en": "Perfect Pear Hair Mist leaves hair shinier, protected and scented all day, in an essence that redefines feminine beauty. Its floral and fruity scent brings comfort and well-being to the hair, exuding delicacy and elegance through fresh fruits and violet petals. With strength and subtlety, it finishes on a sweet, woody base.",
-   "ar": "يمنح معطّر الشعر بيرفكت بير هير ميست الشعر لمعاناً أكبر وحماية وعطراً يدوم طوال اليوم، بعبير يعيد تعريف الجمال الأنثوي. يبعث عطره الزهري الفاكهي إحساساً بالراحة في الشعر، ويفيض بالرقّة والأناقة بانتعاش الفواكه وبتلات البنفسج. وبقوة ونعومة في آن، يختتم بقاعدة حلوة وخشبية."
+   "ar": "يمنح معطّر الشعر بيرفكت بير هير ميست الشعر لمعاناً أكبر وحماية وعطراً يدوم طوال اليوم، بعبير يعيد تعريف الجمال الأنثوي. يبعث عطره الزهري الفاكهي إحساساً بالراحة في الشعر، ويفيض بالرقّة والأناقة بانتعاش الفواكه وبتلات البنفسج. وبقوة ونعومة في آن، يختتم بقاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Capilar Hair Mist Wepink Perfect Pear é o melhor para cabelos mais brilhantes, protegidos e perfumados durante o dia todo, em uma essência que ressignifica a beleza feminina. Seu aroma Floral e Frutado proporciona uma sensação de conforto e bem-estar aos fios, exalando delicadeza e elegância no frescor das frutas e das pétalas de violeta. Com força e sutileza, finaliza em um fundo doce e amadeirado, celebrando uma essência suave e apaixonante."
   },
   "notes": {
    "heart": [
     [
      "Violet petals",
-     "بتلات البنفسج"
+     "بتلات البنفسج",
+     "Pétalas de violeta"
     ]
    ]
   },
@@ -7335,11 +8078,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The luminous freshness of summer with irresistible sweetness",
-   "ar": "انتعاش الصيف المشرق بحلاوة لا تُقاوم"
+   "ar": "انتعاش الصيف المشرق بحلاوة لا تُقاوم",
+   "pt": "Frescor luminoso do verão com uma doçura irresistível"
   },
   "desc": {
    "en": "Verano Di Capri Deodorant Cologne is an invitation to experience summer in its most sophisticated, light and irresistibly enveloping version. A fragrance that combines sweetness and freshness in perfect harmony, translating luminous sensations into every detail on the skin.",
-   "ar": "تمثّل كولونيا فيرانو دي كابري دعوة لعيش الصيف بأكثر صوره رقيّاً وخفّة وجاذبية. عطر يجمع بين الحلاوة والانتعاش في تناغم مثالي، ويترجم الأحاسيس المشرقة في كل تفصيلة على البشرة."
+   "ar": "تمثّل كولونيا فيرانو دي كابري دعوة لعيش الصيف بأكثر صوره رقيّاً وخفّة وجاذبية. عطر يجمع بين الحلاوة والانتعاش في تناغم مثالي، ويترجم الأحاسيس المشرقة في كل تفصيلة على البشرة.",
+   "pt": "O Desodorante Colônia Wepink Verano di Capri é um convite para viver o verão em sua versão mais sofisticada, leve e irresistivelmente envolvente. Uma fragrância que combina doçura e frescor em perfeita harmonia, traduzindo sensações luminosas em cada detalhe da pele."
   },
   "source": "https://www.wepink.com.br/desod-col-verano-di-capri-100-ml---wepink-471/p",
   "notes": {}
@@ -7371,11 +8116,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Tropical intensity with enveloping sophistication",
-   "ar": "شغف استوائي برقيّ آسر"
+   "ar": "شغف استوائي برقيّ آسر",
+   "pt": "A intensidade tropical com uma sofisticação envolvente"
   },
   "desc": {
    "en": "Latina Deodorant Cologne is an invitation to experience intensity in its most vibrant, warm and sophisticated form. A fragrance that conveys energy, femininity and magnetism in every detail, creating a striking presence that is impossible to ignore.",
-   "ar": "تمثّل كولونيا لاتينا دعوة لعيش الشغف بأكثر صوره حيوية ودفئاً ورقيّاً. عطر يجسّد الطاقة والأنوثة والجاذبية في كل تفصيلة، ليصنع حضوراً لافتاً يستحيل تجاهله."
+   "ar": "تمثّل كولونيا لاتينا دعوة لعيش الشغف بأكثر صوره حيوية ودفئاً ورقيّاً. عطر يجسّد الطاقة والأنوثة والجاذبية في كل تفصيلة، ليصنع حضوراً لافتاً يستحيل تجاهله.",
+   "pt": "O Desodorante Colônia Wepink Latina é um convite para viver a intensidade em sua forma mais vibrante, quente e sofisticada. Uma fragrância que traduz energia, feminilidade e magnetismo em cada detalhe, criando uma presença marcante e impossível de ignorar."
   },
   "source": "https://www.wepink.com.br/desod-col--latina-100-ml---wepink-469/p",
   "notes": {}
@@ -7405,29 +8152,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Dream",
-   "ar": "قوام الكريمة المخفوقة بعبير فانيلا دريم"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا دريم",
+   "pt": "Textura de chantilly com o cheirinho do Vanilla Dream"
   },
   "desc": {
    "en": "Shower Dream Vanilla Dream Bath Foam was delicately developed to provide deep hydration, gentle cleansing and a dreamy glow effect. Its ultra-creamy whipped texture envelops the body, leaving skin soft and satiny, while the scent of tropical fruits with rose and jasmine lingers on the skin, prolonging the feeling of comfort. A deliciously irresistible bath to daydream in.",
-   "ar": "طُوّرت رغوة الاستحمام شاور دريم فانيلا دريم بعناية لتمنح ترطيباً عميقاً وتنظيفاً لطيفاً وتأثير إشراقة حالماً. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة الجسم، ويترك البشرة ناعمة كالساتان، فيما يبقى عبير الفواكه الاستوائية مع الورد والياسمين على البشرة ليطيل الإحساس بالدفء والراحة. تجربة استحمام شهية لا تُقاوم تبعث على الحلم."
+   "ar": "طُوّرت رغوة الاستحمام شاور دريم فانيلا دريم بعناية لتمنح ترطيباً عميقاً وتنظيفاً لطيفاً وتأثير إشراقة حالماً. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة الجسم، ويترك البشرة ناعمة كالساتان، فيما يبقى عبير الفواكه الاستوائية مع الورد والياسمين على البشرة ليطيل الإحساس بالدفء والراحة. تجربة استحمام شهية لا تُقاوم تبعث على الحلم.",
+   "pt": "A Espuma de Banho Wepink Shower Dream Vanilla Dream foi desenvolvida delicadamente para proporcionar hidratação profunda, limpeza suave e um efeito glow dos sonhos! A textura ultracremosa de chantilly envolve o corpo e deixa a pele macia e acetinada, enquanto o aroma de frutas tropicais com rosa e jasmim fica na pele e prolonga a sensação de carinho e conforto por muito mais tempo. Um banho deliciosamente irresistível para sonhar acordada!"
   },
   "notes": {
    "top": [
     [
      "Tropical fruits",
-     "فواكه استوائية"
+     "فواكه استوائية",
+     "Frutas tropicais"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ],
    "base": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -7458,23 +8210,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Soft",
-   "ar": "قوام الكريمة المخفوقة بعبير فانيلا سوفت"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا سوفت",
+   "pt": "Textura de chantilly com o cheirinho do Vanilla Soft"
   },
   "desc": {
    "en": "Shower Dream Vanilla Soft Bath Foam brings next-level hydration and creaminess, turning bath time into the most delightful self-care moment. Its ultra-creamy whipped texture envelops the body, cleanses the skin and delivers hydration with a glow effect. Its delicious fragrance pairs the floral touch of lily of the valley with the sweetness of caramel, leaving skin scented and cozy.",
-   "ar": "تمنح رغوة الاستحمام شاور دريم فانيلا سوفت ترطيباً وكريمية من مستوى آخر، لتحوّل الاستحمام إلى ألذّ لحظات العناية الذاتية. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة الجسم، فينظّف البشرة ويمنحها الترطيب مع تأثير الإشراقة. ويجمع عطرها الشهي بين لمسة زنبق الوادي الزهرية وحلاوة الكراميل، ليترك البشرة معطّرة بإحساس دافئ مريح."
+   "ar": "تمنح رغوة الاستحمام شاور دريم فانيلا سوفت ترطيباً وكريمية من مستوى آخر، لتحوّل الاستحمام إلى ألذّ لحظات العناية الذاتية. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة الجسم، فينظّف البشرة ويمنحها الترطيب مع تأثير الإشراقة. ويجمع عطرها الشهي بين لمسة زنبق الوادي الزهرية وحلاوة الكراميل، ليترك البشرة معطّرة بإحساس دافئ مريح.",
+   "pt": "Experimente hidratação e cremosidade de outro nível com a Espuma de Banho Wepink Shower Dream Vanilla Soft e transforme o banho no seu momento mais gostoso de autocuidado. A textura ultracremosa de efeito chantilly envolve o corpo, limpa a pele e entrega hidratação com efeito glow. Para completar, a fragrância deliciosa une o toque floral do lírio-do-vale à doçura do caramelo, deixando a pele perfumada e com aquela sensação irresistível de aconchego que dá vontade de repetir todos os dias!"
   },
   "notes": {
    "top": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -7505,11 +8261,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Wish",
-   "ar": "قوام الكريمة المخفوقة بعبير فانيلا ويش"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا ويش",
+   "pt": "Textura de chantilly com o cheirinho do Vanilla Wish"
   },
   "desc": {
    "en": "Shower Dream Vanilla Wish Bath Foam turns bathing into a premium self-care ritual, with an ultra-creamy whipped texture that envelops the body, removes impurities and delivers a glow effect with deep hydration. Its floral and woody fragrance feels feminine and cozy, creating a spa-at-home sensation that relaxes and leaves skin soft, scented and irresistibly inviting to the touch.",
-   "ar": "تحوّل رغوة الاستحمام شاور دريم فانيلا ويش الاستحمام إلى طقس فاخر للعناية الذاتية، بقوامها فائق الكريمية الشبيه بالكريمة المخفوقة الذي يغلّف الجسم ويزيل الشوائب ويمنح تأثير الإشراقة مع ترطيب عميق. ويضفي عطرها بنفحاته الزهرية والخشبية لمسة أنثوية دافئة، ليمنح إحساس المنتجع في المنزل الذي يبعث الاسترخاء ويترك البشرة ناعمة ومعطّرة وجذّابة للمس."
+   "ar": "تحوّل رغوة الاستحمام شاور دريم فانيلا ويش الاستحمام إلى طقس فاخر للعناية الذاتية، بقوامها فائق الكريمية الشبيه بالكريمة المخفوقة الذي يغلّف الجسم ويزيل الشوائب ويمنح تأثير الإشراقة مع ترطيب عميق. ويضفي عطرها بنفحاته الزهرية والخشبية لمسة أنثوية دافئة، ليمنح إحساس المنتجع في المنزل الذي يبعث الاسترخاء ويترك البشرة ناعمة ومعطّرة وجذّابة للمس.",
+   "pt": "A Espuma de Banho Wepink Vanilla Wish transforma o banho em um ritual premium de autocuidado, com sua textura ultracremosa de efeito chantilly que envolve o corpo, remove impurezas e entrega efeito glow com hidratação profunda. A fragrância com notas florais e amadeiradas deixa tudo mais feminino e acolhedor, criando aquela sensação de spa em casa que relaxa, limpa suavemente e deixa a pele macia, perfumada e irresistivelmente convidativa ao toque."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-vanilla-wish---wepink-pat11246/p",
   "notes": {}
@@ -7541,21 +8299,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fruity floral that enchants with delicacy and leaves an elegant trail",
-   "ar": "عطر زهري فاكهي يأسر برقّته ويترك أثراً أنيقاً أينما حلّ"
+   "ar": "عطر زهري فاكهي يأسر برقّته ويترك أثراً أنيقاً أينما حلّ",
+   "pt": "Um floral frutado que encanta com delicadeza e deixa rastro elegante por onde passa"
   },
   "desc": {
    "en": "Wonbloom Charm Deodorant Cologne expresses a light, sophisticated and naturally radiant femininity, enveloping effortlessly with charm, delicacy and a striking presence. Its fresh, fruity opening awakens the senses as juicy pear meets bergamot in a luminous combination, creating a vibrant, feminine and delicately sweet start.",
-   "ar": "تجسّد كولونيا وونبلوم تشارم أنوثة خفيفة وراقية ومشرقة بطبيعتها، تغمر بلا عناء بسحرها ورقّتها وحضورها اللافت. توقظ افتتاحيتها المنعشة الفاكهية الحواس، إذ تلتقي الكمثرى الغنية بالعصارة بالبرغموت في مزيج مشرق وآسر، لتصنع بداية نابضة بالحيوية وأنثوية وحلوة برقّة."
+   "ar": "تجسّد كولونيا وونبلوم تشارم أنوثة خفيفة وراقية ومشرقة بطبيعتها، تغمر بلا عناء بسحرها ورقّتها وحضورها اللافت. توقظ افتتاحيتها المنعشة الفاكهية الحواس، إذ تلتقي الكمثرى الغنية بالعصارة بالبرغموت في مزيج مشرق وآسر، لتصنع بداية نابضة بالحيوية وأنثوية وحلوة برقّة.",
+   "pt": "O Desodorante Colônia Wepink Wonbloom Charm traduz uma feminilidade leve, sofisticada e naturalmente radiante. Uma fragrância que envolve sem esforço, revelando charme e delicadeza com presença marcante. A abertura fresca e frutada desperta os sentidos com brilho e leveza. A pera suculenta encontra a bergamota em uma combinação luminosa e envolvente, criando um início vibrante, feminino e delicadamente adocicado."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ]
   },
@@ -7587,11 +8349,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A touch of glow for every moment!",
-   "ar": "لمسة من التوهّج لكل اللحظات!"
+   "ar": "لمسة من التوهّج لكل اللحظات!",
+   "pt": "Um toque de brilho para todos os momentos!"
   },
   "desc": {
    "en": "Welumi Body Illuminator makes skin truly stand out. Its formula is designed to illuminate and care at the same time, combining glow-boosting actives with continuous hydration in a light, fluid texture that glides on easily without feeling heavy. With a velvety touch and flawless finish, it enhances the skin, helps blur small imperfections and leaves a radiant, eye-catching glow.",
-   "ar": "يمنح مُضيء الجسم ويلومي البشرة حضوراً لافتاً حقاً. صُمّمت تركيبته لتضيء البشرة وتعتني بها في آن واحد، إذ تجمع بين مكوّنات تعزّز الإشراق وترطيب متواصل، بقوام خفيف وسلس ينساب بسهولة دون أن يُثقل البشرة. وبملمسه المخملي ولمسته النهائية المثالية، يُبرز جمال البشرة ويساعد على إخفاء العيوب الصغيرة، ويترك توهّجاً مشرقاً يلفت الأنظار."
+   "ar": "يمنح مُضيء الجسم ويلومي البشرة حضوراً لافتاً حقاً. صُمّمت تركيبته لتضيء البشرة وتعتني بها في آن واحد، إذ تجمع بين مكوّنات تعزّز الإشراق وترطيب متواصل، بقوام خفيف وسلس ينساب بسهولة دون أن يُثقل البشرة. وبملمسه المخملي ولمسته النهائية المثالية، يُبرز جمال البشرة ويساعد على إخفاء العيوب الصغيرة، ويترك توهّجاً مشرقاً يلفت الأنظار.",
+   "pt": "O Iluminador Corporal Wepink Welumi transforma a pele em um verdadeiro destaque! Sua fórmula foi cuidadosamente desenvolvida para iluminar e cuidar ao mesmo tempo, unindo ativos que elevam o brilho com hidratação contínua. A textura leve e fluida desliza facilmente, garantindo uma aplicação simples e agradável, sem pesar. Com toque aveludado e acabamento impecável, Welumi realça a pele, auxilia a disfarçar pequenas imperfeições e deixa um glow radiante que chama atenção. É perfeito para quem quer uma pele iluminada, bonita e cheia de vida."
   },
   "source": "https://www.wepink.com.br/locao-iluminadora-corporal-desodorante-55g---wepink-444/p",
   "notes": {}
@@ -7623,11 +8387,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Hydration that goes beyond!",
-   "ar": "ترطيب يتجاوز المألوف!"
+   "ar": "ترطيب يتجاوز المألوف!",
+   "pt": "Hidratação que vai além!"
   },
   "desc": {
    "en": "The Infinity Xis Body Cream is a scented body lotion that hydrates, nourishes and firms the skin, thanks to a formula that supports collagen production and cell regeneration. Skin looks healthy and radiant, and stays scented with a wonderful floral aroma all the time.",
-   "ar": "يمنح كريم الجسم المعطّر إنفينيتي شيس البشرة الترطيب والتغذية والشدّ، بفضل تركيبته التي تساعد على إنتاج الكولاجين وتجديد الخلايا. فتبدو البشرة دائماً صحية ومشرقة، وتبقى معطّرة بعبير زهري رائع طوال الوقت."
+   "ar": "يمنح كريم الجسم المعطّر إنفينيتي شيس البشرة الترطيب والتغذية والشدّ، بفضل تركيبته التي تساعد على إنتاج الكولاجين وتجديد الخلايا. فتبدو البشرة دائماً صحية ومشرقة، وتبقى معطّرة بعبير زهري رائع طوال الوقت.",
+   "pt": "A Loção Desodorante Body Cream Wepink Infinity Xis proporciona hidratação, nutrição e firmeza para sua pele, graças à sua composição que auxilia na produção de colágeno e na regeneração celular. Assim, ela fica com um aspecto sempre saudável e brilhoso, além de perfumada com um incrível aroma de flores o tempo todo."
   },
   "source": "https://www.wepink.com.br/body-cream-infinity-x-200ml-wepink-426/p",
   "notes": {}
@@ -7658,11 +8424,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "You are worth gold!",
-   "ar": "قيمتك من ذهب!"
+   "ar": "قيمتك من ذهب!",
+   "pt": "Você vale ouro!"
   },
   "desc": {
    "en": "The Liberté Doré Body Splash holds in its fragrance the secret to reaching one's most magnificent self. Its intensely floral aroma enhances the glow that comes from within, lighting up everything around. A scent worth its weight in gold.",
-   "ar": "يحمل بخاخ الجسم ليبرتيه دوريه في عطره سرّ الوصول إلى أبهى نسخة من الذات. يُبرز عبيره الزهري المكثّف الإشراقة النابعة من الداخل لتضيء كل ما حولها. عطر قيمته من ذهب."
+   "ar": "يحمل بخاخ الجسم ليبرتيه دوريه في عطره سرّ الوصول إلى أبهى نسخة من الذات. يُبرز عبيره الزهري المكثّف الإشراقة النابعة من الداخل لتضيء كل ما حولها. عطر قيمته من ذهب.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Liberté Doré tem em sua fragrância o segredo para que você alcance sua versão mais magnífica. Seu aroma intensamente floral realça o brilho que vem de dentro para iluminar tudo à sua volta. Vale ouro!"
   },
   "source": "https://www.wepink.com.br/body-splash-liberte-dore-200-ml---wepink-421/p",
   "notes": {}
@@ -7694,35 +8462,42 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Fabulously distinctive",
-   "ar": "تميّز مذهل بكل تفاصيله"
+   "ar": "تميّز مذهل بكل تفاصيله",
+   "pt": "Fabulosamente distinto"
   },
   "desc": {
    "en": "Ghadan awakens the eccentric with a fragrance that unfolds in a natural, intimate and surprisingly vivid way. It opens warm and comforting with caramelized almond, then turns into a delicate, sophisticated floral where rose and jasmine sambac dance around incense and saffron. Enveloping and almost hypnotic, it lingers on the skin like an elegant, unforgettable memory.",
-   "ar": "يوقظ عطر غدان روح التفرّد بعبير يتكشّف بطريقة طبيعية وحميمة ونابضة بالحياة على نحو مدهش. يبدأ دافئاً ومريحاً بلمسة اللوز المكرمل الآسرة، ثم يتحوّل إلى باقة زهرية رقيقة وراقية يتراقص فيها الورد والياسمين سامباك حول البخور والزعفران. عطر آسر يكاد يكون ساحراً، يبقى على البشرة كذكرى أنيقة لا تُنسى."
+   "ar": "يوقظ عطر غدان روح التفرّد بعبير يتكشّف بطريقة طبيعية وحميمة ونابضة بالحياة على نحو مدهش. يبدأ دافئاً ومريحاً بلمسة اللوز المكرمل الآسرة، ثم يتحوّل إلى باقة زهرية رقيقة وراقية يتراقص فيها الورد والياسمين سامباك حول البخور والزعفران. عطر آسر يكاد يكون ساحراً، يبقى على البشرة كذكرى أنيقة لا تُنسى.",
+   "pt": "Desperte o excêntrico com o Desodorante Colônia Wepink Ghadan, uma fragrância que se revela de forma natural, íntima, e surpreendentemente viva. Ela muda junto com você: começa quente e reconfortante, com o toque envolvente da amêndoa caramelizada, depois se transforma em um floral delicado e sofisticado, onde a rosa e o jasmim sambac dançam em torno do incenso e do açafrão. Ghadan conquista por ser diferente. Uma essência que envolve, que conforta e que, de forma quase hipnótica, se torna parte de quem a usa, como uma lembrança que fica na pele, elegante e inesquecível."
   },
   "notes": {
    "top": [
     [
      "Caramelized almond",
-     "لوز مكرمل"
+     "لوز مكرمل",
+     "Amêndoa caramelizada"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Jasmine sambac",
-     "ياسمين سامباك"
+     "ياسمين سامباك",
+     "Jasmim sambac"
     ],
     [
      "Incense",
-     "بخور"
+     "بخور",
+     "Incenso"
     ],
     [
      "Saffron",
-     "زعفران"
+     "زعفران",
+     "Açafrão"
     ]
    ]
   },
@@ -7752,23 +8527,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A heavenly scent for your hair",
-   "ar": "عبير سماوي لشعرك"
+   "ar": "عبير سماوي لشعرك",
+   "pt": "Um aroma celestial para os seus fios"
   },
   "desc": {
    "en": "The Heaven Hair Mist leaves hair shinier, protected and fragranced throughout the day, with an essence that evokes a delicate, joyful universe. Its scent rises to a true paradise of flowers on a dazzling journey through mandarin and orange blossom, finishing on a sweet, woody and elegant base.",
-   "ar": "يمنح معطّر الشعر هيفن الشعر لمعاناً أكبر وحماية وعبيراً طوال اليوم، بخلاصة تستحضر عالماً رقيقاً ومبهجاً. يرتقي عبيره إلى جنّة حقيقية من الزهور في رحلة مبهرة عبر الماندرين وزهر البرتقال، ليختتم بقاعدة حلوة وخشبية وأنيقة."
+   "ar": "يمنح معطّر الشعر هيفن الشعر لمعاناً أكبر وحماية وعبيراً طوال اليوم، بخلاصة تستحضر عالماً رقيقاً ومبهجاً. يرتقي عبيره إلى جنّة حقيقية من الزهور في رحلة مبهرة عبر الماندرين وزهر البرتقال، ليختتم بقاعدة حلوة وخشبية وأنيقة.",
+   "pt": "O Desodorante Capilar Hair Mist Wepink Heaven é o melhor para cabelos mais brilhantes, protegidos e perfumados durante o dia todo, em uma essência que remete a um universo delicado e alegre. Seu aroma ascende a um verdadeiro paraíso em um mix de flores, levando a uma jornada deslumbrante na Mandarina e na Flor de Laranjeira. Finaliza em um fundo doce, amadeirado e elegante."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ]
   },
@@ -7798,27 +8577,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A shine full of nobility for your hair",
-   "ar": "لمعان يفيض بالرقيّ لشعرك"
+   "ar": "لمعان يفيض بالرقيّ لشعرك",
+   "pt": "Um brilho cheio de nobreza para os fios"
   },
   "desc": {
    "en": "The Liberté Hair Mist leaves hair shinier, protected and fragranced throughout the day, with an essence that reflects the elegance and nobility of freedom. Its floral blend brings comfort and well-being, celebrating the woman who never gives up on her dreams, and evolves into French Centifolia rose before finishing with sweet vanilla and woody amber.",
-   "ar": "يمنح معطّر الشعر ليبرتيه الشعر لمعاناً أكبر وحماية وعبيراً طوال اليوم، بخلاصة تعكس أناقة الحرية ورقيّها. يضفي مزيجه الزهري على الشعر شعوراً بالراحة والرفاهية احتفاءً بالمرأة التي لا تتخلى عن أحلامها أبداً، ثم يتطوّر نحو وردة سنتيفوليا الفرنسية، ملكة العطور، ليختتم بحلاوة الفانيليا ودفء العنبر الخشبي."
+   "ar": "يمنح معطّر الشعر ليبرتيه الشعر لمعاناً أكبر وحماية وعبيراً طوال اليوم، بخلاصة تعكس أناقة الحرية ورقيّها. يضفي مزيجه الزهري على الشعر شعوراً بالراحة والرفاهية احتفاءً بالمرأة التي لا تتخلى عن أحلامها أبداً، ثم يتطوّر نحو وردة سنتيفوليا الفرنسية، ملكة العطور، ليختتم بحلاوة الفانيليا ودفء العنبر الخشبي.",
+   "pt": "O Desodorante Capilar Hair Mist Wepink Liberté é o melhor para cabelos mais brilhantes, protegidos e perfumados durante o dia todo, em uma essência que reflete a elegância e nobreza da liberdade. Seu aroma proporciona uma sensação de conforto e bem-estar aos fios, por um mix de flores que evidenciam a mulher que nunca desiste de seus sonhos. Sua fragrância evolui na rainha da perfumaria, a Rosa Francesa Centifolia, finalizando no doce da Baunilha e o amadeirado do Âmbar."
   },
   "notes": {
    "heart": [
     [
      "French Centifolia rose",
-     "وردة سنتيفوليا الفرنسية"
+     "وردة سنتيفوليا الفرنسية",
+     "Rosa francesa centifolia"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -7850,11 +8634,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The VF Golden MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and 72-hour hydration. Its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral oriental olfactory path.",
-   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن في إف جولدن مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري شرقي آسر."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن في إف جولدن مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري شرقي آسر.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink VF Golden oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas. Sua fórmula exclusiva também contribui para uniformizar o tom da pele. Tudo isso, em uma essência única e exclusiva, dedicada à mulher autêntica e transformadora, percorrendo um fascinante caminho olfativo floral oriental."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-vf-golden-50-ml-365/p",
   "notes": {}
@@ -7886,37 +8672,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn every day into a wonderful blossoming",
-   "ar": "اجعلي كل يوم تفتّحاً مذهلاً"
+   "ar": "اجعلي كل يوم تفتّحاً مذهلاً",
+   "pt": "Transforme cada dia em um florescer maravilhoso"
   },
   "desc": {
    "en": "Wonbloom celebrates the authentic, modern woman with a fragrance that unites the unmatched freshness of tangerine and mandarin with the commanding sophistication of jasmine. Sweet caramel and refined amber finish this irresistible scent.",
-   "ar": "يحتفي عطر وونبلوم بالمرأة الأصيلة والعصرية، بتركيبة تجمع بين انتعاش اليوسفي والماندرين الذي لا يُضاهى ورقيّ الياسمين الطاغي. وتختتم حلاوة الكراميل وفخامة العنبر هذا العبير الذي لا يُقاوَم."
+   "ar": "يحتفي عطر وونبلوم بالمرأة الأصيلة والعصرية، بتركيبة تجمع بين انتعاش اليوسفي والماندرين الذي لا يُضاهى ورقيّ الياسمين الطاغي. وتختتم حلاوة الكراميل وفخامة العنبر هذا العبير الذي لا يُقاوَم.",
+   "pt": "Revele ao mundo a mulher autêntica e moderna que você é com o Desodorante Colônia Wepink Wonbloom, uma fragrância que une o frescor incomparável da Tangerina e da Mandarina à sofisticação dominante do Jasmim. O doce do Caramelo e o requinte do Âmbar vêm finalizar esse aroma que é tão irresistível quanto você."
   },
   "notes": {
    "top": [
     [
      "Tangerine",
-     "يوسفي"
+     "يوسفي",
+     "Tangerina"
     ],
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -7950,43 +8743,52 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Every princess deserves her fairy tale in a fragrance",
-   "ar": "كل أميرة تستحق حكايتها الخيالية في عطر"
+   "ar": "كل أميرة تستحق حكايتها الخيالية في عطر",
+   "pt": "Toda princesa merece seu conto de fadas em fragrância"
   },
   "desc": {
    "en": "Fantasy Kids Pink Castle has the perfect scent for little princesses. Its gourmand, fruity heart brings notes of melon, apple, strawberry and raspberry, and the fragrance finishes adorably with sweet notes of caramel, orange blossom and vanilla, enchanting everyone in a true kingdom of sensations.",
-   "ar": "يحمل عطر فانتاسي كيدز بينك كاسل العبير المثالي للأميرات الصغيرات. يقدّم قلبه الغورماند الفاكهي نفحات من الشمام والتفاح والفراولة وتوت العليق، ثم يختتم بلطف بنفحات حلوة من الكراميل وزهر البرتقال والفانيليا، ليسحر الجميع في مملكة حقيقية من الأحاسيس."
+   "ar": "يحمل عطر فانتاسي كيدز بينك كاسل العبير المثالي للأميرات الصغيرات. يقدّم قلبه الغورماند الفاكهي نفحات من الشمام والتفاح والفراولة وتوت العليق، ثم يختتم بلطف بنفحات حلوة من الكراميل وزهر البرتقال والفانيليا، ليسحر الجميع في مملكة حقيقية من الأحاسيس.",
+   "pt": "A Colônia Wepink Fantasy Kids Pink Castle tem o aroma ideal para as princesinhas de plantão! Seu coração gourmand e frutado traz notas de Melão, Maçã, Morango e Framboesa. A fragrância se finaliza adoravelmente com notas doces de Caramelo, Flor de Laranjeira e Baunilha, para encantar a todos em um verdadeiro reinado de sensações."
   },
   "notes": {
    "heart": [
     [
      "Melon",
-     "شمام"
+     "شمام",
+     "Melão"
     ],
     [
      "Apple",
-     "تفاح"
+     "تفاح",
+     "Maçã"
     ],
     [
      "Strawberry",
-     "فراولة"
+     "فراولة",
+     "Morango"
     ],
     [
      "Raspberry",
-     "توت العليق"
+     "توت العليق",
+     "Framboesa"
     ]
    ],
    "base": [
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -8020,33 +8822,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn any moment into an adventure",
-   "ar": "حوّل كل لحظة إلى مغامرة"
+   "ar": "حوّل كل لحظة إلى مغامرة",
+   "pt": "Transforme qualquer momento em aventura"
   },
   "desc": {
    "en": "Fantasy Kids Blue Dragon is a burst of freshness with intensely citrus notes of orange and mandarin. A fragrance fit for a prince, it brings out an adventurous side and wraps it in the elegance of freesia and white musk.",
-   "ar": "عطر فانتاسي كيدز بلو دراجون انفجار من الانتعاش بنفحات حمضية مكثّفة من البرتقال والماندرين. عطر يليق بالأمراء، يُبرز الجانب المغامر ويغلّفه بأناقة الفريزيا والمسك الأبيض."
+   "ar": "عطر فانتاسي كيدز بلو دراجون انفجار من الانتعاش بنفحات حمضية مكثّفة من البرتقال والماندرين. عطر يليق بالأمراء، يُبرز الجانب المغامر ويغلّفه بأناقة الفريزيا والمسك الأبيض.",
+   "pt": "A Colônia Wepink Fantasy Kids Blue Dragon é uma explosão de frescor, com suas notas intensamente cítricas de Laranja e Mandarina. Mostre seu lado mais aventureiro com essa fragrância digna de um príncipe, que envolve com a elegância da Frésia e do Musk Branco."
   },
   "notes": {
    "top": [
     [
      "Orange",
-     "برتقال"
+     "برتقال",
+     "Laranja"
     ],
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ]
    ],
    "base": [
     [
      "White musk",
-     "مسك أبيض"
+     "مسك أبيض",
+     "Almíscar branco"
     ]
    ]
   },
@@ -8079,33 +8887,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Surrender to desire",
-   "ar": "استسلمي للرغبة"
+   "ar": "استسلمي للرغبة",
+   "pt": "Renda-se ao desejo"
   },
   "desc": {
    "en": "The Crave Body Splash awakens the senses. Its scent opens with a burst of freshness from sugared lemon, then blossoms with the lightness of orange blossom. Musk and vanilla gently finish the fragrance with a sweet sophistication.",
-   "ar": "يوقظ بخاخ الجسم كريف الحواس. يبدأ عبيره بانفجار من انتعاش الليمون المُحلّى، ثم يتفتّح بخفّة زهر البرتقال. ويختتم المسك والفانيليا هذا العطر بنعومة ورقيّ حلو."
+   "ar": "يوقظ بخاخ الجسم كريف الحواس. يبدأ عبيره بانفجار من انتعاش الليمون المُحلّى، ثم يتفتّح بخفّة زهر البرتقال. ويختتم المسك والفانيليا هذا العطر بنعومة ورقيّ حلو.",
+   "pt": "Desperte os seus sentidos com o Desodorante Colônia Body Splash Wepink Crave. Seu aroma começa com a explosão de frescor do Limão Açucarado, para em seguida desabrochar com a leveza da Flor de Laranjeira. O Musk e a Baunilha finalizam suavemente essa fragrância com a doce sofisticação que você merece."
   },
   "notes": {
    "top": [
     [
      "Sugared lemon",
-     "ليمون مُحلّى"
+     "ليمون مُحلّى",
+     "Limão açucarado"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -8138,21 +8952,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Feel the elegance of a classic",
-   "ar": "اشعر بأناقة العطر الكلاسيكي"
+   "ar": "اشعر بأناقة العطر الكلاسيكي",
+   "pt": "Sinta a elegância de um clássico"
   },
   "desc": {
    "en": "Like a breath of classic elegance, Bourbon Silver exudes the mystery of the modern man who knows how to leave his mark, with the freshness of a woody oriental scent.",
-   "ar": "كنسمة من الأناقة الكلاسيكية، يفوح عطر بوربون سيلفر بغموض الرجل العصري الذي يعرف كيف يترك بصمته، بانتعاش عبير خشبي شرقي."
+   "ar": "كنسمة من الأناقة الكلاسيكية، يفوح عطر بوربون سيلفر بغموض الرجل العصري الذي يعرف كيف يترك بصمته، بانتعاش عبير خشبي شرقي.",
+   "pt": "Como o sopro de uma clássica elegância, o Desodorante Colônia Wepink Bourbon Silver exala o mistério do homem moderno e que sabe deixar sua marca, ao frescor de um aroma amadeirado e oriental. A cada momento, seu aroma masculino envolve no poder do cardamomo e do gengibre, celebrando cada conquista. Por fim, encanta em um fundo doce e amadeirado, vivendo uma força inesquecível."
   },
   "notes": {
    "top": [
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ],
     [
      "Ginger",
-     "زنجبيل"
+     "زنجبيل",
+     "Gengibre"
     ]
    ]
   },
@@ -8184,61 +9002,74 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "For the most powerful piece in the game: you!",
-   "ar": "لأقوى قطعة في اللعبة: أنتِ!"
+   "ar": "لأقوى قطعة في اللعبة: أنتِ!",
+   "pt": "Para a peça mais poderosa do jogo: você!"
   },
   "desc": {
    "en": "Infinity Xis opens with the energy of grapefruit and blackcurrant for a vibrant, decisive start. At the heart, a sophisticated floral of rose, orange blossom, lily of the valley and jasmine makes a striking move, while musk, vanilla, amber, balsamic notes and cedar form a warm, enveloping base. Elegant and impactful, it is perfumery's true checkmate.",
-   "ar": "يفتتح عطر إنفينيتي شيس بحيوية الجريب فروت والكشمش الأسود في بداية نابضة وحاسمة. وفي القلب، تكشف باقة زهرية راقية من الورد وزهر البرتقال وزنبق الوادي والياسمين عن حضور لافت كحركة بارعة على رقعة الشطرنج، بينما يشكّل المسك والفانيليا والعنبر مع النفحات البلسمية وخشب الأرز قاعدة دافئة آسرة. عطر يفرض نفسه بأناقة، وهو بحقّ كشّ ملك عالم العطور."
+   "ar": "يفتتح عطر إنفينيتي شيس بحيوية الجريب فروت والكشمش الأسود في بداية نابضة وحاسمة. وفي القلب، تكشف باقة زهرية راقية من الورد وزهر البرتقال وزنبق الوادي والياسمين عن حضور لافت كحركة بارعة على رقعة الشطرنج، بينما يشكّل المسك والفانيليا والعنبر مع النفحات البلسمية وخشب الأرز قاعدة دافئة آسرة. عطر يفرض نفسه بأناقة، وهو بحقّ كشّ ملك عالم العطور.",
+   "pt": "O Desodorante Colônia Wepink Infinity Xis começa com a energia da toranja e do cassis, criando uma abertura vibrante e decidida. No coração, o floral sofisticado da rosa, flor de laranjeira, lírio-do-vale e jasmim revela presença marcante, como uma jogada certeira no tabuleiro. A base combina o calor do musk, da baunilha e do âmbar com o toque envolvente das notas balsâmicas e do cedro. Uma fragrância que se impõe com elegância e termina com impacto. O verdadeiro xeque-mate da perfumaria."
   },
   "notes": {
    "top": [
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ],
     [
      "Blackcurrant",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Groselha preta"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Balsamic notes",
-     "نفحات بلسمية"
+     "نفحات بلسمية",
+     "Notas balsâmicas"
     ],
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ]
    ]
   },
@@ -8271,11 +9102,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Essential restoration for healthier hair",
-   "ar": "ترميم أساسي لشعر أكثر صحة"
+   "ar": "ترميم أساسي لشعر أكثر صحة",
+   "pt": "Uma restauração essencial para fios mais saudáveis"
   },
   "desc": {
    "en": "The My Hair Ultra Repair Hair Mask restores life, strength and beauty to hair. Its blend of vegetable oils, hyperprotein, lanolin and polyglutamic acid deeply hydrates, nourishes and repairs from root to tip, forming a protective film that reduces frizz, helps recover split ends and strengthens the hair bulb. Flaxseed, sage, D-Panthenol, Indian gooseberry and aloe vera add volume, softness and shine.",
-   "ar": "صُمّم قناع الشعر ماي هير ألترا ريبير ليعيد إلى الشعر الحيوية والقوة والجمال. يرطّب مزيجه من الزيوت النباتية والبروتين الفائق واللانولين وحمض البوليغلوتاميك الشعرَ بعمق ويغذّيه ويصلحه من الجذور حتى الأطراف، مكوّناً طبقة واقية تقلّل التجعّد وتعالج الأطراف المتقصّفة وتقوّي بصيلات الشعر. ويمنح مستخلص بذور الكتان والمريمية مع الدي-بانثينول ومستخلص الأملج والألوفيرا الشعرَ كثافة ونعومة ولمعاناً."
+   "ar": "صُمّم قناع الشعر ماي هير ألترا ريبير ليعيد إلى الشعر الحيوية والقوة والجمال. يرطّب مزيجه من الزيوت النباتية والبروتين الفائق واللانولين وحمض البوليغلوتاميك الشعرَ بعمق ويغذّيه ويصلحه من الجذور حتى الأطراف، مكوّناً طبقة واقية تقلّل التجعّد وتعالج الأطراف المتقصّفة وتقوّي بصيلات الشعر. ويمنح مستخلص بذور الكتان والمريمية مع الدي-بانثينول ومستخلص الأملج والألوفيرا الشعرَ كثافة ونعومة ولمعاناً.",
+   "pt": "A Máscara Capilar Wepink My Hair Ultra Repair foi feita para devolver vida, força e beleza aos cabelos. Com um mix poderoso de óleos vegetais, hiperproteína, lanolina e ácido poliglutâmico, ela hidrata profundamente, nutre e repara os fios da raiz às pontas. Sua fórmula cria uma película protetora que mantém a hidratação, reduz o frizz, recupera pontas duplas e fortalece o bulbo capilar, ajudando no crescimento saudável. O extrato de linhaça e de sálvia potencializa o volume e a resistência, enquanto o D-Pantenol, extrato de groselha indiana e a aloe vera deixam os fios mais elásticos, macios e brilhantes. Resultado: cabelo saudável, encorpado e com aquele toque sedoso que você sente e vê."
   },
   "source": "https://www.wepink.com.br/mascara-capilar-my-hair-ultra-repair-200g---wepink-329/p",
   "notes": {}
@@ -8306,25 +9139,30 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The strength and elegance of those who never give up",
-   "ar": "قوة وأناقة من لا يستسلم أبداً"
+   "ar": "قوة وأناقة من لا يستسلم أبداً",
+   "pt": "A força e a elegância de quem nunca desiste"
   },
   "desc": {
    "en": "Lion Blanc represents the power of the masculine essence through strength and elegance, like a fearless lion that never gives up on its dreams and goals. Its woody scent evolves into mysterious notes of jasmine, nutmeg and a fierce touch of cardamom, finishing on a sweet, ambery, unmatched base full of charm for sophisticated men.",
-   "ar": "يجسّد عطر ليون بلان قوة الجوهر الرجولي وأناقته، كأسد جسور لا يتخلى أبداً عن أحلامه وأهدافه. يتطوّر عبيره الخشبي الجذاب إلى نفحات غامضة من الياسمين وجوزة الطيب ولمسة جريئة من الهيل، ليختتم بقاعدة حلوة عنبرية لا تُضاهى، مفعمة بالجاذبية للرجل الراقي."
+   "ar": "يجسّد عطر ليون بلان قوة الجوهر الرجولي وأناقته، كأسد جسور لا يتخلى أبداً عن أحلامه وأهدافه. يتطوّر عبيره الخشبي الجذاب إلى نفحات غامضة من الياسمين وجوزة الطيب ولمسة جريئة من الهيل، ليختتم بقاعدة حلوة عنبرية لا تُضاهى، مفعمة بالجاذبية للرجل الراقي.",
+   "pt": "O Desodorante Colônia Wepink Lion Blanc representa o poder da essência masculina quando se trata de força e elegância, como um leão destemido que nunca desiste dos seus sonhos e objetivos. Sua jornada sensorial revela um aroma amadeirado que atrai todos ao redor, evoluindo em notas misteriosas de Jasmim, Noz-moscada e um toque feroz de Cardamomo. Finaliza em um fundo doce, ambarado e inigualável, cheio de charme para homens sofisticados."
   },
   "notes": {
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Nutmeg",
-     "جوزة الطيب"
+     "جوزة الطيب",
+     "Noz-moscada"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ]
    ]
   },
@@ -8355,11 +9193,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The VF MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and 72-hour hydration. Its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral amber olfactory path.",
-   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن في إف مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري عنبري آسر."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن في إف مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري عنبري آسر.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink VF oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas. Sua fórmula exclusiva também contribui para uniformizar o tom da pele. Tudo isso, em uma essência única e exclusiva, dedicada à mulher autêntica e transformadora, percorrendo um fascinante caminho olfativo floral âmbar."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-vf-50-ml---wepink-293/p",
   "notes": {}
@@ -8391,21 +9231,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your favorite gift is here!",
-   "ar": "وصلت هديتك المفضّلة!"
+   "ar": "وصلت هديتك المفضّلة!",
+   "pt": "Seu presente favorito chegou!"
   },
   "desc": {
    "en": "The Merry Christmas Body Splash captures the unique, sparkling magic of the holiday spirit in an unforgettable floral oriental scent. It opens with the beauty of peony and magnolia, evolves into a dreamy floral heart that spreads tenderness and joy, and finishes on a sweet, woody, dazzling base that evokes the happiest memories.",
-   "ar": "يجسّد بخاخ الجسم ميري كريسماس سحر روح الأعياد الفريد والمتألق بعبير زهري شرقي لا يُنسى. يبدأ بجمال نفحات الفاوانيا والماغنوليا، ثم يتطوّر إلى قلب زهري حالم ينشر الحنان والبهجة، ليختتم بقاعدة حلوة وخشبية ساحرة تستحضر أسعد الذكريات."
+   "ar": "يجسّد بخاخ الجسم ميري كريسماس سحر روح الأعياد الفريد والمتألق بعبير زهري شرقي لا يُنسى. يبدأ بجمال نفحات الفاوانيا والماغنوليا، ثم يتطوّر إلى قلب زهري حالم ينشر الحنان والبهجة، ليختتم بقاعدة حلوة وخشبية ساحرة تستحضر أسعد الذكريات.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Merry Christmas representa a magia única e brilhante do espírito natalino, transmitindo muito brilho e encanto em um aroma floral, oriental e inesquecível. Sua fragrância inicia na beleza das notas de Peônia, Magnólia e evolui em um coração floral dos sonhos, espalhando ternura e alegria por onde passar. Finaliza em um fundo doce, amadeirado e deslumbrante, evocando doces lembranças dos momentos mais felizes."
   },
   "notes": {
    "top": [
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ]
    ]
   },
@@ -8436,31 +9280,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect scent for new beginnings!",
-   "ar": "العبير المثالي للبدايات الجديدة!"
+   "ar": "العبير المثالي للبدايات الجديدة!",
+   "pt": "O aroma perfeito para recomeços!"
   },
   "desc": {
    "en": "The Happy New Year Body Splash is a dazzling scent for starting a new year with style, sparkle and joy. It opens with the vibrant freshness of freesia and bergamot, evolves into an extraordinary floral heart and finishes with woody amber and enveloping sandalwood, like a celebration of success in a new chapter.",
-   "ar": "بخاخ الجسم هابي نيو يير عبير مبهر لاستقبال عام جديد بأناقة وتألق وبهجة. يبدأ بانتعاش نابض من الفريزيا والبرغموت، ثم يتطوّر إلى قلب زهري استثنائي، ليختتم بدفء العنبر الخشبي وسحر خشب الصندل، كاحتفاء بالنجاح في بداية مرحلة جديدة."
+   "ar": "بخاخ الجسم هابي نيو يير عبير مبهر لاستقبال عام جديد بأناقة وتألق وبهجة. يبدأ بانتعاش نابض من الفريزيا والبرغموت، ثم يتطوّر إلى قلب زهري استثنائي، ليختتم بدفء العنبر الخشبي وسحر خشب الصندل، كاحتفاء بالنجاح في بداية مرحلة جديدة.",
+   "pt": "Celebre em muito brilho e alegria com o Desodorante Colônia Body Splash Wepink Happy New Year, uma essência deslumbrante para você iniciar um novo ano cheia de estilo. Seu aroma inicia no vibrante frescor das notas de Frésia e Bergamota, evoluindo no charme de um coração floral extraordinário. Finaliza no amadeirado do Âmbar e o envolvente do Sândalo, encerrando como uma celebração do sucesso de um novo ciclo."
   },
   "notes": {
    "top": [
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -8491,17 +9341,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The Perfect Pear MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and 72-hour hydration, with an exclusive formula that helps even out skin tone. All in a unique floral fruity scent with a soft touch of violet and a sweet, woody base.",
-   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن بيرفكت بير مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، مع تركيبة حصرية تساهم في توحيد لون البشرة. وكل ذلك في مسار عطري زهري فاكهي فريد بلمسة ناعمة من البنفسج وقاعدة حلوة وخشبية."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن بيرفكت بير مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، مع تركيبة حصرية تساهم في توحيد لون البشرة. وكل ذلك في مسار عطري زهري فاكهي فريد بلمسة ناعمة من البنفسج وقاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Perfect Pear oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas, além de uma fórmula exclusiva que contribui na uniformização do tom da pele. Tudo isso, em um caminho olfativo floral frutado único, em um toque suave de violeta e um fundo doce e amadeirado."
   },
   "notes": {
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ]
    ]
   },
@@ -8534,27 +9387,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A gentle scent for sweet dreams",
-   "ar": "عبير ناعم لأحلام سعيدة"
+   "ar": "عبير ناعم لأحلام سعيدة",
+   "pt": "Um aroma suave para bons sonhos"
   },
   "desc": {
    "en": "The Lavanda Sleep Body Splash celebrates gentle moments of rest with a unique scent that relaxes the senses. Its refreshing fragrance, with calming properties and a special touch of lavender oil, helps restore sleep. A soft, charming oriental path brings delicate rosemary and violet over a sweet, woody base.",
-   "ar": "يحتفي بخاخ الجسم لافاندا سليب بلحظات الراحة الهادئة بعبير فريد يبعث الاسترخاء في الحواس. ويساعد عطره المنعش بخصائصه المهدّئة ولمسة زيت اللافندر المميزة على استعادة النوم الهانئ. وكل ذلك في مسار عطري شرقي ناعم وساحر يجمع رقة إكليل الجبل والبنفسج مع قاعدة حلوة وخشبية."
+   "ar": "يحتفي بخاخ الجسم لافاندا سليب بلحظات الراحة الهادئة بعبير فريد يبعث الاسترخاء في الحواس. ويساعد عطره المنعش بخصائصه المهدّئة ولمسة زيت اللافندر المميزة على استعادة النوم الهانئ. وكل ذلك في مسار عطري شرقي ناعم وساحر يجمع رقة إكليل الجبل والبنفسج مع قاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Lavanda Sleep aprecia a essência dos suaves momentos de descanso, em um aroma único e relaxante aos sentidos. Sua fragrância refrescante auxilia na restauração do sono com suas propriedades calmantes, unido ao toque especial do óleo de lavanda. Tudo isso, em um caminho olfativo oriental suave e encantador aos sentidos, unido à delicadeza do alecrim, violeta e o fundo mais perfeito de notas doces e amadeiradas."
   },
   "notes": {
    "top": [
     [
      "Lavender",
-     "لافندر"
+     "لافندر",
+     "Lavanda"
     ],
     [
      "Rosemary",
-     "إكليل الجبل"
+     "إكليل الجبل",
+     "Alecrim"
     ]
    ],
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ]
    ]
   },
@@ -8587,33 +9445,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A powerful, unforgettable sense of well-being!",
-   "ar": "إحساس قوي بالرفاهية لا يُنسى!"
+   "ar": "إحساس قوي بالرفاهية لا يُنسى!",
+   "pt": "Um bem-estar poderoso e inesquecível!"
   },
   "desc": {
    "en": "The Obsessed Deluxe Body Splash awakens desire and intrigue, qualities found in powerful, unforgettable women. Its exclusive fragrance opens with a bold fruity chypre touch that blends sophistication and authenticity, then evolves into an enveloping violet heart before finishing on sweet notes of sandalwood and vanilla.",
-   "ar": "يوقظ بخاخ الجسم أوبسيسد ديلوكس الرغبة والفضول، وهما سمتان حاضرتان في المرأة القوية التي لا تُنسى. يبدأ عطره الحصري بلمسة جريئة من نفحة الشيبر الفاكهية تمزج بين الرقيّ والأصالة، ثم يتطوّر إلى قلب آسر من البنفسج، ليختتم بنفحات حلوة من خشب الصندل والفانيليا."
+   "ar": "يوقظ بخاخ الجسم أوبسيسد ديلوكس الرغبة والفضول، وهما سمتان حاضرتان في المرأة القوية التي لا تُنسى. يبدأ عطره الحصري بلمسة جريئة من نفحة الشيبر الفاكهية تمزج بين الرقيّ والأصالة، ثم يتطوّر إلى قلب آسر من البنفسج، ليختتم بنفحات حلوة من خشب الصندل والفانيليا.",
+   "pt": "O Body Splash Obsessed Deluxe desperta o desejo e o intrigante, presentes em mulheres poderosas e inesquecíveis. Sua fragrância exclusiva inicia pelo toque ousado do Chipre Frutado, mesclando sofisticação e autenticidade. Sua essência evolui para um coração envolvente de violeta, finalizando em notas adocicadas de sândalo e baunilha."
   },
   "notes": {
    "top": [
     [
      "Fruity chypre accord",
-     "نفحة شيبر فاكهية"
+     "نفحة شيبر فاكهية",
+     "Acorde chipre frutado"
     ]
    ],
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ]
    ],
    "base": [
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -8643,11 +9507,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The Liberté MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and 72-hour hydration, while its exclusive formula helps even out skin tone. All in a floral bouquet fragrance that overflows with the noblest essence of elegance.",
-   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن ليبرتيه مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، فيما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير باقة زهرية يفيض بأرقى معاني الأناقة."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن ليبرتيه مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، فيما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير باقة زهرية يفيض بأرقى معاني الأناقة.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Liberté oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas, além de sua fórmula exclusiva contribuir na uniformização do tom da pele. Tudo isso, em uma fragrância floral bouquet que transborda a essência mais nobre da elegância."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-liberte-50-ml-drle-ath-001/p",
   "notes": {}
@@ -8677,11 +9543,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The most complete sun protection for your skin",
-   "ar": "الحماية الأشمل من الشمس لبشرتك"
+   "ar": "الحماية الأشمل من الشمس لبشرتك",
+   "pt": "A mais completa defesa solar para a sua pele"
   },
   "desc": {
    "en": "Suncare is a facial sunscreen that hydrates, balances and offers high protection against harmful UVA/UVB rays, with SPF 50 and a PPD of 18.5. Its smart actives also help prevent acne, control oiliness and fight premature aging. Oil-free, with a creamy texture and dry-touch matte finish, it suits all skin types and is especially designed for combination and oily skin.",
-   "ar": "صن كير واقٍ شمسي للوجه يرطّب البشرة ويوازنها ويمنحها حماية عالية من الآثار الضارة للأشعة فوق البنفسجية UVA/UVB، بعامل حماية SPF 50 ومؤشر PPD يبلغ 18.5. كما تساعد مكوّناته الذكية على الوقاية من حب الشباب والتحكم في الإفرازات الدهنية ومكافحة علامات الشيخوخة المبكرة. خالٍ من الزيوت بقوام كريمي ولمسة جافة ونهاية مطفية، يناسب جميع أنواع البشرة وصُمّم خصيصاً للبشرة المختلطة والدهنية."
+   "ar": "صن كير واقٍ شمسي للوجه يرطّب البشرة ويوازنها ويمنحها حماية عالية من الآثار الضارة للأشعة فوق البنفسجية UVA/UVB، بعامل حماية SPF 50 ومؤشر PPD يبلغ 18.5. كما تساعد مكوّناته الذكية على الوقاية من حب الشباب والتحكم في الإفرازات الدهنية ومكافحة علامات الشيخوخة المبكرة. خالٍ من الزيوت بقوام كريمي ولمسة جافة ونهاية مطفية، يناسب جميع أنواع البشرة وصُمّم خصيصاً للبشرة المختلطة والدهنية.",
+   "pt": "Suncare, o protetor solar facial do mundo rosa foi desenvolvido para hidratar, equilibrar e oferece alta proteção para a pele, combatendo os efeitos nocivos dos raios UVA/UVB. Com um PPD (Dose de Pigmentação Persistente) de 18,5 e FPS 50 contra UVB, sua fórmula única é enriquecida com ativos inteligentes, que não apenas defendem dos raios solares, mas também auxiliam na prevenção de acnes, no controle da oleosidade e combate ao envelhecimento precoce. Desenvolvido para todos os tipos de pele, o suncare apresenta uma textura creme e um toque seco, evitando o efeito luminoso no rosto e proporcionando um acabamento matte. Especialmente projetado para peles mistas e oleosas, pois não contém óleo na composição, garantindo um controle eficaz da oleosidade sem comprometer a saúde da pele."
   },
   "source": "https://www.wepink.com.br/protetor-solar-fps-50-suncare-30ml-wepink/p",
   "notes": {}
@@ -8711,11 +9579,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The best lip tint of all time",
-   "ar": "أفضل صبغة شفاه على الإطلاق"
+   "ar": "أفضل صبغة شفاه على الإطلاق",
+   "pt": "O melhor lip tint de todos os tempos"
   },
   "desc": {
    "en": "This lip tint enhances the color of the lips and keeps it for a long time, with actives that hydrate. Versatile, it can also be used to give the cheeks a rosy flush. Formulated with hyaluronic acid and D-Panthenol, which naturally stimulate collagen production, it leaves lips more hydrated with beautiful pigmentation.",
-   "ar": "طُوّرت صبغة الشفاه هذه لإبراز لون الشفاه والحفاظ عليه لفترة طويلة، مع مكوّنات فعّالة ترطّبها. وهي متعددة الاستخدامات، إذ يمكن استخدامها أيضاً لإضفاء لون وردي على الوجنتين. تحتوي على حمض الهيالورونيك والدي-بانثينول اللذين يحفّزان إنتاج الكولاجين بشكل طبيعي، لتمنح الشفاه ترطيباً أكبر وتصبّغاً رائعاً."
+   "ar": "طُوّرت صبغة الشفاه هذه لإبراز لون الشفاه والحفاظ عليه لفترة طويلة، مع مكوّنات فعّالة ترطّبها. وهي متعددة الاستخدامات، إذ يمكن استخدامها أيضاً لإضفاء لون وردي على الوجنتين. تحتوي على حمض الهيالورونيك والدي-بانثينول اللذين يحفّزان إنتاج الكولاجين بشكل طبيعي، لتمنح الشفاه ترطيباً أكبر وتصبّغاً رائعاً.",
+   "pt": "O Lip Tint é um produto que foi desenvolvido para realçar a coloração dos lábios e manter a cor por uma longa duração, além de contar também com ativos que hidratam os seus lábios. É um produto versátil que também pode ser usado para deixar as maçãs do rosto coradas, é só passar e já está pronta para arrasar. Este produto contém Ácido Hialurônico e D-Pantenol, que estimulam naturalmente a produção de colágeno e deixa seus lábios mais hidratados e com uma pigmentação maravilhosa."
   },
   "source": "https://www.wepink.com.br/lip-tint-glow/p",
   "notes": {}
@@ -8739,11 +9609,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Bomb One paired with Ruby Rhodolite Body Splash and Body Cream",
-   "ar": "طقم يجمع بومب ون مع بخاخ الجسم وكريم الجسم روبي رودولايت"
+   "ar": "طقم يجمع بومب ون مع بخاخ الجسم وكريم الجسم روبي رودولايت",
+   "pt": "Bomb One com o Body Splash e o Body Cream Ruby Rhodolite"
   },
   "desc": {
    "en": "This set brings together three products in a single kit: Bomb One, the Ruby Rhodolite Body Splash and the Ruby Rhodolite Body Cream. A practical way to enjoy all three together.",
-   "ar": "يضم هذا الطقم ثلاثة منتجات معاً: بومب ون، وبخاخ الجسم روبي رودولايت، وكريم الجسم روبي رودولايت. طريقة عملية للاستمتاع بالمنتجات الثلاثة في طقم واحد."
+   "ar": "يضم هذا الطقم ثلاثة منتجات معاً: بومب ون، وبخاخ الجسم روبي رودولايت، وكريم الجسم روبي رودولايت. طريقة عملية للاستمتاع بالمنتجات الثلاثة في طقم واحد.",
+   "pt": "Este kit reúne três produtos: Bomb One, o Body Splash Ruby Rhodolite e o Body Cream Ruby Rhodolite. Uma forma prática de aproveitar os três juntos."
   },
   "source": "https://www.wepink.com.br/kit-bomb-one--body-splash-ruby-rhodolite--body-cream--ruby-rhodolite---wepink-105567/p",
   "notes": {}
@@ -8767,11 +9639,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Bomb One paired with Fantasy Kids Green",
-   "ar": "طقم يجمع بومب ون مع فانتاسي كيدز جرين"
+   "ar": "طقم يجمع بومب ون مع فانتاسي كيدز جرين",
+   "pt": "Bomb One com Fantasy Kids Green"
   },
   "desc": {
    "en": "This set brings together Bomb One and Fantasy Kids Green in a single kit. A practical way to enjoy both products together.",
-   "ar": "يضم هذا الطقم كلاً من بومب ون و فانتاسي كيدز جرين معاً. طريقة عملية للاستمتاع بالمنتجين في طقم واحد."
+   "ar": "يضم هذا الطقم كلاً من بومب ون و فانتاسي كيدز جرين معاً. طريقة عملية للاستمتاع بالمنتجين في طقم واحد.",
+   "pt": "Este kit reúne Bomb One e Fantasy Kids Green. Uma forma prática de aproveitar os dois produtos juntos."
   },
   "source": "https://www.wepink.com.br/kit-bomb-one--fantasy-kids-green---wepink-125673/p",
   "notes": {}
@@ -8795,11 +9669,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Eternal Cherish collection in one set",
-   "ar": "مجموعة إيترنال تشيريش في طقم واحد"
+   "ar": "مجموعة إيترنال تشيريش في طقم واحد",
+   "pt": "A coleção Eternal Cherish em um só kit"
   },
   "desc": {
    "en": "This set brings together products from the Eternal Cherish line in a single kit. A practical way to enjoy the collection together.",
-   "ar": "يضم هذا الطقم منتجات من مجموعة إيترنال تشيريش معاً. طريقة عملية للاستمتاع بمنتجات المجموعة في طقم واحد."
+   "ar": "يضم هذا الطقم منتجات من مجموعة إيترنال تشيريش معاً. طريقة عملية للاستمتاع بمنتجات المجموعة في طقم واحد.",
+   "pt": "Este kit reúne produtos da linha Eternal Cherish. Uma forma prática de aproveitar a coleção reunida."
   },
   "source": "https://www.wepink.com.br/kit-linha-eternal-cherish---wepink-145484/p",
   "notes": {}
@@ -8823,11 +9699,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Scarlette Radiance collection in one set",
-   "ar": "مجموعة سكارليت راديانس في طقم واحد"
+   "ar": "مجموعة سكارليت راديانس في طقم واحد",
+   "pt": "A coleção Scarlette Radiance em um só kit"
   },
   "desc": {
    "en": "This set brings together products from the Scarlette Radiance line in a single kit. A practical way to enjoy the collection together.",
-   "ar": "يضم هذا الطقم منتجات من مجموعة سكارليت راديانس معاً. طريقة عملية للاستمتاع بمنتجات المجموعة في طقم واحد."
+   "ar": "يضم هذا الطقم منتجات من مجموعة سكارليت راديانس معاً. طريقة عملية للاستمتاع بمنتجات المجموعة في طقم واحد.",
+   "pt": "Este kit reúne produtos da linha Scarlette Radiance. Uma forma prática de aproveitar a coleção reunida."
   },
   "source": "https://www.wepink.com.br/kit-linha-scarllet-radiance---wepink-145384/p",
   "notes": {}
@@ -8858,23 +9736,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Liberté Exclusif",
-   "ar": "قوام الكريمة المخفوقة بعبير ليبرتيه إكسكلوسيف"
+   "ar": "قوام الكريمة المخفوقة بعبير ليبرتيه إكسكلوسيف",
+   "pt": "Textura de chantilly com o cheirinho do Liberté Exclusif"
   },
   "desc": {
    "en": "The Shower Dream Liberté Exclusif Bath Foam turns bathing into a moment of care and sophistication. Its ultra-creamy texture gently cleanses, removes impurities and helps maintain hydration, leaving skin silky and scented. The floral oriental fragrance reveals the noble freshness of lychee, delicate flowers and the enveloping depth of amber for a premium, relaxing experience.",
-   "ar": "تحوّل رغوة الاستحمام شاور دريم ليبرتيه إكسكلوسيف الاستحمام إلى لحظة من العناية والرقيّ. ينظّف قوامها الكريمي الفائق البشرة بلطف ويزيل الشوائب ويساعد على الحفاظ على ترطيبها، تاركاً لمسة حريرية معطّرة. ويكشف عبيرها الزهري الشرقي عن انتعاش الليتشي الراقي ورقة الزهور وعمق العنبر الآسر، في تجربة فاخرة تبعث على الاسترخاء."
+   "ar": "تحوّل رغوة الاستحمام شاور دريم ليبرتيه إكسكلوسيف الاستحمام إلى لحظة من العناية والرقيّ. ينظّف قوامها الكريمي الفائق البشرة بلطف ويزيل الشوائب ويساعد على الحفاظ على ترطيبها، تاركاً لمسة حريرية معطّرة. ويكشف عبيرها الزهري الشرقي عن انتعاش الليتشي الراقي ورقة الزهور وعمق العنبر الآسر، في تجربة فاخرة تبعث على الاسترخاء.",
+   "pt": "A Espuma de Banho Wepink Shower Dream Liberté Exclusif transforma o banho em um momento de cuidado e sofisticação. Sua textura ultracremosa limpa suavemente a pele, remove impurezas e ajuda a manter a hidratação, deixando um toque sedoso e perfumado. A fragrância Floral Oriental revela o frescor nobre da Lichia, a delicadeza das flores e a profundidade envolvente do Âmbar, despertando uma leve sensação de liberdade. Uma experiência premium e relaxante, feita para transformar a rotina em um sonho exclusivo."
   },
   "notes": {
    "top": [
     [
      "Lychee",
-     "ليتشي"
+     "ليتشي",
+     "Lichia"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -8905,11 +9787,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The Absolute Titanium MyProtection Roll-on Antiperspirant offers up to 72 hours of protection and hydration, with freshness that keeps pace with the daily routine. Its innovative formula with brightening action helps even out skin tone, improves the appearance of the underarms and boosts ceramide synthesis. It is crowned by an elegant woody amber fougère fragrance.",
-   "ar": "يوفّر مضاد التعرّق رول أون ماي بروتكشن أبسولوت تيتانيوم حماية وترطيباً لمدة تصل إلى 72 ساعة، مع انتعاش يواكب إيقاع الروتين اليومي. وتساعد تركيبته المبتكرة ذات المفعول المفتّح على توحيد لون البشرة وتحسين مظهر منطقة الإبط وتعزيز إنتاج السيراميدات. ويتوّج كل ذلك عبير فوجير عنبري خشبي أنيق."
+   "ar": "يوفّر مضاد التعرّق رول أون ماي بروتكشن أبسولوت تيتانيوم حماية وترطيباً لمدة تصل إلى 72 ساعة، مع انتعاش يواكب إيقاع الروتين اليومي. وتساعد تركيبته المبتكرة ذات المفعول المفتّح على توحيد لون البشرة وتحسين مظهر منطقة الإبط وتعزيز إنتاج السيراميدات. ويتوّج كل ذلك عبير فوجير عنبري خشبي أنيق.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Absolute Titanium oferece até 72 horas de proteção e hidratação, com frescor para acompanhar o ritmo da sua rotina. Sua fórmula inovadora auxilia na uniformização do tom da pele, melhora a aparência das axilas e contribui para o aumento da síntese de ceramidas. Com ação clareadora e alta tecnologia, ele transforma o cuidado diário em uma experiência única de bem-estar, coroada por uma elegante fragrância Fougère Ambarada Amadeirada."
   },
   "source": "https://www.wepink.com.br/desodorante-antitranspirante-roll-on-absolute-titanium-50ml---wepink/p",
   "notes": {}
@@ -8939,31 +9823,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Magnetism isn't explained, it's felt",
-   "ar": "الجاذبية لا تُفسَّر، بل تُحَسّ"
+   "ar": "الجاذبية لا تُفسَّر، بل تُحَسّ",
+   "pt": "Magnetismo não se explica, se sente"
   },
   "desc": {
    "en": "Martin Magnetic was created to capture a silent, confident and naturally magnetic presence, balancing freshness, intensity and sophistication through elegant contrasts. It opens with the vibrant freshness of green leaves for a luminous, refined start, then reveals an unexpected floral heart of jasmine, lily of the valley and carnation.",
-   "ar": "وُلد عطر مارتن ماجنتك ليجسّد حضوراً هادئاً وواثقاً وجذاباً بطبيعته، في توازن بين الانتعاش والكثافة والرقيّ عبر تناقضات أنيقة. يفتتح بانتعاش نابض من الأوراق الخضراء في بداية مشرقة وراقية، ثم يكشف عن قلب زهري غير متوقّع من الياسمين وزنبق الوادي والقرنفل."
+   "ar": "وُلد عطر مارتن ماجنتك ليجسّد حضوراً هادئاً وواثقاً وجذاباً بطبيعته، في توازن بين الانتعاش والكثافة والرقيّ عبر تناقضات أنيقة. يفتتح بانتعاش نابض من الأوراق الخضراء في بداية مشرقة وراقية، ثم يكشف عن قلب زهري غير متوقّع من الياسمين وزنبق الوادي والقرنفل.",
+   "pt": "Existem pessoas cuja presença é percebida antes mesmo da primeira palavra. Uma presença silenciosa, segura e naturalmente magnética, capaz de transformar um instante comum em um momento memorável. Foi para traduzir essa sensação que nasceu Martin Magnetic. Uma criação que equilibra frescor, intensidade e sofisticação em uma composição construída sobre contrastes elegantes. Uma fragrância contemporânea para pessoas que compreendem que o verdadeiro poder não está em impressionar, mas em deixar uma marca que permanece na memória. Desde o primeiro instante, a fragrância revela o frescor vibrante das Folhas Verdes, proporcionando uma abertura luminosa, refinada e extremamente elegante. Esse acorde vegetal desperta os sentidos com naturalidade, criando uma sensação de energia e modernidade que transmite confiança desde a primeira borrifada. À medida que evolui, Martin Magnetic revela um coração floral inesperado e sofisticado. Jasmim, Lírio-do-vale e Cravo unem delicadeza e personalidade em uma construção rica em nuances. O resultado é um equilíbrio perfeito entre força e refinamento, mostrando que elegância também pode ser construída através dos detalhes. O calor envolvente do Âmbar encontra a doçura sofisticada do Caramelo, enquanto o Cedro acrescenta estrutura, profundidade e masculinidade. A Fava Tonka, com sua assinatura cremosa, levemente abaunilhada e amendoada, prolonga a experiência sobre a pele, criando um rastro confortável, sensual e extremamente memorável. O resultado é uma fragrância de personalidade marcante, que evolui de forma elegante durante todo o uso. Seu contraste entre acordes verdes, florais e amadeirados cria uma assinatura moderna, intensa e envolvente, perfeito para pessoas que apreciam fragrâncias sofisticadas e cheias de presença. Martin Magnetic foi criado para quem entende que estilo vai além da aparência. Que elegância não precisa de exageros."
   },
   "notes": {
    "top": [
     [
      "Green leaves",
-     "أوراق خضراء"
+     "أوراق خضراء",
+     "Folhas verdes"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Carnation",
-     "قرنفل"
+     "قرنفل",
+     "Cravo"
     ]
    ]
   },
@@ -8996,65 +9886,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "For men who make their choices with confidence",
-   "ar": "للرجال الذين يتخذون قراراتهم بثقة"
+   "ar": "للرجال الذين يتخذون قراراتهم بثقة",
+   "pt": "Para homens que fazem suas escolhas com confiança"
   },
   "desc": {
    "en": "Brave Element was created for men who turn challenges into opportunities, expressing confidence, leadership and courage. It opens with bergamot, pineapple, blueberry and cardamom, moves into an aromatic heart of French lavender, geranium, blue narcissus and lily of the valley, and settles into an intense woody base of patchouli, cedar, moss and musk that leaves a striking trail.",
-   "ar": "صُمّم عطر بريف إليمنت للرجال الذين يحوّلون التحديات إلى فرص، ليعبّر عن الثقة والقيادة والشجاعة. يفتتح بمزيج نابض من البرغموت والأناناس والتوت الأزرق والهيل، ثم ينتقل إلى قلب عطري من اللافندر الفرنسي والجيرانيوم والنرجس الأزرق وزنبق الوادي، ليستقر على قاعدة خشبية مكثّفة من الباتشولي وخشب الأرز والطحلب والمسك تترك أثراً لافتاً."
+   "ar": "صُمّم عطر بريف إليمنت للرجال الذين يحوّلون التحديات إلى فرص، ليعبّر عن الثقة والقيادة والشجاعة. يفتتح بمزيج نابض من البرغموت والأناناس والتوت الأزرق والهيل، ثم ينتقل إلى قلب عطري من اللافندر الفرنسي والجيرانيوم والنرجس الأزرق وزنبق الوادي، ليستقر على قاعدة خشبية مكثّفة من الباتشولي وخشب الأرز والطحلب والمسك تترك أثراً لافتاً.",
+   "pt": "O Desodorante Colônia Wepink Brave Element foi criado para homens que transformam desafios em oportunidades e fazem da determinação a sua maior assinatura. Para eles nasceu Brave Element, uma fragrância que traduz confiança, liderança e coragem em cada detalhe. Sua abertura revela uma combinação vibrante de Bergamota, Abacaxi, Mirtilo e Cardamomo, criando um frescor sofisticado com nuances frutadas e especiadas que despertam os sentidos e marcam presença desde o primeiro instante. No coração, Lavanda Francesa, Gerânio, Narciso Azul e Lírio-do-vale revelam um acorde aromático refinado, equilibrando elegância e modernidade em uma composição que transmite autenticidade e personalidade. Ao fundo, Patchouli, Cedro, Musgo e Musk envolvem a pele com uma assinatura amadeirada intensa, sofisticada e duradoura. Um rastro marcante que traduz segurança, força e a elegância de quem conquista seu espaço naturalmente. Brave Element é uma fragrância criada para homens que fazem suas escolhas com confiança, enxergam oportunidades onde outros veem obstáculos e deixam sua presença registrada por onde passam. Porque a verdadeira coragem não precisa ser anunciada... ela é percebida."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Pineapple",
-     "أناناس"
+     "أناناس",
+     "Abacaxi"
     ],
     [
      "Blueberry",
-     "توت أزرق"
+     "توت أزرق",
+     "Mirtilo"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ]
    ],
    "heart": [
     [
      "French lavender",
-     "لافندر فرنسي"
+     "لافندر فرنسي",
+     "Lavanda francesa"
     ],
     [
      "Geranium",
-     "جيرانيوم"
+     "جيرانيوم",
+     "Gerânio"
     ],
     [
      "Blue narcissus",
-     "نرجس أزرق"
+     "نرجس أزرق",
+     "Narciso azul"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ],
     [
      "Moss",
-     "طحلب"
+     "طحلب",
+     "Musgo"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -9083,11 +9987,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The care your skin deserves, every day",
-   "ar": "العناية التي تستحقها بشرتك، كل يوم"
+   "ar": "العناية التي تستحقها بشرتك، كل يوم",
+   "pt": "O cuidado que sua pele merece, todos os dias"
   },
   "desc": {
    "en": "The Ruby Clean Bar is a bar soap from the Ruby line, made for everyday use. It brings the care the skin deserves to the daily routine.",
-   "ar": "صابونة روبي كلين بار صابونة صلبة من مجموعة روبي مخصّصة للاستخدام اليومي. تمنح البشرة العناية التي تستحقها ضمن الروتين اليومي."
+   "ar": "صابونة روبي كلين بار صابونة صلبة من مجموعة روبي مخصّصة للاستخدام اليومي. تمنح البشرة العناية التي تستحقها ضمن الروتين اليومي.",
+   "pt": "O Sabonete em Barra Clean Bar Ruby é o sabonete da linha Ruby, feito para o uso diário. Ele leva para a rotina o cuidado que a pele merece."
   },
   "source": "https://www.wepink.com.br/sabonete-em-barra-ruby---wepink-prd00009/p",
   "notes": {}
@@ -9115,11 +10021,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The care your skin deserves, every day",
-   "ar": "العناية التي تستحقها بشرتك، كل يوم"
+   "ar": "العناية التي تستحقها بشرتك، كل يوم",
+   "pt": "O cuidado que sua pele merece, todos os dias"
   },
   "desc": {
    "en": "The Celebrate Life Clean Bar is a bar soap from the Celebrate Life line, made for everyday use. It brings the care the skin deserves to the daily routine.",
-   "ar": "صابونة سيليبريت لايف كلين بار صابونة صلبة من مجموعة سيليبريت لايف مخصّصة للاستخدام اليومي. تمنح البشرة العناية التي تستحقها ضمن الروتين اليومي."
+   "ar": "صابونة سيليبريت لايف كلين بار صابونة صلبة من مجموعة سيليبريت لايف مخصّصة للاستخدام اليومي. تمنح البشرة العناية التي تستحقها ضمن الروتين اليومي.",
+   "pt": "O Sabonete em Barra Clean Bar Celebrate Life é o sabonete da linha Celebrate Life, feito para o uso diário. Ele leva para a rotina o cuidado que a pele merece."
   },
   "source": "https://www.wepink.com.br/sabonete-em-barra-celebrate-life---wepink-prd00010/p",
   "notes": {}
@@ -9151,11 +10059,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect balance of freshness and sophistication",
-   "ar": "التوازن المثالي بين الانتعاش والرقيّ"
+   "ar": "التوازن المثالي بين الانتعاش والرقيّ",
+   "pt": "O equilíbrio perfeito entre frescor e sofisticação"
   },
   "desc": {
    "en": "Authentic Azure captures the essence of the authentic, confident and naturally striking man. It is a fragrance created for those who live intensely, value their individuality and turn presence into a signature.",
-   "ar": "يجسّد عطر أوثنتك أزور جوهر الرجل الأصيل والواثق والمتميّز بطبيعته. إنه عطر صُمّم لمن يعيش بشغف، ويقدّر تفرّده، ويحوّل حضوره إلى بصمة خاصة."
+   "ar": "يجسّد عطر أوثنتك أزور جوهر الرجل الأصيل والواثق والمتميّز بطبيعته. إنه عطر صُمّم لمن يعيش بشغف، ويقدّر تفرّده، ويحوّل حضوره إلى بصمة خاصة.",
+   "pt": "O Desodorante Colônia Wepink Authentic Azure traduz a essência do homem autêntico, confiante e naturalmente marcante. Uma fragrância criada para quem vive com intensidade, valoriza sua individualidade e transforma presença em assinatura."
   },
   "source": "https://www.wepink.com.br/desod-col-authentic-azure-100ml---wepink-518/p",
   "notes": {}
@@ -9185,29 +10095,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Cuddle",
-   "ar": "قوام الكريمة المخفوقة بعبير فانيلا كادل"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا كادل",
+   "pt": "Textura de chantilly com o cheirinho do Vanilla Cuddle"
   },
   "desc": {
    "en": "The Shower Dream Vanilla Cuddle Bath Foam turns bath time into a burst of comfort, with gentle cleansing, intense hydration and a glow effect in an ultra-creamy texture reminiscent of whipped cream. Its sweet scent of tangerine, jasmine and vanilla wraps the body, creating a fragrant, comforting moment of self-care.",
-   "ar": "تحوّل رغوة الاستحمام شاور دريم فانيلا كادل وقت الاستحمام إلى لحظة غامرة من الدفء والراحة، بتنظيف لطيف وترطيب مكثّف وتأثير مشرق بقوام كريمي فائق يشبه الكريمة المخفوقة. ويحيط عبيرها الحلو من اليوسفي والياسمين والفانيليا بالجسم، ليخلق لحظة عناية معطّرة ومريحة."
+   "ar": "تحوّل رغوة الاستحمام شاور دريم فانيلا كادل وقت الاستحمام إلى لحظة غامرة من الدفء والراحة، بتنظيف لطيف وترطيب مكثّف وتأثير مشرق بقوام كريمي فائق يشبه الكريمة المخفوقة. ويحيط عبيرها الحلو من اليوسفي والياسمين والفانيليا بالجسم، ليخلق لحظة عناية معطّرة ومريحة.",
+   "pt": "A Espuma de Banho Wepink Shower Dream Vanilla Cuddle chegou para transformar o seu banho em uma explosão de aconchego, com limpeza suave, hidratação intensa e efeito glow em uma textura ultracremosa que lembra chantilly. O cheirinho doce de tangerina, jasmim e baunilha envolve o corpo, deixando tudo ainda mais delicioso e criando um momento só seu que perfuma, acolhe e faz você se sentir bem cuidada do jeito que merece!"
   },
   "notes": {
    "top": [
     [
      "Tangerine",
-     "يوسفي"
+     "يوسفي",
+     "Tangerina"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -9240,65 +10155,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The sophistication of turning confidence into presence",
-   "ar": "رقيّ من يحوّل الثقة إلى حضور"
+   "ar": "رقيّ من يحوّل الثقة إلى حضور",
+   "pt": "A sofisticação de quem transforma confiança em presença"
   },
   "desc": {
    "en": "Mallorie Luxury was created for women who carry elegance, strength and sophistication in every detail. It opens with bright bergamot and lemon, delicate raspberry and a modern spicy touch of pink pepper. A refined bouquet of rose, iris, tuberose and magnolia forms the heart, over a deep, memorable base of patchouli, amber, benzoin and musk.",
-   "ar": "صُمّم عطر مالوري لاكشري للمرأة التي تحمل الأناقة والقوة والرقيّ في كل تفاصيل مسيرتها. يفتتح بإشراقة البرغموت والليمون الحمضية وحلاوة توت العليق الرقيقة، مع لمسة عصرية متبّلة من الفلفل الوردي. ويكشف قلبه عن باقة زهرية راقية من الورد والسوسن والتيوبروز والماغنوليا، فوق قاعدة عميقة لا تُنسى من الباتشولي والعنبر والبنزوين والمسك."
+   "ar": "صُمّم عطر مالوري لاكشري للمرأة التي تحمل الأناقة والقوة والرقيّ في كل تفاصيل مسيرتها. يفتتح بإشراقة البرغموت والليمون الحمضية وحلاوة توت العليق الرقيقة، مع لمسة عصرية متبّلة من الفلفل الوردي. ويكشف قلبه عن باقة زهرية راقية من الورد والسوسن والتيوبروز والماغنوليا، فوق قاعدة عميقة لا تُنسى من الباتشولي والعنبر والبنزوين والمسك.",
+   "pt": "O Desodorante Colônia Wepink Mallorie Luxury foi criado para mulheres que carregam elegância, força e sofisticação em cada detalhe da sua trajetória. Uma fragrância que traduz confiança, personalidade e a beleza de quem sabe exatamente quem é. Sua abertura combina a luminosidade cítrica da Bergamota e do Limão com a doçura delicada da Framboesa, enquanto a Pimenta Rosa adiciona um toque especiado moderno e envolvente. O resultado é uma primeira impressão vibrante, sofisticada e cheia de atitude. No coração da fragrância, um bouquet floral refinado revela toda a sua feminilidade. A elegância atemporal da Rosa, a delicadeza da Íris, a intensidade da Tuberosa e a cremosidade aveludada da Magnólia criam uma combinação harmoniosa que envolve a pele com charme, requinte e personalidade. Ao fundo, a profundidade do Patchouli encontra o calor sofisticado do Âmbar, a riqueza do Benjoim e a maciez confortável do Musk, construindo uma base intensa e memorável. Essa combinação deixa um rastro elegante que permanece na pele e na memória, revelando uma assinatura olfativa marcante e sofisticada. Mallorie Luxury é mais do que uma fragrância. É uma expressão de poder feminino, confiança e sofisticação. Criada para mulheres que transformam presença em impacto e elegância em uma assinatura inesquecível. Porque o verdadeiro luxo não está apenas no que você veste. Está na forma como você é lembrada."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ],
     [
      "Raspberry",
-     "توت العليق"
+     "توت العليق",
+     "Framboesa"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Iris",
-     "سوسن"
+     "سوسن",
+     "Íris"
     ],
     [
      "Tuberose",
-     "تيوبروز"
+     "تيوبروز",
+     "Tuberosa"
     ],
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Benzoin",
-     "بنزوين"
+     "بنزوين",
+     "Benjoim"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -9329,29 +10258,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The Ruby Rhodolite MyProtection Roll-on Antiperspirant elevates the care routine of the woman who forges her own path. With 72-hour protection and hydration, its formula helps improve the appearance and even out the tone of the skin while stimulating ceramide synthesis. Its floral oriental fragrance balances pitaya, jasmine and vanilla, bringing freshness to every move.",
-   "ar": "يرتقي مضاد التعرّق رول أون ماي بروتكشن روبي رودولايت بروتين العناية لدى المرأة التي ترسم طريقها بنفسها. بحماية وترطيب لمدة 72 ساعة، تساعد تركيبته على تحسين مظهر البشرة وتوحيد لونها، إلى جانب تحفيز إنتاج السيراميدات. ويوازن عبيره الزهري الشرقي بين نفحات فاكهة التنين والياسمين والفانيليا، ليمنح انتعاشاً يرافقها في كل حركة."
+   "ar": "يرتقي مضاد التعرّق رول أون ماي بروتكشن روبي رودولايت بروتين العناية لدى المرأة التي ترسم طريقها بنفسها. بحماية وترطيب لمدة 72 ساعة، تساعد تركيبته على تحسين مظهر البشرة وتوحيد لونها، إلى جانب تحفيز إنتاج السيراميدات. ويوازن عبيره الزهري الشرقي بين نفحات فاكهة التنين والياسمين والفانيليا، ليمنح انتعاشاً يرافقها في كل حركة.",
+   "pt": "O Desodorante Antitranspirante Roll-on MyProtection Wepink Ruby Rhodolite eleva a rotina de cuidados da mulher que traça o próprio caminho. Com proteção e hidratação por 72 horas, sua fórmula ajuda a melhorar a aparência e uniformizar o tom da pele, além de estimular a síntese de ceramidas. A fragrância Floral Oriental equilibra notas de Pitaya, Jasmim e Baunilha, trazendo frescor e acompanhando sua energia em cada movimento."
   },
   "notes": {
    "top": [
     [
      "Pitaya",
-     "فاكهة التنين"
+     "فاكهة التنين",
+     "Pitaya"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -9384,41 +10318,49 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Tropical intensity with an enveloping sophistication",
-   "ar": "حيوية استوائية برقيّ آسر"
+   "ar": "حيوية استوائية برقيّ آسر",
+   "pt": "A intensidade tropical com uma sofisticação envolvente"
   },
   "desc": {
    "en": "The Latina Body Splash is an invitation to experience intensity in its most vibrant, warm and sophisticated form. It opens with creamy banana and luminous pear, moves into a heart of creamy coconut and elegant jasmine, and settles into a warm base of velvety vanilla and sandalwood that leaves a striking, enveloping trail.",
-   "ar": "بخاخ الجسم لاتينا دعوة لعيش الشغف في أكثر صوره حيوية ودفئاً ورقيّاً. يفتتح بالموز الكريمي وخفّة الكمثرى المشرقة، ثم ينتقل إلى قلب من جوز الهند الكريمي والياسمين الأنيق، ليستقر على قاعدة دافئة من الفانيليا المخملية وخشب الصندل تترك أثراً لافتاً وآسراً."
+   "ar": "بخاخ الجسم لاتينا دعوة لعيش الشغف في أكثر صوره حيوية ودفئاً ورقيّاً. يفتتح بالموز الكريمي وخفّة الكمثرى المشرقة، ثم ينتقل إلى قلب من جوز الهند الكريمي والياسمين الأنيق، ليستقر على قاعدة دافئة من الفانيليا المخملية وخشب الصندل تترك أثراً لافتاً وآسراً.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Latina é um convite para viver a intensidade em sua forma mais vibrante, quente e sofisticada. Uma fragrância que traduz energia, feminilidade e magnetismo em cada detalhe, criando uma presença marcante e impossível de ignorar. Na abertura, a banana cremosa surge envolvente e inesperada, trazendo uma doçura tropical sofisticada que se encontra com a leveza luminosa da pera. Um início suculento, radiante e cheio de personalidade, que desperta os sentidos com um toque exótico e moderno. No coração, a fragrância revela sua faceta mais feminina e envolvente. O coco adiciona cremosidade e conforto, enquanto o jasmim floresce com elegância, criando um acorde floral branco que equilibra doçura e sofisticação com naturalidade. Ao fundo, a assinatura se torna quente e irresistível. A baunilha traz profundidade e um toque gourmand aveludado, enquanto o sândalo adiciona estrutura e elegância, criando um rastro marcante, envolvente e sofisticado que permanece na pele. O Latina é ideal para quem busca um perfume feminino floral frutado doce, com assinatura tropical sofisticada e presença intensa. Uma fragrância que equilibra doçura, cremosidade e calor amadeirado com perfeição."
   },
   "notes": {
    "top": [
     [
      "Creamy banana",
-     "موز كريمي"
+     "موز كريمي",
+     "Banana cremosa"
     ],
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ]
    ],
    "heart": [
     [
      "Coconut",
-     "جوز الهند"
+     "جوز الهند",
+     "Coco"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -9449,23 +10391,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Hope",
-   "ar": "قوام الكريمة المخفوقة بعبير فانيلا هوب"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا هوب",
+   "pt": "Textura de chantilly com o cheirinho do Vanilla Hope"
   },
   "desc": {
    "en": "The Shower Dream Vanilla Hope Bath Foam brings lightness and well-being to bath time, combining gentle cleansing, hydration and a glow effect. Its ultra-creamy, whipped-cream texture leaves skin soft and luminous, while notes of almond and jasmine create a refreshing, comforting ritual of energy and renewal.",
-   "ar": "تمنح رغوة الاستحمام شاور دريم فانيلا هوب وقت الاستحمام إحساساً بالخفّة والراحة، إذ تجمع بين التنظيف اللطيف والترطيب والتأثير المشرق. ويترك قوامها الكريمي الفائق الشبيه بالكريمة المخفوقة البشرة ناعمة ومشرقة، فيما تخلق نفحات اللوز والياسمين طقساً منعشاً ودافئاً مفعماً بالطاقة والتجدد."
+   "ar": "تمنح رغوة الاستحمام شاور دريم فانيلا هوب وقت الاستحمام إحساساً بالخفّة والراحة، إذ تجمع بين التنظيف اللطيف والترطيب والتأثير المشرق. ويترك قوامها الكريمي الفائق الشبيه بالكريمة المخفوقة البشرة ناعمة ومشرقة، فيما تخلق نفحات اللوز والياسمين طقساً منعشاً ودافئاً مفعماً بالطاقة والتجدد.",
+   "pt": "Sinta a magia de um banho que desperta leveza e bem-estar com a Espuma de Banho Wepink Shower Dream Vanilla Hope, criada para proporcionar uma experiência confortável e revigorante. Sua fórmula combina limpeza suave, hidratação e efeito glow, enquanto a textura ultracremosa de efeito chantilly deixa a pele macia e iluminada. A fragrância com notas de amêndoa e jasmim traz uma sensação refrescante e acolhedora, transformando esse momento em um ritual cheio de energia, prazer e renovação."
   },
   "notes": {
    "top": [
     [
      "Almond",
-     "لوز"
+     "لوز",
+     "Amêndoa"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -9498,27 +10444,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A floral oriental scent of possibilities",
-   "ar": "عبير زهري شرقي مليء بالاحتمالات"
+   "ar": "عبير زهري شرقي مليء بالاحتمالات",
+   "pt": "Um cheirinho floral oriental de possibilidades"
   },
   "desc": {
    "en": "Fantasy Kids Dream Land captures a universe where imagination takes shape and every moment becomes a discovery. It opens with juicy fruity notes and a delicate citrus touch, then reveals a soft floral heart where rose meets creamy, almond-like nuances, before the magic turns into comfort at the base.",
-   "ar": "يجسّد عطر فانتاسي كيدز دريم لاند عالماً يتشكّل فيه الخيال وتتحوّل فيه كل لحظة إلى اكتشاف. يفتتح بنفحات فاكهية شهية ولمسة حمضية رقيقة، ثم يكشف عن قلب زهري ناعم يلتقي فيه الورد بلمسات كريمية تشبه اللوز، قبل أن يتحوّل السحر إلى دفء وراحة في القاعدة."
+   "ar": "يجسّد عطر فانتاسي كيدز دريم لاند عالماً يتشكّل فيه الخيال وتتحوّل فيه كل لحظة إلى اكتشاف. يفتتح بنفحات فاكهية شهية ولمسة حمضية رقيقة، ثم يكشف عن قلب زهري ناعم يلتقي فيه الورد بلمسات كريمية تشبه اللوز، قبل أن يتحوّل السحر إلى دفء وراحة في القاعدة.",
+   "pt": "O Desodorante Colônia Wepink Fantasy Kids Dream Land traduz um universo onde a imaginação ganha forma e cada momento se transforma em descoberta. Uma fragrância leve, divertida e encantadora, que envolve com suavidade e cria um verdadeiro cheirinho de possibilidades, acompanhando os pequenos em cada aventura com delicadeza e magia. Logo na abertura, a fragrância desperta os sentidos com um brilho alegre e envolvente. Notas frutadas suculentas se misturam a um toque cítrico delicado, criando uma sensação vibrante e divertida, como o começo de uma brincadeira cheia de energia. Um frescor leve e encantador que convida a explorar o novo. No coração, a fragrância revela sua faceta mais sonhadora. Um acorde floral macio, com destaque para a delicadeza da rosa, se encontra com nuances levemente amendoadas e cremosas, criando uma sensação de conforto e carinho. É como um abraço leve, que acompanha cada descoberta com suavidade e encanto. Ao fundo, a magia se transforma em aconchego. Notas balsâmicas e amadeiradas suaves se misturam ao toque envolvente de cacau, trazendo uma doçura delicada e acolhedora. Um rastro quentinho, confortável e divertido, perfeito para embalar momentos de descanso depois de um dia cheio de aventuras. Com uma combinação que transita entre o frutado alegre, o floral delicado e a cremosidade envolvente, Fantasy Kids Dream Land cria uma fragrância leve, divertida e cheia de personalidade feita para acompanhar os pequenos em cada fase, cada descoberta e cada sonho. Um cheirinho de possibilidades."
   },
   "notes": {
    "top": [
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ],
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ]
   },
@@ -9549,29 +10500,35 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect balance of citrus freshness and woody depth",
-   "ar": "التوازن المثالي بين انتعاش الحمضيات وعمق الأخشاب"
+   "ar": "التوازن المثالي بين انتعاش الحمضيات وعمق الأخشاب",
+   "pt": "O equilíbrio perfeito entre o frescor do cítrico e a profundidade amadeirada"
   },
   "desc": {
    "en": "Lauv Green expresses balance in its most sophisticated form, uniting vibrant freshness with elegant depth. It opens with luminous, energizing mandarin and a subtle spicy touch of ginger, while lavandin and sage reveal a clean aromatic facet that conveys clarity and confidence.",
-   "ar": "يعبّر عطر لاف جرين عن التوازن في أرقى صوره، إذ يجمع بين الانتعاش النابض والعمق الأنيق. يفتتح بالماندرين الذي يمنح انتعاشاً حمضياً مشرقاً ومنشّطاً مع لمسة متبّلة خفيفة من الزنجبيل، فيما يكشف اللافاندين والمريمية عن جانب عطري نقي يبعث على الوضوح والثقة."
+   "ar": "يعبّر عطر لاف جرين عن التوازن في أرقى صوره، إذ يجمع بين الانتعاش النابض والعمق الأنيق. يفتتح بالماندرين الذي يمنح انتعاشاً حمضياً مشرقاً ومنشّطاً مع لمسة متبّلة خفيفة من الزنجبيل، فيما يكشف اللافاندين والمريمية عن جانب عطري نقي يبعث على الوضوح والثقة.",
+   "pt": "O Desodorante Colônia Wepink Lauv Green expressa o equilíbrio em sua forma mais sofisticada. Uma fragrância que une frescor vibrante e profundidade elegante, traduzindo modernidade com naturalidade. Logo na abertura, a mandarina entrega um frescor cítrico luminoso, energizante e refinado. O gengibre acrescenta um toque especiado sutil, trazendo personalidade e dinamismo, enquanto o lavandin e a sálvia revelam uma faceta aromática limpa, que transmite clareza e confiança imediata."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ],
     [
      "Ginger",
-     "زنجبيل"
+     "زنجبيل",
+     "Gengibre"
     ],
     [
      "Lavandin",
-     "لافاندين"
+     "لافاندين",
+     "Lavandin"
     ],
     [
      "Sage",
-     "مريمية"
+     "مريمية",
+     "Sálvia"
     ]
    ]
   },
@@ -9603,61 +10560,74 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A daily invitation to fruity floral sophistication",
-   "ar": "دعوة يومية إلى رقيّ العبير الزهري الفاكهي"
+   "ar": "دعوة يومية إلى رقيّ العبير الزهري الفاكهي",
+   "pt": "Um convite diário à sofisticação do floral frutado"
   },
   "desc": {
    "en": "The Flora Whisper Body Splash was created for women who value lightness, elegance and presence. Its fruity floral fragrance opens with pear, red berries and a citrus accord, blossoms into a heart of magnolia, orchid, lily of the valley and jasmine, and finishes on a soft base of musk, patchouli, light woods and amber that leaves a subtle trail all day.",
-   "ar": "صُمّم بخاخ الجسم فلورا ويسبر للمرأة التي تقدّر الخفّة والأناقة والحضور في كل التفاصيل. يفتتح عطره الزهري الفاكهي بنفحات منعشة من الكمثرى والتوت الأحمر ونفحة حمضية، ثم يتفتّح في قلب من الماغنوليا والأوركيد وزنبق الوادي والياسمين، ليختتم بقاعدة ناعمة من المسك والباتشولي والأخشاب الخفيفة والعنبر تترك أثراً رقيقاً طوال اليوم."
+   "ar": "صُمّم بخاخ الجسم فلورا ويسبر للمرأة التي تقدّر الخفّة والأناقة والحضور في كل التفاصيل. يفتتح عطره الزهري الفاكهي بنفحات منعشة من الكمثرى والتوت الأحمر ونفحة حمضية، ثم يتفتّح في قلب من الماغنوليا والأوركيد وزنبق الوادي والياسمين، ليختتم بقاعدة ناعمة من المسك والباتشولي والأخشاب الخفيفة والعنبر تترك أثراً رقيقاً طوال اليوم.",
+   "pt": "O Body Splash Wepink Flora Whisper foi criado para mulheres que valorizam leveza, elegância e presença em cada detalhe. Sua fragrância floral frutada desperta os sentidos logo na saída, com notas frescas de pera, frutas vermelhas e acorde cítrico, criando uma sensação luminosa e envolvente. No coração, flores nobres como magnólia, orquídea, lírio-do-vale e jasmim revelam uma feminilidade delicada e sofisticada. O fundo suave de musk, patchouli, madeiras claras e âmbar finaliza o perfume com conforto e elegância, deixando um rastro sutil que acompanha sua rotina do início ao fim do dia. Perfeito para quem busca um aroma fresco, feminino e refinado, Flora Whisper transforma o cuidado diário em um gesto de sofisticação natural."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Red berries",
-     "توت أحمر"
+     "توت أحمر",
+     "Frutas vermelhas"
     ],
     [
      "Citrus accord",
-     "نفحة حمضية"
+     "نفحة حمضية",
+     "Acorde cítrico"
     ]
    ],
    "heart": [
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ],
     [
      "Orchid",
-     "أوركيد"
+     "أوركيد",
+     "Orquídea"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Light woods",
-     "أخشاب خفيفة"
+     "أخشاب خفيفة",
+     "Madeiras claras"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -9690,11 +10660,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The care your skin needs",
-   "ar": "العناية التي تحتاجها بشرتك"
+   "ar": "العناية التي تحتاجها بشرتك",
+   "pt": "O cuidado que a sua pele precisa"
   },
   "desc": {
    "en": "The PDRN Serum leaves skin healthier than ever. Its antioxidant formula helps reduce senescent cells, which secrete inflammatory substances and accumulate with aging. By supporting cell renewal, it improves skin texture for a rejuvenated look.",
-   "ar": "يمنح سيروم بي دي آر إن البشرة صحة لا مثيل لها. تتميّز تركيبته بمفعول مضاد للأكسدة وتساعد على تقليل الخلايا الهرمة التي تفرز مواد التهابية وتتراكم مع التقدّم في العمر. وبدعمه لتجديد الخلايا، يحسّن ملمس البشرة ويمنحها مظهراً أكثر شباباً."
+   "ar": "يمنح سيروم بي دي آر إن البشرة صحة لا مثيل لها. تتميّز تركيبته بمفعول مضاد للأكسدة وتساعد على تقليل الخلايا الهرمة التي تفرز مواد التهابية وتتراكم مع التقدّم في العمر. وبدعمه لتجديد الخلايا، يحسّن ملمس البشرة ويمنحها مظهراً أكثر شباباً.",
+   "pt": "Sua pele fica saudável como nunca com o Sérum Wepink PDRN. Sua fórmula possui ação antioxidante e ajuda a reduzir as células senescentes, que secretam substâncias inflamatórias e se acumulam com o envelhecimento. Assim, promove auxílio na renovação celular, para melhorar a textura da pele e deixá-la com aspecto rejuvenescido."
   },
   "source": "https://www.wepink.com.br/serum-pdr-30-ml---wepink-417/p",
   "notes": {}
@@ -9724,31 +10696,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A crystal-clear breath of serenity",
-   "ar": "نسمة صافية من السكينة"
+   "ar": "نسمة صافية من السكينة",
+   "pt": "Um sopro cristalino de serenidade"
   },
   "desc": {
    "en": "Ember Divinus is like a dive into tranquility. Vibrant citrus and fruity notes glide over the skin with a subtle, refreshing touch of spice, evoking the purity of sparkling waters, while ambery accords and a light sweetness create an enveloping sea-breeze trail. A fragrance that flows naturally with the current of well-being.",
-   "ar": "عطر إمبر ديفينوس أشبه بالغوص في عالم من السكينة. تنساب على البشرة نفحات حمضية وفاكهية نابضة مع لمسة خفيفة منعشة من التوابل تستحضر نقاء المياه المتلألئة، بينما تمتزج النفحات العنبرية بحلاوة خفيفة لتخلق نسمة بحرية آسرة تبقى على البشرة. عطر ينساب بطبيعية مع تيار من الراحة والسكينة."
+   "ar": "عطر إمبر ديفينوس أشبه بالغوص في عالم من السكينة. تنساب على البشرة نفحات حمضية وفاكهية نابضة مع لمسة خفيفة منعشة من التوابل تستحضر نقاء المياه المتلألئة، بينما تمتزج النفحات العنبرية بحلاوة خفيفة لتخلق نسمة بحرية آسرة تبقى على البشرة. عطر ينساب بطبيعية مع تيار من الراحة والسكينة.",
+   "pt": "O Desodorante Colônia Wepink Ember Divinus é como um mergulho em tranquilidade. A harmonia líquida desliza pela pele com o frescor vibrante das notas cítricas e frutadas, enquanto um toque sutil de especiarias refresca os sentidos, evocando a pureza das águas cintilantes. No fundo, acordes âmbarados se misturam a uma doçura leve, criando uma maresia envolvente que permanece na pele. Uma fragrância que flui com naturalidade e convida a se deixar levar pela correnteza do bem-estar."
   },
   "notes": {
    "top": [
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ],
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ],
     [
      "Spices",
-     "توابل"
+     "توابل",
+     "Especiarias"
     ]
    ],
    "base": [
     [
      "Amber accords",
-     "نفحات عنبرية"
+     "نفحات عنبرية",
+     "Acordes ambarados"
     ]
    ]
   },
@@ -9780,41 +10758,49 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A roar of love!",
-   "ar": "زئير من الحب!"
+   "ar": "زئير من الحب!",
+   "pt": "Um rugido de amor!"
   },
   "desc": {
    "en": "A fragrant adventure begins with My Kids Rawr. Marshmallow and citrus sugar blend into a sweet, lightly refreshing scent that sparks everyone's curiosity, while coconut and jasmine represent childhood innocence, opening into comforting caramel and joyful vanilla.",
-   "ar": "تبدأ مغامرة عطرية مع عطر ماي كيدز رور. يمتزج المارشميلو والسكر الحمضي في عبير حلو ومنعش قليلاً يوقظ فضول الجميع، فيما يجسّد جوز الهند والياسمين براءة الطفولة، لينفتحا على دفء الكراميل وبهجة الفانيليا."
+   "ar": "تبدأ مغامرة عطرية مع عطر ماي كيدز رور. يمتزج المارشميلو والسكر الحمضي في عبير حلو ومنعش قليلاً يوقظ فضول الجميع، فيما يجسّد جوز الهند والياسمين براءة الطفولة، لينفتحا على دفء الكراميل وبهجة الفانيليا.",
+   "pt": "Uma aventura perfumada começa com a Colônia Wepink My Kids Rawr. O Marshmallow e o Açúcar Cítrico se fundem em um aroma doce e levemente refrescante para despertar a curiosidade de todos. A inocência infantil é representada pelo Coco e o Jasmim, que se abrem para o conforto do Caramelo e alegria da Baunilha."
   },
   "notes": {
    "top": [
     [
      "Marshmallow",
-     "مارشميلو"
+     "مارشميلو",
+     "Marshmallow"
     ],
     [
      "Citrus sugar",
-     "سكر حمضي"
+     "سكر حمضي",
+     "Açúcar cítrico"
     ]
    ],
    "heart": [
     [
      "Coconut",
-     "جوز الهند"
+     "جوز الهند",
+     "Coco"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -9846,53 +10832,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Celebrate the light that shines within you",
-   "ar": "احتفلي بالنور الذي يشعّ في داخلك"
+   "ar": "احتفلي بالنور الذي يشعّ في داخلك",
+   "pt": "Celebre a luz que brilha dentro de você"
   },
   "desc": {
    "en": "Celebrate Sunset captures the charm of a tropical sunset, blending the freshness of exotic fruits with the warmth of the evening breeze. It opens with juicy coconut, mango and passion fruit, reveals a delicate floral touch of jasmine, orange blossom and heliotrope, and settles into a warm, luminous base of musk, vanilla and cashmere.",
-   "ar": "يأسر عطر سيليبريت سانست سحر الغروب الاستوائي، ممزوجاً بانتعاش الفواكه الاستوائية ودفء نسيم آخر النهار. يفتتح بنفحات شهية من جوز الهند والمانجو والباشن فروت، ثم يكشف عن لمسة زهرية رقيقة من الياسمين وزهر البرتقال والهيليوتروب، ليستقر على قاعدة دافئة ومشرقة من المسك والفانيليا والكشمير."
+   "ar": "يأسر عطر سيليبريت سانست سحر الغروب الاستوائي، ممزوجاً بانتعاش الفواكه الاستوائية ودفء نسيم آخر النهار. يفتتح بنفحات شهية من جوز الهند والمانجو والباشن فروت، ثم يكشف عن لمسة زهرية رقيقة من الياسمين وزهر البرتقال والهيليوتروب، ليستقر على قاعدة دافئة ومشرقة من المسك والفانيليا والكشمير.",
+   "pt": "Sinta o encanto de um pôr do sol tropical com o Desodorante Colônia Wepink Celebrate Sunset, uma fragrância que mistura o frescor das frutas exóticas com o calor envolvente da brisa do fim do dia. O aroma se abre com notas suculentas de coco, manga e maracujá, revelando um toque floral delicado de jasmim, flor de laranjeira e heliotrópio. No fundo, a combinação de musk, baunilha e caxemira cria uma sensação acolhedora e luminosa, como a última luz dourada refletindo sobre o mar. Celebrate Sunset é o convite perfeito para viver o momento com leveza, beleza e aquela energia irresistível de um entardecer inesquecível."
   },
   "notes": {
    "top": [
     [
      "Coconut",
-     "جوز الهند"
+     "جوز الهند",
+     "Coco"
     ],
     [
      "Mango",
-     "مانجو"
+     "مانجو",
+     "Manga"
     ],
     [
      "Passion fruit",
-     "باشن فروت"
+     "باشن فروت",
+     "Maracujá"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Heliotrope",
-     "هيليوتروب"
+     "هيليوتروب",
+     "Heliotrópio"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Cashmere",
-     "كشمير"
+     "كشمير",
+     "Caxemira"
     ]
    ]
   },
@@ -9923,11 +10920,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The Pureblixx MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and up to 72 hours of hydration. Its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral oriental olfactory path.",
-   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن بيوربليكس مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة تصل إلى 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري شرقي آسر."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن بيوربليكس مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة تصل إلى 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري شرقي آسر.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Pureblixx oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por até 72 horas. Sua fórmula exclusiva também contribui para uniformizar o tom da pele. Tudo isso, em uma essência única e exclusiva, dedicada à mulher autêntica e transformadora, percorrendo um fascinante caminho olfativo floral oriental."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-pureblixx-50-ml---wepink-364/p",
   "notes": {}
@@ -9960,31 +10959,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Dive into this mystical world",
-   "ar": "انغمس في هذا العالم الغامض الساحر"
+   "ar": "انغمس في هذا العالم الغامض الساحر",
+   "pt": "Mergulhe neste mundo místico"
   },
   "desc": {
    "en": "Yahya Sadeeq is like the rare meeting of the calm sea and the vast desert. Freshness crosses the warm dunes to reveal delicate rose wrapped in mysterious black pepper, while rose meets the depth of oud, lifted by a whisper of amber. Seductive and enveloping, it is as unshakable and fascinating as the desert itself.",
-   "ar": "عطر يحيى صديق أشبه بلقاء نادر بين سكون البحر واتساع الصحراء. نسمة من الانتعاش تعبر حرارة الكثبان لتكشف في القلب عن رقة الورد المغلّف بغموض الفلفل الأسود، فيما تلتقي كثافة الورد بعمق العود، ترتقي بهما همسة من العنبر. عطر مغرٍ وآسر، راسخ وساحر كالصحراء نفسها."
+   "ar": "عطر يحيى صديق أشبه بلقاء نادر بين سكون البحر واتساع الصحراء. نسمة من الانتعاش تعبر حرارة الكثبان لتكشف في القلب عن رقة الورد المغلّف بغموض الفلفل الأسود، فيما تلتقي كثافة الورد بعمق العود، ترتقي بهما همسة من العنبر. عطر مغرٍ وآسر، راسخ وساحر كالصحراء نفسها.",
+   "pt": "O Desodorante Colônia Wepink Yahya Sadeeq é como o encontro raro entre a calmaria do mar e a imensidão do deserto. Um sopro de frescor que atravessa o calor das dunas e revela, no coração, a delicadeza da rosa envolta pelo mistério da pimenta preta. Inspirado pela harmonia que nasce dos contrastes, Yahya Sadeeq joga com a intensidade da rosa e a profundidade do oud. O frescor floral se entrelaça à força amadeirada, elevado por um sussurro âmbar que revela toda a riqueza desses ícones da perfumaria. Sedutor e envolvente, é uma essência feita para marcar presença como o próprio deserto: inabalável e fascinante."
   },
   "notes": {
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Black pepper",
-     "فلفل أسود"
+     "فلفل أسود",
+     "Pimenta-preta"
     ]
    ],
    "base": [
     [
      "Oud",
-     "عود"
+     "عود",
+     "Oud"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -10017,31 +11022,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A touch of luxury for those who know what they want",
-   "ar": "لمسة من الفخامة لمن يعرف ما يريد"
+   "ar": "لمسة من الفخامة لمن يعرف ما يريد",
+   "pt": "Um toque de luxo para quem sabe o que quer"
   },
   "desc": {
    "en": "Red Obsidian elevates the richness of one's most valuable essence. This masculine fragrance opens with the freshness of cinnamon and sage, evolves into an intense heart of jasmine and cedar, and finishes on a sweet, woody base, a true treasure that intrigues the senses.",
-   "ar": "يرتقي عطر ريد أوبسيديان الرجالي بثراء الجوهر الأثمن. يفتتح بانتعاش القرفة والمريمية، ثم يتطوّر إلى قلب مكثّف من الياسمين وخشب الأرز، ليختتم بقاعدة حلوة وخشبية، كنز حقيقي يثير فضول الحواس."
+   "ar": "يرتقي عطر ريد أوبسيديان الرجالي بثراء الجوهر الأثمن. يفتتح بانتعاش القرفة والمريمية، ثم يتطوّر إلى قلب مكثّف من الياسمين وخشب الأرز، ليختتم بقاعدة حلوة وخشبية، كنز حقيقي يثير فضول الحواس.",
+   "pt": "Eleve a riqueza da sua essência mais valiosa com o Desodorante Colônia Masculino Red Obsidian. Sua fragrância inicia no frescor da Canela e da Sálvia, evoluindo no intenso corpo do Jasmim e do Cedro. Finaliza em um fundo doce e amadeirado, um verdadeiro tesouro que intriga os sentidos."
   },
   "notes": {
    "top": [
     [
      "Cinnamon",
-     "قرفة"
+     "قرفة",
+     "Canela"
     ],
     [
      "Sage",
-     "مريمية"
+     "مريمية",
+     "Sálvia"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ]
    ]
   },
@@ -10072,11 +11083,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection.",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تقاوم."
+   "ar": "عنايتك اليومية، وحمايتك التي لا تقاوم.",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Infinity Antiperspirant Roll-On offers an invigorating combination of freshness, long-lasting protection and 72-hour hydration, while its exclusive formula also helps even out skin tone. All in a woody amber floral fragrance that expresses passion and sweetness.",
-   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن إنفينيتي بتقنية الرول أون مزيجًا منعشًا من الانتعاش والحماية طويلة الأمد والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. كل ذلك في عطر زهري خشبي عنبري يعبّر عن الشغف والعذوبة."
+   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن إنفينيتي بتقنية الرول أون مزيجًا منعشًا من الانتعاش والحماية طويلة الأمد والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. كل ذلك في عطر زهري خشبي عنبري يعبّر عن الشغف والعذوبة.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Infinity oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas, a sua fórmula exclusiva também contribui para uniformizar o tom da pele. Tudo isso, em uma fragrância floral amadeirada ambarada que manifesta paixão e doçura."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-infinity-50-ml---wepink-295/p",
   "notes": {}
@@ -10106,11 +11119,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Daily cleansing full of protection and freshness!",
-   "ar": "تنظيف يومي مفعم بالحماية والانتعاش!"
+   "ar": "تنظيف يومي مفعم بالحماية والانتعاش!",
+   "pt": "Uma limpeza diária cheia de proteção e frescor!"
   },
   "desc": {
    "en": "We Femme Intimate Wash is formulated with actives that gently cleanse the intimate area while providing hydration, comfort and a pleasant everyday feel. Its paraben-free formula helps prevent irritation and supports the health and well-being of the area, in a light texture made for healthy care.",
-   "ar": "صُمّم غسول وي فيم للمنطقة الحساسة بمكونات فعّالة تنظّفها بلطف، مع توفير الترطيب والراحة وإحساس لطيف طوال اليوم. تركيبته خالية من البارابين، وتساعد على الوقاية من التهيّج والحفاظ على صحة المنطقة وراحتها، بقوام خفيف مثالي لعناية صحية."
+   "ar": "صُمّم غسول وي فيم للمنطقة الحساسة بمكونات فعّالة تنظّفها بلطف، مع توفير الترطيب والراحة وإحساس لطيف طوال اليوم. تركيبته خالية من البارابين، وتساعد على الوقاية من التهيّج والحفاظ على صحة المنطقة وراحتها، بقوام خفيف مثالي لعناية صحية.",
+   "pt": "O Sabonete Íntimo Wepink We Femme é formulado com ativos que promovem uma limpeza suave para a região íntima, sem deixar de lado a hidratação, conforto e uma agradável sensação para o dia a dia. Sua composição é livre de parabenos, além de prevenir irritações, manter a saúde e bem-estar da região, em uma textura leve e perfeita para um cuidado saudável."
   },
   "source": "https://www.wepink.com.br/sabonete-intimo-we-femme-250-ml---wepink-237/p",
   "notes": {}
@@ -10141,11 +11156,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The moisturizing touch your skincare routine was missing!",
-   "ar": "لمسة الترطيب التي كان يفتقدها روتين العناية ببشرتك!"
+   "ar": "لمسة الترطيب التي كان يفتقدها روتين العناية ببشرتك!",
+   "pt": "O toque hidratante que faltava na sua skincare!"
   },
   "desc": {
    "en": "Hydracare Essential Facial Moisturizer is a must for the daily care routine, with high-performance actives for more radiance and softness. Its unique formula offers high hydrating power, protection and support for the firmness and elasticity of the skin barrier. A practical treatment designed for all skin types.",
-   "ar": "يُعدّ مرطّب الوجه هايدراكير إسنشال عنصرًا لا غنى عنه في روتين العناية اليومي، بمكونات فعّالة عالية الجودة تمنح البشرة مزيدًا من الإشراق والنعومة. وتوفّر تركيبته الفريدة قدرة عالية على الترطيب والحماية، وتدعم تماسك حاجز البشرة ومرونته. علاج عملي صُمّم لجميع أنواع البشرة."
+   "ar": "يُعدّ مرطّب الوجه هايدراكير إسنشال عنصرًا لا غنى عنه في روتين العناية اليومي، بمكونات فعّالة عالية الجودة تمنح البشرة مزيدًا من الإشراق والنعومة. وتوفّر تركيبته الفريدة قدرة عالية على الترطيب والحماية، وتدعم تماسك حاجز البشرة ومرونته. علاج عملي صُمّم لجميع أنواع البشرة.",
+   "pt": "O Hidratante Facial Wepink Hydracare Essential é indispensável para a sua rotina de cuidados diária, com ativos de excelência para mais brilho e maciez. Sua fórmula única conta com uma série de benefícios para a pele do rosto, como alto poder de hidratação, proteção e auxílio na firmeza e elasticidade da barreira cutânea. Tudo isso, em um tratamento prático e pensado para todos os tipos de pele."
   },
   "source": "https://www.wepink.com.br/creme-hidratante-facial-hydracare-60ml---wepink-251/p",
   "notes": {}
@@ -10174,33 +11191,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn your bath into a premium ritual",
-   "ar": "حوّلي استحمامك إلى طقس فاخر"
+   "ar": "حوّلي استحمامك إلى طقس فاخر",
+   "pt": "Transforme seu banho em um ritual premium"
   },
   "desc": {
    "en": "Obsessed Body Scrub celebrates the festive, sexy and desired woman, carefully formulated along a woody olfactory path. Its actives provide gentle exfoliation and hydration, with striking notes of Blood Orange and Gardenia that leave skin soft, healthy and scented all day. It finishes on an enveloping base of honey and caramel.",
-   "ar": "يحتفي مقشّر الجسم أوبسيسد بالمرأة المرحة والجذابة والمرغوبة، وقد صُمّم بعناية بمسار عطري خشبي. تمنح مكوناته الفعّالة تقشيرًا لطيفًا وترطيبًا، مع نفحات آسرة من البرتقال الدموي والغاردينيا تترك البشرة ناعمة وصحية ومعطّرة طوال اليوم. ويختتم بقاعدة دافئة من العسل والكراميل."
+   "ar": "يحتفي مقشّر الجسم أوبسيسد بالمرأة المرحة والجذابة والمرغوبة، وقد صُمّم بعناية بمسار عطري خشبي. تمنح مكوناته الفعّالة تقشيرًا لطيفًا وترطيبًا، مع نفحات آسرة من البرتقال الدموي والغاردينيا تترك البشرة ناعمة وصحية ومعطّرة طوال اليوم. ويختتم بقاعدة دافئة من العسل والكراميل.",
+   "pt": "O Esfoliante Corporal Body Scrub Wepink Obsessed aprecia a mulher festiva, sexy e desejada, sendo cuidadosamente formulado em um caminho olfativo amadeirado. Sua composição possui ativos que promovem esfoliação suave e hidratação, refletindo elegância e sensualidade. Tudo isso, em notas marcantes de Laranja Sanguínea e Gardênia, para deixar sua pele macia, saudável e perfumada durante o dia todo. Finaliza em um fundo envolvente de mel e caramelo, um deleite despretensioso aos sentidos."
   },
   "notes": {
    "top": [
     [
      "Blood orange",
-     "برتقال دموي"
+     "برتقال دموي",
+     "Laranja sanguínea"
     ]
    ],
    "heart": [
     [
      "Gardenia",
-     "غاردينيا"
+     "غاردينيا",
+     "Gardênia"
     ]
    ],
    "base": [
     [
      "Honey",
-     "عسل"
+     "عسل",
+     "Mel"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -10233,33 +11256,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Awaken the flame of desire",
-   "ar": "أيقظ شعلة الرغبة"
+   "ar": "أيقظ شعلة الرغبة",
+   "pt": "Desperte a chama do desejo"
   },
   "desc": {
    "en": "Pureblixx Darkest Deodorant Cologne embodies a powerful, intense and sophisticated masculine essence wrapped in captivating mystery. Its unique, enveloping woody path opens with bergamot and orange, joined by a refreshing touch of lavender. It finishes on an unforgettable base of benzoin, leaving a heady impression.",
-   "ar": "يجسّد عطر الكولونيا بيوربليكس داركست جوهرًا رجاليًا قويًا ومكثفًا وراقيًا يكتنفه غموض ساحر. يفتتح مساره العطري الخشبي الفريد بالبرغموت والبرتقال، مع لمسة منعشة من اللافندر، ثم يختتم بقاعدة لا تُنسى من البنزوين تترك أثرًا آسرًا."
+   "ar": "يجسّد عطر الكولونيا بيوربليكس داركست جوهرًا رجاليًا قويًا ومكثفًا وراقيًا يكتنفه غموض ساحر. يفتتح مساره العطري الخشبي الفريد بالبرغموت والبرتقال، مع لمسة منعشة من اللافندر، ثم يختتم بقاعدة لا تُنسى من البنزوين تترك أثرًا آسرًا.",
+   "pt": "O Desodorante Colônia Wepink Pureblixx Darkest representa uma essência masculina poderosa, intensa e sofisticada em um mistério encantador. Seu caminho olfativo amadeirado único e envolvente inicia em bergamota e laranja, unido ao toque mais refrescante de lavanda. Finaliza em um fundo inesquecível de benjoim, deixando a marca de uma sensação inebriante."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Orange",
-     "برتقال"
+     "برتقال",
+     "Laranja"
     ]
    ],
    "heart": [
     [
      "Lavender",
-     "لافندر"
+     "لافندر",
+     "Lavanda"
     ]
    ],
    "base": [
     [
      "Benzoin",
-     "بنزوين"
+     "بنزوين",
+     "Benjoim"
     ]
    ]
   },
@@ -10290,11 +11319,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The essential precision to make your eyes stand out",
-   "ar": "الدقة الأساسية لإبراز جمال عينيك"
+   "ar": "الدقة الأساسية لإبراز جمال عينيك",
+   "pt": "A precisão essencial para destacar os seus olhos"
   },
   "desc": {
    "en": "Boldeye, the retractable pencil from the pink world, is made for those who never give up a bold, flawless and precise look. Its intense color glides easily over the skin and the waterline, ideal for creating a variety of looks. Its ultra-fine, soft tip is perfect for a subtle liner or a fully smoked-out eye.",
-   "ar": "قلم بولد آي القابل للسحب من عالم wepink الوردي مثالي لمن لا تتنازل عن نظرة جريئة ومتقنة ودقيقة. ينزلق لونه المكثف بسهولة على البشرة وعلى خط الماء، ليكون الخيار الأمثل لابتكار إطلالات متنوعة. ويُعدّ رأسه الرفيع والناعم مثاليًا لرسم خط رفيع وناعم أو لإطلالة عيون مدخّنة بالكامل."
+   "ar": "قلم بولد آي القابل للسحب من عالم wepink الوردي مثالي لمن لا تتنازل عن نظرة جريئة ومتقنة ودقيقة. ينزلق لونه المكثف بسهولة على البشرة وعلى خط الماء، ليكون الخيار الأمثل لابتكار إطلالات متنوعة. ويُعدّ رأسه الرفيع والناعم مثاليًا لرسم خط رفيع وناعم أو لإطلالة عيون مدخّنة بالكامل.",
+   "pt": "Boldeye, o lápis retrátil do mundo rosa, é perfeito para você que não abre mão de um olhar marcante, perfeito e preciso. Com a sua cor intensa, ele desliza facilmente sobre a pele e a linha d'água dos olhos, sendo o ideal para criar vários looks. A ponta do lápis retrátil da wepink é super fininha e macia, o Boldeye é perfeito para fazer um delineado discreto ou um olho todo esfumado. Então, você só precisa ajustar ao tamanho que quiser e fazer do seu jeitinho."
   },
   "source": "https://www.wepink.com.br/lapis-retratil-preto-wepink/p",
   "notes": {}
@@ -10325,29 +11356,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A cozy scent for every moment",
-   "ar": "عبير دافئ لكل اللحظات"
+   "ar": "عبير دافئ لكل اللحظات",
+   "pt": "Um aroma aconchegante para todos os momentos"
   },
   "desc": {
    "en": "Vanilla Dream Body Splash captures the happiness of tender moments through a delicate floral touch of rose and jasmine. A hint of honey celebrates strength and spreads serenity wherever it goes, blending harmony, calm and affection over a sweet, woody base.",
-   "ar": "يجسّد بخاخ الجسم المعطّر فانيلا دريم سعادة لحظات الحنان بلمسة زهرية رقيقة من الورد والياسمين. وتحتفي لمسة من العسل بالقوة وتنشر السكينة أينما حلّت، لتمزج الانسجام والهدوء والمودّة على قاعدة حلوة وخشبية."
+   "ar": "يجسّد بخاخ الجسم المعطّر فانيلا دريم سعادة لحظات الحنان بلمسة زهرية رقيقة من الورد والياسمين. وتحتفي لمسة من العسل بالقوة وتنشر السكينة أينما حلّت، لتمزج الانسجام والهدوء والمودّة على قاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Vanilla Dream representa a felicidade dos momentos de carinho, através de seu toque floral delicado em notas de rosa e jasmim. Deixe-se celebrar sua força e transmitir serenidade em um toque de mel por onde passar, combinando harmonia, calma e afeto em um fundo doce e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Honey",
-     "عسل"
+     "عسل",
+     "Mel"
     ]
    ]
   },
@@ -10381,27 +11417,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Bold well-being to enchant the senses",
-   "ar": "رفاهية جريئة تأسر الحواس"
+   "ar": "رفاهية جريئة تأسر الحواس",
+   "pt": "Um corajoso bem-estar para encantar os sentidos"
   },
   "desc": {
    "en": "A mark of elegance, courage and well-being, Lion Noir Body Splash is a masculine fragrance inspired by the restless lion fiercely pursuing its goals and freedom. Its woody citrus path opens with a citrus burst and a touch of pink pepper, moves to a warm heart with floral jasmine, and settles into a sweet, woody base.",
-   "ar": "رمز للأناقة والشجاعة والرفاهية، بخاخ الجسم المعطّر ليون نوار عطر رجالي يستلهم روح الأسد المتحفّز الذي يسعى بشراسة نحو أهدافه وحريته. يفتتح مساره الخشبي الحمضي بانفجار من الحمضيات ولمسة من الفلفل الوردي، ثم ينتقل إلى قلب دافئ بلمسة زهرية من الياسمين، ليستقر على قاعدة حلوة وخشبية."
+   "ar": "رمز للأناقة والشجاعة والرفاهية، بخاخ الجسم المعطّر ليون نوار عطر رجالي يستلهم روح الأسد المتحفّز الذي يسعى بشراسة نحو أهدافه وحريته. يفتتح مساره الخشبي الحمضي بانفجار من الحمضيات ولمسة من الفلفل الوردي، ثم ينتقل إلى قلب دافئ بلمسة زهرية من الياسمين، ليستقر على قاعدة حلوة وخشبية.",
+   "pt": "A marca da elegância, coragem e bem-estar, o Body Splash Lion Noir Desodorante Colônia é uma fragrância masculina que evidencia o leão inquieto que busca ferozmente alcançar seus objetivos e liberdade, revelando intensidade e refrescância em um aroma duradouro. Seu caminho olfativo é Amadeirado Cítrico, começando com uma explosão cítrica e um toque de pimenta rosa. Em contraponto, um coração caloroso com um toque floral do jasmim, as notas de fundo revelam uma sofisticação irresistível, em um fundo doce e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Citrus",
-     "حمضيات"
+     "حمضيات",
+     "Cítricos"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -10434,29 +11475,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The satiny touch of a woman who lights up everything around her",
-   "ar": "اللمسة الحريرية لامرأة تضيء كل ما حولها"
+   "ar": "اللمسة الحريرية لامرأة تضيء كل ما حولها",
+   "pt": "O toque acetinado da mulher que ilumina tudo ao seu redor"
   },
   "desc": {
    "en": "Scarlette Radiance Body Cream deeply moisturizes and supports collagen production and cell renewal, for firmer, healthier and more radiant-looking skin. The experience is completed by a striking fragrance of Bergamot, Turkish Rose and White Amber that leaves a scented trail and reveals the satiny touch of a woman who lights up everything around her.",
-   "ar": "يرطّب لوشن الجسم سكارليت راديانس البشرة بعمق ويساعد على إنتاج الكولاجين وتجديد الخلايا، لبشرة تبدو أكثر تماسكًا وصحة ونضارة. وتكتمل التجربة بعطر آسر من البرغموت والورد التركي والعنبر الأبيض، يترك أثرًا عطريًا ويكشف عن اللمسة الحريرية لامرأة تضيء كل ما حولها."
+   "ar": "يرطّب لوشن الجسم سكارليت راديانس البشرة بعمق ويساعد على إنتاج الكولاجين وتجديد الخلايا، لبشرة تبدو أكثر تماسكًا وصحة ونضارة. وتكتمل التجربة بعطر آسر من البرغموت والورد التركي والعنبر الأبيض، يترك أثرًا عطريًا ويكشف عن اللمسة الحريرية لامرأة تضيء كل ما حولها.",
+   "pt": "Envolva-se no cuidado sublime da Loção Desodorante Body Cream Wepink Scarlette Radiance. Sua fórmula exclusiva hidrata profundamente e auxilia na produção de colágeno e na regeneração celular, contribuindo para uma pele com aspecto mais firme, saudável e viçoso. A experiência se completa com a fragrância marcante de Bergamota, Rosa Turca e Âmbar Branco, que veste o corpo em um rastro perfumado e revela o toque acetinado da mulher que ilumina tudo ao seu redor."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Turkish rose",
-     "ورد تركي"
+     "ورد تركي",
+     "Rosa turca"
     ]
    ],
    "base": [
     [
      "White amber",
-     "عنبر أبيض"
+     "عنبر أبيض",
+     "Âmbar branco"
     ]
    ]
   },
@@ -10489,11 +11535,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Hydration that envelops, warms and lingers",
-   "ar": "ترطيب يحتضن البشرة ويدفئها ويبقى معها"
+   "ar": "ترطيب يحتضن البشرة ويدفئها ويبقى معها",
+   "pt": "Uma hidratação que envolve, aquece e permanece"
   },
   "desc": {
    "en": "Like a caring gesture for the skin, Eternal Cherish Body Cream combines intense hydration and fragrance in one enveloping experience. Its formula with selected oils and extracts supports collagen production and cell renewal for firmer, softer, healthy-looking skin. Its embracing Floral Oriental fragrance completes the care with an elegant, creamy and tender trail.",
-   "ar": "كلمسة حنان للبشرة، يجمع لوشن الجسم إيترنال تشيريش بين الترطيب المكثف والعطر في تجربة غامرة. تساعد تركيبته الغنية بزيوت ومستخلصات مختارة على إنتاج الكولاجين وتجديد الخلايا، لبشرة أكثر تماسكًا ونعومة وذات مظهر صحي. ويكمّل عطره الزهري الشرقي الدافئ هذه العناية بأثر أنيق وكريمي مفعم بالرقة."
+   "ar": "كلمسة حنان للبشرة، يجمع لوشن الجسم إيترنال تشيريش بين الترطيب المكثف والعطر في تجربة غامرة. تساعد تركيبته الغنية بزيوت ومستخلصات مختارة على إنتاج الكولاجين وتجديد الخلايا، لبشرة أكثر تماسكًا ونعومة وذات مظهر صحي. ويكمّل عطره الزهري الشرقي الدافئ هذه العناية بأثر أنيق وكريمي مفعم بالرقة.",
+   "pt": "Como um gesto de carinho para a pele, a Loção Desodorante Body Cream Wepink Eternal Cherish combina hidratação intensa e perfumação em uma experiência envolvente. Sua fórmula com óleos e extratos selecionados auxilia na produção de colágeno e na regeneração celular, contribuindo para uma pele mais firme, macia e com aspecto saudável. A fragrância Floral Oriental abraçada completa o cuidado com um rastro elegante, cremoso e cheio de ternura."
   },
   "source": "https://www.wepink.com.br/body-cream-eternal-cherish-200ml---wepink-596/p",
   "notes": {}
@@ -10524,11 +11572,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A whipped-cream texture with the scent of Ruby Rhodolite",
-   "ar": "قوام كالكريمة المخفوقة بعبير روبي رودولايت"
+   "ar": "قوام كالكريمة المخفوقة بعبير روبي رودولايت",
+   "pt": "Textura de chantilly com o cheirinho do Ruby Rhodolite"
   },
   "desc": {
    "en": "Shower Dream Ruby Rhodolite is a bath foam with a light, whipped-cream texture. It is scented with the Ruby Rhodolite fragrance.",
-   "ar": "رغوة الاستحمام شاور دريم روبي رودولايت بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر روبي رودولايت."
+   "ar": "رغوة الاستحمام شاور دريم روبي رودولايت بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر روبي رودولايت.",
+   "pt": "A Espuma de Banho Wepink Shower Dream Ruby Rhodolite tem uma textura leve de chantilly e é perfumada com a fragrância Ruby Rhodolite."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-ruby-rhodolite---wepink-pat11564/p",
   "notes": {}
@@ -10559,11 +11609,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A whipped-cream texture with the scent of VF Golden",
-   "ar": "قوام كالكريمة المخفوقة بعبير في إف جولدن"
+   "ar": "قوام كالكريمة المخفوقة بعبير في إف جولدن",
+   "pt": "Textura de chantilly com o cheirinho do VF Golden"
   },
   "desc": {
    "en": "Shower Dream VF Golden is a bath foam with a light, whipped-cream texture. It is scented with the VF Golden fragrance.",
-   "ar": "رغوة الاستحمام شاور دريم في إف جولدن بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر في إف جولدن."
+   "ar": "رغوة الاستحمام شاور دريم في إف جولدن بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر في إف جولدن.",
+   "pt": "A Espuma de Banho Wepink Shower Dream VF Golden tem uma textura leve de chantilly e é perfumada com a fragrância VF Golden."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-vf-golden---wepink-pat11565/p",
   "notes": {}
@@ -10594,11 +11646,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A whipped-cream texture with the scent of Fatal Black For Her",
-   "ar": "قوام كالكريمة المخفوقة بعبير فيتال بلاك فور هير"
+   "ar": "قوام كالكريمة المخفوقة بعبير فيتال بلاك فور هير",
+   "pt": "Textura de chantilly com o cheirinho do Fatal Black For Her"
   },
   "desc": {
    "en": "Shower Dream Fatal Black For Her is a bath foam with a light, whipped-cream texture. It is scented with the Fatal Black For Her fragrance.",
-   "ar": "رغوة الاستحمام شاور دريم فيتال بلاك فور هير بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر فيتال بلاك فور هير."
+   "ar": "رغوة الاستحمام شاور دريم فيتال بلاك فور هير بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر فيتال بلاك فور هير.",
+   "pt": "A Espuma de Banho Wepink Shower Dream Fatal Black For Her tem uma textura leve de chantilly e é perfumada com a fragrância Fatal Black For Her."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-fatal-black-for-her---wepink-pat11567/p",
   "notes": {}
@@ -10631,65 +11685,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrance for women who light up everything around them",
-   "ar": "عطر لنساء يضئن كل ما حولهن"
+   "ar": "عطر لنساء يضئن كل ما حولهن",
+   "pt": "Uma fragrância para mulheres que iluminam tudo ao seu redor"
   },
   "desc": {
    "en": "Scarlette Radiance Body Splash is made for women who need no words to be remembered. It opens with bright Bergamot and Grapefruit Peel, softened by fruity Pear and a delicate spicy accord, leading to a heart of Turkish Rose, Lily of the Valley, Pink Peony and creamy Vanilla. White Amber, Musk, Benzoin and Sandalwood form the base.",
-   "ar": "صُمّم بخاخ الجسم المعطّر سكارليت راديانس لنساء لا يحتجن إلى كلمة واحدة ليبقين في الذاكرة. يفتتح بإشراقة البرغموت وقشر الجريب فروت، تلطّفها نفحة الكمثرى الفاكهية ولمسة توابل رقيقة، وصولًا إلى قلب من الورد التركي وزنبق الوادي والفاوانيا الوردية مع لمسة كريمية من الفانيليا. ويتشكّل أساسه من العنبر الأبيض والمسك والبنزوين وخشب الصندل."
+   "ar": "صُمّم بخاخ الجسم المعطّر سكارليت راديانس لنساء لا يحتجن إلى كلمة واحدة ليبقين في الذاكرة. يفتتح بإشراقة البرغموت وقشر الجريب فروت، تلطّفها نفحة الكمثرى الفاكهية ولمسة توابل رقيقة، وصولًا إلى قلب من الورد التركي وزنبق الوادي والفاوانيا الوردية مع لمسة كريمية من الفانيليا. ويتشكّل أساسه من العنبر الأبيض والمسك والبنزوين وخشب الصندل.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Scarlette Radiance foi criado para mulheres que não precisam dizer uma palavra para serem lembradas. Sua presença ilumina os ambientes, desperta olhares e transforma cada momento em uma memória inesquecível. Inspirado nessa elegância natural, nasce Scarlette Radiance, uma fragrância que traduz feminilidade, sofisticação e luz em uma composição envolvente. Sua abertura revela o brilho vibrante da Bergamota e da Casca de Toranja, iluminadas pela suavidade frutada da Pera e por um delicado acorde especiado. Uma combinação que desperta os sentidos com frescor, elegância e uma luminosidade irresistível. No coração, a exuberância da Rosa Turca encontra a delicadeza do Lírio-do-vale e da Peônia Rosa, enquanto um toque cremoso de Baunilha envolve o buquê floral com conforto e sofisticação. É um encontro entre flores radiantes e texturas aveludadas que traduz uma feminilidade moderna e marcante. Ao fundo, Âmbar Branco, Musk, Benjoim e Sândalo criam uma assinatura elegante, quente e envolvente, deixando um rastro delicado que permanece na pele com equilíbrio e personalidade. Scarlette Radiance é uma fragrância para mulheres que iluminam tudo ao seu redor. Um Floral Frutado sofisticado, criado para transformar cada presença em um momento memorável e revelar uma beleza que permanece muito além do primeiro encontro."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Grapefruit peel",
-     "قشر الجريب فروت"
+     "قشر الجريب فروت",
+     "Casca de toranja"
     ],
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Spicy accord",
-     "لمسة توابل"
+     "لمسة توابل",
+     "Acorde especiado"
     ]
    ],
    "heart": [
     [
      "Turkish rose",
-     "ورد تركي"
+     "ورد تركي",
+     "Rosa turca"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Pink peony",
-     "فاوانيا وردية"
+     "فاوانيا وردية",
+     "Peônia rosa"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ],
    "base": [
     [
      "White amber",
-     "عنبر أبيض"
+     "عنبر أبيض",
+     "Âmbar branco"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Benzoin",
-     "بنزوين"
+     "بنزوين",
+     "Benjoim"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -10723,11 +11791,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrance that doesn't wait for an occasion",
-   "ar": "عطر لا ينتظر مناسبة"
+   "ar": "عطر لا ينتظر مناسبة",
+   "pt": "Uma fragrância que não espera ocasião"
   },
   "desc": {
    "en": "Bomb One Deodorant Cologne is an oriental fragrance from wepink. It is made to be worn any time, without waiting for a special occasion.",
-   "ar": "عطر الكولونيا بومب ون عطر بطابع شرقي من wepink. صُمّم ليُستخدم في أي وقت دون انتظار مناسبة خاصة."
+   "ar": "عطر الكولونيا بومب ون عطر بطابع شرقي من wepink. صُمّم ليُستخدم في أي وقت دون انتظار مناسبة خاصة.",
+   "pt": "O Desodorante Colônia Wepink Bomb One é uma fragrância oriental feita para ser usada a qualquer momento, sem esperar por uma ocasião especial."
   },
   "source": "https://www.wepink.com.br/desod-col-bomb-one-100ml---wepink-524/p",
   "notes": {}
@@ -10757,21 +11827,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A daily invitation to the sophistication of fruity florals",
-   "ar": "دعوة يومية إلى رقيّ العطور الزهرية الفاكهية"
+   "ar": "دعوة يومية إلى رقيّ العطور الزهرية الفاكهية",
+   "pt": "Um convite diário à sofisticação do floral frutado"
   },
   "desc": {
    "en": "Flora Whisper Deodorant Cologne captures the delicacy and elegance of the feminine essence in an enveloping fragrance that gently awakens the senses. Sophisticated Magnolia meets the sweetness of Red Berries in a luminous opening. It moves to a charming floral heart and finishes on a subtly woody base.",
-   "ar": "يجسّد عطر الكولونيا فلورا ويسبر رقة الجوهر الأنثوي وأناقته في عطر آسر يوقظ الحواس بلطف. تمتزج فخامة الماغنوليا بحلاوة التوت الأحمر في افتتاحية مشرقة، ثم ينتقل إلى قلب زهري ساحر ليختتم بقاعدة خشبية ناعمة."
+   "ar": "يجسّد عطر الكولونيا فلورا ويسبر رقة الجوهر الأنثوي وأناقته في عطر آسر يوقظ الحواس بلطف. تمتزج فخامة الماغنوليا بحلاوة التوت الأحمر في افتتاحية مشرقة، ثم ينتقل إلى قلب زهري ساحر ليختتم بقاعدة خشبية ناعمة.",
+   "pt": "O Desodorante Colônia Wepink Flora Whisper traduz a delicadeza e a elegância da essência feminina em uma fragrância envolvente, que desperta os sentidos com suavidade. Sua composição harmoniza a sofisticação da Magnólia com a doçura das Frutas Vermelhas, criando uma abertura luminosa. O aroma segue para um coração floral encantador e se finaliza em um fundo sutilmente amadeirado, marcando sua elegante presença."
   },
   "notes": {
    "top": [
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ],
     [
      "Red berries",
-     "توت أحمر"
+     "توت أحمر",
+     "Frutas vermelhas"
     ]
    ]
   },
@@ -10804,11 +11878,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Hydration with sophistication",
-   "ar": "ترطيب بلمسة من الرقي"
+   "ar": "ترطيب بلمسة من الرقي",
+   "pt": "Hidratação com sofisticação"
   },
   "desc": {
    "en": "Yahya Sadeeq Body Cream keeps skin hydrated, nourished and firm, thanks to a formula that supports collagen production and cell renewal. A blend of selected oils and extracts leaves skin looking healthy and glowing.",
-   "ar": "يحافظ لوشن الجسم يحيى صديق على ترطيب البشرة وتغذيتها وتماسكها، بفضل تركيبته التي تساعد على إنتاج الكولاجين وتجديد الخلايا. كما يمنح مزيج من الزيوت والمستخلصات المختارة البشرة مظهرًا صحيًا ومشرقًا."
+   "ar": "يحافظ لوشن الجسم يحيى صديق على ترطيب البشرة وتغذيتها وتماسكها، بفضل تركيبته التي تساعد على إنتاج الكولاجين وتجديد الخلايا. كما يمنح مزيج من الزيوت والمستخلصات المختارة البشرة مظهرًا صحيًا ومشرقًا.",
+   "pt": "A Loção Desodorante Body Cream Wepink Yahya Sadeeq mantém a sua pele sempre hidratada, nutrida e firme, graças à sua composição que auxilia na produção de colágeno e regeneração celular. Sua formulação também conta com um mix de óleos e extratos selecionados que deixam sua pele com um aspecto saudável e brilhoso."
   },
   "source": "https://www.wepink.com.br/body-cream-yahya-200ml---wepink-425/p",
   "notes": {}
@@ -10838,45 +11914,54 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A touch of pure magic!",
-   "ar": "لمسة من السحر الخالص!"
+   "ar": "لمسة من السحر الخالص!",
+   "pt": "Um toque de pura magia!"
   },
   "desc": {
    "en": "Fantasy Kids White Sorcerer Cologne enchants from the very first moment with its delicate, magical sparkle. Notes of Orange, Apricot and Red Apple bring irresistible joy, while Violet and Roses reveal a soft heart and a base of Vanilla and Amber wraps the skin in tenderness and comfort. A luminous fragrance created to spark smiles.",
-   "ar": "يأسر عطر الكولونيا فانتاسي كيدز وايت سورسرر الحواس منذ اللحظة الأولى ببريقه الساحر والرقيق. تضفي نفحات البرتقال والمشمش والتفاح الأحمر بهجة لا تقاوم، بينما يكشف البنفسج والورد عن قلب ناعم، وتغلّف قاعدة الفانيليا والعنبر البشرة بالحنان والراحة. عطر مشرق صُمّم ليرسم الابتسامات."
+   "ar": "يأسر عطر الكولونيا فانتاسي كيدز وايت سورسرر الحواس منذ اللحظة الأولى ببريقه الساحر والرقيق. تضفي نفحات البرتقال والمشمش والتفاح الأحمر بهجة لا تقاوم، بينما يكشف البنفسج والورد عن قلب ناعم، وتغلّف قاعدة الفانيليا والعنبر البشرة بالحنان والراحة. عطر مشرق صُمّم ليرسم الابتسامات.",
+   "pt": "A Colônia Wepink Fantasy Kids White Sorcerer encanta desde o primeiro instante com seu brilho mágico e delicado. As notas de Laranja, Damasco e Maçã Vermelha trazem uma alegria irresistível, como um feitiço de boas-vindas cheio de cor e doçura. No coração, Violeta e Rosas revelam um toque suave e encantador, enquanto o fundo de Baunilha e Âmbar envolve a pele com ternura e conforto. Uma fragrância luminosa e envolvente, criada para despertar sorrisos e espalhar um toque de magia!"
   },
   "notes": {
    "top": [
     [
      "Orange",
-     "برتقال"
+     "برتقال",
+     "Laranja"
     ],
     [
      "Apricot",
-     "مشمش"
+     "مشمش",
+     "Damasco"
     ],
     [
      "Red apple",
-     "تفاح أحمر"
+     "تفاح أحمر",
+     "Maçã vermelha"
     ]
    ],
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -10907,27 +11992,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Elegant, vibrant and intriguing",
-   "ar": "أنيق، نابض بالحيوية ومثير للفضول"
+   "ar": "أنيق، نابض بالحيوية ومثير للفضول",
+   "pt": "Elegante, vibrante e instigante"
   },
   "desc": {
    "en": "Crimson Seraph Deodorant Cologne is born from the warmth that awakens the skin. Its fruity notes rise like embers with a seductive glow, while ambery, sugary nuances blend into a smoldering depth at the base, leaving a warm trail on the skin. A fragrance that radiates desire and pulses with warmth.",
-   "ar": "وُلد عطر الكولونيا كريمسون سيراف من الدفء الذي يوقظ البشرة. تتصاعد نفحاته الفاكهية كالجمر بتوهّج آسر، بينما تمتزج في القاعدة لمسات عنبرية وسكّرية بعمق متّقد، تاركة أثرًا دافئًا على البشرة. عطر يشعّ بالرغبة وينبض بالدفء."
+   "ar": "وُلد عطر الكولونيا كريمسون سيراف من الدفء الذي يوقظ البشرة. تتصاعد نفحاته الفاكهية كالجمر بتوهّج آسر، بينما تمتزج في القاعدة لمسات عنبرية وسكّرية بعمق متّقد، تاركة أثرًا دافئًا على البشرة. عطر يشعّ بالرغبة وينبض بالدفء.",
+   "pt": "O Desodorante Colônia Wepink Crimson Seraph nasce do calor que desperta a pele. Suas notas frutadas surgem como brasas, iluminando os sentidos com um brilho sedutor. No fundo, nuances ambaradas e açucaradas se misturam a uma profundidade incandescente, criando um rastro quente que permanece como um fogo sobre a pele. Uma fragrância que irradia desejo, pulsa calor e convida a se entregar às emoções mais ardentes."
   },
   "notes": {
    "top": [
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Sugary accord",
-     "لمسة سكرية"
+     "لمسة سكرية",
+     "Acorde açucarado"
     ]
    ]
   },
@@ -10958,11 +12048,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Sweet as marshmallow, shiny as a dream",
-   "ar": "حلو كالمارشميلو، لامع كالحلم"
+   "ar": "حلو كالمارشميلو، لامع كالحلم",
+   "pt": "Doce como marshmallow, brilhante como um sonho"
   },
   "desc": {
    "en": "Marshmallow Lip Oil leaves lips hydrated and glossy for a more alluring look. It comes with a perfectly sugary scent.",
-   "ar": "يمنح زيت الشفاه مارشميلو الشفاه ترطيبًا ولمعانًا لإطلالة أكثر جاذبية. ويتميّز بعبير سكّري مثالي."
+   "ar": "يمنح زيت الشفاه مارشميلو الشفاه ترطيبًا ولمعانًا لإطلالة أكثر جاذبية. ويتميّز بعبير سكّري مثالي.",
+   "pt": "Com o Wepink Lip Oil Marshmallow você deixa seus lábios hidratados e brilhantes, para uma boca mais atraente e com uma fragrância perfeitamente açucarada. Huum!"
   },
   "source": "https://www.wepink.com.br/lip-oil-35g-marshmallow---wepink-fs1111848/p",
   "notes": {}
@@ -10993,35 +12085,42 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Authentically mysterious",
-   "ar": "غموض أصيل"
+   "ar": "غموض أصيل",
+   "pt": "Autenticamente misterioso"
   },
   "desc": {
    "en": "Yahya Sadeeq Body Splash invites a mystical journey of sensuality, combining Rose Petals and Black Pepper in its floral, woody heart. Its authentic essence is expressed through the intertwined complexity of Saffron, Amber and Oud.",
-   "ar": "يأخذ بخاخ الجسم المعطّر يحيى صديق في رحلة غامضة من الجاذبية، إذ يمزج بتلات الورد والفلفل الأسود في قلبه الزهري الخشبي. ويتجلّى جوهره الأصيل في التداخل الآسر بين الزعفران والعنبر والعود."
+   "ar": "يأخذ بخاخ الجسم المعطّر يحيى صديق في رحلة غامضة من الجاذبية، إذ يمزج بتلات الورد والفلفل الأسود في قلبه الزهري الخشبي. ويتجلّى جوهره الأصيل في التداخل الآسر بين الزعفران والعنبر والعود.",
+   "pt": "Uma jornada mística de sensualidade te aguarda com o Desodorante Colônia Body Splash Wepink Yahya Sadeeq, que combina Pétalas de Rosa e Pimenta Preta em seu coração floral e amadeirado. Impressione a todos com uma essência autêntica, representada na complexidade entrelaçada do Açafrão, do Âmbar e do Oud."
   },
   "notes": {
    "heart": [
     [
      "Rose petals",
-     "بتلات الورد"
+     "بتلات الورد",
+     "Pétalas de rosa"
     ],
     [
      "Black pepper",
-     "فلفل أسود"
+     "فلفل أسود",
+     "Pimenta-preta"
     ]
    ],
    "base": [
     [
      "Saffron",
-     "زعفران"
+     "زعفران",
+     "Açafrão"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Oud",
-     "عود"
+     "عود",
+     "Oud"
     ]
    ]
   },
@@ -11052,11 +12151,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Transform your daily care!",
-   "ar": "ارتقِ بعنايتك اليومية!"
+   "ar": "ارتقِ بعنايتك اليومية!",
+   "pt": "Transforme seu cuidado diário!"
   },
   "desc": {
    "en": "Myskin Essential Body Anti-Acne Gel is formulated with actives that provide gentle chemical exfoliation, hydrate, control oiliness and help even out skin tone. Its unique scent leaves skin fragranced during use.",
-   "ar": "جل ماي سكين إسنشال بودي المضاد لحب الشباب مُركّب بمكونات فعّالة توفّر تقشيرًا كيميائيًا لطيفًا، وترطّب البشرة، وتتحكّم في الإفرازات الدهنية، وتساعد على توحيد لونها. ويترك عبيره الفريد البشرة معطّرة أثناء الاستخدام."
+   "ar": "جل ماي سكين إسنشال بودي المضاد لحب الشباب مُركّب بمكونات فعّالة توفّر تقشيرًا كيميائيًا لطيفًا، وترطّب البشرة، وتتحكّم في الإفرازات الدهنية، وتساعد على توحيد لونها. ويترك عبيره الفريد البشرة معطّرة أثناء الاستخدام.",
+   "pt": "O Gel Antiacne Corporal Myskin Body é formulado com ativos que promovem uma esfoliação química suave, oferecem hidratação, controlam a oleosidade e contribuem para a uniformização do tom da pele. Tudo isso, com uma essência única para deixar sua pele perfumada durante o uso."
   },
   "source": "https://www.wepink.com.br/-myskin-body-esfoliante-acido-250-ml---wepink-210/p",
   "notes": {}
@@ -11086,23 +12187,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn your bath into a premium ritual",
-   "ar": "حوّلي استحمامك إلى طقس فاخر"
+   "ar": "حوّلي استحمامك إلى طقس فاخر",
+   "pt": "Transforme seu banho em um ritual premium"
   },
   "desc": {
    "en": "Liberté Body Scrub celebrates the tireless woman pursuing her dreams, carefully formulated around an elegant floral bouquet. Its actives provide gentle exfoliation and hydration, with striking notes of Magnolia and French Centifolia Rose that leave skin soft, healthy and scented all day. It finishes masterfully on a sweet, woody accord.",
-   "ar": "يحتفي مقشّر الجسم ليبرتيه بالمرأة التي لا تكلّ في سعيها لتحقيق أحلامها، وقد صُمّم بعناية حول باقة زهرية أنيقة. تمنح مكوناته الفعّالة تقشيرًا لطيفًا وترطيبًا، مع نفحات آسرة من الماغنوليا وورد سنتيفوليا الفرنسي تترك البشرة ناعمة وصحية ومعطّرة طوال اليوم. ويختتم ببراعة بعبير حلو وخشبي."
+   "ar": "يحتفي مقشّر الجسم ليبرتيه بالمرأة التي لا تكلّ في سعيها لتحقيق أحلامها، وقد صُمّم بعناية حول باقة زهرية أنيقة. تمنح مكوناته الفعّالة تقشيرًا لطيفًا وترطيبًا، مع نفحات آسرة من الماغنوليا وورد سنتيفوليا الفرنسي تترك البشرة ناعمة وصحية ومعطّرة طوال اليوم. ويختتم ببراعة بعبير حلو وخشبي.",
+   "pt": "O Esfoliante Corporal Body Scrub Wepink Liberté aprecia a mulher incansável na busca para realizar os seus sonhos, sendo cuidadosamente formulado em um buquê floral elegante. Sua composição possui ativos que promovem esfoliação suave e hidratação, refletindo nobreza e liberdade. Tudo isso, em notas marcantes da Magnólia e da Rosa Francesa Centifolia, para deixar sua pele macia, saudável e perfumada durante o dia todo. Finaliza com maestria em um aroma doce e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ]
    ],
    "heart": [
     [
      "French centifolia rose",
-     "ورد سنتيفوليا الفرنسي"
+     "ورد سنتيفوليا الفرنسي",
+     "Rosa francesa centifolia"
     ]
    ]
   },
@@ -11133,11 +12238,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Plump lips with a soft shine and a strawberry scent!",
-   "ar": "شفاه ممتلئة بلمعان خفيف وعبير الفراولة!"
+   "ar": "شفاه ممتلئة بلمعان خفيف وعبير الفراولة!",
+   "pt": "Lábios volumosos, com um leve brilho e cheirinho de morango!"
   },
   "desc": {
    "en": "My Lips Sorvetin Lip Gloss delivers irresistible lips with a delicious ice-cream taste and scent. It is the secret to fuller-looking lips with a vibrant tint, with actives specially selected to care for lip health.",
-   "ar": "يمنح ملمّع الشفاه ماي ليبس سورفيتين شفاهًا لا تقاوم بمذاق وعبير الآيس كريم اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس سورفيتين شفاهًا لا تقاوم بمذاق وعبير الآيس كريم اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه.",
+   "pt": "Experimente o Gloss My Lips Sorvetin e tenha lábios irresistíveis com um delicioso gostinho e aroma de sorvete. Este gloss é o seu segredo para lábios volumosos e com uma tonalidade vibrante. Com ativos selecionados especialmente para cuidar da saúde dos seus lábios, para deixar você ainda mais apaixonada pelo seu sorriso."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-sorvetin-wepink/p",
   "notes": {}
@@ -11166,27 +12273,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your new obsession, get ready",
-   "ar": "هوسك الجديد، فاستعدي"
+   "ar": "هوسك الجديد، فاستعدي",
+   "pt": "Sua nova obsessão, prepare-se"
   },
   "desc": {
    "en": "The Cream Obsessed Body Lotion offers a soft touch with nourishment, firmness and intense hydration, leaving skin healthy-looking and glowing. Its blend of ingredients also helps prevent stretch marks and premature aging. Its sensual Floral Woody path features blood orange, cherry and gardenia, finishing on a sweet, woody base.",
-   "ar": "يمنح لوشن الجسم ذا كريم أوبسيسد لمسة ناعمة مع التغذية والتماسك والترطيب المكثف، تاركًا البشرة بمظهر صحي ومشرق. كما يساعد مزيج مكوناته على الوقاية من علامات التمدد والشيخوخة المبكرة. ويتميّز بمسار عطري زهري خشبي حسّي بلمسات من البرتقال الدموي والكرز والغاردينيا، ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يمنح لوشن الجسم ذا كريم أوبسيسد لمسة ناعمة مع التغذية والتماسك والترطيب المكثف، تاركًا البشرة بمظهر صحي ومشرق. كما يساعد مزيج مكوناته على الوقاية من علامات التمدد والشيخوخة المبكرة. ويتميّز بمسار عطري زهري خشبي حسّي بلمسات من البرتقال الدموي والكرز والغاردينيا، ليختتم بقاعدة حلوة وخشبية.",
+   "pt": "A Loção Desodorante The Cream Obsessed não pode faltar na sua rotina de cuidados com a pele. Sua composição possui a magia de um toque macio, proporcionando nutrição, firmeza e hidratação intensa, além de deixar a pele com um aspecto saudável e brilhoso para um banho perfumado e relaxante. Sua combinação de ingredientes, além de prevenir estrias e o envelhecimento precoce, possui um caminho olfativo Floral Amadeirado sensual e elegante, com toques de laranja sanguínea, cereja e gardênia. Finaliza em um fundo doce, amadeirado para um deleite despretensioso aos sentidos."
   },
   "notes": {
    "top": [
     [
      "Blood orange",
-     "برتقال دموي"
+     "برتقال دموي",
+     "Laranja sanguínea"
     ],
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ]
    ],
    "heart": [
     [
      "Gardenia",
-     "غاردينيا"
+     "غاردينيا",
+     "Gardênia"
     ]
    ]
   },
@@ -11217,11 +12329,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Plump lips with cherry color and flavor!",
-   "ar": "شفاه ممتلئة بلون الكرز ونكهته!"
+   "ar": "شفاه ممتلئة بلون الكرز ونكهته!",
+   "pt": "Lábios volumosos com cor e gostinho de cereja!"
   },
   "desc": {
    "en": "My Lips Cherry Lip Gloss delivers irresistible lips with a delicious cherry taste and scent. It is the secret to fuller-looking lips with a vibrant tint, with actives specially selected to care for lip health.",
-   "ar": "يمنح ملمّع الشفاه ماي ليبس تشيري شفاهًا لا تقاوم بمذاق وعبير الكرز اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس تشيري شفاهًا لا تقاوم بمذاق وعبير الكرز اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه.",
+   "pt": "Experimente o Gloss My Lips Cherry e tenha lábios irresistíveis com um delicioso gostinho e aroma de cereja! Este gloss é o seu segredo para lábios volumosos e com uma tonalidade vibrante. Com ativos selecionados especialmente para cuidar da saúde dos seus lábios, para deixar você ainda mais apaixonada pelo seu sorriso. Arrase com o Gloss My Lips Cherry e deixe seus lábios ainda mais irresistíveis!"
   },
   "source": "https://www.wepink.com.br/gloss-my-lips-cherry-4ml-wepink/p",
   "notes": {}
@@ -11253,33 +12367,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A heady essence full of well-being",
-   "ar": "جوهر آسر مفعم بالرفاهية"
+   "ar": "جوهر آسر مفعم بالرفاهية",
+   "pt": "Uma essência inebriante cheia de bem-estar"
   },
   "desc": {
    "en": "Pureblixx Mauve Body Splash has a heady, magnetic essence full of well-being, embracing a magical, mysterious romance of feminine beauty. Its olfactory journey intertwines white flowers with rose petals, creating a captivating contrast with sparkling fruity notes. It finishes on a sweet, woody base with a touch of sandalwood for an enveloping sense of comfort.",
-   "ar": "يتميّز بخاخ الجسم المعطّر بيوربليكس موف بجوهر آسر وجذّاب مفعم بالرفاهية، يحتضن قصة رومانسية ساحرة وغامضة للجمال الأنثوي. تمزج رحلته العطرية الزهور البيضاء ببتلات الورد، في تباين آسر مع نفحات فاكهية متلألئة. ويختتم بقاعدة حلوة وخشبية تحمل لمسة من خشب الصندل لإحساس غامر بالراحة."
+   "ar": "يتميّز بخاخ الجسم المعطّر بيوربليكس موف بجوهر آسر وجذّاب مفعم بالرفاهية، يحتضن قصة رومانسية ساحرة وغامضة للجمال الأنثوي. تمزج رحلته العطرية الزهور البيضاء ببتلات الورد، في تباين آسر مع نفحات فاكهية متلألئة. ويختتم بقاعدة حلوة وخشبية تحمل لمسة من خشب الصندل لإحساس غامر بالراحة.",
+   "pt": "O Body Splash Pureblixx Mauve Desodorante Colônia possui uma essência inebriante, magnética e cheia de bem-estar, abraçando um romance mágico e misterioso da beleza feminina, realçando o lado brilhante de ser mulher. Sua experiência olfativa é uma jornada única, combinando flores brancas entrelaçadas em pétalas de rosa, criando um contraste cativante com notas frutadas cintilantes. Finalizando com um fundo doce e amadeirado, que traz um toque de sândalo para uma sensação envolvente de conforto."
   },
   "notes": {
    "top": [
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ]
    ],
    "heart": [
     [
      "White flowers",
-     "زهور بيضاء"
+     "زهور بيضاء",
+     "Flores brancas"
     ],
     [
      "Rose petals",
-     "بتلات الورد"
+     "بتلات الورد",
+     "Pétalas de rosa"
     ]
    ],
    "base": [
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -11310,11 +12430,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "10 ideal shades made for you to go all out!",
-   "ar": "10 درجات مثالية صُمّمت لتتألّقي بلا حدود!"
+   "ar": "10 درجات مثالية صُمّمت لتتألّقي بلا حدود!",
+   "pt": "10 cores ideais especialmente feitas para você se jogar!"
   },
   "desc": {
    "en": "Welips Matte Liquid Lipstick brings more color to the pink world, completing any makeup look with elegant, playful shades for every hour and every personality. It is long-wearing, waterproof, super comfortable and comes in high-impact shades. Allow it to dry before finishing the look.",
-   "ar": "يضيف أحمر الشفاه السائل المطفي وي ليبس مزيدًا من الألوان إلى عالم wepink الوردي، ليكمل أي إطلالة مكياج بدرجات أنيقة وجريئة تناسب كل الأوقات وجميع الشخصيات. يدوم طويلًا، ومقاوم للماء، ومريح للغاية، ويأتي بدرجات عالية التأثير. يُنصح بتركه حتى يجف قبل إكمال المكياج."
+   "ar": "يضيف أحمر الشفاه السائل المطفي وي ليبس مزيدًا من الألوان إلى عالم wepink الوردي، ليكمل أي إطلالة مكياج بدرجات أنيقة وجريئة تناسب كل الأوقات وجميع الشخصيات. يدوم طويلًا، ومقاوم للماء، ومريح للغاية، ويأتي بدرجات عالية التأثير. يُنصح بتركه حتى يجف قبل إكمال المكياج.",
+   "pt": "O coração do seu mundo rosa ganhou mais cores, que vão completar a sua make e deixar os seus looks mais coloridos, elegantes e irreverentes, combinando com qualquer horário e todas as personalidades. O welips será o seu companheiro para todas as horas, um verdadeiro amigo inseparável, isso porque, o nosso batom líquido matte tem uma longa duração, é à prova d'água, super confortável e tem tons de alto impacto. Dica: espere secar para finalizar a make."
   },
   "source": "https://www.wepink.com.br/batom-liquido-welips/p",
   "notes": {}
@@ -11337,11 +12459,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Feive collection, together in one set",
-   "ar": "مجموعة فيف مجتمعة في طقم واحد"
+   "ar": "مجموعة فيف مجتمعة في طقم واحد",
+   "pt": "A coleção Feive reunida em um só kit"
   },
   "desc": {
    "en": "The Feive Collection Set brings together products from the wepink Feive line in a single kit. A convenient way to enjoy the Feive collection.",
-   "ar": "يجمع طقم مجموعة فيف منتجات من خط فيف من wepink في طقم واحد. طريقة عملية للاستمتاع بمجموعة فيف."
+   "ar": "يجمع طقم مجموعة فيف منتجات من خط فيف من wepink في طقم واحد. طريقة عملية للاستمتاع بمجموعة فيف.",
+   "pt": "O Kit Linha Feive reúne produtos da linha Feive da Wepink em um só kit. Uma forma prática de aproveitar a coleção Feive."
   },
   "source": "https://www.wepink.com.br/kit-linha-feive---wepink-85618/p",
   "notes": {}
@@ -11373,53 +12497,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A celebration of amber oriental, felt on the skin",
-   "ar": "احتفاء بالعطر الشرقي العنبري على البشرة"
+   "ar": "احتفاء بالعطر الشرقي العنبري على البشرة",
+   "pt": "Uma celebração do oriental ambarado que se sente na pele"
   },
   "desc": {
    "en": "Elowen Deodorant Cologne is an invitation to celebrate life at its lightest, most vibrant and sophisticated. It opens with intense redcurrant, bold pink pepper and luminous bergamot, followed by a delicate floral heart of lily of the valley and rose with soft woody notes. Patchouli, a suede accord and musk form a velvety, warm base.",
-   "ar": "عطر الكولونيا إيلوين دعوة للاحتفاء بالحياة في أخفّ صورها وأكثرها حيوية ورقيًا. يفتتح بنفحة مكثفة من الكشمش الأحمر مع جرأة الفلفل الوردي وإشراقة البرغموت، يليها قلب زهري رقيق من زنبق الوادي والورد مع لمسات خشبية ناعمة. ويشكّل الباتشولي وجلد السويد والمسك قاعدة مخملية دافئة."
+   "ar": "عطر الكولونيا إيلوين دعوة للاحتفاء بالحياة في أخفّ صورها وأكثرها حيوية ورقيًا. يفتتح بنفحة مكثفة من الكشمش الأحمر مع جرأة الفلفل الوردي وإشراقة البرغموت، يليها قلب زهري رقيق من زنبق الوادي والورد مع لمسات خشبية ناعمة. ويشكّل الباتشولي وجلد السويد والمسك قاعدة مخملية دافئة.",
+   "pt": "O Desodorante Colônia Wepink Elowen é um convite para celebrar a vida em sua forma mais leve, vibrante e sofisticada. Uma fragrância que traduz alegria em cada detalhe, transformando pequenos momentos em experiências memoráveis. Na abertura, a groselha surge intensa e envolvente, trazendo um toque frutado vibrante que se mistura à ousadia da pimenta rosa e ao frescor luminoso da bergamota. Um início marcante, que desperta os sentidos e cria uma presença cheia de personalidade. No coração, a fragrância revela sua elegância com um bouquet floral delicado. O lírio-do-vale e a rosa se encontram com notas amadeiradas suaves, criando equilíbrio entre frescor e sofisticação: uma construção harmoniosa que envolve sem pesar. Ao fundo, a assinatura se torna ainda mais envolvente. O patchouli se une ao acorde de camurça e ao musk, criando um toque aveludado, quente e irresistível. Um rastro que permanece na pele como um abraço sofisticado, marcando presença com delicadeza e intensidade."
   },
   "notes": {
    "top": [
     [
      "Redcurrant",
-     "كشمش أحمر"
+     "كشمش أحمر",
+     "Groselha vermelha"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Suede accord",
-     "جلد السويد"
+     "جلد السويد",
+     "Acorde de camurça"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -11452,11 +12587,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your secret weapon for seduction",
-   "ar": "سلاحك السري للجاذبية"
+   "ar": "سلاحك السري للجاذبية",
+   "pt": "Sua arma secreta para a sedução"
   },
   "desc": {
    "en": "Crimson Seraph Body Splash is a warm, fruity fragrance made for living the night to the fullest and winning hearts anywhere. Its sweetness has every potential to awaken the wildest passions, making it a secret weapon for seduction.",
-   "ar": "بخاخ الجسم المعطّر كريمسون سيراف عطر دافئ بطابع فاكهي صُمّم لعيش الليل بكل تفاصيله وأسر القلوب في كل مكان. تحمل حلاوته القدرة على إيقاظ أكثر المشاعر جموحًا، ليكون سلاحًا سريًا للجاذبية."
+   "ar": "بخاخ الجسم المعطّر كريمسون سيراف عطر دافئ بطابع فاكهي صُمّم لعيش الليل بكل تفاصيله وأسر القلوب في كل مكان. تحمل حلاوته القدرة على إيقاظ أكثر المشاعر جموحًا، ليكون سلاحًا سريًا للجاذبية.",
+   "pt": "Viva a noite intensamente com o Desodorante Colônia Body Splash Wepink Crimson Seraph, uma fragrância quente e frutada para arrasar corações em qualquer lugar. Sua doçura tem todo o potencial para despertar as paixões mais selvagens. Uma arma secreta para a sedução."
   },
   "source": "https://www.wepink.com.br/body-splash-crimson-seraph-200ml---wepink-414/p",
   "notes": {}
@@ -11486,11 +12623,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Sweet as a gumdrop, shiny as a dream",
-   "ar": "حلو كحلوى الجيلي، لامع كالحلم"
+   "ar": "حلو كحلوى الجيلي، لامع كالحلم",
+   "pt": "Doce como jujuba, brilhante como um sonho"
   },
   "desc": {
    "en": "Jujuba Lip Oil leaves lips shiny and hydrated, with a delicious gumdrop scent. A truly tasty treat for the lips.",
-   "ar": "يمنح زيت الشفاه جوجوبا الشفاه لمعانًا وترطيبًا مع عبير شهي لحلوى الجيلي. متعة لذيذة حقًا للشفاه."
+   "ar": "يمنح زيت الشفاه جوجوبا الشفاه لمعانًا وترطيبًا مع عبير شهي لحلوى الجيلي. متعة لذيذة حقًا للشفاه.",
+   "pt": "Com o Wepink Lip Oil Jujuba, sua boca fica brilhante, hidratada e com o aroma delicioso de jujuba. Muito gostoso!"
   },
   "source": "https://www.wepink.com.br/lip-oil-35g-jujuba---wepink-fs1111847/p",
   "notes": {}
@@ -11523,11 +12662,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your essence, guided by the stars",
-   "ar": "جوهرك تهديه النجوم"
+   "ar": "جوهرك تهديه النجوم",
+   "pt": "Sua essência guiada pelos astros"
   },
   "desc": {
    "en": "The Zodiac Signs body splash collection connects the power of the stars with the four elements: Air, Earth, Fire and Water. Each fragrance captures the personality of its signs, from the freshness of air to the intensity of earth, the passion of fire and the fluidity of water. Water, for instance, blends red berries, salted caramel, lychee, chocolate and vanilla.",
-   "ar": "تربط مجموعة بخاخات الجسم زودياك ساينز بين قوة النجوم والعناصر الأربعة: إير وإيرث وفاير وووتر. يعكس كل عطر شخصية أبراجه، من انتعاش الهواء إلى قوة الأرض وشغف النار وانسيابية الماء. فعطر ووتر مثلًا يمزج التوت الأحمر والكراميل المملّح والليتشي مع الشوكولاتة والفانيليا."
+   "ar": "تربط مجموعة بخاخات الجسم زودياك ساينز بين قوة النجوم والعناصر الأربعة: إير وإيرث وفاير وووتر. يعكس كل عطر شخصية أبراجه، من انتعاش الهواء إلى قوة الأرض وشغف النار وانسيابية الماء. فعطر ووتر مثلًا يمزج التوت الأحمر والكراميل المملّح والليتشي مع الشوكولاتة والفانيليا.",
+   "pt": "A coleção de body splashes Zodiac Signs conecta a força dos astros com a essência dos quatro elementos Air, Earth, Fire e Water. Cada fragrância foi criada para traduzir a personalidade vibrante dos signos, revelando nuances que refletem o frescor do ar, a intensidade da terra, a paixão do fogo e a fluidez da água. Mais do que aromas, são expressões de energia e identidade. Cada body splash desperta emoções únicas e convida você a viver de acordo com seu elemento, seja para inspirar, aquecer, transformar ou renovar. Um kit pensado para quem acredita no poder do zodíaco e deseja carregar a sua essência por onde for. Water: Deixe suas emoções fluírem com o Desodorante Colônia Body Splash Wepink Zodiac Signs Water, uma fragrância mágica de Frutas Vermelhas, Caramelo Salgado e Abacaxi. Sinta o frescor de uma chuva revitalizante com as notas de Lichia, Gerânio e Orquídea, e depois derreta-se com o conforto familiar do Chocolate e da Baunilha. Fire: O Desodorante Colônia Body Splash Wepink Zodiac Signs Fire está aqui para aquecer seu coração. Seu intenso aroma frutado traz Maçã, Morango e Framboesa, numa combinação pra lá de apaixonante. As notas vibrantes de Flor de Nectarina e Musk mantêm a chama acesa, iluminando a todos que presenciam essa fragrância. Earth: Conecte-se à natureza com o Desodorante Colônia Body Splash Wepink Zodiac Signs Earth, que traz suas notas frutadas, de Pitaya e Lichia, e florais, com o Jasmim e o Hibisco. Uma essência especial para todas as fases da vida, terminando na doce potência da Baunilha com Almíscar. Aproveite esta fragrância e ande sorridente por seu caminho. Air: O Desodorante Colônia Body Splash Wepink Zodiac Signs Air vai deixar todos maravilhados com seu rico coração de flores e frutas, abrindo com o frescor da Maçã Verde e a sofisticação das Frutas Vermelhas e do Figo. Seu aroma místico continua com as fragrâncias envolventes de Íris, Praline e Âmbar, para você intrigar quem estiver ao seu redor."
   },
   "source": "https://www.wepink.com.br/kit-zodiac-sings---wepink-344/p",
   "notes": {}
@@ -11557,11 +12698,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The best long-wear foundation for your makeup",
-   "ar": "أفضل كريم أساس عالي الثبات لمكياجك"
+   "ar": "أفضل كريم أساس عالي الثبات لمكياجك",
+   "pt": "A melhor base de alta fixação para a sua make"
   },
   "desc": {
    "en": "This high-coverage liquid foundation from wepink beauty covers imperfections and is water-resistant, while protecting and revitalizing the skin with a matte finish. It contains skin-caring actives that support the skincare routine, in lightweight, practical packaging that fits any bag. The range launches with 15 shades to find the perfect match.",
-   "ar": "كريم الأساس السائل عالي التغطية من wepink beauty يخفي العيوب ومقاوم للماء، ويحمي البشرة وينعشها بلمسة نهائية مطفية. يحتوي على مكونات فعّالة تعتني بالبشرة وتدعم روتين العناية بها، في عبوة خفيفة وعملية تناسب أي حقيبة. وتنطلق المجموعة بـ15 درجة لونية لاختيار الدرجة المثالية لكل بشرة."
+   "ar": "كريم الأساس السائل عالي التغطية من wepink beauty يخفي العيوب ومقاوم للماء، ويحمي البشرة وينعشها بلمسة نهائية مطفية. يحتوي على مكونات فعّالة تعتني بالبشرة وتدعم روتين العناية بها، في عبوة خفيفة وعملية تناسب أي حقيبة. وتنطلق المجموعة بـ15 درجة لونية لاختيار الدرجة المثالية لكل بشرة.",
+   "pt": "A wepink beauty veio para inovar o seu modo de maquiar. A base líquida de alta cobertura do seu mundo rosa, além de cobrir imperfeições e ser resistente à água, ela irá proteger e revigorar a sua pele, pois possui tudo o que você precisa, uma cobertura essencial com acabamento matte que ajuda na vitalidade da pele. Ela auxilia nos cuidados de skincare, pois tem ativos que também cuidam da pele. A embalagem da base líquida foi pensada para ser prática e leve para o seu dia a dia, cabe na nécessaire, na bolsa e na mochila. A wepink começa sua linha de bases com 15 tonalidades diferentes, assim você poderá escolher o tom perfeito para sua pele."
   },
   "source": "https://www.wepink.com.br/wepink-beauty-base-liquida/p",
   "notes": {}
@@ -11592,11 +12735,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Exfoliating foam with a peeling effect for well-cared-for skin",
-   "ar": "رغوة مقشّرة بمفعول البيلينج لبشرة مُعتنى بها"
+   "ar": "رغوة مقشّرة بمفعول البيلينج لبشرة مُعتنى بها",
+   "pt": "Espuma de esfoliação com efeito peeling para uma pele bem cuidada"
   },
   "desc": {
    "en": "Myskin Essential Exfoliating Foam is more than a deep-cleansing foam: its formula helps hydrate, even out skin tone and fight premature aging. With a pleasant scent and a soothing effect, it supports anti-acne care without drying the skin, and is designed for use with silicone bristles to boost results while gently massaging the face.",
-   "ar": "رغوة التقشير ماي سكين إسنشال أكثر من مجرد رغوة للتنظيف العميق، إذ تساعد تركيبتها على ترطيب البشرة وتوحيد لونها ومكافحة الشيخوخة المبكرة. وبعبيرها المميز وتأثيرها المهدّئ، تدعم علاج حب الشباب دون تجفيف البشرة، وقد صُمّمت للاستخدام مع فرشاة ذات شعيرات سيليكون لتعزيز النتائج وتدليك الوجه بلطف."
+   "ar": "رغوة التقشير ماي سكين إسنشال أكثر من مجرد رغوة للتنظيف العميق، إذ تساعد تركيبتها على ترطيب البشرة وتوحيد لونها ومكافحة الشيخوخة المبكرة. وبعبيرها المميز وتأثيرها المهدّئ، تدعم علاج حب الشباب دون تجفيف البشرة، وقد صُمّمت للاستخدام مع فرشاة ذات شعيرات سيليكون لتعزيز النتائج وتدليك الوجه بلطف.",
+   "pt": "A espuma esfoliante da wepink veio para complementar a sua rotina de skincare, ela não é somente uma espuma de limpeza profunda, com uma super composição vai auxiliar sua pele na hidratação, uniformização do tom e no combate ao envelhecimento precoce. Com um cheirinho incrível e seu efeito calmante, a Myskin Essential vai ajudar no tratamento antiacne sem ressecar a pele, especialmente porque foi projetada para ser utilizada com cerdas de silicone, potencializando o seu resultado e massageando sem agredir o rosto."
   },
   "source": "https://www.wepink.com.br/espuma-esfoliante-myskin/p",
   "notes": {}
@@ -11627,23 +12772,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Be creamily irresistible!",
-   "ar": "كوني بنعومة الكريمة التي لا تقاوم!"
+   "ar": "كوني بنعومة الكريمة التي لا تقاوم!",
+   "pt": "Seja cremosamente irresistível!"
   },
   "desc": {
    "en": "Choco Body Cream has a creamy, delightful touch that hydrates, nourishes and firms, supporting collagen production and cell renewal for healthy-looking, glowing skin. Its sugary essence unites intensity and softness in notes of Belgian cocoa and vanilla, finishing on a sweet, woody base.",
-   "ar": "يتميّز لوشن الجسم تشوكو بلمسة كريمية ساحرة ترطّب البشرة وتغذّيها وتمنحها التماسك، مع دعم إنتاج الكولاجين وتجديد الخلايا لبشرة بمظهر صحي ومشرق. يجمع عبيره السكّري بين الكثافة والنعومة بنفحات الكاكاو البلجيكي والفانيليا، ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يتميّز لوشن الجسم تشوكو بلمسة كريمية ساحرة ترطّب البشرة وتغذّيها وتمنحها التماسك، مع دعم إنتاج الكولاجين وتجديد الخلايا لبشرة بمظهر صحي ومشرق. يجمع عبيره السكّري بين الكثافة والنعومة بنفحات الكاكاو البلجيكي والفانيليا، ليختتم بقاعدة حلوة وخشبية.",
+   "pt": "A Loção Desodorante Body Cream Wepink Choco possui um toque cremoso, encantador em hidratação, nutrição e firmeza. Sua composição auxilia na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhoso, para quem deseja um doce bem-estar. Sua essência transmite um toque açucarado, unindo o intenso e o suave em notas de cacau belga e baunilha. Finaliza em um fundo doce e amadeirado, despertando sorrisos e beleza por onde passar."
   },
   "notes": {
    "top": [
     [
      "Belgian cocoa",
-     "كاكاو بلجيكي"
+     "كاكاو بلجيكي",
+     "Cacau belga"
     ]
    ],
    "heart": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -11674,11 +12823,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection.",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تقاوم."
+   "ar": "عنايتك اليومية، وحمايتك التي لا تقاوم.",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection King Blue Antiperspirant Roll-On offers an invigorating combination of freshness, long-lasting protection and 72-hour hydration, while its exclusive formula also helps even out skin tone. All in a woody fragrance that inspires power and victory.",
-   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن كينج بلو بتقنية الرول أون مزيجًا منعشًا من الانتعاش والحماية طويلة الأمد والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. كل ذلك في عطر خشبي يلهم القوة والانتصار."
+   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن كينج بلو بتقنية الرول أون مزيجًا منعشًا من الانتعاش والحماية طويلة الأمد والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. كل ذلك في عطر خشبي يلهم القوة والانتصار.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink King Blue oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas, além de sua fórmula exclusiva contribuir na uniformização do tom da pele. Tudo isso, em uma fragrância amadeirada que inspira poder e vitória."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-king-blue-50-ml---wepink-drkb-ath-001/p",
   "notes": {}
@@ -11708,11 +12859,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Plump lips with the color and flavor of cookies.",
-   "ar": "شفاه ممتلئة بلون الكوكيز ونكهتها."
+   "ar": "شفاه ممتلئة بلون الكوكيز ونكهتها.",
+   "pt": "Lábios volumosos com cor e gostinho de cookies"
   },
   "desc": {
    "en": "My Lips Cookies Lip Gloss delivers irresistible lips with a delicious cookie taste and scent. It is the secret to fuller-looking lips with a vibrant tint, with actives specially selected to care for lip health.",
-   "ar": "يمنح ملمّع الشفاه ماي ليبس كوكيز شفاهًا لا تقاوم بمذاق وعبير الكوكيز اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس كوكيز شفاهًا لا تقاوم بمذاق وعبير الكوكيز اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه.",
+   "pt": "Experimente o Gloss My Lips Cookies e tenha lábios irresistíveis com um delicioso gostinho e aroma de Cookies! Este gloss é o seu segredo para lábios volumosos e com uma tonalidade vibrante. Com ativos selecionados especialmente para cuidar da saúde dos seus lábios, para deixar você ainda mais apaixonada pelo seu sorriso. Arrase com o Gloss My Lips Cookies e deixe seus lábios ainda mais irresistíveis."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-cookies-4-ml-wepink/p",
   "notes": {}
@@ -11743,39 +12896,47 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Adventure begins with a new discovery",
-   "ar": "تبدأ المغامرة باكتشاف جديد"
+   "ar": "تبدأ المغامرة باكتشاف جديد",
+   "pt": "A aventura começa com uma nova descoberta"
   },
   "desc": {
    "en": "Fantasy Kids Green is a Woody Citrus fragrance created for little ones who are always on the move and find a new adventure in every moment. Mandarin, Rosemary, Bergamot and Cardamom bring a vibrant, refreshing opening, followed by a soft, comforting floral heart of Iris and Orange Blossom.",
-   "ar": "فانتاسي كيدز جرين عطر خشبي حمضي صُمّم للصغار الذين لا يتوقفون عن الحركة ويجدون مغامرة جديدة في كل لحظة. يمنحه الماندرين وإكليل الجبل والبرغموت والهيل افتتاحية حيوية ومنعشة، يليها قلب زهري ناعم ومريح من السوسن وزهر البرتقال."
+   "ar": "فانتاسي كيدز جرين عطر خشبي حمضي صُمّم للصغار الذين لا يتوقفون عن الحركة ويجدون مغامرة جديدة في كل لحظة. يمنحه الماندرين وإكليل الجبل والبرغموت والهيل افتتاحية حيوية ومنعشة، يليها قلب زهري ناعم ومريح من السوسن وزهر البرتقال.",
+   "pt": "Existe um jeito de descobrir o mundo que só as crianças conhecem. Fantasy Kids Green nasce para acompanhar esse espírito de descoberta. Uma fragrância Amadeirada Cítrica, criada para os pequenos que estão sempre em movimento e encontram uma nova aventura em cada momento. Um cheirinho fresco, alegre e confortável, que combina a energia das frutas cítricas e das notas aromáticas com a delicadeza das flores e a maciez das madeiras. Logo nos primeiros instantes, Mandarina, Alecrim, Bergamota e Cardamomo trazem uma abertura vibrante e refrescante. A mandarina e a bergamota iluminam a composição com seu lado cítrico e alegre, enquanto o alecrim e o cardamomo acrescentam uma faceta aromática que deixa o início ainda mais interessante. É como abrir a porta para uma nova aventura. Depois, a fragrância revela seu lado mais delicado. Íris e Flor de Laranjeira formam o coração do Fantasy Kids Green, criando uma combinação floral suave e confortável. A íris acrescenta uma textura delicada à composição, enquanto a Flor de Laranjeira traz luminosidade e leveza. E, aos poucos, o cheirinho encontra seu lado mais aconchegante. Sândalo, Cedro, Fava Tonka e Musk aparecem no fundo, trazendo uma base macia, confortável e levemente cremosa. As madeiras dão personalidade à fragrância, enquanto a Fava Tonka e o Musk envolvem a composição com uma sensação suave e acolhedora. Fantasy Kids Green acompanha os pequenos exploradores que enxergam aventura onde todo mundo vê apenas um dia comum. Um cheirinho fresco, alegre e cheio de movimento, para estar presente nas brincadeiras, nas descobertas e em todos aqueles momentos que fazem parte do crescimento. Porque o mundo é grande. E ainda existe muita coisa para descobrir. Fantasy Kids Green. A aventura começa com uma nova descoberta."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ],
     [
      "Rosemary",
-     "إكليل الجبل"
+     "إكليل الجبل",
+     "Alecrim"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ]
    ],
    "heart": [
     [
      "Iris",
-     "سوسن"
+     "سوسن",
+     "Íris"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ]
   },
@@ -11806,11 +12967,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Delicious as cookies, shiny as a dream",
-   "ar": "لذيذ كالكوكيز، لامع كالحلم"
+   "ar": "لذيذ كالكوكيز، لامع كالحلم",
+   "pt": "Delicioso como cookies, brilhante como um sonho"
   },
   "desc": {
    "en": "Cookies Lip Oil leaves lips hydrated and delicately scented. Its sweet aroma is inspired by cookies.",
-   "ar": "يمنح زيت الشفاه كوكيز الشفاه ترطيبًا وعبيرًا رقيقًا. ورائحته الحلوة مستوحاة من الكوكيز."
+   "ar": "يمنح زيت الشفاه كوكيز الشفاه ترطيبًا وعبيرًا رقيقًا. ورائحته الحلوة مستوحاة من الكوكيز.",
+   "pt": "Com o Wepink Lip Oil Cookies você deixa seus lábios hidratados e cheirosos, com um aroma docinho de biscoito!"
   },
   "source": "https://www.wepink.com.br/lip-oil-35g-cookies---wepink-fs1111849/p",
   "notes": {}
@@ -11841,31 +13004,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Be the brightest star!",
-   "ar": "كوني النجمة الأكثر تألقًا!"
+   "ar": "كوني النجمة الأكثر تألقًا!",
+   "pt": "Seja a estrela mais brilhante!"
   },
   "desc": {
    "en": "The Sunny Deodorant Cologne has a joyful, charming and unique essence wrapped in an unforgettable floral fragrance. Its refreshing sensory journey expresses delicacy and charm with notes of freesia and lily of the valley, joined by a festive floral heart. It finishes on a woody base of musk and sandalwood, a perfect scent for every moment.",
-   "ar": "يتميّز عطر الكولونيا ذا صني بجوهر مبهج وساحر وفريد، يغلّفه عطر زهري لا يُنسى. تعبّر رحلته الحسية المنعشة عن الرقة والسحر بنفحات الفريزيا وزنبق الوادي، مع قلب زهري احتفالي آسر. ويختتم بقاعدة خشبية من المسك وخشب الصندل، ليكون عبيرًا مثاليًا لكل اللحظات."
+   "ar": "يتميّز عطر الكولونيا ذا صني بجوهر مبهج وساحر وفريد، يغلّفه عطر زهري لا يُنسى. تعبّر رحلته الحسية المنعشة عن الرقة والسحر بنفحات الفريزيا وزنبق الوادي، مع قلب زهري احتفالي آسر. ويختتم بقاعدة خشبية من المسك وخشب الصندل، ليكون عبيرًا مثاليًا لكل اللحظات.",
+   "pt": "O Desodorante Colônia Wepink The Sunny possui uma essência alegre, encantadora e única, envolta em uma fragrância floral inesquecível. Sua jornada sensorial refrescante expressa delicadeza e encanto em notas de frésia e lírio-do-vale, unido a um coração floral festivo e inebriante. Finaliza em um fundo amadeirado em notas de musk e sândalo, um aroma perfeito para todos os momentos."
   },
   "notes": {
    "top": [
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -11898,25 +13067,30 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn every day into a celebration of happiness",
-   "ar": "اجعل كل يوم احتفالًا بالسعادة"
+   "ar": "اجعل كل يوم احتفالًا بالسعادة",
+   "pt": "Transforme cada dia em uma celebração de felicidade"
   },
   "desc": {
    "en": "Celebrate Happy Deodorant Cologne exalts the joy of moments of triumph, reflecting a unique and dazzling beauty. Its woody fragrance carries the soft aroma of apple and citrus fruits with a sophisticated touch of jasmine, moving to a charming floral heart and finishing on a sweet, woody base.",
-   "ar": "يحتفي عطر الكولونيا سيليبريت هابي ببهجة لحظات الانتصار، ليعكس جمالًا فريدًا ومبهرًا. يحمل عطره الخشبي عبير التفاح والفواكه الحمضية الناعم مع لمسة راقية من الياسمين، ثم ينتقل إلى قلب زهري ساحر ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يحتفي عطر الكولونيا سيليبريت هابي ببهجة لحظات الانتصار، ليعكس جمالًا فريدًا ومبهرًا. يحمل عطره الخشبي عبير التفاح والفواكه الحمضية الناعم مع لمسة راقية من الياسمين، ثم ينتقل إلى قلب زهري ساحر ليختتم بقاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Wepink Celebrate Happy tem a essência de exaltar a alegria dos momentos de triunfo, refletindo uma beleza única e deslumbrante. Sua fragrância amadeirada possui o aroma suave da maçã e das frutas cítricas, em um toque sofisticado de jasmim. Segue para um coração floral encantador, finalizando em fundo doce e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Apple",
-     "تفاح"
+     "تفاح",
+     "Maçã"
     ],
     [
      "Citrus fruits",
-     "فواكه حمضية"
+     "فواكه حمضية",
+     "Frutas cítricas"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -11947,11 +13121,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Plump lips with a soft shine and a watermelon scent!",
-   "ar": "شفاه ممتلئة بلمعان خفيف وعبير البطيخ!"
+   "ar": "شفاه ممتلئة بلمعان خفيف وعبير البطيخ!",
+   "pt": "Lábios volumosos, com um leve brilho e cheirinho de melancia!"
   },
   "desc": {
    "en": "My Lips Pirulipop Lip Gloss delivers irresistible lips with a soft shine and a delicious watermelon scent. It is the secret to fuller-looking lips, with actives selected to care for lip health, including hyaluronic acid and shea butter.",
-   "ar": "يمنح ملمّع الشفاه ماي ليبس بيروليبوب شفاهًا لا تقاوم بلمعان خفيف وعبير البطيخ اللذيذ. إنه السر لشفاه ممتلئة، مع مكونات فعّالة مختارة للعناية بصحة الشفاه، من بينها حمض الهيالورونيك وزبدة الشيا."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس بيروليبوب شفاهًا لا تقاوم بلمعان خفيف وعبير البطيخ اللذيذ. إنه السر لشفاه ممتلئة، مع مكونات فعّالة مختارة للعناية بصحة الشفاه، من بينها حمض الهيالورونيك وزبدة الشيا.",
+   "pt": "Experimente o Gloss My Lips Pirulipop e tenha lábios irresistíveis com um leve brilho e um delicioso cheirinho de melancia! Este gloss é o seu segredo para lábios volumosos! Com ativos selecionados especialmente para cuidar da saúde dos seus lábios, como ácido hialurônico e manteiga de karité, para deixar você ainda mais apaixonada pelo seu sorriso. Arrase com o Gloss My Lips Pirulipop e deixe seus lábios ainda mais irresistíveis."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-pirulipop---wepink-glmlprp-ath001/p",
   "notes": {}
@@ -11980,11 +13156,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Chocolatey, plump lips!",
-   "ar": "شفاه ممتلئة بلمسة من الشوكولاتة!"
+   "ar": "شفاه ممتلئة بلمسة من الشوكولاتة!",
+   "pt": "Lábios de chocolate e volumosos!"
   },
   "desc": {
    "en": "My Lips Choco Lip Gloss delivers fuller-looking lips with a chocolate scent. Its carefully selected actives, including hyaluronic acid, menthol, glycerol and shea butter, care for lip health and hydrate for 24 hours in an innovative treatment.",
-   "ar": "يمنح ملمّع الشفاه ماي ليبس تشوكو شفاهًا ممتلئة بعبير الشوكولاتة. وتعتني مكوناته الفعّالة المختارة بعناية، ومنها حمض الهيالورونيك والمنثول والغليسرول وزبدة الشيا، بصحة الشفاه وترطّبها لمدة 24 ساعة في علاج مبتكر."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس تشوكو شفاهًا ممتلئة بعبير الشوكولاتة. وتعتني مكوناته الفعّالة المختارة بعناية، ومنها حمض الهيالورونيك والمنثول والغليسرول وزبدة الشيا، بصحة الشفاه وترطّبها لمدة 24 ساعة في علاج مبتكر.",
+   "pt": "Para você arrasar com lábios de chocolate e volumosos, experimente o Gloss My Lips Choco! O seu queridinho gloss do mundo rosa tem aroma de chocolate e ativos cuidadosamente selecionados para a saúde dos seus lábios, como ácido hialurônico, mentol, glicerol e manteiga de karité, hidratando por 24h em um tratamento inovador."
   },
   "source": "https://www.wepink.com.br/gloss-my-lips-choco-4ml---wepink-0000023054/p",
   "notes": {}
@@ -12014,17 +13192,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A relaxing scent that enchants the senses",
-   "ar": "عبير مريح يأسر الحواس"
+   "ar": "عبير مريح يأسر الحواس",
+   "pt": "Um aroma relaxante e encantador aos sentidos"
   },
   "desc": {
    "en": "Serene Oil Lavender Essential Oil is a must for the best rest after a long day. Its calming properties support moments of relaxation for a good night's sleep. Its gentle sensory journey follows a refreshing path of lavender flower, with an unmistakable, enchanting aroma.",
-   "ar": "يُعدّ زيت اللافندر العطري سيرين أويل رفيقًا لا غنى عنه لراحة مثالية بعد يوم طويل. تدعم خصائصه المهدّئة لحظات الاسترخاء من أجل نوم هانئ. وتتبع رحلته الحسية الناعمة مسارًا منعشًا من زهرة اللافندر، بعبير مميز يأسر الحواس."
+   "ar": "يُعدّ زيت اللافندر العطري سيرين أويل رفيقًا لا غنى عنه لراحة مثالية بعد يوم طويل. تدعم خصائصه المهدّئة لحظات الاسترخاء من أجل نوم هانئ. وتتبع رحلته الحسية الناعمة مسارًا منعشًا من زهرة اللافندر، بعبير مميز يأسر الحواس.",
+   "pt": "O Óleo Essencial de Lavanda Wepink Serene Oil é indispensável para o melhor descanso depois de um longo dia. Sua composição auxilia nos momentos de repouso com suas propriedades calmantes, entregando uma boa e perfeita noite de sono. Sua jornada sensorial suave possui um caminho olfativo refrescante através da flor de lavanda, de aroma inconfundível e encantador aos sentidos."
   },
   "notes": {
    "top": [
     [
      "Lavender",
-     "لافندر"
+     "لافندر",
+     "Lavanda"
     ]
    ]
   },
@@ -12054,11 +13235,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Plump lips with a soft shine and a gumdrop scent!",
-   "ar": "شفاه ممتلئة بلمعان خفيف وعبير حلوى الجيلي!"
+   "ar": "شفاه ممتلئة بلمعان خفيف وعبير حلوى الجيلي!",
+   "pt": "Lábios volumosos, com um leve brilho e cheirinho de jujuba!"
   },
   "desc": {
    "en": "My Lips Jujuba Lip Gloss delivers irresistible lips with a soft shine and a delicious gumdrop scent. It is the secret to fuller-looking lips, with actives specially selected to care for lip health.",
-   "ar": "يمنح ملمّع الشفاه ماي ليبس جوجوبا شفاهًا لا تقاوم بلمعان خفيف وعبير حلوى الجيلي اللذيذ. إنه السر لشفاه ممتلئة، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس جوجوبا شفاهًا لا تقاوم بلمعان خفيف وعبير حلوى الجيلي اللذيذ. إنه السر لشفاه ممتلئة، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه.",
+   "pt": "Experimente o Gloss My Lips Jujuba e tenha lábios irresistíveis com um leve brilho e um delicioso cheirinho de jujuba! Este gloss é o seu segredo para lábios volumosos! Com ativos selecionados especialmente para cuidar da saúde dos seus lábios, para deixar você ainda mais apaixonada pelo seu sorriso. Arrase com o Gloss My Lips Jujuba e deixe seus lábios ainda mais irresistíveis."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-jujuba---wepink-glmljj-ath001/p",
   "notes": {}
@@ -12082,11 +13265,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Yahya Aneeq and Bomb One, together in one set",
-   "ar": "يحيى أنيق وبومب ون معًا في طقم واحد"
+   "ar": "يحيى أنيق وبومب ون معًا في طقم واحد",
+   "pt": "Yahya Aneeq e Bomb One juntos em um só kit"
   },
   "desc": {
    "en": "The Yahya Aneeq + Bomb One Set brings together Yahya Aneeq and Bomb One from wepink in a single kit. A convenient way to enjoy both together.",
-   "ar": "يجمع طقم يحيى أنيق + بومب ون بين يحيى أنيق وبومب ون من wepink في طقم واحد. طريقة عملية للاستمتاع بهما معًا."
+   "ar": "يجمع طقم يحيى أنيق + بومب ون بين يحيى أنيق وبومب ون من wepink في طقم واحد. طريقة عملية للاستمتاع بهما معًا.",
+   "pt": "O Kit Yahya Aneeq + Bomb One reúne Yahya Aneeq e Bomb One em um só kit. Uma forma prática de aproveitar os dois juntos."
   },
   "source": "https://www.wepink.com.br/kit-yahya-aneeq--bomb-one---wepink-125674/p",
   "notes": {}
@@ -12110,11 +13295,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Favorite body splashes, together in one set",
-   "ar": "بخاخات جسم مختارة معًا في طقم واحد"
+   "ar": "بخاخات جسم مختارة معًا في طقم واحد",
+   "pt": "Body splashes favoritos reunidos em um só kit"
   },
   "desc": {
    "en": "This body splash set brings together VF Golden, Fatal Black For Her and Eternal+ Heaven Santal in a single kit. A convenient way to enjoy several wepink fragrances together.",
-   "ar": "يجمع طقم بخاخات الجسم هذا بين في إف جولدن وفيتال بلاك فور هير وإيترنال+ هيفن سانتال في طقم واحد. طريقة عملية للاستمتاع بعدة عطور من wepink معًا."
+   "ar": "يجمع طقم بخاخات الجسم هذا بين في إف جولدن وفيتال بلاك فور هير وإيترنال+ هيفن سانتال في طقم واحد. طريقة عملية للاستمتاع بعدة عطور من wepink معًا.",
+   "pt": "Este kit de body splashes reúne VF Golden, Fatal Black For Her e Eternal+ Heaven Santal em um só kit. Uma forma prática de aproveitar várias fragrâncias Wepink juntas."
   },
   "source": "https://www.wepink.com.br/kit-body-splash-vf-golden--fatal-black-for-her--eternal-heaven-santal---wepink-105568/p",
   "notes": {}
@@ -12147,85 +13334,104 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A new atmosphere, the same essence",
-   "ar": "أجواء جديدة، والجوهر ذاته"
+   "ar": "أجواء جديدة، والجوهر ذاته",
+   "pt": "Uma nova atmosfera, a mesma essência"
   },
   "desc": {
    "en": "Heaven Pink Body Splash captures the moment when everything feels lighter and more beautiful. This feminine fragrance opens with Peach, Pear, Blackberry, Mandarin and Grapefruit, then reveals a sophisticated floral heart of Lily of the Valley, Jasmine, Rose, Orange Blossom, Freesia, Ylang-Ylang, Magnolia, Tuberose, Peony and Violet, settling into a creamy base of woods and vanilla.",
-   "ar": "يجسّد بخاخ الجسم المعطّر هيفن بينك تلك اللحظة التي يبدو فيها كل شيء أخفّ وأجمل. يفتتح هذا العطر الأنثوي بالخوخ والكمثرى والتوت الأسود والماندرين والجريب فروت، ثم يكشف عن قلب زهري راقٍ من زنبق الوادي والياسمين والورد وزهر البرتقال والفريزيا واليلانغ يلانغ والماغنوليا ومسك الروم والفاوانيا والبنفسج، ليستقر على قاعدة كريمية من الأخشاب والفانيليا."
+   "ar": "يجسّد بخاخ الجسم المعطّر هيفن بينك تلك اللحظة التي يبدو فيها كل شيء أخفّ وأجمل. يفتتح هذا العطر الأنثوي بالخوخ والكمثرى والتوت الأسود والماندرين والجريب فروت، ثم يكشف عن قلب زهري راقٍ من زنبق الوادي والياسمين والورد وزهر البرتقال والفريزيا واليلانغ يلانغ والماغنوليا ومسك الروم والفاوانيا والبنفسج، ليستقر على قاعدة كريمية من الأخشاب والفانيليا.",
+   "pt": "Existe uma sensação difícil de explicar: quando tudo parece mais leve e mais bonito. Heaven Pink nasceu para traduzir exatamente esse momento. Uma fragrância feminina que combina a luminosidade das frutas, a delicadeza de um bouquet floral e a cremosidade das madeiras e da baunilha. Uma composição que começa fresca e vibrante, ganha corpo com flores sofisticadas e encontra, no fundo, uma assinatura confortável e envolvente. Logo nos primeiros instantes, Pêssego, Pera, Amora, Mandarina e Toranja criam uma abertura frutada e luminosa. A mistura traz um frescor alegre, com diferentes nuances que se encontram e se complementam, como uma explosão de cores em um céu claro. Então, as flores aparecem. Lírio-do-vale, Jasmim, Rosa, Flor de Laranjeira, Frésia, Ylang-Ylang, Magnólia, Tuberosa, Peônia e Violeta formam o coração do Heaven Pink. Um bouquet expressivo e sofisticado, em que cada flor contribui para construir uma feminilidade elegante, delicada e cheia de presença. Mas é na evolução que a fragrância encontra sua personalidade. Musk, Cedro, Sândalo e Baunilha entram em cena trazendo profundidade, calor e uma textura cremosa à composição. A baunilha suaviza as madeiras, enquanto o musk envolve a pele e cria um acabamento confortável, fazendo com que a fragrância permaneça de maneira delicada e marcante. Heaven Pink é feito de contrastes que funcionam juntos: a fruta encontra a flor, o frescor encontra a cremosidade e a delicadeza encontra a presença. É uma fragrância para quem gosta de mudar de atmosfera sem precisar mudar quem é. Para dias leves, encontros especiais ou simplesmente para aquele momento em que você quer se sentir bem consigo mesma. Heaven Pink não segue uma única versão de feminilidade. Ele deixa espaço para você descobrir a sua. Porque ser feminina também é poder transitar entre diferentes nuances, escolher como quer se sentir e deixar que a sua fragrância conte um pouco da sua história. Uma nova forma de vestir a leveza."
   },
   "notes": {
    "top": [
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ],
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Blackberry",
-     "توت أسود"
+     "توت أسود",
+     "Amora"
     ],
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ],
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Ylang-ylang",
-     "يلانغ يلانغ"
+     "يلانغ يلانغ",
+     "Ylang-ylang"
     ],
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ],
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ]
    ],
    "base": [
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -12259,17 +13465,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A declaration of love in every spritz",
-   "ar": "إعلان حب في كل رشّة"
+   "ar": "إعلان حب في كل رشّة",
+   "pt": "Uma declaração de amor em cada borrifada"
   },
   "desc": {
    "en": "The Obsessed Lovely Body Splash adds a lovelier touch to everyday life with a passionately fruity scent that leaves a light, floating feeling. The fragrance draws on the finest qualities of the rose for a truly adorable olfactory experience.",
-   "ar": "يضفي بخاخ الجسم أوبسيسد لافلي لمسة أكثر رقة على الحياة اليومية بعبير فاكهي آسر يمنح إحساساً بالخفة والانطلاق. ويستلهم العطر أجمل ما في الورد ليقدّم تجربة عطرية محبّبة بحق."
+   "ar": "يضفي بخاخ الجسم أوبسيسد لافلي لمسة أكثر رقة على الحياة اليومية بعبير فاكهي آسر يمنح إحساساً بالخفة والانطلاق. ويستلهم العطر أجمل ما في الورد ليقدّم تجربة عطرية محبّبة بحق.",
+   "pt": "Deixe sua vida mais amável com o Desodorante Colônia Body Splash Wepink Obsessed Lovely, que irá te fazer flutuar com seu aroma apaixonantemente frutado. Você se sentirá mais leve com esta fragrância que tira as melhores qualidades da rosa para uma experiência olfativa adorável."
   },
   "notes": {
    "top": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ]
   },
@@ -12303,31 +13512,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Overflow with the freshness of nobility",
-   "ar": "انتعاش يفيض بالنبل"
+   "ar": "انتعاش يفيض بالنبل",
+   "pt": "Transborde o frescor da nobreza"
   },
   "desc": {
    "en": "The Liberté Exclusif Body Splash evokes a true sense of freedom with a floral scent brimming with nobility and sweetness. Fresh Pear and Lychee meet delicate flowers before settling into an elegant sweet, woody base, where nuances of Amber and Vanilla reveal lightness and sophistication, like a floral elixir.",
-   "ar": "يجسّد بخاخ الجسم ليبرتيه إكسكلوسيف إحساساً حقيقياً بالحرية من خلال عبير زهري يفيض بالنبل والعذوبة. ينطلق بانتعاش الكمثرى والليتشي مع رقة الزهور، ثم يستقر على قاعدة خشبية حلوة وأنيقة تكشف فيها لمسات العنبر والفانيليا عن خفة ورقيّ أشبه بإكسير زهري."
+   "ar": "يجسّد بخاخ الجسم ليبرتيه إكسكلوسيف إحساساً حقيقياً بالحرية من خلال عبير زهري يفيض بالنبل والعذوبة. ينطلق بانتعاش الكمثرى والليتشي مع رقة الزهور، ثم يستقر على قاعدة خشبية حلوة وأنيقة تكشف فيها لمسات العنبر والفانيليا عن خفة ورقيّ أشبه بإكسير زهري.",
+   "pt": "Ascenda a uma verdadeira sensação de liberdade com o Desodorante Colônia Body Splash Wepink Liberté Exclusif, um aroma floral que transborda nobreza e doçura. Envolva-se pelo frescor da Pera, Lichia e pela delicadeza das flores, finalizando na elegância de um fundo doce e amadeirado. Suas nuances de Âmbar e Baunilha pairam no ambiente e revelam leveza e sofisticação, vivendo a essência de um elixir floral."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Lychee",
-     "ليتشي"
+     "ليتشي",
+     "Lichia"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -12361,29 +13576,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Overflow with the essence of elegance",
-   "ar": "أناقة تفيض من الجوهر"
+   "ar": "أناقة تفيض من الجوهر",
+   "pt": "Transborde a essência da elegância"
   },
   "desc": {
    "en": "The Liberté Body Splash has a unique essence that overflows with freedom, elegance and well-being. Its fragrance reveals charming nuances and mysterious facets, with touches of pink pepper, grapefruit and noble flowers, led by the celebrated queen of perfumery, the French Centifolia Rose.",
-   "ar": "يتميّز بخاخ الجسم ليبرتيه بجوهر فريد يفيض بالحرية والأناقة والشعور بالراحة. ويكشف عطره عن لمسات ساحرة وجوانب غامضة مع نفحات من الفلفل الوردي والجريب فروت والزهور النبيلة، تتصدّرها ملكة العطور الشهيرة وردة سنتيفوليا الفرنسية."
+   "ar": "يتميّز بخاخ الجسم ليبرتيه بجوهر فريد يفيض بالحرية والأناقة والشعور بالراحة. ويكشف عطره عن لمسات ساحرة وجوانب غامضة مع نفحات من الفلفل الوردي والجريب فروت والزهور النبيلة، تتصدّرها ملكة العطور الشهيرة وردة سنتيفوليا الفرنسية.",
+   "pt": "O Desodorante Colônia Body Splash Liberté é um produto com a essência única que transborda liberdade, elegância e bem-estar! Sua fragrância tem nuances encantadoras e misteriosas facetas, com toques de pimenta rosa, toranja e flores nobres, com grande destaque para a reconhecida rainha da perfumaria, a Rosa Francesa Centifolia."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ]
    ],
    "base": [
     [
      "French Centifolia rose",
-     "وردة سنتيفوليا الفرنسية"
+     "وردة سنتيفوليا الفرنسية",
+     "Rosa francesa centifolia"
     ]
    ]
   },
@@ -12416,47 +13636,57 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Beauty lies in being discovered little by little",
-   "ar": "يكمن الجمال في أن يُكتشف شيئاً فشيئاً"
+   "ar": "يكمن الجمال في أن يُكتشف شيئاً فشيئاً",
+   "pt": "A beleza está em ser descoberta aos poucos"
   },
   "desc": {
    "en": "The Ghadan Light Body Splash reinterprets the lightness of oriental perfumery from a brighter, more delicate and deeply elegant perspective, created for women who know true sophistication lies in the details. Pink Pepper, Fig, Almond and Juniper open with comfort and refinement, while Rose, Lily of the Valley, Jasmine Sambac and Ylang-Ylang bloom in harmony at its heart.",
-   "ar": "يقدّم بخاخ الجسم غدان لايت خفة العطور الشرقية من منظور جديد أكثر إشراقاً ورقة وأناقة، وقد صُمّم للمرأة التي تدرك أن الرقي الحقيقي يكمن في التفاصيل. تفتتح التركيبة نفحات الفلفل الوردي والتين واللوز والعرعر بلمسة مريحة وراقية، بينما تتفتح في قلبها الورود وزنبق الوادي والياسمين سامباك والإيلانغ إيلانغ في تناغم تام."
+   "ar": "يقدّم بخاخ الجسم غدان لايت خفة العطور الشرقية من منظور جديد أكثر إشراقاً ورقة وأناقة، وقد صُمّم للمرأة التي تدرك أن الرقي الحقيقي يكمن في التفاصيل. تفتتح التركيبة نفحات الفلفل الوردي والتين واللوز والعرعر بلمسة مريحة وراقية، بينما تتفتح في قلبها الورود وزنبق الوادي والياسمين سامباك والإيلانغ إيلانغ في تناغم تام.",
+   "pt": "Há lugares onde o luxo não é definido pelo brilho do ouro, mas pela delicadeza dos detalhes. Onde a luz atravessa cortinas de linho, perfuma o ambiente com flores raras e transforma o silêncio em uma experiência de contemplação. Foi dessa atmosfera que nasceu Ghadan Light. Uma fragrância que traduz a leveza da perfumaria oriental sob uma nova perspectiva: mais luminosa, mais delicada e profundamente elegante. Uma criação para mulheres que compreendem que a verdadeira sofisticação não está nos excessos, mas na forma como cada detalhe é cuidadosamente revelado. Sua abertura combina o toque delicadamente especiado da Pimenta Rosa com a cremosidade envolvente do Figo e da Amêndoa, enquanto o Zimbro acrescenta um frescor aromático que ilumina a composição desde o primeiro instante. O resultado é uma saída confortável e sofisticada, que desperta os sentidos de maneira sutil e refinada. No coração, Rosa, Lírio-do-vale, Jasmim Sambac e Ylang-Ylang florescem em perfeita harmonia. Cada flor contribui com uma nuance diferente: a elegância clássica da rosa, a leveza cristalina do lírio-do-vale, a sensualidade cremosa do jasmim sambac e o exotismo delicado do ylang-ylang. Juntas, elas criam uma assinatura floral rica, luminosa e cheia de profundidade. À medida que repousa sobre a pele, Ghadan Light revela sua faceta mais envolvente. Musk, Creme de Baunilha, Ládano e Sândalo transformam a fragrância em um abraço sofisticado, deixando um rastro macio, aveludado e extremamente elegante. A cremosidade da baunilha encontra a serenidade das madeiras e a riqueza resinosa do ládano, criando uma sensação de conforto que permanece por horas. Ghadan Light não busca dominar o ambiente. Sua beleza está em ser descoberta aos poucos, revelando novas nuances a cada movimento e tornando cada aproximação uma nova experiência. Criada para mulheres que fazem da elegância um gesto natural, Ghadan Light celebra uma feminilidade contemporânea, serena e sofisticada. Uma fragrância que acompanha diferentes momentos do dia com equilíbrio, revelando que a delicadeza também pode ser marcante."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ],
     [
      "Fig",
-     "تين"
+     "تين",
+     "Figo"
     ],
     [
      "Almond",
-     "لوز"
+     "لوز",
+     "Amêndoa"
     ],
     [
      "Juniper",
-     "عرعر"
+     "عرعر",
+     "Zimbro"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Jasmine sambac",
-     "ياسمين سامباك"
+     "ياسمين سامباك",
+     "Jasmim sambac"
     ],
     [
      "Ylang-ylang",
-     "إيلانغ إيلانغ"
+     "إيلانغ إيلانغ",
+     "Ylang-ylang"
     ]
    ]
   },
@@ -12490,17 +13720,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Exude confidence, seduction and passion at every moment",
-   "ar": "انشري الثقة والجاذبية والشغف في كل لحظة"
+   "ar": "انشري الثقة والجاذبية والشغف في كل لحظة",
+   "pt": "Exale confiança, sedução e paixão em todos os momentos"
   },
   "desc": {
    "en": "The One Touch Warm Body Splash is for those who want to leave an unforgettable mark, with an intense touch woven with pure seduction and authenticity. Its sensory journey opens with lush fruity notes, moves into a delicate floral bouquet wrapped in soft coconut and finishes with sweet, woody notes.",
-   "ar": "صُمّم بخاخ الجسم ون تاتش وورم لمن يرغب في ترك بصمة لا تُنسى، بلمسة قوية تمتزج فيها الجاذبية والأصالة. تبدأ رحلته الحسية بنفحات فاكهية غنية، ثم تنتقل إلى باقة زهرية رقيقة تغلّفها نعومة جوز الهند، لتختتم بنفحات حلوة وخشبية."
+   "ar": "صُمّم بخاخ الجسم ون تاتش وورم لمن يرغب في ترك بصمة لا تُنسى، بلمسة قوية تمتزج فيها الجاذبية والأصالة. تبدأ رحلته الحسية بنفحات فاكهية غنية، ثم تنتقل إلى باقة زهرية رقيقة تغلّفها نعومة جوز الهند، لتختتم بنفحات حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash One Touch Warm Wepink é para quem deseja deixar uma marca inesquecível, com um toque intenso entrelaçado em pura sedução e autenticidade. Sua jornada sensorial única conta uma história ousada de quem usa, começa com notas exuberantes de frutas, seguindo para um bouquet floral delicado envolvido na suavidade do coco, finalizando com notas doces e amadeiradas."
   },
   "notes": {
    "heart": [
     [
      "Coconut",
-     "جوز الهند"
+     "جوز الهند",
+     "Coco"
     ]
    ]
   },
@@ -12534,35 +13767,42 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Absolute purity wrapped in lightness",
-   "ar": "النقاء المطلق في حُلّة من الخفة"
+   "ar": "النقاء المطلق في حُلّة من الخفة",
+   "pt": "A absoluta pureza envolta em leveza"
   },
   "desc": {
    "en": "The Pure Pear Body Splash captures the purest essence of elegance, celebrating feminine beauty in a bright, fruity fragrance. Its florals unfold with nuances of Freesia and Violet and a sweet touch of Cassis, evolving into a luxurious sweet, woody base of Musk and Praline.",
-   "ar": "يجسّد بخاخ الجسم بيور بير أنقى جوهر للأناقة، محتفياً بالجمال الأنثوي في عطر فاكهي مشرق. تتفتح زهوره بلمسات من الفريزيا والبنفسج مع لمسة حلوة من الكشمش الأسود، ثم يتطور نحو قاعدة خشبية حلوة وفاخرة من المسك والبرالين."
+   "ar": "يجسّد بخاخ الجسم بيور بير أنقى جوهر للأناقة، محتفياً بالجمال الأنثوي في عطر فاكهي مشرق. تتفتح زهوره بلمسات من الفريزيا والبنفسج مع لمسة حلوة من الكشمش الأسود، ثم يتطور نحو قاعدة خشبية حلوة وفاخرة من المسك والبرالين.",
+   "pt": "Viva a essência mais absoluta da elegância com o Desodorante Colônia Body Splash Wepink Pure Pear, vibrando a beleza feminina em uma fragrância Frutada e brilhante. Suas flores envolvem pelas nuances de Frésia, Violeta e o toque adocicado do Cassis. Seu frescor evolui no luxo de um fundo doce e amadeirado, deslumbrando com as notas de Musk e Praline."
   },
   "notes": {
    "heart": [
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ],
     [
      "Blackcurrant",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Groselha preta"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Praline",
-     "برالين"
+     "برالين",
+     "Praliné"
     ]
    ]
   },
@@ -12595,11 +13835,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The essential intensive treatment for your hair",
-   "ar": "العلاج المكثّف الأساسي لشعركِ"
+   "ar": "العلاج المكثّف الأساسي لشعركِ",
+   "pt": "O tratamento intensivo essencial para os seus cabelos"
   },
   "desc": {
    "en": "My Hair Ultra Repair Conditioning Protein delivers deep hydration, elasticity, softness and shine with D-Panthenol, lanolin and a natural blend of plant oils, argan and green tea. Hydrolyzed wheat and rice proteins repair hair from root to tip, restoring damaged fibers, reducing frizz and improving strength, while a rich fragrance keeps hair soft and scented all day.",
-   "ar": "يمنح بروتين التنعيم ماي هير ألترا ريبير الشعر ترطيباً عميقاً ومرونة ونعومة ولمعاناً بفضل الديبانثينول واللانولين ومزيج طبيعي من الزيوت النباتية والأرغان والشاي الأخضر. وتعمل بروتينات القمح والأرز المتحللة على إصلاح الشعر من الجذور حتى الأطراف، فتعيد بناء الألياف التالفة وتقلل الهيشان وتعزز قوة الشعر، بينما يحافظ عطره الغني على شعر ناعم ومعطّر طوال اليوم."
+   "ar": "يمنح بروتين التنعيم ماي هير ألترا ريبير الشعر ترطيباً عميقاً ومرونة ونعومة ولمعاناً بفضل الديبانثينول واللانولين ومزيج طبيعي من الزيوت النباتية والأرغان والشاي الأخضر. وتعمل بروتينات القمح والأرز المتحللة على إصلاح الشعر من الجذور حتى الأطراف، فتعيد بناء الألياف التالفة وتقلل الهيشان وتعزز قوة الشعر، بينما يحافظ عطره الغني على شعر ناعم ومعطّر طوال اليوم.",
+   "pt": "A Proteína Capilar Wepink My Hair Ultra Repair é a sua maior aliada para conquistar fios sedosos e incríveis, agregando hidratação profunda, elasticidade, maciez e brilho com seus potentes ativos de D-Pantenol, lanolina e um mix natural dos óleos vegetais, argan e chá verde. Sua composição repara da raiz às pontas em um cuidado capilar essencial, por meio do melhor blend da proteína hidrolisada do trigo, arroz e a lanolina, restaurando a fibra danificada, reduzindo o frizz e promovendo ação antioxidante e nutritiva, além de melhorar a resistência capilar e proporcionar um crescimento saudável aos fios. Tudo isso, combinado em uma fragrância potente para o dia a dia, mantendo seu cabelo macio e perfumado durante o dia todo."
   },
   "source": "https://www.wepink.com.br/proteina-condicionante-my-hair-ultra-repair-230ml---we-pink-292/p",
   "notes": {}
@@ -12632,21 +13874,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Refresh yourself in sweetness and lightness!",
-   "ar": "انتعشي بالعذوبة والخفة!"
+   "ar": "انتعشي بالعذوبة والخفة!",
+   "pt": "Refresque-se em doçura e leveza!"
   },
   "desc": {
    "en": "The Perfect Pear Body Splash redefines feminine beauty through strength and subtlety. With a light, citrusy essence and a classic fruity touch, it exudes delicacy and freshness, pairing a refreshing floral heart of green apple and violet leaves with an elegant sweet, woody base.",
-   "ar": "يعيد بخاخ الجسم بيرفكت بير تعريف الجمال الأنثوي بمزيج من القوة والرقة. وبجوهره الخفيف الحمضي ولمسته الفاكهية الكلاسيكية، يفيض رقةً وانتعاشاً، إذ يجمع بين قلب زهري منعش من التفاح الأخضر وأوراق البنفسج وقاعدة خشبية حلوة وأنيقة."
+   "ar": "يعيد بخاخ الجسم بيرفكت بير تعريف الجمال الأنثوي بمزيج من القوة والرقة. وبجوهره الخفيف الحمضي ولمسته الفاكهية الكلاسيكية، يفيض رقةً وانتعاشاً، إذ يجمع بين قلب زهري منعش من التفاح الأخضر وأوراق البنفسج وقاعدة خشبية حلوة وأنيقة.",
+   "pt": "O Desodorante Colônia Body Splash Perfect Pear ressignifica a beleza feminina em força e sutileza. Em uma essência leve e cítrica, celebra um toque clássico frutado, exalando delicadeza e frescor. Sua fragrância combina o coração floral refrescante de maçã verde e folhas de violeta, finalizando com elegância em um fundo doce e amadeirado."
   },
   "notes": {
    "heart": [
     [
      "Green apple",
-     "تفاح أخضر"
+     "تفاح أخضر",
+     "Maçã verde"
     ],
     [
      "Violet leaves",
-     "أوراق البنفسج"
+     "أوراق البنفسج",
+     "Folhas de violeta"
     ]
    ]
   },
@@ -12678,17 +13924,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with an authentic fruity floral touch",
-   "ar": "تغذية عميقة وتماسك بلمسة زهرية فاكهية أصيلة"
+   "ar": "تغذية عميقة وتماسك بلمسة زهرية فاكهية أصيلة",
+   "pt": "Nutrição profunda e firmeza com o toque autêntico do frutado floral"
   },
   "desc": {
    "en": "The Obsessed Lovely Body Cream wraps the skin in a soft, delicate texture, leaving it deeply hydrated, nourished and scented. Its selected oils and extracts help support collagen production and cell renewal for firmer, healthier, more radiant-looking skin, while the fragrance pairs the intensity of fruits with the delicacy of roses.",
-   "ar": "يغلّف كريم الجسم أوبسيسد لافلي البشرة بقوام ناعم ورقيق، فيتركها مرطّبة ومغذّاة ومعطّرة بعمق. وتساعد تركيبته الغنية بزيوت ومستخلصات مختارة على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة تبدو أكثر تماسكاً وصحة وإشراقاً، بينما يمزج عطره بين حيوية الفواكه ورقة الورد."
+   "ar": "يغلّف كريم الجسم أوبسيسد لافلي البشرة بقوام ناعم ورقيق، فيتركها مرطّبة ومغذّاة ومعطّرة بعمق. وتساعد تركيبته الغنية بزيوت ومستخلصات مختارة على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة تبدو أكثر تماسكاً وصحة وإشراقاً، بينما يمزج عطره بين حيوية الفواكه ورقة الورد.",
+   "pt": "A Loção Desodorante Body Cream Wepink Obsessed Lovely envolve a pele com uma textura macia e delicada, deixando-a extremamente hidratada, nutrida e perfumada. Sua composição com óleos e extratos selecionados auxilia na produção de colágeno e na regeneração celular, contribuindo para uma aparência mais firme, saudável e luminosa. A fragrância combina a intensidade das frutas com a delicadeza das rosas, criando uma sensação de extrema doçura, leveza e paixão."
   },
   "notes": {
    "top": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ]
   },
@@ -12722,11 +13971,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A declaration of love in every spritz",
-   "ar": "إعلان حب في كل رشّة"
+   "ar": "إعلان حب في كل رشّة",
+   "pt": "Uma declaração de amor em cada borrifada"
   },
   "desc": {
    "en": "The Obsessed Lovely Cologne is a thoroughly adorable fragrance that reveals femininity in its most captivating form. Intense and graceful, it exudes confidence with breathtaking elegance, wrapping the skin in an aura of sophistication.",
-   "ar": "كولونيا أوبسيسد لافلي عطر آسر بكل تفاصيله، يكشف عن الأنوثة في أكثر صورها جاذبية. يجمع بين القوة والرقة، وينضح بالثقة وبأناقة أخّاذة، ليغلّف البشرة بهالة من الرقي."
+   "ar": "كولونيا أوبسيسد لافلي عطر آسر بكل تفاصيله، يكشف عن الأنوثة في أكثر صورها جاذبية. يجمع بين القوة والرقة، وينضح بالثقة وبأناقة أخّاذة، ليغلّف البشرة بهالة من الرقي.",
+   "pt": "Sinta o fascínio do Desodorante Colônia Wepink Obsessed Lovely, uma fragrância completamente adorável que revela a essência da feminilidade em sua forma mais envolvente. Intensa e envolta em graça, ela exala confiança com uma elegância arrebatadora, envolvendo a pele em uma aura de sofisticação."
   },
   "source": "https://www.wepink.com.br/desod-col-obsessed-lovely-100ml---wepink-407/p",
   "notes": {}
@@ -12759,53 +14010,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A floral gourmand with a striking, captivating presence",
-   "ar": "عطر زهري غورماند بحضور لافت وآسر"
+   "ar": "عطر زهري غورماند بحضور لافت وآسر",
+   "pt": "Floral gourmand com presença marcante e envolvente"
   },
   "desc": {
    "en": "The Scarlette Body Splash captures the duality between intensity, power and delicacy, leaving a sweet, memorable touch on the skin. Orange, strawberry and plum create a vibrant opening, violet and jasmine bring soft elegance at the heart, and a warm base of amber, vanilla, musk and sandalwood adds sweetness and depth.",
-   "ar": "يجسّد بخاخ الجسم سكارليت الثنائية بين القوة والسطوة والرقة، تاركاً لمسة حلوة لا تُنسى على البشرة. يفتتح البرتقال والفراولة والبرقوق العطر بانطلاقة نابضة بالحيوية، ويضفي البنفسج والياسمين في القلب أناقة ناعمة، بينما تمنحه قاعدة دافئة من العنبر والفانيليا والمسك وخشب الصندل عذوبة وعمقاً."
+   "ar": "يجسّد بخاخ الجسم سكارليت الثنائية بين القوة والسطوة والرقة، تاركاً لمسة حلوة لا تُنسى على البشرة. يفتتح البرتقال والفراولة والبرقوق العطر بانطلاقة نابضة بالحيوية، ويضفي البنفسج والياسمين في القلب أناقة ناعمة، بينما تمنحه قاعدة دافئة من العنبر والفانيليا والمسك وخشب الصندل عذوبة وعمقاً.",
+   "pt": "Há fragrâncias que encantam. E há aquelas que permanecem. O Body Splash Scarlette da Wepink traduz a dualidade entre intensidade, poder e delicadeza, deixando um toque doce e memorável na pele. É a colônia para o dia a dia que não passa despercebido e carrega em cada nota uma sensação de empoderamento. As notas de saída misturam o frescor cítrico da laranja, o morango e a ameixa, criando uma entrada vibrante e cheia de personalidade. No coração, violeta e jasmim trazem elegância suave, como um carinho na pele. A base quente de âmbar, baunilha, almíscar e sândalo aquece tudo com doçura e profundidade, deixando uma presença cativante. Não é só um perfume, é um convite! Um jogo de conquista. Um toque invisível que fica na pele e na memória."
   },
   "notes": {
    "top": [
     [
      "Orange",
-     "برتقال"
+     "برتقال",
+     "Laranja"
     ],
     [
      "Strawberry",
-     "فراولة"
+     "فراولة",
+     "Morango"
     ],
     [
      "Plum",
-     "برقوق"
+     "برقوق",
+     "Ameixa"
     ]
    ],
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -12838,41 +14100,49 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The journey to happiness begins here",
-   "ar": "رحلة السعادة تبدأ من هنا"
+   "ar": "رحلة السعادة تبدأ من هنا",
+   "pt": "A jornada da felicidade inicia aqui"
   },
   "desc": {
    "en": "The Heaven Groom men's Body Splash invites a unique journey of love through a Fougère fragrance that captures the essence of a protective, faithful man. It opens with fresh Lime and Grapefruit, moves into the elegance of Lavender and Jasmine, and finishes with intense Amber and Vanilla, marking the joy forever in memory.",
-   "ar": "يدعو بخاخ الجسم الرجالي هيفن جروم إلى رحلة حب فريدة عبر عطر فوجير يجسّد جوهر الرجل الحامي والوفي. ينطلق بانتعاش الليمون الأخضر والجريب فروت، ثم ينتقل إلى أناقة الخزامى والياسمين، ليختتم بدفء العنبر والفانيليا المكثّف، مخلّداً هذه الفرحة في الذاكرة إلى الأبد."
+   "ar": "يدعو بخاخ الجسم الرجالي هيفن جروم إلى رحلة حب فريدة عبر عطر فوجير يجسّد جوهر الرجل الحامي والوفي. ينطلق بانتعاش الليمون الأخضر والجريب فروت، ثم ينتقل إلى أناقة الخزامى والياسمين، ليختتم بدفء العنبر والفانيليا المكثّف، مخلّداً هذه الفرحة في الذاكرة إلى الأبد.",
+   "pt": "O Body Splash Masculino Heaven Groom convida a viver uma jornada única de amor, seguindo por um perfume Fougère que vibra a essência do homem protetor e fiel. Celebra o frescor das notas de Lima e Toranja, caminhando ao altar na elegância da Lavanda e do Jasmim. Finaliza no intenso do Âmbar e da Baunilha, marcando essa alegria para sempre na memória."
   },
   "notes": {
    "top": [
     [
      "Lime",
-     "ليمون أخضر"
+     "ليمون أخضر",
+     "Lima"
     ],
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ]
    ],
    "heart": [
     [
      "Lavender",
-     "خزامى"
+     "خزامى",
+     "Lavanda"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -12906,39 +14176,47 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Exude confidence, seduction and passion at every moment",
-   "ar": "انشري الثقة والجاذبية والشغف في كل لحظة"
+   "ar": "انشري الثقة والجاذبية والشغف في كل لحظة",
+   "pt": "Exale confiança, sedução e paixão em todos os momentos"
   },
   "desc": {
    "en": "One Touch Warm Cologne is made for those who want to leave an unforgettable mark wherever they go, with an intense touch woven with pure seduction and daring. It opens with an exuberant burst of fruit, blossoms into jasmine and orange blossom with a soft touch of coconut, and finishes with sweet vanilla, caramel and luxurious woody cashmere.",
-   "ar": "صُمّمت كولونيا ون تاتش وورم لمن يرغب في ترك بصمة لا تُنسى أينما حلّ، بلمسة قوية تمتزج فيها الجاذبية والجرأة. تنطلق بانفجار غني من الفواكه، ثم تتفتح على الياسمين وزهر البرتقال مع لمسة ناعمة من جوز الهند، لتختتم بنفحات حلوة من الفانيليا والكراميل وخشب الكشمير الفاخر."
+   "ar": "صُمّمت كولونيا ون تاتش وورم لمن يرغب في ترك بصمة لا تُنسى أينما حلّ، بلمسة قوية تمتزج فيها الجاذبية والجرأة. تنطلق بانفجار غني من الفواكه، ثم تتفتح على الياسمين وزهر البرتقال مع لمسة ناعمة من جوز الهند، لتختتم بنفحات حلوة من الفانيليا والكراميل وخشب الكشمير الفاخر.",
+   "pt": "O One Touch Warm é destinado para quem deseja deixar uma marca inesquecível por onde passa, emanando um toque intenso entrelaçado em pura sedução. Encantando pela autenticidade de quem sabe o que deseja e sempre adiciona ousadia à própria história. Uma experiência sensorial única que começa com a revelação exuberante das frutas. No coração, desabrocham notas florais de jasmim e flor de laranjeira com um toque suave de coco, finalizando com notas doces da baunilha, caramelo e a luxuosa amadeirada Caxemira."
   },
   "notes": {
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Coconut",
-     "جوز الهند"
+     "جوز الهند",
+     "Coco"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ],
     [
      "Cashmere wood",
-     "خشب الكشمير"
+     "خشب الكشمير",
+     "Madeira de caxemira"
     ]
    ]
   },
@@ -12970,11 +14248,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Go beyond expectations!",
-   "ar": "تجاوزي كل التوقعات!"
+   "ar": "تجاوزي كل التوقعات!",
+   "pt": "Vá além das expectativas!"
   },
   "desc": {
    "en": "The One Touch Latte Body Splash is a tropical olfactory experience to enjoy every day. Its scent draws out the best of each of its fruits to evoke a sunny day at the beach, conveying a cozy warmth that brightens anyone's mood.",
-   "ar": "يقدّم بخاخ الجسم ون تاتش لاتيه تجربة عطرية استوائية تأسر الحواس كل يوم. يستخلص عبيره أفضل ما في فواكهه ليستحضر إحساس يوم مشمس على الشاطئ، وينقل دفئاً مريحاً يبعث البهجة في النفوس."
+   "ar": "يقدّم بخاخ الجسم ون تاتش لاتيه تجربة عطرية استوائية تأسر الحواس كل يوم. يستخلص عبيره أفضل ما في فواكهه ليستحضر إحساس يوم مشمس على الشاطئ، وينقل دفئاً مريحاً يبعث البهجة في النفوس.",
+   "pt": "O Desodorante Colônia Body Splash Wepink One Touch Latte é uma experiência olfativa tropical que irá te encantar todos os dias. Seu aroma traz o que há de melhor em cada uma de suas frutas, para proporcionar a sensação de um dia ensolarado na praia. Esta fragrância transmite um calor aconchegante, que alegra a qualquer um."
   },
   "source": "https://www.wepink.com.br/body-splash-one-touch-latte-200ml---wepink-410/p",
   "notes": {}
@@ -13006,17 +14286,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Radiant by nature",
-   "ar": "إشراقٌ بالفطرة"
+   "ar": "إشراقٌ بالفطرة",
+   "pt": "Radiante por natureza"
   },
   "desc": {
    "en": "One Touch Latte Cologne creates its own glow, opening with flowers and fruits in a luminous, enveloping sensation like a ray of tropical sun. The floral then turns creamy as ylang-ylang brings warmth and lightness in a sunny effect. Joyful, youthful and tropical, it is made for happy days, with radiant femininity and a touch of irresistible extravagance.",
-   "ar": "تصنع كولونيا ون تاتش لاتيه بريقها الخاص، إذ تنطلق بلقاء الزهور والفواكه في إحساس مضيء وآسر أشبه بشعاع شمس استوائية. ثم تتجلى الزهور بقوام كريمي مع الإيلانغ إيلانغ الذي يضفي دفئاً وخفة بتأثير مشمس. عطر مبهج وشبابي واستوائي للأيام السعيدة، بأنوثة مشرقة ولمسة من الفخامة الجريئة التي لا تُقاوَم."
+   "ar": "تصنع كولونيا ون تاتش لاتيه بريقها الخاص، إذ تنطلق بلقاء الزهور والفواكه في إحساس مضيء وآسر أشبه بشعاع شمس استوائية. ثم تتجلى الزهور بقوام كريمي مع الإيلانغ إيلانغ الذي يضفي دفئاً وخفة بتأثير مشمس. عطر مبهج وشبابي واستوائي للأيام السعيدة، بأنوثة مشرقة ولمسة من الفخامة الجريئة التي لا تُقاوَم.",
+   "pt": "O Desodorante Colônia Wepink One Touch Latte não segue o óbvio, ele cria o próprio brilho. Logo no primeiro instante, flores e frutas se encontram em uma sensação luminosa e envolvente, como um raio de sol tropical que toca a pele com frescor e alegria. Uma abertura vibrante, radiante e cheia de vida. Na sequência, o floral se revela cremoso e envolvente. O ylang-ylang aparece trazendo calor e leveza na medida certa, criando um efeito solar que equilibra suavidade e intensidade. Alegre, jovial e tropical, One Touch Latte é daqueles para usar em dias felizes, com uma feminilidade marcante, radiante e um toque de extravagância irresistível."
   },
   "notes": {
    "heart": [
     [
      "Ylang-ylang",
-     "إيلانغ إيلانغ"
+     "إيلانغ إيلانغ",
+     "Ylang-ylang"
     ]
    ]
   },
@@ -13048,11 +14331,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Divine hydration for your skin",
-   "ar": "ترطيب سماوي لبشرتكِ"
+   "ar": "ترطيب سماوي لبشرتكِ",
+   "pt": "Hidratação divina para a sua pele"
   },
   "desc": {
    "en": "The Heaven Bride Body Cream delivers divine hydration with a formula designed to help support collagen production and cell renewal. It leaves skin healthy, soft and glowing all day, intensely scented with a delightful floral aroma for a feeling of paradise.",
-   "ar": "يمنح كريم الجسم هيفن برايد ترطيباً سماوياً بتركيبة مصمّمة لدعم إنتاج الكولاجين وتجديد الخلايا. يترك البشرة صحية وناعمة ومشرقة طوال اليوم، معطّرة بعمق بعبير زهري شهي يمنح إحساساً بالنعيم."
+   "ar": "يمنح كريم الجسم هيفن برايد ترطيباً سماوياً بتركيبة مصمّمة لدعم إنتاج الكولاجين وتجديد الخلايا. يترك البشرة صحية وناعمة ومشرقة طوال اليوم، معطّرة بعمق بعبير زهري شهي يمنح إحساساً بالنعيم.",
+   "pt": "Erga os braços em direção ao céu e agradeça a hidratação divina da Loção Desodorante Body Cream Wepink Heaven Bride, com sua composição formulada para o auxílio na produção de colágeno e regeneração celular. Suas mãos irão estremecer de alegria ao tocar sua pele saudável, macia e brilhosa o dia inteiro, além de estar perfumada intensamente com esse aroma floral tão gostoso. Tudo para você se sentir no paraíso!"
   },
   "source": "https://www.wepink.com.br/body-cream-heaven-bride-200ml---wepink-384/p",
   "notes": {}
@@ -13085,11 +14370,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The night is calling",
-   "ar": "الليل يناديكِ"
+   "ar": "الليل يناديكِ",
+   "pt": "A noite te chama"
   },
   "desc": {
    "en": "All eyes are on the star of the night: the Obsessed Intense Body Splash, a playful invitation to sweet evening encounters. This intensely addictive scent is a mystery to be unraveled slowly, designed to make a statement and draw attention under the moonlight.",
-   "ar": "كل الأنظار تتجه نحو نجمة الليل: بخاخ الجسم أوبسيسد إنتنس، دعوة مرحة للقاءات مسائية عذبة. عبيره الآسر بشدة لغزٌ يُكتشف على مهل، وقد صُمّم ليفرض حضوره ويلفت الانتباه تحت ضوء القمر."
+   "ar": "كل الأنظار تتجه نحو نجمة الليل: بخاخ الجسم أوبسيسد إنتنس، دعوة مرحة للقاءات مسائية عذبة. عبيره الآسر بشدة لغزٌ يُكتشف على مهل، وقد صُمّم ليفرض حضوره ويلفت الانتباه تحت ضوء القمر.",
+   "pt": "Todos os olhares estão fixados na estrela da noite, o Desodorante Colônia Body Splash Wepink Obsessed Intense, um convite travesso para doces encontros no escuro. Marque presença e crie obsessões sob a luz do luar com este aroma intensamente viciante, que é um mistério a ser desvendado sem pressa. Vista-se deste aroma concebido para chamar a atenção."
   },
   "source": "https://www.wepink.com.br/body-splash-obsessed-intense-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -13121,37 +14408,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A dazzling universe of irresistible passion",
-   "ar": "عالم مبهر من الشغف الذي لا يُقاوَم"
+   "ar": "عالم مبهر من الشغف الذي لا يُقاوَم",
+   "pt": "Um universo que deslumbra uma irresistível paixão"
   },
   "desc": {
    "en": "Enveloping Cocoa intertwined with Musk and Amber radiates an energy of success and victory, capturing the essence of unforgettable strength.",
-   "ar": "ويفيض الكاكاو الآسر الممتزج بالمسك والعنبر بطاقة من النجاح والانتصار، ليجسّد جوهر قوة لا تُنسى."
+   "ar": "ويفيض الكاكاو الآسر الممتزج بالمسك والعنبر بطاقة من النجاح والانتصار، ليجسّد جوهر قوة لا تُنسى.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Bourbon Silver une Frutas Cítricas e Pimenta Preta em uma fragrância masculina poderosa para o homem moderno e misterioso. O aroma envolvente do Cacau, entrelaçado com Almíscar e Âmbar, exala uma energia de sucesso e vitória, encantando o mundo à sua volta. Essa é a essência de uma força inesquecível."
   },
   "notes": {
    "top": [
     [
      "Citrus fruits",
-     "حمضيات"
+     "حمضيات",
+     "Frutas cítricas"
     ]
    ],
    "heart": [
     [
      "Black pepper",
-     "فلفل أسود"
+     "فلفل أسود",
+     "Pimenta-preta"
     ],
     [
      "Cocoa",
-     "كاكاو"
+     "كاكاو",
+     "Cacau"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -13184,37 +14478,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Intensity felt on the skin",
-   "ar": "قوة تنبض على البشرة"
+   "ar": "قوة تنبض على البشرة",
+   "pt": "Intensidade à flor da pele"
   },
   "desc": {
    "en": "The VF Onyx Body Splash travels through an enchanting mystery under the moonlight, in a mystical, amber journey that reveals a sweet passion. It opens with Creamy Milk and the unique sophistication of Orchid, wrapped in a light trail of Vanilla, and finishes glamorously with starry touches of Sandalwood and Amber.",
-   "ar": "يأخذ بخاخ الجسم في إف أونيكس في رحلة عنبرية غامضة تأسر الحواس تحت ضوء القمر وتكشف عن شغف عذب. ينطلق بالحليب الكريمي ورقيّ الأوركيد الفريد، يلفّه أثر خفيف من الفانيليا، ليختتم بفخامة مع لمسات متلألئة من خشب الصندل والعنبر."
+   "ar": "يأخذ بخاخ الجسم في إف أونيكس في رحلة عنبرية غامضة تأسر الحواس تحت ضوء القمر وتكشف عن شغف عذب. ينطلق بالحليب الكريمي ورقيّ الأوركيد الفريد، يلفّه أثر خفيف من الفانيليا، ليختتم بفخامة مع لمسات متلألئة من خشب الصندل والعنبر.",
+   "pt": "O Desodorante Colônia Body Splash Wepink VF Onyx viaja por um mistério que sabe encantar sob a luz do luar, em uma jornada mística, ambarada e que revela uma doce paixão. Sua fragrância inicia no Leite Cremoso e na sofisticação única da Orquídea, envolvendo em um leve rastro de Baunilha. Com muito glamour, finaliza no toque estrelado do Sândalo e do Âmbar."
   },
   "notes": {
    "top": [
     [
      "Creamy milk",
-     "حليب كريمي"
+     "حليب كريمي",
+     "Leite cremoso"
     ],
     [
      "Orchid",
-     "أوركيد"
+     "أوركيد",
+     "Orquídea"
     ]
    ],
    "heart": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ],
    "base": [
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -13247,25 +14548,30 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The well-being of a heavenly charm",
-   "ar": "راحة وسحر من عالم سماوي"
+   "ar": "راحة وسحر من عالم سماوي",
+   "pt": "O bem-estar de um encanto celestial"
   },
   "desc": {
    "en": "The Heaven Body Splash captures the essence of a delicate, joyful universe in a sensory journey that transports to paradise. Its delicate fragrance rises with light mandarin and peach and a sophisticated touch of orange blossom, evolving into an enchanting floral heart and a heady sweet, woody base.",
-   "ar": "يجسّد بخاخ الجسم هيفن جوهر عالم رقيق ومبهج في رحلة حسية تنقل إلى عالم من النعيم. ينطلق عطره الرقيق بنفحات خفيفة من اليوسفي والخوخ مع لمسة راقية من زهر البرتقال، ثم يتطور إلى قلب زهري ساحر وقاعدة خشبية حلوة آسرة."
+   "ar": "يجسّد بخاخ الجسم هيفن جوهر عالم رقيق ومبهج في رحلة حسية تنقل إلى عالم من النعيم. ينطلق عطره الرقيق بنفحات خفيفة من اليوسفي والخوخ مع لمسة راقية من زهر البرتقال، ثم يتطور إلى قلب زهري ساحر وقاعدة خشبية حلوة آسرة.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Heaven representa a essência de um universo delicado e alegre, em uma jornada sensorial capaz de transportar ao paraíso. Sua fragrância delicada ascende a um aroma leve da mandarina e do pêssego, especialmente em um toque sofisticado de flor de laranjeira. Evolui em um coração floral encantador, finalizando em um fundo doce e amadeirado inebriante."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ],
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ]
   },
@@ -13299,43 +14605,52 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The scent that reveals the mystical charm within you",
-   "ar": "العطر الذي يكشف السحر الغامض في داخلكِ"
+   "ar": "العطر الذي يكشف السحر الغامض في داخلكِ",
+   "pt": "O aroma que revela o encanto místico em você"
   },
   "desc": {
    "en": "VF Choices Cologne is made to inspire the mystical woman within, inviting the freedom to be oneself and make one's own choices with a touch of mystery and adventure. This fresh Chypre opens with lemon and mandarin, floating over pear and orange, before a heart of violet, jasmine and roses leads to a seductive sweet, woody trail.",
-   "ar": "صُمّمت كولونيا في إف تشويسز لتلهم المرأة الساحرة الكامنة في الداخل، داعيةً إلى حرية أن تكون على طبيعتها وأن تصنع خياراتها بلمسة من الغموض والمغامرة. ينطلق هذا العطر الشيبر المنعش بنسمات الليمون واليوسفي مع الكمثرى والبرتقال، ثم يتفتح قلبه بالبنفسج والياسمين والورد، ليختتم بأثر خشبي حلو آسر."
+   "ar": "صُمّمت كولونيا في إف تشويسز لتلهم المرأة الساحرة الكامنة في الداخل، داعيةً إلى حرية أن تكون على طبيعتها وأن تصنع خياراتها بلمسة من الغموض والمغامرة. ينطلق هذا العطر الشيبر المنعش بنسمات الليمون واليوسفي مع الكمثرى والبرتقال، ثم يتفتح قلبه بالبنفسج والياسمين والورد، ليختتم بأثر خشبي حلو آسر.",
+   "pt": "VF Choices Desodorante Colônia é feito para inspirar a mulher mística que há dentro de você! Que evoca a magia do encantamento, com um convite perfeito para a liberdade de ser quem é, fazendo suas próprias escolhas com um toque de mistério e aventura. A jornada sensorial dessa fragrância desenha um caminho Chipre Fresh, inicia com o sopro fresco vindo do limão e da mandarina, flutuando suavemente entre notas de pera e laranja. Seguindo para um coração que desperta o desabrochar das flores do jardim encantado, onde a aura da violeta, jasmim e rosas dominam o ambiente. Finalizando com a trilha misteriosa cheia de sedução, revelando toques amadeirados e doces para um trajeto inesquecível."
   },
   "notes": {
    "top": [
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ],
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Orange",
-     "برتقال"
+     "برتقال",
+     "Laranja"
     ]
    ],
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ]
   },
@@ -13367,11 +14682,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A complete repair for perfect hair with every spritz",
-   "ar": "إصلاح متكامل لشعر مثالي مع كل رشّة"
+   "ar": "إصلاح متكامل لشعر مثالي مع كل رشّة",
+   "pt": "Reparador completo para deixar o cabelo perfeito a cada splash"
   },
   "desc": {
    "en": "This Multifunctional Leave-In is an instant no-rinse treatment whose selected actives strengthen hair, increase resistance, repair heat damage and seal split ends, adding shine, softness and hydration. It can be applied to dry hair as a finishing touch or to damp hair as a layer of heat protection, leaving hair beautiful and light.",
-   "ar": "علاج ليف إن متعدد الاستخدامات فوري لا يحتاج إلى شطف، يجمع مكونات نشطة مختارة تقوّي الشعر وتزيد مقاومته وتصلح الأضرار الناتجة عن الحرارة وتغلق الأطراف المتقصفة، مع منحه اللمعان والنعومة والترطيب. يمكن استخدامه على الشعر الجاف كلمسة نهائية أو على الشعر الرطب كطبقة حماية من الحرارة، ليبدو الشعر جميلاً وخفيفاً."
+   "ar": "علاج ليف إن متعدد الاستخدامات فوري لا يحتاج إلى شطف، يجمع مكونات نشطة مختارة تقوّي الشعر وتزيد مقاومته وتصلح الأضرار الناتجة عن الحرارة وتغلق الأطراف المتقصفة، مع منحه اللمعان والنعومة والترطيب. يمكن استخدامه على الشعر الجاف كلمسة نهائية أو على الشعر الرطب كطبقة حماية من الحرارة، ليبدو الشعر جميلاً وخفيفاً.",
+   "pt": "Experimente a sensação de cabelo perfeito a cada splash com o Leave-in Capilar Multifuncional do mundo rosa! O tratamento vai redefinir os seus cuidados capilares, oferecendo praticidade incomparável e um resultado final perfeito! O Leave-in é essencial para manter o cabelo saudável e forte. Seu tratamento instantâneo sem enxágue, tem a combinação de ativos especialmente selecionados, que aumentam a resistência, fortalecem os fios, reparam danos causados pelo calor, sela as pontas duplas e proporciona mais brilho, maciez e hidratação. Versátil, o Leave-in permite aplicação tanto no cabelo seco para dar um efeito finalizador, quanto com o cabelo úmido, oferecendo uma camada de proteção térmica. O seu cabelo ficará lindo e leve, do jeito que você mais adora!"
   },
   "source": "https://www.wepink.com.br/leave-in-capilar-120ml-we-pink/p",
   "notes": {}
@@ -13403,47 +14720,57 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Beauty lies in being discovered little by little",
-   "ar": "يكمن الجمال في أن يُكتشف شيئاً فشيئاً"
+   "ar": "يكمن الجمال في أن يُكتشف شيئاً فشيئاً",
+   "pt": "A beleza está em ser descoberta aos poucos"
   },
   "desc": {
    "en": "Ghadan Light Cologne reinterprets the lightness of oriental perfumery from a brighter, more delicate and deeply elegant perspective, created for women who know true sophistication lies in the details. Pink Pepper, creamy Fig, Almond and Juniper open with comfort and refinement, while Rose, Lily of the Valley, Jasmine Sambac and Ylang-Ylang bloom in harmony at its heart.",
-   "ar": "تقدّم كولونيا غدان لايت خفة العطور الشرقية من منظور جديد أكثر إشراقاً ورقة وأناقة، وقد صُمّمت للمرأة التي تدرك أن الرقي الحقيقي يكمن في التفاصيل. تفتتح التركيبة نفحات الفلفل الوردي والتين الكريمي واللوز والعرعر بلمسة مريحة وراقية، بينما تتفتح في قلبها الورود وزنبق الوادي والياسمين سامباك والإيلانغ إيلانغ في تناغم تام."
+   "ar": "تقدّم كولونيا غدان لايت خفة العطور الشرقية من منظور جديد أكثر إشراقاً ورقة وأناقة، وقد صُمّمت للمرأة التي تدرك أن الرقي الحقيقي يكمن في التفاصيل. تفتتح التركيبة نفحات الفلفل الوردي والتين الكريمي واللوز والعرعر بلمسة مريحة وراقية، بينما تتفتح في قلبها الورود وزنبق الوادي والياسمين سامباك والإيلانغ إيلانغ في تناغم تام.",
+   "pt": "Há lugares onde o luxo não é definido pelo brilho do ouro, mas pela delicadeza dos detalhes. Onde a luz atravessa cortinas de linho, perfuma o ambiente com flores raras e transforma o silêncio em uma experiência de contemplação. Foi dessa atmosfera que nasceu Ghadan Light. Uma fragrância que traduz a leveza da perfumaria oriental sob uma nova perspectiva: mais luminosa, mais delicada e profundamente elegante. Uma criação para mulheres que compreendem que a verdadeira sofisticação não está nos excessos, mas na forma como cada detalhe é cuidadosamente revelado. Sua abertura combina o toque delicadamente especiado da Pimenta Rosa com a cremosidade envolvente do Figo cremoso e da Amêndoa, enquanto o Zimbro acrescenta um frescor aromático que ilumina a composição desde o primeiro instante. O resultado é uma saída confortável e sofisticada, que desperta os sentidos de maneira sutil e refinada. No coração, Rosa, Lírio-do-vale, Jasmim Sambac e Ylang-Ylang florescem em perfeita harmonia. Cada flor contribui com uma nuance diferente: a elegância clássica da rosa, a leveza cristalina do lírio-do-vale, a sensualidade cremosa do jasmim sambac e o exotismo delicado do ylang-ylang. Juntas, elas criam uma assinatura floral rica, luminosa e cheia de profundidade. À medida que repousa sobre a pele, Ghadan Light revela sua faceta mais envolvente. Musk, Creme de Baunilha, Ládano e Sândalo transformam a fragrância em um abraço sofisticado, deixando um rastro macio, aveludado e extremamente elegante. A cremosidade da baunilha encontra a serenidade das madeiras e a riqueza resinosa do ládano, criando uma sensação de conforto que permanece por horas. Ghadan Light não busca dominar o ambiente. Sua beleza está em ser descoberta aos poucos, revelando novas nuances a cada movimento e tornando cada aproximação uma nova experiência. Criada para mulheres que fazem da elegância um gesto natural, Ghadan Light celebra uma feminilidade contemporânea, serena e sofisticada. Uma fragrância que acompanha diferentes momentos do dia com equilíbrio, revelando que a delicadeza também pode ser marcante."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ],
     [
      "Creamy fig",
-     "تين كريمي"
+     "تين كريمي",
+     "Figo cremoso"
     ],
     [
      "Almond",
-     "لوز"
+     "لوز",
+     "Amêndoa"
     ],
     [
      "Juniper",
-     "عرعر"
+     "عرعر",
+     "Zimbro"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Jasmine sambac",
-     "ياسمين سامباك"
+     "ياسمين سامباك",
+     "Jasmim sambac"
     ],
     [
      "Ylang-ylang",
-     "إيلانغ إيلانغ"
+     "إيلانغ إيلانغ",
+     "Ylang-ylang"
     ]
    ]
   },
@@ -13476,69 +14803,84 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Created for women who see beauty in the little moments",
-   "ar": "صُمّم للمرأة التي ترى الجمال في اللحظات الصغيرة"
+   "ar": "صُمّم للمرأة التي ترى الجمال في اللحظات الصغيرة",
+   "pt": "Criado para mulheres que enxergam beleza nos pequenos momentos"
   },
   "desc": {
    "en": "Perfect Pear & Peach Cologne is a Floral Fruity blend of juicy pear, delicate peach and a creamy base. Pear, Peach Nectar, Raspberry, Sparkling Notes and Bergamot create a luminous opening; Tuberose, Ylang-Ylang, Davana and a Creamy Accord wrap the heart in femininity; and Patchouli, Musk, Vanilla and Amber leave a soft, warm, velvety trail.",
-   "ar": "كولونيا بيرفكت بير آند بيتش عطر زهري فاكهي يجمع بين عصارة الكمثرى ورقة الخوخ وقاعدة كريمية. تصنع الكمثرى ورحيق الخوخ وتوت العليق والنفحات المتلألئة والبرغموت افتتاحية مضيئة، بينما يغلّف مسك الروم والإيلانغ إيلانغ والدافانا والتناغم الكريمي القلب بلمسة أنثوية، ويترك الباتشولي والمسك والفانيليا والعنبر أثراً ناعماً دافئاً ومخملياً."
+   "ar": "كولونيا بيرفكت بير آند بيتش عطر زهري فاكهي يجمع بين عصارة الكمثرى ورقة الخوخ وقاعدة كريمية. تصنع الكمثرى ورحيق الخوخ وتوت العليق والنفحات المتلألئة والبرغموت افتتاحية مضيئة، بينما يغلّف مسك الروم والإيلانغ إيلانغ والدافانا والتناغم الكريمي القلب بلمسة أنثوية، ويترك الباتشولي والمسك والفانيليا والعنبر أثراً ناعماً دافئاً ومخملياً.",
+   "pt": "Existe uma beleza irresistível nas fragrâncias que despertam os sentidos logo no primeiro instante. Perfect Pear & Peach nasce dessa inspiração: uma combinação envolvente entre a suculência da pera, a delicadeza do pêssego e um fundo cremoso que transforma cada borrifada em uma experiência memorável. Sua abertura revela o brilho fresco da Pera, do Néctar de Pêssego, da Framboesa, das Notas Cintilantes e da Bergamota, criando uma sensação luminosa, delicada e naturalmente sofisticada. No coração, a intensidade da Tuberosa, do Ylang-Ylang, da Davana e de um irresistível Acorde Cremoso envolve a pele com feminilidade, conforto e elegância. Flores exuberantes encontram frutas delicadas em uma composição que transmite leveza sem perder personalidade. Ao fundo, Patchouli, Musk, Baunilha e Âmbar deixam um rastro macio, quente e aveludado, prolongando a sensação de bem-estar e transformando a fragrância em uma assinatura marcante. Perfect Pear & Peach é um Floral Frutado criado para mulheres que enxergam beleza nos pequenos momentos, fazem da delicadeza uma força e deixam lembranças por onde passam. Uma fragrância que combina frescor, cremosidade e sofisticação em perfeita harmonia. Porque algumas fragrâncias encantam."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Peach nectar",
-     "رحيق الخوخ"
+     "رحيق الخوخ",
+     "Néctar de pêssego"
     ],
     [
      "Raspberry",
-     "توت العليق"
+     "توت العليق",
+     "Framboesa"
     ],
     [
      "Sparkling notes",
-     "نفحات متلألئة"
+     "نفحات متلألئة",
+     "Notas cintilantes"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Ylang-ylang",
-     "إيلانغ إيلانغ"
+     "إيلانغ إيلانغ",
+     "Ylang-ylang"
     ],
     [
      "Davana",
-     "دافانا"
+     "دافانا",
+     "Davana"
     ],
     [
      "Creamy accord",
-     "تناغم كريمي"
+     "تناغم كريمي",
+     "Acorde cremoso"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -13570,29 +14912,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Hug",
-   "ar": "تغذية عميقة وتماسك مع عناق فانيلا هاج الدافئ"
+   "ar": "تغذية عميقة وتماسك مع عناق فانيلا هاج الدافئ",
+   "pt": "Nutrição profunda e firmeza com o abraço acolhedor de Vanilla Hug"
   },
   "desc": {
    "en": "The Vanilla Hug Body Cream deeply hydrates and nourishes, leaving skin soft, radiant and healthy-looking. Its formula helps support collagen production and cell renewal, while the fragrance blends notes of Mandarin, Jasmine and Damask Rose for a delightful feeling of harmony and care.",
-   "ar": "يرطّب كريم الجسم فانيلا هاج البشرة ويغذّيها بعمق، تاركاً إياها ناعمة ومشرقة وصحية المظهر. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، بينما يمزج عطره نفحات اليوسفي والياسمين والورد الدمشقي في إحساس شهي بالتناغم والعناية."
+   "ar": "يرطّب كريم الجسم فانيلا هاج البشرة ويغذّيها بعمق، تاركاً إياها ناعمة ومشرقة وصحية المظهر. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، بينما يمزج عطره نفحات اليوسفي والياسمين والورد الدمشقي في إحساس شهي بالتناغم والعناية.",
+   "pt": "Sinta o abraço da Loção Desodorante Body Cream Wepink Vanilla Hug, que hidrata e nutre profundamente, deixando a pele macia, luminosa e com aspecto saudável. Sua composição auxilia na produção de colágeno e na regeneração celular, enquanto a fragrância combina notas de Mandarina, Jasmim e Rosa Damascena, criando uma sensação deliciosa de harmonia e cuidado."
   },
   "notes": {
    "top": [
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Damask rose",
-     "ورد دمشقي"
+     "ورد دمشقي",
+     "Rosa damascena"
     ]
    ]
   },
@@ -13624,29 +14971,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the touch of Eternal Cherish butter",
-   "ar": "تغذية عميقة وتماسك بلمسة زبدة إيترنال تشيريش"
+   "ar": "تغذية عميقة وتماسك بلمسة زبدة إيترنال تشيريش",
+   "pt": "Nutrição profunda e firmeza com o toque da manteiga Eternal Cherish"
   },
   "desc": {
    "en": "Eternal Cherish Body Butter delivers intense, immediate hydration with a luxurious fragrance celebrating feminine strength and tenderness. Its ultra-creamy texture deeply nourishes, supports cell renewal and leaves a velvety finish that strengthens the skin barrier, while notes of Cinnamon, Jasmine and Vanilla evoke comfort, sophistication and affection for visibly firmer, healthier skin.",
-   "ar": "تمنح زبدة الجسم إيترنال تشيريش ترطيباً مكثفاً وفورياً بعطر فاخر يحتفي بقوة المرأة وحنانها. يغذّي قوامها فائق الكريمية البشرة بعمق ويدعم تجديد الخلايا ويترك ملمساً مخملياً يعزز حاجز البشرة، بينما تبعث نفحات القرفة والياسمين والفانيليا إحساساً بالدفء والرقي والمودة لبشرة أكثر تماسكاً وصحة بشكل ملحوظ."
+   "ar": "تمنح زبدة الجسم إيترنال تشيريش ترطيباً مكثفاً وفورياً بعطر فاخر يحتفي بقوة المرأة وحنانها. يغذّي قوامها فائق الكريمية البشرة بعمق ويدعم تجديد الخلايا ويترك ملمساً مخملياً يعزز حاجز البشرة، بينما تبعث نفحات القرفة والياسمين والفانيليا إحساساً بالدفء والرقي والمودة لبشرة أكثر تماسكاً وصحة بشكل ملحوظ.",
+   "pt": "A Manteiga Corporal Eternal Cherish da Wepink entrega hidratação intensa e imediata com uma fragrância luxuosa que celebra a força e a ternura feminina. Sua textura ultracremosa envolve a pele, promovendo nutrição profunda, renovação celular e um acabamento aveludado que fortalece a barreira cutânea ao longo do dia. Com notas envolventes de Canela, Jasmim e Baunilha, a fragrância desperta sensações de acolhimento, sofisticação e afeto. Ideal para quem busca uma pele visivelmente mais firme, saudável e perfumada, transformando o momento do autocuidado em um ritual de bem-estar inesquecível."
   },
   "notes": {
    "top": [
     [
      "Cinnamon",
-     "قرفة"
+     "قرفة",
+     "Canela"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -13679,61 +15031,74 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fruity oriental that pairs femininity with personality",
-   "ar": "عطر شرقي فاكهي يجمع بين الأنوثة والشخصية"
+   "ar": "عطر شرقي فاكهي يجمع بين الأنوثة والشخصية",
+   "pt": "Um oriental frutado que combina feminilidade com personalidade"
   },
   "desc": {
    "en": "Tyrie Royale Cologne expresses intense femininity in an enveloping, sophisticated fragrance for women who radiate presence and confidence. Pear and fig meet caramel and violet leaves in a juicy opening, jasmine, tuberose and lily of the valley form an elegant white floral heart, and patchouli, vanilla, amber and musk create a warm, creamy base.",
-   "ar": "تعبّر كولونيا تايري رويال عن أنوثة قوية في عطر آسر وراقٍ للمرأة التي تفيض حضوراً وثقة. تلتقي الكمثرى والتين بالكراميل وأوراق البنفسج في افتتاحية غنية بالعصارة، ويشكّل الياسمين ومسك الروم وزنبق الوادي قلباً أنيقاً من الزهور البيضاء، بينما يصنع الباتشولي والفانيليا والعنبر والمسك قاعدة دافئة وكريمية."
+   "ar": "تعبّر كولونيا تايري رويال عن أنوثة قوية في عطر آسر وراقٍ للمرأة التي تفيض حضوراً وثقة. تلتقي الكمثرى والتين بالكراميل وأوراق البنفسج في افتتاحية غنية بالعصارة، ويشكّل الياسمين ومسك الروم وزنبق الوادي قلباً أنيقاً من الزهور البيضاء، بينما يصنع الباتشولي والفانيليا والعنبر والمسك قاعدة دافئة وكريمية.",
+   "pt": "O Desodorante Colônia Wepink Tyrie Royale traduz a intensidade da feminilidade em uma fragrância envolvente, sofisticada e marcante. Criado para mulheres que exalam presença e confiança, ele combina doçura, elegância e profundidade em uma composição irresistível. Logo na abertura, a fragrância revela um acorde suculento e luminoso, onde a pera e o figo se encontram com o toque envolvente do caramelo e a delicadeza das folhas de violeta. Essa combinação cria uma primeira impressão doce, moderna e cheia de personalidade. No coração, flores brancas ganham protagonismo com a presença do jasmim, da tuberosa e do lírio-do-vale, formando um buquê sofisticado e feminino. É nesse momento que a fragrância se transforma, revelando elegância e um charme envolvente que equilibra perfeitamente intensidade e suavidade. Ao fundo, a fragrância se torna ainda mais marcante e acolhedora. O patchouli adiciona profundidade e sofisticação, enquanto a baunilha, o âmbar e o musk criam uma base quente, cremosa e extremamente envolvente. O resultado é um rastro sedutor, duradouro e inesquecível. Tyrie Royale é uma fragrância oriental frutada que combina notas doces e ambaradas com um toque floral elegante, perfeita para quem busca feminilidade com personalidade."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Fig",
-     "تين"
+     "تين",
+     "Figo"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ],
     [
      "Violet leaves",
-     "أوراق البنفسج"
+     "أوراق البنفسج",
+     "Folhas de violeta"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -13765,17 +15130,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn your shower into a premium ritual",
-   "ar": "حوّلي استحمامكِ إلى طقس فاخر"
+   "ar": "حوّلي استحمامكِ إلى طقس فاخر",
+   "pt": "Transforme seu banho em um ritual premium"
   },
   "desc": {
    "en": "The Heaven Blue Body Scrub turns bath time into a ritual of serenity, with actives that hydrate, nourish and illuminate the skin. Luminous citrus notes meet a mysterious contrasting base for a feeling of peace and freshness. It is massaged gently onto the body in circular motions, avoiding the face, then rinsed off.",
-   "ar": "يحوّل مقشّر الجسم هيفن بلو وقت الاستحمام إلى طقس من الصفاء، بمكونات نشطة ترطّب البشرة وتغذّيها وتمنحها الإشراق. تلتقي فيه نفحات حمضية مضيئة بقاعدة غامضة متباينة لتبعث إحساساً بالسكينة والانتعاش. يُدلَّك بلطف على الجسم بحركات دائرية مع تجنّب الوجه، ثم يُشطف."
+   "ar": "يحوّل مقشّر الجسم هيفن بلو وقت الاستحمام إلى طقس من الصفاء، بمكونات نشطة ترطّب البشرة وتغذّيها وتمنحها الإشراق. تلتقي فيه نفحات حمضية مضيئة بقاعدة غامضة متباينة لتبعث إحساساً بالسكينة والانتعاش. يُدلَّك بلطف على الجسم بحركات دائرية مع تجنّب الوجه، ثم يُشطف.",
+   "pt": "Descubra o conforto divino do Esfoliante Corporal Body Scrub Wepink Heaven Blue. Sua fórmula transforma o banho em um ritual de serenidade, com ativos que hidratam, nutrem e iluminam a pele. Na fragrância, notas cítricas luminosas encontram um fundo de contraste misterioso, revelando uma sensação de paz e frescor. Um verdadeiro convite ao paraíso, que te leva para um lugar mais leve e mais seu."
   },
   "notes": {
    "top": [
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ]
    ]
   },
@@ -13808,51 +15176,62 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A vanilla oriental that awakens desire in its most delicate form",
-   "ar": "عطر شرقي بالفانيليا يوقظ الشغف في أرقّ صوره"
+   "ar": "عطر شرقي بالفانيليا يوقظ الشغف في أرقّ صوره",
+   "pt": "Um oriental baunilha que desperta o desejo em sua forma mais delicada"
   },
   "desc": {
    "en": "The Crave Lovely Body Splash reveals desire in its most delicate form, blending creamy sweetness, luminous flowers and soft sensuality. Bergamot, mandarin and pink pepper bring a radiant, fresh opening, while orange blossom, jasmine, honeysuckle and a marshmallow accord create a creamy white bouquet, with iris and rose adding powdery elegance.",
-   "ar": "يكشف بخاخ الجسم كريف لافلي عن الشغف في أرقّ صوره، جامعاً بين العذوبة الكريمية والزهور المضيئة ولمسة ناعمة من الجاذبية. يمنح البرغموت واليوسفي والفلفل الوردي افتتاحية منعشة ومشرقة، بينما يشكّل زهر البرتقال والياسمين وزهر العسل وتناغم المارشميلو باقة بيضاء كريمية، ويضيف السوسن والورد أناقة بودرية."
+   "ar": "يكشف بخاخ الجسم كريف لافلي عن الشغف في أرقّ صوره، جامعاً بين العذوبة الكريمية والزهور المضيئة ولمسة ناعمة من الجاذبية. يمنح البرغموت واليوسفي والفلفل الوردي افتتاحية منعشة ومشرقة، بينما يشكّل زهر البرتقال والياسمين وزهر العسل وتناغم المارشميلو باقة بيضاء كريمية، ويضيف السوسن والورد أناقة بودرية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Crave Lovely revela o desejo em sua forma mais delicada e envolvente. Uma fragrância que combina doçura cremosa, flores luminosas e um toque de sensualidade macia, criando uma presença feminina que encanta com naturalidade e deixa memória por onde passa. A abertura desperta os sentidos com um frescor luminoso e vibrante. A bergamota e a mandarina trazem uma energia cítrica radiante, enquanto a pimenta rosa adiciona um brilho moderno e levemente provocante. O resultado é um início fresco, delicado e irresistivelmente feminino. No coração, a fragrância floresce em um buquê branco cremoso e envolvente. Flor de laranjeira, jasmim e madressilva revelam uma feminilidade luminosa e sofisticada, enquanto o acorde de marshmallow surge com uma doçura macia e confortável, criando uma textura gourmand delicada e absolutamente viciante. A presença da íris e da rosa acrescenta elegância atalcada e profundidade floral, equilibrando perfeitamente a doçura com refinamento. Ao fundo, baunilha e caramelo constroem um acorde quente e sedutor que abraça a pele com suavidade. O almíscar, o patchouli e o ládano adicionam textura e profundidade, criando um rastro cremoso, envolvente e memorável, que permanece com elegância ao longo do dia. Crave Lovely é para a mulher que entende o poder da delicadeza e transforma suavidade em presença. Uma fragrância doce, luminosa e irresistível, que envolve sem esforço e deixa um rastro de charme e feminilidade. Desperte o desejo."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Honeysuckle",
-     "زهر العسل"
+     "زهر العسل",
+     "Madressilva"
     ],
     [
      "Marshmallow accord",
-     "تناغم المارشميلو"
+     "تناغم المارشميلو",
+     "Acorde de marshmallow"
     ],
     [
      "Iris",
-     "سوسن"
+     "سوسن",
+     "Íris"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ]
   },
@@ -13885,11 +15264,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Awaken infinite sensations",
-   "ar": "أيقظي أحاسيس لا متناهية"
+   "ar": "أيقظي أحاسيس لا متناهية",
+   "pt": "Desperte infinitas sensações"
   },
   "desc": {
    "en": "Infinity Tawny Cologne rediscovers one of the most delightful sweet treats. Its magical scent heightens the best of fruits and the joy of their juiciness, completed by a floral touch that awakens infinite sensations.",
-   "ar": "تعيد كولونيا إنفينيتي توني اكتشاف واحدة من أشهى الحلويات. يبرز عبيرها الساحر أفضل ما في الفواكه وبهجة عصارتها، وتكتمل بلمسة زهرية توقظ أحاسيس لا متناهية."
+   "ar": "تعيد كولونيا إنفينيتي توني اكتشاف واحدة من أشهى الحلويات. يبرز عبيرها الساحر أفضل ما في الفواكه وبهجة عصارتها، وتكتمل بلمسة زهرية توقظ أحاسيس لا متناهية.",
+   "pt": "Redescubra um dos doces mais agradáveis com o Desodorante Colônia Wepink Infinity Tawny. Seu aroma mágico potencializa o que há de melhor nas frutas, para que você se deixe levar na alegria característica que vem com sua suculência. Um toque floral completa esta fragrância que é capaz de despertar infinitas sensações."
   },
   "source": "https://www.wepink.com.br/infinity-tawny-desodorante-colonia-75ml-wepink/p",
   "notes": {}
@@ -13920,53 +15301,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A floral gourmand with a striking, captivating presence",
-   "ar": "عطر زهري غورماند بحضور لافت وآسر"
+   "ar": "عطر زهري غورماند بحضور لافت وآسر",
+   "pt": "Floral gourmand com presença marcante e envolvente"
   },
   "desc": {
    "en": "Scarlette Cologne is for a woman used to turning heads wherever she goes, capturing the duality between intensity, power and delicacy. Orange, strawberry and plum create a vibrant opening, violet and jasmine bring soft elegance at the heart, and a warm base of amber, vanilla, musk and sandalwood adds sweetness and depth.",
-   "ar": "صُمّمت كولونيا سكارليت للمرأة التي اعتادت أن تلفت الأنظار أينما حلّت، لتجسّد الثنائية بين القوة والسطوة والرقة. يفتتح البرتقال والفراولة والبرقوق العطر بانطلاقة نابضة بالحيوية، ويضفي البنفسج والياسمين في القلب أناقة ناعمة، بينما تمنحه قاعدة دافئة من العنبر والفانيليا والمسك وخشب الصندل عذوبة وعمقاً."
+   "ar": "صُمّمت كولونيا سكارليت للمرأة التي اعتادت أن تلفت الأنظار أينما حلّت، لتجسّد الثنائية بين القوة والسطوة والرقة. يفتتح البرتقال والفراولة والبرقوق العطر بانطلاقة نابضة بالحيوية، ويضفي البنفسج والياسمين في القلب أناقة ناعمة، بينما تمنحه قاعدة دافئة من العنبر والفانيليا والمسك وخشب الصندل عذوبة وعمقاً.",
+   "pt": "A sensualidade faz parte da sua rotina. Você está acostumada a chamar a atenção, onde quer que esteja. Desviar os olhares, para você, já é normal. Seu caminho está trilhado e não há quem fique no seu caminho. Afinal, essa é a vida quando todos se curvam à Scarlette. Não é só um perfume, é um convite! Um jogo de conquista. Um toque invisível que fica na pele e na memória. O Desodorante Colônia Scarlette da Wepink traduz a dualidade entre intensidade, poder e delicadeza. As notas de saída misturam o frescor cítrico da laranja, o morango e a ameixa, criando uma entrada vibrante e cheia de personalidade. No coração, violeta e jasmim trazem elegância suave, como um carinho na pele. A base quente de âmbar, baunilha, almíscar e sândalo aquece tudo com doçura e profundidade, deixando uma presença cativante."
   },
   "notes": {
    "top": [
     [
      "Orange",
-     "برتقال"
+     "برتقال",
+     "Laranja"
     ],
     [
      "Strawberry",
-     "فراولة"
+     "فراولة",
+     "Morango"
     ],
     [
      "Plum",
-     "برقوق"
+     "برقوق",
+     "Ameixa"
     ]
    ],
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -13996,37 +15388,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A shine full of nobility for your hair",
-   "ar": "لمعان مفعم بالنبل لشعركِ"
+   "ar": "لمعان مفعم بالنبل لشعركِ",
+   "pt": "Um brilho cheio de nobreza para os fios"
   },
   "desc": {
    "en": "The Liberté Exclusif Hair Mist leaves hair shinier, protected and scented throughout the day with a delicate blend of flowers. It opens with fresh Pear and Lychee, moves into an elegant floral heart with the charm of Incense, and finishes with precious Vanilla and Amber, like a true floral elixir.",
-   "ar": "يمنح معطّر الشعر ليبرتيه إكسكلوسيف الشعر لمعاناً وحماية وعطراً طوال اليوم بمزيج رقيق من الزهور. ينطلق بانتعاش الكمثرى والليتشي، ثم ينتقل إلى قلب زهري أنيق مع سحر البخور، ليختتم بالفانيليا الثمينة والعنبر كإكسير زهري حقيقي."
+   "ar": "يمنح معطّر الشعر ليبرتيه إكسكلوسيف الشعر لمعاناً وحماية وعطراً طوال اليوم بمزيج رقيق من الزهور. ينطلق بانتعاش الكمثرى والليتشي، ثم ينتقل إلى قلب زهري أنيق مع سحر البخور، ليختتم بالفانيليا الثمينة والعنبر كإكسير زهري حقيقي.",
+   "pt": "O Desodorante Capilar Hair Mist Wepink Liberté Exclusif é o melhor para cabelos mais brilhantes, protegidos e perfumados durante o dia todo, envolvendo uma essência que revela um delicado mix de flores. Sua nobreza inicia no frescor da Pera e da Lichia, seguindo no coração floral mais elegante e o encanto do Incenso. O sonho finaliza na valiosa Baunilha e no Âmbar, se estendendo por um verdadeiro elixir floral."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Lychee",
-     "ليتشي"
+     "ليتشي",
+     "Lichia"
     ]
    ],
    "heart": [
     [
      "Incense",
-     "بخور"
+     "بخور",
+     "Incenso"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -14059,31 +15458,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Make your emotions last forever!",
-   "ar": "خلّد مشاعرك!"
+   "ar": "خلّد مشاعرك!",
+   "pt": "Eternize emoções!"
   },
   "desc": {
    "en": "Heaven Groom men's Cologne is an invitation to live the best memories alongside a true love, in a striking and unique Fougère scent. It opens with elegant notes of Lime and Grapefruit, evolves into vibrant Lavender and Jasmine, and finishes on a sweet, intense base that says yes to everlasting love.",
-   "ar": "كولونيا هيفن جروم الرجالية دعوة لعيش أجمل الذكريات إلى جانب الحب الحقيقي، في عطر فوجير مميز وفريد. تنطلق بنفحات أنيقة من الليمون الأخضر والجريب فروت، ثم تتطور مع لمسة الخزامى والياسمين النابضة بالحيوية، لتختتم بقاعدة حلوة وقوية تقول نعم لحب أبدي."
+   "ar": "كولونيا هيفن جروم الرجالية دعوة لعيش أجمل الذكريات إلى جانب الحب الحقيقي، في عطر فوجير مميز وفريد. تنطلق بنفحات أنيقة من الليمون الأخضر والجريب فروت، ثم تتطور مع لمسة الخزامى والياسمين النابضة بالحيوية، لتختتم بقاعدة حلوة وقوية تقول نعم لحب أبدي.",
+   "pt": "A jornada inicia aqui... O Desodorante Masculino Heaven Groom é um convite para viver as melhores memórias ao lado de um verdadeiro amor, em um aroma Fougère, marcante e único. Inicia nas elegantes notas de Lima e Toranja, evoluindo no toque vibrante da Lavanda e do Jasmim. Finaliza em um fundo doce, intenso e vibrante, dizendo sim a um eterno amor."
   },
   "notes": {
    "top": [
     [
      "Lime",
-     "ليمون أخضر"
+     "ليمون أخضر",
+     "Lima"
     ],
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ]
    ],
    "heart": [
     [
      "Lavender",
-     "خزامى"
+     "خزامى",
+     "Lavanda"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -14118,31 +15523,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The very height of exclusivity",
-   "ar": "قمة التفرّد والتميّز"
+   "ar": "قمة التفرّد والتميّز",
+   "pt": "O que existe de mais exclusivo"
   },
   "desc": {
    "en": "Liberté Exclusif Cologne is a dream that unfolds through a blend of flowers, revealing a noble, delicate sweetness. It opens with fresh Lemon and Green Apple, evolves into a most elegant floral heart, and finishes on a precious base of Musk and Praline, a true floral elixir.",
-   "ar": "كولونيا ليبرتيه إكسكلوسيف حلم يتجلى عبر مزيج من الزهور، كاشفاً عن عذوبة نبيلة ورقيقة. تنطلق بانتعاش الليمون والتفاح الأخضر، ثم تتطور إلى قلب زهري في غاية الأناقة، لتختتم بقاعدة ثمينة من المسك والبرالين كإكسير زهري حقيقي."
+   "ar": "كولونيا ليبرتيه إكسكلوسيف حلم يتجلى عبر مزيج من الزهور، كاشفاً عن عذوبة نبيلة ورقيقة. تنطلق بانتعاش الليمون والتفاح الأخضر، ثم تتطور إلى قلب زهري في غاية الأناقة، لتختتم بقاعدة ثمينة من المسك والبرالين كإكسير زهري حقيقي.",
+   "pt": "O Desodorante Colônia Wepink Liberté Exclusif é um sonho que se estende por um mix de flores, revelando uma nobre e delicada doçura. Inicia no frescor do Limão e da Maçã Verde, evoluindo no coração floral mais elegante. Finaliza em um valioso fundo de Musk e Praline, transbordando nuances suaves de um verdadeiro elixir floral."
   },
   "notes": {
    "top": [
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ],
     [
      "Green apple",
-     "تفاح أخضر"
+     "تفاح أخضر",
+     "Maçã verde"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Praline",
-     "برالين"
+     "برالين",
+     "Praliné"
     ]
    ]
   },
@@ -14172,11 +15583,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم"
+   "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection One Touch Latte Roll-on Antiperspirant Deodorant protects and moisturizes for 72 hours, helping to repair the underarm area and even out skin tone. Its tropical fragrance brings a luminous vibe with a soft, creamy, long-lasting touch, leaving a clean, fresh feeling from the first appointment of the day to the last.",
-   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن ون تاتش لاتيه رول أون حماية وترطيباً لمدة 72 ساعة، ويساعد على إصلاح منطقة الإبط وتوحيد لون البشرة. ويمنح عطره الاستوائي إحساساً مشرقاً بلمسة كريمية ناعمة تدوم طويلاً، مع شعور بالنظافة والانتعاش من أول موعد في اليوم إلى آخره."
+   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن ون تاتش لاتيه رول أون حماية وترطيباً لمدة 72 ساعة، ويساعد على إصلاح منطقة الإبط وتوحيد لون البشرة. ويمنح عطره الاستوائي إحساساً مشرقاً بلمسة كريمية ناعمة تدوم طويلاً، مع شعور بالنظافة والانتعاش من أول موعد في اليوم إلى آخره.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink One Touch Latte protege e hidrata por 72 horas, ajudando a reparar a região das axilas e a uniformizar o tom da pele. A fragrância tropical traz uma vibração luminosa com um toque cremoso e suave de longa duração, deixando uma sensação de limpeza e frescor do primeiro ao último compromisso."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-one-touch-latte-50ml---wepink-529/p",
   "notes": {}
@@ -14207,17 +15620,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم"
+   "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Obsessed Lovely Roll-on Antiperspirant Deodorant offers up to 72 hours of protection, freshness and hydration, while helping to boost ceramide synthesis, even out skin tone and improve the look of the underarms. Its Fruity Floral fragrance blends fruits, roses and sweet nuances for a light, lovable feeling in everyday care.",
-   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن أوبسيسد لافلي رول أون حماية حتى 72 ساعة مع الانتعاش والترطيب، ويساعد على تعزيز إنتاج السيراميدات وتوحيد لون البشرة وتحسين مظهر منطقة الإبط. ويمزج عطره الفاكهي الزهري بين الفواكه والورد واللمسات الحلوة في إحساس خفيف ومحبّب للعناية اليومية."
+   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن أوبسيسد لافلي رول أون حماية حتى 72 ساعة مع الانتعاش والترطيب، ويساعد على تعزيز إنتاج السيراميدات وتوحيد لون البشرة وتحسين مظهر منطقة الإبط. ويمزج عطره الفاكهي الزهري بين الفواكه والورد واللمسات الحلوة في إحساس خفيف ومحبّب للعناية اليومية.",
+   "pt": "Sinta sua rotina ganhar delicadeza com o Desodorante Antitranspirante Roll-on Myprotection Wepink Obsessed Lovely. Sua fórmula oferece proteção por até 72 horas, frescor e hidratação, enquanto ajuda a aumentar a síntese de ceramidas, uniformizar o tom e melhorar a aparência das axilas. A fragrância Frutada Floral combina frutas, rosas e nuances adocicadas em uma sensação leve e apaixonante para o cuidado diário."
   },
   "notes": {
    "top": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ]
   },
@@ -14249,11 +15665,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Inspire sparkling energy",
-   "ar": "استلهمي طاقة متلألئة"
+   "ar": "استلهمي طاقة متلألئة",
+   "pt": "Inspire energia cintilante"
   },
   "desc": {
    "en": "Liberté Platiné Cologne captures all the sparkling energy of the City of Light to enhance the finest qualities of femininity. Its fragrance combines the endless potential of flowers and fruits for a scent that brings a feeling of freedom like never before.",
-   "ar": "تجسّد كولونيا ليبرتيه بلاتينيه كل الطاقة المتلألئة لمدينة النور لتبرز أجمل صفات الأنوثة. ويجمع عطرها بين الإمكانات اللامحدودة للزهور والفواكه في عبير يمنح إحساساً غير مسبوق بالحرية."
+   "ar": "تجسّد كولونيا ليبرتيه بلاتينيه كل الطاقة المتلألئة لمدينة النور لتبرز أجمل صفات الأنوثة. ويجمع عطرها بين الإمكانات اللامحدودة للزهور والفواكه في عبير يمنح إحساساً غير مسبوق بالحرية.",
+   "pt": "O Desodorante Colônia Wepink Liberté Platiné traz em sua essência toda a energia cintilante da Cidade Luz para enaltecer as melhores qualidades da feminilidade. Sua fragrância combina o potencial interminável das flores e das frutas para oferecer um aroma capaz de fazer com que você se sinta mais livre do que nunca."
   },
   "source": "https://www.wepink.com.br/desod-col-liberte-platine-100ml---wepink-420/p",
   "notes": {}
@@ -14285,11 +15703,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The freedom of always-healthy skin",
-   "ar": "حرية بشرة صحية دائماً"
+   "ar": "حرية بشرة صحية دائماً",
+   "pt": "A liberdade de uma pele sempre saudável"
   },
   "desc": {
    "en": "The Liberté Exclusif Body Cream is formulated to help support collagen production and cell renewal, keeping skin nourished and hydrated with a coveted healthy glow. It also carries a classic floral scent, like a true bath of roses.",
-   "ar": "صُمّم كريم الجسم ليبرتيه إكسكلوسيف لدعم إنتاج الكولاجين وتجديد الخلايا، ليحافظ على بشرة مغذّاة ومرطّبة بإشراقة صحية مرغوبة. كما يحمل عبيراً زهرياً كلاسيكياً أشبه بحمّام حقيقي من الورد."
+   "ar": "صُمّم كريم الجسم ليبرتيه إكسكلوسيف لدعم إنتاج الكولاجين وتجديد الخلايا، ليحافظ على بشرة مغذّاة ومرطّبة بإشراقة صحية مرغوبة. كما يحمل عبيراً زهرياً كلاسيكياً أشبه بحمّام حقيقي من الورد.",
+   "pt": "O seu corpo clama pela Loção Desodorante Body Cream Wepink Liberté Exclusif, formulada para auxiliar na produção de colágeno e regeneração celular, para que sua pele esteja sempre nutrida e hidratada, sem falar daquele aspecto brilhoso e saudável tão desejado. É claro que não poderia faltar o clássico aroma floral, para você se sentir em um verdadeiro banho de rosas."
   },
   "source": "https://www.wepink.com.br/body-cream-liberte-exclusif-200ml---wepink-382/p",
   "notes": {}
@@ -14317,11 +15737,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your essential treatment for stretch marks and cellulite",
-   "ar": "علاجكِ الأساسي لعلامات التمدد والسيلوليت"
+   "ar": "علاجكِ الأساسي لعلامات التمدد والسيلوليت",
+   "pt": "Seu tratamento essencial para estrias e celulites"
   },
   "desc": {
    "en": "The Cream was developed to complete any self-care routine with excellence. Its exclusive formula delivers a range of deep benefits with high transformative power for the skin.",
-   "ar": "طُوّر لوشن الجسم ذا كريم ليكمّل روتين العناية الذاتية بامتياز. وتقدّم تركيبته الحصرية مجموعة من الفوائد العميقة بقدرة عالية على إحداث تحوّل في البشرة."
+   "ar": "طُوّر لوشن الجسم ذا كريم ليكمّل روتين العناية الذاتية بامتياز. وتقدّم تركيبته الحصرية مجموعة من الفوائد العميقة بقدرة عالية على إحداث تحوّل في البشرة.",
+   "pt": "O The Cream foi desenvolvido para completar com excelência o seu jeito de se cuidar. Sua fórmula exclusiva traz uma série de benefícios profundos com alto poder de transformação para sua pele."
   },
   "source": "https://www.wepink.com.br/the-cream-locao-corporal-130-ml/p",
   "notes": {}
@@ -14354,27 +15776,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "For you, dear lady: a touch of mystical well-being!",
-   "ar": "لكِ يا سيدتي، لمسة من الراحة الساحرة!"
+   "ar": "لكِ يا سيدتي، لمسة من الراحة الساحرة!",
+   "pt": "Para você, minha senhorinha, para um místico bem-estar!"
   },
   "desc": {
    "en": "Infinity Cosmik Cologne is the most exuberant path to a mystical universe, in a chypre, floral and fruity essence that awakens radiance and charm. It opens with vibrant blackcurrant and roses, moves to another dimension with an extraordinary touch of jasmine, and finishes in style on a sweet, woody base full of freshness and elegance.",
-   "ar": "كولونيا إنفينيتي كوزميك هي الطريق الأكثر حيوية إلى عالم ساحر، بجوهر شيبر زهري فاكهي يبعث البريق والسحر أينما حلّت. تنطلق بنفحات نابضة من الكشمش الأسود والورد، ثم تنتقل إلى بُعد آخر بلمسة استثنائية من الياسمين، لتختتم بأناقة على قاعدة خشبية حلوة مفعمة بالانتعاش والرقي."
+   "ar": "كولونيا إنفينيتي كوزميك هي الطريق الأكثر حيوية إلى عالم ساحر، بجوهر شيبر زهري فاكهي يبعث البريق والسحر أينما حلّت. تنطلق بنفحات نابضة من الكشمش الأسود والورد، ثم تنتقل إلى بُعد آخر بلمسة استثنائية من الياسمين، لتختتم بأناقة على قاعدة خشبية حلوة مفعمة بالانتعاش والرقي.",
+   "pt": "O Desodorante Colônia Wepink Infinity Cosmik é o caminho mais exuberante para um místico universo em uma essência chipre, floral e frutada, despertando brilho e encanto por onde passar. Sua fragrância exclusiva inicia nas notas mais vibrantes de groselha preta e rosas, evoluindo para outra dimensão em um toque extraordinário de jasmim. Finaliza com muito estilo em um fundo doce e amadeirado, um aroma repleto de frescor e elegância."
   },
   "notes": {
    "top": [
     [
      "Blackcurrant",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Groselha preta"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -14405,11 +15832,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم"
+   "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Celebrate Life Roll-on Antiperspirant Deodorant offers an invigorating combination of freshness, lasting protection and 72-hour hydration, and its exclusive formula also helps even out skin tone. Its fruity oriental fragrance celebrates the extraordinary, reflecting a unique and genuine beauty.",
-   "ar": "يقدّم مزيل العرق المضاد للتعرّق ماي بروتكشن سيليبريت لايف رول أون مزيجاً منعشاً من الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. ويحتفي عطره الشرقي الفاكهي بكل ما هو استثنائي، عاكساً جمالاً فريداً وصادقاً."
+   "ar": "يقدّم مزيل العرق المضاد للتعرّق ماي بروتكشن سيليبريت لايف رول أون مزيجاً منعشاً من الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. ويحتفي عطره الشرقي الفاكهي بكل ما هو استثنائي، عاكساً جمالاً فريداً وصادقاً.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Celebrate Life oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas, a sua fórmula exclusiva também contribui para uniformizar o tom da pele. Tudo isso, em uma fragrância que celebra o extraordinário, refletindo uma beleza única e verdadeira em um caminho olfativo frutado oriental."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-celebrate-life-50-ml---wepink-294/p",
   "notes": {}
@@ -14441,23 +15870,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The scent that always brings out the best in you",
-   "ar": "العطر الذي يبرز أفضل ما فيكِ دائماً"
+   "ar": "العطر الذي يبرز أفضل ما فيكِ دائماً",
+   "pt": "O aroma que desperta sempre o melhor em você"
   },
   "desc": {
    "en": "Red was created to awaken desire and sophistication, its radiant fragrance representing someone who draws attention and always stands out in a crowd. This Floral Oriental cologne opens with a citrus touch of Blood Orange, moves into a meeting of flowers, and finishes with a woody essence and a sweet stroke of Praline.",
-   "ar": "وُلد ريد ليوقظ الشغف والرقي، إذ يمثّل عطره المشرق شخصية تجذب الأنظار وتتميز دائماً وسط الحشود. تنطلق هذه الكولونيا الزهرية الشرقية بلمسة حمضية من البرتقال الدموي، ثم تمضي نحو لقاء الزهور، لتختتم بجوهر خشبي ولمسة حلوة من البرالين."
+   "ar": "وُلد ريد ليوقظ الشغف والرقي، إذ يمثّل عطره المشرق شخصية تجذب الأنظار وتتميز دائماً وسط الحشود. تنطلق هذه الكولونيا الزهرية الشرقية بلمسة حمضية من البرتقال الدموي، ثم تمضي نحو لقاء الزهور، لتختتم بجوهر خشبي ولمسة حلوة من البرالين.",
+   "pt": "Red nasceu para despertar desejo e sofisticação por onde é transmitido, a sua fragrância radiante representa uma pessoa que atrai olhares e sempre se destaca na multidão, o verdadeiro ouro que reluz em todas as distâncias. O Red Desodorante Colônia tem notas olfativas que possuem uma assinatura marcante e sedutora. As suas gotas fazem parte da família Floral Oriental, que começa com um toque cítrico da Blood Orange, depois caminha para o encontro das flores, finalizando com uma essência amadeirada e pincelada doce de Praline."
   },
   "notes": {
    "top": [
     [
      "Blood orange",
-     "برتقال دموي"
+     "برتقال دموي",
+     "Laranja sanguínea"
     ]
    ],
    "base": [
     [
      "Praline",
-     "برالين"
+     "برالين",
+     "Praliné"
     ]
    ]
   },
@@ -14488,27 +15921,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your new obsession, with an exclusive touch of desire",
-   "ar": "هوسكِ الجديد بلمسة حصرية من الشغف"
+   "ar": "هوسكِ الجديد بلمسة حصرية من الشغف",
+   "pt": "Sua nova obsessão, com um toque exclusivo de desejo"
   },
   "desc": {
    "en": "Obsessed Deluxe Cologne awakens the desire and intrigue found in powerful, unforgettable women. Its exclusive fragrance opens with a bold Fruity Chypre touch blending sophistication and authenticity, evolves into an enveloping heart of violet, and finishes with sweet notes of sandalwood and vanilla.",
-   "ar": "توقظ كولونيا أوبسيسد ديلوكس الشغف والغموض الآسر الحاضرين في المرأة القوية التي لا تُنسى. ينطلق عطرها الحصري بلمسة شيبر فاكهية جريئة تمزج الرقي بالأصالة، ثم يتطور إلى قلب آسر من البنفسج، ليختتم بنفحات حلوة من خشب الصندل والفانيليا."
+   "ar": "توقظ كولونيا أوبسيسد ديلوكس الشغف والغموض الآسر الحاضرين في المرأة القوية التي لا تُنسى. ينطلق عطرها الحصري بلمسة شيبر فاكهية جريئة تمزج الرقي بالأصالة، ثم يتطور إلى قلب آسر من البنفسج، ليختتم بنفحات حلوة من خشب الصندل والفانيليا.",
+   "pt": "O Desodorante Colônia Wepink Obsessed Deluxe desperta o desejo e o intrigante, presentes em mulheres poderosas e inesquecíveis. Sua fragrância exclusiva inicia pelo toque ousado do Chipre Frutado, mesclando sofisticação e autenticidade. Sua essência evolui para um coração envolvente de violeta, finalizando em notas adocicadas de sândalo e baunilha."
   },
   "notes": {
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ]
    ],
    "base": [
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -14539,17 +15977,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The scent that shines with irresistible magnetism",
-   "ar": "العطر الذي يتألق بجاذبية لا تُقاوَم"
+   "ar": "العطر الذي يتألق بجاذبية لا تُقاوَم",
+   "pt": "O aroma que reluz o melhor magnetismo"
   },
   "desc": {
    "en": "The luxurious Obsessed Gold Cologne represents the magnetic, alluring and elegant woman who exudes authenticity and draws admiring glances. This Floral Oriental fragrance opens with floral and fruity touches, especially seductive red berries, moves into a delicate floral heart, and signs off with pleasant sweet and woody notes.",
-   "ar": "تمثّل كولونيا أوبسيسد جولد الفاخرة المرأة الجذابة الساحرة والأنيقة التي تفيض أصالة وتستقطب نظرات الإعجاب. ينطلق هذا العطر الزهري الشرقي بلمسات زهرية وفاكهية، ولا سيما التوت الأحمر الآسر، ثم ينتقل إلى قلب زهري رقيق، ليختتم بنفحات حلوة وخشبية لطيفة."
+   "ar": "تمثّل كولونيا أوبسيسد جولد الفاخرة المرأة الجذابة الساحرة والأنيقة التي تفيض أصالة وتستقطب نظرات الإعجاب. ينطلق هذا العطر الزهري الشرقي بلمسات زهرية وفاكهية، ولا سيما التوت الأحمر الآسر، ثم ينتقل إلى قلب زهري رقيق، ليختتم بنفحات حلوة وخشبية لطيفة.",
+   "pt": "A luxuosa Obsessed Gold Desodorante Colônia representa a mulher magnética, sedutora e elegante, que esbanja autenticidade e atrai olhares admirados. O encantamento paralisa a todos com a beleza que reluz em cada passo e olhar, revelando uma presença que transcende a autenticidade e fica na memória com muito charme e sofisticação. Sua fragrância evoca notas exuberantes em um caminho olfativo Floral Oriental, inicia com toques florais e frutados, especialmente da sedução das frutas vermelhas, seguindo para um coração floral delicado e assinando com agradáveis aromas doces e amadeirados."
   },
   "notes": {
    "top": [
     [
      "Red berries",
-     "توت أحمر"
+     "توت أحمر",
+     "Frutas vermelhas"
     ]
    ]
   },
@@ -14582,69 +16023,84 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Created for women who see beauty in the little moments",
-   "ar": "صُمّم للمرأة التي ترى الجمال في اللحظات الصغيرة"
+   "ar": "صُمّم للمرأة التي ترى الجمال في اللحظات الصغيرة",
+   "pt": "Criado para mulheres que enxergam beleza nos pequenos momentos"
   },
   "desc": {
    "en": "The Perfect Pear & Peach Body Splash is a Floral Fruity blend of juicy pear, delicate peach and a creamy base. Pear, Peach Nectar, Raspberry, Sparkling Notes and Bergamot create a luminous opening; Tuberose, Ylang-Ylang, Davana and a Creamy Accord wrap the heart in femininity; and Patchouli, Musk, Vanilla and Amber leave a soft, warm, velvety trail.",
-   "ar": "بخاخ الجسم بيرفكت بير آند بيتش عطر زهري فاكهي يجمع بين عصارة الكمثرى ورقة الخوخ وقاعدة كريمية. تصنع الكمثرى ورحيق الخوخ وتوت العليق والنفحات المتلألئة والبرغموت افتتاحية مضيئة، بينما يغلّف مسك الروم والإيلانغ إيلانغ والدافانا والتناغم الكريمي القلب بلمسة أنثوية، ويترك الباتشولي والمسك والفانيليا والعنبر أثراً ناعماً دافئاً ومخملياً."
+   "ar": "بخاخ الجسم بيرفكت بير آند بيتش عطر زهري فاكهي يجمع بين عصارة الكمثرى ورقة الخوخ وقاعدة كريمية. تصنع الكمثرى ورحيق الخوخ وتوت العليق والنفحات المتلألئة والبرغموت افتتاحية مضيئة، بينما يغلّف مسك الروم والإيلانغ إيلانغ والدافانا والتناغم الكريمي القلب بلمسة أنثوية، ويترك الباتشولي والمسك والفانيليا والعنبر أثراً ناعماً دافئاً ومخملياً.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Perfect Pear & Peach nasce de uma combinação envolvente entre a suculência da pera, a delicadeza do pêssego e um fundo cremoso que transforma cada borrifada em uma experiência memorável. Sua abertura revela o brilho fresco da Pera, do Néctar de Pêssego, da Framboesa, das Notas Cintilantes e da Bergamota, criando uma sensação luminosa, delicada e naturalmente sofisticada. No coração, a intensidade da Tuberosa, do Ylang-Ylang, da Davana e de um irresistível Acorde Cremoso envolve a pele com feminilidade, conforto e elegância. Flores exuberantes encontram frutas delicadas em uma composição que transmite leveza sem perder personalidade. Ao fundo, Patchouli, Musk, Baunilha e Âmbar deixam um rastro macio, quente e aveludado, prolongando a sensação de bem-estar e transformando a fragrância em uma assinatura marcante. Perfect Pear & Peach é um Floral Frutado criado para mulheres que enxergam beleza nos pequenos momentos, fazem da delicadeza uma força e deixam lembranças por onde passam. Uma fragrância que combina frescor, cremosidade e sofisticação em perfeita harmonia. Porque algumas fragrâncias encantam."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Peach nectar",
-     "رحيق الخوخ"
+     "رحيق الخوخ",
+     "Néctar de pêssego"
     ],
     [
      "Raspberry",
-     "توت العليق"
+     "توت العليق",
+     "Framboesa"
     ],
     [
      "Sparkling notes",
-     "نفحات متلألئة"
+     "نفحات متلألئة",
+     "Notas cintilantes"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Ylang-ylang",
-     "إيلانغ إيلانغ"
+     "إيلانغ إيلانغ",
+     "Ylang-ylang"
     ],
     [
      "Davana",
-     "دافانا"
+     "دافانا",
+     "Davana"
     ],
     [
      "Creamy accord",
-     "تناغم كريمي"
+     "تناغم كريمي",
+     "Acorde cremoso"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -14677,47 +16133,57 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The essence of the Brazilian woman in a vibrant, unforgettable signature",
-   "ar": "جوهر المرأة البرازيلية في بصمة نابضة لا تُنسى"
+   "ar": "جوهر المرأة البرازيلية في بصمة نابضة لا تُنسى",
+   "pt": "A essência da mulher brasileira em uma assinatura vibrante, marcante e inesquecível"
   },
   "desc": {
    "en": "The VF Tropical Body Splash captures the essence of the Brazilian woman: warm, striking and full of personality. Blackberry, Mandarin, Sicilian Lemon and Almond create a luminous, seductive opening with velvety creaminess, while a heart of Jasmine Sambac Absolute, Tuberose, Rose and Cananga reveals the full richness of exuberant flowers.",
-   "ar": "يجسّد بخاخ الجسم في إف تروبيكال جوهر المرأة البرازيلية: دافئة ولافتة ومفعمة بالشخصية. يصنع التوت الأسود واليوسفي والليمون الصقلي واللوز افتتاحية مضيئة وآسرة بلمسة كريمية مخملية، بينما يكشف قلب من مطلق الياسمين سامباك ومسك الروم والورد والكانانغا عن كل ثراء الزهور الغنّاء."
+   "ar": "يجسّد بخاخ الجسم في إف تروبيكال جوهر المرأة البرازيلية: دافئة ولافتة ومفعمة بالشخصية. يصنع التوت الأسود واليوسفي والليمون الصقلي واللوز افتتاحية مضيئة وآسرة بلمسة كريمية مخملية، بينما يكشف قلب من مطلق الياسمين سامباك ومسك الروم والورد والكانانغا عن كل ثراء الزهور الغنّاء.",
+   "pt": "O Desodorante Colônia Body Splash Wepink VF Tropical é uma fragrância que traduz a essência da mulher brasileira: calorosa, marcante e cheia de personalidade. Inspirada em quem transforma presença em memória, revela uma assinatura envolvente para mulheres que gostam de ser lembradas por onde passam. Sua abertura revela uma combinação luminosa e sedutora de Amora, Mandarina, Limão Siciliano e Amêndoa. As notas frutadas e cítricas criam uma primeira impressão radiante e cheia de personalidade, enquanto o toque aveludado da amêndoa adiciona cremosidade e elegância desde os primeiros instantes. É um convite para viver cada momento com autenticidade, confiança e o brilho contagiante que faz parte da alma brasileira. No coração, flores exuberantes ganham protagonismo e revelam toda a riqueza da composição. O Absoluto de Jasmim Sambac floresce com intensidade e sofisticação, envolvido pela presença marcante da Tuberosa, pela delicadeza da Rosa e pelas nuances solares da Cananga. Esse encontro floral traduz o jeito brasileiro de perfumar: feminino, envolvente e cheio de personalidade, equilibrando sensualidade, romantismo e elegância em perfeita harmonia. Ao fundo, a fragrância se torna ainda mais viciante e memorável. O Néctar de Musk revela uma faceta macia e envolvente, enquanto a Baunilha adiciona calor e cremosidade. As notas de Liatrix e Íris Branca enriquecem a composição com profundidade e sofisticação, construindo um rastro intenso, confortável e absolutamente inesquecível. VF Tropical traduz a paixão brasileira por fragrâncias marcantes. Uma criação para mulheres que desejam expressar sua força sem abrir mão da delicadeza, transformando cada presença em um momento especial. Uma assinatura envolvente, radiante e sofisticada que desperta sensações de confiança, sensualidade e liberdade, celebrando a intensidade de quem nasceu para ser lembrada. Porque algumas fragrâncias perfumam. Outras contam histórias. VF Tropical faz os dois."
   },
   "notes": {
    "top": [
     [
      "Blackberry",
-     "توت أسود"
+     "توت أسود",
+     "Amora"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ],
     [
      "Sicilian lemon",
-     "ليمون صقلي"
+     "ليمون صقلي",
+     "Limão siciliano"
     ],
     [
      "Almond",
-     "لوز"
+     "لوز",
+     "Amêndoa"
     ]
    ],
    "heart": [
     [
      "Jasmine sambac absolute",
-     "مطلق الياسمين سامباك"
+     "مطلق الياسمين سامباك",
+     "Absoluto de jasmim sambac"
     ],
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Cananga",
-     "كانانغا"
+     "كانانغا",
+     "Cananga"
     ]
    ]
   },
@@ -14750,11 +16216,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The fruity floral oriental that turns presence into memory",
-   "ar": "عطر زهري شرقي فاكهي يحوّل الحضور إلى ذكرى"
+   "ar": "عطر زهري شرقي فاكهي يحوّل الحضور إلى ذكرى",
+   "pt": "O floral oriental frutado que transforma presença em memória"
   },
   "desc": {
    "en": "Vallora Spell Cologne is a celebration of sophisticated, delicate and naturally captivating femininity. It was created for women who value genuine connections, believe in the power of moments and emotions, and turn every encounter into a special memory.",
-   "ar": "كولونيا فالورا سبيل احتفاء بأنوثة راقية ورقيقة وآسرة بطبيعتها. صُمّمت للمرأة التي تقدّر الروابط الصادقة وتؤمن بقوة اللحظات والمشاعر، وتحوّل كل لقاء إلى ذكرى مميزة."
+   "ar": "كولونيا فالورا سبيل احتفاء بأنوثة راقية ورقيقة وآسرة بطبيعتها. صُمّمت للمرأة التي تقدّر الروابط الصادقة وتؤمن بقوة اللحظات والمشاعر، وتحوّل كل لقاء إلى ذكرى مميزة.",
+   "pt": "O Desodorante Colônia Wepink Vallora Spell é uma celebração da feminilidade sofisticada, delicada e naturalmente envolvente. Uma fragrância criada para mulheres que valorizam conexões genuínas e transformam cada encontro em uma lembrança especial. Vallora Spell é uma fragrância criada para mulheres que acreditam no poder dos momentos, das conexões e das emoções. Transforme presença em memória."
   },
   "source": "https://www.wepink.com.br/desod-col-vallora-spell-100ml---wepink-511/p",
   "notes": {}
@@ -14782,11 +16250,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with an authentic floral oriental touch",
-   "ar": "تغذية عميقة وتماسك بلمسة زهرية شرقية أصيلة"
+   "ar": "تغذية عميقة وتماسك بلمسة زهرية شرقية أصيلة",
+   "pt": "Nutrição profunda e firmeza com o toque autêntico do floral oriental"
   },
   "desc": {
    "en": "The Feive Celestial Body Cream brings everyday luxury, leaving skin nourished, firm and intensely hydrated with a soft touch and a healthy, radiant look. Its formula helps support collagen production and cell renewal, while the fragrance balances freshness, flowers and an amber base for an elegant, refined scent.",
-   "ar": "يمنح كريم الجسم فيف سيليستيال فخامة يومية، إذ يترك البشرة مغذّاة ومشدودة ومرطّبة بعمق بملمس ناعم ومظهر صحي مشرق. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، بينما يوازن عطره بين الانتعاش والزهور وقاعدة عنبرية في عبير أنيق وراقٍ."
+   "ar": "يمنح كريم الجسم فيف سيليستيال فخامة يومية، إذ يترك البشرة مغذّاة ومشدودة ومرطّبة بعمق بملمس ناعم ومظهر صحي مشرق. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، بينما يوازن عطره بين الانتعاش والزهور وقاعدة عنبرية في عبير أنيق وراقٍ.",
+   "pt": "Viva o luxo diariamente e do seu jeito com a Loção Desodorante Body Cream Wepink Feive Celestial, criada para deixar a pele nutrida, firme e intensamente hidratada, com toque macio e aspecto saudável e luminoso. Sua composição auxilia na produção de colágeno e na regeneração celular, enquanto a fragrância equilibra frescor, flores e um fundo ambarado, revelando uma sensação de perfume elegante que acompanha a rotina com leveza e refinamento."
   },
   "source": "https://www.wepink.com.br/body-cream-locao-hid-desod-feive-celestial-200-ml---wepink-497/p",
   "notes": {}
@@ -14812,11 +16282,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the tropical touch of coconut",
-   "ar": "تغذية عميقة وتماسك بلمسة جوز الهند الاستوائية"
+   "ar": "تغذية عميقة وتماسك بلمسة جوز الهند الاستوائية",
+   "pt": "Nutrição profunda e firmeza com o toque tropical do coco"
   },
   "desc": {
    "en": "The One Touch Latte Body Cream offers deep nourishment and firmness with the tropical touch of coconut. Its fragrance carries the floral oriental and fruity character of the One Touch Latte line.",
-   "ar": "يقدّم كريم الجسم ون تاتش لاتيه تغذية عميقة وتماسكاً للبشرة مع لمسة جوز الهند الاستوائية. ويحمل عطره الطابع الزهري الشرقي والفاكهي لمجموعة ون تاتش لاتيه."
+   "ar": "يقدّم كريم الجسم ون تاتش لاتيه تغذية عميقة وتماسكاً للبشرة مع لمسة جوز الهند الاستوائية. ويحمل عطره الطابع الزهري الشرقي والفاكهي لمجموعة ون تاتش لاتيه.",
+   "pt": "A Loção Desodorante Body Cream Wepink One Touch Latte oferece nutrição profunda e firmeza com o toque tropical do coco. Sua fragrância traz o caráter floral oriental e frutado da linha One Touch Latte."
   },
   "source": "https://www.wepink.com.br/body-cream-locao-hid-desod-one-touch-latte-200-ml---wepink-499/p",
   "notes": {}
@@ -14848,53 +16320,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A celebration of ambery oriental that is felt on the skin",
-   "ar": "احتفاء بالعطر الشرقي العنبري الذي تشعر به البشرة"
+   "ar": "احتفاء بالعطر الشرقي العنبري الذي تشعر به البشرة",
+   "pt": "Uma celebração do oriental ambarado que se sente na pele"
   },
   "desc": {
    "en": "Elowen Body Splash is an invitation to celebrate life in its lightest, most vibrant and sophisticated form. It opens with intense currant, bold pink pepper and luminous bergamot, unfolds into a delicate floral heart of lily of the valley and rose with soft woody notes, and settles into a velvety, warm base of patchouli, suede accord and musk.",
-   "ar": "يمثّل بخاخ الجسم إيلوين دعوة للاحتفاء بالحياة في أخف صورها وأكثرها حيوية ورقيًا. يفتتح بالكشمش المكثف وجرأة الفلفل الوردي وإشراقة البرغموت، ثم يكشف عن قلب زهري رقيق من زنبق الوادي والورد مع نفحات خشبية ناعمة، ليستقر على قاعدة مخملية دافئة من الباتشولي وأكورد الشامواه والمسك."
+   "ar": "يمثّل بخاخ الجسم إيلوين دعوة للاحتفاء بالحياة في أخف صورها وأكثرها حيوية ورقيًا. يفتتح بالكشمش المكثف وجرأة الفلفل الوردي وإشراقة البرغموت، ثم يكشف عن قلب زهري رقيق من زنبق الوادي والورد مع نفحات خشبية ناعمة، ليستقر على قاعدة مخملية دافئة من الباتشولي وأكورد الشامواه والمسك.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Elowen é um convite para celebrar a vida em sua forma mais leve, vibrante e sofisticada. Uma fragrância que traduz alegria em cada detalhe, transformando pequenos momentos em experiências memoráveis. Na abertura, a groselha surge intensa e envolvente, trazendo um toque frutado vibrante que se mistura à ousadia da pimenta rosa e ao frescor luminoso da bergamota. Um início marcante, que desperta os sentidos e cria uma presença cheia de personalidade. No coração, a fragrância revela sua elegância com um bouquet floral delicado. O lírio-do-vale e a rosa se encontram com notas amadeiradas suaves, criando equilíbrio entre frescor e sofisticação: uma construção harmoniosa que envolve sem pesar. Ao fundo, a assinatura se torna ainda mais envolvente. O patchouli se une ao acorde de camurça e ao musk, criando um toque aveludado, quente e irresistível. Um rastro que permanece na pele como um abraço sofisticado, marcando presença com delicadeza e intensidade. Elowen é mais do que uma fragrância: é uma expressão de leveza, autenticidade e celebração. Uma fragrância para quem transforma sua presença em algo inesquecível. Uma celebração que se sente na pele."
   },
   "notes": {
    "top": [
     [
      "Currant",
-     "كشمش"
+     "كشمش",
+     "Groselha"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Suede accord",
-     "أكورد الشامواه"
+     "أكورد الشامواه",
+     "Acorde de camurça"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -14927,25 +16410,30 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A vanilla oriental that awakens desire in its most delicate form",
-   "ar": "عطر شرقي بالفانيليا يوقظ الرغبة في أرق صورها"
+   "ar": "عطر شرقي بالفانيليا يوقظ الرغبة في أرق صورها",
+   "pt": "Um oriental baunilha que desperta o desejo em sua forma mais delicada"
   },
   "desc": {
    "en": "Crave Lovely Deodorant Cologne reveals desire in its most delicate and enveloping form, blending creamy sweetness, luminous florals and a soft sensual touch. The opening is fresh and radiant: bergamot and mandarin bring citrus energy, while pink pepper adds a modern, subtly provocative sparkle.",
-   "ar": "يكشف عطر الكولونيا كريف لافلي عن الرغبة في أرق صورها وأكثرها إحاطة، إذ يمزج بين الحلاوة الكريمية والأزهار المشرقة ولمسة حسية ناعمة. تأتي الافتتاحية منعشة ومتألقة، حيث يضفي البرغموت واليوسفي طاقة حمضية، بينما يضيف الفلفل الوردي بريقًا عصريًا جذابًا بلطف."
+   "ar": "يكشف عطر الكولونيا كريف لافلي عن الرغبة في أرق صورها وأكثرها إحاطة، إذ يمزج بين الحلاوة الكريمية والأزهار المشرقة ولمسة حسية ناعمة. تأتي الافتتاحية منعشة ومتألقة، حيث يضفي البرغموت واليوسفي طاقة حمضية، بينما يضيف الفلفل الوردي بريقًا عصريًا جذابًا بلطف.",
+   "pt": "O Desodorante Colônia Wepink Crave Lovely revela o desejo em sua forma mais delicada e envolvente. Uma fragrância que combina doçura cremosa, flores luminosas e um toque de sensualidade macia, criando uma presença feminina que encanta com naturalidade e deixa memória por onde passa. A abertura desperta os sentidos com um frescor luminoso e vibrante. A bergamota e a mandarina trazem uma energia cítrica radiante, enquanto a pimenta rosa adiciona um brilho moderno e levemente provocante. O resultado é um início fresco, delicado e irresistivelmente feminino."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ]
   },
@@ -14978,23 +16466,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The splendour of a tropical summer",
-   "ar": "روعة الصيف الاستوائي"
+   "ar": "روعة الصيف الاستوائي",
+   "pt": "O esplendor do verão tropical"
   },
   "desc": {
    "en": "Ember Divinus Body Splash gathers the best of the tropical summer, bringing sunshine and fruit in all their splendour to a fragrance completed by woody notes. It is a luminous scent full of qualities waiting to be discovered.",
-   "ar": "يجمع بخاخ الجسم إمبر ديفينوس أجمل ما في الصيف الاستوائي، حاملًا الشمس والفواكه بكامل روعتها في عطر تكتمل ملامحه بنفحات خشبية. إنه عبير مشرق يزخر بجوانب تنتظر من يكتشفها."
+   "ar": "يجمع بخاخ الجسم إمبر ديفينوس أجمل ما في الصيف الاستوائي، حاملًا الشمس والفواكه بكامل روعتها في عطر تكتمل ملامحه بنفحات خشبية. إنه عبير مشرق يزخر بجوانب تنتظر من يكتشفها.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Ember Divinus reúne as melhores qualidades do verão tropical, trazendo o sol e as frutas em todo o seu esplendor para uma fragrância que fica completa com suas notas mais amadeiradas. Um aroma luminoso e repleto de qualidades a serem descobertas."
   },
   "notes": {
    "top": [
     [
      "Fruits",
-     "فواكه"
+     "فواكه",
+     "Frutas"
     ]
    ],
    "base": [
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -15025,11 +16517,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "MyProtection Infinity Cosmik Antiperspirant Roll-on Deodorant offers a refreshing combination of freshness, long-lasting protection and 72-hour hydration, and its exclusive formula also helps even out skin tone. It comes in a unique floral oriental scent dedicated to the authentic, transformative woman.",
-   "ar": "يقدّم مزيل العرق برول أون ماي بروتكشن إنفينيتي كوزميك مزيجًا منعشًا من الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. ويأتي بعبير فريد من فئة الأزهار الشرقية، مكرّس للمرأة الأصيلة الملهمة للتغيير."
+   "ar": "يقدّم مزيل العرق برول أون ماي بروتكشن إنفينيتي كوزميك مزيجًا منعشًا من الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. ويأتي بعبير فريد من فئة الأزهار الشرقية، مكرّس للمرأة الأصيلة الملهمة للتغيير.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Infinity Cosmik oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas. Sua fórmula exclusiva também contribui para uniformizar o tom da pele. Tudo isso, em uma essência única e exclusiva, dedicada à mulher autêntica e transformadora, percorrendo um fascinante caminho olfativo floral oriental."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protection-infinity-cosmik-50-ml---wepink-406/p",
   "notes": {}
@@ -15059,11 +16553,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Turn bath time into a premium ritual",
-   "ar": "حوّلي وقت الاستحمام إلى طقس فاخر"
+   "ar": "حوّلي وقت الاستحمام إلى طقس فاخر",
+   "pt": "Transforme seu banho em um ritual premium"
   },
   "desc": {
    "en": "VF Golden Body Scrub is pure luxury in the form of care: it deeply renews, truly hydrates and leaves skin irresistibly soft. With aloe vera, almond oil and rosehip oil, it nourishes, regenerates and restores the skin's natural firmness, while an irresistible fragrance turns self-care into an unforgettable moment.",
-   "ar": "مقشّر الجسم في إف جولدن هو الفخامة الخالصة في صورة عناية، إذ يجدّد البشرة بعمق ويرطّبها فعليًا ويتركها بنعومة لا تُقاوم. وبفضل الصبار وزيت اللوز وزيت ثمر الورد، يغذّي البشرة ويجدّدها ويعيد إليها تماسكها الطبيعي، فيما يحوّل عطره الآسر لحظة العناية الذاتية إلى تجربة لا تُنسى."
+   "ar": "مقشّر الجسم في إف جولدن هو الفخامة الخالصة في صورة عناية، إذ يجدّد البشرة بعمق ويرطّبها فعليًا ويتركها بنعومة لا تُقاوم. وبفضل الصبار وزيت اللوز وزيت ثمر الورد، يغذّي البشرة ويجدّدها ويعيد إليها تماسكها الطبيعي، فيما يحوّل عطره الآسر لحظة العناية الذاتية إلى تجربة لا تُنسى.",
+   "pt": "O Body Scrub VF Golden é puro luxo em forma de cuidado. Um esfoliante que vai muito além do básico: ele renova profundamente, hidrata de verdade e deixa sua pele tão macia que é impossível não se apaixonar pelo toque. Com Aloe Vera, Óleo de Amêndoas e Óleo de Rosa Mosqueta, ele nutre, regenera e devolve a firmeza natural da pele. E para completar, perfuma com uma fragrância irresistível que envolve e conquista, transformando seu momento de autocuidado em algo inesquecível."
   },
   "source": "https://www.wepink.com.br/body-scrub-vf-golden-450gr---wepink-359/p",
   "notes": {}
@@ -15095,37 +16591,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Santa was late, but he brought the best of Christmas",
-   "ar": "تأخّر سانتا كلوز، لكنه أحضر أجمل ما في عيد الميلاد"
+   "ar": "تأخّر سانتا كلوز، لكنه أحضر أجمل ما في عيد الميلاد",
+   "pt": "Papai Noel atrasou, mas nos trouxe o melhor do Natal"
   },
   "desc": {
    "en": "Merry Christmas Deodorant Cologne celebrates the unique magic of Christmas with a bright essence full of charm for the happiest moments. Its floral oriental fragrance opens with peony and bergamot, evolves into a dreamy floral heart and finishes on a sweet, pure woody base reminiscent of tender memories.",
-   "ar": "يحتفي عطر الكولونيا ميري كريسماس بسحر عيد الميلاد الفريد بعبير مشرق يفيض بالجاذبية في أسعد اللحظات. يفتتح عطره الزهري الشرقي بالفاوانيا والبرغموت، ثم يتطور إلى قلب زهري حالم، ليختتم بقاعدة خشبية حلوة ونقية تستحضر دفء الذكريات الجميلة."
+   "ar": "يحتفي عطر الكولونيا ميري كريسماس بسحر عيد الميلاد الفريد بعبير مشرق يفيض بالجاذبية في أسعد اللحظات. يفتتح عطره الزهري الشرقي بالفاوانيا والبرغموت، ثم يتطور إلى قلب زهري حالم، ليختتم بقاعدة خشبية حلوة ونقية تستحضر دفء الذكريات الجميلة.",
+   "pt": "Celebre a magia única do Natal com o Desodorante Colônia Wepink Merry Christmas, em uma essência brilhante para transmitir muito encanto nos momentos mais felizes. Sua fragrância Floral Oriental inicia na beleza da Peônia e na alegria da Bergamota, evoluindo em um coração floral dos sonhos. Finaliza em um fundo doce, amadeirado e puro, remetendo à ternura de doces memórias."
   },
   "notes": {
    "top": [
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -15157,37 +16660,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The charm of a moisturising touch for the skin",
-   "ar": "سحر لمسة مرطّبة للبشرة"
+   "ar": "سحر لمسة مرطّبة للبشرة",
+   "pt": "O encanto de um toque hidratante para a sua pele"
   },
   "desc": {
    "en": "VF Golden Deodorant Body Oil nourishes, hydrates and restores the skin with a light, fragrant and relaxing touch after bathing, thanks to a blend of oils and vitamin E. Its fragrance opens with vibrant pink pepper and mandarin, combined with an unforgettable touch of jasmine, and finishes on a sweet, woody base.",
-   "ar": "يغذّي زيت الجسم في إف جولدن البشرة ويرطّبها ويجدّدها بلمسة خفيفة ومعطّرة ومريحة بعد الاستحمام، بفضل مزيج من الزيوت وفيتامين إي. يفتتح عطره بنفحات نابضة من الفلفل الوردي واليوسفي تمتزج بلمسة لا تُنسى من الياسمين، ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يغذّي زيت الجسم في إف جولدن البشرة ويرطّبها ويجدّدها بلمسة خفيفة ومعطّرة ومريحة بعد الاستحمام، بفضل مزيج من الزيوت وفيتامين إي. يفتتح عطره بنفحات نابضة من الفلفل الوردي واليوسفي تمتزج بلمسة لا تُنسى من الياسمين، ليختتم بقاعدة حلوة وخشبية.",
+   "pt": "O Óleo Desodorante Corporal Wepink VF Golden nutre, hidrata e restaura a pele com um toque leve, perfumado e relaxante após o banho. Sua composição conta com um blend de óleos e vitamina E, celebrando a alegria de um cuidado brilhante. Sua fragrância inicia nas vibrantes notas de pimenta rosa e mandarina, combinado em um toque inesquecível de jasmim. Finaliza em um fundo doce e amadeirado, revelando uma essência poderosa e exclusiva."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ],
     [
      "Mandarin",
-     "يوسفي"
+     "يوسفي",
+     "Mandarina"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -15221,37 +16731,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Be wonderful and confident!",
-   "ar": "كوني رائعة وواثقة!"
+   "ar": "كوني رائعة وواثقة!",
+   "pt": "Be wonderful and confident!"
   },
   "desc": {
    "en": "Wonderful Deodorant Cologne evokes a world of desire and curiosity, where a fearless woman defies labels and breaks conventions, radiating brilliance and a captivating presence. It opens with effervescent fruits and a touch of pink pepper, moves into a delicate, elegant floral heart and finishes with sweet, woody notes that exude warmth and sensuality.",
-   "ar": "يجسّد عطر الكولونيا وندرفل عالمًا من الرغبات والفضول، حيث تتحدى امرأة جريئة كل القوالب وتكسر الأعراف، مشعّة بالتألق والحضور الآسر. يفتتح بفوران الفواكه ولمسة من الفلفل الوردي، ثم ينتقل إلى قلب زهري رقيق وأنيق، ليختتم بنفحات حلوة وخشبية تفيض بالدفء والحسية."
+   "ar": "يجسّد عطر الكولونيا وندرفل عالمًا من الرغبات والفضول، حيث تتحدى امرأة جريئة كل القوالب وتكسر الأعراف، مشعّة بالتألق والحضور الآسر. يفتتح بفوران الفواكه ولمسة من الفلفل الوردي، ثم ينتقل إلى قلب زهري رقيق وأنيق، ليختتم بنفحات حلوة وخشبية تفيض بالدفء والحسية.",
+   "pt": "O Desodorante Colônia Wonderful é um mundo cheio de desejos e curiosidade, onde uma mulher destemida desafia todos os rótulos e quebra convenções, irradiando brilho e uma presença encantadora. Em uma experiência sensorial complexa e atraente, começa com a efervescência das frutas e um toque de pimenta rosa, seguindo para um coração floral delicado e elegante, finalizando com notas doces e amadeiradas que emanam calor e sensualidade."
   },
   "notes": {
    "top": [
     [
      "Fruits",
-     "فواكه"
+     "فواكه",
+     "Frutas"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -15284,49 +16801,59 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Overflow with the freedom of love on a starry night",
-   "ar": "دعي حرية الحب تفيض في ليلة مرصّعة بالنجوم"
+   "ar": "دعي حرية الحب تفيض في ليلة مرصّعة بالنجوم",
+   "pt": "Transborde a liberdade do amor em uma noite estrelada"
   },
   "desc": {
    "en": "Liberté Nuit captures the essence of a passionate encounter under the moonlight, an invitation to starry nights full of love. It opens with the soft sweetness of almond meeting a fruity embrace, blossoms into a heart of violet, damask rose, prune and magnolia, and reveals a sensual depth of woody notes and sweet vanilla.",
-   "ar": "يأسر عطر ليبرتيه نوي جوهر لقاء شغوف تحت ضوء القمر، في دعوة إلى ليالٍ مرصّعة بالنجوم يملؤها الحب. يفتتح بحلاوة اللوز الناعمة التي تلتقي بعناق فاكهي، ثم يتفتّح قلبه بنفحات البنفسج والورد الدمشقي والبرقوق المجفف والماغنوليا، ليكشف في عمقه عن نفحات خشبية حسية وحلاوة الفانيليا."
+   "ar": "يأسر عطر ليبرتيه نوي جوهر لقاء شغوف تحت ضوء القمر، في دعوة إلى ليالٍ مرصّعة بالنجوم يملؤها الحب. يفتتح بحلاوة اللوز الناعمة التي تلتقي بعناق فاكهي، ثم يتفتّح قلبه بنفحات البنفسج والورد الدمشقي والبرقوق المجفف والماغنوليا، ليكشف في عمقه عن نفحات خشبية حسية وحلاوة الفانيليا.",
+   "pt": "O Liberté Nuit é uma fragrância que captura a essência de um encontro apaixonado sob a luz do luar, oferecendo um convite inesquecível para noites estreladas cheias de amor, sendo o aroma perfeito para quem deseja encantar e ser inesquecível todas as noites. Sua experiência sensorial elegante começa com o doce suave da amêndoa, que se encontra com um abraço frutado. No coração, uma paixão proibida desabrocha com notas de violeta, rosa damascena, ameixa seca e magnólia. Nas profundezas da noite, um mistério encantador se revela, transbordando sensualidade e paixão com notas amadeiradas e o doce da baunilha."
   },
   "notes": {
    "top": [
     [
      "Almond",
-     "لوز"
+     "لوز",
+     "Amêndoa"
     ],
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ]
    ],
    "heart": [
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ],
     [
      "Damask rose",
-     "ورد دمشقي"
+     "ورد دمشقي",
+     "Rosa damascena"
     ],
     [
      "Prune",
-     "برقوق مجفف"
+     "برقوق مجفف",
+     "Ameixa seca"
     ],
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ]
    ],
    "base": [
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -15357,11 +16884,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The powerful ally against hair loss that strengthens strands",
-   "ar": "الحليف القوي لمكافحة تساقط الشعر وتقوية الخصلات"
+   "ar": "الحليف القوي لمكافحة تساقط الشعر وتقوية الخصلات",
+   "pt": "O poderoso aliado para combater a queda e fortalecer os fios"
   },
   "desc": {
    "en": "Hair Tonic is designed to fight hair loss and help achieve beautiful, strong, resilient and fragrant hair. Suitable for all hair types, its essential combination supports hair treatment, helping existing strands grow and damaged ones recover.",
-   "ar": "صُمّم هير تونيك لمكافحة تساقط الشعر والمساعدة على الحصول على شعر جميل وقوي ومتين وفوّاح. ويناسب جميع أنواع الشعر، إذ تدعم تركيبته الأساسية علاج الخصلات، فتساعد على نمو الشعر الموجود وتعافي الخصلات المتضررة."
+   "ar": "صُمّم هير تونيك لمكافحة تساقط الشعر والمساعدة على الحصول على شعر جميل وقوي ومتين وفوّاح. ويناسب جميع أنواع الشعر، إذ تدعم تركيبته الأساسية علاج الخصلات، فتساعد على نمو الشعر الموجود وتعافي الخصلات المتضررة.",
+   "pt": "O Hair Tonic Wepink é indispensável para conquistar um cabelo bonito e resistente. Ele veio preparado para combater a queda e ser um aliado perfeito para um cabelo bonito, resistente, robusto e cheiroso! O tônico capilar do mundo rosa tem a combinação perfeita e essencial para auxiliar no tratamento dos seus fios, sendo ideal para todos os tipos de cabelo. Seus componentes vão ajudar no crescimento dos fios já existentes e na recuperação dos danificados."
   },
   "source": "https://www.wepink.com.br/hair-tonic-crescimento-capilar/p",
   "notes": {}
@@ -15391,11 +16920,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "Feive Celestial Antiperspirant Roll-on Deodorant turns daily care into a luxurious ritual. Its exclusive formula offers freshness, intense hydration and 72-hour protection while helping to even out skin tone, and its elegant, delicate fragrance provides a comfortable, naturally sophisticated feeling throughout the day.",
-   "ar": "يحوّل مزيل العرق برول أون فيف سيليستيال العناية اليومية إلى طقس فاخر. تمنح تركيبته الحصرية الانتعاش والترطيب المكثف والحماية لمدة 72 ساعة مع المساعدة على توحيد لون البشرة، بينما يمنح عطره الأنيق والرقيق إحساسًا مريحًا وراقيًا بطبيعته طوال اليوم."
+   "ar": "يحوّل مزيل العرق برول أون فيف سيليستيال العناية اليومية إلى طقس فاخر. تمنح تركيبته الحصرية الانتعاش والترطيب المكثف والحماية لمدة 72 ساعة مع المساعدة على توحيد لون البشرة، بينما يمنح عطره الأنيق والرقيق إحساسًا مريحًا وراقيًا بطبيعته طوال اليوم.",
+   "pt": "O Desodorante Antitranspirante Roll-on Wepink Feive Celestial transforma o seu cuidado diário em um ritual de luxo. Sua fórmula exclusiva oferece frescor, hidratação intensa e proteção por 72 horas, além de ajudar a uniformizar o tom da pele, enquanto a fragrância elegante e delicada envolve você em uma sensação confortável e naturalmente sofisticada ao longo do dia."
   },
   "source": "https://www.wepink.com.br/desodorante-antitranspirante-roll-on-feive-celestial-50ml---wepink/p",
   "notes": {}
@@ -15427,11 +16958,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Sophisticated freshness that turns every moment into an experience of freedom",
-   "ar": "انتعاش راقٍ يحوّل كل لحظة إلى تجربة من الحرية"
+   "ar": "انتعاش راقٍ يحوّل كل لحظة إلى تجربة من الحرية",
+   "pt": "O frescor sofisticado que transforma cada instante em uma experiência de liberdade"
   },
   "desc": {
    "en": "Venice Breeze Deodorant Cologne was created for those who find beauty in life's lightest moments. Inspired by the invigorating feeling of breezes sweeping across waterside landscapes, it expresses freshness, well-being and sophistication in a modern, luminous fragrance.",
-   "ar": "صُمّم عطر الكولونيا فينيس بريز لمن يجدون الجمال في أخف لحظات الحياة. ومستوحى من الإحساس المنعش للنسمات التي تعبر المناظر المطلّة على الماء، يجسّد الانتعاش والراحة والرقي في عطر عصري ومشرق."
+   "ar": "صُمّم عطر الكولونيا فينيس بريز لمن يجدون الجمال في أخف لحظات الحياة. ومستوحى من الإحساس المنعش للنسمات التي تعبر المناظر المطلّة على الماء، يجسّد الانتعاش والراحة والرقي في عطر عصري ومشرق.",
+   "pt": "O Desodorante Colônia Wepink Venice Breeze foi criado para quem encontra beleza nos momentos mais leves da vida. Inspirado pela sensação revigorante das brisas que percorrem paisagens à beira d'água, ele traduz frescor, bem-estar e sofisticação em uma fragrância moderna e luminosa."
   },
   "source": "https://www.wepink.com.br/desod-col-venice-breeze---100-ml---wepink--514/p",
   "notes": {}
@@ -15461,11 +16994,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The fruity floriental that turns delicacy into presence",
-   "ar": "العطر الزهري الشرقي الفاكهي الذي يحوّل الرقة إلى حضور"
+   "ar": "العطر الزهري الشرقي الفاكهي الذي يحوّل الرقة إلى حضور",
+   "pt": "O floriental frutado que transforma delicadeza em presença"
   },
   "desc": {
    "en": "Cassera Body Splash is a fruity floriental fragrance for the body. It turns delicacy into presence.",
-   "ar": "بخاخ الجسم كاسيرا عطر زهري شرقي بلمسة فاكهية للجسم، يحوّل الرقة إلى حضور لافت."
+   "ar": "بخاخ الجسم كاسيرا عطر زهري شرقي بلمسة فاكهية للجسم، يحوّل الرقة إلى حضور لافت.",
+   "pt": "O Body Splash Wepink Cassera é uma fragrância floriental frutada para o corpo, que transforma delicadeza em presença."
   },
   "source": "https://www.wepink.com.br/body-splash-cassera-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -15494,11 +17029,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fruity floramber made for intense nights",
-   "ar": "عطر زهري عنبري فاكهي صُنع لليالي المفعمة بالحيوية"
+   "ar": "عطر زهري عنبري فاكهي صُنع لليالي المفعمة بالحيوية",
+   "pt": "Um floramber frutado feito para noites intensas"
   },
   "desc": {
    "en": "Velours Pourpre Deodorant Cologne was created for women who turn presence into a signature. An intense, elegant and enveloping fragrance, it awakens the senses from the very first spray and leaves an unforgettable trail.",
-   "ar": "صُمّم عطر الكولونيا فيلور بوربر للمرأة التي تحوّل حضورها إلى بصمة خاصة. إنه عطر مكثّف وأنيق وآسر، يوقظ الحواس منذ الرشة الأولى ويترك أثرًا يستحيل نسيانه."
+   "ar": "صُمّم عطر الكولونيا فيلور بوربر للمرأة التي تحوّل حضورها إلى بصمة خاصة. إنه عطر مكثّف وأنيق وآسر، يوقظ الحواس منذ الرشة الأولى ويترك أثرًا يستحيل نسيانه.",
+   "pt": "O Desodorante Colônia Wepink Velours Pourpre foi criado para mulheres que transformam presença em assinatura. Uma fragrância intensa, elegante e envolvente, que desperta os sentidos desde a primeira borrifada e deixa um rastro impossível de esquecer."
   },
   "source": "https://www.wepink.com.br/desod-col-velours-pourpre-100ml---wepink-504/p",
   "notes": {}
@@ -15530,29 +17067,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The woody fragrance that expresses contemporary elegance and sophistication",
-   "ar": "العطر الخشبي الذي يجسّد الأناقة والرقي المعاصرين"
+   "ar": "العطر الخشبي الذي يجسّد الأناقة والرقي المعاصرين",
+   "pt": "A fragrância amadeirada que traduz elegância e sofisticação contemporânea"
   },
   "desc": {
    "en": "Ever Strong Deodorant Cologne expresses strength, elegance and contemporary sophistication. Created for men who know that presence need not be overstated to be striking, it combines vibrant freshness, refined aromatic notes and an intense woody base that lingers on the skin.",
-   "ar": "يجسّد عطر الكولونيا إيفر سترونج القوة والأناقة والرقي المعاصر. صُمّم للرجل الذي يدرك أن الحضور لا يحتاج إلى مبالغة ليكون لافتًا، ويجمع بين انتعاش نابض ونفحات عطرية عشبية راقية وقاعدة خشبية مكثّفة تبقى على البشرة بأسلوب آسر."
+   "ar": "يجسّد عطر الكولونيا إيفر سترونج القوة والأناقة والرقي المعاصر. صُمّم للرجل الذي يدرك أن الحضور لا يحتاج إلى مبالغة ليكون لافتًا، ويجمع بين انتعاش نابض ونفحات عطرية عشبية راقية وقاعدة خشبية مكثّفة تبقى على البشرة بأسلوب آسر.",
+   "pt": "O Desodorante Colônia Wepink Ever Strong é uma fragrância que traduz força, elegância e sofisticação contemporânea. Criado para homens que entendem que presença não precisa ser exagerada para ser marcante, Ever Strong combina frescor vibrante, notas aromáticas refinadas e uma base amadeirada intensa que permanece na pele de forma envolvente e inesquecível."
   },
   "notes": {
    "top": [
     [
      "Fresh notes",
-     "نفحات منعشة"
+     "نفحات منعشة",
+     "Notas frescas"
     ]
    ],
    "heart": [
     [
      "Aromatic notes",
-     "نفحات عطرية عشبية"
+     "نفحات عطرية عشبية",
+     "Notas aromáticas"
     ]
    ],
    "base": [
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -15584,29 +17126,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the cosy embrace of Vanilla Cuddle",
-   "ar": "تغذية عميقة وتماسك مع عناق فانيلا كادل الدافئ"
+   "ar": "تغذية عميقة وتماسك مع عناق فانيلا كادل الدافئ",
+   "pt": "Nutrição profunda e firmeza com o abraço acolhedor de Vanilla Cuddle"
   },
   "desc": {
    "en": "Vanilla Cuddle Body Cream wraps the body in an embrace of sweetness and hydration. Its formula helps support collagen production and cell renewal, leaving skin nourished, firm, soft, healthy-looking and luminous. Its floral amber scent reveals notes of tangerine, jasmine and vanilla for a delicate, enveloping and irresistibly cosy experience.",
-   "ar": "يغلّف كريم الجسم فانيلا كادل الجسم بعناق من الحلاوة والترطيب. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتبدو البشرة مغذّاة ومشدودة وناعمة وصحية ومشرقة. ويكشف عبيره الزهري العنبري عن نفحات التانجرين والياسمين والفانيليا في تجربة رقيقة ودافئة لا تُقاوم."
+   "ar": "يغلّف كريم الجسم فانيلا كادل الجسم بعناق من الحلاوة والترطيب. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتبدو البشرة مغذّاة ومشدودة وناعمة وصحية ومشرقة. ويكشف عبيره الزهري العنبري عن نفحات التانجرين والياسمين والفانيليا في تجربة رقيقة ودافئة لا تُقاوم.",
+   "pt": "A Loção Desodorante Body Cream Wepink Vanilla Cuddle envolve o corpo em um abraço de doçura e hidratação. Sua fórmula auxilia na produção de colágeno e na regeneração celular, deixando a pele nutrida, firme e macia, com aspecto saudável e luminoso. O cheirinho Floral Ambarado revela notas de Tangerina, Jasmim e Baunilha, criando uma experiência delicada, envolvente e irresistivelmente aconchegante."
   },
   "notes": {
    "top": [
     [
      "Tangerine",
-     "تانجرين"
+     "تانجرين",
+     "Tangerina"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -15637,45 +17184,54 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Bring new life to hair with an unforgettable floral trail",
-   "ar": "امنحي شعرك حيوية جديدة مع أثر زهري لا يُنسى"
+   "ar": "امنحي شعرك حيوية جديدة مع أثر زهري لا يُنسى",
+   "pt": "Dê vida nova ao seu cabelo com um rastro floral inesquecível"
   },
   "desc": {
    "en": "Infinity Hair Mist is the missing touch to bring hair to life, with a charming floral woody heart and notes of blackberry leaves, sweet orange and lemon, finishing on a sweet trail of amber and vanilla. It is an excellent choice for keeping hair protected and fragrant every day.",
-   "ar": "يُعدّ معطّر الشعر إنفينيتي اللمسة التي كانت تنقص الشعر لتمنحه الحيوية، بقلب زهري خشبي ساحر ونفحات من أوراق التوت الأسود والبرتقال الحلو والليمون، ليختتم بأثر حلو من العنبر والفانيليا. إنه خيار ممتاز للحفاظ على الشعر محميًا ومعطّرًا يوميًا."
+   "ar": "يُعدّ معطّر الشعر إنفينيتي اللمسة التي كانت تنقص الشعر لتمنحه الحيوية، بقلب زهري خشبي ساحر ونفحات من أوراق التوت الأسود والبرتقال الحلو والليمون، ليختتم بأثر حلو من العنبر والفانيليا. إنه خيار ممتاز للحفاظ على الشعر محميًا ومعطّرًا يوميًا.",
+   "pt": "O Desodorante Capilar Hair Mist Wepink Infinity é o produto que faltava para dar vida ao seu cabelo, com seu encantador coração floral amadeirado, notas de Folhas de Amora, Laranja Doce, Limão, e um final adocicado de Âmbar e Baunilha. Uma excelente opção para manter seus fios protegidos e perfumados diariamente."
   },
   "notes": {
    "top": [
     [
      "Blackberry leaves",
-     "أوراق التوت الأسود"
+     "أوراق التوت الأسود",
+     "Folhas de amora"
     ],
     [
      "Sweet orange",
-     "برتقال حلو"
+     "برتقال حلو",
+     "Laranja doce"
     ],
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -15706,11 +17262,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Delicious as a lollipop, shiny as a dream",
-   "ar": "لذيذ كالمصاصة ولامع كالحلم"
+   "ar": "لذيذ كالمصاصة ولامع كالحلم",
+   "pt": "Delicioso como pirulito, brilhante como um sonho"
   },
   "desc": {
    "en": "Pirulipop Lip Oil leaves lips hydrated and fragrant with a delicious lollipop scent. Delicious as a lollipop and shiny as a dream, it adds a sweet touch to the lip routine.",
-   "ar": "يترك زيت الشفاه بيروليبوب الشفاه مرطّبة ومعطّرة بعبير المصاصة اللذيذ. لذيذ كالمصاصة ولامع كالحلم، يضفي لمسة حلوة على روتين العناية بالشفاه."
+   "ar": "يترك زيت الشفاه بيروليبوب الشفاه مرطّبة ومعطّرة بعبير المصاصة اللذيذ. لذيذ كالمصاصة ولامع كالحلم، يضفي لمسة حلوة على روتين العناية بالشفاه.",
+   "pt": "Com o Wepink Lip Oil Pirulipop você deixa seus lábios hidratados e cheirosos, com um aroma delicioso de pirulito!"
   },
   "source": "https://www.wepink.com.br/lip-oil-35g-pirulipop---wepink-fs1111846/p",
   "notes": {}
@@ -15741,17 +17299,20 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Hydrated and empowered!",
-   "ar": "ترطيب يمنحكِ القوة والثقة!"
+   "ar": "ترطيب يمنحكِ القوة والثقة!",
+   "pt": "Você hidratada e empoderada!"
   },
   "desc": {
    "en": "Scarlette Body Cream delivers hydration, nourishment and firmness, with a formula designed to help support collagen production and cell renewal for consistently healthy skin. Its scent evokes a sunny field of strawberries, keeping the skin fragrant until the end of the day.",
-   "ar": "يمنح كريم الجسم سكارليت الترطيب والتغذية والتماسك، بتركيبة صُمّمت للمساعدة على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة صحية دائمًا. ويستحضر عبيره حقلًا مشمسًا من الفراولة، ليُبقي البشرة معطّرة حتى نهاية اليوم."
+   "ar": "يمنح كريم الجسم سكارليت الترطيب والتغذية والتماسك، بتركيبة صُمّمت للمساعدة على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة صحية دائمًا. ويستحضر عبيره حقلًا مشمسًا من الفراولة، ليُبقي البشرة معطّرة حتى نهاية اليوم.",
+   "pt": "Hidratação, nutrição e firmeza estão todas garantidas com a Loção Desodorante Body Cream Wepink Scarlette, com sua composição formulada para auxiliar na produção de colágeno e regeneração celular, deixando sua pele sempre saudável. Além disso, seu aroma te transporta para um campo ensolarado de morangos, para que você se sinta perfumada até o fim do dia."
   },
   "notes": {
    "top": [
     [
      "Strawberry",
-     "فراولة"
+     "فراولة",
+     "Morango"
     ]
    ]
   },
@@ -15782,27 +17343,32 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A radiant touch of beauty for the hair",
-   "ar": "لمسة مشرقة من الجمال لخصلات الشعر"
+   "ar": "لمسة مشرقة من الجمال لخصلات الشعر",
+   "pt": "Um toque radiante de beleza aos fios"
   },
   "desc": {
    "en": "Red Hair Mist keeps hair shinier, protected and fragrant all day, with an essence that enchants through bold, seductive nuances. Its oriental scent brings a sense of comfort and well-being amid a mix of eye-catching flowers, finishing on a sweet, woody base.",
-   "ar": "يمنح معطّر الشعر ريد الشعر لمعانًا أكبر وحماية وعبيرًا يدوم طوال اليوم، بعبير يأسر بلمساته الجريئة والمغرية. ويمنح عطره الشرقي إحساسًا بالراحة والانتعاش وسط مزيج من الأزهار اللافتة، ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يمنح معطّر الشعر ريد الشعر لمعانًا أكبر وحماية وعبيرًا يدوم طوال اليوم، بعبير يأسر بلمساته الجريئة والمغرية. ويمنح عطره الشرقي إحساسًا بالراحة والانتعاش وسط مزيج من الأزهار اللافتة، ليختتم بقاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Capilar Hair Mist Wepink Red é o melhor para cabelos mais brilhantes, protegidos e perfumados durante o dia todo, em uma essência que encanta em suas nuances marcantes e sedutoras. Seu aroma Oriental proporciona uma sensação de conforto e bem-estar aos fios, em meio a um mix de flores que atrai olhares por onde passar. Sua fragrância finaliza em um fundo doce e amadeirado, deslumbrando em uma excelente sensação de bem-estar."
   },
   "notes": {
    "heart": [
     [
      "Mixed flowers",
-     "مزيج من الأزهار"
+     "مزيج من الأزهار",
+     "Mix de flores"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -15833,11 +17399,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "MyProtection One Touch Silk Antiperspirant Roll-on Deodorant offers 72-hour protection and an exclusive formula that helps even out skin tone. Its scent blends flowers and fruits, bringing an everyday freshness for enjoying life and touching hearts.",
-   "ar": "يمنح مزيل العرق برول أون ماي بروتكشن ون تاتش سيلك حماية لمدة 72 ساعة بتركيبة حصرية تساعد على توحيد لون البشرة. ويمزج عبيره بين الأزهار والفواكه، ليمنح انتعاشًا يوميًا للاستمتاع بالحياة ولمس القلوب."
+   "ar": "يمنح مزيل العرق برول أون ماي بروتكشن ون تاتش سيلك حماية لمدة 72 ساعة بتركيبة حصرية تساعد على توحيد لون البشرة. ويمزج عبيره بين الأزهار والفواكه، ليمنح انتعاشًا يوميًا للاستمتاع بالحياة ولمس القلوب.",
+   "pt": "Sinta-se abraçada pelo Desodorante Antitranspirante Roll-on Myprotection Wepink One Touch Silk, que traz 72h de proteção e uma fórmula exclusiva para uniformização do tom de pele. Seu aroma combina flores e frutas para que você aproveite a vida e toque corações com o frescor diário que você merece."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-one-touch-silk-50-ml-363/p",
   "notes": {}
@@ -15869,37 +17437,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Intensity you can feel on the skin",
-   "ar": "قوة تنبض على البشرة"
+   "ar": "قوة تنبض على البشرة",
+   "pt": "Intensidade à flor da pele"
   },
   "desc": {
    "en": "VF Onyx is vanilla like never before: intense, sensual and unforgettable. The creaminess of milk and the balanced sweetness of vanilla meet the sophistication of orchid, creating a sharp, irresistible contrast, while amber lingers softly in the base with woody nuances that make the composition unique and addictive.",
-   "ar": "في إف أونيكس هو الفانيليا كما لم تُعهد من قبل: مكثّفة وجذابة ولا تُنسى. تلتقي كريمية الحليب وحلاوة الفانيليا المتوازنة برقي الأوركيد، لتخلق تباينًا لافتًا لا يُقاوم، فيما يبقى العنبر ناعمًا في القاعدة مع لمسات خشبية تجعل التركيبة فريدة وآسرة."
+   "ar": "في إف أونيكس هو الفانيليا كما لم تُعهد من قبل: مكثّفة وجذابة ولا تُنسى. تلتقي كريمية الحليب وحلاوة الفانيليا المتوازنة برقي الأوركيد، لتخلق تباينًا لافتًا لا يُقاوم، فيما يبقى العنبر ناعمًا في القاعدة مع لمسات خشبية تجعل التركيبة فريدة وآسرة.",
+   "pt": "VF Onyx é baunilha como você nunca sentiu antes: intensa, sexy e inesquecível. A cremosidade do leite e a doçura equilibrada da baunilha se encontram com a sofisticação da orquídea, criando um contraste afiado e irresistível que prende os sentidos desde o primeiro instante. No fundo, o âmbar permanece suave, com nuances amadeiradas que tornam a composição única e viciante. Absolutamente magnético, VF Onyx é aquele aroma que você não consegue parar de sentir na pele."
   },
   "notes": {
    "top": [
     [
      "Milk",
-     "حليب"
+     "حليب",
+     "Leite"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ],
    "heart": [
     [
      "Orchid",
-     "أوركيد"
+     "أوركيد",
+     "Orquídea"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -15931,57 +17506,69 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrance that celebrates an unforgettable presence",
-   "ar": "عطر يحتفي بحضور لا يُنسى"
+   "ar": "عطر يحتفي بحضور لا يُنسى",
+   "pt": "Uma fragrância que celebra sua presença inesquecível"
   },
   "desc": {
    "en": "Auretx Deodorant Cologne blossoms on the skin with intensity and delicacy, like an unforgettable rose, uniting bold fruits with elegant flowers. Top notes of blackcurrant with green and red fruits lead to a heart of peony, rose and apricot, while a warm base of patchouli, amber, wood and musk settles on the skin like a warm embrace.",
-   "ar": "يتفتّح عطر الكولونيا أوريتكس على البشرة بقوة ورقة كوردة لا تُنسى، جامعًا بين جرأة الفواكه وأناقة الأزهار. تفتتح نفحاته بالكشمش الأسود مع الفواكه الخضراء والحمراء، يليها قلب من الفاوانيا والورد والمشمش، بينما تستقر على البشرة قاعدة دافئة من الباتشولي والعنبر والخشب والمسك كعناق دافئ."
+   "ar": "يتفتّح عطر الكولونيا أوريتكس على البشرة بقوة ورقة كوردة لا تُنسى، جامعًا بين جرأة الفواكه وأناقة الأزهار. تفتتح نفحاته بالكشمش الأسود مع الفواكه الخضراء والحمراء، يليها قلب من الفاوانيا والورد والمشمش، بينما تستقر على البشرة قاعدة دافئة من الباتشولي والعنبر والخشب والمسك كعناق دافئ.",
+   "pt": "O Desodorante Colônia Wepink Auretx é uma fragrância que floresce na pele com intensidade e delicadeza, como uma rosa que nunca se esquece. Une a ousadia das frutas à elegância das flores, revelando uma assinatura olfativa feminina, apaixonante e duradoura. As notas de saída trazem a doçura vibrante da Groselha Preta com o frescor das Frutas Verdes e Vermelhas, evocando o brilho de um momento inesquecível. No coração, o buquê floral de Peônia, Rosa e Damasco entrega charme e romantismo, enquanto a base envolvente de Patchouli, Âmbar, Madeira e Musk fixa na pele como um abraço quente."
   },
   "notes": {
    "top": [
     [
      "Blackcurrant",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Groselha preta"
     ],
     [
      "Green fruits",
-     "فواكه خضراء"
+     "فواكه خضراء",
+     "Frutas verdes"
     ],
     [
      "Red fruits",
-     "فواكه حمراء"
+     "فواكه حمراء",
+     "Frutas vermelhas"
     ]
    ],
    "heart": [
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Apricot",
-     "مشمش"
+     "مشمش",
+     "Damasco"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Wood",
-     "خشب"
+     "خشب",
+     "Madeira"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -16013,31 +17600,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A light and graceful touch of care",
-   "ar": "لمسة عناية خفيفة ورقيقة"
+   "ar": "لمسة عناية خفيفة ورقيقة",
+   "pt": "Um toque leve e gracioso de cuidado"
   },
   "desc": {
    "en": "Changes Body Cream has a creamy texture that delivers hydration, nourishment and firmness, with a formula that helps support collagen production and cell renewal for healthy-looking, glowing skin. Inspired by life's changes, like the natural phases of butterflies, its floral fragrance unfolds with freesia and jasmine and finishes on a sweet, woody base.",
-   "ar": "يتميّز كريم الجسم تشينجز بقوام كريمي يمنح الترطيب والتغذية والتماسك، بتركيبة تساعد على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة تبدو صحية ومشرقة. ومستوحى من جمال تحوّلات الحياة كمراحل الفراشات الطبيعية، يتفتّح عطره الزهري بنفحات الفريزيا والياسمين ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يتميّز كريم الجسم تشينجز بقوام كريمي يمنح الترطيب والتغذية والتماسك، بتركيبة تساعد على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة تبدو صحية ومشرقة. ومستوحى من جمال تحوّلات الحياة كمراحل الفراشات الطبيعية، يتفتّح عطره الزهري بنفحات الفريزيا والياسمين ليختتم بقاعدة حلوة وخشبية.",
+   "pt": "A Loção Desodorante Body Cream Wepink Changes possui um toque cremoso, inesquecível em hidratação, nutrição e firmeza. Sua composição auxilia na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhoso, para quem deseja um suave bem-estar. Sua essência representa a beleza das mudanças da vida, como as fases naturais de lindas borboletas. Sua fragrância Floral evolui no encanto das notas de Frésia e Jasmim e finaliza em um fundo doce e amadeirado, representando com graça a essência de ser mulher."
   },
   "notes": {
    "heart": [
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -16068,11 +17661,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The essential palette for adding colour to makeup",
-   "ar": "اللوحة الأساسية لإضفاء اللون على المكياج"
+   "ar": "اللوحة الأساسية لإضفاء اللون على المكياج",
+   "pt": "A paleta essencial para pigmentar a sua maquiagem"
   },
   "desc": {
    "en": "Weblush brings the essential glow to any look, from subtle everyday makeup to bold party styles. The highly pigmented quartet offers high staying power and an ultra-fine, velvety texture in coral, pink, orange and rosé shades designed to suit many skin tones. The shades can be layered, used to illuminate the skin and blended together.",
-   "ar": "تمنح وي بلاش الإشراقة الأساسية لأي إطلالة، من المكياج الهادئ اليومي إلى الإطلالات اللافتة في الحفلات. تتميّز الرباعية بألوان عالية التصبّغ وثبات عالٍ وقوام فائق النعومة ومخملي، بدرجات المرجاني والوردي والبرتقالي والروزيه المصمّمة لتناسب مختلف ألوان البشرة. ويمكن بناء طبقاتها وإضاءة البشرة بها ومزج درجاتها."
+   "ar": "تمنح وي بلاش الإشراقة الأساسية لأي إطلالة، من المكياج الهادئ اليومي إلى الإطلالات اللافتة في الحفلات. تتميّز الرباعية بألوان عالية التصبّغ وثبات عالٍ وقوام فائق النعومة ومخملي، بدرجات المرجاني والوردي والبرتقالي والروزيه المصمّمة لتناسب مختلف ألوان البشرة. ويمكن بناء طبقاتها وإضاءة البشرة بها ومزج درجاتها.",
+   "pt": "O Weblush tem o glow essencial para você arrasar na make, seja ela discreta para o dia a dia ou chamativa para uma festa. O quarteto de cores é super pigmentado e sua fórmula tecnológica proporciona uma alta fixação, com textura finíssima e super aveludada. A paleta tem quatro tons: coral, rosado, alaranjado e rosê, pensadas para combinar com vários tons de pele, realçando a beleza de todos de uma forma natural. Você poderá construir camadas, iluminar a pele e misturar os tons."
   },
   "source": "https://www.wepink.com.br/weblush-quarteto/p",
   "notes": {}
@@ -16104,41 +17699,49 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Overflow with well-being on a starry night",
-   "ar": "دعي الإحساس بالراحة يفيض في ليلة مرصّعة بالنجوم"
+   "ar": "دعي الإحساس بالراحة يفيض في ليلة مرصّعة بالنجوم",
+   "pt": "Transborde bem-estar em uma noite estrelada"
   },
   "desc": {
    "en": "Liberté Nuit Body Splash is a captivating fragrance and an invitation to starry nights full of love, well-being and unforgettable moments. It opens with the soft sweetness of almond meeting a fruity embrace, blossoms into a heart of floral notes with a touch of prune, and finishes with sensual woody notes and sweet vanilla.",
-   "ar": "بخاخ الجسم ليبرتيه نوي عطر آسر يمثّل دعوة إلى ليالٍ مرصّعة بالنجوم يملؤها الحب والراحة واللحظات التي لا تُنسى. يفتتح بحلاوة اللوز الناعمة التي تلتقي بعناق فاكهي، ثم يتفتّح قلبه بنفحات زهرية ولمسة من البرقوق المجفف، ليختتم بنفحات خشبية حسية وحلاوة الفانيليا."
+   "ar": "بخاخ الجسم ليبرتيه نوي عطر آسر يمثّل دعوة إلى ليالٍ مرصّعة بالنجوم يملؤها الحب والراحة واللحظات التي لا تُنسى. يفتتح بحلاوة اللوز الناعمة التي تلتقي بعناق فاكهي، ثم يتفتّح قلبه بنفحات زهرية ولمسة من البرقوق المجفف، ليختتم بنفحات خشبية حسية وحلاوة الفانيليا.",
+   "pt": "O Body Splash Liberté Nuit Desodorante Colônia é uma fragrância apaixonante que convida para noites estreladas repleta de amor, bem-estar e momentos inesquecíveis todas as noites. Sua experiência sensorial elegante começa com o doce suave da amêndoa, que se encontra com um abraço frutado. No coração, uma paixão proibida desabrocha com notas florais e um toque de ameixa seca. Finalizando nas profundezas da noite com paixão e sensualidade, com notas amadeiradas e o doce da baunilha."
   },
   "notes": {
    "top": [
     [
      "Almond",
-     "لوز"
+     "لوز",
+     "Amêndoa"
     ],
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ],
     [
      "Prune",
-     "برقوق مجفف"
+     "برقوق مجفف",
+     "Ameixa seca"
     ]
    ],
    "base": [
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -16170,41 +17773,49 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Experience sweet and authentic hydration",
-   "ar": "تجربة ترطيب عذبة وأصيلة"
+   "ar": "تجربة ترطيب عذبة وأصيلة",
+   "pt": "Experimente uma doce e autêntica hidratação"
   },
   "desc": {
    "en": "VF Honey Body Cream provides hydration, nourishment and firmness, with actives that help support collagen production and cell renewal for beautiful, fragrant, healthy-looking and radiant skin.",
-   "ar": "يمنح كريم الجسم في إف هني الترطيب والتغذية والتماسك بفضل مكوّنات نشطة تساعد على دعم إنتاج الكولاجين وتجديد الخلايا، لبشرة جميلة ومعطّرة تبدو صحية ومشرقة."
+   "ar": "يمنح كريم الجسم في إف هني الترطيب والتغذية والتماسك بفضل مكوّنات نشطة تساعد على دعم إنتاج الكولاجين وتجديد الخلايا، لبشرة جميلة ومعطّرة تبدو صحية ومشرقة.",
+   "pt": "Body Cream VF Honey Desodorante Hidratante é a escolha ideal para uma pele bonita, perfumada e com aspecto saudável. Sua fórmula proporciona hidratação, nutrição e firmeza à pele, devido à composição de ativos que auxiliam na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhante. Sua fragrância envolvente inicia com doçura suculenta do pêssego, notas amargas e um toque de cardamomo. Trilhando caminho para um coração floral delicado de jasmim, fechando a jornada rica com a baunilha e madeiras sensuais."
   },
   "notes": {
    "top": [
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ],
     [
      "Bitter notes",
-     "نفحات مُرّة"
+     "نفحات مُرّة",
+     "Notas amargas"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Woods",
-     "أخشاب"
+     "أخشاب",
+     "Madeiras"
     ]
    ]
   },
@@ -16237,49 +17848,59 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The essence of courage and elegance that delights every sense",
-   "ar": "جوهر الشجاعة والأناقة الذي يأسر جميع الحواس"
+   "ar": "جوهر الشجاعة والأناقة الذي يأسر جميع الحواس",
+   "pt": "A essência da coragem e elegância que encanta todos os sentidos"
   },
   "desc": {
    "en": "Lion Noir Deodorant Cologne is a masculine fragrance for those who leave a mark of courage and strength, like a restless lion fiercely pursuing its goals and freedom. Its woody citrus trail opens with a citrus burst and pink pepper, warms into a floral jasmine heart, and reveals a sensual base of cedar, sandalwood, vetiver, musk and patchouli.",
-   "ar": "عطر الكولونيا ليون نوار عطر رجالي لمن يترك بصمة من الشجاعة والقوة، كأسد لا يهدأ يسعى بشراسة نحو أهدافه وحريته. يفتتح مساره الخشبي الحمضي بانفجار من الحمضيات ولمسة من الفلفل الوردي، ثم يتطور إلى قلب دافئ بنعومة الياسمين الزهرية، ليكشف عن قاعدة حسية من خشب الأرز وخشب الصندل والفيتيفر والمسك والباتشولي."
+   "ar": "عطر الكولونيا ليون نوار عطر رجالي لمن يترك بصمة من الشجاعة والقوة، كأسد لا يهدأ يسعى بشراسة نحو أهدافه وحريته. يفتتح مساره الخشبي الحمضي بانفجار من الحمضيات ولمسة من الفلفل الوردي، ثم يتطور إلى قلب دافئ بنعومة الياسمين الزهرية، ليكشف عن قاعدة حسية من خشب الأرز وخشب الصندل والفيتيفر والمسك والباتشولي.",
+   "pt": "O Lion Noir Desodorante Colônia é a escolha de fragrância masculina para quem sabe que deixará a marca da coragem e força, assim como um leão inquieto que busca ferozmente alcançar seus objetivos e liberdade. Revelando intensidade misteriosa com muito charme e elegância, em um aroma duradouro. Seu caminho olfativo é Amadeirado Cítrico, começa com uma explosão cítrica e um toque de pimenta rosa, evoluindo para um coração caloroso e suavidade floral do jasmim. As notas de fundo revelam uma sofisticação irresistível e sensual: cedro, sândalo, vetiver, musk e um toque exótico do patchouli."
   },
   "notes": {
    "top": [
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ],
     [
      "Vetiver",
-     "فيتيفر"
+     "فيتيفر",
+     "Vetiver"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ]
    ]
   },
@@ -16310,37 +17931,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Essential fragrance and nourishment for the skin",
-   "ar": "العطر والتغذية الأساسيان للبشرة"
+   "ar": "العطر والتغذية الأساسيان للبشرة",
+   "pt": "O perfume e a nutrição essencial para a sua pele"
   },
   "desc": {
    "en": "The Oil Obsessed is a body oil made to maintain the skin's vitality, with an oil blend that provides deep nourishment, powerful hydration and components that help fight premature ageing and improve elasticity. Light and soft to the touch, its bold, sensual fragrance opens with cherry intertwined with citrus, followed by gardenia with sweet notes of honey and caramel.",
-   "ar": "زيت الجسم ذا أويل أوبسيسد مثالي للحفاظ على حيوية البشرة، إذ يمنحها مزيج زيوته تغذية عميقة وترطيبًا قويًا، ويضم مكوّنات تساعد على مكافحة علامات التقدّم المبكر في السن وتحسين المرونة. وبلمسته الخفيفة والناعمة، يفتتح عطره الجريء والحسي بالكرز المتشابك مع الحمضيات، يليه الغاردينيا مع نفحات حلوة من العسل والكراميل."
+   "ar": "زيت الجسم ذا أويل أوبسيسد مثالي للحفاظ على حيوية البشرة، إذ يمنحها مزيج زيوته تغذية عميقة وترطيبًا قويًا، ويضم مكوّنات تساعد على مكافحة علامات التقدّم المبكر في السن وتحسين المرونة. وبلمسته الخفيفة والناعمة، يفتتح عطره الجريء والحسي بالكرز المتشابك مع الحمضيات، يليه الغاردينيا مع نفحات حلوة من العسل والكراميل.",
+   "pt": "The Oil Obsessed é o óleo corporal perfeito para manter a vitalidade da sua pele. O seu blend de óleo proporciona uma nutrição profunda, hidratação poderosa e tem componentes que auxiliam no combate ao envelhecimento precoce, melhorando a elasticidade da pele. Tudo isso em um toque leve e suave, combinado com uma fragrância marcante, sensual e ousada, que inicia com um toque de cereja, entrelaçado pelos cítricos e, na sequência, a gardênia ganha espaço junto as notas doces do mel e caramelo."
   },
   "notes": {
    "top": [
     [
      "Cherry",
-     "كرز"
+     "كرز",
+     "Cereja"
     ],
     [
      "Citrus notes",
-     "نفحات حمضية"
+     "نفحات حمضية",
+     "Notas cítricas"
     ]
    ],
    "heart": [
     [
      "Gardenia",
-     "غاردينيا"
+     "غاردينيا",
+     "Gardênia"
     ]
    ],
    "base": [
     [
      "Honey",
-     "عسل"
+     "عسل",
+     "Mel"
     ],
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -16371,53 +17999,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A creation that balances freshness, strength and sophistication",
-   "ar": "إبداع يوازن بين الانتعاش والقوة والرقي"
+   "ar": "إبداع يوازن بين الانتعاش والقوة والرقي",
+   "pt": "Uma criação que equilibra frescor, força e sofisticação"
   },
   "desc": {
    "en": "Absolute Titanium is a contemporary interpretation of masculine elegance, created for men who win people over instantly and remain in memory long after they leave. It opens with vibrant lemon, aromatic mint and juicy green apple, reveals a refined heart of geranium and lavender, and settles into an intense, comfortable base of cedar, vanilla, vetiver and moss.",
-   "ar": "عطر أبسولوت تيتانيوم تفسير معاصر للأناقة الرجالية، صُمّم للرجل الذي يأسر من اللحظة الأولى ويبقى في الذاكرة طويلًا بعد رحيله. يفتتح بطاقة الليمون النابضة وانتعاش النعناع العطري وعصارة التفاح الأخضر، ثم يكشف عن قلب راقٍ من إبرة الراعي والخزامى، ليستقر على قاعدة مكثّفة ومريحة من خشب الأرز والفانيليا والفيتيفر والطحلب."
+   "ar": "عطر أبسولوت تيتانيوم تفسير معاصر للأناقة الرجالية، صُمّم للرجل الذي يأسر من اللحظة الأولى ويبقى في الذاكرة طويلًا بعد رحيله. يفتتح بطاقة الليمون النابضة وانتعاش النعناع العطري وعصارة التفاح الأخضر، ثم يكشف عن قلب راقٍ من إبرة الراعي والخزامى، ليستقر على قاعدة مكثّفة ومريحة من خشب الأرز والفانيليا والفيتيفر والطحلب.",
+   "pt": "Algumas presenças são construídas pelo tempo. Outras são percebidas imediatamente. Absolute Titanium nasce para homens que unem essas duas características: conquistam no primeiro instante e permanecem na memória muito depois de partirem. Sua composição revela uma interpretação contemporânea da elegância masculina, equilibrando frescor, intensidade e sofisticação em uma assinatura marcante e versátil. A abertura combina a energia vibrante do Limão, o frescor aromático da Menta e a suculência da Maçã Verde, criando uma sensação revigorante que desperta os sentidos e transmite confiança desde o primeiro momento. No coração, Gerânio e Lavanda revelam uma faceta refinada e naturalmente elegante. O encontro entre acordes aromáticos e florais traz equilíbrio à composição, traduzindo uma masculinidade moderna, segura e cheia de personalidade. Ao fundo, Cedro, Baunilha, Vetiver e Musgo constroem uma assinatura intensa e confortável. As madeiras nobres encontram nuances quentes e envolventes, criando um rastro sofisticado que permanece na pele com profundidade e presença. Absolute Titanium foi criado para homens que fazem da elegância um estilo de vida. Uma criação que equilibra frescor, força e sofisticação em uma composição atemporal, capaz de acompanhar diferentes momentos sem perder sua identidade. Porque o verdadeiro legado não está apenas no que se conquista. Está na marca que se deixa por onde se passa."
   },
   "notes": {
    "top": [
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ],
     [
      "Mint",
-     "نعناع"
+     "نعناع",
+     "Menta"
     ],
     [
      "Green apple",
-     "تفاح أخضر"
+     "تفاح أخضر",
+     "Maçã verde"
     ]
    ],
    "heart": [
     [
      "Geranium",
-     "إبرة الراعي"
+     "إبرة الراعي",
+     "Gerânio"
     ],
     [
      "Lavender",
-     "خزامى"
+     "خزامى",
+     "Lavanda"
     ]
    ],
    "base": [
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Vetiver",
-     "فيتيفر"
+     "فيتيفر",
+     "Vetiver"
     ],
     [
      "Moss",
-     "طحلب"
+     "طحلب",
+     "Musgo"
     ]
    ]
   },
@@ -16451,33 +18090,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fruity oriental made for those who love to leave a trail",
-   "ar": "عطر شرقي فاكهي لمن يحب أن يترك أثرًا"
+   "ar": "عطر شرقي فاكهي لمن يحب أن يترك أثرًا",
+   "pt": "Um oriental frutado feito para quem gosta de deixar rastros"
   },
   "desc": {
    "en": "Tyrie Royale Body Splash expresses the essence of seduction and self-confidence. The fragrance combines fruity freshness, a floral heart and a sweet, warm base, creating an enveloping scent of comfort and sensuality that accompanies the daily routine and leaves an irresistible trail.",
-   "ar": "يجسّد بخاخ الجسم تايري رويال جوهر الإغراء والثقة بالنفس. يجمع العطر بين انتعاش فاكهي وقلب زهري وقاعدة حلوة دافئة، ليمنح عبيرًا آسرًا يفيض بالراحة والحسية، يرافق الروتين اليومي ويترك أثرًا لا يُقاوم."
+   "ar": "يجسّد بخاخ الجسم تايري رويال جوهر الإغراء والثقة بالنفس. يجمع العطر بين انتعاش فاكهي وقلب زهري وقاعدة حلوة دافئة، ليمنح عبيرًا آسرًا يفيض بالراحة والحسية، يرافق الروتين اليومي ويترك أثرًا لا يُقاوم.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Tyrie Royale traduz a essência da sedução e autoconfiança. A fragrância combina frescor frutado, um coração floral e um fundo de doçura e calor, criando um aroma envolvente que exala conforto e sensualidade. Um toque marcante para acompanhar sua rotina e deixar no ar um rastro irresistível!"
   },
   "notes": {
    "top": [
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Warm notes",
-     "نفحات دافئة"
+     "نفحات دافئة",
+     "Notas quentes"
     ]
    ]
   },
@@ -16511,33 +18156,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Renew yourself with lightness and comfort",
-   "ar": "تجدّدي بخفة وراحة"
+   "ar": "تجدّدي بخفة وراحة",
+   "pt": "Renove-se em leveza e conforto"
   },
   "desc": {
    "en": "Lavanda Calm Body Splash celebrates moments of relaxation with a unique fragrance that refreshes the senses. Its composition, with a special touch of lavender oil, has calming properties that help restore sleep. Its serene floral scent features fresh orange blossom and orchid over a sweet, woody base.",
-   "ar": "يحتفي بخاخ الجسم لافاندا كالم بلحظات الاسترخاء بعطر فريد ينعش الحواس. وتتميّز تركيبته، المعزّزة بلمسة من زيت الخزامى، بخصائص مهدّئة تساعد على استعادة النوم. ويقدّم مسارًا عطريًا زهريًا هادئًا بانتعاش زهر البرتقال والأوركيد فوق قاعدة حلوة وخشبية."
+   "ar": "يحتفي بخاخ الجسم لافاندا كالم بلحظات الاسترخاء بعطر فريد ينعش الحواس. وتتميّز تركيبته، المعزّزة بلمسة من زيت الخزامى، بخصائص مهدّئة تساعد على استعادة النوم. ويقدّم مسارًا عطريًا زهريًا هادئًا بانتعاش زهر البرتقال والأوركيد فوق قاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Lavanda Calm aprecia a essência dos momentos de relaxamento, em uma fragrância única e refrescante aos sentidos. Sua composição auxilia na restauração do sono com suas propriedades calmantes, unido ao toque especial do óleo de lavanda. Tudo isso, em um caminho olfativo floral sereno e encantador, unido ao frescor da flor de laranjeira, orquídea e o fundo mais doce, amadeirado e perfeito."
   },
   "notes": {
    "top": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ],
    "heart": [
     [
      "Orchid",
-     "أوركيد"
+     "أوركيد",
+     "Orquídea"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -16570,37 +18221,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A talisman that captures your whole essence",
-   "ar": "تميمة تحتضن جوهرك بالكامل"
+   "ar": "تميمة تحتضن جوهرك بالكامل",
+   "pt": "Um talismã que encapsula toda a sua essência"
   },
   "desc": {
    "en": "Like amethyst, a stone symbolising balance and power, Ruby Ametist Deodorant Cologne carries a rare lilac glow. Its luminous notes balance creamy tuberose with citrus bergamot and delicate orange blossom for a clean, feminine floral, while a base of white musk and cedar wraps the skin in elegant, lasting comfort.",
-   "ar": "على غرار الجمشت، الحجر الذي يرمز إلى التوازن والقوة، يحمل عطر الكولونيا روبي أميثيست بريقًا ليلكيًا نادرًا. توازن نفحاته المشرقة بين حلاوة التيوبروز الكريمية وانتعاش البرغموت الحمضي ورقة زهر البرتقال في عطر زهري نقي وأنثوي، بينما تغلّف قاعدة المسك الأبيض وخشب الأرز البشرة براحة أنيقة تدوم."
+   "ar": "على غرار الجمشت، الحجر الذي يرمز إلى التوازن والقوة، يحمل عطر الكولونيا روبي أميثيست بريقًا ليلكيًا نادرًا. توازن نفحاته المشرقة بين حلاوة التيوبروز الكريمية وانتعاش البرغموت الحمضي ورقة زهر البرتقال في عطر زهري نقي وأنثوي، بينما تغلّف قاعدة المسك الأبيض وخشب الأرز البشرة براحة أنيقة تدوم.",
+   "pt": "Como a Ametista, pedra que simboliza equilíbrio e poder, o Desodorante Colônia Wepink Ruby Ametist carrega um brilho lilás raro que inspira sofisticação em cada detalhe. Suas notas luminosas equilibram a doçura cremosa da Tuberosa com o frescor cítrico da Bergamota e a delicadeza da Flor de Laranjeira, criando um floral limpo, feminino e sofisticado. O fundo de Musk Branco e Cedro envolve a pele em conforto elegante e duradouro, revelando uma fragrância preciosa, moderna e surpreendente. Adocicado e intenso, Ruby Ametist é como a própria joia: valioso e atemporal."
   },
   "notes": {
    "top": [
     [
      "Tuberose",
-     "تيوبروز"
+     "تيوبروز",
+     "Tuberosa"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ],
    "base": [
     [
      "White musk",
-     "مسك أبيض"
+     "مسك أبيض",
+     "Almíscar branco"
     ],
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ]
    ]
   },
@@ -16633,37 +18291,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A new obsession, an exclusive luxury of love",
-   "ar": "هوسكِ الجديد، فخامة حصرية للحب"
+   "ar": "هوسكِ الجديد، فخامة حصرية للحب",
+   "pt": "Sua nova obsessão, um luxo exclusivo do amor"
   },
   "desc": {
    "en": "Obsessed Exclusive Pink Deodorant Cologne is a luxury apart, a classic for the woman who knows how to draw attention with sweet charm. It opens with the exclusive glamour of fig and pink pepper, builds on the finesse of jasmine and the timeless radiance of tuberose, and enchants with a final touch of sandalwood.",
-   "ar": "عطر الكولونيا أوبسيسد إكسكلوسيف بينك فخامة من نوع خاص، وعطر كلاسيكي للمرأة التي تعرف كيف تلفت الأنظار بسحرها العذب. يفتتح بفخامة التين والفلفل الوردي الحصرية، ثم يتعمّق برقي الياسمين وتألق التيوبروز الخالد، ليأسر بلمسة ختامية من خشب الصندل."
+   "ar": "عطر الكولونيا أوبسيسد إكسكلوسيف بينك فخامة من نوع خاص، وعطر كلاسيكي للمرأة التي تعرف كيف تلفت الأنظار بسحرها العذب. يفتتح بفخامة التين والفلفل الوردي الحصرية، ثم يتعمّق برقي الياسمين وتألق التيوبروز الخالد، ليأسر بلمسة ختامية من خشب الصندل.",
+   "pt": "O Desodorante Colônia Wepink Obsessed Exclusive Pink é um luxo à parte, um clássico da mulher que sabe chamar a atenção em seu doce charme. Inicia no glamour exclusivo do Figo e da Pimenta Rosa, encorpando a finesse do Jasmim e o brilho atemporal da Tuberosa. Sua beleza encanta no toque final do Sândalo, sabendo conquistar em seu aroma sensual."
   },
   "notes": {
    "top": [
     [
      "Fig",
-     "تين"
+     "تين",
+     "Figo"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Tuberose",
-     "تيوبروز"
+     "تيوبروز",
+     "Tuberosa"
     ]
    ],
    "base": [
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -16694,37 +18359,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrant tribute to the most treasured memories",
-   "ar": "تحية معطّرة لأثمن الذكريات"
+   "ar": "تحية معطّرة لأثمن الذكريات",
+   "pt": "Um tributo perfumado às suas memórias mais valiosas"
   },
   "desc": {
    "en": "Celebrate Relics Deodorant Cologne honours life's richest and brightest memories in a soft floral fruity scent. Fresh pear and bergamot reveal the treasure of a unique floral heart, while amber and vanilla bring richness to the base of this sweetly enchanting fragrance.",
-   "ar": "يحتفي عطر الكولونيا سيليبريت ريليكس بأغنى ذكريات الحياة وأكثرها إشراقًا بعبير زهري فاكهي ناعم. تكشف نفحات الكمثرى والبرغموت المنعشة عن كنز من قلب زهري فريد، بينما يضفي العنبر والفانيليا ثراءً على قاعدة هذا العطر ذي السحر العذب."
+   "ar": "يحتفي عطر الكولونيا سيليبريت ريليكس بأغنى ذكريات الحياة وأكثرها إشراقًا بعبير زهري فاكهي ناعم. تكشف نفحات الكمثرى والبرغموت المنعشة عن كنز من قلب زهري فريد، بينما يضفي العنبر والفانيليا ثراءً على قاعدة هذا العطر ذي السحر العذب.",
+   "pt": "O Desodorante Colônia Wepink Celebrate Relics exalta a essência das lembranças mais ricas e brilhantes da vida, que reluzem em um aroma floral, frutado e suave. Suas nuances possuem o toque fresco da Pera e da Bergamota, revelando um tesouro em um coração floral único. Ao fundo, exala a riqueza do Âmbar e da Baunilha, uma poderosa fragrância que celebra um doce encanto."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -16757,49 +18429,59 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The serenity of moonlight in every note",
-   "ar": "صفاء ضوء القمر في كل نفحة"
+   "ar": "صفاء ضوء القمر في كل نفحة",
+   "pt": "A serenidade do luar em cada nota"
   },
   "desc": {
    "en": "Moon Deodorant Cologne has an essence of natural charm, like an unforgettable satellite that draws every gaze. Its floral trail combines soft notes of almond, black cherry and pear in a refreshing contrast, evolves with peony and jasmine, and finishes on an otherworldly sweet base of vanilla, patchouli and raspberry.",
-   "ar": "يتميّز عطر الكولونيا مون بعبير يوقظ سحرًا طبيعيًا، كقمر لا يُنسى يجذب الأنظار أينما حلّ. يجمع مساره الزهري بين نفحات ناعمة من اللوز والكرز الأسود والكمثرى في تباين منعش للحواس، ثم يتطور بلمسة من الفاوانيا والياسمين، ليختتم بقاعدة حلوة من عالم آخر تضم الفانيليا والباتشولي وتوت العليق."
+   "ar": "يتميّز عطر الكولونيا مون بعبير يوقظ سحرًا طبيعيًا، كقمر لا يُنسى يجذب الأنظار أينما حلّ. يجمع مساره الزهري بين نفحات ناعمة من اللوز والكرز الأسود والكمثرى في تباين منعش للحواس، ثم يتطور بلمسة من الفاوانيا والياسمين، ليختتم بقاعدة حلوة من عالم آخر تضم الفانيليا والباتشولي وتوت العليق.",
+   "pt": "O Desodorante Colônia Wepink Moon possui uma essência que desperta um encanto natural, como um satélite inesquecível aos olhares por onde passar. Sua fragrância combina um caminho olfativo floral a notas suaves de amêndoas, cereja negra e pera, em um contraste refrescante aos sentidos. Evolui em um toque especial de peônia e jasmim, finalizando em um fundo adocicado de outro mundo, com baunilha, patchouli e framboesa."
   },
   "notes": {
    "top": [
     [
      "Almond",
-     "لوز"
+     "لوز",
+     "Amêndoa"
     ],
     [
      "Black cherry",
-     "كرز أسود"
+     "كرز أسود",
+     "Cereja negra"
     ],
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ]
    ],
    "heart": [
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Raspberry",
-     "توت العليق"
+     "توت العليق",
+     "Framboesa"
     ]
    ]
   },
@@ -16831,33 +18513,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The magic of mystical, fragrant hydration",
-   "ar": "سحر ترطيب غامض ومعطّر"
+   "ar": "سحر ترطيب غامض ومعطّر",
+   "pt": "A magia de uma hidratação mística e perfumada"
   },
   "desc": {
    "en": "Virginia Fonseca Choices Body Cream enchants with a soft, smooth and fragrant touch, an invitation to the freedom of being oneself. A blend of 9 powerful actives with moisturising and nourishing properties helps fight premature ageing, firm the skin and support collagen production. Its fresh chypre trail moves from fruity notes to a floral heart, ending in woody, sweet touches.",
-   "ar": "يأسر كريم الجسم فيرجينيا فونسيكا تشويسز بلمسته الناعمة والمعطّرة، في دعوة إلى حرية أن يكون المرء على طبيعته. ويساعد مزيج من 9 مكوّنات نشطة فائقة القوة، غنية بالخصائص المرطّبة والمغذّية، على مكافحة علامات التقدّم المبكر في السن وشدّ البشرة ودعم إنتاج الكولاجين. وينتقل مساره العطري الشيبري المنعش من النفحات الفاكهية إلى قلب زهري، ليختتم بلمسات خشبية وحلوة."
+   "ar": "يأسر كريم الجسم فيرجينيا فونسيكا تشويسز بلمسته الناعمة والمعطّرة، في دعوة إلى حرية أن يكون المرء على طبيعته. ويساعد مزيج من 9 مكوّنات نشطة فائقة القوة، غنية بالخصائص المرطّبة والمغذّية، على مكافحة علامات التقدّم المبكر في السن وشدّ البشرة ودعم إنتاج الكولاجين. وينتقل مساره العطري الشيبري المنعش من النفحات الفاكهية إلى قلب زهري، ليختتم بلمسات خشبية وحلوة.",
+   "pt": "Body Cream Virginia Fonseca Choices Desodorante Hidratante é uma loção corporal que encanta pelo toque macio, suave e perfumado. Um convite perfeito para a liberdade de ser quem é, conquistando uma pele bonita, brilhosa e com aspecto saudável. Tudo isso é possível graças ao blend de 9 ativos superpotentes, repletos de propriedades hidratantes e nutritivas, que combatem o envelhecimento precoce, proporcionam firmeza à pele e auxiliam na produção de colágeno. Sua jornada sensorial efervescente e sensual, desenha o caminho olfativo Chipre Fresh, começa com notas frutadas e segue para um coração que desperta o desabrochar das flores e finaliza em uma trilha misteriosa cheia de sedução, com toques amadeirados e doces."
   },
   "notes": {
    "top": [
     [
      "Fruity notes",
-     "نفحات فاكهية"
+     "نفحات فاكهية",
+     "Notas frutadas"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ]
    ],
    "base": [
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ],
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ]
    ]
   },
@@ -16891,53 +18579,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The woody fragrance that expresses contemporary elegance and sophistication",
-   "ar": "العطر الخشبي الذي يجسّد الأناقة والرقي المعاصرين"
+   "ar": "العطر الخشبي الذي يجسّد الأناقة والرقي المعاصرين",
+   "pt": "A fragrância amadeirada que traduz elegância e sofisticação contemporânea"
   },
   "desc": {
    "en": "Ever Strong Body Splash expresses strength, elegance and contemporary sophistication for men whose presence needs no exaggeration. Bergamot, pineapple, blueberry and cypress open with luminous freshness, while French lavender, geranium and blue narcissus add aromatic, floral depth, settling into a base of woods and earthy notes.",
-   "ar": "يجسّد بخاخ الجسم إيفر سترونج القوة والأناقة والرقي المعاصر للرجل الذي لا يحتاج حضوره إلى مبالغة. يفتتح بانتعاش مشرق من البرغموت والأناناس والتوت الأزرق والسرو، بينما تضفي الخزامى الفرنسية وإبرة الراعي والنرجس الأزرق عمقًا عطريًا زهريًا، ليستقر على قاعدة من الأخشاب والنفحات الترابية."
+   "ar": "يجسّد بخاخ الجسم إيفر سترونج القوة والأناقة والرقي المعاصر للرجل الذي لا يحتاج حضوره إلى مبالغة. يفتتح بانتعاش مشرق من البرغموت والأناناس والتوت الأزرق والسرو، بينما تضفي الخزامى الفرنسية وإبرة الراعي والنرجس الأزرق عمقًا عطريًا زهريًا، ليستقر على قاعدة من الأخشاب والنفحات الترابية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Ever Strong é uma fragrância que traduz força, elegância e sofisticação contemporânea. Criado para homens que entendem que presença não precisa ser exagerada para ser marcante, Ever Strong combina frescor vibrante, notas aromáticas refinadas e uma base amadeirada intensa que permanece na pele de forma envolvente e inesquecível. Sua abertura revela um frescor luminoso e sofisticado, onde a bergamota se mistura à suculência moderna do abacaxi e do mirtilo, enquanto o cipreste adiciona um toque aromático elegante e naturalmente masculino. Uma combinação vibrante que desperta os sentidos com leveza, personalidade e sofisticação. No coração, a fragrância ganha profundidade e refinamento através da lavanda francesa, do gerânio e do narciso azul. Esse acorde aromático e floral traz equilíbrio entre frescor e intensidade, revelando uma masculinidade elegante, moderna e extremamente envolvente. Ao fundo, madeiras e notas terrosas criam uma assinatura sofisticada e marcante. O patchouli, o cedro, o musgo e o musk envolvem a pele com profundidade, conforto e sensualidade discreta, deixando um rastro contemporâneo, elegante e impossível de esquecer. Ever Strong é uma fragrância intensa sem excessos."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Pineapple",
-     "أناناس"
+     "أناناس",
+     "Abacaxi"
     ],
     [
      "Blueberry",
-     "توت أزرق"
+     "توت أزرق",
+     "Mirtilo"
     ],
     [
      "Cypress",
-     "سرو"
+     "سرو",
+     "Cipreste"
     ]
    ],
    "heart": [
     [
      "French lavender",
-     "خزامى فرنسية"
+     "خزامى فرنسية",
+     "Lavanda francesa"
     ],
     [
      "Geranium",
-     "إبرة الراعي"
+     "إبرة الراعي",
+     "Gerânio"
     ],
     [
      "Blue narcissus",
-     "نرجس أزرق"
+     "نرجس أزرق",
+     "Narciso azul"
     ]
    ],
    "base": [
     [
      "Woods",
-     "أخشاب"
+     "أخشاب",
+     "Madeiras"
     ],
     [
      "Earthy notes",
-     "نفحات ترابية"
+     "نفحات ترابية",
+     "Notas terrosas"
     ]
    ]
   },
@@ -16971,11 +18670,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The fresh fruity floral that is the right choice",
-   "ar": "العطر الزهري الفاكهي المنعش الذي يمثّل الخيار الصحيح"
+   "ar": "العطر الزهري الفاكهي المنعش الذي يمثّل الخيار الصحيح",
+   "pt": "O floral frutado fresco que é a escolha certa para você"
   },
   "desc": {
    "en": "VF Choices Delight Deodorant Cologne reveals a luminous, sophisticated femininity full of personality. The fragrance balances freshness, elegance and lightness, expressing the confidence of a woman who knows exactly who she is. When authenticity and charm go hand in hand, the answer is clear: she is the right choice.",
-   "ar": "يكشف عطر الكولونيا في إف تشويسز ديلايت عن أنوثة مشرقة وراقية مفعمة بالشخصية. يوازن العطر بين الانتعاش والأناقة والخفة، معبّرًا عن ثقة امرأة تعرف تمامًا من تكون. فحين تجتمع الأصالة والجاذبية، تكون الإجابة واضحة: إنها الخيار الصحيح."
+   "ar": "يكشف عطر الكولونيا في إف تشويسز ديلايت عن أنوثة مشرقة وراقية مفعمة بالشخصية. يوازن العطر بين الانتعاش والأناقة والخفة، معبّرًا عن ثقة امرأة تعرف تمامًا من تكون. فحين تجتمع الأصالة والجاذبية، تكون الإجابة واضحة: إنها الخيار الصحيح.",
+   "pt": "O Desodorante Colônia Wepink VF Choices Delight revela uma feminilidade luminosa, sofisticada e cheia de personalidade. Uma fragrância que equilibra frescor, elegância e leveza, traduzindo a confiança de quem sabe exatamente quem é. Porque quando autenticidade e charme caminham juntos, a resposta é clara: você é a escolha certa."
   },
   "source": "https://www.wepink.com.br/desod-col--vf-choices-delight--200-ml---wepink-448/p",
   "notes": {}
@@ -17005,11 +18706,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Celebrate the magic of the year-end season!",
-   "ar": "احتفلي بسحر موسم نهاية العام!"
+   "ar": "احتفلي بسحر موسم نهاية العام!",
+   "pt": "Celebre a magia do fim de ano!"
   },
   "desc": {
    "en": "This duo celebrates the year-end season with two fragrances full of magic, sparkle and the joyful energy of festivities and new beginnings. From the sweet warmth of Christmas to the vibrant mood of New Year, it turns every moment into cherished memories, an invitation to live the season in a light, luminous way.",
-   "ar": "يحتفي هذا الثنائي بموسم نهاية العام بعطرين يفيضان بالسحر والبريق وطاقة الاحتفالات والبدايات الجديدة. ومن دفء عيد الميلاد العذب إلى أجواء رأس السنة النابضة بالحيوية، يحوّل كل لحظة إلى ذكريات عزيزة، في دعوة لعيش الموسم بخفة وإشراق."
+   "ar": "يحتفي هذا الثنائي بموسم نهاية العام بعطرين يفيضان بالسحر والبريق وطاقة الاحتفالات والبدايات الجديدة. ومن دفء عيد الميلاد العذب إلى أجواء رأس السنة النابضة بالحيوية، يحوّل كل لحظة إلى ذكريات عزيزة، في دعوة لعيش الموسم بخفة وإشراق.",
+   "pt": "Celebre o fim de ano com duas fragrâncias que entregam magia, brilho e aquela energia gostosa das festas e dos novos começos. Do aconchego doce do Natal ao mood vibrante do Ano Novo, este duo transforma cada instante em memórias incríveis, daquelas que guardamos com carinho e um toque de nostalgia. Um convite para viver a temporada do seu jeito: leve, luminosa e cheia de sensações que ficam na pele e no coração!"
   },
   "source": "https://www.wepink.com.br/kit--holiday-duo-celebration---wepink-429/p",
   "notes": {}
@@ -17040,11 +18743,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Live with joy and lightness",
-   "ar": "عيشي بفرح وخفة"
+   "ar": "عيشي بفرح وخفة",
+   "pt": "Viva com alegria e leveza"
   },
   "desc": {
    "en": "Liberté Platiné Body Splash nurtures femininity with a delicately floral fragrance that inspires a freer life full of joy and lightness, from the welcoming light of day to the magic of the night. It is a sophisticated bouquet of unmatched sensations.",
-   "ar": "يغذّي بخاخ الجسم ليبرتيه بلاتينيه الأنوثة بعطر زهري رقيق يلهم حياة أكثر حرية مفعمة بالفرح والخفة، من ضوء النهار الدافئ إلى سحر الليل. إنه باقة راقية من الأحاسيس التي لا مثيل لها."
+   "ar": "يغذّي بخاخ الجسم ليبرتيه بلاتينيه الأنوثة بعطر زهري رقيق يلهم حياة أكثر حرية مفعمة بالفرح والخفة، من ضوء النهار الدافئ إلى سحر الليل. إنه باقة راقية من الأحاسيس التي لا مثيل لها.",
+   "pt": "Alimente a feminilidade que há em você com o Desodorante Colônia Body Splash Wepink Liberté Platiné. Esta fragrância delicadamente floral permite que você se sinta mais livre para viver com muita alegria e leveza, aproveitando a luz acolhedora do dia e celebrando a magia da noite. Um buquê sofisticado de sensações sem igual."
   },
   "source": "https://www.wepink.com.br/body-splash-liberte-platine-200-ml---wepink-422/p",
   "notes": {}
@@ -17076,11 +18781,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Sweet at heart, luxurious in every detail",
-   "ar": "حلو في جوهره، فاخر في كل تفاصيله"
+   "ar": "حلو في جوهره، فاخر في كل تفاصيله",
+   "pt": "Doce na essência, luxuoso em cada detalhe"
   },
   "desc": {
    "en": "The Sweet Luxury Body Splash Set brings five finely crafted body splashes inspired by the flowers and fruits of summer, hand-picked fragrances inspired by luxury and sophistication for a complete tropical experience. They include Banana Candy, evoking a sunny beach day and a creamy banana dessert, and Coconut Veil, like a sweet breeze with chilled coconut water.",
-   "ar": "يضم طقم بخاخات الجسم سويت لاكشري خمسة بخاخات جسم راقية مستوحاة من أزهار الصيف وفواكهه، بعطور منتقاة بعناية تستلهم الفخامة والرقي لتجربة استوائية متكاملة. ومن بينها بنانا كاندي الذي يستحضر يومًا مشمسًا على الشاطئ وحلوى الموز الكريمية، وكوكونت فيل الذي يشبه نسمة عذبة مع ماء جوز الهند المثلّج."
+   "ar": "يضم طقم بخاخات الجسم سويت لاكشري خمسة بخاخات جسم راقية مستوحاة من أزهار الصيف وفواكهه، بعطور منتقاة بعناية تستلهم الفخامة والرقي لتجربة استوائية متكاملة. ومن بينها بنانا كاندي الذي يستحضر يومًا مشمسًا على الشاطئ وحلوى الموز الكريمية، وكوكونت فيل الذي يشبه نسمة عذبة مع ماء جوز الهند المثلّج.",
+   "pt": "Apaixone-se mais uma vez pelas flores e frutas do verão com o Kit de Desodorantes Colônia Body Splash Wepink Sweet Luxury, que traz cinco body splashes encantadoramente finos para a estação mais ensolarada do ano. Sua vida ficará mais doce e calorosa com essas fragrâncias escolhidas a dedo, inspiradas no luxo e na sofisticação. Uma experiência tropical completa para os seus sentidos! Banana Candy: Mergulhe de cabeça no paraíso tropical do Desodorante Colônia Body Splash Wepink Sweet Luxury Banana Candy. Sinta na pele um abraço ensolarado de um dia na praia e o beijo caloroso do verão no fim da tarde enquanto degusta uma sobremesa cremosa de banana. Por fim, espreguice seus braços preguiçosamente e sorria de volta para a vida que ficou mais doce. Coconut Veil: Banhe seus pés no mar e aprecie uma água de coco gelada em mais um verão ensolarado na praia. O Desodorante Colônia Body Splash Wepink Sweet Luxury Coconut Veil é como uma doce brisa que traz alento sob o calor do sol, dançando caprichosamente sobre a pele bronzeada. Esse é o aroma das férias dos sonhos, que te acolhem com uma coroa de flores colorida. Um verdadeiro luxo praiano. Vanilla Muse: Deleite-se como se estivesse em frente às escolhas apetitosas de uma pâtisserie de alto nível, que apresenta seus melhores doces em sua vitrine reluzente. No Desodorante Colônia Body Splash Wepink Sweet Luxury Vanilla Muse, a baunilha e o caramelo se entrelaçam e se completam em um aroma cremoso e aconchegante. Uma fragrância rica e de dar água na boca. Lychee Bloom: O Desodorante Colônia Body Splash Wepink Sweet Luxury Lychee Bloom traz a sensação de um café da manhã luxuoso à beira da piscina, com frutas suculentas cuidadosamente selecionadas para que você comece o dia com a energia lá em cima. Um vento matinal traz o aroma fresco das flores para completar essa fragrância especial, moldada na alegria. Rose Dust: Abra seu coração e dance alegremente sob uma chuva mágica de flores com o Desodorante Colônia Body Splash Wepink Sweet Luxury Rose Dust, uma fragrância que instiga a memória e faz lembrar bons momentos. Este aroma é uma carta em poesia para um amor sofisticado, uma rosa entregue para aquela pessoa que nos desperta uma paixão sem igual."
   },
   "source": "https://www.wepink.com.br/kit-body-splash-sweet-luxury---wepink-394/p",
   "notes": {}
@@ -17110,37 +18817,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A toast to what makes you shine!",
-   "ar": "احتفاءً بكل ما يجعلكِ تتألقين!"
+   "ar": "احتفاءً بكل ما يجعلكِ تتألقين!",
+   "pt": "Celebre o que te faz brilhar!"
   },
   "desc": {
    "en": "Happy New Year Deodorant Cologne celebrates moments full of sparkle and joy with a stylish essence. Its dazzling freshness opens with bergamot and freesia, evolves into an extraordinary floral heart and finishes with woody amber and beautiful sandalwood.",
-   "ar": "يحتفي عطر الكولونيا هابي نيو يير بلحظات مفعمة بالبريق والفرح بعبير يفيض بالأناقة. يفتتح انتعاشه الأخّاذ بالبرغموت والفريزيا، ثم يتطور إلى قلب زهري استثنائي، ليختتم بخشبية العنبر وجمال خشب الصندل."
+   "ar": "يحتفي عطر الكولونيا هابي نيو يير بلحظات مفعمة بالبريق والفرح بعبير يفيض بالأناقة. يفتتح انتعاشه الأخّاذ بالبرغموت والفريزيا، ثم يتطور إلى قلب زهري استثنائي، ليختتم بخشبية العنبر وجمال خشب الصندل.",
+   "pt": "O Desodorante Colônia Wepink Happy New Year celebra momentos de muito brilho e alegria, vibrando uma essência cheia de estilo. Seu frescor deslumbrante inicia na Bergamota, Frésia e evolui em um coração floral extraordinário, finalizando no amadeirado do Âmbar e a beleza do Sândalo. Vamos celebrar!"
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -17169,37 +18883,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The sweet freshness of well-being!",
-   "ar": "الانتعاش العذب للإحساس بالراحة!"
+   "ar": "الانتعاش العذب للإحساس بالراحة!",
+   "pt": "O doce frescor de um bem-estar!"
   },
   "desc": {
    "en": "Perfect Pear The Cream body lotion provides nourishment, firmness and intense hydration, leaving skin healthy-looking and glowing for a fragrant, relaxing bath. Its ingredients also help prevent stretch marks and premature ageing. The delicate, classic floral fruity scent pairs refreshing green apple and violet with a soft floral heart and an elegant sweet, woody base.",
-   "ar": "يمنح لوشن الجسم ذا كريم بيرفكت بير التغذية والتماسك والترطيب المكثف، ويترك البشرة بمظهر صحي ومشرق لحمّام معطّر ومريح. كما تساعد مكوّناته على الوقاية من علامات التمدد والتقدّم المبكر في السن. ويجمع عبيره الزهري الفاكهي الرقيق والكلاسيكي بين انتعاش التفاح الأخضر والبنفسج وقلب زهري ناعم وقاعدة حلوة وخشبية أنيقة."
+   "ar": "يمنح لوشن الجسم ذا كريم بيرفكت بير التغذية والتماسك والترطيب المكثف، ويترك البشرة بمظهر صحي ومشرق لحمّام معطّر ومريح. كما تساعد مكوّناته على الوقاية من علامات التمدد والتقدّم المبكر في السن. ويجمع عبيره الزهري الفاكهي الرقيق والكلاسيكي بين انتعاش التفاح الأخضر والبنفسج وقلب زهري ناعم وقاعدة حلوة وخشبية أنيقة.",
+   "pt": "A Loção Desodorante The Cream Wepink Perfect Pear não pode faltar na sua rotina de cuidados com a pele. Sua composição reflete beleza em força e sutileza em um toque macio, proporcionando nutrição, firmeza e hidratação intensa, além de deixar a pele com um aspecto saudável e brilhoso para um banho perfumado e relaxante. Sua combinação de ingredientes, além de prevenir estrias e o envelhecimento precoce, possui um caminho olfativo Floral Frutado delicado e clássico, unido a notas refrescantes de maçã verde e violeta, unido a um coração floral em uma essência suave. Sua fragrância finaliza com elegância em um fundo doce e amadeirado, no doce frescor de um bem-estar."
   },
   "notes": {
    "top": [
     [
      "Green apple",
-     "تفاح أخضر"
+     "تفاح أخضر",
+     "Maçã verde"
     ],
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -17230,37 +18951,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A blend of 7 plant oils, ideal for the skin",
-   "ar": "مزيج من 7 زيوت نباتية مثالي للبشرة"
+   "ar": "مزيج من 7 زيوت نباتية مثالي للبشرة",
+   "pt": "Blend de 7 óleos vegetais ideal para a sua pele"
   },
   "desc": {
    "en": "The Oil One Touch contains 7 plant oils, vitamin E, and calendula and almond oils, offering powerful nourishment that helps prevent ageing and supports skin elasticity. Completing the One Touch personal care line, a few drops leave a feeling of satisfaction and lightness. Its scent features selected fruits and mixed flowers over a sweet base of patchouli and vanilla.",
-   "ar": "يحتوي زيت الجسم ذا أويل ون تاتش على 7 زيوت نباتية وفيتامين إي وزيتي الآذريون واللوز، ليمنح تغذية قوية تساعد على الوقاية من علامات التقدّم في السن وتعزّز مرونة البشرة. ويكمل هذا الزيت مجموعة ون تاتش للعناية الشخصية، إذ تمنح بضع قطرات منه إحساسًا بالرضا والخفة. ويجمع عبيره بين فواكه منتقاة ومزيج من الأزهار فوق قاعدة حلوة من الباتشولي والفانيليا."
+   "ar": "يحتوي زيت الجسم ذا أويل ون تاتش على 7 زيوت نباتية وفيتامين إي وزيتي الآذريون واللوز، ليمنح تغذية قوية تساعد على الوقاية من علامات التقدّم في السن وتعزّز مرونة البشرة. ويكمل هذا الزيت مجموعة ون تاتش للعناية الشخصية، إذ تمنح بضع قطرات منه إحساسًا بالرضا والخفة. ويجمع عبيره بين فواكه منتقاة ومزيج من الأزهار فوق قاعدة حلوة من الباتشولي والفانيليا.",
+   "pt": "Não é apenas mais um óleo corporal, esse daqui é o nosso The Oil One Touch! O incomparável contém 7 óleos vegetais, vitamina E, óleos de calêndula e amêndoas. Uma nutrição poderosa que previne o envelhecimento, auxilia na elasticidade da pele e, tudo isso, com a essência de um dos nossos perfumes wepink. O The Oil veio para completar a linha One Touch de cuidado pessoal. Poucas gotas vão te garantir uma sensação de satisfação e leveza. Suas notas olfativas são associadas a frutas selecionadas, um mix de flores, com um fundo adocicado, patchouli e baunilha."
   },
   "notes": {
    "top": [
     [
      "Selected fruits",
-     "فواكه منتقاة"
+     "فواكه منتقاة",
+     "Frutas selecionadas"
     ]
    ],
    "heart": [
     [
      "Mixed flowers",
-     "مزيج من الأزهار"
+     "مزيج من الأزهار",
+     "Mix de flores"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -17291,11 +19019,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The special treatment to reduce puffiness and dark circles",
-   "ar": "العلاج المميّز لتقليل الانتفاخات والهالات الداكنة"
+   "ar": "العلاج المميّز لتقليل الانتفاخات والهالات الداكنة",
+   "pt": "O tratamento especial para reduzir bolsas e olheiras"
   },
   "desc": {
    "en": "Eyescare helps reduce puffiness and lighten dark circles, and suits all skin types with a soft, delicate texture that is easy to apply. The eye contour cream revitalises the skin around the eyes, helping with hydration, fighting premature ageing and firming the eye area thanks to a lifting effect that lifts and tightens the skin.",
-   "ar": "يساعد آيز كير على تقليل الانتفاخات وتفتيح الهالات الداكنة، ويناسب جميع أنواع البشرة بفضل قوامه الناعم والرقيق السهل التطبيق. ويعمل كريم محيط العين على تنشيط البشرة حول العينين، فيساعد على ترطيبها ومكافحة علامات التقدّم المبكر في السن وشدّ محيط العين، بفضل تأثيره الرافع الذي يرفع البشرة ويشدّها."
+   "ar": "يساعد آيز كير على تقليل الانتفاخات وتفتيح الهالات الداكنة، ويناسب جميع أنواع البشرة بفضل قوامه الناعم والرقيق السهل التطبيق. ويعمل كريم محيط العين على تنشيط البشرة حول العينين، فيساعد على ترطيبها ومكافحة علامات التقدّم المبكر في السن وشدّ محيط العين، بفضل تأثيره الرافع الذي يرفع البشرة ويشدّها.",
+   "pt": "Eyescare vai ser o seu queridinho para reduzir bolsas e clarear olheiras! Perfeito para todos os tipos de pele, ele tem uma textura suave, delicada, sendo super fácil de aplicar. O creme contorno dos olhos vai revitalizar a pele da região, auxiliando na hidratação, no combate ao envelhecimento precoce e na firmeza do olhar, pois possui o efeito lifting essencial para levantar e esticar a pele."
   },
   "source": "https://www.wepink.com.br/eyescare-cec-ath-001/p",
   "notes": {}
@@ -17324,29 +19054,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The finest nourishment the skin needs",
-   "ar": "أرقى تغذية تحتاجها البشرة"
+   "ar": "أرقى تغذية تحتاجها البشرة",
+   "pt": "A nutrição mais nobre que a sua pele precisa"
   },
   "desc": {
    "en": "The Oil Liberté is an exceptional body oil with 7 actives that nourish, hydrate and restore with a light, soft touch. Its oil blend offers powerful nourishment that helps fight premature ageing and promotes elasticity and soft skin. Its sublime, elegant floral bouquet fragrance reveals enchanting, mysterious nuances with touches of pink pepper, grapefruit and noble flowers.",
-   "ar": "زيت الجسم ذا أويل ليبرتيه زيت استثنائي يضم 7 مكوّنات نشطة تمنح التغذية والترطيب والتجديد بلمسة خفيفة وناعمة. ويقدّم مزيج زيوته تغذية قوية تساعد على مكافحة علامات التقدّم المبكر في السن وتعزّز المرونة والنعومة. ويكشف عطره الزهري الراقي والأنيق عن لمسات ساحرة وغامضة من الفلفل الوردي والجريب فروت والأزهار النبيلة."
+   "ar": "زيت الجسم ذا أويل ليبرتيه زيت استثنائي يضم 7 مكوّنات نشطة تمنح التغذية والترطيب والتجديد بلمسة خفيفة وناعمة. ويقدّم مزيج زيوته تغذية قوية تساعد على مكافحة علامات التقدّم المبكر في السن وتعزّز المرونة والنعومة. ويكشف عطره الزهري الراقي والأنيق عن لمسات ساحرة وغامضة من الفلفل الوردي والجريب فروت والأزهار النبيلة.",
+   "pt": "The Oil Liberté, o óleo corporal excepcional! Contém 7 ativos que vão proporcionar, em um toque leve e suave, nutrição, hidratação e restauração. A combinação de óleos tem uma nutrição poderosa que combate o envelhecimento precoce, promove a elasticidade e uma pele macia. Poucas gotas vão te garantir uma sensação de satisfação e leveza. Sua fragrância sublime e elegante tem o caminho floral bouquet, que transborda nuances encantadoras e misteriosas, com toques de pimenta rosa, toranja e flores nobres."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ]
    ],
    "base": [
     [
      "Noble flowers",
-     "أزهار نبيلة"
+     "أزهار نبيلة",
+     "Flores nobres"
     ]
    ]
   },
@@ -17379,37 +19114,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A magnetic and seductive sense of well-being",
-   "ar": "إحساس بالراحة يفيض بالجاذبية والإغراء"
+   "ar": "إحساس بالراحة يفيض بالجاذبية والإغراء",
+   "pt": "Um bem-estar magnético e sedutor"
   },
   "desc": {
    "en": "Obsessed Gold Body Splash is a luxurious essence full of magnetism and well-being, representing the seductive, authentic woman whose charm and sophistication linger in memory. Its floral oriental fragrance opens with floral and fruity touches, especially seductive red fruits, moves into a delicate floral heart and signs off with pleasant sweet, woody notes.",
-   "ar": "بخاخ الجسم أوبسيسد جولد عبير فاخر يفيض بالجاذبية والراحة، يجسّد المرأة المغرية والأصيلة التي يبقى سحرها ورقيها في الذاكرة. يفتتح عطره الزهري الشرقي بلمسات زهرية وفاكهية، لا سيما إغراء الفواكه الحمراء، ثم ينتقل إلى قلب زهري رقيق، ليختتم بنفحات حلوة وخشبية لطيفة."
+   "ar": "بخاخ الجسم أوبسيسد جولد عبير فاخر يفيض بالجاذبية والراحة، يجسّد المرأة المغرية والأصيلة التي يبقى سحرها ورقيها في الذاكرة. يفتتح عطره الزهري الشرقي بلمسات زهرية وفاكهية، لا سيما إغراء الفواكه الحمراء، ثم ينتقل إلى قلب زهري رقيق، ليختتم بنفحات حلوة وخشبية لطيفة.",
+   "pt": "Uma essência luxuosa, repleta de magnetismo e bem-estar, o Body Splash Obsessed Gold Desodorante Colônia representa a mulher sedutora e autêntica, que atrai olhares admirados pela beleza encantadora, sedutora e elegante, que fica na memória com muito charme e sofisticação. Sua fragrância evoca notas exuberantes em um caminho olfativo Floral Oriental, inicia com toques florais e frutados, especialmente da sedução das frutas vermelhas, seguindo para um coração floral delicado e assinando com agradáveis aromas doces e amadeirados."
   },
   "notes": {
    "top": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ],
     [
      "Red fruits",
-     "فواكه حمراء"
+     "فواكه حمراء",
+     "Frutas vermelhas"
     ]
    ],
    "heart": [
     [
      "Floral notes",
-     "نفحات زهرية"
+     "نفحات زهرية",
+     "Notas florais"
     ]
    ],
    "base": [
     [
      "Sweet notes",
-     "نفحات حلوة"
+     "نفحات حلوة",
+     "Notas doces"
     ],
     [
      "Woody notes",
-     "نفحات خشبية"
+     "نفحات خشبية",
+     "Notas amadeiradas"
     ]
    ]
   },
@@ -17441,11 +19183,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Night-time care that treats hair during sleep",
-   "ar": "عناية ليلية تعالج الشعر أثناء النوم"
+   "ar": "عناية ليلية تعالج الشعر أثناء النوم",
+   "pt": "Cuidado noturno que trata seu cabelo enquanto você dorme"
   },
   "desc": {
    "en": "Booster Night Hair Oil works at night, when hair faces less external aggression and actives are absorbed more effectively. Its formula acts from root to tip, providing deep hydration, intense shine, instant softness and frizz control for healthier, nourished, sealed and fragrant hair on waking. Versatile, it can be used on damp or dry hair and suits all hair types.",
-   "ar": "يعمل زيت الشعر بوستر نايت خلال الليل، حين يتعرّض الشعر لعوامل خارجية أقل وتُمتص المكوّنات النشطة بفعالية أكبر. تعمل تركيبته من الجذور حتى الأطراف، فتمنح ترطيبًا عميقًا ولمعانًا مكثفًا ونعومة فورية وتحكّمًا في التجعّد، لشعر أكثر صحة وتغذية وانسيابية وعطرًا عند الاستيقاظ. ويُستخدم على الشعر الرطب أو الجاف، ويناسب جميع أنواع الشعر."
+   "ar": "يعمل زيت الشعر بوستر نايت خلال الليل، حين يتعرّض الشعر لعوامل خارجية أقل وتُمتص المكوّنات النشطة بفعالية أكبر. تعمل تركيبته من الجذور حتى الأطراف، فتمنح ترطيبًا عميقًا ولمعانًا مكثفًا ونعومة فورية وتحكّمًا في التجعّد، لشعر أكثر صحة وتغذية وانسيابية وعطرًا عند الاستيقاظ. ويُستخدم على الشعر الرطب أو الجاف، ويناسب جميع أنواع الشعر.",
+   "pt": "O Óleo Capilar Wepink Booster Night foi desenvolvido para atuar no momento mais estratégico do cuidado capilar: a noite. Enquanto você dorme, o cabelo entra em um período de menor agressão externa — sem sol, vento, poluição ou ferramentas térmicas — criando o cenário ideal para a absorção dos ativos. Sua fórmula poderosa age da raiz às pontas, promovendo hidratação profunda, brilho intenso, maciez imediata e controle do frizz. Durante o sono, os ingredientes permanecem por mais tempo em contato com a fibra capilar, penetrando com maior eficiência e garantindo ação prolongada e resultados visíveis ao acordar. O resultado são fios mais saudáveis, nutridos, selados e perfumados, com acabamento impecável. Versátil, o Booster Night pode ser usado tanto nos cabelos úmidos quanto secos e é indicado para todos os tipos de cabelo. O cuidado noturno que transforma sua rotina e seus fios."
   },
   "source": "https://www.wepink.com.br/oleo-booster-night-30ml---wepink-443/p",
   "notes": {}
@@ -17477,29 +19221,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Unveil the delight of a joyful scent!",
-   "ar": "اكتشفي متعة عبير مبهج!"
+   "ar": "اكتشفي متعة عبير مبهج!",
+   "pt": "Abra o deleite de um aroma alegre!"
   },
   "desc": {
    "en": "The Vanilla Soft Body Splash embodies the authenticity of the feminine essence through a soft floral touch of lily of the valley and jasmine. A hint of caramel spreads sweetness wherever she goes, blending authenticity, desire and delicacy over a sweet, woody base.",
-   "ar": "يجسّد بودي سبلاش فانيلا سوفت أصالة الجوهر الأنثوي بلمسة زهرية ناعمة من نغمات زنبق الوادي والياسمين. ولمسة من الكراميل تنشر العذوبة أينما حلّت، لتجمع بين الأصالة والرغبة والرقة على قاعدة حلوة وخشبية."
+   "ar": "يجسّد بودي سبلاش فانيلا سوفت أصالة الجوهر الأنثوي بلمسة زهرية ناعمة من نغمات زنبق الوادي والياسمين. ولمسة من الكراميل تنشر العذوبة أينما حلّت، لتجمع بين الأصالة والرغبة والرقة على قاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash Vanilla Soft representa a autenticidade da essência feminina, através de seu toque floral suave, em notas de Lírio-do-vale e Jasmim. Deixe-se celebrar sua força e transmitir doçura em um toque de caramelo por onde passar, combinando autenticidade, desejo e delicadeza em um fundo doce e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Caramel",
-     "كراميل"
+     "كراميل",
+     "Caramelo"
     ]
    ]
   },
@@ -17531,29 +19280,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the authentic touch of creamy fig",
-   "ar": "تغذية عميقة وتماسك مع لمسة أصيلة من التين الكريمي"
+   "ar": "تغذية عميقة وتماسك مع لمسة أصيلة من التين الكريمي",
+   "pt": "Nutrição profunda e firmeza com o toque autêntico do figo cremoso"
   },
   "desc": {
    "en": "The Heaven Santal & Fig Body Cream turns the fragrance's contrast between luminous freshness and enveloping creaminess into care. Its formula intensely moisturizes and nourishes, helping support collagen production and cell renewal for dewy, naturally radiant-looking skin. The woody accord reveals creamy fig amid nuances of cedar and patchouli, a sophisticated scent that stays elegantly throughout the day.",
-   "ar": "يحوّل كريم الجسم هيفن سانتال آند فيج التباين بين الانتعاش المشرق والقوام الكريمي الآسر في عطره إلى عناية متكاملة. تركيبته ترطّب البشرة وتغذّيها بعمق، وتساعد على إنتاج الكولاجين وتجديد الخلايا، لتمنحها مظهراً نضراً ومشرقاً بشكل طبيعي. ويكشف الطابع الخشبي عن التين الكريمي بين لمسات من خشب الأرز والباتشولي، في عطر راقٍ يدوم بأناقة طوال اليوم."
+   "ar": "يحوّل كريم الجسم هيفن سانتال آند فيج التباين بين الانتعاش المشرق والقوام الكريمي الآسر في عطره إلى عناية متكاملة. تركيبته ترطّب البشرة وتغذّيها بعمق، وتساعد على إنتاج الكولاجين وتجديد الخلايا، لتمنحها مظهراً نضراً ومشرقاً بشكل طبيعي. ويكشف الطابع الخشبي عن التين الكريمي بين لمسات من خشب الأرز والباتشولي، في عطر راقٍ يدوم بأناقة طوال اليوم.",
+   "pt": "A Loção Desodorante Body Cream Wepink Heaven Santal & Fig traduz em cuidado o contraste entre frescor luminoso e cremosidade envolvente da fragrância. Sua fórmula hidrata e nutre intensamente, auxiliando na produção de colágeno e na regeneração celular, deixando a pele com aparência viçosa e naturalmente iluminada. O acorde amadeirado revela o Figo Cremoso entre nuances de Cedro e Patchouli, criando uma perfumação sofisticada que permanece com elegância ao longo do dia."
   },
   "notes": {
    "top": [
     [
      "Creamy fig",
-     "تين كريمي"
+     "تين كريمي",
+     "Figo cremoso"
     ]
    ],
    "heart": [
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ]
    ]
   },
@@ -17586,47 +19340,57 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Sophisticated freshness that turns every moment into an experience of freedom",
-   "ar": "انتعاش راقٍ يحوّل كل لحظة إلى تجربة من الحرية"
+   "ar": "انتعاش راقٍ يحوّل كل لحظة إلى تجربة من الحرية",
+   "pt": "O frescor sofisticado que transforma cada instante em uma experiência de liberdade"
   },
   "desc": {
    "en": "The Venice Breeze Body Splash was created for those who find beauty in life's lightest moments, inspired by refreshing breezes over waterside landscapes. It opens with bright lime, intense mint and a delicate fruity touch of cassis, while lily, rose, basil, tea and pear form a fresh floral, green and aromatic heart. An aquatic signature completes the base.",
-   "ar": "صُمّم بودي سبلاش فينيس بريز لمن يجد الجمال في أخف لحظات الحياة، مستوحى من النسمات المنعشة التي تعبر المناظر المطلة على الماء. يفتتح بإشراقة الليم وانتعاش النعناع المكثف مع لمسة فاكهية رقيقة من الكشمش الأسود، بينما يشكّل الزنبق والورد والريحان والشاي والكمثرى قلباً زهرياً أخضر وعطرياً منعشاً. وتكتمل القاعدة ببصمة مائية مميزة."
+   "ar": "صُمّم بودي سبلاش فينيس بريز لمن يجد الجمال في أخف لحظات الحياة، مستوحى من النسمات المنعشة التي تعبر المناظر المطلة على الماء. يفتتح بإشراقة الليم وانتعاش النعناع المكثف مع لمسة فاكهية رقيقة من الكشمش الأسود، بينما يشكّل الزنبق والورد والريحان والشاي والكمثرى قلباً زهرياً أخضر وعطرياً منعشاً. وتكتمل القاعدة ببصمة مائية مميزة.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Venice Breeze foi criado para quem encontra beleza nos momentos mais leves da vida. Inspirado pela sensação revigorante das brisas que percorrem paisagens à beira d'água, ele traduz frescor, bem-estar e sofisticação em uma fragrância moderna e luminosa. Sua abertura desperta os sentidos com uma explosão vibrante e energizante. A luminosidade cítrica da Lima se encontra com a refrescância intensa da Menta, enquanto o Cassis adiciona um toque frutado delicado e contemporâneo. O resultado é uma saída fresca e envolvente que transmite vitalidade desde os primeiros instantes. No coração da fragrância, notas florais, verdes e aromáticas se unem em perfeita harmonia. O Lírio e a Rosa revelam elegância e leveza, enquanto o Manjericão acrescenta um toque verde sofisticado. As nuances de Chá e Pera proporcionam uma sensação de frescor refinado, criando uma experiência equilibrada, confortável e naturalmente envolvente. Ao fundo, a assinatura aquática do Calone encontra a sofisticação do Cedro e a suavidade do Musk, construindo uma base limpa, moderna e extremamente agradável. Essa combinação prolonga a sensação de bem-estar ao longo do dia, deixando na pele um rastro fresco, elegante e memorável. Venice Breeze é uma fragrância para quem valoriza a liberdade, a autenticidade e os pequenos prazeres do cotidiano. Um perfume que combina frescor e sofisticação de forma leve e contemporânea, acompanhando diferentes momentos com naturalidade e presença. Mais do que uma fragrância, Venice Breeze é uma sensação de energia renovada. Um convite para desacelerar, respirar profundamente e aproveitar cada instante com leveza, equilíbrio e elegância. Porque algumas fragrâncias não apenas perfumam. Elas despertam uma nova forma de viver o momento."
   },
   "notes": {
    "top": [
     [
      "Lime",
-     "ليم"
+     "ليم",
+     "Lima"
     ],
     [
      "Mint",
-     "نعناع"
+     "نعناع",
+     "Menta"
     ],
     [
      "Cassis",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Cassis"
     ]
    ],
    "heart": [
     [
      "Lily",
-     "زنبق"
+     "زنبق",
+     "Lírio"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Basil",
-     "ريحان"
+     "ريحان",
+     "Manjericão"
     ],
     [
      "Tea",
-     "شاي"
+     "شاي",
+     "Chá"
     ],
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ]
    ]
   },
@@ -17658,29 +19422,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The luminous freshness of summer with an irresistible sweetness",
-   "ar": "انتعاش الصيف المشرق مع عذوبة لا تُقاوم"
+   "ar": "انتعاش الصيف المشرق مع عذوبة لا تُقاوم",
+   "pt": "Frescor luminoso do verão com uma doçura irresistível"
   },
   "desc": {
    "en": "The Verano Di Capri Body Splash is an invitation to live the summer. Its fragrance combines sweetness and freshness with candied lemon, raspberry and freesia.",
-   "ar": "يُعدّ بودي سبلاش فيرانو دي كابري دعوة لعيش الصيف بكل تفاصيله. عطر يجمع بين العذوبة والانتعاش مع الليمون المسكّر وتوت العليق وزهرة الفريزيا."
+   "ar": "يُعدّ بودي سبلاش فيرانو دي كابري دعوة لعيش الصيف بكل تفاصيله. عطر يجمع بين العذوبة والانتعاش مع الليمون المسكّر وتوت العليق وزهرة الفريزيا.",
+   "pt": "O Body Splash Wepink Verano di Capri é um convite para viver o verão. Uma fragrância que combina doçura e frescor com limão cristalizado, framboesa e frésia."
   },
   "notes": {
    "top": [
     [
      "Candied lemon",
-     "ليمون مسكّر"
+     "ليمون مسكّر",
+     "Limão cristalizado"
     ]
    ],
    "heart": [
     [
      "Raspberry",
-     "توت العليق"
+     "توت العليق",
+     "Framboesa"
     ]
    ],
    "base": [
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ]
    ]
   },
@@ -17713,57 +19482,69 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A fragrance that celebrates your unforgettable presence",
-   "ar": "عطر يحتفي بحضورك الذي لا يُنسى"
+   "ar": "عطر يحتفي بحضورك الذي لا يُنسى",
+   "pt": "Uma fragrância que celebra sua presença inesquecível"
   },
   "desc": {
    "en": "The Auretx Body Splash blossoms on the skin with intensity and delicacy, like an unforgettable rose, uniting bold fruits with elegant florals in a passionate, lasting feminine signature. Blackcurrant with green and red fruits opens the fragrance, followed by a romantic heart of peony, rose and apricot. A base of patchouli, amber, wood and musk settles like a warm embrace.",
-   "ar": "يتفتّح بودي سبلاش أوريتكس على البشرة بقوة ورقة، كوردة لا تُنسى، ليجمع جرأة الفواكه مع أناقة الزهور في بصمة أنثوية شغوفة ودائمة. يفتتح بالكشمش الأسود مع الفواكه الخضراء والحمراء، يليه قلب رومانسي من الفاوانيا والورد والمشمش، بينما تستقر قاعدة آسرة من الباتشولي والعنبر والخشب والمسك على البشرة كعناق دافئ."
+   "ar": "يتفتّح بودي سبلاش أوريتكس على البشرة بقوة ورقة، كوردة لا تُنسى، ليجمع جرأة الفواكه مع أناقة الزهور في بصمة أنثوية شغوفة ودائمة. يفتتح بالكشمش الأسود مع الفواكه الخضراء والحمراء، يليه قلب رومانسي من الفاوانيا والورد والمشمش، بينما تستقر قاعدة آسرة من الباتشولي والعنبر والخشب والمسك على البشرة كعناق دافئ.",
+   "pt": "O Body Splash Wepink Auretx floresce na pele com intensidade e delicadeza, como uma rosa que nunca se esquece. Une a ousadia das frutas à elegância das flores, revelando uma assinatura feminina, apaixonante e duradoura. As notas de saída trazem a doçura vibrante da Groselha Preta com o frescor das Frutas Verdes e Vermelhas, evocando o brilho de um momento inesquecível. No coração, o buquê floral de Peônia, Rosa e Damasco entrega charme e romantismo, enquanto a base envolvente de Patchouli, Âmbar, Madeira e Musk fixa na pele como um abraço quente."
   },
   "notes": {
    "top": [
     [
      "Blackcurrant",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Groselha preta"
     ],
     [
      "Green fruits",
-     "فواكه خضراء"
+     "فواكه خضراء",
+     "Frutas verdes"
     ],
     [
      "Red fruits",
-     "فواكه حمراء"
+     "فواكه حمراء",
+     "Frutas vermelhas"
     ]
    ],
    "heart": [
     [
      "Peony",
-     "فاوانيا"
+     "فاوانيا",
+     "Peônia"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Apricot",
-     "مشمش"
+     "مشمش",
+     "Damasco"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Wood",
-     "خشب"
+     "خشب",
+     "Madeira"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -17796,33 +19577,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The return of the king, now more intense than ever",
-   "ar": "عودة الملك، الآن أكثر قوة من أي وقت مضى"
+   "ar": "عودة الملك، الآن أكثر قوة من أي وقت مضى",
+   "pt": "O retorno do rei, agora mais intenso do que nunca"
   },
   "desc": {
    "en": "The King Blue Deep cologne captures the vibrant essence of the sophisticated man who enjoys life's moments with an authentic, modern touch. Worthy of a true king, this masculine fragrance follows a woody path with powerful notes of bergamot and gardenia, finishing with elegance and charm on an enveloping base of vanilla and sandalwood.",
-   "ar": "تجسّد كولونيا كينج بلو ديب الجوهر النابض للرجل الراقي الذي يستمتع بلحظات الحياة بلمسة أصيلة وعصرية. وبما يليق بملك حقيقي، يسلك هذا العطر الرجالي مساراً خشبياً تتخلله نغمات قوية من البرغموت والغاردينيا، ليختتم بأناقة وسحر على قاعدة آسرة من الفانيليا وخشب الصندل."
+   "ar": "تجسّد كولونيا كينج بلو ديب الجوهر النابض للرجل الراقي الذي يستمتع بلحظات الحياة بلمسة أصيلة وعصرية. وبما يليق بملك حقيقي، يسلك هذا العطر الرجالي مساراً خشبياً تتخلله نغمات قوية من البرغموت والغاردينيا، ليختتم بأناقة وسحر على قاعدة آسرة من الفانيليا وخشب الصندل.",
+   "pt": "O Desodorante Colônia Wepink King Blue Deep tem a essência viva do homem sofisticado, que gosta de aproveitar os momentos da vida com um toque autêntico e moderno. Digna de um verdadeiro rei, a fragrância masculina triunfa um caminho olfativo amadeirado, unido a notas poderosas de bergamota e gardênia. Finaliza encantando a todos com elegância e charme, decretando um fundo envolvente de baunilha e sândalo."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "heart": [
     [
      "Gardenia",
-     "غاردينيا"
+     "غاردينيا",
+     "Gardênia"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -17855,65 +19642,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A feminine fruity floral, sophisticated and naturally striking",
-   "ar": "عطر زهري فاكهي أنثوي، راقٍ ولافت بطبيعته"
+   "ar": "عطر زهري فاكهي أنثوي، راقٍ ولافت بطبيعته",
+   "pt": "Um floral frutado feminino, sofisticado e naturalmente marcante"
   },
   "desc": {
    "en": "The My We Belle cologne translates elegance into a fragrance that balances freshness, femininity and sophistication. It opens with juicy pear, bergamot, violet leaves and red fruits, leading to a creamy white-floral heart of orange blossom, tuberose, jasmine and lily of the valley. Vanilla and amber, warmed by sandalwood and cedar, leave a cozy, delicate and memorable trail.",
-   "ar": "تترجم كولونيا ماي وي بيل الأناقة إلى عطر يوازن بين الانتعاش والأنوثة والرقي. يفتتح بعصارة الكمثرى مع البرغموت وأوراق البنفسج والفواكه الحمراء، لينتقل إلى قلب كريمي من الزهور البيضاء يضم زهر البرتقال ومسك الروم والياسمين وزنبق الوادي. أما الفانيليا والعنبر، مع دفء خشب الصندل والأرز، فتترك أثراً دافئاً ورقيقاً لا يُنسى."
+   "ar": "تترجم كولونيا ماي وي بيل الأناقة إلى عطر يوازن بين الانتعاش والأنوثة والرقي. يفتتح بعصارة الكمثرى مع البرغموت وأوراق البنفسج والفواكه الحمراء، لينتقل إلى قلب كريمي من الزهور البيضاء يضم زهر البرتقال ومسك الروم والياسمين وزنبق الوادي. أما الفانيليا والعنبر، مع دفء خشب الصندل والأرز، فتترك أثراً دافئاً ورقيقاً لا يُنسى.",
+   "pt": "O Desodorante Colônia Wepink My We Belle traduz a elegância em uma fragrância que equilibra frescor, feminilidade e sofisticação. Inspirado na mulher que encanta pela naturalidade, ele revela uma composição floral frutada luminosa e envolvente. A abertura traz a suculência vibrante da Pera, envolvida pelo brilho cítrico da Bergamota e pelo toque delicado das Folhas de Violeta e Frutas Vermelhas, criando uma explosão fresca, levemente doce e irresistivelmente feminina. No coração, um buquê de flores brancas ganha protagonismo: Flor de Laranjeira, Tuberosa, Jasmim e Lírio-do-vale se unem em uma construção floral branca cremosa, sofisticada e luminosa. A tuberosa adiciona profundidade elegante, enquanto o jasmim e a flor de laranjeira trazem refinamento e leveza radiante. Ao fundo, a fragrância encontra conforto e sensualidade na combinação envolvente de Baunilha e Âmbar, aquecidos por Sândalo e Cedro, criando um rastro aconchegante, delicado e memorável. Um aroma que encanta pela harmonia entre frescor vibrante e conforto envolvente — feito para mulheres que não precisam exagerar para serem notadas."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Violet leaves",
-     "أوراق البنفسج"
+     "أوراق البنفسج",
+     "Folhas de violeta"
     ],
     [
      "Red fruits",
-     "فواكه حمراء"
+     "فواكه حمراء",
+     "Frutas vermelhas"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ],
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ]
    ]
   },
@@ -17944,11 +19745,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Obsessed antiperspirant roll-on combines invigorating freshness, lasting protection and 72-hour hydration, and its exclusive formula helps even out skin tone. All in a sensual, bold fragrance following a woody floral chypre olfactory path.",
-   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن أوبسيسد بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عطر حسّي وجريء يسلك مساراً عطرياً شيبرياً زهرياً خشبياً."
+   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن أوبسيسد بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عطر حسّي وجريء يسلك مساراً عطرياً شيبرياً زهرياً خشبياً.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Obsessed oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas, além de sua fórmula exclusiva contribuir na uniformização do tom da pele. Tudo isso, em uma fragrância sensual e ousada, com o caminho olfativo chypre floral amadeirado."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-obsessed-50-ml-drod-ath-001/p",
   "notes": {}
@@ -17978,29 +19781,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The golden power of jasmine sambac for magnificent, protected hair",
-   "ar": "القوة الذهبية لياسمين سامباك لشعر رائع ومحمي"
+   "ar": "القوة الذهبية لياسمين سامباك لشعر رائع ومحمي",
+   "pt": "O poder dourado do jasmim sambac para cabelos magníficos e protegidos"
   },
   "desc": {
    "en": "The VF Golden Hair Mist makes hair even more beautiful, offering protection and well-being for every strand with a powerful oriental scent of pink pepper, mandarin and jasmine sambac. It reveals the essence of femininity, leaving hair protected and magnificent.",
-   "ar": "يمنح معطر الشعر في إف جولدن الشعر جمالاً أكبر، مع الحماية والعناية بكل خصلة وعبير شرقي قوي من الفلفل الوردي والماندرين وياسمين سامباك. يكشف عن جوهر الأنوثة ويترك الشعر محمياً ورائعاً يلفت الأنظار."
+   "ar": "يمنح معطر الشعر في إف جولدن الشعر جمالاً أكبر، مع الحماية والعناية بكل خصلة وعبير شرقي قوي من الفلفل الوردي والماندرين وياسمين سامباك. يكشف عن جوهر الأنوثة ويترك الشعر محمياً ورائعاً يلفت الأنظار.",
+   "pt": "Seus cabelos ficarão ainda mais lindos com o Desodorante Capilar Hair Mist Wepink VF Golden. Proteção e bem-estar para os seus fios, tudo com o poderoso aroma oriental de Pimenta Rosa, Mandarina e Jasmim Sambac. Revele a essência de sua feminilidade e surpreenda a todos com cabelos protegidos e magníficos."
   },
   "notes": {
    "top": [
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ]
    ],
    "base": [
     [
      "Jasmine sambac",
-     "ياسمين سامباك"
+     "ياسمين سامباك",
+     "Jasmim sambac"
     ]
    ]
   },
@@ -18031,11 +19839,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Heaven Bride antiperspirant roll-on combines invigorating freshness, lasting protection and 72-hour hydration, and its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral oriental olfactory path.",
-   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن هيفن برايد بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عبير فريد وحصري مُهدى إلى المرأة الأصيلة الملهمة للتغيير، يسلك مساراً عطرياً زهرياً شرقياً آسراً."
+   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن هيفن برايد بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عبير فريد وحصري مُهدى إلى المرأة الأصيلة الملهمة للتغيير، يسلك مساراً عطرياً زهرياً شرقياً آسراً.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Heaven Bride oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas. Sua fórmula exclusiva também contribui para uniformizar o tom da pele. Tudo isso, em uma essência única e exclusiva, dedicada à mulher autêntica e transformadora, percorrendo um fascinante caminho olfativo floral oriental."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-heaven-bride-50-ml-369/p",
   "notes": {}
@@ -18065,33 +19875,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The fragrance that makes life divine",
-   "ar": "العطر الذي يجعل الحياة في أبهى صورها"
+   "ar": "العطر الذي يجعل الحياة في أبهى صورها",
+   "pt": "A fragrância que torna a vida divina"
   },
   "desc": {
    "en": "The Divine cologne represents the best of life with style and elegance, like a sunny day in the finest destinations. Its fresh citrus touch pairs with the free spirit of jasmine and lemon notes, finishing on a soft base of cedar and musk that draws attention wherever it goes.",
-   "ar": "تجسّد كولونيا ديفاين أجمل ما في الحياة بأسلوب وأناقة، كيوم مشمس في أرقى الوجهات. تمتزج لمستها الحمضية المنعشة بروح الحرية في نغمات الياسمين والليمون، لتختتم بقاعدة ناعمة من خشب الأرز والمسك تلفت الأنظار أينما حلّت."
+   "ar": "تجسّد كولونيا ديفاين أجمل ما في الحياة بأسلوب وأناقة، كيوم مشمس في أرقى الوجهات. تمتزج لمستها الحمضية المنعشة بروح الحرية في نغمات الياسمين والليمون، لتختتم بقاعدة ناعمة من خشب الأرز والمسك تلفت الأنظار أينما حلّت.",
+   "pt": "Desodorante Colônia Wepink Divine representa o melhor da vida em estilo e elegância, como em um dia ensolarado nas mais nobres regiões. Sua essência possui o frescor de um toque cítrico, aliado ao espírito livre de suas notas de jasmim e limão. Finaliza em um fundo suave em notas de cedro e musk, chamando a atenção por onde passar."
   },
   "notes": {
    "top": [
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -18127,21 +19943,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The fragrance that makes life divine",
-   "ar": "العطر الذي يجعل الحياة في أبهى صورها"
+   "ar": "العطر الذي يجعل الحياة في أبهى صورها",
+   "pt": "A fragrância que torna a vida divina"
   },
   "desc": {
    "en": "The Divine Body Splash represents the essence of the best in life, a sense of well-being full of style and elegance. It opens with a refreshing citrus touch, like a sunny day in the finest destinations, evolving into the free spirit of jasmine and lemon notes. It finishes on a soft, woody base that turns heads wherever it goes.",
-   "ar": "يجسّد بودي سبلاش ديفاين جوهر أجمل ما في الحياة، في إحساس بالراحة يفيض بالأسلوب والأناقة. يفتتح بلمسة حمضية منعشة كيوم مشمس في أرقى الوجهات، ثم يتطور إلى روح الحرية في نغمات الياسمين والليمون. ويختتم بقاعدة ناعمة وخشبية تجذب الأنظار أينما حلّ."
+   "ar": "يجسّد بودي سبلاش ديفاين جوهر أجمل ما في الحياة، في إحساس بالراحة يفيض بالأسلوب والأناقة. يفتتح بلمسة حمضية منعشة كيوم مشمس في أرقى الوجهات، ثم يتطور إلى روح الحرية في نغمات الياسمين والليمون. ويختتم بقاعدة ناعمة وخشبية تجذب الأنظار أينما حلّ.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Divine representa a essência do melhor da vida, em um bem-estar cheio de estilo e elegância. Sua fragrância inicia em um toque cítrico e refrescante, como um dia ensolarado nas mais nobres regiões, evoluindo para o espírito livre de suas notas de jasmim e limão. Finaliza em um fundo suave e amadeirado, atraindo olhares por onde passar."
   },
   "notes": {
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ]
    ]
   },
@@ -18171,11 +19991,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Overflowing with care and elegance",
-   "ar": "فيض من العناية والأناقة"
+   "ar": "فيض من العناية والأناقة",
+   "pt": "Transborde cuidado e elegância"
   },
   "desc": {
    "en": "The Cream Liberté body lotion is ideal for a daily skincare routine, with a soft touch that provides nourishment, firmness and intense hydration while leaving skin looking healthy and glowing. Its combination of ingredients helps prevent stretch marks and premature aging. Key actives include witch hazel, calendula, fennel and rosehip extracts, extra virgin coconut oil, cocoa and shea butters and grape seed oil.",
-   "ar": "يُعدّ لوشن الجسم ذا كريم ليبرتيه مثالياً لروتين العناية بالبشرة، إذ يمنحها ملمساً ناعماً مع التغذية والتماسك والترطيب المكثف، ويتركها بمظهر صحي ومشرق. ويساعد مزيج مكوناته على الوقاية من علامات التمدد والشيخوخة المبكرة. ومن أبرز مكوناته الفعالة: مستخلصات البندق الساحر والآذريون والشمر وثمر الورد البري، وزيت جوز الهند البكر الممتاز، وزبدة الكاكاو وزبدة الشيا، وزيت بذور العنب."
+   "ar": "يُعدّ لوشن الجسم ذا كريم ليبرتيه مثالياً لروتين العناية بالبشرة، إذ يمنحها ملمساً ناعماً مع التغذية والتماسك والترطيب المكثف، ويتركها بمظهر صحي ومشرق. ويساعد مزيج مكوناته على الوقاية من علامات التمدد والشيخوخة المبكرة. ومن أبرز مكوناته الفعالة: مستخلصات البندق الساحر والآذريون والشمر وثمر الورد البري، وزيت جوز الهند البكر الممتاز، وزبدة الكاكاو وزبدة الشيا، وزيت بذور العنب.",
+   "pt": "A Loção Desodorante The Cream Liberté é ideal para a sua rotina de cuidados com a pele. Sua composição possui a magia de um toque macio, proporcionando nutrição, firmeza e hidratação intensa, além de deixar a pele com um aspecto saudável e brilhoso para um banho perfumado e relaxante. Sua combinação de ingredientes previne estrias e o envelhecimento precoce. Entre os principais ativos estão os extratos de hamamélis, calêndula, erva-doce e rosa mosqueta, o óleo de coco extravirgem, as manteigas de cacau e karité e o óleo de semente de uva."
   },
   "source": "https://www.wepink.com.br/the-cream-liberte-locao-corporal-130-ml---wepink-00000000000023316/p",
   "notes": {}
@@ -18206,21 +20028,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Fragrant hydration that will delight your skin",
-   "ar": "ترطيب معطّر يأسر بشرتك"
+   "ar": "ترطيب معطّر يأسر بشرتك",
+   "pt": "Uma hidratação perfumada que encantará a sua pele"
   },
   "desc": {
    "en": "The Pureblixx Body Cream leaves skin beautiful, fragrant and healthy-looking, with actives that help support collagen production and cell renewal. Its soft, smooth texture provides hydration, nourishment and firmness while fighting premature aging. Its fruity floriental scent pairs citrus led by Sicilian lemon with a floral heart and a sweet, woody base, like a warm sunset breeze by the sea.",
-   "ar": "يمنح كريم الجسم بيوربليكس البشرة جمالاً وعبيراً ومظهراً صحياً، بفضل مكوناته الفعالة التي تساعد على إنتاج الكولاجين وتجديد الخلايا. ويوفّر بملمسه الناعم الترطيب والتغذية والتماسك مع مكافحة الشيخوخة المبكرة. أما عطره الزهري الشرقي الفاكهي فيجمع الحمضيات بقيادة الليمون الصقلي مع قلب زهري وقاعدة حلوة وخشبية، كنسمة دافئة منعشة عند غروب الشمس على البحر."
+   "ar": "يمنح كريم الجسم بيوربليكس البشرة جمالاً وعبيراً ومظهراً صحياً، بفضل مكوناته الفعالة التي تساعد على إنتاج الكولاجين وتجديد الخلايا. ويوفّر بملمسه الناعم الترطيب والتغذية والتماسك مع مكافحة الشيخوخة المبكرة. أما عطره الزهري الشرقي الفاكهي فيجمع الحمضيات بقيادة الليمون الصقلي مع قلب زهري وقاعدة حلوة وخشبية، كنسمة دافئة منعشة عند غروب الشمس على البحر.",
+   "pt": "A loção corporal Body Cream Pureblixx Desodorante Hidratante veio para proporcionar uma pele bonita, perfumada e com aspecto saudável, pois sua combinação de ativos auxilia na produção de colágeno e regeneração celular. Em um toque macio e suave, o creme oferece hidratação, nutrição, firmeza e combate ao envelhecimento precoce. Suas notas vibrantes têm um caminho Floriental Frutado, combinando frutas cítricas, lideradas pelo glamoroso limão siciliano, em contraponto a um coração floral, em um fundo adocicado e amadeirado, que trazem a brisa quente e fresca de um pôr do sol no mar."
   },
   "notes": {
    "top": [
     [
      "Citrus fruits",
-     "فواكه حمضية"
+     "فواكه حمضية",
+     "Frutas cítricas"
     ],
     [
      "Sicilian lemon",
-     "ليمون صقلي"
+     "ليمون صقلي",
+     "Limão siciliano"
     ]
    ]
   },
@@ -18251,23 +20077,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the cozy scent of Vanilla Hug",
-   "ar": "قوام الكريمة المخفوقة مع عبير فانيلا هاج الدافئ"
+   "ar": "قوام الكريمة المخفوقة مع عبير فانيلا هاج الدافئ",
+   "pt": "Textura de chantilly com o cheirinho do Vanilla Hug"
   },
   "desc": {
    "en": "The Shower Dream Vanilla Hug bath foam turns bath time into the most delightful moment of the day. Its ultra-creamy, whipped-cream-effect foam removes impurities and cleanses gently while delivering deep hydration and a glow effect, leaving skin soft and velvety. An enveloping scent of jasmine and vanilla lingers on the skin, bringing a delicious sense of charm and comfort.",
-   "ar": "تحوّل رغوة الاستحمام شاور دريم فانيلا هاج وقت الاستحمام إلى أجمل لحظات اليوم. رغوتها فائقة الكريمية بتأثير الكريمة المخفوقة تزيل الشوائب وتنظّف بلطف، مع ترطيب عميق وتأثير متوهّج يترك البشرة ناعمة بملمس مخملي. ويبقى عبير الياسمين والفانيليا الآسر على البشرة ليمنح إحساساً ممتعاً بالسحر والدفء."
+   "ar": "تحوّل رغوة الاستحمام شاور دريم فانيلا هاج وقت الاستحمام إلى أجمل لحظات اليوم. رغوتها فائقة الكريمية بتأثير الكريمة المخفوقة تزيل الشوائب وتنظّف بلطف، مع ترطيب عميق وتأثير متوهّج يترك البشرة ناعمة بملمس مخملي. ويبقى عبير الياسمين والفانيليا الآسر على البشرة ليمنح إحساساً ممتعاً بالسحر والدفء.",
+   "pt": "A Espuma de Banho Wepink Shower Dream Vanilla Hug é para quem ama transformar o banho no momento mais gostoso do dia, cheio de cuidado e carinho. A espuma ultracremosa de efeito chantilly envolve o corpo, remove impurezas e entrega limpeza suave com hidratação profunda e efeito glow, deixando a pele macia e com toque aveludado. Para completar, o cheirinho envolvente de jasmim e baunilha abraça a rotina e fica na pele, trazendo uma sensação deliciosa de encanto e aconchego."
   },
   "notes": {
    "top": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -18299,11 +20129,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A challenge to the conventional",
-   "ar": "تحدٍّ للمألوف"
+   "ar": "تحدٍّ للمألوف",
+   "pt": "Um desafio ao convencional"
   },
   "desc": {
    "en": "The Ghadan Body Splash offers a distinctive scent made for mature, sophisticated women. Its complex fragrance reveals beautiful olfactory surprises with every spray, letting her express her eccentric side as much as she likes. A truly memorable experience.",
-   "ar": "يقدّم بودي سبلاش غدان عبيراً مميزاً صُمّم للمرأة الناضجة والراقية. عطره المركّب يكشف عن أجمل المفاجآت العطرية مع كل رشة، ليتيح لها التعبير عن تفرّدها كما تشاء. تجربة لا تُنسى بكل تأكيد."
+   "ar": "يقدّم بودي سبلاش غدان عبيراً مميزاً صُمّم للمرأة الناضجة والراقية. عطره المركّب يكشف عن أجمل المفاجآت العطرية مع كل رشة، ليتيح لها التعبير عن تفرّدها كما تشاء. تجربة لا تُنسى بكل تأكيد.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Ghadan traz um aroma diferenciado, feito para mulheres maduras e sofisticadas. Sua fragrância é complexa e traz as mais belas surpresas olfativas a cada borrifada, para que você possa expressar sua excentricidade o quanto quiser. Com certeza uma experiência memorável."
   },
   "source": "https://www.wepink.com.br/body-splash-ghadan-200ml---wepink-404/p",
   "notes": {}
@@ -18332,11 +20164,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "For more even, healthier skin",
-   "ar": "لبشرة موحّدة اللون وأكثر صحة"
+   "ar": "لبشرة موحّدة اللون وأكثر صحة",
+   "pt": "Para uma pele mais uniforme e saudável"
   },
   "desc": {
    "en": "This set brings together three essentials. The 10-in-1 Facial Serum is an all-in-one, ultra-hydrating formula with a mix of factors for healthy skin, while the Night Serum's actives work together for anti-aging results, helping control oiliness, brighten the skin and deeply hydrate. The Essencial Cleanser facial wash, made for all skin types, cleanses deeply with high astringent power and acts as a natural toner.",
-   "ar": "يجمع هذا الطقم ثلاثة منتجات أساسية. سيروم الوجه 10 في 1 تركيبة شاملة فائقة الترطيب تضم مزيجاً من العناصر اللازمة لبشرة صحية، بينما تعمل المكونات الفعالة في السيروم الليلي معاً لمكافحة علامات التقدم في السن، مع المساعدة على التحكم في الإفرازات الدهنية وتفتيح البشرة وترطيبها بعمق. أما غسول الوجه إسنسيال كلينزر المناسب لجميع أنواع البشرة، فينظّف بعمق بقوة قابضة عالية ويعمل كتونر طبيعي."
+   "ar": "يجمع هذا الطقم ثلاثة منتجات أساسية. سيروم الوجه 10 في 1 تركيبة شاملة فائقة الترطيب تضم مزيجاً من العناصر اللازمة لبشرة صحية، بينما تعمل المكونات الفعالة في السيروم الليلي معاً لمكافحة علامات التقدم في السن، مع المساعدة على التحكم في الإفرازات الدهنية وتفتيح البشرة وترطيبها بعمق. أما غسول الوجه إسنسيال كلينزر المناسب لجميع أنواع البشرة، فينظّف بعمق بقوة قابضة عالية ويعمل كتونر طبيعي.",
+   "pt": "O Sérum Facial 10 em 1 Wepink foi desenvolvido para ser o seu produto único e essencial, tudo o que você precisa para sua pele em um único sérum. Sua criação foi pensada em uma fórmula exclusiva de ultra hidratação com um mix de componentes de fatores necessários para uma pele saudável. O Sérum Noturno Wepink veio para revolucionar o mercado, dando mais um cuidado à sua rotina de skincare, ele possui ativos que juntos trabalham para um resultado anti-age, que auxilia contra o envelhecimento, auxilia no controle de oleosidade, também ajuda no clareamento da pele e atua com uma hidratação profunda. O Sabonete Facial Essencial Cleanser foi desenvolvido para completar com excelência o seu jeito de se cuidar. Criamos uma fórmula exclusiva para todos os tipos de pele que traz uma limpeza profunda com alto poder adstringente e um tônico natural para seu rosto."
   },
   "source": "https://www.wepink.com.br/kit-serum----wepink-wkts-ath-001/p",
   "notes": {}
@@ -18367,11 +20201,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Keeping pace with those who make things happen",
-   "ar": "يواكب إيقاع من يصنع الإنجاز"
+   "ar": "يواكب إيقاع من يصنع الإنجاز",
+   "pt": "Acompanha o ritmo de quem faz acontecer"
   },
   "desc": {
    "en": "The Aurale Body Splash Set reveals the power of the man who lives with determination and carries his identity wherever he goes. Four exclusive fragrances explore different facets of contemporary masculinity: intensity, sophistication, magnetism and authenticity. From vibrant freshness to woody, sensual accords, each body splash is a unique signature that turns routine into presence.",
-   "ar": "يكشف طقم بودي سبلاش أورال عن قوة الرجل الذي يعيش بعزيمة ويحمل هويته أينما ذهب. أربعة عطور حصرية تستكشف جوانب مختلفة من الرجولة العصرية: العنفوان والرقي والجاذبية والأصالة. ومن الانتعاش النابض إلى النغمات الخشبية الحسية، يشكّل كل بودي سبلاش بصمة فريدة تحوّل الروتين اليومي إلى حضور لافت."
+   "ar": "يكشف طقم بودي سبلاش أورال عن قوة الرجل الذي يعيش بعزيمة ويحمل هويته أينما ذهب. أربعة عطور حصرية تستكشف جوانب مختلفة من الرجولة العصرية: العنفوان والرقي والجاذبية والأصالة. ومن الانتعاش النابض إلى النغمات الخشبية الحسية، يشكّل كل بودي سبلاش بصمة فريدة تحوّل الروتين اليومي إلى حضور لافت.",
+   "pt": "O Kit de Desodorantes Colônia Body Splash Wepink Aurale revela o poder do homem que vive com determinação e carrega sua identidade por onde passa. Quatro fragrâncias exclusivas exploram diferentes facetas do masculino contemporâneo: intensidade, sofisticação, magnetismo e autenticidade. Do frescor vibrante aos acordes amadeirados e sensuais, cada body splash é uma assinatura única que transforma a rotina em presença, mostrando que o aroma também é parte da força e atitude de quem o usa."
   },
   "source": "https://www.wepink.com.br/kit-body-splash-aurale---wepink-546/p",
   "notes": {}
@@ -18403,65 +20239,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "For men who make their choices with confidence",
-   "ar": "للرجال الذين يتخذون قراراتهم بثقة"
+   "ar": "للرجال الذين يتخذون قراراتهم بثقة",
+   "pt": "Para homens que fazem suas escolhas com confiança"
   },
   "desc": {
    "en": "The Brave Element Body Splash was created for men who turn challenges into opportunities, expressing confidence, leadership and courage. It opens with bergamot, pineapple, blueberry and cardamom, followed by a refined aromatic heart of French lavender, geranium, blue narcissus and lily of the valley. Patchouli, cedar, moss and musk leave an intense, sophisticated and lasting woody trail.",
-   "ar": "صُمّم بودي سبلاش بريف إليمنت للرجال الذين يحوّلون التحديات إلى فرص، ليعبّر عن الثقة والقيادة والشجاعة. يفتتح بمزيج نابض من البرغموت والأناناس والتوت الأزرق والهيل، يليه قلب عطري راقٍ من اللافندر الفرنسي والجيرانيوم والنرجس الأزرق وزنبق الوادي. ويترك الباتشولي والأرز والطحلب والمسك أثراً خشبياً قوياً وراقياً يدوم طويلاً."
+   "ar": "صُمّم بودي سبلاش بريف إليمنت للرجال الذين يحوّلون التحديات إلى فرص، ليعبّر عن الثقة والقيادة والشجاعة. يفتتح بمزيج نابض من البرغموت والأناناس والتوت الأزرق والهيل، يليه قلب عطري راقٍ من اللافندر الفرنسي والجيرانيوم والنرجس الأزرق وزنبق الوادي. ويترك الباتشولي والأرز والطحلب والمسك أثراً خشبياً قوياً وراقياً يدوم طويلاً.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Brave Element foi criado para homens que transformam desafios em oportunidades e fazem da determinação a sua maior assinatura. Para eles nasceu Brave Element, uma fragrância que traduz confiança, liderança e coragem em cada detalhe. Sua abertura revela uma combinação vibrante de Bergamota, Abacaxi, Mirtilo e Cardamomo, criando um frescor sofisticado com nuances frutadas e especiadas que despertam os sentidos e marcam presença desde o primeiro instante. No coração, Lavanda Francesa, Gerânio, Narciso Azul e Lírio-do-vale revelam um acorde aromático refinado, equilibrando elegância e modernidade em uma composição que transmite autenticidade e personalidade. Ao fundo, Patchouli, Cedro, Musgo e Musk envolvem a pele com uma assinatura amadeirada intensa, sofisticada e duradoura. Um rastro marcante que traduz segurança, força e a elegância de quem conquista seu espaço naturalmente."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Pineapple",
-     "أناناس"
+     "أناناس",
+     "Abacaxi"
     ],
     [
      "Blueberry",
-     "توت أزرق"
+     "توت أزرق",
+     "Mirtilo"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ]
    ],
    "heart": [
     [
      "French lavender",
-     "لافندر فرنسي"
+     "لافندر فرنسي",
+     "Lavanda francesa"
     ],
     [
      "Geranium",
-     "جيرانيوم"
+     "جيرانيوم",
+     "Gerânio"
     ],
     [
      "Blue narcissus",
-     "نرجس أزرق"
+     "نرجس أزرق",
+     "Narciso azul"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Cedar",
-     "خشب الأرز"
+     "خشب الأرز",
+     "Cedro"
     ],
     [
      "Moss",
-     "طحلب"
+     "طحلب",
+     "Musgo"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -18493,11 +20343,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Nourishment and firmness with the authentic touch of a fruity floral",
-   "ar": "تغذية وتماسك مع لمسة أصيلة من العبير الزهري الفاكهي"
+   "ar": "تغذية وتماسك مع لمسة أصيلة من العبير الزهري الفاكهي",
+   "pt": "Nutrição e firmeza com o toque autêntico do floral frutado"
   },
   "desc": {
    "en": "The My We Belle Body Cream delights with its delicacy and hydration, with a formula that cares for the skin while helping support collagen production and cell renewal. Its blend of selected oils and extracts leaves a soft, comfortable feel, while the fruity floral fragrance scents the skin with effortless elegance. A daily ritual that moisturizes, perfumes and enhances the skin's softness.",
-   "ar": "يأسر كريم الجسم ماي وي بيل برقّته وترطيبه، بتركيبة تعتني بالبشرة وتساعد على إنتاج الكولاجين وتجديد الخلايا. ويمنح مزيجه من الزيوت والمستخلصات المختارة ملمساً ناعماً ومريحاً، بينما يعطّر عبيره الزهري الفاكهي البشرة بأناقة طبيعية بلا تكلّف. طقس عناية يومي يرطّب البشرة ويعطّرها ويبرز نعومتها."
+   "ar": "يأسر كريم الجسم ماي وي بيل برقّته وترطيبه، بتركيبة تعتني بالبشرة وتساعد على إنتاج الكولاجين وتجديد الخلايا. ويمنح مزيجه من الزيوت والمستخلصات المختارة ملمساً ناعماً ومريحاً، بينما يعطّر عبيره الزهري الفاكهي البشرة بأناقة طبيعية بلا تكلّف. طقس عناية يومي يرطّب البشرة ويعطّرها ويبرز نعومتها.",
+   "pt": "Encante-se pela delicadeza e hidratação da Loção Desodorante Body Cream Wepink My We Belle, com fórmula desenvolvida para cuidar da sua pele enquanto auxilia na produção de colágeno e na regeneração celular. Seu blend de óleos e extratos selecionados proporciona um toque macio e confortável, enquanto a fragrância Floral Frutada perfuma com naturalidade, revelando uma elegância sem esforço. Um ritual de cuidado que hidrata, perfuma e realça a suavidade da sua pele todos os dias!"
   },
   "source": "https://www.wepink.com.br/body-cream-my-we-belle-200ml---wepink-522/p",
   "notes": {}
@@ -18529,65 +20381,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The perfect balance of freshness and sophistication",
-   "ar": "التوازن المثالي بين الانتعاش والرقي"
+   "ar": "التوازن المثالي بين الانتعاش والرقي",
+   "pt": "O equilíbrio perfeito entre frescor e sofisticação"
   },
   "desc": {
    "en": "The Authentic Azure Body Splash captures the essence of the authentic, confident and naturally striking man. It opens with vibrant grapefruit and spicy cardamom, with juniper and pepper adding energy, before an aromatic heart of clary sage, lavender, vetiver and geranium. Musk, patchouli, leather and moss add depth and warmth, leaving a sophisticated, contemporary trail.",
-   "ar": "يجسّد بودي سبلاش أوثنتك أزور جوهر الرجل الأصيل الواثق واللافت بطبيعته. يفتتح بانتعاش الجريب فروت النابض ورقي الهيل المتبّل، بينما يضيف العرعر والفلفل شخصية وحيوية، يليه قلب عطري من المريمية المسكية واللافندر والفيتيفر والجيرانيوم. ويمنح المسك والباتشولي والجلد والطحلب العطر عمقاً ودفئاً، ليترك أثراً راقياً وعصرياً."
+   "ar": "يجسّد بودي سبلاش أوثنتك أزور جوهر الرجل الأصيل الواثق واللافت بطبيعته. يفتتح بانتعاش الجريب فروت النابض ورقي الهيل المتبّل، بينما يضيف العرعر والفلفل شخصية وحيوية، يليه قلب عطري من المريمية المسكية واللافندر والفيتيفر والجيرانيوم. ويمنح المسك والباتشولي والجلد والطحلب العطر عمقاً ودفئاً، ليترك أثراً راقياً وعصرياً.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Authentic Azure traduz a essência do homem autêntico, confiante e naturalmente marcante. Uma fragrância criada para quem vive com intensidade, valoriza sua individualidade e transforma presença em assinatura. Sua abertura combina o frescor vibrante da Toranja com a sofisticação especiada do Cardamomo, enquanto Zimbro e Pimenta acrescentam personalidade e energia logo nos primeiros instantes. O resultado é uma saída fresca, intensa e envolvente, que desperta os sentidos com modernidade e força. No coração, notas aromáticas de Sálvia-esclareia, Lavanda, Vetiver e Gerânio revelam equilíbrio e sofisticação. Esse acorde combina frescor herbal com elegância masculina, criando uma construção refinada, versátil e naturalmente magnética. Ao fundo, a fragrância ganha profundidade com a combinação envolvente de Musk, Patchouli, Couro e Musgo. Essas notas trazem calor, intensidade e uma assinatura marcante, construindo um rastro sofisticado, contemporâneo e memorável. Authentic Azure é para homens que sabem exatamente quem são. Uma fragrância que combina frescor, elegância e intensidade na medida certa, deixando uma impressão forte sem perder a naturalidade. Mais do que perfumar, Authentic Azure revela presença, confiança e autenticidade em cada detalhe."
   },
   "notes": {
    "top": [
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ],
     [
      "Juniper",
-     "عرعر"
+     "عرعر",
+     "Zimbro"
     ],
     [
      "Pepper",
-     "فلفل"
+     "فلفل",
+     "Pimenta"
     ]
    ],
    "heart": [
     [
      "Clary sage",
-     "مريمية مسكية"
+     "مريمية مسكية",
+     "Sálvia-esclareia"
     ],
     [
      "Lavender",
-     "لافندر"
+     "لافندر",
+     "Lavanda"
     ],
     [
      "Vetiver",
-     "فيتيفر"
+     "فيتيفر",
+     "Vetiver"
     ],
     [
      "Geranium",
-     "جيرانيوم"
+     "جيرانيوم",
+     "Gerânio"
     ]
    ],
    "base": [
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Leather",
-     "جلد"
+     "جلد",
+     "Couro"
     ],
     [
      "Moss",
-     "طحلب"
+     "طحلب",
+     "Musgo"
     ]
    ]
   },
@@ -18620,53 +20486,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The fruity floral oriental that turns presence into memory",
-   "ar": "عطر زهري شرقي فاكهي يحوّل الحضور إلى ذكرى"
+   "ar": "عطر زهري شرقي فاكهي يحوّل الحضور إلى ذكرى",
+   "pt": "O floral oriental frutado que transforma presença em memória"
   },
   "desc": {
    "en": "The Vallora Spell Body Splash celebrates sophisticated, delicate and naturally captivating femininity. Velvety peach, delicate lychee and bright tangerine open the fragrance, leading to a refined floral heart of rose, magnolia and lily. Creamy vanilla, warm amber and sandalwood form a comforting base, leaving an elegant trail that stays on the skin and in the memory.",
-   "ar": "يحتفي بودي سبلاش فالورا سبيل بالأنوثة الراقية والرقيقة والآسرة بطبيعتها. يفتتح بنعومة الخوخ المخملية وعذوبة الليتشي الرقيقة وإشراقة اليوسفي، يليه قلب زهري راقٍ من الورد والماغنوليا والزنبق. وتشكّل الفانيليا الكريمية والعنبر الدافئ وخشب الصندل قاعدة مريحة، تترك أثراً أنيقاً يبقى على البشرة وفي الذاكرة."
+   "ar": "يحتفي بودي سبلاش فالورا سبيل بالأنوثة الراقية والرقيقة والآسرة بطبيعتها. يفتتح بنعومة الخوخ المخملية وعذوبة الليتشي الرقيقة وإشراقة اليوسفي، يليه قلب زهري راقٍ من الورد والماغنوليا والزنبق. وتشكّل الفانيليا الكريمية والعنبر الدافئ وخشب الصندل قاعدة مريحة، تترك أثراً أنيقاً يبقى على البشرة وفي الذاكرة.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Vallora Spell é uma celebração da feminilidade sofisticada, delicada e naturalmente envolvente. Uma fragrância criada para mulheres que valorizam conexões genuínas e transformam cada encontro em uma lembrança especial. Sua abertura revela a suavidade aveludada do Pêssego combinada à doçura delicada da Lichia e ao brilho cítrico da Tangerina. Um início luminoso e encantador que desperta os sentidos com leveza, frescor e elegância. No coração, Rosa, Magnólia e Lírio florescem em perfeita harmonia, criando um acorde floral sofisticado e feminino. Essa combinação traduz romantismo, delicadeza e refinamento, envolvendo a pele em uma aura de charme e beleza atemporal. Ao fundo, a cremosidade da Baunilha se encontra com o calor do Âmbar e a sofisticação do Sândalo, revelando uma base confortável, envolvente e memorável. O resultado é um rastro elegante e acolhedor que permanece na pele e na memória. Vallora Spell é uma fragrância criada para mulheres que acreditam no poder dos momentos, das conexões e das emoções. Transforme presença em memória."
   },
   "notes": {
    "top": [
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ],
     [
      "Lychee",
-     "ليتشي"
+     "ليتشي",
+     "Lichia"
     ],
     [
      "Tangerine",
-     "يوسفي"
+     "يوسفي",
+     "Tangerina"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ],
     [
      "Lily",
-     "زنبق"
+     "زنبق",
+     "Lírio"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Sandalwood",
-     "خشب الصندل"
+     "خشب الصندل",
+     "Sândalo"
     ]
    ]
   },
@@ -18698,65 +20575,79 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The sophistication of those who turn confidence into presence",
-   "ar": "رقيّ من تحوّل الثقة إلى حضور"
+   "ar": "رقيّ من تحوّل الثقة إلى حضور",
+   "pt": "A sofisticação de quem transforma confiança em presença"
   },
   "desc": {
    "en": "The Mallorie Luxury Body Splash was created for women who carry elegance, strength and sophistication in every detail. Bergamot, lemon and raspberry open with a modern spicy touch of pink pepper, followed by a refined floral heart of rose, iris, tuberose and magnolia. Patchouli, amber, benzoin and musk build an intense, memorable base.",
-   "ar": "صُمّم بودي سبلاش مالوري لاكشري للمرأة التي تحمل الأناقة والقوة والرقي في كل تفاصيلها. يفتتح بإشراقة البرغموت والليمون وعذوبة توت العليق مع لمسة متبّلة عصرية من الفلفل الوردي، يليه قلب زهري راقٍ من الورد والسوسن ومسك الروم والماغنوليا. ويشكّل الباتشولي والعنبر واللبان الجاوي والمسك قاعدة قوية لا تُنسى."
+   "ar": "صُمّم بودي سبلاش مالوري لاكشري للمرأة التي تحمل الأناقة والقوة والرقي في كل تفاصيلها. يفتتح بإشراقة البرغموت والليمون وعذوبة توت العليق مع لمسة متبّلة عصرية من الفلفل الوردي، يليه قلب زهري راقٍ من الورد والسوسن ومسك الروم والماغنوليا. ويشكّل الباتشولي والعنبر واللبان الجاوي والمسك قاعدة قوية لا تُنسى.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Mallorie Luxury foi criado para mulheres que carregam elegância, força e sofisticação em cada detalhe da sua trajetória. Uma fragrância que traduz confiança, personalidade e a beleza de quem sabe exatamente quem é. Sua abertura combina a luminosidade cítrica da Bergamota e do Limão com a doçura delicada da Framboesa, enquanto a Pimenta Rosa adiciona um toque especiado moderno e envolvente. O resultado é uma primeira impressão vibrante, sofisticada e cheia de atitude. No coração da fragrância, um bouquet floral refinado revela toda a sua feminilidade. A elegância atemporal da Rosa, a delicadeza da Íris, a intensidade da Tuberosa e a cremosidade aveludada da Magnólia criam uma combinação harmoniosa que envolve a pele com charme, requinte e personalidade. Ao fundo, a profundidade do Patchouli encontra o calor sofisticado do Âmbar, a riqueza do Benjoim e a maciez confortável do Musk, construindo uma base intensa e memorável. Essa combinação deixa um rastro elegante que permanece na pele e na memória, revelando uma assinatura olfativa marcante e sofisticada. Mallorie Luxury é mais do que uma fragrância. É uma expressão de poder feminino, confiança e sofisticação. Criada para mulheres que transformam presença em impacto e elegância em uma assinatura inesquecível. Porque o verdadeiro luxo não está apenas no que você veste. Está na forma como você é lembrada."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Lemon",
-     "ليمون"
+     "ليمون",
+     "Limão"
     ],
     [
      "Raspberry",
-     "توت العليق"
+     "توت العليق",
+     "Framboesa"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Iris",
-     "سوسن"
+     "سوسن",
+     "Íris"
     ],
     [
      "Tuberose",
-     "مسك الروم"
+     "مسك الروم",
+     "Tuberosa"
     ],
     [
      "Magnolia",
-     "ماغنوليا"
+     "ماغنوليا",
+     "Magnólia"
     ]
    ],
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Benzoin",
-     "لبان جاوي"
+     "لبان جاوي",
+     "Benjoim"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -18786,23 +20677,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Feive antiperspirant roll-on brings a touch of luxury and softness to daily care. With 72-hour protection and hydration, a brightening action and a fragrance of rare sophistication, it leaves skin protected, soft and impeccably elegant.",
-   "ar": "يضفي مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن فيف لمسة من الفخامة والنعومة على العناية اليومية. فبفضل الحماية والترطيب لمدة 72 ساعة وخصائص التفتيح وعطر يتجاوز حدود الرقي، يترك البشرة محمية وناعمة وبأناقة لا تشوبها شائبة."
+   "ar": "يضفي مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن فيف لمسة من الفخامة والنعومة على العناية اليومية. فبفضل الحماية والترطيب لمدة 72 ساعة وخصائص التفتيح وعطر يتجاوز حدود الرقي، يترك البشرة محمية وناعمة وبأناقة لا تشوبها شائبة.",
+   "pt": "O Desodorante Antitranspirante Roll-on MyProtection Wepink Feive é o toque de luxo e suavidade que eleva o seu cuidado diário. Com proteção e hidratação por 72 horas, ação clareadora e uma fragrância que transcende os limites da sofisticação, ele deixa a pele protegida, macia e impecavelmente elegante. Seu aroma Musk Oriental harmoniza notas de Mandarina e Âmbar, criando uma experiência graciosa e refinada que revela o ápice da elegância."
   },
   "notes": {
    "heart": [
     [
      "Mandarin",
-     "ماندرين"
+     "ماندرين",
+     "Mandarina"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -18829,11 +20724,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Heaven Blue antiperspirant roll-on invites a new state of mind. Its serene touch offers 72-hour protection and hydration, while the formula helps improve the skin's appearance and even out its tone. The aromatic citrus scent inspires peace, turning the daily routine into an invitation to explore the unimaginable.",
-   "ar": "يدعو مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن هيفن بلو إلى اكتشاف حالة ذهنية جديدة. تمنح لمسته الهادئة حماية وترطيباً لمدة 72 ساعة، بينما تساعد تركيبته على تحسين مظهر البشرة وتوحيد لونها. ويبعث عبيره الحمضي العطري على السكينة والإلهام، محوّلاً الروتين اليومي إلى دعوة لاستكشاف ما لا يمكن تخيّله."
+   "ar": "يدعو مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن هيفن بلو إلى اكتشاف حالة ذهنية جديدة. تمنح لمسته الهادئة حماية وترطيباً لمدة 72 ساعة، بينما تساعد تركيبته على تحسين مظهر البشرة وتوحيد لونها. ويبعث عبيره الحمضي العطري على السكينة والإلهام، محوّلاً الروتين اليومي إلى دعوة لاستكشاف ما لا يمكن تخيّله.",
+   "pt": "Explore um novo estado de espírito com o Desodorante Antitranspirante Roll-on Myprotection Wepink Heaven Blue. Seu toque sereno oferece proteção e hidratação por 72 horas, enquanto a fórmula ajuda a melhorar a aparência e uniformizar o tom da pele. A essência Cítrica Aromática desperta paz e inspiração, transformando sua rotina em um convite à liberdade de explorar o inimaginável."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-heaven-blue-50ml---wepink-478/p",
   "notes": {}
@@ -18865,69 +20762,84 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Masculine presence revealed in an aromatic amber fougère",
-   "ar": "حضور رجولي يتجلّى في عطر فوجير عنبري عطري"
+   "ar": "حضور رجولي يتجلّى في عطر فوجير عنبري عطري",
+   "pt": "Presença masculina que se revela no fougère âmbar aromático"
   },
   "desc": {
    "en": "The Castillo Body Splash captures the essence of the contemporary man: confident, sophisticated and naturally striking. Bergamot, green bergamot, cardamom and ginger create a vibrant opening, followed by an aromatic heart of clary sage, geranium, orange blossom, Tunisian orange blossom and Lavender Diva. The base intensifies with a woody amber accord, patchouli, vanilla and cocoa.",
-   "ar": "يجسّد بودي سبلاش كاستيلو جوهر الرجل العصري: واثق وراقٍ ولافت بطبيعته. يفتتح البرغموت والبرغموت الأخضر والهيل والزنجبيل العطر بانطلاقة نابضة، يليها قلب عطري من المريمية المسكية والجيرانيوم وزهر البرتقال وزهر البرتقال التونسي ولافندر ديفا. وتزداد القاعدة عمقاً مع نغمة عنبرية خشبية والباتشولي والفانيليا والكاكاو."
+   "ar": "يجسّد بودي سبلاش كاستيلو جوهر الرجل العصري: واثق وراقٍ ولافت بطبيعته. يفتتح البرغموت والبرغموت الأخضر والهيل والزنجبيل العطر بانطلاقة نابضة، يليها قلب عطري من المريمية المسكية والجيرانيوم وزهر البرتقال وزهر البرتقال التونسي ولافندر ديفا. وتزداد القاعدة عمقاً مع نغمة عنبرية خشبية والباتشولي والفانيليا والكاكاو.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Castillo Essence traduz a essência do homem contemporâneo: seguro, sofisticado e naturalmente marcante. Uma fragrância que equilibra frescor e intensidade, revelando uma masculinidade elegante que não precisa se impor. Na saída, o brilho cítrico da bergamota e da bergamota verde se encontra com o frescor especiado do cardamomo e do gengibre, criando uma abertura vibrante e envolvente. Um convite imediato à presença, com um toque moderno e refinado que desperta os sentidos. No coração, a fragrância se desenvolve com harmonia e profundidade. A sálvia-esclareia e o gerânio trazem um frescor aromático sofisticado, enquanto a flor de laranjeira e sua versão tunisiana revelam uma faceta mais luminosa e elegante. O toque de lavender diva completa essa construção com equilíbrio e serenidade. Ao fundo, a assinatura se intensifica. O acorde âmbar amadeirado se une ao patchouli, trazendo estrutura e profundidade, enquanto a baunilha e o cacau adicionam um toque quente e envolvente, criando um rastro memorável, confortável e ao mesmo tempo ousado. Castillo Essence é mais do que uma fragrância: é uma extensão da sua identidade. Um aroma que acompanha, marca e permanece. Uma presença que se revela."
   },
   "notes": {
    "top": [
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ],
     [
      "Green bergamot",
-     "برغموت أخضر"
+     "برغموت أخضر",
+     "Bergamota verde"
     ],
     [
      "Cardamom",
-     "هيل"
+     "هيل",
+     "Cardamomo"
     ],
     [
      "Ginger",
-     "زنجبيل"
+     "زنجبيل",
+     "Gengibre"
     ]
    ],
    "heart": [
     [
      "Clary sage",
-     "مريمية مسكية"
+     "مريمية مسكية",
+     "Sálvia-esclareia"
     ],
     [
      "Geranium",
-     "جيرانيوم"
+     "جيرانيوم",
+     "Gerânio"
     ],
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ],
     [
      "Tunisian orange blossom",
-     "زهر البرتقال التونسي"
+     "زهر البرتقال التونسي",
+     "Flor de laranjeira tunisiana"
     ],
     [
      "Lavender Diva",
-     "لافندر ديفا"
+     "لافندر ديفا",
+     "Lavender Diva"
     ]
    ],
    "base": [
     [
      "Woody amber accord",
-     "نغمة عنبرية خشبية"
+     "نغمة عنبرية خشبية",
+     "Acorde âmbar amadeirado"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Cocoa",
-     "كاكاو"
+     "كاكاو",
+     "Cacau"
     ]
    ]
   },
@@ -18960,11 +20872,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Fabulous hydration",
-   "ar": "ترطيب مذهل"
+   "ar": "ترطيب مذهل",
+   "pt": "Hidratação fabulosa"
   },
   "desc": {
    "en": "The Ghadan Body Cream leaves skin hydrated, nourished and firm. Its formula is designed to help support collagen production and cell renewal, with a blend of selected oils and extracts that leaves skin looking healthy and glowing.",
-   "ar": "يمنح كريم الجسم غدان البشرة ترطيباً وتغذية وتماسكاً. صُمّمت تركيبته المتميزة للمساعدة على إنتاج الكولاجين وتجديد الخلايا، مع مزيج من الزيوت والمستخلصات المختارة يمنح البشرة مظهراً صحياً ومشرقاً."
+   "ar": "يمنح كريم الجسم غدان البشرة ترطيباً وتغذية وتماسكاً. صُمّمت تركيبته المتميزة للمساعدة على إنتاج الكولاجين وتجديد الخلايا، مع مزيج من الزيوت والمستخلصات المختارة يمنح البشرة مظهراً صحياً ومشرقاً.",
+   "pt": "Garanta pele hidratada, nutrida e firme com a Loção Desodorante Body Cream Wepink Ghadan, que é feita com sua composição de excelência formulada para auxiliar na produção de colágeno e regeneração celular, além de possuir um mix de óleos e extratos selecionados para deixar a pele com um aspecto saudável e brilhoso."
   },
   "source": "https://www.wepink.com.br/body-cream-ghadan-200ml---wepink-427/p",
   "notes": {}
@@ -18996,11 +20910,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your own enchanted grove",
-   "ar": "بستانك المسحور الخاص"
+   "ar": "بستانك المسحور الخاص",
+   "pt": "Seu próprio bosque encantado"
   },
   "desc": {
    "en": "The Haylas cologne is an enchanted grove where the magic of the finest flowers gathers to caress the senses, transforming the air and creating an aura of pure relaxation. It is the loving embrace of spring itself, a scent that leaves anyone daydreaming.",
-   "ar": "كولونيا هيلاس بستان مسحور تجتمع فيه أجمل الزهور لتداعب الحواس، فتغيّر الأجواء وتنشر هالة من الاسترخاء التام. إنها عناق الربيع الحنون، وعبير يجعل كل من يشتمّه يسرح في أحلام اليقظة."
+   "ar": "كولونيا هيلاس بستان مسحور تجتمع فيه أجمل الزهور لتداعب الحواس، فتغيّر الأجواء وتنشر هالة من الاسترخاء التام. إنها عناق الربيع الحنون، وعبير يجعل كل من يشتمّه يسرح في أحلام اليقظة.",
+   "pt": "Ande livremente pelo bosque encantado que é o Desodorante Colônia Wepink Haylas, onde a magia das melhores flores se reúne e acaricia os seus sentidos, transformando o ar e estabelecendo uma aura de puro relaxamento. É o abraço amoroso da própria primavera, um aroma que deixa qualquer um sonhando acordado."
   },
   "source": "https://www.wepink.com.br/haylas-desodorante-colonia-wepink/p",
   "notes": {}
@@ -19032,11 +20948,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Want fuller lips? Fuller lips you shall have",
-   "ar": "تريدين شفاهاً ممتلئة؟ ستحصلين عليها"
+   "ar": "تريدين شفاهاً ممتلئة؟ ستحصلين عليها",
+   "pt": "É bocão que vocês querem? Bocão que terão"
   },
   "desc": {
    "en": "The My Lips lip gloss is an innovative treatment offering 24-hour protection, volume and comfort, with actives that plump the lips. One of its key ingredients is hyaluronic acid, a powerful active that attracts water and, as a result, increases lip volume while leaving the skin of the area even healthier.",
-   "ar": "ملمع الشفاه ماي ليبس علاج مبتكر يوفّر حماية وامتلاءً وراحة لمدة 24 ساعة، بفضل مكونات فعالة تزيد من حجم الشفاه. ومن أبرز مكوناته حمض الهيالورونيك، وهو مكوّن فعّال قوي يجذب الماء، مما يزيد من امتلاء الشفاه ويمنح بشرتها صحة أكبر."
+   "ar": "ملمع الشفاه ماي ليبس علاج مبتكر يوفّر حماية وامتلاءً وراحة لمدة 24 ساعة، بفضل مكونات فعالة تزيد من حجم الشفاه. ومن أبرز مكوناته حمض الهيالورونيك، وهو مكوّن فعّال قوي يجذب الماء، مما يزيد من امتلاء الشفاه ويمنح بشرتها صحة أكبر.",
+   "pt": "O Gloss Labial My Lips! é um tratamento inovador que garante 24h de proteção, volume e conforto, além de contar com ativos que aumentam seus lábios, deixando você maravilhosa! Um dos principais ingredientes é o ácido hialurônico, que é um ativo poderoso, capaz de atrair água e, consequentemente, aumentar o volume dos lábios, deixando a pele dessa região ainda mais saudável."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-wepink-4ml-sv29232/p",
   "notes": {}
@@ -19068,33 +20986,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Never underestimate the power of desire",
-   "ar": "لا تستهيني أبداً بقوة الرغبة"
+   "ar": "لا تستهيني أبداً بقوة الرغبة",
+   "pt": "Nunca subestime o poder do desejo"
   },
   "desc": {
    "en": "Crave is an irresistible fragrance created to celebrate the beauty of contrasts: strength that embraces, sweetness that leaves a mark, femininity that lingers. It opens with sparkling sugared lemon, followed by a luminous, comforting heart of orange blossom. Warm, sensual vanilla wrapped in soft musk leads to a sweet, elegant and sophisticated finish.",
-   "ar": "كريف عطر لا يُقاوم صُمّم للاحتفاء بجمال التناقضات: قوة تحتضن، وعذوبة تترك أثراً، وأنوثة تدوم. يفتتح بنغمات متلألئة من الليمون المسكّر، يليها قلب مشرق ومريح من زهر البرتقال. وتختتم الفانيليا الدافئة الحسية، الملفوفة بنعومة المسك، رحلة عطرية حلوة وأنيقة وراقية."
+   "ar": "كريف عطر لا يُقاوم صُمّم للاحتفاء بجمال التناقضات: قوة تحتضن، وعذوبة تترك أثراً، وأنوثة تدوم. يفتتح بنغمات متلألئة من الليمون المسكّر، يليها قلب مشرق ومريح من زهر البرتقال. وتختتم الفانيليا الدافئة الحسية، الملفوفة بنعومة المسك، رحلة عطرية حلوة وأنيقة وراقية.",
+   "pt": "Crave é uma fragrância irresistível, criada para exaltar a beleza dos contrastes: a força que acolhe, a doçura que marca, a feminilidade que permanece. Uma composição que envolve, conforta e seduz com leveza, selada por um coração luminoso. A fragrância se abre com notas cintilantes de limão açucarado, despertando os sentidos com frescor e brilho. No coração, a flor de laranjeira revela uma feminilidade luminosa e reconfortante. Por fim, o toque quente e sensual da baunilha, envolvido pela maciez do musk, transporta os sentidos para um destino doce, elegante e sofisticado."
   },
   "notes": {
    "top": [
     [
      "Sugared lemon",
-     "ليمون مسكّر"
+     "ليمون مسكّر",
+     "Limão açucarado"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ],
    "base": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ],
     [
      "Musk",
-     "مسك"
+     "مسك",
+     "Musk"
     ]
    ]
   },
@@ -19127,37 +21051,44 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "For the most powerful piece in the game: you!",
-   "ar": "لأقوى قطعة في اللعبة: أنتِ!"
+   "ar": "لأقوى قطعة في اللعبة: أنتِ!",
+   "pt": "Para a peça mais poderosa do jogo: você!"
   },
   "desc": {
    "en": "The Infinity Xis Body Splash travels through a mystery that enchants under the moonlight, on a mystical, amber journey that reveals a sweet passion. It opens with sophisticated grapefruit and cassis, followed by a light trail of vanilla, and finishes glamorously with a starry touch of amber and balsamic notes.",
-   "ar": "ينطلق بودي سبلاش إنفينيتي شيس في رحلة غامضة تأسر الحواس تحت ضوء القمر، رحلة ساحرة عنبرية تكشف عن شغف عذب. يفتتح برقي الجريب فروت والكشمش الأسود، يليهما أثر خفيف من الفانيليا، ويختتم بلمسة متألقة من العنبر والنغمات البلسمية."
+   "ar": "ينطلق بودي سبلاش إنفينيتي شيس في رحلة غامضة تأسر الحواس تحت ضوء القمر، رحلة ساحرة عنبرية تكشف عن شغف عذب. يفتتح برقي الجريب فروت والكشمش الأسود، يليهما أثر خفيف من الفانيليا، ويختتم بلمسة متألقة من العنبر والنغمات البلسمية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Infinity Xis viaja por um mistério que sabe encantar sob a luz do luar, em uma jornada mística, ambarada e que revela uma doce paixão. Sua fragrância inicia na sofisticação da Toranja e do Cassis, seguidos por um leve rastro de Baunilha. Com muito glamour, finaliza no toque estrelado do Âmbar e das Notas Balsâmicas."
   },
   "notes": {
    "top": [
     [
      "Grapefruit",
-     "جريب فروت"
+     "جريب فروت",
+     "Toranja"
     ],
     [
      "Cassis",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Cassis"
     ]
    ],
    "heart": [
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Balsamic notes",
-     "نغمات بلسمية"
+     "نغمات بلسمية",
+     "Notas balsâmicas"
     ]
    ]
   },
@@ -19190,31 +21121,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Celebrate the brilliance of life!",
-   "ar": "احتفي ببريق الحياة!"
+   "ar": "احتفي ببريق الحياة!",
+   "pt": "Exalte o brilho da vida!"
   },
   "desc": {
    "en": "The Celebrate Relics Body Splash has a radiant essence that honors life's richest moments with a soft floral and fruity scent. It opens with the freshness of pear and bergamot, moves into a unique floral heart and reveals a true treasure at the base with amber and vanilla, a richness that envelops the senses.",
-   "ar": "يحمل بودي سبلاش سيليبريت ريليكس جوهراً متألقاً يحتفي بأثمن لحظات الحياة بعبير زهري فاكهي ناعم. يفتتح بانتعاش الكمثرى والبرغموت، ثم ينتقل إلى قلب زهري فريد، ليكشف في قاعدته عن كنز حقيقي من العنبر والفانيليا، وثراءٍ يغمر الحواس."
+   "ar": "يحمل بودي سبلاش سيليبريت ريليكس جوهراً متألقاً يحتفي بأثمن لحظات الحياة بعبير زهري فاكهي ناعم. يفتتح بانتعاش الكمثرى والبرغموت، ثم ينتقل إلى قلب زهري فريد، ليكشف في قاعدته عن كنز حقيقي من العنبر والفانيليا، وثراءٍ يغمر الحواس.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Celebrate Relics possui a essência mais brilhante para exaltar os momentos mais ricos da vida, reluzindo um suave aroma Floral e Frutado. Seu perfume inicia no frescor da Pera e da Bergamota, seguindo em um coração floral único. Ao fundo, revela um verdadeiro tesouro através do Âmbar e da Baunilha, celebrando uma riqueza que envolve os sentidos."
   },
   "notes": {
    "top": [
     [
      "Pear",
-     "كمثرى"
+     "كمثرى",
+     "Pera"
     ],
     [
      "Bergamot",
-     "برغموت"
+     "برغموت",
+     "Bergamota"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Vanilla",
-     "فانيليا"
+     "فانيليا",
+     "Baunilha"
     ]
    ]
   },
@@ -19246,21 +21183,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Wrap yourself in a fatal love",
-   "ar": "انغمسي في حبٍّ جارف"
+   "ar": "انغمسي في حبٍّ جارف",
+   "pt": "Envolva-se em um amor fatal"
   },
   "desc": {
    "en": "The Fatal Rouge Body Cream celebrates the essence of a fearless femme fatale, providing a soft touch, hydration, nourishment and firmness. Its formula helps support collagen production and cell renewal while leaving skin looking healthy and glowing. Its seductive, elegant floral path unfolds with cassis and pink pepper before revealing a sweet, woody base.",
-   "ar": "يحتفي كريم الجسم فيتال روج بجوهر المرأة الجريئة الآسرة، ويمنح البشرة ملمساً ناعماً مع الترطيب والتغذية والتماسك. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. ويتطور مساره الزهري المغري والأنيق مع نغمات الكشمش الأسود والفلفل الوردي، ليكشف عن قاعدة حلوة وخشبية."
+   "ar": "يحتفي كريم الجسم فيتال روج بجوهر المرأة الجريئة الآسرة، ويمنح البشرة ملمساً ناعماً مع الترطيب والتغذية والتماسك. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. ويتطور مساره الزهري المغري والأنيق مع نغمات الكشمش الأسود والفلفل الوردي، ليكشف عن قاعدة حلوة وخشبية.",
+   "pt": "A Loção Desodorante Body Cream Wepink Fatal Rouge aprecia a essência de uma mulher destemida e fatal, proporcionando um toque macio, hidratação, nutrição e firmeza. Sua composição auxilia na produção de colágeno e regeneração celular, além de deixar a pele com um aspecto saudável e brilhoso. Sua jornada sensorial sedutora e elegante possui um caminho Floral irresistível, evoluindo com o encanto em notas de Cassis e Pimenta Rosa. Sua essência se revela em um golpe fatal por um fundo doce e amadeirado, encantando por onde passar."
   },
   "notes": {
    "heart": [
     [
      "Cassis",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Cassis"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ]
   },
@@ -19294,31 +21235,37 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Breathe in comfort and well-being!",
-   "ar": "استنشقي الراحة والطمأنينة!"
+   "ar": "استنشقي الراحة والطمأنينة!",
+   "pt": "Inspire conforto e bem-estar!"
   },
   "desc": {
    "en": "The Lavanda Peace Body Splash is the true essence of comforting moments, wrapped in a soft, delicate fragrance perfect for every day. Its oriental aromatic scent opens with sweet orange and peach, evolves into fresh lavender flower and lily of the valley, and finishes on a sweet, woody and comforting base.",
-   "ar": "بودي سبلاش لافاندا بيس هو الجوهر الحقيقي للحظات الراحة، في عطر ناعم ورقيق مثالي للاستخدام اليومي. يفتتح عبيره الشرقي العطري الآسر بسحر البرتقال الحلو والخوخ، ثم يتطور إلى انتعاش زهرة اللافندر وجمال زنبق الوادي، ليختتم بقاعدة حلوة وخشبية دافئة مفعمة بالحنان."
+   "ar": "بودي سبلاش لافاندا بيس هو الجوهر الحقيقي للحظات الراحة، في عطر ناعم ورقيق مثالي للاستخدام اليومي. يفتتح عبيره الشرقي العطري الآسر بسحر البرتقال الحلو والخوخ، ثم يتطور إلى انتعاش زهرة اللافندر وجمال زنبق الوادي، ليختتم بقاعدة حلوة وخشبية دافئة مفعمة بالحنان.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Lavanda Peace é a verdadeira essência dos momentos de conforto, envolta em uma fragrância suave, delicada e perfeita para o dia a dia. Seu aroma Oriental, Aromático e inebriante inicia no encanto da laranja doce e do pêssego, evoluindo no frescor da flor de lavanda e na beleza do lírio-do-vale. Finaliza em um fundo doce, amadeirado e encantador, em um toque acolhedor e cheio de carinho."
   },
   "notes": {
    "top": [
     [
      "Sweet orange",
-     "برتقال حلو"
+     "برتقال حلو",
+     "Laranja doce"
     ],
     [
      "Peach",
-     "خوخ"
+     "خوخ",
+     "Pêssego"
     ]
    ],
    "heart": [
     [
      "Lavender flower",
-     "زهرة اللافندر"
+     "زهرة اللافندر",
+     "Flor de lavanda"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ]
    ]
   },
@@ -19352,21 +21299,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Feel the lightness of a special scent!",
-   "ar": "اشعري بخفة عبير مميز!"
+   "ar": "اشعري بخفة عبير مميز!",
+   "pt": "Sinta a leveza de um aroma especial!"
   },
   "desc": {
    "en": "The Lavanda Relax Body Splash is a classic fragrance that inspires comfort and well-being every day. Its soft green floral essence opens with refreshing notes of galbanum and mint, evolves into a noble floral heart and finishes on a fresh, woody base for a feeling of lightness and comfort.",
-   "ar": "بودي سبلاش لافاندا ريلاكس عطر كلاسيكي يبعث على الراحة والطمأنينة كل يوم. يفتتح جوهره الزهري الأخضر الناعم بنغمات منعشة من الجالبانوم والنعناع، ثم يتطور إلى قلب زهري راقٍ، ليختتم بقاعدة منعشة وخشبية تمنح إحساساً بالخفة والراحة."
+   "ar": "بودي سبلاش لافاندا ريلاكس عطر كلاسيكي يبعث على الراحة والطمأنينة كل يوم. يفتتح جوهره الزهري الأخضر الناعم بنغمات منعشة من الجالبانوم والنعناع، ثم يتطور إلى قلب زهري راقٍ، ليختتم بقاعدة منعشة وخشبية تمنح إحساساً بالخفة والراحة.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Lavanda Relax é uma fragrância clássica, que inspira conforto e bem-estar para o dia a dia. Sua essência Floral Verde é suave em um puro toque de carinho, iniciando nas mais refrescantes notas de Gálbano e Menta. Evolui no coração floral mais nobre e finaliza em um fundo fresco e amadeirado, renovando em leveza e conforto."
   },
   "notes": {
    "top": [
     [
      "Galbanum",
-     "جالبانوم"
+     "جالبانوم",
+     "Gálbano"
     ],
     [
      "Mint",
-     "نعناع"
+     "نعناع",
+     "Menta"
     ]
    ]
   },
@@ -19399,21 +21350,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A unique, light and refreshing scent for a wonderful after-shower feeling",
-   "ar": "عبير فريد وخفيف ومنعش لإحساس رائع بعد الاستحمام"
+   "ar": "عبير فريد وخفيف ومنعش لإحساس رائع بعد الاستحمام",
+   "pt": "Uma essência única, leve e refrescante para uma excelente sensação pós-banho"
   },
   "desc": {
    "en": "The VF Aqua Body Splash by Virginia Fonseca captures a free, bold and brilliant spirit. It offers a sense of well-being with a striking, refreshing scent that follows a floral and fruity path before settling into a sweet, woody base of amber and patchouli.",
-   "ar": "يجسّد بودي سبلاش في إف أكوا من فيرجينيا فونسيكا روحاً حرة وجريئة ومتألقة. يمنح إحساساً بالراحة بعبير لافت ومنعش يسلك مساراً زهرياً فاكهياً، قبل أن يستقر على قاعدة حلوة وخشبية من العنبر والباتشولي."
+   "ar": "يجسّد بودي سبلاش في إف أكوا من فيرجينيا فونسيكا روحاً حرة وجريئة ومتألقة. يمنح إحساساً بالراحة بعبير لافت ومنعش يسلك مساراً زهرياً فاكهياً، قبل أن يستقر على قاعدة حلوة وخشبية من العنبر والباتشولي.",
+   "pt": "Viva a experiência única em uma essência que representa um espírito livre, ousado e brilhante. O Body Splash Virginia Fonseca Aqua Desodorante Colônia oferece uma sensação de bem-estar, em um aroma marcante e refrescante, com caminho floral e frutado, seguindo para um fundo amadeirado e doce com âmbar e patchouli."
   },
   "notes": {
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ]
    ]
   },
@@ -19444,21 +21399,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The touch your body deserves",
-   "ar": "اللمسة التي يستحقها جسمك"
+   "ar": "اللمسة التي يستحقها جسمك",
+   "pt": "O toque que o seu corpo merece"
   },
   "desc": {
    "en": "The Oil Infinity body oil helps hydrate the skin and enhance its glow and softness. Beyond vitality, it carries a wonderful fragrance that conveys empowerment, sweetness and passion, with refined notes blending delicate flowers, a sweet base, patchouli and amber.",
-   "ar": "يساعد زيت الجسم ذا أويل إنفينيتي على ترطيب البشرة ومنحها إشراقاً ونعومة. وإلى جانب الحيوية، يتميز بعطر رائع يعبّر عن القوة والعذوبة والشغف، بنغمات راقية تمزج الزهور الرقيقة مع قاعدة حلوة والباتشولي والعنبر."
+   "ar": "يساعد زيت الجسم ذا أويل إنفينيتي على ترطيب البشرة ومنحها إشراقاً ونعومة. وإلى جانب الحيوية، يتميز بعطر رائع يعبّر عن القوة والعذوبة والشغف، بنغمات راقية تمزج الزهور الرقيقة مع قاعدة حلوة والباتشولي والعنبر.",
+   "pt": "Usufrua de um óleo corporal que vai auxiliar na hidratação, no brilho e na maciez da sua pele. Além de vitalidade, o The Oil Óleo Corporal Infinity tem um perfume maravilhoso, que transmite empoderamento, doçura e paixão. Suas notas olfativas refinadas contêm um mix de flores delicadas, fundo adocicado, patchouli e âmbar, dão um toque especial para essa criação."
   },
   "notes": {
    "base": [
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ]
    ]
   },
@@ -19490,11 +21449,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Care and deep hydration for your skin",
-   "ar": "عناية وترطيب عميق لبشرتك"
+   "ar": "عناية وترطيب عميق لبشرتك",
+   "pt": "Cuidado e hidratação profunda para sua pele"
   },
   "desc": {
    "en": "The Night Serum adds an extra step of care to the skincare routine, with actives that work together for anti-aging results. It helps fight premature aging, control oiliness and brighten the skin while providing deep hydration. Note: the product's color may vary from white to yellow.",
-   "ar": "يضيف السيروم الليلي خطوة عناية إضافية إلى روتين العناية بالبشرة، بمكونات فعالة تعمل معاً لنتائج مضادة لعلامات التقدم في السن. يساعد على مكافحة الشيخوخة المبكرة والتحكم في الإفرازات الدهنية وتفتيح البشرة، ويمنحها ترطيباً عميقاً. ملاحظة: قد يتراوح لون المنتج بين الأبيض والأصفر."
+   "ar": "يضيف السيروم الليلي خطوة عناية إضافية إلى روتين العناية بالبشرة، بمكونات فعالة تعمل معاً لنتائج مضادة لعلامات التقدم في السن. يساعد على مكافحة الشيخوخة المبكرة والتحكم في الإفرازات الدهنية وتفتيح البشرة، ويمنحها ترطيباً عميقاً. ملاحظة: قد يتراوح لون المنتج بين الأبيض والأصفر.",
+   "pt": "O Sérum Noturno wepink veio para revolucionar o mercado, dando mais um cuidado à sua rotina de skincare, ele possui ativos que juntos trabalham para um resultado anti-aging, que auxilia contra o envelhecimento precoce, auxilia no controle de oleosidade, também ajuda no clareamento da pele e atua com uma hidratação profunda. Obs.: a coloração do produto pode variar de branca a amarela."
   },
   "source": "https://www.wepink.com.br/serum-noturno/p",
   "notes": {}
@@ -19524,33 +21485,39 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Powerful hydration with 10 plant oils",
-   "ar": "ترطيب قوي بـ 10 زيوت نباتية"
+   "ar": "ترطيب قوي بـ 10 زيوت نباتية",
+   "pt": "Uma hidratação poderosa com 10 óleos vegetais"
   },
   "desc": {
    "en": "The Oil VF is no ordinary body oil: it contains 10 plant oils, vitamin E and omegas 3, 6, 7 and 9 for powerful hydration that helps prevent aging and supports skin elasticity. It leaves skin highly fragranced with notes of delicate yellow fruits and jasmine over a sweet, chic base of amber and patchouli.",
-   "ar": "زيت الجسم ذا أويل في إف ليس مجرد زيت عادي، إذ يحتوي على 10 زيوت نباتية وفيتامين إي وأوميغا 3 و6 و7 و9 لترطيب قوي يساعد على الوقاية من علامات التقدم في السن ويدعم مرونة البشرة. ويترك البشرة معطّرة بعمق بنغمات الفواكه الصفراء الرقيقة والياسمين على قاعدة حلوة وأنيقة من العنبر والباتشولي."
+   "ar": "زيت الجسم ذا أويل في إف ليس مجرد زيت عادي، إذ يحتوي على 10 زيوت نباتية وفيتامين إي وأوميغا 3 و6 و7 و9 لترطيب قوي يساعد على الوقاية من علامات التقدم في السن ويدعم مرونة البشرة. ويترك البشرة معطّرة بعمق بنغمات الفواكه الصفراء الرقيقة والياسمين على قاعدة حلوة وأنيقة من العنبر والباتشولي.",
+   "pt": "Não é apenas mais um óleo corporal, esse daqui é o nosso The Oil VF! Incomparável, contém 10 óleos vegetais, vitamina E e ômegas 3, 6, 7 e 9! Uma hidratação poderosa, que previne o envelhecimento, auxilia na elasticidade da pele e a deixa altamente perfumada! Suas notas olfativas são associadas à delicadeza das frutas amarelas, jasmim, um fundo adocicado e chique de âmbar e patchouli."
   },
   "notes": {
    "top": [
     [
      "Yellow fruits",
-     "فواكه صفراء"
+     "فواكه صفراء",
+     "Frutas amarelas"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ],
    "base": [
     [
      "Amber",
-     "عنبر"
+     "عنبر",
+     "Âmbar"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ]
    ]
   },
@@ -19583,35 +21550,42 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Declare your fatal love",
-   "ar": "أعلني حبك الجارف"
+   "ar": "أعلني حبك الجارف",
+   "pt": "Declare seu amor fatal"
   },
   "desc": {
    "en": "The Fatal Rouge Body Splash celebrates the essence of a fearless femme fatale. Its enveloping fragrance stands out with an irresistible floral touch full of intense notes of cassis, green mandarin and pink pepper, evolving into enchanting damask rose and jasmine before finishing authentically on a sweet, woody base.",
-   "ar": "يحتفي بودي سبلاش فيتال روج بجوهر المرأة الجريئة الآسرة. يتميز عطره الأخّاذ بلمسة زهرية لا تُقاوم غنية بنغمات قوية من الكشمش الأسود والماندرين الأخضر والفلفل الوردي، ثم يتطور إلى نغمات ساحرة من الورد الدمشقي والياسمين، ليختتم بأصالة على قاعدة حلوة وخشبية."
+   "ar": "يحتفي بودي سبلاش فيتال روج بجوهر المرأة الجريئة الآسرة. يتميز عطره الأخّاذ بلمسة زهرية لا تُقاوم غنية بنغمات قوية من الكشمش الأسود والماندرين الأخضر والفلفل الوردي، ثم يتطور إلى نغمات ساحرة من الورد الدمشقي والياسمين، ليختتم بأصالة على قاعدة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash Wepink Fatal Rouge aprecia a essência de uma mulher destemida e fatal. Sua fragrância envolvente se destaca por seu toque floral irresistível, repleto de notas intensas de cassis, mandarina verde e pimenta rosa, em um contraste perfeito. Em um golpe fatal, evolui em notas encantadoras de rosa damascena e jasmim, finalizando com autenticidade em um fundo doce e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Cassis",
-     "كشمش أسود"
+     "كشمش أسود",
+     "Cassis"
     ],
     [
      "Green mandarin",
-     "ماندرين أخضر"
+     "ماندرين أخضر",
+     "Mandarina verde"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ],
    "heart": [
     [
      "Damask rose",
-     "ورد دمشقي"
+     "ورد دمشقي",
+     "Rosa damascena"
     ],
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -19642,11 +21616,13 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Your daily care, your irresistible protection",
-   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم"
+   "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
+   "pt": "Seu cuidado diário, sua proteção irresistível"
   },
   "desc": {
    "en": "The MyProtection Red antiperspirant roll-on combines invigorating freshness, lasting protection and 72-hour hydration, and its exclusive formula helps even out skin tone. All in a fragrance that awakens desire, revealing sophistication through a refined floral oriental olfactory path.",
-   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن ريد بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عطر يوقظ الرغبة ويكشف عن الرقي عبر مسار عطري زهري شرقي راقٍ."
+   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن ريد بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عطر يوقظ الرغبة ويكشف عن الرقي عبر مسار عطري زهري شرقي راقٍ.",
+   "pt": "O Desodorante Antitranspirante Roll-on Myprotection Wepink Red oferece uma combinação revigorante de frescor, proteção duradoura e hidratação por 72 horas, além de sua fórmula exclusiva contribuir na uniformização do tom da pele. Tudo isso, em uma fragrância que desperta desejo, revelando sofisticação através do refinado caminho olfativo floral oriental."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-red-50-ml-drrd-ath-001/p",
   "notes": {}
@@ -19678,29 +21654,34 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Open it and make a wish come true!",
-   "ar": "افتحيه وحققي أمنيتك!"
+   "ar": "افتحيه وحققي أمنيتك!",
+   "pt": "Abra e realize um desejo!"
   },
   "desc": {
    "en": "The Vanilla Wish Body Splash captures feminine effervescence through a vibrant floral touch of freesia and orange blossom. A hint of jasmine conveys passion and authenticity wherever she goes, blending desire, energy and delicacy in bold, sweet and woody notes.",
-   "ar": "يجسّد بودي سبلاش فانيلا ويش الحيوية الأنثوية المتدفقة بلمسة زهرية نابضة من الفريزيا وزهر البرتقال. ولمسة من الياسمين تنقل الشغف والأصالة أينما حلّت، لتمزج الرغبة والطاقة والرقة في نغمات جريئة حلوة وخشبية."
+   "ar": "يجسّد بودي سبلاش فانيلا ويش الحيوية الأنثوية المتدفقة بلمسة زهرية نابضة من الفريزيا وزهر البرتقال. ولمسة من الياسمين تنقل الشغف والأصالة أينما حلّت، لتمزج الرغبة والطاقة والرقة في نغمات جريئة حلوة وخشبية.",
+   "pt": "O Desodorante Colônia Body Splash Vanilla Wish representa a efervescência feminina, através de seu toque floral vibrante de frésia e flor de laranja. Deixe-se celebrar sua força e transmitir paixão e autenticidade com um toque de jasmim por onde passar, combinando desejo, energia e delicadeza em notas ousadas, doces e amadeiradas."
   },
   "notes": {
    "top": [
     [
      "Freesia",
-     "فريزيا"
+     "فريزيا",
+     "Frésia"
     ]
    ],
    "heart": [
     [
      "Orange blossom",
-     "زهر البرتقال"
+     "زهر البرتقال",
+     "Flor de laranjeira"
     ]
    ],
    "base": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ]
    ]
   },
@@ -19733,53 +21714,64 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The finishing note for an unforgettable glow",
-   "ar": "اللمسة الأخيرة لتألق لا يُنسى"
+   "ar": "اللمسة الأخيرة لتألق لا يُنسى",
+   "pt": "A nota final para um brilho inesquecível"
   },
   "desc": {
    "en": "Infinity Plim is a dazzling universe full of wonders, a multifaceted scent that elevates every moment with unique radiance, confidence and unmatched elegance. Its complex blend opens with fruity nuances and a touch of ginger, moves into a lush floral heart of jasmine, rose, lily of the valley and violet, and finishes with woody notes and sweet strokes of patchouli and praline.",
-   "ar": "إنفينيتي بليم عالم مبهر مليء بالعجائب، وعبير متعدد الأوجه يرتقي بكل لحظة بتألق فريد وثقة وهالة من الأناقة التي لا مثيل لها. يفتتح مزيجه المركّب بلمسات فاكهية ونفحة من الزنجبيل، ثم ينتقل إلى قلب زهري غني من الياسمين والورد وزنبق الوادي والبنفسج، ليختتم بنغمات خشبية ولمسات حلوة من الباتشولي والبرالين."
+   "ar": "إنفينيتي بليم عالم مبهر مليء بالعجائب، وعبير متعدد الأوجه يرتقي بكل لحظة بتألق فريد وثقة وهالة من الأناقة التي لا مثيل لها. يفتتح مزيجه المركّب بلمسات فاكهية ونفحة من الزنجبيل، ثم ينتقل إلى قلب زهري غني من الياسمين والورد وزنبق الوادي والبنفسج، ليختتم بنغمات خشبية ولمسات حلوة من الباتشولي والبرالين.",
+   "pt": "O Infinity Plim é um universo deslumbrante cheio de maravilhas, que conecta o mundo a uma essência multifacetada, elevando cada momento com um brilho único, confiança e uma aura de elegância inigualável. Sua jornada sensorial provoca fascínio em um blend complexo de notas, começa com nuances frutais e um toque de gengibre. Seguindo para um coração floral exuberante composto por jasmim, rosa, lírio-do-vale e violeta. Finalizando com emoções agradáveis das notas amadeiradas e as pinceladas doces do patchouli e praline."
   },
   "notes": {
    "top": [
     [
      "Fruity notes",
-     "نغمات فاكهية"
+     "نغمات فاكهية",
+     "Notas frutadas"
     ],
     [
      "Ginger",
-     "زنجبيل"
+     "زنجبيل",
+     "Gengibre"
     ]
    ],
    "heart": [
     [
      "Jasmine",
-     "ياسمين"
+     "ياسمين",
+     "Jasmim"
     ],
     [
      "Rose",
-     "ورد"
+     "ورد",
+     "Rosa"
     ],
     [
      "Lily of the valley",
-     "زنبق الوادي"
+     "زنبق الوادي",
+     "Lírio-do-vale"
     ],
     [
      "Violet",
-     "بنفسج"
+     "بنفسج",
+     "Violeta"
     ]
    ],
    "base": [
     [
      "Woody notes",
-     "نغمات خشبية"
+     "نغمات خشبية",
+     "Notas amadeiradas"
     ],
     [
      "Patchouli",
-     "باتشولي"
+     "باتشولي",
+     "Patchouli"
     ],
     [
      "Praline",
-     "برالين"
+     "برالين",
+     "Praliné"
     ]
    ]
   },
@@ -19810,21 +21802,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Extraordinary nourishment to celebrate the beauty of the skin",
-   "ar": "تغذية استثنائية للاحتفاء بجمال البشرة"
+   "ar": "تغذية استثنائية للاحتفاء بجمال البشرة",
+   "pt": "Uma extraordinária nutrição para celebrar a beleza da pele"
   },
   "desc": {
    "en": "The Oil Celebrate Life is a body oil that celebrates the beauty of the skin, with a blend of super-potent actives that nourish, hydrate and restore with a light, soft touch. Just a few drops leave skin intensely fragranced. Its sweet fruity oriental scent opens with fresh apple, a floral touch and pink pepper, leading to a floral heart and a sweet, woody base.",
-   "ar": "زيت الجسم ذا أويل سيليبريت لايف يحتفي بجمال البشرة، بمزيج من المكونات الفعالة فائقة القوة التي تغذّي وترطّب وتجدّد بملمس خفيف وناعم. وتكفي بضع قطرات لتترك البشرة معطّرة بعمق. يفتتح عبيره الفاكهي الشرقي العذب بانتعاش التفاح مع لمسة زهرية والفلفل الوردي، ثم ينتقل إلى قلب زهري رائع وقاعدة حلوة وخشبية."
+   "ar": "زيت الجسم ذا أويل سيليبريت لايف يحتفي بجمال البشرة، بمزيج من المكونات الفعالة فائقة القوة التي تغذّي وترطّب وتجدّد بملمس خفيف وناعم. وتكفي بضع قطرات لتترك البشرة معطّرة بعمق. يفتتح عبيره الفاكهي الشرقي العذب بانتعاش التفاح مع لمسة زهرية والفلفل الوردي، ثم ينتقل إلى قلب زهري رائع وقاعدة حلوة وخشبية.",
+   "pt": "The Oil Celebrate Life, o óleo corporal para você celebrar a beleza da pele! O blend de ativos superpotentes que vão proporcionar, em um toque leve e suave, nutrição, hidratação e restauração. Poucas gotas vão garantir uma pele intensamente perfumada, uma sensação de satisfação e leveza, para você comemorar sempre o lado bom da vida. Sua fragrância suave e adocicada segue o caminho olfativo Frutado Oriental, inicia com o frescor da maçã, um toque floral e pimenta rosa, seguindo para um coração floral magnífico e finaliza em um fundo doce e amadeirado."
   },
   "notes": {
    "top": [
     [
      "Apple",
-     "تفاح"
+     "تفاح",
+     "Maçã"
     ],
     [
      "Pink pepper",
-     "فلفل وردي"
+     "فلفل وردي",
+     "Pimenta-rosa"
     ]
    ]
   },
@@ -19857,21 +21853,25 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The truly captivating elixir made for you",
-   "ar": "الإكسير الحقيقي الذي يأسر الحواس، صُنع لكِ"
+   "ar": "الإكسير الحقيقي الذي يأسر الحواس، صُنع لكِ",
+   "pt": "O verdadeiro elixir inebriante feito para você"
   },
   "desc": {
    "en": "The Pureblixx Body Splash is an enveloping, vibrant fragrance that evokes the warm, fresh breeze of a seaside sunset, bringing well-being and lightness to every day. Its scent combines citrus fruits led by glamorous Sicilian lemon with a floral heart and a sweet, woody base.",
-   "ar": "بودي سبلاش بيوربليكس عطر آسر ونابض بالحياة يستحضر النسمة الدافئة المنعشة لغروب الشمس على البحر، ويمنح إحساساً بالراحة والخفة كل يوم. يجمع عبيره بين الحمضيات بقيادة الليمون الصقلي الفاتن وقلب زهري وقاعدة حلوة وخشبية."
+   "ar": "بودي سبلاش بيوربليكس عطر آسر ونابض بالحياة يستحضر النسمة الدافئة المنعشة لغروب الشمس على البحر، ويمنح إحساساً بالراحة والخفة كل يوم. يجمع عبيره بين الحمضيات بقيادة الليمون الصقلي الفاتن وقلب زهري وقاعدة حلوة وخشبية.",
+   "pt": "A brisa quente e fresca de um pôr do sol no mar em uma fragrância envolvente e vibrante, o Body Splash Pureblixx Desodorante Colônia encanta a todos por onde passa, transbordando bem-estar e leveza para o seu dia a dia. Seu aroma tem a combinação perfeita de frutas cítricas, lideradas pelo glamoroso limão siciliano, em contraponto ao coração floral, além do fundo adocicado e amadeirado, que trazem a brisa quente e fresca de um pôr do sol no mar."
   },
   "notes": {
    "top": [
     [
      "Citrus fruits",
-     "فواكه حمضية"
+     "فواكه حمضية",
+     "Frutas cítricas"
     ],
     [
      "Sicilian lemon",
-     "ليمون صقلي"
+     "ليمون صقلي",
+     "Limão siciliano"
     ]
    ]
   },
@@ -19902,23 +21902,27 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Awaken the essential touch for your skin",
-   "ar": "أيقظي اللمسة الجوهرية لبشرتك"
+   "ar": "أيقظي اللمسة الجوهرية لبشرتك",
+   "pt": "Desperte o toque essencial para a sua pele"
   },
   "desc": {
    "en": "The Oil Red is a light, soft and relaxing body oil blending rosehip, almond, pink pepper, Monoi de Tahiti and golden flaxseed oils with vitamin E and omegas 3, 6 and 9. It nourishes, hydrates, restores and promotes elasticity while helping fight premature aging, and glitter adds a luminous touch. Its floral oriental scent opens with blood orange, meets flowers and finishes with sweet praline.",
-   "ar": "زيت الجسم ذا أويل ريد زيت خفيف وناعم ومريح يجمع زيوت ثمر الورد البري واللوز والفلفل الوردي ومونوي تاهيتي وبذور الكتان الذهبي مع فيتامين إي وأوميغا 3 و6 و9. يغذّي البشرة ويرطّبها ويجدّدها ويعزّز مرونتها مع المساعدة على مكافحة الشيخوخة المبكرة، فيما يضفي الغليتر لمسة مشرقة. يفتتح عبيره الزهري الشرقي بالبرتقال الدموي، ثم يلتقي بالزهور ويختتم بلمسة حلوة من البرالين."
+   "ar": "زيت الجسم ذا أويل ريد زيت خفيف وناعم ومريح يجمع زيوت ثمر الورد البري واللوز والفلفل الوردي ومونوي تاهيتي وبذور الكتان الذهبي مع فيتامين إي وأوميغا 3 و6 و9. يغذّي البشرة ويرطّبها ويجدّدها ويعزّز مرونتها مع المساعدة على مكافحة الشيخوخة المبكرة، فيما يضفي الغليتر لمسة مشرقة. يفتتح عبيره الزهري الشرقي بالبرتقال الدموي، ثم يلتقي بالزهور ويختتم بلمسة حلوة من البرالين.",
+   "pt": "O The Oil Red é um óleo corporal magnífico! Tem um toque leve, suave e relaxante, em um blend composto com óleo de rosa mosqueta, óleo de amêndoas, óleo de pimenta rosa, óleo de Monoi Tahiti, óleo de linhaça dourada, vitamina E, ômega 3, 6 e 9. A combinação perfeita proporciona nutrição, hidratação, restauração, combate ao envelhecimento precoce, promove a elasticidade e deixa a pele macia. Poucas gotas vão te garantir uma sensação de leveza e iluminação, pois a fórmula contém glitter! Sua fragrância envolvente transmite desejo e sofisticação através do caminho olfativo floral oriental, iniciado com um toque cítrico da laranja sanguínea, em seguida encontra flores e finaliza com a pincelada doce de praline."
   },
   "notes": {
    "top": [
     [
      "Blood orange",
-     "برتقال دموي"
+     "برتقال دموي",
+     "Laranja sanguínea"
     ]
    ],
    "base": [
     [
      "Praline",
-     "برالين"
+     "برالين",
+     "Praliné"
     ]
    ]
   },

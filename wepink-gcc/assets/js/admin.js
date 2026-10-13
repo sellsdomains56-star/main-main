@@ -357,7 +357,7 @@
         <section class="card"><div class="card-head"><div><h2>Where visitors come from</h2><p class="sub">Campaign (utm_source), ambassador link or website — by visit</p></div></div>${bars(o.sources)}</section>
         <section class="card"><div class="card-head"><div><h2>Most viewed pages</h2><p class="sub">Page views</p></div></div>${bars(o.pages, (k) => ({ home: "Home", shop: "Shop", product: "Product pages", checkout: "Checkout", earn: "Earn with wepink", stores: "Stores", about: "About", help: "Help" }[k] || k))}</section>
         <section class="card"><div class="card-head"><div><h2>Visitors by country</h2><p class="sub">Where they connect from</p></div></div>${bars(o.geo, geoName)}</section>
-        <section class="card"><div class="card-head"><div><h2>Devices &amp; language</h2><p class="sub">Visitors</p></div></div>${bars([...(o.devices || []), ...(o.langs || []).map((x) => ({ k: x.k === "ar" ? "Arabic" : x.k === "en" ? "English" : x.k, n: x.n }))], (k) => k[0].toUpperCase() + k.slice(1))}</section>
+        <section class="card"><div class="card-head"><div><h2>Devices &amp; language</h2><p class="sub">Visitors</p></div></div>${bars([...(o.devices || []), ...(o.langs || []).map((x) => ({ k: LANG_NAME[x.k] || x.k, n: x.n }))], (k) => k[0].toUpperCase() + k.slice(1))}</section>
       </div>
       ${o.visits ? "" : `<p class="note" style="margin-top:16px">Visitor numbers fill in as shoppers accept the cookie banner on the store. Orders, customers and ambassadors are counted either way.</p>`}`;
     v.querySelector(".range").addEventListener("click", (e) => {
@@ -570,13 +570,20 @@
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "")
       .slice(0, 80);
-  const notesText = (arr) => (arr || []).map(([en, ar]) => (ar && ar !== en ? `${en} | ${ar}` : en)).join("\n");
+  // Scent notes as text, one per line: English | Arabic | Portuguese.
+  const notesText = (arr) =>
+    (arr || [])
+      .map(([en, ar, pt]) => [en, ar && ar !== en ? ar : "", pt && pt !== en ? pt : ""])
+      .map(([en, ar, pt]) => (pt ? `${en} | ${ar || en} | ${pt}` : ar ? `${en} | ${ar}` : en))
+      .join("\n");
   const textNotes = (t) =>
     String(t || "")
       .split("\n")
       .map((l) => l.split("|").map((s) => s.trim()))
       .filter((x) => x[0])
-      .map(([en, ar]) => [en, ar || en]);
+      .map(([en, ar, pt]) => (pt ? [en, ar || en, pt] : [en, ar || en]));
+  const LANG_NAME = { en: "English", ar: "Arabic", pt: "Portuguese" };
+  const LANGS = Object.keys(LANG_NAME);
   const GENDERS = [["feminino", "Women"], ["masculino", "Men"], ["unissex", "Unisex"], ["infantil", "Kids"]];
   const BADGES = [["", "None"], ["new", "New"], ["bestseller", "Bestseller"], ["exclusive", "Gulf exclusive"], ["limited", "Limited edition"]];
 
@@ -584,13 +591,18 @@
     const isNew = !row;
     const d = row
       ? JSON.parse(JSON.stringify(row))
-      : { id: "", active: true, sort: Math.max(0, ...S.products.map((p) => p.sort || 0)) + 10, cat: "body-splash", type: "splash", line: "", line_ar: "", size: "", family: "", gender: "feminino", badge: "new", color: "#F06FA8", color2: "#FCE4EF", price: 79, compare_at: null, prices: null, tagline: { en: "", ar: "" }, description: { en: "", ar: "" }, notes: {}, images: null, cutout: null, photo_style: null };
+      : { id: "", active: true, sort: Math.max(0, ...S.products.map((p) => p.sort || 0)) + 10, cat: "body-splash", type: "splash", line: "", line_ar: "", size: "", family: "", gender: "feminino", badge: "new", color: "#F06FA8", color2: "#FCE4EF", price: 79, compare_at: null, prices: null, tagline: { en: "", ar: "", pt: "" }, description: { en: "", ar: "", pt: "" }, notes: {}, images: null, cutout: null, photo_style: null };
     let images = d.images && d.images.length ? d.images.slice() : null; // null = the store's original photos
     // photo: shown as it is · cut: transparent cut-out staged on the pink scenes · scene: campaign shot that fills the frame
     let style = images && d.cutout && d.cutout === images[0] ? "cut" : d.photo_style === "scene" ? "scene" : "photo";
-    const tl = d.tagline || {};
-    const ds = d.description || {};
-    const nt = d.notes || {};
+    // Portuguese the database doesn't have yet: the original catalogue's, while
+    // the English is still the original (saving the product stores it).
+    const orig = CATALOG.get(d.id) || {};
+    const ptFrom = (v, o) => (v && !v.pt && o && o.pt && o.en === v.en ? Object.assign({}, v, { pt: o.pt }) : v);
+    const tl = ptFrom(d.tagline || {}, orig.tagline);
+    const ds = ptFrom(d.description || {}, orig.desc);
+    const ptNote = new Map(Object.values(orig.notes || {}).flat().filter((n) => n[2]).map((n) => [n[0], n[2]]));
+    const nt = Object.fromEntries(Object.entries(d.notes || {}).map(([k, list]) => [k, (list || []).map((n) => (n[2] || !ptNote.has(n[0]) ? n : [n[0], n[1] || n[0], ptNote.get(n[0])]))]));
     const sel = (name, opts, val) => `<select name="${name}">${opts.map(([k, l]) => `<option value="${esc(k)}"${String(val || "") === k ? " selected" : ""}>${esc(l)}</option>`).join("")}</select>`;
     const body = `<form id="pform" class="drawer-form" novalidate style="display:grid;gap:16px">
       <section class="section"><h3>Photos</h3><div id="photos"></div></section>
@@ -625,16 +637,18 @@
         </details>
       </section>
       <section class="section"><h3>Words</h3>
-        <div class="grid-2">
+        <div class="grid-3">
           <label class="field"><span>Tagline (English)</span><input name="tl_en" value="${esc(tl.en || "")}"></label>
           <label class="field"><span>Tagline (Arabic)</span><input name="tl_ar" dir="rtl" value="${esc(tl.ar || "")}"></label>
+          <label class="field"><span>Tagline (Portuguese)</span><input name="tl_pt" lang="pt-BR" value="${esc(tl.pt || "")}"></label>
         </div>
         <label class="field"><span>Description (English)</span><textarea name="ds_en" rows="4">${esc(ds.en || "")}</textarea></label>
         <label class="field"><span>Description (Arabic)</span><textarea name="ds_ar" rows="4" dir="rtl">${esc(ds.ar || "")}</textarea></label>
+        <label class="field"><span>Description (Portuguese)</span><textarea name="ds_pt" rows="4" lang="pt-BR">${esc(ds.pt || "")}</textarea></label>
         <div class="grid-3">
-          ${["top", "heart", "base"].map((k) => `<label class="field"><span>${{ top: "Top notes", heart: "Heart notes", base: "Base notes" }[k]}</span><textarea name="n_${k}" rows="3" placeholder="Rose | ورد">${esc(notesText(nt[k]))}</textarea></label>`).join("")}
+          ${["top", "heart", "base"].map((k) => `<label class="field"><span>${{ top: "Top notes", heart: "Heart notes", base: "Base notes" }[k]}</span><textarea name="n_${k}" rows="3" placeholder="Rose | ورد | Rosa">${esc(notesText(nt[k]))}</textarea></label>`).join("")}
         </div>
-        <p class="small muted">Scent notes: one per line, English | Arabic.</p>
+        <p class="small muted">Scent notes: one per line, English | Arabic | Portuguese.</p>
       </section>
       <section class="section"><h3>Look &amp; visibility</h3>
         <div class="grid-4">
@@ -779,8 +793,8 @@
         price,
         compare_at: was && was > price ? was : null,
         prices: Object.keys(px).length ? px : null,
-        tagline: { en: f.tl_en.value.trim(), ar: f.tl_ar.value.trim() },
-        description: { en: f.ds_en.value.trim(), ar: f.ds_ar.value.trim() },
+        tagline: { en: f.tl_en.value.trim(), ar: f.tl_ar.value.trim(), pt: f.tl_pt.value.trim() },
+        description: { en: f.ds_en.value.trim(), ar: f.ds_ar.value.trim(), pt: f.ds_pt.value.trim() },
         notes: { top: textNotes(f.n_top.value), heart: textNotes(f.n_heart.value), base: textNotes(f.n_base.value) },
         images: images && images.length ? images : null,
         cutout: images && images.length && style === "cut" ? images[0] : null,
@@ -841,8 +855,10 @@
     ["color2", (p) => p.color2],
     ["tagline_en", (p) => (p.tagline || {}).en],
     ["tagline_ar", (p) => (p.tagline || {}).ar],
+    ["tagline_pt", (p) => (p.tagline || {}).pt],
     ["description_en", (p) => (p.description || {}).en],
     ["description_ar", (p) => (p.description || {}).ar],
+    ["description_pt", (p) => (p.description || {}).pt],
     ["notes_top", (p) => notesText((p.notes || {}).top).replace(/\n/g, "; ")],
     ["notes_heart", (p) => notesText((p.notes || {}).heart).replace(/\n/g, "; ")],
     ["notes_base", (p) => notesText((p.notes || {}).base).replace(/\n/g, "; ")],
@@ -881,9 +897,23 @@
         set("gender", "gender");
         set("color", "color");
         set("color2", "color2");
-        if (has("tagline_en") || has("tagline_ar")) o.tagline = { en: r.tagline_en || "", ar: r.tagline_ar || "" };
-        if (has("description_en") || has("description_ar")) o.description = { en: r.description_en || "", ar: r.description_ar || "" };
-        if (has("notes_top") || has("notes_heart") || has("notes_base")) o.notes = { top: notes(r.notes_top), heart: notes(r.notes_heart), base: notes(r.notes_base) };
+        // Each language comes from the file when it has that column, else stays as it was
+        // (an older export without the Portuguese columns keeps the Portuguese).
+        const words = (key) => {
+          if (!LANGS.some((l) => has(`${key}_${l}`))) return;
+          const was = (existing && existing[key]) || {};
+          o[key] = Object.fromEntries(LANGS.map((l) => [l, has(`${key}_${l}`) ? r[`${key}_${l}`] || "" : was[l] || ""]));
+        };
+        words("tagline");
+        words("description");
+        const keepPt = (list, was) =>
+          list.map((n) => {
+            const w = !n[2] && (was || []).find((x) => x[0] === n[0] && x[2]);
+            return w ? [n[0], n[1], w[2]] : n;
+          });
+        const wasNotes = (existing && existing.notes) || {};
+        if (has("notes_top") || has("notes_heart") || has("notes_base"))
+          o.notes = { top: keepPt(notes(r.notes_top), wasNotes.top), heart: keepPt(notes(r.notes_heart), wasNotes.heart), base: keepPt(notes(r.notes_base), wasNotes.base) };
         set("image_urls", "images", (v) => (v ? v.split(/[\s|]+/).filter((u) => /^https?:\/\//.test(u)) : null));
         if (has("photo_style")) {
           const v = String(r.photo_style || "").trim().toLowerCase();
@@ -1037,7 +1067,7 @@
           ${c.notes ? `<dt>Delivery notes</dt><dd>${esc(c.notes)}</dd>` : ""}
           <dt>Payment</dt><dd>${esc(L(D.payNames[o.payment]) || o.payment || "")}</dd>
           ${o.gift_note ? `<dt>Gift card note</dt><dd>${esc(o.gift_note)}</dd>` : ""}
-          <dt>Placed</dt><dd>${esc(when(o.created_at))} · ${esc(o.lang === "ar" ? "Arabic" : "English")} store</dd>
+          <dt>Placed</dt><dd>${esc(when(o.created_at))} · ${esc(LANG_NAME[o.lang] || "English")} store</dd>
         </dl>
       </section>
       <section class="section"><h3>Items</h3>
@@ -1329,7 +1359,7 @@
           <dt>Phone</dt><dd dir="ltr">${esc(c.phone || "—")} ${c.phone ? `· <a href="https://wa.me/${digits(c.phone)}" target="_blank" rel="noopener">WhatsApp</a>` : ""}</dd>
           <dt>Email</dt><dd>${c.email ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : "—"}</dd>
           <dt>Country</dt><dd>${esc(countryName(c.country))}${c.city ? " · " + esc(c.city) : ""}</dd>
-          <dt>Language</dt><dd>${c.lang === "ar" ? "Arabic" : c.lang === "en" ? "English" : "—"}</dd>
+          <dt>Language</dt><dd>${LANG_NAME[c.lang] || "—"}</dd>
           ${details.birthday ? `<dt>Birthday</dt><dd>${esc(birthday(details.birthday))}</dd>` : ""}
           <dt>Joined via</dt><dd>${(c.sources || []).map((s) => esc(sourceLabel(s, c))).join(", ")}</dd>
           <dt>Offers</dt><dd>${c.marketing ? "Agreed to WhatsApp / email offers" : "Not agreed — don't send offers"}</dd>
@@ -1448,6 +1478,7 @@
           </select></label>
           <label class="field"><span>Announcement in English (optional)</span><input name="en" maxlength="140" placeholder="Leave empty for the season's own message" value="${esc((season.announce || {}).en || "")}"></label>
           <label class="field"><span>Announcement in Arabic (optional)</span><input name="ar" dir="rtl" maxlength="140" placeholder="اتركيه فارغًا لرسالة الموسم" value="${esc((season.announce || {}).ar || "")}"></label>
+          <label class="field"><span>Announcement in Portuguese (optional)</span><input name="pt" lang="pt-BR" maxlength="140" placeholder="Deixe vazio para a mensagem da temporada" value="${esc((season.announce || {}).pt || "")}"></label>
           <p class="small muted">Use {country} for the shopper's country and {amount} for the free-delivery threshold.</p>
           <div><button class="btn btn-primary" type="submit">Save season</button></div>
         </form>
@@ -1512,7 +1543,10 @@
           const id = seasons[pick] ? pick : "";
           const en = f.en.value.trim();
           const ar = f.ar.value.trim();
-          await saveSetting("season", { id, announce: en || ar ? { en: en || ar, ar: ar || en } : null });
+          const pt = f.pt.value.trim();
+          // a language left empty shows the English (or, failing that, whichever was written)
+          const any = en || pt || ar;
+          await saveSetting("season", { id, announce: any ? { en: en || any, ar: ar || en || any, pt: pt || en || any } : null });
           toast(id ? `${seasons[id].name.en} look is on` : "Back to the everyday look");
         } else if (f.dataset.form === "welcome") {
           const pct = Math.max(0, Math.min(50, Number(f.pct.value) || 0));

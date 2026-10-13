@@ -18,10 +18,12 @@ window.WP_ASSIST = (function () {
   const { t, L, esc, icon } = W;
   const KEY = "wpg.chat";
 
-  /* ---------- understanding text (Arabic and English) ---------- */
+  /* ---------- understanding text (English, Arabic and Portuguese) ---------- */
   function norm(s) {
     return String(s || "")
       .toLowerCase()
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "")
       .replace(/[ً-ْـ]/g, "")
       .replace(/[أإآ]/g, "ا")
       .replace(/ى/g, "ي")
@@ -30,10 +32,12 @@ window.WP_ASSIST = (function () {
       .replace(/\s+/g, " ")
       .trim();
   }
-  // English words match from the start of a word ("allerg" finds "allergic",
-  // "call" doesn't fire inside "dermatologically"), and short ones must stand
-  // alone ("men" is not inside "women"). Arabic words match anywhere, since
-  // prefixes attach to them (العطر، بالعود), except two-letter ones like "له".
+  // English and Portuguese words (accents dropped) match from the start of a
+  // word ("allerg" finds "allergic" and "alergia" needs its own entry; "call"
+  // doesn't fire inside "dermatologically"), and short ones must stand alone
+  // ("men" is not inside "women", "ela" not inside "vela"). Arabic words match
+  // anywhere, since prefixes attach to them (العطر، بالعود), except two-letter
+  // ones like "له".
   function hit(text, word) {
     const w = norm(word);
     if (!w) return false;
@@ -45,67 +49,67 @@ window.WP_ASSIST = (function () {
 
   // Help-centre answers, by [topic id, question number], and the words that point to them.
   const INTENTS = [
-    [["orders", 0], ["which countries", "deliver to", "ship to", "countries", "دول", "دوله", "توصلون", "تشحنون"]],
-    [["orders", 1], ["how long", "delivery to", "delivery time", "delivery", "التوصيل", "when will", "arrive", "how many days", "مده", "متي يوصل", "كم يوم", "يستغرق", "متى يوصل", "يوصل"]],
-    [["orders", 2], ["delivery fee", "delivery cost", "shipping cost", "free delivery", "free shipping", "how much is delivery", "تكلفه التوصيل", "رسوم", "توصيل مجاني", "شحن مجاني", "سعر التوصيل"]],
-    [["orders", 3], ["track", "tracking", "where is my order", "order status", "تتبع", "وين طلبي", "اين طلبي", "حاله الطلب"]],
-    [["orders", 4], ["wrong address", "change address", "change my address", "عنوان خطا", "تغيير العنوان", "العنوان"]],
-    [["orders", 5], ["outside", "international", "abroad", "europe", "خارج"]],
-    [["payment", 0], ["payment method", "pay with", "card", "visa", "mastercard", "apple pay", "mada", "knet", "benefit", "طرق الدفع", "بطاقه", "فيزا", "ماستر", "مدي", "كي نت", "ابل باي"]],
-    [["payment", 1], ["cash", "cod", "on delivery", "عند الاستلام", "كاش", "نقدا", "نقد"]],
-    [["payment", 2], ["tabby", "tamara", "instalment", "installment", "split", "تابي", "تمارا", "تقسيط", "اقساط", "دفعات"]],
-    [["payment", 3], ["safe to pay", "secure", "fraud", "امان", "امن", "احتيال"]],
-    [["payment", 4], ["vat", "tax", "ضريبه"]],
-    [["returns", 0], ["return policy", "returns", "return", "send back", "ارجاع", "استرجاع", "ارجع"]],
-    [["returns", 1], ["exchange", "swap", "replace", "استبدال", "تبديل", "ابدل"]],
-    [["returns", 2], ["refund", "money back", "استرداد", "فلوسي", "ارجاع المبلغ"]],
-    [["returns", 3], ["damaged", "broken", "wrong item", "leaked", "missing", "تالف", "مكسور", "ناقص", "غلط"]],
-    [["products", 0], ["authentic", "original", "fake", "genuine", "real", "اصلي", "تقليد", "مقلد"]],
-    [["products", 1], ["dermatolog", "skin tested", "sensitive skin", "مختبره جلديا", "بشره حساسه", "جلديا"]],
-    [["products", 2], ["animal", "cruelty", "vegan", "حيوان", "حيوانات"]],
-    [["products", 3], ["pregnan", "breastfeed", "حامل", "الحمل", "رضاعه", "مرضع"]],
-    [["products", 4], ["allerg", "reaction", "rash", "itch", "حساسيه", "تحسس", "حكه", "احمرار"]],
-    [["products", 5], ["last", "longevity", "heat", "summer", "long lasting", "يدوم", "ثبات", "ثابت", "الحر", "صيف"]],
-    [["about", 0], ["who is wepink", "about wepink", "virginia", "the brand", "من هي", "فيرجينيا", "عن الماركه"]],
-    [["about", 1], ["where to buy", "buy safely", "amazon", "noon", "اين اشتري", "وين اشتري", "نون", "امازون"]],
-    [["about", 2], ["store", "location", "mall", "branch", "boutique", "متجر", "فرع", "محل", "مول", "معرض"]],
-    [["account", 0], ["account", "guest", "sign in", "login", "log in", "حساب", "تسجيل الدخول"]],
-    [["account", 1], ["email", "e-mail", "ايميل", "بريد"]],
-    [["account", 2], ["club", "newsletter", "offers", "birthday", "نادي", "عروض", "عيد ميلاد"]],
-    [["account", 3], ["ambassador", "affiliate", "commission", "influencer", "earn", "سفيره", "عموله", "اربح", "مسوقه"]],
+    [["orders", 0], ["which countries", "deliver to", "ship to", "countries", "دول", "دوله", "توصلون", "تشحنون", "quais paises", "entregam em", "enviam para", "paises"]],
+    [["orders", 1], ["how long", "delivery to", "delivery time", "delivery", "التوصيل", "when will", "arrive", "how many days", "مده", "متي يوصل", "كم يوم", "يستغرق", "متى يوصل", "يوصل", "quanto tempo", "prazo", "prazo de entrega", "entrega", "quando chega", "quantos dias", "demora", "chega"]],
+    [["orders", 2], ["delivery fee", "delivery cost", "shipping cost", "free delivery", "free shipping", "how much is delivery", "تكلفه التوصيل", "رسوم", "توصيل مجاني", "شحن مجاني", "سعر التوصيل", "frete", "taxa de entrega", "taxa", "custo da entrega", "frete gratis", "entrega gratis", "quanto custa a entrega", "quanto e o frete"]],
+    [["orders", 3], ["track", "tracking", "where is my order", "order status", "تتبع", "وين طلبي", "اين طلبي", "حاله الطلب", "rastrear", "rastreio", "rastreamento", "cade meu pedido", "onde esta meu pedido", "status do pedido", "acompanhar"]],
+    [["orders", 4], ["wrong address", "change address", "change my address", "عنوان خطا", "تغيير العنوان", "العنوان", "endereco errado", "mudar o endereco", "trocar o endereco", "alterar o endereco", "endereco"]],
+    [["orders", 5], ["outside", "international", "abroad", "europe", "خارج", "internacional", "exterior", "brasil", "no brasil", "para o brasil", "pro brasil", "europa", "fora do golfo"]],
+    [["payment", 0], ["payment method", "pay with", "card", "visa", "mastercard", "apple pay", "mada", "knet", "benefit", "طرق الدفع", "بطاقه", "فيزا", "ماستر", "مدي", "كي نت", "ابل باي", "forma de pagamento", "formas de pagamento", "pagar com", "cartao", "pix", "credito", "debito"]],
+    [["payment", 1], ["cash", "cod", "on delivery", "عند الاستلام", "كاش", "نقدا", "نقد", "dinheiro", "na entrega", "pagamento na entrega", "pagar na entrega", "em especie"]],
+    [["payment", 2], ["tabby", "tamara", "instalment", "installment", "split", "تابي", "تمارا", "تقسيط", "اقساط", "دفعات", "parcelar", "parcelado", "parcelas", "parcela", "dividir", "sem juros"]],
+    [["payment", 3], ["safe to pay", "secure", "fraud", "امان", "امن", "احتيال", "seguro pagar", "seguranca", "golpe", "fraude", "confiavel"]],
+    [["payment", 4], ["vat", "tax", "ضريبه", "imposto", "impostos", "iva"]],
+    [["returns", 0], ["return policy", "returns", "return", "send back", "ارجاع", "استرجاع", "ارجع", "devoluc", "devolv", "politica de devolucao"]],
+    [["returns", 1], ["exchange", "swap", "replace", "استبدال", "تبديل", "ابدل", "troca", "trocar", "troco"]],
+    [["returns", 2], ["refund", "money back", "استرداد", "فلوسي", "ارجاع المبلغ", "reembolso", "prazo do reembolso", "estorno", "dinheiro de volta", "meu dinheiro"]],
+    [["returns", 3], ["damaged", "broken", "wrong item", "leaked", "missing", "تالف", "مكسور", "ناقص", "غلط", "danificado", "quebrado", "veio errado", "produto errado", "vazou", "vazando", "faltando", "avariado"]],
+    [["products", 0], ["authentic", "original", "fake", "genuine", "real", "اصلي", "تقليد", "مقلد", "original", "originais", "autentico", "falsificado", "falso", "pirata"]],
+    [["products", 1], ["dermatolog", "skin tested", "sensitive skin", "مختبره جلديا", "بشره حساسه", "جلديا", "pele sensivel", "testado dermatologicamente"]],
+    [["products", 2], ["animal", "cruelty", "vegan", "حيوان", "حيوانات", "animais", "crueldade", "vegano", "vegana", "testado em animais"]],
+    [["products", 3], ["pregnan", "breastfeed", "حامل", "الحمل", "رضاعه", "مرضع", "gravida", "gestante", "gravidez", "amamentando", "amamentacao"]],
+    [["products", 4], ["allerg", "reaction", "rash", "itch", "حساسيه", "تحسس", "حكه", "احمرار", "alergia", "alergica", "alergico", "reacao", "irritacao", "coceira", "vermelhidao"]],
+    [["products", 5], ["last", "longevity", "heat", "summer", "long lasting", "يدوم", "ثبات", "ثابت", "الحر", "صيف", "fixacao", "fixa", "duracao", "quanto tempo dura", "dura o dia", "calor", "verao"]],
+    [["about", 0], ["who is wepink", "about wepink", "virginia", "the brand", "من هي", "فيرجينيا", "عن الماركه", "quem e a wepink", "sobre a wepink", "a marca"]],
+    [["about", 1], ["where to buy", "buy safely", "amazon", "noon", "اين اشتري", "وين اشتري", "نون", "امازون", "onde comprar", "comprar com seguranca", "revendedor"]],
+    [["about", 2], ["store", "location", "mall", "branch", "boutique", "متجر", "فرع", "محل", "مول", "معرض", "loja", "lojas", "loja fisica", "quiosque", "shopping"]],
+    [["account", 0], ["account", "guest", "sign in", "login", "log in", "حساب", "تسجيل الدخول", "conta", "cadastro", "cadastrar", "entrar", "fazer login", "sem cadastro"]],
+    [["account", 1], ["email", "e-mail", "ايميل", "بريد", "meu e-mail"]],
+    [["account", 2], ["club", "newsletter", "offers", "birthday", "نادي", "عروض", "عيد ميلاد", "clube", "novidades", "ofertas", "promocao", "promocoes", "aniversario", "cupom"]],
+    [["account", 3], ["ambassador", "affiliate", "commission", "influencer", "earn", "سفيره", "عموله", "اربح", "مسوقه", "embaixadora", "afiliada", "comissao", "influenciadora", "ganhar dinheiro", "revender", "revenda", "ganhe"]],
   ];
-  const HUMAN = ["human", "agent", "person", "someone", "whatsapp", "call", "talk to", "speak to", "موظف", "شخص", "واتساب", "اتصل", "اكلم", "خدمه العملاء"];
-  const HELLO = ["hi", "hello", "hey", "salam", "good morning", "good evening", "مرحبا", "السلام", "هلا", "اهلا", "هاي", "صباح", "مساء"];
-  const THANKS = ["thank", "thx", "شكرا", "مشكور", "يعطيك العافيه", "تسلمين", "تسلم"];
+  const HUMAN = ["human", "agent", "person", "someone", "whatsapp", "call", "talk to", "speak to", "موظف", "شخص", "واتساب", "اتصل", "اكلم", "خدمه العملاء", "atendente", "humano", "pessoa", "falar com", "atendimento", "ligar", "zap"];
+  const HELLO = ["hi", "hello", "hey", "salam", "good morning", "good evening", "مرحبا", "السلام", "هلا", "اهلا", "هاي", "صباح", "مساء", "oi", "ola", "bom dia", "boa tarde", "boa noite", "e ai"];
+  const THANKS = ["thank", "thx", "شكرا", "مشكور", "يعطيك العافيه", "تسلمين", "تسلم", "obrigad", "valeu", "brigad"];
 
   const CUES = {
-    want: ["recommend", "suggest", "looking for", "want", "need", "find", "show me", "best", "which", "perfume", "scent", "smell", "fragrance", "gift", "present", "اقترح", "انصح", "ابغي", "ابي", "اريد", "ودي", "عطر", "ريحه", "رائحه", "هديه", "افضل", "ايش", "وش"],
+    want: ["recommend", "suggest", "looking for", "want", "need", "find", "show me", "best", "which", "perfume", "scent", "smell", "fragrance", "gift", "present", "اقترح", "انصح", "ابغي", "ابي", "اريد", "ودي", "عطر", "ريحه", "رائحه", "هديه", "افضل", "ايش", "وش", "recomenda", "sugere", "sugestao", "indica", "indicacao", "procurando", "quero", "preciso", "me mostra", "melhor", "qual", "cheiro", "cheirosa", "cheiroso", "fragrancia", "presente"],
     type: {
-      splash: ["body splash", "splash", "mist", "بودي سبلاش", "سبلاش", "معطر الجسم", "معطر"],
-      colonia: ["perfume", "cologne", "eau de", "fragrance", "parfum", "عطر", "عطور", "العطر", "كولونيا", "برفيوم"],
-      body: ["cream", "lotion", "moisturi", "body oil", "scrub", "كريم", "لوشن", "مرطب", "زيت الجسم", "مقشر"],
-      hair: ["hair", "شعر"],
-      makeup: ["makeup", "make up", "lip", "gloss", "lipstick", "blush", "foundation", "مكياج", "شفاه", "روج", "قلوس", "احمر"],
-      skin: ["skin", "serum", "face", "sunscreen", "spf", "بشره", "سيروم", "وجه", "واقي"],
-      set: ["gift set", "set", "kit", "box", "طقم", "بوكس", "مجموعه"],
+      splash: ["body splash", "splash", "mist", "بودي سبلاش", "سبلاش", "معطر الجسم", "معطر", "bruma"],
+      colonia: ["perfume", "cologne", "eau de", "fragrance", "parfum", "عطر", "عطور", "العطر", "كولونيا", "برفيوم", "colonia", "deo colonia", "desodorante colonia"],
+      body: ["cream", "lotion", "moisturi", "body oil", "scrub", "كريم", "لوشن", "مرطب", "زيت الجسم", "مقشر", "creme", "hidratante", "locao", "oleo corporal", "esfoliante", "manteiga"],
+      hair: ["hair", "شعر", "cabelo", "cabelos", "capilar"],
+      makeup: ["makeup", "make up", "lip", "gloss", "lipstick", "blush", "foundation", "مكياج", "شفاه", "روج", "قلوس", "احمر", "maquiagem", "make", "batom", "labial", "base liquida"],
+      skin: ["skin", "serum", "face", "sunscreen", "spf", "بشره", "سيروم", "وجه", "واقي", "pele", "rosto", "protetor solar"],
+      set: ["gift set", "set", "kit", "box", "طقم", "بوكس", "مجموعه", "kits", "caixa", "conjunto"],
     },
     family: {
-      sweet: ["sweet", "gourmand", "vanilla", "caramel", "candy", "chocolate", "حلو", "فانيلا", "فانيليا", "كراميل", "شوكولا"],
-      floral: ["floral", "flower", "fruity", "rose", "jasmine", "زهري", "ورد", "ياسمين", "فاكهي", "زهور"],
-      fresh: ["fresh", "citrus", "clean", "light", "aquatic", "منعش", "حمضي", "خفيف", "نظيف"],
-      warm: ["warm", "oriental", "oud", "amber", "spicy", "musk", "شرقي", "دافئ", "عود", "عنبر", "مسك", "بخور"],
-      woody: ["woody", "wood", "sandalwood", "cedar", "خشبي", "صندل", "خشب"],
+      sweet: ["sweet", "gourmand", "vanilla", "caramel", "candy", "chocolate", "حلو", "فانيلا", "فانيليا", "كراميل", "شوكولا", "doce", "docinho", "baunilha", "caramelo"],
+      floral: ["floral", "flower", "fruity", "rose", "jasmine", "زهري", "ورد", "ياسمين", "فاكهي", "زهور", "flor", "flores", "frutado", "frutal", "jasmim"],
+      fresh: ["fresh", "citrus", "clean", "light", "aquatic", "منعش", "حمضي", "خفيف", "نظيف", "fresco", "fresquinho", "citrico", "leve", "limpo", "aquatico"],
+      warm: ["warm", "oriental", "oud", "amber", "spicy", "musk", "شرقي", "دافئ", "عود", "عنبر", "مسك", "بخور", "quente", "picante", "almiscar", "ambar", "intenso"],
+      woody: ["woody", "wood", "sandalwood", "cedar", "خشبي", "صندل", "خشب", "amadeirado", "madeira", "sandalo", "cedro"],
     },
-    men: ["men", "man", "male", "him", "his", "husband", "boyfriend", "father", "dad", "brother", "masculine", "رجال", "رجالي", "رجل", "له", "زوجي", "ابوي", "اخوي", "خطيبي", "شباب"],
-    women: ["women", "woman", "her", "wife", "mom", "mum", "mother", "sister", "girlfriend", "daughter", "feminine", "نسائي", "نساء", "بنات", "لها", "امي", "زوجتي", "اختي", "بنتي", "خطيبتي", "صديقتي"],
-    best: ["best", "bestseller", "best seller", "popular", "top", "most loved", "favourite", "favorite", "trending", "الاكثر مبيعا", "افضل", "مشهور", "ترند", "الاكثر"],
-    fresh: ["new", "latest", "newest", "جديد", "الجديد"],
-    gift: ["gift", "present", "هديه", "اهدي"],
+    men: ["men", "man", "male", "him", "his", "husband", "boyfriend", "father", "dad", "brother", "masculine", "رجال", "رجالي", "رجل", "له", "زوجي", "ابوي", "اخوي", "خطيبي", "شباب", "homem", "homens", "masculino", "pra ele", "para ele", "ele", "marido", "namorado", "pai", "irmao", "noivo"],
+    women: ["women", "woman", "her", "wife", "mom", "mum", "mother", "sister", "girlfriend", "daughter", "feminine", "نسائي", "نساء", "بنات", "لها", "امي", "زوجتي", "اختي", "بنتي", "خطيبتي", "صديقتي", "mulher", "mulheres", "feminino", "pra ela", "para ela", "ela", "esposa", "mae", "irma", "namorada", "filha", "amiga", "noiva"],
+    best: ["best", "bestseller", "best seller", "popular", "top", "most loved", "favourite", "favorite", "trending", "الاكثر مبيعا", "افضل", "مشهور", "ترند", "الاكثر", "mais vendido", "mais vendidos", "queridinho", "queridinhos", "favorito", "sucesso"],
+    fresh: ["new", "latest", "newest", "جديد", "الجديد", "novo", "nova", "novidade", "lancamento", "lancamentos"],
+    gift: ["gift", "present", "هديه", "اهدي", "presente", "presentear", "mimo"],
   };
   const TYPE_OF = { splash: ["splash", "hairmist"], colonia: ["colonia"], body: ["cream", "lotion", "bodyoil", "scrub", "butter", "shower", "soap", "rollon"], hair: ["haircare", "hairmist"], makeup: ["makeup"], skin: ["skincare"], set: ["set"] };
   const CAT_OF = { hair: "hair", makeup: "makeup", skin: "skincare", set: "gift-sets", body: "body-care" };
 
-  // every scent note in the catalogue, in both languages
+  // every scent note in the catalogue, in every language
   let NOTES = null;
   function notes() {
     if (NOTES) return NOTES;
@@ -114,8 +118,7 @@ window.WP_ASSIST = (function () {
       for (const layer of Object.values(p.notes || {})) {
         for (const pair of layer) {
           const en = norm(pair[0]);
-          const ar = norm(pair[1]);
-          [en, ar].forEach((k) => k && k.length > 2 && NOTES.set(k, en));
+          pair.map(norm).forEach((k) => k && k.length > 2 && NOTES.set(k, en));
         }
       }
     }
@@ -124,7 +127,7 @@ window.WP_ASSIST = (function () {
   const noteHits = (q) => [...notes().keys()].filter((k) => (" " + q + " ").includes(" " + k + " ") || (k.length > 4 && q.includes(k)));
 
   function budget(raw) {
-    const m = raw.match(/(?:under|below|less than|max|up to|within|اقل من|تحت|بحدود|حدود|ما يزيد عن|لا يتجاوز)\s*([0-9٠-٩]+)/i);
+    const m = raw.match(/(?:under|below|less than|max|up to|within|até|ate|abaixo de|menos de|no máximo|no maximo|por até|اقل من|تحت|بحدود|حدود|ما يزيد عن|لا يتجاوز)\s*([0-9٠-٩]+)/i);
     if (!m) return 0;
     return Number(m[1].replace(/[٠-٩]/g, (d) => "٠١٢٣٤٥٦٧٨٩".indexOf(d)));
   }

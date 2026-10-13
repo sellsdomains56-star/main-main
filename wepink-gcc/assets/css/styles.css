@@ -412,14 +412,8 @@ html[lang="ar"] :is(.h1, .h2, .h3) {
   border-color: var(--pink);
   color: var(--accent-ink);
 }
-.lang-btn {
-  font-family: "Almarai", var(--font-sans);
-}
 .lang-short {
   display: none;
-}
-html[lang="ar"] .lang-btn {
-  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 /* ---------- announcement & header ---------- */
@@ -6888,5 +6882,95 @@ html[lang="ar"] .club-offer span {
   }
   .club-offer span {
     font-size: 9px;
+  }
+}
+
+/* ---------- language menu: English, العربية, Português ---------- */
+.lang-menu {
+  position: relative;
+}
+.lang-btn .lang-chev {
+  width: 14px;
+  height: 14px;
+  margin-inline-start: -3px;
+  transition: transform 0.2s var(--ease);
+}
+.lang-btn[aria-expanded="true"] .lang-chev {
+  transform: rotate(180deg);
+}
+.lang-pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-end: 0;
+  z-index: 60;
+  display: grid;
+  gap: 2px;
+  min-width: 184px;
+  padding: 6px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--fg);
+  box-shadow: var(--shadow);
+  animation: lang-pop 0.18s var(--ease);
+}
+.lang-pop[hidden] {
+  display: none;
+}
+@keyframes lang-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+.lang-pop button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: start;
+  color: inherit;
+}
+.lang-pop button:hover,
+.lang-pop button:focus-visible {
+  background: var(--petal);
+  outline: none;
+}
+.lang-pop button[aria-checked="true"] {
+  color: var(--accent-ink);
+  font-weight: 800;
+}
+.lang-pop .icon {
+  width: 16px;
+  height: 16px;
+}
+:is(.lang-pop, .lang-row) [lang="ar"],
+.lang-btn .lang-full:lang(ar) {
+  font-family: "Almarai", var(--font-sans);
+}
+html[lang="ar"] .lang-btn {
+  font-family: "Almarai", var(--font-sans);
+}
+.lang-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.lang-row .chip-btn.is-on {
+  border-color: var(--pink);
+  background: var(--petal);
+  color: var(--accent-ink);
+}
+@media (max-width: 720px) {
+  .lang-btn .lang-chev {
+    display: none;
+  }
+  .lang-pop {
+    inset-inline-end: -48px;
   }
 }

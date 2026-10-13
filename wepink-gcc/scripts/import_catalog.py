@@ -11,8 +11,9 @@ the Gulf store's catalogue in three steps:
   python3 scripts/import_catalog.py js              # merge data/translations.json
                                                     # into assets/js/catalog.js
 
-English and Arabic copy lives in data/translations.json (keyed by product id),
-so re-running the import keeps the translations. GCC prices are placeholders
+English, Arabic and Portuguese copy lives in data/translations.json (keyed by
+product id; scent notes are [English, Arabic, Portuguese]), so re-running the
+import keeps the translations. GCC prices are placeholders
 by product type; set the real ones with the franchise.
 """
 import concurrent.futures
@@ -360,8 +361,8 @@ def js():
             "image": p["images"][0] if p.get("images") else None,
             "images": p.get("images", []),
             "remote": p.get("remote", []),
-            "tagline": {"en": t.get("tagline_en") or "", "ar": t.get("tagline_ar") or ""},
-            "desc": {"en": t.get("desc_en") or p["short_pt"] or p["desc_pt"][:300], "ar": t.get("desc_ar") or t.get("desc_en") or p["short_pt"]},
+            "tagline": {"en": t.get("tagline_en") or "", "ar": t.get("tagline_ar") or "", "pt": t.get("tagline_pt") or ""},
+            "desc": {"en": t.get("desc_en") or p["short_pt"] or p["desc_pt"][:300], "ar": t.get("desc_ar") or t.get("desc_en") or p["short_pt"], "pt": t.get("desc_pt") or ""},
             "notes": t.get("notes") or {},
             "source": p["link"],
         }

@@ -20,12 +20,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=El+Messiri:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>
-    // Set language and direction before first paint so Arabic visitors never see a flash of English layout.
+    // Set language and direction before first paint so Arabic and Portuguese visitors never see a flash of English layout.
     (function () {
       try {
         var q = new URLSearchParams(location.search).get("lang");
-        var l = q || JSON.parse(localStorage.getItem("wpg.lang") || "null") || ((navigator.language || "").toLowerCase().indexOf("ar") === 0 ? "ar" : "en");
+        var nav = (navigator.language || "").toLowerCase().slice(0, 2);
+        var l = q || JSON.parse(localStorage.getItem("wpg.lang") || "null") || (nav === "ar" || nav === "pt" ? nav : "en");
         if (l === "ar") { document.documentElement.lang = "ar"; document.documentElement.dir = "rtl"; }
+        else if (l === "pt") document.documentElement.lang = "pt-BR";
       } catch (e) {}
       // Black or white: the shopper's saved choice, else the device's setting.
       try {

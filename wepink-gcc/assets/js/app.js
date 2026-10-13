@@ -114,13 +114,16 @@ window.WP = (function () {
 
   /* ---------- state ---------- */
   const params = route().params;
-  const browserAr = (navigator.language || "").toLowerCase().startsWith("ar");
+  // English, Arabic and Brazilian Portuguese. A first visit follows the browser's language.
+  const LANGS = ["en", "ar", "pt"];
+  const browserLang = ((navigator.language || "").toLowerCase().match(/^(ar|pt)/) || [])[1] || "en";
   const state = {
-    lang: ["en", "ar"].includes(params.get("lang")) ? params.get("lang") : store.get("lang", browserAr ? "ar" : "en"),
+    lang: LANGS.includes(params.get("lang")) ? params.get("lang") : store.get("lang", browserLang),
     country: D.countries[params.get("country")] ? params.get("country") : store.get("country", "AE"),
     cart: store.get("cart", []).filter((i) => i && typeof i.id === "string" && i.qty > 0),
   };
   if (!D.countries[state.country]) state.country = "AE";
+  if (!LANGS.includes(state.lang)) state.lang = "en";
 
   /* ---------- referral codes ----------
    * A link with ?ref=CODE saves the friend's code; checkout applies it.
@@ -181,13 +184,20 @@ window.WP = (function () {
     if (vars) Object.keys(vars).forEach((k) => (s = s.split("{" + k + "}").join(vars[k])));
     return s;
   }
-  // Bilingual value: { en, ar } object or [en, ar] pair.
+  // Text in the shopper's language: a { en, ar, pt } object or an [en, ar, pt] array.
+  // Anything without a Portuguese (or Arabic) version shows the English.
   function L(v) {
     if (v == null) return "";
-    if (Array.isArray(v)) return state.lang === "ar" ? v[1] || v[0] : v[0];
+    if (Array.isArray(v)) return v[LANGS.indexOf(state.lang)] || v[0];
     if (typeof v === "object") return v[state.lang] || v.en;
     return v;
   }
+  // Numbers and dates as each language writes them: 1,234.50 in English and
+  // Arabic (Latin digits), 1.234,50 in Portuguese.
+  const num = (n, d) => Number(n).toLocaleString(state.lang === "pt" ? "pt-BR" : "en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const locale = () => ({ ar: "ar-AE-u-nu-latn", pt: "pt-BR" })[state.lang] || "en-GB";
+  // An amount with its currency: "AED 150" / "150 د.إ".
+  const withSymbol = (n, c) => (state.lang === "ar" ? `${n} ${c.symbol.ar}` : `${c.symbol.en} ${n}`);
 
   const country = () => D.countries[state.country];
   const FRAGRANCE = new Set(["colonia", "splash", "cream", "lotion", "hairmist", "bodyoil", "scrub", "butter", "shower", "soap", "rollon"]);
@@ -209,8 +219,7 @@ window.WP = (function () {
   }
   function money(amount) {
     const c = country();
-    const n = Number(amount).toLocaleString("en-US", { minimumFractionDigits: c.decimals, maximumFractionDigits: c.decimals });
-    return state.lang === "ar" ? `${n} ${c.symbol.ar}` : `${c.symbol.en} ${n}`;
+    return withSymbol(num(amount, c.decimals), c);
   }
   const priceOf = (p) => local(p.price * markup(), p);
   const wasOf = (p) => local(p.compareAt * markup());
@@ -519,6 +528,32 @@ window.WP = (function () {
     return `<svg class="season-deco deco-${sz.motif}" viewBox="0 0 220 260" aria-hidden="true" focusable="false">${art}</svg>`;
   }
 
+  /* ---------- language menu ---------- */
+  const LANG_NAMES = { en: "English", ar: "العربية", pt: "Português" };
+  const LANG_SHORT = { en: "EN", ar: "ع", pt: "PT" };
+  const langAttrs = (l) => `lang="${l === "pt" ? "pt-BR" : l}"`;
+  // Header: the current language on the button; the list names each language in its own script.
+  function langMenu() {
+    return `<div class="lang-menu">
+      <button class="chip-btn lang-btn" type="button" data-lang-menu aria-haspopup="true" aria-expanded="false" aria-label="${esc(t("nav.languageLabel"))}: ${LANG_NAMES[state.lang]}">
+        <span class="lang-full">${LANG_NAMES[state.lang]}</span><span class="lang-short" aria-hidden="true">${LANG_SHORT[state.lang]}</span>${icon("chevron", "lang-chev")}
+      </button>
+      <div class="lang-pop" role="menu" aria-label="${esc(t("nav.languageLabel"))}" hidden>
+        ${LANGS.map((l) => `<button type="button" role="menuitemradio" aria-checked="${l === state.lang}" data-lang="${l}" ${langAttrs(l)}><span>${LANG_NAMES[l]}</span>${l === state.lang ? icon("check") : ""}</button>`).join("")}
+      </div>
+    </div>`;
+  }
+  // Mobile menu: the three languages side by side.
+  function langRow() {
+    return `<div class="lang-row" role="group" aria-label="${esc(t("nav.languageLabel"))}">${LANGS.map((l) => `<button class="chip-btn${l === state.lang ? " is-on" : ""}" type="button" data-lang="${l}" aria-pressed="${l === state.lang}" ${langAttrs(l)}>${LANG_NAMES[l]}</button>`).join("")}</div>`;
+  }
+  function langMenuClose() {
+    document.querySelectorAll('[data-lang-menu][aria-expanded="true"]').forEach((b) => {
+      b.setAttribute("aria-expanded", "false");
+      b.nextElementSibling.hidden = true;
+    });
+  }
+
   function renderHeader() {
     const c = country();
     const maxPct = Math.max(...D.config.referral.tiers.map((x) => x.pct));
@@ -548,7 +583,7 @@ window.WP = (function () {
             <button class="chip-btn region-btn" type="button" data-open="region" aria-label="${esc(t("nav.region"))}: ${esc(L(c.name))}">
               ${icon("globe")}<span class="rb-code">${esc(L(c.short))}</span><span class="rb-cur">${esc(c.symbol[state.lang])}</span>
             </button>
-            <button class="chip-btn lang-btn" type="button" data-lang-toggle lang="${state.lang === "ar" ? "en" : "ar"}" aria-label="${esc(t("nav.languageLabel"))}"><span class="lang-full">${esc(t("nav.language"))}</span><span class="lang-short" aria-hidden="true">${state.lang === "ar" ? "EN" : "ع"}</span></button>
+            ${langMenu()}
             ${toneButton("icon-btn tone-btn")}
             <button class="icon-btn search-end" type="button" data-open="search" aria-label="${esc(t("nav.search"))}">${icon("search")}</button>
             ${SYNC.live ? accountButton() : ""}
@@ -561,7 +596,7 @@ window.WP = (function () {
   }
 
   function payBadges(list) {
-    const label = { card: "VISA · Mastercard", mada: "mada", knet: "KNET", benefit: "BenefitPay", applepay: "Apple Pay", tabby: "tabby", tamara: "Tamara", cod: state.lang === "ar" ? "الدفع عند الاستلام" : "Cash on delivery" };
+    const label = { card: "VISA · Mastercard", mada: "mada", knet: "KNET", benefit: "BenefitPay", applepay: "Apple Pay", tabby: "tabby", tamara: "Tamara", cod: L(D.payNames.cod) };
     return list.map((k) => `<li class="pay-badge pay-${k}">${esc(label[k])}</li>`).join("");
   }
 
@@ -663,7 +698,7 @@ window.WP = (function () {
         </nav>
         <div class="menu-foot">
           <button class="chip-btn" type="button" data-open="region">${icon("globe")}<span>${esc(L(c.name))} · ${esc(c.currency)}</span></button>
-          <button class="chip-btn" type="button" data-lang-toggle lang="${state.lang === "ar" ? "en" : "ar"}">${esc(t("nav.language"))}</button>
+          ${langRow()}
           ${toneButton("chip-btn", true)}
         </div>
       </aside>
@@ -776,7 +811,7 @@ window.WP = (function () {
   }
   function birthdayFields(value, id) {
     const [m, d] = String(value || "").split("-");
-    const months = Array.from({ length: 12 }, (_, i) => new Date(2024, i, 1).toLocaleString(state.lang === "ar" ? "ar-AE" : "en-GB", { month: "long" }));
+    const months = Array.from({ length: 12 }, (_, i) => new Date(2024, i, 1).toLocaleString(locale(), { month: "long" }));
     return `<div class="field"><span class="label" id="${id}">${esc(t("club.birthday"))} <span class="optional">${esc(t("club.optional"))}</span></span>
         <div class="field-row" role="group" aria-labelledby="${id}">
           <label class="select select-block"><select name="bday" aria-label="${esc(t("club.day"))}"><option value="">${esc(t("club.day"))}</option>${Array.from({ length: 31 }, (_, i) => `<option${+d === i + 1 ? " selected" : ""}>${i + 1}</option>`).join("")}</select>${icon("chevron")}</label>
@@ -849,8 +884,8 @@ window.WP = (function () {
             ? `<ul>${orders
                 .map((o) => {
                   const cur = Object.values(D.countries).find((x) => x.currency === o.currency) || c;
-                  const total = Number(o.total).toLocaleString("en-US", { minimumFractionDigits: cur.decimals, maximumFractionDigits: cur.decimals });
-                  return `<li><span><strong dir="ltr">${esc(o.number)}</strong><span class="muted small">${esc(new Date(o.date).toLocaleDateString(state.lang === "ar" ? "ar-AE-u-nu-latn" : "en-GB", { day: "numeric", month: "short", year: "numeric" }))} · ${esc(t("acct.items", { n: o.items }))}</span></span><span class="acct-order-end"><span class="acct-status st-${esc(o.status)}">${esc(t("acct.st." + o.status))}</span><span class="price">${esc(state.lang === "ar" ? `${total} ${cur.symbol.ar}` : `${cur.symbol.en} ${total}`)}</span></span></li>`;
+                  const total = num(o.total, cur.decimals);
+                  return `<li><span><strong dir="ltr">${esc(o.number)}</strong><span class="muted small">${esc(new Date(o.date).toLocaleDateString(locale(), { day: "numeric", month: "short", year: "numeric" }))} · ${esc(t("acct.items", { n: o.items }))}</span></span><span class="acct-order-end"><span class="acct-status st-${esc(o.status)}">${esc(t("acct.st." + o.status))}</span><span class="price">${esc(withSymbol(total, cur))}</span></span></li>`;
                 })
                 .join("")}</ul>`
             : `<p class="muted">${esc(t("acct.noOrders"))}</p>`
@@ -1085,12 +1120,13 @@ window.WP = (function () {
       return;
     }
     const words = query.split(/\s+/);
+    const every = (v) => (v ? LANGS.map((l) => v[l]).filter(Boolean) : []);
     const score = (p) => {
       const cat = D.categories.find((c) => c.id === p.cat).name;
       const fields = [
         [3, [p.line, p.lineAr || ""]],
-        [2, [p.typeName.en, p.typeName.ar, cat.en, cat.ar, ...(D.families[p.family] ? [D.families[p.family].en, D.families[p.family].ar] : [])]],
-        [1, [].concat(...Object.values(p.notes).map((arr) => arr.flat()), p.tagline ? [p.tagline.en, p.tagline.ar] : [])],
+        [2, [...every(p.typeName), ...every(cat), ...every(D.families[p.family])]],
+        [1, [].concat(...Object.values(p.notes).map((arr) => arr.flat()), every(p.tagline))],
       ];
       let total = 0;
       for (const w of words) {
@@ -1417,7 +1453,8 @@ window.WP = (function () {
       });
     }
     document.addEventListener("click", (e) => {
-      const el = e.target.closest("[data-open],[data-close],[data-add],[data-qty],[data-remove],[data-lang-toggle],[data-tone-toggle],[data-quiz-send],[data-country],[data-search],[data-quiz],[data-quiz-restart]");
+      if (!e.target.closest(".lang-menu")) langMenuClose();
+      const el = e.target.closest("[data-open],[data-close],[data-add],[data-qty],[data-remove],[data-lang-menu],[data-lang],[data-tone-toggle],[data-quiz-send],[data-country],[data-search],[data-quiz],[data-quiz-restart]");
       if (!el) return;
       if (el.hasAttribute("data-open")) {
         e.preventDefault();
@@ -1436,8 +1473,18 @@ window.WP = (function () {
         if (line) bag.setQty(id, line.qty + parseInt(el.getAttribute("data-delta"), 10));
       } else if (el.hasAttribute("data-remove")) {
         bag.setQty(el.getAttribute("data-remove"), 0);
-      } else if (el.hasAttribute("data-lang-toggle")) {
-        setLang(state.lang === "ar" ? "en" : "ar");
+      } else if (el.hasAttribute("data-lang-menu")) {
+        const pop = el.nextElementSibling;
+        const opening = pop.hidden;
+        langMenuClose();
+        if (opening) {
+          pop.hidden = false;
+          el.setAttribute("aria-expanded", "true");
+          pop.querySelector('[aria-checked="true"]').focus();
+        }
+      } else if (el.hasAttribute("data-lang")) {
+        langMenuClose();
+        setLang(el.getAttribute("data-lang"));
       } else if (el.hasAttribute("data-quiz-send")) {
         const c = country();
         el.outerHTML = `<form class="ai-capture quiz-capture" data-picks="${esc(el.getAttribute("data-quiz-send"))}" novalidate>
@@ -1493,7 +1540,15 @@ window.WP = (function () {
       if (e.target.id === "acct-form") (e.preventDefault(), submitAccount(e.target));
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeAll();
+      if (e.key === "Escape") {
+        const menu = document.querySelector('[data-lang-menu][aria-expanded="true"]');
+        if (menu) {
+          langMenuClose();
+          menu.focus();
+          return;
+        }
+        closeAll();
+      }
       if (e.key === "Tab") trapFocus(e);
     });
 
@@ -1514,6 +1569,7 @@ window.WP = (function () {
   }
 
   function setLang(lang) {
+    if (!LANGS.includes(lang) || lang === state.lang) return;
     state.lang = lang;
     store.set("lang", lang);
     render();
@@ -1583,7 +1639,7 @@ window.WP = (function () {
       // (built from parts so the single-file build doesn't embed the share image)
       const image = this.abs(info.image || ["assets", "photos", "og-share.jpg"].join("/"));
       this.tag('meta[name="description"]', "meta", { name: "description", content: description });
-      const og = { "og:title": document.title, "og:description": description, "og:image": image, "og:type": page === "product" ? "product" : "website", "og:locale": state.lang === "ar" ? "ar_AE" : "en_AE" };
+      const og = { "og:title": document.title, "og:description": description, "og:image": image, "og:type": page === "product" ? "product" : "website", "og:locale": { ar: "ar_AE", pt: "pt_BR" }[state.lang] || "en_AE" };
       Object.entries(og).forEach(([k, v]) => this.tag(`meta[property="${k}"]`, "meta", { property: k, content: v }));
       this.tag('meta[name="twitter:card"]', "meta", { name: "twitter:card", content: "summary_large_image" });
       this.tag('meta[name="twitter:image"]', "meta", { name: "twitter:image", content: image });
@@ -1594,10 +1650,11 @@ window.WP = (function () {
         const file = page === "home" ? "" : page + ".html";
         const url = this.abs(file) + (keep.toString() ? "?" + keep : "");
         const withLang = (l) => url + (keep.toString() ? "&" : "?") + "lang=" + l;
-        this.tag('link[rel="canonical"]', "link", { rel: "canonical", href: state.lang === "ar" ? withLang("ar") : url });
+        this.tag('link[rel="canonical"]', "link", { rel: "canonical", href: state.lang === "en" ? url : withLang(state.lang) });
         this.tag('meta[property="og:url"]', "meta", { property: "og:url", content: url });
         this.tag('link[rel="alternate"][hreflang="en"]', "link", { rel: "alternate", hreflang: "en", href: url });
         this.tag('link[rel="alternate"][hreflang="ar"]', "link", { rel: "alternate", hreflang: "ar", href: withLang("ar") });
+        this.tag('link[rel="alternate"][hreflang="pt-BR"]', "link", { rel: "alternate", hreflang: "pt-BR", href: withLang("pt") });
         this.tag('link[rel="alternate"][hreflang="x-default"]', "link", { rel: "alternate", hreflang: "x-default", href: url });
       }
       // Structured data
@@ -1642,7 +1699,7 @@ window.WP = (function () {
   /* ---------- render ---------- */
   function render() {
     const html = document.documentElement;
-    html.lang = state.lang;
+    html.lang = state.lang === "pt" ? "pt-BR" : state.lang;
     html.dir = state.lang === "ar" ? "rtl" : "ltr";
     const sz = season();
     if (sz) {
@@ -1738,7 +1795,7 @@ window.WP = (function () {
     if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, ref, welcome, seo, pics, ritual, season, seasonDeco, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
+  return { init, render, route, SINGLE, LANGS, num, locale, withSymbol, ref, welcome, seo, pics, ritual, season, seasonDeco, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());

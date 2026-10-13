@@ -929,7 +929,7 @@ window.WP_PAGES = (function () {
     const bnplOk = c.pay.includes("tabby");
     const noteRow = (k) => (p.notes[k] && p.notes[k].length ? `<div class="note-row"><dt>${esc(t("pdp." + k))}</dt><dd>${p.notes[k].map((n) => `<span class="note">${esc(L(n))}</span>`).join("")}</dd></div>` : "");
     const notesHTML = noteRow("top") + noteRow("heart") + noteRow("base");
-    const eachText = Number(each).toLocaleString("en-US", { minimumFractionDigits: c.decimals || 2, maximumFractionDigits: c.decimals || 2 });
+    const eachText = W.num(each, c.decimals || 2);
 
     main.innerHTML = `
       <div class="container">
@@ -959,7 +959,7 @@ window.WP_PAGES = (function () {
           <p class="pdp-size">${esc(sizeText(p))}</p>
           <div class="pdp-price">${priceHTML(p)}</div>
           <p class="muted small">${esc(c.vat ? t("pdp.vat") : t("pdp.vatNone", { country: L(c.short) }))}</p>
-          ${bnplOk ? `<p class="bnpl">${icon("split")}<span>${esc(t("pdp.bnpl", { amount: (W.state.lang === "ar" ? `${eachText} ${c.symbol.ar}` : `${c.symbol.en} ${eachText}`) }))}</span></p>` : ""}
+          ${bnplOk ? `<p class="bnpl">${icon("split")}<span>${esc(t("pdp.bnpl", { amount: W.withSymbol(eachText, c) }))}</span></p>` : ""}
           <p class="pdp-desc">${esc(L(p.desc))}</p>
 
           <div class="pdp-buy">

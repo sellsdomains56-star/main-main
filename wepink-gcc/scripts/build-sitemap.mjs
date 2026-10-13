@@ -1,5 +1,5 @@
 // Writes sitemap.xml and robots.txt for search engines: every page and every
-// product, each with its English and Arabic address.
+// product, each with its English, Arabic and Portuguese address.
 //   node scripts/build-sitemap.mjs            (address from config.siteUrl in data.js)
 //   SITE_URL=https://shop.example.com/ node scripts/build-sitemap.mjs
 import { readFileSync, writeFileSync } from "node:fs";
@@ -40,6 +40,7 @@ const urls = pages.map(([path, priority, freq]) => {
     <priority>${priority}</priority>
     <xhtml:link rel="alternate" hreflang="en" href="${xml(en)}"/>
     <xhtml:link rel="alternate" hreflang="ar" href="${xml(withLang(path, "ar"))}"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="${xml(withLang(path, "pt"))}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${xml(en)}"/>
   </url>`;
 });

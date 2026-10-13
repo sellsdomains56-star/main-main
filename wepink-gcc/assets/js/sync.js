@@ -209,6 +209,21 @@ window.WP_SYNC = (function () {
   }
 
   /* ---------- applying database rows to the store ---------- */
+  // Portuguese arrived after the database was filled. While a product's English
+  // text is still the original, its Portuguese comes from the bundled catalogue,
+  // until the team saves one in the admin panel; scent notes get their
+  // Portuguese names the same way.
+  const withPt = (v, orig) => (v && !v.pt && orig && orig.pt && orig.en === v.en ? Object.assign({}, v, { pt: orig.pt }) : v);
+  const PT_NOTES = new Map(
+    bundled
+      .flatMap((p) => Object.values(p.notes || {}).flat())
+      .filter((n) => n && n[2])
+      .map((n) => [n[0], n[2]])
+  );
+  const notesPt = (notes) =>
+    Object.fromEntries(
+      Object.entries(notes || {}).map(([k, list]) => [k, (Array.isArray(list) ? list : []).map((n) => (n[2] || !PT_NOTES.has(n[0]) ? n : [n[0], n[1] || n[0], PT_NOTES.get(n[0])]))])
+    );
   // A row with no images of its own keeps the photos that ship with the site.
   // Campaign scenes ("scene") are full-frame shots; the original cut-out and
   // packshots stay available for staged spots and the product gallery.
@@ -232,9 +247,9 @@ window.WP_SYNC = (function () {
       badge: r.badge || undefined,
       color: r.color || (b && b.color) || "#F06FA8",
       color2: r.color2 || (b && b.color2) || "#FCE4EF",
-      tagline: r.tagline && (r.tagline.en || r.tagline.ar) ? r.tagline : undefined,
-      desc: r.description && (r.description.en || r.description.ar) ? r.description : undefined,
-      notes: r.notes || {},
+      tagline: r.tagline && (r.tagline.en || r.tagline.ar || r.tagline.pt) ? withPt(r.tagline, b && b.tagline) : undefined,
+      desc: r.description && (r.description.en || r.description.ar || r.description.pt) ? withPt(r.description, b && b.desc) : undefined,
+      notes: notesPt(r.notes),
       image: images[0],
       images,
       cutout: r.cutout || (own && !scene ? "" : (b && b.cutout) || ""),

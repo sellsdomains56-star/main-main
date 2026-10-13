@@ -152,8 +152,9 @@ window.WP_ART = (function () {
       // one-file build opened on its own).
       if (p.scene && p.image) {
         // the product's name, for screen readers and image search
-        const ar = document.documentElement.lang === "ar";
-        const alt = ar && p.lineAr ? `${p.lineAr} ${(p.typeName || {}).ar || ""}` : `wepink ${p.line} ${(p.typeName || {}).en || ""}`;
+        const lang = document.documentElement.lang.slice(0, 2);
+        const type = p.typeName ? p.typeName[lang] || p.typeName.en : "";
+        const alt = lang === "ar" && p.lineAr ? `${p.lineAr} ${type}` : `wepink ${p.line} ${type}`;
         return `<img class="scene" src="${esc(p.image)}" alt="${esc(alt.trim())}" loading="${lazy}" decoding="async"${p.cutout ? ` data-fb="${esc(p.cutout)}"` : ""}>`;
       }
       return p.cutout
