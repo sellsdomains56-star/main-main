@@ -425,11 +425,12 @@ window.WP_ASSIST = (function () {
       const done = () => {
         if (m) m.sent = true;
         W.store.set("club", "joined");
+        if (W.welcome) W.welcome.unlock();
         say({ from: "bot", text: t("ai.saved", { name: name.split(" ")[0] }), chips: starters() });
       };
       if (!W.sync.live) return done();
       form.querySelector("[type=submit]").disabled = true;
-      W.sync.rpc("save_contact", { p: entry }).then(done, () => {
+      W.sync.saveContact(entry).then(done, () => {
         form.querySelector("[type=submit]").disabled = false;
         err.textContent = t("form.failed");
       });

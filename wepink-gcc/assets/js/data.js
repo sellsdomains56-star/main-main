@@ -41,6 +41,10 @@ window.WP_DATA = (function () {
     // eau de cologne together are this % off. 0 turns it off.
     ritual: { pct: 15 },
 
+    // Club welcome offer: joining the wepink Club unlocks this % off the first
+    // order, with this code at checkout. 0 turns it off. (Admin: Settings.)
+    welcome: { pct: 10, code: "WELCOME10" },
+
     // Seasonal look, switched on in the admin panel (Settings -> Season):
     // "", "ramadan", "eid", "national" or "whitefriday" (see `seasons` below).
     // `announce` ({ en, ar }) replaces the season's own announcement if set.

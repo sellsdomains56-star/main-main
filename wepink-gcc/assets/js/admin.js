@@ -1419,6 +1419,7 @@
     const contact = Object.assign({ whatsapp: "", email: "", instagram: "", tiktok: "" }, S.settings.contact);
     const season = Object.assign({ id: "", announce: null }, S.settings.season);
     const ritual = Object.assign({ pct: (D.config.ritual || {}).pct || 0 }, S.settings.ritual);
+    const welcome = Object.assign({ pct: (D.config.welcome || {}).pct || 0, code: (D.config.welcome || {}).code || "WELCOME10" }, S.settings.welcome);
     const seasons = D.seasons || {};
     const { data: admins } = await sb.from("admins").select("email").order("created_at");
     const tierName = (id) => L((D.config.referral.tiers.find((x) => x.id === id) || {}).name) || id;
@@ -1449,6 +1450,12 @@
           <label class="field"><span>Announcement in Arabic (optional)</span><input name="ar" dir="rtl" maxlength="140" placeholder="اتركيه فارغًا لرسالة الموسم" value="${esc((season.announce || {}).ar || "")}"></label>
           <p class="small muted">Use {country} for the shopper's country and {amount} for the free-delivery threshold.</p>
           <div><button class="btn btn-primary" type="submit">Save season</button></div>
+        </form>
+        <form class="card" data-form="welcome">
+          <div><h2>Club welcome offer</h2><p class="sub">Joining the wepink Club unlocks this discount on the first order. The pop-up, the footer and the announcement bar show it; the code is applied at checkout. 0 turns it off.</p></div>
+          <label class="field"><span>Discount on the first order (%)</span><input name="pct" type="number" min="0" max="50" step="1" value="${esc(welcome.pct)}"></label>
+          <label class="field"><span>Welcome code</span><input name="code" maxlength="16" style="text-transform:uppercase" value="${esc(welcome.code)}"></label>
+          <div><button class="btn btn-primary" type="submit">Save welcome offer</button></div>
         </form>
         <form class="card" data-form="ritual">
           <div><h2>Ritual set</h2><p class="sub">A body cream, a body splash and a perfume bought together (any scents) are this much off. 0 turns the offer off.</p></div>
@@ -1507,6 +1514,12 @@
           const ar = f.ar.value.trim();
           await saveSetting("season", { id, announce: en || ar ? { en: en || ar, ar: ar || en } : null });
           toast(id ? `${seasons[id].name.en} look is on` : "Back to the everyday look");
+        } else if (f.dataset.form === "welcome") {
+          const pct = Math.max(0, Math.min(50, Number(f.pct.value) || 0));
+          const code = String(f.code.value || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 16);
+          if (pct && code.length < 4) throw new Error("The code needs at least 4 letters or numbers");
+          await saveSetting("welcome", { pct, code: code || "WELCOME10" });
+          toast(pct ? `Welcome offer: ${pct}% off with ${code}` : "Welcome offer off");
         } else if (f.dataset.form === "ritual") {
           const pct = Math.max(0, Math.min(50, Number(f.pct.value) || 0));
           await saveSetting("ritual", { pct });

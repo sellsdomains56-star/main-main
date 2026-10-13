@@ -155,6 +155,23 @@ window.WP = (function () {
   };
   const incomingRef = ref.clean(params.get("ref"));
 
+  /* ---------- the Club welcome offer ----------
+   * Joining the wepink Club (pop-up, assistant or quiz) unlocks
+   * config.welcome.pct % off the first order, with config.welcome.code at
+   * checkout. State in this browser: "" (not unlocked), "ready", "saved"
+   * (taken off at checkout, can be typed back) or "used". */
+  const welcome = {
+    pct: () => Number((D.config.welcome || {}).pct) || 0,
+    code: () => String((D.config.welcome || {}).code || "WELCOME10").toUpperCase(),
+    state: () => store.get("welcome", ""),
+    ready: () => welcome.pct() > 0 && welcome.state() === "ready",
+    unlock() {
+      if (welcome.state() !== "used") store.set("welcome", "ready");
+      renderBagDrawer();
+    },
+    set: (v) => store.set("welcome", v),
+  };
+
   /* ---------- helpers ---------- */
   const esc = (s) =>
     String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -506,7 +523,7 @@ window.WP = (function () {
     const c = country();
     const maxPct = Math.max(...D.config.referral.tiers.map((x) => x.pct));
     const sz = season();
-    const msgs = [...(sz ? [sz.announce] : []), t("announce.1", { amount: money(country().freeOver) }), t("announce.4", { pct: ref.pct(), max: maxPct }), t("announce.2"), t("announce.3")];
+    const msgs = [...(sz ? [sz.announce] : []), t("announce.1", { amount: money(country().freeOver) }), ...(welcome.pct() ? [t("announce.welcome", { pct: welcome.pct() })] : []), t("announce.4", { pct: ref.pct(), max: maxPct }), t("announce.2"), t("announce.3")];
     const links = navLinks();
     document.getElementById("app-header").innerHTML = `
       <a class="skip-link" href="#main">${esc(t("nav.skip"))}</a>
@@ -582,7 +599,7 @@ window.WP = (function () {
               <a href="about.html">${esc(t("footer.about"))}</a>
               <a href="earn.html">${esc(t("footer.earn"))}</a>
               <a href="stores.html">${esc(t("footer.storesLink"))}</a>
-              <button class="footer-club" type="button" data-open="club">${icon("sparkle")}<span>${esc(t("club.footer"))}</span></button>
+              <button class="footer-club" type="button" data-open="club">${icon("sparkle")}<span>${esc(welcome.pct() ? t("club.footerOffer", { pct: welcome.pct() }) : t("club.footer"))}</span></button>
               <button class="footer-region" type="button" data-open="region">${icon("globe")}<span>${esc(L(c.name))} · ${esc(c.currency)}</span></button>
             </nav>
           </div>
@@ -716,9 +733,10 @@ window.WP = (function () {
           ${D.config.photos.club || D.config.photos.virginiaPortrait ? `<img class="club-photo" src="${esc(D.config.photos.club || D.config.photos.virginiaPortrait)}" alt="" loading="lazy">` : ""}
           <img src="assets/brand/logo-white.svg" alt="" width="120" height="35">
           <span class="club-glow"></span>
+          ${welcome.pct() ? `<p class="club-offer"><strong>${esc(t("club.offerBadge", { pct: welcome.pct() }))}</strong><span>${esc(t("club.offerSub"))}</span></p>` : ""}
           <ul class="club-perks">
             <li>${icon("sparkle")}<span>${esc(t("club.perk1"))}</span></li>
-            <li>${icon("gift")}<span>${esc(t("club.perk2"))}</span></li>
+            <li>${icon("gift")}<span>${esc(welcome.pct() ? t("club.perkOffer", { pct: welcome.pct() }) : t("club.perk2"))}</span></li>
             <li>${icon("heart")}<span>${esc(t("club.perk3"))}</span></li>
           </ul>
         </div>
@@ -726,8 +744,8 @@ window.WP = (function () {
           <div class="layer-head">
             <div>
               <p class="eyebrow">${esc(t("club.eyebrow"))}</p>
-              <h2 id="club-title">${esc(t("club.title"))}</h2>
-              <p class="muted">${esc(t("club.lead"))}</p>
+              <h2 id="club-title">${esc(welcome.pct() ? t("club.titleOffer", { pct: welcome.pct() }) : t("club.title"))}</h2>
+              <p class="muted">${esc(welcome.pct() ? t("club.leadOffer", { pct: welcome.pct() }) : t("club.lead"))}</p>
             </div>
             <button class="icon-btn" type="button" data-close aria-label="${esc(t("nav.close"))}">${icon("close")}</button>
           </div>
@@ -868,8 +886,14 @@ window.WP = (function () {
   /* ---------- wepink Club (sign-up for offers) & cookie consent ---------- */
   function clubBody() {
     if (store.get("club", "") === "joined") {
+      const offer = welcome.pct() && welcome.state() !== "used";
       return `<div class="club-done"><span class="thanks-icon">${icon("check")}</span><h3 class="h3">${esc(t("club.doneTitle"))}</h3><p class="muted">${esc(t("club.doneLead"))}</p>
-        <button class="btn btn-primary btn-block" type="button" data-close>${esc(t("club.doneCta"))}</button></div>`;
+        ${
+          offer
+            ? `<div class="club-code"><span class="eyebrow">${esc(t("club.codeTitle"))}</span><strong dir="ltr">${esc(welcome.code())}</strong><p class="small muted">${esc(t("club.codeLead", { pct: welcome.pct() }))}</p><button class="btn btn-ghost btn-sm" type="button" data-copy="${esc(welcome.code())}">${icon("check")}<span>${esc(t("club.copy"))}</span></button></div>`
+            : ""
+        }
+        <button class="btn btn-primary btn-block" type="button" data-close>${esc(t(offer ? "club.shop" : "club.doneCta"))}</button></div>`;
     }
     const c = country();
     const me = store.get("account", null) || {};
@@ -882,7 +906,7 @@ window.WP = (function () {
       ${birthdayFields(me.birthday, "cl-bday")}
       <label class="check"><input type="checkbox" name="agree" id="cl-agree"><span class="check-box">${icon("check")}</span><span>${esc(t("club.agree"))}</span></label>
       <p class="field-error" id="cl-agree-err"></p>
-      <button class="btn btn-primary btn-lg btn-block" type="submit">${icon("sparkle")}<span>${esc(t("club.submit"))}</span></button>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">${icon("sparkle")}<span>${esc(welcome.pct() ? t("club.submitOffer", { pct: welcome.pct() }) : t("club.submit"))}</span></button>
       <p class="club-privacy">${esc(t("club.privacy"))} <a href="help.html#privacy">${esc(t("consent.more"))}</a></p>
     </form>`;
   }
@@ -908,6 +932,7 @@ window.WP = (function () {
     const birthday = birthdayOf(form) || undefined;
     const done = () => {
       store.set("club", "joined");
+      welcome.unlock();
       document.getElementById("club-body").innerHTML = clubBody();
       const b = document.querySelector("#club-body [data-close]");
       if (b) b.focus();
@@ -917,7 +942,7 @@ window.WP = (function () {
       SYNC.context()
     );
     if (!SYNC.live) return done();
-    SYNC.rpc("save_contact", { p: entry }).then(done, () => {
+    SYNC.saveContact(entry).then(done, () => {
       btn.disabled = false;
       agreeErr.textContent = t("form.failed");
     });
@@ -1016,7 +1041,7 @@ window.WP = (function () {
         <p>${icon(left ? "truck" : "check")}<span>${esc(left ? t("bag.freeProgress", { amount: money(left) }) : t("bag.freeDone"))}</span></p>
         <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><span style="width:${pct}%"></span></div>
       </div>
-      ${ref.get() ? `<p class="bag-code">${icon("sparkle")}<span>${esc(t("bag.code", { code: ref.get(), pct: ref.pct() }))}</span></p>` : ""}
+      ${ref.get() ? `<p class="bag-code">${icon("sparkle")}<span>${esc(t("bag.code", { code: ref.get(), pct: ref.pct() }))}</span></p>` : welcome.ready() ? `<p class="bag-code">${icon("sparkle")}<span>${esc(t("bag.welcome", { code: welcome.code(), pct: welcome.pct() }))}</span></p>` : ""}
       <ul class="bag-lines">
         ${items
           .map(
@@ -1284,6 +1309,18 @@ window.WP = (function () {
       open("bag");
     }
   });
+  // "Copy" next to a code
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest && e.target.closest("[data-copy]");
+    if (!b) return;
+    const text = b.getAttribute("data-copy");
+    const done = () => {
+      const label = b.querySelector("span");
+      if (label) label.textContent = t("club.copied");
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
+    else done();
+  });
   document.addEventListener("click", (e) => {
     const b = e.target.closest && e.target.closest("[data-season-preview]");
     if (!b) return;
@@ -1316,6 +1353,7 @@ window.WP = (function () {
     const picks = (form.dataset.picks || "").split(",").filter(Boolean);
     const done = () => {
       store.set("club", "joined");
+      welcome.unlock();
       form.outerHTML = `<p class="quiz-sent">${icon("check")}<span>${esc(t("ai.saved", { name: name.split(" ")[0] }))}</span></p>`;
     };
     const entry = Object.assign(
@@ -1324,7 +1362,7 @@ window.WP = (function () {
     );
     if (!SYNC.live) return done();
     form.querySelector("[type=submit]").disabled = true;
-    SYNC.rpc("save_contact", { p: entry }).then(done, () => {
+    SYNC.saveContact(entry).then(done, () => {
       form.querySelector("[type=submit]").disabled = false;
       err.textContent = t("form.failed");
     });
@@ -1700,7 +1738,7 @@ window.WP = (function () {
     if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, ref, seo, pics, ritual, season, seasonDeco, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
+  return { init, render, route, SINGLE, ref, welcome, seo, pics, ritual, season, seasonDeco, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());

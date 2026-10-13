@@ -57,6 +57,34 @@ window.WP_SYNC = (function () {
     return api("/rest/v1/rpc/" + name, { method: "POST", body: JSON.stringify(args || {}), headers: t ? { Authorization: "Bearer " + t } : undefined });
   }
 
+  /* ---------- outbox: sign-ups that couldn't be sent wait here ----------
+   * A contact form that can't reach the database (a weak signal, a blocked
+   * connection) is kept in this browser and sent on the next visit, so the
+   * shopper isn't asked to try again. Refusals (bad input) aren't kept. */
+  const OUTBOX = "wpg.outbox";
+  function saveContact(entry) {
+    return rpc("save_contact", { p: entry }).catch((err) => {
+      if (!(err instanceof TypeError)) throw err; // the database answered: a real refusal
+      const box = ls.get(OUTBOX) || [];
+      box.push(Object.assign({}, entry, { queuedAt: new Date().toISOString() }));
+      ls.set(OUTBOX, box.slice(-20));
+      return { queued: true };
+    });
+  }
+  async function flushOutbox() {
+    const box = ls.get(OUTBOX) || [];
+    if (!box.length) return;
+    const keep = [];
+    for (const entry of box) {
+      try {
+        await rpc("save_contact", { p: entry });
+      } catch (err) {
+        if (err instanceof TypeError) keep.push(entry);
+      }
+    }
+    ls.set(OUTBOX, keep);
+  }
+
   /* ---------- shopper sign-in: Google / Apple through Supabase Auth ---------- */
   const AUTH = "wpg.auth";
   let session = live ? ls.get(AUTH) : null;
@@ -235,6 +263,7 @@ window.WP_SYNC = (function () {
     if (s.contact) ["whatsapp", "email", "instagram", "tiktok"].forEach((k) => s.contact[k] && (D.config[k] = String(s.contact[k])));
     if (s.season) D.config.season = { id: D.seasons[s.season.id] ? s.season.id : "", announce: s.season.announce || null };
     if (s.ritual && isFinite(s.ritual.pct)) D.config.ritual.pct = Number(s.ritual.pct);
+    if (s.welcome && isFinite(s.welcome.pct)) D.config.welcome = { pct: Number(s.welcome.pct), code: String(s.welcome.code || D.config.welcome.code).toUpperCase() };
   }
 
   /* ---------- cache & refresh ---------- */
@@ -264,7 +293,7 @@ window.WP_SYNC = (function () {
   // catalogue on a first visit) and checks the database behind the scenes;
   // listeners hear whether anything the shopper sees changed.
   const C = D.config;
-  const sig = () => JSON.stringify([D.products, C.pricing, C.referral, C.whatsapp, C.email, C.instagram, C.tiktok]);
+  const sig = () => JSON.stringify([D.products, C.pricing, C.referral, C.whatsapp, C.email, C.instagram, C.tiktok, C.season, C.ritual, C.welcome]);
   const listeners = [];
   let pending = live;
   function boot() {
@@ -276,6 +305,7 @@ window.WP_SYNC = (function () {
         pending = false;
         const changed = sig() !== before;
         listeners.forEach((f) => f(changed));
+        flushOutbox().catch(() => {});
       });
   }
 
@@ -342,5 +372,5 @@ window.WP_SYNC = (function () {
     }).catch(() => {});
   }
 
-  return { live, rpc, boot, onChange: (f) => listeners.push(f), pending: () => pending, consent, context, trackPage, auth };
+  return { live, rpc, saveContact, boot, onChange: (f) => listeners.push(f), pending: () => pending, consent, context, trackPage, auth };
 })();

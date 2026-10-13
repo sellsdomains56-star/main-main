@@ -6806,3 +6806,87 @@ html:is([data-season="ramadan"], [data-season="eid"]) .season-greeting .icon {
     animation-iteration-count: infinite !important;
   }
 }
+
+/* ---------- Club welcome offer ---------- */
+.club-offer {
+  position: absolute;
+  z-index: 2;
+  top: 22px;
+  inset-inline-end: 22px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  width: 118px;
+  height: 118px;
+  margin: 0;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  background: radial-gradient(circle at 30% 25%, #ff8cc6, var(--pink) 55%, #a8005a);
+  box-shadow: 0 16px 34px -10px rgba(230, 0, 126, 0.8), inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+  transform: rotate(-8deg);
+  animation: offer-pop 0.6s var(--ease) both 0.2s;
+}
+.club-offer strong {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.club-offer span {
+  max-width: 84px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+html[lang="ar"] .club-offer span {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+}
+@keyframes offer-pop {
+  from {
+    opacity: 0;
+    transform: rotate(-8deg) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-8deg) scale(1);
+  }
+}
+.club-code {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  margin: 6px 0 14px;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1.5px dashed var(--pink);
+  background: color-mix(in srgb, var(--pink) 7%, var(--surface));
+  text-align: center;
+}
+.club-code strong {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--accent-ink);
+}
+.club-code p {
+  margin: 0;
+}
+@media (max-width: 560px) {
+  .club-offer {
+    width: 92px;
+    height: 92px;
+    top: 14px;
+    inset-inline-end: 14px;
+  }
+  .club-offer strong {
+    font-size: 21px;
+  }
+  .club-offer span {
+    font-size: 9px;
+  }
+}

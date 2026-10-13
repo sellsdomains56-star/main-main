@@ -448,7 +448,7 @@ window.WP_PAGES = (function () {
       if (!W.sync.live) return done();
       btn.disabled = true;
       W.sync
-        .rpc("save_contact", { p: Object.assign({ source: "newsletter", email, country: W.state.country, lang: W.state.lang, marketing: true }, W.sync.context()) })
+        .saveContact(Object.assign({ source: "newsletter", email, country: W.state.country, lang: W.state.lang, marketing: true }, W.sync.context()))
         .then(done, () => (msg.textContent = t("form.failed")))
         .then(() => (btn.disabled = false));
     });
@@ -1168,7 +1168,7 @@ window.WP_PAGES = (function () {
       if (!W.sync.live) return done();
       btn.disabled = true;
       W.sync
-        .rpc("save_contact", { p: Object.assign({ source: "stores", name, phone, country: W.state.country, lang: W.state.lang, details: { storeCity: cityKey } }, W.sync.context()) })
+        .saveContact(Object.assign({ source: "stores", name, phone, country: W.state.country, lang: W.state.lang, details: { storeCity: cityKey } }, W.sync.context()))
         .then(done, () => (msg.textContent = t("form.failed")))
         .then(() => (btn.disabled = false));
     });
@@ -1387,17 +1387,22 @@ window.WP_PAGES = (function () {
     function totals() {
       const sub = W.bag.subtotal();
       const del = W.bag.delivery();
-      const code = W.ref.get();
-      // the ritual set's saving first, then the friend's code on what's left
+      // the ritual set's saving first, then one code on what's left: a
+      // friend's code, or the Club welcome offer
+      const friend = W.ref.get();
+      const welcomeOn = !friend && W.welcome.ready();
+      const code = friend || (welcomeOn ? W.welcome.code() : "");
+      const pct = friend ? W.ref.pct() : welcomeOn ? W.welcome.pct() : 0;
       const rit = W.bag.ritual();
-      const raw = code ? ((sub - rit.amount) * W.ref.pct()) / 100 : 0;
+      const raw = code ? ((sub - rit.amount) * pct) / 100 : 0;
       const refDisc = c.decimals ? Math.round(raw * 1000) / 1000 : Math.round(raw);
       const disc = rit.amount + refDisc;
-      return { sub, del, code, disc, refDisc, rit, total: sub - disc + del };
+      const codeLabel = welcomeOn ? t("co.welcomeDiscount", { code, pct }) : t("co.discount", { code });
+      return { sub, del, code, pct, welcomeOn, codeLabel, disc, refDisc, rit, total: sub - disc + del };
     }
-    function codeBox(code, error) {
+    function codeBox(code, error, pct) {
       return code
-        ? `<div class="code-applied">${icon("sparkle")}<span>${esc(t("co.codeApplied", { code, pct: W.ref.pct() }))}</span><button class="link-btn small" type="button" data-code-remove>${esc(t("co.removeCode"))}</button></div>`
+        ? `<div class="code-applied">${icon("sparkle")}<span>${esc(t("co.codeApplied", { code, pct }))}</span><button class="link-btn small" type="button" data-code-remove>${esc(t("co.removeCode"))}</button></div>`
         : `<form class="code-form" id="code-form" novalidate>
             <label class="sr-only" for="co-code">${esc(t("co.code"))}</label>
             <input id="co-code" placeholder="${esc(t("co.code"))}" autocomplete="off" dir="ltr">
@@ -1405,7 +1410,7 @@ window.WP_PAGES = (function () {
           </form>${error ? `<p class="field-error">${esc(error)}</p>` : ""}`;
     }
     function summary(error) {
-      const { sub, del, code, refDisc, rit, total } = totals();
+      const { sub, del, code, pct, codeLabel, refDisc, rit, total } = totals();
       const vat = c.vat ? total - total / (1 + c.vat / 100) : 0;
       const vatText = c.decimals ? Math.round(vat * 1000) / 1000 : Math.round(vat * 100) / 100;
       return `<ul class="sum-lines">${W.bag
@@ -1418,11 +1423,11 @@ window.WP_PAGES = (function () {
         </li>`
         )
         .join("")}</ul>
-        ${codeBox(code, error)}
+        ${codeBox(code, error, pct)}
         <dl class="sum-totals">
           <div><dt>${esc(t("bag.subtotal"))}</dt><dd>${esc(money(sub))}</dd></div>
           ${rit.amount ? `<div class="sum-disc"><dt>${esc(t("rit.discount", { pct: rit.pct }))}</dt><dd>− ${esc(money(rit.amount))}</dd></div>` : ""}
-          ${refDisc ? `<div class="sum-disc"><dt>${esc(t("co.discount", { code }))}</dt><dd>− ${esc(money(refDisc))}</dd></div>` : ""}
+          ${refDisc ? `<div class="sum-disc"><dt>${esc(codeLabel)}</dt><dd>− ${esc(money(refDisc))}</dd></div>` : ""}
           <div><dt>${esc(t("co.delivery"))}</dt><dd>${del ? esc(money(del)) : `<span class="free">${esc(t("co.free"))}</span>`}</dd></div>
           <div class="sum-total"><dt>${esc(t("co.total"))}</dt><dd>${esc(money(total))}</dd></div>
         </dl>
@@ -1504,6 +1509,19 @@ window.WP_PAGES = (function () {
       if (e.target.id !== "code-form") return;
       e.preventDefault();
       const typed = e.target.querySelector("input").value;
+      // the Club welcome code: only for members, once
+      if (W.ref.clean(typed) === W.welcome.code() && W.welcome.pct()) {
+        const st = W.welcome.state();
+        if (st === "ready" || st === "saved") {
+          W.welcome.set("ready");
+          W.ref.clear();
+          sumEl.innerHTML = summary();
+        } else {
+          sumEl.innerHTML = summary(t(st === "used" ? "co.welcomeUsed" : "co.welcomeJoin", { code: W.welcome.code() }));
+          if (st !== "used") sumEl.querySelector(".code-form").insertAdjacentHTML("afterend", `<button class="link-btn small" type="button" data-open="club">${esc(t("co.joinClub"))}</button>`);
+        }
+        return;
+      }
       e.target.querySelector("button").disabled = true;
       W.ref.check(typed).then((code) => {
         if (code) W.ref.set(code);
@@ -1517,7 +1535,8 @@ window.WP_PAGES = (function () {
     });
     main.addEventListener("click", (e) => {
       if (!e.target.closest("[data-code-remove]")) return;
-      W.ref.clear();
+      if (W.ref.get()) W.ref.clear();
+      else if (W.welcome.ready()) W.welcome.set("saved");
       sumEl.innerHTML = summary();
     });
 
@@ -1530,7 +1549,7 @@ window.WP_PAGES = (function () {
       btn.disabled = true;
       btn.querySelector("span").textContent = t("co.placing");
       const items = W.bag.items();
-      const { sub, del, code, disc, refDisc, rit, total } = totals();
+      const { sub, del, code, welcomeOn, codeLabel, disc, refDisc, rit, total } = totals();
       const f = Object.fromEntries(new FormData(form).entries());
       const phone = `${c.dial} ${f.phone}`;
 
@@ -1539,7 +1558,7 @@ window.WP_PAGES = (function () {
           t("co.waIntro", { id }),
           ...items.map((i) => `• ${i.qty} × ${fullName(i.p)} — ${money(priceOf(i.p) * i.qty)}`),
           rit.amount ? `${t("rit.discount", { pct: rit.pct })}: − ${money(rit.amount)}` : "",
-          refDisc ? `${t("co.discount", { code })}: − ${money(refDisc)}` : "",
+          refDisc ? `${codeLabel}: − ${money(refDisc)}` : "",
           `${t("co.total")}: ${money(total)}`,
           `${f.name} · ${phone}`,
           `${f.street}${f.apt ? ", " + f.apt : ""}, ${f.area}, ${f.city}, ${L(c.name)}`,
@@ -1551,8 +1570,9 @@ window.WP_PAGES = (function () {
         orders.push({ id, at: Date.now(), country: W.state.country, items: items.map((i) => ({ id: i.p.id, qty: i.qty })), total, code, currency: c.currency });
         W.store.set("orders", orders);
         W.bag.clear();
-        // The friend discount is for a first order.
-        if (code) W.ref.clear();
+        // The friend discount and the Club welcome are for a first order.
+        if (welcomeOn) W.welcome.set("used");
+        else if (code) W.ref.clear();
         main.innerHTML = `<section class="section"><div class="container thanks">
           <span class="thanks-icon">${icon("check")}</span>
           <h1 class="h1">${esc(t("co.thanksTitle", { name: f.name.split(" ")[0] }))}</h1>

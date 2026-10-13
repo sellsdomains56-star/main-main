@@ -260,7 +260,7 @@ language sql stable security definer set search_path = ''
 as $$
   select jsonb_build_object(
     'version', (select count(*)::text || '/' || coalesce(max(updated_at)::text, '') from public.products),
-    'settings', coalesce((select jsonb_object_agg(key, value) from public.settings where key in ('pricing', 'referral', 'contact', 'season', 'ritual')), '{}'::jsonb)
+    'settings', coalesce((select jsonb_object_agg(key, value) from public.settings where key in ('pricing', 'referral', 'contact', 'season', 'ritual', 'welcome')), '{}'::jsonb)
   );
 $$;
 
