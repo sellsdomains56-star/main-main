@@ -154,6 +154,8 @@ window.WP_PAGES = (function () {
   function home(main) {
     const F = D.featured;
     const star = pick(F.star);
+    // "Most loved" card on the hero photo: the product the photo shows
+    const heroPick = (F.heroProduct && byId(F.heroProduct)) || star;
     const icons = F.icons.map(byId).filter(Boolean);
     const sets = D.products.filter((p) => p.cat === "gift-sets");
     const fromSet = sets.length ? Math.min(...sets.map(priceOf)) : 0;
@@ -192,7 +194,7 @@ window.WP_PAGES = (function () {
           <div class="hero-noir-visual${heroPhoto ? " has-photo" : ""}">
             ${
               heroPhoto
-                ? `<figure class="portrait-arch">${heroPhoto}<figcaption>${esc(t("hn.photoCaption"))}</figcaption></figure>
+                ? `<figure class="portrait-arch">${heroPhoto}</figure>
                    ${star.scene ? "" : `<div class="float-bottle" aria-hidden="true">${W.art.art(star, { eager: true, stage: true })}</div>`}`
                 : `<div class="stage" aria-hidden="true">
                     <span class="beam"></span><span class="halo"></span><span class="pedestal"></span>
@@ -201,12 +203,12 @@ window.WP_PAGES = (function () {
                     <div class="stage-bottle sb-main">${W.art.art(pick(F.stage[1]), { eager: true, stage: true })}</div>
                   </div>`
             }
-            <a class="glass-card" href="product.html?id=${star.id}">
-              ${media(star, "media-xs")}
+            <a class="glass-card" href="product.html?id=${heroPick.id}">
+              ${F.heroThumb ? `<span class="media media-xs glass-photo"><img src="${esc(F.heroThumb)}" alt="" decoding="async"></span>` : media(heroPick, "media-xs")}
               <span class="glass-card-text">
                 <span class="eyebrow">${esc(t("hero.cardEyebrow"))}</span>
-                <strong>${esc(pname(star))}</strong>
-                <span class="price">${esc(money(priceOf(star)))}</span>
+                <strong>${esc(fullName(heroPick))}</strong>
+                <span class="price">${esc(money(priceOf(heroPick)))}</span>
               </span>
               <span class="glass-card-go">${icon("arrow", "flip")}</span>
             </a>
@@ -809,6 +811,17 @@ window.WP_PAGES = (function () {
       const cc = s.c ? cat(s.c) : null;
       const look = s.c ? looks().find((l) => l.cat === s.c && !l.home) || looks().find((l) => l.cat === s.c) : null;
       main.querySelector("#shop-look").innerHTML = look ? lookStrip(look) : "";
+      // the film shows on Shop all only, and loads the first time it shows
+      const film = main.querySelector(".shop-film");
+      if (film) {
+        film.hidden = !!s.c;
+        const v = film.querySelector("video");
+        if (s.c) v.pause();
+        else if (!filmStarted) {
+          filmStarted = true;
+          playFilm(film, shopFilm);
+        } else if (v.src) v.play().catch(() => {});
+      }
       main.querySelector("#shop-title").textContent = cc ? L(cc.name) : t("shop.title");
       document.title = `${cc ? L(cc.name) : t("shop.title")} · wepink ${L(D.config.region)}`;
       main.querySelector("#shop-lead").textContent = cc ? L(cc.blurb) : t("shop.lead");
@@ -821,7 +834,10 @@ window.WP_PAGES = (function () {
       });
     }
 
+    const shopFilm = D.config.shopFilm && D.config.shopFilm.src ? D.config.shopFilm : null;
+    let filmStarted = false;
     main.innerHTML = `
+      ${shopFilm ? filmSection(shopFilm, "film.label", "film.eyebrow", "film-band shop-film") : ""}
       <section class="page-head">
         <div class="container">
           <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">wepink</a></li><li aria-current="page" id="crumb-current"></li></ol></nav>
@@ -1183,8 +1199,6 @@ window.WP_PAGES = (function () {
   /* ---------------- about ---------------- */
   function about(main) {
     const vals = [["heart", "v1"], ["sparkle", "v2"], ["leaf", "v3"], ["pin", "v4"]];
-    // the first homepage film, "Enter the pink universe", lives here now
-    const story = D.config.storyFilm && D.config.storyFilm.src ? D.config.storyFilm : null;
     main.innerHTML = `
       <section class="about-hero">
         <div class="container about-grid">
@@ -1216,9 +1230,7 @@ window.WP_PAGES = (function () {
             .join("")}</div>
         </div>
       </section>
-      ${story ? filmSection(story, "film.label", "film.eyebrow", "film-story") : ""}
       ${perks()}`;
-    playFilm(main.querySelector(".film-story"), story);
     return t("about.eyebrow");
   }
 

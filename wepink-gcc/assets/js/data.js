@@ -72,9 +72,9 @@ window.WP_DATA = (function () {
     // Dubai skyline (24 s, 16:9). It plays muted on a loop at the very top of the home page,
     // with a sound button; phones get the 720p file. Clear `src` to hide it.
     film: { src: "assets/video/wepink-gcc-jet-1080.mp4", srcMobile: "assets/video/wepink-gcc-jet-720.mp4", poster: "assets/photos/film-gcc-poster.jpg" },
-    // "Enter the pink universe" (Seedance 2.5, 30 s), the first homepage film: now on the
-    // Our story page. Clear `src` to hide it.
-    storyFilm: { src: "assets/video/wepink-hero-1080.mp4", srcMobile: "assets/video/wepink-hero-720.mp4", poster: "assets/photos/film-poster.jpg" },
+    // "Enter the pink universe" (Seedance 2.5, 30 s), the first homepage film: now at the top
+    // of Shop all (hidden while a category is picked). Clear `src` to hide it.
+    shopFilm: { src: "assets/video/wepink-hero-1080.mp4", srcMobile: "assets/video/wepink-hero-720.mp4", poster: "assets/photos/film-poster.jpg" },
 
     // Referral & ambassador programme (placeholder terms — set with the franchise).
     referral: {
@@ -225,6 +225,10 @@ window.WP_DATA = (function () {
   // Products the home page features (ids from catalog.js).
   const featured = {
     star: "colonia-vf-golden-75-ml",
+    // "Most loved" card on the home hero photo: the product the photo shows, and its picture
+    // cut from that photo (the VF body oil in "the oil." campaign photo).
+    heroProduct: "bodyoil-vf-120-ml",
+    heroThumb: "assets/photos/hero-the-oil-bottle.webp",
     stage: ["splash-vf-200-ml", "colonia-vf-golden-75-ml", "colonia-ghadan-100-ml"],
     icons: ["colonia-vf-golden-75-ml", "colonia-ghadan-100-ml", "colonia-ruby-rhodolite-100-ml", "splash-king-blue-deep-200-ml"],
     ritual: ["cream-vf-golden-200-ml", "splash-vf-golden-200-ml", "colonia-vf-golden-75-ml"],

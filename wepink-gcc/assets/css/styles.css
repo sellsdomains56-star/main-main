@@ -7336,7 +7336,18 @@ html[lang="ar"] .fav-name {
   }
 }
 
-/* the "Enter the pink universe" film on the Our story page: a band, not the page top */
-.film.film-story {
+/* a film band inside a page (Shop all): not under the see-through header */
+.film.film-band {
   margin-top: 0;
+}
+
+/* "Most loved" card: the product as it appears in the hero photo */
+.glass-photo {
+  overflow: hidden;
+}
+.glass-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
