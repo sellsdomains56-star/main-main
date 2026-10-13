@@ -37,6 +37,10 @@ window.WP_DATA = (function () {
     // the built-in answers whenever the service can't be reached.
     assistant: { endpoint: "" },
 
+    // The ritual set: a body cream (or lotion / butter), a body splash and an
+    // eau de cologne together are this % off. 0 turns it off.
+    ritual: { pct: 15 },
+
     // Campaign photos of Virginia Fonseca, cropped from wepink's own campaign
     // banners — confirm GCC usage rights with the brand before launch. Clear a
     // path to fall back to the designed placeholder.

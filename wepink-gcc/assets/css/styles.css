@@ -6462,3 +6462,199 @@ html[data-tone="noir"] .wa-topics a {
     display: none;
   }
 }
+
+/* ---------- build your ritual ---------- */
+.modal-ritual {
+  width: min(620px, calc(100% - 32px));
+}
+#ritual-body {
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 12px;
+  padding: 4px 24px 0;
+  max-height: calc(100dvh - 160px);
+  overflow-y: auto;
+}
+.rit-lead {
+  margin: 0;
+}
+.rit-lines {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+.rit-lines .pill {
+  flex: none;
+}
+.rit-steps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rit-step {
+  display: grid;
+  grid-template-columns: 34px 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.rit-num {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 26px;
+  font-style: italic;
+  color: var(--pink);
+}
+.rit-step .media-sm {
+  width: 64px;
+  height: 78px;
+  aspect-ratio: auto;
+}
+#ritual-body [data-rit-add] {
+  position: sticky;
+  bottom: 0;
+  margin-bottom: 18px;
+  box-shadow: 0 -14px 24px 6px var(--surface), var(--shadow-pink);
+}
+.rit-step-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.rit-step-text .eyebrow {
+  margin: 0;
+  font-size: 11px;
+}
+.rit-step-text strong {
+  font-size: 16px;
+}
+.rit-step-text .select {
+  justify-self: start;
+  margin-top: 6px;
+  max-width: 100%;
+}
+.rit-step-text .select select {
+  height: 36px;
+  max-width: 100%;
+  font-size: 13px;
+  font-weight: 600;
+}
+.rit-total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--pink) 9%, var(--surface));
+}
+.rit-price {
+  display: grid;
+  line-height: 1.2;
+}
+.rit-price span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.rit-price strong {
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+.rit-save {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--pink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+.rit-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--pink) 9%, var(--surface));
+  font-size: 13px;
+  font-weight: 600;
+}
+.rit-note .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--pink);
+}
+.rit-note span {
+  flex: 1;
+  min-width: 0;
+}
+.rit-note.is-done {
+  color: var(--accent-ink);
+}
+.bag-ritual {
+  color: var(--accent-ink);
+  font-size: 15px !important;
+}
+.pdp-ritual {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  border: 1.5px dashed color-mix(in srgb, var(--pink) 55%, transparent);
+  background: color-mix(in srgb, var(--pink) 6%, var(--surface));
+  text-align: start;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.pdp-ritual:hover {
+  border-color: var(--pink);
+  background: color-mix(in srgb, var(--pink) 12%, var(--surface));
+}
+.pdp-ritual > .icon {
+  width: 22px;
+  height: 22px;
+  color: var(--pink);
+  flex: none;
+}
+.pdp-ritual span {
+  display: grid;
+  flex: 1;
+  font-size: 13px;
+  color: var(--muted);
+}
+.pdp-ritual strong {
+  font-size: 15px;
+  color: var(--fg);
+}
+.ritual-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+@media (max-width: 560px) {
+  #ritual-body {
+    padding: 4px 16px 18px;
+  }
+  .rit-step {
+    grid-template-columns: 26px 60px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .rit-step .media-sm {
+    width: 60px;
+    height: 74px;
+  }
+}

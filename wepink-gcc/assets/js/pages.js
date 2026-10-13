@@ -326,7 +326,10 @@ window.WP_PAGES = (function () {
               )
               .join("")}
           </ol>
-          <div class="ritual-cta" data-reveal><a class="btn btn-light btn-lg" href="product.html?id=${F.ritualSet}">${esc(t("home.ritualCta"))}${icon("arrow", "flip")}</a></div>
+          <div class="ritual-cta" data-reveal>
+            ${W.ritual.pct() ? `<button class="btn btn-glow btn-lg" type="button" data-open="ritual">${icon("sparkle")}<span>${esc(t("rit.cta", { pct: W.ritual.pct() }))}</span></button>` : ""}
+            <a class="btn btn-light btn-lg" href="product.html?id=${F.ritualSet}">${esc(t("home.ritualCta"))}${icon("arrow", "flip")}</a>
+          </div>
         </div>
       </section>
 
@@ -966,6 +969,7 @@ window.WP_PAGES = (function () {
             </div>
             <button class="btn btn-primary btn-lg btn-grow" type="button" data-add="${esc(p.id)}">${icon("bag")}${esc(t("pdp.add"))} · ${esc(money(priceOf(p)))}</button>
           </div>
+          ${W.ritual.pct() && W.ritual.step(p) ? `<button class="pdp-ritual" type="button" data-open="ritual" data-line="${esc(p.line)}">${icon("sparkle")}<span><strong>${esc(t("rit.pdpTitle", { pct: W.ritual.pct() }))}</strong>${esc(t("rit.pdpText"))}</span>${icon("arrow", "flip")}</button>` : ""}
 
           <ul class="pdp-service">
             <li>${icon("truck")}<span><strong>${esc(t("pdp.delivery", { country: L(c.short) }))}</strong>${esc(L(c.delivery))} · ${esc(t("pdp.freeOver", { amount: money(W.country().freeOver) }))}</span></li>
@@ -1383,9 +1387,12 @@ window.WP_PAGES = (function () {
       const sub = W.bag.subtotal();
       const del = W.bag.delivery();
       const code = W.ref.get();
-      const raw = code ? (sub * W.ref.pct()) / 100 : 0;
-      const disc = c.decimals ? Math.round(raw * 1000) / 1000 : Math.round(raw);
-      return { sub, del, code, disc, total: sub - disc + del };
+      // the ritual set's saving first, then the friend's code on what's left
+      const rit = W.bag.ritual();
+      const raw = code ? ((sub - rit.amount) * W.ref.pct()) / 100 : 0;
+      const refDisc = c.decimals ? Math.round(raw * 1000) / 1000 : Math.round(raw);
+      const disc = rit.amount + refDisc;
+      return { sub, del, code, disc, refDisc, rit, total: sub - disc + del };
     }
     function codeBox(code, error) {
       return code
@@ -1397,7 +1404,7 @@ window.WP_PAGES = (function () {
           </form>${error ? `<p class="field-error">${esc(error)}</p>` : ""}`;
     }
     function summary(error) {
-      const { sub, del, code, disc, total } = totals();
+      const { sub, del, code, refDisc, rit, total } = totals();
       const vat = c.vat ? total - total / (1 + c.vat / 100) : 0;
       const vatText = c.decimals ? Math.round(vat * 1000) / 1000 : Math.round(vat * 100) / 100;
       return `<ul class="sum-lines">${W.bag
@@ -1413,7 +1420,8 @@ window.WP_PAGES = (function () {
         ${codeBox(code, error)}
         <dl class="sum-totals">
           <div><dt>${esc(t("bag.subtotal"))}</dt><dd>${esc(money(sub))}</dd></div>
-          ${disc ? `<div class="sum-disc"><dt>${esc(t("co.discount", { code }))}</dt><dd>− ${esc(money(disc))}</dd></div>` : ""}
+          ${rit.amount ? `<div class="sum-disc"><dt>${esc(t("rit.discount", { pct: rit.pct }))}</dt><dd>− ${esc(money(rit.amount))}</dd></div>` : ""}
+          ${refDisc ? `<div class="sum-disc"><dt>${esc(t("co.discount", { code }))}</dt><dd>− ${esc(money(refDisc))}</dd></div>` : ""}
           <div><dt>${esc(t("co.delivery"))}</dt><dd>${del ? esc(money(del)) : `<span class="free">${esc(t("co.free"))}</span>`}</dd></div>
           <div class="sum-total"><dt>${esc(t("co.total"))}</dt><dd>${esc(money(total))}</dd></div>
         </dl>
@@ -1521,7 +1529,7 @@ window.WP_PAGES = (function () {
       btn.disabled = true;
       btn.querySelector("span").textContent = t("co.placing");
       const items = W.bag.items();
-      const { sub, del, code, disc, total } = totals();
+      const { sub, del, code, disc, refDisc, rit, total } = totals();
       const f = Object.fromEntries(new FormData(form).entries());
       const phone = `${c.dial} ${f.phone}`;
 
@@ -1529,7 +1537,8 @@ window.WP_PAGES = (function () {
         const lines = [
           t("co.waIntro", { id }),
           ...items.map((i) => `• ${i.qty} × ${fullName(i.p)} — ${money(priceOf(i.p) * i.qty)}`),
-          disc ? `${t("co.discount", { code })}: − ${money(disc)}` : "",
+          rit.amount ? `${t("rit.discount", { pct: rit.pct })}: − ${money(rit.amount)}` : "",
+          refDisc ? `${t("co.discount", { code })}: − ${money(refDisc)}` : "",
           `${t("co.total")}: ${money(total)}`,
           `${f.name} · ${phone}`,
           `${f.street}${f.apt ? ", " + f.apt : ""}, ${f.area}, ${f.city}, ${L(c.name)}`,

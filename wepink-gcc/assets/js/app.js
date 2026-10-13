@@ -200,7 +200,40 @@ window.WP = (function () {
   const moneyAED = (aed) => money(local(aed));
 
   /* ---------- bag ---------- */
+  /* ---------- the ritual set: moisturise, splash, seal ----------
+   * A body cream (or lotion / butter), a body splash and an eau de cologne in
+   * the bag make a ritual set, each set config.ritual.pct % off. Sets are
+   * made from the lowest-priced pieces of each kind, whatever the scent. */
+  const STEPS = [
+    ["moisturise", ["cream", "lotion", "butter"]],
+    ["splash", ["splash"]],
+    ["seal", ["colonia"]],
+  ];
+  const ritual = {
+    pct: () => Number((D.config.ritual || {}).pct) || 0,
+    step: (p) => (STEPS.find(([, types]) => types.includes(p.type)) || [""])[0],
+    of(items) {
+      const pct = ritual.pct();
+      const units = { moisturise: [], splash: [], seal: [] };
+      items.forEach((i) => {
+        const st = ritual.step(i.p);
+        if (st) for (let k = 0; k < i.qty; k++) units[st].push(priceOf(i.p));
+      });
+      Object.values(units).forEach((u) => u.sort((a, b) => a - b));
+      const sets = pct ? Math.min(units.moisturise.length, units.splash.length, units.seal.length) : 0;
+      let base = 0;
+      for (let k = 0; k < sets; k++) base += units.moisturise[k] + units.splash[k] + units.seal[k];
+      const raw = (base * pct) / 100;
+      const amount = country().decimals ? Math.round(raw * 1000) / 1000 : Math.round(raw);
+      const missing = Object.keys(units).filter((k) => !units[k].length);
+      return { pct, sets, amount, missing };
+    },
+  };
+
   const bag = {
+    ritual() {
+      return ritual.of(bag.items());
+    },
     items() {
       return state.cart.map((i) => ({ ...i, p: product(i.id) })).filter((i) => i.p);
     },
@@ -610,6 +643,14 @@ window.WP = (function () {
         <div id="quiz-body"></div>
       </div>
 
+      <div class="layer modal modal-center modal-ritual" id="layer-ritual" role="dialog" aria-modal="true" aria-labelledby="ritual-title" hidden>
+        <div class="layer-head">
+          <div><p class="eyebrow">${esc(t("rit.eyebrow"))}</p><h2 id="ritual-title">${esc(t("rit.title"))}</h2></div>
+          <button class="icon-btn" type="button" data-close aria-label="${esc(t("nav.close"))}">${icon("close")}</button>
+        </div>
+        <div id="ritual-body"></div>
+      </div>
+
       <div class="layer modal modal-center modal-account" id="layer-account" role="dialog" aria-modal="true" aria-labelledby="acct-title" hidden>
         <div class="layer-head">
           <div>
@@ -897,6 +938,14 @@ window.WP = (function () {
     return !first;
   }
 
+  // In the bag: the set's saving, or what's missing to make one.
+  function ritualNote() {
+    const r = bag.ritual();
+    if (!r.pct) return "";
+    if (r.sets) return `<p class="rit-note is-done">${icon("sparkle")}<span>${esc(t("rit.inBag", { n: r.sets, amount: money(r.amount) }))}</span></p>`;
+    if (r.missing.length !== 1) return "";
+    return `<p class="rit-note">${icon("sparkle")}<span>${esc(t("rit.nudge", { item: t("rit.item_" + r.missing[0]), pct: r.pct }))}</span><button class="link-btn small" type="button" data-open="ritual">${esc(t("rit.build"))}</button></p>`;
+  }
   function renderBagDrawer() {
     const el = document.getElementById("bag-body");
     if (!el) return;
@@ -943,7 +992,9 @@ window.WP = (function () {
       </ul>
       <div class="bag-foot">
         <p class="bag-gift">${icon("gift")}<span>${esc(t("bag.giftNote"))}</span></p>
+        ${ritualNote()}
         <div class="bag-total"><span>${esc(t("bag.subtotal"))}</span><strong>${esc(money(sub))}</strong></div>
+        ${bag.ritual().amount ? `<div class="bag-total bag-ritual"><span>${esc(t("rit.discount", { pct: ritual.pct() }))}</span><strong>− ${esc(money(bag.ritual().amount))}</strong></div>` : ""}
         <a class="btn btn-primary btn-block" href="checkout.html">${esc(t("bag.checkout"))}${icon("arrow", "flip")}</a>
         <ul class="pay-row">${payBadges(country().pay)}</ul>
       </div>`;
@@ -990,7 +1041,7 @@ window.WP = (function () {
       : `<p class="muted search-none">${esc(t("search.empty", { q }))}</p>`;
   }
 
-  function open(name) {
+  function open(name, opts) {
     const layer = document.getElementById("layer-" + name);
     if (!layer) return;
     closeAll(true);
@@ -1004,6 +1055,7 @@ window.WP = (function () {
       layer.classList.add("is-on");
     });
     if (name === "quiz") quiz.start();
+    if (name === "ritual") builder.start(opts && opts.line);
     if (name === "account") renderAccount();
     const focusEl = name === "search" ? document.getElementById("search-input") : layer.querySelector("button, a, input, select, textarea");
     setTimeout(() => focusEl && focusEl.focus(), 60);
@@ -1106,6 +1158,91 @@ window.WP = (function () {
     },
   };
 
+  /* ---------- build your ritual ---------- */
+  const builder = {
+    picks: {},
+    lines() {
+      // scent lines that have all three steps, best sellers first
+      const by = new Map();
+      D.products.forEach((p) => {
+        const st = ritual.step(p);
+        if (!st) return;
+        const l = by.get(p.line) || { line: p.line, steps: {}, best: 0 };
+        if (!l.steps[st] || priceOf(p) < priceOf(l.steps[st])) l.steps[st] = p;
+        if (p.badge === "bestseller") l.best++;
+        by.set(p.line, l);
+      });
+      const star = (product(D.featured.star) || {}).line; // the signature line leads
+      return [...by.values()]
+        .filter((l) => STEPS.every(([st]) => l.steps[st]))
+        .sort((a, b) => (b.line === star) - (a.line === star) || b.best - a.best || a.line.localeCompare(b.line));
+    },
+    start(line) {
+      const lines = builder.lines();
+      const pick = lines.find((l) => l.line === line) || lines[0];
+      builder.picks = {};
+      if (pick) STEPS.forEach(([st]) => (builder.picks[st] = pick.steps[st].id));
+      builder.line = pick ? pick.line : "";
+      builder.draw();
+    },
+    draw() {
+      const body = document.getElementById("ritual-body");
+      if (!body) return;
+      const lines = builder.lines();
+      const chosen = STEPS.map(([st]) => product(builder.picks[st])).filter(Boolean);
+      const items = chosen.map((p) => ({ p, qty: 1 }));
+      const r = ritual.of(items);
+      const full = items.reduce((n, i) => n + priceOf(i.p), 0);
+      body.innerHTML = `
+        <p class="muted rit-lead">${esc(t("rit.lead", { pct: ritual.pct() }))}</p>
+        <p class="eyebrow">${esc(t("rit.lines"))}</p>
+        <div class="rit-lines">${lines
+          .slice(0, 14)
+          .map((l) => `<button class="pill" type="button" data-rit-line="${esc(l.line)}" aria-pressed="${l.line === builder.line}">${esc(pname(l.steps.splash))}</button>`)
+          .join("")}</div>
+        <ol class="rit-steps">
+          ${STEPS.map(([st, types], n) => {
+            const p = product(builder.picks[st]);
+            const options = D.products.filter((x) => types.includes(x.type)).sort((a, b) => pname(a).localeCompare(pname(b)));
+            return `<li class="rit-step">
+              <span class="rit-num">0${n + 1}</span>
+              ${p ? media(p, "media-sm") : ""}
+              <div class="rit-step-text">
+                <p class="eyebrow">${esc(t("rit." + st))}</p>
+                <strong>${p ? esc(pname(p)) : ""}</strong>
+                <span class="muted small">${p ? `${esc(L(p.typeName))} · ${esc(sizeText(p))} · ${esc(money(priceOf(p)))}` : ""}</span>
+                <div class="select select-sm"><select data-rit-step="${st}" aria-label="${esc(t("rit." + st))}">${options
+                  .map((x) => `<option value="${esc(x.id)}"${x.id === builder.picks[st] ? " selected" : ""}>${esc(pname(x))} · ${esc(sizeText(x))}</option>`)
+                  .join("")}</select>${icon("chevron")}</div>
+              </div>
+            </li>`;
+          }).join("")}
+        </ol>
+        <div class="rit-total">
+          <div><span class="muted">${esc(t("rit.separately"))}</span> <s>${esc(money(full))}</s></div>
+          <div class="rit-price"><span>${esc(t("rit.yours"))}</span><strong>${esc(money(full - r.amount))}</strong></div>
+          ${r.amount ? `<span class="rit-save">${esc(t("rit.save", { amount: money(r.amount) }))}</span>` : ""}
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-rit-add>${icon("bag")}<span>${esc(t("rit.add"))}</span></button>`;
+    },
+  };
+  document.addEventListener("click", (e) => {
+    const line = e.target.closest && e.target.closest("[data-rit-line]");
+    if (line) return builder.start(line.getAttribute("data-rit-line"));
+    if (e.target.closest && e.target.closest("[data-rit-add]")) {
+      STEPS.forEach(([st]) => builder.picks[st] && bag.add(builder.picks[st], 1));
+      toast(t("rit.added"));
+      open("bag");
+    }
+  });
+  document.addEventListener("change", (e) => {
+    const sel = e.target.closest && e.target.closest("[data-rit-step]");
+    if (!sel) return;
+    builder.picks[sel.getAttribute("data-rit-step")] = sel.value;
+    builder.line = "";
+    builder.draw();
+  });
+
   // Quiz result: "send my match to WhatsApp" (a quiz contact, with consent).
   function submitQuizCapture(form) {
     const f = form.elements;
@@ -1185,7 +1322,7 @@ window.WP = (function () {
       if (!el) return;
       if (el.hasAttribute("data-open")) {
         e.preventDefault();
-        open(el.getAttribute("data-open"));
+        open(el.getAttribute("data-open"), el.dataset);
       } else if (el.hasAttribute("data-close")) {
         closeAll();
       } else if (el.hasAttribute("data-add")) {
@@ -1493,7 +1630,7 @@ window.WP = (function () {
     if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, ref, seo, pics, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
+  return { init, render, route, SINGLE, ref, seo, pics, ritual, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());
