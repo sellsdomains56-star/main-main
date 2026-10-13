@@ -22,6 +22,8 @@ node wepink-gcc/scripts/build-single.mjs   # → wepink-gcc/dist/wepink-gulf.htm
 
 Builds the whole store as a single HTML file (styles, scripts and logos inlined) that opens with a double-click, no server needed, and can be sent to the client as an attachment. Pages switch with the address hash (`#/shop?c=perfume`). Fonts load from Google Fonts when online. It also writes `dist/wepink-admin.html`, the admin panel as one file; keep the two files in the same folder so "Open the store" works. Both need an internet connection to reach the database.
 
+The campaign photos stay files beside the page (`assets/products/hero/`). The second photo of each product (shown when the pointer is over a card, and in the product gallery) can also come in packs for hosts that limit the number of files: `node wepink-gcc/scripts/build-photo-packs.mjs` writes `dist/assets/products/hero2/` (19 packs and an index); the preview loads a pack the first time it needs one and uses the plain file when there's no pack.
+
 ## Pages
 
 | Page | What's on it |
@@ -51,6 +53,7 @@ Builds the whole store as a single HTML file (styles, scripts and logos inlined)
 - **Black or white.** A moon/sun button in the header (and "Black / White" in the phone menu) switches the whole store between the white version and a black one. The first visit follows the device's dark/light setting; after that the shopper's choice is remembered. Colours live in theme tokens at the top of `styles.css` (`--bg`, `--fg`, `--surface`…), and `html[data-tone="noir"]` swaps them.
 - **Interactive silk.** Behind every page a sheet of pink satin (WebGL) drifts in slow folds that lift and part around the cursor or finger, and every tap sends a ripple through it; fine pink threads with glints float above it and bend away from the cursor (`assets/js/silk.js`; about 30 frames a second at half resolution, paused when the tab is hidden; threads only where WebGL is missing). Tinted sections let it show through, and on the black version so do the home page's dark bands.
 - **Pink loading line** across the top while the next page loads.
+- **Two campaign photos per product.** Cards show the first and fade to the second when the pointer is over them (loaded only then); the product page gallery shows both, then the studio packshots.
 - **Scent finder quiz**, search (by name, type or note), a bag drawer with a free-delivery progress bar, and a country/currency picker.
 - Keyboard and screen-reader friendly (focus trapping in dialogs, labelled controls, visible focus), respects reduced motion (the brand marquee and homepage film still play, and the silk moves at half speed), and works from 360 px phones to wide desktops.
 

@@ -6445,3 +6445,20 @@ html[data-tone="noir"] .wa-topics a {
   width: 20px;
   height: 20px;
 }
+
+/* ---------- second campaign photo: fades in over the first on hover ---------- */
+.media img.scene.alt {
+  opacity: 0;
+  transition: opacity 0.55s var(--ease), transform 0.9s var(--ease);
+}
+@media (hover: hover) {
+  .card:hover .media img.scene.alt.is-ready {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+@media (hover: none) {
+  .media img.scene.alt {
+    display: none;
+  }
+}

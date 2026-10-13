@@ -195,8 +195,9 @@ window.WP_DATA = (function () {
   // shown first everywhere; the studio photos follow on the product page.
   const products = (window.WP_CATALOG || []).map((p) => {
     const hero = "assets/products/hero/" + p.id + ".webp";
+    const hero2 = "assets/products/hero/" + p.id + "-2.webp"; // second campaign shot (cards show it on hover)
     const studio = p.images && p.images.length ? p.images : p.image ? [p.image] : [];
-    return Object.assign({}, p, { typeName: T[p.type] || T.bodycare, notes: p.notes || {}, scene: true, image: hero, images: [hero], packshots: studio });
+    return Object.assign({}, p, { typeName: T[p.type] || T.bodycare, notes: p.notes || {}, scene: true, image: hero, images: [hero, hero2], packshots: studio });
   });
 
   // Products the home page features (ids from catalog.js).

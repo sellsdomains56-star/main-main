@@ -318,7 +318,11 @@ window.WP = (function () {
     "error",
     (e) => {
       const img = e.target;
-      if (!img || img.tagName !== "IMG" || !img.dataset.fb) return;
+      if (!img || img.tagName !== "IMG") return;
+      // a gallery thumbnail that can't load (e.g. a blocked remote photo) leaves the row
+      const thumb = !img.dataset.fb && img.closest(".pdp-thumb");
+      if (thumb) return thumb.remove();
+      if (!img.dataset.fb) return;
       const fb = img.dataset.fb;
       delete img.dataset.fb;
       img.className = img.className.replace("scene", "cut");
@@ -327,16 +331,74 @@ window.WP = (function () {
     true
   );
 
-  function media(p, cls) {
-    return `<div class="media ${cls || ""}" style="--c:${p.color};--c2:${p.color2}">${ART.art(p)}</div>`;
+  function media(p, cls, alt) {
+    const second = alt && p.scene && p.images && p.images[1];
+    return `<div class="media ${cls || ""}" style="--c:${p.color};--c2:${p.color2}">${ART.art(p)}${second ? `<img class="scene alt" ${pics.attrs(second, true)} alt="" decoding="async">` : ""}</div>`;
   }
+
+  /* Second campaign photos. Cards load theirs the first time the pointer is
+   * over them. The single-file preview can't hold one file per photo, so
+   * there they come in packs (assets/products/hero2/index.json names the pack
+   * for each product); if a pack is missing the plain file is used. */
+  const BLANK = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+  const pics = {
+    pattern: /^assets\/products\/hero\/(.+)-2\.webp$/,
+    index: null,
+    packs: {},
+    // attributes for an <img>: `later` waits for hydrate() (hover)
+    attrs(src, later) {
+      const id = SINGLE && (this.pattern.exec(src || "") || [])[1];
+      const ready = id ? this.cached(id) : later ? "" : src;
+      return ready ? `src="${esc(ready)}"` : `src="${BLANK}" data-pic="${esc(src)}"`;
+    },
+    cached(id) {
+      const name = this.index && this.index.data && this.index.data[id];
+      const pack = name && this.packs[name];
+      return (pack && pack.data && pack.data[id]) || "";
+    },
+    get(url, slot) {
+      if (!slot.promise) slot.promise = fetch(url).then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.status)))).then((d) => (slot.data = d), () => (slot.data = {}));
+      return slot.promise;
+    },
+    resolve(src) {
+      const id = SINGLE && (this.pattern.exec(src) || [])[1];
+      if (!id) return Promise.resolve(src);
+      this.index = this.index || {};
+      return this.get("assets/products/hero2/index.json", this.index).then(() => {
+        const name = this.index.data[id];
+        if (!name) return src;
+        this.packs[name] = this.packs[name] || {};
+        return this.get(`assets/products/hero2/${name}.json`, this.packs[name]).then(() => this.packs[name].data[id] || src);
+      });
+    },
+    hydrate(root) {
+      (root || document).querySelectorAll("img[data-pic]").forEach((img) => {
+        const src = img.getAttribute("data-pic");
+        img.removeAttribute("data-pic");
+        this.resolve(src).then((real) => (img.src = real));
+      });
+    },
+  };
+  // the second photo fades in only once it has really loaded
+  document.addEventListener(
+    "load",
+    (e) => {
+      const img = e.target;
+      if (img.tagName === "IMG" && img.classList.contains("alt") && !img.hasAttribute("data-pic") && img.getAttribute("src") !== BLANK) img.classList.add("is-ready");
+    },
+    true
+  );
+  document.addEventListener("pointerover", (e) => {
+    const c = e.pointerType === "mouse" && e.target.closest && e.target.closest(".card");
+    if (c) pics.hydrate(c);
+  });
   function priceHTML(p) {
     return `<span class="price">${esc(money(priceOf(p)))}</span>${p.compareAt ? `<s class="price-was">${esc(money(wasOf(p)))}</s>` : ""}`;
   }
   function card(p) {
     const url = `product.html?id=${encodeURIComponent(p.id)}`;
     return `<article class="card">
-      <a class="card-media" href="${url}" tabindex="-1" aria-hidden="true">${badge(p)}${media(p)}</a>
+      <a class="card-media" href="${url}" tabindex="-1" aria-hidden="true">${badge(p)}${media(p, "", true)}</a>
       <div class="card-body">
         <p class="card-type">${esc(L(p.typeName))}</p>
         <h3 class="card-title"><a href="${url}">${esc(pname(p))}</a></h3>
@@ -1431,7 +1493,7 @@ window.WP = (function () {
     if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, ref, seo, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
+  return { init, render, route, SINGLE, ref, seo, pics, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());

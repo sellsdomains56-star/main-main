@@ -941,7 +941,7 @@ window.WP_PAGES = (function () {
             shots.length > 1
               ? `<div class="pdp-thumbs" role="group" aria-label="${esc(t("pdp.photos"))}">${shots
                   .map(
-                    (sh, i) => `<button type="button" class="pdp-thumb media${i === 0 ? " is-on" : ""}" style="--c:${p.color};--c2:${p.color2}" data-shot="${i}" aria-label="${esc(t("pdp.photoN", { n: i + 1 }))}"><img class="${sh.cls}" src="${esc(sh.src)}" alt="" loading="lazy"></button>`
+                    (sh, i) => `<button type="button" class="pdp-thumb media${i === 0 ? " is-on" : ""}" style="--c:${p.color};--c2:${p.color2}" data-shot="${i}" aria-label="${esc(t("pdp.photoN", { n: i + 1 }))}"><img class="${sh.cls}" ${W.pics.attrs(sh.src)} alt="" loading="lazy"></button>`
                   )
                   .join("")}</div>`
               : ""
@@ -998,10 +998,13 @@ window.WP_PAGES = (function () {
         </div>
       </section>`;
 
+    W.pics.hydrate(main.querySelector(".pdp-thumbs") || main);
     main.querySelectorAll("[data-shot]").forEach((b) =>
       b.addEventListener("click", () => {
         const sh = shots[+b.dataset.shot];
-        main.querySelector("#pdp-stage").innerHTML = `<img class="${sh.cls}" src="${esc(sh.src)}" alt="">`;
+        const stage = main.querySelector("#pdp-stage");
+        stage.innerHTML = `<img class="${sh.cls}" ${W.pics.attrs(sh.src)} alt="">`;
+        W.pics.hydrate(stage);
         main.querySelectorAll(".pdp-thumb[data-shot]").forEach((x) => x.classList.toggle("is-on", x.dataset.shot === b.dataset.shot));
       })
     );
