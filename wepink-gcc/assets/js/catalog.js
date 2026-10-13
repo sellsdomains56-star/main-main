@@ -7,6 +7,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF Golden",
+  "lineAr": "في إف جولدن",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -33,7 +34,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Golden Body Splash celebrates the wonderful essence of life's happiest moments with a captivating fragrance that stirs desire. Its oriental olfactory path opens with vibrant pink pepper and mandarin, paired with the classic elegance of jasmine sambac. It finishes with sweet praline and woody amber, leaving a joyful, extraordinary trail.",
-   "ar": "يحتفي معطر الجسم VF Golden بالجوهر الرائع لأسعد اللحظات، بعطر ساحر يأسر الحواس ويثير الرغبة. ينطلق مساره العطري الشرقي بنفحات نابضة بالحياة من الفلفل الوردي واليوسفي، تمتزج بالأناقة الكلاسيكية للياسمين سامباك. ويختتم بحلاوة البرالين وطابع العنبر الخشبي، تاركاً أثراً مبهجاً واستثنائياً أينما حلّ."
+   "ar": "يحتفي معطر الجسم في إف جولدن بالجوهر الرائع لأسعد اللحظات، بعطر ساحر يأسر الحواس ويثير الرغبة. ينطلق مساره العطري الشرقي بنفحات نابضة بالحياة من الفلفل الوردي واليوسفي، تمتزج بالأناقة الكلاسيكية للياسمين سامباك. ويختتم بحلاوة البرالين وطابع العنبر الخشبي، تاركاً أثراً مبهجاً واستثنائياً أينما حلّ."
   },
   "notes": {
    "top": [
@@ -70,6 +71,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Obsessed",
+  "lineAr": "أوبسيسد",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -96,7 +98,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "A sensual essence brimming with elegance, Obsessed Body Splash represents the festive, sexy and desired woman. Its floral woody fragrance brings a sense of well-being, with a touch of cherry intertwined with citrus notes, moving to noble gardenia alongside the sweetness of honey and caramel for an effortless delight to the senses.",
-   "ar": "جوهر حسّي يفيض بالأناقة، يجسّد معطر الجسم Obsessed المرأة المفعمة بالبهجة والجاذبية والمرغوبة. يمنح عطره الزهري الخشبي إحساساً بالراحة، بلمسة من الكرز تتشابك مع النفحات الحمضية، لينتقل إلى نُبل الغاردينيا إلى جانب حلاوة العسل والكراميل، في متعة عفوية للحواس."
+   "ar": "جوهر حسّي يفيض بالأناقة، يجسّد معطر الجسم أوبسيسد المرأة المفعمة بالبهجة والجاذبية والمرغوبة. يمنح عطره الزهري الخشبي إحساساً بالراحة، بلمسة من الكرز تتشابك مع النفحات الحمضية، لينتقل إلى نُبل الغاردينيا إلى جانب حلاوة العسل والكراميل، في متعة عفوية للحواس."
   },
   "notes": {
    "top": [
@@ -133,6 +135,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Fatal Black For Her",
+  "lineAr": "فيتال بلاك فور هير",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -159,7 +162,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fatal Black For Her Body Splash celebrates authenticity with a scent shaped by the beauty of flowers, which release a sweet aura of seduction into the air. It is made for modern, memorable women who are unafraid to make their presence felt, and it is full of surprises.",
-   "ar": "يحتفي معطر الجسم Fatal Black For Her بالأصالة من خلال عبير مستوحى من جمال الأزهار التي تنشر في الأجواء هالة عذبة من الإغراء. صُمّم هذا العطر للمرأة العصرية التي لا تُنسى ولا تخشى أن تفرض حضورها، وهو عطر حافل بالمفاجآت."
+   "ar": "يحتفي معطر الجسم فيتال بلاك فور هير بالأصالة من خلال عبير مستوحى من جمال الأزهار التي تنشر في الأجواء هالة عذبة من الإغراء. صُمّم هذا العطر للمرأة العصرية التي لا تُنسى ولا تخشى أن تفرض حضورها، وهو عطر حافل بالمفاجآت."
   },
   "source": "https://www.wepink.com.br/body-splash-fatal-black-for-her-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -169,6 +172,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Heaven Bride",
+  "lineAr": "هيفن برايد",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -194,7 +198,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Bride Body Splash is a floral oriental fragrance inspired by the beginning of happily ever after.",
-   "ar": "معطر الجسم Heaven Bride عطر زهري شرقي مستوحى من بداية حكاية السعادة الأبدية."
+   "ar": "معطر الجسم هيفن برايد عطر زهري شرقي مستوحى من بداية حكاية السعادة الأبدية."
   },
   "source": "https://www.wepink.com.br/body-splash-heaven-bride-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -204,6 +208,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF Golden",
+  "lineAr": "في إف جولدن",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -230,7 +235,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Golden Cologne celebrates the extraordinary essence of life's happiest moments in a vibrant, enchanting fragrance. Its oriental composition opens with joyful, delicate bergamot, blended with festive notes of peony and jasmine sambac. It evolves into an unforgettable floral heart and finishes on a sweet, woody base, revealing an exclusive and powerful beauty.",
-   "ar": "تحتفي كولونيا VF Golden بالجوهر الاستثنائي لأسعد اللحظات، بعطر نابض بالحياة يأسر الحواس. تنطلق تركيبتها الشرقية ببهجة البرغموت ورقّته، ممتزجاً بالنفحات الاحتفالية الأنيقة للفاوانيا والياسمين سامباك. ثم تتطور إلى قلب زهري لا يُنسى، وتختتم بقاعدة حلوة وخشبية، كاشفةً عن جمال حصري وقوي."
+   "ar": "تحتفي كولونيا في إف جولدن بالجوهر الاستثنائي لأسعد اللحظات، بعطر نابض بالحياة يأسر الحواس. تنطلق تركيبتها الشرقية ببهجة البرغموت ورقّته، ممتزجاً بالنفحات الاحتفالية الأنيقة للفاوانيا والياسمين سامباك. ثم تتطور إلى قلب زهري لا يُنسى، وتختتم بقاعدة حلوة وخشبية، كاشفةً عن جمال حصري وقوي."
   },
   "notes": {
    "top": [
@@ -257,6 +262,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Celebrate Life",
+  "lineAr": "سيليبريت لايف",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -283,7 +289,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Celebrate Life Body Splash reflects a unique, genuine beauty, with a sweet, soft scent for those who shine while celebrating the good side of life. It opens with fresh notes and a vibrant touch of pink pepper, moving to a romantic floral heart of lily of the valley, rose and jasmine, before a seductive, soft woody signature.",
-   "ar": "يعكس معطر الجسم Celebrate Life جمالاً فريداً وصادقاً، بعبير حلو وناعم صُمّم لمن يتألقون وهم يحتفون بالجانب المشرق من الحياة. ينطلق بنفحات منعشة ولمسة نابضة من الفلفل الوردي، لينتقل إلى قلب زهري رومانسي من زنبق الوادي والورد والياسمين، قبل أن يستقر على بصمة خشبية ناعمة وآسرة."
+   "ar": "يعكس معطر الجسم سيليبريت لايف جمالاً فريداً وصادقاً، بعبير حلو وناعم صُمّم لمن يتألقون وهم يحتفون بالجانب المشرق من الحياة. ينطلق بنفحات منعشة ولمسة نابضة من الفلفل الوردي، لينتقل إلى قلب زهري رومانسي من زنبق الوادي والورد والياسمين، قبل أن يستقر على بصمة خشبية ناعمة وآسرة."
   },
   "notes": {
    "top": [
@@ -314,6 +320,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Cèdre Raffi",
+  "lineAr": "سيدر رافي",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -339,7 +346,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Cèdre Raffi Cologne is a woody floral fragrance that is sophisticated, elegant and contemporary. It combines bergamot, iris, cedar and musk.",
-   "ar": "كولونيا Cèdre Raffi عطر خشبي زهري راقٍ وأنيق وعصري. تجمع تركيبتها بين البرغموت والسوسن والأرز والمسك."
+   "ar": "كولونيا سيدر رافي عطر خشبي زهري راقٍ وأنيق وعصري. تجمع تركيبتها بين البرغموت والسوسن والأرز والمسك."
   },
   "notes": {
    "top": [
@@ -372,6 +379,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Heaven Pink",
+  "lineAr": "هيفن بينك",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -398,7 +406,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Pink Cologne captures that hard-to-explain moment when everything feels lighter and more beautiful. This feminine fragrance opens with a luminous fruity blend of peach, pear, blackberry, mandarin and grapefruit, blossoming into a sophisticated bouquet of lily of the valley, jasmine, rose, orange blossom, freesia, ylang-ylang, magnolia, tuberose, peony and violet. It settles on an enveloping base of creamy woods and vanilla.",
-   "ar": "تجسّد كولونيا Heaven Pink ذلك الإحساس الذي يصعب وصفه، حين يبدو كل شيء أخف وأجمل. ينطلق هذا العطر الأنثوي بمزيج فاكهي مشرق من الخوخ والكمثرى والتوت الأسود واليوسفي والجريب فروت، ليتفتّح في باقة راقية من زنبق الوادي والياسمين والورد وزهر البرتقال والفريزيا واليلانغ يلانغ والماغنوليا ومسك الروم والفاوانيا والبنفسج. ثم يستقر على قاعدة مريحة وآسرة من الأخشاب الكريمية والفانيليا."
+   "ar": "تجسّد كولونيا هيفن بينك ذلك الإحساس الذي يصعب وصفه، حين يبدو كل شيء أخف وأجمل. ينطلق هذا العطر الأنثوي بمزيج فاكهي مشرق من الخوخ والكمثرى والتوت الأسود واليوسفي والجريب فروت، ليتفتّح في باقة راقية من زنبق الوادي والياسمين والورد وزهر البرتقال والفريزيا واليلانغ يلانغ والماغنوليا ومسك الروم والفاوانيا والبنفسج. ثم يستقر على قاعدة مريحة وآسرة من الأخشاب الكريمية والفانيليا."
   },
   "notes": {
    "top": [
@@ -483,6 +491,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "King Blue Supreme",
+  "lineAr": "كينج بلو سوبريم",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -508,7 +517,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "King Blue Supreme Body Splash was created for men whose presence speaks for itself, in an intense fragrance of power, sophistication and authenticity. It opens with exotic passion fruit, fruity notes, Turkish rose and precious saffron, while oud, benzoin and Indonesian patchouli form a rich heart. Leather, Akigalawood, amber, vanilla and labdanum create an intense, memorable signature.",
-   "ar": "صُمّم معطر الجسم King Blue Supreme للرجال الذين يتحدث حضورهم عنهم، بعطر مكثّف يجسّد القوة والرقي والأصالة. ينطلق بانتعاش الباشن فروت الاستوائي والنفحات الفاكهية وأناقة الورد التركي ولمسة الزعفران الثمينة، بينما يشكّل العود والجاوي والباتشولي الإندونيسي قلباً غنياً. أما الجلد والأكيغالاوود والعنبر والفانيليا واللادن، فتصنع بصمة مكثّفة لا تُنسى."
+   "ar": "صُمّم معطر الجسم كينج بلو سوبريم للرجال الذين يتحدث حضورهم عنهم، بعطر مكثّف يجسّد القوة والرقي والأصالة. ينطلق بانتعاش الباشن فروت الاستوائي والنفحات الفاكهية وأناقة الورد التركي ولمسة الزعفران الثمينة، بينما يشكّل العود والجاوي والباتشولي الإندونيسي قلباً غنياً. أما الجلد والأكيغالاوود والعنبر والفانيليا واللادن، فتصنع بصمة مكثّفة لا تُنسى."
   },
   "notes": {
    "top": [
@@ -573,6 +582,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Fatal White",
+  "lineAr": "فيتال وايت",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -597,7 +607,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fatal White Body Splash expresses an elegant, confident femininity for the woman who needs no excess to make her presence felt. It opens with luminous citrus freshness and fruity nuances, followed by a floral heart of rose, peony and white flowers. Soft, velvety musky notes with amber, moss and vanilla wrap the skin in comfort and elegance.",
-   "ar": "يعبّر معطر الجسم Fatal White عن أنوثة أنيقة وواثقة، للمرأة التي لا تحتاج إلى المبالغة لتفرض حضورها. ينطلق بانتعاش حمضي مشرق ولمسات فاكهية، يليه قلب زهري من الورد والفاوانيا والأزهار البيضاء. ثم تغمر نفحات المسك الناعمة المخملية مع العنبر والطحلب والفانيليا البشرة بالراحة والأناقة."
+   "ar": "يعبّر معطر الجسم فيتال وايت عن أنوثة أنيقة وواثقة، للمرأة التي لا تحتاج إلى المبالغة لتفرض حضورها. ينطلق بانتعاش حمضي مشرق ولمسات فاكهية، يليه قلب زهري من الورد والفاوانيا والأزهار البيضاء. ثم تغمر نفحات المسك الناعمة المخملية مع العنبر والطحلب والفانيليا البشرة بالراحة والأناقة."
   },
   "notes": {
    "top": [
@@ -650,6 +660,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Heaven Blue",
+  "lineAr": "هيفن بلو",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -676,7 +687,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Blue Body Splash opens the way to new sensory experiences with a divinely complex fragrance that still brings unmatched peace and serenity, like a luxurious spa session. It is a true universe of discoveries and contrasts, designed to awaken one's most refined side.",
-   "ar": "يفتح معطر الجسم Heaven Blue الأبواب أمام تجارب حسية جديدة ومذهلة، بعطر معقّد على نحو سماوي يمنح في الوقت ذاته سكينة وصفاءً لا مثيل لهما، كجلسة فاخرة في منتجع صحي. إنه عالم حقيقي من الاكتشافات والتناقضات، يوقظ أرقى ما في من يضعه."
+   "ar": "يفتح معطر الجسم هيفن بلو الأبواب أمام تجارب حسية جديدة ومذهلة، بعطر معقّد على نحو سماوي يمنح في الوقت ذاته سكينة وصفاءً لا مثيل لهما، كجلسة فاخرة في منتجع صحي. إنه عالم حقيقي من الاكتشافات والتناقضات، يوقظ أرقى ما في من يضعه."
   },
   "source": "https://www.wepink.com.br/body-splash-heaven-blue-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -686,7 +697,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "haircare",
   "line": "Booster Repair Hair Oil",
-  "lineAr": "زيت الشعر Booster Repair",
+  "lineAr": "بوستر ريبير هير أويل",
   "size": "30 ml",
   "price": 79,
   "badge": "bestseller",
@@ -711,7 +722,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Booster Repair Hair Oil features an exclusive formula created to care for hair with power.",
-   "ar": "يتميّز زيت الشعر Booster Repair بتركيبة حصرية صُمّمت للعناية بالشعر بقوة وفعالية."
+   "ar": "يتميّز زيت الشعر بوستر ريبير بتركيبة حصرية صُمّمت للعناية بالشعر بقوة وفعالية."
   },
   "source": "https://www.wepink.com.br/booster-repair-oleo-capilar-30ml---wepink/p",
   "notes": {}
@@ -721,6 +732,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Fatal Black For Her",
+  "lineAr": "فيتال بلاك فور هير",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -747,7 +759,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fatal Black For Her Cologne celebrates the woman who knows her worth and is unafraid to show her feminine strength. Sweet and captivating, it feels like liquid gold on the skin, radiant and intriguing. Lush white flowers, vibrant rose and mineral musk intertwine in an extraordinary composition that shines like a precious treasure.",
-   "ar": "تحتفي كولونيا Fatal Black For Her بالمرأة التي تدرك قيمتها ولا تخشى إظهار قوتها الأنثوية. عطر حلو وآسر، كالذهب السائل على البشرة، مشرق ومثير للفضول. تتشابك فيه الأزهار البيضاء الفاخرة والورد النابض بالحياة والمسك المعدني في تركيبة استثنائية تتلألأ ككنز ثمين."
+   "ar": "تحتفي كولونيا فيتال بلاك فور هير بالمرأة التي تدرك قيمتها ولا تخشى إظهار قوتها الأنثوية. عطر حلو وآسر، كالذهب السائل على البشرة، مشرق ومثير للفضول. تتشابك فيه الأزهار البيضاء الفاخرة والورد النابض بالحياة والمسك المعدني في تركيبة استثنائية تتلألأ ككنز ثمين."
   },
   "notes": {
    "top": [
@@ -776,6 +788,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Obsessed Exclusive Pink",
+  "lineAr": "أوبسيسد إكسكلوسيف بينك",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -802,7 +815,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Exclusive Pink Body Splash exudes true sensual luxury in a classic, charming oriental floral scent. Its first spray reveals the allure of fig and pink pepper, wrapped in the elegance of jasmine and the timeless finesse of tuberose. Its radiance evolves into an unforgettable finishing touch of sandalwood.",
-   "ar": "يفيض معطر الجسم Obsessed Exclusive Pink بفخامة حسية حقيقية، في عبير شرقي زهري كلاسيكي مفعم بالسحر. تكشف رشّته الأولى عن سحر التين والفلفل الوردي، ملفوفاً بأناقة الياسمين ورقيّ مسك الروم الخالد. ثم يتطور إشراقه إلى لمسة ختامية لا تُنسى من خشب الصندل."
+   "ar": "يفيض معطر الجسم أوبسيسد إكسكلوسيف بينك بفخامة حسية حقيقية، في عبير شرقي زهري كلاسيكي مفعم بالسحر. تكشف رشّته الأولى عن سحر التين والفلفل الوردي، ملفوفاً بأناقة الياسمين ورقيّ مسك الروم الخالد. ثم يتطور إشراقه إلى لمسة ختامية لا تُنسى من خشب الصندل."
   },
   "notes": {
    "top": [
@@ -839,6 +852,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "VF Golden",
+  "lineAr": "في إف جولدن",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -864,7 +878,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Golden Body Cream provides hydration, nourishment and firmness, as its formula helps support collagen production and cell renewal while leaving skin looking healthy and glowing. Its floral fragrance opens with vibrant pink pepper and mandarin, evolves into an elegant floral heart and finishes with sweet praline and woody amber.",
-   "ar": "يمنح كريم الجسم VF Golden البشرة الترطيب والتغذية والتماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجدد الخلايا، مع إضفاء مظهر صحي ومشرق على البشرة. ينطلق عطره الزهري بنفحات نابضة من الفلفل الوردي واليوسفي، ثم يتطور إلى قلب زهري أنيق، ويختتم بحلاوة البرالين وطابع العنبر الخشبي."
+   "ar": "يمنح كريم الجسم في إف جولدن البشرة الترطيب والتغذية والتماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجدد الخلايا، مع إضفاء مظهر صحي ومشرق على البشرة. ينطلق عطره الزهري بنفحات نابضة من الفلفل الوردي واليوسفي، ثم يتطور إلى قلب زهري أنيق، ويختتم بحلاوة البرالين وطابع العنبر الخشبي."
   },
   "notes": {
    "top": [
@@ -895,6 +909,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Infinity",
+  "lineAr": "إنفينيتي",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -921,7 +936,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Body Splash captures the essence of a woman who chases her dreams in a floral woody amber fragrance. Its notes include blackberry blossom, sweet orange, lemon, jasmine, freesia, lily of the valley, amber, moss, cedar, patchouli and vanilla. It brings a sense of empowerment at any time of day, with sweetness and energy.",
-   "ar": "يجسّد معطر الجسم Infinity جوهر المرأة التي تسعى وراء أحلامها، بعطر زهري خشبي عنبري. تضم نفحاته زهر التوت الأسود والبرتقال الحلو والليمون والياسمين والفريزيا وزنبق الوادي والعنبر والطحلب والأرز والباتشولي والفانيليا. ويرافقها إحساس بالتمكين في أي وقت من اليوم، بعذوبة وحيوية."
+   "ar": "يجسّد معطر الجسم إنفينيتي جوهر المرأة التي تسعى وراء أحلامها، بعطر زهري خشبي عنبري. تضم نفحاته زهر التوت الأسود والبرتقال الحلو والليمون والياسمين والفريزيا وزنبق الوادي والعنبر والطحلب والأرز والباتشولي والفانيليا. ويرافقها إحساس بالتمكين في أي وقت من اليوم، بعذوبة وحيوية."
   },
   "notes": {
    "top": [
@@ -982,6 +997,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF 5th Anniversary",
+  "lineAr": "في إف فيفث أنيفيرسري",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -1008,7 +1024,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Celebrating five years of a brand that has found its place in so many lives, VF 5th Anniversary Body Splash puts vanilla at the center, from luminous to creamy and delicate to deep. It opens with bergamot, orange blossom, peach and 10x Concentrated Vanilla. In the heart, Madagascar Bourbon Vanilla Absolute meets intense Vanilla Noir, with delicate freesia and jasmine.",
-   "ar": "احتفاءً بمرور خمس سنوات على علامة وجدت مكانها في حياة الكثيرين، يضع معطر الجسم VF 5th Anniversary الفانيليا في صميم التجربة، كاشفاً عنها بتفسيرات متعددة من الإشراق إلى القوام الكريمي، ومن الرقة إلى العمق. ينطلق بالبرغموت وزهر البرتقال والخوخ والفانيليا المركّزة 10x. وفي القلب، يلتقي مطلق فانيليا بوربون من مدغشقر بكثافة فانيليا نوار، برفقة رقة الفريزيا والياسمين."
+   "ar": "احتفاءً بمرور خمس سنوات على علامة وجدت مكانها في حياة الكثيرين، يضع معطر الجسم في إف فيفث أنيفيرسري الفانيليا في صميم التجربة، كاشفاً عنها بتفسيرات متعددة من الإشراق إلى القوام الكريمي، ومن الرقة إلى العمق. ينطلق بالبرغموت وزهر البرتقال والخوخ والفانيليا المركّزة 10x. وفي القلب، يلتقي مطلق فانيليا بوربون من مدغشقر بكثافة فانيليا نوار، برفقة رقة الفريزيا والياسمين."
   },
   "notes": {
    "top": [
@@ -1055,6 +1071,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF 5th Anniversary Edition",
+  "lineAr": "في إف فيفث أنيفيرسري إيديشن",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -1080,7 +1097,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Celebrating five years of a brand that has found its place in so many lives, VF 5th Anniversary Edition Cologne puts vanilla at the center, from luminous to creamy and delicate to deep. It opens with bergamot, orange blossom, peach and 10x Concentrated Vanilla. In the heart, Madagascar Bourbon Vanilla Absolute meets intense Vanilla Noir, with delicate freesia and jasmine.",
-   "ar": "احتفاءً بمرور خمس سنوات على علامة وجدت مكانها في حياة الكثيرين، تضع كولونيا VF 5th Anniversary Edition الفانيليا في صميم التجربة، كاشفةً عنها بتفسيرات متعددة من الإشراق إلى القوام الكريمي، ومن الرقة إلى العمق. تنطلق بالبرغموت وزهر البرتقال والخوخ والفانيليا المركّزة 10x. وفي القلب، يلتقي مطلق فانيليا بوربون من مدغشقر بكثافة فانيليا نوار، برفقة رقة الفريزيا والياسمين."
+   "ar": "احتفاءً بمرور خمس سنوات على علامة وجدت مكانها في حياة الكثيرين، تضع كولونيا في إف فيفث أنيفيرسري إيديشن الفانيليا في صميم التجربة، كاشفةً عنها بتفسيرات متعددة من الإشراق إلى القوام الكريمي، ومن الرقة إلى العمق. تنطلق بالبرغموت وزهر البرتقال والخوخ والفانيليا المركّزة 10x. وفي القلب، يلتقي مطلق فانيليا بوربون من مدغشقر بكثافة فانيليا نوار، برفقة رقة الفريزيا والياسمين."
   },
   "notes": {
    "top": [
@@ -1127,6 +1144,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Fatal Black For Her",
+  "lineAr": "فيتال بلاك فور هير",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -1152,7 +1170,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fatal Black For Her Body Cream turns the body care routine into a true ritual of sophistication and power. Its ultra-nourishing formula was developed with a selected blend of premium extracts and oils that directly help support collagen production and cell renewal.",
-   "ar": "يحوّل كريم الجسم Fatal Black For Her روتين العناية بالجسم إلى طقس حقيقي من الرقي والقوة. طُوّرت تركيبته فائقة التغذية بمزيج مختار من المستخلصات والزيوت الفاخرة التي تساعد مباشرةً على دعم إنتاج الكولاجين وتجدد الخلايا."
+   "ar": "يحوّل كريم الجسم فيتال بلاك فور هير روتين العناية بالجسم إلى طقس حقيقي من الرقي والقوة. طُوّرت تركيبته فائقة التغذية بمزيج مختار من المستخلصات والزيوت الفاخرة التي تساعد مباشرةً على دعم إنتاج الكولاجين وتجدد الخلايا."
   },
   "source": "https://www.wepink.com.br/body-cream-fatal-black-for-her-desodorante-hidratante-200ml---wepink/p",
   "notes": {}
@@ -1162,6 +1180,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Eternal Cherish",
+  "lineAr": "إيترنال تشيريش",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -1183,7 +1202,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Eternal Cherish Cologne celebrates the woman who embraces, inspires and turns love into presence. It opens with spicy cinnamon oil, delicate jasmine and vibrant pink pepper, while the heart pairs light lily of the valley with cashmeran and amber for texture and depth. Warm, creamy elemi oil, musk and vanilla create a soft, velvety and addictive trail.",
-   "ar": "تحتفي كولونيا Eternal Cherish بالمرأة التي تحتضن وتُلهم وتحوّل الحب إلى حضور. تنطلق بدفء زيت القرفة المتبّل ورقة الياسمين ولمسة الفلفل الوردي النابضة، بينما يجمع القلب بين خفّة زنبق الوادي والكشميران والعنبر اللذين يضفيان القوام والعمق. ثم تصنع نفحات زيت الإليمي والمسك والفانيليا الدافئة الكريمية أثراً ناعماً ومخملياً يصعب مقاومته."
+   "ar": "تحتفي كولونيا إيترنال تشيريش بالمرأة التي تحتضن وتُلهم وتحوّل الحب إلى حضور. تنطلق بدفء زيت القرفة المتبّل ورقة الياسمين ولمسة الفلفل الوردي النابضة، بينما يجمع القلب بين خفّة زنبق الوادي والكشميران والعنبر اللذين يضفيان القوام والعمق. ثم تصنع نفحات زيت الإليمي والمسك والفانيليا الدافئة الكريمية أثراً ناعماً ومخملياً يصعب مقاومته."
   },
   "notes": {
    "top": [
@@ -1236,6 +1255,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Eternal Cherish",
+  "lineAr": "إيترنال تشيريش",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -1257,7 +1277,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Eternal Cherish Body Splash celebrates the woman who embraces, inspires and turns love into presence. It opens with spicy cinnamon oil, delicate jasmine and vibrant pink pepper, while the heart pairs light lily of the valley with cashmeran and amber for texture and depth. Warm, creamy elemi oil, musk and vanilla create a soft, velvety and addictive trail.",
-   "ar": "يحتفي معطر الجسم Eternal Cherish بالمرأة التي تحتضن وتُلهم وتحوّل الحب إلى حضور. ينطلق بدفء زيت القرفة المتبّل ورقة الياسمين ولمسة الفلفل الوردي النابضة، بينما يجمع القلب بين خفّة زنبق الوادي والكشميران والعنبر اللذين يضفيان القوام والعمق. ثم تصنع نفحات زيت الإليمي والمسك والفانيليا الدافئة الكريمية أثراً ناعماً ومخملياً يصعب مقاومته."
+   "ar": "يحتفي معطر الجسم إيترنال تشيريش بالمرأة التي تحتضن وتُلهم وتحوّل الحب إلى حضور. ينطلق بدفء زيت القرفة المتبّل ورقة الياسمين ولمسة الفلفل الوردي النابضة، بينما يجمع القلب بين خفّة زنبق الوادي والكشميران والعنبر اللذين يضفيان القوام والعمق. ثم تصنع نفحات زيت الإليمي والمسك والفانيليا الدافئة الكريمية أثراً ناعماً ومخملياً يصعب مقاومته."
   },
   "notes": {
    "top": [
@@ -1310,6 +1330,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Lauv Green",
+  "lineAr": "لاف جرين",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -1335,7 +1356,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Lauv Green Body Splash expresses balance at its most sophisticated, uniting vibrant freshness with elegant depth. Mandarin, ginger, lavandin and sage open with luminous, aromatic clarity, followed by a heart of light florals and cedar with lily of the valley and orange blossom. An oakmoss accord joins cedar in a green, earthy, elegant base with a clean, subtle yet distinctive trail.",
-   "ar": "يجسّد معطر الجسم Lauv Green التوازن في أرقى صوره، جامعاً بين الانتعاش النابض والعمق الأنيق. ينطلق باليوسفي والزنجبيل واللافاندين والمريمية في افتتاحية مشرقة وعطرية، يليها قلب من الأزهار الخفيفة والأرز مع زنبق الوادي وزهر البرتقال. ثم يلتقي أكورد طحلب البلوط بالأرز في قاعدة خضراء ترابية أنيقة تترك أثراً نظيفاً، خفيفاً ولكنه مميز."
+   "ar": "يجسّد معطر الجسم لاف جرين التوازن في أرقى صوره، جامعاً بين الانتعاش النابض والعمق الأنيق. ينطلق باليوسفي والزنجبيل واللافاندين والمريمية في افتتاحية مشرقة وعطرية، يليها قلب من الأزهار الخفيفة والأرز مع زنبق الوادي وزهر البرتقال. ثم يلتقي أكورد طحلب البلوط بالأرز في قاعدة خضراء ترابية أنيقة تترك أثراً نظيفاً، خفيفاً ولكنه مميز."
   },
   "notes": {
    "top": [
@@ -1388,6 +1409,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Ruby Rhodolite",
+  "lineAr": "روبي رودولايت",
   "size": "100 ml",
   "price": 189,
   "badge": "bestseller",
@@ -1412,7 +1434,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ruby Rhodolite Cologne captures the strength of a woman guided by her own intensity. This vibrant fragrance, full of passion, courage and authenticity, was created for the woman who refuses to fit any mold and turns her presence into an impact. It is pure energy, expressed not in words but on the skin.",
-   "ar": "تجسّد كولونيا Ruby Rhodolite قوة المرأة التي يقودها عنفوانها. عطر نابض بالحياة يفيض بالشغف والشجاعة والأصالة، ابتُكر للمرأة التي ترفض القوالب الجاهزة وتجعل من حضورها أثراً لا يُنسى. إنها طاقة خالصة لا تُوصف بالكلمات، بل تتجلّى على البشرة."
+   "ar": "تجسّد كولونيا روبي رودولايت قوة المرأة التي يقودها عنفوانها. عطر نابض بالحياة يفيض بالشغف والشجاعة والأصالة، ابتُكر للمرأة التي ترفض القوالب الجاهزة وتجعل من حضورها أثراً لا يُنسى. إنها طاقة خالصة لا تُوصف بالكلمات، بل تتجلّى على البشرة."
   },
   "source": "https://www.wepink.com.br/desod-col-ruby-rhodolite-100-ml---wepink-439/p",
   "notes": {}
@@ -1422,6 +1444,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Ruby Rhodolite",
+  "lineAr": "روبي رودولايت",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -1448,7 +1471,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ruby Rhodolite Body Splash captures the strength of a woman guided by her own intensity, in a vibrant fragrance of passion, courage and authenticity. Its floral oriental composition combines the bright freshness of pitaya, the juicy touch of cherry and the striking magnetism of patchouli. The result is sophisticated, intense and enveloping, balancing delicacy and power.",
-   "ar": "يجسّد معطر الجسم Ruby Rhodolite قوة المرأة التي يقودها عنفوانها، بعطر نابض بالحياة يفيض بالشغف والشجاعة والأصالة. تجمع تركيبته الزهرية الشرقية بين الانتعاش المشرق لفاكهة التنين ولمسة الكرز العصيرية وجاذبية الباتشولي الآسرة. والنتيجة عطر راقٍ ومكثّف وآسر يوازن بين الرقة والقوة بمقدار مثالي."
+   "ar": "يجسّد معطر الجسم روبي رودولايت قوة المرأة التي يقودها عنفوانها، بعطر نابض بالحياة يفيض بالشغف والشجاعة والأصالة. تجمع تركيبته الزهرية الشرقية بين الانتعاش المشرق لفاكهة التنين ولمسة الكرز العصيرية وجاذبية الباتشولي الآسرة. والنتيجة عطر راقٍ ومكثّف وآسر يوازن بين الرقة والقوة بمقدار مثالي."
   },
   "notes": {
    "top": [
@@ -1477,6 +1500,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Heaven Blue",
+  "lineAr": "هيفن بلو",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -1503,7 +1527,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Blue Body Cream leaves skin hydrated, nourished and firm, thanks to a special formula that helps support collagen production and cell renewal. Its blend of oils and extracts keeps skin looking healthy and glowing.",
-   "ar": "يمنح كريم الجسم Heaven Blue البشرة ترطيباً وتغذية وتماسكاً، بفضل تركيبة خاصة تساعد على دعم إنتاج الكولاجين وتجدد الخلايا. كما يحافظ مزيجه من الزيوت والمستخلصات على مظهر صحي ومشرق للبشرة."
+   "ar": "يمنح كريم الجسم هيفن بلو البشرة ترطيباً وتغذية وتماسكاً، بفضل تركيبة خاصة تساعد على دعم إنتاج الكولاجين وتجدد الخلايا. كما يحافظ مزيجه من الزيوت والمستخلصات على مظهر صحي ومشرق للبشرة."
   },
   "source": "https://www.wepink.com.br/body-cream-heaven-blue-200ml---wepink-428/p",
   "notes": {}
@@ -1513,6 +1537,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Infinity Tawny",
+  "lineAr": "إنفينيتي توني",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -1537,7 +1562,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Tawny Body Splash concentrates all the juiciness of fruit into a deliciously sweet, balanced and satisfying scent. Its notes are masterfully combined for endless ways to wear it.",
-   "ar": "يجمع معطر الجسم Infinity Tawny كل عصارة الفاكهة في عبير حلو شهي ومتوازن ومُرضٍ. تمتزج نفحاته ببراعة لتمنح إمكانيات لا حصر لها للاستخدام."
+   "ar": "يجمع معطر الجسم إنفينيتي توني كل عصارة الفاكهة في عبير حلو شهي ومتوازن ومُرضٍ. تمتزج نفحاته ببراعة لتمنح إمكانيات لا حصر لها للاستخدام."
   },
   "source": "https://www.wepink.com.br/body-splash-infinity-tawny-200ml---wepink-416/p",
   "notes": {}
@@ -1547,6 +1572,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Martin",
+  "lineAr": "مارتن",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -1572,7 +1598,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Martin Body Splash captures the aura of the multifaceted man in a bottle. Its scent is sweet and pleasant on the surface, yet hides more exciting mysteries in its depths, waiting to be revealed.",
-   "ar": "يختزل معطر الجسم Martin في زجاجته هالة الرجل متعدد الأوجه. عبير حلو ومحبّب في ظاهره، لكنه يخفي في أعماقه أسراراً أكثر إثارة تنتظر من يكشفها."
+   "ar": "يختزل معطر الجسم مارتن في زجاجته هالة الرجل متعدد الأوجه. عبير حلو ومحبّب في ظاهره، لكنه يخفي في أعماقه أسراراً أكثر إثارة تنتظر من يكشفها."
   },
   "source": "https://www.wepink.com.br/body-splash-martin-200ml/p",
   "notes": {}
@@ -1582,6 +1608,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Heaven Blue",
+  "lineAr": "هيفن بلو",
   "size": "100 ml",
   "price": 189,
   "badge": "bestseller",
@@ -1606,7 +1633,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Blue Cologne is a divine invitation to daydreaming and new sensory experiences, born from the power of imagination. It pairs the freshness of citrus notes with a deep, sophisticated base for those who seek balance and inspiration. Notes of black tea, amber and precious woods reflect the freedom to explore new horizons with a sense of calm.",
-   "ar": "كولونيا Heaven Blue دعوة سماوية إلى أحلام اليقظة وتجارب حسية جديدة، وُلدت من قوة الخيال. تجمع بين انتعاش النفحات الحمضية وقاعدة عميقة وراقية لمن يبحث عن التوازن والإلهام في كل تفصيل. وتعكس نفحات الشاي الأسود والعنبر والأخشاب الفاخرة حرية استكشاف آفاق جديدة في أجواء من الهدوء."
+   "ar": "كولونيا هيفن بلو دعوة سماوية إلى أحلام اليقظة وتجارب حسية جديدة، وُلدت من قوة الخيال. تجمع بين انتعاش النفحات الحمضية وقاعدة عميقة وراقية لمن يبحث عن التوازن والإلهام في كل تفصيل. وتعكس نفحات الشاي الأسود والعنبر والأخشاب الفاخرة حرية استكشاف آفاق جديدة في أجواء من الهدوء."
   },
   "notes": {
    "top": [
@@ -1639,6 +1666,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Ruby Ametist",
+  "lineAr": "روبي أميثيست",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -1665,7 +1693,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ruby Ametist Body Splash shines like the most precious stone, revealing life's radiance in an elegant scent. Its mystical freshness brings bergamot and orange blossom, unfolding into a floral heart. It finishes on a majestic sweet and woody base.",
-   "ar": "يتألق معطر الجسم Ruby Ametist كأثمن الأحجار الكريمة، كاشفاً عن بريق الحياة في عبير مفعم بالأناقة. يحمل انتعاشه الغامض سحر البرغموت وزهر البرتقال، لينتقل إلى قلب زهري ساحر. ويختتم بقاعدة مهيبة حلوة وخشبية."
+   "ar": "يتألق معطر الجسم روبي أميثيست كأثمن الأحجار الكريمة، كاشفاً عن بريق الحياة في عبير مفعم بالأناقة. يحمل انتعاشه الغامض سحر البرغموت وزهر البرتقال، لينتقل إلى قلب زهري ساحر. ويختتم بقاعدة مهيبة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -1686,6 +1714,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "King Blue Deep",
+  "lineAr": "كينج بلو ديب",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -1711,7 +1740,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "King Blue Deep Body Splash celebrates the living essence of masculine elegance, enjoying life with a modern, sophisticated touch. Its woody fragrance, worthy of a true king, expresses power through notes of gardenia and bergamot. It finishes on a majestic base of vanilla and sandalwood, revealing a charming, exclusive man wherever he goes.",
-   "ar": "يحتفي معطر الجسم King Blue Deep بالجوهر الحي للأناقة الرجالية التي تستمتع بالحياة بلمسة عصرية وراقية. يجسّد عطره الخشبي، الجدير بملك حقيقي، القوة من خلال نفحات الغاردينيا والبرغموت. ويختتم بقاعدة مهيبة من الفانيليا وخشب الصندل، كاشفاً عن رجل ساحر ومتفرّد أينما حلّ."
+   "ar": "يحتفي معطر الجسم كينج بلو ديب بالجوهر الحي للأناقة الرجالية التي تستمتع بالحياة بلمسة عصرية وراقية. يجسّد عطره الخشبي، الجدير بملك حقيقي، القوة من خلال نفحات الغاردينيا والبرغموت. ويختتم بقاعدة مهيبة من الفانيليا وخشب الصندل، كاشفاً عن رجل ساحر ومتفرّد أينما حلّ."
   },
   "notes": {
    "top": [
@@ -1744,6 +1773,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Pure Pear",
+  "lineAr": "بيور بير",
   "size": "100 ml",
   "price": 189,
   "badge": "bestseller",
@@ -1768,7 +1798,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Pure Pear Cologne exudes a contemporary, unwavering elegance that reflects the strength and grace of the modern woman. Its composition harmonizes the freshness of fruit with delicate white flowers such as freesia, jasmine and rose petals, wrapped in the refined warmth of musk and vanilla. It is a luminous, distinctive and memorable fragrance.",
-   "ar": "تفيض كولونيا Pure Pear بأناقة عصرية راسخة تعكس قوة المرأة العصرية ورقّتها. تمزج تركيبتها بتناغم بين انتعاش الفاكهة ورقة الأزهار البيضاء مثل الفريزيا والياسمين وبتلات الورد، ملفوفةً بدفء المسك والفانيليا الراقي. إنه عطر مشرق ومتميّز لا يُنسى."
+   "ar": "تفيض كولونيا بيور بير بأناقة عصرية راسخة تعكس قوة المرأة العصرية ورقّتها. تمزج تركيبتها بتناغم بين انتعاش الفاكهة ورقة الأزهار البيضاء مثل الفريزيا والياسمين وبتلات الورد، ملفوفةً بدفء المسك والفانيليا الراقي. إنه عطر مشرق ومتميّز لا يُنسى."
   },
   "notes": {
    "top": [
@@ -1809,6 +1839,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Lion Blanc",
+  "lineAr": "ليون بلان",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -1833,7 +1864,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Lion Blanc Body Splash celebrates the strength and elegance of the masculine essence, like a fierce lion that never gives up on its goals. Its woody scent evolves through powerful notes of jasmine, nutmeg and a fierce touch of cardamom. It finishes on a sweet, ambery and unforgettable base full of sophistication and charm.",
-   "ar": "يحتفي معطر الجسم Lion Blanc بقوة الجوهر الرجالي وأناقته، كأسد جسور لا يتخلى أبداً عن أهدافه. يتطور عبيره الخشبي عبر نفحات قوية من الياسمين وجوزة الطيب ولمسة جريئة من الهيل. ويختتم بقاعدة حلوة عنبرية لا تُنسى، مفعمة بالرقي والجاذبية."
+   "ar": "يحتفي معطر الجسم ليون بلان بقوة الجوهر الرجالي وأناقته، كأسد جسور لا يتخلى أبداً عن أهدافه. يتطور عبيره الخشبي عبر نفحات قوية من الياسمين وجوزة الطيب ولمسة جريئة من الهيل. ويختتم بقاعدة حلوة عنبرية لا تُنسى، مفعمة بالرقي والجاذبية."
   },
   "notes": {
    "heart": [
@@ -1858,6 +1889,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Heaven Bride",
+  "lineAr": "هيفن برايد",
   "size": "100 ml",
   "price": 189,
   "gender": "feminino",
@@ -1882,7 +1914,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Bride Cologne invites the celebration of the most beautiful memory, honoring the bride's radiance in an unforgettable floral oriental scent. It opens with fresh bergamot and an enveloping touch of anise, leading to a beautiful floral heart. It finishes with a joyful union of vanilla and patchouli, saying yes to the essence of eternal love.",
-   "ar": "تدعو كولونيا Heaven Bride إلى الاحتفاء بأجمل الذكريات، مجسّدةً إشراقة العروس في عبير زهري شرقي لا يُنسى. تنطلق بانتعاش البرغموت ولمسة اليانسون الآسرة، لتمضي نحو قلب زهري بديع. وتختتم باتحاد مبهج بين الفانيليا والباتشولي، لتقول نعم لجوهر الحب الأبدي."
+   "ar": "تدعو كولونيا هيفن برايد إلى الاحتفاء بأجمل الذكريات، مجسّدةً إشراقة العروس في عبير زهري شرقي لا يُنسى. تنطلق بانتعاش البرغموت ولمسة اليانسون الآسرة، لتمضي نحو قلب زهري بديع. وتختتم باتحاد مبهج بين الفانيليا والباتشولي، لتقول نعم لجوهر الحب الأبدي."
   },
   "notes": {
    "top": [
@@ -1913,6 +1945,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Obsessed",
+  "lineAr": "أوبسيسد",
   "size": "100 ml",
   "price": 189,
   "badge": "bestseller",
@@ -1937,7 +1970,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Mysterious, sexy, desired and elegant, Obsessed Cologne represents the woman who reveals her boldness in a magical way, sets her own rules and leaves everyone enchanted. This sensual, daring fragrance opens with cherry intertwined with citrus, moving to noble gardenia alongside sweet honey and caramel for an effortless delight to the senses.",
-   "ar": "غامضة وجذابة ومرغوبة وأنيقة، تجسّد كولونيا Obsessed المرأة التي تكشف عن جرأتها بطريقة ساحرة، وتضع قواعدها الخاصة، فتأسر كل من حولها. يبدأ هذا العطر الحسّي الجريء بلمسة من الكرز تتشابك مع الحمضيات، لينتقل إلى نُبل الغاردينيا إلى جانب حلاوة العسل والكراميل، في متعة عفوية للحواس."
+   "ar": "غامضة وجذابة ومرغوبة وأنيقة، تجسّد كولونيا أوبسيسد المرأة التي تكشف عن جرأتها بطريقة ساحرة، وتضع قواعدها الخاصة، فتأسر كل من حولها. يبدأ هذا العطر الحسّي الجريء بلمسة من الكرز تتشابك مع الحمضيات، لينتقل إلى نُبل الغاردينيا إلى جانب حلاوة العسل والكراميل، في متعة عفوية للحواس."
   },
   "notes": {
    "top": [
@@ -1974,6 +2007,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Vanilla Hope",
+  "lineAr": "فانيلا هوب",
   "size": "200 ml",
   "price": 79,
   "family": "sweet",
@@ -1999,7 +2033,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Vanilla Hope Body Splash evokes life's happiest moments with a refreshing touch of almond and jasmine. It evolves into a vibrant heart of joyful heliotrope, celebrating the strength of nature, and finishes on a sweet, woody base that combines energy, beauty and well-being.",
-   "ar": "يستحضر معطر الجسم Vanilla Hope أسعد لحظات الحياة بلمسة منعشة من اللوز والياسمين. ثم يتطور إلى قلب نابض ببهجة الهليوتروب، محتفياً بقوة الطبيعة، ويختتم بقاعدة حلوة وخشبية تجمع بين الحيوية والجمال والإحساس بالراحة."
+   "ar": "يستحضر معطر الجسم فانيلا هوب أسعد لحظات الحياة بلمسة منعشة من اللوز والياسمين. ثم يتطور إلى قلب نابض ببهجة الهليوتروب، محتفياً بقوة الطبيعة، ويختتم بقاعدة حلوة وخشبية تجمع بين الحيوية والجمال والإحساس بالراحة."
   },
   "notes": {
    "top": [
@@ -2026,6 +2060,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Bourbon",
+  "lineAr": "بوربون",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -2074,6 +2109,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Heaven",
+  "lineAr": "هيفن",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -2099,7 +2135,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Cologne is an invitation to a delicate, joyful universe, on a sensory journey that feels like being transported to paradise. Its floral scent rises towards happiness with elegant notes of mandarin and orange blossom, finishing on a sweet, woody base for a light, heady charm.",
-   "ar": "كولونيا Heaven دعوة إلى عالم رقيق ومبهج، في رحلة حسية كأنها انتقال إلى الفردوس. يرتقي جوهرها نحو السعادة في مسار عطري زهري مع نفحات أنيقة من اليوسفي وزهر البرتقال، وتختتم بقاعدة حلوة وخشبية تمنحها سحر عطر خفيف وآسر."
+   "ar": "كولونيا هيفن دعوة إلى عالم رقيق ومبهج، في رحلة حسية كأنها انتقال إلى الفردوس. يرتقي جوهرها نحو السعادة في مسار عطري زهري مع نفحات أنيقة من اليوسفي وزهر البرتقال، وتختتم بقاعدة حلوة وخشبية تمنحها سحر عطر خفيف وآسر."
   },
   "notes": {
    "top": [
@@ -2122,6 +2158,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Vanilla Hug",
+  "lineAr": "فانيلا هاج",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -2147,7 +2184,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Vanilla Hug Body Splash awakens feminine power through an enveloping fruity touch of plum and mandarin, bringing the comfort of a sweet embrace.",
-   "ar": "يوقظ معطر الجسم Vanilla Hug القوة الأنثوية بلمسة فاكهية آسرة من البرقوق واليوسفي، تمنح دفء عناق عذب."
+   "ar": "يوقظ معطر الجسم فانيلا هاج القوة الأنثوية بلمسة فاكهية آسرة من البرقوق واليوسفي، تمنح دفء عناق عذب."
   },
   "notes": {
    "top": [
@@ -2168,6 +2205,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Vanilla Cuddle",
+  "lineAr": "فانيلا كادل",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -2193,7 +2231,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Vanilla Cuddle Body Splash represents feminine authenticity through a sophisticated floral touch of tangerine and jasmine. It celebrates strength and conveys passion wherever it goes, combining desire and delicacy over a sweet, woody base.",
-   "ar": "يجسّد معطر الجسم Vanilla Cuddle الأصالة الأنثوية بلمسة زهرية راقية من التانجرين والياسمين. يحتفي بالقوة وينشر الشغف أينما حلّ، جامعاً بين الرغبة والرقة على قاعدة حلوة وخشبية."
+   "ar": "يجسّد معطر الجسم فانيلا كادل الأصالة الأنثوية بلمسة زهرية راقية من التانجرين والياسمين. يحتفي بالقوة وينشر الشغف أينما حلّ، جامعاً بين الرغبة والرقة على قاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -2216,6 +2254,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Wonderful",
+  "lineAr": "وندرفل",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -2242,7 +2281,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Wonderful Body Splash is a world full of desire and curiosity, where a fearless woman defies every label and breaks conventions, radiating glow and well-being.",
-   "ar": "معطر الجسم Wonderful عالم مفعم بالرغبات والفضول، تتحدى فيه امرأة جريئة كل التصنيفات وتكسر الأعراف، لتشعّ بريقاً وإحساساً بالراحة."
+   "ar": "معطر الجسم وندرفل عالم مفعم بالرغبات والفضول، تتحدى فيه امرأة جريئة كل التصنيفات وتكسر الأعراف، لتشعّ بريقاً وإحساساً بالراحة."
   },
   "source": "https://www.wepink.com.br/body-splash-wonderful-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -2252,6 +2291,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF Bloom",
+  "lineAr": "في إف بلوم",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -2277,7 +2317,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Bloom Body Splash is an ode to feminine delicacy, with touches of well-being and elegance that celebrate a love of life. Its fruity floral path opens with a citrus burst of bergamot and grapefruit, blended with juicy peach and delicate coconut. It then glides into a floral heart over a sweet, woody base with a sensual touch.",
-   "ar": "معطر الجسم VF Bloom قصيدة تتغنّى بالرقة الأنثوية، بلمسات من الراحة والأناقة تحتفي بحب الحياة. ينطلق مساره الزهري الفاكهي بانفجار حمضي من البرغموت والجريب فروت، ممزوجاً بعصارة الخوخ ورقة جوز الهند. ثم ينساب نحو قلب زهري على قاعدة حلوة وخشبية تضفي لمسة حسية."
+   "ar": "معطر الجسم في إف بلوم قصيدة تتغنّى بالرقة الأنثوية، بلمسات من الراحة والأناقة تحتفي بحب الحياة. ينطلق مساره الزهري الفاكهي بانفجار حمضي من البرغموت والجريب فروت، ممزوجاً بعصارة الخوخ ورقة جوز الهند. ثم ينساب نحو قلب زهري على قاعدة حلوة وخشبية تضفي لمسة حسية."
   },
   "notes": {
    "top": [
@@ -2306,6 +2346,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Celebrate Life",
+  "lineAr": "سيليبريت لايف",
   "size": "200 ml",
   "price": 69,
   "family": "warm",
@@ -2330,7 +2371,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Celebrate Life Body Cream offers essential hydration with a soft, smooth touch, along with nourishment and firmness, as its formula helps support collagen production and cell renewal. Its sweet fruity oriental scent opens with fresh apple, a floral touch and pink pepper, moving to a heart of lily of the valley, rose and jasmine and a softly sweet woody signature.",
-   "ar": "يمنح كريم الجسم Celebrate Life البشرة ترطيباً أساسياً بلمسة ناعمة وخفيفة، إلى جانب التغذية والتماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجدد الخلايا. ينطلق عبيره الفاكهي الشرقي الحلو بانتعاش التفاح ولمسة زهرية والفلفل الوردي، لينتقل إلى قلب من زنبق الوادي والورد والياسمين، وبصمة خشبية ذات حلاوة ناعمة."
+   "ar": "يمنح كريم الجسم سيليبريت لايف البشرة ترطيباً أساسياً بلمسة ناعمة وخفيفة، إلى جانب التغذية والتماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجدد الخلايا. ينطلق عبيره الفاكهي الشرقي الحلو بانتعاش التفاح ولمسة زهرية والفلفل الوردي، لينتقل إلى قلب من زنبق الوادي والورد والياسمين، وبصمة خشبية ذات حلاوة ناعمة."
   },
   "notes": {
    "top": [
@@ -2365,6 +2406,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Obsessed",
+  "lineAr": "أوبسيسد",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -2389,7 +2431,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Body Cream has a soft touch that provides hydration, nourishment and firmness, with a unique formula that helps support collagen production and cell renewal for healthy, glowing-looking skin. Its floral woody fragrance opens with cherry intertwined with citrus and moves to a sweet base of honey and caramel.",
-   "ar": "يتميّز كريم الجسم Obsessed بلمسة ناعمة تمنح البشرة الترطيب والتغذية والتماسك، فيما تساعد تركيبته الفريدة على دعم إنتاج الكولاجين وتجدد الخلايا لبشرة تبدو صحية ومشرقة. ينطلق عطره الزهري الخشبي بلمسة من الكرز تتشابك مع الحمضيات، لينتقل إلى قاعدة حلوة من العسل والكراميل."
+   "ar": "يتميّز كريم الجسم أوبسيسد بلمسة ناعمة تمنح البشرة الترطيب والتغذية والتماسك، فيما تساعد تركيبته الفريدة على دعم إنتاج الكولاجين وتجدد الخلايا لبشرة تبدو صحية ومشرقة. ينطلق عطره الزهري الخشبي بلمسة من الكرز تتشابك مع الحمضيات، لينتقل إلى قاعدة حلوة من العسل والكراميل."
   },
   "notes": {
    "top": [
@@ -2420,6 +2462,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Liberté",
+  "lineAr": "ليبرتيه",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -2446,7 +2489,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Liberté Cologne has a unique essence that overflows with freedom, elegance and well-being. Its fragrance reveals enchanting nuances and mysterious facets, with touches of pink pepper, grapefruit and noble flowers, highlighted by the renowned queen of perfumery, French Centifolia rose.",
-   "ar": "تتميّز كولونيا Liberté بجوهر فريد يفيض بالحرية والأناقة والإحساس بالراحة. يكشف عطرها عن تفاصيل ساحرة وجوانب غامضة، بلمسات من الفلفل الوردي والجريب فروت والأزهار النبيلة، وفي مقدمتها ملكة العطور الشهيرة، وردة سنتيفوليا الفرنسية."
+   "ar": "تتميّز كولونيا ليبرتيه بجوهر فريد يفيض بالحرية والأناقة والإحساس بالراحة. يكشف عطرها عن تفاصيل ساحرة وجوانب غامضة، بلمسات من الفلفل الوردي والجريب فروت والأزهار النبيلة، وفي مقدمتها ملكة العطور الشهيرة، وردة سنتيفوليا الفرنسية."
   },
   "notes": {
    "top": [
@@ -2473,6 +2516,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "King Blue",
+  "lineAr": "كينج بلو",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -2497,7 +2541,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "King Blue Body Splash carries the essence of victory to overcome every challenge, a masculine fragrance that inspires triumph, modernity, charm and elegance. Its woody path balances the senses with bergamot and herbs over a sweet base of patchouli and amber. It offers a refreshing sensation for men who seek well-being.",
-   "ar": "يحمل معطر الجسم King Blue جوهر الانتصار لتجاوز كل التحديات، وهو عطر رجالي يلهم النصر والعصرية والجاذبية والأناقة. يوازن مساره الخشبي الحواس بالبرغموت والأعشاب على قاعدة حلوة من الباتشولي والعنبر. ويمنح إحساساً منعشاً للرجال الباحثين عن الإحساس بالراحة."
+   "ar": "يحمل معطر الجسم كينج بلو جوهر الانتصار لتجاوز كل التحديات، وهو عطر رجالي يلهم النصر والعصرية والجاذبية والأناقة. يوازن مساره الخشبي الحواس بالبرغموت والأعشاب على قاعدة حلوة من الباتشولي والعنبر. ويمنح إحساساً منعشاً للرجال الباحثين عن الإحساس بالراحة."
   },
   "notes": {
    "top": [
@@ -2528,6 +2572,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Yahya Aneeq",
+  "lineAr": "يحيى أنيق",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -2554,7 +2599,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Yahya Aneeq Cologne is a floral fruity fragrance with a presence that is impossible to overlook.",
-   "ar": "كولونيا Yahya Aneeq عطر زهري فاكهي بحضور يستحيل تجاهله."
+   "ar": "كولونيا يحيى أنيق عطر زهري فاكهي بحضور يستحيل تجاهله."
   },
   "source": "https://www.wepink.com.br/desod-col-yahya-aneeq-100ml---wepink-598/p",
   "notes": {}
@@ -2564,6 +2609,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Wonbloom Fever",
+  "lineAr": "وونبلوم فيفر",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -2590,7 +2636,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Wonbloom Fever Cologne is made for women who live every moment intensely, turning red fruits, luminous flowers and irresistible creaminess into a modern, feminine signature. It opens with a joyful burst of raspberry, mandarin, blueberry and blackberries, followed by a sophisticated heart of orange blossom, magnolia and French lavender, which adds a modern touch that balances the composition.",
-   "ar": "صُمّمت كولونيا Wonbloom Fever للمرأة التي تعيش كل لحظة بشغف، فتحوّل الفواكه الحمراء والأزهار المشرقة والقوام الكريمي الذي لا يُقاوم إلى بصمة عصرية أنثوية. تنطلق بانفجار فاكهي مبهج من توت العليق واليوسفي والتوت الأزرق والتوت الأسود، يليه قلب راقٍ من زهر البرتقال والماغنوليا واللافندر الفرنسي الذي يضفي لمسة عصرية توازن التركيبة."
+   "ar": "صُمّمت كولونيا وونبلوم فيفر للمرأة التي تعيش كل لحظة بشغف، فتحوّل الفواكه الحمراء والأزهار المشرقة والقوام الكريمي الذي لا يُقاوم إلى بصمة عصرية أنثوية. تنطلق بانفجار فاكهي مبهج من توت العليق واليوسفي والتوت الأزرق والتوت الأسود، يليه قلب راقٍ من زهر البرتقال والماغنوليا واللافندر الفرنسي الذي يضفي لمسة عصرية توازن التركيبة."
   },
   "notes": {
    "top": [
@@ -2633,6 +2679,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "butter",
   "line": "Fatal Black For Her",
+  "lineAr": "فيتال بلاك فور هير",
   "size": "250 g",
   "price": 89,
   "badge": "new",
@@ -2653,11 +2700,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the touch of Fatal Black For Her",
-   "ar": "تغذية عميقة وتماسك بلمسة Fatal Black For Her"
+   "ar": "تغذية عميقة وتماسك بلمسة فيتال بلاك فور هير"
   },
   "desc": {
    "en": "Fatal Black For Her Body Butter turns self-care into a ritual of power, sweetness and seduction. Its rich, silky texture forms a protective layer that helps retain moisture for prolonged hydration and nourishment, while hydrating and antioxidant actives help skin look firmer, more even and radiant. A satin glow and a fruity floral oriental fragrance complete the experience.",
-   "ar": "تحوّل زبدة الجسم Fatal Black For Her العناية الذاتية إلى طقس من القوة والعذوبة والإغراء. يشكّل قوامها الغني والحريري طبقة واقية تساعد على حبس الرطوبة لترطيب مطوّل وتغذية، فيما تساعد مكوّناتها المرطّبة والمضادة للأكسدة على منح البشرة مظهراً أكثر تماسكاً وتجانساً وإشراقاً. ويكتمل الإحساس بلمعان ساتاني وعطر فاكهي زهري شرقي."
+   "ar": "تحوّل زبدة الجسم فيتال بلاك فور هير العناية الذاتية إلى طقس من القوة والعذوبة والإغراء. يشكّل قوامها الغني والحريري طبقة واقية تساعد على حبس الرطوبة لترطيب مطوّل وتغذية، فيما تساعد مكوّناتها المرطّبة والمضادة للأكسدة على منح البشرة مظهراً أكثر تماسكاً وتجانساً وإشراقاً. ويكتمل الإحساس بلمعان ساتاني وعطر فاكهي زهري شرقي."
   },
   "source": "https://www.wepink.com.br/body-butter-fatal-black-for-her-250gr---wepink-551/p",
   "notes": {}
@@ -2667,6 +2714,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "King Blue Supreme",
+  "lineAr": "كينج بلو سوبريم",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -2692,7 +2740,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "King Blue Supreme Cologne was created for men whose presence speaks for itself, in an intense fragrance of power, sophistication and authenticity. It opens with exotic passion fruit, fruity notes, Turkish rose and saffron, while oud, benzoin and Indonesian patchouli form a rich heart. Leather, Akigalawood, amber, vanilla and labdanum create an intense signature that lingers on the skin and in memory.",
-   "ar": "صُمّمت كولونيا King Blue Supreme للرجال الذين يتحدث حضورهم عنهم، بعطر مكثّف يجسّد القوة والرقي والأصالة. تنطلق بانتعاش الباشن فروت الاستوائي والنفحات الفاكهية وأناقة الورد التركي ولمسة الزعفران الثمينة، بينما يشكّل العود والجاوي والباتشولي الإندونيسي قلباً غنياً. أما الجلد والأكيغالاوود والعنبر والفانيليا واللادن، فتصنع بصمة مكثّفة تبقى على البشرة وفي الذاكرة."
+   "ar": "صُمّمت كولونيا كينج بلو سوبريم للرجال الذين يتحدث حضورهم عنهم، بعطر مكثّف يجسّد القوة والرقي والأصالة. تنطلق بانتعاش الباشن فروت الاستوائي والنفحات الفاكهية وأناقة الورد التركي ولمسة الزعفران الثمينة، بينما يشكّل العود والجاوي والباتشولي الإندونيسي قلباً غنياً. أما الجلد والأكيغالاوود والعنبر والفانيليا واللادن، فتصنع بصمة مكثّفة تبقى على البشرة وفي الذاكرة."
   },
   "notes": {
    "top": [
@@ -2757,6 +2805,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "scrub",
   "line": "Obsessed Lovely",
+  "lineAr": "أوبسيسد لافلي",
   "size": "450 g",
   "price": 99,
   "badge": "bestseller",
@@ -2781,7 +2830,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Lovely Body Scrub is an exfoliating body scrub from the Obsessed Lovely line. It turns bath time into a premium ritual.",
-   "ar": "مقشّر الجسم Obsessed Lovely هو مقشّر للجسم من مجموعة Obsessed Lovely. يحوّل وقت الاستحمام إلى طقس فاخر."
+   "ar": "مقشّر الجسم أوبسيسد لافلي هو مقشّر للجسم من مجموعة أوبسيسد لافلي. يحوّل وقت الاستحمام إلى طقس فاخر."
   },
   "source": "https://www.wepink.com.br/body-scrub-obessed-lovely-450gr---wepink-fs1152329/p",
   "notes": {}
@@ -2791,6 +2840,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF Tropical",
+  "lineAr": "في إف تروبيكال",
   "size": "75 ml",
   "price": 189,
   "badge": "bestseller",
@@ -2815,7 +2865,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Tropical Cologne is a fragrance that captures the essence of the Brazilian woman: warm, striking and full of personality. Inspired by women who turn presence into memory, it reveals an enveloping signature for those who love to be remembered wherever they go.",
-   "ar": "كولونيا VF Tropical عطر يجسّد جوهر المرأة البرازيلية: دافئة ولافتة ومفعمة بالشخصية. وهي مستوحاة من المرأة التي تحوّل حضورها إلى ذكرى، لتكشف عن بصمة آسرة لمن تحب أن تُذكَر أينما حلّت."
+   "ar": "كولونيا في إف تروبيكال عطر يجسّد جوهر المرأة البرازيلية: دافئة ولافتة ومفعمة بالشخصية. وهي مستوحاة من المرأة التي تحوّل حضورها إلى ذكرى، لتكشف عن بصمة آسرة لمن تحب أن تُذكَر أينما حلّت."
   },
   "source": "https://www.wepink.com.br/desod-colvftropical-75-ml---wepink-526/p",
   "notes": {}
@@ -2825,6 +2875,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Velours Pourpre",
+  "lineAr": "فيلور بوربر",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -2850,7 +2901,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Velours Pourpre Body Splash was created for women who turn presence into a signature: an intense, elegant fragrance that leaves an unforgettable trail. It opens with sweet cherry wrapped in rich cassis and syrupy nuances, followed by a refined heart of rose, orange blossom and creamy almond. At the base, patchouli, leather and vanilla add depth and mystery.",
-   "ar": "صُمّم رذاذ الجسم المعطّر Velours Pourpre للمرأة التي تحوّل حضورها إلى بصمة خاصة، فهو عطر مكثّف وأنيق يترك أثرًا لا يُنسى. يفتتح بحلاوة الكرز الممزوجة بعمق الكشمش الأسود ولمسات حلوة غنية، يليها قلب راقٍ من الورد وزهر البرتقال واللوز الكريمي. وفي القاعدة، يضفي الباتشولي والجلد والفانيليا عمقًا وغموضًا."
+   "ar": "صُمّم رذاذ الجسم المعطّر فيلور بوربر للمرأة التي تحوّل حضورها إلى بصمة خاصة، فهو عطر مكثّف وأنيق يترك أثرًا لا يُنسى. يفتتح بحلاوة الكرز الممزوجة بعمق الكشمش الأسود ولمسات حلوة غنية، يليها قلب راقٍ من الورد وزهر البرتقال واللوز الكريمي. وفي القاعدة، يضفي الباتشولي والجلد والفانيليا عمقًا وغموضًا."
   },
   "notes": {
    "top": [
@@ -2899,6 +2950,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Ruby Rhodolite",
+  "lineAr": "روبي رودولايت",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -2924,7 +2976,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ruby Rhodolite Body Cream delivers intense hydration, with actives that help support collagen production and cell renewal for nourished, firmer skin with a silky finish. Its texture glides on comfortably, leaving a lingering cozy feel. The fragrance brings together pitaya, jasmine and vanilla in an energy that stays, a manifesto of authenticity.",
-   "ar": "يمنح كريم الجسم Ruby Rhodolite ترطيبًا مكثفًا بفضل مكونات فعّالة تساعد على إنتاج الكولاجين وتجديد الخلايا، لبشرة مغذّاة وأكثر تماسكًا بلمسة نهائية حريرية. ينساب قوامه بسلاسة ويترك إحساسًا ممتدًا بالدفء والراحة. ويجمع عطره بين فاكهة التنين والياسمين والفانيليا في طاقة تدوم، كبيان للأصالة."
+   "ar": "يمنح كريم الجسم روبي رودولايت ترطيبًا مكثفًا بفضل مكونات فعّالة تساعد على إنتاج الكولاجين وتجديد الخلايا، لبشرة مغذّاة وأكثر تماسكًا بلمسة نهائية حريرية. ينساب قوامه بسلاسة ويترك إحساسًا ممتدًا بالدفء والراحة. ويجمع عطره بين فاكهة التنين والياسمين والفانيليا في طاقة تدوم، كبيان للأصالة."
   },
   "notes": {
    "top": [
@@ -2953,6 +3005,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Heaven Santal & Fig",
+  "lineAr": "هيفن سانتال آند فيج",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -2979,7 +3032,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Santal & Fig Body Splash expresses a modern, balanced and naturally sophisticated elegance, blending freshness, spice and creaminess. Bergamot, cardamom, black pepper and violet leaves create a bright, aromatic opening. At the heart, creamy fig is balanced by cedar and cedar leaves, while iris adds a refined powdery touch.",
-   "ar": "يعبّر رذاذ الجسم المعطّر Heaven Santal & Fig عن أناقة عصرية ومتوازنة وراقية بطبيعتها، تمزج بين الانتعاش والتوابل والقوام الكريمي. تبدأ الافتتاحية مشرقة وعطرية بالبرغموت والهيل والفلفل الأسود وأوراق البنفسج. وفي القلب، يتوازن التين الكريمي مع الأرز وأوراق الأرز، بينما يضيف السوسن لمسة بودرية راقية."
+   "ar": "يعبّر رذاذ الجسم المعطّر هيفن سانتال آند فيج عن أناقة عصرية ومتوازنة وراقية بطبيعتها، تمزج بين الانتعاش والتوابل والقوام الكريمي. تبدأ الافتتاحية مشرقة وعطرية بالبرغموت والهيل والفلفل الأسود وأوراق البنفسج. وفي القلب، يتوازن التين الكريمي مع الأرز وأوراق الأرز، بينما يضيف السوسن لمسة بودرية راقية."
   },
   "notes": {
    "top": [
@@ -3026,6 +3079,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Heaven Santal & Fig",
+  "lineAr": "هيفن سانتال آند فيج",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -3052,7 +3106,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Santal & Fig Cologne expresses a modern, balanced and naturally sophisticated elegance. It reveals effortless presence, combining freshness, spice and creaminess in an enveloping, distinctive signature.",
-   "ar": "تعبّر كولونيا Heaven Santal & Fig عن أناقة عصرية ومتوازنة وراقية بطبيعتها. وتكشف عن حضور لافت بلا تكلّف، إذ تمزج بين الانتعاش والتوابل والقوام الكريمي في بصمة آسرة ومميّزة."
+   "ar": "تعبّر كولونيا هيفن سانتال آند فيج عن أناقة عصرية ومتوازنة وراقية بطبيعتها. وتكشف عن حضور لافت بلا تكلّف، إذ تمزج بين الانتعاش والتوابل والقوام الكريمي في بصمة آسرة ومميّزة."
   },
   "source": "https://www.wepink.com.br/desod-col-heaven-santal-e-fig-100-ml---wepink-463/p",
   "notes": {}
@@ -3062,6 +3116,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "My We Belle",
+  "lineAr": "ماي وي بيل",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -3087,7 +3142,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My We Belle Body Splash balances freshness, femininity and sophistication in a luminous fruity floral. Juicy pear, bergamot, violet leaves and red berries open the scent, leading to a creamy white floral heart of orange blossom, tuberose, jasmine and lily of the valley. Vanilla and amber, warmed by sandalwood and cedar, leave a cozy, memorable trail.",
-   "ar": "يوازن رذاذ الجسم المعطّر My We Belle بين الانتعاش والأنوثة والرقي في تركيبة زهرية فاكهية مشرقة. تفتتحه الكمثرى العصيرية والبرغموت وأوراق البنفسج والتوت الأحمر، وصولًا إلى قلب كريمي من الزهور البيضاء يضم زهر البرتقال ومسك الروم والياسمين وزنبق الوادي. أما الفانيليا والعنبر، اللذان يدفئهما خشب الصندل والأرز، فيتركان أثرًا دافئًا لا يُنسى."
+   "ar": "يوازن رذاذ الجسم المعطّر ماي وي بيل بين الانتعاش والأنوثة والرقي في تركيبة زهرية فاكهية مشرقة. تفتتحه الكمثرى العصيرية والبرغموت وأوراق البنفسج والتوت الأحمر، وصولًا إلى قلب كريمي من الزهور البيضاء يضم زهر البرتقال ومسك الروم والياسمين وزنبق الوادي. أما الفانيليا والعنبر، اللذان يدفئهما خشب الصندل والأرز، فيتركان أثرًا دافئًا لا يُنسى."
   },
   "notes": {
    "top": [
@@ -3152,6 +3207,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Haylas",
+  "lineAr": "هيلاس",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -3176,7 +3232,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Haylas Body Splash is like living in a fairy tale, where flowers dance lightly around you, kissing the skin and leaving a scent that relaxes and brings a smile. The fragrance offers a feeling of deep comfort that leaves you more inclined to enjoy the day.",
-   "ar": "رذاذ الجسم المعطّر Haylas أشبه بالعيش في حكاية خيالية، حيث تتراقص الزهور برقة من حولك، تلامس البشرة وتترك عبيرًا يبعث على الاسترخاء ويرسم الابتسامة. ويمنح هذا العطر إحساسًا عميقًا بالراحة يجعلك أكثر إقبالًا على الاستمتاع بيومك."
+   "ar": "رذاذ الجسم المعطّر هيلاس أشبه بالعيش في حكاية خيالية، حيث تتراقص الزهور برقة من حولك، تلامس البشرة وتترك عبيرًا يبعث على الاسترخاء ويرسم الابتسامة. ويمنح هذا العطر إحساسًا عميقًا بالراحة يجعلك أكثر إقبالًا على الاستمتاع بيومك."
   },
   "source": "https://www.wepink.com.br/body-splash-haylas-200ml---wepink-401/p",
   "notes": {}
@@ -3186,6 +3242,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Feive",
+  "lineAr": "فيف",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -3211,7 +3268,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Feive Body Splash offers sophistication like never before, with a scent inspired by the very finest of high society. It is a true olfactory experience that evokes unrivaled sensations of luxury and wealth, a perfect combination of every subtlety needed for an unforgettable scent.",
-   "ar": "يقدّم رذاذ الجسم المعطّر Feive رقيًا لم تعهديه من قبل، بعبير مستوحى من صفوة المجتمع الراقي. إنه تجربة عطرية حقيقية تأخذك إلى أحاسيس لا مثيل لها من الفخامة والثراء، ومزيج مثالي من كل التفاصيل الدقيقة التي يتطلبها عطر لا يُنسى."
+   "ar": "يقدّم رذاذ الجسم المعطّر فيف رقيًا لم تعهديه من قبل، بعبير مستوحى من صفوة المجتمع الراقي. إنه تجربة عطرية حقيقية تأخذك إلى أحاسيس لا مثيل لها من الفخامة والثراء، ومزيج مثالي من كل التفاصيل الدقيقة التي يتطلبها عطر لا يُنسى."
   },
   "source": "https://www.wepink.com.br/body-splash-feive-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -3221,7 +3278,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "VF Golden Collection Set",
-  "lineAr": "طقم مجموعة VF Golden",
+  "lineAr": "في إف جولدن كوليكشن سِت",
   "price": 229,
   "color": "#D6B26E",
   "color2": "#F5EEDF",
@@ -3235,11 +3292,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The VF Golden line, together in one set.",
-   "ar": "مجموعة VF Golden مجتمعة في طقم واحد."
+   "ar": "مجموعة في إف جولدن مجتمعة في طقم واحد."
   },
   "desc": {
    "en": "This set from the VF Golden line includes VF Golden Body Cream and VF Golden Body Splash. It brings the collection's products together in a single kit.",
-   "ar": "يضم هذا الطقم من مجموعة VF Golden كريم الجسم VF Golden ورذاذ الجسم المعطّر VF Golden. ويجمع منتجات المجموعة معًا في طقم واحد."
+   "ar": "يضم هذا الطقم من مجموعة في إف جولدن كريم الجسم في إف جولدن ورذاذ الجسم المعطّر في إف جولدن. ويجمع منتجات المجموعة معًا في طقم واحد."
   },
   "source": "https://www.wepink.com.br/kit-vf-golden--body-cream-vf-golden--body-splash-vf-golden---wepink-84790/p",
   "notes": {}
@@ -3249,6 +3306,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Liberté",
+  "lineAr": "ليبرتيه",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -3273,7 +3331,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Liberté Body Cream moisturizes, nourishes and firms with a soft, smooth touch, thanks to a blend of actives that helps support collagen production, cell renewal and the fight against premature aging. Its floral bouquet scent unfolds with enchanting, mysterious hints of pink pepper, grapefruit and noble flowers, leaving skin fragrant, healthy-looking and radiant.",
-   "ar": "يمنح كريم الجسم Liberté بشرتك الترطيب والتغذية والشد بلمسة ناعمة ورقيقة، بفضل مزيج من المكونات الفعّالة التي تساعد على إنتاج الكولاجين وتجديد الخلايا ومكافحة علامات التقدم المبكر في السن. ويتبع عطره مسار باقة زهرية بلمسات ساحرة وغامضة من الفلفل الوردي والجريب فروت والأزهار النبيلة، ليترك البشرة معطّرة بمظهر صحي ومشرق."
+   "ar": "يمنح كريم الجسم ليبرتيه بشرتك الترطيب والتغذية والشد بلمسة ناعمة ورقيقة، بفضل مزيج من المكونات الفعّالة التي تساعد على إنتاج الكولاجين وتجديد الخلايا ومكافحة علامات التقدم المبكر في السن. ويتبع عطره مسار باقة زهرية بلمسات ساحرة وغامضة من الفلفل الوردي والجريب فروت والأزهار النبيلة، ليترك البشرة معطّرة بمظهر صحي ومشرق."
   },
   "notes": {
    "top": [
@@ -3302,6 +3360,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF",
+  "lineAr": "في إف",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -3327,7 +3386,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Cologne is made for authentic, feminine women who are determined and transformative, living intensely, without labels and unafraid to be themselves. Its essence expresses a striking personality through notes of yellow fruits paired with jasmine, while a sweeter, chic base of amber and patchouli sets the creation apart.",
-   "ar": "صُمّمت كولونيا VF للمرأة الأصيلة والأنثوية، الطموحة التي تصنع التغيير وتعيش بشغف، بلا قيود ولا خوف من أن تكون على حقيقتها. ويعبّر جوهرها عن شخصية لافتة من خلال نفحات الفواكه الصفراء الممتزجة بالياسمين، فيما تمنحها قاعدة العنبر والباتشولي الأكثر حلاوة وأناقة طابعها المميّز."
+   "ar": "صُمّمت كولونيا في إف للمرأة الأصيلة والأنثوية، الطموحة التي تصنع التغيير وتعيش بشغف، بلا قيود ولا خوف من أن تكون على حقيقتها. ويعبّر جوهرها عن شخصية لافتة من خلال نفحات الفواكه الصفراء الممتزجة بالياسمين، فيما تمنحها قاعدة العنبر والباتشولي الأكثر حلاوة وأناقة طابعها المميّز."
   },
   "notes": {
    "top": [
@@ -3360,6 +3419,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Wonbloom",
+  "lineAr": "وونبلوم",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -3385,7 +3445,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Wonbloom Body Splash has the ideal scent to make an impression wherever you are. Tangerine and mandarin bring freshness and elegance before giving way to iconic jasmine. Amber and caramel complete this precious fragrance, designed down to every detail for powerful women.",
-   "ar": "يحمل رذاذ الجسم المعطّر Wonbloom العبير المثالي لتتألقي أينما كنتِ. يضفي اليوسفي والماندرين انتعاشًا وأناقة قبل أن يفسحا المجال للياسمين الأيقوني. ثم يكتمل هذا العطر النفيس بالعنبر والكراميل، وقد صُمّم بأدق تفاصيله للمرأة القوية."
+   "ar": "يحمل رذاذ الجسم المعطّر وونبلوم العبير المثالي لتتألقي أينما كنتِ. يضفي اليوسفي والماندرين انتعاشًا وأناقة قبل أن يفسحا المجال للياسمين الأيقوني. ثم يكتمل هذا العطر النفيس بالعنبر والكراميل، وقد صُمّم بأدق تفاصيله للمرأة القوية."
   },
   "notes": {
    "top": [
@@ -3422,6 +3482,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "One Touch Silk",
+  "lineAr": "ون تاتش سيلك",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -3447,7 +3508,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Silk Body Splash is like an affectionate touch that embraces and enchants, reviving the joy of romance in a floral fruity scent. It opens with charming blackberry and a refreshing hint of strawberry, evolves into a beautiful floral heart and finishes on an enchanting vanilla base.",
-   "ar": "رذاذ الجسم المعطّر One Touch Silk أشبه بلمسة حنان تحتضن وتسحر، ويعيد بهجة الرومانسية في عبير زهري فاكهي. يفتتح بالتوت الأسود الساحر ولمسة منعشة من الفراولة، ثم يتطور إلى قلب زهري جميل، ويختتم بقاعدة آسرة من الفانيليا."
+   "ar": "رذاذ الجسم المعطّر ون تاتش سيلك أشبه بلمسة حنان تحتضن وتسحر، ويعيد بهجة الرومانسية في عبير زهري فاكهي. يفتتح بالتوت الأسود الساحر ولمسة منعشة من الفراولة، ثم يتطور إلى قلب زهري جميل، ويختتم بقاعدة آسرة من الفانيليا."
   },
   "notes": {
    "top": [
@@ -3474,6 +3535,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Perfect Pear",
+  "lineAr": "بيرفكت بير",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -3497,7 +3559,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Perfect Pear Body Cream has a soft touch, delicately made to moisturize, nourish and firm. Its formula helps support collagen production and cell renewal, leaving skin healthy-looking and radiant for a refreshing sense of well-being. Its floral scent exudes a feminine, elegant essence over a sweet, woody base.",
-   "ar": "يتميّز كريم الجسم Perfect Pear بلمسة ناعمة صُمّمت بعناية للترطيب والتغذية والشد. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، لتمنح البشرة مظهرًا صحيًا ومشرقًا وإحساسًا منعشًا بالراحة. ويفوح عطره الزهري بجوهر أنثوي أنيق على قاعدة حلوة وخشبية."
+   "ar": "يتميّز كريم الجسم بيرفكت بير بلمسة ناعمة صُمّمت بعناية للترطيب والتغذية والشد. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، لتمنح البشرة مظهرًا صحيًا ومشرقًا وإحساسًا منعشًا بالراحة. ويفوح عطره الزهري بجوهر أنثوي أنيق على قاعدة حلوة وخشبية."
   },
   "source": "https://www.wepink.com.br/body-cream-perfect-pear-200-ml---wepink-199/p",
   "notes": {}
@@ -3507,6 +3569,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Infinity",
+  "lineAr": "إنفينيتي",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -3532,7 +3595,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Body Cream offers an infinitely pleasant sensory experience, with a soft touch that helps keep skin moisturized, nourished and smooth. Anti-aging components and vitamin E help regenerate the skin and bring a sense of well-being. Its notes blend flowers, a sweet base, patchouli and amber, conveying empowerment, passion and sweetness.",
-   "ar": "يقدّم كريم الجسم Infinity تجربة حسية ممتعة بلا حدود، بلمسة ناعمة تساعد على ترطيب البشرة وتغذيتها ومنحها النعومة. وتساعد مكوناته المضادة لعلامات التقدم في السن وفيتامين E على تجديد البشرة ومنح إحساس بالراحة. وتمزج نفحاته بين الزهور وقاعدة حلوة والباتشولي والعنبر، لتعبّر عن القوة والشغف والعذوبة."
+   "ar": "يقدّم كريم الجسم إنفينيتي تجربة حسية ممتعة بلا حدود، بلمسة ناعمة تساعد على ترطيب البشرة وتغذيتها ومنحها النعومة. وتساعد مكوناته المضادة لعلامات التقدم في السن وفيتامين إي على تجديد البشرة ومنح إحساس بالراحة. وتمزج نفحاته بين الزهور وقاعدة حلوة والباتشولي والعنبر، لتعبّر عن القوة والشغف والعذوبة."
   },
   "notes": {
    "heart": [
@@ -3559,6 +3622,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Infinity",
+  "lineAr": "إنفينيتي",
   "size": "75 ml",
   "price": 189,
   "color": "#E24797",
@@ -3582,7 +3646,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Cologne carries the essence of the determined woman who chases her dreams. Its notes blend flowers, a sweet base, patchouli and amber for a truly special touch. It is a manifesto of passion, sweetness and empowerment in a feminine fragrance made for shining.",
-   "ar": "تحمل كولونيا Infinity جوهر المرأة الطموحة التي تسعى وراء أحلامها، وتمزج نفحاتها بين الزهور وقاعدة حلوة والباتشولي والعنبر لتمنحها لمسة خاصة. إنها بيان من الشغف والعذوبة والقوة في عطر أنثوي صُمّم لتتألقي."
+   "ar": "تحمل كولونيا إنفينيتي جوهر المرأة الطموحة التي تسعى وراء أحلامها، وتمزج نفحاتها بين الزهور وقاعدة حلوة والباتشولي والعنبر لتمنحها لمسة خاصة. إنها بيان من الشغف والعذوبة والقوة في عطر أنثوي صُمّم لتتألقي."
   },
   "notes": {
    "heart": [
@@ -3609,6 +3673,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "One Touch",
+  "lineAr": "ون تاتش",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -3634,7 +3699,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Cologne was developed for people who go after their goals, bringing glamour to special moments with grit, strength, authenticity and power. Its essence expresses a striking personality through notes of selected fruits and a blend of flowers, while a sweet base of patchouli and vanilla sets the creation apart.",
-   "ar": "طُوّرت كولونيا One Touch لمن يسعون وراء أهدافهم، لتضفي البريق على اللحظات المميزة بروح من العزيمة والقوة والأصالة. ويعبّر جوهرها عن شخصية لافتة من خلال نفحات من فواكه مختارة ومزيج من الزهور، فيما تمنحها قاعدة حلوة من الباتشولي والفانيليا طابعها المميّز."
+   "ar": "طُوّرت كولونيا ون تاتش لمن يسعون وراء أهدافهم، لتضفي البريق على اللحظات المميزة بروح من العزيمة والقوة والأصالة. ويعبّر جوهرها عن شخصية لافتة من خلال نفحات من فواكه مختارة ومزيج من الزهور، فيما تمنحها قاعدة حلوة من الباتشولي والفانيليا طابعها المميّز."
   },
   "notes": {
    "top": [
@@ -3667,6 +3732,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Perfect Pear",
+  "lineAr": "بيرفكت بير",
   "size": "100 ml",
   "price": 189,
   "badge": "bestseller",
@@ -3691,7 +3757,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Perfect Pear Cologne embodies the classic and delicate in fragrance, with a light, citrusy essence that conveys feminine strength and subtlety. Its fruity touch over a blend of flowers reinterprets a natural, elegant lifestyle, finishing with notes of patchouli and amber.",
-   "ar": "تجسّد كولونيا Perfect Pear الطابع الكلاسيكي الرقيق في عالم العطور، بجوهر خفيف وحمضي يعبّر عن قوة المرأة ورقتها. وتعيد لمستها الفاكهية الممزوجة بالزهور تعريف أسلوب الحياة الطبيعي والأنيق، لتختتم بنفحات من الباتشولي والعنبر."
+   "ar": "تجسّد كولونيا بيرفكت بير الطابع الكلاسيكي الرقيق في عالم العطور، بجوهر خفيف وحمضي يعبّر عن قوة المرأة ورقتها. وتعيد لمستها الفاكهية الممزوجة بالزهور تعريف أسلوب الحياة الطبيعي والأنيق، لتختتم بنفحات من الباتشولي والعنبر."
   },
   "notes": {
    "base": [
@@ -3712,6 +3778,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF",
+  "lineAr": "في إف",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -3738,7 +3805,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Virginia Fonseca's VF Body Splash brings a unique sense of well-being to your body-care ritual, with a striking yet delicate scent of yellow fruits paired with jasmine over a sweeter, chic base of amber and patchouli. It was developed to perfectly complete the way you care for yourself.",
-   "ar": "يمنحك رذاذ الجسم المعطّر VF من Virginia Fonseca إحساسًا فريدًا بالراحة ضمن طقوس العناية بجسمك، بعبير لافت ورقيق من الفواكه الصفراء الممتزجة بالياسمين، على قاعدة أكثر حلاوة وأناقة من العنبر والباتشولي. وقد طُوّر ليكمل بامتياز أسلوبك في العناية بنفسك."
+   "ar": "يمنحك رذاذ الجسم المعطّر في إف من فيرجينيا فونسيكا إحساسًا فريدًا بالراحة ضمن طقوس العناية بجسمك، بعبير لافت ورقيق من الفواكه الصفراء الممتزجة بالياسمين، على قاعدة أكثر حلاوة وأناقة من العنبر والباتشولي. وقد طُوّر ليكمل بامتياز أسلوبك في العناية بنفسك."
   },
   "notes": {
    "top": [
@@ -3771,6 +3838,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Absolute Titanium",
+  "lineAr": "أبسولوت تيتانيوم",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -3796,7 +3864,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Absolute Titanium Body Splash is made for men who win people over instantly and stay in the memory long after they leave, offering a contemporary take on masculine elegance. Lemon, mint and green apple open with invigorating freshness, while geranium and lavender form a refined aromatic floral heart. Cedar, vanilla, vetiver and moss build an intense yet comfortable base.",
-   "ar": "صُمّم رذاذ الجسم المعطّر Absolute Titanium للرجل الذي يأسر من اللحظة الأولى ويبقى في الذاكرة طويلًا بعد رحيله، مقدّمًا رؤية عصرية للأناقة الرجالية. يفتتح بانتعاش حيوي من الليمون والنعناع والتفاح الأخضر، بينما تشكّل إبرة الراعي والخزامى قلبًا عطريًا زهريًا راقيًا. ويبني الأرز والفانيليا ونجيل الهند والطحلب قاعدة مكثّفة ومريحة في آن."
+   "ar": "صُمّم رذاذ الجسم المعطّر أبسولوت تيتانيوم للرجل الذي يأسر من اللحظة الأولى ويبقى في الذاكرة طويلًا بعد رحيله، مقدّمًا رؤية عصرية للأناقة الرجالية. يفتتح بانتعاش حيوي من الليمون والنعناع والتفاح الأخضر، بينما تشكّل إبرة الراعي والخزامى قلبًا عطريًا زهريًا راقيًا. ويبني الأرز والفانيليا ونجيل الهند والطحلب قاعدة مكثّفة ومريحة في آن."
   },
   "notes": {
    "top": [
@@ -3849,7 +3917,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "haircare",
   "line": "My Hair Dry Shampoo Spray",
-  "lineAr": "بخاخ الشامبو الجاف My Hair",
+  "lineAr": "ماي هير دراي شامبو سبراي",
   "size": "150 ml",
   "price": 79,
   "badge": "new",
@@ -3874,7 +3942,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Hair Dry Shampoo Spray is a no-rinse solution for quick root touch-ups, removing excess oil and neutralizing heavy shine in seconds. Its smart formula revives hair between washes, releasing a sophisticated fragrance that restores freshness and keeps strands feeling clean, light and loose throughout the day.",
-   "ar": "بخاخ الشامبو الجاف My Hair حلّ لا يحتاج إلى شطف للمسات سريعة عند الجذور، إذ يزيل الدهون الزائدة ويخفّف اللمعان المثقل في ثوانٍ. وتنعش تركيبته الذكية الشعر بين مرات الغسل، مطلقةً عطرًا راقيًا يجدد الانتعاش ويحافظ على إحساس الشعر بالنظافة والخفة والانسيابية طوال اليوم."
+   "ar": "بخاخ الشامبو الجاف ماي هير حلّ لا يحتاج إلى شطف للمسات سريعة عند الجذور، إذ يزيل الدهون الزائدة ويخفّف اللمعان المثقل في ثوانٍ. وتنعش تركيبته الذكية الشعر بين مرات الغسل، مطلقةً عطرًا راقيًا يجدد الانتعاش ويحافظ على إحساس الشعر بالنظافة والخفة والانسيابية طوال اليوم."
   },
   "source": "https://www.wepink.com.br/shampoo-a-seco-wepink-my-hair-spray---wepink-9600001/p",
   "notes": {}
@@ -3884,6 +3952,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "soap",
   "line": "One Touch Silk",
+  "lineAr": "ون تاتش سيلك",
   "price": 29,
   "color": "#D85579",
   "color2": "#F6D9E1",
@@ -3905,7 +3974,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The One Touch Silk Clean Bar is a bar soap from the One Touch Silk line. It brings the care your skin deserves to your everyday routine.",
-   "ar": "صابونة Clean Bar من مجموعة One Touch Silk هي صابونة صلبة للعناية بالبشرة. وتمنح بشرتك العناية التي تستحقها ضمن روتينك اليومي."
+   "ar": "صابونة كلين بار من مجموعة ون تاتش سيلك هي صابونة صلبة للعناية بالبشرة. وتمنح بشرتك العناية التي تستحقها ضمن روتينك اليومي."
   },
   "source": "https://www.wepink.com.br/sabonete-em-barra-one-touch-silk---wepink-prd00011/p",
   "notes": {}
@@ -3915,6 +3984,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Fatal White",
+  "lineAr": "فيتال وايت",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -3938,7 +4008,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fatal White Body Cream offers delicate, fragrant hydration that nourishes and firms the skin, leaving it soft and luminous. Its formula helps support collagen production and cell renewal for a healthy-looking glow throughout the day. The fragrance unites tangerine, orchid and amber crystals in a sweet, velvety feminine signature.",
-   "ar": "يمنح كريم الجسم Fatal White ترطيبًا رقيقًا ومعطّرًا يغذّي البشرة ويشدّها، ويتركها ناعمة ومشرقة. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا لمظهر صحي ومتألق طوال اليوم. ويجمع عطره بين اليوسفي والأوركيد وبلورات العنبر في بصمة أنثوية حلوة ومخملية."
+   "ar": "يمنح كريم الجسم فيتال وايت ترطيبًا رقيقًا ومعطّرًا يغذّي البشرة ويشدّها، ويتركها ناعمة ومشرقة. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا لمظهر صحي ومتألق طوال اليوم. ويجمع عطره بين اليوسفي والأوركيد وبلورات العنبر في بصمة أنثوية حلوة ومخملية."
   },
   "notes": {
    "top": [
@@ -3967,6 +4037,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "VF 2.7",
+  "lineAr": "في إف 2.7",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -3991,7 +4062,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF 2.7 Birthday Edition Body Cream wraps the skin in a celebration of care. Its formula helps support collagen production and cell renewal, delivering intense hydration for firmer, nourished, healthy-looking skin with a velvety feel. The floral oriental fragrance leaves a sophisticated, enveloping trail to accompany a new chapter with light and confidence.",
-   "ar": "يغمر كريم الجسم VF 2.7 Birthday Edition بشرتك باحتفاء حقيقي بالعناية. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، مانحةً ترطيبًا مكثفًا لبشرة أكثر تماسكًا وتغذية بمظهر صحي ولمسة مخملية. ويترك عطره الزهري الشرقي أثرًا راقيًا وآسرًا يرافقك في مرحلة جديدة مفعمة بالإشراق والثقة."
+   "ar": "يغمر كريم الجسم في إف 2.7 بيرثداي إيديشن بشرتك باحتفاء حقيقي بالعناية. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، مانحةً ترطيبًا مكثفًا لبشرة أكثر تماسكًا وتغذية بمظهر صحي ولمسة مخملية. ويترك عطره الزهري الشرقي أثرًا راقيًا وآسرًا يرافقك في مرحلة جديدة مفعمة بالإشراق والثقة."
   },
   "source": "https://www.wepink.com.br/body-cream-vf-27-200ml---wepink-520/p",
   "notes": {}
@@ -4001,6 +4072,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Macchiato",
+  "lineAr": "ماكياتو",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -4027,7 +4099,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Macchiato Body Splash celebrates enveloping sophistication and striking contrasts, created for those who love intense experiences. Mandarin meets black pepper and pink pepper in a bright, spicy opening, followed by a heart of rose and orange blossom wrapped in creamy vanilla. A café latte accord and warm amber notes form a comfortable, memorable base with a cozy trail.",
-   "ar": "يحتفي رذاذ الجسم المعطّر Macchiato بالرقي الآسر والتناقضات اللافتة، وقد صُمّم لعشّاق التجارب المفعمة بالحيوية. يلتقي الماندرين بالفلفل الأسود والفلفل الوردي في افتتاحية مشرقة ومتبّلة، يليها قلب من الورد وزهر البرتقال يغلّفه قوام الفانيليا الكريمي. ويشكّل أكورد الكافيه لاتيه والنفحات العنبرية الدافئة قاعدة مريحة لا تُنسى تترك أثرًا دافئًا."
+   "ar": "يحتفي رذاذ الجسم المعطّر ماكياتو بالرقي الآسر والتناقضات اللافتة، وقد صُمّم لعشّاق التجارب المفعمة بالحيوية. يلتقي الماندرين بالفلفل الأسود والفلفل الوردي في افتتاحية مشرقة ومتبّلة، يليها قلب من الورد وزهر البرتقال يغلّفه قوام الفانيليا الكريمي. ويشكّل أكورد الكافيه لاتيه والنفحات العنبرية الدافئة قاعدة مريحة لا تُنسى تترك أثرًا دافئًا."
   },
   "notes": {
    "top": [
@@ -4076,6 +4148,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Macchiato",
+  "lineAr": "ماكياتو",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -4102,7 +4175,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Macchiato Cologne celebrates enveloping sophistication and striking contrasts, created for those who love intense experiences. A bright, spicy opening of mandarin, black pepper and pink pepper leads to a heart of rose and orange blossom wrapped in creamy vanilla. A café latte accord meets warm amber notes in a comfortable, memorable base.",
-   "ar": "تحتفي كولونيا Macchiato بالرقي الآسر والتناقضات اللافتة، وقد صُمّمت لعشّاق التجارب المفعمة بالحيوية. تنطلق بافتتاحية مشرقة ومتبّلة من الماندرين والفلفل الأسود والفلفل الوردي، وصولًا إلى قلب من الورد وزهر البرتقال يغلّفه قوام الفانيليا الكريمي. ويلتقي أكورد الكافيه لاتيه بالنفحات العنبرية الدافئة في قاعدة مريحة لا تُنسى."
+   "ar": "تحتفي كولونيا ماكياتو بالرقي الآسر والتناقضات اللافتة، وقد صُمّمت لعشّاق التجارب المفعمة بالحيوية. تنطلق بافتتاحية مشرقة ومتبّلة من الماندرين والفلفل الأسود والفلفل الوردي، وصولًا إلى قلب من الورد وزهر البرتقال يغلّفه قوام الفانيليا الكريمي. ويلتقي أكورد الكافيه لاتيه بالنفحات العنبرية الدافئة في قاعدة مريحة لا تُنسى."
   },
   "notes": {
    "top": [
@@ -4151,6 +4224,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Cassera",
+  "lineAr": "كاسيرا",
   "size": "100 ml",
   "price": 189,
   "color": "#E6B595",
@@ -4174,7 +4248,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Cassera Cologne celebrates sophisticated, luminous femininity, created for women who enchant effortlessly. Juicy plum, radiant bergamot and delicate peach create a vibrant, elegant first impression. At the heart, peony, mimosa, lily of the valley and jasmine form a refined floral bouquet that balances freshness, romance and timeless sophistication.",
-   "ar": "تحتفي كولونيا Cassera بأنوثة راقية ومشرقة، وقد صُمّمت للمرأة التي تأسر دون عناء. يمنح البرقوق العصيري والبرغموت المشرق والخوخ الرقيق انطباعًا أول نابضًا بالحيوية والأناقة. وفي القلب، تشكّل الفاوانيا والميموزا وزنبق الوادي والياسمين باقة زهرية راقية توازن بين الانتعاش والرومانسية والرقي الخالد."
+   "ar": "تحتفي كولونيا كاسيرا بأنوثة راقية ومشرقة، وقد صُمّمت للمرأة التي تأسر دون عناء. يمنح البرقوق العصيري والبرغموت المشرق والخوخ الرقيق انطباعًا أول نابضًا بالحيوية والأناقة. وفي القلب، تشكّل الفاوانيا والميموزا وزنبق الوادي والياسمين باقة زهرية راقية توازن بين الانتعاش والرومانسية والرقي الخالد."
   },
   "notes": {
    "top": [
@@ -4217,6 +4291,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Vanilla Wish",
+  "lineAr": "فانيلا ويش",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -4237,11 +4312,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Wish.",
-   "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير Vanilla Wish."
+   "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا ويش."
   },
   "desc": {
    "en": "Vanilla Wish Body Cream combines delicacy, care and hydration to reveal the skin you have always wanted. Its formula helps support collagen production and cell renewal, while a blend of selected oils and extracts leaves skin soft, healthy-looking and luminous. Notes of freesia, jasmine and musk add a bold, vibrant and authentic touch to self-care.",
-   "ar": "يجمع كريم الجسم Vanilla Wish بين الرقة والعناية والترطيب ليكشف عن البشرة التي طالما حلمتِ بها. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، بينما يمنح مزيج من الزيوت والمستخلصات المختارة البشرة نعومة ومظهرًا صحيًا مشرقًا. وتضفي نفحات الفريزيا والياسمين والمسك لمسة جريئة ونابضة بالحيوية والأصالة على لحظات عنايتك بنفسك."
+   "ar": "يجمع كريم الجسم فانيلا ويش بين الرقة والعناية والترطيب ليكشف عن البشرة التي طالما حلمتِ بها. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، بينما يمنح مزيج من الزيوت والمستخلصات المختارة البشرة نعومة ومظهرًا صحيًا مشرقًا. وتضفي نفحات الفريزيا والياسمين والمسك لمسة جريئة ونابضة بالحيوية والأصالة على لحظات عنايتك بنفسك."
   },
   "notes": {
    "top": [
@@ -4270,6 +4345,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Vanilla Soft",
+  "lineAr": "فانيلا سوفت",
   "size": "200 ml",
   "price": 69,
   "family": "warm",
@@ -4290,11 +4366,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Soft.",
-   "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير Vanilla Soft."
+   "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا سوفت."
   },
   "desc": {
    "en": "Vanilla Soft Body Cream deeply moisturizes, leaving skin comfortable and fragrant. Its formula helps support collagen production and cell renewal, while a blend of selected oils and extracts provides softness and a healthy, luminous look. The fruity oriental fragrance completes the experience with a delicate, deeply comforting touch.",
-   "ar": "يرطّب كريم الجسم Vanilla Soft البشرة بعمق ويتركها مريحة ومعطّرة. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، بينما يمنح مزيج من الزيوت والمستخلصات المختارة نعومة ومظهرًا صحيًا مشرقًا. ويكتمل هذا الإحساس بعطر شرقي فاكهي يضفي لمسة رقيقة تبعث على الدفء والراحة."
+   "ar": "يرطّب كريم الجسم فانيلا سوفت البشرة بعمق ويتركها مريحة ومعطّرة. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، بينما يمنح مزيج من الزيوت والمستخلصات المختارة نعومة ومظهرًا صحيًا مشرقًا. ويكتمل هذا الإحساس بعطر شرقي فاكهي يضفي لمسة رقيقة تبعث على الدفء والراحة."
   },
   "source": "https://www.wepink.com.br/body-cream-locao-hid-desodvanillasoft-200-ml---wepink-489/p",
   "notes": {}
@@ -4304,7 +4380,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Obsessed Collection Set",
-  "lineAr": "طقم مجموعة Obsessed",
+  "lineAr": "أوبسيسد كوليكشن سِت",
   "price": 229,
   "color": "#774245",
   "color2": "#E1D5D6",
@@ -4318,11 +4394,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Obsessed line, together in one set.",
-   "ar": "مجموعة Obsessed مجتمعة في طقم واحد."
+   "ar": "مجموعة أوبسيسد مجتمعة في طقم واحد."
   },
   "desc": {
    "en": "The Obsessed Collection Set brings together products from the Obsessed line in a single kit. It offers a convenient way to discover the line's products together.",
-   "ar": "يجمع طقم مجموعة Obsessed منتجات من مجموعة Obsessed في طقم واحد. ويقدّم طريقة سهلة لاكتشاف منتجات المجموعة معًا."
+   "ar": "يجمع طقم مجموعة أوبسيسد منتجات من مجموعة أوبسيسد في طقم واحد. ويقدّم طريقة سهلة لاكتشاف منتجات المجموعة معًا."
   },
   "source": "https://www.wepink.com.br/kit-linha-obsessed---wepink-125353/p",
   "notes": {}
@@ -4332,7 +4408,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Heaven Blue Collection Set",
-  "lineAr": "طقم مجموعة Heaven Blue",
+  "lineAr": "هيفن بلو كوليكشن سِت",
   "price": 229,
   "color": "#98CACD",
   "color2": "#E8F3F4",
@@ -4346,11 +4422,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Heaven Blue line, together in one set.",
-   "ar": "مجموعة Heaven Blue مجتمعة في طقم واحد."
+   "ar": "مجموعة هيفن بلو مجتمعة في طقم واحد."
   },
   "desc": {
    "en": "The Heaven Blue Collection Set brings together products from the Heaven Blue line in a single kit. It offers a convenient way to discover the line's products together.",
-   "ar": "يجمع طقم مجموعة Heaven Blue منتجات من مجموعة Heaven Blue في طقم واحد. ويقدّم طريقة سهلة لاكتشاف منتجات المجموعة معًا."
+   "ar": "يجمع طقم مجموعة هيفن بلو منتجات من مجموعة هيفن بلو في طقم واحد. ويقدّم طريقة سهلة لاكتشاف منتجات المجموعة معًا."
   },
   "source": "https://www.wepink.com.br/kit-linha-heaven-blue---wepink-125352/p",
   "notes": {}
@@ -4360,6 +4436,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "Celebrate Life",
+  "lineAr": "سيليبريت لايف",
   "size": "50 ml",
   "price": 69,
   "color": "#DA979D",
@@ -4383,7 +4460,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Celebrate Life Hair Mist leaves hair shinier, protected and fragrant all day, celebrating a unique, true and extraordinary beauty. Its oriental scent brings comfort and well-being to the hair, opening with fresh apple and a dazzling touch of pink pepper before a magical floral heart and a sweet, elegant woody base.",
-   "ar": "يمنح عطر الشعر Celebrate Life شعرك لمعانًا وحماية وعبيرًا طوال اليوم، احتفاءً بجمال فريد وحقيقي واستثنائي. ويضفي عبيره الشرقي إحساسًا بالراحة على الشعر، إذ يفتتح بانتعاش التفاح ولمسة مبهرة من الفلفل الوردي، يليها قلب زهري ساحر وقاعدة خشبية حلوة تفيض بالأناقة."
+   "ar": "يمنح عطر الشعر سيليبريت لايف شعرك لمعانًا وحماية وعبيرًا طوال اليوم، احتفاءً بجمال فريد وحقيقي واستثنائي. ويضفي عبيره الشرقي إحساسًا بالراحة على الشعر، إذ يفتتح بانتعاش التفاح ولمسة مبهرة من الفلفل الوردي، يليها قلب زهري ساحر وقاعدة خشبية حلوة تفيض بالأناقة."
   },
   "notes": {
    "top": [
@@ -4404,6 +4481,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF 2.7",
+  "lineAr": "في إف 2.7",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -4430,7 +4508,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF 2.7 Birthday Edition Body Splash celebrates your essence, your strength and everything still to come. Grapefruit, bergamot, pear and pink pepper create a radiant, modern opening, while creamy tuberose meets orange blossom at the heart, with vetiver adding depth. Sandalwood and patchouli form a warm, structured base, wrapped in soft musk.",
-   "ar": "يحتفي رذاذ الجسم المعطّر VF 2.7 Birthday Edition بجوهرك وقوتك وبكل ما هو آتٍ. يشكّل الجريب فروت والبرغموت والكمثرى والفلفل الوردي افتتاحية مشرقة وعصرية، بينما يلتقي مسك الروم الكريمي بزهر البرتقال في القلب، ويضيف نجيل الهند عمقًا وتوازنًا. ويصنع خشب الصندل والباتشولي قاعدة دافئة ومتماسكة يغلّفها المسك الناعم."
+   "ar": "يحتفي رذاذ الجسم المعطّر في إف 2.7 بيرثداي إيديشن بجوهرك وقوتك وبكل ما هو آتٍ. يشكّل الجريب فروت والبرغموت والكمثرى والفلفل الوردي افتتاحية مشرقة وعصرية، بينما يلتقي مسك الروم الكريمي بزهر البرتقال في القلب، ويضيف نجيل الهند عمقًا وتوازنًا. ويصنع خشب الصندل والباتشولي قاعدة دافئة ومتماسكة يغلّفها المسك الناعم."
   },
   "notes": {
    "top": [
@@ -4487,6 +4565,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF 2.7",
+  "lineAr": "في إف 2.7",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -4512,7 +4591,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF 2.7 Birthday Edition Cologne celebrates your essence, your strength and everything still to come, marking a new chapter with sophistication and presence. It opens with vibrant grapefruit, luminous bergamot and juicy pear, while pink pepper adds a modern spicy touch.",
-   "ar": "تحتفي كولونيا VF 2.7 Birthday Edition بجوهرك وقوتك وبكل ما هو آتٍ، لتفتتح مرحلة جديدة بالرقي والحضور. وتنطلق بانتعاش الجريب فروت وإشراقة البرغموت وعصارة الكمثرى، بينما يضيف الفلفل الوردي لمسة متبّلة عصرية."
+   "ar": "تحتفي كولونيا في إف 2.7 بيرثداي إيديشن بجوهرك وقوتك وبكل ما هو آتٍ، لتفتتح مرحلة جديدة بالرقي والحضور. وتنطلق بانتعاش الجريب فروت وإشراقة البرغموت وعصارة الكمثرى، بينما يضيف الفلفل الوردي لمسة متبّلة عصرية."
   },
   "notes": {
    "top": [
@@ -4541,6 +4620,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Feive",
+  "lineAr": "فيف",
   "size": "200 ml",
   "price": 69,
   "family": "warm",
@@ -4565,7 +4645,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Feive Body Cream leaves skin moisturized, nourished and firm, thanks to a special formula that helps support collagen production and cell renewal. Its blend of oils and extracts keeps skin looking healthy and radiant.",
-   "ar": "يترك كريم الجسم Feive بشرتك مرطّبة ومغذّاة ومشدودة، بفضل تركيبة خاصة تساعد على إنتاج الكولاجين وتجديد الخلايا. ويحافظ مزيجه من الزيوت والمستخلصات على مظهر صحي ومشرق للبشرة."
+   "ar": "يترك كريم الجسم فيف بشرتك مرطّبة ومغذّاة ومشدودة، بفضل تركيبة خاصة تساعد على إنتاج الكولاجين وتجديد الخلايا. ويحافظ مزيجه من الزيوت والمستخلصات على مظهر صحي ومشرق للبشرة."
   },
   "source": "https://www.wepink.com.br/body-cream-feive-200ml---wepink-465/p",
   "notes": {}
@@ -4575,6 +4655,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Castillo",
+  "lineAr": "كاستيلو",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -4600,7 +4681,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Castillo Cologne captures the essence of the contemporary man: confident, sophisticated and naturally striking. Bergamot and green bergamot meet cardamom and ginger in a vibrant opening, while clary sage, geranium, orange blossom, Tunisian orange blossom and Lavender Diva form an aromatic heart. A woody amber accord, patchouli, vanilla and cocoa add warmth and depth at the base.",
-   "ar": "تجسّد كولونيا Castillo جوهر الرجل العصري: واثق وراقٍ ولافت بطبيعته. يلتقي البرغموت والبرغموت الأخضر بالهيل والزنجبيل في افتتاحية نابضة بالحيوية، بينما تشكّل المريمية المسكية وإبرة الراعي وزهر البرتقال وزهر البرتقال التونسي وخزامى Diva قلبًا عطريًا متناغمًا. ويضفي أكورد العنبر الخشبي والباتشولي والفانيليا والكاكاو دفئًا وعمقًا على القاعدة."
+   "ar": "تجسّد كولونيا كاستيلو جوهر الرجل العصري: واثق وراقٍ ولافت بطبيعته. يلتقي البرغموت والبرغموت الأخضر بالهيل والزنجبيل في افتتاحية نابضة بالحيوية، بينما تشكّل المريمية المسكية وإبرة الراعي وزهر البرتقال وزهر البرتقال التونسي وخزامى ديفا قلبًا عطريًا متناغمًا. ويضفي أكورد العنبر الخشبي والباتشولي والفانيليا والكاكاو دفئًا وعمقًا على القاعدة."
   },
   "notes": {
    "top": [
@@ -4640,7 +4721,7 @@ window.WP_CATALOG = [
     ],
     [
      "Lavender Diva",
-     "خزامى Diva"
+     "خزامى ديفا"
     ]
    ],
    "base": [
@@ -4669,6 +4750,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Wonbloom Charm",
+  "lineAr": "وونبلوم تشارم",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -4694,7 +4776,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Wonbloom Charm Body Splash expresses a light, sophisticated and naturally radiant femininity. Juicy pear and bergamot open with bright, delicately sweet freshness, leading to an elegant heart of rose, iris and lily of the valley with a soft powdery touch. Vanilla, cedar and musk form a comfortable musky base that embraces the skin with subtle warmth.",
-   "ar": "يعبّر رذاذ الجسم المعطّر Wonbloom Charm عن أنوثة خفيفة وراقية ومشرقة بطبيعتها. تفتتحه الكمثرى العصيرية والبرغموت بانتعاش مشرق وحلاوة رقيقة، وصولًا إلى قلب أنيق من الورد والسوسن وزنبق الوادي بلمسة بودرية ناعمة. وتشكّل الفانيليا والأرز والمسك قاعدة مسكية مريحة تحتضن البشرة بدفء رقيق."
+   "ar": "يعبّر رذاذ الجسم المعطّر وونبلوم تشارم عن أنوثة خفيفة وراقية ومشرقة بطبيعتها. تفتتحه الكمثرى العصيرية والبرغموت بانتعاش مشرق وحلاوة رقيقة، وصولًا إلى قلب أنيق من الورد والسوسن وزنبق الوادي بلمسة بودرية ناعمة. وتشكّل الفانيليا والأرز والمسك قاعدة مسكية مريحة تحتضن البشرة بدفء رقيق."
   },
   "notes": {
    "top": [
@@ -4743,6 +4825,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF Choices Delight",
+  "lineAr": "في إف تشويسز ديلايت",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -4769,7 +4852,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Choices Delight Body Splash reveals a luminous, sophisticated femininity full of personality, reflecting the confidence of a woman who knows exactly who she is. Bright citrus notes meet green, aromatic nuances in a radiant opening, while jasmine and fresh floral accords form a refined heart. Woody and musky notes build a comfortable base.",
-   "ar": "يكشف رذاذ الجسم المعطّر VF Choices Delight عن أنوثة مشرقة وراقية مفعمة بالشخصية، تعكس ثقة امرأة تعرف تمامًا من تكون. تلتقي النفحات الحمضية المشرقة بلمسات خضراء وعطرية في افتتاحية متألقة، بينما يشكّل الياسمين والأكوردات الزهرية المنعشة قلبًا راقيًا. وتبني النفحات الخشبية والمسكية قاعدة مريحة."
+   "ar": "يكشف رذاذ الجسم المعطّر في إف تشويسز ديلايت عن أنوثة مشرقة وراقية مفعمة بالشخصية، تعكس ثقة امرأة تعرف تمامًا من تكون. تلتقي النفحات الحمضية المشرقة بلمسات خضراء وعطرية في افتتاحية متألقة، بينما يشكّل الياسمين والأكوردات الزهرية المنعشة قلبًا راقيًا. وتبني النفحات الخشبية والمسكية قاعدة مريحة."
   },
   "notes": {
    "top": [
@@ -4806,6 +4889,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Fatal White",
+  "lineAr": "فيتال وايت",
   "size": "100 ml",
   "price": 189,
   "color": "#E6007E",
@@ -4828,7 +4912,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fatal White Cologne expresses an elegant, confident and naturally captivating femininity. It is a fragrance for the woman who needs no excess to make her presence felt, winning hearts with her gaze, her poise and the trail she leaves in the air.",
-   "ar": "تعبّر كولونيا Fatal White عن أنوثة أنيقة وواثقة وآسرة بطبيعتها. إنها عطر للمرأة التي لا تحتاج إلى المبالغة لتفرض حضورها، فهي تأسر بنظرتها وحضورها الواثق والأثر الذي تتركه في الأجواء."
+   "ar": "تعبّر كولونيا فيتال وايت عن أنوثة أنيقة وواثقة وآسرة بطبيعتها. إنها عطر للمرأة التي لا تحتاج إلى المبالغة لتفرض حضورها، فهي تأسر بنظرتها وحضورها الواثق والأثر الذي تتركه في الأجواء."
   },
   "source": "https://www.wepink.com.br/desod-col-fatal-white-100-ml---wepink-446/p",
   "notes": {}
@@ -4838,6 +4922,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Feive Celestial",
+  "lineAr": "فيف سيليستيال",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -4864,7 +4949,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Feive Celestial Cologne was created for women who express elegance in every detail. Its floral oriental scent opens with fresh pear, ginger and tangerine, followed by a heart of lily of the valley, orange blossom and rose. A warm base of labdanum, benzoin, amber and sandalwood adds depth and comfort, leaving an elegant trail.",
-   "ar": "صُمّمت كولونيا Feive Celestial للمرأة التي تعبّر عن أناقتها في كل تفصيل. يفتتح عطرها الزهري الشرقي بنفحات منعشة من الكمثرى والزنجبيل واليوسفي، يليها قلب من زنبق الوادي وزهر البرتقال والورد. وتضفي قاعدة دافئة من اللادن واللبان الجاوي والعنبر وخشب الصندل عمقًا وراحة، تاركةً أثرًا أنيقًا."
+   "ar": "صُمّمت كولونيا فيف سيليستيال للمرأة التي تعبّر عن أناقتها في كل تفصيل. يفتتح عطرها الزهري الشرقي بنفحات منعشة من الكمثرى والزنجبيل واليوسفي، يليها قلب من زنبق الوادي وزهر البرتقال والورد. وتضفي قاعدة دافئة من اللادن واللبان الجاوي والعنبر وخشب الصندل عمقًا وراحة، تاركةً أثرًا أنيقًا."
   },
   "notes": {
    "top": [
@@ -4921,6 +5006,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Feive Celestial",
+  "lineAr": "فيف سيليستيال",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -4947,7 +5033,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Feive Celestial Body Splash was created for women who express elegance in every detail. Its floral oriental scent opens with fresh pear, ginger and tangerine, leading to a heart of lily of the valley, orange blossom and rose. A warm base of labdanum, benzoin, amber and sandalwood brings depth and comfort for an elegant trail.",
-   "ar": "صُمّم رذاذ الجسم المعطّر Feive Celestial للمرأة التي تعبّر عن أناقتها في كل تفصيل. يفتتح عطره الزهري الشرقي بنفحات منعشة من الكمثرى والزنجبيل واليوسفي، وصولًا إلى قلب من زنبق الوادي وزهر البرتقال والورد. وتمنح قاعدة دافئة من اللادن واللبان الجاوي والعنبر وخشب الصندل عمقًا وراحة لأثر أنيق."
+   "ar": "صُمّم رذاذ الجسم المعطّر فيف سيليستيال للمرأة التي تعبّر عن أناقتها في كل تفصيل. يفتتح عطره الزهري الشرقي بنفحات منعشة من الكمثرى والزنجبيل واليوسفي، وصولًا إلى قلب من زنبق الوادي وزهر البرتقال والورد. وتمنح قاعدة دافئة من اللادن واللبان الجاوي والعنبر وخشب الصندل عمقًا وراحة لأثر أنيق."
   },
   "notes": {
    "top": [
@@ -5004,6 +5090,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Liberté Doré",
+  "lineAr": "ليبرتيه دوريه",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -5029,7 +5116,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Liberté Doré Cologne is a jewel created for those who shine naturally, with elegance and sophistication in every step. The fragrance is a scented expression of the golden light that accompanies the freedom to be one's best self, a magnificent piece for any collection.",
-   "ar": "كولونيا Liberté Doré جوهرة صُمّمت لمن يتألقون بطبيعتهم، بأناقة ورقي في كل خطوة. هذا العطر تعبير عطري عن النور الذهبي الذي يرافق حرية كل إنسان في أن يكون أفضل نسخة من نفسه، وقطعة رائعة تُضاف إلى مجموعتك."
+   "ar": "كولونيا ليبرتيه دوريه جوهرة صُمّمت لمن يتألقون بطبيعتهم، بأناقة ورقي في كل خطوة. هذا العطر تعبير عطري عن النور الذهبي الذي يرافق حرية كل إنسان في أن يكون أفضل نسخة من نفسه، وقطعة رائعة تُضاف إلى مجموعتك."
   },
   "source": "https://www.wepink.com.br/desod-col-liberte-dore-100ml---wepink-419/p",
   "notes": {}
@@ -5039,6 +5126,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Martin",
+  "lineAr": "مارتن",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -5064,7 +5152,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Martin Cologne celebrates Madagascar vanilla in its most luxurious and enveloping form, rich, warm and dense at the center of the composition. Spicy cardamom and cinnamon blend with elegant orange blossom, while a base of amber, musk and precious woods adds depth and magnetism. The result is an addictive, commanding and seductive expression of masculine power and elegance.",
-   "ar": "تحتفي كولونيا Martin بفانيليا مدغشقر في أكثر صورها فخامة وإحاطة، غنية ودافئة وكثيفة في قلب التركيبة. تمتزج لمسة الهيل والقرفة المتبّلة بأناقة زهر البرتقال، بينما تمنح قاعدة من العنبر والمسك والأخشاب النفيسة عمقًا وجاذبية. والنتيجة عبير آسر ومهيب يجسّد قوة الرجل وأناقته."
+   "ar": "تحتفي كولونيا مارتن بفانيليا مدغشقر في أكثر صورها فخامة وإحاطة، غنية ودافئة وكثيفة في قلب التركيبة. تمتزج لمسة الهيل والقرفة المتبّلة بأناقة زهر البرتقال، بينما تمنح قاعدة من العنبر والمسك والأخشاب النفيسة عمقًا وجاذبية. والنتيجة عبير آسر ومهيب يجسّد قوة الرجل وأناقته."
   },
   "notes": {
    "top": [
@@ -5109,6 +5197,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "One Touch Silk",
+  "lineAr": "ون تاتش سيلك",
   "size": "200 ml",
   "price": 69,
   "color": "#E3458D",
@@ -5132,7 +5221,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Silk Body Cream is carefully formulated to help support collagen production and cell renewal, leaving skin healthy-looking and radiant. It scents the skin with a wonderful blend of flowers and fruits for a fresh feeling all day long.",
-   "ar": "صُمّم كريم الجسم One Touch Silk بعناية ليساعد على إنتاج الكولاجين وتجديد الخلايا، فيمنح البشرة مظهرًا صحيًا ومشرقًا. ويعطّر البشرة بمزيج رائع من الزهور والفواكه لإحساس بالانتعاش طوال اليوم."
+   "ar": "صُمّم كريم الجسم ون تاتش سيلك بعناية ليساعد على إنتاج الكولاجين وتجديد الخلايا، فيمنح البشرة مظهرًا صحيًا ومشرقًا. ويعطّر البشرة بمزيج رائع من الزهور والفواكه لإحساس بالانتعاش طوال اليوم."
   },
   "source": "https://www.wepink.com.br/body-cream-one-touch-silk-200ml---wepink-383/p",
   "notes": {}
@@ -5142,6 +5231,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Feive",
+  "lineAr": "فيف",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -5171,7 +5261,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Feive Cologne awakens your most refined, eccentric side with a grand, sovereign fragrance created without sparing any effort. More than a fragrance, it is a sensory experience worthy of high society, blending ingredients with unrivaled mastery in an olfactory journey that transcends the limits of luxury.",
-   "ar": "أيقظي جانبك الأكثر رقيًا وتفرّدًا مع كولونيا Feive، العطر المهيب الذي ابتُكر دون ادّخار أي جهد. فهو ليس مجرد عطر، بل تجربة حسية تليق بصفوة المجتمع، تمزج المكونات ببراعة لا مثيل لها في رحلة عطرية تتجاوز حدود الفخامة."
+   "ar": "أيقظي جانبك الأكثر رقيًا وتفرّدًا مع كولونيا فيف، العطر المهيب الذي ابتُكر دون ادّخار أي جهد. فهو ليس مجرد عطر، بل تجربة حسية تليق بصفوة المجتمع، تمزج المكونات ببراعة لا مثيل لها في رحلة عطرية تتجاوز حدود الفخامة."
   },
   "source": "https://www.wepink.com.br/desod-col-feive-100ml---wepink-388/p",
   "notes": {}
@@ -5181,6 +5271,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "Obsessed",
+  "lineAr": "أوبسيسد",
   "size": "50 ml",
   "price": 69,
   "color": "#65383E",
@@ -5204,7 +5295,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Hair Mist leaves hair shinier, protected and fragrant all day, capturing the essence of a festive woman who knows what she wants. Its chypre scent opens with cherry and blood orange, wrapped in a blend of citrus notes, before honey and caramel bring a sweet delight to the senses.",
-   "ar": "يمنح عطر الشعر Obsessed شعرك لمعانًا وحماية وعبيرًا طوال اليوم، مجسّدًا جوهر المرأة المحبّة للاحتفال التي تعرف ما تريد. يفتتح عبيره الشيبر بالكرز والبرتقال الدموي، ملتفًّا بمزيج من النفحات الحمضية، قبل أن يضفي العسل والكراميل متعة حلوة على الحواس."
+   "ar": "يمنح عطر الشعر أوبسيسد شعرك لمعانًا وحماية وعبيرًا طوال اليوم، مجسّدًا جوهر المرأة المحبّة للاحتفال التي تعرف ما تريد. يفتتح عبيره الشيبر بالكرز والبرتقال الدموي، ملتفًّا بمزيج من النفحات الحمضية، قبل أن يضفي العسل والكراميل متعة حلوة على الحواس."
   },
   "notes": {
    "top": [
@@ -5241,7 +5332,7 @@ window.WP_CATALOG = [
   "cat": "skincare",
   "type": "skincare",
   "line": "Cleanser Essential Facial Wash",
-  "lineAr": "غسول الوجه Cleanser Essential",
+  "lineAr": "كلينزر إسنشال فيشال ووش",
   "size": "120 ml",
   "price": 79,
   "color": "#F1A4A9",
@@ -5266,7 +5357,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Cleanser Essential Facial Wash was developed to perfectly complete the way you care for yourself. Its exclusive formula, suitable for all skin types, deeply cleanses with high astringent power and acts as a natural toner for the face.",
-   "ar": "طُوّر غسول الوجه Cleanser Essential ليكمل بامتياز روتين عنايتك بنفسك. وتركيبته الحصرية مناسبة لجميع أنواع البشرة، إذ تمنح تنظيفًا عميقًا بقدرة قابضة عالية وتعمل كتونر طبيعي للوجه."
+   "ar": "طُوّر غسول الوجه كلينزر إسنشال ليكمل بامتياز روتين عنايتك بنفسك. وتركيبته الحصرية مناسبة لجميع أنواع البشرة، إذ تمنح تنظيفًا عميقًا بقدرة قابضة عالية وتعمل كتونر طبيعي للوجه."
   },
   "source": "https://www.wepink.com.br/sabonete-facial-cleanser-essential/p",
   "notes": {}
@@ -5276,7 +5367,7 @@ window.WP_CATALOG = [
   "cat": "skincare",
   "type": "skincare",
   "line": "10-in-1 Facial Serum",
-  "lineAr": "سيروم الوجه 10 في 1",
+  "lineAr": "10 إن 1 فيشال سيروم",
   "size": "40 ml",
   "price": 79,
   "badge": "bestseller",
@@ -5301,7 +5392,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The 10-in-1 Facial Serum is complete care in a single product. Its exclusive, high-tech formula combines 10 powerful actives, including hyaluronic acid, vitamin C, retinol and hydrolyzed collagen, for deep hydration, a more even tone, anti-aging action and visibly healthier skin. Its light, easy-to-apply texture suits all skin types.",
-   "ar": "سيروم الوجه 10 في 1 عناية متكاملة في منتج واحد. تجمع تركيبته الحصرية عالية التقنية 10 مكونات فعّالة، منها حمض الهيالورونيك وفيتامين C والريتينول والكولاجين المُحلَّل مائيًا، لترطيب عميق وتوحيد لون البشرة وعمل مضاد لعلامات التقدم في السن وبشرة أكثر صحة بشكل واضح. ويتميّز بقوام خفيف وسهل الاستخدام يناسب جميع أنواع البشرة."
+   "ar": "سيروم الوجه 10 في 1 عناية متكاملة في منتج واحد. تجمع تركيبته الحصرية عالية التقنية 10 مكونات فعّالة، منها حمض الهيالورونيك وفيتامين سي والريتينول والكولاجين المُحلَّل مائيًا، لترطيب عميق وتوحيد لون البشرة وعمل مضاد لعلامات التقدم في السن وبشرة أكثر صحة بشكل واضح. ويتميّز بقوام خفيف وسهل الاستخدام يناسب جميع أنواع البشرة."
   },
   "source": "https://www.wepink.com.br/serum-10-em-1-wepink-40ml/p",
   "notes": {}
@@ -5311,6 +5402,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Liberté Exclusif",
+  "lineAr": "ليبرتيه إكسكلوسيف",
   "size": "50 ml",
   "price": 39,
   "color": "#EEAAB7",
@@ -5334,7 +5426,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Liberté Exclusif Antiperspirant Roll-on offers an invigorating combination of freshness, lasting protection and 72-hour hydration. Its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral oriental path.",
-   "ar": "يقدّم مزيل العرق ومضاد التعرّق MyProtection Liberté Exclusif رول أون مزيجاً منعشاً يجمع بين النضارة والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعطر فريد وحصري مُهدى إلى المرأة الأصيلة صانعة التغيير، في رحلة عطرية زهرية شرقية آسرة."
+   "ar": "يقدّم مزيل العرق ومضاد التعرّق ماي بروتكشن ليبرتيه إكسكلوسيف رول أون مزيجاً منعشاً يجمع بين النضارة والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعطر فريد وحصري مُهدى إلى المرأة الأصيلة صانعة التغيير، في رحلة عطرية زهرية شرقية آسرة."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-liberte-exclusif-50-ml---wepink-367/p",
   "notes": {}
@@ -5344,6 +5436,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Obsessed Exclusive Pink",
+  "lineAr": "أوبسيسد إكسكلوسيف بينك",
   "size": "50 ml",
   "price": 39,
   "color": "#8D2B50",
@@ -5367,7 +5460,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Obsessed Exclusive Pink Antiperspirant Roll-on breathes luxury and exclusivity, with 72-hour protection for living every day intensely. Its exclusive formula, combined with an unmistakably floral scent, offers everything needed to follow the daily routine worry-free.",
-   "ar": "يفيض مزيل العرق ومضاد التعرّق MyProtection Obsessed Exclusive Pink رول أون بالفخامة والتميّز، مع حماية لمدة 72 ساعة لعيش كل يوم بشغف. وتمنح تركيبته الحصرية، مع رائحته الزهرية المميّزة، كل ما يلزم لمتابعة الروتين اليومي دون قلق."
+   "ar": "يفيض مزيل العرق ومضاد التعرّق ماي بروتكشن أوبسيسد إكسكلوسيف بينك رول أون بالفخامة والتميّز، مع حماية لمدة 72 ساعة لعيش كل يوم بشغف. وتمنح تركيبته الحصرية، مع رائحته الزهرية المميّزة، كل ما يلزم لمتابعة الروتين اليومي دون قلق."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-obsessed-exclusive-pink-50-ml-368/p",
   "notes": {}
@@ -5377,6 +5470,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "scrub",
   "line": "Liberté Exclusif",
+  "lineAr": "ليبرتيه إكسكلوسيف",
   "size": "450 g",
   "price": 99,
   "badge": "bestseller",
@@ -5399,7 +5493,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Liberté Exclusif Body Scrub makes self-care moments even more special, exfoliating and moisturizing in just the right measure, removing impurities and leaving skin super soft. With aloe vera, almond oil and rosehip oil, it provides deep hydration, powerful nourishment and renewed skin, wrapped in the delicious floral and fruity fragrance of the Liberté Exclusif line.",
-   "ar": "يجعل مقشّر الجسم Liberté Exclusif Body Scrub لحظات العناية الذاتية أكثر تميّزاً، إذ يقشّر البشرة ويرطّبها بالقدر المثالي، ويزيل الشوائب ويتركها ناعمة للغاية. وبفضل الألوفيرا وزيت اللوز وزيت ثمر الورد البري، يمنح ترطيباً عميقاً وتغذية فائقة وبشرة متجدّدة، مع عطر مجموعة Liberté Exclusif الشهي بنفحات الزهور والفواكه."
+   "ar": "يجعل مقشّر الجسم ليبرتيه إكسكلوسيف بودي سكراب لحظات العناية الذاتية أكثر تميّزاً، إذ يقشّر البشرة ويرطّبها بالقدر المثالي، ويزيل الشوائب ويتركها ناعمة للغاية. وبفضل الألوفيرا وزيت اللوز وزيت ثمر الورد البري، يمنح ترطيباً عميقاً وتغذية فائقة وبشرة متجدّدة، مع عطر مجموعة ليبرتيه إكسكلوسيف الشهي بنفحات الزهور والفواكه."
   },
   "source": "https://www.wepink.com.br/body-scrub-liberte-exclusif-450gr---wepink-360/p",
   "notes": {}
@@ -5409,6 +5503,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Obsessed Intense",
+  "lineAr": "أوبسيسد إنتنس",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -5438,7 +5533,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Intense Deodorant Cologne makes nights more intense, a sensual portrait of a powerful, respected woman. Its sweetness lingers in the air and blends with the warmth of the skin to heighten femininity, like the first date of a great passion. Shaped by pure obsession, this fragrance lets delicacy give way to voracity.",
-   "ar": "تزداد الليالي شغفاً مع كولونيا Obsessed Intense، الصورة الحسّية لامرأة قوية تحظى بالاحترام. تحوم حلاوتها في المكان وتمتزج بدفء الجسد لتعزّز الأنوثة، كأنها اللقاء الأول لحبّ عظيم. وفي هذا العطر المصوغ من الهوس الخالص، تفسح الرقّة المجال لشغف جامح."
+   "ar": "تزداد الليالي شغفاً مع كولونيا أوبسيسد إنتنس، الصورة الحسّية لامرأة قوية تحظى بالاحترام. تحوم حلاوتها في المكان وتمتزج بدفء الجسد لتعزّز الأنوثة، كأنها اللقاء الأول لحبّ عظيم. وفي هذا العطر المصوغ من الهوس الخالص، تفسح الرقّة المجال لشغف جامح."
   },
   "source": "https://www.wepink.com.br/desod-col-obsessed-intense-100ml---wepink-361/p",
   "notes": {}
@@ -5448,7 +5543,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "haircare",
   "line": "My Hair Ultra Repair Conditioner",
-  "lineAr": "بلسم My Hair Ultra Repair",
+  "lineAr": "ماي هير ألترا ريبير كونديشنر",
   "size": "250 ml",
   "price": 79,
   "badge": "bestseller",
@@ -5474,7 +5569,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Hair Ultra Repair Conditioner detangles easily, deeply hydrates and restores strength and elasticity with D-Panthenol, Indian gooseberry extract and avocado, camellia and green tea oils. Designed for chemically treated hair, it combines lanolin, hyper-protein and a cross-linking complex to form a protective film that controls frizz, reduces split ends and repairs damage. Hair is left soft, shiny and scented all day.",
-   "ar": "يسهّل بلسم My Hair Ultra Repair فكّ تشابك الشعر ويرطّبه بعمق، ويعيد إليه القوة والمرونة بفضل الدي-بانثينول ومستخلص الأملا (عنب الثعلب الهندي) وزيوت الأفوكادو والكاميليا والشاي الأخضر. صُمّم للشعر المعالج كيميائياً، ويجمع بين اللانولين والبروتين الفائق ومركّب الربط المتقاطع ليكوّن طبقة واقية تتحكّم في التجعّد وتقلّل تقصّف الأطراف وتصلح التلف. والنتيجة شعر ناعم ولامع ومعطّر طوال اليوم."
+   "ar": "يسهّل بلسم ماي هير ألترا ريبير فكّ تشابك الشعر ويرطّبه بعمق، ويعيد إليه القوة والمرونة بفضل الدي-بانثينول ومستخلص الأملا (عنب الثعلب الهندي) وزيوت الأفوكادو والكاميليا والشاي الأخضر. صُمّم للشعر المعالج كيميائياً، ويجمع بين اللانولين والبروتين الفائق ومركّب الربط المتقاطع ليكوّن طبقة واقية تتحكّم في التجعّد وتقلّل تقصّف الأطراف وتصلح التلف. والنتيجة شعر ناعم ولامع ومعطّر طوال اليوم."
   },
   "source": "https://www.wepink.com.br/condicionador-my-hair-ultra-repair-250ml---wepink-328/p",
   "notes": {}
@@ -5484,7 +5579,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "haircare",
   "line": "My Hair Ultra Repair Shampoo",
-  "lineAr": "شامبو My Hair Ultra Repair",
+  "lineAr": "ماي هير ألترا ريبير شامبو",
   "size": "250 ml",
   "price": 79,
   "badge": "bestseller",
@@ -5510,7 +5605,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Hair Ultra Repair Shampoo gently cleanses while delivering intense hydration, shine and softness with aloe vera and green tea extracts. Working from root to tip, it repairs damage, reduces split ends and strengthens even chemically treated hair, while hyper-protein and cross-linking complex technology supports healthy growth, combats hair loss and protects against new damage. A refreshing touch leaves hair soft and scented all day.",
-   "ar": "ينظّف شامبو My Hair Ultra Repair الشعر بلطف ويمنحه ترطيباً مكثّفاً ولمعاناً ونعومة بفضل مستخلصات الألوفيرا والشاي الأخضر. يعمل من الجذور حتى الأطراف ليصلح التلف ويقلّل تقصّف الأطراف ويقوّي حتى الشعر المعالج كيميائياً، فيما تدعم تقنية البروتين الفائق ومركّب الربط المتقاطع النمو الصحي وتكافح التساقط وتحمي من التلف الجديد. وتترك لمسته المنعشة الشعر ناعماً ومعطّراً طوال اليوم."
+   "ar": "ينظّف شامبو ماي هير ألترا ريبير الشعر بلطف ويمنحه ترطيباً مكثّفاً ولمعاناً ونعومة بفضل مستخلصات الألوفيرا والشاي الأخضر. يعمل من الجذور حتى الأطراف ليصلح التلف ويقلّل تقصّف الأطراف ويقوّي حتى الشعر المعالج كيميائياً، فيما تدعم تقنية البروتين الفائق ومركّب الربط المتقاطع النمو الصحي وتكافح التساقط وتحمي من التلف الجديد. وتترك لمسته المنعشة الشعر ناعماً ومعطّراً طوال اليوم."
   },
   "source": "https://www.wepink.com.br/shampoo-my-hair-ultra-repair-250ml---wepink-327/p",
   "notes": {}
@@ -5520,6 +5615,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Infinity Cosmik",
+  "lineAr": "إنفينيتي كوزميك",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -5545,7 +5641,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Cosmik Body Splash is a true universe of charm and beauty, a mystical scent that awakens desire and sophistication. Its chypre, floral and fruity journey opens with lush blackcurrant and rose, evolving into a noble touch of jasmine. Radiant and uplifting, it settles into a sweet, woody base, a scent as enchanting as the stars.",
-   "ar": "يمثّل بخاخ الجسم Infinity Cosmik عالماً حقيقياً من السحر والجمال، بعبير غامض يوقظ الرغبة والرقيّ. تبدأ رحلته العطرية الشيبرية الزهرية الفاكهية بنفحات غنية من الكشمش الأسود والورد، ثم تتطوّر إلى لمسة راقية من الياسمين. ويختتم ببريق وإحساس بالراحة في قاعدة حلوة وخشبية، عبير ساحر كالنجوم."
+   "ar": "يمثّل بخاخ الجسم إنفينيتي كوزميك عالماً حقيقياً من السحر والجمال، بعبير غامض يوقظ الرغبة والرقيّ. تبدأ رحلته العطرية الشيبرية الزهرية الفاكهية بنفحات غنية من الكشمش الأسود والورد، ثم تتطوّر إلى لمسة راقية من الياسمين. ويختتم ببريق وإحساس بالراحة في قاعدة حلوة وخشبية، عبير ساحر كالنجوم."
   },
   "notes": {
    "top": [
@@ -5572,6 +5668,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "One Touch Silk",
+  "lineAr": "ون تاتش سيلك",
   "size": "100 ml",
   "price": 189,
   "color": "#E44A9B",
@@ -5595,7 +5692,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Silk Deodorant Cologne is a delicate, affectionate touch, a joyful scent that revives the essence of romance. Its floral and fruity fragrance opens with charming bergamot and fresh strawberry, evolving into an enchanting floral heart. It finishes on a soft, sweet vanilla base, unfolding an unforgettable feminine essence.",
-   "ar": "تمنح كولونيا One Touch Silk لمسة رقيقة من الحنان، بعبير مبهج يُحيي جوهر الرومانسية. يبدأ عطرها الزهري الفاكهي بسحر البرغموت وانتعاش الفراولة، ثم يتطوّر إلى قلب زهري ساحر. ويختتم بقاعدة ناعمة وحلوة من الفانيليا، ليُزهر جوهراً أنثوياً لا يُنسى."
+   "ar": "تمنح كولونيا ون تاتش سيلك لمسة رقيقة من الحنان، بعبير مبهج يُحيي جوهر الرومانسية. يبدأ عطرها الزهري الفاكهي بسحر البرغموت وانتعاش الفراولة، ثم يتطوّر إلى قلب زهري ساحر. ويختتم بقاعدة ناعمة وحلوة من الفانيليا، ليُزهر جوهراً أنثوياً لا يُنسى."
   },
   "notes": {
    "top": [
@@ -5622,6 +5719,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Heaven",
+  "lineAr": "هيفن",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -5646,7 +5744,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Body Cream is a creamy, delicate deodorant lotion that moisturizes, nourishes and firms. Its composition helps support collagen production and cell regeneration, leaving skin looking healthy and glowing for a joyful, refreshing sense of well-being. Its heavenly floral fragrance rises with light notes of mandarin and orange blossom, finishing on a captivating sweet, woody base.",
-   "ar": "يتميّز كريم الجسم Heaven بقوامه الكريمي الرقيق الذي يرطّب البشرة ويغذّيها ويمنحها التماسك. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق لإحساس مبهج ومنعش بالراحة. ويرتقي عطره الزهري السماوي بنفحات خفيفة من الماندرين وزهر البرتقال، ليختتم بقاعدة حلوة وخشبية آسرة."
+   "ar": "يتميّز كريم الجسم هيفن بقوامه الكريمي الرقيق الذي يرطّب البشرة ويغذّيها ويمنحها التماسك. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق لإحساس مبهج ومنعش بالراحة. ويرتقي عطره الزهري السماوي بنفحات خفيفة من الماندرين وزهر البرتقال، ليختتم بقاعدة حلوة وخشبية آسرة."
   },
   "notes": {
    "top": [
@@ -5669,6 +5767,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Ruby",
+  "lineAr": "روبي",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -5694,7 +5793,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ruby Body Splash reveals the most precious essence, awakening the valuable charm of being a woman. A fruity floriental fragrance that captivates with intensity and desire, it opens with heady notes of mandarin and cherry. It evolves into an unforgettable floral heart and finishes with sweet vanilla and the bright, woody touch of cedar leaves, exuding precious freshness.",
-   "ar": "يكشف بخاخ الجسم Ruby عن أثمن ما في الجوهر، ليوقظ السحر الثمين للأنوثة. بعطر زهري شرقي فاكهي يأسر بالشغف والرغبة، يبدأ بنفحات آسرة من الماندرين والكرز، ثم يتطوّر إلى قلب زهري لا يُنسى، ويختتم بحلاوة الفانيليا ولمسة أوراق الأرز الخشبية المتألّقة، ناشراً انتعاشاً ثميناً."
+   "ar": "يكشف بخاخ الجسم روبي عن أثمن ما في الجوهر، ليوقظ السحر الثمين للأنوثة. بعطر زهري شرقي فاكهي يأسر بالشغف والرغبة، يبدأ بنفحات آسرة من الماندرين والكرز، ثم يتطوّر إلى قلب زهري لا يُنسى، ويختتم بحلاوة الفانيليا ولمسة أوراق الأرز الخشبية المتألّقة، ناشراً انتعاشاً ثميناً."
   },
   "notes": {
    "top": [
@@ -5725,6 +5824,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Ruby",
+  "lineAr": "روبي",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -5750,7 +5850,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ruby Deodorant Cologne awakens elegance and desire in a floriental, fruity and heady essence, a precious charm that draws attention wherever it goes. It opens with bright notes of mandarin and cherry, evolving into a precious, intense touch of jasmine. It finishes on a sweet, woody, unforgettable base, a scent worthy of a rare jewel.",
-   "ar": "توقظ كولونيا Ruby الأناقة والرغبة بعبير زهري شرقي فاكهي آسر للحواس، وسحر ثمين يجذب الأنظار أينما حلّ. يبدأ عطرها بتألّق نفحات الماندرين والكرز، ثم يتطوّر إلى لمسة ثمينة ومكثّفة من الياسمين، ويختتم بقاعدة حلوة وخشبية لا تُنسى، عبير يليق بجوهرة نادرة."
+   "ar": "توقظ كولونيا روبي الأناقة والرغبة بعبير زهري شرقي فاكهي آسر للحواس، وسحر ثمين يجذب الأنظار أينما حلّ. يبدأ عطرها بتألّق نفحات الماندرين والكرز، ثم يتطوّر إلى لمسة ثمينة ومكثّفة من الياسمين، ويختتم بقاعدة حلوة وخشبية لا تُنسى، عبير يليق بجوهرة نادرة."
   },
   "notes": {
    "top": [
@@ -5777,6 +5877,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Lavanda Serene",
+  "lineAr": "لافاندا سيرين",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -5801,7 +5902,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Lavanda Serene Body Splash is an ideal companion for moments of rest, with a unique scent that relaxes the senses. Its fragrance helps restore sleep through its calming properties, combined with the refreshing touch of lavender oil. All on an unmistakable floral path, unfolding in charming notes of mandarin and jasmine and finishing on a sweet, woody base.",
-   "ar": "يُعدّ بخاخ الجسم Lavanda Serene الرفيق الأمثل للحظات الراحة، بعبير فريد يبعث الاسترخاء في الحواس. يساعد عطره على استعادة النوم بفضل خصائصه المهدّئة، مع لمسة منعشة من زيت اللافندر. وكل ذلك في مسار عطري زهري مميّز، يتجلّى بنفحات ساحرة من الماندرين والياسمين، ويختتم بقاعدة حلوة وخشبية."
+   "ar": "يُعدّ بخاخ الجسم لافاندا سيرين الرفيق الأمثل للحظات الراحة، بعبير فريد يبعث الاسترخاء في الحواس. يساعد عطره على استعادة النوم بفضل خصائصه المهدّئة، مع لمسة منعشة من زيت اللافندر. وكل ذلك في مسار عطري زهري مميّز، يتجلّى بنفحات ساحرة من الماندرين والياسمين، ويختتم بقاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -5828,7 +5929,7 @@ window.WP_CATALOG = [
   "cat": "skincare",
   "type": "skincare",
   "line": "Makeup Remover Cleansing Wipes",
-  "lineAr": "مناديل Cleansing Wipes المبلّلة لإزالة المكياج",
+  "lineAr": "ميك أب ريموفر كلينزينج وايبس",
   "price": 39,
   "badge": "bestseller",
   "color": "#DB7BA9",
@@ -5852,7 +5953,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Cleansing Wipes makeup remover wipes are made especially for the skincare routine: they remove impurities, cleanse deeply, hydrate, take off waterproof makeup and help control oiliness. All with a soft touch suitable for all skin types.",
-   "ar": "صُمّمت مناديل Cleansing Wipes المبلّلة لإزالة المكياج خصيصاً لروتين العناية بالبشرة، فهي تزيل الشوائب وتنظّف بعمق وترطّب وتزيل المكياج المقاوم للماء وتساعد على التحكّم في الإفرازات الدهنية. وكل ذلك بلمسة ناعمة مثالية لجميع أنواع البشرة."
+   "ar": "صُمّمت مناديل كلينزينج وايبس المبلّلة لإزالة المكياج خصيصاً لروتين العناية بالبشرة، فهي تزيل الشوائب وتنظّف بعمق وترطّب وتزيل المكياج المقاوم للماء وتساعد على التحكّم في الإفرازات الدهنية. وكل ذلك بلمسة ناعمة مثالية لجميع أنواع البشرة."
   },
   "source": "https://www.wepink.com.br/lenco-demaquilante-exclusive----wepink-lenc-car-001/p",
   "notes": {}
@@ -5862,6 +5963,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF Aqua",
+  "lineAr": "في إف أكوا",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -5887,7 +5989,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Virginia Fonseca's VF Aqua Deodorant Cologne has a solar fragrance that represents a free, bold and radiant spirit, the essence of someone unbound, living intensely and ready to fulfill their own desires. Its notes feature an elegant floral bouquet of jasmine, lily of the valley and peony, over a striking base of patchouli, musk, sweet amber and the sophisticated signature of sandalwood.",
-   "ar": "تتميّز كولونيا VF Aqua من Virginia Fonseca بعطر مشمس يجسّد روحاً حرّة وجريئة ومتألّقة، جوهر شخصية متحرّرة من القيود تعيش بشغف وتسعى لتحقيق رغباتها. تضمّ نفحاتها باقة زهرية أنيقة من الياسمين وزنبق الوادي والفاوانيا، فوق قاعدة لافتة من الباتشولي والمسك وحلاوة العنبر، مع البصمة الراقية لخشب الصندل."
+   "ar": "تتميّز كولونيا في إف أكوا من فيرجينيا فونسيكا بعطر مشمس يجسّد روحاً حرّة وجريئة ومتألّقة، جوهر شخصية متحرّرة من القيود تعيش بشغف وتسعى لتحقيق رغباتها. تضمّ نفحاتها باقة زهرية أنيقة من الياسمين وزنبق الوادي والفاوانيا، فوق قاعدة لافتة من الباتشولي والمسك وحلاوة العنبر، مع البصمة الراقية لخشب الصندل."
   },
   "notes": {
    "heart": [
@@ -5930,6 +6032,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "King Blue",
+  "lineAr": "كينج بلو",
   "size": "100 ml",
   "price": 189,
   "color": "#274C5D",
@@ -5953,7 +6056,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "King Blue Deodorant Cologne captures the essence of the victorious man who overcomes his challenges. This masculine fragrance inspires triumphant power and leaves its mark, expressed in pure energy and modernity. Its woody path conveys confidence, elegance and charm, balancing the senses with bergamot and herbs over a sweet base of patchouli and amber.",
-   "ar": "تجسّد كولونيا King Blue جوهر الرجل المنتصر الذي يتغلّب على تحدّياته. عطر رجالي يلهم القوة الظافرة ويترك بصمته، متجلّياً في طاقة خالصة وحداثة. يبثّ مساره العطري الخشبي الثقة والأناقة والجاذبية، موازناً الحواس بالبرغموت والأعشاب فوق قاعدة حلوة من الباتشولي والعنبر."
+   "ar": "تجسّد كولونيا كينج بلو جوهر الرجل المنتصر الذي يتغلّب على تحدّياته. عطر رجالي يلهم القوة الظافرة ويترك بصمته، متجلّياً في طاقة خالصة وحداثة. يبثّ مساره العطري الخشبي الثقة والأناقة والجاذبية، موازناً الحواس بالبرغموت والأعشاب فوق قاعدة حلوة من الباتشولي والعنبر."
   },
   "notes": {
    "top": [
@@ -5984,6 +6087,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "One Touch",
+  "lineAr": "ون تاتش",
   "size": "200 ml",
   "price": 69,
   "family": "warm",
@@ -6009,7 +6113,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Body Cream complements the self-care routine with a smooth, moisturizing texture that helps keep skin healthy, beautiful and scented. It contains nano vitamin E, which boosts regeneration and hydration and helps fight premature aging. Its notes convey strength, femininity and determination, blending selected fruits, a mix of flowers, patchouli and vanilla over a sweet base.",
-   "ar": "يكمّل كريم الجسم One Touch روتين العناية الذاتية بقوامه الناعم المرطّب الذي يساعد على الحفاظ على بشرة صحية وجميلة ومعطّرة. يحتوي على نانو فيتامين E الذي يعزّز قدرة البشرة على التجدّد والترطيب ويساعد على مكافحة الشيخوخة المبكرة. وتبثّ نفحاته القوة والأنوثة والعزيمة، بمزيج من فواكه مختارة وتشكيلة من الزهور والباتشولي والفانيليا فوق قاعدة حلوة."
+   "ar": "يكمّل كريم الجسم ون تاتش روتين العناية الذاتية بقوامه الناعم المرطّب الذي يساعد على الحفاظ على بشرة صحية وجميلة ومعطّرة. يحتوي على نانو فيتامين إي الذي يعزّز قدرة البشرة على التجدّد والترطيب ويساعد على مكافحة الشيخوخة المبكرة. وتبثّ نفحاته القوة والأنوثة والعزيمة، بمزيج من فواكه مختارة وتشكيلة من الزهور والباتشولي والفانيليا فوق قاعدة حلوة."
   },
   "notes": {
    "base": [
@@ -6030,6 +6134,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "One Touch",
+  "lineAr": "ون تاتش",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -6056,7 +6161,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Body Splash conveys femininity and strength in a striking yet delicate essence. Its notes feature a mix of flowers, selected fruits, patchouli and vanilla over a sweet base. Ideal for every moment.",
-   "ar": "يجسّد بخاخ الجسم One Touch الأنوثة والقوة بعبير لافت ورقيق في آن واحد. تضمّ نفحاته مزيجاً من الزهور وفواكه مختارة والباتشولي والفانيليا فوق قاعدة حلوة. مثالي لكل اللحظات."
+   "ar": "يجسّد بخاخ الجسم ون تاتش الأنوثة والقوة بعبير لافت ورقيق في آن واحد. تضمّ نفحاته مزيجاً من الزهور وفواكه مختارة والباتشولي والفانيليا فوق قاعدة حلوة. مثالي لكل اللحظات."
   },
   "notes": {
    "base": [
@@ -6077,6 +6182,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "VF",
+  "lineAr": "في إف",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -6103,7 +6209,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Virginia Fonseca VF Body Cream is a highly effective, soothing cream for skin in need of self-care, offering the best in hydration and well-being. It contains a blend of extracts, almond oil and encapsulated nano vitamin E, with a unique, enveloping texture.",
-   "ar": "كريم الجسم VF من Virginia Fonseca كريم فعّال ومهدّئ للغاية للبشرة التي تحتاج إلى عناية ذاتية، يقدّم الأفضل في الترطيب والراحة. يحتوي على مزيج من المستخلصات وزيت اللوز ونانو فيتامين E المغلّف، بقوام فريد يغلّف البشرة."
+   "ar": "كريم الجسم في إف من فيرجينيا فونسيكا كريم فعّال ومهدّئ للغاية للبشرة التي تحتاج إلى عناية ذاتية، يقدّم الأفضل في الترطيب والراحة. يحتوي على مزيج من المستخلصات وزيت اللوز ونانو فيتامين إي المغلّف، بقوام فريد يغلّف البشرة."
   },
   "source": "https://www.wepink.com.br/the-body-cream-vf/p",
   "notes": {}
@@ -6113,6 +6219,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Fatal Rouge",
+  "lineAr": "فيتال روج",
   "size": "100 ml",
   "price": 189,
   "color": "#B42732",
@@ -6136,7 +6243,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fatal Rouge Deodorant Cologne celebrates the fearless, fatal essence of the modern woman. Its elegant fragrance opens with cassis, pink pepper and green mandarin, followed by a captivating floral heart of Damask rose, red berries and jasmine petals. It finishes with the woody fatal blow of sandalwood and musk, balanced by just the right intensity of vanilla cream.",
-   "ar": "تحتفي كولونيا Fatal Rouge بالجوهر الجريء والآسر الذي تحمله المرأة العصرية. يبدأ عطرها الأنيق بنفحات الكشمش الأسود والفلفل الوردي والماندرين الأخضر، يليها قلب زهري آسر من الورد الدمشقي والتوت الأحمر وبتلات الياسمين في تباين مثالي. ويختتم بلمسة خشبية حاسمة من خشب الصندل والمسك، مع الكثافة المثالية لكريمة الفانيليا."
+   "ar": "تحتفي كولونيا فيتال روج بالجوهر الجريء والآسر الذي تحمله المرأة العصرية. يبدأ عطرها الأنيق بنفحات الكشمش الأسود والفلفل الوردي والماندرين الأخضر، يليها قلب زهري آسر من الورد الدمشقي والتوت الأحمر وبتلات الياسمين في تباين مثالي. ويختتم بلمسة خشبية حاسمة من خشب الصندل والمسك، مع الكثافة المثالية لكريمة الفانيليا."
   },
   "notes": {
    "top": [
@@ -6189,6 +6296,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "One Touch Warm",
+  "lineAr": "ون تاتش وورم",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -6213,7 +6321,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Warm Body Cream, wrapped in seduction and authenticity, offers a soft touch that moisturizes, nourishes and firms. Its composition helps support collagen production and cell regeneration, leaving skin looking healthy and glowing. Its enchanting sensory journey evolves into a mix of flowers and finishes on sweet, woody notes, exuding personality and sophistication.",
-   "ar": "يمنح كريم الجسم One Touch Warm، المفعم بالجاذبية والأصالة، لمسة ناعمة ترطّب البشرة وتغذّيها وتمنحها التماسك. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. وتتطوّر رحلته العطرية الساحرة إلى مزيج من الزهور، لتختتم بنفحات حلوة وخشبية تفيض بالشخصية والرقيّ."
+   "ar": "يمنح كريم الجسم ون تاتش وورم، المفعم بالجاذبية والأصالة، لمسة ناعمة ترطّب البشرة وتغذّيها وتمنحها التماسك. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. وتتطوّر رحلته العطرية الساحرة إلى مزيج من الزهور، لتختتم بنفحات حلوة وخشبية تفيض بالشخصية والرقيّ."
   },
   "source": "https://www.wepink.com.br/body-cream-one-touch-warm-200ml---wepink-094/p",
   "notes": {}
@@ -6223,6 +6331,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Bourbon",
+  "lineAr": "بوربون",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -6271,6 +6380,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "My Trip Three",
+  "lineAr": "ماي تريب ثري",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -6298,7 +6408,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Trip Three Body Splash is a refined journey for the senses, conveying confidence for every moment. Its olfactory experience opens with a refreshing touch of apple and lily of the valley, moving into a delicate, elegant floral bouquet. It concludes on a soft base with sweet, woody notes of patchouli and caramel.",
-   "ar": "يمثّل بخاخ الجسم My Trip Three رحلة راقية للحواس تبثّ الثقة في كل لحظة. تبدأ تجربته العطرية بلمسة منعشة من التفاح وزنبق الوادي، ثم تنتقل إلى باقة زهرية رقيقة وأنيقة، وتختتم بقاعدة ناعمة بنفحات حلوة وخشبية من الباتشولي والكراميل."
+   "ar": "يمثّل بخاخ الجسم ماي تريب ثري رحلة راقية للحواس تبثّ الثقة في كل لحظة. تبدأ تجربته العطرية بلمسة منعشة من التفاح وزنبق الوادي، ثم تنتقل إلى باقة زهرية رقيقة وأنيقة، وتختتم بقاعدة ناعمة بنفحات حلوة وخشبية من الباتشولي والكراميل."
   },
   "notes": {
    "top": [
@@ -6329,6 +6439,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Obsessed Gold",
+  "lineAr": "أوبسيسد جولد",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -6353,7 +6464,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Gold Body Cream has a soft touch that moisturizes, nourishes and firms, as its composition helps support collagen production and cell regeneration, leaving skin looking healthy and glowing. Its floral oriental scent opens with a touch of fruit, moving into a floral heart of grand gardenia and delicate neroli and jasmine, finishing pleasantly on a sweet, woody note.",
-   "ar": "يتميّز كريم الجسم Obsessed Gold بلمسة ناعمة ترطّب البشرة وتغذّيها وتمنحها التماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. يبدأ عبيره الزهري الشرقي بلمسة من الفواكه، ثم ينتقل إلى قلب زهري تزيّنه فخامة الغاردينيا ورقّة النيرولي والياسمين، ويختتم بعبير حلو وخشبي آسر."
+   "ar": "يتميّز كريم الجسم أوبسيسد جولد بلمسة ناعمة ترطّب البشرة وتغذّيها وتمنحها التماسك، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. يبدأ عبيره الزهري الشرقي بلمسة من الفواكه، ثم ينتقل إلى قلب زهري تزيّنه فخامة الغاردينيا ورقّة النيرولي والياسمين، ويختتم بعبير حلو وخشبي آسر."
   },
   "notes": {
    "heart": [
@@ -6378,6 +6489,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Infinity Plim",
+  "lineAr": "إنفينيتي بليم",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -6403,7 +6515,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Plim Body Splash is a unique, enveloping sensory experience that connects a surreal world full of wonders to a multifaceted personality, exuding well-being and unforgettable shine with unmatched elegance. Its fruity chypre journey opens with a fruity mix and a touch of ginger, moving into a lush floral heart and finishing on sweet, woody notes.",
-   "ar": "يقدّم بخاخ الجسم Infinity Plim تجربة حسّية فريدة وآسرة تربط عالماً خيالياً مليئاً بالعجائب بشخصية متعدّدة الأوجه، فيفيض بالراحة وبريق لا يُنسى وهالة من الأناقة لا مثيل لها. تبدأ رحلته الشيبرية الفاكهية بمزيج من الفواكه ولمسة من الزنجبيل، ثم تنتقل إلى قلب زهري غني، وتختتم بنفحات حلوة وخشبية."
+   "ar": "يقدّم بخاخ الجسم إنفينيتي بليم تجربة حسّية فريدة وآسرة تربط عالماً خيالياً مليئاً بالعجائب بشخصية متعدّدة الأوجه، فيفيض بالراحة وبريق لا يُنسى وهالة من الأناقة لا مثيل لها. تبدأ رحلته الشيبرية الفاكهية بمزيج من الفواكه ولمسة من الزنجبيل، ثم تنتقل إلى قلب زهري غني، وتختتم بنفحات حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -6420,6 +6532,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF Choices",
+  "lineAr": "في إف تشويسز",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -6445,7 +6558,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "With a mystical, effervescent and sensual charm, VF Choices Body Splash is an invitation to the freedom of being oneself, adding a touch of mystery, adventure and well-being. Its fresh chypre journey opens with fruity notes, moving into a blossoming heart where violet, jasmine and rose take over, and ends on a mysterious, seductive trail of woody and sweet touches.",
-   "ar": "بسحره الغامض والمتّقد والحسّي، يُعدّ بخاخ الجسم VF Choices دعوة مثالية إلى حرية التعبير عن الذات، مضيفاً لمسة من الغموض والمغامرة والراحة. تبدأ رحلته الشيبرية المنعشة بنفحات فاكهية، ثم تنتقل إلى قلب تتفتّح فيه الزهور ويسوده عبير البنفسج والياسمين والورد، وتختتم بأثر غامض مفعم بالجاذبية بلمسات خشبية وحلوة."
+   "ar": "بسحره الغامض والمتّقد والحسّي، يُعدّ بخاخ الجسم في إف تشويسز دعوة مثالية إلى حرية التعبير عن الذات، مضيفاً لمسة من الغموض والمغامرة والراحة. تبدأ رحلته الشيبرية المنعشة بنفحات فاكهية، ثم تنتقل إلى قلب تتفتّح فيه الزهور ويسوده عبير البنفسج والياسمين والورد، وتختتم بأثر غامض مفعم بالجاذبية بلمسات خشبية وحلوة."
   },
   "notes": {
    "heart": [
@@ -6470,6 +6583,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF Bloom",
+  "lineAr": "في إف بلوم",
   "size": "75 ml",
   "price": 189,
   "badge": "bestseller",
@@ -6493,7 +6607,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Bloom Deodorant Cologne is an ode to feminine delicacy with touches of sensuality and elegance, celebrating love of life like spring. It opens with a joyful citrus burst of bergamot and grapefruit blended with juicy peach and delicate coconut. A romantic, elegant floral heart leads to a sweet, woody base with a sensual touch.",
-   "ar": "تمثّل كولونيا VF Bloom قصيدة للرقّة الأنثوية بلمسات من الحسّية والأناقة، تحتفي بحب الحياة كربيع جميل. تبدأ بمزيج مبهج من الفواكه وانفجار حمضي من البرغموت والجريب فروت، ممزوجاً بعصارة الخوخ ورقّة جوز الهند. وفي القلب تناغم زهري يحتضن جانباً رومانسياً وأنيقاً، يقود إلى قاعدة حلوة وخشبية بلمسة حسّية."
+   "ar": "تمثّل كولونيا في إف بلوم قصيدة للرقّة الأنثوية بلمسات من الحسّية والأناقة، تحتفي بحب الحياة كربيع جميل. تبدأ بمزيج مبهج من الفواكه وانفجار حمضي من البرغموت والجريب فروت، ممزوجاً بعصارة الخوخ ورقّة جوز الهند. وفي القلب تناغم زهري يحتضن جانباً رومانسياً وأنيقاً، يقود إلى قاعدة حلوة وخشبية بلمسة حسّية."
   },
   "notes": {
    "top": [
@@ -6522,6 +6636,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Celebrate Life",
+  "lineAr": "سيليبريت لايف",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -6548,7 +6663,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "A sweet tribute to celebration, Celebrate Life Deodorant Cologne is made for those who shine by always celebrating the good side of life. It opens with soft, fresh notes and a vibrant touch of pink pepper, while a heart of lily of the valley, rose and jasmine adds romance and elegance. Its signature is an enveloping, seductive woody accord with gentle sweetness.",
-   "ar": "تحية عذبة للاحتفال، صُمّمت كولونيا Celebrate Life لمن يتألّقون باحتفائهم الدائم بالجانب المشرق من الحياة. تبدأ بنفحات ناعمة ومنعشة تصحبها لمسة نابضة من الفلفل الوردي، فيما يضفي القلب المكوّن من زنبق الوادي والورد والياسمين بُعداً رومانسياً وأنيقاً. وتتجلّى بصمتها في نفحات خشبية آسرة بحلاوة ناعمة."
+   "ar": "تحية عذبة للاحتفال، صُمّمت كولونيا سيليبريت لايف لمن يتألّقون باحتفائهم الدائم بالجانب المشرق من الحياة. تبدأ بنفحات ناعمة ومنعشة تصحبها لمسة نابضة من الفلفل الوردي، فيما يضفي القلب المكوّن من زنبق الوادي والورد والياسمين بُعداً رومانسياً وأنيقاً. وتتجلّى بصمتها في نفحات خشبية آسرة بحلاوة ناعمة."
   },
   "notes": {
    "top": [
@@ -6579,6 +6694,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Red",
+  "lineAr": "ريد",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -6604,7 +6720,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Red Body Cream awakens hydration, nourishment and firmness, as its composition helps support collagen production and cell regeneration, all with a soft touch that leaves skin looking healthy and glowing. Its refined floral oriental notes open with citrusy blood orange, move into a meeting of flowers and finish with a woody essence and a sweet touch of praline.",
-   "ar": "يوقظ كريم الجسم Red الترطيب والتغذية والتماسك في البشرة، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وكل ذلك بلمسة ناعمة تترك البشرة بمظهر صحي ومشرق. تبدأ نفحاته الزهرية الشرقية الراقية بعبير البرتقال الدموي الحمضي، ثم تلتقي بالزهور، وتختتم بجوهر خشبي ولمسة حلوة من البرالين."
+   "ar": "يوقظ كريم الجسم ريد الترطيب والتغذية والتماسك في البشرة، إذ تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، وكل ذلك بلمسة ناعمة تترك البشرة بمظهر صحي ومشرق. تبدأ نفحاته الزهرية الشرقية الراقية بعبير البرتقال الدموي الحمضي، ثم تلتقي بالزهور، وتختتم بجوهر خشبي ولمسة حلوة من البرالين."
   },
   "notes": {
    "top": [
@@ -6627,6 +6743,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Pureblixx",
+  "lineAr": "بيوربليكس",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -6653,7 +6770,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Pureblixx Deodorant Cologne is a heady, enveloping elixir that enchants wherever it goes, overflowing with lightness, sophistication and self-confidence. Its scent combines citrus fruits led by glamorous Sicilian lemon, contrasted by a floral heart and a sweet, woody base that evokes the warm, fresh breeze of a sunset by the sea.",
-   "ar": "تمثّل كولونيا Pureblixx إكسيراً آسراً وغامراً يسحر الجميع أينما حلّ، ويفيض بالخفّة والرقيّ والثقة بالنفس بأسلوب نابض بالحيوية. يجمع عبيرها بين الفواكه الحمضية بقيادة الليمون الصقلي الفاتن، يقابلها قلب زهري وقاعدة حلوة وخشبية تستحضر نسيم الغروب الدافئ والمنعش على البحر."
+   "ar": "تمثّل كولونيا بيوربليكس إكسيراً آسراً وغامراً يسحر الجميع أينما حلّ، ويفيض بالخفّة والرقيّ والثقة بالنفس بأسلوب نابض بالحيوية. يجمع عبيرها بين الفواكه الحمضية بقيادة الليمون الصقلي الفاتن، يقابلها قلب زهري وقاعدة حلوة وخشبية تستحضر نسيم الغروب الدافئ والمنعش على البحر."
   },
   "notes": {
    "top": [
@@ -6670,6 +6787,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Red",
+  "lineAr": "ريد",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -6696,7 +6814,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Red Body Splash awakens a new passion with a striking, seductive fragrance that represents someone who stands out and draws attention wherever they go. Following a floral oriental path, its notes blend a mix of flowers over a sweet, woody base for a unique sense of well-being. For the best experience, it can be paired with the complete Red line.",
-   "ar": "يوقظ بخاخ الجسم Red شغفاً جديداً بعطر لافت وجذّاب يجسّد الشخصية المتميّزة التي تجذب الأنظار أينما حلّت. يتّبع مساراً عطرياً زهرياً شرقياً تمتزج فيه تشكيلة من الزهور فوق قاعدة حلوة وخشبية، لإحساس فريد بالراحة. وللحصول على أفضل تجربة، يُنصح باستخدامه مع مجموعة Red الكاملة."
+   "ar": "يوقظ بخاخ الجسم ريد شغفاً جديداً بعطر لافت وجذّاب يجسّد الشخصية المتميّزة التي تجذب الأنظار أينما حلّت. يتّبع مساراً عطرياً زهرياً شرقياً تمتزج فيه تشكيلة من الزهور فوق قاعدة حلوة وخشبية، لإحساس فريد بالراحة. وللحصول على أفضل تجربة، يُنصح باستخدامه مع مجموعة ريد الكاملة."
   },
   "source": "https://www.wepink.com.br/body-splash-red/p",
   "notes": {}
@@ -6706,6 +6824,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Infinity Tawny",
+  "lineAr": "إنفينيتي توني",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -6731,7 +6850,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Tawny Body Cream wraps the skin in sweetness, with a blend of oils and extracts that moisturize and leave skin looking healthy, vigorous and glowing. Its fragrance combines juicy fruits with floral delicacy, creating an enveloping trail that awakens infinite, delicious sensations.",
-   "ar": "يغلّف كريم الجسم Infinity Tawny البشرة بالعذوبة، بمزيج من الزيوت والمستخلصات التي ترطّبها وتمنحها مظهراً صحياً وحيوياً ومشرقاً. ويجمع عطره بين عصارة الفواكه ورقّة الزهور، ليترك أثراً آسراً يوقظ أحاسيس شهية لا متناهية."
+   "ar": "يغلّف كريم الجسم إنفينيتي توني البشرة بالعذوبة، بمزيج من الزيوت والمستخلصات التي ترطّبها وتمنحها مظهراً صحياً وحيوياً ومشرقاً. ويجمع عطره بين عصارة الفواكه ورقّة الزهور، ليترك أثراً آسراً يوقظ أحاسيس شهية لا متناهية."
   },
   "source": "https://www.wepink.com.br/body-cream-infinity-tawny-200ml---wepink-580/p",
   "notes": {}
@@ -6741,6 +6860,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Heaven Blue",
+  "lineAr": "هيفن بلو",
   "size": "150 ml",
   "price": 59,
   "badge": "new",
@@ -6761,11 +6881,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Heaven Blue",
-   "ar": "قوام الكريمة المخفوقة بعبير Heaven Blue"
+   "ar": "قوام الكريمة المخفوقة بعبير هيفن بلو"
   },
   "desc": {
    "en": "Shower Dream Heaven Blue Bath Foam takes bath time to another level. Its ultra-creamy whipped texture wraps the skin in a soft, scented foam that gently cleanses impurities while helping maintain deep hydration, a silky touch and a glow effect. The citrus aromatic fragrance evokes peace, freshness and mystery, turning self-care into a divine, spa-like experience.",
-   "ar": "ترتقي رغوة الاستحمام Shower Dream Heaven Blue بلحظات الاستحمام إلى مستوى آخر. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة البشرة برغوة ناعمة ومعطّرة تزيل الشوائب بلطف، وتساعد في الوقت نفسه على الحفاظ على الترطيب العميق والملمس الحريري وتأثير الإشراقة. ويبعث عطرها الحمضي العطري إحساساً بالسكينة والانتعاش والغموض، ليحوّل العناية الذاتية إلى تجربة سماوية أشبه بمنتجع خاص."
+   "ar": "ترتقي رغوة الاستحمام شاور دريم هيفن بلو بلحظات الاستحمام إلى مستوى آخر. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة البشرة برغوة ناعمة ومعطّرة تزيل الشوائب بلطف، وتساعد في الوقت نفسه على الحفاظ على الترطيب العميق والملمس الحريري وتأثير الإشراقة. ويبعث عطرها الحمضي العطري إحساساً بالسكينة والانتعاش والغموض، ليحوّل العناية الذاتية إلى تجربة سماوية أشبه بمنتجع خاص."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-heaven-blue---wepink-pat11566/p",
   "notes": {}
@@ -6775,6 +6895,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Scarlette Radiance",
+  "lineAr": "سكارليت راديانس",
   "size": "50 ml",
   "price": 149,
   "family": "floral",
@@ -6801,7 +6922,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Not every fragrance reveals its true beauty at the first spray; the most extraordinary ones choose to evolve. Scarlette Radiance is born of this philosophy, a creation where light, texture and depth coexist in perfect balance, revealing new facets on the skin. Made for women who see beauty in the details, it is a luminous floral with an amber signature.",
-   "ar": "لا تكشف كل العطور عن جمالها الحقيقي من الرشّة الأولى، فأكثرها استثنائية يختار أن يتطوّر. ومن هذه الفلسفة وُلد Scarlette Radiance، إبداع يتعايش فيه الضوء والملمس والعمق في توازن مثالي، كاشفاً عن جوانب جديدة عند ملامسته البشرة. صُمّم للمرأة التي ترى الجمال في التفاصيل، وهو عطر زهري مضيء ببصمة عنبرية."
+   "ar": "لا تكشف كل العطور عن جمالها الحقيقي من الرشّة الأولى، فأكثرها استثنائية يختار أن يتطوّر. ومن هذه الفلسفة وُلد سكارليت راديانس، إبداع يتعايش فيه الضوء والملمس والعمق في توازن مثالي، كاشفاً عن جوانب جديدة عند ملامسته البشرة. صُمّم للمرأة التي ترى الجمال في التفاصيل، وهو عطر زهري مضيء ببصمة عنبرية."
   },
   "source": "https://www.wepink.com.br/desod-col-scarlette-radiance---wepink-535/p",
   "notes": {}
@@ -6811,6 +6932,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "scrub",
   "line": "Feive",
+  "lineAr": "فيف",
   "size": "450 g",
   "price": 99,
   "badge": "new",
@@ -6834,7 +6956,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Feive Body Scrub elevates care to a new level of luxury and sophistication. Its formula contains actives that renew the skin and provide lasting hydration, extending the feeling of vitality well beyond the bath.",
-   "ar": "يرتقي مقشّر الجسم Feive Body Scrub بالعناية إلى مستوى جديد من الفخامة والرقيّ. تحتوي تركيبته على مكوّنات فعّالة تجدّد البشرة وتمنحها ترطيباً يدوم، لتمتدّ الحيوية إلى ما بعد الاستحمام بكثير."
+   "ar": "يرتقي مقشّر الجسم فيف بودي سكراب بالعناية إلى مستوى جديد من الفخامة والرقيّ. تحتوي تركيبته على مكوّنات فعّالة تجدّد البشرة وتمنحها ترطيباً يدوم، لتمتدّ الحيوية إلى ما بعد الاستحمام بكثير."
   },
   "notes": {
    "heart": [
@@ -6857,6 +6979,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Scarlette",
+  "lineAr": "سكارليت",
   "size": "50 ml",
   "price": 39,
   "color": "#D24146",
@@ -6880,7 +7003,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Scarlette Antiperspirant Roll-on delivers up to 72 hours of protection, freshness and hydration in an intense, striking experience. Its formula helps even out tone and improve the appearance of the underarms, while helping boost ceramide synthesis. Its floral gourmand fragrance adds an enveloping, powerful touch for those who live with attitude and drive.",
-   "ar": "يوفّر مزيل العرق ومضاد التعرّق MyProtection Scarlette رول أون حماية تصل إلى 72 ساعة مع الانتعاش والترطيب في تجربة مكثّفة ولافتة. تساعد تركيبته على توحيد لون منطقة الإبطين وتحسين مظهرها، إلى جانب المساعدة في تعزيز إنتاج السيراميد. ويضفي عطره الزهري الغورماند لمسة آسرة وقوية لمن يعيشون بثقة وإصرار على تحقيق أهدافهم."
+   "ar": "يوفّر مزيل العرق ومضاد التعرّق ماي بروتكشن سكارليت رول أون حماية تصل إلى 72 ساعة مع الانتعاش والترطيب في تجربة مكثّفة ولافتة. تساعد تركيبته على توحيد لون منطقة الإبطين وتحسين مظهرها، إلى جانب المساعدة في تعزيز إنتاج السيراميد. ويضفي عطره الزهري الغورماند لمسة آسرة وقوية لمن يعيشون بثقة وإصرار على تحقيق أهدافهم."
   },
   "source": "https://www.wepink.com.br/desodorante-antitranspirante-roll-on-scarlette-50ml---wepink/p",
   "notes": {}
@@ -6890,7 +7013,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Fatal Black For Her Collection Set",
-  "lineAr": "طقم مجموعة Fatal Black For Her",
+  "lineAr": "فيتال بلاك فور هير كوليكشن سِت",
   "price": 229,
   "color": "#6D4C72",
   "color2": "#DED7DF",
@@ -6904,11 +7027,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Fatal Black For Her line, together in one set",
-   "ar": "مجموعة Fatal Black For Her في طقم واحد"
+   "ar": "مجموعة فيتال بلاك فور هير في طقم واحد"
   },
   "desc": {
    "en": "The Fatal Black For Her Collection Set brings together products from the Fatal Black For Her line in a single kit. An easy way to enjoy the line's products together.",
-   "ar": "يجمع طقم مجموعة Fatal Black For Her منتجات من مجموعة Fatal Black For Her في طقم واحد. طريقة سهلة للاستمتاع بمنتجات المجموعة معاً."
+   "ar": "يجمع طقم مجموعة فيتال بلاك فور هير منتجات من مجموعة فيتال بلاك فور هير في طقم واحد. طريقة سهلة للاستمتاع بمنتجات المجموعة معاً."
   },
   "source": "https://www.wepink.com.br/kit-linha-fatal-black-for-her---wepink-105474/p",
   "notes": {}
@@ -6918,6 +7041,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "soap",
   "line": "Auretx",
+  "lineAr": "أوريتكس",
   "price": 29,
   "color": "#C09495",
   "color2": "#F1E7E7",
@@ -6939,7 +7063,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Clean Bar Auretx Bar Soap turns bathing into a ritual of sophistication. Its creamy lather gently cleanses, leaving skin soft and scented with intense red berries that evolve into a floral heart and reveal a sweet, woody base. A striking experience that accompanies the daily routine with the energy of someone born to lead.",
-   "ar": "يحوّل صابون Clean Bar Auretx الاستحمام إلى طقس من الرقيّ. تنظّف رغوته الكريمية البشرة بلطف، وتتركها ناعمة ومعطّرة بكثافة التوت الأحمر الذي يتطوّر إلى قلب زهري ويكشف عن قاعدة حلوة وخشبية. تجربة لافتة ترافق الروتين اليومي بطاقة من وُلد ليقود."
+   "ar": "يحوّل صابون كلين بار أوريتكس الاستحمام إلى طقس من الرقيّ. تنظّف رغوته الكريمية البشرة بلطف، وتتركها ناعمة ومعطّرة بكثافة التوت الأحمر الذي يتطوّر إلى قلب زهري ويكشف عن قاعدة حلوة وخشبية. تجربة لافتة ترافق الروتين اليومي بطاقة من وُلد ليقود."
   },
   "notes": {
    "top": [
@@ -6956,6 +7080,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Vanilla Hope",
+  "lineAr": "فانيلا هوب",
   "size": "200 ml",
   "price": 69,
   "family": "sweet",
@@ -6976,11 +7101,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the cozy embrace of Vanilla Hope",
-   "ar": "تغذية عميقة وتماسك في احتضان Vanilla Hope الدافئ"
+   "ar": "تغذية عميقة وتماسك في احتضان فانيلا هوب الدافئ"
   },
   "desc": {
    "en": "Vanilla Hope Body Cream wraps the skin in refreshing charm, with selected oils and extracts that deeply moisturize and leave skin more radiant and luminous. Its formula helps support collagen production and cell regeneration, leaving skin soft and revitalized, while the fragrance celebrates the strength of nature with a light, energizing feel.",
-   "ar": "يغلّف كريم الجسم Vanilla Hope البشرة بسحر منعش، بفضل زيوت ومستخلصات مختارة ترطّبها بعمق وتمنحها مزيداً من النضارة والإشراق. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتترك البشرة ناعمة ومفعمة بالحيوية، فيما يحتفي عطره بقوة الطبيعة ويبعث إحساساً خفيفاً ومنعشاً بالطاقة."
+   "ar": "يغلّف كريم الجسم فانيلا هوب البشرة بسحر منعش، بفضل زيوت ومستخلصات مختارة ترطّبها بعمق وتمنحها مزيداً من النضارة والإشراق. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتترك البشرة ناعمة ومفعمة بالحيوية، فيما يحتفي عطره بقوة الطبيعة ويبعث إحساساً خفيفاً ومنعشاً بالطاقة."
   },
   "source": "https://www.wepink.com.br/body-cream-locao-hid-desod-hope-200-ml---wepink-487/p",
   "notes": {}
@@ -6990,6 +7115,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Vanilla Dream",
+  "lineAr": "فانيلا دريم",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -7010,11 +7136,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the cozy embrace of Vanilla Dream",
-   "ar": "تغذية عميقة وتماسك في احتضان Vanilla Dream الدافئ"
+   "ar": "تغذية عميقة وتماسك في احتضان فانيلا دريم الدافئ"
   },
   "desc": {
    "en": "Vanilla Dream Body Cream is a dream of hydration and fragrance for the body. Its formula helps support collagen production and cell regeneration, leaving skin deeply hydrated, nourished and soft with a healthy, luminous look. The fragrance reveals notes of tropical fruits and honey accords, joined by delicate jasmine for a cozy, caring experience.",
-   "ar": "كريم الجسم Vanilla Dream حلم من الترطيب والعطر للجسم. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتترك البشرة مرطّبة بعمق ومغذّاة وناعمة بمظهر صحي ومشرق. ويكشف عطره عن نفحات الفواكه الاستوائية ولمسات العسل التي تمتزج برقّة الياسمين لتجربة دافئة مفعمة بالحنان."
+   "ar": "كريم الجسم فانيلا دريم حلم من الترطيب والعطر للجسم. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتترك البشرة مرطّبة بعمق ومغذّاة وناعمة بمظهر صحي ومشرق. ويكشف عطره عن نفحات الفواكه الاستوائية ولمسات العسل التي تمتزج برقّة الياسمين لتجربة دافئة مفعمة بالحنان."
   },
   "notes": {
    "top": [
@@ -7043,6 +7169,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "VF Choices",
+  "lineAr": "في إف تشويسز",
   "size": "50 ml",
   "price": 69,
   "color": "#DAB5A4",
@@ -7061,7 +7188,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Choices Hair Mist keeps hair protected, shiny and scented all day with a citrus burst of lemon, orange and mandarin that opens the way to a captivating floral heart of jasmine, violet and rose. The best choice for the hair.",
-   "ar": "يحافظ معطّر الشعر VF Choices Hair Mist على الشعر محمياً ولامعاً ومعطّراً طوال اليوم، بانفجار حمضي من الليمون والبرتقال والماندرين يمهّد الطريق لقلب زهري آسر من الياسمين والبنفسج والورد. الخيار الأمثل للشعر."
+   "ar": "يحافظ معطّر الشعر في إف تشويسز هير ميست على الشعر محمياً ولامعاً ومعطّراً طوال اليوم، بانفجار حمضي من الليمون والبرتقال والماندرين يمهّد الطريق لقلب زهري آسر من الياسمين والبنفسج والورد. الخيار الأمثل للشعر."
   },
   "notes": {
    "top": [
@@ -7100,6 +7227,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "One Touch",
+  "lineAr": "ون تاتش",
   "size": "50 ml",
   "price": 69,
   "color": "#DDB39E",
@@ -7118,7 +7246,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Hair Mist adds the finishing touch to the hair, leaving it protected and glossy while releasing a powerful fruity fragrance of pear and raspberry. These lead along the olfactory path to the unmatched sophistication of Arabian jasmine and white lily, all designed for the well-being of the hair.",
-   "ar": "يضفي معطّر الشعر One Touch Hair Mist اللمسة الأخيرة على الشعر، فيتركه محمياً ولامعاً ويفوح منه عطر فاكهي قوي من الكمثرى وتوت العليق، يقود في مساره العطري إلى الرقيّ الفريد للياسمين العربي والزنبق الأبيض. كل ذلك مصمّم لعناية مثالية بالشعر."
+   "ar": "يضفي معطّر الشعر ون تاتش هير ميست اللمسة الأخيرة على الشعر، فيتركه محمياً ولامعاً ويفوح منه عطر فاكهي قوي من الكمثرى وتوت العليق، يقود في مساره العطري إلى الرقيّ الفريد للياسمين العربي والزنبق الأبيض. كل ذلك مصمّم لعناية مثالية بالشعر."
   },
   "notes": {
    "top": [
@@ -7149,6 +7277,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "Perfect Pear",
+  "lineAr": "بيرفكت بير",
   "size": "50 ml",
   "price": 69,
   "color": "#D2BB96",
@@ -7167,7 +7296,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Perfect Pear Hair Mist leaves hair shinier, protected and scented all day, in an essence that redefines feminine beauty. Its floral and fruity scent brings comfort and well-being to the hair, exuding delicacy and elegance through fresh fruits and violet petals. With strength and subtlety, it finishes on a sweet, woody base.",
-   "ar": "يمنح معطّر الشعر Perfect Pear Hair Mist الشعر لمعاناً أكبر وحماية وعطراً يدوم طوال اليوم، بعبير يعيد تعريف الجمال الأنثوي. يبعث عطره الزهري الفاكهي إحساساً بالراحة في الشعر، ويفيض بالرقّة والأناقة بانتعاش الفواكه وبتلات البنفسج. وبقوة ونعومة في آن، يختتم بقاعدة حلوة وخشبية."
+   "ar": "يمنح معطّر الشعر بيرفكت بير هير ميست الشعر لمعاناً أكبر وحماية وعطراً يدوم طوال اليوم، بعبير يعيد تعريف الجمال الأنثوي. يبعث عطره الزهري الفاكهي إحساساً بالراحة في الشعر، ويفيض بالرقّة والأناقة بانتعاش الفواكه وبتلات البنفسج. وبقوة ونعومة في آن، يختتم بقاعدة حلوة وخشبية."
   },
   "notes": {
    "heart": [
@@ -7184,6 +7313,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Verano Di Capri",
+  "lineAr": "فيرانو دي كابري",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -7209,7 +7339,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Verano Di Capri Deodorant Cologne is an invitation to experience summer in its most sophisticated, light and irresistibly enveloping version. A fragrance that combines sweetness and freshness in perfect harmony, translating luminous sensations into every detail on the skin.",
-   "ar": "تمثّل كولونيا Verano Di Capri دعوة لعيش الصيف بأكثر صوره رقيّاً وخفّة وجاذبية. عطر يجمع بين الحلاوة والانتعاش في تناغم مثالي، ويترجم الأحاسيس المشرقة في كل تفصيلة على البشرة."
+   "ar": "تمثّل كولونيا فيرانو دي كابري دعوة لعيش الصيف بأكثر صوره رقيّاً وخفّة وجاذبية. عطر يجمع بين الحلاوة والانتعاش في تناغم مثالي، ويترجم الأحاسيس المشرقة في كل تفصيلة على البشرة."
   },
   "source": "https://www.wepink.com.br/desod-col-verano-di-capri-100-ml---wepink-471/p",
   "notes": {}
@@ -7219,6 +7349,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Latina",
+  "lineAr": "لاتينا",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -7244,7 +7375,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Latina Deodorant Cologne is an invitation to experience intensity in its most vibrant, warm and sophisticated form. A fragrance that conveys energy, femininity and magnetism in every detail, creating a striking presence that is impossible to ignore.",
-   "ar": "تمثّل كولونيا Latina دعوة لعيش الشغف بأكثر صوره حيوية ودفئاً ورقيّاً. عطر يجسّد الطاقة والأنوثة والجاذبية في كل تفصيلة، ليصنع حضوراً لافتاً يستحيل تجاهله."
+   "ar": "تمثّل كولونيا لاتينا دعوة لعيش الشغف بأكثر صوره حيوية ودفئاً ورقيّاً. عطر يجسّد الطاقة والأنوثة والجاذبية في كل تفصيلة، ليصنع حضوراً لافتاً يستحيل تجاهله."
   },
   "source": "https://www.wepink.com.br/desod-col--latina-100-ml---wepink-469/p",
   "notes": {}
@@ -7254,6 +7385,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Vanilla Dream",
+  "lineAr": "فانيلا دريم",
   "size": "150 ml",
   "price": 59,
   "color": "#2FA1CE",
@@ -7273,11 +7405,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Dream",
-   "ar": "قوام الكريمة المخفوقة بعبير Vanilla Dream"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا دريم"
   },
   "desc": {
    "en": "Shower Dream Vanilla Dream Bath Foam was delicately developed to provide deep hydration, gentle cleansing and a dreamy glow effect. Its ultra-creamy whipped texture envelops the body, leaving skin soft and satiny, while the scent of tropical fruits with rose and jasmine lingers on the skin, prolonging the feeling of comfort. A deliciously irresistible bath to daydream in.",
-   "ar": "طُوّرت رغوة الاستحمام Shower Dream Vanilla Dream بعناية لتمنح ترطيباً عميقاً وتنظيفاً لطيفاً وتأثير إشراقة حالماً. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة الجسم، ويترك البشرة ناعمة كالساتان، فيما يبقى عبير الفواكه الاستوائية مع الورد والياسمين على البشرة ليطيل الإحساس بالدفء والراحة. تجربة استحمام شهية لا تُقاوم تبعث على الحلم."
+   "ar": "طُوّرت رغوة الاستحمام شاور دريم فانيلا دريم بعناية لتمنح ترطيباً عميقاً وتنظيفاً لطيفاً وتأثير إشراقة حالماً. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة الجسم، ويترك البشرة ناعمة كالساتان، فيما يبقى عبير الفواكه الاستوائية مع الورد والياسمين على البشرة ليطيل الإحساس بالدفء والراحة. تجربة استحمام شهية لا تُقاوم تبعث على الحلم."
   },
   "notes": {
    "top": [
@@ -7306,6 +7438,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Vanilla Soft",
+  "lineAr": "فانيلا سوفت",
   "size": "150 ml",
   "price": 59,
   "color": "#D3AB8F",
@@ -7325,11 +7458,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Soft",
-   "ar": "قوام الكريمة المخفوقة بعبير Vanilla Soft"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا سوفت"
   },
   "desc": {
    "en": "Shower Dream Vanilla Soft Bath Foam brings next-level hydration and creaminess, turning bath time into the most delightful self-care moment. Its ultra-creamy whipped texture envelops the body, cleanses the skin and delivers hydration with a glow effect. Its delicious fragrance pairs the floral touch of lily of the valley with the sweetness of caramel, leaving skin scented and cozy.",
-   "ar": "تمنح رغوة الاستحمام Shower Dream Vanilla Soft ترطيباً وكريمية من مستوى آخر، لتحوّل الاستحمام إلى ألذّ لحظات العناية الذاتية. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة الجسم، فينظّف البشرة ويمنحها الترطيب مع تأثير الإشراقة. ويجمع عطرها الشهي بين لمسة زنبق الوادي الزهرية وحلاوة الكراميل، ليترك البشرة معطّرة بإحساس دافئ مريح."
+   "ar": "تمنح رغوة الاستحمام شاور دريم فانيلا سوفت ترطيباً وكريمية من مستوى آخر، لتحوّل الاستحمام إلى ألذّ لحظات العناية الذاتية. يغلّف قوامها فائق الكريمية الشبيه بالكريمة المخفوقة الجسم، فينظّف البشرة ويمنحها الترطيب مع تأثير الإشراقة. ويجمع عطرها الشهي بين لمسة زنبق الوادي الزهرية وحلاوة الكراميل، ليترك البشرة معطّرة بإحساس دافئ مريح."
   },
   "notes": {
    "top": [
@@ -7352,6 +7485,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Vanilla Wish",
+  "lineAr": "فانيلا ويش",
   "size": "150 ml",
   "price": 59,
   "color": "#A598CC",
@@ -7371,11 +7505,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Wish",
-   "ar": "قوام الكريمة المخفوقة بعبير Vanilla Wish"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا ويش"
   },
   "desc": {
    "en": "Shower Dream Vanilla Wish Bath Foam turns bathing into a premium self-care ritual, with an ultra-creamy whipped texture that envelops the body, removes impurities and delivers a glow effect with deep hydration. Its floral and woody fragrance feels feminine and cozy, creating a spa-at-home sensation that relaxes and leaves skin soft, scented and irresistibly inviting to the touch.",
-   "ar": "تحوّل رغوة الاستحمام Shower Dream Vanilla Wish الاستحمام إلى طقس فاخر للعناية الذاتية، بقوامها فائق الكريمية الشبيه بالكريمة المخفوقة الذي يغلّف الجسم ويزيل الشوائب ويمنح تأثير الإشراقة مع ترطيب عميق. ويضفي عطرها بنفحاته الزهرية والخشبية لمسة أنثوية دافئة، ليمنح إحساس المنتجع في المنزل الذي يبعث الاسترخاء ويترك البشرة ناعمة ومعطّرة وجذّابة للمس."
+   "ar": "تحوّل رغوة الاستحمام شاور دريم فانيلا ويش الاستحمام إلى طقس فاخر للعناية الذاتية، بقوامها فائق الكريمية الشبيه بالكريمة المخفوقة الذي يغلّف الجسم ويزيل الشوائب ويمنح تأثير الإشراقة مع ترطيب عميق. ويضفي عطرها بنفحاته الزهرية والخشبية لمسة أنثوية دافئة، ليمنح إحساس المنتجع في المنزل الذي يبعث الاسترخاء ويترك البشرة ناعمة ومعطّرة وجذّابة للمس."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-vanilla-wish---wepink-pat11246/p",
   "notes": {}
@@ -7385,6 +7519,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Wonbloom Charm",
+  "lineAr": "وونبلوم تشارم",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -7410,7 +7545,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Wonbloom Charm Deodorant Cologne expresses a light, sophisticated and naturally radiant femininity, enveloping effortlessly with charm, delicacy and a striking presence. Its fresh, fruity opening awakens the senses as juicy pear meets bergamot in a luminous combination, creating a vibrant, feminine and delicately sweet start.",
-   "ar": "تجسّد كولونيا Wonbloom Charm أنوثة خفيفة وراقية ومشرقة بطبيعتها، تغمر بلا عناء بسحرها ورقّتها وحضورها اللافت. توقظ افتتاحيتها المنعشة الفاكهية الحواس، إذ تلتقي الكمثرى الغنية بالعصارة بالبرغموت في مزيج مشرق وآسر، لتصنع بداية نابضة بالحيوية وأنثوية وحلوة برقّة."
+   "ar": "تجسّد كولونيا وونبلوم تشارم أنوثة خفيفة وراقية ومشرقة بطبيعتها، تغمر بلا عناء بسحرها ورقّتها وحضورها اللافت. توقظ افتتاحيتها المنعشة الفاكهية الحواس، إذ تلتقي الكمثرى الغنية بالعصارة بالبرغموت في مزيج مشرق وآسر، لتصنع بداية نابضة بالحيوية وأنثوية وحلوة برقّة."
   },
   "notes": {
    "top": [
@@ -7431,7 +7566,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodycare",
   "line": "Welumi Body Illuminator",
-  "lineAr": "مُضيء الجسم Welumi",
+  "lineAr": "ويلومي بودي إلوميناتور",
   "size": "55 g",
   "price": 99,
   "color": "#D48353",
@@ -7456,7 +7591,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Welumi Body Illuminator makes skin truly stand out. Its formula is designed to illuminate and care at the same time, combining glow-boosting actives with continuous hydration in a light, fluid texture that glides on easily without feeling heavy. With a velvety touch and flawless finish, it enhances the skin, helps blur small imperfections and leaves a radiant, eye-catching glow.",
-   "ar": "يمنح مُضيء الجسم Welumi البشرة حضوراً لافتاً حقاً. صُمّمت تركيبته لتضيء البشرة وتعتني بها في آن واحد، إذ تجمع بين مكوّنات تعزّز الإشراق وترطيب متواصل، بقوام خفيف وسلس ينساب بسهولة دون أن يُثقل البشرة. وبملمسه المخملي ولمسته النهائية المثالية، يُبرز جمال البشرة ويساعد على إخفاء العيوب الصغيرة، ويترك توهّجاً مشرقاً يلفت الأنظار."
+   "ar": "يمنح مُضيء الجسم ويلومي البشرة حضوراً لافتاً حقاً. صُمّمت تركيبته لتضيء البشرة وتعتني بها في آن واحد، إذ تجمع بين مكوّنات تعزّز الإشراق وترطيب متواصل، بقوام خفيف وسلس ينساب بسهولة دون أن يُثقل البشرة. وبملمسه المخملي ولمسته النهائية المثالية، يُبرز جمال البشرة ويساعد على إخفاء العيوب الصغيرة، ويترك توهّجاً مشرقاً يلفت الأنظار."
   },
   "source": "https://www.wepink.com.br/locao-iluminadora-corporal-desodorante-55g---wepink-444/p",
   "notes": {}
@@ -7466,6 +7601,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Infinity Xis",
+  "lineAr": "إنفينيتي شيس",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -7491,7 +7627,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Infinity Xis Body Cream is a scented body lotion that hydrates, nourishes and firms the skin, thanks to a formula that supports collagen production and cell regeneration. Skin looks healthy and radiant, and stays scented with a wonderful floral aroma all the time.",
-   "ar": "يمنح كريم الجسم المعطّر Infinity Xis البشرة الترطيب والتغذية والشدّ، بفضل تركيبته التي تساعد على إنتاج الكولاجين وتجديد الخلايا. فتبدو البشرة دائماً صحية ومشرقة، وتبقى معطّرة بعبير زهري رائع طوال الوقت."
+   "ar": "يمنح كريم الجسم المعطّر إنفينيتي شيس البشرة الترطيب والتغذية والشدّ، بفضل تركيبته التي تساعد على إنتاج الكولاجين وتجديد الخلايا. فتبدو البشرة دائماً صحية ومشرقة، وتبقى معطّرة بعبير زهري رائع طوال الوقت."
   },
   "source": "https://www.wepink.com.br/body-cream-infinity-x-200ml-wepink-426/p",
   "notes": {}
@@ -7501,6 +7637,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Liberté Doré",
+  "lineAr": "ليبرتيه دوريه",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -7525,7 +7662,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Liberté Doré Body Splash holds in its fragrance the secret to reaching one's most magnificent self. Its intensely floral aroma enhances the glow that comes from within, lighting up everything around. A scent worth its weight in gold.",
-   "ar": "يحمل بخاخ الجسم Liberté Doré في عطره سرّ الوصول إلى أبهى نسخة من الذات. يُبرز عبيره الزهري المكثّف الإشراقة النابعة من الداخل لتضيء كل ما حولها. عطر قيمته من ذهب."
+   "ar": "يحمل بخاخ الجسم ليبرتيه دوريه في عطره سرّ الوصول إلى أبهى نسخة من الذات. يُبرز عبيره الزهري المكثّف الإشراقة النابعة من الداخل لتضيء كل ما حولها. عطر قيمته من ذهب."
   },
   "source": "https://www.wepink.com.br/body-splash-liberte-dore-200-ml---wepink-421/p",
   "notes": {}
@@ -7535,6 +7672,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Ghadan",
+  "lineAr": "غدان",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -7560,7 +7698,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ghadan awakens the eccentric with a fragrance that unfolds in a natural, intimate and surprisingly vivid way. It opens warm and comforting with caramelized almond, then turns into a delicate, sophisticated floral where rose and jasmine sambac dance around incense and saffron. Enveloping and almost hypnotic, it lingers on the skin like an elegant, unforgettable memory.",
-   "ar": "يوقظ عطر Ghadan روح التفرّد بعبير يتكشّف بطريقة طبيعية وحميمة ونابضة بالحياة على نحو مدهش. يبدأ دافئاً ومريحاً بلمسة اللوز المكرمل الآسرة، ثم يتحوّل إلى باقة زهرية رقيقة وراقية يتراقص فيها الورد والياسمين سامباك حول البخور والزعفران. عطر آسر يكاد يكون ساحراً، يبقى على البشرة كذكرى أنيقة لا تُنسى."
+   "ar": "يوقظ عطر غدان روح التفرّد بعبير يتكشّف بطريقة طبيعية وحميمة ونابضة بالحياة على نحو مدهش. يبدأ دافئاً ومريحاً بلمسة اللوز المكرمل الآسرة، ثم يتحوّل إلى باقة زهرية رقيقة وراقية يتراقص فيها الورد والياسمين سامباك حول البخور والزعفران. عطر آسر يكاد يكون ساحراً، يبقى على البشرة كذكرى أنيقة لا تُنسى."
   },
   "notes": {
    "top": [
@@ -7595,6 +7733,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "Heaven",
+  "lineAr": "هيفن",
   "size": "50 ml",
   "price": 69,
   "color": "#E6007E",
@@ -7617,7 +7756,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Heaven Hair Mist leaves hair shinier, protected and fragranced throughout the day, with an essence that evokes a delicate, joyful universe. Its scent rises to a true paradise of flowers on a dazzling journey through mandarin and orange blossom, finishing on a sweet, woody and elegant base.",
-   "ar": "يمنح معطّر الشعر Heaven الشعر لمعاناً أكبر وحماية وعبيراً طوال اليوم، بخلاصة تستحضر عالماً رقيقاً ومبهجاً. يرتقي عبيره إلى جنّة حقيقية من الزهور في رحلة مبهرة عبر الماندرين وزهر البرتقال، ليختتم بقاعدة حلوة وخشبية وأنيقة."
+   "ar": "يمنح معطّر الشعر هيفن الشعر لمعاناً أكبر وحماية وعبيراً طوال اليوم، بخلاصة تستحضر عالماً رقيقاً ومبهجاً. يرتقي عبيره إلى جنّة حقيقية من الزهور في رحلة مبهرة عبر الماندرين وزهر البرتقال، ليختتم بقاعدة حلوة وخشبية وأنيقة."
   },
   "notes": {
    "top": [
@@ -7640,6 +7779,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "Liberté",
+  "lineAr": "ليبرتيه",
   "size": "50 ml",
   "price": 69,
   "color": "#E6007E",
@@ -7662,7 +7802,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Liberté Hair Mist leaves hair shinier, protected and fragranced throughout the day, with an essence that reflects the elegance and nobility of freedom. Its floral blend brings comfort and well-being, celebrating the woman who never gives up on her dreams, and evolves into French Centifolia rose before finishing with sweet vanilla and woody amber.",
-   "ar": "يمنح معطّر الشعر Liberté الشعر لمعاناً أكبر وحماية وعبيراً طوال اليوم، بخلاصة تعكس أناقة الحرية ورقيّها. يضفي مزيجه الزهري على الشعر شعوراً بالراحة والرفاهية احتفاءً بالمرأة التي لا تتخلى عن أحلامها أبداً، ثم يتطوّر نحو وردة سنتيفوليا الفرنسية، ملكة العطور، ليختتم بحلاوة الفانيليا ودفء العنبر الخشبي."
+   "ar": "يمنح معطّر الشعر ليبرتيه الشعر لمعاناً أكبر وحماية وعبيراً طوال اليوم، بخلاصة تعكس أناقة الحرية ورقيّها. يضفي مزيجه الزهري على الشعر شعوراً بالراحة والرفاهية احتفاءً بالمرأة التي لا تتخلى عن أحلامها أبداً، ثم يتطوّر نحو وردة سنتيفوليا الفرنسية، ملكة العطور، ليختتم بحلاوة الفانيليا ودفء العنبر الخشبي."
   },
   "notes": {
    "heart": [
@@ -7689,6 +7829,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "VF Golden",
+  "lineAr": "في إف جولدن",
   "size": "50 ml",
   "price": 39,
   "badge": "bestseller",
@@ -7713,7 +7854,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The VF Golden MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and 72-hour hydration. Its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral oriental olfactory path.",
-   "ar": "يقدّم مضاد التعرّق رول أون MyProtection VF Golden مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري شرقي آسر."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن في إف جولدن مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري شرقي آسر."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-vf-golden-50-ml-365/p",
   "notes": {}
@@ -7723,6 +7864,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Wonbloom",
+  "lineAr": "وونبلوم",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -7748,7 +7890,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Wonbloom celebrates the authentic, modern woman with a fragrance that unites the unmatched freshness of tangerine and mandarin with the commanding sophistication of jasmine. Sweet caramel and refined amber finish this irresistible scent.",
-   "ar": "يحتفي عطر Wonbloom بالمرأة الأصيلة والعصرية، بتركيبة تجمع بين انتعاش اليوسفي والماندرين الذي لا يُضاهى ورقيّ الياسمين الطاغي. وتختتم حلاوة الكراميل وفخامة العنبر هذا العبير الذي لا يُقاوَم."
+   "ar": "يحتفي عطر وونبلوم بالمرأة الأصيلة والعصرية، بتركيبة تجمع بين انتعاش اليوسفي والماندرين الذي لا يُضاهى ورقيّ الياسمين الطاغي. وتختتم حلاوة الكراميل وفخامة العنبر هذا العبير الذي لا يُقاوَم."
   },
   "notes": {
    "top": [
@@ -7785,6 +7927,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Fantasy Kids Pink Castle",
+  "lineAr": "فانتاسي كيدز بينك كاسل",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -7811,7 +7954,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fantasy Kids Pink Castle has the perfect scent for little princesses. Its gourmand, fruity heart brings notes of melon, apple, strawberry and raspberry, and the fragrance finishes adorably with sweet notes of caramel, orange blossom and vanilla, enchanting everyone in a true kingdom of sensations.",
-   "ar": "يحمل عطر Fantasy Kids Pink Castle العبير المثالي للأميرات الصغيرات. يقدّم قلبه الغورماند الفاكهي نفحات من الشمام والتفاح والفراولة وتوت العليق، ثم يختتم بلطف بنفحات حلوة من الكراميل وزهر البرتقال والفانيليا، ليسحر الجميع في مملكة حقيقية من الأحاسيس."
+   "ar": "يحمل عطر فانتاسي كيدز بينك كاسل العبير المثالي للأميرات الصغيرات. يقدّم قلبه الغورماند الفاكهي نفحات من الشمام والتفاح والفراولة وتوت العليق، ثم يختتم بلطف بنفحات حلوة من الكراميل وزهر البرتقال والفانيليا، ليسحر الجميع في مملكة حقيقية من الأحاسيس."
   },
   "notes": {
    "heart": [
@@ -7854,6 +7997,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Fantasy Kids Blue Dragon",
+  "lineAr": "فانتاسي كيدز بلو دراجون",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -7880,7 +8024,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fantasy Kids Blue Dragon is a burst of freshness with intensely citrus notes of orange and mandarin. A fragrance fit for a prince, it brings out an adventurous side and wraps it in the elegance of freesia and white musk.",
-   "ar": "عطر Fantasy Kids Blue Dragon انفجار من الانتعاش بنفحات حمضية مكثّفة من البرتقال والماندرين. عطر يليق بالأمراء، يُبرز الجانب المغامر ويغلّفه بأناقة الفريزيا والمسك الأبيض."
+   "ar": "عطر فانتاسي كيدز بلو دراجون انفجار من الانتعاش بنفحات حمضية مكثّفة من البرتقال والماندرين. عطر يليق بالأمراء، يُبرز الجانب المغامر ويغلّفه بأناقة الفريزيا والمسك الأبيض."
   },
   "notes": {
    "top": [
@@ -7913,6 +8057,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Crave",
+  "lineAr": "كريف",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -7938,7 +8083,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Crave Body Splash awakens the senses. Its scent opens with a burst of freshness from sugared lemon, then blossoms with the lightness of orange blossom. Musk and vanilla gently finish the fragrance with a sweet sophistication.",
-   "ar": "يوقظ بخاخ الجسم Crave الحواس. يبدأ عبيره بانفجار من انتعاش الليمون المُحلّى، ثم يتفتّح بخفّة زهر البرتقال. ويختتم المسك والفانيليا هذا العطر بنعومة ورقيّ حلو."
+   "ar": "يوقظ بخاخ الجسم كريف الحواس. يبدأ عبيره بانفجار من انتعاش الليمون المُحلّى، ثم يتفتّح بخفّة زهر البرتقال. ويختتم المسك والفانيليا هذا العطر بنعومة ورقيّ حلو."
   },
   "notes": {
    "top": [
@@ -7971,6 +8116,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Bourbon Silver",
+  "lineAr": "بوربون سيلفر",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -7996,7 +8142,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Like a breath of classic elegance, Bourbon Silver exudes the mystery of the modern man who knows how to leave his mark, with the freshness of a woody oriental scent.",
-   "ar": "كنسمة من الأناقة الكلاسيكية، يفوح عطر Bourbon Silver بغموض الرجل العصري الذي يعرف كيف يترك بصمته، بانتعاش عبير خشبي شرقي."
+   "ar": "كنسمة من الأناقة الكلاسيكية، يفوح عطر بوربون سيلفر بغموض الرجل العصري الذي يعرف كيف يترك بصمته، بانتعاش عبير خشبي شرقي."
   },
   "notes": {
    "top": [
@@ -8017,6 +8163,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Infinity Xis",
+  "lineAr": "إنفينيتي شيس",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -8041,7 +8188,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Xis opens with the energy of grapefruit and blackcurrant for a vibrant, decisive start. At the heart, a sophisticated floral of rose, orange blossom, lily of the valley and jasmine makes a striking move, while musk, vanilla, amber, balsamic notes and cedar form a warm, enveloping base. Elegant and impactful, it is perfumery's true checkmate.",
-   "ar": "يفتتح عطر Infinity Xis بحيوية الجريب فروت والكشمش الأسود في بداية نابضة وحاسمة. وفي القلب، تكشف باقة زهرية راقية من الورد وزهر البرتقال وزنبق الوادي والياسمين عن حضور لافت كحركة بارعة على رقعة الشطرنج، بينما يشكّل المسك والفانيليا والعنبر مع النفحات البلسمية وخشب الأرز قاعدة دافئة آسرة. عطر يفرض نفسه بأناقة، وهو بحقّ كشّ ملك عالم العطور."
+   "ar": "يفتتح عطر إنفينيتي شيس بحيوية الجريب فروت والكشمش الأسود في بداية نابضة وحاسمة. وفي القلب، تكشف باقة زهرية راقية من الورد وزهر البرتقال وزنبق الوادي والياسمين عن حضور لافت كحركة بارعة على رقعة الشطرنج، بينما يشكّل المسك والفانيليا والعنبر مع النفحات البلسمية وخشب الأرز قاعدة دافئة آسرة. عطر يفرض نفسه بأناقة، وهو بحقّ كشّ ملك عالم العطور."
   },
   "notes": {
    "top": [
@@ -8102,7 +8249,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "haircare",
   "line": "My Hair Ultra Repair Hair Mask",
-  "lineAr": "قناع الشعر My Hair Ultra Repair",
+  "lineAr": "ماي هير ألترا ريبير هير ماسك",
   "size": "200 g",
   "price": 129,
   "badge": "bestseller",
@@ -8128,7 +8275,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The My Hair Ultra Repair Hair Mask restores life, strength and beauty to hair. Its blend of vegetable oils, hyperprotein, lanolin and polyglutamic acid deeply hydrates, nourishes and repairs from root to tip, forming a protective film that reduces frizz, helps recover split ends and strengthens the hair bulb. Flaxseed, sage, D-Panthenol, Indian gooseberry and aloe vera add volume, softness and shine.",
-   "ar": "صُمّم قناع الشعر My Hair Ultra Repair ليعيد إلى الشعر الحيوية والقوة والجمال. يرطّب مزيجه من الزيوت النباتية والبروتين الفائق واللانولين وحمض البوليغلوتاميك الشعرَ بعمق ويغذّيه ويصلحه من الجذور حتى الأطراف، مكوّناً طبقة واقية تقلّل التجعّد وتعالج الأطراف المتقصّفة وتقوّي بصيلات الشعر. ويمنح مستخلص بذور الكتان والمريمية مع الدي-بانثينول ومستخلص الأملج والألوفيرا الشعرَ كثافة ونعومة ولمعاناً."
+   "ar": "صُمّم قناع الشعر ماي هير ألترا ريبير ليعيد إلى الشعر الحيوية والقوة والجمال. يرطّب مزيجه من الزيوت النباتية والبروتين الفائق واللانولين وحمض البوليغلوتاميك الشعرَ بعمق ويغذّيه ويصلحه من الجذور حتى الأطراف، مكوّناً طبقة واقية تقلّل التجعّد وتعالج الأطراف المتقصّفة وتقوّي بصيلات الشعر. ويمنح مستخلص بذور الكتان والمريمية مع الدي-بانثينول ومستخلص الأملج والألوفيرا الشعرَ كثافة ونعومة ولمعاناً."
   },
   "source": "https://www.wepink.com.br/mascara-capilar-my-hair-ultra-repair-200g---wepink-329/p",
   "notes": {}
@@ -8138,6 +8285,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Lion Blanc",
+  "lineAr": "ليون بلان",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -8162,7 +8310,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Lion Blanc represents the power of the masculine essence through strength and elegance, like a fearless lion that never gives up on its dreams and goals. Its woody scent evolves into mysterious notes of jasmine, nutmeg and a fierce touch of cardamom, finishing on a sweet, ambery, unmatched base full of charm for sophisticated men.",
-   "ar": "يجسّد عطر Lion Blanc قوة الجوهر الرجولي وأناقته، كأسد جسور لا يتخلى أبداً عن أحلامه وأهدافه. يتطوّر عبيره الخشبي الجذاب إلى نفحات غامضة من الياسمين وجوزة الطيب ولمسة جريئة من الهيل، ليختتم بقاعدة حلوة عنبرية لا تُضاهى، مفعمة بالجاذبية للرجل الراقي."
+   "ar": "يجسّد عطر ليون بلان قوة الجوهر الرجولي وأناقته، كأسد جسور لا يتخلى أبداً عن أحلامه وأهدافه. يتطوّر عبيره الخشبي الجذاب إلى نفحات غامضة من الياسمين وجوزة الطيب ولمسة جريئة من الهيل، ليختتم بقاعدة حلوة عنبرية لا تُضاهى، مفعمة بالجاذبية للرجل الراقي."
   },
   "notes": {
    "heart": [
@@ -8187,6 +8335,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "VF",
+  "lineAr": "في إف",
   "size": "50 ml",
   "price": 39,
   "color": "#D52965",
@@ -8210,7 +8359,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The VF MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and 72-hour hydration. Its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral amber olfactory path.",
-   "ar": "يقدّم مضاد التعرّق رول أون MyProtection VF مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري عنبري آسر."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن في إف مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري عنبري آسر."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-vf-50-ml---wepink-293/p",
   "notes": {}
@@ -8220,6 +8369,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Merry Christmas",
+  "lineAr": "ميري كريسماس",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -8245,7 +8395,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Merry Christmas Body Splash captures the unique, sparkling magic of the holiday spirit in an unforgettable floral oriental scent. It opens with the beauty of peony and magnolia, evolves into a dreamy floral heart that spreads tenderness and joy, and finishes on a sweet, woody, dazzling base that evokes the happiest memories.",
-   "ar": "يجسّد بخاخ الجسم Merry Christmas سحر روح الأعياد الفريد والمتألق بعبير زهري شرقي لا يُنسى. يبدأ بجمال نفحات الفاوانيا والماغنوليا، ثم يتطوّر إلى قلب زهري حالم ينشر الحنان والبهجة، ليختتم بقاعدة حلوة وخشبية ساحرة تستحضر أسعد الذكريات."
+   "ar": "يجسّد بخاخ الجسم ميري كريسماس سحر روح الأعياد الفريد والمتألق بعبير زهري شرقي لا يُنسى. يبدأ بجمال نفحات الفاوانيا والماغنوليا، ثم يتطوّر إلى قلب زهري حالم ينشر الحنان والبهجة، ليختتم بقاعدة حلوة وخشبية ساحرة تستحضر أسعد الذكريات."
   },
   "notes": {
    "top": [
@@ -8266,6 +8416,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Happy New Year",
+  "lineAr": "هابي نيو يير",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -8289,7 +8440,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Happy New Year Body Splash is a dazzling scent for starting a new year with style, sparkle and joy. It opens with the vibrant freshness of freesia and bergamot, evolves into an extraordinary floral heart and finishes with woody amber and enveloping sandalwood, like a celebration of success in a new chapter.",
-   "ar": "بخاخ الجسم Happy New Year عبير مبهر لاستقبال عام جديد بأناقة وتألق وبهجة. يبدأ بانتعاش نابض من الفريزيا والبرغموت، ثم يتطوّر إلى قلب زهري استثنائي، ليختتم بدفء العنبر الخشبي وسحر خشب الصندل، كاحتفاء بالنجاح في بداية مرحلة جديدة."
+   "ar": "بخاخ الجسم هابي نيو يير عبير مبهر لاستقبال عام جديد بأناقة وتألق وبهجة. يبدأ بانتعاش نابض من الفريزيا والبرغموت، ثم يتطوّر إلى قلب زهري استثنائي، ليختتم بدفء العنبر الخشبي وسحر خشب الصندل، كاحتفاء بالنجاح في بداية مرحلة جديدة."
   },
   "notes": {
    "top": [
@@ -8320,6 +8471,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Perfect Pear",
+  "lineAr": "بيرفكت بير",
   "size": "50 ml",
   "price": 39,
   "color": "#D2AD73",
@@ -8343,7 +8495,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Perfect Pear MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and 72-hour hydration, with an exclusive formula that helps even out skin tone. All in a unique floral fruity scent with a soft touch of violet and a sweet, woody base.",
-   "ar": "يقدّم مضاد التعرّق رول أون MyProtection Perfect Pear مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، مع تركيبة حصرية تساهم في توحيد لون البشرة. وكل ذلك في مسار عطري زهري فاكهي فريد بلمسة ناعمة من البنفسج وقاعدة حلوة وخشبية."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن بيرفكت بير مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، مع تركيبة حصرية تساهم في توحيد لون البشرة. وكل ذلك في مسار عطري زهري فاكهي فريد بلمسة ناعمة من البنفسج وقاعدة حلوة وخشبية."
   },
   "notes": {
    "heart": [
@@ -8360,6 +8512,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Lavanda Sleep",
+  "lineAr": "لافاندا سليب",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -8385,7 +8538,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Lavanda Sleep Body Splash celebrates gentle moments of rest with a unique scent that relaxes the senses. Its refreshing fragrance, with calming properties and a special touch of lavender oil, helps restore sleep. A soft, charming oriental path brings delicate rosemary and violet over a sweet, woody base.",
-   "ar": "يحتفي بخاخ الجسم Lavanda Sleep بلحظات الراحة الهادئة بعبير فريد يبعث الاسترخاء في الحواس. ويساعد عطره المنعش بخصائصه المهدّئة ولمسة زيت اللافندر المميزة على استعادة النوم الهانئ. وكل ذلك في مسار عطري شرقي ناعم وساحر يجمع رقة إكليل الجبل والبنفسج مع قاعدة حلوة وخشبية."
+   "ar": "يحتفي بخاخ الجسم لافاندا سليب بلحظات الراحة الهادئة بعبير فريد يبعث الاسترخاء في الحواس. ويساعد عطره المنعش بخصائصه المهدّئة ولمسة زيت اللافندر المميزة على استعادة النوم الهانئ. وكل ذلك في مسار عطري شرقي ناعم وساحر يجمع رقة إكليل الجبل والبنفسج مع قاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -8412,6 +8565,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Obsessed Deluxe",
+  "lineAr": "أوبسيسد ديلوكس",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -8437,7 +8591,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Obsessed Deluxe Body Splash awakens desire and intrigue, qualities found in powerful, unforgettable women. Its exclusive fragrance opens with a bold fruity chypre touch that blends sophistication and authenticity, then evolves into an enveloping violet heart before finishing on sweet notes of sandalwood and vanilla.",
-   "ar": "يوقظ بخاخ الجسم Obsessed Deluxe الرغبة والفضول، وهما سمتان حاضرتان في المرأة القوية التي لا تُنسى. يبدأ عطره الحصري بلمسة جريئة من نفحة الشيبر الفاكهية تمزج بين الرقيّ والأصالة، ثم يتطوّر إلى قلب آسر من البنفسج، ليختتم بنفحات حلوة من خشب الصندل والفانيليا."
+   "ar": "يوقظ بخاخ الجسم أوبسيسد ديلوكس الرغبة والفضول، وهما سمتان حاضرتان في المرأة القوية التي لا تُنسى. يبدأ عطره الحصري بلمسة جريئة من نفحة الشيبر الفاكهية تمزج بين الرقيّ والأصالة، ثم يتطوّر إلى قلب آسر من البنفسج، ليختتم بنفحات حلوة من خشب الصندل والفانيليا."
   },
   "notes": {
    "top": [
@@ -8470,6 +8624,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Liberté",
+  "lineAr": "ليبرتيه",
   "size": "50 ml",
   "price": 39,
   "color": "#C4B9A3",
@@ -8492,7 +8647,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Liberté MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and 72-hour hydration, while its exclusive formula helps even out skin tone. All in a floral bouquet fragrance that overflows with the noblest essence of elegance.",
-   "ar": "يقدّم مضاد التعرّق رول أون MyProtection Liberté مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، فيما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير باقة زهرية يفيض بأرقى معاني الأناقة."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن ليبرتيه مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، فيما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير باقة زهرية يفيض بأرقى معاني الأناقة."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-liberte-50-ml-drle-ath-001/p",
   "notes": {}
@@ -8502,7 +8657,7 @@ window.WP_CATALOG = [
   "cat": "skincare",
   "type": "skincare",
   "line": "Suncare SPF 50 Sunscreen",
-  "lineAr": "واقي الشمس Suncare بعامل حماية SPF 50",
+  "lineAr": "صن كير إس بي إف 50 صن سكرين",
   "size": "30 ml",
   "price": 79,
   "color": "#80DCDE",
@@ -8526,7 +8681,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Suncare is a facial sunscreen that hydrates, balances and offers high protection against harmful UVA/UVB rays, with SPF 50 and a PPD of 18.5. Its smart actives also help prevent acne, control oiliness and fight premature aging. Oil-free, with a creamy texture and dry-touch matte finish, it suits all skin types and is especially designed for combination and oily skin.",
-   "ar": "Suncare واقٍ شمسي للوجه يرطّب البشرة ويوازنها ويمنحها حماية عالية من الآثار الضارة للأشعة فوق البنفسجية UVA/UVB، بعامل حماية SPF 50 ومؤشر PPD يبلغ 18.5. كما تساعد مكوّناته الذكية على الوقاية من حب الشباب والتحكم في الإفرازات الدهنية ومكافحة علامات الشيخوخة المبكرة. خالٍ من الزيوت بقوام كريمي ولمسة جافة ونهاية مطفية، يناسب جميع أنواع البشرة وصُمّم خصيصاً للبشرة المختلطة والدهنية."
+   "ar": "صن كير واقٍ شمسي للوجه يرطّب البشرة ويوازنها ويمنحها حماية عالية من الآثار الضارة للأشعة فوق البنفسجية UVA/UVB، بعامل حماية SPF 50 ومؤشر PPD يبلغ 18.5. كما تساعد مكوّناته الذكية على الوقاية من حب الشباب والتحكم في الإفرازات الدهنية ومكافحة علامات الشيخوخة المبكرة. خالٍ من الزيوت بقوام كريمي ولمسة جافة ونهاية مطفية، يناسب جميع أنواع البشرة وصُمّم خصيصاً للبشرة المختلطة والدهنية."
   },
   "source": "https://www.wepink.com.br/protetor-solar-fps-50-suncare-30ml-wepink/p",
   "notes": {}
@@ -8536,7 +8691,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "Glow Essencial Lip Tint",
-  "lineAr": "صبغة الشفاه Glow Essencial",
+  "lineAr": "جلو إسنسيال ليب تينت",
   "size": "5.8 ml",
   "price": 49,
   "color": "#EF6AA8",
@@ -8570,7 +8725,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Bomb One + Ruby Rhodolite Body Splash + Ruby Rhodolite Body Cream Set",
-  "lineAr": "طقم Bomb One مع بخاخ الجسم Ruby Rhodolite وكريم الجسم Ruby Rhodolite",
+  "lineAr": "بومب ون + روبي رودولايت بودي سبلاش + روبي رودولايت بودي كريم سِت",
   "price": 229,
   "color": "#CE4580",
   "color2": "#F4D6E3",
@@ -8584,11 +8739,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Bomb One paired with Ruby Rhodolite Body Splash and Body Cream",
-   "ar": "طقم يجمع Bomb One مع بخاخ الجسم وكريم الجسم Ruby Rhodolite"
+   "ar": "طقم يجمع بومب ون مع بخاخ الجسم وكريم الجسم روبي رودولايت"
   },
   "desc": {
    "en": "This set brings together three products in a single kit: Bomb One, the Ruby Rhodolite Body Splash and the Ruby Rhodolite Body Cream. A practical way to enjoy all three together.",
-   "ar": "يضم هذا الطقم ثلاثة منتجات معاً: Bomb One، وبخاخ الجسم Ruby Rhodolite، وكريم الجسم Ruby Rhodolite. طريقة عملية للاستمتاع بالمنتجات الثلاثة في طقم واحد."
+   "ar": "يضم هذا الطقم ثلاثة منتجات معاً: بومب ون، وبخاخ الجسم روبي رودولايت، وكريم الجسم روبي رودولايت. طريقة عملية للاستمتاع بالمنتجات الثلاثة في طقم واحد."
   },
   "source": "https://www.wepink.com.br/kit-bomb-one--body-splash-ruby-rhodolite--body-cream--ruby-rhodolite---wepink-105567/p",
   "notes": {}
@@ -8598,7 +8753,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Bomb One + Fantasy Kids Green Set",
-  "lineAr": "طقم Bomb One مع Fantasy Kids Green",
+  "lineAr": "بومب ون + فانتاسي كيدز جرين سِت",
   "price": 239,
   "color": "#AF5B6E",
   "color2": "#EDDADF",
@@ -8612,11 +8767,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Bomb One paired with Fantasy Kids Green",
-   "ar": "طقم يجمع Bomb One مع Fantasy Kids Green"
+   "ar": "طقم يجمع بومب ون مع فانتاسي كيدز جرين"
   },
   "desc": {
    "en": "This set brings together Bomb One and Fantasy Kids Green in a single kit. A practical way to enjoy both products together.",
-   "ar": "يضم هذا الطقم كلاً من Bomb One و Fantasy Kids Green معاً. طريقة عملية للاستمتاع بالمنتجين في طقم واحد."
+   "ar": "يضم هذا الطقم كلاً من بومب ون و فانتاسي كيدز جرين معاً. طريقة عملية للاستمتاع بالمنتجين في طقم واحد."
   },
   "source": "https://www.wepink.com.br/kit-bomb-one--fantasy-kids-green---wepink-125673/p",
   "notes": {}
@@ -8626,7 +8781,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Eternal Cherish Collection Set",
-  "lineAr": "طقم مجموعة Eternal Cherish",
+  "lineAr": "إيترنال تشيريش كوليكشن سِت",
   "price": 229,
   "color": "#D7B58A",
   "color2": "#F6EEE5",
@@ -8640,11 +8795,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Eternal Cherish collection in one set",
-   "ar": "مجموعة Eternal Cherish في طقم واحد"
+   "ar": "مجموعة إيترنال تشيريش في طقم واحد"
   },
   "desc": {
    "en": "This set brings together products from the Eternal Cherish line in a single kit. A practical way to enjoy the collection together.",
-   "ar": "يضم هذا الطقم منتجات من مجموعة Eternal Cherish معاً. طريقة عملية للاستمتاع بمنتجات المجموعة في طقم واحد."
+   "ar": "يضم هذا الطقم منتجات من مجموعة إيترنال تشيريش معاً. طريقة عملية للاستمتاع بمنتجات المجموعة في طقم واحد."
   },
   "source": "https://www.wepink.com.br/kit-linha-eternal-cherish---wepink-145484/p",
   "notes": {}
@@ -8654,7 +8809,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Scarlette Radiance Collection Set",
-  "lineAr": "طقم مجموعة Scarlette Radiance",
+  "lineAr": "سكارليت راديانس كوليكشن سِت",
   "price": 229,
   "color": "#E17F76",
   "color2": "#F8E2E0",
@@ -8668,11 +8823,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Scarlette Radiance collection in one set",
-   "ar": "مجموعة Scarlette Radiance في طقم واحد"
+   "ar": "مجموعة سكارليت راديانس في طقم واحد"
   },
   "desc": {
    "en": "This set brings together products from the Scarlette Radiance line in a single kit. A practical way to enjoy the collection together.",
-   "ar": "يضم هذا الطقم منتجات من مجموعة Scarlette Radiance معاً. طريقة عملية للاستمتاع بمنتجات المجموعة في طقم واحد."
+   "ar": "يضم هذا الطقم منتجات من مجموعة سكارليت راديانس معاً. طريقة عملية للاستمتاع بمنتجات المجموعة في طقم واحد."
   },
   "source": "https://www.wepink.com.br/kit-linha-scarllet-radiance---wepink-145384/p",
   "notes": {}
@@ -8682,6 +8837,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Liberté Exclusif",
+  "lineAr": "ليبرتيه إكسكلوسيف",
   "size": "150 ml",
   "price": 59,
   "badge": "new",
@@ -8702,11 +8858,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Liberté Exclusif",
-   "ar": "قوام الكريمة المخفوقة بعبير Liberté Exclusif"
+   "ar": "قوام الكريمة المخفوقة بعبير ليبرتيه إكسكلوسيف"
   },
   "desc": {
    "en": "The Shower Dream Liberté Exclusif Bath Foam turns bathing into a moment of care and sophistication. Its ultra-creamy texture gently cleanses, removes impurities and helps maintain hydration, leaving skin silky and scented. The floral oriental fragrance reveals the noble freshness of lychee, delicate flowers and the enveloping depth of amber for a premium, relaxing experience.",
-   "ar": "تحوّل رغوة الاستحمام Shower Dream Liberté Exclusif الاستحمام إلى لحظة من العناية والرقيّ. ينظّف قوامها الكريمي الفائق البشرة بلطف ويزيل الشوائب ويساعد على الحفاظ على ترطيبها، تاركاً لمسة حريرية معطّرة. ويكشف عبيرها الزهري الشرقي عن انتعاش الليتشي الراقي ورقة الزهور وعمق العنبر الآسر، في تجربة فاخرة تبعث على الاسترخاء."
+   "ar": "تحوّل رغوة الاستحمام شاور دريم ليبرتيه إكسكلوسيف الاستحمام إلى لحظة من العناية والرقيّ. ينظّف قوامها الكريمي الفائق البشرة بلطف ويزيل الشوائب ويساعد على الحفاظ على ترطيبها، تاركاً لمسة حريرية معطّرة. ويكشف عبيرها الزهري الشرقي عن انتعاش الليتشي الراقي ورقة الزهور وعمق العنبر الآسر، في تجربة فاخرة تبعث على الاسترخاء."
   },
   "notes": {
    "top": [
@@ -8729,6 +8885,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "rollon",
   "line": "Absolute Titanium",
+  "lineAr": "أبسولوت تيتانيوم",
   "size": "50 ml",
   "price": 39,
   "color": "#313131",
@@ -8752,7 +8909,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Absolute Titanium MyProtection Roll-on Antiperspirant offers up to 72 hours of protection and hydration, with freshness that keeps pace with the daily routine. Its innovative formula with brightening action helps even out skin tone, improves the appearance of the underarms and boosts ceramide synthesis. It is crowned by an elegant woody amber fougère fragrance.",
-   "ar": "يوفّر مضاد التعرّق رول أون MyProtection Absolute Titanium حماية وترطيباً لمدة تصل إلى 72 ساعة، مع انتعاش يواكب إيقاع الروتين اليومي. وتساعد تركيبته المبتكرة ذات المفعول المفتّح على توحيد لون البشرة وتحسين مظهر منطقة الإبط وتعزيز إنتاج السيراميدات. ويتوّج كل ذلك عبير فوجير عنبري خشبي أنيق."
+   "ar": "يوفّر مضاد التعرّق رول أون ماي بروتكشن أبسولوت تيتانيوم حماية وترطيباً لمدة تصل إلى 72 ساعة، مع انتعاش يواكب إيقاع الروتين اليومي. وتساعد تركيبته المبتكرة ذات المفعول المفتّح على توحيد لون البشرة وتحسين مظهر منطقة الإبط وتعزيز إنتاج السيراميدات. ويتوّج كل ذلك عبير فوجير عنبري خشبي أنيق."
   },
   "source": "https://www.wepink.com.br/desodorante-antitranspirante-roll-on-absolute-titanium-50ml---wepink/p",
   "notes": {}
@@ -8762,6 +8919,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Martin Magnetic",
+  "lineAr": "مارتن ماجنتك",
   "size": "100 ml",
   "price": 189,
   "color": "#DAB899",
@@ -8785,7 +8943,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Martin Magnetic was created to capture a silent, confident and naturally magnetic presence, balancing freshness, intensity and sophistication through elegant contrasts. It opens with the vibrant freshness of green leaves for a luminous, refined start, then reveals an unexpected floral heart of jasmine, lily of the valley and carnation.",
-   "ar": "وُلد عطر Martin Magnetic ليجسّد حضوراً هادئاً وواثقاً وجذاباً بطبيعته، في توازن بين الانتعاش والكثافة والرقيّ عبر تناقضات أنيقة. يفتتح بانتعاش نابض من الأوراق الخضراء في بداية مشرقة وراقية، ثم يكشف عن قلب زهري غير متوقّع من الياسمين وزنبق الوادي والقرنفل."
+   "ar": "وُلد عطر مارتن ماجنتك ليجسّد حضوراً هادئاً وواثقاً وجذاباً بطبيعته، في توازن بين الانتعاش والكثافة والرقيّ عبر تناقضات أنيقة. يفتتح بانتعاش نابض من الأوراق الخضراء في بداية مشرقة وراقية، ثم يكشف عن قلب زهري غير متوقّع من الياسمين وزنبق الوادي والقرنفل."
   },
   "notes": {
    "top": [
@@ -8816,6 +8974,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Brave Element",
+  "lineAr": "بريف إليمنت",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -8841,7 +9000,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Brave Element was created for men who turn challenges into opportunities, expressing confidence, leadership and courage. It opens with bergamot, pineapple, blueberry and cardamom, moves into an aromatic heart of French lavender, geranium, blue narcissus and lily of the valley, and settles into an intense woody base of patchouli, cedar, moss and musk that leaves a striking trail.",
-   "ar": "صُمّم عطر Brave Element للرجال الذين يحوّلون التحديات إلى فرص، ليعبّر عن الثقة والقيادة والشجاعة. يفتتح بمزيج نابض من البرغموت والأناناس والتوت الأزرق والهيل، ثم ينتقل إلى قلب عطري من اللافندر الفرنسي والجيرانيوم والنرجس الأزرق وزنبق الوادي، ليستقر على قاعدة خشبية مكثّفة من الباتشولي وخشب الأرز والطحلب والمسك تترك أثراً لافتاً."
+   "ar": "صُمّم عطر بريف إليمنت للرجال الذين يحوّلون التحديات إلى فرص، ليعبّر عن الثقة والقيادة والشجاعة. يفتتح بمزيج نابض من البرغموت والأناناس والتوت الأزرق والهيل، ثم ينتقل إلى قلب عطري من اللافندر الفرنسي والجيرانيوم والنرجس الأزرق وزنبق الوادي، ليستقر على قاعدة خشبية مكثّفة من الباتشولي وخشب الأرز والطحلب والمسك تترك أثراً لافتاً."
   },
   "notes": {
    "top": [
@@ -8906,6 +9065,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "soap",
   "line": "Ruby",
+  "lineAr": "روبي",
   "price": 29,
   "color": "#9C3838",
   "color2": "#E9D3D3",
@@ -8927,7 +9087,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Ruby Clean Bar is a bar soap from the Ruby line, made for everyday use. It brings the care the skin deserves to the daily routine.",
-   "ar": "صابونة Ruby Clean Bar صابونة صلبة من مجموعة Ruby مخصّصة للاستخدام اليومي. تمنح البشرة العناية التي تستحقها ضمن الروتين اليومي."
+   "ar": "صابونة روبي كلين بار صابونة صلبة من مجموعة روبي مخصّصة للاستخدام اليومي. تمنح البشرة العناية التي تستحقها ضمن الروتين اليومي."
   },
   "source": "https://www.wepink.com.br/sabonete-em-barra-ruby---wepink-prd00009/p",
   "notes": {}
@@ -8937,6 +9097,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "soap",
   "line": "Celebrate Life",
+  "lineAr": "سيليبريت لايف",
   "price": 29,
   "color": "#AA7B7A",
   "color2": "#ECE1E1",
@@ -8958,7 +9119,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Celebrate Life Clean Bar is a bar soap from the Celebrate Life line, made for everyday use. It brings the care the skin deserves to the daily routine.",
-   "ar": "صابونة Celebrate Life Clean Bar صابونة صلبة من مجموعة Celebrate Life مخصّصة للاستخدام اليومي. تمنح البشرة العناية التي تستحقها ضمن الروتين اليومي."
+   "ar": "صابونة سيليبريت لايف كلين بار صابونة صلبة من مجموعة سيليبريت لايف مخصّصة للاستخدام اليومي. تمنح البشرة العناية التي تستحقها ضمن الروتين اليومي."
   },
   "source": "https://www.wepink.com.br/sabonete-em-barra-celebrate-life---wepink-prd00010/p",
   "notes": {}
@@ -8968,6 +9129,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Authentic Azure",
+  "lineAr": "أوثنتك أزور",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -8993,7 +9155,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Authentic Azure captures the essence of the authentic, confident and naturally striking man. It is a fragrance created for those who live intensely, value their individuality and turn presence into a signature.",
-   "ar": "يجسّد عطر Authentic Azure جوهر الرجل الأصيل والواثق والمتميّز بطبيعته. إنه عطر صُمّم لمن يعيش بشغف، ويقدّر تفرّده، ويحوّل حضوره إلى بصمة خاصة."
+   "ar": "يجسّد عطر أوثنتك أزور جوهر الرجل الأصيل والواثق والمتميّز بطبيعته. إنه عطر صُمّم لمن يعيش بشغف، ويقدّر تفرّده، ويحوّل حضوره إلى بصمة خاصة."
   },
   "source": "https://www.wepink.com.br/desod-col-authentic-azure-100ml---wepink-518/p",
   "notes": {}
@@ -9003,6 +9165,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Vanilla Cuddle",
+  "lineAr": "فانيلا كادل",
   "size": "150 ml",
   "price": 59,
   "color": "#DA8044",
@@ -9022,11 +9185,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Cuddle",
-   "ar": "قوام الكريمة المخفوقة بعبير Vanilla Cuddle"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا كادل"
   },
   "desc": {
    "en": "The Shower Dream Vanilla Cuddle Bath Foam turns bath time into a burst of comfort, with gentle cleansing, intense hydration and a glow effect in an ultra-creamy texture reminiscent of whipped cream. Its sweet scent of tangerine, jasmine and vanilla wraps the body, creating a fragrant, comforting moment of self-care.",
-   "ar": "تحوّل رغوة الاستحمام Shower Dream Vanilla Cuddle وقت الاستحمام إلى لحظة غامرة من الدفء والراحة، بتنظيف لطيف وترطيب مكثّف وتأثير مشرق بقوام كريمي فائق يشبه الكريمة المخفوقة. ويحيط عبيرها الحلو من اليوسفي والياسمين والفانيليا بالجسم، ليخلق لحظة عناية معطّرة ومريحة."
+   "ar": "تحوّل رغوة الاستحمام شاور دريم فانيلا كادل وقت الاستحمام إلى لحظة غامرة من الدفء والراحة، بتنظيف لطيف وترطيب مكثّف وتأثير مشرق بقوام كريمي فائق يشبه الكريمة المخفوقة. ويحيط عبيرها الحلو من اليوسفي والياسمين والفانيليا بالجسم، ليخلق لحظة عناية معطّرة ومريحة."
   },
   "notes": {
    "top": [
@@ -9055,6 +9218,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Mallorie Luxury",
+  "lineAr": "مالوري لاكشري",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -9080,7 +9244,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Mallorie Luxury was created for women who carry elegance, strength and sophistication in every detail. It opens with bright bergamot and lemon, delicate raspberry and a modern spicy touch of pink pepper. A refined bouquet of rose, iris, tuberose and magnolia forms the heart, over a deep, memorable base of patchouli, amber, benzoin and musk.",
-   "ar": "صُمّم عطر Mallorie Luxury للمرأة التي تحمل الأناقة والقوة والرقيّ في كل تفاصيل مسيرتها. يفتتح بإشراقة البرغموت والليمون الحمضية وحلاوة توت العليق الرقيقة، مع لمسة عصرية متبّلة من الفلفل الوردي. ويكشف قلبه عن باقة زهرية راقية من الورد والسوسن والتيوبروز والماغنوليا، فوق قاعدة عميقة لا تُنسى من الباتشولي والعنبر والبنزوين والمسك."
+   "ar": "صُمّم عطر مالوري لاكشري للمرأة التي تحمل الأناقة والقوة والرقيّ في كل تفاصيل مسيرتها. يفتتح بإشراقة البرغموت والليمون الحمضية وحلاوة توت العليق الرقيقة، مع لمسة عصرية متبّلة من الفلفل الوردي. ويكشف قلبه عن باقة زهرية راقية من الورد والسوسن والتيوبروز والماغنوليا، فوق قاعدة عميقة لا تُنسى من الباتشولي والعنبر والبنزوين والمسك."
   },
   "notes": {
    "top": [
@@ -9145,6 +9309,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Ruby Rhodolite",
+  "lineAr": "روبي رودولايت",
   "size": "50 ml",
   "price": 39,
   "color": "#D8307D",
@@ -9168,7 +9333,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Ruby Rhodolite MyProtection Roll-on Antiperspirant elevates the care routine of the woman who forges her own path. With 72-hour protection and hydration, its formula helps improve the appearance and even out the tone of the skin while stimulating ceramide synthesis. Its floral oriental fragrance balances pitaya, jasmine and vanilla, bringing freshness to every move.",
-   "ar": "يرتقي مضاد التعرّق رول أون MyProtection Ruby Rhodolite بروتين العناية لدى المرأة التي ترسم طريقها بنفسها. بحماية وترطيب لمدة 72 ساعة، تساعد تركيبته على تحسين مظهر البشرة وتوحيد لونها، إلى جانب تحفيز إنتاج السيراميدات. ويوازن عبيره الزهري الشرقي بين نفحات فاكهة التنين والياسمين والفانيليا، ليمنح انتعاشاً يرافقها في كل حركة."
+   "ar": "يرتقي مضاد التعرّق رول أون ماي بروتكشن روبي رودولايت بروتين العناية لدى المرأة التي ترسم طريقها بنفسها. بحماية وترطيب لمدة 72 ساعة، تساعد تركيبته على تحسين مظهر البشرة وتوحيد لونها، إلى جانب تحفيز إنتاج السيراميدات. ويوازن عبيره الزهري الشرقي بين نفحات فاكهة التنين والياسمين والفانيليا، ليمنح انتعاشاً يرافقها في كل حركة."
   },
   "notes": {
    "top": [
@@ -9197,6 +9362,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Latina",
+  "lineAr": "لاتينا",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -9222,7 +9388,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Latina Body Splash is an invitation to experience intensity in its most vibrant, warm and sophisticated form. It opens with creamy banana and luminous pear, moves into a heart of creamy coconut and elegant jasmine, and settles into a warm base of velvety vanilla and sandalwood that leaves a striking, enveloping trail.",
-   "ar": "بخاخ الجسم Latina دعوة لعيش الشغف في أكثر صوره حيوية ودفئاً ورقيّاً. يفتتح بالموز الكريمي وخفّة الكمثرى المشرقة، ثم ينتقل إلى قلب من جوز الهند الكريمي والياسمين الأنيق، ليستقر على قاعدة دافئة من الفانيليا المخملية وخشب الصندل تترك أثراً لافتاً وآسراً."
+   "ar": "بخاخ الجسم لاتينا دعوة لعيش الشغف في أكثر صوره حيوية ودفئاً ورقيّاً. يفتتح بالموز الكريمي وخفّة الكمثرى المشرقة، ثم ينتقل إلى قلب من جوز الهند الكريمي والياسمين الأنيق، ليستقر على قاعدة دافئة من الفانيليا المخملية وخشب الصندل تترك أثراً لافتاً وآسراً."
   },
   "notes": {
    "top": [
@@ -9263,6 +9429,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Vanilla Hope",
+  "lineAr": "فانيلا هوب",
   "size": "150 ml",
   "price": 59,
   "color": "#4EBCBA",
@@ -9282,11 +9449,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Hope",
-   "ar": "قوام الكريمة المخفوقة بعبير Vanilla Hope"
+   "ar": "قوام الكريمة المخفوقة بعبير فانيلا هوب"
   },
   "desc": {
    "en": "The Shower Dream Vanilla Hope Bath Foam brings lightness and well-being to bath time, combining gentle cleansing, hydration and a glow effect. Its ultra-creamy, whipped-cream texture leaves skin soft and luminous, while notes of almond and jasmine create a refreshing, comforting ritual of energy and renewal.",
-   "ar": "تمنح رغوة الاستحمام Shower Dream Vanilla Hope وقت الاستحمام إحساساً بالخفّة والراحة، إذ تجمع بين التنظيف اللطيف والترطيب والتأثير المشرق. ويترك قوامها الكريمي الفائق الشبيه بالكريمة المخفوقة البشرة ناعمة ومشرقة، فيما تخلق نفحات اللوز والياسمين طقساً منعشاً ودافئاً مفعماً بالطاقة والتجدد."
+   "ar": "تمنح رغوة الاستحمام شاور دريم فانيلا هوب وقت الاستحمام إحساساً بالخفّة والراحة، إذ تجمع بين التنظيف اللطيف والترطيب والتأثير المشرق. ويترك قوامها الكريمي الفائق الشبيه بالكريمة المخفوقة البشرة ناعمة ومشرقة، فيما تخلق نفحات اللوز والياسمين طقساً منعشاً ودافئاً مفعماً بالطاقة والتجدد."
   },
   "notes": {
    "top": [
@@ -9309,6 +9476,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Fantasy Kids Dream Land",
+  "lineAr": "فانتاسي كيدز دريم لاند",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -9334,7 +9502,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fantasy Kids Dream Land captures a universe where imagination takes shape and every moment becomes a discovery. It opens with juicy fruity notes and a delicate citrus touch, then reveals a soft floral heart where rose meets creamy, almond-like nuances, before the magic turns into comfort at the base.",
-   "ar": "يجسّد عطر Fantasy Kids Dream Land عالماً يتشكّل فيه الخيال وتتحوّل فيه كل لحظة إلى اكتشاف. يفتتح بنفحات فاكهية شهية ولمسة حمضية رقيقة، ثم يكشف عن قلب زهري ناعم يلتقي فيه الورد بلمسات كريمية تشبه اللوز، قبل أن يتحوّل السحر إلى دفء وراحة في القاعدة."
+   "ar": "يجسّد عطر فانتاسي كيدز دريم لاند عالماً يتشكّل فيه الخيال وتتحوّل فيه كل لحظة إلى اكتشاف. يفتتح بنفحات فاكهية شهية ولمسة حمضية رقيقة، ثم يكشف عن قلب زهري ناعم يلتقي فيه الورد بلمسات كريمية تشبه اللوز، قبل أن يتحوّل السحر إلى دفء وراحة في القاعدة."
   },
   "notes": {
    "top": [
@@ -9361,6 +9529,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Lauv Green",
+  "lineAr": "لاف جرين",
   "size": "100 ml",
   "price": 189,
   "color": "#238A8B",
@@ -9384,7 +9553,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Lauv Green expresses balance in its most sophisticated form, uniting vibrant freshness with elegant depth. It opens with luminous, energizing mandarin and a subtle spicy touch of ginger, while lavandin and sage reveal a clean aromatic facet that conveys clarity and confidence.",
-   "ar": "يعبّر عطر Lauv Green عن التوازن في أرقى صوره، إذ يجمع بين الانتعاش النابض والعمق الأنيق. يفتتح بالماندرين الذي يمنح انتعاشاً حمضياً مشرقاً ومنشّطاً مع لمسة متبّلة خفيفة من الزنجبيل، فيما يكشف اللافاندين والمريمية عن جانب عطري نقي يبعث على الوضوح والثقة."
+   "ar": "يعبّر عطر لاف جرين عن التوازن في أرقى صوره، إذ يجمع بين الانتعاش النابض والعمق الأنيق. يفتتح بالماندرين الذي يمنح انتعاشاً حمضياً مشرقاً ومنشّطاً مع لمسة متبّلة خفيفة من الزنجبيل، فيما يكشف اللافاندين والمريمية عن جانب عطري نقي يبعث على الوضوح والثقة."
   },
   "notes": {
    "top": [
@@ -9413,6 +9582,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Flora Whisper",
+  "lineAr": "فلورا ويسبر",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -9437,7 +9607,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Flora Whisper Body Splash was created for women who value lightness, elegance and presence. Its fruity floral fragrance opens with pear, red berries and a citrus accord, blossoms into a heart of magnolia, orchid, lily of the valley and jasmine, and finishes on a soft base of musk, patchouli, light woods and amber that leaves a subtle trail all day.",
-   "ar": "صُمّم بخاخ الجسم Flora Whisper للمرأة التي تقدّر الخفّة والأناقة والحضور في كل التفاصيل. يفتتح عطره الزهري الفاكهي بنفحات منعشة من الكمثرى والتوت الأحمر ونفحة حمضية، ثم يتفتّح في قلب من الماغنوليا والأوركيد وزنبق الوادي والياسمين، ليختتم بقاعدة ناعمة من المسك والباتشولي والأخشاب الخفيفة والعنبر تترك أثراً رقيقاً طوال اليوم."
+   "ar": "صُمّم بخاخ الجسم فلورا ويسبر للمرأة التي تقدّر الخفّة والأناقة والحضور في كل التفاصيل. يفتتح عطره الزهري الفاكهي بنفحات منعشة من الكمثرى والتوت الأحمر ونفحة حمضية، ثم يتفتّح في قلب من الماغنوليا والأوركيد وزنبق الوادي والياسمين، ليختتم بقاعدة ناعمة من المسك والباتشولي والأخشاب الخفيفة والعنبر تترك أثراً رقيقاً طوال اليوم."
   },
   "notes": {
    "top": [
@@ -9498,7 +9668,7 @@ window.WP_CATALOG = [
   "cat": "skincare",
   "type": "skincare",
   "line": "PDRN Serum",
-  "lineAr": "سيروم PDRN",
+  "lineAr": "بي دي آر إن سيروم",
   "size": "30 ml",
   "price": 219,
   "badge": "bestseller",
@@ -9524,7 +9694,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The PDRN Serum leaves skin healthier than ever. Its antioxidant formula helps reduce senescent cells, which secrete inflammatory substances and accumulate with aging. By supporting cell renewal, it improves skin texture for a rejuvenated look.",
-   "ar": "يمنح سيروم PDRN البشرة صحة لا مثيل لها. تتميّز تركيبته بمفعول مضاد للأكسدة وتساعد على تقليل الخلايا الهرمة التي تفرز مواد التهابية وتتراكم مع التقدّم في العمر. وبدعمه لتجديد الخلايا، يحسّن ملمس البشرة ويمنحها مظهراً أكثر شباباً."
+   "ar": "يمنح سيروم بي دي آر إن البشرة صحة لا مثيل لها. تتميّز تركيبته بمفعول مضاد للأكسدة وتساعد على تقليل الخلايا الهرمة التي تفرز مواد التهابية وتتراكم مع التقدّم في العمر. وبدعمه لتجديد الخلايا، يحسّن ملمس البشرة ويمنحها مظهراً أكثر شباباً."
   },
   "source": "https://www.wepink.com.br/serum-pdr-30-ml---wepink-417/p",
   "notes": {}
@@ -9534,6 +9704,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Ember Divinus",
+  "lineAr": "إمبر ديفينوس",
   "size": "100 ml",
   "price": 189,
   "color": "#3473A7",
@@ -9557,7 +9728,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ember Divinus is like a dive into tranquility. Vibrant citrus and fruity notes glide over the skin with a subtle, refreshing touch of spice, evoking the purity of sparkling waters, while ambery accords and a light sweetness create an enveloping sea-breeze trail. A fragrance that flows naturally with the current of well-being.",
-   "ar": "عطر Ember Divinus أشبه بالغوص في عالم من السكينة. تنساب على البشرة نفحات حمضية وفاكهية نابضة مع لمسة خفيفة منعشة من التوابل تستحضر نقاء المياه المتلألئة، بينما تمتزج النفحات العنبرية بحلاوة خفيفة لتخلق نسمة بحرية آسرة تبقى على البشرة. عطر ينساب بطبيعية مع تيار من الراحة والسكينة."
+   "ar": "عطر إمبر ديفينوس أشبه بالغوص في عالم من السكينة. تنساب على البشرة نفحات حمضية وفاكهية نابضة مع لمسة خفيفة منعشة من التوابل تستحضر نقاء المياه المتلألئة، بينما تمتزج النفحات العنبرية بحلاوة خفيفة لتخلق نسمة بحرية آسرة تبقى على البشرة. عطر ينساب بطبيعية مع تيار من الراحة والسكينة."
   },
   "notes": {
    "top": [
@@ -9588,6 +9759,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "My Kids Rawr",
+  "lineAr": "ماي كيدز رور",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -9612,7 +9784,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "A fragrant adventure begins with My Kids Rawr. Marshmallow and citrus sugar blend into a sweet, lightly refreshing scent that sparks everyone's curiosity, while coconut and jasmine represent childhood innocence, opening into comforting caramel and joyful vanilla.",
-   "ar": "تبدأ مغامرة عطرية مع عطر My Kids Rawr. يمتزج المارشميلو والسكر الحمضي في عبير حلو ومنعش قليلاً يوقظ فضول الجميع، فيما يجسّد جوز الهند والياسمين براءة الطفولة، لينفتحا على دفء الكراميل وبهجة الفانيليا."
+   "ar": "تبدأ مغامرة عطرية مع عطر ماي كيدز رور. يمتزج المارشميلو والسكر الحمضي في عبير حلو ومنعش قليلاً يوقظ فضول الجميع، فيما يجسّد جوز الهند والياسمين براءة الطفولة، لينفتحا على دفء الكراميل وبهجة الفانيليا."
   },
   "notes": {
    "top": [
@@ -9653,6 +9825,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Celebrate Sunset",
+  "lineAr": "سيليبريت سانست",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -9677,7 +9850,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Celebrate Sunset captures the charm of a tropical sunset, blending the freshness of exotic fruits with the warmth of the evening breeze. It opens with juicy coconut, mango and passion fruit, reveals a delicate floral touch of jasmine, orange blossom and heliotrope, and settles into a warm, luminous base of musk, vanilla and cashmere.",
-   "ar": "يأسر عطر Celebrate Sunset سحر الغروب الاستوائي، ممزوجاً بانتعاش الفواكه الاستوائية ودفء نسيم آخر النهار. يفتتح بنفحات شهية من جوز الهند والمانجو والباشن فروت، ثم يكشف عن لمسة زهرية رقيقة من الياسمين وزهر البرتقال والهيليوتروب، ليستقر على قاعدة دافئة ومشرقة من المسك والفانيليا والكشمير."
+   "ar": "يأسر عطر سيليبريت سانست سحر الغروب الاستوائي، ممزوجاً بانتعاش الفواكه الاستوائية ودفء نسيم آخر النهار. يفتتح بنفحات شهية من جوز الهند والمانجو والباشن فروت، ثم يكشف عن لمسة زهرية رقيقة من الياسمين وزهر البرتقال والهيليوتروب، ليستقر على قاعدة دافئة ومشرقة من المسك والفانيليا والكشمير."
   },
   "notes": {
    "top": [
@@ -9730,6 +9903,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Pureblixx",
+  "lineAr": "بيوربليكس",
   "size": "50 ml",
   "price": 39,
   "color": "#198199",
@@ -9753,7 +9927,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Pureblixx MyProtection Roll-on Antiperspirant offers a refreshing combination of freshness, lasting protection and up to 72 hours of hydration. Its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral oriental olfactory path.",
-   "ar": "يقدّم مضاد التعرّق رول أون MyProtection Pureblixx مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة تصل إلى 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري شرقي آسر."
+   "ar": "يقدّم مضاد التعرّق رول أون ماي بروتكشن بيوربليكس مزيجاً منعشاً يجمع بين الانتعاش والحماية الدائمة والترطيب لمدة تصل إلى 72 ساعة. كما تساهم تركيبته الحصرية في توحيد لون البشرة. وكل ذلك بعبير فريد وحصري مخصّص للمرأة الأصيلة وصانعة التغيير، في مسار عطري زهري شرقي آسر."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-pureblixx-50-ml---wepink-364/p",
   "notes": {}
@@ -9763,6 +9937,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Yahya Sadeeq",
+  "lineAr": "يحيى صديق",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -9789,7 +9964,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Yahya Sadeeq is like the rare meeting of the calm sea and the vast desert. Freshness crosses the warm dunes to reveal delicate rose wrapped in mysterious black pepper, while rose meets the depth of oud, lifted by a whisper of amber. Seductive and enveloping, it is as unshakable and fascinating as the desert itself.",
-   "ar": "عطر Yahya Sadeeq أشبه بلقاء نادر بين سكون البحر واتساع الصحراء. نسمة من الانتعاش تعبر حرارة الكثبان لتكشف في القلب عن رقة الورد المغلّف بغموض الفلفل الأسود، فيما تلتقي كثافة الورد بعمق العود، ترتقي بهما همسة من العنبر. عطر مغرٍ وآسر، راسخ وساحر كالصحراء نفسها."
+   "ar": "عطر يحيى صديق أشبه بلقاء نادر بين سكون البحر واتساع الصحراء. نسمة من الانتعاش تعبر حرارة الكثبان لتكشف في القلب عن رقة الورد المغلّف بغموض الفلفل الأسود، فيما تلتقي كثافة الورد بعمق العود، ترتقي بهما همسة من العنبر. عطر مغرٍ وآسر، راسخ وساحر كالصحراء نفسها."
   },
   "notes": {
    "heart": [
@@ -9820,6 +9995,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Red Obsidian",
+  "lineAr": "ريد أوبسيديان",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -9845,7 +10021,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Red Obsidian elevates the richness of one's most valuable essence. This masculine fragrance opens with the freshness of cinnamon and sage, evolves into an intense heart of jasmine and cedar, and finishes on a sweet, woody base, a true treasure that intrigues the senses.",
-   "ar": "يرتقي عطر Red Obsidian الرجالي بثراء الجوهر الأثمن. يفتتح بانتعاش القرفة والمريمية، ثم يتطوّر إلى قلب مكثّف من الياسمين وخشب الأرز، ليختتم بقاعدة حلوة وخشبية، كنز حقيقي يثير فضول الحواس."
+   "ar": "يرتقي عطر ريد أوبسيديان الرجالي بثراء الجوهر الأثمن. يفتتح بانتعاش القرفة والمريمية، ثم يتطوّر إلى قلب مكثّف من الياسمين وخشب الأرز، ليختتم بقاعدة حلوة وخشبية، كنز حقيقي يثير فضول الحواس."
   },
   "notes": {
    "top": [
@@ -9876,6 +10052,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Infinity",
+  "lineAr": "إنفينيتي",
   "size": "50 ml",
   "price": 39,
   "color": "#D74492",
@@ -9899,7 +10076,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Infinity Antiperspirant Roll-On offers an invigorating combination of freshness, long-lasting protection and 72-hour hydration, while its exclusive formula also helps even out skin tone. All in a woody amber floral fragrance that expresses passion and sweetness.",
-   "ar": "يوفّر مزيل العرق المضاد للتعرّق MyProtection Infinity بتقنية الرول أون مزيجًا منعشًا من الانتعاش والحماية طويلة الأمد والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. كل ذلك في عطر زهري خشبي عنبري يعبّر عن الشغف والعذوبة."
+   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن إنفينيتي بتقنية الرول أون مزيجًا منعشًا من الانتعاش والحماية طويلة الأمد والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. كل ذلك في عطر زهري خشبي عنبري يعبّر عن الشغف والعذوبة."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-infinity-50-ml---wepink-295/p",
   "notes": {}
@@ -9909,6 +10086,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "soap",
   "line": "We Femme Sabonete Íntimo",
+  "lineAr": "وي فيم سابونيتي إنتيمو",
   "size": "250 ml",
   "price": 29,
   "color": "#EFAFB1",
@@ -9932,7 +10110,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "We Femme Intimate Wash is formulated with actives that gently cleanse the intimate area while providing hydration, comfort and a pleasant everyday feel. Its paraben-free formula helps prevent irritation and supports the health and well-being of the area, in a light texture made for healthy care.",
-   "ar": "صُمّم غسول We Femme للمنطقة الحساسة بمكونات فعّالة تنظّفها بلطف، مع توفير الترطيب والراحة وإحساس لطيف طوال اليوم. تركيبته خالية من البارابين، وتساعد على الوقاية من التهيّج والحفاظ على صحة المنطقة وراحتها، بقوام خفيف مثالي لعناية صحية."
+   "ar": "صُمّم غسول وي فيم للمنطقة الحساسة بمكونات فعّالة تنظّفها بلطف، مع توفير الترطيب والراحة وإحساس لطيف طوال اليوم. تركيبته خالية من البارابين، وتساعد على الوقاية من التهيّج والحفاظ على صحة المنطقة وراحتها، بقوام خفيف مثالي لعناية صحية."
   },
   "source": "https://www.wepink.com.br/sabonete-intimo-we-femme-250-ml---wepink-237/p",
   "notes": {}
@@ -9942,7 +10120,7 @@ window.WP_CATALOG = [
   "cat": "skincare",
   "type": "skincare",
   "line": "Hydracare Essential Facial Moisturizer",
-  "lineAr": "مرطّب الوجه Hydracare Essential",
+  "lineAr": "هايدراكير إسنشال فيشال مويسترايزر",
   "size": "60 ml",
   "price": 79,
   "color": "#F1B7C7",
@@ -9967,7 +10145,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Hydracare Essential Facial Moisturizer is a must for the daily care routine, with high-performance actives for more radiance and softness. Its unique formula offers high hydrating power, protection and support for the firmness and elasticity of the skin barrier. A practical treatment designed for all skin types.",
-   "ar": "يُعدّ مرطّب الوجه Hydracare Essential عنصرًا لا غنى عنه في روتين العناية اليومي، بمكونات فعّالة عالية الجودة تمنح البشرة مزيدًا من الإشراق والنعومة. وتوفّر تركيبته الفريدة قدرة عالية على الترطيب والحماية، وتدعم تماسك حاجز البشرة ومرونته. علاج عملي صُمّم لجميع أنواع البشرة."
+   "ar": "يُعدّ مرطّب الوجه هايدراكير إسنشال عنصرًا لا غنى عنه في روتين العناية اليومي، بمكونات فعّالة عالية الجودة تمنح البشرة مزيدًا من الإشراق والنعومة. وتوفّر تركيبته الفريدة قدرة عالية على الترطيب والحماية، وتدعم تماسك حاجز البشرة ومرونته. علاج عملي صُمّم لجميع أنواع البشرة."
   },
   "source": "https://www.wepink.com.br/creme-hidratante-facial-hydracare-60ml---wepink-251/p",
   "notes": {}
@@ -9977,6 +10155,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "scrub",
   "line": "Obsessed",
+  "lineAr": "أوبسيسد",
   "size": "450 g",
   "price": 99,
   "color": "#6E2522",
@@ -9999,7 +10178,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Body Scrub celebrates the festive, sexy and desired woman, carefully formulated along a woody olfactory path. Its actives provide gentle exfoliation and hydration, with striking notes of Blood Orange and Gardenia that leave skin soft, healthy and scented all day. It finishes on an enveloping base of honey and caramel.",
-   "ar": "يحتفي مقشّر الجسم Obsessed بالمرأة المرحة والجذابة والمرغوبة، وقد صُمّم بعناية بمسار عطري خشبي. تمنح مكوناته الفعّالة تقشيرًا لطيفًا وترطيبًا، مع نفحات آسرة من البرتقال الدموي والغاردينيا تترك البشرة ناعمة وصحية ومعطّرة طوال اليوم. ويختتم بقاعدة دافئة من العسل والكراميل."
+   "ar": "يحتفي مقشّر الجسم أوبسيسد بالمرأة المرحة والجذابة والمرغوبة، وقد صُمّم بعناية بمسار عطري خشبي. تمنح مكوناته الفعّالة تقشيرًا لطيفًا وترطيبًا، مع نفحات آسرة من البرتقال الدموي والغاردينيا تترك البشرة ناعمة وصحية ومعطّرة طوال اليوم. ويختتم بقاعدة دافئة من العسل والكراميل."
   },
   "notes": {
    "top": [
@@ -10032,6 +10211,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Pureblixx Darkest",
+  "lineAr": "بيوربليكس داركست",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -10057,7 +10237,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Pureblixx Darkest Deodorant Cologne embodies a powerful, intense and sophisticated masculine essence wrapped in captivating mystery. Its unique, enveloping woody path opens with bergamot and orange, joined by a refreshing touch of lavender. It finishes on an unforgettable base of benzoin, leaving a heady impression.",
-   "ar": "يجسّد عطر الكولونيا Pureblixx Darkest جوهرًا رجاليًا قويًا ومكثفًا وراقيًا يكتنفه غموض ساحر. يفتتح مساره العطري الخشبي الفريد بالبرغموت والبرتقال، مع لمسة منعشة من اللافندر، ثم يختتم بقاعدة لا تُنسى من البنزوين تترك أثرًا آسرًا."
+   "ar": "يجسّد عطر الكولونيا بيوربليكس داركست جوهرًا رجاليًا قويًا ومكثفًا وراقيًا يكتنفه غموض ساحر. يفتتح مساره العطري الخشبي الفريد بالبرغموت والبرتقال، مع لمسة منعشة من اللافندر، ثم يختتم بقاعدة لا تُنسى من البنزوين تترك أثرًا آسرًا."
   },
   "notes": {
    "top": [
@@ -10090,7 +10270,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "Boldeye All Black Retractable Eye Pencil",
-  "lineAr": "قلم العيون القابل للسحب Boldeye All Black",
+  "lineAr": "بولد آي أول بلاك ريتراكتابل آي بنسل",
   "size": "0.28 g",
   "price": 49,
   "color": "#CE89B1",
@@ -10114,7 +10294,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Boldeye, the retractable pencil from the pink world, is made for those who never give up a bold, flawless and precise look. Its intense color glides easily over the skin and the waterline, ideal for creating a variety of looks. Its ultra-fine, soft tip is perfect for a subtle liner or a fully smoked-out eye.",
-   "ar": "قلم Boldeye القابل للسحب من عالم wepink الوردي مثالي لمن لا تتنازل عن نظرة جريئة ومتقنة ودقيقة. ينزلق لونه المكثف بسهولة على البشرة وعلى خط الماء، ليكون الخيار الأمثل لابتكار إطلالات متنوعة. ويُعدّ رأسه الرفيع والناعم مثاليًا لرسم خط رفيع وناعم أو لإطلالة عيون مدخّنة بالكامل."
+   "ar": "قلم بولد آي القابل للسحب من عالم wepink الوردي مثالي لمن لا تتنازل عن نظرة جريئة ومتقنة ودقيقة. ينزلق لونه المكثف بسهولة على البشرة وعلى خط الماء، ليكون الخيار الأمثل لابتكار إطلالات متنوعة. ويُعدّ رأسه الرفيع والناعم مثاليًا لرسم خط رفيع وناعم أو لإطلالة عيون مدخّنة بالكامل."
   },
   "source": "https://www.wepink.com.br/lapis-retratil-preto-wepink/p",
   "notes": {}
@@ -10124,6 +10304,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Vanilla Dream",
+  "lineAr": "فانيلا دريم",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -10148,7 +10329,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Vanilla Dream Body Splash captures the happiness of tender moments through a delicate floral touch of rose and jasmine. A hint of honey celebrates strength and spreads serenity wherever it goes, blending harmony, calm and affection over a sweet, woody base.",
-   "ar": "يجسّد بخاخ الجسم المعطّر Vanilla Dream سعادة لحظات الحنان بلمسة زهرية رقيقة من الورد والياسمين. وتحتفي لمسة من العسل بالقوة وتنشر السكينة أينما حلّت، لتمزج الانسجام والهدوء والمودّة على قاعدة حلوة وخشبية."
+   "ar": "يجسّد بخاخ الجسم المعطّر فانيلا دريم سعادة لحظات الحنان بلمسة زهرية رقيقة من الورد والياسمين. وتحتفي لمسة من العسل بالقوة وتنشر السكينة أينما حلّت، لتمزج الانسجام والهدوء والمودّة على قاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -10177,6 +10358,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Lion Noir",
+  "lineAr": "ليون نوار",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -10203,7 +10385,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "A mark of elegance, courage and well-being, Lion Noir Body Splash is a masculine fragrance inspired by the restless lion fiercely pursuing its goals and freedom. Its woody citrus path opens with a citrus burst and a touch of pink pepper, moves to a warm heart with floral jasmine, and settles into a sweet, woody base.",
-   "ar": "رمز للأناقة والشجاعة والرفاهية، بخاخ الجسم المعطّر Lion Noir عطر رجالي يستلهم روح الأسد المتحفّز الذي يسعى بشراسة نحو أهدافه وحريته. يفتتح مساره الخشبي الحمضي بانفجار من الحمضيات ولمسة من الفلفل الوردي، ثم ينتقل إلى قلب دافئ بلمسة زهرية من الياسمين، ليستقر على قاعدة حلوة وخشبية."
+   "ar": "رمز للأناقة والشجاعة والرفاهية، بخاخ الجسم المعطّر ليون نوار عطر رجالي يستلهم روح الأسد المتحفّز الذي يسعى بشراسة نحو أهدافه وحريته. يفتتح مساره الخشبي الحمضي بانفجار من الحمضيات ولمسة من الفلفل الوردي، ثم ينتقل إلى قلب دافئ بلمسة زهرية من الياسمين، ليستقر على قاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -10230,6 +10412,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Scarlette Radiance",
+  "lineAr": "سكارليت راديانس",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -10255,7 +10438,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Scarlette Radiance Body Cream deeply moisturizes and supports collagen production and cell renewal, for firmer, healthier and more radiant-looking skin. The experience is completed by a striking fragrance of Bergamot, Turkish Rose and White Amber that leaves a scented trail and reveals the satiny touch of a woman who lights up everything around her.",
-   "ar": "يرطّب لوشن الجسم Scarlette Radiance البشرة بعمق ويساعد على إنتاج الكولاجين وتجديد الخلايا، لبشرة تبدو أكثر تماسكًا وصحة ونضارة. وتكتمل التجربة بعطر آسر من البرغموت والورد التركي والعنبر الأبيض، يترك أثرًا عطريًا ويكشف عن اللمسة الحريرية لامرأة تضيء كل ما حولها."
+   "ar": "يرطّب لوشن الجسم سكارليت راديانس البشرة بعمق ويساعد على إنتاج الكولاجين وتجديد الخلايا، لبشرة تبدو أكثر تماسكًا وصحة ونضارة. وتكتمل التجربة بعطر آسر من البرغموت والورد التركي والعنبر الأبيض، يترك أثرًا عطريًا ويكشف عن اللمسة الحريرية لامرأة تضيء كل ما حولها."
   },
   "notes": {
    "top": [
@@ -10284,6 +10467,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Eternal Cherish",
+  "lineAr": "إيترنال تشيريش",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -10309,7 +10493,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Like a caring gesture for the skin, Eternal Cherish Body Cream combines intense hydration and fragrance in one enveloping experience. Its formula with selected oils and extracts supports collagen production and cell renewal for firmer, softer, healthy-looking skin. Its embracing Floral Oriental fragrance completes the care with an elegant, creamy and tender trail.",
-   "ar": "كلمسة حنان للبشرة، يجمع لوشن الجسم Eternal Cherish بين الترطيب المكثف والعطر في تجربة غامرة. تساعد تركيبته الغنية بزيوت ومستخلصات مختارة على إنتاج الكولاجين وتجديد الخلايا، لبشرة أكثر تماسكًا ونعومة وذات مظهر صحي. ويكمّل عطره الزهري الشرقي الدافئ هذه العناية بأثر أنيق وكريمي مفعم بالرقة."
+   "ar": "كلمسة حنان للبشرة، يجمع لوشن الجسم إيترنال تشيريش بين الترطيب المكثف والعطر في تجربة غامرة. تساعد تركيبته الغنية بزيوت ومستخلصات مختارة على إنتاج الكولاجين وتجديد الخلايا، لبشرة أكثر تماسكًا ونعومة وذات مظهر صحي. ويكمّل عطره الزهري الشرقي الدافئ هذه العناية بأثر أنيق وكريمي مفعم بالرقة."
   },
   "source": "https://www.wepink.com.br/body-cream-eternal-cherish-200ml---wepink-596/p",
   "notes": {}
@@ -10319,6 +10503,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Ruby Rhodolite",
+  "lineAr": "روبي رودولايت",
   "size": "150 ml",
   "price": 59,
   "badge": "new",
@@ -10339,11 +10524,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A whipped-cream texture with the scent of Ruby Rhodolite",
-   "ar": "قوام كالكريمة المخفوقة بعبير Ruby Rhodolite"
+   "ar": "قوام كالكريمة المخفوقة بعبير روبي رودولايت"
   },
   "desc": {
    "en": "Shower Dream Ruby Rhodolite is a bath foam with a light, whipped-cream texture. It is scented with the Ruby Rhodolite fragrance.",
-   "ar": "رغوة الاستحمام Shower Dream Ruby Rhodolite بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر Ruby Rhodolite."
+   "ar": "رغوة الاستحمام شاور دريم روبي رودولايت بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر روبي رودولايت."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-ruby-rhodolite---wepink-pat11564/p",
   "notes": {}
@@ -10353,6 +10538,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "VF Golden",
+  "lineAr": "في إف جولدن",
   "size": "150 ml",
   "price": 59,
   "badge": "new",
@@ -10373,11 +10559,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A whipped-cream texture with the scent of VF Golden",
-   "ar": "قوام كالكريمة المخفوقة بعبير VF Golden"
+   "ar": "قوام كالكريمة المخفوقة بعبير في إف جولدن"
   },
   "desc": {
    "en": "Shower Dream VF Golden is a bath foam with a light, whipped-cream texture. It is scented with the VF Golden fragrance.",
-   "ar": "رغوة الاستحمام Shower Dream VF Golden بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر VF Golden."
+   "ar": "رغوة الاستحمام شاور دريم في إف جولدن بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر في إف جولدن."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-vf-golden---wepink-pat11565/p",
   "notes": {}
@@ -10387,6 +10573,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Fatal Black For Her",
+  "lineAr": "فيتال بلاك فور هير",
   "size": "150 ml",
   "price": 59,
   "badge": "new",
@@ -10407,11 +10594,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "A whipped-cream texture with the scent of Fatal Black For Her",
-   "ar": "قوام كالكريمة المخفوقة بعبير Fatal Black For Her"
+   "ar": "قوام كالكريمة المخفوقة بعبير فيتال بلاك فور هير"
   },
   "desc": {
    "en": "Shower Dream Fatal Black For Her is a bath foam with a light, whipped-cream texture. It is scented with the Fatal Black For Her fragrance.",
-   "ar": "رغوة الاستحمام Shower Dream Fatal Black For Her بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر Fatal Black For Her."
+   "ar": "رغوة الاستحمام شاور دريم فيتال بلاك فور هير بقوام خفيف يشبه الكريمة المخفوقة. وتحمل عبير عطر فيتال بلاك فور هير."
   },
   "source": "https://www.wepink.com.br/espuma-de-banho-fatal-black-for-her---wepink-pat11567/p",
   "notes": {}
@@ -10421,6 +10608,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Scarlette Radiance",
+  "lineAr": "سكارليت راديانس",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -10447,7 +10635,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Scarlette Radiance Body Splash is made for women who need no words to be remembered. It opens with bright Bergamot and Grapefruit Peel, softened by fruity Pear and a delicate spicy accord, leading to a heart of Turkish Rose, Lily of the Valley, Pink Peony and creamy Vanilla. White Amber, Musk, Benzoin and Sandalwood form the base.",
-   "ar": "صُمّم بخاخ الجسم المعطّر Scarlette Radiance لنساء لا يحتجن إلى كلمة واحدة ليبقين في الذاكرة. يفتتح بإشراقة البرغموت وقشر الجريب فروت، تلطّفها نفحة الكمثرى الفاكهية ولمسة توابل رقيقة، وصولًا إلى قلب من الورد التركي وزنبق الوادي والفاوانيا الوردية مع لمسة كريمية من الفانيليا. ويتشكّل أساسه من العنبر الأبيض والمسك والبنزوين وخشب الصندل."
+   "ar": "صُمّم بخاخ الجسم المعطّر سكارليت راديانس لنساء لا يحتجن إلى كلمة واحدة ليبقين في الذاكرة. يفتتح بإشراقة البرغموت وقشر الجريب فروت، تلطّفها نفحة الكمثرى الفاكهية ولمسة توابل رقيقة، وصولًا إلى قلب من الورد التركي وزنبق الوادي والفاوانيا الوردية مع لمسة كريمية من الفانيليا. ويتشكّل أساسه من العنبر الأبيض والمسك والبنزوين وخشب الصندل."
   },
   "notes": {
    "top": [
@@ -10512,6 +10700,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Bomb One",
+  "lineAr": "بومب ون",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -10538,7 +10727,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Bomb One Deodorant Cologne is an oriental fragrance from wepink. It is made to be worn any time, without waiting for a special occasion.",
-   "ar": "عطر الكولونيا Bomb One عطر بطابع شرقي من wepink. صُمّم ليُستخدم في أي وقت دون انتظار مناسبة خاصة."
+   "ar": "عطر الكولونيا بومب ون عطر بطابع شرقي من wepink. صُمّم ليُستخدم في أي وقت دون انتظار مناسبة خاصة."
   },
   "source": "https://www.wepink.com.br/desod-col-bomb-one-100ml---wepink-524/p",
   "notes": {}
@@ -10548,6 +10737,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Flora Whisper",
+  "lineAr": "فلورا ويسبر",
   "size": "100 ml",
   "price": 189,
   "color": "#6C4286",
@@ -10571,7 +10761,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Flora Whisper Deodorant Cologne captures the delicacy and elegance of the feminine essence in an enveloping fragrance that gently awakens the senses. Sophisticated Magnolia meets the sweetness of Red Berries in a luminous opening. It moves to a charming floral heart and finishes on a subtly woody base.",
-   "ar": "يجسّد عطر الكولونيا Flora Whisper رقة الجوهر الأنثوي وأناقته في عطر آسر يوقظ الحواس بلطف. تمتزج فخامة الماغنوليا بحلاوة التوت الأحمر في افتتاحية مشرقة، ثم ينتقل إلى قلب زهري ساحر ليختتم بقاعدة خشبية ناعمة."
+   "ar": "يجسّد عطر الكولونيا فلورا ويسبر رقة الجوهر الأنثوي وأناقته في عطر آسر يوقظ الحواس بلطف. تمتزج فخامة الماغنوليا بحلاوة التوت الأحمر في افتتاحية مشرقة، ثم ينتقل إلى قلب زهري ساحر ليختتم بقاعدة خشبية ناعمة."
   },
   "notes": {
    "top": [
@@ -10592,6 +10782,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Yahya Sadeeq",
+  "lineAr": "يحيى صديق",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -10617,7 +10808,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Yahya Sadeeq Body Cream keeps skin hydrated, nourished and firm, thanks to a formula that supports collagen production and cell renewal. A blend of selected oils and extracts leaves skin looking healthy and glowing.",
-   "ar": "يحافظ لوشن الجسم Yahya Sadeeq على ترطيب البشرة وتغذيتها وتماسكها، بفضل تركيبته التي تساعد على إنتاج الكولاجين وتجديد الخلايا. كما يمنح مزيج من الزيوت والمستخلصات المختارة البشرة مظهرًا صحيًا ومشرقًا."
+   "ar": "يحافظ لوشن الجسم يحيى صديق على ترطيب البشرة وتغذيتها وتماسكها، بفضل تركيبته التي تساعد على إنتاج الكولاجين وتجديد الخلايا. كما يمنح مزيج من الزيوت والمستخلصات المختارة البشرة مظهرًا صحيًا ومشرقًا."
   },
   "source": "https://www.wepink.com.br/body-cream-yahya-200ml---wepink-425/p",
   "notes": {}
@@ -10627,6 +10818,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Fantasy Kids White Sorcerer",
+  "lineAr": "فانتاسي كيدز وايت سورسرر",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -10650,7 +10842,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fantasy Kids White Sorcerer Cologne enchants from the very first moment with its delicate, magical sparkle. Notes of Orange, Apricot and Red Apple bring irresistible joy, while Violet and Roses reveal a soft heart and a base of Vanilla and Amber wraps the skin in tenderness and comfort. A luminous fragrance created to spark smiles.",
-   "ar": "يأسر عطر الكولونيا Fantasy Kids White Sorcerer الحواس منذ اللحظة الأولى ببريقه الساحر والرقيق. تضفي نفحات البرتقال والمشمش والتفاح الأحمر بهجة لا تقاوم، بينما يكشف البنفسج والورد عن قلب ناعم، وتغلّف قاعدة الفانيليا والعنبر البشرة بالحنان والراحة. عطر مشرق صُمّم ليرسم الابتسامات."
+   "ar": "يأسر عطر الكولونيا فانتاسي كيدز وايت سورسرر الحواس منذ اللحظة الأولى ببريقه الساحر والرقيق. تضفي نفحات البرتقال والمشمش والتفاح الأحمر بهجة لا تقاوم، بينما يكشف البنفسج والورد عن قلب ناعم، وتغلّف قاعدة الفانيليا والعنبر البشرة بالحنان والراحة. عطر مشرق صُمّم ليرسم الابتسامات."
   },
   "notes": {
    "top": [
@@ -10695,6 +10887,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Crimson Seraph",
+  "lineAr": "كريمسون سيراف",
   "size": "100 ml",
   "price": 189,
   "color": "#C34E4E",
@@ -10718,7 +10911,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Crimson Seraph Deodorant Cologne is born from the warmth that awakens the skin. Its fruity notes rise like embers with a seductive glow, while ambery, sugary nuances blend into a smoldering depth at the base, leaving a warm trail on the skin. A fragrance that radiates desire and pulses with warmth.",
-   "ar": "وُلد عطر الكولونيا Crimson Seraph من الدفء الذي يوقظ البشرة. تتصاعد نفحاته الفاكهية كالجمر بتوهّج آسر، بينما تمتزج في القاعدة لمسات عنبرية وسكّرية بعمق متّقد، تاركة أثرًا دافئًا على البشرة. عطر يشعّ بالرغبة وينبض بالدفء."
+   "ar": "وُلد عطر الكولونيا كريمسون سيراف من الدفء الذي يوقظ البشرة. تتصاعد نفحاته الفاكهية كالجمر بتوهّج آسر، بينما تمتزج في القاعدة لمسات عنبرية وسكّرية بعمق متّقد، تاركة أثرًا دافئًا على البشرة. عطر يشعّ بالرغبة وينبض بالدفء."
   },
   "notes": {
    "top": [
@@ -10745,7 +10938,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "Marshmallow Lip Oil",
-  "lineAr": "زيت الشفاه Marshmallow",
+  "lineAr": "مارشميلو ليب أويل",
   "size": "3.5 g",
   "price": 49,
   "color": "#8B96CB",
@@ -10769,7 +10962,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Marshmallow Lip Oil leaves lips hydrated and glossy for a more alluring look. It comes with a perfectly sugary scent.",
-   "ar": "يمنح زيت الشفاه Marshmallow الشفاه ترطيبًا ولمعانًا لإطلالة أكثر جاذبية. ويتميّز بعبير سكّري مثالي."
+   "ar": "يمنح زيت الشفاه مارشميلو الشفاه ترطيبًا ولمعانًا لإطلالة أكثر جاذبية. ويتميّز بعبير سكّري مثالي."
   },
   "source": "https://www.wepink.com.br/lip-oil-35g-marshmallow---wepink-fs1111848/p",
   "notes": {}
@@ -10779,6 +10972,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Yahya Sadeeq",
+  "lineAr": "يحيى صديق",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -10803,7 +10997,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Yahya Sadeeq Body Splash invites a mystical journey of sensuality, combining Rose Petals and Black Pepper in its floral, woody heart. Its authentic essence is expressed through the intertwined complexity of Saffron, Amber and Oud.",
-   "ar": "يأخذ بخاخ الجسم المعطّر Yahya Sadeeq في رحلة غامضة من الجاذبية، إذ يمزج بتلات الورد والفلفل الأسود في قلبه الزهري الخشبي. ويتجلّى جوهره الأصيل في التداخل الآسر بين الزعفران والعنبر والعود."
+   "ar": "يأخذ بخاخ الجسم المعطّر يحيى صديق في رحلة غامضة من الجاذبية، إذ يمزج بتلات الورد والفلفل الأسود في قلبه الزهري الخشبي. ويتجلّى جوهره الأصيل في التداخل الآسر بين الزعفران والعنبر والعود."
   },
   "notes": {
    "heart": [
@@ -10838,7 +11032,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodycare",
   "line": "Myskin Essential Body Anti-Acne Gel",
-  "lineAr": "جل Myskin Essential Body المضاد لحب الشباب",
+  "lineAr": "ماي سكين إسنشال بودي أنتي أكني جل",
   "size": "250 ml",
   "price": 79,
   "color": "#ECB6CD",
@@ -10862,7 +11056,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Myskin Essential Body Anti-Acne Gel is formulated with actives that provide gentle chemical exfoliation, hydrate, control oiliness and help even out skin tone. Its unique scent leaves skin fragranced during use.",
-   "ar": "جل Myskin Essential Body المضاد لحب الشباب مُركّب بمكونات فعّالة توفّر تقشيرًا كيميائيًا لطيفًا، وترطّب البشرة، وتتحكّم في الإفرازات الدهنية، وتساعد على توحيد لونها. ويترك عبيره الفريد البشرة معطّرة أثناء الاستخدام."
+   "ar": "جل ماي سكين إسنشال بودي المضاد لحب الشباب مُركّب بمكونات فعّالة توفّر تقشيرًا كيميائيًا لطيفًا، وترطّب البشرة، وتتحكّم في الإفرازات الدهنية، وتساعد على توحيد لونها. ويترك عبيره الفريد البشرة معطّرة أثناء الاستخدام."
   },
   "source": "https://www.wepink.com.br/-myskin-body-esfoliante-acido-250-ml---wepink-210/p",
   "notes": {}
@@ -10872,6 +11066,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "scrub",
   "line": "Liberté",
+  "lineAr": "ليبرتيه",
   "size": "450 g",
   "price": 99,
   "color": "#D0C9AF",
@@ -10895,7 +11090,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Liberté Body Scrub celebrates the tireless woman pursuing her dreams, carefully formulated around an elegant floral bouquet. Its actives provide gentle exfoliation and hydration, with striking notes of Magnolia and French Centifolia Rose that leave skin soft, healthy and scented all day. It finishes masterfully on a sweet, woody accord.",
-   "ar": "يحتفي مقشّر الجسم Liberté بالمرأة التي لا تكلّ في سعيها لتحقيق أحلامها، وقد صُمّم بعناية حول باقة زهرية أنيقة. تمنح مكوناته الفعّالة تقشيرًا لطيفًا وترطيبًا، مع نفحات آسرة من الماغنوليا وورد سنتيفوليا الفرنسي تترك البشرة ناعمة وصحية ومعطّرة طوال اليوم. ويختتم ببراعة بعبير حلو وخشبي."
+   "ar": "يحتفي مقشّر الجسم ليبرتيه بالمرأة التي لا تكلّ في سعيها لتحقيق أحلامها، وقد صُمّم بعناية حول باقة زهرية أنيقة. تمنح مكوناته الفعّالة تقشيرًا لطيفًا وترطيبًا، مع نفحات آسرة من الماغنوليا وورد سنتيفوليا الفرنسي تترك البشرة ناعمة وصحية ومعطّرة طوال اليوم. ويختتم ببراعة بعبير حلو وخشبي."
   },
   "notes": {
    "top": [
@@ -10918,7 +11113,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "My Lips Sorvetin Lip Gloss",
-  "lineAr": "ملمّع الشفاه My Lips Sorvetin",
+  "lineAr": "ماي ليبس سورفيتين ليب جلوس",
   "size": "4 ml",
   "price": 49,
   "color": "#EF7197",
@@ -10942,7 +11137,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Lips Sorvetin Lip Gloss delivers irresistible lips with a delicious ice-cream taste and scent. It is the secret to fuller-looking lips with a vibrant tint, with actives specially selected to care for lip health.",
-   "ar": "يمنح ملمّع الشفاه My Lips Sorvetin شفاهًا لا تقاوم بمذاق وعبير الآيس كريم اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس سورفيتين شفاهًا لا تقاوم بمذاق وعبير الآيس كريم اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-sorvetin-wepink/p",
   "notes": {}
@@ -10952,6 +11147,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "lotion",
   "line": "Obsessed",
+  "lineAr": "أوبسيسد",
   "size": "130 ml",
   "price": 89,
   "color": "#ACA395",
@@ -10974,7 +11170,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Cream Obsessed Body Lotion offers a soft touch with nourishment, firmness and intense hydration, leaving skin healthy-looking and glowing. Its blend of ingredients also helps prevent stretch marks and premature aging. Its sensual Floral Woody path features blood orange, cherry and gardenia, finishing on a sweet, woody base.",
-   "ar": "يمنح لوشن الجسم The Cream Obsessed لمسة ناعمة مع التغذية والتماسك والترطيب المكثف، تاركًا البشرة بمظهر صحي ومشرق. كما يساعد مزيج مكوناته على الوقاية من علامات التمدد والشيخوخة المبكرة. ويتميّز بمسار عطري زهري خشبي حسّي بلمسات من البرتقال الدموي والكرز والغاردينيا، ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يمنح لوشن الجسم ذا كريم أوبسيسد لمسة ناعمة مع التغذية والتماسك والترطيب المكثف، تاركًا البشرة بمظهر صحي ومشرق. كما يساعد مزيج مكوناته على الوقاية من علامات التمدد والشيخوخة المبكرة. ويتميّز بمسار عطري زهري خشبي حسّي بلمسات من البرتقال الدموي والكرز والغاردينيا، ليختتم بقاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -11001,7 +11197,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "My Lips Cherry Lip Gloss",
-  "lineAr": "ملمّع الشفاه My Lips Cherry",
+  "lineAr": "ماي ليبس تشيري ليب جلوس",
   "size": "4 ml",
   "price": 49,
   "color": "#BD6371",
@@ -11025,7 +11221,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Lips Cherry Lip Gloss delivers irresistible lips with a delicious cherry taste and scent. It is the secret to fuller-looking lips with a vibrant tint, with actives specially selected to care for lip health.",
-   "ar": "يمنح ملمّع الشفاه My Lips Cherry شفاهًا لا تقاوم بمذاق وعبير الكرز اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس تشيري شفاهًا لا تقاوم بمذاق وعبير الكرز اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
   },
   "source": "https://www.wepink.com.br/gloss-my-lips-cherry-4ml-wepink/p",
   "notes": {}
@@ -11035,6 +11231,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Pureblixx Mauve",
+  "lineAr": "بيوربليكس موف",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -11060,7 +11257,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Pureblixx Mauve Body Splash has a heady, magnetic essence full of well-being, embracing a magical, mysterious romance of feminine beauty. Its olfactory journey intertwines white flowers with rose petals, creating a captivating contrast with sparkling fruity notes. It finishes on a sweet, woody base with a touch of sandalwood for an enveloping sense of comfort.",
-   "ar": "يتميّز بخاخ الجسم المعطّر Pureblixx Mauve بجوهر آسر وجذّاب مفعم بالرفاهية، يحتضن قصة رومانسية ساحرة وغامضة للجمال الأنثوي. تمزج رحلته العطرية الزهور البيضاء ببتلات الورد، في تباين آسر مع نفحات فاكهية متلألئة. ويختتم بقاعدة حلوة وخشبية تحمل لمسة من خشب الصندل لإحساس غامر بالراحة."
+   "ar": "يتميّز بخاخ الجسم المعطّر بيوربليكس موف بجوهر آسر وجذّاب مفعم بالرفاهية، يحتضن قصة رومانسية ساحرة وغامضة للجمال الأنثوي. تمزج رحلته العطرية الزهور البيضاء ببتلات الورد، في تباين آسر مع نفحات فاكهية متلألئة. ويختتم بقاعدة حلوة وخشبية تحمل لمسة من خشب الصندل لإحساس غامر بالراحة."
   },
   "notes": {
    "top": [
@@ -11093,7 +11290,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "Welips Matte Liquid Lipstick",
-  "lineAr": "أحمر الشفاه السائل المطفي Welips",
+  "lineAr": "وي ليبس مات ليكويد ليبستيك",
   "size": "5 ml",
   "price": 69,
   "color": "#D981A9",
@@ -11117,7 +11314,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Welips Matte Liquid Lipstick brings more color to the pink world, completing any makeup look with elegant, playful shades for every hour and every personality. It is long-wearing, waterproof, super comfortable and comes in high-impact shades. Allow it to dry before finishing the look.",
-   "ar": "يضيف أحمر الشفاه السائل المطفي Welips مزيدًا من الألوان إلى عالم wepink الوردي، ليكمل أي إطلالة مكياج بدرجات أنيقة وجريئة تناسب كل الأوقات وجميع الشخصيات. يدوم طويلًا، ومقاوم للماء، ومريح للغاية، ويأتي بدرجات عالية التأثير. يُنصح بتركه حتى يجف قبل إكمال المكياج."
+   "ar": "يضيف أحمر الشفاه السائل المطفي وي ليبس مزيدًا من الألوان إلى عالم wepink الوردي، ليكمل أي إطلالة مكياج بدرجات أنيقة وجريئة تناسب كل الأوقات وجميع الشخصيات. يدوم طويلًا، ومقاوم للماء، ومريح للغاية، ويأتي بدرجات عالية التأثير. يُنصح بتركه حتى يجف قبل إكمال المكياج."
   },
   "source": "https://www.wepink.com.br/batom-liquido-welips/p",
   "notes": {}
@@ -11127,7 +11324,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Feive Collection Set",
-  "lineAr": "طقم مجموعة Feive",
+  "lineAr": "فيف كوليكشن سِت",
   "price": 229,
   "color": "#E1C6A0",
   "color2": "#F8F2EA",
@@ -11140,11 +11337,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "The Feive collection, together in one set",
-   "ar": "مجموعة Feive مجتمعة في طقم واحد"
+   "ar": "مجموعة فيف مجتمعة في طقم واحد"
   },
   "desc": {
    "en": "The Feive Collection Set brings together products from the wepink Feive line in a single kit. A convenient way to enjoy the Feive collection.",
-   "ar": "يجمع طقم مجموعة Feive منتجات من خط Feive من wepink في طقم واحد. طريقة عملية للاستمتاع بمجموعة Feive."
+   "ar": "يجمع طقم مجموعة فيف منتجات من خط فيف من wepink في طقم واحد. طريقة عملية للاستمتاع بمجموعة فيف."
   },
   "source": "https://www.wepink.com.br/kit-linha-feive---wepink-85618/p",
   "notes": {}
@@ -11154,6 +11351,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Elowen",
+  "lineAr": "إيلوين",
   "size": "75 ml",
   "price": 189,
   "family": "warm",
@@ -11179,7 +11377,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Elowen Deodorant Cologne is an invitation to celebrate life at its lightest, most vibrant and sophisticated. It opens with intense redcurrant, bold pink pepper and luminous bergamot, followed by a delicate floral heart of lily of the valley and rose with soft woody notes. Patchouli, a suede accord and musk form a velvety, warm base.",
-   "ar": "عطر الكولونيا Elowen دعوة للاحتفاء بالحياة في أخفّ صورها وأكثرها حيوية ورقيًا. يفتتح بنفحة مكثفة من الكشمش الأحمر مع جرأة الفلفل الوردي وإشراقة البرغموت، يليها قلب زهري رقيق من زنبق الوادي والورد مع لمسات خشبية ناعمة. ويشكّل الباتشولي وجلد السويد والمسك قاعدة مخملية دافئة."
+   "ar": "عطر الكولونيا إيلوين دعوة للاحتفاء بالحياة في أخفّ صورها وأكثرها حيوية ورقيًا. يفتتح بنفحة مكثفة من الكشمش الأحمر مع جرأة الفلفل الوردي وإشراقة البرغموت، يليها قلب زهري رقيق من زنبق الوادي والورد مع لمسات خشبية ناعمة. ويشكّل الباتشولي وجلد السويد والمسك قاعدة مخملية دافئة."
   },
   "notes": {
    "top": [
@@ -11232,6 +11430,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Crimson Seraph",
+  "lineAr": "كريمسون سيراف",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -11257,7 +11456,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Crimson Seraph Body Splash is a warm, fruity fragrance made for living the night to the fullest and winning hearts anywhere. Its sweetness has every potential to awaken the wildest passions, making it a secret weapon for seduction.",
-   "ar": "بخاخ الجسم المعطّر Crimson Seraph عطر دافئ بطابع فاكهي صُمّم لعيش الليل بكل تفاصيله وأسر القلوب في كل مكان. تحمل حلاوته القدرة على إيقاظ أكثر المشاعر جموحًا، ليكون سلاحًا سريًا للجاذبية."
+   "ar": "بخاخ الجسم المعطّر كريمسون سيراف عطر دافئ بطابع فاكهي صُمّم لعيش الليل بكل تفاصيله وأسر القلوب في كل مكان. تحمل حلاوته القدرة على إيقاظ أكثر المشاعر جموحًا، ليكون سلاحًا سريًا للجاذبية."
   },
   "source": "https://www.wepink.com.br/body-splash-crimson-seraph-200ml---wepink-414/p",
   "notes": {}
@@ -11267,7 +11466,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "Jujuba Lip Oil",
-  "lineAr": "زيت الشفاه Jujuba",
+  "lineAr": "جوجوبا ليب أويل",
   "size": "3.5 g",
   "price": 49,
   "color": "#A46796",
@@ -11291,7 +11490,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Jujuba Lip Oil leaves lips shiny and hydrated, with a delicious gumdrop scent. A truly tasty treat for the lips.",
-   "ar": "يمنح زيت الشفاه Jujuba الشفاه لمعانًا وترطيبًا مع عبير شهي لحلوى الجيلي. متعة لذيذة حقًا للشفاه."
+   "ar": "يمنح زيت الشفاه جوجوبا الشفاه لمعانًا وترطيبًا مع عبير شهي لحلوى الجيلي. متعة لذيذة حقًا للشفاه."
   },
   "source": "https://www.wepink.com.br/lip-oil-35g-jujuba---wepink-fs1111847/p",
   "notes": {}
@@ -11301,7 +11500,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Zodiac Signs Limited Edition Set",
-  "lineAr": "طقم Zodiac Signs إصدار محدود",
+  "lineAr": "زودياك ساينز ليميتد إيديشن سِت",
   "price": 169,
   "badge": "limited",
   "color": "#4474A6",
@@ -11328,7 +11527,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Zodiac Signs body splash collection connects the power of the stars with the four elements: Air, Earth, Fire and Water. Each fragrance captures the personality of its signs, from the freshness of air to the intensity of earth, the passion of fire and the fluidity of water. Water, for instance, blends red berries, salted caramel, lychee, chocolate and vanilla.",
-   "ar": "تربط مجموعة بخاخات الجسم Zodiac Signs بين قوة النجوم والعناصر الأربعة: Air وEarth وFire وWater. يعكس كل عطر شخصية أبراجه، من انتعاش الهواء إلى قوة الأرض وشغف النار وانسيابية الماء. فعطر Water مثلًا يمزج التوت الأحمر والكراميل المملّح والليتشي مع الشوكولاتة والفانيليا."
+   "ar": "تربط مجموعة بخاخات الجسم زودياك ساينز بين قوة النجوم والعناصر الأربعة: إير وإيرث وفاير وووتر. يعكس كل عطر شخصية أبراجه، من انتعاش الهواء إلى قوة الأرض وشغف النار وانسيابية الماء. فعطر ووتر مثلًا يمزج التوت الأحمر والكراميل المملّح والليتشي مع الشوكولاتة والفانيليا."
   },
   "source": "https://www.wepink.com.br/kit-zodiac-sings---wepink-344/p",
   "notes": {}
@@ -11338,7 +11537,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "Premium Liquid Foundation",
-  "lineAr": "كريم الأساس السائل Premium",
+  "lineAr": "بريميوم ليكويد فاونديشن",
   "size": "45 ml",
   "price": 79,
   "color": "#F283B6",
@@ -11372,7 +11571,7 @@ window.WP_CATALOG = [
   "cat": "skincare",
   "type": "skincare",
   "line": "Myskin Essential Exfoliating Foam",
-  "lineAr": "رغوة التقشير Myskin Essential",
+  "lineAr": "ماي سكين إسنشال إكسفولييتنج فوم",
   "size": "120 ml",
   "price": 79,
   "color": "#ECB7C8",
@@ -11393,11 +11592,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Exfoliating foam with a peeling effect for well-cared-for skin",
-   "ar": "رغوة مقشّرة بمفعول الـpeeling لبشرة مُعتنى بها"
+   "ar": "رغوة مقشّرة بمفعول البيلينج لبشرة مُعتنى بها"
   },
   "desc": {
    "en": "Myskin Essential Exfoliating Foam is more than a deep-cleansing foam: its formula helps hydrate, even out skin tone and fight premature aging. With a pleasant scent and a soothing effect, it supports anti-acne care without drying the skin, and is designed for use with silicone bristles to boost results while gently massaging the face.",
-   "ar": "رغوة التقشير Myskin Essential أكثر من مجرد رغوة للتنظيف العميق، إذ تساعد تركيبتها على ترطيب البشرة وتوحيد لونها ومكافحة الشيخوخة المبكرة. وبعبيرها المميز وتأثيرها المهدّئ، تدعم علاج حب الشباب دون تجفيف البشرة، وقد صُمّمت للاستخدام مع فرشاة ذات شعيرات سيليكون لتعزيز النتائج وتدليك الوجه بلطف."
+   "ar": "رغوة التقشير ماي سكين إسنشال أكثر من مجرد رغوة للتنظيف العميق، إذ تساعد تركيبتها على ترطيب البشرة وتوحيد لونها ومكافحة الشيخوخة المبكرة. وبعبيرها المميز وتأثيرها المهدّئ، تدعم علاج حب الشباب دون تجفيف البشرة، وقد صُمّمت للاستخدام مع فرشاة ذات شعيرات سيليكون لتعزيز النتائج وتدليك الوجه بلطف."
   },
   "source": "https://www.wepink.com.br/espuma-esfoliante-myskin/p",
   "notes": {}
@@ -11407,6 +11606,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Choco",
+  "lineAr": "تشوكو",
   "size": "200 ml",
   "price": 69,
   "family": "warm",
@@ -11431,7 +11631,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Choco Body Cream has a creamy, delightful touch that hydrates, nourishes and firms, supporting collagen production and cell renewal for healthy-looking, glowing skin. Its sugary essence unites intensity and softness in notes of Belgian cocoa and vanilla, finishing on a sweet, woody base.",
-   "ar": "يتميّز لوشن الجسم Choco بلمسة كريمية ساحرة ترطّب البشرة وتغذّيها وتمنحها التماسك، مع دعم إنتاج الكولاجين وتجديد الخلايا لبشرة بمظهر صحي ومشرق. يجمع عبيره السكّري بين الكثافة والنعومة بنفحات الكاكاو البلجيكي والفانيليا، ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يتميّز لوشن الجسم تشوكو بلمسة كريمية ساحرة ترطّب البشرة وتغذّيها وتمنحها التماسك، مع دعم إنتاج الكولاجين وتجديد الخلايا لبشرة بمظهر صحي ومشرق. يجمع عبيره السكّري بين الكثافة والنعومة بنفحات الكاكاو البلجيكي والفانيليا، ليختتم بقاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -11454,6 +11654,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "rollon",
   "line": "King Blue",
+  "lineAr": "كينج بلو",
   "size": "50 ml",
   "price": 39,
   "color": "#353B3D",
@@ -11477,7 +11678,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection King Blue Antiperspirant Roll-On offers an invigorating combination of freshness, long-lasting protection and 72-hour hydration, while its exclusive formula also helps even out skin tone. All in a woody fragrance that inspires power and victory.",
-   "ar": "يوفّر مزيل العرق المضاد للتعرّق MyProtection King Blue بتقنية الرول أون مزيجًا منعشًا من الانتعاش والحماية طويلة الأمد والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. كل ذلك في عطر خشبي يلهم القوة والانتصار."
+   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن كينج بلو بتقنية الرول أون مزيجًا منعشًا من الانتعاش والحماية طويلة الأمد والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. كل ذلك في عطر خشبي يلهم القوة والانتصار."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-king-blue-50-ml---wepink-drkb-ath-001/p",
   "notes": {}
@@ -11487,7 +11688,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "My Lips Cookies Lip Gloss",
-  "lineAr": "ملمّع الشفاه My Lips Cookies",
+  "lineAr": "ماي ليبس كوكيز ليب جلوس",
   "size": "4 ml",
   "price": 49,
   "color": "#D1986B",
@@ -11511,7 +11712,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Lips Cookies Lip Gloss delivers irresistible lips with a delicious cookie taste and scent. It is the secret to fuller-looking lips with a vibrant tint, with actives specially selected to care for lip health.",
-   "ar": "يمنح ملمّع الشفاه My Lips Cookies شفاهًا لا تقاوم بمذاق وعبير الكوكيز اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس كوكيز شفاهًا لا تقاوم بمذاق وعبير الكوكيز اللذيذ. إنه السر لشفاه ممتلئة بلون نابض بالحيوية، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-cookies-4-ml-wepink/p",
   "notes": {}
@@ -11521,6 +11722,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Fantasy Kids Green",
+  "lineAr": "فانتاسي كيدز جرين",
   "size": "100 ml",
   "price": 189,
   "badge": "new",
@@ -11545,7 +11747,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Fantasy Kids Green is a Woody Citrus fragrance created for little ones who are always on the move and find a new adventure in every moment. Mandarin, Rosemary, Bergamot and Cardamom bring a vibrant, refreshing opening, followed by a soft, comforting floral heart of Iris and Orange Blossom.",
-   "ar": "Fantasy Kids Green عطر خشبي حمضي صُمّم للصغار الذين لا يتوقفون عن الحركة ويجدون مغامرة جديدة في كل لحظة. يمنحه الماندرين وإكليل الجبل والبرغموت والهيل افتتاحية حيوية ومنعشة، يليها قلب زهري ناعم ومريح من السوسن وزهر البرتقال."
+   "ar": "فانتاسي كيدز جرين عطر خشبي حمضي صُمّم للصغار الذين لا يتوقفون عن الحركة ويجدون مغامرة جديدة في كل لحظة. يمنحه الماندرين وإكليل الجبل والبرغموت والهيل افتتاحية حيوية ومنعشة، يليها قلب زهري ناعم ومريح من السوسن وزهر البرتقال."
   },
   "notes": {
    "top": [
@@ -11584,7 +11786,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "Cookies Lip Oil",
-  "lineAr": "زيت الشفاه Cookies",
+  "lineAr": "كوكيز ليب أويل",
   "size": "3.5 g",
   "price": 49,
   "color": "#BE7350",
@@ -11608,7 +11810,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Cookies Lip Oil leaves lips hydrated and delicately scented. Its sweet aroma is inspired by cookies.",
-   "ar": "يمنح زيت الشفاه Cookies الشفاه ترطيبًا وعبيرًا رقيقًا. ورائحته الحلوة مستوحاة من الكوكيز."
+   "ar": "يمنح زيت الشفاه كوكيز الشفاه ترطيبًا وعبيرًا رقيقًا. ورائحته الحلوة مستوحاة من الكوكيز."
   },
   "source": "https://www.wepink.com.br/lip-oil-35g-cookies---wepink-fs1111849/p",
   "notes": {}
@@ -11618,6 +11820,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "The Sunny",
+  "lineAr": "ذا صني",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -11642,7 +11845,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Sunny Deodorant Cologne has a joyful, charming and unique essence wrapped in an unforgettable floral fragrance. Its refreshing sensory journey expresses delicacy and charm with notes of freesia and lily of the valley, joined by a festive floral heart. It finishes on a woody base of musk and sandalwood, a perfect scent for every moment.",
-   "ar": "يتميّز عطر الكولونيا The Sunny بجوهر مبهج وساحر وفريد، يغلّفه عطر زهري لا يُنسى. تعبّر رحلته الحسية المنعشة عن الرقة والسحر بنفحات الفريزيا وزنبق الوادي، مع قلب زهري احتفالي آسر. ويختتم بقاعدة خشبية من المسك وخشب الصندل، ليكون عبيرًا مثاليًا لكل اللحظات."
+   "ar": "يتميّز عطر الكولونيا ذا صني بجوهر مبهج وساحر وفريد، يغلّفه عطر زهري لا يُنسى. تعبّر رحلته الحسية المنعشة عن الرقة والسحر بنفحات الفريزيا وزنبق الوادي، مع قلب زهري احتفالي آسر. ويختتم بقاعدة خشبية من المسك وخشب الصندل، ليكون عبيرًا مثاليًا لكل اللحظات."
   },
   "notes": {
    "top": [
@@ -11673,6 +11876,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Celebrate Happy",
+  "lineAr": "سيليبريت هابي",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -11698,7 +11902,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Celebrate Happy Deodorant Cologne exalts the joy of moments of triumph, reflecting a unique and dazzling beauty. Its woody fragrance carries the soft aroma of apple and citrus fruits with a sophisticated touch of jasmine, moving to a charming floral heart and finishing on a sweet, woody base.",
-   "ar": "يحتفي عطر الكولونيا Celebrate Happy ببهجة لحظات الانتصار، ليعكس جمالًا فريدًا ومبهرًا. يحمل عطره الخشبي عبير التفاح والفواكه الحمضية الناعم مع لمسة راقية من الياسمين، ثم ينتقل إلى قلب زهري ساحر ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يحتفي عطر الكولونيا سيليبريت هابي ببهجة لحظات الانتصار، ليعكس جمالًا فريدًا ومبهرًا. يحمل عطره الخشبي عبير التفاح والفواكه الحمضية الناعم مع لمسة راقية من الياسمين، ثم ينتقل إلى قلب زهري ساحر ليختتم بقاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -11723,7 +11927,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "My Lips Pirulipop Lip Gloss",
-  "lineAr": "ملمّع الشفاه My Lips Pirulipop",
+  "lineAr": "ماي ليبس بيروليبوب ليب جلوس",
   "size": "4 ml",
   "price": 49,
   "color": "#E26E83",
@@ -11747,7 +11951,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Lips Pirulipop Lip Gloss delivers irresistible lips with a soft shine and a delicious watermelon scent. It is the secret to fuller-looking lips, with actives selected to care for lip health, including hyaluronic acid and shea butter.",
-   "ar": "يمنح ملمّع الشفاه My Lips Pirulipop شفاهًا لا تقاوم بلمعان خفيف وعبير البطيخ اللذيذ. إنه السر لشفاه ممتلئة، مع مكونات فعّالة مختارة للعناية بصحة الشفاه، من بينها حمض الهيالورونيك وزبدة الشيا."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس بيروليبوب شفاهًا لا تقاوم بلمعان خفيف وعبير البطيخ اللذيذ. إنه السر لشفاه ممتلئة، مع مكونات فعّالة مختارة للعناية بصحة الشفاه، من بينها حمض الهيالورونيك وزبدة الشيا."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-pirulipop---wepink-glmlprp-ath001/p",
   "notes": {}
@@ -11757,7 +11961,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "My Lips Choco Lip Gloss",
-  "lineAr": "ملمّع الشفاه My Lips Choco",
+  "lineAr": "ماي ليبس تشوكو ليب جلوس",
   "size": "4 ml",
   "price": 49,
   "color": "#845545",
@@ -11780,7 +11984,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Lips Choco Lip Gloss delivers fuller-looking lips with a chocolate scent. Its carefully selected actives, including hyaluronic acid, menthol, glycerol and shea butter, care for lip health and hydrate for 24 hours in an innovative treatment.",
-   "ar": "يمنح ملمّع الشفاه My Lips Choco شفاهًا ممتلئة بعبير الشوكولاتة. وتعتني مكوناته الفعّالة المختارة بعناية، ومنها حمض الهيالورونيك والمنثول والغليسرول وزبدة الشيا، بصحة الشفاه وترطّبها لمدة 24 ساعة في علاج مبتكر."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس تشوكو شفاهًا ممتلئة بعبير الشوكولاتة. وتعتني مكوناته الفعّالة المختارة بعناية، ومنها حمض الهيالورونيك والمنثول والغليسرول وزبدة الشيا، بصحة الشفاه وترطّبها لمدة 24 ساعة في علاج مبتكر."
   },
   "source": "https://www.wepink.com.br/gloss-my-lips-choco-4ml---wepink-0000023054/p",
   "notes": {}
@@ -11790,7 +11994,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodycare",
   "line": "Serene Oil Lavender Essential Oil",
-  "lineAr": "زيت اللافندر العطري Serene Oil",
+  "lineAr": "سيرين أويل لافندر إسنشال أويل",
   "size": "5 ml",
   "price": 79,
   "color": "#51435B",
@@ -11814,7 +12018,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Serene Oil Lavender Essential Oil is a must for the best rest after a long day. Its calming properties support moments of relaxation for a good night's sleep. Its gentle sensory journey follows a refreshing path of lavender flower, with an unmistakable, enchanting aroma.",
-   "ar": "يُعدّ زيت اللافندر العطري Serene Oil رفيقًا لا غنى عنه لراحة مثالية بعد يوم طويل. تدعم خصائصه المهدّئة لحظات الاسترخاء من أجل نوم هانئ. وتتبع رحلته الحسية الناعمة مسارًا منعشًا من زهرة اللافندر، بعبير مميز يأسر الحواس."
+   "ar": "يُعدّ زيت اللافندر العطري سيرين أويل رفيقًا لا غنى عنه لراحة مثالية بعد يوم طويل. تدعم خصائصه المهدّئة لحظات الاسترخاء من أجل نوم هانئ. وتتبع رحلته الحسية الناعمة مسارًا منعشًا من زهرة اللافندر، بعبير مميز يأسر الحواس."
   },
   "notes": {
    "top": [
@@ -11831,7 +12035,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "My Lips Jujuba Lip Gloss",
-  "lineAr": "ملمّع الشفاه My Lips Jujuba",
+  "lineAr": "ماي ليبس جوجوبا ليب جلوس",
   "size": "4 ml",
   "price": 49,
   "color": "#BE74AC",
@@ -11854,7 +12058,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Lips Jujuba Lip Gloss delivers irresistible lips with a soft shine and a delicious gumdrop scent. It is the secret to fuller-looking lips, with actives specially selected to care for lip health.",
-   "ar": "يمنح ملمّع الشفاه My Lips Jujuba شفاهًا لا تقاوم بلمعان خفيف وعبير حلوى الجيلي اللذيذ. إنه السر لشفاه ممتلئة، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
+   "ar": "يمنح ملمّع الشفاه ماي ليبس جوجوبا شفاهًا لا تقاوم بلمعان خفيف وعبير حلوى الجيلي اللذيذ. إنه السر لشفاه ممتلئة، مع مكونات فعّالة مختارة خصيصًا للعناية بصحة الشفاه."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-jujuba---wepink-glmljj-ath001/p",
   "notes": {}
@@ -11864,7 +12068,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Yahya Aneeq + Bomb One Set",
-  "lineAr": "طقم Yahya Aneeq + Bomb One",
+  "lineAr": "يحيى أنيق + بومب ون سِت",
   "price": 249,
   "color": "#9B4E58",
   "color2": "#E9D8DA",
@@ -11878,11 +12082,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Yahya Aneeq and Bomb One, together in one set",
-   "ar": "Yahya Aneeq وBomb One معًا في طقم واحد"
+   "ar": "يحيى أنيق وبومب ون معًا في طقم واحد"
   },
   "desc": {
    "en": "The Yahya Aneeq + Bomb One Set brings together Yahya Aneeq and Bomb One from wepink in a single kit. A convenient way to enjoy both together.",
-   "ar": "يجمع طقم Yahya Aneeq + Bomb One بين Yahya Aneeq وBomb One من wepink في طقم واحد. طريقة عملية للاستمتاع بهما معًا."
+   "ar": "يجمع طقم يحيى أنيق + بومب ون بين يحيى أنيق وبومب ون من wepink في طقم واحد. طريقة عملية للاستمتاع بهما معًا."
   },
   "source": "https://www.wepink.com.br/kit-yahya-aneeq--bomb-one---wepink-125674/p",
   "notes": {}
@@ -11892,7 +12096,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "VF Golden + Fatal Black For Her + Eternal+ Heaven Santal Body Splash Set",
-  "lineAr": "طقم بخاخات الجسم VF Golden + Fatal Black For Her + Eternal+ Heaven Santal",
+  "lineAr": "في إف جولدن + فيتال بلاك فور هير + إيترنال+ هيفن سانتال بودي سبلاش سِت",
   "price": 159,
   "color": "#A37963",
   "color2": "#EAE1DC",
@@ -11910,7 +12114,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "This body splash set brings together VF Golden, Fatal Black For Her and Eternal+ Heaven Santal in a single kit. A convenient way to enjoy several wepink fragrances together.",
-   "ar": "يجمع طقم بخاخات الجسم هذا بين VF Golden وFatal Black For Her وEternal+ Heaven Santal في طقم واحد. طريقة عملية للاستمتاع بعدة عطور من wepink معًا."
+   "ar": "يجمع طقم بخاخات الجسم هذا بين في إف جولدن وفيتال بلاك فور هير وإيترنال+ هيفن سانتال في طقم واحد. طريقة عملية للاستمتاع بعدة عطور من wepink معًا."
   },
   "source": "https://www.wepink.com.br/kit-body-splash-vf-golden--fatal-black-for-her--eternal-heaven-santal---wepink-105568/p",
   "notes": {}
@@ -11920,6 +12124,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Heaven Pink",
+  "lineAr": "هيفن بينك",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -11946,7 +12151,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Pink Body Splash captures the moment when everything feels lighter and more beautiful. This feminine fragrance opens with Peach, Pear, Blackberry, Mandarin and Grapefruit, then reveals a sophisticated floral heart of Lily of the Valley, Jasmine, Rose, Orange Blossom, Freesia, Ylang-Ylang, Magnolia, Tuberose, Peony and Violet, settling into a creamy base of woods and vanilla.",
-   "ar": "يجسّد بخاخ الجسم المعطّر Heaven Pink تلك اللحظة التي يبدو فيها كل شيء أخفّ وأجمل. يفتتح هذا العطر الأنثوي بالخوخ والكمثرى والتوت الأسود والماندرين والجريب فروت، ثم يكشف عن قلب زهري راقٍ من زنبق الوادي والياسمين والورد وزهر البرتقال والفريزيا واليلانغ يلانغ والماغنوليا ومسك الروم والفاوانيا والبنفسج، ليستقر على قاعدة كريمية من الأخشاب والفانيليا."
+   "ar": "يجسّد بخاخ الجسم المعطّر هيفن بينك تلك اللحظة التي يبدو فيها كل شيء أخفّ وأجمل. يفتتح هذا العطر الأنثوي بالخوخ والكمثرى والتوت الأسود والماندرين والجريب فروت، ثم يكشف عن قلب زهري راقٍ من زنبق الوادي والياسمين والورد وزهر البرتقال والفريزيا واليلانغ يلانغ والماغنوليا ومسك الروم والفاوانيا والبنفسج، ليستقر على قاعدة كريمية من الأخشاب والفانيليا."
   },
   "notes": {
    "top": [
@@ -12031,6 +12236,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Obsessed Lovely",
+  "lineAr": "أوبسيسد لافلي",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12057,7 +12263,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Obsessed Lovely Body Splash adds a lovelier touch to everyday life with a passionately fruity scent that leaves a light, floating feeling. The fragrance draws on the finest qualities of the rose for a truly adorable olfactory experience.",
-   "ar": "يضفي بخاخ الجسم Obsessed Lovely لمسة أكثر رقة على الحياة اليومية بعبير فاكهي آسر يمنح إحساساً بالخفة والانطلاق. ويستلهم العطر أجمل ما في الورد ليقدّم تجربة عطرية محبّبة بحق."
+   "ar": "يضفي بخاخ الجسم أوبسيسد لافلي لمسة أكثر رقة على الحياة اليومية بعبير فاكهي آسر يمنح إحساساً بالخفة والانطلاق. ويستلهم العطر أجمل ما في الورد ليقدّم تجربة عطرية محبّبة بحق."
   },
   "notes": {
    "top": [
@@ -12074,6 +12280,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Liberté Exclusif",
+  "lineAr": "ليبرتيه إكسكلوسيف",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12100,7 +12307,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Liberté Exclusif Body Splash evokes a true sense of freedom with a floral scent brimming with nobility and sweetness. Fresh Pear and Lychee meet delicate flowers before settling into an elegant sweet, woody base, where nuances of Amber and Vanilla reveal lightness and sophistication, like a floral elixir.",
-   "ar": "يجسّد بخاخ الجسم Liberté Exclusif إحساساً حقيقياً بالحرية من خلال عبير زهري يفيض بالنبل والعذوبة. ينطلق بانتعاش الكمثرى والليتشي مع رقة الزهور، ثم يستقر على قاعدة خشبية حلوة وأنيقة تكشف فيها لمسات العنبر والفانيليا عن خفة ورقيّ أشبه بإكسير زهري."
+   "ar": "يجسّد بخاخ الجسم ليبرتيه إكسكلوسيف إحساساً حقيقياً بالحرية من خلال عبير زهري يفيض بالنبل والعذوبة. ينطلق بانتعاش الكمثرى والليتشي مع رقة الزهور، ثم يستقر على قاعدة خشبية حلوة وأنيقة تكشف فيها لمسات العنبر والفانيليا عن خفة ورقيّ أشبه بإكسير زهري."
   },
   "notes": {
    "top": [
@@ -12131,6 +12338,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Liberté",
+  "lineAr": "ليبرتيه",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12157,7 +12365,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Liberté Body Splash has a unique essence that overflows with freedom, elegance and well-being. Its fragrance reveals charming nuances and mysterious facets, with touches of pink pepper, grapefruit and noble flowers, led by the celebrated queen of perfumery, the French Centifolia Rose.",
-   "ar": "يتميّز بخاخ الجسم Liberté بجوهر فريد يفيض بالحرية والأناقة والشعور بالراحة. ويكشف عطره عن لمسات ساحرة وجوانب غامضة مع نفحات من الفلفل الوردي والجريب فروت والزهور النبيلة، تتصدّرها ملكة العطور الشهيرة وردة سنتيفوليا الفرنسية."
+   "ar": "يتميّز بخاخ الجسم ليبرتيه بجوهر فريد يفيض بالحرية والأناقة والشعور بالراحة. ويكشف عطره عن لمسات ساحرة وجوانب غامضة مع نفحات من الفلفل الوردي والجريب فروت والزهور النبيلة، تتصدّرها ملكة العطور الشهيرة وردة سنتيفوليا الفرنسية."
   },
   "notes": {
    "top": [
@@ -12186,6 +12394,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Ghadan Light",
+  "lineAr": "غدان لايت",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12211,7 +12420,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Ghadan Light Body Splash reinterprets the lightness of oriental perfumery from a brighter, more delicate and deeply elegant perspective, created for women who know true sophistication lies in the details. Pink Pepper, Fig, Almond and Juniper open with comfort and refinement, while Rose, Lily of the Valley, Jasmine Sambac and Ylang-Ylang bloom in harmony at its heart.",
-   "ar": "يقدّم بخاخ الجسم Ghadan Light خفة العطور الشرقية من منظور جديد أكثر إشراقاً ورقة وأناقة، وقد صُمّم للمرأة التي تدرك أن الرقي الحقيقي يكمن في التفاصيل. تفتتح التركيبة نفحات الفلفل الوردي والتين واللوز والعرعر بلمسة مريحة وراقية، بينما تتفتح في قلبها الورود وزنبق الوادي والياسمين سامباك والإيلانغ إيلانغ في تناغم تام."
+   "ar": "يقدّم بخاخ الجسم غدان لايت خفة العطور الشرقية من منظور جديد أكثر إشراقاً ورقة وأناقة، وقد صُمّم للمرأة التي تدرك أن الرقي الحقيقي يكمن في التفاصيل. تفتتح التركيبة نفحات الفلفل الوردي والتين واللوز والعرعر بلمسة مريحة وراقية، بينما تتفتح في قلبها الورود وزنبق الوادي والياسمين سامباك والإيلانغ إيلانغ في تناغم تام."
   },
   "notes": {
    "top": [
@@ -12258,6 +12467,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "One Touch Warm",
+  "lineAr": "ون تاتش وورم",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12284,7 +12494,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The One Touch Warm Body Splash is for those who want to leave an unforgettable mark, with an intense touch woven with pure seduction and authenticity. Its sensory journey opens with lush fruity notes, moves into a delicate floral bouquet wrapped in soft coconut and finishes with sweet, woody notes.",
-   "ar": "صُمّم بخاخ الجسم One Touch Warm لمن يرغب في ترك بصمة لا تُنسى، بلمسة قوية تمتزج فيها الجاذبية والأصالة. تبدأ رحلته الحسية بنفحات فاكهية غنية، ثم تنتقل إلى باقة زهرية رقيقة تغلّفها نعومة جوز الهند، لتختتم بنفحات حلوة وخشبية."
+   "ar": "صُمّم بخاخ الجسم ون تاتش وورم لمن يرغب في ترك بصمة لا تُنسى، بلمسة قوية تمتزج فيها الجاذبية والأصالة. تبدأ رحلته الحسية بنفحات فاكهية غنية، ثم تنتقل إلى باقة زهرية رقيقة تغلّفها نعومة جوز الهند، لتختتم بنفحات حلوة وخشبية."
   },
   "notes": {
    "heart": [
@@ -12301,6 +12511,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Pure Pear",
+  "lineAr": "بيور بير",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12327,7 +12538,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Pure Pear Body Splash captures the purest essence of elegance, celebrating feminine beauty in a bright, fruity fragrance. Its florals unfold with nuances of Freesia and Violet and a sweet touch of Cassis, evolving into a luxurious sweet, woody base of Musk and Praline.",
-   "ar": "يجسّد بخاخ الجسم Pure Pear أنقى جوهر للأناقة، محتفياً بالجمال الأنثوي في عطر فاكهي مشرق. تتفتح زهوره بلمسات من الفريزيا والبنفسج مع لمسة حلوة من الكشمش الأسود، ثم يتطور نحو قاعدة خشبية حلوة وفاخرة من المسك والبرالين."
+   "ar": "يجسّد بخاخ الجسم بيور بير أنقى جوهر للأناقة، محتفياً بالجمال الأنثوي في عطر فاكهي مشرق. تتفتح زهوره بلمسات من الفريزيا والبنفسج مع لمسة حلوة من الكشمش الأسود، ثم يتطور نحو قاعدة خشبية حلوة وفاخرة من المسك والبرالين."
   },
   "notes": {
    "heart": [
@@ -12362,7 +12573,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "haircare",
   "line": "My Hair Ultra Repair Conditioning Protein",
-  "lineAr": "بروتين التنعيم My Hair Ultra Repair",
+  "lineAr": "ماي هير ألترا ريبير كونديشنينج بروتين",
   "size": "230 ml",
   "price": 109,
   "badge": "bestseller",
@@ -12388,7 +12599,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "My Hair Ultra Repair Conditioning Protein delivers deep hydration, elasticity, softness and shine with D-Panthenol, lanolin and a natural blend of plant oils, argan and green tea. Hydrolyzed wheat and rice proteins repair hair from root to tip, restoring damaged fibers, reducing frizz and improving strength, while a rich fragrance keeps hair soft and scented all day.",
-   "ar": "يمنح بروتين التنعيم My Hair Ultra Repair الشعر ترطيباً عميقاً ومرونة ونعومة ولمعاناً بفضل الديبانثينول واللانولين ومزيج طبيعي من الزيوت النباتية والأرغان والشاي الأخضر. وتعمل بروتينات القمح والأرز المتحللة على إصلاح الشعر من الجذور حتى الأطراف، فتعيد بناء الألياف التالفة وتقلل الهيشان وتعزز قوة الشعر، بينما يحافظ عطره الغني على شعر ناعم ومعطّر طوال اليوم."
+   "ar": "يمنح بروتين التنعيم ماي هير ألترا ريبير الشعر ترطيباً عميقاً ومرونة ونعومة ولمعاناً بفضل الديبانثينول واللانولين ومزيج طبيعي من الزيوت النباتية والأرغان والشاي الأخضر. وتعمل بروتينات القمح والأرز المتحللة على إصلاح الشعر من الجذور حتى الأطراف، فتعيد بناء الألياف التالفة وتقلل الهيشان وتعزز قوة الشعر، بينما يحافظ عطره الغني على شعر ناعم ومعطّر طوال اليوم."
   },
   "source": "https://www.wepink.com.br/proteina-condicionante-my-hair-ultra-repair-230ml---we-pink-292/p",
   "notes": {}
@@ -12398,6 +12609,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Perfect Pear",
+  "lineAr": "بيرفكت بير",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12424,7 +12636,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Perfect Pear Body Splash redefines feminine beauty through strength and subtlety. With a light, citrusy essence and a classic fruity touch, it exudes delicacy and freshness, pairing a refreshing floral heart of green apple and violet leaves with an elegant sweet, woody base.",
-   "ar": "يعيد بخاخ الجسم Perfect Pear تعريف الجمال الأنثوي بمزيج من القوة والرقة. وبجوهره الخفيف الحمضي ولمسته الفاكهية الكلاسيكية، يفيض رقةً وانتعاشاً، إذ يجمع بين قلب زهري منعش من التفاح الأخضر وأوراق البنفسج وقاعدة خشبية حلوة وأنيقة."
+   "ar": "يعيد بخاخ الجسم بيرفكت بير تعريف الجمال الأنثوي بمزيج من القوة والرقة. وبجوهره الخفيف الحمضي ولمسته الفاكهية الكلاسيكية، يفيض رقةً وانتعاشاً، إذ يجمع بين قلب زهري منعش من التفاح الأخضر وأوراق البنفسج وقاعدة خشبية حلوة وأنيقة."
   },
   "notes": {
    "heart": [
@@ -12445,6 +12657,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Obsessed Lovely",
+  "lineAr": "أوبسيسد لافلي",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -12469,7 +12682,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Obsessed Lovely Body Cream wraps the skin in a soft, delicate texture, leaving it deeply hydrated, nourished and scented. Its selected oils and extracts help support collagen production and cell renewal for firmer, healthier, more radiant-looking skin, while the fragrance pairs the intensity of fruits with the delicacy of roses.",
-   "ar": "يغلّف كريم الجسم Obsessed Lovely البشرة بقوام ناعم ورقيق، فيتركها مرطّبة ومغذّاة ومعطّرة بعمق. وتساعد تركيبته الغنية بزيوت ومستخلصات مختارة على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة تبدو أكثر تماسكاً وصحة وإشراقاً، بينما يمزج عطره بين حيوية الفواكه ورقة الورد."
+   "ar": "يغلّف كريم الجسم أوبسيسد لافلي البشرة بقوام ناعم ورقيق، فيتركها مرطّبة ومغذّاة ومعطّرة بعمق. وتساعد تركيبته الغنية بزيوت ومستخلصات مختارة على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة تبدو أكثر تماسكاً وصحة وإشراقاً، بينما يمزج عطره بين حيوية الفواكه ورقة الورد."
   },
   "notes": {
    "top": [
@@ -12486,6 +12699,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Obsessed Lovely",
+  "lineAr": "أوبسيسد لافلي",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -12512,7 +12726,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Obsessed Lovely Cologne is a thoroughly adorable fragrance that reveals femininity in its most captivating form. Intense and graceful, it exudes confidence with breathtaking elegance, wrapping the skin in an aura of sophistication.",
-   "ar": "كولونيا Obsessed Lovely عطر آسر بكل تفاصيله، يكشف عن الأنوثة في أكثر صورها جاذبية. يجمع بين القوة والرقة، وينضح بالثقة وبأناقة أخّاذة، ليغلّف البشرة بهالة من الرقي."
+   "ar": "كولونيا أوبسيسد لافلي عطر آسر بكل تفاصيله، يكشف عن الأنوثة في أكثر صورها جاذبية. يجمع بين القوة والرقة، وينضح بالثقة وبأناقة أخّاذة، ليغلّف البشرة بهالة من الرقي."
   },
   "source": "https://www.wepink.com.br/desod-col-obsessed-lovely-100ml---wepink-407/p",
   "notes": {}
@@ -12522,6 +12736,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Scarlette",
+  "lineAr": "سكارليت",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12548,7 +12763,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Scarlette Body Splash captures the duality between intensity, power and delicacy, leaving a sweet, memorable touch on the skin. Orange, strawberry and plum create a vibrant opening, violet and jasmine bring soft elegance at the heart, and a warm base of amber, vanilla, musk and sandalwood adds sweetness and depth.",
-   "ar": "يجسّد بخاخ الجسم Scarlette الثنائية بين القوة والسطوة والرقة، تاركاً لمسة حلوة لا تُنسى على البشرة. يفتتح البرتقال والفراولة والبرقوق العطر بانطلاقة نابضة بالحيوية، ويضفي البنفسج والياسمين في القلب أناقة ناعمة، بينما تمنحه قاعدة دافئة من العنبر والفانيليا والمسك وخشب الصندل عذوبة وعمقاً."
+   "ar": "يجسّد بخاخ الجسم سكارليت الثنائية بين القوة والسطوة والرقة، تاركاً لمسة حلوة لا تُنسى على البشرة. يفتتح البرتقال والفراولة والبرقوق العطر بانطلاقة نابضة بالحيوية، ويضفي البنفسج والياسمين في القلب أناقة ناعمة، بينما تمنحه قاعدة دافئة من العنبر والفانيليا والمسك وخشب الصندل عذوبة وعمقاً."
   },
   "notes": {
    "top": [
@@ -12601,6 +12816,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Heaven Groom",
+  "lineAr": "هيفن جروم",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -12626,7 +12842,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Heaven Groom men's Body Splash invites a unique journey of love through a Fougère fragrance that captures the essence of a protective, faithful man. It opens with fresh Lime and Grapefruit, moves into the elegance of Lavender and Jasmine, and finishes with intense Amber and Vanilla, marking the joy forever in memory.",
-   "ar": "يدعو بخاخ الجسم الرجالي Heaven Groom إلى رحلة حب فريدة عبر عطر فوجير يجسّد جوهر الرجل الحامي والوفي. ينطلق بانتعاش الليمون الأخضر والجريب فروت، ثم ينتقل إلى أناقة الخزامى والياسمين، ليختتم بدفء العنبر والفانيليا المكثّف، مخلّداً هذه الفرحة في الذاكرة إلى الأبد."
+   "ar": "يدعو بخاخ الجسم الرجالي هيفن جروم إلى رحلة حب فريدة عبر عطر فوجير يجسّد جوهر الرجل الحامي والوفي. ينطلق بانتعاش الليمون الأخضر والجريب فروت، ثم ينتقل إلى أناقة الخزامى والياسمين، ليختتم بدفء العنبر والفانيليا المكثّف، مخلّداً هذه الفرحة في الذاكرة إلى الأبد."
   },
   "notes": {
    "top": [
@@ -12667,6 +12883,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "One Touch Warm",
+  "lineAr": "ون تاتش وورم",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -12693,7 +12910,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Warm Cologne is made for those who want to leave an unforgettable mark wherever they go, with an intense touch woven with pure seduction and daring. It opens with an exuberant burst of fruit, blossoms into jasmine and orange blossom with a soft touch of coconut, and finishes with sweet vanilla, caramel and luxurious woody cashmere.",
-   "ar": "صُمّمت كولونيا One Touch Warm لمن يرغب في ترك بصمة لا تُنسى أينما حلّ، بلمسة قوية تمتزج فيها الجاذبية والجرأة. تنطلق بانفجار غني من الفواكه، ثم تتفتح على الياسمين وزهر البرتقال مع لمسة ناعمة من جوز الهند، لتختتم بنفحات حلوة من الفانيليا والكراميل وخشب الكشمير الفاخر."
+   "ar": "صُمّمت كولونيا ون تاتش وورم لمن يرغب في ترك بصمة لا تُنسى أينما حلّ، بلمسة قوية تمتزج فيها الجاذبية والجرأة. تنطلق بانفجار غني من الفواكه، ثم تتفتح على الياسمين وزهر البرتقال مع لمسة ناعمة من جوز الهند، لتختتم بنفحات حلوة من الفانيليا والكراميل وخشب الكشمير الفاخر."
   },
   "notes": {
    "heart": [
@@ -12732,6 +12949,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "One Touch Latte",
+  "lineAr": "ون تاتش لاتيه",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12756,7 +12974,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The One Touch Latte Body Splash is a tropical olfactory experience to enjoy every day. Its scent draws out the best of each of its fruits to evoke a sunny day at the beach, conveying a cozy warmth that brightens anyone's mood.",
-   "ar": "يقدّم بخاخ الجسم One Touch Latte تجربة عطرية استوائية تأسر الحواس كل يوم. يستخلص عبيره أفضل ما في فواكهه ليستحضر إحساس يوم مشمس على الشاطئ، وينقل دفئاً مريحاً يبعث البهجة في النفوس."
+   "ar": "يقدّم بخاخ الجسم ون تاتش لاتيه تجربة عطرية استوائية تأسر الحواس كل يوم. يستخلص عبيره أفضل ما في فواكهه ليستحضر إحساس يوم مشمس على الشاطئ، وينقل دفئاً مريحاً يبعث البهجة في النفوس."
   },
   "source": "https://www.wepink.com.br/body-splash-one-touch-latte-200ml---wepink-410/p",
   "notes": {}
@@ -12766,6 +12984,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "One Touch Latte",
+  "lineAr": "ون تاتش لاتيه",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -12791,7 +13010,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "One Touch Latte Cologne creates its own glow, opening with flowers and fruits in a luminous, enveloping sensation like a ray of tropical sun. The floral then turns creamy as ylang-ylang brings warmth and lightness in a sunny effect. Joyful, youthful and tropical, it is made for happy days, with radiant femininity and a touch of irresistible extravagance.",
-   "ar": "تصنع كولونيا One Touch Latte بريقها الخاص، إذ تنطلق بلقاء الزهور والفواكه في إحساس مضيء وآسر أشبه بشعاع شمس استوائية. ثم تتجلى الزهور بقوام كريمي مع الإيلانغ إيلانغ الذي يضفي دفئاً وخفة بتأثير مشمس. عطر مبهج وشبابي واستوائي للأيام السعيدة، بأنوثة مشرقة ولمسة من الفخامة الجريئة التي لا تُقاوَم."
+   "ar": "تصنع كولونيا ون تاتش لاتيه بريقها الخاص، إذ تنطلق بلقاء الزهور والفواكه في إحساس مضيء وآسر أشبه بشعاع شمس استوائية. ثم تتجلى الزهور بقوام كريمي مع الإيلانغ إيلانغ الذي يضفي دفئاً وخفة بتأثير مشمس. عطر مبهج وشبابي واستوائي للأيام السعيدة، بأنوثة مشرقة ولمسة من الفخامة الجريئة التي لا تُقاوَم."
   },
   "notes": {
    "heart": [
@@ -12808,6 +13027,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Heaven Bride",
+  "lineAr": "هيفن برايد",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -12832,7 +13052,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Heaven Bride Body Cream delivers divine hydration with a formula designed to help support collagen production and cell renewal. It leaves skin healthy, soft and glowing all day, intensely scented with a delightful floral aroma for a feeling of paradise.",
-   "ar": "يمنح كريم الجسم Heaven Bride ترطيباً سماوياً بتركيبة مصمّمة لدعم إنتاج الكولاجين وتجديد الخلايا. يترك البشرة صحية وناعمة ومشرقة طوال اليوم، معطّرة بعمق بعبير زهري شهي يمنح إحساساً بالنعيم."
+   "ar": "يمنح كريم الجسم هيفن برايد ترطيباً سماوياً بتركيبة مصمّمة لدعم إنتاج الكولاجين وتجديد الخلايا. يترك البشرة صحية وناعمة ومشرقة طوال اليوم، معطّرة بعمق بعبير زهري شهي يمنح إحساساً بالنعيم."
   },
   "source": "https://www.wepink.com.br/body-cream-heaven-bride-200ml---wepink-384/p",
   "notes": {}
@@ -12842,6 +13062,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Obsessed Intense",
+  "lineAr": "أوبسيسد إنتنس",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -12868,7 +13089,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "All eyes are on the star of the night: the Obsessed Intense Body Splash, a playful invitation to sweet evening encounters. This intensely addictive scent is a mystery to be unraveled slowly, designed to make a statement and draw attention under the moonlight.",
-   "ar": "كل الأنظار تتجه نحو نجمة الليل: بخاخ الجسم Obsessed Intense، دعوة مرحة للقاءات مسائية عذبة. عبيره الآسر بشدة لغزٌ يُكتشف على مهل، وقد صُمّم ليفرض حضوره ويلفت الانتباه تحت ضوء القمر."
+   "ar": "كل الأنظار تتجه نحو نجمة الليل: بخاخ الجسم أوبسيسد إنتنس، دعوة مرحة للقاءات مسائية عذبة. عبيره الآسر بشدة لغزٌ يُكتشف على مهل، وقد صُمّم ليفرض حضوره ويلفت الانتباه تحت ضوء القمر."
   },
   "source": "https://www.wepink.com.br/body-splash-obsessed-intense-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -12878,6 +13099,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Bourbon Silver",
+  "lineAr": "بوربون سيلفر",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -12940,6 +13162,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF Onyx",
+  "lineAr": "في إف أونيكس",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -12965,7 +13188,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The VF Onyx Body Splash travels through an enchanting mystery under the moonlight, in a mystical, amber journey that reveals a sweet passion. It opens with Creamy Milk and the unique sophistication of Orchid, wrapped in a light trail of Vanilla, and finishes glamorously with starry touches of Sandalwood and Amber.",
-   "ar": "يأخذ بخاخ الجسم VF Onyx في رحلة عنبرية غامضة تأسر الحواس تحت ضوء القمر وتكشف عن شغف عذب. ينطلق بالحليب الكريمي ورقيّ الأوركيد الفريد، يلفّه أثر خفيف من الفانيليا، ليختتم بفخامة مع لمسات متلألئة من خشب الصندل والعنبر."
+   "ar": "يأخذ بخاخ الجسم في إف أونيكس في رحلة عنبرية غامضة تأسر الحواس تحت ضوء القمر وتكشف عن شغف عذب. ينطلق بالحليب الكريمي ورقيّ الأوركيد الفريد، يلفّه أثر خفيف من الفانيليا، ليختتم بفخامة مع لمسات متلألئة من خشب الصندل والعنبر."
   },
   "notes": {
    "top": [
@@ -13002,6 +13225,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Heaven",
+  "lineAr": "هيفن",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -13027,7 +13251,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Heaven Body Splash captures the essence of a delicate, joyful universe in a sensory journey that transports to paradise. Its delicate fragrance rises with light mandarin and peach and a sophisticated touch of orange blossom, evolving into an enchanting floral heart and a heady sweet, woody base.",
-   "ar": "يجسّد بخاخ الجسم Heaven جوهر عالم رقيق ومبهج في رحلة حسية تنقل إلى عالم من النعيم. ينطلق عطره الرقيق بنفحات خفيفة من اليوسفي والخوخ مع لمسة راقية من زهر البرتقال، ثم يتطور إلى قلب زهري ساحر وقاعدة خشبية حلوة آسرة."
+   "ar": "يجسّد بخاخ الجسم هيفن جوهر عالم رقيق ومبهج في رحلة حسية تنقل إلى عالم من النعيم. ينطلق عطره الرقيق بنفحات خفيفة من اليوسفي والخوخ مع لمسة راقية من زهر البرتقال، ثم يتطور إلى قلب زهري ساحر وقاعدة خشبية حلوة آسرة."
   },
   "notes": {
    "top": [
@@ -13052,6 +13276,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF Choices",
+  "lineAr": "في إف تشويسز",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -13078,7 +13303,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Choices Cologne is made to inspire the mystical woman within, inviting the freedom to be oneself and make one's own choices with a touch of mystery and adventure. This fresh Chypre opens with lemon and mandarin, floating over pear and orange, before a heart of violet, jasmine and roses leads to a seductive sweet, woody trail.",
-   "ar": "صُمّمت كولونيا VF Choices لتلهم المرأة الساحرة الكامنة في الداخل، داعيةً إلى حرية أن تكون على طبيعتها وأن تصنع خياراتها بلمسة من الغموض والمغامرة. ينطلق هذا العطر الشيبر المنعش بنسمات الليمون واليوسفي مع الكمثرى والبرتقال، ثم يتفتح قلبه بالبنفسج والياسمين والورد، ليختتم بأثر خشبي حلو آسر."
+   "ar": "صُمّمت كولونيا في إف تشويسز لتلهم المرأة الساحرة الكامنة في الداخل، داعيةً إلى حرية أن تكون على طبيعتها وأن تصنع خياراتها بلمسة من الغموض والمغامرة. ينطلق هذا العطر الشيبر المنعش بنسمات الليمون واليوسفي مع الكمثرى والبرتقال، ثم يتفتح قلبه بالبنفسج والياسمين والورد، ليختتم بأثر خشبي حلو آسر."
   },
   "notes": {
    "top": [
@@ -13121,7 +13346,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "haircare",
   "line": "Multifunctional Leave-In Hair Treatment",
-  "lineAr": "علاج الشعر ليف إن متعدد الاستخدامات",
+  "lineAr": "مالتي فانكشنال ليف إن هير تريتمنت",
   "size": "120 ml",
   "price": 89,
   "badge": "bestseller",
@@ -13156,6 +13381,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Ghadan Light",
+  "lineAr": "غدان لايت",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -13181,7 +13407,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ghadan Light Cologne reinterprets the lightness of oriental perfumery from a brighter, more delicate and deeply elegant perspective, created for women who know true sophistication lies in the details. Pink Pepper, creamy Fig, Almond and Juniper open with comfort and refinement, while Rose, Lily of the Valley, Jasmine Sambac and Ylang-Ylang bloom in harmony at its heart.",
-   "ar": "تقدّم كولونيا Ghadan Light خفة العطور الشرقية من منظور جديد أكثر إشراقاً ورقة وأناقة، وقد صُمّمت للمرأة التي تدرك أن الرقي الحقيقي يكمن في التفاصيل. تفتتح التركيبة نفحات الفلفل الوردي والتين الكريمي واللوز والعرعر بلمسة مريحة وراقية، بينما تتفتح في قلبها الورود وزنبق الوادي والياسمين سامباك والإيلانغ إيلانغ في تناغم تام."
+   "ar": "تقدّم كولونيا غدان لايت خفة العطور الشرقية من منظور جديد أكثر إشراقاً ورقة وأناقة، وقد صُمّمت للمرأة التي تدرك أن الرقي الحقيقي يكمن في التفاصيل. تفتتح التركيبة نفحات الفلفل الوردي والتين الكريمي واللوز والعرعر بلمسة مريحة وراقية، بينما تتفتح في قلبها الورود وزنبق الوادي والياسمين سامباك والإيلانغ إيلانغ في تناغم تام."
   },
   "notes": {
    "top": [
@@ -13228,6 +13454,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Perfect Pear & Peach",
+  "lineAr": "بيرفكت بير آند بيتش",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -13253,7 +13480,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Perfect Pear & Peach Cologne is a Floral Fruity blend of juicy pear, delicate peach and a creamy base. Pear, Peach Nectar, Raspberry, Sparkling Notes and Bergamot create a luminous opening; Tuberose, Ylang-Ylang, Davana and a Creamy Accord wrap the heart in femininity; and Patchouli, Musk, Vanilla and Amber leave a soft, warm, velvety trail.",
-   "ar": "كولونيا Perfect Pear & Peach عطر زهري فاكهي يجمع بين عصارة الكمثرى ورقة الخوخ وقاعدة كريمية. تصنع الكمثرى ورحيق الخوخ وتوت العليق والنفحات المتلألئة والبرغموت افتتاحية مضيئة، بينما يغلّف مسك الروم والإيلانغ إيلانغ والدافانا والتناغم الكريمي القلب بلمسة أنثوية، ويترك الباتشولي والمسك والفانيليا والعنبر أثراً ناعماً دافئاً ومخملياً."
+   "ar": "كولونيا بيرفكت بير آند بيتش عطر زهري فاكهي يجمع بين عصارة الكمثرى ورقة الخوخ وقاعدة كريمية. تصنع الكمثرى ورحيق الخوخ وتوت العليق والنفحات المتلألئة والبرغموت افتتاحية مضيئة، بينما يغلّف مسك الروم والإيلانغ إيلانغ والدافانا والتناغم الكريمي القلب بلمسة أنثوية، ويترك الباتشولي والمسك والفانيليا والعنبر أثراً ناعماً دافئاً ومخملياً."
   },
   "notes": {
    "top": [
@@ -13322,6 +13549,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Vanilla Hug",
+  "lineAr": "فانيلا هاج",
   "size": "200 ml",
   "price": 69,
   "family": "warm",
@@ -13342,11 +13570,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Hug",
-   "ar": "تغذية عميقة وتماسك مع عناق Vanilla Hug الدافئ"
+   "ar": "تغذية عميقة وتماسك مع عناق فانيلا هاج الدافئ"
   },
   "desc": {
    "en": "The Vanilla Hug Body Cream deeply hydrates and nourishes, leaving skin soft, radiant and healthy-looking. Its formula helps support collagen production and cell renewal, while the fragrance blends notes of Mandarin, Jasmine and Damask Rose for a delightful feeling of harmony and care.",
-   "ar": "يرطّب كريم الجسم Vanilla Hug البشرة ويغذّيها بعمق، تاركاً إياها ناعمة ومشرقة وصحية المظهر. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، بينما يمزج عطره نفحات اليوسفي والياسمين والورد الدمشقي في إحساس شهي بالتناغم والعناية."
+   "ar": "يرطّب كريم الجسم فانيلا هاج البشرة ويغذّيها بعمق، تاركاً إياها ناعمة ومشرقة وصحية المظهر. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، بينما يمزج عطره نفحات اليوسفي والياسمين والورد الدمشقي في إحساس شهي بالتناغم والعناية."
   },
   "notes": {
    "top": [
@@ -13375,6 +13603,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "butter",
   "line": "Eternal Cherish",
+  "lineAr": "إيترنال تشيريش",
   "size": "250 g",
   "price": 89,
   "badge": "bestseller",
@@ -13395,11 +13624,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the touch of Eternal Cherish butter",
-   "ar": "تغذية عميقة وتماسك بلمسة زبدة Eternal Cherish"
+   "ar": "تغذية عميقة وتماسك بلمسة زبدة إيترنال تشيريش"
   },
   "desc": {
    "en": "Eternal Cherish Body Butter delivers intense, immediate hydration with a luxurious fragrance celebrating feminine strength and tenderness. Its ultra-creamy texture deeply nourishes, supports cell renewal and leaves a velvety finish that strengthens the skin barrier, while notes of Cinnamon, Jasmine and Vanilla evoke comfort, sophistication and affection for visibly firmer, healthier skin.",
-   "ar": "تمنح زبدة الجسم Eternal Cherish ترطيباً مكثفاً وفورياً بعطر فاخر يحتفي بقوة المرأة وحنانها. يغذّي قوامها فائق الكريمية البشرة بعمق ويدعم تجديد الخلايا ويترك ملمساً مخملياً يعزز حاجز البشرة، بينما تبعث نفحات القرفة والياسمين والفانيليا إحساساً بالدفء والرقي والمودة لبشرة أكثر تماسكاً وصحة بشكل ملحوظ."
+   "ar": "تمنح زبدة الجسم إيترنال تشيريش ترطيباً مكثفاً وفورياً بعطر فاخر يحتفي بقوة المرأة وحنانها. يغذّي قوامها فائق الكريمية البشرة بعمق ويدعم تجديد الخلايا ويترك ملمساً مخملياً يعزز حاجز البشرة، بينما تبعث نفحات القرفة والياسمين والفانيليا إحساساً بالدفء والرقي والمودة لبشرة أكثر تماسكاً وصحة بشكل ملحوظ."
   },
   "notes": {
    "top": [
@@ -13428,6 +13657,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Tyrie Royale",
+  "lineAr": "تايري رويال",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -13453,7 +13683,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Tyrie Royale Cologne expresses intense femininity in an enveloping, sophisticated fragrance for women who radiate presence and confidence. Pear and fig meet caramel and violet leaves in a juicy opening, jasmine, tuberose and lily of the valley form an elegant white floral heart, and patchouli, vanilla, amber and musk create a warm, creamy base.",
-   "ar": "تعبّر كولونيا Tyrie Royale عن أنوثة قوية في عطر آسر وراقٍ للمرأة التي تفيض حضوراً وثقة. تلتقي الكمثرى والتين بالكراميل وأوراق البنفسج في افتتاحية غنية بالعصارة، ويشكّل الياسمين ومسك الروم وزنبق الوادي قلباً أنيقاً من الزهور البيضاء، بينما يصنع الباتشولي والفانيليا والعنبر والمسك قاعدة دافئة وكريمية."
+   "ar": "تعبّر كولونيا تايري رويال عن أنوثة قوية في عطر آسر وراقٍ للمرأة التي تفيض حضوراً وثقة. تلتقي الكمثرى والتين بالكراميل وأوراق البنفسج في افتتاحية غنية بالعصارة، ويشكّل الياسمين ومسك الروم وزنبق الوادي قلباً أنيقاً من الزهور البيضاء، بينما يصنع الباتشولي والفانيليا والعنبر والمسك قاعدة دافئة وكريمية."
   },
   "notes": {
    "top": [
@@ -13514,6 +13744,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "scrub",
   "line": "Heaven Blue",
+  "lineAr": "هيفن بلو",
   "size": "450 g",
   "price": 99,
   "badge": "bestseller",
@@ -13538,7 +13769,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Heaven Blue Body Scrub turns bath time into a ritual of serenity, with actives that hydrate, nourish and illuminate the skin. Luminous citrus notes meet a mysterious contrasting base for a feeling of peace and freshness. It is massaged gently onto the body in circular motions, avoiding the face, then rinsed off.",
-   "ar": "يحوّل مقشّر الجسم Heaven Blue وقت الاستحمام إلى طقس من الصفاء، بمكونات نشطة ترطّب البشرة وتغذّيها وتمنحها الإشراق. تلتقي فيه نفحات حمضية مضيئة بقاعدة غامضة متباينة لتبعث إحساساً بالسكينة والانتعاش. يُدلَّك بلطف على الجسم بحركات دائرية مع تجنّب الوجه، ثم يُشطف."
+   "ar": "يحوّل مقشّر الجسم هيفن بلو وقت الاستحمام إلى طقس من الصفاء، بمكونات نشطة ترطّب البشرة وتغذّيها وتمنحها الإشراق. تلتقي فيه نفحات حمضية مضيئة بقاعدة غامضة متباينة لتبعث إحساساً بالسكينة والانتعاش. يُدلَّك بلطف على الجسم بحركات دائرية مع تجنّب الوجه، ثم يُشطف."
   },
   "notes": {
    "top": [
@@ -13555,6 +13786,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Crave Lovely",
+  "lineAr": "كريف لافلي",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -13580,7 +13812,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Crave Lovely Body Splash reveals desire in its most delicate form, blending creamy sweetness, luminous flowers and soft sensuality. Bergamot, mandarin and pink pepper bring a radiant, fresh opening, while orange blossom, jasmine, honeysuckle and a marshmallow accord create a creamy white bouquet, with iris and rose adding powdery elegance.",
-   "ar": "يكشف بخاخ الجسم Crave Lovely عن الشغف في أرقّ صوره، جامعاً بين العذوبة الكريمية والزهور المضيئة ولمسة ناعمة من الجاذبية. يمنح البرغموت واليوسفي والفلفل الوردي افتتاحية منعشة ومشرقة، بينما يشكّل زهر البرتقال والياسمين وزهر العسل وتناغم المارشميلو باقة بيضاء كريمية، ويضيف السوسن والورد أناقة بودرية."
+   "ar": "يكشف بخاخ الجسم كريف لافلي عن الشغف في أرقّ صوره، جامعاً بين العذوبة الكريمية والزهور المضيئة ولمسة ناعمة من الجاذبية. يمنح البرغموت واليوسفي والفلفل الوردي افتتاحية منعشة ومشرقة، بينما يشكّل زهر البرتقال والياسمين وزهر العسل وتناغم المارشميلو باقة بيضاء كريمية، ويضيف السوسن والورد أناقة بودرية."
   },
   "notes": {
    "top": [
@@ -13631,6 +13863,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Infinity Tawny",
+  "lineAr": "إنفينيتي توني",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -13656,7 +13889,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Tawny Cologne rediscovers one of the most delightful sweet treats. Its magical scent heightens the best of fruits and the joy of their juiciness, completed by a floral touch that awakens infinite sensations.",
-   "ar": "تعيد كولونيا Infinity Tawny اكتشاف واحدة من أشهى الحلويات. يبرز عبيرها الساحر أفضل ما في الفواكه وبهجة عصارتها، وتكتمل بلمسة زهرية توقظ أحاسيس لا متناهية."
+   "ar": "تعيد كولونيا إنفينيتي توني اكتشاف واحدة من أشهى الحلويات. يبرز عبيرها الساحر أفضل ما في الفواكه وبهجة عصارتها، وتكتمل بلمسة زهرية توقظ أحاسيس لا متناهية."
   },
   "source": "https://www.wepink.com.br/infinity-tawny-desodorante-colonia-75ml-wepink/p",
   "notes": {}
@@ -13666,6 +13899,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Scarlette",
+  "lineAr": "سكارليت",
   "size": "50 ml",
   "price": 149,
   "badge": "bestseller",
@@ -13690,7 +13924,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Scarlette Cologne is for a woman used to turning heads wherever she goes, capturing the duality between intensity, power and delicacy. Orange, strawberry and plum create a vibrant opening, violet and jasmine bring soft elegance at the heart, and a warm base of amber, vanilla, musk and sandalwood adds sweetness and depth.",
-   "ar": "صُمّمت كولونيا Scarlette للمرأة التي اعتادت أن تلفت الأنظار أينما حلّت، لتجسّد الثنائية بين القوة والسطوة والرقة. يفتتح البرتقال والفراولة والبرقوق العطر بانطلاقة نابضة بالحيوية، ويضفي البنفسج والياسمين في القلب أناقة ناعمة، بينما تمنحه قاعدة دافئة من العنبر والفانيليا والمسك وخشب الصندل عذوبة وعمقاً."
+   "ar": "صُمّمت كولونيا سكارليت للمرأة التي اعتادت أن تلفت الأنظار أينما حلّت، لتجسّد الثنائية بين القوة والسطوة والرقة. يفتتح البرتقال والفراولة والبرقوق العطر بانطلاقة نابضة بالحيوية، ويضفي البنفسج والياسمين في القلب أناقة ناعمة، بينما تمنحه قاعدة دافئة من العنبر والفانيليا والمسك وخشب الصندل عذوبة وعمقاً."
   },
   "notes": {
    "top": [
@@ -13743,6 +13977,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "Liberté Exclusif",
+  "lineAr": "ليبرتيه إكسكلوسيف",
   "size": "50 ml",
   "price": 69,
   "color": "#E0ACB0",
@@ -13765,7 +14000,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Liberté Exclusif Hair Mist leaves hair shinier, protected and scented throughout the day with a delicate blend of flowers. It opens with fresh Pear and Lychee, moves into an elegant floral heart with the charm of Incense, and finishes with precious Vanilla and Amber, like a true floral elixir.",
-   "ar": "يمنح معطّر الشعر Liberté Exclusif الشعر لمعاناً وحماية وعطراً طوال اليوم بمزيج رقيق من الزهور. ينطلق بانتعاش الكمثرى والليتشي، ثم ينتقل إلى قلب زهري أنيق مع سحر البخور، ليختتم بالفانيليا الثمينة والعنبر كإكسير زهري حقيقي."
+   "ar": "يمنح معطّر الشعر ليبرتيه إكسكلوسيف الشعر لمعاناً وحماية وعطراً طوال اليوم بمزيج رقيق من الزهور. ينطلق بانتعاش الكمثرى والليتشي، ثم ينتقل إلى قلب زهري أنيق مع سحر البخور، ليختتم بالفانيليا الثمينة والعنبر كإكسير زهري حقيقي."
   },
   "notes": {
    "top": [
@@ -13802,6 +14037,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Heaven Groom",
+  "lineAr": "هيفن جروم",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -13827,7 +14063,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Heaven Groom men's Cologne is an invitation to live the best memories alongside a true love, in a striking and unique Fougère scent. It opens with elegant notes of Lime and Grapefruit, evolves into vibrant Lavender and Jasmine, and finishes on a sweet, intense base that says yes to everlasting love.",
-   "ar": "كولونيا Heaven Groom الرجالية دعوة لعيش أجمل الذكريات إلى جانب الحب الحقيقي، في عطر فوجير مميز وفريد. تنطلق بنفحات أنيقة من الليمون الأخضر والجريب فروت، ثم تتطور مع لمسة الخزامى والياسمين النابضة بالحيوية، لتختتم بقاعدة حلوة وقوية تقول نعم لحب أبدي."
+   "ar": "كولونيا هيفن جروم الرجالية دعوة لعيش أجمل الذكريات إلى جانب الحب الحقيقي، في عطر فوجير مميز وفريد. تنطلق بنفحات أنيقة من الليمون الأخضر والجريب فروت، ثم تتطور مع لمسة الخزامى والياسمين النابضة بالحيوية، لتختتم بقاعدة حلوة وقوية تقول نعم لحب أبدي."
   },
   "notes": {
    "top": [
@@ -13858,6 +14094,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Liberté Exclusif",
+  "lineAr": "ليبرتيه إكسكلوسيف",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -13885,7 +14122,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Liberté Exclusif Cologne is a dream that unfolds through a blend of flowers, revealing a noble, delicate sweetness. It opens with fresh Lemon and Green Apple, evolves into a most elegant floral heart, and finishes on a precious base of Musk and Praline, a true floral elixir.",
-   "ar": "كولونيا Liberté Exclusif حلم يتجلى عبر مزيج من الزهور، كاشفاً عن عذوبة نبيلة ورقيقة. تنطلق بانتعاش الليمون والتفاح الأخضر، ثم تتطور إلى قلب زهري في غاية الأناقة، لتختتم بقاعدة ثمينة من المسك والبرالين كإكسير زهري حقيقي."
+   "ar": "كولونيا ليبرتيه إكسكلوسيف حلم يتجلى عبر مزيج من الزهور، كاشفاً عن عذوبة نبيلة ورقيقة. تنطلق بانتعاش الليمون والتفاح الأخضر، ثم تتطور إلى قلب زهري في غاية الأناقة، لتختتم بقاعدة ثمينة من المسك والبرالين كإكسير زهري حقيقي."
   },
   "notes": {
    "top": [
@@ -13916,6 +14153,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "One Touch Latte",
+  "lineAr": "ون تاتش لاتيه",
   "size": "50 ml",
   "price": 39,
   "color": "#E6007E",
@@ -13938,7 +14176,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection One Touch Latte Roll-on Antiperspirant Deodorant protects and moisturizes for 72 hours, helping to repair the underarm area and even out skin tone. Its tropical fragrance brings a luminous vibe with a soft, creamy, long-lasting touch, leaving a clean, fresh feeling from the first appointment of the day to the last.",
-   "ar": "يوفّر مزيل العرق المضاد للتعرّق MyProtection One Touch Latte Roll-on حماية وترطيباً لمدة 72 ساعة، ويساعد على إصلاح منطقة الإبط وتوحيد لون البشرة. ويمنح عطره الاستوائي إحساساً مشرقاً بلمسة كريمية ناعمة تدوم طويلاً، مع شعور بالنظافة والانتعاش من أول موعد في اليوم إلى آخره."
+   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن ون تاتش لاتيه رول أون حماية وترطيباً لمدة 72 ساعة، ويساعد على إصلاح منطقة الإبط وتوحيد لون البشرة. ويمنح عطره الاستوائي إحساساً مشرقاً بلمسة كريمية ناعمة تدوم طويلاً، مع شعور بالنظافة والانتعاش من أول موعد في اليوم إلى آخره."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-one-touch-latte-50ml---wepink-529/p",
   "notes": {}
@@ -13948,6 +14186,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Obsessed Lovely",
+  "lineAr": "أوبسيسد لافلي",
   "size": "50 ml",
   "price": 39,
   "badge": "bestseller",
@@ -13972,7 +14211,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Obsessed Lovely Roll-on Antiperspirant Deodorant offers up to 72 hours of protection, freshness and hydration, while helping to boost ceramide synthesis, even out skin tone and improve the look of the underarms. Its Fruity Floral fragrance blends fruits, roses and sweet nuances for a light, lovable feeling in everyday care.",
-   "ar": "يوفّر مزيل العرق المضاد للتعرّق MyProtection Obsessed Lovely Roll-on حماية حتى 72 ساعة مع الانتعاش والترطيب، ويساعد على تعزيز إنتاج السيراميدات وتوحيد لون البشرة وتحسين مظهر منطقة الإبط. ويمزج عطره الفاكهي الزهري بين الفواكه والورد واللمسات الحلوة في إحساس خفيف ومحبّب للعناية اليومية."
+   "ar": "يوفّر مزيل العرق المضاد للتعرّق ماي بروتكشن أوبسيسد لافلي رول أون حماية حتى 72 ساعة مع الانتعاش والترطيب، ويساعد على تعزيز إنتاج السيراميدات وتوحيد لون البشرة وتحسين مظهر منطقة الإبط. ويمزج عطره الفاكهي الزهري بين الفواكه والورد واللمسات الحلوة في إحساس خفيف ومحبّب للعناية اليومية."
   },
   "notes": {
    "top": [
@@ -13989,6 +14228,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Liberté Platiné",
+  "lineAr": "ليبرتيه بلاتينيه",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -14013,7 +14253,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Liberté Platiné Cologne captures all the sparkling energy of the City of Light to enhance the finest qualities of femininity. Its fragrance combines the endless potential of flowers and fruits for a scent that brings a feeling of freedom like never before.",
-   "ar": "تجسّد كولونيا Liberté Platiné كل الطاقة المتلألئة لمدينة النور لتبرز أجمل صفات الأنوثة. ويجمع عطرها بين الإمكانات اللامحدودة للزهور والفواكه في عبير يمنح إحساساً غير مسبوق بالحرية."
+   "ar": "تجسّد كولونيا ليبرتيه بلاتينيه كل الطاقة المتلألئة لمدينة النور لتبرز أجمل صفات الأنوثة. ويجمع عطرها بين الإمكانات اللامحدودة للزهور والفواكه في عبير يمنح إحساساً غير مسبوق بالحرية."
   },
   "source": "https://www.wepink.com.br/desod-col-liberte-platine-100ml---wepink-420/p",
   "notes": {}
@@ -14023,6 +14263,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Liberté Exclusif",
+  "lineAr": "ليبرتيه إكسكلوسيف",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -14048,7 +14289,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Liberté Exclusif Body Cream is formulated to help support collagen production and cell renewal, keeping skin nourished and hydrated with a coveted healthy glow. It also carries a classic floral scent, like a true bath of roses.",
-   "ar": "صُمّم كريم الجسم Liberté Exclusif لدعم إنتاج الكولاجين وتجديد الخلايا، ليحافظ على بشرة مغذّاة ومرطّبة بإشراقة صحية مرغوبة. كما يحمل عبيراً زهرياً كلاسيكياً أشبه بحمّام حقيقي من الورد."
+   "ar": "صُمّم كريم الجسم ليبرتيه إكسكلوسيف لدعم إنتاج الكولاجين وتجديد الخلايا، ليحافظ على بشرة مغذّاة ومرطّبة بإشراقة صحية مرغوبة. كما يحمل عبيراً زهرياً كلاسيكياً أشبه بحمّام حقيقي من الورد."
   },
   "source": "https://www.wepink.com.br/body-cream-liberte-exclusif-200ml---wepink-382/p",
   "notes": {}
@@ -14058,6 +14299,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "lotion",
   "line": "The Cream",
+  "lineAr": "ذا كريم",
   "size": "130 ml",
   "price": 89,
   "color": "#B4AA9E",
@@ -14079,7 +14321,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Cream was developed to complete any self-care routine with excellence. Its exclusive formula delivers a range of deep benefits with high transformative power for the skin.",
-   "ar": "طُوّر لوشن الجسم The Cream ليكمّل روتين العناية الذاتية بامتياز. وتقدّم تركيبته الحصرية مجموعة من الفوائد العميقة بقدرة عالية على إحداث تحوّل في البشرة."
+   "ar": "طُوّر لوشن الجسم ذا كريم ليكمّل روتين العناية الذاتية بامتياز. وتقدّم تركيبته الحصرية مجموعة من الفوائد العميقة بقدرة عالية على إحداث تحوّل في البشرة."
   },
   "source": "https://www.wepink.com.br/the-cream-locao-corporal-130-ml/p",
   "notes": {}
@@ -14089,6 +14331,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Infinity Cosmik",
+  "lineAr": "إنفينيتي كوزميك",
   "size": "75 ml",
   "price": 189,
   "family": "floral",
@@ -14115,7 +14358,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Cosmik Cologne is the most exuberant path to a mystical universe, in a chypre, floral and fruity essence that awakens radiance and charm. It opens with vibrant blackcurrant and roses, moves to another dimension with an extraordinary touch of jasmine, and finishes in style on a sweet, woody base full of freshness and elegance.",
-   "ar": "كولونيا Infinity Cosmik هي الطريق الأكثر حيوية إلى عالم ساحر، بجوهر شيبر زهري فاكهي يبعث البريق والسحر أينما حلّت. تنطلق بنفحات نابضة من الكشمش الأسود والورد، ثم تنتقل إلى بُعد آخر بلمسة استثنائية من الياسمين، لتختتم بأناقة على قاعدة خشبية حلوة مفعمة بالانتعاش والرقي."
+   "ar": "كولونيا إنفينيتي كوزميك هي الطريق الأكثر حيوية إلى عالم ساحر، بجوهر شيبر زهري فاكهي يبعث البريق والسحر أينما حلّت. تنطلق بنفحات نابضة من الكشمش الأسود والورد، ثم تنتقل إلى بُعد آخر بلمسة استثنائية من الياسمين، لتختتم بأناقة على قاعدة خشبية حلوة مفعمة بالانتعاش والرقي."
   },
   "notes": {
    "top": [
@@ -14142,6 +14385,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Celebrate Life",
+  "lineAr": "سيليبريت لايف",
   "size": "50 ml",
   "price": 39,
   "color": "#E2A1B2",
@@ -14165,7 +14409,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Celebrate Life Roll-on Antiperspirant Deodorant offers an invigorating combination of freshness, lasting protection and 72-hour hydration, and its exclusive formula also helps even out skin tone. Its fruity oriental fragrance celebrates the extraordinary, reflecting a unique and genuine beauty.",
-   "ar": "يقدّم مزيل العرق المضاد للتعرّق MyProtection Celebrate Life Roll-on مزيجاً منعشاً من الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. ويحتفي عطره الشرقي الفاكهي بكل ما هو استثنائي، عاكساً جمالاً فريداً وصادقاً."
+   "ar": "يقدّم مزيل العرق المضاد للتعرّق ماي بروتكشن سيليبريت لايف رول أون مزيجاً منعشاً من الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. ويحتفي عطره الشرقي الفاكهي بكل ما هو استثنائي، عاكساً جمالاً فريداً وصادقاً."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-celebrate-life-50-ml---wepink-294/p",
   "notes": {}
@@ -14175,6 +14419,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Red",
+  "lineAr": "ريد",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -14200,7 +14445,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Red was created to awaken desire and sophistication, its radiant fragrance representing someone who draws attention and always stands out in a crowd. This Floral Oriental cologne opens with a citrus touch of Blood Orange, moves into a meeting of flowers, and finishes with a woody essence and a sweet stroke of Praline.",
-   "ar": "وُلد Red ليوقظ الشغف والرقي، إذ يمثّل عطره المشرق شخصية تجذب الأنظار وتتميز دائماً وسط الحشود. تنطلق هذه الكولونيا الزهرية الشرقية بلمسة حمضية من البرتقال الدموي، ثم تمضي نحو لقاء الزهور، لتختتم بجوهر خشبي ولمسة حلوة من البرالين."
+   "ar": "وُلد ريد ليوقظ الشغف والرقي، إذ يمثّل عطره المشرق شخصية تجذب الأنظار وتتميز دائماً وسط الحشود. تنطلق هذه الكولونيا الزهرية الشرقية بلمسة حمضية من البرتقال الدموي، ثم تمضي نحو لقاء الزهور، لتختتم بجوهر خشبي ولمسة حلوة من البرالين."
   },
   "notes": {
    "top": [
@@ -14223,6 +14468,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Obsessed Deluxe",
+  "lineAr": "أوبسيسد ديلوكس",
   "size": "100 ml",
   "price": 189,
   "color": "#373537",
@@ -14246,7 +14492,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Deluxe Cologne awakens the desire and intrigue found in powerful, unforgettable women. Its exclusive fragrance opens with a bold Fruity Chypre touch blending sophistication and authenticity, evolves into an enveloping heart of violet, and finishes with sweet notes of sandalwood and vanilla.",
-   "ar": "توقظ كولونيا Obsessed Deluxe الشغف والغموض الآسر الحاضرين في المرأة القوية التي لا تُنسى. ينطلق عطرها الحصري بلمسة شيبر فاكهية جريئة تمزج الرقي بالأصالة، ثم يتطور إلى قلب آسر من البنفسج، ليختتم بنفحات حلوة من خشب الصندل والفانيليا."
+   "ar": "توقظ كولونيا أوبسيسد ديلوكس الشغف والغموض الآسر الحاضرين في المرأة القوية التي لا تُنسى. ينطلق عطرها الحصري بلمسة شيبر فاكهية جريئة تمزج الرقي بالأصالة، ثم يتطور إلى قلب آسر من البنفسج، ليختتم بنفحات حلوة من خشب الصندل والفانيليا."
   },
   "notes": {
    "heart": [
@@ -14273,6 +14519,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Obsessed Gold",
+  "lineAr": "أوبسيسد جولد",
   "size": "100 ml",
   "price": 189,
   "color": "#7C6B52",
@@ -14296,7 +14543,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The luxurious Obsessed Gold Cologne represents the magnetic, alluring and elegant woman who exudes authenticity and draws admiring glances. This Floral Oriental fragrance opens with floral and fruity touches, especially seductive red berries, moves into a delicate floral heart, and signs off with pleasant sweet and woody notes.",
-   "ar": "تمثّل كولونيا Obsessed Gold الفاخرة المرأة الجذابة الساحرة والأنيقة التي تفيض أصالة وتستقطب نظرات الإعجاب. ينطلق هذا العطر الزهري الشرقي بلمسات زهرية وفاكهية، ولا سيما التوت الأحمر الآسر، ثم ينتقل إلى قلب زهري رقيق، ليختتم بنفحات حلوة وخشبية لطيفة."
+   "ar": "تمثّل كولونيا أوبسيسد جولد الفاخرة المرأة الجذابة الساحرة والأنيقة التي تفيض أصالة وتستقطب نظرات الإعجاب. ينطلق هذا العطر الزهري الشرقي بلمسات زهرية وفاكهية، ولا سيما التوت الأحمر الآسر، ثم ينتقل إلى قلب زهري رقيق، ليختتم بنفحات حلوة وخشبية لطيفة."
   },
   "notes": {
    "top": [
@@ -14313,6 +14560,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Perfect Pear & Peach",
+  "lineAr": "بيرفكت بير آند بيتش",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -14338,7 +14586,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Perfect Pear & Peach Body Splash is a Floral Fruity blend of juicy pear, delicate peach and a creamy base. Pear, Peach Nectar, Raspberry, Sparkling Notes and Bergamot create a luminous opening; Tuberose, Ylang-Ylang, Davana and a Creamy Accord wrap the heart in femininity; and Patchouli, Musk, Vanilla and Amber leave a soft, warm, velvety trail.",
-   "ar": "بخاخ الجسم Perfect Pear & Peach عطر زهري فاكهي يجمع بين عصارة الكمثرى ورقة الخوخ وقاعدة كريمية. تصنع الكمثرى ورحيق الخوخ وتوت العليق والنفحات المتلألئة والبرغموت افتتاحية مضيئة، بينما يغلّف مسك الروم والإيلانغ إيلانغ والدافانا والتناغم الكريمي القلب بلمسة أنثوية، ويترك الباتشولي والمسك والفانيليا والعنبر أثراً ناعماً دافئاً ومخملياً."
+   "ar": "بخاخ الجسم بيرفكت بير آند بيتش عطر زهري فاكهي يجمع بين عصارة الكمثرى ورقة الخوخ وقاعدة كريمية. تصنع الكمثرى ورحيق الخوخ وتوت العليق والنفحات المتلألئة والبرغموت افتتاحية مضيئة، بينما يغلّف مسك الروم والإيلانغ إيلانغ والدافانا والتناغم الكريمي القلب بلمسة أنثوية، ويترك الباتشولي والمسك والفانيليا والعنبر أثراً ناعماً دافئاً ومخملياً."
   },
   "notes": {
    "top": [
@@ -14407,6 +14655,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF Tropical",
+  "lineAr": "في إف تروبيكال",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -14432,7 +14681,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The VF Tropical Body Splash captures the essence of the Brazilian woman: warm, striking and full of personality. Blackberry, Mandarin, Sicilian Lemon and Almond create a luminous, seductive opening with velvety creaminess, while a heart of Jasmine Sambac Absolute, Tuberose, Rose and Cananga reveals the full richness of exuberant flowers.",
-   "ar": "يجسّد بخاخ الجسم VF Tropical جوهر المرأة البرازيلية: دافئة ولافتة ومفعمة بالشخصية. يصنع التوت الأسود واليوسفي والليمون الصقلي واللوز افتتاحية مضيئة وآسرة بلمسة كريمية مخملية، بينما يكشف قلب من مطلق الياسمين سامباك ومسك الروم والورد والكانانغا عن كل ثراء الزهور الغنّاء."
+   "ar": "يجسّد بخاخ الجسم في إف تروبيكال جوهر المرأة البرازيلية: دافئة ولافتة ومفعمة بالشخصية. يصنع التوت الأسود واليوسفي والليمون الصقلي واللوز افتتاحية مضيئة وآسرة بلمسة كريمية مخملية، بينما يكشف قلب من مطلق الياسمين سامباك ومسك الروم والورد والكانانغا عن كل ثراء الزهور الغنّاء."
   },
   "notes": {
    "top": [
@@ -14479,6 +14728,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Vallora Spell",
+  "lineAr": "فالورا سبيل",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -14504,7 +14754,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Vallora Spell Cologne is a celebration of sophisticated, delicate and naturally captivating femininity. It was created for women who value genuine connections, believe in the power of moments and emotions, and turn every encounter into a special memory.",
-   "ar": "كولونيا Vallora Spell احتفاء بأنوثة راقية ورقيقة وآسرة بطبيعتها. صُمّمت للمرأة التي تقدّر الروابط الصادقة وتؤمن بقوة اللحظات والمشاعر، وتحوّل كل لقاء إلى ذكرى مميزة."
+   "ar": "كولونيا فالورا سبيل احتفاء بأنوثة راقية ورقيقة وآسرة بطبيعتها. صُمّمت للمرأة التي تقدّر الروابط الصادقة وتؤمن بقوة اللحظات والمشاعر، وتحوّل كل لقاء إلى ذكرى مميزة."
   },
   "source": "https://www.wepink.com.br/desod-col-vallora-spell-100ml---wepink-511/p",
   "notes": {}
@@ -14514,6 +14764,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Feive Celestial",
+  "lineAr": "فيف سيليستيال",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -14535,7 +14786,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Feive Celestial Body Cream brings everyday luxury, leaving skin nourished, firm and intensely hydrated with a soft touch and a healthy, radiant look. Its formula helps support collagen production and cell renewal, while the fragrance balances freshness, flowers and an amber base for an elegant, refined scent.",
-   "ar": "يمنح كريم الجسم Feive Celestial فخامة يومية، إذ يترك البشرة مغذّاة ومشدودة ومرطّبة بعمق بملمس ناعم ومظهر صحي مشرق. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، بينما يوازن عطره بين الانتعاش والزهور وقاعدة عنبرية في عبير أنيق وراقٍ."
+   "ar": "يمنح كريم الجسم فيف سيليستيال فخامة يومية، إذ يترك البشرة مغذّاة ومشدودة ومرطّبة بعمق بملمس ناعم ومظهر صحي مشرق. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، بينما يوازن عطره بين الانتعاش والزهور وقاعدة عنبرية في عبير أنيق وراقٍ."
   },
   "source": "https://www.wepink.com.br/body-cream-locao-hid-desod-feive-celestial-200-ml---wepink-497/p",
   "notes": {}
@@ -14545,6 +14796,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "One Touch Latte",
+  "lineAr": "ون تاتش لاتيه",
   "size": "200 ml",
   "price": 69,
   "family": "warm",
@@ -14564,7 +14816,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The One Touch Latte Body Cream offers deep nourishment and firmness with the tropical touch of coconut. Its fragrance carries the floral oriental and fruity character of the One Touch Latte line.",
-   "ar": "يقدّم كريم الجسم One Touch Latte تغذية عميقة وتماسكاً للبشرة مع لمسة جوز الهند الاستوائية. ويحمل عطره الطابع الزهري الشرقي والفاكهي لمجموعة One Touch Latte."
+   "ar": "يقدّم كريم الجسم ون تاتش لاتيه تغذية عميقة وتماسكاً للبشرة مع لمسة جوز الهند الاستوائية. ويحمل عطره الطابع الزهري الشرقي والفاكهي لمجموعة ون تاتش لاتيه."
   },
   "source": "https://www.wepink.com.br/body-cream-locao-hid-desod-one-touch-latte-200-ml---wepink-499/p",
   "notes": {}
@@ -14574,6 +14826,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Elowen",
+  "lineAr": "إيلوين",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -14599,7 +14852,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Elowen Body Splash is an invitation to celebrate life in its lightest, most vibrant and sophisticated form. It opens with intense currant, bold pink pepper and luminous bergamot, unfolds into a delicate floral heart of lily of the valley and rose with soft woody notes, and settles into a velvety, warm base of patchouli, suede accord and musk.",
-   "ar": "يمثّل بخاخ الجسم Elowen دعوة للاحتفاء بالحياة في أخف صورها وأكثرها حيوية ورقيًا. يفتتح بالكشمش المكثف وجرأة الفلفل الوردي وإشراقة البرغموت، ثم يكشف عن قلب زهري رقيق من زنبق الوادي والورد مع نفحات خشبية ناعمة، ليستقر على قاعدة مخملية دافئة من الباتشولي وأكورد الشامواه والمسك."
+   "ar": "يمثّل بخاخ الجسم إيلوين دعوة للاحتفاء بالحياة في أخف صورها وأكثرها حيوية ورقيًا. يفتتح بالكشمش المكثف وجرأة الفلفل الوردي وإشراقة البرغموت، ثم يكشف عن قلب زهري رقيق من زنبق الوادي والورد مع نفحات خشبية ناعمة، ليستقر على قاعدة مخملية دافئة من الباتشولي وأكورد الشامواه والمسك."
   },
   "notes": {
    "top": [
@@ -14652,6 +14905,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Crave Lovely",
+  "lineAr": "كريف لافلي",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -14677,7 +14931,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Crave Lovely Deodorant Cologne reveals desire in its most delicate and enveloping form, blending creamy sweetness, luminous florals and a soft sensual touch. The opening is fresh and radiant: bergamot and mandarin bring citrus energy, while pink pepper adds a modern, subtly provocative sparkle.",
-   "ar": "يكشف عطر الكولونيا Crave Lovely عن الرغبة في أرق صورها وأكثرها إحاطة، إذ يمزج بين الحلاوة الكريمية والأزهار المشرقة ولمسة حسية ناعمة. تأتي الافتتاحية منعشة ومتألقة، حيث يضفي البرغموت واليوسفي طاقة حمضية، بينما يضيف الفلفل الوردي بريقًا عصريًا جذابًا بلطف."
+   "ar": "يكشف عطر الكولونيا كريف لافلي عن الرغبة في أرق صورها وأكثرها إحاطة، إذ يمزج بين الحلاوة الكريمية والأزهار المشرقة ولمسة حسية ناعمة. تأتي الافتتاحية منعشة ومتألقة، حيث يضفي البرغموت واليوسفي طاقة حمضية، بينما يضيف الفلفل الوردي بريقًا عصريًا جذابًا بلطف."
   },
   "notes": {
    "top": [
@@ -14702,6 +14956,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Ember Divinus",
+  "lineAr": "إمبر ديفينوس",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -14727,7 +14982,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ember Divinus Body Splash gathers the best of the tropical summer, bringing sunshine and fruit in all their splendour to a fragrance completed by woody notes. It is a luminous scent full of qualities waiting to be discovered.",
-   "ar": "يجمع بخاخ الجسم Ember Divinus أجمل ما في الصيف الاستوائي، حاملًا الشمس والفواكه بكامل روعتها في عطر تكتمل ملامحه بنفحات خشبية. إنه عبير مشرق يزخر بجوانب تنتظر من يكتشفها."
+   "ar": "يجمع بخاخ الجسم إمبر ديفينوس أجمل ما في الصيف الاستوائي، حاملًا الشمس والفواكه بكامل روعتها في عطر تكتمل ملامحه بنفحات خشبية. إنه عبير مشرق يزخر بجوانب تنتظر من يكتشفها."
   },
   "notes": {
    "top": [
@@ -14750,6 +15005,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Infinity Cosmik",
+  "lineAr": "إنفينيتي كوزميك",
   "size": "50 ml",
   "price": 39,
   "color": "#E18197",
@@ -14773,7 +15029,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "MyProtection Infinity Cosmik Antiperspirant Roll-on Deodorant offers a refreshing combination of freshness, long-lasting protection and 72-hour hydration, and its exclusive formula also helps even out skin tone. It comes in a unique floral oriental scent dedicated to the authentic, transformative woman.",
-   "ar": "يقدّم مزيل العرق برول أون MyProtection Infinity Cosmik مزيجًا منعشًا من الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. ويأتي بعبير فريد من فئة الأزهار الشرقية، مكرّس للمرأة الأصيلة الملهمة للتغيير."
+   "ar": "يقدّم مزيل العرق برول أون ماي بروتكشن إنفينيتي كوزميك مزيجًا منعشًا من الانتعاش والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساعد تركيبته الحصرية على توحيد لون البشرة. ويأتي بعبير فريد من فئة الأزهار الشرقية، مكرّس للمرأة الأصيلة الملهمة للتغيير."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protection-infinity-cosmik-50-ml---wepink-406/p",
   "notes": {}
@@ -14783,6 +15039,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "scrub",
   "line": "VF Golden",
+  "lineAr": "في إف جولدن",
   "size": "450 g",
   "price": 99,
   "badge": "bestseller",
@@ -14806,7 +15063,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Golden Body Scrub is pure luxury in the form of care: it deeply renews, truly hydrates and leaves skin irresistibly soft. With aloe vera, almond oil and rosehip oil, it nourishes, regenerates and restores the skin's natural firmness, while an irresistible fragrance turns self-care into an unforgettable moment.",
-   "ar": "مقشّر الجسم VF Golden هو الفخامة الخالصة في صورة عناية، إذ يجدّد البشرة بعمق ويرطّبها فعليًا ويتركها بنعومة لا تُقاوم. وبفضل الصبار وزيت اللوز وزيت ثمر الورد، يغذّي البشرة ويجدّدها ويعيد إليها تماسكها الطبيعي، فيما يحوّل عطره الآسر لحظة العناية الذاتية إلى تجربة لا تُنسى."
+   "ar": "مقشّر الجسم في إف جولدن هو الفخامة الخالصة في صورة عناية، إذ يجدّد البشرة بعمق ويرطّبها فعليًا ويتركها بنعومة لا تُقاوم. وبفضل الصبار وزيت اللوز وزيت ثمر الورد، يغذّي البشرة ويجدّدها ويعيد إليها تماسكها الطبيعي، فيما يحوّل عطره الآسر لحظة العناية الذاتية إلى تجربة لا تُنسى."
   },
   "source": "https://www.wepink.com.br/body-scrub-vf-golden-450gr---wepink-359/p",
   "notes": {}
@@ -14816,6 +15073,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Merry Christmas",
+  "lineAr": "ميري كريسماس",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -14841,7 +15099,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Merry Christmas Deodorant Cologne celebrates the unique magic of Christmas with a bright essence full of charm for the happiest moments. Its floral oriental fragrance opens with peony and bergamot, evolves into a dreamy floral heart and finishes on a sweet, pure woody base reminiscent of tender memories.",
-   "ar": "يحتفي عطر الكولونيا Merry Christmas بسحر عيد الميلاد الفريد بعبير مشرق يفيض بالجاذبية في أسعد اللحظات. يفتتح عطره الزهري الشرقي بالفاوانيا والبرغموت، ثم يتطور إلى قلب زهري حالم، ليختتم بقاعدة خشبية حلوة ونقية تستحضر دفء الذكريات الجميلة."
+   "ar": "يحتفي عطر الكولونيا ميري كريسماس بسحر عيد الميلاد الفريد بعبير مشرق يفيض بالجاذبية في أسعد اللحظات. يفتتح عطره الزهري الشرقي بالفاوانيا والبرغموت، ثم يتطور إلى قلب زهري حالم، ليختتم بقاعدة خشبية حلوة ونقية تستحضر دفء الذكريات الجميلة."
   },
   "notes": {
    "top": [
@@ -14878,6 +15136,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodyoil",
   "line": "VF Golden",
+  "lineAr": "في إف جولدن",
   "size": "120 ml",
   "price": 89,
   "badge": "bestseller",
@@ -14902,7 +15161,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Golden Deodorant Body Oil nourishes, hydrates and restores the skin with a light, fragrant and relaxing touch after bathing, thanks to a blend of oils and vitamin E. Its fragrance opens with vibrant pink pepper and mandarin, combined with an unforgettable touch of jasmine, and finishes on a sweet, woody base.",
-   "ar": "يغذّي زيت الجسم VF Golden البشرة ويرطّبها ويجدّدها بلمسة خفيفة ومعطّرة ومريحة بعد الاستحمام، بفضل مزيج من الزيوت وفيتامين E. يفتتح عطره بنفحات نابضة من الفلفل الوردي واليوسفي تمتزج بلمسة لا تُنسى من الياسمين، ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يغذّي زيت الجسم في إف جولدن البشرة ويرطّبها ويجدّدها بلمسة خفيفة ومعطّرة ومريحة بعد الاستحمام، بفضل مزيج من الزيوت وفيتامين إي. يفتتح عطره بنفحات نابضة من الفلفل الوردي واليوسفي تمتزج بلمسة لا تُنسى من الياسمين، ليختتم بقاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -14939,6 +15198,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Wonderful",
+  "lineAr": "وندرفل",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -14965,7 +15225,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Wonderful Deodorant Cologne evokes a world of desire and curiosity, where a fearless woman defies labels and breaks conventions, radiating brilliance and a captivating presence. It opens with effervescent fruits and a touch of pink pepper, moves into a delicate, elegant floral heart and finishes with sweet, woody notes that exude warmth and sensuality.",
-   "ar": "يجسّد عطر الكولونيا Wonderful عالمًا من الرغبات والفضول، حيث تتحدى امرأة جريئة كل القوالب وتكسر الأعراف، مشعّة بالتألق والحضور الآسر. يفتتح بفوران الفواكه ولمسة من الفلفل الوردي، ثم ينتقل إلى قلب زهري رقيق وأنيق، ليختتم بنفحات حلوة وخشبية تفيض بالدفء والحسية."
+   "ar": "يجسّد عطر الكولونيا وندرفل عالمًا من الرغبات والفضول، حيث تتحدى امرأة جريئة كل القوالب وتكسر الأعراف، مشعّة بالتألق والحضور الآسر. يفتتح بفوران الفواكه ولمسة من الفلفل الوردي، ثم ينتقل إلى قلب زهري رقيق وأنيق، ليختتم بنفحات حلوة وخشبية تفيض بالدفء والحسية."
   },
   "notes": {
    "top": [
@@ -15002,6 +15262,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Liberté Nuit",
+  "lineAr": "ليبرتيه نوي",
   "size": "100 ml",
   "price": 189,
   "family": "warm",
@@ -15027,7 +15288,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Liberté Nuit captures the essence of a passionate encounter under the moonlight, an invitation to starry nights full of love. It opens with the soft sweetness of almond meeting a fruity embrace, blossoms into a heart of violet, damask rose, prune and magnolia, and reveals a sensual depth of woody notes and sweet vanilla.",
-   "ar": "يأسر عطر Liberté Nuit جوهر لقاء شغوف تحت ضوء القمر، في دعوة إلى ليالٍ مرصّعة بالنجوم يملؤها الحب. يفتتح بحلاوة اللوز الناعمة التي تلتقي بعناق فاكهي، ثم يتفتّح قلبه بنفحات البنفسج والورد الدمشقي والبرقوق المجفف والماغنوليا، ليكشف في عمقه عن نفحات خشبية حسية وحلاوة الفانيليا."
+   "ar": "يأسر عطر ليبرتيه نوي جوهر لقاء شغوف تحت ضوء القمر، في دعوة إلى ليالٍ مرصّعة بالنجوم يملؤها الحب. يفتتح بحلاوة اللوز الناعمة التي تلتقي بعناق فاكهي، ثم يتفتّح قلبه بنفحات البنفسج والورد الدمشقي والبرقوق المجفف والماغنوليا، ليكشف في عمقه عن نفحات خشبية حسية وحلاوة الفانيليا."
   },
   "notes": {
    "top": [
@@ -15076,7 +15337,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "haircare",
   "line": "Hair Tonic",
-  "lineAr": "تونيك الشعر Hair Tonic",
+  "lineAr": "هير تونيك",
   "size": "120 ml",
   "price": 169,
   "color": "#FAB9C7",
@@ -15100,7 +15361,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Hair Tonic is designed to fight hair loss and help achieve beautiful, strong, resilient and fragrant hair. Suitable for all hair types, its essential combination supports hair treatment, helping existing strands grow and damaged ones recover.",
-   "ar": "صُمّم Hair Tonic لمكافحة تساقط الشعر والمساعدة على الحصول على شعر جميل وقوي ومتين وفوّاح. ويناسب جميع أنواع الشعر، إذ تدعم تركيبته الأساسية علاج الخصلات، فتساعد على نمو الشعر الموجود وتعافي الخصلات المتضررة."
+   "ar": "صُمّم هير تونيك لمكافحة تساقط الشعر والمساعدة على الحصول على شعر جميل وقوي ومتين وفوّاح. ويناسب جميع أنواع الشعر، إذ تدعم تركيبته الأساسية علاج الخصلات، فتساعد على نمو الشعر الموجود وتعافي الخصلات المتضررة."
   },
   "source": "https://www.wepink.com.br/hair-tonic-crescimento-capilar/p",
   "notes": {}
@@ -15110,6 +15371,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Feive Celestial",
+  "lineAr": "فيف سيليستيال",
   "size": "50 ml",
   "price": 39,
   "color": "#ECBFAA",
@@ -15133,7 +15395,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Feive Celestial Antiperspirant Roll-on Deodorant turns daily care into a luxurious ritual. Its exclusive formula offers freshness, intense hydration and 72-hour protection while helping to even out skin tone, and its elegant, delicate fragrance provides a comfortable, naturally sophisticated feeling throughout the day.",
-   "ar": "يحوّل مزيل العرق برول أون Feive Celestial العناية اليومية إلى طقس فاخر. تمنح تركيبته الحصرية الانتعاش والترطيب المكثف والحماية لمدة 72 ساعة مع المساعدة على توحيد لون البشرة، بينما يمنح عطره الأنيق والرقيق إحساسًا مريحًا وراقيًا بطبيعته طوال اليوم."
+   "ar": "يحوّل مزيل العرق برول أون فيف سيليستيال العناية اليومية إلى طقس فاخر. تمنح تركيبته الحصرية الانتعاش والترطيب المكثف والحماية لمدة 72 ساعة مع المساعدة على توحيد لون البشرة، بينما يمنح عطره الأنيق والرقيق إحساسًا مريحًا وراقيًا بطبيعته طوال اليوم."
   },
   "source": "https://www.wepink.com.br/desodorante-antitranspirante-roll-on-feive-celestial-50ml---wepink/p",
   "notes": {}
@@ -15143,6 +15405,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Venice Breeze",
+  "lineAr": "فينيس بريز",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -15168,7 +15431,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Venice Breeze Deodorant Cologne was created for those who find beauty in life's lightest moments. Inspired by the invigorating feeling of breezes sweeping across waterside landscapes, it expresses freshness, well-being and sophistication in a modern, luminous fragrance.",
-   "ar": "صُمّم عطر الكولونيا Venice Breeze لمن يجدون الجمال في أخف لحظات الحياة. ومستوحى من الإحساس المنعش للنسمات التي تعبر المناظر المطلّة على الماء، يجسّد الانتعاش والراحة والرقي في عطر عصري ومشرق."
+   "ar": "صُمّم عطر الكولونيا فينيس بريز لمن يجدون الجمال في أخف لحظات الحياة. ومستوحى من الإحساس المنعش للنسمات التي تعبر المناظر المطلّة على الماء، يجسّد الانتعاش والراحة والرقي في عطر عصري ومشرق."
   },
   "source": "https://www.wepink.com.br/desod-col-venice-breeze---100-ml---wepink--514/p",
   "notes": {}
@@ -15178,6 +15441,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Cassera",
+  "lineAr": "كاسيرا",
   "size": "200 ml",
   "price": 79,
   "color": "#F1C8A3",
@@ -15201,7 +15465,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Cassera Body Splash is a fruity floriental fragrance for the body. It turns delicacy into presence.",
-   "ar": "بخاخ الجسم Cassera عطر زهري شرقي بلمسة فاكهية للجسم، يحوّل الرقة إلى حضور لافت."
+   "ar": "بخاخ الجسم كاسيرا عطر زهري شرقي بلمسة فاكهية للجسم، يحوّل الرقة إلى حضور لافت."
   },
   "source": "https://www.wepink.com.br/body-splash-cassera-desodorante-colonia-200ml---wepink/p",
   "notes": {}
@@ -15211,6 +15475,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Velours Pourpre",
+  "lineAr": "فيلور بوربر",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -15233,7 +15498,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Velours Pourpre Deodorant Cologne was created for women who turn presence into a signature. An intense, elegant and enveloping fragrance, it awakens the senses from the very first spray and leaves an unforgettable trail.",
-   "ar": "صُمّم عطر الكولونيا Velours Pourpre للمرأة التي تحوّل حضورها إلى بصمة خاصة. إنه عطر مكثّف وأنيق وآسر، يوقظ الحواس منذ الرشة الأولى ويترك أثرًا يستحيل نسيانه."
+   "ar": "صُمّم عطر الكولونيا فيلور بوربر للمرأة التي تحوّل حضورها إلى بصمة خاصة. إنه عطر مكثّف وأنيق وآسر، يوقظ الحواس منذ الرشة الأولى ويترك أثرًا يستحيل نسيانه."
   },
   "source": "https://www.wepink.com.br/desod-col-velours-pourpre-100ml---wepink-504/p",
   "notes": {}
@@ -15243,6 +15508,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Ever Strong",
+  "lineAr": "إيفر سترونج",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -15268,7 +15534,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ever Strong Deodorant Cologne expresses strength, elegance and contemporary sophistication. Created for men who know that presence need not be overstated to be striking, it combines vibrant freshness, refined aromatic notes and an intense woody base that lingers on the skin.",
-   "ar": "يجسّد عطر الكولونيا Ever Strong القوة والأناقة والرقي المعاصر. صُمّم للرجل الذي يدرك أن الحضور لا يحتاج إلى مبالغة ليكون لافتًا، ويجمع بين انتعاش نابض ونفحات عطرية عشبية راقية وقاعدة خشبية مكثّفة تبقى على البشرة بأسلوب آسر."
+   "ar": "يجسّد عطر الكولونيا إيفر سترونج القوة والأناقة والرقي المعاصر. صُمّم للرجل الذي يدرك أن الحضور لا يحتاج إلى مبالغة ليكون لافتًا، ويجمع بين انتعاش نابض ونفحات عطرية عشبية راقية وقاعدة خشبية مكثّفة تبقى على البشرة بأسلوب آسر."
   },
   "notes": {
    "top": [
@@ -15297,6 +15563,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Vanilla Cuddle",
+  "lineAr": "فانيلا كادل",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -15317,11 +15584,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Deep nourishment and firmness with the cosy embrace of Vanilla Cuddle",
-   "ar": "تغذية عميقة وتماسك مع عناق Vanilla Cuddle الدافئ"
+   "ar": "تغذية عميقة وتماسك مع عناق فانيلا كادل الدافئ"
   },
   "desc": {
    "en": "Vanilla Cuddle Body Cream wraps the body in an embrace of sweetness and hydration. Its formula helps support collagen production and cell renewal, leaving skin nourished, firm, soft, healthy-looking and luminous. Its floral amber scent reveals notes of tangerine, jasmine and vanilla for a delicate, enveloping and irresistibly cosy experience.",
-   "ar": "يغلّف كريم الجسم Vanilla Cuddle الجسم بعناق من الحلاوة والترطيب. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتبدو البشرة مغذّاة ومشدودة وناعمة وصحية ومشرقة. ويكشف عبيره الزهري العنبري عن نفحات التانجرين والياسمين والفانيليا في تجربة رقيقة ودافئة لا تُقاوم."
+   "ar": "يغلّف كريم الجسم فانيلا كادل الجسم بعناق من الحلاوة والترطيب. تساعد تركيبته على دعم إنتاج الكولاجين وتجديد الخلايا، فتبدو البشرة مغذّاة ومشدودة وناعمة وصحية ومشرقة. ويكشف عبيره الزهري العنبري عن نفحات التانجرين والياسمين والفانيليا في تجربة رقيقة ودافئة لا تُقاوم."
   },
   "notes": {
    "top": [
@@ -15350,6 +15617,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "Infinity",
+  "lineAr": "إنفينيتي",
   "size": "50 ml",
   "price": 69,
   "color": "#E56AA0",
@@ -15373,7 +15641,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Hair Mist is the missing touch to bring hair to life, with a charming floral woody heart and notes of blackberry leaves, sweet orange and lemon, finishing on a sweet trail of amber and vanilla. It is an excellent choice for keeping hair protected and fragrant every day.",
-   "ar": "يُعدّ معطّر الشعر Infinity اللمسة التي كانت تنقص الشعر لتمنحه الحيوية، بقلب زهري خشبي ساحر ونفحات من أوراق التوت الأسود والبرتقال الحلو والليمون، ليختتم بأثر حلو من العنبر والفانيليا. إنه خيار ممتاز للحفاظ على الشعر محميًا ومعطّرًا يوميًا."
+   "ar": "يُعدّ معطّر الشعر إنفينيتي اللمسة التي كانت تنقص الشعر لتمنحه الحيوية، بقلب زهري خشبي ساحر ونفحات من أوراق التوت الأسود والبرتقال الحلو والليمون، ليختتم بأثر حلو من العنبر والفانيليا. إنه خيار ممتاز للحفاظ على الشعر محميًا ومعطّرًا يوميًا."
   },
   "notes": {
    "top": [
@@ -15418,7 +15686,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "Pirulipop Lip Oil",
-  "lineAr": "زيت الشفاه Pirulipop",
+  "lineAr": "بيروليبوب ليب أويل",
   "size": "3.5 g",
   "price": 79,
   "color": "#AA525B",
@@ -15442,7 +15710,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Pirulipop Lip Oil leaves lips hydrated and fragrant with a delicious lollipop scent. Delicious as a lollipop and shiny as a dream, it adds a sweet touch to the lip routine.",
-   "ar": "يترك زيت الشفاه Pirulipop الشفاه مرطّبة ومعطّرة بعبير المصاصة اللذيذ. لذيذ كالمصاصة ولامع كالحلم، يضفي لمسة حلوة على روتين العناية بالشفاه."
+   "ar": "يترك زيت الشفاه بيروليبوب الشفاه مرطّبة ومعطّرة بعبير المصاصة اللذيذ. لذيذ كالمصاصة ولامع كالحلم، يضفي لمسة حلوة على روتين العناية بالشفاه."
   },
   "source": "https://www.wepink.com.br/lip-oil-35g-pirulipop---wepink-fs1111846/p",
   "notes": {}
@@ -15452,6 +15720,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Scarlette",
+  "lineAr": "سكارليت",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -15476,7 +15745,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Scarlette Body Cream delivers hydration, nourishment and firmness, with a formula designed to help support collagen production and cell renewal for consistently healthy skin. Its scent evokes a sunny field of strawberries, keeping the skin fragrant until the end of the day.",
-   "ar": "يمنح كريم الجسم Scarlette الترطيب والتغذية والتماسك، بتركيبة صُمّمت للمساعدة على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة صحية دائمًا. ويستحضر عبيره حقلًا مشمسًا من الفراولة، ليُبقي البشرة معطّرة حتى نهاية اليوم."
+   "ar": "يمنح كريم الجسم سكارليت الترطيب والتغذية والتماسك، بتركيبة صُمّمت للمساعدة على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة صحية دائمًا. ويستحضر عبيره حقلًا مشمسًا من الفراولة، ليُبقي البشرة معطّرة حتى نهاية اليوم."
   },
   "notes": {
    "top": [
@@ -15493,6 +15762,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "Red",
+  "lineAr": "ريد",
   "size": "50 ml",
   "price": 69,
   "color": "#AD5762",
@@ -15516,7 +15786,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Red Hair Mist keeps hair shinier, protected and fragrant all day, with an essence that enchants through bold, seductive nuances. Its oriental scent brings a sense of comfort and well-being amid a mix of eye-catching flowers, finishing on a sweet, woody base.",
-   "ar": "يمنح معطّر الشعر Red الشعر لمعانًا أكبر وحماية وعبيرًا يدوم طوال اليوم، بعبير يأسر بلمساته الجريئة والمغرية. ويمنح عطره الشرقي إحساسًا بالراحة والانتعاش وسط مزيج من الأزهار اللافتة، ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يمنح معطّر الشعر ريد الشعر لمعانًا أكبر وحماية وعبيرًا يدوم طوال اليوم، بعبير يأسر بلمساته الجريئة والمغرية. ويمنح عطره الشرقي إحساسًا بالراحة والانتعاش وسط مزيج من الأزهار اللافتة، ليختتم بقاعدة حلوة وخشبية."
   },
   "notes": {
    "heart": [
@@ -15543,6 +15813,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "One Touch Silk",
+  "lineAr": "ون تاتش سيلك",
   "size": "50 ml",
   "price": 39,
   "color": "#DC2870",
@@ -15566,7 +15837,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "MyProtection One Touch Silk Antiperspirant Roll-on Deodorant offers 72-hour protection and an exclusive formula that helps even out skin tone. Its scent blends flowers and fruits, bringing an everyday freshness for enjoying life and touching hearts.",
-   "ar": "يمنح مزيل العرق برول أون MyProtection One Touch Silk حماية لمدة 72 ساعة بتركيبة حصرية تساعد على توحيد لون البشرة. ويمزج عبيره بين الأزهار والفواكه، ليمنح انتعاشًا يوميًا للاستمتاع بالحياة ولمس القلوب."
+   "ar": "يمنح مزيل العرق برول أون ماي بروتكشن ون تاتش سيلك حماية لمدة 72 ساعة بتركيبة حصرية تساعد على توحيد لون البشرة. ويمزج عبيره بين الأزهار والفواكه، ليمنح انتعاشًا يوميًا للاستمتاع بالحياة ولمس القلوب."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-one-touch-silk-50-ml-363/p",
   "notes": {}
@@ -15576,6 +15847,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF Onyx",
+  "lineAr": "في إف أونيكس",
   "size": "75 ml",
   "price": 189,
   "family": "warm",
@@ -15601,7 +15873,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Onyx is vanilla like never before: intense, sensual and unforgettable. The creaminess of milk and the balanced sweetness of vanilla meet the sophistication of orchid, creating a sharp, irresistible contrast, while amber lingers softly in the base with woody nuances that make the composition unique and addictive.",
-   "ar": "VF Onyx هو الفانيليا كما لم تُعهد من قبل: مكثّفة وجذابة ولا تُنسى. تلتقي كريمية الحليب وحلاوة الفانيليا المتوازنة برقي الأوركيد، لتخلق تباينًا لافتًا لا يُقاوم، فيما يبقى العنبر ناعمًا في القاعدة مع لمسات خشبية تجعل التركيبة فريدة وآسرة."
+   "ar": "في إف أونيكس هو الفانيليا كما لم تُعهد من قبل: مكثّفة وجذابة ولا تُنسى. تلتقي كريمية الحليب وحلاوة الفانيليا المتوازنة برقي الأوركيد، لتخلق تباينًا لافتًا لا يُقاوم، فيما يبقى العنبر ناعمًا في القاعدة مع لمسات خشبية تجعل التركيبة فريدة وآسرة."
   },
   "notes": {
    "top": [
@@ -15638,6 +15910,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Auretx",
+  "lineAr": "أوريتكس",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -15662,7 +15935,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Auretx Deodorant Cologne blossoms on the skin with intensity and delicacy, like an unforgettable rose, uniting bold fruits with elegant flowers. Top notes of blackcurrant with green and red fruits lead to a heart of peony, rose and apricot, while a warm base of patchouli, amber, wood and musk settles on the skin like a warm embrace.",
-   "ar": "يتفتّح عطر الكولونيا Auretx على البشرة بقوة ورقة كوردة لا تُنسى، جامعًا بين جرأة الفواكه وأناقة الأزهار. تفتتح نفحاته بالكشمش الأسود مع الفواكه الخضراء والحمراء، يليها قلب من الفاوانيا والورد والمشمش، بينما تستقر على البشرة قاعدة دافئة من الباتشولي والعنبر والخشب والمسك كعناق دافئ."
+   "ar": "يتفتّح عطر الكولونيا أوريتكس على البشرة بقوة ورقة كوردة لا تُنسى، جامعًا بين جرأة الفواكه وأناقة الأزهار. تفتتح نفحاته بالكشمش الأسود مع الفواكه الخضراء والحمراء، يليها قلب من الفاوانيا والورد والمشمش، بينما تستقر على البشرة قاعدة دافئة من الباتشولي والعنبر والخشب والمسك كعناق دافئ."
   },
   "notes": {
    "top": [
@@ -15719,6 +15992,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Changes",
+  "lineAr": "تشينجز",
   "size": "200 ml",
   "price": 69,
   "family": "warm",
@@ -15743,7 +16017,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Changes Body Cream has a creamy texture that delivers hydration, nourishment and firmness, with a formula that helps support collagen production and cell renewal for healthy-looking, glowing skin. Inspired by life's changes, like the natural phases of butterflies, its floral fragrance unfolds with freesia and jasmine and finishes on a sweet, woody base.",
-   "ar": "يتميّز كريم الجسم Changes بقوام كريمي يمنح الترطيب والتغذية والتماسك، بتركيبة تساعد على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة تبدو صحية ومشرقة. ومستوحى من جمال تحوّلات الحياة كمراحل الفراشات الطبيعية، يتفتّح عطره الزهري بنفحات الفريزيا والياسمين ليختتم بقاعدة حلوة وخشبية."
+   "ar": "يتميّز كريم الجسم تشينجز بقوام كريمي يمنح الترطيب والتغذية والتماسك، بتركيبة تساعد على دعم إنتاج الكولاجين وتجديد الخلايا لبشرة تبدو صحية ومشرقة. ومستوحى من جمال تحوّلات الحياة كمراحل الفراشات الطبيعية، يتفتّح عطره الزهري بنفحات الفريزيا والياسمين ليختتم بقاعدة حلوة وخشبية."
   },
   "notes": {
    "heart": [
@@ -15774,7 +16048,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "Weblush Blush Quartet",
-  "lineAr": "رباعية أحمر الخدود Weblush",
+  "lineAr": "وي بلاش بلاش كوارتيت",
   "size": "7.2 g",
   "price": 69,
   "color": "#F094B3",
@@ -15798,7 +16072,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Weblush brings the essential glow to any look, from subtle everyday makeup to bold party styles. The highly pigmented quartet offers high staying power and an ultra-fine, velvety texture in coral, pink, orange and rosé shades designed to suit many skin tones. The shades can be layered, used to illuminate the skin and blended together.",
-   "ar": "تمنح Weblush الإشراقة الأساسية لأي إطلالة، من المكياج الهادئ اليومي إلى الإطلالات اللافتة في الحفلات. تتميّز الرباعية بألوان عالية التصبّغ وثبات عالٍ وقوام فائق النعومة ومخملي، بدرجات المرجاني والوردي والبرتقالي والروزيه المصمّمة لتناسب مختلف ألوان البشرة. ويمكن بناء طبقاتها وإضاءة البشرة بها ومزج درجاتها."
+   "ar": "تمنح وي بلاش الإشراقة الأساسية لأي إطلالة، من المكياج الهادئ اليومي إلى الإطلالات اللافتة في الحفلات. تتميّز الرباعية بألوان عالية التصبّغ وثبات عالٍ وقوام فائق النعومة ومخملي، بدرجات المرجاني والوردي والبرتقالي والروزيه المصمّمة لتناسب مختلف ألوان البشرة. ويمكن بناء طبقاتها وإضاءة البشرة بها ومزج درجاتها."
   },
   "source": "https://www.wepink.com.br/weblush-quarteto/p",
   "notes": {}
@@ -15808,6 +16082,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Liberté Nuit",
+  "lineAr": "ليبرتيه نوي",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -15833,7 +16108,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Liberté Nuit Body Splash is a captivating fragrance and an invitation to starry nights full of love, well-being and unforgettable moments. It opens with the soft sweetness of almond meeting a fruity embrace, blossoms into a heart of floral notes with a touch of prune, and finishes with sensual woody notes and sweet vanilla.",
-   "ar": "بخاخ الجسم Liberté Nuit عطر آسر يمثّل دعوة إلى ليالٍ مرصّعة بالنجوم يملؤها الحب والراحة واللحظات التي لا تُنسى. يفتتح بحلاوة اللوز الناعمة التي تلتقي بعناق فاكهي، ثم يتفتّح قلبه بنفحات زهرية ولمسة من البرقوق المجفف، ليختتم بنفحات خشبية حسية وحلاوة الفانيليا."
+   "ar": "بخاخ الجسم ليبرتيه نوي عطر آسر يمثّل دعوة إلى ليالٍ مرصّعة بالنجوم يملؤها الحب والراحة واللحظات التي لا تُنسى. يفتتح بحلاوة اللوز الناعمة التي تلتقي بعناق فاكهي، ثم يتفتّح قلبه بنفحات زهرية ولمسة من البرقوق المجفف، ليختتم بنفحات خشبية حسية وحلاوة الفانيليا."
   },
   "notes": {
    "top": [
@@ -15874,6 +16149,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "VF Honey",
+  "lineAr": "في إف هني",
   "size": "200 ml",
   "price": 69,
   "family": "woody",
@@ -15898,7 +16174,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Honey Body Cream provides hydration, nourishment and firmness, with actives that help support collagen production and cell renewal for beautiful, fragrant, healthy-looking and radiant skin.",
-   "ar": "يمنح كريم الجسم VF Honey الترطيب والتغذية والتماسك بفضل مكوّنات نشطة تساعد على دعم إنتاج الكولاجين وتجديد الخلايا، لبشرة جميلة ومعطّرة تبدو صحية ومشرقة."
+   "ar": "يمنح كريم الجسم في إف هني الترطيب والتغذية والتماسك بفضل مكوّنات نشطة تساعد على دعم إنتاج الكولاجين وتجديد الخلايا، لبشرة جميلة ومعطّرة تبدو صحية ومشرقة."
   },
   "notes": {
    "top": [
@@ -15939,6 +16215,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Lion Noir",
+  "lineAr": "ليون نوار",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -15964,7 +16241,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Lion Noir Deodorant Cologne is a masculine fragrance for those who leave a mark of courage and strength, like a restless lion fiercely pursuing its goals and freedom. Its woody citrus trail opens with a citrus burst and pink pepper, warms into a floral jasmine heart, and reveals a sensual base of cedar, sandalwood, vetiver, musk and patchouli.",
-   "ar": "عطر الكولونيا Lion Noir عطر رجالي لمن يترك بصمة من الشجاعة والقوة، كأسد لا يهدأ يسعى بشراسة نحو أهدافه وحريته. يفتتح مساره الخشبي الحمضي بانفجار من الحمضيات ولمسة من الفلفل الوردي، ثم يتطور إلى قلب دافئ بنعومة الياسمين الزهرية، ليكشف عن قاعدة حسية من خشب الأرز وخشب الصندل والفيتيفر والمسك والباتشولي."
+   "ar": "عطر الكولونيا ليون نوار عطر رجالي لمن يترك بصمة من الشجاعة والقوة، كأسد لا يهدأ يسعى بشراسة نحو أهدافه وحريته. يفتتح مساره الخشبي الحمضي بانفجار من الحمضيات ولمسة من الفلفل الوردي، ثم يتطور إلى قلب دافئ بنعومة الياسمين الزهرية، ليكشف عن قاعدة حسية من خشب الأرز وخشب الصندل والفيتيفر والمسك والباتشولي."
   },
   "notes": {
    "top": [
@@ -16013,6 +16290,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodyoil",
   "line": "Obsessed",
+  "lineAr": "أوبسيسد",
   "size": "120 ml",
   "price": 89,
   "color": "#844040",
@@ -16036,7 +16314,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Oil Obsessed is a body oil made to maintain the skin's vitality, with an oil blend that provides deep nourishment, powerful hydration and components that help fight premature ageing and improve elasticity. Light and soft to the touch, its bold, sensual fragrance opens with cherry intertwined with citrus, followed by gardenia with sweet notes of honey and caramel.",
-   "ar": "زيت الجسم The Oil Obsessed مثالي للحفاظ على حيوية البشرة، إذ يمنحها مزيج زيوته تغذية عميقة وترطيبًا قويًا، ويضم مكوّنات تساعد على مكافحة علامات التقدّم المبكر في السن وتحسين المرونة. وبلمسته الخفيفة والناعمة، يفتتح عطره الجريء والحسي بالكرز المتشابك مع الحمضيات، يليه الغاردينيا مع نفحات حلوة من العسل والكراميل."
+   "ar": "زيت الجسم ذا أويل أوبسيسد مثالي للحفاظ على حيوية البشرة، إذ يمنحها مزيج زيوته تغذية عميقة وترطيبًا قويًا، ويضم مكوّنات تساعد على مكافحة علامات التقدّم المبكر في السن وتحسين المرونة. وبلمسته الخفيفة والناعمة، يفتتح عطره الجريء والحسي بالكرز المتشابك مع الحمضيات، يليه الغاردينيا مع نفحات حلوة من العسل والكراميل."
   },
   "notes": {
    "top": [
@@ -16073,6 +16351,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "Absolute Titanium",
+  "lineAr": "أبسولوت تيتانيوم",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -16096,7 +16375,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Absolute Titanium is a contemporary interpretation of masculine elegance, created for men who win people over instantly and remain in memory long after they leave. It opens with vibrant lemon, aromatic mint and juicy green apple, reveals a refined heart of geranium and lavender, and settles into an intense, comfortable base of cedar, vanilla, vetiver and moss.",
-   "ar": "عطر Absolute Titanium تفسير معاصر للأناقة الرجالية، صُمّم للرجل الذي يأسر من اللحظة الأولى ويبقى في الذاكرة طويلًا بعد رحيله. يفتتح بطاقة الليمون النابضة وانتعاش النعناع العطري وعصارة التفاح الأخضر، ثم يكشف عن قلب راقٍ من إبرة الراعي والخزامى، ليستقر على قاعدة مكثّفة ومريحة من خشب الأرز والفانيليا والفيتيفر والطحلب."
+   "ar": "عطر أبسولوت تيتانيوم تفسير معاصر للأناقة الرجالية، صُمّم للرجل الذي يأسر من اللحظة الأولى ويبقى في الذاكرة طويلًا بعد رحيله. يفتتح بطاقة الليمون النابضة وانتعاش النعناع العطري وعصارة التفاح الأخضر، ثم يكشف عن قلب راقٍ من إبرة الراعي والخزامى، ليستقر على قاعدة مكثّفة ومريحة من خشب الأرز والفانيليا والفيتيفر والطحلب."
   },
   "notes": {
    "top": [
@@ -16149,6 +16428,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Tyrie Royale",
+  "lineAr": "تايري رويال",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -16175,7 +16455,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Tyrie Royale Body Splash expresses the essence of seduction and self-confidence. The fragrance combines fruity freshness, a floral heart and a sweet, warm base, creating an enveloping scent of comfort and sensuality that accompanies the daily routine and leaves an irresistible trail.",
-   "ar": "يجسّد بخاخ الجسم Tyrie Royale جوهر الإغراء والثقة بالنفس. يجمع العطر بين انتعاش فاكهي وقلب زهري وقاعدة حلوة دافئة، ليمنح عبيرًا آسرًا يفيض بالراحة والحسية، يرافق الروتين اليومي ويترك أثرًا لا يُقاوم."
+   "ar": "يجسّد بخاخ الجسم تايري رويال جوهر الإغراء والثقة بالنفس. يجمع العطر بين انتعاش فاكهي وقلب زهري وقاعدة حلوة دافئة، ليمنح عبيرًا آسرًا يفيض بالراحة والحسية، يرافق الروتين اليومي ويترك أثرًا لا يُقاوم."
   },
   "notes": {
    "top": [
@@ -16208,6 +16488,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Lavanda Calm",
+  "lineAr": "لافاندا كالم",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -16234,7 +16515,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Lavanda Calm Body Splash celebrates moments of relaxation with a unique fragrance that refreshes the senses. Its composition, with a special touch of lavender oil, has calming properties that help restore sleep. Its serene floral scent features fresh orange blossom and orchid over a sweet, woody base.",
-   "ar": "يحتفي بخاخ الجسم Lavanda Calm بلحظات الاسترخاء بعطر فريد ينعش الحواس. وتتميّز تركيبته، المعزّزة بلمسة من زيت الخزامى، بخصائص مهدّئة تساعد على استعادة النوم. ويقدّم مسارًا عطريًا زهريًا هادئًا بانتعاش زهر البرتقال والأوركيد فوق قاعدة حلوة وخشبية."
+   "ar": "يحتفي بخاخ الجسم لافاندا كالم بلحظات الاسترخاء بعطر فريد ينعش الحواس. وتتميّز تركيبته، المعزّزة بلمسة من زيت الخزامى، بخصائص مهدّئة تساعد على استعادة النوم. ويقدّم مسارًا عطريًا زهريًا هادئًا بانتعاش زهر البرتقال والأوركيد فوق قاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -16267,6 +16548,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Ruby Ametist",
+  "lineAr": "روبي أميثيست",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -16292,7 +16574,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Like amethyst, a stone symbolising balance and power, Ruby Ametist Deodorant Cologne carries a rare lilac glow. Its luminous notes balance creamy tuberose with citrus bergamot and delicate orange blossom for a clean, feminine floral, while a base of white musk and cedar wraps the skin in elegant, lasting comfort.",
-   "ar": "على غرار الجمشت، الحجر الذي يرمز إلى التوازن والقوة، يحمل عطر الكولونيا Ruby Ametist بريقًا ليلكيًا نادرًا. توازن نفحاته المشرقة بين حلاوة التيوبروز الكريمية وانتعاش البرغموت الحمضي ورقة زهر البرتقال في عطر زهري نقي وأنثوي، بينما تغلّف قاعدة المسك الأبيض وخشب الأرز البشرة براحة أنيقة تدوم."
+   "ar": "على غرار الجمشت، الحجر الذي يرمز إلى التوازن والقوة، يحمل عطر الكولونيا روبي أميثيست بريقًا ليلكيًا نادرًا. توازن نفحاته المشرقة بين حلاوة التيوبروز الكريمية وانتعاش البرغموت الحمضي ورقة زهر البرتقال في عطر زهري نقي وأنثوي، بينما تغلّف قاعدة المسك الأبيض وخشب الأرز البشرة براحة أنيقة تدوم."
   },
   "notes": {
    "top": [
@@ -16329,6 +16611,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Obsessed Exclusive Pink",
+  "lineAr": "أوبسيسد إكسكلوسيف بينك",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -16354,7 +16637,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Exclusive Pink Deodorant Cologne is a luxury apart, a classic for the woman who knows how to draw attention with sweet charm. It opens with the exclusive glamour of fig and pink pepper, builds on the finesse of jasmine and the timeless radiance of tuberose, and enchants with a final touch of sandalwood.",
-   "ar": "عطر الكولونيا Obsessed Exclusive Pink فخامة من نوع خاص، وعطر كلاسيكي للمرأة التي تعرف كيف تلفت الأنظار بسحرها العذب. يفتتح بفخامة التين والفلفل الوردي الحصرية، ثم يتعمّق برقي الياسمين وتألق التيوبروز الخالد، ليأسر بلمسة ختامية من خشب الصندل."
+   "ar": "عطر الكولونيا أوبسيسد إكسكلوسيف بينك فخامة من نوع خاص، وعطر كلاسيكي للمرأة التي تعرف كيف تلفت الأنظار بسحرها العذب. يفتتح بفخامة التين والفلفل الوردي الحصرية، ثم يتعمّق برقي الياسمين وتألق التيوبروز الخالد، ليأسر بلمسة ختامية من خشب الصندل."
   },
   "notes": {
    "top": [
@@ -16391,6 +16674,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Celebrate Relics",
+  "lineAr": "سيليبريت ريليكس",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -16414,7 +16698,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Celebrate Relics Deodorant Cologne honours life's richest and brightest memories in a soft floral fruity scent. Fresh pear and bergamot reveal the treasure of a unique floral heart, while amber and vanilla bring richness to the base of this sweetly enchanting fragrance.",
-   "ar": "يحتفي عطر الكولونيا Celebrate Relics بأغنى ذكريات الحياة وأكثرها إشراقًا بعبير زهري فاكهي ناعم. تكشف نفحات الكمثرى والبرغموت المنعشة عن كنز من قلب زهري فريد، بينما يضفي العنبر والفانيليا ثراءً على قاعدة هذا العطر ذي السحر العذب."
+   "ar": "يحتفي عطر الكولونيا سيليبريت ريليكس بأغنى ذكريات الحياة وأكثرها إشراقًا بعبير زهري فاكهي ناعم. تكشف نفحات الكمثرى والبرغموت المنعشة عن كنز من قلب زهري فريد، بينما يضفي العنبر والفانيليا ثراءً على قاعدة هذا العطر ذي السحر العذب."
   },
   "notes": {
    "top": [
@@ -16451,6 +16735,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Moon",
+  "lineAr": "مون",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -16476,7 +16761,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Moon Deodorant Cologne has an essence of natural charm, like an unforgettable satellite that draws every gaze. Its floral trail combines soft notes of almond, black cherry and pear in a refreshing contrast, evolves with peony and jasmine, and finishes on an otherworldly sweet base of vanilla, patchouli and raspberry.",
-   "ar": "يتميّز عطر الكولونيا Moon بعبير يوقظ سحرًا طبيعيًا، كقمر لا يُنسى يجذب الأنظار أينما حلّ. يجمع مساره الزهري بين نفحات ناعمة من اللوز والكرز الأسود والكمثرى في تباين منعش للحواس، ثم يتطور بلمسة من الفاوانيا والياسمين، ليختتم بقاعدة حلوة من عالم آخر تضم الفانيليا والباتشولي وتوت العليق."
+   "ar": "يتميّز عطر الكولونيا مون بعبير يوقظ سحرًا طبيعيًا، كقمر لا يُنسى يجذب الأنظار أينما حلّ. يجمع مساره الزهري بين نفحات ناعمة من اللوز والكرز الأسود والكمثرى في تباين منعش للحواس، ثم يتطور بلمسة من الفاوانيا والياسمين، ليختتم بقاعدة حلوة من عالم آخر تضم الفانيليا والباتشولي وتوت العليق."
   },
   "notes": {
    "top": [
@@ -16525,6 +16810,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "VF Choices",
+  "lineAr": "في إف تشويسز",
   "size": "200 ml",
   "price": 69,
   "family": "woody",
@@ -16549,7 +16835,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Virginia Fonseca Choices Body Cream enchants with a soft, smooth and fragrant touch, an invitation to the freedom of being oneself. A blend of 9 powerful actives with moisturising and nourishing properties helps fight premature ageing, firm the skin and support collagen production. Its fresh chypre trail moves from fruity notes to a floral heart, ending in woody, sweet touches.",
-   "ar": "يأسر كريم الجسم Virginia Fonseca Choices بلمسته الناعمة والمعطّرة، في دعوة إلى حرية أن يكون المرء على طبيعته. ويساعد مزيج من 9 مكوّنات نشطة فائقة القوة، غنية بالخصائص المرطّبة والمغذّية، على مكافحة علامات التقدّم المبكر في السن وشدّ البشرة ودعم إنتاج الكولاجين. وينتقل مساره العطري الشيبري المنعش من النفحات الفاكهية إلى قلب زهري، ليختتم بلمسات خشبية وحلوة."
+   "ar": "يأسر كريم الجسم فيرجينيا فونسيكا تشويسز بلمسته الناعمة والمعطّرة، في دعوة إلى حرية أن يكون المرء على طبيعته. ويساعد مزيج من 9 مكوّنات نشطة فائقة القوة، غنية بالخصائص المرطّبة والمغذّية، على مكافحة علامات التقدّم المبكر في السن وشدّ البشرة ودعم إنتاج الكولاجين. وينتقل مساره العطري الشيبري المنعش من النفحات الفاكهية إلى قلب زهري، ليختتم بلمسات خشبية وحلوة."
   },
   "notes": {
    "top": [
@@ -16582,6 +16868,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Ever Strong",
+  "lineAr": "إيفر سترونج",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -16608,7 +16895,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Ever Strong Body Splash expresses strength, elegance and contemporary sophistication for men whose presence needs no exaggeration. Bergamot, pineapple, blueberry and cypress open with luminous freshness, while French lavender, geranium and blue narcissus add aromatic, floral depth, settling into a base of woods and earthy notes.",
-   "ar": "يجسّد بخاخ الجسم Ever Strong القوة والأناقة والرقي المعاصر للرجل الذي لا يحتاج حضوره إلى مبالغة. يفتتح بانتعاش مشرق من البرغموت والأناناس والتوت الأزرق والسرو، بينما تضفي الخزامى الفرنسية وإبرة الراعي والنرجس الأزرق عمقًا عطريًا زهريًا، ليستقر على قاعدة من الأخشاب والنفحات الترابية."
+   "ar": "يجسّد بخاخ الجسم إيفر سترونج القوة والأناقة والرقي المعاصر للرجل الذي لا يحتاج حضوره إلى مبالغة. يفتتح بانتعاش مشرق من البرغموت والأناناس والتوت الأزرق والسرو، بينما تضفي الخزامى الفرنسية وإبرة الراعي والنرجس الأزرق عمقًا عطريًا زهريًا، ليستقر على قاعدة من الأخشاب والنفحات الترابية."
   },
   "notes": {
    "top": [
@@ -16661,6 +16948,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "VF Choices Delight",
+  "lineAr": "في إف تشويسز ديلايت",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -16687,7 +16975,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "VF Choices Delight Deodorant Cologne reveals a luminous, sophisticated femininity full of personality. The fragrance balances freshness, elegance and lightness, expressing the confidence of a woman who knows exactly who she is. When authenticity and charm go hand in hand, the answer is clear: she is the right choice.",
-   "ar": "يكشف عطر الكولونيا VF Choices Delight عن أنوثة مشرقة وراقية مفعمة بالشخصية. يوازن العطر بين الانتعاش والأناقة والخفة، معبّرًا عن ثقة امرأة تعرف تمامًا من تكون. فحين تجتمع الأصالة والجاذبية، تكون الإجابة واضحة: إنها الخيار الصحيح."
+   "ar": "يكشف عطر الكولونيا في إف تشويسز ديلايت عن أنوثة مشرقة وراقية مفعمة بالشخصية. يوازن العطر بين الانتعاش والأناقة والخفة، معبّرًا عن ثقة امرأة تعرف تمامًا من تكون. فحين تجتمع الأصالة والجاذبية، تكون الإجابة واضحة: إنها الخيار الصحيح."
   },
   "source": "https://www.wepink.com.br/desod-col--vf-choices-delight--200-ml---wepink-448/p",
   "notes": {}
@@ -16697,7 +16985,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Holiday Duo Celebration Set",
-  "lineAr": "طقم Holiday Duo Celebration",
+  "lineAr": "هوليداي ديو سيليبريشن سِت",
   "price": 149,
   "badge": "limited",
   "color": "#9D514E",
@@ -16731,6 +17019,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Liberté Platiné",
+  "lineAr": "ليبرتيه بلاتينيه",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -16755,7 +17044,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Liberté Platiné Body Splash nurtures femininity with a delicately floral fragrance that inspires a freer life full of joy and lightness, from the welcoming light of day to the magic of the night. It is a sophisticated bouquet of unmatched sensations.",
-   "ar": "يغذّي بخاخ الجسم Liberté Platiné الأنوثة بعطر زهري رقيق يلهم حياة أكثر حرية مفعمة بالفرح والخفة، من ضوء النهار الدافئ إلى سحر الليل. إنه باقة راقية من الأحاسيس التي لا مثيل لها."
+   "ar": "يغذّي بخاخ الجسم ليبرتيه بلاتينيه الأنوثة بعطر زهري رقيق يلهم حياة أكثر حرية مفعمة بالفرح والخفة، من ضوء النهار الدافئ إلى سحر الليل. إنه باقة راقية من الأحاسيس التي لا مثيل لها."
   },
   "source": "https://www.wepink.com.br/body-splash-liberte-platine-200-ml---wepink-422/p",
   "notes": {}
@@ -16765,7 +17054,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Sweet Luxury Limited Edition Set",
-  "lineAr": "طقم Sweet Luxury إصدار محدود",
+  "lineAr": "سويت لاكشري ليميتد إيديشن سِت",
   "price": 249,
   "badge": "limited",
   "color": "#CDAFB0",
@@ -16791,7 +17080,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Sweet Luxury Body Splash Set brings five finely crafted body splashes inspired by the flowers and fruits of summer, hand-picked fragrances inspired by luxury and sophistication for a complete tropical experience. They include Banana Candy, evoking a sunny beach day and a creamy banana dessert, and Coconut Veil, like a sweet breeze with chilled coconut water.",
-   "ar": "يضم طقم بخاخات الجسم Sweet Luxury خمسة بخاخات جسم راقية مستوحاة من أزهار الصيف وفواكهه، بعطور منتقاة بعناية تستلهم الفخامة والرقي لتجربة استوائية متكاملة. ومن بينها Banana Candy الذي يستحضر يومًا مشمسًا على الشاطئ وحلوى الموز الكريمية، وCoconut Veil الذي يشبه نسمة عذبة مع ماء جوز الهند المثلّج."
+   "ar": "يضم طقم بخاخات الجسم سويت لاكشري خمسة بخاخات جسم راقية مستوحاة من أزهار الصيف وفواكهه، بعطور منتقاة بعناية تستلهم الفخامة والرقي لتجربة استوائية متكاملة. ومن بينها بنانا كاندي الذي يستحضر يومًا مشمسًا على الشاطئ وحلوى الموز الكريمية، وكوكونت فيل الذي يشبه نسمة عذبة مع ماء جوز الهند المثلّج."
   },
   "source": "https://www.wepink.com.br/kit-body-splash-sweet-luxury---wepink-394/p",
   "notes": {}
@@ -16801,6 +17090,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Happy New Year",
+  "lineAr": "هابي نيو يير",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -16824,7 +17114,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Happy New Year Deodorant Cologne celebrates moments full of sparkle and joy with a stylish essence. Its dazzling freshness opens with bergamot and freesia, evolves into an extraordinary floral heart and finishes with woody amber and beautiful sandalwood.",
-   "ar": "يحتفي عطر الكولونيا Happy New Year بلحظات مفعمة بالبريق والفرح بعبير يفيض بالأناقة. يفتتح انتعاشه الأخّاذ بالبرغموت والفريزيا، ثم يتطور إلى قلب زهري استثنائي، ليختتم بخشبية العنبر وجمال خشب الصندل."
+   "ar": "يحتفي عطر الكولونيا هابي نيو يير بلحظات مفعمة بالبريق والفرح بعبير يفيض بالأناقة. يفتتح انتعاشه الأخّاذ بالبرغموت والفريزيا، ثم يتطور إلى قلب زهري استثنائي، ليختتم بخشبية العنبر وجمال خشب الصندل."
   },
   "notes": {
    "top": [
@@ -16861,6 +17151,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "lotion",
   "line": "Perfect Pear",
+  "lineAr": "بيرفكت بير",
   "size": "130 ml",
   "price": 89,
   "color": "#D2B58E",
@@ -16882,7 +17173,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Perfect Pear The Cream body lotion provides nourishment, firmness and intense hydration, leaving skin healthy-looking and glowing for a fragrant, relaxing bath. Its ingredients also help prevent stretch marks and premature ageing. The delicate, classic floral fruity scent pairs refreshing green apple and violet with a soft floral heart and an elegant sweet, woody base.",
-   "ar": "يمنح لوشن الجسم The Cream Perfect Pear التغذية والتماسك والترطيب المكثف، ويترك البشرة بمظهر صحي ومشرق لحمّام معطّر ومريح. كما تساعد مكوّناته على الوقاية من علامات التمدد والتقدّم المبكر في السن. ويجمع عبيره الزهري الفاكهي الرقيق والكلاسيكي بين انتعاش التفاح الأخضر والبنفسج وقلب زهري ناعم وقاعدة حلوة وخشبية أنيقة."
+   "ar": "يمنح لوشن الجسم ذا كريم بيرفكت بير التغذية والتماسك والترطيب المكثف، ويترك البشرة بمظهر صحي ومشرق لحمّام معطّر ومريح. كما تساعد مكوّناته على الوقاية من علامات التمدد والتقدّم المبكر في السن. ويجمع عبيره الزهري الفاكهي الرقيق والكلاسيكي بين انتعاش التفاح الأخضر والبنفسج وقلب زهري ناعم وقاعدة حلوة وخشبية أنيقة."
   },
   "notes": {
    "top": [
@@ -16919,6 +17210,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodyoil",
   "line": "One Touch",
+  "lineAr": "ون تاتش",
   "size": "120 ml",
   "price": 89,
   "color": "#F0B2A5",
@@ -16942,7 +17234,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Oil One Touch contains 7 plant oils, vitamin E, and calendula and almond oils, offering powerful nourishment that helps prevent ageing and supports skin elasticity. Completing the One Touch personal care line, a few drops leave a feeling of satisfaction and lightness. Its scent features selected fruits and mixed flowers over a sweet base of patchouli and vanilla.",
-   "ar": "يحتوي زيت الجسم The Oil One Touch على 7 زيوت نباتية وفيتامين E وزيتي الآذريون واللوز، ليمنح تغذية قوية تساعد على الوقاية من علامات التقدّم في السن وتعزّز مرونة البشرة. ويكمل هذا الزيت مجموعة One Touch للعناية الشخصية، إذ تمنح بضع قطرات منه إحساسًا بالرضا والخفة. ويجمع عبيره بين فواكه منتقاة ومزيج من الأزهار فوق قاعدة حلوة من الباتشولي والفانيليا."
+   "ar": "يحتوي زيت الجسم ذا أويل ون تاتش على 7 زيوت نباتية وفيتامين إي وزيتي الآذريون واللوز، ليمنح تغذية قوية تساعد على الوقاية من علامات التقدّم في السن وتعزّز مرونة البشرة. ويكمل هذا الزيت مجموعة ون تاتش للعناية الشخصية، إذ تمنح بضع قطرات منه إحساسًا بالرضا والخفة. ويجمع عبيره بين فواكه منتقاة ومزيج من الأزهار فوق قاعدة حلوة من الباتشولي والفانيليا."
   },
   "notes": {
    "top": [
@@ -16979,7 +17271,7 @@ window.WP_CATALOG = [
   "cat": "skincare",
   "type": "skincare",
   "line": "Eyescare Eye Contour Cream",
-  "lineAr": "كريم محيط العين Eyescare",
+  "lineAr": "آيز كير آي كونتور كريم",
   "size": "15 ml",
   "price": 139,
   "color": "#97BED3",
@@ -17003,7 +17295,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Eyescare helps reduce puffiness and lighten dark circles, and suits all skin types with a soft, delicate texture that is easy to apply. The eye contour cream revitalises the skin around the eyes, helping with hydration, fighting premature ageing and firming the eye area thanks to a lifting effect that lifts and tightens the skin.",
-   "ar": "يساعد Eyescare على تقليل الانتفاخات وتفتيح الهالات الداكنة، ويناسب جميع أنواع البشرة بفضل قوامه الناعم والرقيق السهل التطبيق. ويعمل كريم محيط العين على تنشيط البشرة حول العينين، فيساعد على ترطيبها ومكافحة علامات التقدّم المبكر في السن وشدّ محيط العين، بفضل تأثيره الرافع الذي يرفع البشرة ويشدّها."
+   "ar": "يساعد آيز كير على تقليل الانتفاخات وتفتيح الهالات الداكنة، ويناسب جميع أنواع البشرة بفضل قوامه الناعم والرقيق السهل التطبيق. ويعمل كريم محيط العين على تنشيط البشرة حول العينين، فيساعد على ترطيبها ومكافحة علامات التقدّم المبكر في السن وشدّ محيط العين، بفضل تأثيره الرافع الذي يرفع البشرة ويشدّها."
   },
   "source": "https://www.wepink.com.br/eyescare-cec-ath-001/p",
   "notes": {}
@@ -17013,6 +17305,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodyoil",
   "line": "Liberté",
+  "lineAr": "ليبرتيه",
   "size": "120 ml",
   "price": 89,
   "color": "#D9CEB0",
@@ -17035,7 +17328,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Oil Liberté is an exceptional body oil with 7 actives that nourish, hydrate and restore with a light, soft touch. Its oil blend offers powerful nourishment that helps fight premature ageing and promotes elasticity and soft skin. Its sublime, elegant floral bouquet fragrance reveals enchanting, mysterious nuances with touches of pink pepper, grapefruit and noble flowers.",
-   "ar": "زيت الجسم The Oil Liberté زيت استثنائي يضم 7 مكوّنات نشطة تمنح التغذية والترطيب والتجديد بلمسة خفيفة وناعمة. ويقدّم مزيج زيوته تغذية قوية تساعد على مكافحة علامات التقدّم المبكر في السن وتعزّز المرونة والنعومة. ويكشف عطره الزهري الراقي والأنيق عن لمسات ساحرة وغامضة من الفلفل الوردي والجريب فروت والأزهار النبيلة."
+   "ar": "زيت الجسم ذا أويل ليبرتيه زيت استثنائي يضم 7 مكوّنات نشطة تمنح التغذية والترطيب والتجديد بلمسة خفيفة وناعمة. ويقدّم مزيج زيوته تغذية قوية تساعد على مكافحة علامات التقدّم المبكر في السن وتعزّز المرونة والنعومة. ويكشف عطره الزهري الراقي والأنيق عن لمسات ساحرة وغامضة من الفلفل الوردي والجريب فروت والأزهار النبيلة."
   },
   "notes": {
    "top": [
@@ -17064,6 +17357,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Obsessed Gold",
+  "lineAr": "أوبسيسد جولد",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -17089,7 +17383,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Obsessed Gold Body Splash is a luxurious essence full of magnetism and well-being, representing the seductive, authentic woman whose charm and sophistication linger in memory. Its floral oriental fragrance opens with floral and fruity touches, especially seductive red fruits, moves into a delicate floral heart and signs off with pleasant sweet, woody notes.",
-   "ar": "بخاخ الجسم Obsessed Gold عبير فاخر يفيض بالجاذبية والراحة، يجسّد المرأة المغرية والأصيلة التي يبقى سحرها ورقيها في الذاكرة. يفتتح عطره الزهري الشرقي بلمسات زهرية وفاكهية، لا سيما إغراء الفواكه الحمراء، ثم ينتقل إلى قلب زهري رقيق، ليختتم بنفحات حلوة وخشبية لطيفة."
+   "ar": "بخاخ الجسم أوبسيسد جولد عبير فاخر يفيض بالجاذبية والراحة، يجسّد المرأة المغرية والأصيلة التي يبقى سحرها ورقيها في الذاكرة. يفتتح عطره الزهري الشرقي بلمسات زهرية وفاكهية، لا سيما إغراء الفواكه الحمراء، ثم ينتقل إلى قلب زهري رقيق، ليختتم بنفحات حلوة وخشبية لطيفة."
   },
   "notes": {
    "top": [
@@ -17126,7 +17420,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "haircare",
   "line": "Booster Night Hair Oil",
-  "lineAr": "زيت الشعر Booster Night",
+  "lineAr": "بوستر نايت هير أويل",
   "size": "30 ml",
   "price": 99,
   "badge": "bestseller",
@@ -17151,7 +17445,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Booster Night Hair Oil works at night, when hair faces less external aggression and actives are absorbed more effectively. Its formula acts from root to tip, providing deep hydration, intense shine, instant softness and frizz control for healthier, nourished, sealed and fragrant hair on waking. Versatile, it can be used on damp or dry hair and suits all hair types.",
-   "ar": "يعمل زيت الشعر Booster Night خلال الليل، حين يتعرّض الشعر لعوامل خارجية أقل وتُمتص المكوّنات النشطة بفعالية أكبر. تعمل تركيبته من الجذور حتى الأطراف، فتمنح ترطيبًا عميقًا ولمعانًا مكثفًا ونعومة فورية وتحكّمًا في التجعّد، لشعر أكثر صحة وتغذية وانسيابية وعطرًا عند الاستيقاظ. ويُستخدم على الشعر الرطب أو الجاف، ويناسب جميع أنواع الشعر."
+   "ar": "يعمل زيت الشعر بوستر نايت خلال الليل، حين يتعرّض الشعر لعوامل خارجية أقل وتُمتص المكوّنات النشطة بفعالية أكبر. تعمل تركيبته من الجذور حتى الأطراف، فتمنح ترطيبًا عميقًا ولمعانًا مكثفًا ونعومة فورية وتحكّمًا في التجعّد، لشعر أكثر صحة وتغذية وانسيابية وعطرًا عند الاستيقاظ. ويُستخدم على الشعر الرطب أو الجاف، ويناسب جميع أنواع الشعر."
   },
   "source": "https://www.wepink.com.br/oleo-booster-night-30ml---wepink-443/p",
   "notes": {}
@@ -17161,6 +17455,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Vanilla Soft",
+  "lineAr": "فانيلا سوفت",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -17186,7 +17481,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Vanilla Soft Body Splash embodies the authenticity of the feminine essence through a soft floral touch of lily of the valley and jasmine. A hint of caramel spreads sweetness wherever she goes, blending authenticity, desire and delicacy over a sweet, woody base.",
-   "ar": "يجسّد بودي سبلاش Vanilla Soft أصالة الجوهر الأنثوي بلمسة زهرية ناعمة من نغمات زنبق الوادي والياسمين. ولمسة من الكراميل تنشر العذوبة أينما حلّت، لتجمع بين الأصالة والرغبة والرقة على قاعدة حلوة وخشبية."
+   "ar": "يجسّد بودي سبلاش فانيلا سوفت أصالة الجوهر الأنثوي بلمسة زهرية ناعمة من نغمات زنبق الوادي والياسمين. ولمسة من الكراميل تنشر العذوبة أينما حلّت، لتجمع بين الأصالة والرغبة والرقة على قاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -17215,6 +17510,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Heaven Santal & Fig",
+  "lineAr": "هيفن سانتال آند فيج",
   "size": "200 ml",
   "price": 69,
   "family": "woody",
@@ -17239,7 +17535,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Heaven Santal & Fig Body Cream turns the fragrance's contrast between luminous freshness and enveloping creaminess into care. Its formula intensely moisturizes and nourishes, helping support collagen production and cell renewal for dewy, naturally radiant-looking skin. The woody accord reveals creamy fig amid nuances of cedar and patchouli, a sophisticated scent that stays elegantly throughout the day.",
-   "ar": "يحوّل كريم الجسم Heaven Santal & Fig التباين بين الانتعاش المشرق والقوام الكريمي الآسر في عطره إلى عناية متكاملة. تركيبته ترطّب البشرة وتغذّيها بعمق، وتساعد على إنتاج الكولاجين وتجديد الخلايا، لتمنحها مظهراً نضراً ومشرقاً بشكل طبيعي. ويكشف الطابع الخشبي عن التين الكريمي بين لمسات من خشب الأرز والباتشولي، في عطر راقٍ يدوم بأناقة طوال اليوم."
+   "ar": "يحوّل كريم الجسم هيفن سانتال آند فيج التباين بين الانتعاش المشرق والقوام الكريمي الآسر في عطره إلى عناية متكاملة. تركيبته ترطّب البشرة وتغذّيها بعمق، وتساعد على إنتاج الكولاجين وتجديد الخلايا، لتمنحها مظهراً نضراً ومشرقاً بشكل طبيعي. ويكشف الطابع الخشبي عن التين الكريمي بين لمسات من خشب الأرز والباتشولي، في عطر راقٍ يدوم بأناقة طوال اليوم."
   },
   "notes": {
    "top": [
@@ -17268,6 +17564,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Venice Breeze",
+  "lineAr": "فينيس بريز",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -17293,7 +17590,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Venice Breeze Body Splash was created for those who find beauty in life's lightest moments, inspired by refreshing breezes over waterside landscapes. It opens with bright lime, intense mint and a delicate fruity touch of cassis, while lily, rose, basil, tea and pear form a fresh floral, green and aromatic heart. An aquatic signature completes the base.",
-   "ar": "صُمّم بودي سبلاش Venice Breeze لمن يجد الجمال في أخف لحظات الحياة، مستوحى من النسمات المنعشة التي تعبر المناظر المطلة على الماء. يفتتح بإشراقة الليم وانتعاش النعناع المكثف مع لمسة فاكهية رقيقة من الكشمش الأسود، بينما يشكّل الزنبق والورد والريحان والشاي والكمثرى قلباً زهرياً أخضر وعطرياً منعشاً. وتكتمل القاعدة ببصمة مائية مميزة."
+   "ar": "صُمّم بودي سبلاش فينيس بريز لمن يجد الجمال في أخف لحظات الحياة، مستوحى من النسمات المنعشة التي تعبر المناظر المطلة على الماء. يفتتح بإشراقة الليم وانتعاش النعناع المكثف مع لمسة فاكهية رقيقة من الكشمش الأسود، بينما يشكّل الزنبق والورد والريحان والشاي والكمثرى قلباً زهرياً أخضر وعطرياً منعشاً. وتكتمل القاعدة ببصمة مائية مميزة."
   },
   "notes": {
    "top": [
@@ -17340,6 +17637,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Verano Di Capri",
+  "lineAr": "فيرانو دي كابري",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -17364,7 +17662,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Verano Di Capri Body Splash is an invitation to live the summer. Its fragrance combines sweetness and freshness with candied lemon, raspberry and freesia.",
-   "ar": "يُعدّ بودي سبلاش Verano Di Capri دعوة لعيش الصيف بكل تفاصيله. عطر يجمع بين العذوبة والانتعاش مع الليمون المسكّر وتوت العليق وزهرة الفريزيا."
+   "ar": "يُعدّ بودي سبلاش فيرانو دي كابري دعوة لعيش الصيف بكل تفاصيله. عطر يجمع بين العذوبة والانتعاش مع الليمون المسكّر وتوت العليق وزهرة الفريزيا."
   },
   "notes": {
    "top": [
@@ -17393,6 +17691,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Auretx",
+  "lineAr": "أوريتكس",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -17418,7 +17717,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Auretx Body Splash blossoms on the skin with intensity and delicacy, like an unforgettable rose, uniting bold fruits with elegant florals in a passionate, lasting feminine signature. Blackcurrant with green and red fruits opens the fragrance, followed by a romantic heart of peony, rose and apricot. A base of patchouli, amber, wood and musk settles like a warm embrace.",
-   "ar": "يتفتّح بودي سبلاش Auretx على البشرة بقوة ورقة، كوردة لا تُنسى، ليجمع جرأة الفواكه مع أناقة الزهور في بصمة أنثوية شغوفة ودائمة. يفتتح بالكشمش الأسود مع الفواكه الخضراء والحمراء، يليه قلب رومانسي من الفاوانيا والورد والمشمش، بينما تستقر قاعدة آسرة من الباتشولي والعنبر والخشب والمسك على البشرة كعناق دافئ."
+   "ar": "يتفتّح بودي سبلاش أوريتكس على البشرة بقوة ورقة، كوردة لا تُنسى، ليجمع جرأة الفواكه مع أناقة الزهور في بصمة أنثوية شغوفة ودائمة. يفتتح بالكشمش الأسود مع الفواكه الخضراء والحمراء، يليه قلب رومانسي من الفاوانيا والورد والمشمش، بينما تستقر قاعدة آسرة من الباتشولي والعنبر والخشب والمسك على البشرة كعناق دافئ."
   },
   "notes": {
    "top": [
@@ -17475,6 +17774,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "colonia",
   "line": "King Blue Deep",
+  "lineAr": "كينج بلو ديب",
   "size": "100 ml",
   "price": 189,
   "family": "woody",
@@ -17500,7 +17800,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The King Blue Deep cologne captures the vibrant essence of the sophisticated man who enjoys life's moments with an authentic, modern touch. Worthy of a true king, this masculine fragrance follows a woody path with powerful notes of bergamot and gardenia, finishing with elegance and charm on an enveloping base of vanilla and sandalwood.",
-   "ar": "تجسّد كولونيا King Blue Deep الجوهر النابض للرجل الراقي الذي يستمتع بلحظات الحياة بلمسة أصيلة وعصرية. وبما يليق بملك حقيقي، يسلك هذا العطر الرجالي مساراً خشبياً تتخلله نغمات قوية من البرغموت والغاردينيا، ليختتم بأناقة وسحر على قاعدة آسرة من الفانيليا وخشب الصندل."
+   "ar": "تجسّد كولونيا كينج بلو ديب الجوهر النابض للرجل الراقي الذي يستمتع بلحظات الحياة بلمسة أصيلة وعصرية. وبما يليق بملك حقيقي، يسلك هذا العطر الرجالي مساراً خشبياً تتخلله نغمات قوية من البرغموت والغاردينيا، ليختتم بأناقة وسحر على قاعدة آسرة من الفانيليا وخشب الصندل."
   },
   "notes": {
    "top": [
@@ -17533,6 +17833,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "My We Belle",
+  "lineAr": "ماي وي بيل",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -17558,7 +17859,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The My We Belle cologne translates elegance into a fragrance that balances freshness, femininity and sophistication. It opens with juicy pear, bergamot, violet leaves and red fruits, leading to a creamy white-floral heart of orange blossom, tuberose, jasmine and lily of the valley. Vanilla and amber, warmed by sandalwood and cedar, leave a cozy, delicate and memorable trail.",
-   "ar": "تترجم كولونيا My We Belle الأناقة إلى عطر يوازن بين الانتعاش والأنوثة والرقي. يفتتح بعصارة الكمثرى مع البرغموت وأوراق البنفسج والفواكه الحمراء، لينتقل إلى قلب كريمي من الزهور البيضاء يضم زهر البرتقال ومسك الروم والياسمين وزنبق الوادي. أما الفانيليا والعنبر، مع دفء خشب الصندل والأرز، فتترك أثراً دافئاً ورقيقاً لا يُنسى."
+   "ar": "تترجم كولونيا ماي وي بيل الأناقة إلى عطر يوازن بين الانتعاش والأنوثة والرقي. يفتتح بعصارة الكمثرى مع البرغموت وأوراق البنفسج والفواكه الحمراء، لينتقل إلى قلب كريمي من الزهور البيضاء يضم زهر البرتقال ومسك الروم والياسمين وزنبق الوادي. أما الفانيليا والعنبر، مع دفء خشب الصندل والأرز، فتترك أثراً دافئاً ورقيقاً لا يُنسى."
   },
   "notes": {
    "top": [
@@ -17623,6 +17924,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Obsessed",
+  "lineAr": "أوبسيسد",
   "size": "50 ml",
   "price": 39,
   "color": "#8E414B",
@@ -17646,7 +17948,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Obsessed antiperspirant roll-on combines invigorating freshness, lasting protection and 72-hour hydration, and its exclusive formula helps even out skin tone. All in a sensual, bold fragrance following a woody floral chypre olfactory path.",
-   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون MyProtection Obsessed بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عطر حسّي وجريء يسلك مساراً عطرياً شيبرياً زهرياً خشبياً."
+   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن أوبسيسد بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عطر حسّي وجريء يسلك مساراً عطرياً شيبرياً زهرياً خشبياً."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-obsessed-50-ml-drod-ath-001/p",
   "notes": {}
@@ -17656,6 +17958,7 @@ window.WP_CATALOG = [
   "cat": "hair",
   "type": "hairmist",
   "line": "VF Golden",
+  "lineAr": "في إف جولدن",
   "size": "50 ml",
   "price": 69,
   "color": "#C09551",
@@ -17679,7 +17982,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The VF Golden Hair Mist makes hair even more beautiful, offering protection and well-being for every strand with a powerful oriental scent of pink pepper, mandarin and jasmine sambac. It reveals the essence of femininity, leaving hair protected and magnificent.",
-   "ar": "يمنح معطر الشعر VF Golden الشعر جمالاً أكبر، مع الحماية والعناية بكل خصلة وعبير شرقي قوي من الفلفل الوردي والماندرين وياسمين سامباك. يكشف عن جوهر الأنوثة ويترك الشعر محمياً ورائعاً يلفت الأنظار."
+   "ar": "يمنح معطر الشعر في إف جولدن الشعر جمالاً أكبر، مع الحماية والعناية بكل خصلة وعبير شرقي قوي من الفلفل الوردي والماندرين وياسمين سامباك. يكشف عن جوهر الأنوثة ويترك الشعر محمياً ورائعاً يلفت الأنظار."
   },
   "notes": {
    "top": [
@@ -17708,6 +18011,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Heaven Bride",
+  "lineAr": "هيفن برايد",
   "size": "50 ml",
   "price": 39,
   "color": "#83827F",
@@ -17731,7 +18035,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Heaven Bride antiperspirant roll-on combines invigorating freshness, lasting protection and 72-hour hydration, and its exclusive formula also helps even out skin tone. All in a unique, exclusive scent dedicated to the authentic, transformative woman, following a captivating floral oriental olfactory path.",
-   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون MyProtection Heaven Bride بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عبير فريد وحصري مُهدى إلى المرأة الأصيلة الملهمة للتغيير، يسلك مساراً عطرياً زهرياً شرقياً آسراً."
+   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن هيفن برايد بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عبير فريد وحصري مُهدى إلى المرأة الأصيلة الملهمة للتغيير، يسلك مساراً عطرياً زهرياً شرقياً آسراً."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-my-protec-on-heaven-bride-50-ml-369/p",
   "notes": {}
@@ -17741,6 +18045,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Divine",
+  "lineAr": "ديفاين",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -17764,7 +18069,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Divine cologne represents the best of life with style and elegance, like a sunny day in the finest destinations. Its fresh citrus touch pairs with the free spirit of jasmine and lemon notes, finishing on a soft base of cedar and musk that draws attention wherever it goes.",
-   "ar": "تجسّد كولونيا Divine أجمل ما في الحياة بأسلوب وأناقة، كيوم مشمس في أرقى الوجهات. تمتزج لمستها الحمضية المنعشة بروح الحرية في نغمات الياسمين والليمون، لتختتم بقاعدة ناعمة من خشب الأرز والمسك تلفت الأنظار أينما حلّت."
+   "ar": "تجسّد كولونيا ديفاين أجمل ما في الحياة بأسلوب وأناقة، كيوم مشمس في أرقى الوجهات. تمتزج لمستها الحمضية المنعشة بروح الحرية في نغمات الياسمين والليمون، لتختتم بقاعدة ناعمة من خشب الأرز والمسك تلفت الأنظار أينما حلّت."
   },
   "notes": {
    "top": [
@@ -17797,6 +18102,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Divine",
+  "lineAr": "ديفاين",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -17825,7 +18131,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Divine Body Splash represents the essence of the best in life, a sense of well-being full of style and elegance. It opens with a refreshing citrus touch, like a sunny day in the finest destinations, evolving into the free spirit of jasmine and lemon notes. It finishes on a soft, woody base that turns heads wherever it goes.",
-   "ar": "يجسّد بودي سبلاش Divine جوهر أجمل ما في الحياة، في إحساس بالراحة يفيض بالأسلوب والأناقة. يفتتح بلمسة حمضية منعشة كيوم مشمس في أرقى الوجهات، ثم يتطور إلى روح الحرية في نغمات الياسمين والليمون. ويختتم بقاعدة ناعمة وخشبية تجذب الأنظار أينما حلّ."
+   "ar": "يجسّد بودي سبلاش ديفاين جوهر أجمل ما في الحياة، في إحساس بالراحة يفيض بالأسلوب والأناقة. يفتتح بلمسة حمضية منعشة كيوم مشمس في أرقى الوجهات، ثم يتطور إلى روح الحرية في نغمات الياسمين والليمون. ويختتم بقاعدة ناعمة وخشبية تجذب الأنظار أينما حلّ."
   },
   "notes": {
    "heart": [
@@ -17846,6 +18152,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "lotion",
   "line": "Liberté",
+  "lineAr": "ليبرتيه",
   "size": "130 ml",
   "price": 89,
   "color": "#AFA69A",
@@ -17868,7 +18175,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Cream Liberté body lotion is ideal for a daily skincare routine, with a soft touch that provides nourishment, firmness and intense hydration while leaving skin looking healthy and glowing. Its combination of ingredients helps prevent stretch marks and premature aging. Key actives include witch hazel, calendula, fennel and rosehip extracts, extra virgin coconut oil, cocoa and shea butters and grape seed oil.",
-   "ar": "يُعدّ لوشن الجسم The Cream Liberté مثالياً لروتين العناية بالبشرة، إذ يمنحها ملمساً ناعماً مع التغذية والتماسك والترطيب المكثف، ويتركها بمظهر صحي ومشرق. ويساعد مزيج مكوناته على الوقاية من علامات التمدد والشيخوخة المبكرة. ومن أبرز مكوناته الفعالة: مستخلصات البندق الساحر والآذريون والشمر وثمر الورد البري، وزيت جوز الهند البكر الممتاز، وزبدة الكاكاو وزبدة الشيا، وزيت بذور العنب."
+   "ar": "يُعدّ لوشن الجسم ذا كريم ليبرتيه مثالياً لروتين العناية بالبشرة، إذ يمنحها ملمساً ناعماً مع التغذية والتماسك والترطيب المكثف، ويتركها بمظهر صحي ومشرق. ويساعد مزيج مكوناته على الوقاية من علامات التمدد والشيخوخة المبكرة. ومن أبرز مكوناته الفعالة: مستخلصات البندق الساحر والآذريون والشمر وثمر الورد البري، وزيت جوز الهند البكر الممتاز، وزبدة الكاكاو وزبدة الشيا، وزيت بذور العنب."
   },
   "source": "https://www.wepink.com.br/the-cream-liberte-locao-corporal-130-ml---wepink-00000000000023316/p",
   "notes": {}
@@ -17878,6 +18185,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Pureblixx",
+  "lineAr": "بيوربليكس",
   "size": "200 ml",
   "price": 69,
   "family": "warm",
@@ -17902,7 +18210,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Pureblixx Body Cream leaves skin beautiful, fragrant and healthy-looking, with actives that help support collagen production and cell renewal. Its soft, smooth texture provides hydration, nourishment and firmness while fighting premature aging. Its fruity floriental scent pairs citrus led by Sicilian lemon with a floral heart and a sweet, woody base, like a warm sunset breeze by the sea.",
-   "ar": "يمنح كريم الجسم Pureblixx البشرة جمالاً وعبيراً ومظهراً صحياً، بفضل مكوناته الفعالة التي تساعد على إنتاج الكولاجين وتجديد الخلايا. ويوفّر بملمسه الناعم الترطيب والتغذية والتماسك مع مكافحة الشيخوخة المبكرة. أما عطره الزهري الشرقي الفاكهي فيجمع الحمضيات بقيادة الليمون الصقلي مع قلب زهري وقاعدة حلوة وخشبية، كنسمة دافئة منعشة عند غروب الشمس على البحر."
+   "ar": "يمنح كريم الجسم بيوربليكس البشرة جمالاً وعبيراً ومظهراً صحياً، بفضل مكوناته الفعالة التي تساعد على إنتاج الكولاجين وتجديد الخلايا. ويوفّر بملمسه الناعم الترطيب والتغذية والتماسك مع مكافحة الشيخوخة المبكرة. أما عطره الزهري الشرقي الفاكهي فيجمع الحمضيات بقيادة الليمون الصقلي مع قلب زهري وقاعدة حلوة وخشبية، كنسمة دافئة منعشة عند غروب الشمس على البحر."
   },
   "notes": {
    "top": [
@@ -17923,6 +18231,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "shower",
   "line": "Vanilla Hug",
+  "lineAr": "فانيلا هاج",
   "size": "150 ml",
   "price": 59,
   "color": "#D98689",
@@ -17942,11 +18251,11 @@ window.WP_CATALOG = [
   ],
   "tagline": {
    "en": "Whipped-cream texture with the cozy scent of Vanilla Hug",
-   "ar": "قوام الكريمة المخفوقة مع عبير Vanilla Hug الدافئ"
+   "ar": "قوام الكريمة المخفوقة مع عبير فانيلا هاج الدافئ"
   },
   "desc": {
    "en": "The Shower Dream Vanilla Hug bath foam turns bath time into the most delightful moment of the day. Its ultra-creamy, whipped-cream-effect foam removes impurities and cleanses gently while delivering deep hydration and a glow effect, leaving skin soft and velvety. An enveloping scent of jasmine and vanilla lingers on the skin, bringing a delicious sense of charm and comfort.",
-   "ar": "تحوّل رغوة الاستحمام Shower Dream Vanilla Hug وقت الاستحمام إلى أجمل لحظات اليوم. رغوتها فائقة الكريمية بتأثير الكريمة المخفوقة تزيل الشوائب وتنظّف بلطف، مع ترطيب عميق وتأثير متوهّج يترك البشرة ناعمة بملمس مخملي. ويبقى عبير الياسمين والفانيليا الآسر على البشرة ليمنح إحساساً ممتعاً بالسحر والدفء."
+   "ar": "تحوّل رغوة الاستحمام شاور دريم فانيلا هاج وقت الاستحمام إلى أجمل لحظات اليوم. رغوتها فائقة الكريمية بتأثير الكريمة المخفوقة تزيل الشوائب وتنظّف بلطف، مع ترطيب عميق وتأثير متوهّج يترك البشرة ناعمة بملمس مخملي. ويبقى عبير الياسمين والفانيليا الآسر على البشرة ليمنح إحساساً ممتعاً بالسحر والدفء."
   },
   "notes": {
    "top": [
@@ -17969,6 +18278,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Ghadan",
+  "lineAr": "غدان",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -17993,7 +18303,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Ghadan Body Splash offers a distinctive scent made for mature, sophisticated women. Its complex fragrance reveals beautiful olfactory surprises with every spray, letting her express her eccentric side as much as she likes. A truly memorable experience.",
-   "ar": "يقدّم بودي سبلاش Ghadan عبيراً مميزاً صُمّم للمرأة الناضجة والراقية. عطره المركّب يكشف عن أجمل المفاجآت العطرية مع كل رشة، ليتيح لها التعبير عن تفرّدها كما تشاء. تجربة لا تُنسى بكل تأكيد."
+   "ar": "يقدّم بودي سبلاش غدان عبيراً مميزاً صُمّم للمرأة الناضجة والراقية. عطره المركّب يكشف عن أجمل المفاجآت العطرية مع كل رشة، ليتيح لها التعبير عن تفرّدها كما تشاء. تجربة لا تُنسى بكل تأكيد."
   },
   "source": "https://www.wepink.com.br/body-splash-ghadan-200ml---wepink-404/p",
   "notes": {}
@@ -18003,7 +18313,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Skincare Set",
-  "lineAr": "طقم العناية بالبشرة",
+  "lineAr": "سكين كير سِت",
   "price": 309,
   "color": "#C696A3",
   "color2": "#F2E7EA",
@@ -18026,7 +18336,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "This set brings together three essentials. The 10-in-1 Facial Serum is an all-in-one, ultra-hydrating formula with a mix of factors for healthy skin, while the Night Serum's actives work together for anti-aging results, helping control oiliness, brighten the skin and deeply hydrate. The Essencial Cleanser facial wash, made for all skin types, cleanses deeply with high astringent power and acts as a natural toner.",
-   "ar": "يجمع هذا الطقم ثلاثة منتجات أساسية. سيروم الوجه 10 في 1 تركيبة شاملة فائقة الترطيب تضم مزيجاً من العناصر اللازمة لبشرة صحية، بينما تعمل المكونات الفعالة في السيروم الليلي معاً لمكافحة علامات التقدم في السن، مع المساعدة على التحكم في الإفرازات الدهنية وتفتيح البشرة وترطيبها بعمق. أما غسول الوجه Essencial Cleanser المناسب لجميع أنواع البشرة، فينظّف بعمق بقوة قابضة عالية ويعمل كتونر طبيعي."
+   "ar": "يجمع هذا الطقم ثلاثة منتجات أساسية. سيروم الوجه 10 في 1 تركيبة شاملة فائقة الترطيب تضم مزيجاً من العناصر اللازمة لبشرة صحية، بينما تعمل المكونات الفعالة في السيروم الليلي معاً لمكافحة علامات التقدم في السن، مع المساعدة على التحكم في الإفرازات الدهنية وتفتيح البشرة وترطيبها بعمق. أما غسول الوجه إسنسيال كلينزر المناسب لجميع أنواع البشرة، فينظّف بعمق بقوة قابضة عالية ويعمل كتونر طبيعي."
   },
   "source": "https://www.wepink.com.br/kit-serum----wepink-wkts-ath-001/p",
   "notes": {}
@@ -18036,7 +18346,7 @@ window.WP_CATALOG = [
   "cat": "gift-sets",
   "type": "set",
   "line": "Aurale Body Splash Set",
-  "lineAr": "طقم بودي سبلاش Aurale",
+  "lineAr": "أورال بودي سبلاش سِت",
   "price": 249,
   "gender": "masculino",
   "color": "#5C4843",
@@ -18061,7 +18371,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Aurale Body Splash Set reveals the power of the man who lives with determination and carries his identity wherever he goes. Four exclusive fragrances explore different facets of contemporary masculinity: intensity, sophistication, magnetism and authenticity. From vibrant freshness to woody, sensual accords, each body splash is a unique signature that turns routine into presence.",
-   "ar": "يكشف طقم بودي سبلاش Aurale عن قوة الرجل الذي يعيش بعزيمة ويحمل هويته أينما ذهب. أربعة عطور حصرية تستكشف جوانب مختلفة من الرجولة العصرية: العنفوان والرقي والجاذبية والأصالة. ومن الانتعاش النابض إلى النغمات الخشبية الحسية، يشكّل كل بودي سبلاش بصمة فريدة تحوّل الروتين اليومي إلى حضور لافت."
+   "ar": "يكشف طقم بودي سبلاش أورال عن قوة الرجل الذي يعيش بعزيمة ويحمل هويته أينما ذهب. أربعة عطور حصرية تستكشف جوانب مختلفة من الرجولة العصرية: العنفوان والرقي والجاذبية والأصالة. ومن الانتعاش النابض إلى النغمات الخشبية الحسية، يشكّل كل بودي سبلاش بصمة فريدة تحوّل الروتين اليومي إلى حضور لافت."
   },
   "source": "https://www.wepink.com.br/kit-body-splash-aurale---wepink-546/p",
   "notes": {}
@@ -18071,6 +18381,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Brave Element",
+  "lineAr": "بريف إليمنت",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -18096,7 +18407,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Brave Element Body Splash was created for men who turn challenges into opportunities, expressing confidence, leadership and courage. It opens with bergamot, pineapple, blueberry and cardamom, followed by a refined aromatic heart of French lavender, geranium, blue narcissus and lily of the valley. Patchouli, cedar, moss and musk leave an intense, sophisticated and lasting woody trail.",
-   "ar": "صُمّم بودي سبلاش Brave Element للرجال الذين يحوّلون التحديات إلى فرص، ليعبّر عن الثقة والقيادة والشجاعة. يفتتح بمزيج نابض من البرغموت والأناناس والتوت الأزرق والهيل، يليه قلب عطري راقٍ من اللافندر الفرنسي والجيرانيوم والنرجس الأزرق وزنبق الوادي. ويترك الباتشولي والأرز والطحلب والمسك أثراً خشبياً قوياً وراقياً يدوم طويلاً."
+   "ar": "صُمّم بودي سبلاش بريف إليمنت للرجال الذين يحوّلون التحديات إلى فرص، ليعبّر عن الثقة والقيادة والشجاعة. يفتتح بمزيج نابض من البرغموت والأناناس والتوت الأزرق والهيل، يليه قلب عطري راقٍ من اللافندر الفرنسي والجيرانيوم والنرجس الأزرق وزنبق الوادي. ويترك الباتشولي والأرز والطحلب والمسك أثراً خشبياً قوياً وراقياً يدوم طويلاً."
   },
   "notes": {
    "top": [
@@ -18161,6 +18472,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "My We Belle",
+  "lineAr": "ماي وي بيل",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -18185,7 +18497,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The My We Belle Body Cream delights with its delicacy and hydration, with a formula that cares for the skin while helping support collagen production and cell renewal. Its blend of selected oils and extracts leaves a soft, comfortable feel, while the fruity floral fragrance scents the skin with effortless elegance. A daily ritual that moisturizes, perfumes and enhances the skin's softness.",
-   "ar": "يأسر كريم الجسم My We Belle برقّته وترطيبه، بتركيبة تعتني بالبشرة وتساعد على إنتاج الكولاجين وتجديد الخلايا. ويمنح مزيجه من الزيوت والمستخلصات المختارة ملمساً ناعماً ومريحاً، بينما يعطّر عبيره الزهري الفاكهي البشرة بأناقة طبيعية بلا تكلّف. طقس عناية يومي يرطّب البشرة ويعطّرها ويبرز نعومتها."
+   "ar": "يأسر كريم الجسم ماي وي بيل برقّته وترطيبه، بتركيبة تعتني بالبشرة وتساعد على إنتاج الكولاجين وتجديد الخلايا. ويمنح مزيجه من الزيوت والمستخلصات المختارة ملمساً ناعماً ومريحاً، بينما يعطّر عبيره الزهري الفاكهي البشرة بأناقة طبيعية بلا تكلّف. طقس عناية يومي يرطّب البشرة ويعطّرها ويبرز نعومتها."
   },
   "source": "https://www.wepink.com.br/body-cream-my-we-belle-200ml---wepink-522/p",
   "notes": {}
@@ -18195,6 +18507,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Authentic Azure",
+  "lineAr": "أوثنتك أزور",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -18220,7 +18533,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Authentic Azure Body Splash captures the essence of the authentic, confident and naturally striking man. It opens with vibrant grapefruit and spicy cardamom, with juniper and pepper adding energy, before an aromatic heart of clary sage, lavender, vetiver and geranium. Musk, patchouli, leather and moss add depth and warmth, leaving a sophisticated, contemporary trail.",
-   "ar": "يجسّد بودي سبلاش Authentic Azure جوهر الرجل الأصيل الواثق واللافت بطبيعته. يفتتح بانتعاش الجريب فروت النابض ورقي الهيل المتبّل، بينما يضيف العرعر والفلفل شخصية وحيوية، يليه قلب عطري من المريمية المسكية واللافندر والفيتيفر والجيرانيوم. ويمنح المسك والباتشولي والجلد والطحلب العطر عمقاً ودفئاً، ليترك أثراً راقياً وعصرياً."
+   "ar": "يجسّد بودي سبلاش أوثنتك أزور جوهر الرجل الأصيل الواثق واللافت بطبيعته. يفتتح بانتعاش الجريب فروت النابض ورقي الهيل المتبّل، بينما يضيف العرعر والفلفل شخصية وحيوية، يليه قلب عطري من المريمية المسكية واللافندر والفيتيفر والجيرانيوم. ويمنح المسك والباتشولي والجلد والطحلب العطر عمقاً ودفئاً، ليترك أثراً راقياً وعصرياً."
   },
   "notes": {
    "top": [
@@ -18285,6 +18598,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Vallora Spell",
+  "lineAr": "فالورا سبيل",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -18310,7 +18624,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Vallora Spell Body Splash celebrates sophisticated, delicate and naturally captivating femininity. Velvety peach, delicate lychee and bright tangerine open the fragrance, leading to a refined floral heart of rose, magnolia and lily. Creamy vanilla, warm amber and sandalwood form a comforting base, leaving an elegant trail that stays on the skin and in the memory.",
-   "ar": "يحتفي بودي سبلاش Vallora Spell بالأنوثة الراقية والرقيقة والآسرة بطبيعتها. يفتتح بنعومة الخوخ المخملية وعذوبة الليتشي الرقيقة وإشراقة اليوسفي، يليه قلب زهري راقٍ من الورد والماغنوليا والزنبق. وتشكّل الفانيليا الكريمية والعنبر الدافئ وخشب الصندل قاعدة مريحة، تترك أثراً أنيقاً يبقى على البشرة وفي الذاكرة."
+   "ar": "يحتفي بودي سبلاش فالورا سبيل بالأنوثة الراقية والرقيقة والآسرة بطبيعتها. يفتتح بنعومة الخوخ المخملية وعذوبة الليتشي الرقيقة وإشراقة اليوسفي، يليه قلب زهري راقٍ من الورد والماغنوليا والزنبق. وتشكّل الفانيليا الكريمية والعنبر الدافئ وخشب الصندل قاعدة مريحة، تترك أثراً أنيقاً يبقى على البشرة وفي الذاكرة."
   },
   "notes": {
    "top": [
@@ -18363,6 +18677,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Mallorie Luxury",
+  "lineAr": "مالوري لاكشري",
   "size": "200 ml",
   "price": 79,
   "family": "woody",
@@ -18387,7 +18702,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Mallorie Luxury Body Splash was created for women who carry elegance, strength and sophistication in every detail. Bergamot, lemon and raspberry open with a modern spicy touch of pink pepper, followed by a refined floral heart of rose, iris, tuberose and magnolia. Patchouli, amber, benzoin and musk build an intense, memorable base.",
-   "ar": "صُمّم بودي سبلاش Mallorie Luxury للمرأة التي تحمل الأناقة والقوة والرقي في كل تفاصيلها. يفتتح بإشراقة البرغموت والليمون وعذوبة توت العليق مع لمسة متبّلة عصرية من الفلفل الوردي، يليه قلب زهري راقٍ من الورد والسوسن ومسك الروم والماغنوليا. ويشكّل الباتشولي والعنبر واللبان الجاوي والمسك قاعدة قوية لا تُنسى."
+   "ar": "صُمّم بودي سبلاش مالوري لاكشري للمرأة التي تحمل الأناقة والقوة والرقي في كل تفاصيلها. يفتتح بإشراقة البرغموت والليمون وعذوبة توت العليق مع لمسة متبّلة عصرية من الفلفل الوردي، يليه قلب زهري راقٍ من الورد والسوسن ومسك الروم والماغنوليا. ويشكّل الباتشولي والعنبر واللبان الجاوي والمسك قاعدة قوية لا تُنسى."
   },
   "notes": {
    "top": [
@@ -18452,6 +18767,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Feive",
+  "lineAr": "فيف",
   "size": "50 ml",
   "price": 39,
   "color": "#B5AB97",
@@ -18474,7 +18790,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Feive antiperspirant roll-on brings a touch of luxury and softness to daily care. With 72-hour protection and hydration, a brightening action and a fragrance of rare sophistication, it leaves skin protected, soft and impeccably elegant.",
-   "ar": "يضفي مزيل العرق المضاد للتعرّق رول أون MyProtection Feive لمسة من الفخامة والنعومة على العناية اليومية. فبفضل الحماية والترطيب لمدة 72 ساعة وخصائص التفتيح وعطر يتجاوز حدود الرقي، يترك البشرة محمية وناعمة وبأناقة لا تشوبها شائبة."
+   "ar": "يضفي مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن فيف لمسة من الفخامة والنعومة على العناية اليومية. فبفضل الحماية والترطيب لمدة 72 ساعة وخصائص التفتيح وعطر يتجاوز حدود الرقي، يترك البشرة محمية وناعمة وبأناقة لا تشوبها شائبة."
   },
   "notes": {
    "heart": [
@@ -18497,6 +18813,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Heaven Blue",
+  "lineAr": "هيفن بلو",
   "size": "50 ml",
   "price": 39,
   "badge": "bestseller",
@@ -18516,7 +18833,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Heaven Blue antiperspirant roll-on invites a new state of mind. Its serene touch offers 72-hour protection and hydration, while the formula helps improve the skin's appearance and even out its tone. The aromatic citrus scent inspires peace, turning the daily routine into an invitation to explore the unimaginable.",
-   "ar": "يدعو مزيل العرق المضاد للتعرّق رول أون MyProtection Heaven Blue إلى اكتشاف حالة ذهنية جديدة. تمنح لمسته الهادئة حماية وترطيباً لمدة 72 ساعة، بينما تساعد تركيبته على تحسين مظهر البشرة وتوحيد لونها. ويبعث عبيره الحمضي العطري على السكينة والإلهام، محوّلاً الروتين اليومي إلى دعوة لاستكشاف ما لا يمكن تخيّله."
+   "ar": "يدعو مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن هيفن بلو إلى اكتشاف حالة ذهنية جديدة. تمنح لمسته الهادئة حماية وترطيباً لمدة 72 ساعة، بينما تساعد تركيبته على تحسين مظهر البشرة وتوحيد لونها. ويبعث عبيره الحمضي العطري على السكينة والإلهام، محوّلاً الروتين اليومي إلى دعوة لاستكشاف ما لا يمكن تخيّله."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-heaven-blue-50ml---wepink-478/p",
   "notes": {}
@@ -18526,6 +18843,7 @@ window.WP_CATALOG = [
   "cat": "men",
   "type": "splash",
   "line": "Castillo",
+  "lineAr": "كاستيلو",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -18551,7 +18869,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Castillo Body Splash captures the essence of the contemporary man: confident, sophisticated and naturally striking. Bergamot, green bergamot, cardamom and ginger create a vibrant opening, followed by an aromatic heart of clary sage, geranium, orange blossom, Tunisian orange blossom and Lavender Diva. The base intensifies with a woody amber accord, patchouli, vanilla and cocoa.",
-   "ar": "يجسّد بودي سبلاش Castillo جوهر الرجل العصري: واثق وراقٍ ولافت بطبيعته. يفتتح البرغموت والبرغموت الأخضر والهيل والزنجبيل العطر بانطلاقة نابضة، يليها قلب عطري من المريمية المسكية والجيرانيوم وزهر البرتقال وزهر البرتقال التونسي ولافندر ديفا. وتزداد القاعدة عمقاً مع نغمة عنبرية خشبية والباتشولي والفانيليا والكاكاو."
+   "ar": "يجسّد بودي سبلاش كاستيلو جوهر الرجل العصري: واثق وراقٍ ولافت بطبيعته. يفتتح البرغموت والبرغموت الأخضر والهيل والزنجبيل العطر بانطلاقة نابضة، يليها قلب عطري من المريمية المسكية والجيرانيوم وزهر البرتقال وزهر البرتقال التونسي ولافندر ديفا. وتزداد القاعدة عمقاً مع نغمة عنبرية خشبية والباتشولي والفانيليا والكاكاو."
   },
   "notes": {
    "top": [
@@ -18620,6 +18938,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Ghadan",
+  "lineAr": "غدان",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -18645,7 +18964,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Ghadan Body Cream leaves skin hydrated, nourished and firm. Its formula is designed to help support collagen production and cell renewal, with a blend of selected oils and extracts that leaves skin looking healthy and glowing.",
-   "ar": "يمنح كريم الجسم Ghadan البشرة ترطيباً وتغذية وتماسكاً. صُمّمت تركيبته المتميزة للمساعدة على إنتاج الكولاجين وتجديد الخلايا، مع مزيج من الزيوت والمستخلصات المختارة يمنح البشرة مظهراً صحياً ومشرقاً."
+   "ar": "يمنح كريم الجسم غدان البشرة ترطيباً وتغذية وتماسكاً. صُمّمت تركيبته المتميزة للمساعدة على إنتاج الكولاجين وتجديد الخلايا، مع مزيج من الزيوت والمستخلصات المختارة يمنح البشرة مظهراً صحياً ومشرقاً."
   },
   "source": "https://www.wepink.com.br/body-cream-ghadan-200ml---wepink-427/p",
   "notes": {}
@@ -18655,6 +18974,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Haylas",
+  "lineAr": "هيلاس",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -18680,7 +19000,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Haylas cologne is an enchanted grove where the magic of the finest flowers gathers to caress the senses, transforming the air and creating an aura of pure relaxation. It is the loving embrace of spring itself, a scent that leaves anyone daydreaming.",
-   "ar": "كولونيا Haylas بستان مسحور تجتمع فيه أجمل الزهور لتداعب الحواس، فتغيّر الأجواء وتنشر هالة من الاسترخاء التام. إنها عناق الربيع الحنون، وعبير يجعل كل من يشتمّه يسرح في أحلام اليقظة."
+   "ar": "كولونيا هيلاس بستان مسحور تجتمع فيه أجمل الزهور لتداعب الحواس، فتغيّر الأجواء وتنشر هالة من الاسترخاء التام. إنها عناق الربيع الحنون، وعبير يجعل كل من يشتمّه يسرح في أحلام اليقظة."
   },
   "source": "https://www.wepink.com.br/haylas-desodorante-colonia-wepink/p",
   "notes": {}
@@ -18690,7 +19010,7 @@ window.WP_CATALOG = [
   "cat": "makeup",
   "type": "makeup",
   "line": "My Lips Lip Gloss",
-  "lineAr": "ملمع الشفاه My Lips",
+  "lineAr": "ماي ليبس ليب جلوس",
   "size": "4 ml",
   "price": 79,
   "badge": "bestseller",
@@ -18716,7 +19036,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The My Lips lip gloss is an innovative treatment offering 24-hour protection, volume and comfort, with actives that plump the lips. One of its key ingredients is hyaluronic acid, a powerful active that attracts water and, as a result, increases lip volume while leaving the skin of the area even healthier.",
-   "ar": "ملمع الشفاه My Lips علاج مبتكر يوفّر حماية وامتلاءً وراحة لمدة 24 ساعة، بفضل مكونات فعالة تزيد من حجم الشفاه. ومن أبرز مكوناته حمض الهيالورونيك، وهو مكوّن فعّال قوي يجذب الماء، مما يزيد من امتلاء الشفاه ويمنح بشرتها صحة أكبر."
+   "ar": "ملمع الشفاه ماي ليبس علاج مبتكر يوفّر حماية وامتلاءً وراحة لمدة 24 ساعة، بفضل مكونات فعالة تزيد من حجم الشفاه. ومن أبرز مكوناته حمض الهيالورونيك، وهو مكوّن فعّال قوي يجذب الماء، مما يزيد من امتلاء الشفاه ويمنح بشرتها صحة أكبر."
   },
   "source": "https://www.wepink.com.br/gloss-labial-my-lips-wepink-4ml-sv29232/p",
   "notes": {}
@@ -18726,6 +19046,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Crave",
+  "lineAr": "كريف",
   "size": "100 ml",
   "price": 189,
   "family": "floral",
@@ -18751,7 +19072,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Crave is an irresistible fragrance created to celebrate the beauty of contrasts: strength that embraces, sweetness that leaves a mark, femininity that lingers. It opens with sparkling sugared lemon, followed by a luminous, comforting heart of orange blossom. Warm, sensual vanilla wrapped in soft musk leads to a sweet, elegant and sophisticated finish.",
-   "ar": "Crave عطر لا يُقاوم صُمّم للاحتفاء بجمال التناقضات: قوة تحتضن، وعذوبة تترك أثراً، وأنوثة تدوم. يفتتح بنغمات متلألئة من الليمون المسكّر، يليها قلب مشرق ومريح من زهر البرتقال. وتختتم الفانيليا الدافئة الحسية، الملفوفة بنعومة المسك، رحلة عطرية حلوة وأنيقة وراقية."
+   "ar": "كريف عطر لا يُقاوم صُمّم للاحتفاء بجمال التناقضات: قوة تحتضن، وعذوبة تترك أثراً، وأنوثة تدوم. يفتتح بنغمات متلألئة من الليمون المسكّر، يليها قلب مشرق ومريح من زهر البرتقال. وتختتم الفانيليا الدافئة الحسية، الملفوفة بنعومة المسك، رحلة عطرية حلوة وأنيقة وراقية."
   },
   "notes": {
    "top": [
@@ -18784,6 +19105,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Infinity Xis",
+  "lineAr": "إنفينيتي شيس",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -18809,7 +19131,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Infinity Xis Body Splash travels through a mystery that enchants under the moonlight, on a mystical, amber journey that reveals a sweet passion. It opens with sophisticated grapefruit and cassis, followed by a light trail of vanilla, and finishes glamorously with a starry touch of amber and balsamic notes.",
-   "ar": "ينطلق بودي سبلاش Infinity Xis في رحلة غامضة تأسر الحواس تحت ضوء القمر، رحلة ساحرة عنبرية تكشف عن شغف عذب. يفتتح برقي الجريب فروت والكشمش الأسود، يليهما أثر خفيف من الفانيليا، ويختتم بلمسة متألقة من العنبر والنغمات البلسمية."
+   "ar": "ينطلق بودي سبلاش إنفينيتي شيس في رحلة غامضة تأسر الحواس تحت ضوء القمر، رحلة ساحرة عنبرية تكشف عن شغف عذب. يفتتح برقي الجريب فروت والكشمش الأسود، يليهما أثر خفيف من الفانيليا، ويختتم بلمسة متألقة من العنبر والنغمات البلسمية."
   },
   "notes": {
    "top": [
@@ -18846,6 +19168,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Celebrate Relics",
+  "lineAr": "سيليبريت ريليكس",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -18871,7 +19194,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Celebrate Relics Body Splash has a radiant essence that honors life's richest moments with a soft floral and fruity scent. It opens with the freshness of pear and bergamot, moves into a unique floral heart and reveals a true treasure at the base with amber and vanilla, a richness that envelops the senses.",
-   "ar": "يحمل بودي سبلاش Celebrate Relics جوهراً متألقاً يحتفي بأثمن لحظات الحياة بعبير زهري فاكهي ناعم. يفتتح بانتعاش الكمثرى والبرغموت، ثم ينتقل إلى قلب زهري فريد، ليكشف في قاعدته عن كنز حقيقي من العنبر والفانيليا، وثراءٍ يغمر الحواس."
+   "ar": "يحمل بودي سبلاش سيليبريت ريليكس جوهراً متألقاً يحتفي بأثمن لحظات الحياة بعبير زهري فاكهي ناعم. يفتتح بانتعاش الكمثرى والبرغموت، ثم ينتقل إلى قلب زهري فريد، ليكشف في قاعدته عن كنز حقيقي من العنبر والفانيليا، وثراءٍ يغمر الحواس."
   },
   "notes": {
    "top": [
@@ -18902,6 +19225,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "cream",
   "line": "Fatal Rouge",
+  "lineAr": "فيتال روج",
   "size": "200 ml",
   "price": 69,
   "family": "floral",
@@ -18926,7 +19250,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Fatal Rouge Body Cream celebrates the essence of a fearless femme fatale, providing a soft touch, hydration, nourishment and firmness. Its formula helps support collagen production and cell renewal while leaving skin looking healthy and glowing. Its seductive, elegant floral path unfolds with cassis and pink pepper before revealing a sweet, woody base.",
-   "ar": "يحتفي كريم الجسم Fatal Rouge بجوهر المرأة الجريئة الآسرة، ويمنح البشرة ملمساً ناعماً مع الترطيب والتغذية والتماسك. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. ويتطور مساره الزهري المغري والأنيق مع نغمات الكشمش الأسود والفلفل الوردي، ليكشف عن قاعدة حلوة وخشبية."
+   "ar": "يحتفي كريم الجسم فيتال روج بجوهر المرأة الجريئة الآسرة، ويمنح البشرة ملمساً ناعماً مع الترطيب والتغذية والتماسك. تساعد تركيبته على إنتاج الكولاجين وتجديد الخلايا، وتترك البشرة بمظهر صحي ومشرق. ويتطور مساره الزهري المغري والأنيق مع نغمات الكشمش الأسود والفلفل الوردي، ليكشف عن قاعدة حلوة وخشبية."
   },
   "notes": {
    "heart": [
@@ -18947,6 +19271,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Lavanda Peace",
+  "lineAr": "لافاندا بيس",
   "size": "200 ml",
   "price": 79,
   "family": "warm",
@@ -18973,7 +19298,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Lavanda Peace Body Splash is the true essence of comforting moments, wrapped in a soft, delicate fragrance perfect for every day. Its oriental aromatic scent opens with sweet orange and peach, evolves into fresh lavender flower and lily of the valley, and finishes on a sweet, woody and comforting base.",
-   "ar": "بودي سبلاش Lavanda Peace هو الجوهر الحقيقي للحظات الراحة، في عطر ناعم ورقيق مثالي للاستخدام اليومي. يفتتح عبيره الشرقي العطري الآسر بسحر البرتقال الحلو والخوخ، ثم يتطور إلى انتعاش زهرة اللافندر وجمال زنبق الوادي، ليختتم بقاعدة حلوة وخشبية دافئة مفعمة بالحنان."
+   "ar": "بودي سبلاش لافاندا بيس هو الجوهر الحقيقي للحظات الراحة، في عطر ناعم ورقيق مثالي للاستخدام اليومي. يفتتح عبيره الشرقي العطري الآسر بسحر البرتقال الحلو والخوخ، ثم يتطور إلى انتعاش زهرة اللافندر وجمال زنبق الوادي، ليختتم بقاعدة حلوة وخشبية دافئة مفعمة بالحنان."
   },
   "notes": {
    "top": [
@@ -19004,6 +19329,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Lavanda Relax",
+  "lineAr": "لافاندا ريلاكس",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -19030,7 +19356,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Lavanda Relax Body Splash is a classic fragrance that inspires comfort and well-being every day. Its soft green floral essence opens with refreshing notes of galbanum and mint, evolves into a noble floral heart and finishes on a fresh, woody base for a feeling of lightness and comfort.",
-   "ar": "بودي سبلاش Lavanda Relax عطر كلاسيكي يبعث على الراحة والطمأنينة كل يوم. يفتتح جوهره الزهري الأخضر الناعم بنغمات منعشة من الجالبانوم والنعناع، ثم يتطور إلى قلب زهري راقٍ، ليختتم بقاعدة منعشة وخشبية تمنح إحساساً بالخفة والراحة."
+   "ar": "بودي سبلاش لافاندا ريلاكس عطر كلاسيكي يبعث على الراحة والطمأنينة كل يوم. يفتتح جوهره الزهري الأخضر الناعم بنغمات منعشة من الجالبانوم والنعناع، ثم يتطور إلى قلب زهري راقٍ، ليختتم بقاعدة منعشة وخشبية تمنح إحساساً بالخفة والراحة."
   },
   "notes": {
    "top": [
@@ -19051,6 +19377,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "VF Aqua",
+  "lineAr": "في إف أكوا",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -19076,7 +19403,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The VF Aqua Body Splash by Virginia Fonseca captures a free, bold and brilliant spirit. It offers a sense of well-being with a striking, refreshing scent that follows a floral and fruity path before settling into a sweet, woody base of amber and patchouli.",
-   "ar": "يجسّد بودي سبلاش VF Aqua من Virginia Fonseca روحاً حرة وجريئة ومتألقة. يمنح إحساساً بالراحة بعبير لافت ومنعش يسلك مساراً زهرياً فاكهياً، قبل أن يستقر على قاعدة حلوة وخشبية من العنبر والباتشولي."
+   "ar": "يجسّد بودي سبلاش في إف أكوا من فيرجينيا فونسيكا روحاً حرة وجريئة ومتألقة. يمنح إحساساً بالراحة بعبير لافت ومنعش يسلك مساراً زهرياً فاكهياً، قبل أن يستقر على قاعدة حلوة وخشبية من العنبر والباتشولي."
   },
   "notes": {
    "base": [
@@ -19097,6 +19424,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodyoil",
   "line": "Infinity",
+  "lineAr": "إنفينيتي",
   "size": "120 ml",
   "price": 89,
   "color": "#E95DA5",
@@ -19120,7 +19448,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Oil Infinity body oil helps hydrate the skin and enhance its glow and softness. Beyond vitality, it carries a wonderful fragrance that conveys empowerment, sweetness and passion, with refined notes blending delicate flowers, a sweet base, patchouli and amber.",
-   "ar": "يساعد زيت الجسم The Oil Infinity على ترطيب البشرة ومنحها إشراقاً ونعومة. وإلى جانب الحيوية، يتميز بعطر رائع يعبّر عن القوة والعذوبة والشغف، بنغمات راقية تمزج الزهور الرقيقة مع قاعدة حلوة والباتشولي والعنبر."
+   "ar": "يساعد زيت الجسم ذا أويل إنفينيتي على ترطيب البشرة ومنحها إشراقاً ونعومة. وإلى جانب الحيوية، يتميز بعطر رائع يعبّر عن القوة والعذوبة والشغف، بنغمات راقية تمزج الزهور الرقيقة مع قاعدة حلوة والباتشولي والعنبر."
   },
   "notes": {
    "base": [
@@ -19141,7 +19469,7 @@ window.WP_CATALOG = [
   "cat": "skincare",
   "type": "skincare",
   "line": "Night Serum",
-  "lineAr": "سيروم ليلي",
+  "lineAr": "نايت سيروم",
   "size": "25 ml",
   "price": 139,
   "color": "#56324D",
@@ -19176,6 +19504,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodyoil",
   "line": "VF",
+  "lineAr": "في إف",
   "size": "120 ml",
   "price": 89,
   "color": "#E63C91",
@@ -19199,7 +19528,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Oil VF is no ordinary body oil: it contains 10 plant oils, vitamin E and omegas 3, 6, 7 and 9 for powerful hydration that helps prevent aging and supports skin elasticity. It leaves skin highly fragranced with notes of delicate yellow fruits and jasmine over a sweet, chic base of amber and patchouli.",
-   "ar": "زيت الجسم The Oil VF ليس مجرد زيت عادي، إذ يحتوي على 10 زيوت نباتية وفيتامين E وأوميغا 3 و6 و7 و9 لترطيب قوي يساعد على الوقاية من علامات التقدم في السن ويدعم مرونة البشرة. ويترك البشرة معطّرة بعمق بنغمات الفواكه الصفراء الرقيقة والياسمين على قاعدة حلوة وأنيقة من العنبر والباتشولي."
+   "ar": "زيت الجسم ذا أويل في إف ليس مجرد زيت عادي، إذ يحتوي على 10 زيوت نباتية وفيتامين إي وأوميغا 3 و6 و7 و9 لترطيب قوي يساعد على الوقاية من علامات التقدم في السن ويدعم مرونة البشرة. ويترك البشرة معطّرة بعمق بنغمات الفواكه الصفراء الرقيقة والياسمين على قاعدة حلوة وأنيقة من العنبر والباتشولي."
   },
   "notes": {
    "top": [
@@ -19232,6 +19561,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Fatal Rouge",
+  "lineAr": "فيتال روج",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -19257,7 +19587,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Fatal Rouge Body Splash celebrates the essence of a fearless femme fatale. Its enveloping fragrance stands out with an irresistible floral touch full of intense notes of cassis, green mandarin and pink pepper, evolving into enchanting damask rose and jasmine before finishing authentically on a sweet, woody base.",
-   "ar": "يحتفي بودي سبلاش Fatal Rouge بجوهر المرأة الجريئة الآسرة. يتميز عطره الأخّاذ بلمسة زهرية لا تُقاوم غنية بنغمات قوية من الكشمش الأسود والماندرين الأخضر والفلفل الوردي، ثم يتطور إلى نغمات ساحرة من الورد الدمشقي والياسمين، ليختتم بأصالة على قاعدة حلوة وخشبية."
+   "ar": "يحتفي بودي سبلاش فيتال روج بجوهر المرأة الجريئة الآسرة. يتميز عطره الأخّاذ بلمسة زهرية لا تُقاوم غنية بنغمات قوية من الكشمش الأسود والماندرين الأخضر والفلفل الوردي، ثم يتطور إلى نغمات ساحرة من الورد الدمشقي والياسمين، ليختتم بأصالة على قاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -19292,6 +19622,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "rollon",
   "line": "Red",
+  "lineAr": "ريد",
   "size": "50 ml",
   "price": 39,
   "color": "#BB545B",
@@ -19315,7 +19646,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The MyProtection Red antiperspirant roll-on combines invigorating freshness, lasting protection and 72-hour hydration, and its exclusive formula helps even out skin tone. All in a fragrance that awakens desire, revealing sophistication through a refined floral oriental olfactory path.",
-   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون MyProtection Red بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عطر يوقظ الرغبة ويكشف عن الرقي عبر مسار عطري زهري شرقي راقٍ."
+   "ar": "يجمع مزيل العرق المضاد للتعرّق رول أون ماي بروتكشن ريد بين النضارة المنعشة والحماية الدائمة والترطيب لمدة 72 ساعة، كما تساهم تركيبته الحصرية في توحيد لون البشرة. كل ذلك في عطر يوقظ الرغبة ويكشف عن الرقي عبر مسار عطري زهري شرقي راقٍ."
   },
   "source": "https://www.wepink.com.br/desodorante-roll-on-red-50-ml-drrd-ath-001/p",
   "notes": {}
@@ -19325,6 +19656,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Vanilla Wish",
+  "lineAr": "فانيلا ويش",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -19350,7 +19682,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Vanilla Wish Body Splash captures feminine effervescence through a vibrant floral touch of freesia and orange blossom. A hint of jasmine conveys passion and authenticity wherever she goes, blending desire, energy and delicacy in bold, sweet and woody notes.",
-   "ar": "يجسّد بودي سبلاش Vanilla Wish الحيوية الأنثوية المتدفقة بلمسة زهرية نابضة من الفريزيا وزهر البرتقال. ولمسة من الياسمين تنقل الشغف والأصالة أينما حلّت، لتمزج الرغبة والطاقة والرقة في نغمات جريئة حلوة وخشبية."
+   "ar": "يجسّد بودي سبلاش فانيلا ويش الحيوية الأنثوية المتدفقة بلمسة زهرية نابضة من الفريزيا وزهر البرتقال. ولمسة من الياسمين تنقل الشغف والأصالة أينما حلّت، لتمزج الرغبة والطاقة والرقة في نغمات جريئة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -19379,6 +19711,7 @@ window.WP_CATALOG = [
   "cat": "perfume",
   "type": "colonia",
   "line": "Infinity Plim",
+  "lineAr": "إنفينيتي بليم",
   "size": "75 ml",
   "price": 189,
   "family": "woody",
@@ -19404,7 +19737,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "Infinity Plim is a dazzling universe full of wonders, a multifaceted scent that elevates every moment with unique radiance, confidence and unmatched elegance. Its complex blend opens with fruity nuances and a touch of ginger, moves into a lush floral heart of jasmine, rose, lily of the valley and violet, and finishes with woody notes and sweet strokes of patchouli and praline.",
-   "ar": "Infinity Plim عالم مبهر مليء بالعجائب، وعبير متعدد الأوجه يرتقي بكل لحظة بتألق فريد وثقة وهالة من الأناقة التي لا مثيل لها. يفتتح مزيجه المركّب بلمسات فاكهية ونفحة من الزنجبيل، ثم ينتقل إلى قلب زهري غني من الياسمين والورد وزنبق الوادي والبنفسج، ليختتم بنغمات خشبية ولمسات حلوة من الباتشولي والبرالين."
+   "ar": "إنفينيتي بليم عالم مبهر مليء بالعجائب، وعبير متعدد الأوجه يرتقي بكل لحظة بتألق فريد وثقة وهالة من الأناقة التي لا مثيل لها. يفتتح مزيجه المركّب بلمسات فاكهية ونفحة من الزنجبيل، ثم ينتقل إلى قلب زهري غني من الياسمين والورد وزنبق الوادي والبنفسج، ليختتم بنغمات خشبية ولمسات حلوة من الباتشولي والبرالين."
   },
   "notes": {
    "top": [
@@ -19457,6 +19790,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodyoil",
   "line": "Celebrate Life",
+  "lineAr": "سيليبريت لايف",
   "size": "120 ml",
   "price": 89,
   "color": "#E5A5AB",
@@ -19480,7 +19814,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Oil Celebrate Life is a body oil that celebrates the beauty of the skin, with a blend of super-potent actives that nourish, hydrate and restore with a light, soft touch. Just a few drops leave skin intensely fragranced. Its sweet fruity oriental scent opens with fresh apple, a floral touch and pink pepper, leading to a floral heart and a sweet, woody base.",
-   "ar": "زيت الجسم The Oil Celebrate Life يحتفي بجمال البشرة، بمزيج من المكونات الفعالة فائقة القوة التي تغذّي وترطّب وتجدّد بملمس خفيف وناعم. وتكفي بضع قطرات لتترك البشرة معطّرة بعمق. يفتتح عبيره الفاكهي الشرقي العذب بانتعاش التفاح مع لمسة زهرية والفلفل الوردي، ثم ينتقل إلى قلب زهري رائع وقاعدة حلوة وخشبية."
+   "ar": "زيت الجسم ذا أويل سيليبريت لايف يحتفي بجمال البشرة، بمزيج من المكونات الفعالة فائقة القوة التي تغذّي وترطّب وتجدّد بملمس خفيف وناعم. وتكفي بضع قطرات لتترك البشرة معطّرة بعمق. يفتتح عبيره الفاكهي الشرقي العذب بانتعاش التفاح مع لمسة زهرية والفلفل الوردي، ثم ينتقل إلى قلب زهري رائع وقاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -19501,6 +19835,7 @@ window.WP_CATALOG = [
   "cat": "body-splash",
   "type": "splash",
   "line": "Pureblixx",
+  "lineAr": "بيوربليكس",
   "size": "200 ml",
   "price": 79,
   "family": "floral",
@@ -19526,7 +19861,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Pureblixx Body Splash is an enveloping, vibrant fragrance that evokes the warm, fresh breeze of a seaside sunset, bringing well-being and lightness to every day. Its scent combines citrus fruits led by glamorous Sicilian lemon with a floral heart and a sweet, woody base.",
-   "ar": "بودي سبلاش Pureblixx عطر آسر ونابض بالحياة يستحضر النسمة الدافئة المنعشة لغروب الشمس على البحر، ويمنح إحساساً بالراحة والخفة كل يوم. يجمع عبيره بين الحمضيات بقيادة الليمون الصقلي الفاتن وقلب زهري وقاعدة حلوة وخشبية."
+   "ar": "بودي سبلاش بيوربليكس عطر آسر ونابض بالحياة يستحضر النسمة الدافئة المنعشة لغروب الشمس على البحر، ويمنح إحساساً بالراحة والخفة كل يوم. يجمع عبيره بين الحمضيات بقيادة الليمون الصقلي الفاتن وقلب زهري وقاعدة حلوة وخشبية."
   },
   "notes": {
    "top": [
@@ -19547,6 +19882,7 @@ window.WP_CATALOG = [
   "cat": "body-care",
   "type": "bodyoil",
   "line": "Red",
+  "lineAr": "ريد",
   "size": "120 ml",
   "price": 89,
   "color": "#BE4F55",
@@ -19570,7 +19906,7 @@ window.WP_CATALOG = [
   },
   "desc": {
    "en": "The Oil Red is a light, soft and relaxing body oil blending rosehip, almond, pink pepper, Monoi de Tahiti and golden flaxseed oils with vitamin E and omegas 3, 6 and 9. It nourishes, hydrates, restores and promotes elasticity while helping fight premature aging, and glitter adds a luminous touch. Its floral oriental scent opens with blood orange, meets flowers and finishes with sweet praline.",
-   "ar": "زيت الجسم The Oil Red زيت خفيف وناعم ومريح يجمع زيوت ثمر الورد البري واللوز والفلفل الوردي ومونوي تاهيتي وبذور الكتان الذهبي مع فيتامين E وأوميغا 3 و6 و9. يغذّي البشرة ويرطّبها ويجدّدها ويعزّز مرونتها مع المساعدة على مكافحة الشيخوخة المبكرة، فيما يضفي الغليتر لمسة مشرقة. يفتتح عبيره الزهري الشرقي بالبرتقال الدموي، ثم يلتقي بالزهور ويختتم بلمسة حلوة من البرالين."
+   "ar": "زيت الجسم ذا أويل ريد زيت خفيف وناعم ومريح يجمع زيوت ثمر الورد البري واللوز والفلفل الوردي ومونوي تاهيتي وبذور الكتان الذهبي مع فيتامين إي وأوميغا 3 و6 و9. يغذّي البشرة ويرطّبها ويجدّدها ويعزّز مرونتها مع المساعدة على مكافحة الشيخوخة المبكرة، فيما يضفي الغليتر لمسة مشرقة. يفتتح عبيره الزهري الشرقي بالبرتقال الدموي، ثم يلتقي بالزهور ويختتم بلمسة حلوة من البرالين."
   },
   "notes": {
    "top": [

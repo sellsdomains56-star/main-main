@@ -122,7 +122,9 @@ window.WP = (function () {
   const FRAGRANCE = new Set(["colonia", "splash", "cream", "lotion", "hairmist", "bodyoil", "scrub", "butter", "shower", "soap", "rollon"]);
   // Display name: fragrance names stay in Latin script; other products have an Arabic name.
   const pname = (p) => (state.lang === "ar" && p.lineAr ? p.lineAr : p.line);
-  const fullName = (p) => (FRAGRANCE.has(p.type) ? `${p.line} ${L(p.typeName)}` : pname(p));
+  const fullName = (p) => (FRAGRANCE.has(p.type) ? `${pname(p)} ${L(p.typeName)}` : pname(p));
+  // Orders keep the English name, so the team's records read the same whatever the shopper's language.
+  const recordName = (p) => (FRAGRANCE.has(p.type) ? `${p.line} ${p.typeName.en}` : p.line);
   const product = (id) => D.products.find((p) => p.id === id);
 
   // Store-wide price increase (config.pricing, set in the admin panel).
@@ -1295,7 +1297,7 @@ window.WP = (function () {
     if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, ref, pname, fullName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
+  return { init, render, route, SINGLE, ref, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());

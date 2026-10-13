@@ -33,8 +33,8 @@ window.WP_DATA = (function () {
     // banners — confirm GCC usage rights with the brand before launch. Clear a
     // path to fall back to the designed placeholder.
     photos: {
-      virginiaHero: "assets/photos/virginia-hero.jpg", // tall portrait of Virginia Fonseca for the home page hero
-      virginiaPortrait: "assets/photos/virginia-portrait.jpg", // second portrait for the "Created by Virginia" section
+      virginiaHero: "assets/photos/vf-splash-campaign.webp", // Virginia Fonseca with the giant VF body splash, home page hero arch
+      virginiaPortrait: "assets/photos/liberte-dore-campaign.webp", // Liberté Doré crown portrait for the "Created by Virginia" section
       // Campaign images (assets/photos/campaign/): an AI model, not Virginia, with the real products.
       campaign: "assets/photos/campaign/chess.webp", // wide campaign image for the "Made to be noticed" band
       club: "assets/photos/campaign/satin-vf.webp", // the Club pop-up
@@ -144,7 +144,7 @@ window.WP_DATA = (function () {
   };
 
   const categories = [
-    { id: "perfume", name: { en: "Perfumes", ar: "العطور" }, blurb: { en: "VF and the full fragrance wardrobe", ar: "مجموعة VF وكل العطور" } },
+    { id: "perfume", name: { en: "Perfumes", ar: "العطور" }, blurb: { en: "VF and the full fragrance wardrobe", ar: "مجموعة في إف وكل العطور" } },
     { id: "body-splash", name: { en: "Body Splash", ar: "بودي سبلاش" }, blurb: { en: "Brazil's favourite ritual", ar: "طقس البرازيل المفضل" } },
     { id: "men", name: { en: "For Him", ar: "للرجال" }, blurb: { en: "Woody, fresh, magnetic", ar: "خشبي ومنعش وجذّاب" } },
     { id: "body-care", name: { en: "Body Care", ar: "العناية بالجسم" }, blurb: { en: "Creams, oils, scrubs & more", ar: "كريمات وزيوت ومقشرات والمزيد" } },

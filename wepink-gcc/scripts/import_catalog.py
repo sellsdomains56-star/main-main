@@ -348,7 +348,7 @@ def js():
             "cat": p["cat"],
             "type": p["type"],
             "line": p["line"] if fragrance else (t.get("name_en") or p["line"]),
-            "lineAr": None if fragrance else t.get("name_ar"),
+            "lineAr": t.get("name_ar"),  # the name in Arabic letters (scripts/arabic_names.py)
             "size": p["size"],
             "price": p["price"],
             "family": p["family"],

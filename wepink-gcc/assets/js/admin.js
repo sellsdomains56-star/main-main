@@ -597,7 +597,7 @@
       <section class="section"><h3>Product</h3>
         <div class="grid-2">
           <label class="field"><span>Name *</span><input name="line" required value="${esc(d.line)}" placeholder="e.g. VF Golden"></label>
-          <label class="field"><span>Arabic name</span><input name="line_ar" dir="rtl" value="${esc(d.line_ar || "")}" placeholder="مثال: زيت الشعر"><small>For makeup, skincare and hair. Perfumes and body splashes keep their Latin name in Arabic.</small></label>
+          <label class="field"><span>Arabic name</span><input name="line_ar" dir="rtl" value="${esc(d.line_ar || "")}" placeholder="مثال: هيفن بلو"><small>The name written in Arabic letters, as it sounds — not translated (Heaven Blue → هيفن بلو).</small></label>
         </div>
         <div class="grid-3">
           <label class="field"><span>Category *</span>${sel("cat", D.categories.map((c) => [c.id, L(c.name)]), d.cat)}</label>

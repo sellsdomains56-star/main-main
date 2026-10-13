@@ -2,7 +2,7 @@
 window.WP_PAGES = (function () {
   const W = window.WP;
   const D = W.data;
-  const { t, L, esc, icon, money, local, moneyAED, priceOf, card, media, badge, priceHTML, sizeText, pname, fullName } = W;
+  const { t, L, esc, icon, money, local, moneyAED, priceOf, card, media, badge, priceHTML, sizeText, pname, fullName, recordName } = W;
   const byId = (id) => D.products.find((p) => p.id === id);
   // Home-page picks fall back to another product from the same category when
   // one is hidden or removed in the admin panel.
@@ -162,7 +162,7 @@ window.WP_PAGES = (function () {
     const cities = [...new Map(D.stores.map((s) => [s.city[0], s])).values()];
     const tiers = D.config.referral.tiers;
     const heroPhoto = photo("virginiaHero", t("hn.photoCaption"));
-    const portrait = photo("virginiaPortrait", t("hn.photoCaption"));
+    const portrait = photo("virginiaPortrait", L({ en: "wepink Liberté Doré", ar: "ليبرتيه دوريه من wepink" }));
     const campaign = photo("campaign", "", "campaign-img");
     const film = D.config.film && D.config.film.src ? D.config.film : null;
 
@@ -298,7 +298,7 @@ window.WP_PAGES = (function () {
             <p class="eyebrow">${esc(t("vf.eyebrow"))}</p>
             <h2 id="vf-title" class="h2">${esc(t("vf.title"))}</h2>
             <p class="lead">${esc(t("vf.body"))}</p>
-            <div class="vf-chips">${vfLine.map((p) => `<a class="vf-chip" href="product.html?id=${p.id}" style="--c:${p.color}"><span class="vf-dot"></span>${esc(p.line)}</a>`).join("")}</div>
+            <div class="vf-chips">${vfLine.map((p) => `<a class="vf-chip" href="product.html?id=${p.id}" style="--c:${p.color}"><span class="vf-dot"></span>${esc(pname(p))}</a>`).join("")}</div>
             <a class="btn btn-primary btn-lg" href="shop.html?c=perfume">${esc(t("vf.cta"))}${icon("arrow", "flip")}</a>
           </div>
         </div>
@@ -1431,7 +1431,7 @@ window.WP_PAGES = (function () {
         country: W.state.country,
         lang: W.state.lang,
         code: code || undefined,
-        items: items.map((i) => ({ id: i.p.id, name: fullName(i.p), qty: i.qty, price: priceOf(i.p) })),
+        items: items.map((i) => ({ id: i.p.id, name: recordName(i.p), qty: i.qty, price: priceOf(i.p) })),
         subtotal: sub,
         discount: disc,
         delivery: del,
