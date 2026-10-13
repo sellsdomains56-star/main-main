@@ -321,6 +321,7 @@ window.WP = (function () {
     arrow: '<path d="M4.5 12h15M13.5 6l6 6-6 6"/>',
     chevron: '<path d="m6 9 6 6 6-6"/>',
     check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+    alert: '<path d="M12 3.5 2.8 19.5h18.4L12 3.5Z"/><path d="M12 10v4.2M12 17.2v.1"/>',
     chat: '<path d="M20.5 11.6a8.4 8.4 0 0 1-12.4 7.4L3.5 20.5l1.5-4.4a8.4 8.4 0 1 1 15.5-4.5Z"/><path d="M9 9.2c0 3 2.6 5.6 5.6 5.6l1.3-1.6-2-1-1 .8a4 4 0 0 1-2.3-2.3l.8-1-1-2L9 9.2Z"/>',
     mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/>',
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',

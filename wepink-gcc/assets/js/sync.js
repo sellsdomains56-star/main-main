@@ -257,6 +257,7 @@ window.WP_SYNC = (function () {
       packshots: scene ? (b && (b.packshots || b.images)) || [] : [],
       remote: own ? [] : (b && b.remote) || [],
       source: r.source || undefined,
+      rank: b ? b.rank : undefined, // wepink Brasil's best-seller ranking
       typeName: T[r.type] || T.bodycare,
     };
   }

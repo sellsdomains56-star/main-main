@@ -182,9 +182,10 @@ window.WP_ASSIST = (function () {
         if (men) s += p.gender === "masculino" ? 6 : p.gender === "unissex" ? 2 : -6;
         else if (women) s += p.gender === "feminino" ? 3 : p.gender === "masculino" ? -6 : 0;
         if (gift && (p.type === "set" || p.cat === "gift-sets")) s += 3;
-        if (best && p.badge === "bestseller") s += 4;
+        if (best && (p.badge === "bestseller" || (p.rank && p.rank <= 20))) s += 4;
         if (fresh && p.badge === "new") s += 4;
         if (p.badge === "bestseller") s += 1;
+        if (p.rank) s += Math.max(0, 1 - p.rank / 60); // wepink Brasil's best sellers break ties
         if (p.type === "colonia" || p.type === "splash") s += 0.5;
         return { p, s };
       })
@@ -206,7 +207,7 @@ window.WP_ASSIST = (function () {
     const it = g && g.items[n];
     if (!it) return "";
     const c = W.country();
-    const vars = { free: W.money(c.freeOver), fee: W.money(c.fee), days: D.config.returnsDays, delivery: L(c.delivery), country: L(c.name), vat: c.vat, hours: D.config.hours, email: D.config.email };
+    const vars = { free: W.money(c.freeOver), fee: W.money(c.fee), days: D.config.returnsDays, quality: D.config.qualityDays, delivery: L(c.delivery), country: L(c.name), vat: c.vat, hours: D.config.hours, email: D.config.email };
     return L(it.a).replace(/\{(\w+)\}/g, (m, k) => (vars[k] != null ? vars[k] : m));
   }
 

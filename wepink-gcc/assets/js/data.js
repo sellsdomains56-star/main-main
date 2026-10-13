@@ -14,7 +14,10 @@ window.WP_DATA = (function () {
     hours: "10:00 – 22:00", // customer care, every day, Gulf time
     instagram: "https://www.instagram.com/wepink/",
     tiktok: "https://www.tiktok.com/@wepink",
-    returnsDays: 14,
+    // Exchange and return deadlines, in calendar days after delivery (wepink Brasil's terms):
+    // wrong item, change of mind, fragrances and cosmetics; poor quality and faulty caps.
+    returnsDays: 7,
+    qualityDays: 30,
 
     // The store's database (Supabase): products, prices and settings edited in
     // admin.html, plus orders, ambassadors and customers. The key is the
@@ -206,11 +209,13 @@ window.WP_DATA = (function () {
   // (assets/js/catalog.js). GCC prices there are placeholders by product type.
   // Every catalogue product also has its Nano Banana Pro campaign shot in assets/products/hero/,
   // shown first everywhere; the studio photos follow on the product page.
+  // (`hero` in catalog.js); a product added later shows its wepink Brasil photo until it has them.
   const products = (window.WP_CATALOG || []).map((p) => {
     const hero = "assets/products/hero/" + p.id + ".webp";
     const hero2 = "assets/products/hero/" + p.id + "-2.webp"; // second campaign shot (cards show it on hover)
     const studio = p.images && p.images.length ? p.images : p.image ? [p.image] : [];
-    return Object.assign({}, p, { typeName: T[p.type] || T.bodycare, notes: p.notes || {}, scene: true, image: hero, images: [hero, hero2], packshots: studio });
+    const images = p.hero ? [hero, hero2] : studio;
+    return Object.assign({}, p, { typeName: T[p.type] || T.bodycare, notes: p.notes || {}, scene: true, image: images[0], images, packshots: studio });
   });
 
   // Products the home page features (ids from catalog.js).
@@ -305,13 +310,13 @@ window.WP_DATA = (function () {
       id: "returns", icon: "returns", title: { en: "Returns & refunds", ar: "الإرجاع والاسترداد", pt: "Devoluções e reembolsos" },
       items: [
         { q: { en: "What is your returns policy?", ar: "ما هي سياسة الإرجاع؟", pt: "Qual é a política de devolução?" },
-          a: { en: "Unopened products can be returned within {days} days of delivery. Opened fragrance can't be returned for hygiene reasons.", ar: "يمكن إرجاع المنتجات غير المفتوحة خلال {days} يومًا من التوصيل. لا يمكن إرجاع العطور المفتوحة لأسباب صحية.", pt: "Produtos lacrados podem ser devolvidos em até {days} dias após a entrega. Fragrâncias abertas não podem ser devolvidas por questões de higiene." } },
+          a: { en: "You have up to {days} calendar days after delivery for a wrong item, a change of mind, or fragrances and cosmetics (we check usage from a photo), and up to {quality} days for poor quality or a faulty cap or spray. Exchanges are always for the same product, and gifts sent with your order can't be returned. The full terms are with the request form below.", ar: "لديكِ حتى {days} أيام تقويمية بعد التوصيل في حال المنتج غير الصحيح أو تغيير الرأي أو العطور ومستحضرات التجميل (نتحقق من الاستخدام عبر صورة)، وحتى {quality} يومًا في حال الجودة غير المرضية أو عيب في الغطاء أو البخاخ. الاستبدال يكون دائمًا بالمنتج نفسه، والهدايا المرسلة مع الطلب لا تُرجع. الشروط الكاملة مع نموذج الطلب أدناه.", pt: "Você tem até {days} dias corridos após a entrega para produto errado, arrependimento, fragrâncias e cosméticos (avaliamos o uso por foto), e até {quality} dias para qualidade insatisfatória ou defeito na tampa ou na válvula. A troca é sempre pelo mesmo produto, e brindes enviados com o pedido não podem ser devolvidos. Os termos completos estão junto ao formulário abaixo." } },
         { q: { en: "How do I ask for an exchange or a return?", ar: "كيف أطلب استبدالًا أو إرجاعًا؟", pt: "Como peço uma troca ou devolução?" },
           a: { en: "Fill in the request form at the bottom of this page, or WhatsApp us your order number. We'll arrange the pickup.", ar: "املئي نموذج الطلب أسفل هذه الصفحة، أو أرسلي لنا رقم الطلب على واتساب، وسنرتّب الاستلام.", pt: "Preencha o formulário de solicitação no fim desta página ou mande o número do pedido no WhatsApp. A gente agenda a coleta." } },
         { q: { en: "How long does a refund take?", ar: "كم يستغرق استرداد المبلغ؟", pt: "Quanto tempo leva o reembolso?" },
           a: { en: "Up to 7 working days after the return reaches us, back to the way you paid. Cash-on-delivery orders are refunded by bank transfer or store credit.", ar: "حتى 7 أيام عمل بعد وصول المرتجع إلينا، إلى نفس وسيلة الدفع. وتُسترد طلبات الدفع عند الاستلام بتحويل بنكي أو رصيد في المتجر.", pt: "Até 7 dias úteis depois que a devolução chega até nós, na mesma forma de pagamento. Pedidos pagos na entrega são reembolsados por transferência bancária ou crédito na loja." } },
         { q: { en: "My order arrived damaged or wrong.", ar: "وصل طلبي تالفًا أو غير صحيح.", pt: "Meu pedido chegou danificado ou errado." },
-          a: { en: "We're sorry! WhatsApp us a photo within 48 hours and we'll send a replacement at no cost. A new tracking code follows within 7 working days.", ar: "نعتذر! أرسلي لنا صورة على واتساب خلال 48 ساعة وسنرسل بديلًا مجانًا، ويصلكِ رمز التتبع الجديد خلال 7 أيام عمل.", pt: "Sentimos muito! Mande uma foto no WhatsApp em até 48 horas e enviamos outro produto sem custo. O novo código de rastreio chega em até 7 dias úteis." } },
+          a: { en: "We're sorry! Within {days} days, send us a photo of the item and your invoice through the request form below or on WhatsApp, and we'll send the right product at no cost.", ar: "نعتذر! خلال {days} أيام، أرسلي لنا صورة المنتج والفاتورة عبر نموذج الطلب أدناه أو على واتساب، وسنرسل لكِ المنتج الصحيح مجانًا.", pt: "Sentimos muito! Em até {days} dias, envie uma foto do produto e da nota fiscal pelo formulário abaixo ou no WhatsApp, e enviamos o produto certo sem custo." } },
       ],
     },
     {
@@ -360,6 +365,61 @@ window.WP_DATA = (function () {
   // What each season changes: the announcement bar's first message, the
   // greeting on the home page, a decoration over the hero, and the colour of
   // the silk threads. {country} and {amount} are filled in for the shopper.
+  // Exchange and return terms, shown in the help centre before the request form
+  // (the shopper reads them and accepts before continuing), as on wepink Brasil.
+  // `days`: "days" uses config.returnsDays, "quality" config.qualityDays.
+  const returnTerms = {
+    reasons: [
+      {
+        title: { en: "Wrong item", ar: "منتج غير صحيح", pt: "Produto errado" },
+        hint: { en: "a different product from the one you ordered", ar: "منتج مختلف عمّا طلبتِه", pt: "produto diferente do que foi pedido" },
+        send: { en: "a clear photo of your invoice + a photo of the item you received.", ar: "صورة واضحة للفاتورة + صورة للمنتج الذي استلمتِه.", pt: "uma foto legível da nota fiscal + uma foto do produto recebido." },
+        days: "days",
+      },
+      {
+        title: { en: "I changed my mind / ordered the wrong product", ar: "غيّرت رأيي / طلبت منتجًا خطأ", pt: "Me arrependi / pedi o produto errado" },
+        hint: { en: "the order was placed with the wrong product", ar: "تم الطلب بمنتج غير المقصود", pt: "pedido feito com o produto errado" },
+        send: { en: "a photo of the product you received.", ar: "صورة للمنتج الذي استلمتِه.", pt: "uma foto do produto recebido." },
+        days: "days",
+      },
+      {
+        title: { en: "Fragrances", ar: "العطور", pt: "Fragrâncias" },
+        hint: { en: "perfumes, body splashes, creams", ar: "العطور، البودي سبلاش، الكريمات", pt: "perfumes, body splashes, cremes" },
+        send: { en: "a photo of the front of the product, so we can check how much was used.", ar: "صورة لواجهة المنتج لنتحقق من مقدار الاستخدام.", pt: "uma foto da frente do produto para avaliarmos o uso." },
+        days: "days",
+      },
+      {
+        title: { en: "Cosmetics", ar: "مستحضرات التجميل", pt: "Cosméticos" },
+        hint: { en: "lip gloss, makeup and others", ar: "ملمّع الشفاه والمكياج وغيرها", pt: "gloss, maquiagem e outros" },
+        send: { en: "a photo of the front of the product.", ar: "صورة لواجهة المنتج.", pt: "uma foto da frente do produto." },
+        days: "days",
+      },
+      {
+        title: { en: "Poor quality", ar: "جودة غير مرضية", pt: "Qualidade insatisfatória" },
+        hint: { en: "appearance or performance not as expected", ar: "المظهر أو الأداء ليس كما هو متوقّع", pt: "aparência ou desempenho abaixo do esperado" },
+        send: { en: "a photo of the product for evaluation (used or new).", ar: "صورة للمنتج لتقييمه (مستخدمًا كان أو جديدًا).", pt: "uma foto do produto para avaliação (usado ou novo)." },
+        days: "quality",
+      },
+      {
+        title: { en: "Faulty cap or spray", ar: "عيب في الغطاء أو البخاخ", pt: "Defeito na tampa ou na válvula" },
+        hint: { en: "damaged or not working", ar: "تالف أو لا يعمل", pt: "danificada ou sem funcionar" },
+        send: { en: "a photo of the product for review.", ar: "صورة للمنتج لمراجعته.", pt: "uma foto do produto para análise." },
+        days: "quality",
+      },
+    ],
+    kits: { en: "For a refund on a product that is part of a kit, you must return all the items in the kit.", ar: "لاسترداد مبلغ منتج ضمن طقم، يجب إرجاع جميع منتجات الطقم.", pt: "Para reembolso de produtos que fazem parte de um kit, é preciso devolver todos os itens do kit." },
+    notes: [
+      {
+        title: { en: "Exchanges are always for the same product.", ar: "الاستبدال يكون دائمًا بالمنتج نفسه.", pt: "A troca é sempre pelo mesmo produto." },
+        text: { en: "You can only exchange for an item identical to the one you bought, and only if it is faulty, damaged or not the item you ordered.", ar: "يمكن الاستبدال فقط بمنتج مطابق لما اشتريتِه، وفقط في حال وجود عيب أو تلف أو إذا وصلكِ منتج غير الذي طلبتِه.", pt: "Você só pode trocar por um item idêntico ao que comprou, e apenas em caso de defeito, avaria ou se o produto recebido estiver errado." },
+      },
+      {
+        title: { en: "Gifts can't be exchanged, returned or refunded.", ar: "الهدايا لا تُستبدل ولا تُرجع ولا يُسترد مبلغها.", pt: "Brindes não podem ser trocados, devolvidos nem reembolsados." },
+        text: { en: "Items sent as gifts with your order are not eligible for exchanges, returns or refunds.", ar: "المنتجات المرسلة كهدية مع طلبكِ غير مشمولة بالاستبدال أو الإرجاع أو الاسترداد.", pt: "Itens enviados como brinde junto com o seu pedido não podem ser trocados, devolvidos nem reembolsados." },
+      },
+    ],
+  };
+
   const seasons = {
     ramadan: {
       name: { en: "Ramadan", ar: "رمضان", pt: "Ramadã" }, motif: "crescent", threads: "#d4a85a",
@@ -405,5 +465,5 @@ window.WP_DATA = (function () {
     { country: "OM", city: ["Muscat", "مسقط", "Mascate"], label: { en: "Store", ar: "متجر", pt: "Loja" } },
   ];
 
-  return { config, countries, payNames, categories, families, types: T, products, featured, stores, faq, seasons, national };
+  return { config, countries, payNames, categories, families, types: T, products, featured, stores, faq, returnTerms, seasons, national };
 })();

@@ -27,7 +27,8 @@ window.WP_PAGES = (function () {
   };
   const FRAG = (p) => !["makeup", "skincare", "haircare", "set", "bodycare"].includes(p.type);
   const cat = (id) => D.categories.find((c) => c.id === id);
-  const featured = () => [...D.products].sort((a, b) => (b.badge === "bestseller") - (a.badge === "bestseller"));
+  // Best sellers first: wepink Brasil's sales ranking (`rank`), then the bestseller badge.
+  const featured = () => [...D.products].sort((a, b) => (a.rank || 1e4) - (b.rank || 1e4) || (b.badge === "bestseller") - (a.badge === "bestseller"));
 
   function crumbs(items) {
     return `<nav class="crumbs" aria-label="Breadcrumb"><ol>${items
@@ -1218,7 +1219,7 @@ window.WP_PAGES = (function () {
   function help(main) {
     const c = W.country();
     const vars = {
-      free: money(c.freeOver), fee: money(c.fee), days: D.config.returnsDays, delivery: L(c.delivery),
+      free: money(c.freeOver), fee: money(c.fee), days: D.config.returnsDays, quality: D.config.qualityDays, delivery: L(c.delivery),
       country: L(c.name), vat: c.vat, hours: D.config.hours, email: D.config.email,
     };
     const wa = (text) => `https://wa.me/${D.config.whatsapp}${text ? "?text=" + encodeURIComponent(text) : ""}`;
@@ -1266,7 +1267,8 @@ window.WP_PAGES = (function () {
         <div class="container narrow">
           <h2 class="h2">${esc(t("help.reqTitle"))}</h2>
           <p class="muted">${esc(t("help.reqLead", vars))}</p>
-          <form class="card-form req-form" id="req-form" novalidate>
+          ${termsHTML()}
+          <form class="card-form req-form" id="req-form" novalidate hidden>
             <div class="field-row">
               <div class="field"><label for="r-order">${esc(t("help.reqOrder"))}</label><input id="r-order" name="order" autocomplete="off" dir="ltr" placeholder="WPG-" required></div>
               <div class="field"><label for="r-type">${esc(t("help.reqType"))}</label>
@@ -1337,6 +1339,19 @@ window.WP_PAGES = (function () {
       ],
     });
 
+    // exchange / return terms: the request form opens once they're accepted
+    const terms = main.querySelector("#req-terms");
+    const accept = terms.querySelector("#req-accept");
+    const go = terms.querySelector("[data-terms-continue]");
+    accept.addEventListener("change", () => (go.disabled = !accept.checked));
+    go.addEventListener("click", () => {
+      if (!accept.checked) return;
+      terms.classList.add("is-accepted");
+      main.querySelector("#req-form").hidden = false;
+      main.querySelector("#r-order").focus();
+    });
+    terms.querySelector("[data-terms-reread]").addEventListener("click", () => terms.classList.toggle("is-open"));
+
     // exchange / return request: ready-made message for our WhatsApp
     const form = main.querySelector("#req-form");
     form.addEventListener("submit", (e) => {
@@ -1350,11 +1365,48 @@ window.WP_PAGES = (function () {
         `${t("stores.name")}: ${f.name.value.trim()}`,
         `${t("stores.phone")}: ${c.dial} ${f.phone.value.trim()}`,
         f.msg.value.trim() ? `${t("help.reqMsg")}: ${f.msg.value.trim()}` : "",
+        `✓ ${t("help.termsAccepted")}`,
       ].filter(Boolean).join("\n");
       form.innerHTML = `<div class="req-done">${icon("check")}<h3 class="h3">${esc(t("help.reqReady"))}</h3><p class="muted">${esc(t("help.reqReadyB"))}</p>
         <a class="btn btn-primary" href="${wa(text)}" target="_blank" rel="noopener">${icon("chat")}<span>${esc(t("help.reqSend"))}</span></a></div>`;
     });
     return t("help.title");
+  }
+
+  // wepink's exchange and return terms (data.js returnTerms), with the accept switch
+  function termsHTML() {
+    const R = D.returnTerms;
+    const upTo = (kind) => {
+      const n = kind === "quality" ? D.config.qualityDays : D.config.returnsDays;
+      return t(n > 10 ? "help.termsUpToMany" : "help.termsUpTo", { n });
+    };
+    return `<div class="card-form req-terms" id="req-terms">
+      <div class="terms-done">${icon("check")}<strong>${esc(t("help.termsAccepted"))}</strong><button class="link-btn" type="button" data-terms-reread>${esc(t("help.termsReread"))}</button></div>
+      <div class="terms-body">
+        <h3 class="h3">${esc(t("help.termsTitle"))}</h3>
+        <div class="terms-list">
+          ${R.reasons
+            .map(
+              (r) => `<div class="term"><p><strong>${esc(L(r.title))}</strong> <span class="muted">(${esc(L(r.hint))})</span></p>
+            <p><strong>${esc(t("help.termsSend"))}</strong> ${esc(L(r.send))}</p>
+            <p><strong>${esc(t("help.termsDeadline"))}</strong> ${esc(upTo(r.days))}</p></div>`
+            )
+            .join("")}
+          <div class="term"><p><strong>${esc(t("help.termsKits"))}</strong> ${esc(L(R.kits))}</p></div>
+        </div>
+        <div class="terms-notes">
+          <h4>${icon("alert")}<span>${esc(t("help.termsNotes"))}</span></h4>
+          <p class="muted">${esc(t("help.termsNotesLead"))}</p>
+          ${R.notes.map((n) => `<p><strong>${esc(L(n.title))}</strong><br>${esc(L(n.text))}</p>`).join("")}
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="req-accept" role="switch">
+          <span class="switch-track" aria-hidden="true"><span class="switch-thumb">${icon("check")}</span></span>
+          <span>${esc(t("help.termsAccept"))}</span>
+        </label>
+        <button class="btn btn-primary btn-block" type="button" data-terms-continue disabled>${esc(t("help.termsContinue"))}</button>
+      </div>
+    </div>`;
   }
 
   // "{name}" placeholders in data copy (the help centre's answers)

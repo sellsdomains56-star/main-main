@@ -8,6 +8,9 @@ the Gulf store's catalogue in three steps:
   python3 scripts/import_catalog.py fetch RAW_DIR   # download the catalogue JSON
   python3 scripts/import_catalog.py build RAW_DIR   # normalise, download photos,
                                                     # write data/catalog-source.json
+  python3 scripts/import_catalog.py update RAW_DIR  # later runs: add products new on
+                                                    # wepink.com.br, keep the rest, refresh
+                                                    # badges and the best-seller ranking
   python3 scripts/import_catalog.py js              # merge data/translations.json
                                                     # into assets/js/catalog.js
 
@@ -33,6 +36,7 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = "https://www.wepink.com.br/api/catalog_system/pub/products/search?_from={}&_to={}"
+TOP = API + "&O=OrderByTopSaleDESC"  # the same catalogue, best sellers first
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
 PHOTO_DIR = os.path.join(ROOT, "assets", "products")
 SOURCE = os.path.join(ROOT, "data", "catalog-source.json")
@@ -85,6 +89,17 @@ def fetch(raw_dir):
             json.dump(items, f)
         print(f"page {page}: {len(items)} products")
         page += 1
+    # wepink Brasil's sales ranking: product ids, best seller first
+    top, page = [], 0
+    while True:
+        items = json.loads(get(TOP.format(page * 50, page * 50 + 49)))
+        if not items:
+            break
+        top += [p["productId"] for p in items if p["productId"] not in top]
+        page += 1
+    with open(os.path.join(raw_dir, "top.json"), "w") as f:
+        json.dump(top, f)
+    print(f"best-seller ranking: {len(top)} products")
 
 
 def load_raw(raw_dir):
@@ -266,71 +281,118 @@ def save_photo(url, path):
     return im
 
 
+def normalise(p, ids):
+    """One wepink.com.br product as a catalogue entry (no photos yet), or None if it's left out."""
+    cat_raw = (p.get("categories") or ["/"])[0]
+    if cat_raw.startswith(EXCLUDE_CATEGORY):
+        return None
+    item = p["items"][0]
+    if not item.get("images"):
+        return None
+    name = clean_name(p["productName"])
+    ptype = type_of(name, cat_raw)
+    size = size_of(name)
+    gender = ((p.get("gênero") or [None])[0]) or None
+    fams = [re.sub(r"[^\wÀ-ÿ ]", "", f).strip() for f in (p.get("família olfativa") or [])]
+    family = next((FAMILY[f] for f in fams if f in FAMILY), None)
+    line = line_of(name, ptype)
+    pid = slug(f"{ptype}-{line}-{size}")
+    while pid in ids:
+        pid += "-b"
+    ids.add(pid)
+    offer = item["sellers"][0]["commertialOffer"]
+    return {
+        "id": pid,
+        "sourceId": p["productId"],
+        "name_pt": name,
+        "line": line,
+        "type": ptype,
+        "cat": category_of(ptype, cat_raw, gender),
+        "size": size,
+        "gender": gender,
+        "family": family,
+        "families_pt": fams,
+        "badge": badge_of(p),
+        "price": price_of(ptype, size, offer),
+        "priceBRL": offer["Price"] if offer.get("IsAvailable") else None,
+        "inStockBR": bool(offer.get("IsAvailable")),
+        "short_pt": ((p.get("descricao_curta") or [""])[0] or "").strip(),
+        "desc_pt": text_of(p.get("description")),
+        "photos": [im["imageUrl"] for im in item["images"]],
+        "link": "https://www.wepink.com.br/" + p["linkText"] + "/p",
+    }
+
+
+def with_photos(prod):
+    """Download the first two photos (kept if already there) and take the colours from the first."""
+    local = []
+    for i, url in enumerate(prod["photos"][:2]):
+        name = f"{prod['id']}{'' if i == 0 else '-' + str(i + 1)}.webp"
+        path = os.path.join(PHOTO_DIR, name)
+        try:
+            im = Image.open(path) if os.path.exists(path) else save_photo(url, path)
+            if i == 0:
+                prod["color"], prod["color2"] = tint(im)
+            local.append("assets/products/" + name)
+        except Exception as e:  # keep going; the drawn bottle is the fallback
+            print("photo failed", prod["id"], e)
+    prod["images"] = local
+    prod["remote"] = [resized(u, 800) for u in prod["photos"]]
+    return prod
+
+
+def ranking(raw_dir):
+    path = os.path.join(raw_dir, "top.json")
+    return {pid: i + 1 for i, pid in enumerate(json.load(open(path)))} if os.path.exists(path) else {}
+
+
 def build(raw_dir):
     os.makedirs(PHOTO_DIR, exist_ok=True)
     out, ids = [], set()
     for p in load_raw(raw_dir):
-        cat_raw = (p.get("categories") or ["/"])[0]
-        if cat_raw.startswith(EXCLUDE_CATEGORY):
-            continue
-        item = p["items"][0]
-        if not item.get("images"):
-            continue
-        name = clean_name(p["productName"])
-        ptype = type_of(name, cat_raw)
-        size = size_of(name)
-        gender = ((p.get("gênero") or [None])[0]) or None
-        fams = [re.sub(r"[^\wÀ-ÿ ]", "", f).strip() for f in (p.get("família olfativa") or [])]
-        family = next((FAMILY[f] for f in fams if f in FAMILY), None)
-        line = line_of(name, ptype)
-        pid = slug(f"{ptype}-{line}-{size}")
-        while pid in ids:
-            pid += "-b"
-        ids.add(pid)
-        offer = item["sellers"][0]["commertialOffer"]
-        out.append({
-            "id": pid,
-            "sourceId": p["productId"],
-            "name_pt": name,
-            "line": line,
-            "type": ptype,
-            "cat": category_of(ptype, cat_raw, gender),
-            "size": size,
-            "gender": gender,
-            "family": family,
-            "families_pt": fams,
-            "badge": badge_of(p),
-            "price": price_of(ptype, size, offer),
-            "priceBRL": offer["Price"] if offer.get("IsAvailable") else None,
-            "inStockBR": bool(offer.get("IsAvailable")),
-            "short_pt": ((p.get("descricao_curta") or [""])[0] or "").strip(),
-            "desc_pt": text_of(p.get("description")),
-            "photos": [im["imageUrl"] for im in item["images"]],
-            "link": "https://www.wepink.com.br/" + p["linkText"] + "/p",
-        })
-
-    def photos(prod):
-        local = []
-        for i, url in enumerate(prod["photos"][:2]):
-            name = f"{prod['id']}{'' if i == 0 else '-' + str(i + 1)}.webp"
-            path = os.path.join(PHOTO_DIR, name)
-            try:
-                im = Image.open(path) if os.path.exists(path) else save_photo(url, path)
-                if i == 0:
-                    prod["color"], prod["color2"] = tint(im)
-                local.append("assets/products/" + name)
-            except Exception as e:  # keep going; the drawn bottle is the fallback
-                print("photo failed", prod["id"], e)
-        prod["images"] = local
-        prod["remote"] = [resized(u, 800) for u in prod["photos"]]
-        return prod
-
+        entry = normalise(p, ids)
+        if entry:
+            out.append(entry)
+    rank = ranking(raw_dir)
+    for prod in out:
+        prod["rank"] = rank.get(prod["sourceId"])
     with concurrent.futures.ThreadPoolExecutor(16) as pool:
-        out = list(pool.map(photos, out))
+        out = list(pool.map(with_photos, out))
     os.makedirs(os.path.dirname(SOURCE), exist_ok=True)
     with open(SOURCE, "w") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
     print(f"{len(out)} products -> {SOURCE}")
+
+
+def update(raw_dir):
+    """Add products that are new on wepink.com.br and refresh badges and ranking;
+    products already in the catalogue keep their id, price and photos, and ones
+    wepink Brasil no longer lists stay (hide them in the admin panel if needed)."""
+    os.makedirs(PHOTO_DIR, exist_ok=True)
+    src = json.load(open(SOURCE))
+    by_source = {p["sourceId"]: p for p in src}
+    ids = {p["id"] for p in src}
+    rank = ranking(raw_dir)
+    added, badges = [], 0
+    for p in load_raw(raw_dir):
+        old = by_source.get(p["productId"])
+        if old:
+            b = badge_of(p)
+            if b != old.get("badge"):
+                old["badge"] = b
+                badges += 1
+            continue
+        entry = normalise(p, ids)
+        if entry:
+            added.append(with_photos(entry))
+    src += added
+    for prod in src:
+        prod["rank"] = rank.get(prod["sourceId"])
+    with open(SOURCE, "w") as f:
+        json.dump(src, f, ensure_ascii=False, indent=1)
+    print(f"{len(added)} new products, {badges} badges changed -> {SOURCE}")
+    for prod in added:
+        print("  new:", prod["id"], "|", prod["name_pt"])
 
 
 def js():
@@ -361,6 +423,8 @@ def js():
             "image": p["images"][0] if p.get("images") else None,
             "images": p.get("images", []),
             "remote": p.get("remote", []),
+            "rank": p.get("rank"),  # wepink Brasil's best-seller ranking (1 = top seller)
+            "hero": os.path.exists(os.path.join(ROOT, "assets/products/hero", p["id"] + ".webp")) or None,  # has campaign shots
             "tagline": {"en": t.get("tagline_en") or "", "ar": t.get("tagline_ar") or "", "pt": t.get("tagline_pt") or ""},
             "desc": {"en": t.get("desc_en") or p["short_pt"] or p["desc_pt"][:300], "ar": t.get("desc_ar") or t.get("desc_en") or p["short_pt"], "pt": t.get("desc_pt") or ""},
             "notes": t.get("notes") or {},
@@ -382,6 +446,8 @@ if __name__ == "__main__":
         fetch(sys.argv[2])
     elif cmd == "build":
         build(sys.argv[2])
+    elif cmd == "update":
+        update(sys.argv[2])
     elif cmd == "js":
         js()
     else:

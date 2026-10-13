@@ -28,6 +28,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165994-800-800/05.webp?v=639271451408630000",
    "https://wepink.vteximg.com.br/arquivos/ids/165995-800-800/03.webp?v=639271451408800000"
   ],
+  "rank": 1,
+  "hero": true,
   "tagline": {
    "en": "A fragrance as precious as gold, making every moment unforgettable",
    "ar": "عطر ثمين كالذهب يجعل كل لحظة لا تُنسى",
@@ -99,6 +101,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162803-800-800/161011-1200-auto.webp?v=638991694397930000",
    "https://wepink.vteximg.com.br/arquivos/ids/162804-800-800/161012-1200-auto--2-.webp?v=638991694649900000"
   ],
+  "rank": 2,
+  "hero": true,
   "tagline": {
    "en": "Reveal the boldness of beautifully scented skin",
    "ar": "اكشفي عن جرأة بشرة فوّاحة بالعطر",
@@ -170,6 +174,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162733-800-800/161461-1200-auto.webp?v=638991598255700000",
    "https://wepink.vteximg.com.br/arquivos/ids/162734-800-800/161462-1200-auto.webp?v=638991598255870000"
   ],
+  "rank": 3,
+  "hero": true,
   "tagline": {
    "en": "For memorable women",
    "ar": "لنساء لا يُنسَين",
@@ -208,6 +214,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160953-800-800/03.jpg?v=638881880113430000",
    "https://wepink.vteximg.com.br/arquivos/ids/160954-800-800/05.jpg?v=638881880113430000"
   ],
+  "rank": 4,
+  "hero": true,
   "tagline": {
    "en": "Happily ever after starts now!",
    "ar": "السعادة الأبدية تبدأ الآن!",
@@ -247,6 +255,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160548-800-800/vf-golden-2.jpg.jpg?v=638822661000770000",
    "https://wepink.vteximg.com.br/arquivos/ids/160549-800-800/vf-golden-5.jpg.jpg?v=638822661000770000"
   ],
+  "rank": 14,
+  "hero": true,
   "tagline": {
    "en": "A fragrance as precious as gold",
    "ar": "عطر ثمين كالذهب",
@@ -306,6 +316,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164497-800-800/03.webp?v=639147100785030000",
    "https://wepink.vteximg.com.br/arquivos/ids/164498-800-800/05.webp?v=639147100785030000"
   ],
+  "rank": 5,
+  "hero": true,
   "tagline": {
    "en": "Celebrate extraordinary well-being",
    "ar": "احتفي بإحساس استثنائي بالراحة",
@@ -369,6 +381,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165664-800-800/Prancheta-2--5-.webp?v=639263739952470000",
    "https://wepink.vteximg.com.br/arquivos/ids/165665-800-800/Prancheta-3--5-.webp?v=639263739952470000"
   ],
+  "rank": 6,
+  "hero": true,
   "tagline": {
    "en": "Elegance lies in the details",
    "ar": "الأناقة تكمن في التفاصيل",
@@ -435,6 +449,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165413-800-800/Prancheta-5.webp?v=639238046830900000",
    "https://wepink.vteximg.com.br/arquivos/ids/165414-800-800/Prancheta-3.webp?v=639238046830900000"
   ],
+  "rank": 7,
+  "hero": true,
   "tagline": {
    "en": "A new atmosphere, the same essence",
    "ar": "أجواء جديدة، والجوهر ذاته",
@@ -565,6 +581,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165091-800-800/03.webp?v=639211832610670000",
    "https://wepink.vteximg.com.br/arquivos/ids/165092-800-800/05.webp?v=639211832610670000"
   ],
+  "rank": 8,
+  "hero": true,
   "tagline": {
    "en": "For men who see sophistication as a form of expression",
    "ar": "للرجال الذين يرون في الرقي أسلوباً للتعبير",
@@ -669,6 +687,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163966-800-800/03.webp?v=639083039846270000",
    "https://wepink.vteximg.com.br/arquivos/ids/163967-800-800/05.webp?v=639083039846270000"
   ],
+  "rank": 9,
+  "hero": true,
   "tagline": {
    "en": "A luminous fruity floral that wraps the skin in elegance and comfort",
    "ar": "عطر زهري فاكهي مشرق يغمر البشرة بالأناقة والراحة",
@@ -760,6 +780,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164559-800-800/03.webp?v=639149779522030000",
    "https://wepink.vteximg.com.br/arquivos/ids/164560-800-800/Prancheta-1.webp?v=639155958935870000"
   ],
+  "rank": 10,
+  "hero": true,
   "tagline": {
    "en": "A divine invitation",
    "ar": "دعوة سماوية",
@@ -797,6 +819,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165593-800-800/booster-2.jpg.jpg?v=639253538349200000",
    "https://wepink.vteximg.com.br/arquivos/ids/165594-800-800/booster-3.jpg.jpg?v=639253538349200000"
   ],
+  "rank": 11,
+  "hero": true,
   "tagline": {
    "en": "An exclusive formula for powerful hair care",
    "ar": "تركيبة حصرية لعناية فائقة بالشعر",
@@ -836,6 +860,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163867-800-800/Fatal-Black-For-Her-Desodorante-Colonia-100ml_3.webp?v=639077122152830000",
    "https://wepink.vteximg.com.br/arquivos/ids/163868-800-800/Fatal-Black-For-Her-Desodorante-Colonia-100ml_4.webp?v=639077122152830000"
   ],
+  "rank": 12,
+  "hero": true,
   "tagline": {
    "en": "Magnetic, captivating and absolutely fatal",
    "ar": "مغناطيسي، آسر، وفتّاك بكل معنى الكلمة",
@@ -897,6 +923,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162787-800-800/161236-1200-auto.webp?v=638991643722100000",
    "https://wepink.vteximg.com.br/arquivos/ids/162788-800-800/161237-1200-auto.webp?v=638991643722100000"
   ],
+  "rank": 256,
+  "hero": true,
   "tagline": {
    "en": "Your new obsession, an exclusive luxury of love",
    "ar": "هوسك الجديد، فخامة حصرية من الحب",
@@ -967,6 +995,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165704-800-800/001-copy.jpg.jpg?v=639256820688070000",
    "https://wepink.vteximg.com.br/arquivos/ids/165705-800-800/001.jpg.jpg?v=639256820688070000"
   ],
+  "rank": 13,
+  "hero": true,
   "tagline": {
    "en": "Celebrate extraordinary hydration!",
    "ar": "احتفي بترطيب استثنائي!",
@@ -1031,6 +1061,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164761-800-800/03.webp?v=639156617263300000",
    "https://wepink.vteximg.com.br/arquivos/ids/164762-800-800/05.webp?v=639156617263300000"
   ],
+  "rank": 15,
+  "hero": true,
   "tagline": {
    "en": "Express determination in the best way",
    "ar": "عبّري عن عزيمتك بأجمل صورة",
@@ -1132,6 +1164,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165635-800-800/03--3-.webp?v=639255863177430000",
    "https://wepink.vteximg.com.br/arquivos/ids/165716-800-800/05.webp?v=639257015534500000"
   ],
+  "rank": 16,
+  "hero": true,
   "tagline": {
    "en": "Five precious vanillas in a single bottle",
    "ar": "خمسة أنواع ثمينة من الفانيليا في زجاجة واحدة",
@@ -1215,6 +1249,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165463-800-800/pf-s_-tampa.webp?v=639243728182170000",
    "https://wepink.vteximg.com.br/arquivos/ids/165464-800-800/Prancheta-6.webp?v=639243728182170000"
   ],
+  "rank": 17,
+  "hero": true,
   "tagline": {
    "en": "Five precious vanillas in a single bottle",
    "ar": "خمسة أنواع ثمينة من الفانيليا في زجاجة واحدة",
@@ -1298,6 +1334,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164933-800-800/02.webp?v=639178179344300000",
    "https://wepink.vteximg.com.br/arquivos/ids/164934-800-800/03.webp?v=639178179344300000"
   ],
+  "rank": 260,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with an authentic fruity floral oriental touch",
    "ar": "تغذية عميقة وتماسك بلمسة أصيلة من العطر الفاكهي الزهري الشرقي",
@@ -1332,6 +1370,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/164417-800-800/WhatsApp-Image-2026-05-16-at-07.51.21--1-.webp?v=639145263281200000"
   ],
+  "rank": 19,
+  "hero": true,
   "tagline": {
    "en": "A fragrance that envelops, warms and lingers",
    "ar": "عطر يحتضن ويدفئ ويبقى",
@@ -1418,6 +1458,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/164643-800-800/Prancheta-2.png?v=639155645480500000"
   ],
+  "rank": 50,
+  "hero": true,
   "tagline": {
    "en": "A fragrance that envelops, warms and lingers",
    "ar": "عطر يحتضن ويدفئ ويبقى",
@@ -1508,6 +1550,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164206-800-800/03.webp?v=639103877467900000",
    "https://wepink.vteximg.com.br/arquivos/ids/164207-800-800/05.webp?v=639103877468030000"
   ],
+  "rank": 20,
+  "hero": true,
   "tagline": {
    "en": "The perfect balance between citrus freshness and woody depth",
    "ar": "توازن مثالي بين الانتعاش الحمضي والعمق الخشبي",
@@ -1597,6 +1641,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163581-800-800/ruby-2.webp?v=639046788647030000",
    "https://wepink.vteximg.com.br/arquivos/ids/163582-800-800/ruby-3.webp?v=639046788647200000"
   ],
+  "rank": 21,
+  "hero": true,
   "tagline": {
    "en": "Cut to make an impact",
    "ar": "مصقول ليُبهر",
@@ -1636,6 +1682,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163736-800-800/03.png?v=639066869796270000",
    "https://wepink.vteximg.com.br/arquivos/ids/163737-800-800/05.png?v=639066869796270000"
   ],
+  "rank": 22,
+  "hero": true,
   "tagline": {
    "en": "A floral oriental fragrance, cut to make an impact",
    "ar": "عطر زهري شرقي مصقول ليُبهر",
@@ -1697,6 +1745,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163594-800-800/2--1-.webp?v=639042445049100000",
    "https://wepink.vteximg.com.br/arquivos/ids/163595-800-800/1--1-.webp?v=639042445049230000"
   ],
+  "rank": 23,
+  "hero": true,
   "tagline": {
    "en": "The most divine hydration!",
    "ar": "ترطيب سماوي لا مثيل له!",
@@ -1734,6 +1784,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163483-800-800/05.webp?v=639016656004370000",
    "https://wepink.vteximg.com.br/arquivos/ids/163484-800-800/03.webp?v=639016656004370000"
   ],
+  "rank": 24,
+  "hero": true,
   "tagline": {
    "en": "Impossible to resist!",
    "ar": "يستحيل مقاومته!",
@@ -1772,6 +1824,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162118-800-800/161735-1200-auto.webp?v=638984740462100000",
    "https://wepink.vteximg.com.br/arquivos/ids/162119-800-800/161736-1200-auto.webp?v=638984740462100000"
   ],
+  "rank": 25,
+  "hero": true,
   "tagline": {
    "en": "Definitive elegance",
    "ar": "أناقة مطلقة",
@@ -1809,6 +1863,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164564-800-800/Heaven-Blue-5.webp?v=639155042980400000",
    "https://wepink.vteximg.com.br/arquivos/ids/164565-800-800/Heaven-Blue-1.webp?v=639155042980400000"
   ],
+  "rank": 26,
+  "hero": true,
   "tagline": {
    "en": "The peace of paradise",
    "ar": "سكينة الفردوس",
@@ -1875,6 +1931,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162678-800-800/03.png?v=638989761299030000",
    "https://wepink.vteximg.com.br/arquivos/ids/162679-800-800/05.png?v=638989761299200000"
   ],
+  "rank": 28,
+  "hero": true,
   "tagline": {
    "en": "A perfect balance of radiance and elegance",
    "ar": "توازن مثالي بين البريق والأناقة",
@@ -1926,6 +1984,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162133-800-800/160883-1200-auto.webp?v=638984741188470000",
    "https://wepink.vteximg.com.br/arquivos/ids/162134-800-800/160884-1200-auto.webp?v=638984741188600000"
   ],
+  "rank": 29,
+  "hero": true,
   "tagline": {
    "en": "The king who commands every path to victory",
    "ar": "الملك الذي يمتلك دروب النصر",
@@ -1990,6 +2050,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163276-800-800/Prancheta-2.webp?v=639059838659900000",
    "https://wepink.vteximg.com.br/arquivos/ids/163277-800-800/Prancheta-1.webp?v=639059838660030000"
   ],
+  "rank": 30,
+  "hero": true,
   "tagline": {
    "en": "Absolute purity wrapped in elegance",
    "ar": "نقاء مطلق يكتنفه الرقي",
@@ -2064,6 +2126,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164795-800-800/03.webp?v=639156722963630000",
    "https://wepink.vteximg.com.br/arquivos/ids/164796-800-800/05.webp?v=639156722963800000"
   ],
+  "rank": 31,
+  "hero": true,
   "tagline": {
    "en": "A powerful scent to awaken a striking energy",
    "ar": "عبير قوي يوقظ طاقتك المميزة",
@@ -2119,6 +2183,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160760-800-800/heaven-bride-4.jpg?v=638851191946470000",
    "https://wepink.vteximg.com.br/arquivos/ids/160761-800-800/heaven-bride-5.jpg?v=638851191946470000"
   ],
+  "rank": 32,
+  "hero": true,
   "tagline": {
    "en": "Make emotions last forever!",
    "ar": "خلّدي مشاعرك!",
@@ -2181,6 +2247,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164532-800-800/05.webp?v=639147127637770000",
    "https://wepink.vteximg.com.br/arquivos/ids/164533-800-800/03.webp?v=639147127637930000"
   ],
+  "rank": 33,
+  "hero": true,
   "tagline": {
    "en": "The elegance of mystery, an essence of you",
    "ar": "أناقة الغموض، جوهر يشبهك",
@@ -2251,6 +2319,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164766-800-800/03.webp?v=639156708871500000",
    "https://wepink.vteximg.com.br/arquivos/ids/164767-800-800/05.webp?v=639156708871500000"
   ],
+  "rank": 34,
+  "hero": true,
   "tagline": {
    "en": "Well-being as refreshing as nature",
    "ar": "إحساس بالراحة منعش كالطبيعة",
@@ -2309,6 +2379,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164717-800-800/03.webp?v=639156592583700000",
    "https://wepink.vteximg.com.br/arquivos/ids/164718-800-800/05.webp?v=639156592583870000"
   ],
+  "rank": 35,
+  "hero": true,
   "tagline": {
    "en": "Breathe in the classic and the unique!",
    "ar": "استنشق الكلاسيكية والتفرّد!",
@@ -2362,6 +2434,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160242-800-800/heaven-1.jpg.jpg?v=638780622214630000",
    "https://wepink.vteximg.com.br/arquivos/ids/160243-800-800/heaven-5.jpg.jpg?v=638780622214630000"
   ],
+  "rank": 36,
+  "hero": true,
   "tagline": {
    "en": "A paradise on earth",
    "ar": "جنة على الأرض",
@@ -2415,6 +2489,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164771-800-800/03.webp?v=639156710686430000",
    "https://wepink.vteximg.com.br/arquivos/ids/164772-800-800/05.webp?v=639156710686430000"
   ],
+  "rank": 37,
+  "hero": true,
   "tagline": {
    "en": "The comfort of a sweet hug!",
    "ar": "دفء عناق عذب!",
@@ -2466,6 +2542,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164727-800-800/Prancheta-3.png?v=639240409751370000",
    "https://wepink.vteximg.com.br/arquivos/ids/164728-800-800/Prancheta-10.png?v=639240409751530000"
   ],
+  "rank": 38,
+  "hero": true,
   "tagline": {
    "en": "A touch of true tenderness!",
    "ar": "لمسة من الحنان الصادق!",
@@ -2520,6 +2598,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164698-800-800/03.webp?v=639156584816370000",
    "https://wepink.vteximg.com.br/arquivos/ids/164699-800-800/05.webp?v=639156584816530000"
   ],
+  "rank": 39,
+  "hero": true,
   "tagline": {
    "en": "Be wonderful and confident!",
    "ar": "كوني رائعة وواثقة!",
@@ -2558,6 +2638,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164712-800-800/03.webp?v=639156591339870000",
    "https://wepink.vteximg.com.br/arquivos/ids/164713-800-800/05.webp?v=639156591339870000"
   ],
+  "rank": 40,
+  "hero": true,
   "tagline": {
    "en": "The subtle beauty of well-being",
    "ar": "الجمال الرقيق للإحساس بالراحة",
@@ -2618,6 +2700,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165973-800-800/02 -2-.webp?v=639270862006370000",
    "https://wepink.vteximg.com.br/arquivos/ids/165974-800-800/03 -2-.webp?v=639270862006500000"
   ],
+  "rank": 41,
+  "hero": true,
   "tagline": {
    "en": "Celebrate perfumed, hydrated skin",
    "ar": "احتفي ببشرة معطّرة ومرطّبة",
@@ -2685,6 +2769,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165709-800-800/obsessed-2.jpg.jpg?v=639256820944670000",
    "https://wepink.vteximg.com.br/arquivos/ids/165710-800-800/obsessed-5.jpg.jpg?v=639256820944830000"
   ],
+  "rank": 42,
+  "hero": true,
   "tagline": {
    "en": "Scented hydration, ideal for everyday well-being",
    "ar": "ترطيب معطّر مثالي لإحساس يومي بالراحة",
@@ -2749,6 +2835,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163960-800-800/Liberte-2.webp?v=639082495811470000",
    "https://wepink.vteximg.com.br/arquivos/ids/163961-800-800/Liberte-5.webp?v=639082495811470000"
   ],
+  "rank": 43,
+  "hero": true,
   "tagline": {
    "en": "Let your noblest essence overflow",
    "ar": "دعي جوهرك الأنبل يفيض",
@@ -2806,6 +2894,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164785-800-800/01.webp?v=639156719190030000",
    "https://wepink.vteximg.com.br/arquivos/ids/164786-800-800/03.webp?v=639156719190200000"
   ],
+  "rank": 44,
+  "hero": true,
   "tagline": {
    "en": "The king who masters the art of enchanting everyone",
    "ar": "الملك الذي يتقن فن أسر الجميع",
@@ -2870,6 +2960,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165902-800-800/Prancheta-2--8-.webp?v=639265486959030000",
    "https://wepink.vteximg.com.br/arquivos/ids/165903-800-800/Prancheta-3--8-.webp?v=639265486959200000"
   ],
+  "rank": 45,
+  "hero": true,
   "tagline": {
    "en": "Impossible to go unnoticed",
    "ar": "حضور يستحيل تجاهله",
@@ -2909,6 +3001,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165883-800-800/02.webp?v=639263619365970000",
    "https://wepink.vteximg.com.br/arquivos/ids/165884-800-800/03.webp?v=639263619365970000"
   ],
+  "rank": 46,
+  "hero": true,
   "tagline": {
    "en": "To turn every encounter into a memorable experience",
    "ar": "لتحوّل كل لقاء إلى تجربة لا تُنسى",
@@ -2986,6 +3080,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165684-800-800/02.webp?v=639256817878470000",
    "https://wepink.vteximg.com.br/arquivos/ids/165685-800-800/03.webp?v=639256817878930000"
   ],
+  "rank": 48,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the touch of Fatal Black For Her",
    "ar": "تغذية عميقة وتماسك بلمسة فيتال بلاك فور هير",
@@ -3024,6 +3120,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165080-800-800/02.webp?v=639208346773030000",
    "https://wepink.vteximg.com.br/arquivos/ids/165081-800-800/03.webp?v=639208346773500000"
   ],
+  "rank": 49,
+  "hero": true,
   "tagline": {
    "en": "For men who see sophistication as a form of expression",
    "ar": "للرجال الذين يرون في الرقي أسلوباً للتعبير",
@@ -3128,6 +3226,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165176-800-800/04.webp?v=639217005463970000",
    "https://wepink.vteximg.com.br/arquivos/ids/165177-800-800/05.webp?v=639217005463970000"
   ],
+  "rank": 268,
+  "hero": true,
   "tagline": {
    "en": "Turn your bath into a premium ritual.",
    "ar": "حوّلي حمّامك إلى طقس فاخر.",
@@ -3165,6 +3265,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164840-800-800/02.png?v=639161091294170000",
    "https://wepink.vteximg.com.br/arquivos/ids/164841-800-800/03.png?v=639161091294170000"
   ],
+  "rank": 51,
+  "hero": true,
   "tagline": {
    "en": "The perfect union of lush flowers, vibrant fruits and a sophisticated creamy base.",
    "ar": "المزيج المثالي بين زهور غنّاء وفواكه نابضة بالحيوية وقاعدة كريمية راقية.",
@@ -3203,6 +3305,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165111-800-800/03.png?v=639211872061070000",
    "https://wepink.vteximg.com.br/arquivos/ids/165112-800-800/05.png?v=639211872061070000"
   ],
+  "rank": 52,
+  "hero": true,
   "tagline": {
    "en": "A fruity floral amber made for intense nights.",
    "ar": "عطر زهري عنبري بلمسة فاكهية صُمّم لليالٍ مفعمة بالشغف.",
@@ -3288,6 +3392,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164537-800-800/Prancheta-2.webp?v=639173990311230000",
    "https://wepink.vteximg.com.br/arquivos/ids/164538-800-800/Prancheta-1.webp?v=639173990311270000"
   ],
+  "rank": 54,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the authentic touch of pitaya and vanilla.",
    "ar": "تغذية عميقة وشدّ للبشرة مع لمسة أصيلة من فاكهة التنين والفانيليا.",
@@ -3349,6 +3455,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164250-800-800/03.webp?v=639108158091770000",
    "https://wepink.vteximg.com.br/arquivos/ids/164251-800-800/05.webp?v=639108158091930000"
   ],
+  "rank": 55,
+  "hero": true,
   "tagline": {
    "en": "A sophisticated, elegant woody scent that is hard to forget.",
    "ar": "عطر خشبي راقٍ وأنيق يصعب نسيانه.",
@@ -3433,6 +3541,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164189-800-800/Prancheta-5--1-.png?v=639099690826270000",
    "https://wepink.vteximg.com.br/arquivos/ids/164190-800-800/Prancheta-1--1-.png?v=639099690826270000"
   ],
+  "rank": 262,
+  "hero": true,
   "tagline": {
    "en": "A sophisticated, elegant woody scent that is hard to forget.",
    "ar": "عطر خشبي راقٍ وأنيق يصعب نسيانه.",
@@ -3471,6 +3581,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164116-800-800/03.webp?v=639090125144030000",
    "https://wepink.vteximg.com.br/arquivos/ids/164117-800-800/05.webp?v=639090125144200000"
   ],
+  "rank": 56,
+  "hero": true,
   "tagline": {
    "en": "A feminine, sophisticated and naturally striking fruity floral.",
    "ar": "عطر زهري فاكهي أنثوي وراقٍ ولافت بطبيعته.",
@@ -3575,6 +3687,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163537-800-800/03.png?v=639038101580570000",
    "https://wepink.vteximg.com.br/arquivos/ids/163538-800-800/05.png?v=639038101580570000"
   ],
+  "rank": 57,
+  "hero": true,
   "tagline": {
    "en": "Freshness in every petal.",
    "ar": "انتعاش في كل بتلة.",
@@ -3613,6 +3727,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163094-800-800/03.png?v=638996736779600000",
    "https://wepink.vteximg.com.br/arquivos/ids/163095-800-800/05.png?v=638996736779770000"
   ],
+  "rank": 58,
+  "hero": true,
   "tagline": {
    "en": "Unrivaled luxury.",
    "ar": "فخامة لا مثيل لها.",
@@ -3643,6 +3759,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/164874-800-800/kit-vf-golden.png?v=639169458631030000"
   ],
+  "rank": 27,
+  "hero": true,
   "tagline": {
    "en": "The VF Golden line, together in one set.",
    "ar": "مجموعة في إف جولدن مجتمعة في طقم واحد.",
@@ -3680,6 +3798,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161875-800-800/Prancheta-4.webp?v=638987285278500000",
    "https://wepink.vteximg.com.br/arquivos/ids/161876-800-800/Prancheta-5.webp?v=638987285278500000"
   ],
+  "rank": 59,
+  "hero": true,
   "tagline": {
    "en": "Noble hydration for your skin.",
    "ar": "ترطيب ملؤه الفخامة لبشرتك.",
@@ -3740,6 +3860,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163245-800-800/VF-2.webp?v=638999400653770000",
    "https://wepink.vteximg.com.br/arquivos/ids/163246-800-800/VF-1.webp?v=638999400653770000"
   ],
+  "rank": 60,
+  "hero": true,
   "tagline": {
    "en": "The scent of determined, transformative women.",
    "ar": "عبير المرأة الطموحة التي تصنع التغيير.",
@@ -3805,6 +3927,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162782-800-800/161328-1200-auto.webp?v=638991642188970000",
    "https://wepink.vteximg.com.br/arquivos/ids/162783-800-800/161329-1200-auto.webp?v=638991642188970000"
   ],
+  "rank": 61,
+  "hero": true,
   "tagline": {
    "en": "Turn every day into a wonderful bloom.",
    "ar": "اجعلي كل يوم تفتّحًا رائعًا.",
@@ -3875,6 +3999,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160661-800-800/04.jpg.jpg?v=638834452604600000",
    "https://wepink.vteximg.com.br/arquivos/ids/160662-800-800/05.jpg.jpg?v=638834452604600000"
   ],
+  "rank": 62,
+  "hero": true,
   "tagline": {
    "en": "Exude the charm of a joyful scent.",
    "ar": "انثري سحر عبير مفعم بالبهجة.",
@@ -3931,6 +4057,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/159968-800-800/001-copy-3--2-.jpg.jpg?v=638756463247000000",
    "https://wepink.vteximg.com.br/arquivos/ids/159969-800-800/001--2-.jpg.jpg?v=638756463247130000"
   ],
+  "rank": 63,
+  "hero": true,
   "tagline": {
    "en": "Refresh yourself with charm and lightness.",
    "ar": "انتعاش يفيض بالسحر والخفة.",
@@ -3969,6 +4097,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161923-800-800/157848-1200-auto.webp?v=638980723874100000",
    "https://wepink.vteximg.com.br/arquivos/ids/161924-800-800/157846-1200-auto.webp?v=638980723874100000"
   ],
+  "rank": 65,
+  "hero": true,
   "tagline": {
    "en": "A pleasant, nourishing sensory experience for your skin every day.",
    "ar": "تجربة حسية ممتعة ومغذّية لبشرتك كل يوم.",
@@ -4025,6 +4155,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163265-800-800/Infinity-4.webp?v=639144649892630000",
    "https://wepink.vteximg.com.br/arquivos/ids/163266-800-800/Infinity-5.webp?v=639144649892630000"
   ],
+  "rank": 68,
+  "hero": true,
   "tagline": {
    "en": "A manifesto of passion, sweetness and empowerment.",
    "ar": "بيان من الشغف والعذوبة والقوة.",
@@ -4083,6 +4215,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163225-800-800/One-Touch-1.webp?v=638998459341470000",
    "https://wepink.vteximg.com.br/arquivos/ids/163226-800-800/One-Touch-2.webp?v=638998459341500000"
   ],
+  "rank": 69,
+  "hero": true,
   "tagline": {
    "en": "Exude authenticity and power.",
    "ar": "أصالة وقوة تفوح في كل لحظة.",
@@ -4147,6 +4281,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160625-800-800/Perfect-Pear-5.jpg.jpg?v=638828478962070000",
    "https://wepink.vteximg.com.br/arquivos/ids/160626-800-800/Perfect-Pear-3.jpg.jpg?v=638828478962070000"
   ],
+  "rank": 71,
+  "hero": true,
   "tagline": {
    "en": "The sweet freshness of well-being.",
    "ar": "الانتعاش العذب للشعور بالراحة.",
@@ -4199,6 +4335,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164707-800-800/03.webp?v=639156590434700000",
    "https://wepink.vteximg.com.br/arquivos/ids/164708-800-800/05.webp?v=639156590434700000"
   ],
+  "rank": 72,
+  "hero": true,
   "tagline": {
    "en": "Extends the feel-good sensation of your bath and leaves skin scented.",
    "ar": "يطيل إحساس الانتعاش بعد الاستحمام ويترك البشرة معطّرة.",
@@ -4264,6 +4402,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165096-800-800/03.png?v=639211834567830000",
    "https://wepink.vteximg.com.br/arquivos/ids/165097-800-800/05.png?v=639211834567830000"
   ],
+  "rank": 277,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection.",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم.",
@@ -4353,6 +4493,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165481-800-800/Prancheta-2.webp?v=639250806040530000",
    "https://wepink.vteximg.com.br/arquivos/ids/165482-800-800/Prancheta-3.webp?v=639250806040530000"
   ],
+  "rank": 75,
+  "hero": true,
   "tagline": {
    "en": "More lightness, less oil and flawless hair anytime.",
    "ar": "خفة أكبر، ودهون أقل، وشعر مثالي في أي وقت.",
@@ -4387,6 +4529,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165124-800-800/Prancheta-3.png?v=639214543195100000",
    "https://wepink.vteximg.com.br/arquivos/ids/165125-800-800/Prancheta-4.png?v=639214543195100000"
   ],
+  "rank": 76,
+  "hero": true,
   "tagline": {
    "en": "The care your skin deserves, every day.",
    "ar": "العناية التي تستحقها بشرتك، كل يوم.",
@@ -4423,6 +4567,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165051-800-800/05.png?v=639204257561970000",
    "https://wepink.vteximg.com.br/arquivos/ids/165052-800-800/03.png?v=639204257561970000"
   ],
+  "rank": 77,
+  "hero": true,
   "tagline": {
    "en": "Nourishment and firmness with the authentic touch of orchid and amber crystals.",
    "ar": "تغذية وشدّ مع لمسة أصيلة من الأوركيد وبلورات العنبر.",
@@ -4482,6 +4628,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165033-800-800/3.webp?v=639197322479900000",
    "https://wepink.vteximg.com.br/arquivos/ids/165034-800-800/5.webp?v=639197322479900000"
   ],
+  "rank": 78,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the authentic touch of floral oriental.",
    "ar": "تغذية عميقة وشدّ مع لمسة أصيلة من العبير الزهري الشرقي.",
@@ -4521,6 +4669,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164664-800-800/03--2-.webp?v=639263616133200000",
    "https://wepink.vteximg.com.br/arquivos/ids/164665-800-800/05--2-.webp?v=639263616133200000"
   ],
+  "rank": 79,
+  "hero": true,
   "tagline": {
    "en": "The perfect meeting of intensity and sophistication.",
    "ar": "اللقاء المثالي بين القوة والرقي.",
@@ -4607,6 +4757,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165888-800-800/02-_2_.webp?v=639263656168930000",
    "https://wepink.vteximg.com.br/arquivos/ids/165889-800-800/03-_2_.webp?v=639263656168930000"
   ],
+  "rank": 80,
+  "hero": true,
   "tagline": {
    "en": "The perfect meeting of intensity and sophistication.",
    "ar": "اللقاء المثالي بين القوة والرقي.",
@@ -4690,6 +4842,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164901-800-800/05.webp?v=639173868108200000",
    "https://wepink.vteximg.com.br/arquivos/ids/164902-800-800/03.webp?v=639173868108200000"
   ],
+  "rank": 81,
+  "hero": true,
   "tagline": {
    "en": "The fruity floriental that turns delicacy into presence.",
    "ar": "عطر زهري شرقي فاكهي يحوّل الرقة إلى حضور لافت.",
@@ -4767,6 +4921,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164815-800-800/Prancheta-2.webp?v=639156727369970000",
    "https://wepink.vteximg.com.br/arquivos/ids/164816-800-800/Prancheta-1.webp?v=639156727369970000"
   ],
+  "rank": 82,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Wish.",
    "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا ويش.",
@@ -4826,6 +4982,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164805-800-800/Prancheta-2.webp?v=639156725089870000",
    "https://wepink.vteximg.com.br/arquivos/ids/164806-800-800/Prancheta-1.webp?v=639156725090000000"
   ],
+  "rank": 83,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Soft.",
    "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا سوفت.",
@@ -4856,6 +5014,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/164318-800-800/obsessed.webp?v=639125377620730000"
   ],
+  "rank": 53,
+  "hero": true,
   "tagline": {
    "en": "The Obsessed line, together in one set.",
    "ar": "مجموعة أوبسيسد مجتمعة في طقم واحد.",
@@ -4886,6 +5046,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/164317-800-800/heaven-blue.webp?v=639125377364670000"
   ],
+  "rank": 84,
+  "hero": true,
   "tagline": {
    "en": "The Heaven Blue line, together in one set.",
    "ar": "مجموعة هيفن بلو مجتمعة في طقم واحد.",
@@ -4922,6 +5084,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164582-800-800/03--2-.png?v=639153079754800000",
    "https://wepink.vteximg.com.br/arquivos/ids/164583-800-800/04--2-.png?v=639153079754800000"
   ],
+  "rank": 85,
+  "hero": true,
   "tagline": {
    "en": "Oriental elegance in every movement of your hair.",
    "ar": "أناقة شرقية في كل حركة من حركات شعرك.",
@@ -4974,6 +5138,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164292-800-800/03.webp?v=639116871878300000",
    "https://wepink.vteximg.com.br/arquivos/ids/164293-800-800/05.webp?v=639116871878300000"
   ],
+  "rank": 86,
+  "hero": true,
   "tagline": {
    "en": "Where intensity celebrates, sophistication becomes eternal.",
    "ar": "حيث تحتفي الجرأة، ويخلد الرقي.",
@@ -5069,6 +5235,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164255-800-800/Prancheta-2.webp?v=639109354467700000",
    "https://wepink.vteximg.com.br/arquivos/ids/164256-800-800/Prancheta-1.webp?v=639109354467700000"
   ],
+  "rank": 150,
+  "hero": true,
   "tagline": {
    "en": "Where intensity celebrates, sophistication becomes eternal.",
    "ar": "حيث تحتفي الجرأة، ويخلد الرقي.",
@@ -5129,6 +5297,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164184-800-800/Prancheta-4.webp?v=639099601579200000",
    "https://wepink.vteximg.com.br/arquivos/ids/164185-800-800/Prancheta-1.webp?v=639099601579200000"
   ],
+  "rank": 87,
+  "hero": true,
   "tagline": {
    "en": "Luxury and hydration in a single gesture.",
    "ar": "الفخامة والترطيب في لمسة واحدة.",
@@ -5167,6 +5337,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164542-800-800/Prancheta-2.png?v=639149700126270000",
    "https://wepink.vteximg.com.br/arquivos/ids/164543-800-800/Prancheta-1.png?v=639149700126270000"
   ],
+  "rank": 88,
+  "hero": true,
   "tagline": {
    "en": "Masculine presence revealed in an aromatic amber fougère.",
    "ar": "حضور رجولي يتجلّى في عطر فوجير عنبري عطري.",
@@ -5277,6 +5449,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164137-800-800/03.webp?v=639092587563700000",
    "https://wepink.vteximg.com.br/arquivos/ids/164138-800-800/05.webp?v=639092587563700000"
   ],
+  "rank": 89,
+  "hero": true,
   "tagline": {
    "en": "A fruity floral that charms with delicacy and leaves an elegant trail.",
    "ar": "عطر زهري فاكهي يأسر برقّته ويترك أثرًا أنيقًا أينما حلّ.",
@@ -5363,6 +5537,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164487-800-800/03.webp?v=639147088470700000",
    "https://wepink.vteximg.com.br/arquivos/ids/164488-800-800/05.webp?v=639147088470700000"
   ],
+  "rank": 90,
+  "hero": true,
   "tagline": {
    "en": "The fresh fruity floral that is the right choice for you.",
    "ar": "العطر الزهري الفاكهي المنعش الذي يمثّل خيارك الأمثل.",
@@ -5430,6 +5606,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164063-800-800/Prancheta-2.webp?v=639094427958930000",
    "https://wepink.vteximg.com.br/arquivos/ids/164064-800-800/Prancheta-1.webp?v=639094427958930000"
   ],
+  "rank": 91,
+  "hero": true,
   "tagline": {
    "en": "A luminous fruity floral that wraps the skin in elegance and comfort.",
    "ar": "عطر زهري فاكهي مشرق يغلّف البشرة بالأناقة والراحة.",
@@ -5469,6 +5647,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163704-800-800/Feive-Celestial-2.webp?v=639064022762330000",
    "https://wepink.vteximg.com.br/arquivos/ids/163705-800-800/Feive-Celestial-1.webp?v=639064022762500000"
   ],
+  "rank": 92,
+  "hero": true,
   "tagline": {
    "en": "Class, presence and sophistication with the vibrant freshness of elegant flowers.",
    "ar": "رقي وحضور وأناقة مع الانتعاش النابض للزهور الأنيقة.",
@@ -5565,6 +5745,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163715-800-800/03.webp?v=639066051454100000",
    "https://wepink.vteximg.com.br/arquivos/ids/163716-800-800/05.webp?v=639066051454100000"
   ],
+  "rank": 93,
+  "hero": true,
   "tagline": {
    "en": "Class, presence and sophistication with the vibrant freshness of elegant flowers.",
    "ar": "رقي وحضور وأناقة مع الانتعاش النابض للزهور الأنيقة.",
@@ -5660,6 +5842,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164970-800-800/liberte-dore-04.png?v=639209187028770000",
    "https://wepink.vteximg.com.br/arquivos/ids/164971-800-800/liberte-dore-03.png?v=639209187028770000"
   ],
+  "rank": 94,
+  "hero": true,
   "tagline": {
    "en": "The golden light of freedom.",
    "ar": "النور الذهبي للحرية.",
@@ -5698,6 +5882,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163313-800-800/Prancheta-2.webp?v=639099722297970000",
    "https://wepink.vteximg.com.br/arquivos/ids/163314-800-800/Prancheta-1.webp?v=639099722297970000"
   ],
+  "rank": 95,
+  "hero": true,
   "tagline": {
    "en": "The new face of sophistication.",
    "ar": "الوجه الجديد للرقي.",
@@ -5776,6 +5962,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161768-800-800/161588-1200-auto.webp?v=638980638192070000",
    "https://wepink.vteximg.com.br/arquivos/ids/161769-800-800/161589-1200-auto.webp?v=638980638192070000"
   ],
+  "rank": 96,
+  "hero": true,
   "tagline": {
    "en": "Skin as soft as silk.",
    "ar": "بشرة ناعمة كالحرير.",
@@ -5818,6 +6006,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163844-800-800/Feive-Desodorante-Colonia-100ml_5.webp?v=639077116709500000",
    "https://wepink.vteximg.com.br/arquivos/ids/163845-800-800/Feive-Desodorante-Colonia-100ml_6.webp?v=639077116709670000"
   ],
+  "rank": 97,
+  "hero": true,
   "tagline": {
    "en": "The art of perfumery elevated to perfection.",
    "ar": "فن صناعة العطور في أسمى درجات الكمال.",
@@ -5854,6 +6044,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165563-800-800/hair-obsessed-2.jpg?v=639253536694600000",
    "https://wepink.vteximg.com.br/arquivos/ids/165564-800-800/hair-obsessed-1.jpg?v=639253536694770000"
   ],
+  "rank": 98,
+  "hero": true,
   "tagline": {
    "en": "Scented hair with a bold, elegant aroma.",
    "ar": "شعر معطّر بعبير جريء وأنيق.",
@@ -5923,6 +6115,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162194-800-800/Cleanser-Essential-Sabonete-Facial-120ml_5.webp?v=638985677531430000",
    "https://wepink.vteximg.com.br/arquivos/ids/162195-800-800/Cleanser-Essential-Sabonete-Facial-120ml_6.webp?v=638985677531570000"
   ],
+  "rank": 160,
+  "hero": true,
   "tagline": {
    "en": "Essential cleansing for your everyday routine.",
    "ar": "تنظيف أساسي لروتينك اليومي.",
@@ -5960,6 +6154,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162188-800-800/Serum-10-em-1---40ml---Wepink_4.webp?v=638985676790970000",
    "https://wepink.vteximg.com.br/arquivos/ids/162189-800-800/Serum-10-em-1---40ml---Wepink_5.webp?v=638985676791270000"
   ],
+  "rank": 99,
+  "hero": true,
   "tagline": {
    "en": "Brazil's best-loved little pink favorite.",
    "ar": "المفضّل الوردي الأكثر حبًا في البرازيل.",
@@ -5996,6 +6192,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165801-800-800/02--4-.webp?v=639257750807170000",
    "https://wepink.vteximg.com.br/arquivos/ids/165802-800-800/03--4-.webp?v=639257750807170000"
   ],
+  "rank": 100,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -6032,6 +6230,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165848-800-800/02 -2-.webp?v=639260249747630000",
    "https://wepink.vteximg.com.br/arquivos/ids/165849-800-800/03 -1-.webp?v=639260249747630000"
   ],
+  "rank": 101,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -6067,6 +6267,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163896-800-800/161272-1200-auto.webp?v=639153132501370000",
    "https://wepink.vteximg.com.br/arquivos/ids/163897-800-800/161273-1200-auto.webp?v=639153132501500000"
   ],
+  "rank": 102,
+  "hero": true,
   "tagline": {
    "en": "Turn your bath into a premium ritual",
    "ar": "حمّام يتحوّل إلى طقس فاخر",
@@ -6109,6 +6311,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162468-800-800/Obsessed-Intense-Desodorante-Colonia-100ml_2.png?v=639016752707200000",
    "https://wepink.vteximg.com.br/arquivos/ids/162469-800-800/Obsessed-Intense-Desodorante-Colonia-100ml_1.png?v=639016752707200000"
   ],
+  "rank": 103,
+  "hero": true,
   "tagline": {
    "en": "Femininity in its most intense form",
    "ar": "الأنوثة في أشدّ صورها حضوراً",
@@ -6147,6 +6351,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165604-800-800/161189-1200-auto.webp?v=639253539692500000",
    "https://wepink.vteximg.com.br/arquivos/ids/165605-800-800/161191-1200-auto.webp?v=639253539692500000"
   ],
+  "rank": 104,
+  "hero": true,
   "tagline": {
    "en": "Essential repair for healthier hair",
    "ar": "إصلاح أساسي لشعر أكثر صحة",
@@ -6185,6 +6391,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161810-800-800/161184-1200-auto.webp?v=638980686667830000",
    "https://wepink.vteximg.com.br/arquivos/ids/161811-800-800/161185-1200-auto.webp?v=638980686667830000"
   ],
+  "rank": 105,
+  "hero": true,
   "tagline": {
    "en": "Essential cleansing for healthier hair",
    "ar": "تنظيف أساسي لشعر أكثر صحة",
@@ -6223,6 +6431,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160373-800-800/05.jpg.jpg?v=638792892387430000",
    "https://wepink.vteximg.com.br/arquivos/ids/160374-800-800/04.jpg.jpg?v=638792892387430000"
   ],
+  "rank": 106,
+  "hero": true,
   "tagline": {
    "en": "A shining universe of charm and freshness!",
    "ar": "عالم متألّق من السحر والانتعاش!",
@@ -6279,6 +6489,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160445-800-800/one-touch-silk-4.jpg.jpg?v=638814494554030000",
    "https://wepink.vteximg.com.br/arquivos/ids/160446-800-800/one-touch-silk-5.jpg.jpg?v=638814494554030000"
   ],
+  "rank": 107,
+  "hero": true,
   "tagline": {
    "en": "Exude delicacy and sweetness with an enchanting touch",
    "ar": "رقّة وعذوبة بلمسة ساحرة",
@@ -6336,6 +6548,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165642-800-800/Prancheta-2.webp?v=639255935018600000",
    "https://wepink.vteximg.com.br/arquivos/ids/165643-800-800/Prancheta-3.webp?v=639255935018600000"
   ],
+  "rank": 108,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment with heavenly freshness on your skin",
    "ar": "تغذية عميقة وانتعاش سماوي على بشرتك",
@@ -6389,6 +6603,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162834-800-800/159451-1200-auto.webp?v=638991713815200000",
    "https://wepink.vteximg.com.br/arquivos/ids/162835-800-800/159452-1200-auto.webp?v=638991713815200000"
   ],
+  "rank": 109,
+  "hero": true,
   "tagline": {
    "en": "A scent worthy of a rare jewel",
    "ar": "عبير يليق بجوهرة نادرة",
@@ -6452,6 +6668,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162498-800-800/Ruby-Desodorante-Colonia-100ml_4.webp?v=638991665344300000",
    "https://wepink.vteximg.com.br/arquivos/ids/162499-800-800/Ruby-Desodorante-Colonia-100ml_5.webp?v=638991665344430000"
   ],
+  "rank": 110,
+  "hero": true,
   "tagline": {
    "en": "The exclusive charm of a precious essence",
    "ar": "السحر الحصري لجوهر ثمين",
@@ -6509,6 +6727,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163044-800-800/Body-Splash-Lavanda-Serene-Desodorante-Colonia-200ml---Wepink_4.webp?v=638998507399330000",
    "https://wepink.vteximg.com.br/arquivos/ids/163045-800-800/Body-Splash-Lavanda-Serene-Desodorante-Colonia-200ml---Wepink_5.webp?v=638998507399330000"
   ],
+  "rank": 111,
+  "hero": true,
   "tagline": {
    "en": "Renew yourself with a gentle scent",
    "ar": "عبير ناعم يمنحك التجدّد",
@@ -6565,6 +6785,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164090-800-800/Prancheta-3.webp?v=639088374399230000",
    "https://wepink.vteximg.com.br/arquivos/ids/164091-800-800/Prancheta-4.webp?v=639088374399230000"
   ],
+  "rank": 112,
+  "hero": true,
   "tagline": {
    "en": "Essential for clean, healthy, beautiful skin!",
    "ar": "ضرورية لبشرة نظيفة وصحية وجميلة!",
@@ -6603,6 +6825,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164512-800-800/05.webp?v=639147106627500000",
    "https://wepink.vteximg.com.br/arquivos/ids/164513-800-800/03.webp?v=639147106627630000"
   ],
+  "rank": 113,
+  "hero": true,
   "tagline": {
    "en": "Express your free spirit in a radiant essence",
    "ar": "روحك الحرّة في عبير متألّق",
@@ -6679,6 +6903,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165085-800-800/05.webp?v=639210358512200000",
    "https://wepink.vteximg.com.br/arquivos/ids/165086-800-800/03.webp?v=639210358512370000"
   ],
+  "rank": 64,
+  "hero": true,
   "tagline": {
    "en": "The king who masters the art of captivating everyone",
    "ar": "الملك الذي يُتقن فنّ أسر الجميع",
@@ -6742,6 +6968,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161907-800-800/157866-1200-auto.webp?v=638980720501500000",
    "https://wepink.vteximg.com.br/arquivos/ids/161908-800-800/157864-1200-auto.webp?v=638980720501500000"
   ],
+  "rank": 114,
+  "hero": true,
   "tagline": {
    "en": "A special touch of care and well-being for every day",
    "ar": "لمسة مميّزة من العناية والراحة لكل يوم",
@@ -6794,6 +7022,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160991-800-800/03.jpg?v=638883574146870000",
    "https://wepink.vteximg.com.br/arquivos/ids/160992-800-800/05.jpg?v=638883574146870000"
   ],
+  "rank": 116,
+  "hero": true,
   "tagline": {
    "en": "Exude power and well-being",
    "ar": "عبير يفيض بالقوة والراحة",
@@ -6846,6 +7076,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161859-800-800/Prancheta-4--2-.webp?v=638987291686300000",
    "https://wepink.vteximg.com.br/arquivos/ids/161860-800-800/Prancheta-3--1-.webp?v=638987291686300000"
   ],
+  "rank": 117,
+  "hero": true,
   "tagline": {
    "en": "The perfect balance of care and well-being for every day",
    "ar": "توازن مثالي بين العناية والراحة لكل يوم",
@@ -6882,6 +7114,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163197-800-800/3.webp?v=638997645545370000",
    "https://wepink.vteximg.com.br/arquivos/ids/163198-800-800/5.webp?v=638997645545770000"
   ],
+  "rank": 118,
+  "hero": true,
   "tagline": {
    "en": "The mystery that awakens irresistible desire",
    "ar": "غموض يوقظ رغبة لا تُقاوم",
@@ -6971,6 +7205,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161846-800-800/005.webp?v=638980699295830000",
    "https://wepink.vteximg.com.br/arquivos/ids/161847-800-800/002.webp?v=638980699296000000"
   ],
+  "rank": 119,
+  "hero": true,
   "tagline": {
    "en": "Hydration full of confidence, seduction and passion",
    "ar": "ترطيب يفيض بالثقة والجاذبية والشغف",
@@ -7009,6 +7245,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160283-800-800/borboun-caixa-aberta-2.jpg.jpg?v=638823070779900000",
    "https://wepink.vteximg.com.br/arquivos/ids/160284-800-800/caixa-bourbon.jpg.jpg?v=638786805453530000"
   ],
+  "rank": 120,
+  "hero": true,
   "tagline": {
    "en": "An exclusive, sophisticated toast to the senses",
    "ar": "تحية حصرية وراقية للحواس",
@@ -7064,6 +7302,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162989-800-800/Body-Splash-My-Trip-Three-Desodorante-Colonia-200ml---Wepink_6.webp?v=639143764313330000",
    "https://wepink.vteximg.com.br/arquivos/ids/162990-800-800/Body-Splash-My-Trip-Three-Desodorante-Colonia-200ml---Wepink_7.webp?v=639143764313330000"
   ],
+  "rank": 121,
+  "hero": true,
   "tagline": {
    "en": "Baby, rock your trip!",
    "ar": "تألّقي في رحلتك يا عزيزتي!",
@@ -7126,6 +7366,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160030-800-800/gold-4.jpg.jpg?v=638918959857200000",
    "https://wepink.vteximg.com.br/arquivos/ids/160031-800-800/gold-5.jpg.jpg?v=638918959857200000"
   ],
+  "rank": 122,
+  "hero": true,
   "tagline": {
    "en": "The scent that radiates the finest magnetism",
    "ar": "عبير يتألّق بجاذبية آسرة",
@@ -7182,6 +7424,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162935-800-800/158358-1200-auto.webp?v=638991768149570000",
    "https://wepink.vteximg.com.br/arquivos/ids/162936-800-800/158356-1200-auto.webp?v=638991768149730000"
   ],
+  "rank": 123,
+  "hero": true,
   "tagline": {
    "en": "A final note of well-being and shine",
    "ar": "نفحة ختامية من الراحة والتألّق",
@@ -7228,6 +7472,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164702-800-800/01.webp?v=639156586892670000",
    "https://wepink.vteximg.com.br/arquivos/ids/164703-800-800/03.webp?v=639156586892830000"
   ],
+  "rank": 124,
+  "hero": true,
   "tagline": {
    "en": "A mysterious, enchanting scent for well-being",
    "ar": "عبير غامض وساحر للراحة",
@@ -7282,6 +7528,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160553-800-800/vf-bloom-2.jpg.jpg?v=638822664318700000",
    "https://wepink.vteximg.com.br/arquivos/ids/160554-800-800/vf-bloom-5.jpg.jpg?v=638822664318700000"
   ],
+  "rank": 125,
+  "hero": true,
   "tagline": {
    "en": "Beauty in the subtle blossoming of a scent",
    "ar": "الجمال في تفتّح العبير الرقيق",
@@ -7344,6 +7592,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161750-800-800/159935-1200-auto.webp?v=638980612897030000",
    "https://wepink.vteximg.com.br/arquivos/ids/161751-800-800/159936-1200-auto.webp?v=638980612897030000"
   ],
+  "rank": 126,
+  "hero": true,
   "tagline": {
    "en": "Celebrate the extraordinary in life with a unique scent",
    "ar": "احتفاء بروعة الحياة في عبير فريد",
@@ -7407,6 +7657,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161901-800-800/157879-1200-auto.webp?v=638980720215130000",
    "https://wepink.vteximg.com.br/arquivos/ids/161902-800-800/157877-1200-auto.webp?v=638980720215130000"
   ],
+  "rank": 127,
+  "hero": true,
   "tagline": {
    "en": "Awaken the best hydration for your skin",
    "ar": "أفضل ترطيب يوقظ بشرتك",
@@ -7461,6 +7713,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162321-800-800/158046-1200-auto.webp?v=638986071966030000",
    "https://wepink.vteximg.com.br/arquivos/ids/162322-800-800/158047-1200-auto.webp?v=638986071966030000"
   ],
+  "rank": 128,
+  "hero": true,
   "tagline": {
    "en": "A heady elixir that will envelop you",
    "ar": "إكسير آسر يغمرك بعبيره",
@@ -7508,6 +7762,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164693-800-800/03.webp?v=639156582995200000",
    "https://wepink.vteximg.com.br/arquivos/ids/164694-800-800/05.webp?v=639156582995370000"
   ],
+  "rank": 129,
+  "hero": true,
   "tagline": {
    "en": "A radiant fragrance that awakens desire and sophistication",
    "ar": "عطر متألّق يوقظ الرغبة والرقيّ",
@@ -7546,6 +7802,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165657-800-800/Prancheta-2--4-.webp?v=639257551299870000",
    "https://wepink.vteximg.com.br/arquivos/ids/165658-800-800/Prancheta-3--4-.webp?v=639257551299870000"
   ],
+  "rank": 134,
+  "hero": true,
   "tagline": {
    "en": "The perfect union of juicy fruits and enveloping hydration",
    "ar": "اتحاد مثالي بين عصارة الفواكه والترطيب الغامر",
@@ -7583,6 +7841,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165533-800-800/Prancheta-1.webp?v=639256234661670000",
    "https://wepink.vteximg.com.br/arquivos/ids/165534-800-800/Prancheta-2.webp?v=639256234661670000"
   ],
+  "rank": 135,
+  "hero": true,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Heaven Blue",
    "ar": "قوام الكريمة المخفوقة بعبير هيفن بلو",
@@ -7622,6 +7882,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165012-800-800/Prancheta-5.webp?v=639198075209870000",
    "https://wepink.vteximg.com.br/arquivos/ids/165013-800-800/Prancheta-3.webp?v=639198075210030000"
   ],
+  "rank": 140,
+  "hero": true,
   "tagline": {
    "en": "A fragrance for women who light up everything around them",
    "ar": "عطر للمرأة التي تضيء كل ما حولها",
@@ -7658,6 +7920,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165448-800-800/Prancheta-2.webp?v=639250804171370000",
    "https://wepink.vteximg.com.br/arquivos/ids/165449-800-800/Prancheta-3.webp?v=639250804171370000"
   ],
+  "rank": 141,
+  "hero": true,
   "tagline": {
    "en": "A self-care ritual that goes beyond the bath",
    "ar": "طقس عناية ذاتية يتجاوز حدود الاستحمام",
@@ -7709,6 +7973,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165776-800-800/02--3-.webp?v=639259409413900000",
    "https://wepink.vteximg.com.br/arquivos/ids/165777-800-800/03--3-.webp?v=639259409413900000"
   ],
+  "rank": 142,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -7739,6 +8005,7 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/165984-800-800/kit_fatal_black.webp?v=639271420768630000"
   ],
+  "hero": true,
   "tagline": {
    "en": "The Fatal Black For Her line, together in one set",
    "ar": "مجموعة فيتال بلاك فور هير في طقم واحد",
@@ -7773,6 +8040,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165120-800-800/Prancheta-3.png?v=639214541946330000",
    "https://wepink.vteximg.com.br/arquivos/ids/165121-800-800/Prancheta-4.png?v=639214541946330000"
   ],
+  "rank": 143,
+  "hero": true,
   "tagline": {
    "en": "The care your skin deserves, every day",
    "ar": "العناية التي تستحقها بشرتك كل يوم",
@@ -7818,6 +8087,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164810-800-800/Prancheta-2.webp?v=639156725452030000",
    "https://wepink.vteximg.com.br/arquivos/ids/164811-800-800/Prancheta-1.webp?v=639156725452030000"
   ],
+  "rank": 144,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the cozy embrace of Vanilla Hope",
    "ar": "تغذية عميقة وتماسك في احتضان فانيلا هوب الدافئ",
@@ -7855,6 +8126,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164547-800-800/Prancheta-2.webp?v=639148942865930000",
    "https://wepink.vteximg.com.br/arquivos/ids/164548-800-800/Prancheta-1.webp?v=639148942865930000"
   ],
+  "rank": 145,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the cozy embrace of Vanilla Dream",
    "ar": "تغذية عميقة وتماسك في احتضان فانيلا دريم الدافئ",
@@ -7908,6 +8181,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/164879-800-800/01.png?v=639171161324230000"
   ],
+  "rank": 293,
+  "hero": true,
   "tagline": {
    "en": "A citrus and floral burst for protected, shiny, unforgettable hair",
    "ar": "انفجار حمضي وزهري لشعر محميّ ولامع لا يُنسى",
@@ -7974,6 +8249,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/164880-800-800/01--1-.png?v=639171215315830000"
   ],
+  "rank": 146,
+  "hero": true,
   "tagline": {
    "en": "The sophistication of Arabian jasmine in every movement of your hair",
    "ar": "رقيّ الياسمين العربي في كل حركة لشعرك",
@@ -8030,6 +8307,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/164878-800-800/01--2-.png?v=639171159405100000"
   ],
+  "rank": 147,
+  "hero": true,
   "tagline": {
    "en": "The delicacy of pear and violet in a mist of shine and protection",
    "ar": "رقّة الكمثرى والبنفسج في رذاذ من اللمعان والحماية",
@@ -8076,6 +8355,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164225-800-800/5.webp?v=639107447205470000",
    "https://wepink.vteximg.com.br/arquivos/ids/164226-800-800/1.webp?v=639107447205470000"
   ],
+  "rank": 148,
+  "hero": true,
   "tagline": {
    "en": "The luminous freshness of summer with irresistible sweetness",
    "ar": "انتعاش الصيف المشرق بحلاوة لا تُقاوم",
@@ -8114,6 +8395,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164220-800-800/5--1-.webp?v=639107449263400000",
    "https://wepink.vteximg.com.br/arquivos/ids/164221-800-800/1--1-.webp?v=639107449263400000"
   ],
+  "rank": 149,
+  "hero": true,
   "tagline": {
    "en": "Tropical intensity with enveloping sophistication",
    "ar": "شغف استوائي برقيّ آسر",
@@ -8150,6 +8433,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164397-800-800/Prancheta-2--4-.webp?v=639142652759100000",
    "https://wepink.vteximg.com.br/arquivos/ids/164398-800-800/Prancheta-1--4-.webp?v=639142652759100000"
   ],
+  "rank": 151,
+  "hero": true,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Dream",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا دريم",
@@ -8208,6 +8493,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164387-800-800/Prancheta-2--3-.webp?v=639148899667600000",
    "https://wepink.vteximg.com.br/arquivos/ids/164388-800-800/Prancheta-1--3-.webp?v=639148899667730000"
   ],
+  "rank": 152,
+  "hero": true,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Soft",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا سوفت",
@@ -8259,6 +8546,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164392-800-800/Prancheta-2--2-.webp?v=639148900029930000",
    "https://wepink.vteximg.com.br/arquivos/ids/164393-800-800/Prancheta-1--2-.webp?v=639148900029930000"
   ],
+  "rank": 153,
+  "hero": true,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Wish",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا ويش",
@@ -8297,6 +8586,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164058-800-800/Prancheta-2--1-.webp?v=639094427272400000",
    "https://wepink.vteximg.com.br/arquivos/ids/164059-800-800/Prancheta-1--1-.webp?v=639094427272400000"
   ],
+  "rank": 154,
+  "hero": true,
   "tagline": {
    "en": "A fruity floral that enchants with delicacy and leaves an elegant trail",
    "ar": "عطر زهري فاكهي يأسر برقّته ويترك أثراً أنيقاً أينما حلّ",
@@ -8347,6 +8638,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163683-800-800/5.webp?v=639063168045370000",
    "https://wepink.vteximg.com.br/arquivos/ids/163684-800-800/3.webp?v=639063168045370000"
   ],
+  "rank": 155,
+  "hero": true,
   "tagline": {
    "en": "A touch of glow for every moment!",
    "ar": "لمسة من التوهّج لكل اللحظات!",
@@ -8385,6 +8678,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163606-800-800/2--2-.webp?v=639042446265270000",
    "https://wepink.vteximg.com.br/arquivos/ids/163607-800-800/1--2-.webp?v=639042446265270000"
   ],
+  "rank": 156,
+  "hero": true,
   "tagline": {
    "en": "Hydration that goes beyond!",
    "ar": "ترطيب يتجاوز المألوف!",
@@ -8422,6 +8717,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163473-800-800/05.webp?v=639016654477430000",
    "https://wepink.vteximg.com.br/arquivos/ids/163474-800-800/03.webp?v=639016654477570000"
   ],
+  "rank": 157,
+  "hero": true,
   "tagline": {
    "en": "You are worth gold!",
    "ar": "قيمتك من ذهب!",
@@ -8460,6 +8757,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164872-800-800/Prancheta-5.png?v=639181622427400000",
    "https://wepink.vteximg.com.br/arquivos/ids/164873-800-800/Prancheta-1.png?v=639181622427400000"
   ],
+  "rank": 158,
+  "hero": true,
   "tagline": {
    "en": "Fabulously distinctive",
    "ar": "تميّز مذهل بكل تفاصيله",
@@ -8525,6 +8824,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165578-800-800/hair-heaven-2.jpg?v=639253537640870000",
    "https://wepink.vteximg.com.br/arquivos/ids/165579-800-800/hair-heaven-1.jpg?v=639253537640870000"
   ],
+  "rank": 159,
+  "hero": true,
   "tagline": {
    "en": "A heavenly scent for your hair",
    "ar": "عبير سماوي لشعرك",
@@ -8575,6 +8876,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165573-800-800/hair-liberte-2.jpg?v=639253537553500000",
    "https://wepink.vteximg.com.br/arquivos/ids/165574-800-800/hair-liberte-1.jpg?v=639253537553670000"
   ],
+  "rank": 161,
+  "hero": true,
   "tagline": {
    "en": "A shine full of nobility for your hair",
    "ar": "لمعان يفيض بالرقيّ لشعرك",
@@ -8632,6 +8935,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165806-800-800/02--5-.webp?v=639257750901230000",
    "https://wepink.vteximg.com.br/arquivos/ids/165807-800-800/03--5-.webp?v=639257750901230000"
   ],
+  "rank": 162,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -8670,6 +8975,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163241-800-800/Wonbloom-2.webp?v=639046226921470000",
    "https://wepink.vteximg.com.br/arquivos/ids/163242-800-800/Wonbloom-1.webp?v=639046226921470000"
   ],
+  "rank": 163,
+  "hero": true,
   "tagline": {
    "en": "Turn every day into a wonderful blossoming",
    "ar": "اجعلي كل يوم تفتّحاً مذهلاً",
@@ -8741,6 +9048,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163850-800-800/161306-1200-auto.webp?v=639077119013670000",
    "https://wepink.vteximg.com.br/arquivos/ids/163851-800-800/161307-1200-auto.webp?v=639077119013670000"
   ],
+  "rank": 164,
+  "hero": true,
   "tagline": {
    "en": "Every princess deserves her fairy tale in a fragrance",
    "ar": "كل أميرة تستحق حكايتها الخيالية في عطر",
@@ -8820,6 +9129,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163862-800-800/02.webp?v=639077121772200000",
    "https://wepink.vteximg.com.br/arquivos/ids/163863-800-800/01.webp?v=639077121772200000"
   ],
+  "rank": 165,
+  "hero": true,
   "tagline": {
    "en": "Turn any moment into an adventure",
    "ar": "حوّل كل لحظة إلى مغامرة",
@@ -8885,6 +9196,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161250-800-800/03.png?v=638913977652430000",
    "https://wepink.vteximg.com.br/arquivos/ids/161251-800-800/05.png?v=638913977652600000"
   ],
+  "rank": 166,
+  "hero": true,
   "tagline": {
    "en": "Surrender to desire",
    "ar": "استسلمي للرغبة",
@@ -8950,6 +9263,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161949-800-800/161063-1200-auto.webp?v=638980733587200000",
    "https://wepink.vteximg.com.br/arquivos/ids/161950-800-800/161064-1200-auto.webp?v=638980733587430000"
   ],
+  "rank": 167,
+  "hero": true,
   "tagline": {
    "en": "Feel the elegance of a classic",
    "ar": "اشعر بأناقة العطر الكلاسيكي",
@@ -9000,6 +9315,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161778-800-800/161068-1200-auto.webp?v=638980648532400000",
    "https://wepink.vteximg.com.br/arquivos/ids/161779-800-800/161069-1200-auto.webp?v=638980648532400000"
   ],
+  "rank": 168,
+  "hero": true,
   "tagline": {
    "en": "For the most powerful piece in the game: you!",
    "ar": "لأقوى قطعة في اللعبة: أنتِ!",
@@ -9100,6 +9417,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161831-800-800/161148-1200-auto.webp?v=638980698415900000",
    "https://wepink.vteximg.com.br/arquivos/ids/161832-800-800/161149-1200-auto.webp?v=638980698415900000"
   ],
+  "rank": 169,
+  "hero": true,
   "tagline": {
    "en": "Essential restoration for healthier hair",
    "ar": "ترميم أساسي لشعر أكثر صحة",
@@ -9137,6 +9456,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160630-800-800/Lion-Blanc-4.jpg.jpg?v=638836552065930000",
    "https://wepink.vteximg.com.br/arquivos/ids/160631-800-800/Lion-Blanc-5.jpg.jpg?v=638836552065930000"
   ],
+  "rank": 170,
+  "hero": true,
   "tagline": {
    "en": "The strength and elegance of those who never give up",
    "ar": "قوة وأناقة من لا يستسلم أبداً",
@@ -9191,6 +9512,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165781-800-800/02--8-.webp?v=639259390190270000",
    "https://wepink.vteximg.com.br/arquivos/ids/165782-800-800/03--8-.webp?v=639259390190270000"
   ],
+  "rank": 171,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -9229,6 +9552,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162824-800-800/159483-1200-auto.webp?v=638991708616030000",
    "https://wepink.vteximg.com.br/arquivos/ids/162825-800-800/159484-1200-auto.webp?v=638991708616030000"
   ],
+  "rank": 172,
+  "hero": true,
   "tagline": {
    "en": "Your favorite gift is here!",
    "ar": "وصلت هديتك المفضّلة!",
@@ -9278,6 +9603,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162958-800-800/159462-1200-auto.webp?v=638991786719230000",
    "https://wepink.vteximg.com.br/arquivos/ids/162959-800-800/159463-1200-auto.webp?v=638991786719230000"
   ],
+  "rank": 173,
+  "hero": true,
   "tagline": {
    "en": "The perfect scent for new beginnings!",
    "ar": "العبير المثالي للبدايات الجديدة!",
@@ -9339,6 +9666,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165761-800-800/02--5-.webp?v=639257717938000000",
    "https://wepink.vteximg.com.br/arquivos/ids/165762-800-800/03--5-.webp?v=639257717938000000"
   ],
+  "rank": 174,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -9385,6 +9714,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163372-800-800/Prancheta-8.webp?v=639005429328070000",
    "https://wepink.vteximg.com.br/arquivos/ids/163373-800-800/Prancheta-9.webp?v=639005429328070000"
   ],
+  "rank": 175,
+  "hero": true,
   "tagline": {
    "en": "A gentle scent for sweet dreams",
    "ar": "عبير ناعم لأحلام سعيدة",
@@ -9443,6 +9774,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162342-800-800/161016-1200-auto.webp?v=638986082591000000",
    "https://wepink.vteximg.com.br/arquivos/ids/162343-800-800/161017-1200-auto.webp?v=638986082591000000"
   ],
+  "rank": 176,
+  "hero": true,
   "tagline": {
    "en": "A powerful, unforgettable sense of well-being!",
    "ar": "إحساس قوي بالرفاهية لا يُنسى!",
@@ -9505,6 +9838,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165968-800-800/02.webp?v=639270861468470000",
    "https://wepink.vteximg.com.br/arquivos/ids/165969-800-800/03.webp?v=639270861468470000"
   ],
+  "rank": 177,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -9541,6 +9876,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162085-800-800/Protetor-Solar-FPS-50-Suncare-30ml_4.webp?v=638985682890900000",
    "https://wepink.vteximg.com.br/arquivos/ids/162086-800-800/Protetor-Solar-FPS-50-Suncare-30ml_5.webp?v=638985682891070000"
   ],
+  "rank": 178,
+  "hero": true,
   "tagline": {
    "en": "The most complete sun protection for your skin",
    "ar": "الحماية الأشمل من الشمس لبشرتك",
@@ -9577,6 +9914,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162572-800-800/158492-1200-auto.webp?v=638987226980830000",
    "https://wepink.vteximg.com.br/arquivos/ids/162573-800-800/158489-1200-auto.webp?v=638987226980830000"
   ],
+  "rank": 179,
+  "hero": true,
   "tagline": {
    "en": "The best lip tint of all time",
    "ar": "أفضل صبغة شفاه على الإطلاق",
@@ -9607,6 +9946,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/166060-800-800/bomb-one---bc-e-bs-rhodolite.png?v=639272258063400000"
   ],
+  "rank": 131,
+  "hero": true,
   "tagline": {
    "en": "Bomb One paired with Ruby Rhodolite Body Splash and Body Cream",
    "ar": "طقم يجمع بومب ون مع بخاخ الجسم وكريم الجسم روبي رودولايت",
@@ -9637,6 +9978,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/166062-800-800/bomb-one---fantasy_--3-.webp?v=639273255030000000"
   ],
+  "rank": 132,
+  "hero": true,
   "tagline": {
    "en": "Bomb One paired with Fantasy Kids Green",
    "ar": "طقم يجمع بومب ون مع فانتاسي كيدز جرين",
@@ -9667,6 +10010,7 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/165989-800-800/kit-eternal.webp?v=639273255615730000"
   ],
+  "hero": true,
   "tagline": {
    "en": "The Eternal Cherish collection in one set",
    "ar": "مجموعة إيترنال تشيريش في طقم واحد",
@@ -9697,6 +10041,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/165988-800-800/kit-scarlette.webp?v=639273254792500000"
   ],
+  "rank": 133,
+  "hero": true,
   "tagline": {
    "en": "The Scarlette Radiance collection in one set",
    "ar": "مجموعة سكارليت راديانس في طقم واحد",
@@ -9734,6 +10080,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165896-800-800/Prancheta 2 -7-.png?v=639263718176330000",
    "https://wepink.vteximg.com.br/arquivos/ids/165897-800-800/Prancheta 3 -7-.png?v=639263718176330000"
   ],
+  "rank": 182,
+  "hero": true,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Liberté Exclusif",
    "ar": "قوام الكريمة المخفوقة بعبير ليبرتيه إكسكلوسيف",
@@ -9785,6 +10133,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165843-800-800/02 -3-.webp?v=639260248749170000",
    "https://wepink.vteximg.com.br/arquivos/ids/165844-800-800/03 -2-.webp?v=639260248749330000"
   ],
+  "rank": 183,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -9821,6 +10171,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165234-800-800/5.webp?v=639219617847170000",
    "https://wepink.vteximg.com.br/arquivos/ids/165235-800-800/3.webp?v=639219617847630000"
   ],
+  "rank": 185,
+  "hero": true,
   "tagline": {
    "en": "Magnetism isn't explained, it's felt",
    "ar": "الجاذبية لا تُفسَّر، بل تُحَسّ",
@@ -9884,6 +10236,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165038-800-800/Prancheta-5.webp?v=639201400509670000",
    "https://wepink.vteximg.com.br/arquivos/ids/165039-800-800/Prancheta-3.webp?v=639201400509670000"
   ],
+  "rank": 186,
+  "hero": true,
   "tagline": {
    "en": "For men who make their choices with confidence",
    "ar": "للرجال الذين يتخذون قراراتهم بثقة",
@@ -9985,6 +10339,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165128-800-800/3.webp?v=639214542327000000",
    "https://wepink.vteximg.com.br/arquivos/ids/165129-800-800/4.webp?v=639214542327000000"
   ],
+  "rank": 187,
+  "hero": true,
   "tagline": {
    "en": "The care your skin deserves, every day",
    "ar": "العناية التي تستحقها بشرتك، كل يوم",
@@ -10019,6 +10375,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165132-800-800/3--2-.webp?v=639215225129500000",
    "https://wepink.vteximg.com.br/arquivos/ids/165133-800-800/4--2-.webp?v=639215225129630000"
   ],
+  "rank": 188,
+  "hero": true,
   "tagline": {
    "en": "The care your skin deserves, every day",
    "ar": "العناية التي تستحقها بشرتك، كل يوم",
@@ -10057,6 +10415,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164861-800-800/5v.png?v=639166197182330000",
    "https://wepink.vteximg.com.br/arquivos/ids/164862-800-800/3.png?v=639166197182330000"
   ],
+  "rank": 190,
+  "hero": true,
   "tagline": {
    "en": "The perfect balance of freshness and sophistication",
    "ar": "التوازن المثالي بين الانتعاش والرقيّ",
@@ -10093,6 +10453,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164402-800-800/Prancheta-2--5-.webp?v=639148899567570000",
    "https://wepink.vteximg.com.br/arquivos/ids/164403-800-800/Prancheta-1--5-.webp?v=639148899567730000"
   ],
+  "rank": 191,
+  "hero": true,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Cuddle",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا كادل",
@@ -10153,6 +10515,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164609-800-800/02.png?v=639153106565230000",
    "https://wepink.vteximg.com.br/arquivos/ids/164610-800-800/03.png?v=639153106565230000"
   ],
+  "rank": 192,
+  "hero": true,
   "tagline": {
    "en": "The sophistication of turning confidence into presence",
    "ar": "رقيّ من يحوّل الثقة إلى حضور",
@@ -10256,6 +10620,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165878-800-800/02 -9-.webp?v=639260262102970000",
    "https://wepink.vteximg.com.br/arquivos/ids/165879-800-800/03 -8-.webp?v=639260262102970000"
   ],
+  "rank": 193,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -10316,6 +10682,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164339-800-800/03.webp?v=639129719764630000",
    "https://wepink.vteximg.com.br/arquivos/ids/164340-800-800/05.webp?v=639129719764630000"
   ],
+  "rank": 194,
+  "hero": true,
   "tagline": {
    "en": "Tropical intensity with an enveloping sophistication",
    "ar": "حيوية استوائية برقيّ آسر",
@@ -10389,6 +10757,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164377-800-800/Prancheta-2--1-.webp?v=639148899931430000",
    "https://wepink.vteximg.com.br/arquivos/ids/164378-800-800/Prancheta-1--1-.webp?v=639148899931430000"
   ],
+  "rank": 195,
+  "hero": true,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Hope",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا هوب",
@@ -10442,6 +10812,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164360-800-800/Prancheta-2.webp?v=639133159256800000",
    "https://wepink.vteximg.com.br/arquivos/ids/164361-800-800/Prancheta-1.webp?v=639133159256970000"
   ],
+  "rank": 196,
+  "hero": true,
   "tagline": {
    "en": "A floral oriental scent of possibilities",
    "ar": "عبير زهري شرقي مليء بالاحتمالات",
@@ -10498,6 +10870,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164179-800-800/Prancheta-2.png?v=639110239394300000",
    "https://wepink.vteximg.com.br/arquivos/ids/164180-800-800/Prancheta-1.png?v=639110239394300000"
   ],
+  "rank": 197,
+  "hero": true,
   "tagline": {
    "en": "The perfect balance of citrus freshness and woody depth",
    "ar": "التوازن المثالي بين انتعاش الحمضيات وعمق الأخشاب",
@@ -10558,6 +10932,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163720-800-800/03.webp?v=639066052788870000",
    "https://wepink.vteximg.com.br/arquivos/ids/163721-800-800/05.webp?v=639066052788870000"
   ],
+  "rank": 198,
+  "hero": true,
   "tagline": {
    "en": "A daily invitation to fruity floral sophistication",
    "ar": "دعوة يومية إلى رقيّ العبير الزهري الفاكهي",
@@ -10658,6 +11034,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163942-800-800/Serum_PDRN-1.webp?v=639082435681670000",
    "https://wepink.vteximg.com.br/arquivos/ids/163943-800-800/Serum_PDRN-6.webp?v=639082435681670000"
   ],
+  "rank": 199,
+  "hero": true,
   "tagline": {
    "en": "The care your skin needs",
    "ar": "العناية التي تحتاجها بشرتك",
@@ -10694,6 +11072,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163384-800-800/Prancheta-2--1-.webp?v=639006198723500000",
    "https://wepink.vteximg.com.br/arquivos/ids/163385-800-800/Prancheta-1--1-.webp?v=639006198723500000"
   ],
+  "rank": 200,
+  "hero": true,
   "tagline": {
    "en": "A crystal-clear breath of serenity",
    "ar": "نسمة صافية من السكينة",
@@ -10756,6 +11136,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163467-800-800/Prancheta-5.webp?v=639015056906200000",
    "https://wepink.vteximg.com.br/arquivos/ids/163468-800-800/Prancheta-1.webp?v=639015056906200000"
   ],
+  "rank": 201,
+  "hero": true,
   "tagline": {
    "en": "A roar of love!",
    "ar": "زئير من الحب!",
@@ -10830,6 +11212,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161763-800-800/161517-1200-auto.webp?v=638980628975400000",
    "https://wepink.vteximg.com.br/arquivos/ids/161764-800-800/161518-1200-auto.webp?v=638980628975400000"
   ],
+  "rank": 202,
+  "hero": true,
   "tagline": {
    "en": "Celebrate the light that shines within you",
    "ar": "احتفلي بالنور الذي يشعّ في داخلك",
@@ -10918,6 +11302,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165796-800-800/02--2-.webp?v=639257750738270000",
    "https://wepink.vteximg.com.br/arquivos/ids/165797-800-800/03--2-.webp?v=639257750738270000"
   ],
+  "rank": 203,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -10957,6 +11343,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163935-800-800/161556-1200-auto.webp?v=639082408587100000",
    "https://wepink.vteximg.com.br/arquivos/ids/163936-800-800/161557-1600-auto.webp?v=639082408587200000"
   ],
+  "rank": 204,
+  "hero": true,
   "tagline": {
    "en": "Dive into this mystical world",
    "ar": "انغمس في هذا العالم الغامض الساحر",
@@ -11020,6 +11408,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161231-800-800/red-obsidian-3.jpg?v=638911583033200000",
    "https://wepink.vteximg.com.br/arquivos/ids/161232-800-800/red-obsidian-5.jpg?v=638911583033200000"
   ],
+  "rank": 205,
+  "hero": true,
   "tagline": {
    "en": "A touch of luxury for those who know what they want",
    "ar": "لمسة من الفخامة لمن يعرف ما يريد",
@@ -11081,6 +11471,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165731-800-800/02--2-.webp?v=639259411277200000",
    "https://wepink.vteximg.com.br/arquivos/ids/165732-800-800/03--2-.webp?v=639259411277200000"
   ],
+  "rank": 206,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection.",
    "ar": "عنايتك اليومية، وحمايتك التي لا تقاوم.",
@@ -11117,6 +11509,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/159900-800-800/wefemme--3-.jpg.jpg?v=638755052548630000",
    "https://wepink.vteximg.com.br/arquivos/ids/159901-800-800/wefemme--2-.jpg.jpg?v=638755052548630000"
   ],
+  "rank": 207,
+  "hero": true,
   "tagline": {
    "en": "Daily cleansing full of protection and freshness!",
    "ar": "تنظيف يومي مفعم بالحماية والانتعاش!",
@@ -11154,6 +11548,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160078-800-800/hydracare-3.jpg.jpg?v=638762572923930000",
    "https://wepink.vteximg.com.br/arquivos/ids/160079-800-800/hydracare-4.jpg.jpg?v=638762572923930000"
   ],
+  "rank": 209,
+  "hero": true,
   "tagline": {
    "en": "The moisturizing touch your skincare routine was missing!",
    "ar": "لمسة الترطيب التي كان يفتقدها روتين العناية ببشرتك!",
@@ -11189,6 +11585,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165191-800-800/Prancheta-3.webp?v=639231788228100000",
    "https://wepink.vteximg.com.br/arquivos/ids/165192-800-800/Prancheta-4.webp?v=639231788228100000"
   ],
+  "rank": 210,
+  "hero": true,
   "tagline": {
    "en": "Turn your bath into a premium ritual",
    "ar": "حوّلي استحمامك إلى طقس فاخر",
@@ -11254,6 +11652,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163187-800-800/3--3-.webp?v=638998474825500000",
    "https://wepink.vteximg.com.br/arquivos/ids/163188-800-800/5--1-.webp?v=638998474825500000"
   ],
+  "rank": 211,
+  "hero": true,
   "tagline": {
    "en": "Awaken the flame of desire",
    "ar": "أيقظ شعلة الرغبة",
@@ -11317,6 +11717,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162592-800-800/158484-1200-auto.webp?v=638987231878300000",
    "https://wepink.vteximg.com.br/arquivos/ids/162593-800-800/158481-1200-auto.webp?v=638987231878300000"
   ],
+  "rank": 212,
+  "hero": true,
   "tagline": {
    "en": "The essential precision to make your eyes stand out",
    "ar": "الدقة الأساسية لإبراز جمال عينيك",
@@ -11354,6 +11756,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164741-800-800/Prancheta-1.webp?v=639186735393270000",
    "https://wepink.vteximg.com.br/arquivos/ids/164742-800-800/Prancheta-4.webp?v=639186735393270000"
   ],
+  "rank": 214,
+  "hero": true,
   "tagline": {
    "en": "A cozy scent for every moment",
    "ar": "عبير دافئ لكل اللحظات",
@@ -11415,6 +11819,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162164-800-800/157948-1200-auto.webp?v=638984759076100000",
    "https://wepink.vteximg.com.br/arquivos/ids/162165-800-800/157946-1200-auto.webp?v=638984759076100000"
   ],
+  "rank": 215,
+  "hero": true,
   "tagline": {
    "en": "Bold well-being to enchant the senses",
    "ar": "رفاهية جريئة تأسر الحواس",
@@ -11473,6 +11879,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/166053-800-800/Prancheta-2.png?v=639271541685530000",
    "https://wepink.vteximg.com.br/arquivos/ids/166054-800-800/Prancheta-3.png?v=639271541685530000"
   ],
+  "rank": 217,
+  "hero": true,
   "tagline": {
    "en": "The satiny touch of a woman who lights up everything around her",
    "ar": "اللمسة الحريرية لامرأة تضيء كل ما حولها",
@@ -11533,6 +11941,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/166038-800-800/Prancheta 2.webp?v=639271471768300000",
    "https://wepink.vteximg.com.br/arquivos/ids/166039-800-800/Prancheta 3.webp?v=639271471768300000"
   ],
+  "rank": 180,
+  "hero": true,
   "tagline": {
    "en": "Hydration that envelops, warms and lingers",
    "ar": "ترطيب يحتضن البشرة ويدفئها ويبقى معها",
@@ -11570,6 +11980,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165811-800-800/Prancheta-2.webp?v=639258612755270000",
    "https://wepink.vteximg.com.br/arquivos/ids/165812-800-800/Prancheta-3.webp?v=639258612755270000"
   ],
+  "rank": 219,
+  "hero": true,
   "tagline": {
    "en": "A whipped-cream texture with the scent of Ruby Rhodolite",
    "ar": "قوام كالكريمة المخفوقة بعبير روبي رودولايت",
@@ -11607,6 +12019,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165918-800-800/Prancheta-2--9-.webp?v=639267936680300000",
    "https://wepink.vteximg.com.br/arquivos/ids/165919-800-800/Prancheta-3--9-.webp?v=639267936680430000"
   ],
+  "rank": 220,
+  "hero": true,
   "tagline": {
    "en": "A whipped-cream texture with the scent of VF Golden",
    "ar": "قوام كالكريمة المخفوقة بعبير في إف جولدن",
@@ -11644,6 +12058,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165674-800-800/Prancheta-2.webp?v=639256234860370000",
    "https://wepink.vteximg.com.br/arquivos/ids/165675-800-800/Prancheta-3.webp?v=639256234860530000"
   ],
+  "rank": 181,
+  "hero": true,
   "tagline": {
    "en": "A whipped-cream texture with the scent of Fatal Black For Her",
    "ar": "قوام كالكريمة المخفوقة بعبير فيتال بلاك فور هير",
@@ -11683,6 +12099,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165101-800-800/03.png?v=639211846521070000",
    "https://wepink.vteximg.com.br/arquivos/ids/165102-800-800/05.png?v=639211846521200000"
   ],
+  "rank": 184,
+  "hero": true,
   "tagline": {
    "en": "A fragrance for women who light up everything around them",
    "ar": "عطر لنساء يضئن كل ما حولهن",
@@ -11789,6 +12207,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/166058-800-800/Prancheta-2--13-.webp?v=639272237616530000",
    "https://wepink.vteximg.com.br/arquivos/ids/166059-800-800/Prancheta-3--12-.webp?v=639272237616670000"
   ],
+  "rank": 189,
+  "hero": true,
   "tagline": {
    "en": "A fragrance that doesn't wait for an occasion",
    "ar": "عطر لا ينتظر مناسبة",
@@ -11825,6 +12245,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163634-800-800/Floral-Whisper-5.png?v=639058940919870000",
    "https://wepink.vteximg.com.br/arquivos/ids/163635-800-800/Floral-Whisper-1.png?v=639058940919870000"
   ],
+  "rank": 221,
+  "hero": true,
   "tagline": {
    "en": "A daily invitation to the sophistication of fruity florals",
    "ar": "دعوة يومية إلى رقيّ العطور الزهرية الفاكهية",
@@ -11876,6 +12298,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163588-800-800/2--3-.webp?v=639042444447300000",
    "https://wepink.vteximg.com.br/arquivos/ids/163589-800-800/1--3-.webp?v=639042444447430000"
   ],
+  "rank": 222,
+  "hero": true,
   "tagline": {
    "en": "Hydration with sophistication",
    "ar": "ترطيب بلمسة من الرقي",
@@ -11912,6 +12336,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163528-800-800/1.webp?v=639034822270530000",
    "https://wepink.vteximg.com.br/arquivos/ids/163529-800-800/2.webp?v=639034822270530000"
   ],
+  "rank": 223,
+  "hero": true,
   "tagline": {
    "en": "A touch of pure magic!",
    "ar": "لمسة من السحر الخالص!",
@@ -11990,6 +12416,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163379-800-800/Prancheta-2.webp?v=639006199068400000",
    "https://wepink.vteximg.com.br/arquivos/ids/163380-800-800/Prancheta-1.webp?v=639006199068400000"
   ],
+  "rank": 224,
+  "hero": true,
   "tagline": {
    "en": "Elegant, vibrant and intriguing",
    "ar": "أنيق، نابض بالحيوية ومثير للفضول",
@@ -12046,6 +12474,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162607-800-800/161653-1200-auto.webp?v=638987232688400000",
    "https://wepink.vteximg.com.br/arquivos/ids/162608-800-800/161656-1200-auto.webp?v=638987232688470000"
   ],
+  "rank": 225,
+  "hero": true,
   "tagline": {
    "en": "Sweet as marshmallow, shiny as a dream",
    "ar": "حلو كالمارشميلو، لامع كالحلم",
@@ -12083,6 +12513,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162142-800-800/161456-1200-auto.webp?v=638984742662430000",
    "https://wepink.vteximg.com.br/arquivos/ids/162143-800-800/161457-1200-auto.webp?v=638984742662430000"
   ],
+  "rank": 226,
+  "hero": true,
   "tagline": {
    "en": "Authentically mysterious",
    "ar": "غموض أصيل",
@@ -12149,6 +12581,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/159905-800-800/myskin-body--1-.jpg.jpg?v=638755052112300000",
    "https://wepink.vteximg.com.br/arquivos/ids/159906-800-800/myskin-body--2-.jpg.jpg?v=638755052112430000"
   ],
+  "rank": 227,
+  "hero": true,
   "tagline": {
    "en": "Transform your daily care!",
    "ar": "ارتقِ بعنايتك اليومية!",
@@ -12185,6 +12619,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163348-800-800/160482-1200-auto.png?v=639153132275770000",
    "https://wepink.vteximg.com.br/arquivos/ids/163349-800-800/160483-1200-auto.png?v=639153132275930000"
   ],
+  "rank": 208,
+  "hero": true,
   "tagline": {
    "en": "Turn your bath into a premium ritual",
    "ar": "حوّلي استحمامك إلى طقس فاخر",
@@ -12236,6 +12672,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162562-800-800/158708-1200-auto.webp?v=638987224442000000",
    "https://wepink.vteximg.com.br/arquivos/ids/162563-800-800/158976-1200-auto.webp?v=638987224442000000"
   ],
+  "rank": 228,
+  "hero": true,
   "tagline": {
    "en": "Plump lips with a soft shine and a strawberry scent!",
    "ar": "شفاه ممتلئة بلمعان خفيف وعبير الفراولة!",
@@ -12271,6 +12709,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165963-800-800/158637-1200-auto.webp?v=639270768463170000",
    "https://wepink.vteximg.com.br/arquivos/ids/165964-800-800/158638-1200-auto.webp?v=639270768463170000"
   ],
+  "rank": 229,
+  "hero": true,
   "tagline": {
    "en": "Your new obsession, get ready",
    "ar": "هوسك الجديد، فاستعدي",
@@ -12327,6 +12767,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162544-800-800/158197-1200-auto.webp?v=638987212393100000",
    "https://wepink.vteximg.com.br/arquivos/ids/162545-800-800/158971-1200-auto.webp?v=638987212393100000"
   ],
+  "rank": 230,
+  "hero": true,
   "tagline": {
    "en": "Plump lips with cherry color and flavor!",
    "ar": "شفاه ممتلئة بلون الكرز ونكهته!",
@@ -12365,6 +12807,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160288-800-800/05.jpg.jpg?v=638787659349600000",
    "https://wepink.vteximg.com.br/arquivos/ids/160289-800-800/04.jpg.jpg?v=638787659349600000"
   ],
+  "rank": 231,
+  "hero": true,
   "tagline": {
    "en": "A heady essence full of well-being",
    "ar": "جوهر آسر مفعم بالرفاهية",
@@ -12428,6 +12872,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162640-800-800/55555.webp?v=638987241033970000",
    "https://wepink.vteximg.com.br/arquivos/ids/162641-800-800/555.webp?v=638987241033970000"
   ],
+  "rank": 232,
+  "hero": true,
   "tagline": {
    "en": "10 ideal shades made for you to go all out!",
    "ar": "10 درجات مثالية صُمّمت لتتألّقي بلا حدود!",
@@ -12457,6 +12903,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/165245-800-800/kit-feive.webp?v=639223296458430000"
   ],
+  "rank": 218,
+  "hero": true,
   "tagline": {
    "en": "The Feive collection, together in one set",
    "ar": "مجموعة فيف مجتمعة في طقم واحد",
@@ -12495,6 +12943,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164351-800-800/Prancheta-5.webp?v=639130797542370000",
    "https://wepink.vteximg.com.br/arquivos/ids/164352-800-800/Prancheta-1.webp?v=639130797542370000"
   ],
+  "rank": 233,
+  "hero": true,
   "tagline": {
    "en": "A celebration of amber oriental, felt on the skin",
    "ar": "احتفاء بالعطر الشرقي العنبري على البشرة",
@@ -12585,6 +13035,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163451-800-800/03.webp?v=639014223186270000",
    "https://wepink.vteximg.com.br/arquivos/ids/163452-800-800/05.webp?v=639014223186430000"
   ],
+  "rank": 234,
+  "hero": true,
   "tagline": {
    "en": "Your secret weapon for seduction",
    "ar": "سلاحك السري للجاذبية",
@@ -12621,6 +13073,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162602-800-800/161648-1200-auto.webp?v=638987232351530000",
    "https://wepink.vteximg.com.br/arquivos/ids/162603-800-800/161651-1200-auto.webp?v=638987232351700000"
   ],
+  "rank": 235,
+  "hero": true,
   "tagline": {
    "en": "Sweet as a gumdrop, shiny as a dream",
    "ar": "حلو كحلوى الجيلي، لامع كالحلم",
@@ -12660,6 +13114,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162770-800-800/161388-1200-auto.webp?v=638991632904970000",
    "https://wepink.vteximg.com.br/arquivos/ids/162771-800-800/161389-1200-auto.webp?v=638991632904970000"
   ],
+  "rank": 236,
+  "hero": true,
   "tagline": {
    "en": "Your essence, guided by the stars",
    "ar": "جوهرك تهديه النجوم",
@@ -12696,6 +13152,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/156468-800-800/tom4.jpg?v=638728076648770000",
    "https://wepink.vteximg.com.br/arquivos/ids/156706-800-800/base1000.png?v=638728076648770000"
   ],
+  "rank": 237,
+  "hero": true,
   "tagline": {
    "en": "The best long-wear foundation for your makeup",
    "ar": "أفضل كريم أساس عالي الثبات لمكياجك",
@@ -12733,6 +13191,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162091-800-800/Myskin-Essential-Espuma-Esfoliante-120ml_5.webp?v=638984729650800000",
    "https://wepink.vteximg.com.br/arquivos/ids/162092-800-800/Myskin-Essential-Espuma-Esfoliante-120ml_6.webp?v=638984729650970000"
   ],
+  "rank": 238,
+  "hero": true,
   "tagline": {
    "en": "Exfoliating foam with a peeling effect for well-cared-for skin",
    "ar": "رغوة مقشّرة بمفعول البيلينج لبشرة مُعتنى بها",
@@ -12770,6 +13230,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160015-800-800/Choco-4.jpg.jpg?v=638893101404430000",
    "https://wepink.vteximg.com.br/arquivos/ids/160016-800-800/Choco-5.jpg.jpg?v=638893101404430000"
   ],
+  "rank": 239,
+  "hero": true,
   "tagline": {
    "en": "Be creamily irresistible!",
    "ar": "كوني بنعومة الكريمة التي لا تقاوم!",
@@ -12821,6 +13283,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165868-800-800/02 -7-.webp?v=639260260604200000",
    "https://wepink.vteximg.com.br/arquivos/ids/165869-800-800/03 -5-.webp?v=639260260604200000"
   ],
+  "rank": 240,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection.",
    "ar": "عنايتك اليومية، وحمايتك التي لا تقاوم.",
@@ -12857,6 +13321,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162525-800-800/158101-1200-auto.webp?v=638987209740200000",
    "https://wepink.vteximg.com.br/arquivos/ids/162526-800-800/158970-1200-auto.webp?v=638987209740200000"
   ],
+  "rank": 241,
+  "hero": true,
   "tagline": {
    "en": "Plump lips with the color and flavor of cookies.",
    "ar": "شفاه ممتلئة بلون الكوكيز ونكهتها.",
@@ -12894,6 +13360,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165943-800-800/Prancheta-2--10-.png?v=639270634227530000",
    "https://wepink.vteximg.com.br/arquivos/ids/165944-800-800/Prancheta-3--10-.png?v=639270634227530000"
   ],
+  "rank": 216,
+  "hero": true,
   "tagline": {
    "en": "Adventure begins with a new discovery",
    "ar": "تبدأ المغامرة باكتشاف جديد",
@@ -12965,6 +13433,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162582-800-800/lip-oil-cookies-2.webp?v=638987235837900000",
    "https://wepink.vteximg.com.br/arquivos/ids/162583-800-800/lip-oil-cookies-1.webp?v=638987235837900000"
   ],
+  "rank": 242,
+  "hero": true,
   "tagline": {
    "en": "Delicious as cookies, shiny as a dream",
    "ar": "لذيذ كالكوكيز، لامع كالحلم",
@@ -13002,6 +13472,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162280-800-800/159752-1200-auto.webp?v=638986043147900000",
    "https://wepink.vteximg.com.br/arquivos/ids/162281-800-800/159753-1200-auto.webp?v=638986043147900000"
   ],
+  "rank": 243,
+  "hero": true,
   "tagline": {
    "en": "Be the brightest star!",
    "ar": "كوني النجمة الأكثر تألقًا!",
@@ -13065,6 +13537,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162257-800-800/159775-1200-auto.webp?v=638985784284900000",
    "https://wepink.vteximg.com.br/arquivos/ids/162258-800-800/159776-1200-auto.webp?v=638985784284900000"
   ],
+  "rank": 244,
+  "hero": true,
   "tagline": {
    "en": "Turn every day into a celebration of happiness",
    "ar": "اجعل كل يوم احتفالًا بالسعادة",
@@ -13119,6 +13593,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164372-800-800/158703-1200-auto.webp?v=639135830204230000",
    "https://wepink.vteximg.com.br/arquivos/ids/164373-800-800/158704-1200-auto.webp?v=639135830204400000"
   ],
+  "rank": 245,
+  "hero": true,
   "tagline": {
    "en": "Plump lips with a soft shine and a watermelon scent!",
    "ar": "شفاه ممتلئة بلمعان خفيف وعبير البطيخ!",
@@ -13154,6 +13630,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162548-800-800/157678-1200-auto.webp?v=638987212786530000",
    "https://wepink.vteximg.com.br/arquivos/ids/162549-800-800/158969-1200-auto.webp?v=638987212786530000"
   ],
+  "rank": 246,
+  "hero": true,
   "tagline": {
    "en": "Chocolatey, plump lips!",
    "ar": "شفاه ممتلئة بلمسة من الشوكولاتة!",
@@ -13190,6 +13668,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162019-800-800/159227-1200-auto.webp?v=638981125702200000",
    "https://wepink.vteximg.com.br/arquivos/ids/162020-800-800/159228-1200-auto.webp?v=638981125702200000"
   ],
+  "rank": 247,
+  "hero": true,
   "tagline": {
    "en": "A relaxing scent that enchants the senses",
    "ar": "عبير مريح يأسر الحواس",
@@ -13233,6 +13713,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162557-800-800/158699-1200-auto.webp?v=638987223663570000",
    "https://wepink.vteximg.com.br/arquivos/ids/162558-800-800/158700-1200-auto.webp?v=638987223663570000"
   ],
+  "rank": 248,
+  "hero": true,
   "tagline": {
    "en": "Plump lips with a soft shine and a gumdrop scent!",
    "ar": "شفاه ممتلئة بلمعان خفيف وعبير حلوى الجيلي!",
@@ -13263,6 +13745,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/166063-800-800/bomb-one---yahya.webp?v=639272647298770000"
   ],
+  "rank": 130,
+  "hero": true,
   "tagline": {
    "en": "Yahya Aneeq and Bomb One, together in one set",
    "ar": "يحيى أنيق وبومب ون معًا في طقم واحد",
@@ -13293,6 +13777,7 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/166064-800-800/kit-4bs.webp?v=639273247839800000"
   ],
+  "hero": true,
   "tagline": {
    "en": "Favorite body splashes, together in one set",
    "ar": "بخاخات جسم مختارة معًا في طقم واحد",
@@ -13332,6 +13817,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165488-800-800/03.webp?v=639251802612270000",
    "https://wepink.vteximg.com.br/arquivos/ids/165489-800-800/05.webp?v=639251802612400000"
   ],
+  "rank": 250,
+  "hero": true,
   "tagline": {
    "en": "A new atmosphere, the same essence",
    "ar": "أجواء جديدة، والجوهر ذاته",
@@ -13463,6 +13950,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164452-800-800/03.webp?v=639147064237330000",
    "https://wepink.vteximg.com.br/arquivos/ids/164453-800-800/05.webp?v=639147064237330000"
   ],
+  "rank": 251,
+  "hero": true,
   "tagline": {
    "en": "A declaration of love in every spritz",
    "ar": "إعلان حب في كل رشّة",
@@ -13510,6 +13999,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161001-800-800/03.png?v=638883576041870000",
    "https://wepink.vteximg.com.br/arquivos/ids/161002-800-800/05.png?v=638883576041870000"
   ],
+  "rank": 252,
+  "hero": true,
   "tagline": {
    "en": "Overflow with the freshness of nobility",
    "ar": "انتعاش يفيض بالنبل",
@@ -13574,6 +14065,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160996-800-800/03.jpg?v=638883575351470000",
    "https://wepink.vteximg.com.br/arquivos/ids/160997-800-800/05.jpg?v=638883575351470000"
   ],
+  "rank": 253,
+  "hero": true,
   "tagline": {
    "en": "Overflow with the essence of elegance",
    "ar": "أناقة تفيض من الجوهر",
@@ -13634,6 +14127,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165474-800-800/03--1-.webp?v=639247444354430000",
    "https://wepink.vteximg.com.br/arquivos/ids/165475-800-800/05--1-.webp?v=639247444354430000"
   ],
+  "rank": 254,
+  "hero": true,
   "tagline": {
    "en": "Beauty lies in being discovered little by little",
    "ar": "يكمن الجمال في أن يُكتشف شيئاً فشيئاً",
@@ -13718,6 +14213,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164746-800-800/03.png?v=639156599861230000",
    "https://wepink.vteximg.com.br/arquivos/ids/164747-800-800/05.png?v=639156599861400000"
   ],
+  "rank": 255,
+  "hero": true,
   "tagline": {
    "en": "Exude confidence, seduction and passion at every moment",
    "ar": "انشري الثقة والجاذبية والشغف في كل لحظة",
@@ -13765,6 +14262,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161720-800-800/03.jpg?v=638977637105700000",
    "https://wepink.vteximg.com.br/arquivos/ids/161721-800-800/05.jpg?v=638977637105700000"
   ],
+  "rank": 257,
+  "hero": true,
   "tagline": {
    "en": "Absolute purity wrapped in lightness",
    "ar": "النقاء المطلق في حُلّة من الخفة",
@@ -13833,6 +14332,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163808-800-800/myhair-ultra-repair-4.jpg?v=639077107988070000",
    "https://wepink.vteximg.com.br/arquivos/ids/163809-800-800/myhair-ultra-repair-5.jpg?v=639077107988070000"
   ],
+  "rank": 258,
+  "hero": true,
   "tagline": {
    "en": "The essential intensive treatment for your hair",
    "ar": "العلاج المكثّف الأساسي لشعركِ",
@@ -13872,6 +14373,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164756-800-800/03.webp?v=639156615572630000",
    "https://wepink.vteximg.com.br/arquivos/ids/164757-800-800/05.webp?v=639156615572630000"
   ],
+  "rank": 259,
+  "hero": true,
   "tagline": {
    "en": "Refresh yourself in sweetness and lightness!",
    "ar": "انتعشي بالعذوبة والخفة!",
@@ -13922,6 +14425,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165699-800-800/02--1-.png?v=639256820406130000",
    "https://wepink.vteximg.com.br/arquivos/ids/165700-800-800/03.png?v=639256820406130000"
   ],
+  "rank": 261,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with an authentic fruity floral touch",
    "ar": "تغذية عميقة وتماسك بلمسة زهرية فاكهية أصيلة",
@@ -13969,6 +14474,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164010-800-800/obsessed-lovely-5.webp?v=639109180296370000",
    "https://wepink.vteximg.com.br/arquivos/ids/164011-800-800/obsessed-lovely-4.webp?v=639109180296370000"
   ],
+  "rank": 263,
+  "hero": true,
   "tagline": {
    "en": "A declaration of love in every spritz",
    "ar": "إعلان حب في كل رشّة",
@@ -14008,6 +14515,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161081-800-800/03.jpg?v=638895049727870000",
    "https://wepink.vteximg.com.br/arquivos/ids/161082-800-800/05.jpg?v=638895049727870000"
   ],
+  "rank": 264,
+  "hero": true,
   "tagline": {
    "en": "A floral gourmand with a striking, captivating presence",
    "ar": "عطر زهري غورماند بحضور لافت وآسر",
@@ -14098,6 +14607,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162123-800-800/160958-1200-auto.webp?v=638984740784400000",
    "https://wepink.vteximg.com.br/arquivos/ids/162124-800-800/160959-1200-auto.webp?v=638984740784400000"
   ],
+  "rank": 265,
+  "hero": true,
   "tagline": {
    "en": "The journey to happiness begins here",
    "ar": "رحلة السعادة تبدأ من هنا",
@@ -14174,6 +14685,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160558-800-800/one-touch-warm-2.jpg.jpg?v=638822664906330000",
    "https://wepink.vteximg.com.br/arquivos/ids/160559-800-800/one-touch-warm-5.jpg.jpg?v=638822664906330000"
   ],
+  "rank": 266,
+  "hero": true,
   "tagline": {
    "en": "Exude confidence, seduction and passion at every moment",
    "ar": "انشري الثقة والجاذبية والشغف في كل لحظة",
@@ -14246,6 +14759,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/166008-800-800/01 14.19.10 14.19.10.webp?v=639271464189130000",
    "https://wepink.vteximg.com.br/arquivos/ids/166009-800-800/03 14.19.10 14.19.10.webp?v=639271464189130000"
   ],
+  "rank": 269,
+  "hero": true,
   "tagline": {
    "en": "Go beyond expectations!",
    "ar": "تجاوزي كل التوقعات!",
@@ -14284,6 +14799,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163543-800-800/Prancheta-2.webp?v=639038355999330000",
    "https://wepink.vteximg.com.br/arquivos/ids/163544-800-800/Prancheta-1.webp?v=639038355999630000"
   ],
+  "rank": 270,
+  "hero": true,
   "tagline": {
    "en": "Radiant by nature",
    "ar": "إشراقٌ بالفطرة",
@@ -14329,6 +14846,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162062-800-800/161592-1200-auto.webp?v=638983970010630000",
    "https://wepink.vteximg.com.br/arquivos/ids/162063-800-800/161591-1200-auto.webp?v=638983970010800000"
   ],
+  "rank": 271,
+  "hero": true,
   "tagline": {
    "en": "Divine hydration for your skin",
    "ar": "ترطيب سماوي لبشرتكِ",
@@ -14368,6 +14887,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162738-800-800/161466-1200-auto.webp?v=638991604125600000",
    "https://wepink.vteximg.com.br/arquivos/ids/162739-800-800/161467-1200-auto.webp?v=638991604125600000"
   ],
+  "rank": 272,
+  "hero": true,
   "tagline": {
    "en": "The night is calling",
    "ar": "الليل يناديكِ",
@@ -14406,6 +14927,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161221-800-800/03.png?v=638911139733200000",
    "https://wepink.vteximg.com.br/arquivos/ids/161222-800-800/05.png?v=638911139733370000"
   ],
+  "rank": 273,
+  "hero": true,
   "tagline": {
    "en": "A dazzling universe of irresistible passion",
    "ar": "عالم مبهر من الشغف الذي لا يُقاوَم",
@@ -14476,6 +14999,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162756-800-800/161333-1200-auto.webp?v=638991627040730000",
    "https://wepink.vteximg.com.br/arquivos/ids/162757-800-800/161334-1200-auto.webp?v=638991627041370000"
   ],
+  "rank": 274,
+  "hero": true,
   "tagline": {
    "en": "Intensity felt on the skin",
    "ar": "قوة تنبض على البشرة",
@@ -14546,6 +15071,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164737-800-800/03.jpg?v=639156596996270000",
    "https://wepink.vteximg.com.br/arquivos/ids/164738-800-800/05.jpg?v=639156596996430000"
   ],
+  "rank": 70,
+  "hero": true,
   "tagline": {
    "en": "The well-being of a heavenly charm",
    "ar": "راحة وسحر من عالم سماوي",
@@ -14603,6 +15130,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162306-800-800/158278-1200-auto.webp?v=638986058266900000",
    "https://wepink.vteximg.com.br/arquivos/ids/162307-800-800/159062-1200-auto.webp?v=638986058266900000"
   ],
+  "rank": 275,
+  "hero": true,
   "tagline": {
    "en": "The scent that reveals the mystical charm within you",
    "ar": "العطر الذي يكشف السحر الغامض في داخلكِ",
@@ -14680,6 +15209,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165588-800-800/161142-1200-auto.webp?v=639253538194100000",
    "https://wepink.vteximg.com.br/arquivos/ids/165589-800-800/161143-1200-auto.webp?v=639253538194100000"
   ],
+  "rank": 276,
+  "hero": true,
   "tagline": {
    "en": "A complete repair for perfect hair with every spritz",
    "ar": "إصلاح متكامل لشعر مثالي مع كل رشّة",
@@ -14718,6 +15249,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165259-800-800/5--2-.png?v=639228184889800000",
    "https://wepink.vteximg.com.br/arquivos/ids/165260-800-800/3--2-.png?v=639228184889800000"
   ],
+  "rank": 278,
+  "hero": true,
   "tagline": {
    "en": "Beauty lies in being discovered little by little",
    "ar": "يكمن الجمال في أن يُكتشف شيئاً فشيئاً",
@@ -14801,6 +15334,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165075-800-800/Prancheta-2.webp?v=639208346455770000",
    "https://wepink.vteximg.com.br/arquivos/ids/165076-800-800/Prancheta-3.webp?v=639208346455770000"
   ],
+  "rank": 279,
+  "hero": true,
   "tagline": {
    "en": "Created for women who see beauty in the little moments",
    "ar": "صُمّم للمرأة التي ترى الجمال في اللحظات الصغيرة",
@@ -14910,6 +15445,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164554-800-800/Prancheta-4.webp?v=639169441233570000",
    "https://wepink.vteximg.com.br/arquivos/ids/164555-800-800/Prancheta-1--2-.webp?v=639169441233730000"
   ],
+  "rank": 280,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Hug",
    "ar": "تغذية عميقة وتماسك مع عناق فانيلا هاج الدافئ",
@@ -14969,6 +15506,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165720-800-800/Prancheta 2 -1-.png?v=639257031608770000",
    "https://wepink.vteximg.com.br/arquivos/ids/165721-800-800/Prancheta 3 -1-.png?v=639257031608770000"
   ],
+  "rank": 281,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the touch of Eternal Cherish butter",
    "ar": "تغذية عميقة وتماسك بلمسة زبدة إيترنال تشيريش",
@@ -15029,6 +15568,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164330-800-800/Prancheta-5.webp?v=639129915851570000",
    "https://wepink.vteximg.com.br/arquivos/ids/164331-800-800/Prancheta-1.webp?v=639129915851730000"
   ],
+  "rank": 282,
+  "hero": true,
   "tagline": {
    "en": "A fruity oriental that pairs femininity with personality",
    "ar": "عطر شرقي فاكهي يجمع بين الأنوثة والشخصية",
@@ -15128,6 +15669,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164637-800-800/pote-sem-caixa.png?v=639153136285170000",
    "https://wepink.vteximg.com.br/arquivos/ids/164638-800-800/caixa.png?v=639153136285500000"
   ],
+  "rank": 283,
+  "hero": true,
   "tagline": {
    "en": "Turn your shower into a premium ritual",
    "ar": "حوّلي استحمامكِ إلى طقس فاخر",
@@ -15174,6 +15717,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164235-800-800/03.webp?v=639107748524170000",
    "https://wepink.vteximg.com.br/arquivos/ids/164236-800-800/05.webp?v=639107748524170000"
   ],
+  "rank": 284,
+  "hero": true,
   "tagline": {
    "en": "A vanilla oriental that awakens desire in its most delicate form",
    "ar": "عطر شرقي بالفانيليا يوقظ الشغف في أرقّ صوره",
@@ -15262,6 +15807,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163255-800-800/Tawny-5.webp?v=638997664379200000",
    "https://wepink.vteximg.com.br/arquivos/ids/163256-800-800/Tawny-1.webp?v=638997664379200000"
   ],
+  "rank": 285,
+  "hero": true,
   "tagline": {
    "en": "Awaken infinite sensations",
    "ar": "أيقظي أحاسيس لا متناهية",
@@ -15299,6 +15846,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162488-800-800/Scarlette-Desodorante-Colonia-50ml_4.webp?v=639016750621930000",
    "https://wepink.vteximg.com.br/arquivos/ids/162489-800-800/Scarlette-Desodorante-Colonia-50ml_5.webp?v=639016750621930000"
   ],
+  "rank": 286,
+  "hero": true,
   "tagline": {
    "en": "A floral gourmand with a striking, captivating presence",
    "ar": "عطر زهري غورماند بحضور لافت وآسر",
@@ -15386,6 +15935,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163435-800-800/hair-liberte-2.webp?v=639143015810130000",
    "https://wepink.vteximg.com.br/arquivos/ids/163436-800-800/hair-liberte-1.webp?v=639143015810300000"
   ],
+  "rank": 287,
+  "hero": true,
   "tagline": {
    "en": "A shine full of nobility for your hair",
    "ar": "لمعان مفعم بالنبل لشعركِ",
@@ -15456,6 +16007,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160755-800-800/heaven-groom-4.jpg?v=638856691789370000",
    "https://wepink.vteximg.com.br/arquivos/ids/160756-800-800/heaven-groom-5.jpg?v=638856691789370000"
   ],
+  "rank": 288,
+  "hero": true,
   "tagline": {
    "en": "Make your emotions last forever!",
    "ar": "خلّد مشاعرك!",
@@ -15521,6 +16074,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163955-800-800/liberte-exclusif-4.jpg?v=639082491895930000",
    "https://wepink.vteximg.com.br/arquivos/ids/163956-800-800/liberte-exclusif-5.jpg?v=639082491896100000"
   ],
+  "rank": 289,
+  "hero": true,
   "tagline": {
    "en": "The very height of exclusivity",
    "ar": "قمة التفرّد والتميّز",
@@ -15581,6 +16136,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165873-800-800/02 -8-.webp?v=639260261295030000",
    "https://wepink.vteximg.com.br/arquivos/ids/165874-800-800/03 -6-.webp?v=639260261295030000"
   ],
+  "rank": 291,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم",
@@ -15618,6 +16175,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165838-800-800/02 -1-.webp?v=639260245237870000",
    "https://wepink.vteximg.com.br/arquivos/ids/165839-800-800/03.webp?v=639260245237870000"
   ],
+  "rank": 292,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم",
@@ -15663,6 +16222,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164975-800-800/5.png?v=639186924178900000",
    "https://wepink.vteximg.com.br/arquivos/ids/164976-800-800/1.png?v=639186924178900000"
   ],
+  "rank": 305,
+  "hero": true,
   "tagline": {
    "en": "Inspire sparkling energy",
    "ar": "استلهمي طاقة متلألئة",
@@ -15701,6 +16262,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161841-800-800/BC-Liberte-Exclusif-5.webp?v=638985666659530000",
    "https://wepink.vteximg.com.br/arquivos/ids/161842-800-800/BC-Liberte-Exclusif-1_.webp?v=638985666659700000"
   ],
+  "rank": 308,
+  "hero": true,
   "tagline": {
    "en": "The freedom of always-healthy skin",
    "ar": "حرية بشرة صحية دائماً",
@@ -15735,6 +16298,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164073-800-800/Prancheta-2--1-.webp?v=639270768299800000",
    "https://wepink.vteximg.com.br/arquivos/ids/164074-800-800/Prancheta-3--1-.webp?v=639270768299800000"
   ],
+  "rank": 294,
+  "hero": true,
   "tagline": {
    "en": "Your essential treatment for stretch marks and cellulite",
    "ar": "علاجكِ الأساسي لعلامات التمدد والسيلوليت",
@@ -15774,6 +16339,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163856-800-800/INFINITY-COSMIK-2.jpg.jpg?v=639077119816500000",
    "https://wepink.vteximg.com.br/arquivos/ids/163857-800-800/INFINITY-COSMIK-5.jpg.jpg?v=639077119816670000"
   ],
+  "rank": 295,
+  "hero": true,
   "tagline": {
    "en": "For you, dear lady: a touch of mystical well-being!",
    "ar": "لكِ يا سيدتي، لمسة من الراحة الساحرة!",
@@ -15830,6 +16397,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165736-800-800/02.webp?v=639257711977770000",
    "https://wepink.vteximg.com.br/arquivos/ids/165737-800-800/03.webp?v=639257711977770000"
   ],
+  "rank": 296,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم",
@@ -15868,6 +16437,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164960-800-800/03--1-.jpg?v=639229337006830000",
    "https://wepink.vteximg.com.br/arquivos/ids/164961-800-800/04--1-.jpg?v=639229337006830000"
   ],
+  "rank": 297,
+  "hero": true,
   "tagline": {
    "en": "The scent that always brings out the best in you",
    "ar": "العطر الذي يبرز أفضل ما فيكِ دائماً",
@@ -15919,6 +16490,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163220-800-800/Obsessed-Deluxe-3.webp?v=639011445744830000",
    "https://wepink.vteximg.com.br/arquivos/ids/163221-800-800/Obsessed-Deluxe-2.webp?v=639011445744830000"
   ],
+  "rank": 298,
+  "hero": true,
   "tagline": {
    "en": "Your new obsession, with an exclusive touch of desire",
    "ar": "هوسكِ الجديد بلمسة حصرية من الشغف",
@@ -15975,6 +16548,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162326-800-800/159945-1200-auto.webp?v=638986075482070000",
    "https://wepink.vteximg.com.br/arquivos/ids/162327-800-800/159946-1200-auto.webp?v=638986075482070000"
   ],
+  "rank": 313,
+  "hero": true,
   "tagline": {
    "en": "The scent that shines with irresistible magnetism",
    "ar": "العطر الذي يتألق بجاذبية لا تُقاوَم",
@@ -16021,6 +16596,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/166028-800-800/05.webp?v=639271469992370000",
    "https://wepink.vteximg.com.br/arquivos/ids/166029-800-800/03.webp?v=639271469992370000"
   ],
+  "rank": 300,
+  "hero": true,
   "tagline": {
    "en": "Created for women who see beauty in the little moments",
    "ar": "صُمّم للمرأة التي ترى الجمال في اللحظات الصغيرة",
@@ -16131,6 +16708,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164997-800-800/04--1-.png?v=639194234228770000",
    "https://wepink.vteximg.com.br/arquivos/ids/164998-800-800/05--1-.png?v=639194234228800000"
   ],
+  "rank": 301,
+  "hero": true,
   "tagline": {
    "en": "The essence of the Brazilian woman in a vibrant, unforgettable signature",
    "ar": "جوهر المرأة البرازيلية في بصمة نابضة لا تُنسى",
@@ -16214,6 +16793,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164889-800-800/2.webp?v=639171462220070000",
    "https://wepink.vteximg.com.br/arquivos/ids/164890-800-800/3.webp?v=639171462220230000"
   ],
+  "rank": 318,
+  "hero": true,
   "tagline": {
    "en": "The fruity floral oriental that turns presence into memory",
    "ar": "عطر زهري شرقي فاكهي يحوّل الحضور إلى ذكرى",
@@ -16248,6 +16829,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164936-800-800/01.webp?v=639178180929500000",
    "https://wepink.vteximg.com.br/arquivos/ids/164937-800-800/02.webp?v=639178180929630000"
   ],
+  "rank": 302,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with an authentic floral oriental touch",
    "ar": "تغذية عميقة وتماسك بلمسة زهرية شرقية أصيلة",
@@ -16280,6 +16863,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/164935-800-800/bc-one-touch-latte1.png?v=639207691162130000"
   ],
+  "rank": 303,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the tropical touch of coconut",
    "ar": "تغذية عميقة وتماسك بلمسة جوز الهند الاستوائية",
@@ -16318,6 +16903,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164854-800-800/03.webp?v=639165178829870000",
    "https://wepink.vteximg.com.br/arquivos/ids/164855-800-800/05.webp?v=639165178830000000"
   ],
+  "rank": 304,
+  "hero": true,
   "tagline": {
    "en": "A celebration of ambery oriental that is felt on the skin",
    "ar": "احتفاء بالعطر الشرقي العنبري الذي تشعر به البشرة",
@@ -16408,6 +16995,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164240-800-800/Prancheta-2--2-.webp?v=639107769327830000",
    "https://wepink.vteximg.com.br/arquivos/ids/164241-800-800/Prancheta-1--2-.webp?v=639107769328000000"
   ],
+  "rank": 324,
+  "hero": true,
   "tagline": {
    "en": "A vanilla oriental that awakens desire in its most delicate form",
    "ar": "عطر شرقي بالفانيليا يوقظ الرغبة في أرق صورها",
@@ -16464,6 +17053,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163456-800-800/03--2-.webp?v=639014225916070000",
    "https://wepink.vteximg.com.br/arquivos/ids/163457-800-800/05--2-.webp?v=639014225916230000"
   ],
+  "rank": 306,
+  "hero": true,
   "tagline": {
    "en": "The splendour of a tropical summer",
    "ar": "روعة الصيف الاستوائي",
@@ -16515,6 +17106,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165853-800-800/02 -4-.webp?v=639260250352130000",
    "https://wepink.vteximg.com.br/arquivos/ids/165854-800-800/03 -3-.webp?v=639260250352130000"
   ],
+  "rank": 307,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -16551,6 +17144,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165279-800-800/VF-Golden---03.webp?v=639240426719700000",
    "https://wepink.vteximg.com.br/arquivos/ids/165280-800-800/VF-Golden---04.webp?v=639240426719700000"
   ],
+  "rank": 328,
+  "hero": true,
   "tagline": {
    "en": "Turn bath time into a premium ritual",
    "ar": "حوّلي وقت الاستحمام إلى طقس فاخر",
@@ -16589,6 +17184,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160304-800-800/Merry-Christmas-5.jpg.jpg?v=638795318000230000",
    "https://wepink.vteximg.com.br/arquivos/ids/160305-800-800/Merry-Christmas-1.jpg.jpg?v=638795318000370000"
   ],
+  "rank": 309,
+  "hero": true,
   "tagline": {
    "en": "Santa was late, but he brought the best of Christmas",
    "ar": "تأخّر سانتا كلوز، لكنه أحضر أجمل ما في عيد الميلاد",
@@ -16658,6 +17255,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165933-800-800/vf-golden-2.jpg.jpg?v=639268230155300000",
    "https://wepink.vteximg.com.br/arquivos/ids/165934-800-800/vf-golden-5.jpg.jpg?v=639268230155300000"
   ],
+  "rank": 310,
+  "hero": true,
   "tagline": {
    "en": "The charm of a moisturising touch for the skin",
    "ar": "سحر لمسة مرطّبة للبشرة",
@@ -16729,6 +17328,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163281-800-800/Wonderful-2.webp?v=639005409462200000",
    "https://wepink.vteximg.com.br/arquivos/ids/163282-800-800/Wonderful-1.webp?v=639005409462200000"
   ],
+  "rank": 311,
+  "hero": true,
   "tagline": {
    "en": "Be wonderful and confident!",
    "ar": "كوني رائعة وواثقة!",
@@ -16799,6 +17400,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160543-800-800/liberte-nuit-2.jpg.jpg?v=638822665221800000",
    "https://wepink.vteximg.com.br/arquivos/ids/160544-800-800/liberte-nuit-5.jpg.jpg?v=638822665221800000"
   ],
+  "rank": 312,
+  "hero": true,
   "tagline": {
    "en": "Overflow with the freedom of love on a starry night",
    "ar": "دعي حرية الحب تفيض في ليلة مرصّعة بالنجوم",
@@ -16882,6 +17485,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165609-800-800/158419-1200-auto.webp?v=639253540190370000",
    "https://wepink.vteximg.com.br/arquivos/ids/165610-800-800/158421-1200-auto.webp?v=639253540190370000"
   ],
+  "rank": 314,
+  "hero": true,
   "tagline": {
    "en": "The powerful ally against hair loss that strengthens strands",
    "ar": "الحليف القوي لمكافحة تساقط الشعر وتقوية الخصلات",
@@ -16918,6 +17523,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165863-800-800/02.webp?v=639260257771900000",
    "https://wepink.vteximg.com.br/arquivos/ids/165864-800-800/03.webp?v=639260257771900000"
   ],
+  "rank": 316,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -16956,6 +17563,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164866-800-800/5.png?v=639166198421400000",
    "https://wepink.vteximg.com.br/arquivos/ids/164867-800-800/3--1-.png?v=639190258997530000"
   ],
+  "rank": 317,
+  "hero": true,
   "tagline": {
    "en": "Sophisticated freshness that turns every moment into an experience of freedom",
    "ar": "انتعاش راقٍ يحوّل كل لحظة إلى تجربة من الحرية",
@@ -16992,6 +17601,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164928-800-800/03.webp?v=639177328803370000",
    "https://wepink.vteximg.com.br/arquivos/ids/164929-800-800/05.webp?v=639177328803370000"
   ],
+  "rank": 319,
+  "hero": true,
   "tagline": {
    "en": "The fruity floriental that turns delicacy into presence",
    "ar": "العطر الزهري الشرقي الفاكهي الذي يحوّل الرقة إلى حضور",
@@ -17027,6 +17638,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164945-800-800/01--2-.png?v=639179938150470000",
    "https://wepink.vteximg.com.br/arquivos/ids/164946-800-800/Prancheta-1.png?v=639179938150630000"
   ],
+  "rank": 320,
+  "hero": true,
   "tagline": {
    "en": "A fruity floramber made for intense nights",
    "ar": "عطر زهري عنبري فاكهي صُنع لليالي المفعمة بالحيوية",
@@ -17065,6 +17678,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164599-800-800/02.png?v=639153105743130000",
    "https://wepink.vteximg.com.br/arquivos/ids/164600-800-800/03.png?v=639153105743300000"
   ],
+  "rank": 321,
+  "hero": true,
   "tagline": {
    "en": "The woody fragrance that expresses contemporary elegance and sophistication",
    "ar": "العطر الخشبي الذي يجسّد الأناقة والرقي المعاصرين",
@@ -17124,6 +17739,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164800-800-800/Prancheta-2.webp?v=639156723547130000",
    "https://wepink.vteximg.com.br/arquivos/ids/164801-800-800/Prancheta-1.webp?v=639156723547130000"
   ],
+  "rank": 322,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the cosy embrace of Vanilla Cuddle",
    "ar": "تغذية عميقة وتماسك مع عناق فانيلا كادل الدافئ",
@@ -17182,6 +17799,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164589-800-800/03.png?v=639153103948830000",
    "https://wepink.vteximg.com.br/arquivos/ids/164590-800-800/04.png?v=639153103949000000"
   ],
+  "rank": 323,
+  "hero": true,
   "tagline": {
    "en": "Bring new life to hair with an unforgettable floral trail",
    "ar": "امنحي شعرك حيوية جديدة مع أثر زهري لا يُنسى",
@@ -17260,6 +17879,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162597-800-800/161622-1200-auto.webp?v=638987232089270000",
    "https://wepink.vteximg.com.br/arquivos/ids/162598-800-800/161625-1200-auto.webp?v=638987232089300000"
   ],
+  "rank": 339,
+  "hero": true,
   "tagline": {
    "en": "Delicious as a lollipop, shiny as a dream",
    "ar": "لذيذ كالمصاصة ولامع كالحلم",
@@ -17297,6 +17918,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161836-800-800/BC-Scarelette-5.webp?v=638985666092900000",
    "https://wepink.vteximg.com.br/arquivos/ids/161837-800-800/BC-Scarelette-1.webp?v=638985666092900000"
   ],
+  "rank": 325,
+  "hero": true,
   "tagline": {
    "en": "Hydrated and empowered!",
    "ar": "ترطيب يمنحكِ القوة والثقة!",
@@ -17341,6 +17964,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165583-800-800/hair-red-2.jpg?v=639253537745400000",
    "https://wepink.vteximg.com.br/arquivos/ids/165584-800-800/hair-red-1.jpg?v=639253537745400000"
   ],
+  "rank": 326,
+  "hero": true,
   "tagline": {
    "en": "A radiant touch of beauty for the hair",
    "ar": "لمسة مشرقة من الجمال لخصلات الشعر",
@@ -17397,6 +18022,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165746-800-800/02.webp?v=639257714311530000",
    "https://wepink.vteximg.com.br/arquivos/ids/165747-800-800/03.webp?v=639257714311870000"
   ],
+  "rank": 327,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -17435,6 +18062,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163668-800-800/2.webp?v=639058055428430000",
    "https://wepink.vteximg.com.br/arquivos/ids/163669-800-800/1.webp?v=639058055428430000"
   ],
+  "rank": 329,
+  "hero": true,
   "tagline": {
    "en": "Intensity you can feel on the skin",
    "ar": "قوة تنبض على البشرة",
@@ -17504,6 +18133,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160914-800-800/Prancheta-1.jpg?v=638887044288470000",
    "https://wepink.vteximg.com.br/arquivos/ids/160915-800-800/Prancheta-5.jpg?v=638887044288600000"
   ],
+  "rank": 330,
+  "hero": true,
   "tagline": {
    "en": "A fragrance that celebrates an unforgettable presence",
    "ar": "عطر يحتفي بحضور لا يُنسى",
@@ -17598,6 +18229,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/159973-800-800/001-copy-3--3-.jpg.jpg?v=638756463786900000",
    "https://wepink.vteximg.com.br/arquivos/ids/159974-800-800/001--3-.jpg.jpg?v=638756463786900000"
   ],
+  "rank": 331,
+  "hero": true,
   "tagline": {
    "en": "A light and graceful touch of care",
    "ar": "لمسة عناية خفيفة ورقيقة",
@@ -17659,6 +18292,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162577-800-800/158500-1200-auto.webp?v=638987231169030000",
    "https://wepink.vteximg.com.br/arquivos/ids/162578-800-800/158497-1200-auto.webp?v=638987231169030000"
   ],
+  "rank": 332,
+  "hero": true,
   "tagline": {
    "en": "The essential palette for adding colour to makeup",
    "ar": "اللوحة الأساسية لإضفاء اللون على المكياج",
@@ -17697,6 +18332,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161006-800-800/03.jpg?v=638883576931630000",
    "https://wepink.vteximg.com.br/arquivos/ids/161007-800-800/05.jpg?v=638883576931630000"
   ],
+  "rank": 333,
+  "hero": true,
   "tagline": {
    "en": "Overflow with well-being on a starry night",
    "ar": "دعي الإحساس بالراحة يفيض في ليلة مرصّعة بالنجوم",
@@ -17771,6 +18408,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164953-800-800/04.png?v=639182503871900000",
    "https://wepink.vteximg.com.br/arquivos/ids/164954-800-800/03.png?v=639182503871900000"
   ],
+  "rank": 334,
+  "hero": true,
   "tagline": {
    "en": "Experience sweet and authentic hydration",
    "ar": "تجربة ترطيب عذبة وأصيلة",
@@ -17846,6 +18485,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161939-800-800/158280-1200-auto.webp?v=638980733141170000",
    "https://wepink.vteximg.com.br/arquivos/ids/161940-800-800/158283-1200-auto.webp?v=638980733141170000"
   ],
+  "rank": 335,
+  "hero": true,
   "tagline": {
    "en": "The essence of courage and elegance that delights every sense",
    "ar": "جوهر الشجاعة والأناقة الذي يأسر جميع الحواس",
@@ -17929,6 +18570,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165938-800-800/obsessed-2.jpg.jpg?v=639268230682630000",
    "https://wepink.vteximg.com.br/arquivos/ids/165939-800-800/obsessed-5.jpg.jpg?v=639268230682630000"
   ],
+  "rank": 336,
+  "hero": true,
   "tagline": {
    "en": "Essential fragrance and nourishment for the skin",
    "ar": "العطر والتغذية الأساسيان للبشرة",
@@ -17997,6 +18640,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165064-800-800/Prancheta-1.webp?v=639216972159170000",
    "https://wepink.vteximg.com.br/arquivos/ids/165065-800-800/Prancheta-2.webp?v=639216972159170000"
   ],
+  "rank": 337,
+  "hero": true,
   "tagline": {
    "en": "A creation that balances freshness, strength and sophistication",
    "ar": "إبداع يوازن بين الانتعاش والقوة والرقي",
@@ -18088,6 +18733,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164482-800-800/03.webp?v=639147084270970000",
    "https://wepink.vteximg.com.br/arquivos/ids/164483-800-800/05.webp?v=639147084271100000"
   ],
+  "rank": 338,
+  "hero": true,
   "tagline": {
    "en": "A fruity oriental made for those who love to leave a trail",
    "ar": "عطر شرقي فاكهي لمن يحب أن يترك أثرًا",
@@ -18154,6 +18801,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163342-800-800/Prancheta-9.webp?v=639005428308070000",
    "https://wepink.vteximg.com.br/arquivos/ids/163343-800-800/Prancheta-8.webp?v=639005428308070000"
   ],
+  "rank": 340,
+  "hero": true,
   "tagline": {
    "en": "Renew yourself with lightness and comfort",
    "ar": "تجدّدي بخفة وراحة",
@@ -18219,6 +18868,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162473-800-800/Ruby-Ametist-Desodorante-Colonia-100ml_4.webp?v=638987308488730000",
    "https://wepink.vteximg.com.br/arquivos/ids/162474-800-800/Ruby-Ametist-Desodorante-Colonia-100ml_5.webp?v=638987308488730000"
   ],
+  "rank": 341,
+  "hero": true,
   "tagline": {
    "en": "A talisman that captures your whole essence",
    "ar": "تميمة تحتضن جوهرك بالكامل",
@@ -18289,6 +18940,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160829-800-800/4.jpg?v=638854669115670000",
    "https://wepink.vteximg.com.br/arquivos/ids/160830-800-800/5.jpg?v=638854669115800000"
   ],
+  "rank": 342,
+  "hero": true,
   "tagline": {
    "en": "A new obsession, an exclusive luxury of love",
    "ar": "هوسكِ الجديد، فخامة حصرية للحب",
@@ -18357,6 +19010,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162681-800-800/Celebrate-Relics-Desodorante-Colonia-100ml_2.webp?v=638997790759230000",
    "https://wepink.vteximg.com.br/arquivos/ids/162682-800-800/Celebrate-Relics-Desodorante-Colonia-100ml_3.webp?v=638997790759230000"
   ],
+  "rank": 343,
+  "hero": true,
   "tagline": {
    "en": "A fragrant tribute to the most treasured memories",
    "ar": "تحية معطّرة لأثمن الذكريات",
@@ -18427,6 +19082,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162263-800-800/159301-1200-auto.webp?v=638986033644500000",
    "https://wepink.vteximg.com.br/arquivos/ids/162264-800-800/159302-1200-auto.webp?v=638986033644500000"
   ],
+  "rank": 344,
+  "hero": true,
   "tagline": {
    "en": "The serenity of moonlight in every note",
    "ar": "صفاء ضوء القمر في كل نفحة",
@@ -18511,6 +19168,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160020-800-800/Choices-4.jpg.jpg?v=638918958373970000",
    "https://wepink.vteximg.com.br/arquivos/ids/160021-800-800/Choices-5.jpg.jpg?v=638918958373970000"
   ],
+  "rank": 345,
+  "hero": true,
   "tagline": {
    "en": "The magic of mystical, fragrant hydration",
    "ar": "سحر ترطيب غامض ومعطّر",
@@ -18577,6 +19236,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164911-800-800/03.webp?v=639177305764030000",
    "https://wepink.vteximg.com.br/arquivos/ids/164912-800-800/05.webp?v=639177305764170000"
   ],
+  "rank": 346,
+  "hero": true,
   "tagline": {
    "en": "The woody fragrance that expresses contemporary elegance and sophistication",
    "ar": "العطر الخشبي الذي يجسّد الأناقة والرقي المعاصرين",
@@ -18668,6 +19329,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164325-800-800/Prancheta-4.webp?v=639140981952100000",
    "https://wepink.vteximg.com.br/arquivos/ids/164326-800-800/Prancheta-1.webp?v=639140981952100000"
   ],
+  "rank": 347,
+  "hero": true,
   "tagline": {
    "en": "The fresh fruity floral that is the right choice",
    "ar": "العطر الزهري الفاكهي المنعش الذي يمثّل الخيار الصحيح",
@@ -18704,6 +19367,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163431-800-800/Prancheta-1-3.webp?v=639011459556770000",
    "https://wepink.vteximg.com.br/arquivos/ids/163432-800-800/Prancheta-1-4.webp?v=639011459556770000"
   ],
+  "rank": 348,
+  "hero": true,
   "tagline": {
    "en": "Celebrate the magic of the year-end season!",
    "ar": "احتفلي بسحر موسم نهاية العام!",
@@ -18741,6 +19406,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163478-800-800/05.webp?v=639016655268500000",
    "https://wepink.vteximg.com.br/arquivos/ids/163479-800-800/03.webp?v=639016655268500000"
   ],
+  "rank": 349,
+  "hero": true,
   "tagline": {
    "en": "Live with joy and lightness",
    "ar": "عيشي بفرح وخفة",
@@ -18779,6 +19446,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165431-800-800/Rose Dust.webp?v=639239650269970000",
    "https://wepink.vteximg.com.br/arquivos/ids/165432-800-800/Vanila Muse.webp?v=639239650270100000"
   ],
+  "rank": 350,
+  "hero": true,
   "tagline": {
    "en": "Sweet at heart, luxurious in every detail",
    "ar": "حلو في جوهره، فاخر في كل تفاصيله",
@@ -18815,6 +19484,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160697-800-800/happy-new-year-3.jpg?v=638842882220670000",
    "https://wepink.vteximg.com.br/arquivos/ids/160698-800-800/happy-new-year-5.jpg?v=638842882220670000"
   ],
+  "rank": 351,
+  "hero": true,
   "tagline": {
    "en": "A toast to what makes you shine!",
    "ar": "احتفاءً بكل ما يجعلكِ تتألقين!",
@@ -18881,6 +19552,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161943-800-800/159171-1200-auto.webp?v=638980733569730000",
    "https://wepink.vteximg.com.br/arquivos/ids/161945-800-800/159172-1200-auto.webp?v=639270768379030000"
   ],
+  "rank": 352,
+  "hero": true,
   "tagline": {
    "en": "The sweet freshness of well-being!",
    "ar": "الانتعاش العذب للإحساس بالراحة!",
@@ -18949,6 +19622,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162004-800-800/158381-1200-auto.webp?v=639268230613930000",
    "https://wepink.vteximg.com.br/arquivos/ids/162005-800-800/158382-1200-auto.webp?v=639268230614100000"
   ],
+  "rank": 353,
+  "hero": true,
   "tagline": {
    "en": "A blend of 7 plant oils, ideal for the skin",
    "ar": "مزيج من 7 زيوت نباتية مثالي للبشرة",
@@ -19017,6 +19692,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162199-800-800/Eyescare---Creme-Contorno-dos-Olhos---15ml_4.webp?v=638985682071270000",
    "https://wepink.vteximg.com.br/arquivos/ids/162200-800-800/Eyescare---Creme-Contorno-dos-Olhos---15ml_5.webp?v=638985682071270000"
   ],
+  "rank": 354,
+  "hero": true,
   "tagline": {
    "en": "The special treatment to reduce puffiness and dark circles",
    "ar": "العلاج المميّز لتقليل الانتفاخات والهالات الداكنة",
@@ -19052,6 +19729,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161986-800-800/157191-1200-auto.webp?v=639268230513030000",
    "https://wepink.vteximg.com.br/arquivos/ids/161987-800-800/157196-1200-auto.webp?v=639268230513200000"
   ],
+  "rank": 355,
+  "hero": true,
   "tagline": {
    "en": "The finest nourishment the skin needs",
    "ar": "أرقى تغذية تحتاجها البشرة",
@@ -19112,6 +19791,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162331-800-800/160986-1200-auto.webp?v=638986077374900000",
    "https://wepink.vteximg.com.br/arquivos/ids/162332-800-800/160987-1200-auto.webp?v=638986077375070000"
   ],
+  "rank": 356,
+  "hero": true,
   "tagline": {
    "en": "A magnetic and seductive sense of well-being",
    "ar": "إحساس بالراحة يفيض بالجاذبية والإغراء",
@@ -19181,6 +19862,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165598-800-800/1.webp?v=639253538676500000",
    "https://wepink.vteximg.com.br/arquivos/ids/165599-800-800/4.webp?v=639253538676500000"
   ],
+  "rank": 361,
+  "hero": true,
   "tagline": {
    "en": "Night-time care that treats hair during sleep",
    "ar": "عناية ليلية تعالج الشعر أثناء النوم",
@@ -19219,6 +19902,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164781-800-800/03.webp?v=639156717043200000",
    "https://wepink.vteximg.com.br/arquivos/ids/164782-800-800/05.webp?v=639156717043370000"
   ],
+  "rank": 357,
+  "hero": true,
   "tagline": {
    "en": "Unveil the delight of a joyful scent!",
    "ar": "اكتشفي متعة عبير مبهج!",
@@ -19278,6 +19963,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165028-800-800/3--1-.webp?v=639223979827600000",
    "https://wepink.vteximg.com.br/arquivos/ids/165029-800-800/5--1-.webp?v=639223979827600000"
   ],
+  "rank": 358,
+  "hero": true,
   "tagline": {
    "en": "Deep nourishment and firmness with the authentic touch of creamy fig",
    "ar": "تغذية عميقة وتماسك مع لمسة أصيلة من التين الكريمي",
@@ -19338,6 +20025,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164678-800-800/03.webp?v=639156471386670000",
    "https://wepink.vteximg.com.br/arquivos/ids/164679-800-800/05.webp?v=639156471386800000"
   ],
+  "rank": 359,
+  "hero": true,
   "tagline": {
    "en": "Sophisticated freshness that turns every moment into an experience of freedom",
    "ar": "انتعاش راقٍ يحوّل كل لحظة إلى تجربة من الحرية",
@@ -19420,6 +20109,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164344-800-800/03.png?v=639129722069600000",
    "https://wepink.vteximg.com.br/arquivos/ids/164345-800-800/05.png?v=639129722069600000"
   ],
+  "rank": 360,
+  "hero": true,
   "tagline": {
    "en": "The luminous freshness of summer with an irresistible sweetness",
    "ar": "انتعاش الصيف المشرق مع عذوبة لا تُقاوم",
@@ -19480,6 +20171,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161086-800-800/03.jpg?v=638895053069770000",
    "https://wepink.vteximg.com.br/arquivos/ids/161087-800-800/05.jpg?v=638895053069770000"
   ],
+  "rank": 385,
+  "hero": true,
   "tagline": {
    "en": "A fragrance that celebrates your unforgettable presence",
    "ar": "عطر يحتفي بحضورك الذي لا يُنسى",
@@ -19575,6 +20268,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160738-800-800/004.jpg?v=638842872322200000",
    "https://wepink.vteximg.com.br/arquivos/ids/160739-800-800/002--1-.jpg?v=638842873181770000"
   ],
+  "rank": 367,
+  "hero": true,
   "tagline": {
    "en": "The return of the king, now more intense than ever",
    "ar": "عودة الملك، الآن أكثر قوة من أي وقت مضى",
@@ -19640,6 +20335,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163920-800-800/Prancheta-2.png?v=639081285318070000",
    "https://wepink.vteximg.com.br/arquivos/ids/163921-800-800/Prancheta-1.png?v=639081285318070000"
   ],
+  "rank": 362,
+  "hero": true,
   "tagline": {
    "en": "A feminine fruity floral, sophisticated and naturally striking",
    "ar": "عطر زهري فاكهي أنثوي، راقٍ ولافت بطبيعته",
@@ -19743,6 +20440,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165751-800-800/02--4-.webp?v=639259411715870000",
    "https://wepink.vteximg.com.br/arquivos/ids/165752-800-800/03--4-.webp?v=639259411715870000"
   ],
+  "rank": 365,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -19779,6 +20478,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165568-800-800/03.png?v=639253537091470000",
    "https://wepink.vteximg.com.br/arquivos/ids/165569-800-800/04.png?v=639253537091630000"
   ],
+  "rank": 376,
+  "hero": true,
   "tagline": {
    "en": "The golden power of jasmine sambac for magnificent, protected hair",
    "ar": "القوة الذهبية لياسمين سامباك لشعر رائع ومحمي",
@@ -19837,6 +20538,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165756-800-800/02--1-.webp?v=639259412004530000",
    "https://wepink.vteximg.com.br/arquivos/ids/165757-800-800/03--1-.webp?v=639259412004530000"
   ],
+  "rank": 363,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -19873,6 +20576,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164522-800-800/04.webp?v=639147118896930000",
    "https://wepink.vteximg.com.br/arquivos/ids/164523-800-800/03.webp?v=639147118897100000"
   ],
+  "rank": 364,
+  "hero": true,
   "tagline": {
    "en": "The fragrance that makes life divine",
    "ar": "العطر الذي يجعل الحياة في أبهى صورها",
@@ -19941,6 +20646,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162247-800-800/159142-1200-auto.webp?v=638985729737230000",
    "https://wepink.vteximg.com.br/arquivos/ids/162248-800-800/159143-1200-auto.webp?v=638985729737230000"
   ],
+  "rank": 394,
+  "hero": true,
   "tagline": {
    "en": "The fragrance that makes life divine",
    "ar": "العطر الذي يجعل الحياة في أبهى صورها",
@@ -19989,6 +20696,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165958-800-800/159867-1200-auto.webp?v=639270767842400000",
    "https://wepink.vteximg.com.br/arquivos/ids/165959-800-800/159868-1200-auto.webp?v=639270767842400000"
   ],
+  "rank": 366,
+  "hero": true,
   "tagline": {
    "en": "Overflowing with care and elegance",
    "ar": "فيض من العناية والأناقة",
@@ -20026,6 +20735,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165714-800-800/pureblixx-2.jpg.jpg?v=639256832160330000",
    "https://wepink.vteximg.com.br/arquivos/ids/165715-800-800/pureblixx-5.jpg.jpg?v=639256832160330000"
   ],
+  "rank": 401,
+  "hero": true,
   "tagline": {
    "en": "Fragrant hydration that will delight your skin",
    "ar": "ترطيب معطّر يأسر بشرتك",
@@ -20075,6 +20786,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164382-800-800/Prancheta-2.webp?v=639140974869170000",
    "https://wepink.vteximg.com.br/arquivos/ids/164383-800-800/Prancheta-1.webp?v=639140974869330000"
   ],
+  "rank": 377,
+  "hero": true,
   "tagline": {
    "en": "Whipped-cream texture with the cozy scent of Vanilla Hug",
    "ar": "قوام الكريمة المخفوقة مع عبير فانيلا هاج الدافئ",
@@ -20127,6 +20840,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162355-800-800/161730-1200-auto.webp?v=638986093608400000",
    "https://wepink.vteximg.com.br/arquivos/ids/162356-800-800/161731-1200-auto.webp?v=638986093608400000"
   ],
+  "rank": 381,
+  "hero": true,
   "tagline": {
    "en": "A challenge to the conventional",
    "ar": "تحدٍّ للمألوف",
@@ -20162,6 +20877,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160705-800-800/kit-skincare-4.jpg?v=638839554325270000",
    "https://wepink.vteximg.com.br/arquivos/ids/160706-800-800/kit-skincare-5.jpg?v=638839554325270000"
   ],
+  "rank": 398,
+  "hero": true,
   "tagline": {
    "en": "For more even, healthier skin",
    "ar": "لبشرة موحّدة اللون وأكثر صحة",
@@ -20199,6 +20916,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165250-800-800/Prancheta-5.webp?v=639223867570470000",
    "https://wepink.vteximg.com.br/arquivos/ids/165251-800-800/Prancheta-6.webp?v=639223867570470000"
   ],
+  "rank": 368,
+  "hero": true,
   "tagline": {
    "en": "Keeping pace with those who make things happen",
    "ar": "يواكب إيقاع من يصنع الإنجاز",
@@ -20237,6 +20956,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165070-800-800/03--2-.png?v=639207440137770000",
    "https://wepink.vteximg.com.br/arquivos/ids/165071-800-800/05.png?v=639207440030500000"
   ],
+  "rank": 369,
+  "hero": true,
   "tagline": {
    "en": "For men who make their choices with confidence",
    "ar": "للرجال الذين يتخذون قراراتهم بثقة",
@@ -20341,6 +21062,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165046-800-800/04--2-.png?v=639207671245300000",
    "https://wepink.vteximg.com.br/arquivos/ids/165047-800-800/05--2-.png?v=639207671245470000"
   ],
+  "rank": 370,
+  "hero": true,
   "tagline": {
    "en": "Nourishment and firmness with the authentic touch of a fruity floral",
    "ar": "تغذية وتماسك مع لمسة أصيلة من العبير الزهري الفاكهي",
@@ -20379,6 +21102,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164659-800-800/03--4-.webp?v=639161048049270000",
    "https://wepink.vteximg.com.br/arquivos/ids/164660-800-800/05--4-.webp?v=639161048049300000"
   ],
+  "rank": 371,
+  "hero": true,
   "tagline": {
    "en": "The perfect balance of freshness and sophistication",
    "ar": "التوازن المثالي بين الانتعاش والرقي",
@@ -20484,6 +21209,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164673-800-800/03.webp?v=639156470852430000",
    "https://wepink.vteximg.com.br/arquivos/ids/164674-800-800/05.webp?v=639156470852430000"
   ],
+  "rank": 372,
+  "hero": true,
   "tagline": {
    "en": "The fruity floral oriental that turns presence into memory",
    "ar": "عطر زهري شرقي فاكهي يحوّل الحضور إلى ذكرى",
@@ -20573,6 +21300,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164654-800-800/03--3-.webp?v=639194235951900000",
    "https://wepink.vteximg.com.br/arquivos/ids/164655-800-800/05--3-.webp?v=639194235951900000"
   ],
+  "rank": 373,
+  "hero": true,
   "tagline": {
    "en": "The sophistication of those who turn confidence into presence",
    "ar": "رقيّ من تحوّل الثقة إلى حضور",
@@ -20675,6 +21404,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165858-800-800/02 -5-.webp?v=639260251070000000",
    "https://wepink.vteximg.com.br/arquivos/ids/165859-800-800/03 -4-.webp?v=639260251070000000"
   ],
+  "rank": 374,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -20722,6 +21453,8 @@ window.WP_CATALOG = [
   "remote": [
    "https://wepink.vteximg.com.br/arquivos/ids/165975-800-800/01.png?v=639270862699630000"
   ],
+  "rank": 375,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -20760,6 +21493,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164647-800-800/03.webp?v=639155658568500000",
    "https://wepink.vteximg.com.br/arquivos/ids/164648-800-800/05.webp?v=639155658568500000"
   ],
+  "rank": 378,
+  "hero": true,
   "tagline": {
    "en": "Masculine presence revealed in an aromatic amber fougère",
    "ar": "حضور رجولي يتجلّى في عطر فوجير عنبري عطري",
@@ -20870,6 +21605,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163600-800-800/2.webp?v=639042445649900000",
    "https://wepink.vteximg.com.br/arquivos/ids/163601-800-800/1.webp?v=639042445650070000"
   ],
+  "rank": 379,
+  "hero": true,
   "tagline": {
    "en": "Fabulous hydration",
    "ar": "ترطيب مذهل",
@@ -20908,6 +21645,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/163260-800-800/Haylass-4.webp?v=638997664757570000",
    "https://wepink.vteximg.com.br/arquivos/ids/163261-800-800/Haylass-1.webp?v=638997664757700000"
   ],
+  "rank": 380,
+  "hero": true,
   "tagline": {
    "en": "Your own enchanted grove",
    "ar": "بستانك المسحور الخاص",
@@ -20946,6 +21685,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164085-800-800/Prancheta-5.webp?v=639088373699300000",
    "https://wepink.vteximg.com.br/arquivos/ids/164086-800-800/Prancheta-2.webp?v=639088373699300000"
   ],
+  "rank": 382,
+  "hero": true,
   "tagline": {
    "en": "Want fuller lips? Fuller lips you shall have",
    "ar": "تريدين شفاهاً ممتلئة؟ ستحصلين عليها",
@@ -20984,6 +21725,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162478-800-800/Crave-Desodorante-Colonia-100ml---Wepink_4.webp?v=638986863384000000",
    "https://wepink.vteximg.com.br/arquivos/ids/162479-800-800/Crave-Desodorante-Colonia-100ml---Wepink_5.webp?v=638986863384000000"
   ],
+  "rank": 383,
+  "hero": true,
   "tagline": {
    "en": "Never underestimate the power of desire",
    "ar": "لا تستهيني أبداً بقوة الرغبة",
@@ -21049,6 +21792,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161216-800-800/03.jpg?v=638911135628570000",
    "https://wepink.vteximg.com.br/arquivos/ids/161217-800-800/05.jpg?v=638911135628570000"
   ],
+  "rank": 384,
+  "hero": true,
   "tagline": {
    "en": "For the most powerful piece in the game: you!",
    "ar": "لأقوى قطعة في اللعبة: أنتِ!",
@@ -21119,6 +21864,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160909-800-800/04.jpg?v=638870530949530000",
    "https://wepink.vteximg.com.br/arquivos/ids/160910-800-800/05.jpg?v=638870530949530000"
   ],
+  "rank": 386,
+  "hero": true,
   "tagline": {
    "en": "Celebrate the brilliance of life!",
    "ar": "احتفي ببريق الحياة!",
@@ -21181,6 +21928,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161869-800-800/001-copy.webp?v=638985672963730000",
    "https://wepink.vteximg.com.br/arquivos/ids/161870-800-800/001.webp?v=638980704179300000"
   ],
+  "rank": 387,
+  "hero": true,
   "tagline": {
    "en": "Wrap yourself in a fatal love",
    "ar": "انغمسي في حبٍّ جارف",
@@ -21233,6 +21982,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/159495-800-800/Prancheta-8.png?v=638780760072270000",
    "https://wepink.vteximg.com.br/arquivos/ids/159496-800-800/Prancheta-9.png?v=638780760072270000"
   ],
+  "rank": 388,
+  "hero": true,
   "tagline": {
    "en": "Breathe in comfort and well-being!",
    "ar": "استنشقي الراحة والطمأنينة!",
@@ -21297,6 +22048,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162893-800-800/159500-1200-auto.webp?v=638991746657930000",
    "https://wepink.vteximg.com.br/arquivos/ids/162894-800-800/159501-1200-auto.webp?v=638991746658100000"
   ],
+  "rank": 389,
+  "hero": true,
   "tagline": {
    "en": "Feel the lightness of a special scent!",
    "ar": "اشعري بخفة عبير مميز!",
@@ -21348,6 +22101,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164751-800-800/03.webp?v=639156614326100000",
    "https://wepink.vteximg.com.br/arquivos/ids/164752-800-800/05.webp?v=639156614326100000"
   ],
+  "rank": 390,
+  "hero": true,
   "tagline": {
    "en": "A unique, light and refreshing scent for a wonderful after-shower feeling",
    "ar": "عبير فريد وخفيف ومنعش لإحساس رائع بعد الاستحمام",
@@ -21397,6 +22152,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/166043-800-800/prancheta 2.webp?v=639271481595200000",
    "https://wepink.vteximg.com.br/arquivos/ids/166044-800-800/prancheta 3.webp?v=639271481595200000"
   ],
+  "rank": 391,
+  "hero": true,
   "tagline": {
    "en": "The touch your body deserves",
    "ar": "اللمسة التي يستحقها جسمك",
@@ -21447,6 +22204,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162074-800-800/Serum-Noturno-25ml_5.webp?v=638985678164170000",
    "https://wepink.vteximg.com.br/arquivos/ids/162075-800-800/Serum-Noturno-25ml_6.webp?v=638985678164170000"
   ],
+  "rank": 392,
+  "hero": true,
   "tagline": {
    "en": "Care and deep hydration for your skin",
    "ar": "عناية وترطيب عميق لبشرتك",
@@ -21483,6 +22242,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161992-800-800/158393-1200-auto.webp?v=639268230317400000",
    "https://wepink.vteximg.com.br/arquivos/ids/161993-800-800/158394-1200-auto.webp?v=639268230317400000"
   ],
+  "rank": 393,
+  "hero": true,
   "tagline": {
    "en": "Powerful hydration with 10 plant oils",
    "ar": "ترطيب قوي بـ 10 زيوت نباتية",
@@ -21548,6 +22309,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164722-800-800/03.webp?v=639156593805930000",
    "https://wepink.vteximg.com.br/arquivos/ids/164723-800-800/05.webp?v=639156593806070000"
   ],
+  "rank": 395,
+  "hero": true,
   "tagline": {
    "en": "Declare your fatal love",
    "ar": "أعلني حبك الجارف",
@@ -21614,6 +22377,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165766-800-800/02--6-.webp?v=639259411815870000",
    "https://wepink.vteximg.com.br/arquivos/ids/165767-800-800/03--6-.webp?v=639259411815870000"
   ],
+  "rank": 396,
+  "hero": true,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -21652,6 +22417,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/164776-800-800/03.webp?v=639156714392870000",
    "https://wepink.vteximg.com.br/arquivos/ids/164777-800-800/05.webp?v=639156714393000000"
   ],
+  "rank": 397,
+  "hero": true,
   "tagline": {
    "en": "Open it and make a wish come true!",
    "ar": "افتحيه وحققي أمنيتك!",
@@ -21712,6 +22479,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/162347-800-800/160515-1200-auto.webp?v=638986086683570000",
    "https://wepink.vteximg.com.br/arquivos/ids/162348-800-800/160516-1200-auto.webp?v=638986086683730000"
   ],
+  "rank": 399,
+  "hero": true,
   "tagline": {
    "en": "The finishing note for an unforgettable glow",
    "ar": "اللمسة الأخيرة لتألق لا يُنسى",
@@ -21800,6 +22569,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165928-800-800/celebrate-life-2.jpg.jpg?v=639268230056270000",
    "https://wepink.vteximg.com.br/arquivos/ids/165929-800-800/celebrate-life-5.jpg.jpg?v=639268230056430000"
   ],
+  "rank": 400,
+  "hero": true,
   "tagline": {
    "en": "Extraordinary nourishment to celebrate the beauty of the skin",
    "ar": "تغذية استثنائية للاحتفاء بجمال البشرة",
@@ -21851,6 +22622,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/160343-800-800/02.jpg.jpg?v=638792860917370000",
    "https://wepink.vteximg.com.br/arquivos/ids/160344-800-800/04.jpg.jpg?v=638792860917400000"
   ],
+  "rank": 402,
+  "hero": true,
   "tagline": {
    "en": "The truly captivating elixir made for you",
    "ar": "الإكسير الحقيقي الذي يأسر الحواس، صُنع لكِ",
@@ -21900,6 +22673,8 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/161998-800-800/158376-1200-auto.webp?v=639268230433430000",
    "https://wepink.vteximg.com.br/arquivos/ids/161999-800-800/158379-1200-auto.webp?v=639268230433430000"
   ],
+  "rank": 403,
+  "hero": true,
   "tagline": {
    "en": "Awaken the essential touch for your skin",
    "ar": "أيقظي اللمسة الجوهرية لبشرتك",
@@ -21927,5 +22702,35 @@ window.WP_CATALOG = [
    ]
   },
   "source": "https://www.wepink.com.br/the-oil-red-120ml-we-pink/p"
+ },
+ {
+  "id": "set-kit-cedre-raffi-body-cream-heaven-body-splash-heaven",
+  "cat": "gift-sets",
+  "type": "set",
+  "line": "Cèdre Raffi + Heaven Body Cream + Heaven Body Splash Set",
+  "lineAr": "سيدر رافي + هيفن بودي كريم + هيفن بودي سبلاش سِت",
+  "price": 229,
+  "color": "#E6007E",
+  "color2": "#FFE3EF",
+  "image": "assets/products/set-kit-cedre-raffi-body-cream-heaven-body-splash-heaven.webp",
+  "images": [
+   "assets/products/set-kit-cedre-raffi-body-cream-heaven-body-splash-heaven.webp"
+  ],
+  "remote": [
+   "https://wepink.vteximg.com.br/arquivos/ids/166065-800-800/kit-cedre---bs-e-bc-heaven.webp?v=639274429578970000"
+  ],
+  "rank": 249,
+  "tagline": {
+   "en": "A cologne and the Heaven ritual, together in one set",
+   "ar": "كولونيا وطقس هيفن معًا في طقم واحد",
+   "pt": "Uma colônia e o ritual Heaven reunidos em um só kit"
+  },
+  "desc": {
+   "en": "This set brings together Cèdre Raffi Eau de Cologne, Heaven Body Cream and Heaven Body Splash. Moisturise with the cream, layer the splash and finish with the cologne for a scent that lasts all day.",
+   "ar": "يجمع هذا الطقم بين كولونيا سيدر رافي وكريم الجسم هيفن وبودي سبلاش هيفن. رطّبي بشرتكِ بالكريم، ثم رشّي السبلاش، واختمي بالكولونيا لعطر يدوم طوال اليوم.",
+   "pt": "Este kit reúne o Desodorante Colônia Cèdre Raffi, o Body Cream Heaven e o Body Splash Heaven. Hidrate com o creme, aplique o splash por cima e finalize com a colônia para um perfume que dura o dia todo."
+  },
+  "source": "https://www.wepink.com.br/kit-cedre-raffi--body-cream-heaven--body-splash-heaven---wepink-125675/p",
+  "notes": {}
  }
 ];
