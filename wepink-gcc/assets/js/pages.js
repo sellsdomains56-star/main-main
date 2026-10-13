@@ -233,6 +233,8 @@ window.WP_PAGES = (function () {
 
       <div class="marquee marquee-glow" aria-hidden="true"><div class="marquee-track">${`<span>${esc(t("marquee"))}</span><span class="marquee-dot">✦</span>`.repeat(6)}</div></div>
 
+      ${favorites()}
+
       <section class="section icons" aria-labelledby="icons-title">
         <div class="grain" aria-hidden="true"></div>
         <div class="container">
@@ -1371,6 +1373,44 @@ window.WP_PAGES = (function () {
         <a class="btn btn-primary" href="${wa(text)}" target="_blank" rel="noopener">${icon("chat")}<span>${esc(t("help.reqSend"))}</span></a></div>`;
     });
     return t("help.title");
+  }
+
+  // "wepink favorites": wepink Brasil's best sellers on their white studio photos, as on
+  // wepink.com.br — seal, tagline, price with tabby instalments, Buy and add-to-bag.
+  function favorites() {
+    const c = W.country();
+    const split = c.pay.includes("tabby");
+    const list = featured().slice(0, 12);
+    const each = (p) => W.withSymbol(W.num(c.decimals ? Math.round((priceOf(p) / 4) * 1000) / 1000 : Math.round((priceOf(p) / 4) * 100) / 100, c.decimals || 2), c);
+    return `<section class="section favs" aria-labelledby="favs-title">
+      <div class="container">
+        <h2 id="favs-title" class="favs-title" data-reveal>${esc(t("favs.title"))}</h2>
+        <div class="favs-wrap">
+          <button class="favs-arrow" type="button" data-favs="-1" aria-label="${esc(t("favs.prev"))}">${icon("chevron")}</button>
+          <div class="favs-track" tabindex="0" aria-label="${esc(t("favs.title"))}">
+            ${list
+              .map((p) => {
+                const url = `product.html?id=${encodeURIComponent(p.id)}`;
+                const studio = (p.packshots || [])[0];
+                const img = studio && studio !== p.image ? `<img src="${esc(studio)}" data-fb="${esc(p.image)}" alt="${esc(fullName(p))}" loading="lazy" decoding="async">` : `<img src="${esc(p.image)}" alt="${esc(fullName(p))}" loading="lazy" decoding="async">`;
+                const seal = p.badge === "bestseller" || (p.rank && p.rank <= 12);
+                return `<article class="fav-card">
+                <a class="fav-media" href="${url}" tabindex="-1">${seal ? `<span class="fav-seal" aria-hidden="true"><i>★★★</i><b>${esc(t("favs.seal"))}</b><em>wepink</em></span>` : ""}${img}</a>
+                <h3 class="fav-name"><a href="${url}">${esc(fullName(p))}</a></h3>
+                <p class="fav-tag">${esc(L(p.tagline) || "")}</p>
+                <div class="fav-price">${p.compareAt ? `<s class="price-was">${esc(money(W.priceOf({ price: p.compareAt })))}</s>` : ""}<p><strong>${esc(money(priceOf(p)))}</strong>${split ? ` <span>${esc(t("favs.split", { amount: each(p) }))}</span>` : ""}</p></div>
+                <div class="fav-actions">
+                  <a class="btn btn-primary fav-buy" href="checkout.html" data-buy="${esc(p.id)}">${esc(t("favs.buy"))}</a>
+                  <button class="fav-add" type="button" data-add="${esc(p.id)}" aria-label="${esc(t("card.addLabel", { name: fullName(p) }))}">${icon("plus")}${icon("bag")}</button>
+                </div>
+              </article>`;
+              })
+              .join("")}
+          </div>
+          <button class="favs-arrow next" type="button" data-favs="1" aria-label="${esc(t("favs.next"))}">${icon("chevron")}</button>
+        </div>
+      </div>
+    </section>`;
   }
 
   // wepink's exchange and return terms (data.js returnTerms), with the accept switch

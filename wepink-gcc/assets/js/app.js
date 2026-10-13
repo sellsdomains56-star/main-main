@@ -1455,7 +1455,7 @@ window.WP = (function () {
     }
     document.addEventListener("click", (e) => {
       if (!e.target.closest(".lang-menu")) langMenuClose();
-      const el = e.target.closest("[data-open],[data-close],[data-add],[data-qty],[data-remove],[data-lang-menu],[data-lang],[data-tone-toggle],[data-quiz-send],[data-country],[data-search],[data-quiz],[data-quiz-restart]");
+      const el = e.target.closest("[data-open],[data-close],[data-add],[data-buy],[data-favs],[data-qty],[data-remove],[data-lang-menu],[data-lang],[data-tone-toggle],[data-quiz-send],[data-country],[data-search],[data-quiz],[data-quiz-restart]");
       if (!el) return;
       if (el.hasAttribute("data-open")) {
         e.preventDefault();
@@ -1468,6 +1468,17 @@ window.WP = (function () {
         const qty = qtyEl && qtyEl.querySelector("[data-qty-value]") ? parseInt(qtyEl.querySelector("[data-qty-value]").textContent, 10) || 1 : 1;
         bag.add(id, qty);
         open("bag");
+      } else if (el.hasAttribute("data-buy")) {
+        // "Buy": into the bag and straight to checkout
+        e.preventDefault();
+        bag.add(el.getAttribute("data-buy"), 1);
+        if (SINGLE) navigate("checkout.html");
+        else location.href = "checkout.html";
+      } else if (el.hasAttribute("data-favs")) {
+        // carousel arrows: one view's width each way (mirrored in Arabic)
+        const track = el.parentElement.querySelector(".favs-track");
+        const dir = Number(el.getAttribute("data-favs")) * (document.documentElement.dir === "rtl" ? -1 : 1);
+        track.scrollBy({ left: dir * track.clientWidth * 0.9, behavior: "smooth" });
       } else if (el.hasAttribute("data-qty")) {
         const id = el.getAttribute("data-qty");
         const line = state.cart.find((i) => i.id === id);
