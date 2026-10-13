@@ -90,7 +90,8 @@ The database schema, row-level security and functions are in `supabase/schema.sq
 
 The store collects:
 
-- **What people type in**: name, phone/WhatsApp, email, address, birthday, store city — from the wepink Club, newsletter, checkout, ambassador sign-up and store-interest forms. One customer record per person (matched by email, then phone), with every way they've joined.
+- **What people type in**: name, phone/WhatsApp, email, address, birthday, store city — from the wepink Club, newsletter, checkout, ambassador sign-up and store-interest forms, the scent quiz ("send my match to WhatsApp", source `quiz`, with the matched products) and the beauty assistant ("send these picks to my WhatsApp", source `club`, `details.via = "assistant"`). One customer record per person (matched by email, then phone), with every way they've joined.
+- **When the Club pop-up appears**: 15 seconds into a visit, or on a computer as soon as the pointer heads for the tabs or the close button, at most once a week, never during checkout or over another window, and never again once someone has joined.
 - **From Google / Apple sign-in**: the name, email and profile photo on the account (Apple lets people hide their email; then Apple gives a private relay address that still reaches them).
 - **Consent for offers**: the Club tick box, the checkout "send me offers" box and the newsletter. Only send marketing to customers marked "Agreed to offers".
 - **Visits, only after cookie consent**: a banner asks first; if accepted, each page view is recorded with the page, device type, screen size, language, the country of the connection, and the campaign (`?utm_source=…`) or ambassador link that brought the visitor. Declined means nothing is recorded. When a visitor later fills in a form, their visits are linked to their customer record.
@@ -130,7 +131,17 @@ python3 wepink-gcc/scripts/import_catalog.py js                      # write ass
 7. **Contact details:** WhatsApp number, email, Instagram and TikTok — set them in Settings (the defaults are in `config` at the top of `data.js`).
 8. **Stores:** the store list in `data.js` (all are "opening soon" for now).
 9. **Copy:** the brand story, the Virginia Fonseca text, the Club perks, the privacy notice, and the delivery/returns promises in `i18n.js` need sign-off from the brand.
-10. **Database plan:** the Supabase project is on the free plan, which pauses after a week without activity and has no backups — move it to a paid plan before launch, and turn on leaked-password protection (Authentication → Passwords).
+10. **Web address:** set `siteUrl` in `config` (`data.js`) and the `og:image` address in the HTML pages to the real domain, then run `node scripts/build-sitemap.mjs` to rewrite `sitemap.xml` and `robots.txt`, and submit the sitemap in Google Search Console.
+11. **Help centre answers:** refund (7 working days), replacement (48 hours) and exchange times in `faq` (`data.js`) follow wepink Brazil; confirm them for the Gulf.
+12. **Database plan:** the Supabase project is on the free plan, which pauses after a week without activity and has no backups — move it to a paid plan before launch, and turn on leaked-password protection (Authentication → Passwords).
+
+## Search engines and link previews
+
+- Every page sets its title, description, share image (`og:` and Twitter tags), canonical address and English / Arabic alternates (`?lang=ar`) as it renders; the static tags in each HTML file cover apps that don't run scripts (WhatsApp, Instagram and X previews use `assets/photos/og-share.jpg`, 1200 × 630).
+- Structured data for Google: Organization and WebSite with a site-search box (`shop.html?q=…` opens the search) on the home page, Product with price, currency, availability and images plus breadcrumbs on product pages, breadcrumbs on the shop, and FAQPage on the help centre.
+- Product images carry the product's name as their description, in the shopper's language.
+- `sitemap.xml` lists every page and product in both languages; `robots.txt` keeps the admin panel and checkout out of search (both also carry `noindex`).
+- The store is drawn by JavaScript. Google renders it, but for the fastest indexing host it somewhere that can pre-render pages (Netlify or Vercel prerendering, or Cloudflare Pages with a prerender service).
 
 ## Going live
 

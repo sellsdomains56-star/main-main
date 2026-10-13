@@ -772,12 +772,25 @@ window.WP = (function () {
   }
   function scheduleClub() {
     if (store.get("club", "") === "joined" || Date.now() - store.get("clubShown", 0) < 7 * 864e5) return;
-    setTimeout(() => {
+    let shown = false;
+    const show = () => {
+      if (shown || store.get("club", "") === "joined") return;
       const busy = ["checkout", "earn"].includes(route().page) || document.querySelector("#app-layers .layer:not([hidden])") || (document.activeElement && document.activeElement.closest && document.activeElement.closest("form"));
       if (busy) return;
+      shown = true;
       store.set("clubShown", Date.now());
       open("club");
-    }, 15000);
+    };
+    setTimeout(show, 15000);
+    // On a computer, also when the pointer heads for the tabs or the close button.
+    if (window.matchMedia("(pointer: fine)").matches) {
+      const leaving = (e) => {
+        if (e.clientY > 8 || e.relatedTarget) return;
+        document.removeEventListener("mouseout", leaving);
+        show();
+      };
+      setTimeout(() => document.addEventListener("mouseout", leaving), 4000);
+    }
   }
   function consentBanner() {
     if (!SYNC.live || SYNC.consent.get()) return "";
@@ -1023,6 +1036,7 @@ window.WP = (function () {
               <span class="price-lg">${esc(money(priceOf(best)))}</span>
               <button class="btn btn-primary" type="button" data-add="${esc(best.id)}">${esc(t("pdp.add"))}</button>
             </div>
+            ${store.get("club", "") === "joined" ? "" : `<button class="link-btn quiz-send" type="button" data-quiz-send="${esc([best, ...also].map((p) => p.id).join(","))}">${icon("chat")}<span>${esc(t("quiz.send"))}</span></button>`}
           </div>
         </div>
         ${also.length ? `<p class="eyebrow quiz-also">${esc(t("quiz.also"))}</p><div class="quiz-mini">${also.map((p) => `<a href="product.html?id=${encodeURIComponent(p.id)}">${media(p, "media-xs")}<span><strong>${esc(pname(p))}</strong><span class="muted small">${esc(L(p.typeName))}</span></span></a>`).join("")}</div>` : ""}
@@ -1030,9 +1044,41 @@ window.WP = (function () {
     },
   };
 
+  // Quiz result: "send my match to WhatsApp" (a quiz contact, with consent).
+  function submitQuizCapture(form) {
+    const f = form.elements;
+    const err = form.querySelector(".ai-err");
+    const name = f.namedItem("name").value.trim();
+    const phone = f.namedItem("phone").value.replace(/\D/g, "");
+    if (!name || phone.length < 7) return (err.textContent = t("ai.needDetails"));
+    if (!f.namedItem("agree").checked) return (err.textContent = t("club.agreeErr"));
+    const c = country();
+    const picks = (form.dataset.picks || "").split(",").filter(Boolean);
+    const done = () => {
+      store.set("club", "joined");
+      form.outerHTML = `<p class="quiz-sent">${icon("check")}<span>${esc(t("ai.saved", { name: name.split(" ")[0] }))}</span></p>`;
+    };
+    const entry = Object.assign(
+      { source: "quiz", name, phone: `${c.dial}${phone}`, country: state.country, lang: state.lang, marketing: true, details: { match: picks } },
+      SYNC.context()
+    );
+    if (!SYNC.live) return done();
+    form.querySelector("[type=submit]").disabled = true;
+    SYNC.rpc("save_contact", { p: entry }).then(done, () => {
+      form.querySelector("[type=submit]").disabled = false;
+      err.textContent = t("form.failed");
+    });
+  }
+
   /* ---------- events ---------- */
   function bind() {
     loader.mount();
+    document.addEventListener("submit", (e) => {
+      const form = e.target.closest && e.target.closest(".quiz-capture");
+      if (!form) return;
+      e.preventDefault();
+      submitQuizCapture(form);
+    });
     if (!SINGLE) {
       document.addEventListener("click", (e) => {
         const a = e.target.closest("a[href]");
@@ -1073,7 +1119,7 @@ window.WP = (function () {
       });
     }
     document.addEventListener("click", (e) => {
-      const el = e.target.closest("[data-open],[data-close],[data-add],[data-qty],[data-remove],[data-lang-toggle],[data-tone-toggle],[data-country],[data-search],[data-quiz],[data-quiz-restart]");
+      const el = e.target.closest("[data-open],[data-close],[data-add],[data-qty],[data-remove],[data-lang-toggle],[data-tone-toggle],[data-quiz-send],[data-country],[data-search],[data-quiz],[data-quiz-restart]");
       if (!el) return;
       if (el.hasAttribute("data-open")) {
         e.preventDefault();
@@ -1094,6 +1140,17 @@ window.WP = (function () {
         bag.setQty(el.getAttribute("data-remove"), 0);
       } else if (el.hasAttribute("data-lang-toggle")) {
         setLang(state.lang === "ar" ? "en" : "ar");
+      } else if (el.hasAttribute("data-quiz-send")) {
+        const c = country();
+        el.outerHTML = `<form class="ai-capture quiz-capture" data-picks="${esc(el.getAttribute("data-quiz-send"))}" novalidate>
+          <input name="name" autocomplete="name" placeholder="${esc(t("stores.name"))}" required>
+          <div class="input-prefix"><span dir="ltr">${esc(c.dial)}</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" dir="ltr" placeholder="${esc(t("stores.phone"))}" required></div>
+          <label class="ai-agree"><input type="checkbox" name="agree"> <span>${esc(t("ai.agree"))}</span></label>
+          <p class="ai-err" aria-live="polite"></p>
+          <button class="btn btn-primary btn-sm" type="submit">${esc(t("ai.send"))}</button>
+        </form>`;
+        const f = document.querySelector(".quiz-capture input");
+        if (f) f.focus();
       } else if (el.hasAttribute("data-tone-toggle")) {
         tone.set(tone.get() === "noir" ? "blanc" : "noir");
       } else if (el.hasAttribute("data-country")) {
@@ -1192,6 +1249,98 @@ window.WP = (function () {
     els.forEach((el) => io.observe(el));
   }
 
+  /* ---------- search engines and link previews ----------
+   * Each page may describe itself while it renders (seo.set): a description,
+   * an image and structured data for Google. render() then writes the meta
+   * tags, the canonical and English / Arabic links, and the JSON-LD. Social
+   * apps that don't run scripts read the tags already in each HTML file. */
+  const seo = {
+    page: {},
+    statics: null,
+    set(info) {
+      Object.assign(this.page, info);
+    },
+    abs(path) {
+      if (path == null) return "";
+      if (/^https?:/.test(path)) return path;
+      return (D.config.siteUrl || location.origin + "/").replace(/\/?$/, "/") + String(path).replace(/^\.?\//, "");
+    },
+    tag(sel, make, attrs) {
+      let el = document.head.querySelector(sel);
+      if (!el) {
+        el = document.createElement(make);
+        document.head.appendChild(el);
+      }
+      Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+      return el;
+    },
+    apply(page, params) {
+      const head = document.head;
+      if (!this.statics) {
+        const d = head.querySelector('meta[name="description"]');
+        this.statics = { description: d ? d.content : "" };
+      }
+      const info = this.page;
+      const description = (info.description || this.statics.description || "").replace(/\s+/g, " ").trim().slice(0, 300);
+      // (built from parts so the single-file build doesn't embed the share image)
+      const image = this.abs(info.image || ["assets", "photos", "og-share.jpg"].join("/"));
+      this.tag('meta[name="description"]', "meta", { name: "description", content: description });
+      const og = { "og:title": document.title, "og:description": description, "og:image": image, "og:type": page === "product" ? "product" : "website", "og:locale": state.lang === "ar" ? "ar_AE" : "en_AE" };
+      Object.entries(og).forEach(([k, v]) => this.tag(`meta[property="${k}"]`, "meta", { property: k, content: v }));
+      this.tag('meta[name="twitter:card"]', "meta", { name: "twitter:card", content: "summary_large_image" });
+      this.tag('meta[name="twitter:image"]', "meta", { name: "twitter:image", content: image });
+      // Canonical and language links (the single-file preview has no real address).
+      if (!SINGLE) {
+        const keep = new URLSearchParams();
+        ["id", "c"].forEach((k) => params.get(k) && keep.set(k, params.get(k)));
+        const file = page === "home" ? "" : page + ".html";
+        const url = this.abs(file) + (keep.toString() ? "?" + keep : "");
+        const withLang = (l) => url + (keep.toString() ? "&" : "?") + "lang=" + l;
+        this.tag('link[rel="canonical"]', "link", { rel: "canonical", href: state.lang === "ar" ? withLang("ar") : url });
+        this.tag('meta[property="og:url"]', "meta", { property: "og:url", content: url });
+        this.tag('link[rel="alternate"][hreflang="en"]', "link", { rel: "alternate", hreflang: "en", href: url });
+        this.tag('link[rel="alternate"][hreflang="ar"]', "link", { rel: "alternate", hreflang: "ar", href: withLang("ar") });
+        this.tag('link[rel="alternate"][hreflang="x-default"]', "link", { rel: "alternate", hreflang: "x-default", href: url });
+      }
+      // Structured data
+      head.querySelectorAll('script[type="application/ld+json"][data-seo]').forEach((x) => x.remove());
+      const ld = (info.ld || []).slice();
+      if (page === "home") {
+        ld.push({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "wepink " + D.config.region.en,
+          url: this.abs(""),
+          logo: this.abs("assets/brand/logo.svg"),
+          sameAs: [D.config.instagram, D.config.tiktok].filter(Boolean),
+          contactPoint: { "@type": "ContactPoint", contactType: "customer service", telephone: "+" + D.config.whatsapp, availableLanguage: ["Arabic", "English"], areaServed: Object.keys(D.countries) },
+        });
+        ld.push({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "wepink " + D.config.region.en,
+          url: this.abs(""),
+          inLanguage: ["en", "ar"],
+          potentialAction: { "@type": "SearchAction", target: this.abs("shop.html") + "?q={search_term_string}", "query-input": "required name=search_term_string" },
+        });
+      }
+      ld.forEach((data) => {
+        const el = document.createElement("script");
+        el.type = "application/ld+json";
+        el.setAttribute("data-seo", "");
+        el.textContent = JSON.stringify(data);
+        head.appendChild(el);
+      });
+    },
+  };
+  function crumbsLd(items) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: items.map(([name, href], i) => ({ "@type": "ListItem", position: i + 1, name, item: href ? seo.abs(href) : undefined })),
+    };
+  }
+
   /* ---------- render ---------- */
   function render() {
     const html = document.documentElement;
@@ -1207,10 +1356,12 @@ window.WP = (function () {
     const main = old.cloneNode(false);
     old.replaceWith(main);
     const fn = window.WP_PAGES && window.WP_PAGES[page];
+    seo.page = {};
     if (fn) {
       const title = fn(main);
       document.title = title ? `${title} · wepink ${L(D.config.region)}` : `wepink ${L(D.config.region)} — ${t("meta.tagline")}`;
     }
+    seo.apply(page, route().params);
     renderFooter();
     reveal();
   }
@@ -1218,6 +1369,14 @@ window.WP = (function () {
   function init() {
     bind();
     render();
+    // shop.html?q=rose (Google's site search box): open the search with the words in
+    const q = route().params.get("q");
+    if (q) {
+      open("search");
+      const input = document.getElementById("search-input");
+      input.value = q;
+      renderSearch(q);
+    }
     if (window.WP_SILK) window.WP_SILK.start();
     // Products, prices and settings from the database: re-render if anything
     // the shopper can see changed, unless they're mid-way through a form.
@@ -1272,7 +1431,7 @@ window.WP = (function () {
     if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, ref, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
+  return { init, render, route, SINGLE, ref, seo, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());

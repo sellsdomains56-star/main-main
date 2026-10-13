@@ -879,6 +879,10 @@ window.WP_PAGES = (function () {
       draw();
     });
     draw();
+    W.seo.set({
+      description: c ? `${L(c.name)} — ${L(c.blurb)}` : t("shop.lead"),
+      ld: [W.crumbsLd([["wepink", ""], [c ? c.name.en : "Shop all", c ? "shop.html?c=" + c.id : "shop.html"]])],
+    });
     return c ? L(c.name) : t("shop.title");
   }
 
@@ -1027,22 +1031,34 @@ window.WP_PAGES = (function () {
       else window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank", "noopener");
     });
 
-    // Product structured data for search engines.
-    let ld = document.getElementById("ld-product");
-    if (!ld) {
-      ld = document.createElement("script");
-      ld.type = "application/ld+json";
-      ld.id = "ld-product";
-      document.head.appendChild(ld);
-    }
-    ld.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: `wepink ${p.line}${FRAG(p) ? " " + p.typeName.en : ""}`,
-      image: p.cutout || p.image,
-      brand: { "@type": "Brand", name: "wepink" },
-      description: p.desc ? p.desc.en || p.desc.ar : undefined,
-      offers: { "@type": "Offer", priceCurrency: c.currency, price: priceOf(p), availability: "https://schema.org/InStock" },
+    // What search engines and link previews see for this product.
+    W.seo.set({
+      description: `${fullName(p)} — ${L(p.tagline) || L(cc ? cc.name : p.typeName)}. ${L(p.desc) || ""}`,
+      image: p.image,
+      ld: [
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: `wepink ${p.line}${FRAG(p) ? " " + p.typeName.en : ""}`,
+          alternateName: p.lineAr || undefined,
+          sku: p.id,
+          image: [p.image, ...(p.packshots || [])].filter(Boolean).slice(0, 4).map((x) => W.seo.abs(x)),
+          brand: { "@type": "Brand", name: "wepink" },
+          category: cc ? cc.name.en : p.typeName.en,
+          description: p.desc ? p.desc.en || p.desc.ar : undefined,
+          size: typeof p.size === "string" ? p.size : undefined,
+          offers: {
+            "@type": "Offer",
+            url: W.seo.abs("product.html?id=" + encodeURIComponent(p.id)),
+            priceCurrency: c.currency,
+            price: priceOf(p),
+            availability: "https://schema.org/InStock",
+            itemCondition: "https://schema.org/NewCondition",
+            seller: { "@type": "Organization", name: "wepink " + D.config.region.en },
+          },
+        },
+        W.crumbsLd([["wepink", ""], [cc ? cc.name.en : p.typeName.en, cc ? "shop.html?c=" + cc.id : "shop.html"], [`${p.line}${FRAG(p) ? " " + p.typeName.en : ""}`]]),
+      ],
     });
     return fullName(p);
   }
@@ -1299,6 +1315,18 @@ window.WP_PAGES = (function () {
       topic = b.dataset.topic;
       main.querySelectorAll("[data-topic]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
       filter();
+    });
+
+    // Google can show these answers straight in search results.
+    W.seo.set({
+      description: t("help.lead"),
+      ld: [
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: D.faq.flatMap((g) => g.items.map((it) => ({ "@type": "Question", name: fill(L(it.q), vars), acceptedAnswer: { "@type": "Answer", text: fill(L(it.a), vars) } }))),
+        },
+      ],
     });
 
     // exchange / return request: ready-made message for our WhatsApp

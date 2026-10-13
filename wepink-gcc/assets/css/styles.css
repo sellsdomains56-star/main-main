@@ -6417,3 +6417,31 @@ html[data-tone="noir"] .wa-topics a {
     display: none;
   }
 }
+.quiz-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+.quiz-send .icon {
+  width: 17px;
+  height: 17px;
+}
+.quiz-capture {
+  margin-top: 12px;
+  max-width: 360px;
+}
+.quiz-sent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-weight: 700;
+  color: var(--accent-ink);
+}
+.quiz-sent .icon {
+  width: 20px;
+  height: 20px;
+}

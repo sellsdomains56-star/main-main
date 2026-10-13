@@ -150,7 +150,12 @@ window.WP_ART = (function () {
       // Campaign scenes fill the frame; staged spots (o.stage) keep the cut-out.
       // Campaign shots everywhere; the cut-out stands in if the shot can't load (the
       // one-file build opened on its own).
-      if (p.scene && p.image) return `<img class="scene" src="${esc(p.image)}" alt="" loading="${lazy}" decoding="async"${p.cutout ? ` data-fb="${esc(p.cutout)}"` : ""}>`;
+      if (p.scene && p.image) {
+        // the product's name, for screen readers and image search
+        const ar = document.documentElement.lang === "ar";
+        const alt = ar && p.lineAr ? `${p.lineAr} ${(p.typeName || {}).ar || ""}` : `wepink ${p.line} ${(p.typeName || {}).en || ""}`;
+        return `<img class="scene" src="${esc(p.image)}" alt="${esc(alt.trim())}" loading="${lazy}" decoding="async"${p.cutout ? ` data-fb="${esc(p.cutout)}"` : ""}>`;
+      }
       return p.cutout
         ? `<img class="cut" src="${esc(p.cutout)}" alt="" loading="${lazy}" decoding="async">`
         : `<img class="photo" src="${esc(p.image)}" alt="" loading="${lazy}" decoding="async">`;

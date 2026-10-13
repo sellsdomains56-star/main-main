@@ -10,6 +10,7 @@ window.WP_DATA = (function () {
     region: { en: "Gulf", ar: "الخليج" },
     whatsapp: "971500000000", // placeholder: client's WhatsApp Business number
     email: "care@wepink-gulf.com", // placeholder
+    siteUrl: "https://www.wepink-gulf.com/", // placeholder: the store's real address (search engines, link previews, sitemap)
     hours: "10:00 – 22:00", // customer care, every day, Gulf time
     instagram: "https://www.instagram.com/wepink/",
     tiktok: "https://www.tiktok.com/@wepink",

@@ -164,6 +164,7 @@ window.WP_I18N = {
     "quiz.result": "Your wepink match",
     "quiz.also": "You'll also love",
     "quiz.restart": "Start again",
+    "quiz.send": "Send my match to WhatsApp",
     "quiz.step": "Question {n} of 2",
 
     "stores.title": "Stores",
@@ -666,6 +667,7 @@ window.WP_I18N = {
     "quiz.result": "عطر wepink المناسب لكِ",
     "quiz.also": "ستحبين أيضًا",
     "quiz.restart": "ابدئي من جديد",
+    "quiz.send": "أرسلوا نتيجتي إلى واتساب",
     "quiz.step": "السؤال {n} من 2",
 
     "stores.title": "المتاجر",
