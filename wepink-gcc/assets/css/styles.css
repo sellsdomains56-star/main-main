@@ -7335,3 +7335,8 @@ html[lang="ar"] .fav-name {
     font-size: 19px;
   }
 }
+
+/* the "Enter the pink universe" film on the Our story page: a band, not the page top */
+.film.film-story {
+  margin-top: 0;
+}

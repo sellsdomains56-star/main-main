@@ -57,10 +57,10 @@ window.WP_DATA = (function () {
     // banners — confirm GCC usage rights with the brand before launch. Clear a
     // path to fall back to the designed placeholder.
     photos: {
-      virginiaHero: "assets/photos/vf-splash-campaign.webp", // Virginia Fonseca with the giant VF body splash, home page hero arch
+      virginiaHero: "assets/photos/hero-the-oil.webp", // home page hero arch: "the oil." campaign photo (from the client)
       virginiaPortrait: "assets/photos/liberte-dore-campaign.webp", // Liberté Doré crown portrait for the "Created by Virginia" section
       // Campaign images (assets/photos/campaign/): an AI model, not Virginia, with the real products.
-      campaign: "assets/photos/campaign/chess.webp", // wide campaign image for the "Made to be noticed" band
+      campaign: "assets/photos/campaign/obsessed-my-lips.webp", // wide campaign image for the "Made to be noticed" band: Obsessed + My Lips (from the client)
       club: "assets/photos/campaign/satin-vf.webp", // the Club pop-up
       earn: "assets/photos/campaign/red-stripe.webp", // Earn with wepink hero
       about: "assets/photos/campaign/golden-hour.webp", // About page
@@ -68,9 +68,13 @@ window.WP_DATA = (function () {
       gift: "assets/photos/campaign/gift-box.webp", // the gifting promo on the home page
     },
 
-    // Homepage film: "Enter the pink universe" (Seedance 2.5, 30 s, 16:9). It plays muted on a
-    // loop at the very top of the home page; phones get the 720p file. Clear `src` to hide it.
-    film: { src: "assets/video/wepink-hero-1080.mp4", srcMobile: "assets/video/wepink-hero-720.mp4", poster: "assets/photos/film-poster.jpg" },
+    // Homepage film: "wepink × GCC" — the pink wepink jet flies to the Gulf and lands by the
+    // Dubai skyline (24 s, 16:9). It plays muted on a loop at the very top of the home page,
+    // with a sound button; phones get the 720p file. Clear `src` to hide it.
+    film: { src: "assets/video/wepink-gcc-jet-1080.mp4", srcMobile: "assets/video/wepink-gcc-jet-720.mp4", poster: "assets/photos/film-gcc-poster.jpg" },
+    // "Enter the pink universe" (Seedance 2.5, 30 s), the first homepage film: now on the
+    // Our story page. Clear `src` to hide it.
+    storyFilm: { src: "assets/video/wepink-hero-1080.mp4", srcMobile: "assets/video/wepink-hero-720.mp4", poster: "assets/photos/film-poster.jpg" },
 
     // Referral & ambassador programme (placeholder terms — set with the franchise).
     referral: {
@@ -237,6 +241,10 @@ window.WP_DATA = (function () {
       { photo: "assets/photos/campaign/red-studio.webp", product: "colonia-fatal-black-for-her-100-ml", cat: "perfume", home: true, pos: "60% 50%", title: { en: "Power, bottled", ar: "القوة في زجاجة", pt: "Poder em frasco" } },
       { photo: "assets/photos/campaign/sit-golden.webp", product: "splash-vf-golden-200-ml", cat: "body-splash", home: true, pos: "50% 40%", title: { en: "Golden, all day", ar: "ذهبية طوال اليوم", pt: "Dourada o dia todo" } },
       { photo: "assets/photos/campaign/crown.webp", product: "colonia-liberte-dore-100-ml", cat: "perfume", home: true, pos: "50% 30%", title: { en: "Crowned in gold", ar: "متوّجة بالذهب", pt: "Coroada de ouro" } },
+      // From the client: these three head Perfumes, Body Care and Makeup in the shop.
+      { photo: "assets/photos/campaign/heaven-straw.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "75% 40%", title: { en: "Sip on Heaven", ar: "رشفة من هيفن", pt: "Um gole de Heaven" } },
+      { photo: "assets/photos/campaign/the-oil-blonde.webp", product: "bodyoil-vf-120-ml", cat: "body-care", pos: "50% 30%", title: { en: "Glow, oiled up", ar: "توهّج مع الزيت", pt: "Brilho com óleo" } },
+      { photo: "assets/photos/campaign/lip-tint-drip.webp", product: "makeup-lip-tint-glow-essencial-5-8-ml", cat: "makeup", pos: "55% 45%", title: { en: "Dripping in gloss", ar: "لمعان يقطر", pt: "Brilho que escorre" } },
       { photo: "assets/photos/campaign/giant-heaven.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "50% 45%", title: { en: "Bigger than life", ar: "أكبر من الحياة", pt: "Maior que a vida" } },
       { photo: "assets/photos/campaign/peach.webp", product: "splash-perfect-pear-peach-200-ml", cat: "body-splash", title: { en: "Squeeze the day", ar: "اعتصري يومكِ", pt: "Aproveite cada gota" } },
       { photo: "assets/photos/campaign/fruit-creams.webp", product: "cream-vf-golden-200-ml", also: ["cream-ruby-rhodolite-200-ml", "cream-obsessed-200-ml"], cat: "body-care", title: { en: "Freshly stacked", ar: "طبقات من الانتعاش", pt: "Empilhados e fresquinhos" } },
@@ -251,7 +259,7 @@ window.WP_DATA = (function () {
       perfume: { src: "assets/photos/campaign/giant-heaven.webp", pos: "50% 40%" },
       "body-splash": { src: "assets/photos/campaign/peach.webp", pos: "50% 50%" },
       men: { src: "assets/photos/campaign/chess.webp", pos: "68% 50%" },
-      "body-care": { src: "assets/photos/campaign/fruit-creams.webp", pos: "50% 45%" },
+      "body-care": { src: "assets/photos/campaign/the-oil-blonde.webp", pos: "50% 30%" },
       hair: { src: "assets/photos/campaign/hair-silk.webp", pos: "50% 50%" },
       makeup: { src: "assets/photos/campaign/torn-lip.webp", pos: "50% 45%" },
       skincare: { src: "assets/photos/campaign/beach.webp", pos: "50% 40%" },

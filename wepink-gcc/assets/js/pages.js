@@ -168,24 +168,7 @@ window.WP_PAGES = (function () {
     const film = D.config.film && D.config.film.src ? D.config.film : null;
 
     main.innerHTML = `
-      ${
-        film
-          ? `<section class="film" aria-label="${esc(t("film.label"))}">
-        <div class="film-frame">
-          <video class="film-video" muted loop playsinline preload="none"${film.poster ? ` poster="${esc(film.poster)}"` : ""} aria-hidden="true"></video>
-          <button class="film-play" type="button" data-film-play hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span>${esc(t("film.play"))}</span></button>
-        </div>
-        <div class="film-shade" aria-hidden="true"></div>
-        <div class="container film-bar">
-          <p class="eyebrow eyebrow-glow">${icon("sparkle")}${esc(t("film.eyebrow"))}</p>
-          <div class="film-actions">
-            <button class="film-sound" type="button" data-film-sound aria-pressed="false" hidden>${icon("sparkle")}<span>${esc(t("film.soundOn"))}</span></button>
-            <a class="btn btn-glow" href="shop.html">${esc(t("film.cta"))}${icon("arrow", "flip")}</a>
-          </div>
-        </div>
-      </section>`
-          : ""
-      }
+      ${film ? filmSection(film, "film.gccLabel", "film.gccEyebrow") : ""}
       <section class="hero-noir">
         ${satin()}
         ${W.seasonDeco()}
@@ -428,7 +411,7 @@ window.WP_PAGES = (function () {
         </div>
       </section>`;
 
-    playFilm(main, film);
+    playFilm(main.querySelector(".film"), film);
 
     const form = main.querySelector(".news-form");
     form.addEventListener("submit", (e) => {
@@ -473,15 +456,33 @@ window.WP_PAGES = (function () {
     </div>`;
   }
 
+  // A full-width film band: muted loop, Play button if autoplay is blocked, sound toggle.
+  function filmSection(film, labelKey, eyebrowKey, cls) {
+    return `<section class="film${cls ? " " + cls : ""}" aria-label="${esc(t(labelKey))}">
+        <div class="film-frame">
+          <video class="film-video" muted loop playsinline preload="none"${film.poster ? ` poster="${esc(film.poster)}"` : ""} aria-hidden="true"></video>
+          <button class="film-play" type="button" data-film-play hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span>${esc(t("film.play"))}</span></button>
+        </div>
+        <div class="film-shade" aria-hidden="true"></div>
+        <div class="container film-bar">
+          <p class="eyebrow eyebrow-glow">${icon("sparkle")}${esc(t(eyebrowKey))}</p>
+          <div class="film-actions">
+            <button class="film-sound" type="button" data-film-sound aria-pressed="false" hidden>${icon("sparkle")}<span>${esc(t("film.soundOn"))}</span></button>
+            <a class="btn btn-glow" href="shop.html">${esc(t("film.cta"))}${icon("arrow", "flip")}</a>
+          </div>
+        </div>
+      </section>`;
+  }
+
   // Loads the homepage film once the page has loaded (poster until then) and plays it muted
   // on a loop for every visitor. When a browser blocks autoplay (a phone in low power mode),
   // a Play button shows instead. The one-file build carries the film inline, and inline or
   // same-folder files play from a blob, which every browser can seek.
-  function playFilm(main, film) {
-    const video = main.querySelector(".film-video");
+  function playFilm(root, film) {
+    const video = root && root.querySelector(".film-video");
     if (!video || !film) return;
-    const sound = main.querySelector("[data-film-sound]");
-    const playBtn = main.querySelector("[data-film-play]");
+    const sound = root.querySelector("[data-film-sound]");
+    const playBtn = root.querySelector("[data-film-play]");
     const label = () => {
       sound.setAttribute("aria-pressed", String(!video.muted));
       sound.querySelector("span").textContent = t(video.muted ? "film.soundOn" : "film.soundOff");
@@ -1182,6 +1183,8 @@ window.WP_PAGES = (function () {
   /* ---------------- about ---------------- */
   function about(main) {
     const vals = [["heart", "v1"], ["sparkle", "v2"], ["leaf", "v3"], ["pin", "v4"]];
+    // the first homepage film, "Enter the pink universe", lives here now
+    const story = D.config.storyFilm && D.config.storyFilm.src ? D.config.storyFilm : null;
     main.innerHTML = `
       <section class="about-hero">
         <div class="container about-grid">
@@ -1213,7 +1216,9 @@ window.WP_PAGES = (function () {
             .join("")}</div>
         </div>
       </section>
+      ${story ? filmSection(story, "film.label", "film.eyebrow", "film-story") : ""}
       ${perks()}`;
+    playFilm(main.querySelector(".film-story"), story);
     return t("about.eyebrow");
   }
 
