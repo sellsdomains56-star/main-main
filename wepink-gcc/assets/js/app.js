@@ -461,10 +461,52 @@ window.WP = (function () {
     return false;
   }
 
+  /* ---------- seasons: Ramadan, Eid, National Day, White Friday ----------
+   * Switched on in the admin panel. The single-file preview can also try
+   * each one from a switch in its footer (kept for the browser session). */
+  function season() {
+    let id = (D.config.season || {}).id || "";
+    if (SINGLE) {
+      try {
+        const pv = sessionStorage.getItem("wpg.seasonPreview");
+        if (pv !== null) id = pv;
+      } catch (e) {
+        /* ignore */
+      }
+    }
+    const s = D.seasons && D.seasons[id];
+    if (!s) return null;
+    const n = (D.national || {})[state.country] || { name: country().short, flag: ["#e6007e", "#ffffff", "#e6007e"] };
+    const vars = { country: L(n.name), amount: money(country().freeOver) };
+    const fill = (x) => String(x || "").replace(/\{(\w+)\}/g, (m, k) => (vars[k] != null ? vars[k] : m));
+    const own = D.config.season || {};
+    const custom = own.id === id && own.announce ? L(own.announce) : "";
+    return { id, motif: s.motif, name: L(s.name), greeting: fill(L(s.greeting)), announce: fill(custom || L(s.announce)), threads: s.threads === "flag" ? n.flag[0] : s.threads, flag: n.flag };
+  }
+  function seasonDeco() {
+    const sz = season();
+    if (!sz) return "";
+    const gold = `<defs><linearGradient id="sz-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbeec4"/><stop offset=".5" stop-color="#d4a85a"/><stop offset="1" stop-color="#8f6220"/></linearGradient><mask id="sz-moon"><rect width="220" height="260" fill="#fff"/><circle cx="86" cy="118" r="31" fill="#000"/></mask></defs>`;
+    const star = (x, y, r, cls) => `<path class="tw ${cls || ""}" d="M${x} ${y - r}L${x + r * 0.28} ${y - r * 0.28}L${x + r} ${y}L${x + r * 0.28} ${y + r * 0.28}L${x} ${y + r}L${x - r * 0.28} ${y + r * 0.28}L${x - r} ${y}L${x - r * 0.28} ${y - r * 0.28}Z"/>`;
+    const lantern = (x, len, k) => `<g class="sway s${k}"><line x1="${x}" y1="0" x2="${x}" y2="${len}" stroke="url(#sz-gold)" stroke-width="1.4"/><path d="M${x - 9} ${len}h18l-3 7h-12z" fill="url(#sz-gold)"/><circle cx="${x}" cy="${len + 24}" r="14" fill="rgba(255,206,130,.35)"/><rect x="${x - 11}" y="${len + 7}" width="22" height="32" rx="7" fill="rgba(255,214,150,.18)" stroke="url(#sz-gold)" stroke-width="2"/><path d="M${x} ${len + 39}v9" stroke="url(#sz-gold)" stroke-width="2"/></g>`;
+    let art = "";
+    if (sz.motif === "crescent") {
+      art = `${gold}<g class="sway s1"><line x1="70" y1="0" x2="70" y2="92" stroke="url(#sz-gold)" stroke-width="1.4"/><circle cx="70" cy="128" r="36" fill="url(#sz-gold)" mask="url(#sz-moon)"/><g fill="url(#sz-gold)">${star(104, 104, 7)}</g></g>${lantern(150, 46, 2)}${lantern(196, 92, 3)}`;
+    } else if (sz.motif === "stars" || sz.motif === "sparkle") {
+      const fill = sz.motif === "stars" ? "url(#sz-gold)" : "#ffffff";
+      art = `${gold}<g fill="${fill}">${star(60, 60, 22)}${star(140, 40, 12, "d1")}${star(176, 110, 18, "d2")}${star(96, 150, 10, "d3")}${star(30, 140, 8, "d1")}${star(196, 190, 9, "d3")}</g>`;
+    } else if (sz.motif === "flag") {
+      const [a, b, c] = sz.flag;
+      art = `<g class="flutter">${[a, b, c].map((col, i) => `<path d="M0 ${40 + i * 14}C55 ${10 + i * 14} 110 ${70 + i * 14} 220 ${30 + i * 14}" fill="none" stroke="${col}" stroke-width="13" stroke-linecap="round"/>`).join("")}</g><g fill="#ffffff">${star(186, 120, 9, "d2")}${star(40, 130, 6, "d1")}</g>`;
+    }
+    return `<svg class="season-deco deco-${sz.motif}" viewBox="0 0 220 260" aria-hidden="true" focusable="false">${art}</svg>`;
+  }
+
   function renderHeader() {
     const c = country();
     const maxPct = Math.max(...D.config.referral.tiers.map((x) => x.pct));
-    const msgs = [t("announce.1", { amount: money(country().freeOver) }), t("announce.4", { pct: ref.pct(), max: maxPct }), t("announce.2"), t("announce.3")];
+    const sz = season();
+    const msgs = [...(sz ? [sz.announce] : []), t("announce.1", { amount: money(country().freeOver) }), t("announce.4", { pct: ref.pct(), max: maxPct }), t("announce.2"), t("announce.3")];
     const links = navLinks();
     document.getElementById("app-header").innerHTML = `
       <a class="skip-link" href="#main">${esc(t("nav.skip"))}</a>
@@ -552,6 +594,13 @@ window.WP = (function () {
             <p>${esc(t("footer.rights", { year }))}</p>
             <p><a href="help.html#privacy">${esc(t("footer.privacy"))}</a> · <a href="help.html#faq">${esc(t("footer.terms"))}</a>${SYNC.live ? ` · <button class="link-btn footer-cookies" type="button" data-cookies>${esc(t("consent.settings"))}</button>` : ""}</p>
           </div>
+          ${
+            SINGLE
+              ? `<div class="season-preview" role="group" aria-label="${esc(t("season.preview"))}"><span>${esc(t("season.preview"))}</span>${["", ...Object.keys(D.seasons || {})]
+                  .map((id) => `<button type="button" class="pill" data-season-preview="${id}" aria-pressed="${(season() || { id: "" }).id === id}">${esc(id ? L(D.seasons[id].name) : t("season.none"))}</button>`)
+                  .join("")}</div>`
+              : ""
+          }
         </div>
       </footer>`;
   }
@@ -1235,6 +1284,18 @@ window.WP = (function () {
       open("bag");
     }
   });
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest && e.target.closest("[data-season-preview]");
+    if (!b) return;
+    try {
+      sessionStorage.setItem("wpg.seasonPreview", b.getAttribute("data-season-preview"));
+    } catch (err) {
+      /* ignore */
+    }
+    const y = window.scrollY;
+    render();
+    window.scrollTo(0, y);
+  });
   document.addEventListener("change", (e) => {
     const sel = e.target.closest && e.target.closest("[data-rit-step]");
     if (!sel) return;
@@ -1545,6 +1606,15 @@ window.WP = (function () {
     const html = document.documentElement;
     html.lang = state.lang;
     html.dir = state.lang === "ar" ? "rtl" : "ltr";
+    const sz = season();
+    if (sz) {
+      html.dataset.season = sz.id;
+      html.dataset.threads = sz.threads;
+      sz.flag.forEach((col, i) => html.style.setProperty(`--flag${i + 1}`, col));
+    } else {
+      delete html.dataset.season;
+      delete html.dataset.threads;
+    }
     const page = route().page;
     document.body.dataset.page = page;
     html.dataset.page = page;
@@ -1630,7 +1700,7 @@ window.WP = (function () {
     if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, ref, seo, pics, ritual, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
+  return { init, render, route, SINGLE, ref, seo, pics, ritual, season, seasonDeco, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());

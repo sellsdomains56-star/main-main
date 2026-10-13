@@ -187,11 +187,12 @@ window.WP_PAGES = (function () {
       }
       <section class="hero-noir">
         ${satin()}
+        ${W.seasonDeco()}
         <div class="grain" aria-hidden="true"></div>
         <div class="sparkles" aria-hidden="true">${sparkles(14)}</div>
         <div class="container hero-noir-grid">
           <div class="hero-noir-copy">
-            <p class="eyebrow eyebrow-glow">${icon("sparkle")}${esc(t("hn.eyebrow"))}</p>
+            ${W.season() ? `<p class="eyebrow eyebrow-glow season-greeting">${icon("sparkle")}${esc(W.season().greeting)}</p>` : `<p class="eyebrow eyebrow-glow">${icon("sparkle")}${esc(t("hn.eyebrow"))}</p>`}
             <h1 class="display-noir">${esc(t("hn.title1"))} <em>${esc(t("hn.title2"))}</em></h1>
             <p class="lead-noir">${esc(t("hn.lead"))}</p>
             <div class="btn-row">

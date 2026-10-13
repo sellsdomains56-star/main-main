@@ -1417,6 +1417,9 @@
     const pricing = Object.assign({ markupPct: D.config.pricing.markupPct }, S.settings.pricing);
     const R = JSON.parse(JSON.stringify(Object.assign({}, D.config.referral, S.settings.referral || {})));
     const contact = Object.assign({ whatsapp: "", email: "", instagram: "", tiktok: "" }, S.settings.contact);
+    const season = Object.assign({ id: "", announce: null }, S.settings.season);
+    const ritual = Object.assign({ pct: (D.config.ritual || {}).pct || 0 }, S.settings.ritual);
+    const seasons = D.seasons || {};
     const { data: admins } = await sb.from("admins").select("email").order("created_at");
     const tierName = (id) => L((D.config.referral.tiers.find((x) => x.id === id) || {}).name) || id;
     v.innerHTML = `${head("Settings", "Changes apply to the store straight away.")}
@@ -1435,6 +1438,22 @@
           </tbody></table>
           <p class="small muted">New codes end in the friend discount (e.g. MARIAM10). Commission is worked out on each order before delivery and after the friend discount.</p>
           <div><button class="btn btn-primary" type="submit">Save referral terms</button></div>
+        </form>
+        <form class="card" data-form="season">
+          <div><h2>Season</h2><p class="sub">A seasonal look on the store: the first announcement, a greeting and decoration on the home page, and the colour of the silk threads. National Day uses each shopper's own country and flag colours.</p></div>
+          <label class="field"><span>Season</span><select name="season">
+            <option value="">None — the everyday look</option>
+            ${Object.keys(seasons).map((id) => `<option value="${id}"${season.id === id ? " selected" : ""}>${esc(seasons[id].name.en)} — ${esc(seasons[id].greeting.en.replace("{country}", "UAE"))}</option>`).join("")}
+          </select></label>
+          <label class="field"><span>Announcement in English (optional)</span><input name="en" maxlength="140" placeholder="Leave empty for the season's own message" value="${esc((season.announce || {}).en || "")}"></label>
+          <label class="field"><span>Announcement in Arabic (optional)</span><input name="ar" dir="rtl" maxlength="140" placeholder="اتركيه فارغًا لرسالة الموسم" value="${esc((season.announce || {}).ar || "")}"></label>
+          <p class="small muted">Use {country} for the shopper's country and {amount} for the free-delivery threshold.</p>
+          <div><button class="btn btn-primary" type="submit">Save season</button></div>
+        </form>
+        <form class="card" data-form="ritual">
+          <div><h2>Ritual set</h2><p class="sub">A body cream, a body splash and a perfume bought together (any scents) are this much off. 0 turns the offer off.</p></div>
+          <label class="field"><span>Discount on the set (%)</span><input name="pct" type="number" min="0" max="50" step="1" value="${esc(ritual.pct)}"></label>
+          <div><button class="btn btn-primary" type="submit">Save ritual set</button></div>
         </form>
         <form class="card" data-form="contact">
           <div><h2>Contact details</h2><p class="sub">Shown on the store; empty fields keep the ones built into the site.</p></div>
@@ -1481,6 +1500,17 @@
           const tiers = R.tiers.map((t, i) => ({ id: t.id, minOrders: Number(f["min_" + i].value) || 0, pct: Number(f["pct_" + i].value) || 0 }));
           await saveSetting("referral", { friendDiscountPct: Number(f.friendDiscountPct.value) || 0, tiers });
           toast("Referral terms saved");
+        } else if (f.dataset.form === "season") {
+          const pick = f.elements.namedItem("season").value;
+          const id = seasons[pick] ? pick : "";
+          const en = f.en.value.trim();
+          const ar = f.ar.value.trim();
+          await saveSetting("season", { id, announce: en || ar ? { en: en || ar, ar: ar || en } : null });
+          toast(id ? `${seasons[id].name.en} look is on` : "Back to the everyday look");
+        } else if (f.dataset.form === "ritual") {
+          const pct = Math.max(0, Math.min(50, Number(f.pct.value) || 0));
+          await saveSetting("ritual", { pct });
+          toast(pct ? `Ritual set: ${pct}% off` : "Ritual set offer off");
         } else if (f.dataset.form === "contact") {
           const val = { whatsapp: digits(f.whatsapp.value), email: f.email.value.trim(), instagram: f.instagram.value.trim(), tiktok: f.tiktok.value.trim() };
           await saveSetting("contact", val);

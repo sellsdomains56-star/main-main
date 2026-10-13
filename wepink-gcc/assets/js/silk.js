@@ -203,6 +203,18 @@ void main() {
     { from: 0.16, to: 0.66, amp: 0.08, waves: 0.8, speed: 0.035, spread: 0.15, twists: 1.1, spin: 0.05, phase: 0, glints: [0, 0.45] },
     { from: 0.9, to: 0.34, amp: 0.06, waves: 1.1, speed: -0.028, spread: 0.11, twists: 1.5, spin: -0.04, phase: 2.4, glints: [0.2, 0.7] },
   ];
+  // a seasonal look (Ramadan gold, a flag colour…) tints the threads
+  let lastHex = "";
+  let lastRgb = "";
+  function seasonRgb() {
+    const hex = document.documentElement.dataset.threads || "";
+    if (hex !== lastHex) {
+      lastHex = hex;
+      const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+      lastRgb = m ? [m[1], m[2], m[3]].map((x) => parseInt(x, 16)).join(", ") : "";
+    }
+    return lastRgb;
+  }
   function threads(wrap, onSatin) {
     const cv = document.createElement("canvas");
     cv.className = "silk-threads";
@@ -239,7 +251,7 @@ void main() {
       const drift = (window.scrollY || 0) * 0.0012;
       const count = w < 720 ? 22 : 34;
       const steps = Math.max(40, Math.round(w / 14));
-      const rgb = noir ? "255, 46, 147" : "230, 0, 126";
+      const rgb = seasonRgb() || (noir ? "255, 46, 147" : "230, 0, 126");
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
       ctx.globalCompositeOperation = noir ? "lighter" : "source-over";
@@ -249,7 +261,7 @@ void main() {
         const g = ctx.createLinearGradient(0, 0, w, 0);
         g.addColorStop(0, `rgba(${rgb}, 0)`);
         g.addColorStop(0.18, `rgba(${rgb}, 1)`);
-        g.addColorStop(0.55, noir ? "rgba(255, 140, 198, 1)" : `rgba(${rgb}, 1)`);
+        g.addColorStop(0.55, noir && !lastRgb ? "rgba(255, 140, 198, 1)" : `rgba(${rgb}, 1)`);
         g.addColorStop(0.85, `rgba(${rgb}, 1)`);
         g.addColorStop(1, `rgba(${rgb}, 0)`);
         ctx.strokeStyle = g;

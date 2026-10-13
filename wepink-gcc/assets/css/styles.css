@@ -6658,3 +6658,151 @@ html[data-tone="noir"] .wa-topics a {
     height: 74px;
   }
 }
+
+/* ---------- seasonal looks ---------- */
+.season-deco {
+  position: absolute;
+  top: 0;
+  inset-inline-end: 5%;
+  z-index: 2;
+  width: clamp(120px, 15vw, 220px);
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 22px rgba(212, 168, 90, 0.45));
+}
+.deco-flag {
+  top: 24px;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+}
+.deco-sparkle {
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.7));
+}
+.season-deco .sway {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: deco-sway 6s ease-in-out infinite;
+}
+.season-deco .s2 {
+  animation-duration: 7.4s;
+  animation-delay: -2s;
+}
+.season-deco .s3 {
+  animation-duration: 5.6s;
+  animation-delay: -1s;
+}
+@keyframes deco-sway {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+.season-deco .tw {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: deco-twinkle 2.8s ease-in-out infinite;
+}
+.season-deco .d1 {
+  animation-delay: -0.9s;
+}
+.season-deco .d2 {
+  animation-delay: -1.7s;
+}
+.season-deco .d3 {
+  animation-delay: -2.3s;
+}
+@keyframes deco-twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.season-deco .flutter {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: deco-flutter 4.5s ease-in-out infinite;
+}
+@keyframes deco-flutter {
+  0%,
+  100% {
+    transform: skewY(0deg) scaleY(1);
+  }
+  50% {
+    transform: skewY(-3deg) scaleY(1.06);
+  }
+}
+/* the announcement bar wears the season */
+html:is([data-season="ramadan"], [data-season="eid"]) .announce {
+  background: linear-gradient(90deg, #24160a, #4a3214 50%, #24160a);
+  color: #f8e7b8;
+}
+html[data-season="national"] .announce {
+  background: var(--flag1);
+  color: #fff;
+  box-shadow: inset 0 -3px 0 var(--flag2);
+}
+html[data-season="whitefriday"] .announce {
+  background: #ffffff;
+  color: #1c0a14;
+  box-shadow: inset 0 -1px 0 var(--line);
+}
+html:is([data-season="ramadan"], [data-season="eid"]) .season-greeting {
+  color: #f6dc9c;
+  border-color: rgba(212, 168, 90, 0.55);
+}
+html:is([data-season="ramadan"], [data-season="eid"]) .season-greeting .icon {
+  color: #d4a85a;
+}
+/* the preview build's season switch */
+.season-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.18);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+.season-preview .pill {
+  height: 30px;
+  padding: 0 12px;
+  font-size: 12px;
+  color: #fff;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.season-preview .pill[aria-pressed="true"] {
+  background: #fff;
+  color: #1c0a14;
+}
+@media (max-width: 720px) {
+  .season-deco {
+    width: 110px;
+    inset-inline-end: 2%;
+    opacity: 0.9;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* the decorations keep a slow, gentle movement, like the silk */
+  .season-deco .sway {
+    animation-duration: 12s !important;
+    animation-iteration-count: infinite !important;
+  }
+  .season-deco .tw {
+    animation-duration: 5s !important;
+    animation-iteration-count: infinite !important;
+  }
+  .season-deco .flutter {
+    animation-duration: 9s !important;
+    animation-iteration-count: infinite !important;
+  }
+}

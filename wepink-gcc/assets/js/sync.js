@@ -233,6 +233,8 @@ window.WP_SYNC = (function () {
       });
     }
     if (s.contact) ["whatsapp", "email", "instagram", "tiktok"].forEach((k) => s.contact[k] && (D.config[k] = String(s.contact[k])));
+    if (s.season) D.config.season = { id: D.seasons[s.season.id] ? s.season.id : "", announce: s.season.announce || null };
+    if (s.ritual && isFinite(s.ritual.pct)) D.config.ritual.pct = Number(s.ritual.pct);
   }
 
   /* ---------- cache & refresh ---------- */

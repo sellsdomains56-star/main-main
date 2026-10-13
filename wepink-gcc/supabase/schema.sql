@@ -2,7 +2,8 @@
 --
 -- Tables
 --   admins       emails allowed into admin.html (a confirmed Supabase Auth account)
---   settings     store settings the admin edits: price increase, referral terms, contacts
+--   settings     store settings the admin edits: price increase, referral terms, contacts,
+--                seasonal look, ritual set discount
 --   products     the catalogue the store shows (seeded from assets/js/catalog.js)
 --   ambassadors  "Earn with wepink" members, their codes and link visits
 --   orders       orders placed at checkout, with referral code and commission
@@ -259,7 +260,7 @@ language sql stable security definer set search_path = ''
 as $$
   select jsonb_build_object(
     'version', (select count(*)::text || '/' || coalesce(max(updated_at)::text, '') from public.products),
-    'settings', coalesce((select jsonb_object_agg(key, value) from public.settings where key in ('pricing', 'referral', 'contact')), '{}'::jsonb)
+    'settings', coalesce((select jsonb_object_agg(key, value) from public.settings where key in ('pricing', 'referral', 'contact', 'season', 'ritual')), '{}'::jsonb)
   );
 $$;
 

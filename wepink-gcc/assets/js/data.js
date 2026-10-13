@@ -41,6 +41,11 @@ window.WP_DATA = (function () {
     // eau de cologne together are this % off. 0 turns it off.
     ritual: { pct: 15 },
 
+    // Seasonal look, switched on in the admin panel (Settings -> Season):
+    // "", "ramadan", "eid", "national" or "whitefriday" (see `seasons` below).
+    // `announce` ({ en, ar }) replaces the season's own announcement if set.
+    season: { id: "", announce: null },
+
     // Campaign photos of Virginia Fonseca, cropped from wepink's own campaign
     // banners — confirm GCC usage rights with the brand before launch. Clear a
     // path to fall back to the designed placeholder.
@@ -348,6 +353,41 @@ window.WP_DATA = (function () {
     },
   ];
 
+  // What each season changes: the announcement bar's first message, the
+  // greeting on the home page, a decoration over the hero, and the colour of
+  // the silk threads. {country} and {amount} are filled in for the shopper.
+  const seasons = {
+    ramadan: {
+      name: { en: "Ramadan", ar: "رمضان" }, motif: "crescent", threads: "#d4a85a",
+      greeting: { en: "Ramadan Kareem", ar: "رمضان كريم" },
+      announce: { en: "Ramadan Kareem 🌙 Free gift wrap and a handwritten card on every order", ar: "رمضان كريم 🌙 تغليف هدايا مجاني وبطاقة مكتوبة بخط اليد مع كل طلب" },
+    },
+    eid: {
+      name: { en: "Eid", ar: "العيد" }, motif: "stars", threads: "#d4a85a",
+      greeting: { en: "Eid Mubarak", ar: "عيد مبارك" },
+      announce: { en: "Eid Mubarak ✨ Gift sets wrapped and delivered across the Gulf", ar: "عيد مبارك ✨ أطقم الهدايا مغلّفة وتصلكِ في كل دول الخليج" },
+    },
+    national: {
+      name: { en: "National Day", ar: "اليوم الوطني" }, motif: "flag", threads: "flag",
+      greeting: { en: "Happy {country} National Day", ar: "كل عام و{country} بخير" },
+      announce: { en: "Happy {country} National Day 💚 Free delivery on orders over {amount}", ar: "كل عام و{country} بخير 💚 توصيل مجاني للطلبات فوق {amount}" },
+    },
+    whitefriday: {
+      name: { en: "White Friday", ar: "الجمعة البيضاء" }, motif: "sparkle", threads: "#e9e3f0",
+      greeting: { en: "White Friday", ar: "الجمعة البيضاء" },
+      announce: { en: "White Friday is here 🤍 The season's favourites, wrapped for gifting", ar: "وصلت الجمعة البيضاء 🤍 مفضّلات الموسم مغلّفة للإهداء" },
+    },
+  };
+  // National Day: each country's own name and flag colours.
+  const national = {
+    AE: { name: { en: "UAE", ar: "الإمارات" }, flag: ["#00732f", "#ef3340", "#000000"] },
+    SA: { name: { en: "Saudi", ar: "السعودية" }, flag: ["#006c35", "#ffffff", "#006c35"] },
+    QA: { name: { en: "Qatar", ar: "قطر" }, flag: ["#8a1538", "#ffffff", "#8a1538"] },
+    KW: { name: { en: "Kuwait", ar: "الكويت" }, flag: ["#007a3d", "#ce1126", "#000000"] },
+    BH: { name: { en: "Bahrain", ar: "البحرين" }, flag: ["#ce1126", "#ffffff", "#ce1126"] },
+    OM: { name: { en: "Oman", ar: "عُمان" }, flag: ["#db161b", "#008000", "#ffffff"] },
+  };
+
   const stores = [
     { country: "AE", city: ["Dubai", "دبي"], label: { en: "Flagship store", ar: "المتجر الرئيسي" } },
     { country: "AE", city: ["Abu Dhabi", "أبوظبي"], label: { en: "Store", ar: "متجر" } },
@@ -361,5 +401,5 @@ window.WP_DATA = (function () {
     { country: "OM", city: ["Muscat", "مسقط"], label: { en: "Store", ar: "متجر" } },
   ];
 
-  return { config, countries, payNames, categories, families, types: T, products, featured, stores, faq };
+  return { config, countries, payNames, categories, families, types: T, products, featured, stores, faq, seasons, national };
 })();
