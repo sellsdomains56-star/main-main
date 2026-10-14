@@ -234,7 +234,9 @@ window.WP_SYNC = (function () {
     const b = base.get(r.id);
     const own = Array.isArray(r.images) && r.images.length > 0;
     const scene = own ? r.photo_style === "scene" : !!(b && b.scene);
-    const images = own ? r.images : (b && b.images) || [];
+    // rows name the site's own photos by their path; the one-file download loads them from
+    // window.WP_ASSET_BASE (see data.js)
+    const images = own ? r.images.map((x) => (window.WP_ASSET_BASE && /^assets\//.test(x) ? window.WP_ASSET_BASE + x : x)) : (b && b.images) || [];
     // re-shot product photos (assets/products/r/) replace the studio packshots in the gallery
     const rendered = images.some((x) => String(x).includes("products/r/"));
     return {

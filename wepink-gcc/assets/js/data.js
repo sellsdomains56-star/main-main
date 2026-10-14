@@ -218,11 +218,14 @@ window.WP_DATA = (function () {
   // Products whose wepink Brasil photos have been re-shot (`renders` in catalog.js: the product
   // alone, with its box, details… in assets/products/r/<id>-<n>.webp, in wepink Brasil's order)
   // show those instead (photos with people or text panels are not re-shot and not shown).
+  // The downloadable one-file store loads product photos from a public copy of the site
+  // (window.WP_ASSET_BASE, set by scripts/build-single.mjs); the site serves its own files.
+  const asset = (path) => (window.WP_ASSET_BASE || "") + path;
   const products = (window.WP_CATALOG || []).map((p) => {
-    const hero = "assets/products/hero/" + p.id + ".webp";
-    const hero2 = "assets/products/hero/" + p.id + "-2.webp"; // second campaign shot (cards show it on hover)
+    const hero = asset("assets/products/hero/" + p.id + ".webp");
+    const hero2 = asset("assets/products/hero/" + p.id + "-2.webp"); // second campaign shot (cards show it on hover)
     const studio = p.images && p.images.length ? p.images : p.image ? [p.image] : [];
-    const shot = Array.from({ length: p.renders || 0 }, (_, k) => `assets/products/r/${p.id}-${k + 1}.webp`);
+    const shot = Array.from({ length: p.renders || 0 }, (_, k) => asset(`assets/products/r/${p.id}-${k + 1}.webp`));
     const images = shot.length ? shot : p.hero ? [hero, hero2] : studio;
     return Object.assign({}, p, { typeName: T[p.type] || T.bodycare, notes: p.notes || {}, scene: true, rendered: shot.length > 0, image: images[0], images, packshots: shot.length ? [] : studio });
   });
