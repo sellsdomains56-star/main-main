@@ -487,7 +487,6 @@ window.WP_PAGES = (function () {
   // A full-width film band: muted loop, Play button if autoplay is blocked, sound toggle.
   function filmSection(film, labelKey, eyebrowKey, cls) {
     return `<section class="film${cls ? " " + cls : ""}" aria-label="${esc(t(labelKey))}">
-        <canvas class="film-glow" width="32" height="18" aria-hidden="true"></canvas>
         <div class="film-frame">
           <video class="film-video" muted loop playsinline preload="none"${film.poster ? ` poster="${esc(film.poster)}"` : ""} aria-hidden="true"></video>
           <button class="film-play" type="button" data-film-play hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span>${esc(t("film.play"))}</span></button>
@@ -537,27 +536,6 @@ window.WP_PAGES = (function () {
       );
     if (document.readyState === "complete") start();
     else addEventListener("load", start, { once: true });
-    // Where the film is framed rather than cropped (phones, portrait screens), a blurred
-    // copy of the live picture fills the rest of the screen behind the header.
-    const glow = root.querySelector(".film-glow");
-    const framed = matchMedia("(max-aspect-ratio: 5/4)");
-    const g = glow && glow.getContext && glow.getContext("2d");
-    if (g) {
-      let timer = 0;
-      const paint = () => {
-        if (video.readyState < 2) return;
-        try {
-          g.drawImage(video, 0, 0, glow.width, glow.height);
-        } catch (e) {}
-      };
-      const run = () => {
-        clearInterval(timer);
-        timer = framed.matches && !video.paused ? setInterval(paint, 120) : 0;
-        if (framed.matches) paint();
-      };
-      ["play", "pause", "loadeddata"].forEach((ev) => video.addEventListener(ev, run));
-      if (framed.addEventListener) framed.addEventListener("change", run);
-    }
     playBtn.addEventListener("click", () => {
       video.muted = false;
       load()
