@@ -62,7 +62,7 @@ window.WP_DATA = (function () {
       // Campaign images (assets/photos/campaign/): an AI model, not Virginia, with the real products.
       campaign: "assets/photos/campaign/vf-golden-lips.webp", // the "Liquid gold" perfume spotlight on the home page (Nano Banana Pro 4K, VF Golden)
       club: "assets/photos/campaign/the-oil-socks.webp", // the Club pop-up: "the oil." in pink socks (from the wepink team)
-      earn: "assets/photos/campaign/red-stripe.webp", // Earn with wepink hero
+      earn: "assets/photos/campaign/the-oil-blonde.webp", // Earn with wepink hero: Samara with "the oil." (from the client)
       about: "assets/photos/campaign/golden-hour.webp", // About page
       earnBand: "assets/photos/campaign/pink-bags.webp", // the ambassador band on the home page
       gift: "assets/photos/campaign/gift-box.webp", // the gifting promo on the home page
