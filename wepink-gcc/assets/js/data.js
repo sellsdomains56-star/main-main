@@ -49,6 +49,25 @@ window.WP_DATA = (function () {
     // order, with this code at checkout. 0 turns it off. (Admin: Settings.)
     welcome: { pct: 10, code: "WELCOME10" },
 
+    // Prize draw: an iPhone 18 Pro Max for every `aedPerPrize` of orders. An order gets one
+    // entry per full `minAed` of products after discounts (delivery doesn't count), worked
+    // out in AED with the country's rate; a round closes when its entered orders reach
+    // `aedPerPrize` and the admin panel draws its winner (Draw tab, draw_pick in
+    // supabase/schema.sql). The database's settings.draw (admin: Draw) replaces these;
+    // `on: false` hides the draw everywhere. Needs a promotion permit in each country first.
+    draw: {
+      on: true,
+      minAed: 300,
+      aedPerPrize: 50000,
+      prize: { en: "iPhone 18 Pro Max", ar: "آيفون 18 برو ماكس", pt: "iPhone 18 Pro Max" },
+      showProgress: true, // the store shows how far the open round is from its draw
+      endsAt: null, // ISO date and time when entries stop; null: until it's switched off
+      permit: "", // the promotion permit number, shown with the rules once set
+      prizeValueAed: 5499, // iPhone 18 Pro Max 256 GB, UAE price: the admin's cost sums only, never shown to shoppers
+      photo: "assets/photos/campaign/iphone-draw.webp", // 4:5, phones: the burgundy iPhone with the VF Golden body splash
+      photoWide: "assets/photos/campaign/iphone-draw-wide.webp", // 16:9, the phone on the right and pink space for the copy
+    },
+
     // Seasonal look, switched on in the admin panel (Settings -> Season):
     // "", "ramadan", "eid", "national" or "whitefriday" (see `seasons` below).
     // `announce` ({ en, ar, pt }) replaces the season's own announcement if set.
