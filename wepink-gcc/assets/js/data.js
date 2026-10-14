@@ -255,7 +255,7 @@ window.WP_DATA = (function () {
       { photo: "assets/photos/campaign/fruit-creams.webp", product: "cream-vf-golden-200-ml", also: ["cream-ruby-rhodolite-200-ml", "cream-obsessed-200-ml"], cat: "body-care", title: { en: "Freshly stacked", ar: "طبقات من الانتعاش", pt: "Empilhados e fresquinhos" } },
       { photo: "assets/photos/campaign/torn-lip.webp", product: "makeup-lip-oil-jujuba-3-5-g", cat: "makeup", title: { en: "Tear into colour", ar: "انطلقي نحو اللون", pt: "Mergulhe na cor" } },
       { photo: "assets/photos/campaign/serum-glow.webp", product: "skincare-serum-10-em-1-40-ml", cat: "skincare", pos: "50% 30%", title: { en: "Glow, drop by drop", ar: "إشراقة قطرة بقطرة", pt: "Brilho gota a gota" } },
-      { photo: "assets/photos/campaign/king-blue-skyline.webp", product: "colonia-king-blue-supreme-100-ml", also: ["splash-king-blue-supreme-200-ml"], cat: "men", pos: "50% 35%", title: { en: "Own the night", ar: "الليل لك", pt: "Dono da noite" } },
+      { photo: "assets/photos/campaign/king-blue-skyline.webp", product: "colonia-king-blue-supreme-100-ml", also: ["splash-king-blue-supreme-200-ml"], cat: "men", pos: "50% 60%", title: { en: "Own the night", ar: "الليل لك", pt: "Dono da noite" } },
       { photo: "assets/photos/campaign/golden-hour.webp", product: "colonia-liberte-nuit-100-ml", cat: "perfume", title: { en: "After golden hour", ar: "بعد الساعة الذهبية", pt: "Depois da hora dourada" } },
       { photo: "assets/photos/campaign/red-stripe.webp", product: "colonia-red-obsidian-100-ml", cat: "perfume", title: { en: "Seen in red", ar: "حضورٌ بالأحمر", pt: "Vista de vermelho" } },
     ],
@@ -263,7 +263,7 @@ window.WP_DATA = (function () {
     categoryPhotos: {
       perfume: { src: "assets/photos/campaign/giant-heaven.webp", pos: "50% 40%" },
       "body-splash": { src: "assets/photos/campaign/peach.webp", pos: "50% 50%" },
-      men: { src: "assets/photos/campaign/king-blue-skyline.webp", pos: "55% 40%" }, // Nano Banana Pro 4K: King Blue Supreme, Gulf skyline
+      men: { src: "assets/photos/campaign/king-blue-skyline.webp", pos: "50% 60%" }, // Nano Banana Pro 4K: King Blue Supreme and its box, Gulf skyline
       "body-care": { src: "assets/photos/campaign/the-oil-blonde.webp", pos: "50% 30%" },
       hair: { src: "assets/photos/campaign/hair-silk.webp", pos: "50% 50%" },
       makeup: { src: "assets/photos/campaign/torn-lip.webp", pos: "50% 45%" },

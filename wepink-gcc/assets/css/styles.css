@@ -3018,6 +3018,12 @@ html[lang="ar"] em {
 :is(html[data-page="home"], html[data-page="earn"]):not(.is-scrolled) .site-header .icon-btn:hover {
   background: rgba(255, 255, 255, 0.12);
 }
+:is(html[data-page="home"], html[data-page="earn"], html.film-top):not(.is-scrolled) .logo-pink {
+  display: none;
+}
+:is(html[data-page="home"], html[data-page="earn"], html.film-top):not(.is-scrolled) .logo-light {
+  display: block;
+}
 :is(html[data-page="home"], html[data-page="earn"]):not(.is-scrolled) .logo-region {
   color: #fff;
   border-color: rgba(255, 255, 255, 0.3);
