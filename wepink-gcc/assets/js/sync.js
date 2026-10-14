@@ -7,7 +7,7 @@
  *
  * Also the calls the store makes to the database: orders, ambassador sign-ups
  * and stats, referral codes, contact forms, and page views (only after the
- * shopper accepts cookies).
+ * shopper accepts cookies), and the prize draw's open round and past winners.
  */
 window.WP_SYNC = (function () {
   const D = window.WP_DATA;
@@ -16,6 +16,8 @@ window.WP_SYNC = (function () {
   const T = D.types;
   const bundled = D.products.slice();
   const base = new Map(bundled.map((p) => [p.id, p]));
+  // The prize draw's defaults (data.js), which the database's settings.draw replaces.
+  const DRAW = JSON.parse(JSON.stringify(D.config.draw || {}));
 
   /* ---------- browser storage (may be blocked: never required) ---------- */
   const ls = {
@@ -293,28 +295,36 @@ window.WP_SYNC = (function () {
     if (s.season) D.config.season = { id: D.seasons[s.season.id] ? s.season.id : "", announce: s.season.announce || null };
     if (s.ritual && isFinite(s.ritual.pct)) D.config.ritual.pct = Number(s.ritual.pct);
     if (s.welcome && isFinite(s.welcome.pct)) D.config.welcome = { pct: Number(s.welcome.pct), code: String(s.welcome.code || D.config.welcome.code).toUpperCase() };
+    // the prize draw: the team's settings over the defaults; the photos always come with the site
+    if (s.draw && typeof s.draw === "object")
+      D.config.draw = Object.assign({}, DRAW, s.draw, { prize: Object.assign({}, DRAW.prize, s.draw.prize), photo: DRAW.photo, photoWide: DRAW.photoWide });
   }
 
   /* ---------- cache & refresh ---------- */
   const CACHE = "wpg.remote";
   let cached = live ? ls.get(CACHE) : null;
   if (cached && cached.url !== SB.url) cached = null;
+  // The prize draw as store_state tells it: { round, progress (0-100, or null when the
+  // team hides it), winners: [{ round, name, city, country, drawnAt }] }, or null (off).
+  let drawState = null;
   if (cached) {
     applySettings(cached.settings);
     applyProducts(cached.rows);
+    drawState = cached.draw || null;
   }
 
   async function refresh() {
     const s = await rpc("store_state");
     applySettings(s.settings);
+    drawState = s.draw || null;
     if (cached && cached.version === s.version) {
-      if (JSON.stringify(s.settings) !== JSON.stringify(cached.settings)) ls.set(CACHE, Object.assign(cached, { settings: s.settings }));
+      if (JSON.stringify([s.settings, drawState]) !== JSON.stringify([cached.settings, cached.draw || null])) ls.set(CACHE, Object.assign(cached, { settings: s.settings, draw: drawState }));
       return;
     }
     const count = parseInt(String(s.version), 10) || 0;
     const rows = count ? await fetchProducts() : [];
     applyProducts(rows);
-    cached = { url: SB.url, version: s.version, settings: s.settings, rows };
+    cached = { url: SB.url, version: s.version, settings: s.settings, draw: drawState, rows };
     ls.set(CACHE, cached);
   }
 
@@ -322,7 +332,7 @@ window.WP_SYNC = (function () {
   // catalogue on a first visit) and checks the database behind the scenes;
   // listeners hear whether anything the shopper sees changed.
   const C = D.config;
-  const sig = () => JSON.stringify([D.products, C.pricing, C.referral, C.whatsapp, C.email, C.instagram, C.tiktok, C.season, C.ritual, C.welcome]);
+  const sig = () => JSON.stringify([D.products, C.pricing, C.referral, C.whatsapp, C.email, C.instagram, C.tiktok, C.season, C.ritual, C.welcome, C.draw, drawState]);
   const listeners = [];
   let pending = live;
   function boot() {
@@ -401,5 +411,5 @@ window.WP_SYNC = (function () {
     }).catch(() => {});
   }
 
-  return { live, rpc, saveContact, boot, onChange: (f) => listeners.push(f), pending: () => pending, consent, context, trackPage, auth };
+  return { live, rpc, saveContact, boot, onChange: (f) => listeners.push(f), pending: () => pending, drawState: () => drawState, consent, context, trackPage, auth };
 })();

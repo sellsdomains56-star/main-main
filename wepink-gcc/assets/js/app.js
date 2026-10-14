@@ -274,6 +274,20 @@ window.WP = (function () {
       if (!sub) return 0;
       return sub >= country().freeOver ? 0 : country().fee;
     },
+    // What comes off the products: the ritual set's saving first, then one code
+    // on what's left (a friend's code, or the Club welcome offer). Checkout lists
+    // both; the prize draw counts what's left after them.
+    discounts() {
+      const sub = bag.subtotal();
+      const rit = bag.ritual();
+      const friend = ref.get();
+      const welcomeOn = !friend && welcome.ready();
+      const code = friend || (welcomeOn ? welcome.code() : "");
+      const pct = friend ? ref.pct() : welcomeOn ? welcome.pct() : 0;
+      const raw = code ? ((sub - rit.amount) * pct) / 100 : 0;
+      const refDisc = country().decimals ? Math.round(raw * 1000) / 1000 : Math.round(raw);
+      return { sub, rit, code, pct, welcomeOn, refDisc, disc: rit.amount + refDisc };
+    },
     add(id, qty) {
       const line = state.cart.find((i) => i.id === id);
       if (line) line.qty = Math.min(line.qty + (qty || 1), 20);
@@ -300,6 +314,52 @@ window.WP = (function () {
       });
       renderBagDrawer();
       document.dispatchEvent(new CustomEvent("wp:bag"));
+    },
+  };
+
+  /* ---------- the prize draw ----------
+   * An iPhone for every config.draw.aedPerPrize of orders. Each order gets one
+   * entry per full config.draw.minAed of products after discounts (delivery
+   * doesn't count), worked out in AED with the country's rate, as place_order
+   * does in the database. The open round, its progress and past winners come
+   * from store_state (sync.js). Switched off, or past its end: no draw anywhere. */
+  // an amount rounded up to the currency's last digit, so a threshold is never short
+  const upLocal = (v) => (country().decimals ? Math.ceil(Math.round(v * 1e6) / 1e3) / 1e3 : Math.ceil(Math.round(v * 1e3) / 1e3));
+  const draw = {
+    cfg: () => D.config.draw || {},
+    on() {
+      const c = draw.cfg();
+      return !!c.on && !(c.endsAt && Date.now() >= Date.parse(c.endsAt));
+    },
+    min: () => Math.max(1, Number(draw.cfg().minAed) || 300),
+    target: () => Math.max(1, Number(draw.cfg().aedPerPrize) || 50000),
+    prize: () => L(draw.cfg().prize) || "iPhone",
+    // "iPhone #2": the prize's first word and the round's number
+    round: (n) => t("draw.round", { short: draw.prize().split(" ")[0], n }),
+    state: () => SYNC.drawState(),
+    // an AED amount in the shopper's currency, rounded up
+    local: (aed) => upLocal(aed * country().rate),
+    money: (aed) => money(draw.local(aed)),
+    // Entries for products worth `amount` (local currency, after discounts) and,
+    // short of the first one, what's still missing.
+    of(amount) {
+      const rate = country().rate;
+      const aed = Math.round((Math.max(0, amount) / rate) * 100) / 100;
+      const tickets = Math.floor(aed / draw.min());
+      return { aed, tickets, short: tickets ? 0 : upLocal(draw.min() * rate - amount), pct: tickets ? 100 : Math.min(99, Math.round((aed / draw.min()) * 100)) };
+    },
+    // "3 entries", in the language's plural forms (Arabic: 1, 2, 3–10, 11+)
+    entries(n) {
+      const key = "draw.entries_" + (n === 1 ? "one" : n === 2 ? "two" : n <= 10 ? "few" : "many");
+      return t((I[state.lang] || {})[key] ? key : n === 1 ? "draw.entries_one" : "draw.entries_many", { n });
+    },
+    // {prize}, {min} and {target} in the help centre's answers and the rules
+    vars: () => ({ prize: draw.prize(), min: draw.money(draw.min()), target: draw.money(draw.target()) }),
+    // a winner's city in the shopper's language (orders keep the English name)
+    city(w) {
+      const k = D.countries[w.country];
+      const x = k && k.cities.find((c) => c[0] === w.city);
+      return x ? L(x) : w.city || "";
     },
   };
 
@@ -334,6 +394,8 @@ window.WP = (function () {
     user: '<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-4 4-6 7.5-6s6.3 2 7.5 6"/>',
     moon: '<path d="M19.5 14.6A7.8 7.8 0 0 1 9.4 4.5a7.8 7.8 0 1 0 10.1 10.1Z"/>',
     sun: '<circle cx="12" cy="12" r="3.8"/><path d="M12 2.8v2M12 19.2v2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M2.8 12h2M19.2 12h2M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"/>',
+    phone: '<rect x="6.5" y="2.5" width="11" height="19" rx="2.8"/><path d="M10.5 5.3h3M11 18.6h2"/>',
+    ticket: '<path d="M3.5 7.5a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v2.3a2.2 2.2 0 0 0 0 4.4v2.3a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1v-2.3a2.2 2.2 0 0 0 0-4.4Z"/><path d="M14.5 7v1.6M14.5 11.2v1.6M14.5 15.4V17"/>',
   };
   function icon(name, cls) {
     return `<svg class="icon ${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${P[name] || ""}</svg>`;
@@ -576,7 +638,7 @@ window.WP = (function () {
     const c = country();
     const maxPct = Math.max(...D.config.referral.tiers.map((x) => x.pct));
     const sz = season();
-    const msgs = [...(sz ? [sz.announce] : []), t("announce.1", { amount: money(country().freeOver) }), ...(welcome.pct() ? [t("announce.welcome", { pct: welcome.pct() })] : []), t("announce.4", { pct: ref.pct(), max: maxPct }), t("announce.2"), t("announce.3")];
+    const msgs = [...(sz ? [sz.announce] : []), ...(draw.on() ? [t("announce.draw", { prize: draw.prize(), amount: draw.money(draw.min()) })] : []), t("announce.1", { amount: money(country().freeOver) }), ...(welcome.pct() ? [t("announce.welcome", { pct: welcome.pct() })] : []), t("announce.4", { pct: ref.pct(), max: maxPct }), t("announce.2"), t("announce.3")];
     const links = navLinks();
     document.getElementById("app-header").innerHTML = `
       <a class="skip-link" href="#main">${esc(t("nav.skip"))}</a>
@@ -1074,6 +1136,17 @@ window.WP = (function () {
     if (r.missing.length !== 1) return "";
     return `<p class="rit-note">${icon("sparkle")}<span>${esc(t("rit.nudge", { item: t("rit.item_" + r.missing[0]), pct: r.pct }))}</span><button class="link-btn small" type="button" data-open="ritual">${esc(t("rit.build"))}</button></p>`;
   }
+  // Under the free-delivery line: how far the bag is from the prize draw, or its entries.
+  function drawMeter() {
+    if (!draw.on()) return "";
+    const d = bag.discounts();
+    const e = draw.of(d.sub - d.disc);
+    const text = e.tickets ? t("draw.bagIn", { entries: draw.entries(e.tickets), prize: draw.prize() }) : t("draw.bagShort", { amount: money(e.short), prize: draw.prize() });
+    return `<div class="free-meter draw-meter${e.tickets ? " is-in" : ""}">
+        <p>${icon(e.tickets ? "ticket" : "phone")}<span>${esc(text)}</span><a class="link-btn small" href="help.html#draw">${esc(t("draw.rulesShort"))}</a></p>
+        <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${e.pct}" aria-label="${esc(t("draw.eyebrow"))}"><span style="width:${e.pct}%"></span></div>
+      </div>`;
+  }
   function renderBagDrawer() {
     const el = document.getElementById("bag-body");
     if (!el) return;
@@ -1095,6 +1168,7 @@ window.WP = (function () {
         <p>${icon(left ? "truck" : "check")}<span>${esc(left ? t("bag.freeProgress", { amount: money(left) }) : t("bag.freeDone"))}</span></p>
         <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><span style="width:${pct}%"></span></div>
       </div>
+      ${drawMeter()}
       ${ref.get() ? `<p class="bag-code">${icon("sparkle")}<span>${esc(t("bag.code", { code: ref.get(), pct: ref.pct() }))}</span></p>` : welcome.ready() ? `<p class="bag-code">${icon("sparkle")}<span>${esc(t("bag.welcome", { code: welcome.code(), pct: welcome.pct() }))}</span></p>` : ""}
       <ul class="bag-lines">
         ${items
@@ -1842,7 +1916,7 @@ window.WP = (function () {
     if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, LANGS, num, locale, withSymbol, ref, welcome, seo, pics, ritual, season, seasonDeco, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, details, sync: SYNC, data: D, art: ART };
+  return { init, render, route, SINGLE, LANGS, num, locale, withSymbol, ref, welcome, draw, seo, pics, ritual, season, seasonDeco, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, details, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());
