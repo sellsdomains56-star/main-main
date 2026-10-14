@@ -396,24 +396,39 @@ window.WP = (function () {
     return `<div class="media ${cls || ""}" style="--c:${p.color};--c2:${p.color2}">${ART.art(p)}${second ? `<img class="scene alt" ${pics.attrs(second, true)} alt="" decoding="async">` : ""}</div>`;
   }
 
-  /* Second campaign photos. Cards load theirs the first time the pointer is
-   * over them. The single-file preview can't hold one file per photo, so
-   * there they come in packs (assets/products/hero2/index.json names the pack
-   * for each product); if a pack is missing the plain file is used. */
+  /* Second campaign photos and the re-shot product photos after each product's first.
+   * Cards load their second photo the first time the pointer is over them. The
+   * single-file preview can't hold one file per photo, so there they come in packs
+   * (an index.json in each pack folder names the pack for each photo); if a pack is
+   * missing the plain file is used. */
   const BLANK = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
   const pics = {
-    pattern: /^assets\/products\/hero\/(.+)-2\.webp$/,
-    index: null,
+    // [pattern for the photo's path (group 1: its key in the packs), pack folder]
+    sets: [
+      [/^assets\/products\/hero\/(.+)-2\.webp$/, "assets/products/hero2"],
+      [/^assets\/products\/r\/(.+-(?:[2-9]|\d{2,}))\.webp$/, "assets/products/r/packs"],
+    ],
+    index: {},
     packs: {},
+    // the pack folder and key for a photo that the preview carries in packs
+    find(src) {
+      if (!SINGLE) return null;
+      for (const [pattern, dir] of this.sets) {
+        const m = pattern.exec(src || "");
+        if (m) return { dir, id: m[1] };
+      }
+      return null;
+    },
     // attributes for an <img>: `later` waits for hydrate() (hover)
     attrs(src, later) {
-      const id = SINGLE && (this.pattern.exec(src || "") || [])[1];
-      const ready = id ? this.cached(id) : later ? "" : src;
+      const at = this.find(src);
+      const ready = at ? this.cached(at) : later ? "" : src;
       return ready ? `src="${esc(ready)}"` : `src="${BLANK}" data-pic="${esc(src)}"`;
     },
-    cached(id) {
-      const name = this.index && this.index.data && this.index.data[id];
-      const pack = name && this.packs[name];
+    cached({ dir, id }) {
+      const index = this.index[dir];
+      const name = index && index.data && index.data[id];
+      const pack = name && this.packs[dir + "/" + name];
       return (pack && pack.data && pack.data[id]) || "";
     },
     get(url, slot) {
@@ -421,14 +436,15 @@ window.WP = (function () {
       return slot.promise;
     },
     resolve(src) {
-      const id = SINGLE && (this.pattern.exec(src) || [])[1];
-      if (!id) return Promise.resolve(src);
-      this.index = this.index || {};
-      return this.get("assets/products/hero2/index.json", this.index).then(() => {
-        const name = this.index.data[id];
+      const at = this.find(src);
+      if (!at) return Promise.resolve(src);
+      const { dir, id } = at;
+      const index = (this.index[dir] = this.index[dir] || {});
+      return this.get(`${dir}/index.json`, index).then(() => {
+        const name = index.data[id];
         if (!name) return src;
-        this.packs[name] = this.packs[name] || {};
-        return this.get(`assets/products/hero2/${name}.json`, this.packs[name]).then(() => this.packs[name].data[id] || src);
+        const slot = (this.packs[dir + "/" + name] = this.packs[dir + "/" + name] || {});
+        return this.get(`${dir}/${name}.json`, slot).then(() => slot.data[id] || src);
       });
     },
     hydrate(root) {

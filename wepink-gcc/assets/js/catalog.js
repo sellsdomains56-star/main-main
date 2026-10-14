@@ -30,6 +30,7 @@ window.WP_CATALOG = [
   ],
   "rank": 1,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fragrance as precious as gold, making every moment unforgettable",
    "ar": "عطر ثمين كالذهب يجعل كل لحظة لا تُنسى",
@@ -126,6 +127,7 @@ window.WP_CATALOG = [
   ],
   "rank": 2,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Reveal the boldness of beautifully scented skin",
    "ar": "اكشفي عن جرأة بشرة فوّاحة بالعطر",
@@ -247,6 +249,7 @@ window.WP_CATALOG = [
   ],
   "rank": 3,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "For memorable women",
    "ar": "لنساء لا يُنسَين",
@@ -339,6 +342,7 @@ window.WP_CATALOG = [
   ],
   "rank": 4,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Happily ever after starts now!",
    "ar": "السعادة الأبدية تبدأ الآن!",
@@ -450,6 +454,7 @@ window.WP_CATALOG = [
   ],
   "rank": 14,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fragrance as precious as gold",
    "ar": "عطر ثمين كالذهب",
@@ -546,6 +551,7 @@ window.WP_CATALOG = [
   ],
   "rank": 5,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Celebrate extraordinary well-being",
    "ar": "احتفي بإحساس استثنائي بالراحة",
@@ -641,6 +647,7 @@ window.WP_CATALOG = [
   ],
   "rank": 6,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Elegance lies in the details",
    "ar": "الأناقة تكمن في التفاصيل",
@@ -738,6 +745,7 @@ window.WP_CATALOG = [
   ],
   "rank": 7,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A new atmosphere, the same essence",
    "ar": "أجواء جديدة، والجوهر ذاته",
@@ -883,6 +891,7 @@ window.WP_CATALOG = [
   ],
   "rank": 8,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "For men who see sophistication as a form of expression",
    "ar": "للرجال الذين يرون في الرقي أسلوباً للتعبير",
@@ -992,6 +1001,7 @@ window.WP_CATALOG = [
   ],
   "rank": 9,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A luminous fruity floral that wraps the skin in elegance and comfort",
    "ar": "عطر زهري فاكهي مشرق يغمر البشرة بالأناقة والراحة",
@@ -1103,6 +1113,7 @@ window.WP_CATALOG = [
   ],
   "rank": 10,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A divine invitation",
    "ar": "دعوة سماوية",
@@ -1219,6 +1230,7 @@ window.WP_CATALOG = [
   ],
   "rank": 11,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "An exclusive formula for powerful hair care",
    "ar": "تركيبة حصرية لعناية فائقة بالشعر",
@@ -1263,6 +1275,7 @@ window.WP_CATALOG = [
   ],
   "rank": 12,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Magnetic, captivating and absolutely fatal",
    "ar": "مغناطيسي، آسر، وفتّاك بكل معنى الكلمة",
@@ -1364,6 +1377,7 @@ window.WP_CATALOG = [
   ],
   "rank": 256,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your new obsession, an exclusive luxury of love",
    "ar": "هوسك الجديد، فخامة حصرية من الحب",
@@ -1479,6 +1493,7 @@ window.WP_CATALOG = [
   ],
   "rank": 13,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Celebrate extraordinary hydration!",
    "ar": "احتفي بترطيب استثنائي!",
@@ -1545,6 +1560,7 @@ window.WP_CATALOG = [
   ],
   "rank": 15,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Express determination in the best way",
    "ar": "عبّري عن عزيمتك بأجمل صورة",
@@ -1651,6 +1667,7 @@ window.WP_CATALOG = [
   ],
   "rank": 16,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Five precious vanillas in a single bottle",
    "ar": "خمسة أنواع ثمينة من الفانيليا في زجاجة واحدة",
@@ -1781,6 +1798,7 @@ window.WP_CATALOG = [
   ],
   "rank": 17,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Five precious vanillas in a single bottle",
    "ar": "خمسة أنواع ثمينة من الفانيليا في زجاجة واحدة",
@@ -1911,6 +1929,7 @@ window.WP_CATALOG = [
   ],
   "rank": 260,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with an authentic fruity floral oriental touch",
    "ar": "تغذية عميقة وتماسك بلمسة أصيلة من العطر الفاكهي الزهري الشرقي",
@@ -1947,6 +1966,7 @@ window.WP_CATALOG = [
   ],
   "rank": 19,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "A fragrance that envelops, warms and lingers",
    "ar": "عطر يحتضن ويدفئ ويبقى",
@@ -2038,6 +2058,7 @@ window.WP_CATALOG = [
   ],
   "rank": 50,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "A fragrance that envelops, warms and lingers",
    "ar": "عطر يحتضن ويدفئ ويبقى",
@@ -2133,6 +2154,7 @@ window.WP_CATALOG = [
   ],
   "rank": 20,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The perfect balance between citrus freshness and woody depth",
    "ar": "توازن مثالي بين الانتعاش الحمضي والعمق الخشبي",
@@ -2227,6 +2249,7 @@ window.WP_CATALOG = [
   ],
   "rank": 21,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Cut to make an impact",
    "ar": "مصقول ليُبهر",
@@ -2310,6 +2333,7 @@ window.WP_CATALOG = [
   ],
   "rank": 22,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A floral oriental fragrance, cut to make an impact",
    "ar": "عطر زهري شرقي مصقول ليُبهر",
@@ -2396,6 +2420,7 @@ window.WP_CATALOG = [
   ],
   "rank": 23,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The most divine hydration!",
    "ar": "ترطيب سماوي لا مثيل له!",
@@ -2435,6 +2460,7 @@ window.WP_CATALOG = [
   ],
   "rank": 24,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Impossible to resist!",
    "ar": "يستحيل مقاومته!",
@@ -2542,6 +2568,7 @@ window.WP_CATALOG = [
   ],
   "rank": 25,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Definitive elegance",
    "ar": "أناقة مطلقة",
@@ -2638,6 +2665,7 @@ window.WP_CATALOG = [
   ],
   "rank": 26,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The peace of paradise",
    "ar": "سكينة الفردوس",
@@ -2759,6 +2787,7 @@ window.WP_CATALOG = [
   ],
   "rank": 28,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A perfect balance of radiance and elegance",
    "ar": "توازن مثالي بين البريق والأناقة",
@@ -2844,6 +2873,7 @@ window.WP_CATALOG = [
   ],
   "rank": 29,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The king who commands every path to victory",
    "ar": "الملك الذي يمتلك دروب النصر",
@@ -2933,6 +2963,7 @@ window.WP_CATALOG = [
   ],
   "rank": 30,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Absolute purity wrapped in elegance",
    "ar": "نقاء مطلق يكتنفه الرقي",
@@ -3037,6 +3068,7 @@ window.WP_CATALOG = [
   ],
   "rank": 31,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A powerful scent to awaken a striking energy",
    "ar": "عبير قوي يوقظ طاقتك المميزة",
@@ -3126,6 +3158,7 @@ window.WP_CATALOG = [
   ],
   "rank": 32,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Make emotions last forever!",
    "ar": "خلّدي مشاعرك!",
@@ -3356,6 +3389,7 @@ window.WP_CATALOG = [
   ],
   "rank": 34,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Well-being as refreshing as nature",
    "ar": "إحساس بالراحة منعش كالطبيعة",
@@ -3456,6 +3490,7 @@ window.WP_CATALOG = [
   ],
   "rank": 35,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Breathe in the classic and the unique!",
    "ar": "استنشق الكلاسيكية والتفرّد!",
@@ -3566,6 +3601,7 @@ window.WP_CATALOG = [
   ],
   "rank": 36,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A paradise on earth",
    "ar": "جنة على الأرض",
@@ -3656,6 +3692,7 @@ window.WP_CATALOG = [
   ],
   "rank": 37,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The comfort of a sweet hug!",
    "ar": "دفء عناق عذب!",
@@ -3762,6 +3799,7 @@ window.WP_CATALOG = [
   ],
   "rank": 38,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A touch of true tenderness!",
    "ar": "لمسة من الحنان الصادق!",
@@ -3848,6 +3886,7 @@ window.WP_CATALOG = [
   ],
   "rank": 39,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Be wonderful and confident!",
    "ar": "كوني رائعة وواثقة!",
@@ -3948,6 +3987,7 @@ window.WP_CATALOG = [
   ],
   "rank": 40,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The subtle beauty of well-being",
    "ar": "الجمال الرقيق للإحساس بالراحة",
@@ -4057,6 +4097,7 @@ window.WP_CATALOG = [
   ],
   "rank": 41,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Celebrate perfumed, hydrated skin",
    "ar": "احتفي ببشرة معطّرة ومرطّبة",
@@ -4126,6 +4167,7 @@ window.WP_CATALOG = [
   ],
   "rank": 42,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Scented hydration, ideal for everyday well-being",
    "ar": "ترطيب معطّر مثالي لإحساس يومي بالراحة",
@@ -4192,6 +4234,7 @@ window.WP_CATALOG = [
   ],
   "rank": 43,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Let your noblest essence overflow",
    "ar": "دعي جوهرك الأنبل يفيض",
@@ -4322,6 +4365,7 @@ window.WP_CATALOG = [
   ],
   "rank": 44,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The king who masters the art of enchanting everyone",
    "ar": "الملك الذي يتقن فن أسر الجميع",
@@ -4396,6 +4440,7 @@ window.WP_CATALOG = [
   ],
   "rank": 45,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Impossible to go unnoticed",
    "ar": "حضور يستحيل تجاهله",
@@ -4507,6 +4552,7 @@ window.WP_CATALOG = [
   ],
   "rank": 46,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "To turn every encounter into a memorable experience",
    "ar": "لتحوّل كل لقاء إلى تجربة لا تُنسى",
@@ -4611,6 +4657,7 @@ window.WP_CATALOG = [
   ],
   "rank": 48,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Deep nourishment and firmness with the touch of Fatal Black For Her",
    "ar": "تغذية عميقة وتماسك بلمسة فيتال بلاك فور هير",
@@ -4651,6 +4698,7 @@ window.WP_CATALOG = [
   ],
   "rank": 49,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "For men who see sophistication as a form of expression",
    "ar": "للرجال الذين يرون في الرقي أسلوباً للتعبير",
@@ -4760,6 +4808,7 @@ window.WP_CATALOG = [
   ],
   "rank": 268,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Turn your bath into a premium ritual.",
    "ar": "حوّلي حمّامك إلى طقس فاخر.",
@@ -4802,6 +4851,7 @@ window.WP_CATALOG = [
   ],
   "rank": 51,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The perfect union of lush flowers, vibrant fruits and a sophisticated creamy base.",
    "ar": "المزيج المثالي بين زهور غنّاء وفواكه نابضة بالحيوية وقاعدة كريمية راقية.",
@@ -4912,6 +4962,7 @@ window.WP_CATALOG = [
   ],
   "rank": 52,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fruity floral amber made for intense nights.",
    "ar": "عطر زهري عنبري بلمسة فاكهية صُمّم لليالٍ مفعمة بالشغف.",
@@ -5007,6 +5058,7 @@ window.WP_CATALOG = [
   ],
   "rank": 54,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with the authentic touch of pitaya and vanilla.",
    "ar": "تغذية عميقة وشدّ للبشرة مع لمسة أصيلة من فاكهة التنين والفانيليا.",
@@ -5070,6 +5122,7 @@ window.WP_CATALOG = [
   ],
   "rank": 55,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A sophisticated, elegant woody scent that is hard to forget.",
    "ar": "عطر خشبي راقٍ وأنيق يصعب نسيانه.",
@@ -5181,6 +5234,7 @@ window.WP_CATALOG = [
   ],
   "rank": 262,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A sophisticated, elegant woody scent that is hard to forget.",
    "ar": "عطر خشبي راقٍ وأنيق يصعب نسيانه.",
@@ -5291,6 +5345,7 @@ window.WP_CATALOG = [
   ],
   "rank": 56,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A feminine, sophisticated and naturally striking fruity floral.",
    "ar": "عطر زهري فاكهي أنثوي وراقٍ ولافت بطبيعته.",
@@ -5400,6 +5455,7 @@ window.WP_CATALOG = [
   ],
   "rank": 57,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Freshness in every petal.",
    "ar": "انتعاش في كل بتلة.",
@@ -5507,6 +5563,7 @@ window.WP_CATALOG = [
   ],
   "rank": 58,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Unrivaled luxury.",
    "ar": "فخامة لا مثيل لها.",
@@ -5659,6 +5716,7 @@ window.WP_CATALOG = [
   ],
   "rank": 59,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Noble hydration for your skin.",
    "ar": "ترطيب ملؤه الفخامة لبشرتك.",
@@ -5721,6 +5779,7 @@ window.WP_CATALOG = [
   ],
   "rank": 60,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The scent of determined, transformative women.",
    "ar": "عبير المرأة الطموحة التي تصنع التغيير.",
@@ -5801,6 +5860,7 @@ window.WP_CATALOG = [
   ],
   "rank": 61,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Turn every day into a wonderful bloom.",
    "ar": "اجعلي كل يوم تفتّحًا رائعًا.",
@@ -5896,6 +5956,7 @@ window.WP_CATALOG = [
   ],
   "rank": 62,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Exude the charm of a joyful scent.",
    "ar": "انثري سحر عبير مفعم بالبهجة.",
@@ -5984,6 +6045,7 @@ window.WP_CATALOG = [
   ],
   "rank": 63,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Refresh yourself with charm and lightness.",
    "ar": "انتعاش يفيض بالسحر والخفة.",
@@ -6024,6 +6086,7 @@ window.WP_CATALOG = [
   ],
   "rank": 65,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "A pleasant, nourishing sensory experience for your skin every day.",
    "ar": "تجربة حسية ممتعة ومغذّية لبشرتك كل يوم.",
@@ -6082,6 +6145,7 @@ window.WP_CATALOG = [
   ],
   "rank": 68,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A manifesto of passion, sweetness and empowerment.",
    "ar": "بيان من الشغف والعذوبة والقوة.",
@@ -6187,6 +6251,7 @@ window.WP_CATALOG = [
   ],
   "rank": 69,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Exude authenticity and power.",
    "ar": "أصالة وقوة تفوح في كل لحظة.",
@@ -6286,6 +6351,7 @@ window.WP_CATALOG = [
   ],
   "rank": 71,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The sweet freshness of well-being.",
    "ar": "الانتعاش العذب للشعور بالراحة.",
@@ -6387,6 +6453,7 @@ window.WP_CATALOG = [
   ],
   "rank": 72,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Extends the feel-good sensation of your bath and leaves skin scented.",
    "ar": "يطيل إحساس الانتعاش بعد الاستحمام ويترك البشرة معطّرة.",
@@ -6467,6 +6534,7 @@ window.WP_CATALOG = [
   ],
   "rank": 277,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection.",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم.",
@@ -6561,6 +6629,7 @@ window.WP_CATALOG = [
   ],
   "rank": 75,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "More lightness, less oil and flawless hair anytime.",
    "ar": "خفة أكبر، ودهون أقل، وشعر مثالي في أي وقت.",
@@ -6597,6 +6666,7 @@ window.WP_CATALOG = [
   ],
   "rank": 76,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The care your skin deserves, every day.",
    "ar": "العناية التي تستحقها بشرتك، كل يوم.",
@@ -6638,6 +6708,7 @@ window.WP_CATALOG = [
   ],
   "rank": 77,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Nourishment and firmness with the authentic touch of orchid and amber crystals.",
    "ar": "تغذية وشدّ مع لمسة أصيلة من الأوركيد وبلورات العنبر.",
@@ -6699,6 +6770,7 @@ window.WP_CATALOG = [
   ],
   "rank": 78,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with the authentic touch of floral oriental.",
    "ar": "تغذية عميقة وشدّ مع لمسة أصيلة من العبير الزهري الشرقي.",
@@ -6740,6 +6812,7 @@ window.WP_CATALOG = [
   ],
   "rank": 79,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The perfect meeting of intensity and sophistication.",
    "ar": "اللقاء المثالي بين القوة والرقي.",
@@ -6831,6 +6904,7 @@ window.WP_CATALOG = [
   ],
   "rank": 80,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The perfect meeting of intensity and sophistication.",
    "ar": "اللقاء المثالي بين القوة والرقي.",
@@ -6919,6 +6993,7 @@ window.WP_CATALOG = [
   ],
   "rank": 81,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The fruity floriental that turns delicacy into presence.",
    "ar": "عطر زهري شرقي فاكهي يحوّل الرقة إلى حضور لافت.",
@@ -7023,6 +7098,7 @@ window.WP_CATALOG = [
   ],
   "rank": 82,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Wish.",
    "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا ويش.",
@@ -7084,6 +7160,7 @@ window.WP_CATALOG = [
   ],
   "rank": 83,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Soft.",
    "ar": "تغذية عميقة وشدّ مع العناق الدافئ لعبير فانيلا سوفت.",
@@ -7152,6 +7229,7 @@ window.WP_CATALOG = [
   ],
   "rank": 84,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The Heaven Blue line, together in one set.",
    "ar": "مجموعة هيفن بلو مجتمعة في طقم واحد.",
@@ -7193,6 +7271,7 @@ window.WP_CATALOG = [
   ],
   "rank": 85,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Oriental elegance in every movement of your hair.",
    "ar": "أناقة شرقية في كل حركة من حركات شعرك.",
@@ -7289,6 +7368,7 @@ window.WP_CATALOG = [
   ],
   "rank": 86,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Where intensity celebrates, sophistication becomes eternal.",
    "ar": "حيث تحتفي الجرأة، ويخلد الرقي.",
@@ -7389,6 +7469,7 @@ window.WP_CATALOG = [
   ],
   "rank": 150,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Where intensity celebrates, sophistication becomes eternal.",
    "ar": "حيث تحتفي الجرأة، ويخلد الرقي.",
@@ -7489,6 +7570,7 @@ window.WP_CATALOG = [
   ],
   "rank": 87,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Luxury and hydration in a single gesture.",
    "ar": "الفخامة والترطيب في لمسة واحدة.",
@@ -7529,6 +7611,7 @@ window.WP_CATALOG = [
   ],
   "rank": 88,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Masculine presence revealed in an aromatic amber fougère.",
    "ar": "حضور رجولي يتجلّى في عطر فوجير عنبري عطري.",
@@ -7649,6 +7732,7 @@ window.WP_CATALOG = [
   ],
   "rank": 89,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fruity floral that charms with delicacy and leaves an elegant trail.",
    "ar": "عطر زهري فاكهي يأسر برقّته ويترك أثرًا أنيقًا أينما حلّ.",
@@ -7750,6 +7834,7 @@ window.WP_CATALOG = [
   ],
   "rank": 90,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The fresh fruity floral that is the right choice for you.",
    "ar": "العطر الزهري الفاكهي المنعش الذي يمثّل خيارك الأمثل.",
@@ -7857,6 +7942,7 @@ window.WP_CATALOG = [
   ],
   "rank": 91,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A luminous fruity floral that wraps the skin in elegance and comfort.",
    "ar": "عطر زهري فاكهي مشرق يغلّف البشرة بالأناقة والراحة.",
@@ -7968,6 +8054,7 @@ window.WP_CATALOG = [
   ],
   "rank": 92,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Class, presence and sophistication with the vibrant freshness of elegant flowers.",
    "ar": "رقي وحضور وأناقة مع الانتعاش النابض للزهور الأنيقة.",
@@ -8069,6 +8156,7 @@ window.WP_CATALOG = [
   ],
   "rank": 93,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Class, presence and sophistication with the vibrant freshness of elegant flowers.",
    "ar": "رقي وحضور وأناقة مع الانتعاش النابض للزهور الأنيقة.",
@@ -8169,6 +8257,7 @@ window.WP_CATALOG = [
   ],
   "rank": 94,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The golden light of freedom.",
    "ar": "النور الذهبي للحرية.",
@@ -8266,6 +8355,7 @@ window.WP_CATALOG = [
   ],
   "rank": 95,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The new face of sophistication.",
    "ar": "الوجه الجديد للرقي.",
@@ -8364,6 +8454,7 @@ window.WP_CATALOG = [
   ],
   "rank": 96,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Skin as soft as silk.",
    "ar": "بشرة ناعمة كالحرير.",
@@ -8408,6 +8499,7 @@ window.WP_CATALOG = [
   ],
   "rank": 97,
   "hero": true,
+  "renders": 8,
   "tagline": {
    "en": "The art of perfumery elevated to perfection.",
    "ar": "فن صناعة العطور في أسمى درجات الكمال.",
@@ -8523,6 +8615,7 @@ window.WP_CATALOG = [
   ],
   "rank": 98,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Scented hair with a bold, elegant aroma.",
    "ar": "شعر معطّر بعبير جريء وأنيق.",
@@ -8642,6 +8735,7 @@ window.WP_CATALOG = [
   ],
   "rank": 160,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Essential cleansing for your everyday routine.",
    "ar": "تنظيف أساسي لروتينك اليومي.",
@@ -8681,6 +8775,7 @@ window.WP_CATALOG = [
   ],
   "rank": 99,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Brazil's best-loved little pink favorite.",
    "ar": "المفضّل الوردي الأكثر حبًا في البرازيل.",
@@ -8719,6 +8814,7 @@ window.WP_CATALOG = [
   ],
   "rank": 100,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -8757,6 +8853,7 @@ window.WP_CATALOG = [
   ],
   "rank": 101,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -8794,6 +8891,7 @@ window.WP_CATALOG = [
   ],
   "rank": 102,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Turn your bath into a premium ritual",
    "ar": "حمّام يتحوّل إلى طقس فاخر",
@@ -8838,6 +8936,7 @@ window.WP_CATALOG = [
   ],
   "rank": 103,
   "hero": true,
+  "renders": 9,
   "tagline": {
    "en": "Femininity in its most intense form",
    "ar": "الأنوثة في أشدّ صورها حضوراً",
@@ -8940,6 +9039,7 @@ window.WP_CATALOG = [
   ],
   "rank": 104,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Essential repair for healthier hair",
    "ar": "إصلاح أساسي لشعر أكثر صحة",
@@ -8980,6 +9080,7 @@ window.WP_CATALOG = [
   ],
   "rank": 105,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Essential cleansing for healthier hair",
    "ar": "تنظيف أساسي لشعر أكثر صحة",
@@ -9020,6 +9121,7 @@ window.WP_CATALOG = [
   ],
   "rank": 106,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A shining universe of charm and freshness!",
    "ar": "عالم متألّق من السحر والانتعاش!",
@@ -9098,6 +9200,7 @@ window.WP_CATALOG = [
   ],
   "rank": 107,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Exude delicacy and sweetness with an enchanting touch",
    "ar": "رقّة وعذوبة بلمسة ساحرة",
@@ -9187,6 +9290,7 @@ window.WP_CATALOG = [
   ],
   "rank": 108,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment with heavenly freshness on your skin",
    "ar": "تغذية عميقة وانتعاش سماوي على بشرتك",
@@ -9242,6 +9346,7 @@ window.WP_CATALOG = [
   ],
   "rank": 109,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A scent worthy of a rare jewel",
    "ar": "عبير يليق بجوهرة نادرة",
@@ -9342,6 +9447,7 @@ window.WP_CATALOG = [
   ],
   "rank": 110,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The exclusive charm of a precious essence",
    "ar": "السحر الحصري لجوهر ثمين",
@@ -9446,6 +9552,7 @@ window.WP_CATALOG = [
   ],
   "rank": 111,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Renew yourself with a gentle scent",
    "ar": "عبير ناعم يمنحك التجدّد",
@@ -9549,6 +9656,7 @@ window.WP_CATALOG = [
   ],
   "rank": 112,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Essential for clean, healthy, beautiful skin!",
    "ar": "ضرورية لبشرة نظيفة وصحية وجميلة!",
@@ -9589,6 +9697,7 @@ window.WP_CATALOG = [
   ],
   "rank": 113,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Express your free spirit in a radiant essence",
    "ar": "روحك الحرّة في عبير متألّق",
@@ -9697,6 +9806,7 @@ window.WP_CATALOG = [
   ],
   "rank": 64,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The king who masters the art of captivating everyone",
    "ar": "الملك الذي يُتقن فنّ أسر الجميع",
@@ -9770,6 +9880,7 @@ window.WP_CATALOG = [
   ],
   "rank": 114,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "A special touch of care and well-being for every day",
    "ar": "لمسة مميّزة من العناية والراحة لكل يوم",
@@ -9824,6 +9935,7 @@ window.WP_CATALOG = [
   ],
   "rank": 116,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Exude power and well-being",
    "ar": "عبير يفيض بالقوة والراحة",
@@ -9925,6 +10037,7 @@ window.WP_CATALOG = [
   ],
   "rank": 117,
   "hero": true,
+  "renders": 7,
   "tagline": {
    "en": "The perfect balance of care and well-being for every day",
    "ar": "توازن مثالي بين العناية والراحة لكل يوم",
@@ -9966,6 +10079,7 @@ window.WP_CATALOG = [
   ],
   "rank": 118,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The mystery that awakens irresistible desire",
    "ar": "غموض يوقظ رغبة لا تُقاوم",
@@ -10060,6 +10174,7 @@ window.WP_CATALOG = [
   ],
   "rank": 119,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Hydration full of confidence, seduction and passion",
    "ar": "ترطيب يفيض بالثقة والجاذبية والشغف",
@@ -10100,6 +10215,7 @@ window.WP_CATALOG = [
   ],
   "rank": 120,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "An exclusive, sophisticated toast to the senses",
    "ar": "تحية حصرية وراقية للحواس",
@@ -10212,6 +10328,7 @@ window.WP_CATALOG = [
   ],
   "rank": 121,
   "hero": true,
+  "renders": 7,
   "tagline": {
    "en": "Baby, rock your trip!",
    "ar": "تألّقي في رحلتك يا عزيزتي!",
@@ -10316,6 +10433,7 @@ window.WP_CATALOG = [
   ],
   "rank": 122,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The scent that radiates the finest magnetism",
    "ar": "عبير يتألّق بجاذبية آسرة",
@@ -10374,6 +10492,7 @@ window.WP_CATALOG = [
   ],
   "rank": 123,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A final note of well-being and shine",
    "ar": "نفحة ختامية من الراحة والتألّق",
@@ -10484,6 +10603,7 @@ window.WP_CATALOG = [
   ],
   "rank": 124,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "A mysterious, enchanting scent for well-being",
    "ar": "عبير غامض وساحر للراحة",
@@ -10592,6 +10712,7 @@ window.WP_CATALOG = [
   ],
   "rank": 125,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Beauty in the subtle blossoming of a scent",
    "ar": "الجمال في تفتّح العبير الرقيق",
@@ -10703,6 +10824,7 @@ window.WP_CATALOG = [
   ],
   "rank": 126,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Celebrate the extraordinary in life with a unique scent",
    "ar": "احتفاء بروعة الحياة في عبير فريد",
@@ -10798,6 +10920,7 @@ window.WP_CATALOG = [
   ],
   "rank": 127,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Awaken the best hydration for your skin",
    "ar": "أفضل ترطيب يوقظ بشرتك",
@@ -10854,6 +10977,7 @@ window.WP_CATALOG = [
   ],
   "rank": 128,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A heady elixir that will envelop you",
    "ar": "إكسير آسر يغمرك بعبيره",
@@ -10965,6 +11089,7 @@ window.WP_CATALOG = [
   ],
   "rank": 129,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A radiant fragrance that awakens desire and sophistication",
    "ar": "عطر متألّق يوقظ الرغبة والرقيّ",
@@ -11072,6 +11197,7 @@ window.WP_CATALOG = [
   ],
   "rank": 134,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "The perfect union of juicy fruits and enveloping hydration",
    "ar": "اتحاد مثالي بين عصارة الفواكه والترطيب الغامر",
@@ -11111,6 +11237,7 @@ window.WP_CATALOG = [
   ],
   "rank": 135,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Heaven Blue",
    "ar": "قوام الكريمة المخفوقة بعبير هيفن بلو",
@@ -11152,6 +11279,7 @@ window.WP_CATALOG = [
   ],
   "rank": 140,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fragrance for women who light up everything around them",
    "ar": "عطر للمرأة التي تضيء كل ما حولها",
@@ -11260,6 +11388,7 @@ window.WP_CATALOG = [
   ],
   "rank": 141,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "A self-care ritual that goes beyond the bath",
    "ar": "طقس عناية ذاتية يتجاوز حدود الاستحمام",
@@ -11313,6 +11442,7 @@ window.WP_CATALOG = [
   ],
   "rank": 142,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -11344,6 +11474,7 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165984-800-800/kit_fatal_black.webp?v=639271420768630000"
   ],
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The Fatal Black For Her line, together in one set",
    "ar": "مجموعة فيتال بلاك فور هير في طقم واحد",
@@ -11380,6 +11511,7 @@ window.WP_CATALOG = [
   ],
   "rank": 143,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The care your skin deserves, every day",
    "ar": "العناية التي تستحقها بشرتك كل يوم",
@@ -11427,6 +11559,7 @@ window.WP_CATALOG = [
   ],
   "rank": 144,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with the cozy embrace of Vanilla Hope",
    "ar": "تغذية عميقة وتماسك في احتضان فانيلا هوب الدافئ",
@@ -11466,6 +11599,7 @@ window.WP_CATALOG = [
   ],
   "rank": 145,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with the cozy embrace of Vanilla Dream",
    "ar": "تغذية عميقة وتماسك في احتضان فانيلا دريم الدافئ",
@@ -11521,6 +11655,7 @@ window.WP_CATALOG = [
   ],
   "rank": 293,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "A citrus and floral burst for protected, shiny, unforgettable hair",
    "ar": "انفجار حمضي وزهري لشعر محميّ ولامع لا يُنسى",
@@ -11589,6 +11724,7 @@ window.WP_CATALOG = [
   ],
   "rank": 146,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The sophistication of Arabian jasmine in every movement of your hair",
    "ar": "رقيّ الياسمين العربي في كل حركة لشعرك",
@@ -11682,6 +11818,7 @@ window.WP_CATALOG = [
   ],
   "rank": 147,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The delicacy of pear and violet in a mist of shine and protection",
    "ar": "رقّة الكمثرى والبنفسج في رذاذ من اللمعان والحماية",
@@ -11782,6 +11919,7 @@ window.WP_CATALOG = [
   ],
   "rank": 148,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The luminous freshness of summer with irresistible sweetness",
    "ar": "انتعاش الصيف المشرق بحلاوة لا تُقاوم",
@@ -11902,6 +12040,7 @@ window.WP_CATALOG = [
   ],
   "rank": 149,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Tropical intensity with enveloping sophistication",
    "ar": "شغف استوائي برقيّ آسر",
@@ -11980,6 +12119,7 @@ window.WP_CATALOG = [
   ],
   "rank": 151,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Dream",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا دريم",
@@ -12040,6 +12180,7 @@ window.WP_CATALOG = [
   ],
   "rank": 152,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Soft",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا سوفت",
@@ -12093,6 +12234,7 @@ window.WP_CATALOG = [
   ],
   "rank": 153,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Wish",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا ويش",
@@ -12133,6 +12275,7 @@ window.WP_CATALOG = [
   ],
   "rank": 154,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fruity floral that enchants with delicacy and leaves an elegant trail",
    "ar": "عطر زهري فاكهي يأسر برقّته ويترك أثراً أنيقاً أينما حلّ",
@@ -12233,6 +12376,7 @@ window.WP_CATALOG = [
   ],
   "rank": 155,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A touch of glow for every moment!",
    "ar": "لمسة من التوهّج لكل اللحظات!",
@@ -12273,6 +12417,7 @@ window.WP_CATALOG = [
   ],
   "rank": 156,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Hydration that goes beyond!",
    "ar": "ترطيب يتجاوز المألوف!",
@@ -12312,6 +12457,7 @@ window.WP_CATALOG = [
   ],
   "rank": 157,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "You are worth gold!",
    "ar": "قيمتك من ذهب!",
@@ -12409,6 +12555,7 @@ window.WP_CATALOG = [
   ],
   "rank": 158,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Fabulously distinctive",
    "ar": "تميّز مذهل بكل تفاصيله",
@@ -12516,6 +12663,7 @@ window.WP_CATALOG = [
   ],
   "rank": 159,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A heavenly scent for your hair",
    "ar": "عبير سماوي لشعرك",
@@ -12608,6 +12756,7 @@ window.WP_CATALOG = [
   ],
   "rank": 161,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A shine full of nobility for your hair",
    "ar": "لمعان يفيض بالرقيّ لشعرك",
@@ -12737,6 +12886,7 @@ window.WP_CATALOG = [
   ],
   "rank": 162,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -12777,6 +12927,7 @@ window.WP_CATALOG = [
   ],
   "rank": 163,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Turn every day into a wonderful blossoming",
    "ar": "اجعلي كل يوم تفتّحاً مذهلاً",
@@ -12873,6 +13024,7 @@ window.WP_CATALOG = [
   ],
   "rank": 164,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Every princess deserves her fairy tale in a fragrance",
    "ar": "كل أميرة تستحق حكايتها الخيالية في عطر",
@@ -12974,6 +13126,7 @@ window.WP_CATALOG = [
   ],
   "rank": 165,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Turn any moment into an adventure",
    "ar": "حوّل كل لحظة إلى مغامرة",
@@ -13064,6 +13217,7 @@ window.WP_CATALOG = [
   ],
   "rank": 166,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Surrender to desire",
    "ar": "استسلمي للرغبة",
@@ -13134,6 +13288,7 @@ window.WP_CATALOG = [
   ],
   "rank": 167,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Feel the elegance of a classic",
    "ar": "اشعر بأناقة العطر الكلاسيكي",
@@ -13244,6 +13399,7 @@ window.WP_CATALOG = [
   ],
   "rank": 168,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "For the most powerful piece in the game: you!",
    "ar": "لأقوى قطعة في اللعبة: أنتِ!",
@@ -13349,6 +13505,7 @@ window.WP_CATALOG = [
   ],
   "rank": 169,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Essential restoration for healthier hair",
    "ar": "ترميم أساسي لشعر أكثر صحة",
@@ -13388,6 +13545,7 @@ window.WP_CATALOG = [
   ],
   "rank": 170,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The strength and elegance of those who never give up",
    "ar": "قوة وأناقة من لا يستسلم أبداً",
@@ -13476,6 +13634,7 @@ window.WP_CATALOG = [
   ],
   "rank": 171,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -13516,6 +13675,7 @@ window.WP_CATALOG = [
   ],
   "rank": 172,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your favorite gift is here!",
    "ar": "وصلت هديتك المفضّلة!",
@@ -13614,6 +13774,7 @@ window.WP_CATALOG = [
   ],
   "rank": 173,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The perfect scent for new beginnings!",
    "ar": "العبير المثالي للبدايات الجديدة!",
@@ -13712,6 +13873,7 @@ window.WP_CATALOG = [
   ],
   "rank": 174,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -13760,6 +13922,7 @@ window.WP_CATALOG = [
   ],
   "rank": 175,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "A gentle scent for sweet dreams",
    "ar": "عبير ناعم لأحلام سعيدة",
@@ -13855,6 +14018,7 @@ window.WP_CATALOG = [
   ],
   "rank": 176,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A powerful, unforgettable sense of well-being!",
    "ar": "إحساس قوي بالرفاهية لا يُنسى!",
@@ -13952,6 +14116,7 @@ window.WP_CATALOG = [
   ],
   "rank": 177,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -13990,6 +14155,7 @@ window.WP_CATALOG = [
   ],
   "rank": 178,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The most complete sun protection for your skin",
    "ar": "الحماية الأشمل من الشمس لبشرتك",
@@ -14028,6 +14194,7 @@ window.WP_CATALOG = [
   ],
   "rank": 179,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The best lip tint of all time",
    "ar": "أفضل صبغة شفاه على الإطلاق",
@@ -14060,6 +14227,7 @@ window.WP_CATALOG = [
   ],
   "rank": 131,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "Bomb One paired with Ruby Rhodolite Body Splash and Body Cream",
    "ar": "طقم يجمع بومب ون مع بخاخ الجسم وكريم الجسم روبي رودولايت",
@@ -14095,6 +14263,7 @@ window.WP_CATALOG = [
   ],
   "rank": 132,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "Bomb One paired with Fantasy Kids Green",
    "ar": "طقم يجمع بومب ون مع فانتاسي كيدز جرين",
@@ -14129,6 +14298,7 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/165989-800-800/kit-eternal.webp?v=639273255615730000"
   ],
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The Eternal Cherish collection in one set",
    "ar": "مجموعة إيترنال تشيريش في طقم واحد",
@@ -14164,6 +14334,7 @@ window.WP_CATALOG = [
   ],
   "rank": 133,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The Scarlette Radiance collection in one set",
    "ar": "مجموعة سكارليت راديانس في طقم واحد",
@@ -14206,6 +14377,7 @@ window.WP_CATALOG = [
   ],
   "rank": 182,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Liberté Exclusif",
    "ar": "قوام الكريمة المخفوقة بعبير ليبرتيه إكسكلوسيف",
@@ -14259,6 +14431,7 @@ window.WP_CATALOG = [
   ],
   "rank": 183,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -14297,6 +14470,7 @@ window.WP_CATALOG = [
   ],
   "rank": 185,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Magnetism isn't explained, it's felt",
    "ar": "الجاذبية لا تُفسَّر، بل تُحَسّ",
@@ -14387,6 +14561,7 @@ window.WP_CATALOG = [
   ],
   "rank": 186,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "For men who make their choices with confidence",
    "ar": "للرجال الذين يتخذون قراراتهم بثقة",
@@ -14493,6 +14668,7 @@ window.WP_CATALOG = [
   ],
   "rank": 187,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The care your skin deserves, every day",
    "ar": "العناية التي تستحقها بشرتك، كل يوم",
@@ -14532,6 +14708,7 @@ window.WP_CATALOG = [
   ],
   "rank": 188,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The care your skin deserves, every day",
    "ar": "العناية التي تستحقها بشرتك، كل يوم",
@@ -14575,6 +14752,7 @@ window.WP_CATALOG = [
   ],
   "rank": 190,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The perfect balance of freshness and sophistication",
    "ar": "التوازن المثالي بين الانتعاش والرقيّ",
@@ -14683,6 +14861,7 @@ window.WP_CATALOG = [
   ],
   "rank": 191,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Cuddle",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا كادل",
@@ -14745,6 +14924,7 @@ window.WP_CATALOG = [
   ],
   "rank": 192,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The sophistication of turning confidence into presence",
    "ar": "رقيّ من يحوّل الثقة إلى حضور",
@@ -14853,6 +15033,7 @@ window.WP_CATALOG = [
   ],
   "rank": 193,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -14915,6 +15096,7 @@ window.WP_CATALOG = [
   ],
   "rank": 194,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Tropical intensity with an enveloping sophistication",
    "ar": "حيوية استوائية برقيّ آسر",
@@ -14993,6 +15175,7 @@ window.WP_CATALOG = [
   ],
   "rank": 195,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Whipped-cream texture with the scent of Vanilla Hope",
    "ar": "قوام الكريمة المخفوقة بعبير فانيلا هوب",
@@ -15048,6 +15231,7 @@ window.WP_CATALOG = [
   ],
   "rank": 196,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A floral oriental scent of possibilities",
    "ar": "عبير زهري شرقي مليء بالاحتمالات",
@@ -15151,6 +15335,7 @@ window.WP_CATALOG = [
   ],
   "rank": 197,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The perfect balance of citrus freshness and woody depth",
    "ar": "التوازن المثالي بين انتعاش الحمضيات وعمق الأخشاب",
@@ -15224,6 +15409,7 @@ window.WP_CATALOG = [
   ],
   "rank": 198,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A daily invitation to fruity floral sophistication",
    "ar": "دعوة يومية إلى رقيّ العبير الزهري الفاكهي",
@@ -15329,6 +15515,7 @@ window.WP_CATALOG = [
   ],
   "rank": 199,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "The care your skin needs",
    "ar": "العناية التي تحتاجها بشرتك",
@@ -15367,6 +15554,7 @@ window.WP_CATALOG = [
   ],
   "rank": 200,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A crystal-clear breath of serenity",
    "ar": "نسمة صافية من السكينة",
@@ -15481,6 +15669,7 @@ window.WP_CATALOG = [
   ],
   "rank": 201,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A roar of love!",
    "ar": "زئير من الحب!",
@@ -15565,6 +15754,7 @@ window.WP_CATALOG = [
   ],
   "rank": 202,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Celebrate the light that shines within you",
    "ar": "احتفلي بالنور الذي يشعّ في داخلك",
@@ -15658,6 +15848,7 @@ window.WP_CATALOG = [
   ],
   "rank": 203,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوَم",
@@ -15699,6 +15890,7 @@ window.WP_CATALOG = [
   ],
   "rank": 204,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Dive into this mystical world",
    "ar": "انغمس في هذا العالم الغامض الساحر",
@@ -15784,6 +15976,7 @@ window.WP_CATALOG = [
   ],
   "rank": 205,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A touch of luxury for those who know what they want",
    "ar": "لمسة من الفخامة لمن يعرف ما يريد",
@@ -15888,6 +16081,7 @@ window.WP_CATALOG = [
   ],
   "rank": 206,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection.",
    "ar": "عنايتك اليومية، وحمايتك التي لا تقاوم.",
@@ -15926,6 +16120,7 @@ window.WP_CATALOG = [
   ],
   "rank": 207,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Daily cleansing full of protection and freshness!",
    "ar": "تنظيف يومي مفعم بالحماية والانتعاش!",
@@ -15965,6 +16160,7 @@ window.WP_CATALOG = [
   ],
   "rank": 209,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "The moisturizing touch your skincare routine was missing!",
    "ar": "لمسة الترطيب التي كان يفتقدها روتين العناية ببشرتك!",
@@ -16002,6 +16198,7 @@ window.WP_CATALOG = [
   ],
   "rank": 210,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Turn your bath into a premium ritual",
    "ar": "حوّلي استحمامك إلى طقس فاخر",
@@ -16069,6 +16266,7 @@ window.WP_CATALOG = [
   ],
   "rank": 211,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Awaken the flame of desire",
    "ar": "أيقظ شعلة الرغبة",
@@ -16147,6 +16345,7 @@ window.WP_CATALOG = [
   ],
   "rank": 212,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The essential precision to make your eyes stand out",
    "ar": "الدقة الأساسية لإبراز جمال عينيك",
@@ -16186,6 +16385,7 @@ window.WP_CATALOG = [
   ],
   "rank": 214,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "A cozy scent for every moment",
    "ar": "عبير دافئ لكل اللحظات",
@@ -16282,6 +16482,7 @@ window.WP_CATALOG = [
   ],
   "rank": 215,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Bold well-being to enchant the senses",
    "ar": "رفاهية جريئة تأسر الحواس",
@@ -16387,6 +16588,7 @@ window.WP_CATALOG = [
   ],
   "rank": 217,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "The satiny touch of a woman who lights up everything around her",
    "ar": "اللمسة الحريرية لامرأة تضيء كل ما حولها",
@@ -16488,6 +16690,7 @@ window.WP_CATALOG = [
   ],
   "rank": 219,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "A whipped-cream texture with the scent of Ruby Rhodolite",
    "ar": "قوام كالكريمة المخفوقة بعبير روبي رودولايت",
@@ -16530,6 +16733,7 @@ window.WP_CATALOG = [
   ],
   "rank": 220,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "A whipped-cream texture with the scent of VF Golden",
    "ar": "قوام كالكريمة المخفوقة بعبير في إف جولدن",
@@ -16572,6 +16776,7 @@ window.WP_CATALOG = [
   ],
   "rank": 181,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "A whipped-cream texture with the scent of Fatal Black For Her",
    "ar": "قوام كالكريمة المخفوقة بعبير فيتال بلاك فور هير",
@@ -16616,6 +16821,7 @@ window.WP_CATALOG = [
   ],
   "rank": 184,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fragrance for women who light up everything around them",
    "ar": "عطر لنساء يضئن كل ما حولهن",
@@ -16727,6 +16933,7 @@ window.WP_CATALOG = [
   ],
   "rank": 189,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fragrance that doesn't wait for an occasion",
    "ar": "عطر لا ينتظر مناسبة",
@@ -16825,6 +17032,7 @@ window.WP_CATALOG = [
   ],
   "rank": 221,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A daily invitation to the sophistication of fruity florals",
    "ar": "دعوة يومية إلى رقيّ العطور الزهرية الفاكهية",
@@ -16931,6 +17139,7 @@ window.WP_CATALOG = [
   ],
   "rank": 222,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Hydration with sophistication",
    "ar": "ترطيب بلمسة من الرقي",
@@ -16969,6 +17178,7 @@ window.WP_CATALOG = [
   ],
   "rank": 223,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "A touch of pure magic!",
    "ar": "لمسة من السحر الخالص!",
@@ -17057,6 +17267,7 @@ window.WP_CATALOG = [
   ],
   "rank": 224,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Elegant, vibrant and intriguing",
    "ar": "أنيق، نابض بالحيوية ومثير للفضول",
@@ -17170,6 +17381,7 @@ window.WP_CATALOG = [
   ],
   "rank": 225,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Sweet as marshmallow, shiny as a dream",
    "ar": "حلو كالمارشميلو، لامع كالحلم",
@@ -17209,6 +17421,7 @@ window.WP_CATALOG = [
   ],
   "rank": 226,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Authentically mysterious",
    "ar": "غموض أصيل",
@@ -17292,6 +17505,7 @@ window.WP_CATALOG = [
   ],
   "rank": 227,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Transform your daily care!",
    "ar": "ارتقِ بعنايتك اليومية!",
@@ -17330,6 +17544,7 @@ window.WP_CATALOG = [
   ],
   "rank": 208,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Turn your bath into a premium ritual",
    "ar": "حوّلي استحمامك إلى طقس فاخر",
@@ -17383,6 +17598,7 @@ window.WP_CATALOG = [
   ],
   "rank": 228,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Plump lips with a soft shine and a strawberry scent!",
    "ar": "شفاه ممتلئة بلمعان خفيف وعبير الفراولة!",
@@ -17420,6 +17636,7 @@ window.WP_CATALOG = [
   ],
   "rank": 229,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your new obsession, get ready",
    "ar": "هوسك الجديد، فاستعدي",
@@ -17519,6 +17736,7 @@ window.WP_CATALOG = [
   ],
   "rank": 231,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A heady essence full of well-being",
    "ar": "جوهر آسر مفعم بالرفاهية",
@@ -17627,6 +17845,7 @@ window.WP_CATALOG = [
   ],
   "rank": 232,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "10 ideal shades made for you to go all out!",
    "ar": "10 درجات مثالية صُمّمت لتتألّقي بلا حدود!",
@@ -17658,6 +17877,7 @@ window.WP_CATALOG = [
   ],
   "rank": 218,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The Feive collection, together in one set",
    "ar": "مجموعة فيف مجتمعة في طقم واحد",
@@ -17701,6 +17921,7 @@ window.WP_CATALOG = [
   ],
   "rank": 233,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A celebration of amber oriental, felt on the skin",
    "ar": "احتفاء بالعطر الشرقي العنبري على البشرة",
@@ -17796,6 +18017,7 @@ window.WP_CATALOG = [
   ],
   "rank": 234,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your secret weapon for seduction",
    "ar": "سلاحك السري للجاذبية",
@@ -17906,6 +18128,7 @@ window.WP_CATALOG = [
   ],
   "rank": 235,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Sweet as a gumdrop, shiny as a dream",
    "ar": "حلو كحلوى الجيلي، لامع كالحلم",
@@ -17947,6 +18170,7 @@ window.WP_CATALOG = [
   ],
   "rank": 236,
   "hero": true,
+  "renders": 8,
   "tagline": {
    "en": "Your essence, guided by the stars",
    "ar": "جوهرك تهديه النجوم",
@@ -17985,6 +18209,7 @@ window.WP_CATALOG = [
   ],
   "rank": 237,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "The best long-wear foundation for your makeup",
    "ar": "أفضل كريم أساس عالي الثبات لمكياجك",
@@ -18024,6 +18249,7 @@ window.WP_CATALOG = [
   ],
   "rank": 238,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Exfoliating foam with a peeling effect for well-cared-for skin",
    "ar": "رغوة مقشّرة بمفعول البيلينج لبشرة مُعتنى بها",
@@ -18063,6 +18289,7 @@ window.WP_CATALOG = [
   ],
   "rank": 239,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Be creamily irresistible!",
    "ar": "كوني بنعومة الكريمة التي لا تقاوم!",
@@ -18116,6 +18343,7 @@ window.WP_CATALOG = [
   ],
   "rank": 240,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection.",
    "ar": "عنايتك اليومية، وحمايتك التي لا تقاوم.",
@@ -18154,6 +18382,7 @@ window.WP_CATALOG = [
   ],
   "rank": 241,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Plump lips with the color and flavor of cookies.",
    "ar": "شفاه ممتلئة بلون الكوكيز ونكهتها.",
@@ -18193,6 +18422,7 @@ window.WP_CATALOG = [
   ],
   "rank": 216,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Adventure begins with a new discovery",
    "ar": "تبدأ المغامرة باكتشاف جديد",
@@ -18291,6 +18521,7 @@ window.WP_CATALOG = [
   ],
   "rank": 242,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Delicious as cookies, shiny as a dream",
    "ar": "لذيذ كالكوكيز، لامع كالحلم",
@@ -18330,6 +18561,7 @@ window.WP_CATALOG = [
   ],
   "rank": 243,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Be the brightest star!",
    "ar": "كوني النجمة الأكثر تألقًا!",
@@ -18430,6 +18662,7 @@ window.WP_CATALOG = [
   ],
   "rank": 244,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Turn every day into a celebration of happiness",
    "ar": "اجعل كل يوم احتفالًا بالسعادة",
@@ -18533,6 +18766,7 @@ window.WP_CATALOG = [
   ],
   "rank": 245,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Plump lips with a soft shine and a watermelon scent!",
    "ar": "شفاه ممتلئة بلمعان خفيف وعبير البطيخ!",
@@ -18570,6 +18804,7 @@ window.WP_CATALOG = [
   ],
   "rank": 246,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Chocolatey, plump lips!",
    "ar": "شفاه ممتلئة بلمسة من الشوكولاتة!",
@@ -18608,6 +18843,7 @@ window.WP_CATALOG = [
   ],
   "rank": 247,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A relaxing scent that enchants the senses",
    "ar": "عبير مريح يأسر الحواس",
@@ -18653,6 +18889,7 @@ window.WP_CATALOG = [
   ],
   "rank": 248,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Plump lips with a soft shine and a gumdrop scent!",
    "ar": "شفاه ممتلئة بلمعان خفيف وعبير حلوى الجيلي!",
@@ -18685,6 +18922,7 @@ window.WP_CATALOG = [
   ],
   "rank": 130,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "Yahya Aneeq and Bomb One, together in one set",
    "ar": "يحيى أنيق وبومب ون معًا في طقم واحد",
@@ -18764,6 +19002,7 @@ window.WP_CATALOG = [
   ],
   "rank": 250,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A new atmosphere, the same essence",
    "ar": "أجواء جديدة، والجوهر ذاته",
@@ -18910,6 +19149,7 @@ window.WP_CATALOG = [
   ],
   "rank": 251,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A declaration of love in every spritz",
    "ar": "إعلان حب في كل رشّة",
@@ -19021,6 +19261,7 @@ window.WP_CATALOG = [
   ],
   "rank": 252,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Overflow with the freshness of nobility",
    "ar": "انتعاش يفيض بالنبل",
@@ -19122,6 +19363,7 @@ window.WP_CATALOG = [
   ],
   "rank": 253,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Overflow with the essence of elegance",
    "ar": "أناقة تفيض من الجوهر",
@@ -19252,6 +19494,7 @@ window.WP_CATALOG = [
   ],
   "rank": 254,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Beauty lies in being discovered little by little",
    "ar": "يكمن الجمال في أن يُكتشف شيئاً فشيئاً",
@@ -19363,6 +19606,7 @@ window.WP_CATALOG = [
   ],
   "rank": 255,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Exude confidence, seduction and passion at every moment",
    "ar": "انشري الثقة والجاذبية والشغف في كل لحظة",
@@ -19459,6 +19703,7 @@ window.WP_CATALOG = [
   ],
   "rank": 257,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Absolute purity wrapped in lightness",
    "ar": "النقاء المطلق في حُلّة من الخفة",
@@ -19564,6 +19809,7 @@ window.WP_CATALOG = [
   ],
   "rank": 258,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "The essential intensive treatment for your hair",
    "ar": "العلاج المكثّف الأساسي لشعركِ",
@@ -19605,6 +19851,7 @@ window.WP_CATALOG = [
   ],
   "rank": 259,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Refresh yourself in sweetness and lightness!",
    "ar": "انتعشي بالعذوبة والخفة!",
@@ -19704,6 +19951,7 @@ window.WP_CATALOG = [
   ],
   "rank": 261,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with an authentic fruity floral touch",
    "ar": "تغذية عميقة وتماسك بلمسة زهرية فاكهية أصيلة",
@@ -19753,6 +20001,7 @@ window.WP_CATALOG = [
   ],
   "rank": 263,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A declaration of love in every spritz",
    "ar": "إعلان حب في كل رشّة",
@@ -19864,6 +20113,7 @@ window.WP_CATALOG = [
   ],
   "rank": 264,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A floral gourmand with a striking, captivating presence",
    "ar": "عطر زهري غورماند بحضور لافت وآسر",
@@ -19959,6 +20209,7 @@ window.WP_CATALOG = [
   ],
   "rank": 265,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The journey to happiness begins here",
    "ar": "رحلة السعادة تبدأ من هنا",
@@ -20080,6 +20331,7 @@ window.WP_CATALOG = [
   ],
   "rank": 266,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Exude confidence, seduction and passion at every moment",
    "ar": "انشري الثقة والجاذبية والشغف في كل لحظة",
@@ -20174,6 +20426,7 @@ window.WP_CATALOG = [
   ],
   "rank": 269,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Go beyond expectations!",
    "ar": "تجاوزي كل التوقعات!",
@@ -20261,6 +20514,7 @@ window.WP_CATALOG = [
   ],
   "rank": 270,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Radiant by nature",
    "ar": "إشراقٌ بالفطرة",
@@ -20350,6 +20604,7 @@ window.WP_CATALOG = [
   ],
   "rank": 271,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Divine hydration for your skin",
    "ar": "ترطيب سماوي لبشرتكِ",
@@ -20391,6 +20646,7 @@ window.WP_CATALOG = [
   ],
   "rank": 272,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The night is calling",
    "ar": "الليل يناديكِ",
@@ -20493,6 +20749,7 @@ window.WP_CATALOG = [
   ],
   "rank": 273,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A dazzling universe of irresistible passion",
    "ar": "عالم مبهر من الشغف الذي لا يُقاوَم",
@@ -20603,6 +20860,7 @@ window.WP_CATALOG = [
   ],
   "rank": 274,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Intensity felt on the skin",
    "ar": "قوة تنبض على البشرة",
@@ -20693,6 +20951,7 @@ window.WP_CATALOG = [
   ],
   "rank": 70,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The well-being of a heavenly charm",
    "ar": "راحة وسحر من عالم سماوي",
@@ -20789,6 +21048,7 @@ window.WP_CATALOG = [
   ],
   "rank": 275,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The scent that reveals the mystical charm within you",
    "ar": "العطر الذي يكشف السحر الغامض في داخلكِ",
@@ -20898,6 +21158,7 @@ window.WP_CATALOG = [
   ],
   "rank": 276,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A complete repair for perfect hair with every spritz",
    "ar": "إصلاح متكامل لشعر مثالي مع كل رشّة",
@@ -20938,6 +21199,7 @@ window.WP_CATALOG = [
   ],
   "rank": 278,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Beauty lies in being discovered little by little",
    "ar": "يكمن الجمال في أن يُكتشف شيئاً فشيئاً",
@@ -21048,6 +21310,7 @@ window.WP_CATALOG = [
   ],
   "rank": 279,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Created for women who see beauty in the little moments",
    "ar": "صُمّم للمرأة التي ترى الجمال في اللحظات الصغيرة",
@@ -21162,6 +21425,7 @@ window.WP_CATALOG = [
   ],
   "rank": 280,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with the warm embrace of Vanilla Hug",
    "ar": "تغذية عميقة وتماسك مع عناق فانيلا هاج الدافئ",
@@ -21223,6 +21487,7 @@ window.WP_CATALOG = [
   ],
   "rank": 281,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Deep nourishment and firmness with the touch of Eternal Cherish butter",
    "ar": "تغذية عميقة وتماسك بلمسة زبدة إيترنال تشيريش",
@@ -21285,6 +21550,7 @@ window.WP_CATALOG = [
   ],
   "rank": 282,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fruity oriental that pairs femininity with personality",
    "ar": "عطر شرقي فاكهي يجمع بين الأنوثة والشخصية",
@@ -21389,6 +21655,7 @@ window.WP_CATALOG = [
   ],
   "rank": 283,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Turn your shower into a premium ritual",
    "ar": "حوّلي استحمامكِ إلى طقس فاخر",
@@ -21437,6 +21704,7 @@ window.WP_CATALOG = [
   ],
   "rank": 284,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A vanilla oriental that awakens desire in its most delicate form",
    "ar": "عطر شرقي بالفانيليا يوقظ الشغف في أرقّ صوره",
@@ -21562,6 +21830,7 @@ window.WP_CATALOG = [
   ],
   "rank": 285,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Awaken infinite sensations",
    "ar": "أيقظي أحاسيس لا متناهية",
@@ -21668,6 +21937,7 @@ window.WP_CATALOG = [
   ],
   "rank": 286,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A floral gourmand with a striking, captivating presence",
    "ar": "عطر زهري غورماند بحضور لافت وآسر",
@@ -21760,6 +22030,7 @@ window.WP_CATALOG = [
   ],
   "rank": 287,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "A shine full of nobility for your hair",
    "ar": "لمعان مفعم بالنبل لشعركِ",
@@ -21860,6 +22131,7 @@ window.WP_CATALOG = [
   ],
   "rank": 288,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Make your emotions last forever!",
    "ar": "خلّد مشاعرك!",
@@ -21982,6 +22254,7 @@ window.WP_CATALOG = [
   ],
   "rank": 289,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "The very height of exclusivity",
    "ar": "قمة التفرّد والتميّز",
@@ -22080,6 +22353,7 @@ window.WP_CATALOG = [
   ],
   "rank": 291,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم",
@@ -22119,6 +22393,7 @@ window.WP_CATALOG = [
   ],
   "rank": 292,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم",
@@ -22166,6 +22441,7 @@ window.WP_CATALOG = [
   ],
   "rank": 305,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Inspire sparkling energy",
    "ar": "استلهمي طاقة متلألئة",
@@ -22278,6 +22554,7 @@ window.WP_CATALOG = [
   ],
   "rank": 308,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The freedom of always-healthy skin",
    "ar": "حرية بشرة صحية دائماً",
@@ -22314,6 +22591,7 @@ window.WP_CATALOG = [
   ],
   "rank": 294,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Your essential treatment for stretch marks and cellulite",
    "ar": "علاجكِ الأساسي لعلامات التمدد والسيلوليت",
@@ -22355,6 +22633,7 @@ window.WP_CATALOG = [
   ],
   "rank": 295,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "For you, dear lady: a touch of mystical well-being!",
    "ar": "لكِ يا سيدتي، لمسة من الراحة الساحرة!",
@@ -22433,6 +22712,7 @@ window.WP_CATALOG = [
   ],
   "rank": 296,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتكِ اليومية وحمايتكِ التي لا تُقاوَم",
@@ -22473,6 +22753,7 @@ window.WP_CATALOG = [
   ],
   "rank": 297,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The scent that always brings out the best in you",
    "ar": "العطر الذي يبرز أفضل ما فيكِ دائماً",
@@ -22576,6 +22857,7 @@ window.WP_CATALOG = [
   ],
   "rank": 298,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your new obsession, with an exclusive touch of desire",
    "ar": "هوسكِ الجديد بلمسة حصرية من الشغف",
@@ -22679,6 +22961,7 @@ window.WP_CATALOG = [
   ],
   "rank": 313,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The scent that shines with irresistible magnetism",
    "ar": "العطر الذي يتألق بجاذبية لا تُقاوَم",
@@ -22769,6 +23052,7 @@ window.WP_CATALOG = [
   ],
   "rank": 300,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Created for women who see beauty in the little moments",
    "ar": "صُمّم للمرأة التي ترى الجمال في اللحظات الصغيرة",
@@ -22884,6 +23168,7 @@ window.WP_CATALOG = [
   ],
   "rank": 301,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The essence of the Brazilian woman in a vibrant, unforgettable signature",
    "ar": "جوهر المرأة البرازيلية في بصمة نابضة لا تُنسى",
@@ -22994,6 +23279,7 @@ window.WP_CATALOG = [
   ],
   "rank": 318,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The fruity floral oriental that turns presence into memory",
    "ar": "عطر زهري شرقي فاكهي يحوّل الحضور إلى ذكرى",
@@ -23085,6 +23371,7 @@ window.WP_CATALOG = [
   ],
   "rank": 302,
   "hero": true,
+  "renders": 2,
   "tagline": {
    "en": "Deep nourishment and firmness with an authentic floral oriental touch",
    "ar": "تغذية عميقة وتماسك بلمسة زهرية شرقية أصيلة",
@@ -23119,6 +23406,7 @@ window.WP_CATALOG = [
   ],
   "rank": 303,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "Deep nourishment and firmness with the tropical touch of coconut",
    "ar": "تغذية عميقة وتماسك بلمسة جوز الهند الاستوائية",
@@ -23162,6 +23450,7 @@ window.WP_CATALOG = [
   ],
   "rank": 304,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A celebration of ambery oriental that is felt on the skin",
    "ar": "احتفاء بالعطر الشرقي العنبري الذي تشعر به البشرة",
@@ -23257,6 +23546,7 @@ window.WP_CATALOG = [
   ],
   "rank": 324,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A vanilla oriental that awakens desire in its most delicate form",
    "ar": "عطر شرقي بالفانيليا يوقظ الرغبة في أرق صورها",
@@ -23383,6 +23673,7 @@ window.WP_CATALOG = [
   ],
   "rank": 306,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The splendour of a tropical summer",
    "ar": "روعة الصيف الاستوائي",
@@ -23496,6 +23787,7 @@ window.WP_CATALOG = [
   ],
   "rank": 307,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -23534,6 +23826,7 @@ window.WP_CATALOG = [
   ],
   "rank": 328,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "Turn bath time into a premium ritual",
    "ar": "حوّلي وقت الاستحمام إلى طقس فاخر",
@@ -23574,6 +23867,7 @@ window.WP_CATALOG = [
   ],
   "rank": 309,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Santa was late, but he brought the best of Christmas",
    "ar": "تأخّر سانتا كلوز، لكنه أحضر أجمل ما في عيد الميلاد",
@@ -23673,6 +23967,7 @@ window.WP_CATALOG = [
   ],
   "rank": 310,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The charm of a moisturising touch for the skin",
    "ar": "سحر لمسة مرطّبة للبشرة",
@@ -23746,6 +24041,7 @@ window.WP_CATALOG = [
   ],
   "rank": 311,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Be wonderful and confident!",
    "ar": "كوني رائعة وواثقة!",
@@ -23846,6 +24142,7 @@ window.WP_CATALOG = [
   ],
   "rank": 312,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Overflow with the freedom of love on a starry night",
    "ar": "دعي حرية الحب تفيض في ليلة مرصّعة بالنجوم",
@@ -23949,6 +24246,7 @@ window.WP_CATALOG = [
   ],
   "rank": 314,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The powerful ally against hair loss that strengthens strands",
    "ar": "الحليف القوي لمكافحة تساقط الشعر وتقوية الخصلات",
@@ -23987,6 +24285,7 @@ window.WP_CATALOG = [
   ],
   "rank": 316,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -24027,6 +24326,7 @@ window.WP_CATALOG = [
   ],
   "rank": 317,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Sophisticated freshness that turns every moment into an experience of freedom",
    "ar": "انتعاش راقٍ يحوّل كل لحظة إلى تجربة من الحرية",
@@ -24130,6 +24430,7 @@ window.WP_CATALOG = [
   ],
   "rank": 319,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The fruity floriental that turns delicacy into presence",
    "ar": "العطر الزهري الشرقي الفاكهي الذي يحوّل الرقة إلى حضور",
@@ -24232,6 +24533,7 @@ window.WP_CATALOG = [
   ],
   "rank": 320,
   "hero": true,
+  "renders": 2,
   "tagline": {
    "en": "A fruity floramber made for intense nights",
    "ar": "عطر زهري عنبري فاكهي صُنع لليالي المفعمة بالحيوية",
@@ -24327,6 +24629,7 @@ window.WP_CATALOG = [
   ],
   "rank": 321,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The woody fragrance that expresses contemporary elegance and sophistication",
    "ar": "العطر الخشبي الذي يجسّد الأناقة والرقي المعاصرين",
@@ -24432,6 +24735,7 @@ window.WP_CATALOG = [
   ],
   "rank": 322,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with the cosy embrace of Vanilla Cuddle",
    "ar": "تغذية عميقة وتماسك مع عناق فانيلا كادل الدافئ",
@@ -24492,6 +24796,7 @@ window.WP_CATALOG = [
   ],
   "rank": 323,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Bring new life to hair with an unforgettable floral trail",
    "ar": "امنحي شعرك حيوية جديدة مع أثر زهري لا يُنسى",
@@ -24595,6 +24900,7 @@ window.WP_CATALOG = [
   ],
   "rank": 339,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Delicious as a lollipop, shiny as a dream",
    "ar": "لذيذ كالمصاصة ولامع كالحلم",
@@ -24634,6 +24940,7 @@ window.WP_CATALOG = [
   ],
   "rank": 325,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Hydrated and empowered!",
    "ar": "ترطيب يمنحكِ القوة والثقة!",
@@ -24680,6 +24987,7 @@ window.WP_CATALOG = [
   ],
   "rank": 326,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A radiant touch of beauty for the hair",
    "ar": "لمسة مشرقة من الجمال لخصلات الشعر",
@@ -24783,6 +25091,7 @@ window.WP_CATALOG = [
   ],
   "rank": 327,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية وحمايتك التي لا تُقاوم",
@@ -24823,6 +25132,7 @@ window.WP_CATALOG = [
   ],
   "rank": 329,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Intensity you can feel on the skin",
    "ar": "قوة تنبض على البشرة",
@@ -24912,6 +25222,7 @@ window.WP_CATALOG = [
   ],
   "rank": 330,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "A fragrance that celebrates an unforgettable presence",
    "ar": "عطر يحتفي بحضور لا يُنسى",
@@ -25011,6 +25322,7 @@ window.WP_CATALOG = [
   ],
   "rank": 331,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A light and graceful touch of care",
    "ar": "لمسة عناية خفيفة ورقيقة",
@@ -25074,6 +25386,7 @@ window.WP_CATALOG = [
   ],
   "rank": 332,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The essential palette for adding colour to makeup",
    "ar": "اللوحة الأساسية لإضفاء اللون على المكياج",
@@ -25114,6 +25427,7 @@ window.WP_CATALOG = [
   ],
   "rank": 333,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Overflow with well-being on a starry night",
    "ar": "دعي الإحساس بالراحة يفيض في ليلة مرصّعة بالنجوم",
@@ -25223,6 +25537,7 @@ window.WP_CATALOG = [
   ],
   "rank": 334,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Experience sweet and authentic hydration",
    "ar": "تجربة ترطيب عذبة وأصيلة",
@@ -25303,6 +25618,7 @@ window.WP_CATALOG = [
   ],
   "rank": 335,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The essence of courage and elegance that delights every sense",
    "ar": "جوهر الشجاعة والأناقة الذي يأسر جميع الحواس",
@@ -25406,6 +25722,7 @@ window.WP_CATALOG = [
   ],
   "rank": 336,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Essential fragrance and nourishment for the skin",
    "ar": "العطر والتغذية الأساسيان للبشرة",
@@ -25476,6 +25793,7 @@ window.WP_CATALOG = [
   ],
   "rank": 337,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "A creation that balances freshness, strength and sophistication",
    "ar": "إبداع يوازن بين الانتعاش والقوة والرقي",
@@ -25572,6 +25890,7 @@ window.WP_CATALOG = [
   ],
   "rank": 338,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fruity oriental made for those who love to leave a trail",
    "ar": "عطر شرقي فاكهي لمن يحب أن يترك أثرًا",
@@ -25678,6 +25997,7 @@ window.WP_CATALOG = [
   ],
   "rank": 340,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Renew yourself with lightness and comfort",
    "ar": "تجدّدي بخفة وراحة",
@@ -25768,6 +26088,7 @@ window.WP_CATALOG = [
   ],
   "rank": 341,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A talisman that captures your whole essence",
    "ar": "تميمة تحتضن جوهرك بالكامل",
@@ -25853,6 +26174,7 @@ window.WP_CATALOG = [
   ],
   "rank": 342,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A new obsession, an exclusive luxury of love",
    "ar": "هوسكِ الجديد، فخامة حصرية للحب",
@@ -25966,6 +26288,7 @@ window.WP_CATALOG = [
   ],
   "rank": 343,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "A fragrant tribute to the most treasured memories",
    "ar": "تحية معطّرة لأثمن الذكريات",
@@ -26076,6 +26399,7 @@ window.WP_CATALOG = [
   ],
   "rank": 344,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "The serenity of moonlight in every note",
    "ar": "صفاء ضوء القمر في كل نفحة",
@@ -26175,6 +26499,7 @@ window.WP_CATALOG = [
   ],
   "rank": 345,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The magic of mystical, fragrant hydration",
    "ar": "سحر ترطيب غامض ومعطّر",
@@ -26243,6 +26568,7 @@ window.WP_CATALOG = [
   ],
   "rank": 346,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The woody fragrance that expresses contemporary elegance and sophistication",
    "ar": "العطر الخشبي الذي يجسّد الأناقة والرقي المعاصرين",
@@ -26349,6 +26675,7 @@ window.WP_CATALOG = [
   ],
   "rank": 347,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The fresh fruity floral that is the right choice",
    "ar": "العطر الزهري الفاكهي المنعش الذي يمثّل الخيار الصحيح",
@@ -26457,6 +26784,7 @@ window.WP_CATALOG = [
   ],
   "rank": 348,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Celebrate the magic of the year-end season!",
    "ar": "احتفلي بسحر موسم نهاية العام!",
@@ -26499,6 +26827,7 @@ window.WP_CATALOG = [
   ],
   "rank": 349,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Live with joy and lightness",
    "ar": "عيشي بفرح وخفة",
@@ -26606,7 +26935,7 @@ window.WP_CATALOG = [
   ],
   "rank": 350,
   "hero": true,
-  "renders": 1,
+  "renders": 7,
   "tagline": {
    "en": "Sweet at heart, luxurious in every detail",
    "ar": "حلو في جوهره، فاخر في كل تفاصيله",
@@ -26645,6 +26974,7 @@ window.WP_CATALOG = [
   ],
   "rank": 351,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A toast to what makes you shine!",
    "ar": "احتفاءً بكل ما يجعلكِ تتألقين!",
@@ -26741,6 +27071,7 @@ window.WP_CATALOG = [
   ],
   "rank": 352,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The sweet freshness of well-being!",
    "ar": "الانتعاش العذب للإحساس بالراحة!",
@@ -26811,6 +27142,7 @@ window.WP_CATALOG = [
   ],
   "rank": 353,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A blend of 7 plant oils, ideal for the skin",
    "ar": "مزيج من 7 زيوت نباتية مثالي للبشرة",
@@ -26881,6 +27213,7 @@ window.WP_CATALOG = [
   ],
   "rank": 354,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The special treatment to reduce puffiness and dark circles",
    "ar": "العلاج المميّز لتقليل الانتفاخات والهالات الداكنة",
@@ -26918,6 +27251,7 @@ window.WP_CATALOG = [
   ],
   "rank": 355,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The finest nourishment the skin needs",
    "ar": "أرقى تغذية تحتاجها البشرة",
@@ -26980,6 +27314,7 @@ window.WP_CATALOG = [
   ],
   "rank": 356,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A magnetic and seductive sense of well-being",
    "ar": "إحساس بالراحة يفيض بالجاذبية والإغراء",
@@ -27069,6 +27404,7 @@ window.WP_CATALOG = [
   ],
   "rank": 361,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Night-time care that treats hair during sleep",
    "ar": "عناية ليلية تعالج الشعر أثناء النوم",
@@ -27109,6 +27445,7 @@ window.WP_CATALOG = [
   ],
   "rank": 357,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Unveil the delight of a joyful scent!",
    "ar": "اكتشفي متعة عبير مبهج!",
@@ -27198,6 +27535,7 @@ window.WP_CATALOG = [
   ],
   "rank": 358,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Deep nourishment and firmness with the authentic touch of creamy fig",
    "ar": "تغذية عميقة وتماسك مع لمسة أصيلة من التين الكريمي",
@@ -27260,6 +27598,7 @@ window.WP_CATALOG = [
   ],
   "rank": 359,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Sophisticated freshness that turns every moment into an experience of freedom",
    "ar": "انتعاش راقٍ يحوّل كل لحظة إلى تجربة من الحرية",
@@ -27364,6 +27703,7 @@ window.WP_CATALOG = [
   ],
   "rank": 360,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The luminous freshness of summer with an irresistible sweetness",
    "ar": "انتعاش الصيف المشرق مع عذوبة لا تُقاوم",
@@ -27485,6 +27825,7 @@ window.WP_CATALOG = [
   ],
   "rank": 385,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A fragrance that celebrates your unforgettable presence",
    "ar": "عطر يحتفي بحضورك الذي لا يُنسى",
@@ -27585,6 +27926,7 @@ window.WP_CATALOG = [
   ],
   "rank": 367,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The return of the king, now more intense than ever",
    "ar": "عودة الملك، الآن أكثر قوة من أي وقت مضى",
@@ -27675,6 +28017,7 @@ window.WP_CATALOG = [
   ],
   "rank": 362,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A feminine fruity floral, sophisticated and naturally striking",
    "ar": "عطر زهري فاكهي أنثوي، راقٍ ولافت بطبيعته",
@@ -27783,6 +28126,7 @@ window.WP_CATALOG = [
   ],
   "rank": 365,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -27821,6 +28165,7 @@ window.WP_CATALOG = [
   ],
   "rank": 376,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The golden power of jasmine sambac for magnificent, protected hair",
    "ar": "القوة الذهبية لياسمين سامباك لشعر رائع ومحمي",
@@ -27914,6 +28259,7 @@ window.WP_CATALOG = [
   ],
   "rank": 363,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -27952,6 +28298,7 @@ window.WP_CATALOG = [
   ],
   "rank": 364,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The fragrance that makes life divine",
    "ar": "العطر الذي يجعل الحياة في أبهى صورها",
@@ -28040,6 +28387,7 @@ window.WP_CATALOG = [
   ],
   "rank": 394,
   "hero": true,
+  "renders": 8,
   "tagline": {
    "en": "The fragrance that makes life divine",
    "ar": "العطر الذي يجعل الحياة في أبهى صورها",
@@ -28122,6 +28470,7 @@ window.WP_CATALOG = [
   ],
   "rank": 366,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Overflowing with care and elegance",
    "ar": "فيض من العناية والأناقة",
@@ -28161,6 +28510,7 @@ window.WP_CATALOG = [
   ],
   "rank": 401,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Fragrant hydration that will delight your skin",
    "ar": "ترطيب معطّر يأسر بشرتك",
@@ -28212,6 +28562,7 @@ window.WP_CATALOG = [
   ],
   "rank": 377,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Whipped-cream texture with the cozy scent of Vanilla Hug",
    "ar": "قوام الكريمة المخفوقة مع عبير فانيلا هاج الدافئ",
@@ -28266,6 +28617,7 @@ window.WP_CATALOG = [
   ],
   "rank": 381,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A challenge to the conventional",
    "ar": "تحدٍّ للمألوف",
@@ -28370,6 +28722,7 @@ window.WP_CATALOG = [
   ],
   "rank": 398,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "For more even, healthier skin",
    "ar": "لبشرة موحّدة اللون وأكثر صحة",
@@ -28409,6 +28762,7 @@ window.WP_CATALOG = [
   ],
   "rank": 368,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Keeping pace with those who make things happen",
    "ar": "يواكب إيقاع من يصنع الإنجاز",
@@ -28452,6 +28806,7 @@ window.WP_CATALOG = [
   ],
   "rank": 369,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "For men who make their choices with confidence",
    "ar": "للرجال الذين يتخذون قراراتهم بثقة",
@@ -28561,6 +28916,7 @@ window.WP_CATALOG = [
   ],
   "rank": 370,
   "hero": true,
+  "renders": 3,
   "tagline": {
    "en": "Nourishment and firmness with the authentic touch of a fruity floral",
    "ar": "تغذية وتماسك مع لمسة أصيلة من العبير الزهري الفاكهي",
@@ -28601,6 +28957,7 @@ window.WP_CATALOG = [
   ],
   "rank": 371,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The perfect balance of freshness and sophistication",
    "ar": "التوازن المثالي بين الانتعاش والرقي",
@@ -28711,6 +29068,7 @@ window.WP_CATALOG = [
   ],
   "rank": 372,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The fruity floral oriental that turns presence into memory",
    "ar": "عطر زهري شرقي فاكهي يحوّل الحضور إلى ذكرى",
@@ -28805,6 +29163,7 @@ window.WP_CATALOG = [
   ],
   "rank": 373,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The sophistication of those who turn confidence into presence",
    "ar": "رقيّ من تحوّل الثقة إلى حضور",
@@ -28912,6 +29271,7 @@ window.WP_CATALOG = [
   ],
   "rank": 374,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -28961,6 +29321,7 @@ window.WP_CATALOG = [
   ],
   "rank": 375,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -29001,6 +29362,7 @@ window.WP_CATALOG = [
   ],
   "rank": 378,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Masculine presence revealed in an aromatic amber fougère",
    "ar": "حضور رجولي يتجلّى في عطر فوجير عنبري عطري",
@@ -29121,6 +29483,7 @@ window.WP_CATALOG = [
   ],
   "rank": 379,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Fabulous hydration",
    "ar": "ترطيب مذهل",
@@ -29161,6 +29524,7 @@ window.WP_CATALOG = [
   ],
   "rank": 380,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your own enchanted grove",
    "ar": "بستانك المسحور الخاص",
@@ -29268,6 +29632,7 @@ window.WP_CATALOG = [
   ],
   "rank": 382,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Want fuller lips? Fuller lips you shall have",
    "ar": "تريدين شفاهاً ممتلئة؟ ستحصلين عليها",
@@ -29308,6 +29673,7 @@ window.WP_CATALOG = [
   ],
   "rank": 383,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Never underestimate the power of desire",
    "ar": "لا تستهيني أبداً بقوة الرغبة",
@@ -29378,6 +29744,7 @@ window.WP_CATALOG = [
   ],
   "rank": 384,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "For the most powerful piece in the game: you!",
    "ar": "لأقوى قطعة في اللعبة: أنتِ!",
@@ -29483,6 +29850,7 @@ window.WP_CATALOG = [
   ],
   "rank": 386,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Celebrate the brilliance of life!",
    "ar": "احتفي ببريق الحياة!",
@@ -29592,6 +29960,7 @@ window.WP_CATALOG = [
   ],
   "rank": 387,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Wrap yourself in a fatal love",
    "ar": "انغمسي في حبٍّ جارف",
@@ -29646,6 +30015,7 @@ window.WP_CATALOG = [
   ],
   "rank": 388,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Breathe in comfort and well-being!",
    "ar": "استنشقي الراحة والطمأنينة!",
@@ -29737,6 +30107,7 @@ window.WP_CATALOG = [
   ],
   "rank": 389,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Feel the lightness of a special scent!",
    "ar": "اشعري بخفة عبير مميز!",
@@ -29827,6 +30198,7 @@ window.WP_CATALOG = [
   ],
   "rank": 390,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "A unique, light and refreshing scent for a wonderful after-shower feeling",
    "ar": "عبير فريد وخفيف ومنعش لإحساس رائع بعد الاستحمام",
@@ -29936,6 +30308,7 @@ window.WP_CATALOG = [
   ],
   "rank": 391,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The touch your body deserves",
    "ar": "اللمسة التي يستحقها جسمك",
@@ -29988,6 +30361,7 @@ window.WP_CATALOG = [
   ],
   "rank": 392,
   "hero": true,
+  "renders": 6,
   "tagline": {
    "en": "Care and deep hydration for your skin",
    "ar": "عناية وترطيب عميق لبشرتك",
@@ -30026,6 +30400,7 @@ window.WP_CATALOG = [
   ],
   "rank": 393,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Powerful hydration with 10 plant oils",
    "ar": "ترطيب قوي بـ 10 زيوت نباتية",
@@ -30096,6 +30471,7 @@ window.WP_CATALOG = [
   ],
   "rank": 395,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Declare your fatal love",
    "ar": "أعلني حبك الجارف",
@@ -30189,6 +30565,7 @@ window.WP_CATALOG = [
   ],
   "rank": 396,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Your daily care, your irresistible protection",
    "ar": "عنايتك اليومية، وحمايتك التي لا تُقاوم",
@@ -30229,6 +30606,7 @@ window.WP_CATALOG = [
   ],
   "rank": 397,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Open it and make a wish come true!",
    "ar": "افتحيه وحققي أمنيتك!",
@@ -30319,6 +30697,7 @@ window.WP_CATALOG = [
   ],
   "rank": 399,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The finishing note for an unforgettable glow",
    "ar": "اللمسة الأخيرة لتألق لا يُنسى",
@@ -30427,6 +30806,7 @@ window.WP_CATALOG = [
   ],
   "rank": 400,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Extraordinary nourishment to celebrate the beauty of the skin",
    "ar": "تغذية استثنائية للاحتفاء بجمال البشرة",
@@ -30480,6 +30860,7 @@ window.WP_CATALOG = [
   ],
   "rank": 402,
   "hero": true,
+  "renders": 4,
   "tagline": {
    "en": "The truly captivating elixir made for you",
    "ar": "الإكسير الحقيقي الذي يأسر الحواس، صُنع لكِ",
@@ -30588,6 +30969,7 @@ window.WP_CATALOG = [
   ],
   "rank": 403,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Awaken the essential touch for your skin",
    "ar": "أيقظي اللمسة الجوهرية لبشرتك",
@@ -30633,6 +31015,7 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/166065-800-800/kit-cedre---bs-e-bc-heaven.webp?v=639274429578970000"
   ],
   "rank": 249,
+  "renders": 1,
   "tagline": {
    "en": "A cologne and the Heaven ritual, together in one set",
    "ar": "كولونيا وطقس هيفن معًا في طقم واحد",

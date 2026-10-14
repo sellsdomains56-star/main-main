@@ -5654,9 +5654,9 @@ html[lang="ar"] .pdp-tagline {
 }
 /* the bar sits at the foot of the film: keep its buttons clear of the WhatsApp and Lina
    buttons fixed in the corner (20px in, 56px wide) wherever the page is narrow enough to meet them */
-@media (max-width: 1464px) {
+@media (max-width: 1488px) {
   .film-bar .film-actions {
-    margin-inline-end: max(0px, calc(92px - var(--gutter)));
+    margin-inline-end: max(0px, calc(104px - var(--gutter)));
   }
 }
 @media (max-width: 720px) {
