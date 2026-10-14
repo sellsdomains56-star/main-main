@@ -323,6 +323,8 @@ window.WP_PAGES = (function () {
         </div>
       </section>
 
+      ${pinkEdit()}
+
       ${
         spot && D.config.photos && D.config.photos.campaign
           ? `<section class="spotlight" aria-labelledby="cb-title">
@@ -966,7 +968,7 @@ window.WP_PAGES = (function () {
     // Products from the campaign also show the campaign photo, after their own campaign shots.
     const look = lookOf(p);
     const lookShot = look ? Math.min(shots.length, p.scene ? p.images.length : 1) : -1;
-    if (look) shots.splice(lookShot, 0, { cls: "scene look", src: look.photo });
+    if (look) shots.splice(lookShot, 0, ...looks().filter((l) => l.p === p || (l.also || []).includes(p.id)).map((l) => ({ cls: "scene look", src: l.photo })));
     const related = [
       ...D.products.filter((x) => x !== p && x.line.split(" ")[0] === p.line.split(" ")[0]),
       ...D.products.filter((x) => x !== p && x.family === p.family),
@@ -1455,6 +1457,30 @@ window.WP_PAGES = (function () {
             <button class="favs-arrow next" type="button" data-favs="1" aria-label="${esc(t("favs.next"))}">${icon("chevron")}</button>
             <span class="favs-progress" aria-hidden="true"><i></i></span>
           </div>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  // "The pink edit": product-only campaign shots in a mosaic, each one opening its product
+  function pinkEdit() {
+    const list = (D.featured.pinkEdit || []).map((x) => Object.assign({}, x, { p: byId(x.product) })).filter((x) => x.p);
+    if (!list.length) return "";
+    return `<section class="section pink-edit" aria-labelledby="pe-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div><p class="eyebrow">${icon("sparkle")}${esc(t("pe.eyebrow"))}</p><h2 id="pe-title" class="h2">${esc(t("pe.title"))}</h2><p class="muted">${esc(t("pe.lead"))}</p></div>
+          <a class="link-arrow" href="shop.html">${esc(t("home.viewAll"))}${icon("arrow", "flip")}</a>
+        </div>
+        <div class="pe-grid">
+          ${list
+            .map(
+              (x, i) => `<a class="pe-card" href="product.html?id=${encodeURIComponent(x.p.id)}" data-reveal style="--d:${i * 80}ms">
+            <img src="${esc(x.photo)}" alt="${esc(fullName(x.p))}" loading="lazy" decoding="async"${x.pos ? ` style="object-position:${esc(x.pos)}"` : ""}>
+            <span class="pe-chip"><span><strong>${esc(fullName(x.p))}</strong><small>${esc(money(priceOf(x.p)))}</small></span>${icon("arrow", "flip")}</span>
+          </a>`
+            )
+            .join("")}
         </div>
       </div>
     </section>`;

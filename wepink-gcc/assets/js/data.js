@@ -251,6 +251,7 @@ window.WP_DATA = (function () {
       { photo: "assets/photos/campaign/the-oil-blonde.webp", product: "bodyoil-vf-120-ml", cat: "body-care", pos: "50% 30%", title: { en: "Glow, oiled up", ar: "توهّج مع الزيت", pt: "Brilho com óleo" } },
       { photo: "assets/photos/campaign/lip-tint-drip.webp", product: "makeup-lip-tint-glow-essencial-5-8-ml", cat: "makeup", pos: "55% 45%", title: { en: "Dripping in gloss", ar: "لمعان يقطر", pt: "Brilho que escorre" } },
       { photo: "assets/photos/campaign/giant-heaven.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "50% 45%", title: { en: "Bigger than life", ar: "أكبر من الحياة", pt: "Maior que a vida" } },
+      { photo: "assets/photos/campaign/pink-splash-ribbons.webp", product: "splash-heaven-pink-200-ml", also: ["splash-crave-lovely-200-ml", "splash-obsessed-exclusive-pink-200-ml"], cat: "body-splash", pos: "50% 40%", title: { en: "Tied with a bow", ar: "مربوطة بفيونكة", pt: "Com laço de fita" } },
       { photo: "assets/photos/campaign/peach.webp", product: "splash-perfect-pear-peach-200-ml", cat: "body-splash", title: { en: "Squeeze the day", ar: "اعتصري يومكِ", pt: "Aproveite cada gota" } },
       { photo: "assets/photos/campaign/fruit-creams.webp", product: "cream-vf-golden-200-ml", also: ["cream-ruby-rhodolite-200-ml", "cream-obsessed-200-ml"], cat: "body-care", title: { en: "Freshly stacked", ar: "طبقات من الانتعاش", pt: "Empilhados e fresquinhos" } },
       { photo: "assets/photos/campaign/torn-lip.webp", product: "makeup-lip-oil-jujuba-3-5-g", cat: "makeup", title: { en: "Tear into colour", ar: "انطلقي نحو اللون", pt: "Mergulhe na cor" } },
@@ -258,11 +259,22 @@ window.WP_DATA = (function () {
       { photo: "assets/photos/campaign/king-blue-skyline.webp", product: "colonia-king-blue-supreme-100-ml", also: ["splash-king-blue-supreme-200-ml"], cat: "men", pos: "50% 60%", title: { en: "Own the night", ar: "الليل لك", pt: "Dono da noite" } },
       { photo: "assets/photos/campaign/golden-hour.webp", product: "colonia-liberte-nuit-100-ml", cat: "perfume", title: { en: "After golden hour", ar: "بعد الساعة الذهبية", pt: "Depois da hora dourada" } },
       { photo: "assets/photos/campaign/red-stripe.webp", product: "colonia-red-obsidian-100-ml", cat: "perfume", title: { en: "Seen in red", ar: "حضورٌ بالأحمر", pt: "Vista de vermelho" } },
+      { photo: "assets/photos/campaign/pink-heaven-water.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", title: { en: "Making waves", ar: "تموّجات وردية", pt: "Ondas cor-de-rosa" } },
+      { photo: "assets/photos/campaign/pink-obsessed-smoke.webp", product: "colonia-obsessed-lovely-100-ml", cat: "perfume", title: { en: "Lost in a pink cloud", ar: "في سحابة وردية", pt: "Nas nuvens cor-de-rosa" } },
+      { photo: "assets/photos/campaign/pink-scarlette-heart.webp", product: "colonia-scarlette-50-ml", cat: "perfume", title: { en: "Love, bottled", ar: "الحب في زجاجة", pt: "Amor engarrafado" } },
+    ],
+    // "The pink edit" on the home page: product-only 4K shots (Nano Banana Pro, after pink Pinterest
+    // campaign references). The first is the big one; `pos` frames each photo in its cell.
+    pinkEdit: [
+      { photo: "assets/photos/campaign/pink-splash-ribbons.webp", product: "splash-heaven-pink-200-ml", pos: "50% 40%" },
+      { photo: "assets/photos/campaign/pink-heaven-water.webp", product: "colonia-heaven-pink-100-ml", pos: "45% 50%" },
+      { photo: "assets/photos/campaign/pink-obsessed-smoke.webp", product: "colonia-obsessed-lovely-100-ml", pos: "50% 45%" },
+      { photo: "assets/photos/campaign/pink-scarlette-heart.webp", product: "colonia-scarlette-50-ml", pos: "50% 50%" },
     ],
     // Campaign photos for the "Shop by ritual" tiles (`pos` frames them in the tile).
     categoryPhotos: {
       perfume: { src: "assets/photos/campaign/giant-heaven.webp", pos: "50% 40%" },
-      "body-splash": { src: "assets/photos/campaign/peach.webp", pos: "50% 50%" },
+      "body-splash": { src: "assets/photos/campaign/pink-splash-ribbons.webp", pos: "50% 40%" }, // the pink edit: three body splashes on satin bows
       men: { src: "assets/photos/campaign/king-blue-skyline.webp", pos: "50% 60%" }, // Nano Banana Pro 4K: King Blue Supreme and its box, Gulf skyline
       "body-care": { src: "assets/photos/campaign/the-oil-blonde.webp", pos: "50% 30%" },
       hair: { src: "assets/photos/campaign/hair-silk.webp", pos: "50% 50%" },
