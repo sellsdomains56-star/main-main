@@ -246,7 +246,10 @@ window.WP_DATA = (function () {
       { photo: "assets/photos/campaign/my-lips-infinity-plim.webp", product: "colonia-infinity-plim-75-ml", also: ["makeup-gloss-my-lips-4-ml"], cat: "perfume", home: true, pos: "50% 30%", title: { en: "Turn up the shine", ar: "ارفعي مستوى اللمعان", pt: "Aumenta o brilho" } },
       { photo: "assets/photos/campaign/sit-golden.webp", product: "splash-vf-golden-200-ml", cat: "body-splash", home: true, pos: "50% 40%", title: { en: "Golden, all day", ar: "ذهبية طوال اليوم", pt: "Dourada o dia todo" } },
       { photo: "assets/photos/campaign/fatal-rouge-crown.webp", product: "colonia-fatal-rouge-100-ml", cat: "perfume", home: true, pos: "45% 40%", title: { en: "Crowned in rouge", ar: "متوّجة بالأحمر", pt: "Coroada de vermelho" } },
-      // From the client: these three head Perfumes, Body Care and Makeup in the shop.
+      // From the client: Liberté Doré in pink boots heads Perfumes, the giant Liberté body cream
+      // heads Body Care; the next three follow them, and the lip tint heads Makeup.
+      { photo: "assets/photos/campaign/liberte-dore-boots.webp", product: "colonia-liberte-dore-100-ml", cat: "perfume", pos: "50% 35%", title: { en: "Step into Liberté", ar: "خطوة نحو ليبرتيه", pt: "Entre na Liberté" } },
+      { photo: "assets/photos/campaign/liberte-cream-giant.webp", product: "cream-liberte-200-ml", cat: "body-care", pos: "48% 50%", title: { en: "Soft as satin", ar: "ناعمة كالساتان", pt: "Macia como cetim" } },
       { photo: "assets/photos/campaign/heaven-straw.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "75% 40%", title: { en: "Sip on Heaven", ar: "رشفة من هيفن", pt: "Um gole de Heaven" } },
       { photo: "assets/photos/campaign/the-oil-blonde.webp", product: "bodyoil-vf-120-ml", cat: "body-care", pos: "50% 30%", title: { en: "Glow, oiled up", ar: "توهّج مع الزيت", pt: "Brilho com óleo" } },
       { photo: "assets/photos/campaign/lip-tint-drip.webp", product: "makeup-lip-tint-glow-essencial-5-8-ml", cat: "makeup", pos: "55% 45%", title: { en: "Dripping in gloss", ar: "لمعان يقطر", pt: "Brilho que escorre" } },
@@ -273,10 +276,10 @@ window.WP_DATA = (function () {
     ],
     // Campaign photos for the "Shop by ritual" tiles (`pos` frames them in the tile).
     categoryPhotos: {
-      perfume: { src: "assets/photos/campaign/giant-heaven.webp", pos: "50% 40%" },
+      perfume: { src: "assets/photos/campaign/liberte-dore-boots.webp", pos: "50% 35%" }, // from the client
       "body-splash": { src: "assets/photos/campaign/pink-splash-ribbons.webp", pos: "50% 40%" }, // the pink edit: three body splashes on satin bows
       men: { src: "assets/photos/campaign/king-blue-skyline.webp", pos: "50% 60%" }, // Nano Banana Pro 4K: King Blue Supreme and its box, Gulf skyline
-      "body-care": { src: "assets/photos/campaign/the-oil-blonde.webp", pos: "50% 30%" },
+      "body-care": { src: "assets/photos/campaign/liberte-cream-giant.webp", pos: "48% 50%" }, // from the client
       hair: { src: "assets/photos/campaign/hair-silk.webp", pos: "50% 50%" },
       makeup: { src: "assets/photos/campaign/torn-lip.webp", pos: "50% 45%" },
       skincare: { src: "assets/photos/campaign/serum-glow.webp", pos: "50% 30%" }, // Nano Banana Pro 4K: Sérum 10 em 1
