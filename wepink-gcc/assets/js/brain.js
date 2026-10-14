@@ -364,7 +364,7 @@ window.WP_BRAIN = (function () {
     price: ["price", "how much", "cost", "costs", "كم سعر", "بكم", "السعر", "سعره", "كم سعره", "قديش", "quanto custa", "quanto e", "preco", "valor"],
     sizes: ["sizes", "size", "bigger", "smaller", "ml", "حجم", "الحجم", "احجام", "tamanho", "tamanhos", "maior", "menor"],
     lasting: ["last", "lasting", "longevity", "how long does it last", "long lasting", "يدوم", "ثبات", "ثباته", "يثبت", "fixacao", "fixa", "dura", "duracao"],
-    why: ["why", "benefits", "good for", "what does it do", "is it good", "worth it", "ليش", "فوائد", "فوائده", "ايش يسوي", "هل هو حلو", "por que", "beneficios", "vale a pena", "e bom"],
+    why: ["tell me more", "more about it", "me conta mais", "mais sobre", "اخبريني المزيد", "المزيد عنه", "why", "benefits", "good for", "what does it do", "is it good", "worth it", "ليش", "فوائد", "فوائده", "ايش يسوي", "هل هو حلو", "por que", "beneficios", "vale a pena", "e bom"],
     compare: ["vs", "versus", "or", "difference", "different", "better", "compare", "ولا", "او", "الفرق", "افضل", "احسن", "قارني", "ou", "diferenca", "melhor", "comparar"],
   };
 
@@ -417,5 +417,113 @@ window.WP_BRAIN = (function () {
   // For the language-model service: the same knowledge, in one place.
   const facts = `wepink: Brazilian fragrance and beauty brand, based in São Paulo (SAVI Cosméticos). Born 16 September 2021 ("It was a serum and a dream"). Founders: Virginia Fonseca, Samara Pink, Thiago Stabile and Lucas Chaopeng; wepink calls Virginia and Samara "two women who turned a pain into purpose". First product: the 10-in-1 Serum, 100,000 units in its first month (30,000 in four hours). VF perfume (Virginia Fonseca's initials) launched March 2022: 110,000 bottles in three months; Virginia said it has 25% fragrance essence vs the 13–15% common in Brazil. The Oil and body creams followed in 2022, makeup in 2023 (Beauty Base foundation with vitamin E, hyaluronic acid, niacinamide, squalane). Over 18 million fragrances sold; kiosks in Brazilian malls; franchise launched with 100 units sold and 800+ entrepreneurs waiting. Values: union, shine, obsession, search and the "magic earplug" (block out the noise, never copy the market, listen to customers). Slogans: "Discover your shade of pink"; "Welcome to your one and only, essential pink world". wepink Gulf is the official franchise in the GCC. Virginia Fonseca: Brazilian entrepreneur, one of Brazil's most-followed digital creators, face of the brand. Samara Pink: Brazilian businesswoman, co-founder, close to the formulas. Splashes and colognes contain cosmetic ethyl alcohol; creams, butters, The Oil, roll-ons and hair mists don't list it. No halal certificate can be confirmed.`;
 
-  return { persona, lines, topics, privateLife, chips, ask, say, facts };
+
+  // The scent quiz Lina runs in the chat: she asks, the shopper taps an answer (or
+  // types it), and after the last question she reveals the match. `words` also
+  // catch typed answers; `start` are the words that open the quiz.
+  const quiz = {
+    start: ["quiz", "scent quiz", "find my scent", "find my perfume", "help me choose", "choose for me", "pick for me", "what should i wear", "اختبار", "اختاري لي", "ساعديني اختار", "ساعديني في الاختيار", "اعثري على عطري", "ابي عطر يناسبني", "quiz de perfume", "achar meu cheirinho", "me ajuda a escolher", "escolhe pra mim", "qual perfume combina comigo"],
+    intro: {
+      en: ["Let's find your perfect scent{, name} 💗 Five quick questions, tap your answers (you can stop any time)."],
+      ar: ["لنجد عطركِ المثالي{ name} 💗 خمسة أسئلة سريعة، اضغطي على إجاباتكِ (ويمكنكِ التوقف متى شئتِ)."],
+      pt: ["Bora achar o seu cheirinho perfeito{, name} 💗 Cinco perguntinhas rápidas, é só tocar nas respostas (pode parar quando quiser)."],
+    },
+    steps: [
+      {
+        id: "who",
+        q: { en: "First: who is it for?", ar: "أولًا: لمن هو؟", pt: "Primeiro: é pra quem?" },
+        options: [
+          { key: "me", label: { en: "For me", ar: "لي أنا", pt: "Pra mim" }, words: ["me", "myself", "mine", "لي", "لنفسي", "انا", "pra mim", "para mim", "eu"] },
+          { key: "her", label: { en: "A gift for her", ar: "هدية لها", pt: "Presente pra ela" }, words: ["her", "gift for her", "wife", "mom", "sister", "friend", "لها", "هديه لها", "امي", "اختي", "صديقتي", "pra ela", "presente pra ela", "mae", "amiga"] },
+          { key: "him", label: { en: "A gift for him", ar: "هدية له", pt: "Presente pra ele" }, words: ["him", "for him", "husband", "dad", "brother", "له", "زوجي", "ابوي", "اخوي", "pra ele", "marido", "pai", "namorado"] },
+        ],
+      },
+      {
+        id: "fam",
+        q: { en: "Which one makes your heart beat faster?", ar: "أيّها يجعل قلبكِ ينبض أسرع؟", pt: "Qual deles faz seu coração bater mais forte?" },
+        options: [
+          { key: "sweet", label: { en: "Sweet 🍯", ar: "حلو 🍯", pt: "Doce 🍯" }, words: ["sweet", "vanilla", "caramel", "حلو", "فانيليا", "doce", "baunilha"] },
+          { key: "floral", label: { en: "Floral 🌸", ar: "زهري 🌸", pt: "Floral 🌸" }, words: ["floral", "flower", "rose", "زهري", "ورد", "flor", "rosa"] },
+          { key: "fresh", label: { en: "Fresh 🌊", ar: "منعش 🌊", pt: "Fresco 🌊" }, words: ["fresh", "citrus", "clean", "منعش", "حمضي", "fresco", "citrico"] },
+          { key: "warm", label: { en: "Warm & sensual 🔥", ar: "دافئ وجذاب 🔥", pt: "Quente e sensual 🔥" }, words: ["warm", "oud", "amber", "musk", "sensual", "دافئ", "عود", "عنبر", "مسك", "quente", "ambar", "sensual"] },
+          { key: "woody", label: { en: "Woody 🌿", ar: "خشبي 🌿", pt: "Amadeirado 🌿" }, words: ["woody", "wood", "sandalwood", "خشبي", "صندل", "amadeirado", "madeira"] },
+        ],
+      },
+      {
+        id: "when",
+        q: { en: "When will you wear it most?", ar: "متى ستضعينه أكثر؟", pt: "Quando você vai usar mais?" },
+        options: [
+          { key: "day", label: { en: "Every day ☀️", ar: "كل يوم ☀️", pt: "Todo dia ☀️" }, words: ["every day", "daily", "day", "work", "يومي", "كل يوم", "النهار", "الدوام", "todo dia", "dia a dia", "trabalho"] },
+          { key: "night", label: { en: "Evenings out 🌙", ar: "السهرات 🌙", pt: "Noites e saídas 🌙" }, words: ["night", "evening", "evenings", "date", "party", "ليل", "سهره", "السهرات", "مساء", "noite", "balada", "encontro"] },
+          { key: "special", label: { en: "Special moments ✨", ar: "المناسبات الخاصة ✨", pt: "Momentos especiais ✨" }, words: ["special", "wedding", "occasion", "eid", "مناسبه", "مناسبات", "عرس", "العيد", "especial", "casamento", "festa"] },
+        ],
+      },
+      {
+        id: "kind",
+        q: { en: "And how do you like to wear it?", ar: "وكيف تحبين أن تضعيه؟", pt: "E como você gosta de usar?" },
+        options: [
+          { key: "colonia", label: { en: "Perfume, long-lasting", ar: "عطر يدوم طويلًا", pt: "Perfume que dura" }, words: ["perfume", "cologne", "long", "lasting", "عطر", "يدوم", "ثبات", "colonia", "dura", "fixacao"] },
+          { key: "splash", label: { en: "Body splash, light", ar: "بودي سبلاش خفيف", pt: "Body splash levinho" }, words: ["splash", "mist", "light", "سبلاش", "خفيف", "معطر", "leve", "bruma"] },
+          { key: "ritual", label: { en: "The full ritual 💗", ar: "الطقس الكامل 💗", pt: "O ritual completo 💗" }, words: ["ritual", "full", "all", "set", "layer", "طقس", "كامل", "الكل", "طقم", "completo", "tudo", "kit"] },
+        ],
+      },
+      {
+        id: "budget",
+        q: { en: "Last one: any budget?", ar: "السؤال الأخير: هل لديكِ ميزانية؟", pt: "Última: tem um orçamento?" },
+        options: [
+          { key: "low", label: { en: "Under {low}", ar: "أقل من {low}", pt: "Até {low}" }, words: ["under", "cheap", "budget", "less", "اقل", "رخيص", "ميزانيه", "ate", "barato", "menos"] },
+          { key: "any", label: { en: "Treat me 💸", ar: "دلّليني 💸", pt: "Pode caprichar 💸" }, words: ["any", "doesnt matter", "no budget", "treat", "whatever", "ما يهم", "مو مهم", "دلليني", "tanto faz", "qualquer", "capricha"] },
+        ],
+      },
+    ],
+    // the reveal: {why} is built from the answers
+    match: {
+      en: ["Your match{, name}: {product} 💗 {why}", "I knew it! It's {product} for you{, name} ✨ {why}"],
+      ar: ["عطركِ المثالي{ name}: {product} 💗 {why}", "كنت أعرف! إنه {product} لكِ{ name} ✨ {why}"],
+      pt: ["Seu match{, name}: {product} 💗 {why}", "Eu sabia! É {product} pra você{, name} ✨ {why}"],
+    },
+    ritual: {
+      en: ["Your ritual{, name}: the {line} line 💗 {why} Cream, splash and cologne together are {pct}% off as a ritual set."],
+      ar: ["طقسكِ{ name}: خط {line} 💗 {why} الكريم والسبلاش والكولونيا معًا بخصم {pct}% كطقم طقوس."],
+      pt: ["Seu ritual{, name}: a linha {line} 💗 {why} Creme, splash e colônia juntos saem com {pct}% de desconto no kit ritual."],
+    },
+    why: {
+      en: "It's {family}, with {notes}, made for {when}.",
+      ar: "عطر {family} بنوتات {notes}، مثالي {when}.",
+      pt: "É {family}, com {notes}, perfeito para {when}.",
+    },
+    whenText: {
+      day: { en: "every day", ar: "لكل يوم", pt: "o dia a dia" },
+      night: { en: "evenings out", ar: "للسهرات", pt: "as noites" },
+      special: { en: "special moments", ar: "للمناسبات الخاصة", pt: "momentos especiais" },
+    },
+    after: {
+      en: "Want me to tell you more about it, or try the quiz again?",
+      ar: "هل أخبركِ المزيد عنه، أم نعيد الاختبار؟",
+      pt: "Quer que eu te conte mais sobre ele, ou refazer o quiz?",
+    },
+    ack: {
+      en: ["Love that 💗", "Ooh, nice ✨", "Noted!", "Great choice 💗"],
+      ar: ["أحببتُ ذلك 💗", "رائع ✨", "تم!", "اختيار جميل 💗"],
+      pt: ["Amei 💗", "Hmm, que delícia ✨", "Anotado!", "Ótima escolha 💗"],
+    },
+    again: { en: "Try the quiz again", ar: "أعيدي الاختبار", pt: "Refazer o quiz" },
+    more: { en: "Tell me more", ar: "أخبريني المزيد", pt: "Me conta mais" },
+    stop: { en: "Okay, quiz paused 💗 Ask me anything.", ar: "حسنًا، أوقفتُ الاختبار 💗 اسأليني ما تشائين.", pt: "Tudo bem, quiz pausado 💗 Me pergunta o que quiser." },
+  };
+
+  // A short question Lina adds after some answers, so the chat keeps going.
+  const nudge = {
+    picks: { en: ["Does one of these speak to you? Tap it and I'll tell you everything 💗", "Which one catches your eye?"], ar: ["هل يلفتكِ أحدها؟ اضغطي عليه وسأخبركِ بكل شيء 💗", "أيّها لفت نظركِ؟"], pt: ["Algum desses falou com você? Toca nele que eu te conto tudo 💗", "Qual chamou sua atenção?"] },
+    product: { en: ["Want to know how it smells, how to wear it or what goes with it?"], ar: ["هل تريدين معرفة رائحته، أو طريقة استخدامه، أو ما يناسبه؟"], pt: ["Quer saber o cheiro, como usar ou o que combina com ele?"] },
+    faq: { en: ["Anything else I can help with?"], ar: ["هل من شيء آخر أساعدكِ فيه؟"], pt: ["Posso ajudar com mais alguma coisa?"] },
+  };
+  // On a product page, a small bubble by the chat button after a few seconds.
+  const teaser = {
+    en: "Curious about {product}? Ask me 💗",
+    ar: "فضولية حول {product}؟ اسأليني 💗",
+    pt: "Curiosa sobre {product}? Me pergunta 💗",
+  };
+
+  return { persona, lines, topics, privateLife, chips, ask, say, facts, quiz, nudge, teaser };
 })();

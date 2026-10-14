@@ -371,7 +371,7 @@ window.WP_ASSIST = (function () {
     // just the name: what it is, in a line
     const tagline = lower(L(p.tagline)) || lower(firstSentence(L(p.desc)));
     const text = all ? phrase("intro", { product, tagline, family, all }) : phrase("introPlain", { product, tagline });
-    return { text, products: showLine(p.line, p), offer: true, chips: chipsOf(["notes", "how", "pair"]) };
+    return { text: text + "\n" + line2(B.nudge.product), products: showLine(p.line, p), offer: true, chips: chipsOf(["notes", "how", "pair"]) };
   }
   // two products side by side
   function compare(a, b) {
@@ -400,6 +400,97 @@ window.WP_ASSIST = (function () {
     return line("picks");
   }
 
+  /* ---------- the scent quiz, inside the chat ---------- */
+  const Q = B.quiz;
+  const LOW_AED = 150; // "Under …" in the budget question, in the shopper's currency
+  const optLabel = (o) => fill(L(o.label), { low: W.moneyAED(LOW_AED) });
+  function quizAsk(i, lead) {
+    const st = Q.steps[i];
+    return { text: (lead ? lead + "\n" : "") + L(st.q), chips: st.options.map(optLabel), quiz: true };
+  }
+  function quizStart() {
+    ctx.quiz = { step: 0, a: {} };
+    saveCtx();
+    return quizAsk(0, line2(Q.intro));
+  }
+  const line2 = (v) => fill(pick(L(v)));
+  // the shopper's answer to the current question, or null if they asked something else
+  function quizStep(raw, q) {
+    const st = Q.steps[ctx.quiz.step];
+    if (!st) return (ctx.quiz = null);
+    if (has(q, ["stop", "cancel", "exit", "quit", "pare", "parar", "sair", "cancelar", "وقف", "الغاء", "خلاص"])) {
+      ctx.quiz = null;
+      saveCtx();
+      return { text: L(Q.stop), chips: starters() };
+    }
+    const opt = st.options.find((o) => norm(optLabel(o)) === q) || st.options.find((o) => has(q, o.words || []));
+    if (!opt) {
+      ctx.quiz = null; // they asked something else: answer that instead
+      saveCtx();
+      return null;
+    }
+    ctx.quiz.a[st.id] = opt.key;
+    ctx.quiz.step++;
+    saveCtx();
+    if (ctx.quiz.step < Q.steps.length) return quizAsk(ctx.quiz.step, line2(Q.ack));
+    const a = ctx.quiz.a;
+    ctx.quiz = null;
+    saveCtx();
+    return quizResult(a);
+  }
+  const FRESH = ["bergamot", "lemon", "citrus", "mandarin", "orange", "grapefruit", "aquatic", "marine", "sea", "mint", "green", "tea", "cucumber", "lime", "neroli"];
+  function famScore(p, fam) {
+    if (fam === "fresh") {
+      const ns = Object.values(p.notes || {}).flat().map((n) => norm(n[0]));
+      return Math.min(6, ns.filter((n) => FRESH.some((f) => n.includes(f))).length * 2);
+    }
+    return p.family === fam ? 6 : 0;
+  }
+  function quizResult(a) {
+    const max = a.budget === "low" ? W.local(LOW_AED) : 0;
+    const fits = (p) => p.cat !== "gift-sets" && (a.who === "him" ? p.gender !== "feminino" : p.gender !== "masculino");
+    const score = (p) => {
+      let s = famScore(p, a.fam);
+      if (a.when === "night") s += ["warm", "woody", "sweet"].includes(p.family) ? 2 : 0;
+      if (a.when === "day") s += p.family === "floral" || a.fam === "fresh" ? 2 : 0;
+      if (a.when === "special") s += p.badge === "bestseller" ? 2 : 0;
+      if (a.who === "him") s += p.gender === "masculino" ? 3 : 0;
+      if (p.rank) s += Math.max(0, 2 - p.rank / 40);
+      return s;
+    };
+    const type = a.kind === "splash" ? "splash" : "colonia";
+    const within = (list) => (max ? list.filter((p) => W.priceOf(p) <= max) : list);
+    let pool = within(D.products.filter((p) => fits(p) && p.type === type));
+    if (!pool.length) pool = within(D.products.filter((p) => fits(p) && ["colonia", "splash"].includes(p.type)));
+    if (!pool.length) pool = D.products.filter((p) => fits(p) && ["colonia", "splash"].includes(p.type));
+    const ranked = pool.map((p) => ({ p, s: score(p) })).sort((x, y) => y.s - x.s);
+    const best = ranked[0] && ranked[0].p;
+    if (!best) return { text: line("nothing"), chips: starters() };
+    const why = fill(L(Q.why), {
+      family: lower(L(D.families[best.family]) || L(D.families.floral) || ""),
+      notes: list(signature(best, 3).map(lower)),
+      when: L(Q.whenText[a.when] || Q.whenText.day),
+    });
+    const after = "\n" + L(Q.after);
+    const chips = [L(Q.more), L(B.chips.notes), L(Q.again)];
+    if (a.kind === "ritual") {
+      const order = ["cream", "lotion", "butter", "bodyoil", "splash", "colonia"];
+      const set = [];
+      for (const ty of ["cream", "splash", "colonia"]) {
+        const hit = lineProducts(best.line).find((x) => x.type === ty || (ty === "cream" && order.slice(0, 4).includes(x.type)));
+        if (hit && !set.includes(hit)) set.push(hit);
+      }
+      const shown = set.length ? set : [best];
+      return { text: line2(Q.ritual).replace("{line}", W.pname(best)).replace("{why}", why) + after, products: shown, offer: true, chips };
+    }
+    const more = [];
+    for (const { p } of ranked.slice(1)) {
+      if (more.length === 2) break;
+      if (p.line !== best.line && !more.some((x) => x.line === p.line)) more.push(p);
+    }
+    return { text: fill(pick(L(Q.match)), { product: W.fullName(best), why }) + after, products: [best, ...more], offer: true, chips };
+  }
+
   // the product she's talking about, for "how do I use it?": the one she showed,
   // or none when she showed several lines
   function remember(products) {
@@ -425,6 +516,12 @@ window.WP_ASSIST = (function () {
       const rest = norm(raw.replace(/(?:my name is|my name's|call me|me chamo|meu nome é|meu nome e|pode me chamar de|اسمي|انا اسمي|i am|i'm|im|sou a|sou o|انا)\s+[\p{L}'-]+/iu, ""));
       if (!rest || has(rest, HELLO)) return { text: line("named"), chips: starters() };
     }
+    // the scent quiz: answering its question, or starting it
+    if (ctx.quiz) {
+      const r = quizStep(raw, q);
+      if (r) return r;
+    }
+    if (has(q, Q.start) && !namedLines(q).length) return quizStart();
     const asks = Object.keys(B.ask).filter((k) => has(q, B.ask[k]));
     const kind = asks.find((k) => k !== "compare") || "";
     const needs = (k) => ["notes", "how", "ingredients", "alcohol", "lasting", "why"].includes(k) && !DT;
@@ -484,9 +581,9 @@ window.WP_ASSIST = (function () {
     if (has(q, HUMAN) && !specific) return { text: t("ai.human", { hours: D.config.hours }), wa: true };
     if (faqScore && faqScore >= productCue) return { text: faqAnswer(bestFaq[0], bestFaq[1]), chips: followUps(bestFaq[0]), wa: bestFaq[0] === "returns" || (bestFaq[0] === "orders" && bestFaq[1] >= 3) };
     if (productCue) {
-      if (!specific && !budget(raw)) return { text: line("askTaste"), chips: chipsOf(["sweet", "floral", "fresh", "warm", "woody", "men"]) };
+      if (!specific && !budget(raw)) return quizStart();
       const r = recommend(raw);
-      if (r.products.length) return { text: picksIntro(raw, q), products: r.products, offer: true, chips: chipsOf(["sweet", "gift", "men"]) };
+      if (r.products.length) return { text: picksIntro(raw, q) + "\n" + line2(B.nudge.picks), products: r.products, offer: true, chips: [L(B.chips.find), ...chipsOf(["sweet", "gift", "men"])] };
     }
     if (has(q, HELLO)) return { text: line("hello"), chips: starters() };
     if (has(q, THANKS)) return { text: line("thanks"), chips: starters() };
@@ -499,7 +596,7 @@ window.WP_ASSIST = (function () {
     return { text: line("unsure"), chips: starters(), wa: true };
   }
   function starters() {
-    return [t("ai.c_find"), t("ai.c_best"), L(B.chips.story), t("ai.c_delivery", { country: L(W.country().short) }), t("ai.c_cod"), t("ai.c_returns")];
+    return [L(B.chips.find), t("ai.c_best"), L(B.chips.story), t("ai.c_delivery", { country: L(W.country().short) }), t("ai.c_cod"), t("ai.c_returns")];
   }
   function followUps(topic) {
     const map = {
@@ -618,8 +715,8 @@ window.WP_ASSIST = (function () {
     box.scrollTop = box.scrollHeight;
     // her own answer first (loading details.js when the question needs it), then
     // the language-model service if there is one, with her answer as the hint
-    const wait = new Promise((r) => setTimeout(r, 450));
     const first = answer(text, window.WP_DETAILS || null);
+    const wait = new Promise((r) => setTimeout(r, Math.min(1300, 380 + String(first.text || "").length * 3)));
     const mine = first.need ? W.details().then((DT) => answer(text, DT || { tx: [], p: {} })) : Promise.resolve(first);
     mine
       .then((r) => Promise.all([remote(log, r, text).catch(() => r), wait]))
@@ -630,6 +727,12 @@ window.WP_ASSIST = (function () {
       });
   }
 
+  // Lina speaks first (the product-page bubble): her answer, without a question bubble
+  function speak(text) {
+    const r = answer(text, window.WP_DETAILS || null);
+    const products = (r.products || []).filter(Boolean);
+    say({ from: "bot", text: r.text, products: products.map((p) => p.id), chips: r.chips, offer: r.offer });
+  }
   function openPanel() {
     closeCard();
     if (!panel) build();
@@ -769,6 +872,46 @@ window.WP_ASSIST = (function () {
       true
     );
   }
+  // On a product page, a small bubble by the button after a few seconds, once a visit:
+  // "Curious about VF Golden? Ask me". Tapping it opens Lina talking about it.
+  let teaserTimer = 0;
+  function teaser() {
+    clearTimeout(teaserTimer);
+    const old = document.querySelector(".ai-teaser");
+    if (old) old.remove();
+    const p = pageProduct();
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("wpg.teased") === "1";
+    } catch (e) {
+      /* ignore */
+    }
+    if (!p || seen) return;
+    teaserTimer = setTimeout(() => {
+      if (panel && !panel.hidden) return;
+      const dock = document.querySelector(".dock");
+      const now = pageProduct(); // products may have been reloaded from the database
+      if (!dock || !now || now.id !== p.id) return;
+      const tip = document.createElement("div");
+      tip.className = "ai-teaser";
+      tip.innerHTML = `<button type="button" class="ai-teaser-go"><span class="ai-avatar ai-avatar-sm" aria-hidden="true">${esc(L(B.persona.name).charAt(0))}</span><span>${esc(fill(L(B.teaser), { product: W.pname(now) }))}</span></button><button type="button" class="ai-teaser-x" aria-label="${esc(t("nav.close"))}">${icon("close")}</button>`;
+      dock.appendChild(tip);
+      requestAnimationFrame(() => tip.classList.add("is-on"));
+      try {
+        sessionStorage.setItem("wpg.teased", "1");
+      } catch (e) {
+        /* ignore */
+      }
+      tip.querySelector(".ai-teaser-x").addEventListener("click", () => tip.remove());
+      tip.querySelector(".ai-teaser-go").addEventListener("click", () => {
+        tip.remove();
+        ctx.id = now.id;
+        saveCtx();
+        openPanel();
+        speak(now.line);
+      });
+    }, 7000);
+  }
   // Language or country changed: rebuild the words, keep the conversation.
   function refresh() {
     const dock = document.querySelector(".dock");
@@ -782,6 +925,11 @@ window.WP_ASSIST = (function () {
     if (wasOpen) openPanel();
   }
 
-  document.addEventListener("DOMContentLoaded", mount);
-  return { open: openPanel, ask, answer, recommend, refresh };
+  document.addEventListener("DOMContentLoaded", () => {
+    mount();
+    teaser();
+    // the one-file build changes page without reloading
+    window.addEventListener("hashchange", () => setTimeout(teaser, 50));
+  });
+  return { open: openPanel, ask, answer, recommend, refresh, quizResult };
 })();

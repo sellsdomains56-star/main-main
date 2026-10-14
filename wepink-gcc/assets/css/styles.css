@@ -6303,6 +6303,60 @@ html[data-tone="noir"] .wa-topics a {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.45);
   flex: none;
 }
+/* the bubble Lina shows on a product page: "Curious about …? Ask me" */
+.ai-teaser {
+  position: absolute;
+  inset-block-end: calc(100% + 10px);
+  inset-inline-end: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  width: max-content;
+  max-width: min(300px, calc(100vw - 32px));
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 14px 34px rgba(60, 0, 30, 0.18);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.ai-teaser.is-on {
+  opacity: 1;
+  transform: none;
+}
+.ai-teaser-go {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 4px 6px 6px;
+  color: var(--fg);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: start;
+}
+.ai-teaser-x {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--muted, #8a6a78);
+  flex: none;
+}
+.ai-teaser-x .icon {
+  width: 14px;
+  height: 14px;
+}
+.ai-avatar.ai-avatar-sm {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  box-shadow: 0 0 0 2px #ffd6ea;
+}
 .ai-online {
   position: absolute;
   inset-block-end: 0;
