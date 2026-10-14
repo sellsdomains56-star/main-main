@@ -21,7 +21,7 @@ products = json.loads(text[text.index("["):text.rindex("]") + 1])
 def shrink(path):
     im = Image.open(path).convert("RGB").resize((960, 1192), Image.LANCZOS)
     buf = io.BytesIO()
-    im.save(buf, "WEBP", quality=78, method=6)
+    im.save(buf, "WEBP", quality=78, method=4)
     return "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode()
 
 by_cat = {}

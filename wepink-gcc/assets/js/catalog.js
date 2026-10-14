@@ -27251,7 +27251,7 @@ window.WP_CATALOG = [
   ],
   "rank": 355,
   "hero": true,
-  "renders": 1,
+  "renders": 5,
   "tagline": {
    "en": "The finest nourishment the skin needs",
    "ar": "أرقى تغذية تحتاجها البشرة",
