@@ -61,7 +61,7 @@ window.WP_DATA = (function () {
       virginiaPortrait: "assets/photos/liberte-dore-campaign.webp", // Liberté Doré crown portrait for the "Created by Virginia" section
       // Campaign images (assets/photos/campaign/): an AI model, not Virginia, with the real products.
       campaign: "assets/photos/campaign/vf-golden-lips.webp", // the "Liquid gold" perfume spotlight on the home page (Nano Banana Pro 4K, VF Golden)
-      club: "assets/photos/campaign/satin-vf.webp", // the Club pop-up
+      club: "assets/photos/campaign/the-oil-socks.webp", // the Club pop-up: "the oil." in pink socks (from the wepink team)
       earn: "assets/photos/campaign/red-stripe.webp", // Earn with wepink hero
       about: "assets/photos/campaign/golden-hour.webp", // About page
       earnBand: "assets/photos/campaign/pink-bags.webp", // the ambassador band on the home page
@@ -252,6 +252,7 @@ window.WP_DATA = (function () {
       { photo: "assets/photos/campaign/liberte-cream-giant.webp", product: "cream-liberte-200-ml", cat: "body-care", pos: "48% 50%", title: { en: "Soft as satin", ar: "ناعمة كالساتان", pt: "Macia como cetim" } },
       { photo: "assets/photos/campaign/heaven-straw.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "75% 40%", title: { en: "Sip on Heaven", ar: "رشفة من هيفن", pt: "Um gole de Heaven" } },
       { photo: "assets/photos/campaign/the-oil-blonde.webp", product: "bodyoil-vf-120-ml", cat: "body-care", pos: "50% 30%", title: { en: "Glow, oiled up", ar: "توهّج مع الزيت", pt: "Brilho com óleo" } },
+      { photo: "assets/photos/campaign/the-oil-socks.webp", product: "bodyoil-vf-120-ml", cat: "body-care", pos: "50% 30%", title: { en: "Cosy, glowing", ar: "دفء وتوهّج", pt: "Aconchego e brilho" } },
       { photo: "assets/photos/campaign/lip-tint-drip.webp", product: "makeup-lip-tint-glow-essencial-5-8-ml", cat: "makeup", pos: "55% 45%", title: { en: "Dripping in gloss", ar: "لمعان يقطر", pt: "Brilho que escorre" } },
       { photo: "assets/photos/campaign/giant-heaven.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "50% 45%", title: { en: "Bigger than life", ar: "أكبر من الحياة", pt: "Maior que a vida" } },
       { photo: "assets/photos/campaign/pink-splash-ribbons.webp", product: "splash-heaven-pink-200-ml", also: ["splash-crave-lovely-200-ml", "splash-obsessed-exclusive-pink-200-ml"], cat: "body-splash", pos: "50% 40%", title: { en: "Tied with a bow", ar: "مربوطة بفيونكة", pt: "Com laço de fita" } },
