@@ -221,9 +221,9 @@
       seen(people[i], t - 4 * 60e3, ["home", "earn", "earn"]);
     });
 
-    // Orders: ~24 in the last 30 days (the newest still to handle) and a quieter stretch before.
+    // Orders: ~24 in the last 30 days, more each week (the newest still to handle), and a quieter stretch before.
     const hours = [];
-    for (let h = 1.2 + R(), i = 0; i < 24; i++) hours.push(Math.min(h, 29.6 * 24)), (h += i < 10 ? 3 + R() * 9 : 14 + R() * 30);
+    for (let h = 1.2 + R(), i = 0; i < 24; i++) hours.push(Math.min(h, 29.6 * 24)), (h += 3 + i * 1.9 + R() * 7);
     for (let k = 0; k < 12; k++) hours.push((31 + k * 4.8 + R() * 3) * 24);
     const STATUS = (i) =>
       i < 3 ? "new" : i < 6 ? "confirmed" : i === 8 || i === 18 || i === 30 ? "cancelled" : i < 10 ? "shipped" : i === 14 ? "returned" : "delivered";
@@ -231,14 +231,14 @@
     const GIFTS = ["Happy birthday! Lots of love", "Congratulations on the new home", "A little something pink for you"];
     const buyers = people.slice(5, 31);
     const order = [];
-    let fresh = 0;
+    let firsts = 0;
     // oldest first, so repeat customers come back after their first order
     hours
       .map((h, i) => [h, i])
       .reverse()
       .forEach(([h, i], k) => {
         const left = hours.length - k;
-        const p = fresh < buyers.length && (left <= buyers.length - fresh || !fresh || R() > 0.3) ? buyers[fresh++] : pick(buyers.slice(0, fresh));
+        const p = firsts < buyers.length && (left <= buyers.length - firsts || !firsts || R() > 0.3) ? buyers[firsts++] : pick(buyers.slice(0, firsts));
         const t = now - h * HOUR;
         const status = STATUS(i);
         const cc = D.countries[p.country];
@@ -250,10 +250,9 @@
           const local = prod.prices && prod.prices[cc.currency] != null ? Number(prod.prices[cc.currency]) : cc.decimals ? Math.round(prod.price * markup * cc.rate * 4) / 4 : Math.round(prod.price * markup * cc.rate);
           items.push({ id: prod.id, name: FRAGRANCE.has(prod.type) ? `${prod.line} ${(D.types[prod.type] || {}).en || ""}`.trim() : prod.line, qty: R() < 0.82 ? 1 : 2, price: local });
         }
-        // an ambassador's code on about a third of them
-        const amb =
-          R() < 0.34 &&
-          weighted(db.ambassadors.map((a, j) => [a, AMB_WEIGHT[j]]).filter(([a]) => Date.parse(a.created_at) < t && (a.status === "active" || t < now - 25 * DAY)).concat([[null, 0.001]]));
+        // an ambassador's code on about a third of them (and on two still under way, for pending commission)
+        const open = db.ambassadors.map((a, j) => [a, AMB_WEIGHT[j]]).filter(([a]) => Date.parse(a.created_at) < t && (a.status === "active" || t < now - 25 * DAY));
+        const amb = i === 1 || i === 7 ? db.ambassadors[i === 1 ? 0 : 1] : R() < 0.34 && open.length ? weighted(open) : null;
         const sub = round3(items.reduce((s, x) => s + x.price * x.qty, 0));
         const disc = amb ? (cc.decimals ? round3((sub * friendPct) / 100) : Math.round((sub * friendPct) / 100)) : 0;
         const delivery = sub >= cc.freeOver ? 0 : cc.fee;
@@ -304,11 +303,14 @@
       if (i % 3 === 0) {
         const t = Date.parse(c.first_seen) - int(1, 12) * DAY;
         customer(p, "club", t);
-        c.sources.sort((a) => (a === "club" ? -1 : 1));
+        c.sources = ["club"].concat(c.sources.filter((s) => s !== "club"));
         c.marketing = true;
         if (R() < 0.6) c.details.birthday = `${pad(int(1, 12))}-${pad(int(1, 28))}`;
       }
-      if (i === 4) Object.assign(c, { user_id: uuid(), provider: "google" }), c.sources.push("account");
+      if (i === 4) {
+        Object.assign(c, { user_id: uuid(), provider: "google" });
+        c.sources.push("account");
+      }
       if (i === 7) c.note = "Prefers WhatsApp messages in Arabic";
       if (i === 12) c.note = "Regular — sent a thank-you sample";
     });
@@ -363,7 +365,7 @@
       rows.forEach((r) => {
         const k = key(r);
         if (!m.has(k)) m.set(k, new Set());
-        m.get(k).add(val(r));
+        m.get(k).add(val ? val(r) : r); // no val: count the rows
       });
       return [...m]
         .map(([k, s]) => ({ k, n: s.size }))
@@ -380,12 +382,11 @@
       x.u.add(v.visitor_id);
     });
     const live = db.orders.filter((o) => Date.parse(o.created_at) >= from && o.status !== "cancelled" && o.status !== "returned");
-    let n = 0;
     return {
       visits: vs.length,
       visitors: new Set(vs.map((v) => v.visitor_id)).size,
       byDay: [...byDay.values()].sort((a, b) => (a.day < b.day ? -1 : 1)).map((x) => ({ day: x.day, visits: x.visits, visitors: x.u.size })),
-      pages: group(vs, (v) => v.page || "?", () => n++, 10),
+      pages: group(vs, (v) => v.page || "?", null, 10),
       sources: group(vs, (v) => (v.utm && v.utm.source) || (v.ref_code ? "ambassador " + v.ref_code : null) || host(v.referrer) || "direct", (v) => v.session_id, 10),
       geo: group(vs, (v) => v.geo || "?", (v) => v.visitor_id, 12),
       devices: group(vs, (v) => v.device || "?", (v) => v.visitor_id),
@@ -657,12 +658,13 @@
   /* ---------- the banner ---------- */
   function banner() {
     const css = document.createElement("style");
+    // "html …" so the sidebar rules win over admin.css wherever the page puts it
     css.textContent = `
       .demo-bar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; justify-content: center; gap: 6px; height: 30px; padding: 0 16px; background: var(--blush); border-bottom: 1px solid var(--line-2); color: var(--ink-2); font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; }
       .demo-bar strong { color: var(--pink-600); font-weight: 800; letter-spacing: 0.04em; }
-      .adm { min-height: calc(100vh - 30px); }
-      .side { top: 30px; height: calc(100vh - 30px); }
-      @media (max-width: 860px) { .side { height: auto; } }
+      html .adm { min-height: calc(100vh - 30px); }
+      html .side { top: 30px; height: calc(100vh - 30px); }
+      @media (max-width: 860px) { html .side { height: auto; } }
       @media (max-width: 440px) { .demo-bar .opt { display: none; } }`;
     document.head.appendChild(css);
     const bar = document.createElement("div");

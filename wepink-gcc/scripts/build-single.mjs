@@ -97,6 +97,7 @@ console.log(`${out} (${Math.round(html.length / 1024)} KB)`);
 
 // Admin panel: the catalogue's original photos come from the brand's CDN
 // (thumbnails only), and "Open the store" points at the store file beside it.
+// admin-demo.js rides along: it only wakes up on #demo or window.WP_ADMIN_DEMO.
 const adminCatalog = (() => {
   const text = read("assets/js/catalog.js");
   const rows = JSON.parse(text.slice(text.indexOf("["), text.lastIndexOf("]") + 1));
@@ -127,7 +128,7 @@ ${read("assets/css/admin.css")}
   <noscript><p class="boot">The admin panel needs JavaScript.</p></noscript>
   <script src="${supabaseJs}"></script>
   <script>window.WP_STORE_URL = ${JSON.stringify(basename(out))};</script>
-${[adminCatalog, read("assets/js/data.js"), read("assets/js/admin.js")].map((text) => script(inlinePhotos(text))).join("\n")}
+${[adminCatalog, read("assets/js/data.js"), read("assets/js/admin-demo.js"), read("assets/js/admin.js")].map((text) => script(inlinePhotos(text))).join("\n")}
 </body>
 </html>
 `;
