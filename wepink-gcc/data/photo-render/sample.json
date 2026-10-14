@@ -1,0 +1,36 @@
+{
+ "resolution": "2K",
+ "aspect": "4:5",
+ "model": "Nano Banana Pro (Higgsfield)",
+ "creditsEach": 2,
+ "products": [
+  {
+   "id": "colonia-obsessed-100-ml",
+   "line": "Obsessed",
+   "type": "colonia",
+   "set": "red",
+   "sources": [
+    "https://wepink.vteximg.com.br/arquivos/ids/164529-2000-2000/01.webp?v=639147127637600000",
+    "https://wepink.vteximg.com.br/arquivos/ids/164530-2000-2000/02.webp?v=639147127637770000",
+    "https://wepink.vteximg.com.br/arquivos/ids/164531-2000-2000/04.webp?v=639147127637770000",
+    "https://wepink.vteximg.com.br/arquivos/ids/164532-2000-2000/05.webp?v=639147127637770000",
+    "https://wepink.vteximg.com.br/arquivos/ids/164533-2000-2000/03.webp?v=639147127637930000"
+   ]
+  },
+  {
+   "id": "makeup-gloss-my-lips-cherry-4-ml",
+   "line": "My Lips Cherry Lip Gloss",
+   "type": "makeup",
+   "set": "makeup",
+   "sources": [
+    "https://wepink.vteximg.com.br/arquivos/ids/162541-2000-2000/159674-1200-auto.webp?v=638987212392970000",
+    "https://wepink.vteximg.com.br/arquivos/ids/162542-2000-2000/158195-1200-auto.webp?v=638987212393100000",
+    "https://wepink.vteximg.com.br/arquivos/ids/162543-2000-2000/158196-1200-auto.webp?v=638987212393100000",
+    "https://wepink.vteximg.com.br/arquivos/ids/162544-2000-2000/158197-1200-auto.webp?v=638987212393100000",
+    "https://wepink.vteximg.com.br/arquivos/ids/162545-2000-2000/158971-1200-auto.webp?v=638987212393100000"
+   ]
+  }
+ ],
+ "photos": 10,
+ "credits": 20
+}
