@@ -193,7 +193,7 @@ window.WP_PAGES = (function () {
     const list = ((W.draw.state() || {}).winners || []).slice(0, 3);
     if (!list.length) return "";
     return `<div class="draw-winners"><p class="draw-winners-title">${icon("sparkle")}${esc(t("draw.winners"))}</p>
-        <ul>${list.map((w) => `<li><strong>${esc(w.name)}</strong><span>${esc([W.draw.city(w), W.draw.round(w.round)].filter(Boolean).join(" · "))}</span></li>`).join("")}</ul>
+        <ul>${list.map((w) => `<li><strong><bdi>${esc(w.name)}</bdi></strong><span>${esc([W.draw.city(w), W.draw.round(w.round)].filter(Boolean).join(" · "))}</span></li>`).join("")}</ul>
       </div>`;
   }
   // Home: "Win an iPhone 18 Pro Max with us", how it works in three steps, the open
@@ -213,7 +213,7 @@ window.WP_PAGES = (function () {
           <div class="draw-copy" data-reveal>
             <p class="eyebrow draw-eyebrow">${icon("sparkle")}${esc(t("draw.eyebrow"))}</p>
             <h2 id="draw-title" class="draw-title">${drawTitle()}</h2>
-            <p class="draw-when">${esc(t("draw.when", v))}</p>
+            <p class="draw-line">${esc(t("draw.line", v))}</p>
             <ol class="draw-steps">${steps.map(([ic, a, b], i) => `<li><span class="draw-num">0${i + 1}</span>${icon(ic)}<strong>${esc(a)}</strong><span>${esc(b)}</span></li>`).join("")}</ol>
             ${drawRound()}
             ${drawActions()}
@@ -232,7 +232,7 @@ window.WP_PAGES = (function () {
         <div class="draw-copy">
           <p class="eyebrow draw-eyebrow">${icon("sparkle")}${esc(t("draw.eyebrow"))}</p>
           <h2 id="draw-banner-title" class="draw-title">${drawTitle()}</h2>
-          <p class="draw-when">${esc(t("draw.campLine", dr.vars()))}</p>
+          <p class="draw-line">${esc(t("draw.line", dr.vars()))}</p>
           ${drawRound()}
           ${drawActions()}
         </div>

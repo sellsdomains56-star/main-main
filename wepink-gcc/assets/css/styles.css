@@ -8138,7 +8138,7 @@ a.pair-item:hover {
   display: grid;
   justify-items: start;
   gap: 18px;
-  max-width: 580px;
+  max-width: 620px;
   min-width: 0;
 }
 .draw-copy > * {
@@ -8165,7 +8165,7 @@ a.pair-item:hover {
 .draw-title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(46px, 5.2vw, 84px);
+  font-size: clamp(44px, 4.8vw, 74px);
   line-height: 0.98;
   letter-spacing: -0.025em;
   color: var(--draw-ink);
@@ -8173,6 +8173,7 @@ a.pair-item:hover {
 .draw-title em {
   display: inline-block;
   padding-inline-end: 0.06em;
+  white-space: nowrap;
   font-style: italic;
   background: linear-gradient(100deg, var(--pink) 0%, #b0105e 45%, var(--draw-wine) 100%);
   -webkit-background-clip: text;
@@ -8184,7 +8185,7 @@ html[lang="ar"] .draw-title {
   line-height: 1.25;
   letter-spacing: 0;
 }
-.draw-when {
+.draw-line {
   font-size: clamp(18px, 1.6vw, 23px);
   font-weight: 700;
   line-height: 1.35;
@@ -8275,6 +8276,9 @@ html[lang="ar"] .draw-round-head span {
 .draw-round .meter span,
 .draw-meter .meter span {
   background: linear-gradient(90deg, #f3c77a, var(--pink) 60%, #8a1640);
+}
+[dir="rtl"] :is(.draw-round, .draw-meter) .meter span {
+  background: linear-gradient(270deg, #f3c77a, var(--pink) 60%, #8a1640);
 }
 .draw-round-note {
   font-size: 13px;
@@ -8371,7 +8375,7 @@ html[lang="ar"] .draw-winners-title {
 .draw-banner .draw-title {
   font-size: clamp(36px, 4vw, 62px);
 }
-.draw-banner .draw-when {
+.draw-banner .draw-line {
   font-size: clamp(16px, 1.3vw, 19px);
 }
 .draw-banner .draw-round {
@@ -8589,11 +8593,16 @@ html[data-tone="noir"] .draw-meter .meter {
 }
 /* phones: the portrait photo on top, the copy on blush below it */
 @media (max-width: 720px) {
-  .draw-band,
+  /* the photo's own floor colour down to the copy, then lighter */
+  .draw-band {
+    display: block;
+    min-height: 0;
+    background: linear-gradient(180deg, #ddafaf calc(100vw * 1.05), #f9e7e5 100%);
+  }
   .draw-banner {
     display: block;
     min-height: 0;
-    background: linear-gradient(180deg, #ddafaf 0, #f0d1cf 30%, #f9e7e5 100%);
+    background: linear-gradient(180deg, #ddafaf calc((100vw - var(--gutter) * 2) * 0.75), #f9e7e5 100%);
   }
   .draw-band::before,
   .draw-banner::before {
@@ -8634,7 +8643,7 @@ html[data-tone="noir"] .draw-meter .meter {
     padding: 0 18px 24px;
   }
   .draw-title {
-    font-size: clamp(40px, 11vw, 52px);
+    font-size: clamp(38px, 10.6vw, 52px);
   }
   .draw-banner .draw-title {
     font-size: clamp(34px, 9.5vw, 44px);

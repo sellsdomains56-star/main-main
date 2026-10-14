@@ -4,8 +4,9 @@
  * admin.html#demo, or on a page that sets window.WP_ADMIN_DEMO = true before
  * its scripts (the preview link). The Supabase client is swapped for one that
  * keeps the real catalogue (catalog.js) and made-up orders, customers,
- * ambassadors and visitors in memory: nothing reaches the database and every
- * change is gone on reload. Without the hash or the flag this file does nothing.
+ * ambassadors, visitors and prize-draw rounds in memory: nothing reaches the
+ * database and every change is gone on reload. Without the hash or the flag
+ * this file does nothing.
  */
 (function () {
   if (window.WP_ADMIN_DEMO !== true && location.hash !== "#demo") return;
@@ -73,7 +74,7 @@
     const now = Date.now();
     const ago = (days) => iso(now - days * DAY);
     const markup = 1 + (Number(C.pricing && C.pricing.markupPct) || 0) / 100;
-    const db = { products: [], orders: [], customers: [], ambassadors: [], visits: [], admins: [], settings: [] };
+    const db = { products: [], orders: [], customers: [], ambassadors: [], visits: [], admins: [], settings: [], draw_winners: [] };
 
     // Products: the real catalogue, in its own order. Photos: the first re-shot photo
     // (the one the preview link carries), else whatever the catalogue row has.
@@ -116,6 +117,8 @@
       season: { id: (C.season || {}).id || "", announce: (C.season || {}).announce || null },
       ritual: { pct: (C.ritual || {}).pct || 0 },
       welcome: { pct: (C.welcome || {}).pct || 0, code: (C.welcome || {}).code || "WELCOME10" },
+      // as the database holds it: no photos, and no prize value until the team sets one
+      draw: (({ on, minAed, aedPerPrize, prize, showProgress, endsAt, permit }) => ({ on, minAed, aedPerPrize, prize: clone(prize), showProgress, endsAt, permit }))(C.draw || {}),
     };
     db.settings = Object.keys(settings).map((key) => ({ key, value: settings[key], updated_at: made }));
     db.admins = [{ email: EMAIL, created_at: made }];
@@ -157,7 +160,7 @@
 
     // People: the first five are ambassadors, the next 26 order, the rest only left their details.
     const names = FIRST.slice(0, 5).concat(shuffle(FIRST.slice(5)));
-    const people = names.map((first, i) => {
+    const person = (first, i) => {
       const country = i < 5 ? ["AE", "SA", "KW", "QA", "AE"][i] : weighted(GEO);
       const cc = D.countries[country];
       const [city, areas] = pick(PLACES[country]);
@@ -179,7 +182,8 @@
       p.v = profile(now - 90 * DAY, { geo: country, lang: country === "AE" && R() < 0.5 ? "en" : weighted([["ar", 55], ["en", 42], ["pt", 3]]) });
       if (R() > 0.85) p.v.id = null;
       return p;
-    });
+    };
+    const people = names.map(person);
     const seen = (p, t, pages, opts) => p.v.id && session(p.v, t, pages, opts);
 
     // Ambassadors
@@ -232,6 +236,10 @@
     const buyers = people.slice(5, 31);
     const order = [];
     let firsts = 0;
+    // a product's price in the shopper's currency, as the store works it out
+    const priceIn = (prod, cc) => (prod.prices && prod.prices[cc.currency] != null ? Number(prod.prices[cc.currency]) : cc.decimals ? Math.round(prod.price * markup * cc.rate * 4) / 4 : Math.round(prod.price * markup * cc.rate));
+    const line = (prod, cc, qty) => ({ id: prod.id, name: FRAGRANCE.has(prod.type) ? `${prod.line} ${(D.types[prod.type] || {}).en || ""}`.trim() : prod.line, qty, price: priceIn(prod, cc) });
+    const ambOpen = (t) => db.ambassadors.map((a, j) => [a, AMB_WEIGHT[j]]).filter(([a]) => Date.parse(a.created_at) < t && (a.status === "active" || t < now - 25 * DAY));
     // oldest first, so repeat customers come back after their first order
     hours
       .map((h, i) => [h, i])
@@ -240,61 +248,135 @@
         const left = hours.length - k;
         const p = firsts < buyers.length && (left <= buyers.length - firsts || !firsts || R() > 0.3) ? buyers[firsts++] : pick(buyers.slice(0, firsts));
         const t = now - h * HOUR;
-        const status = STATUS(i);
         const cc = D.countries[p.country];
         // the basket: 1–4 different products, bestsellers more often
         const items = [];
         for (let n = weighted([[1, 38], [2, 32], [3, 19], [4, 11]]); items.length < n; ) {
           const prod = bestseller();
           if (items.some((x) => x.id === prod.id)) continue;
-          const local = prod.prices && prod.prices[cc.currency] != null ? Number(prod.prices[cc.currency]) : cc.decimals ? Math.round(prod.price * markup * cc.rate * 4) / 4 : Math.round(prod.price * markup * cc.rate);
-          items.push({ id: prod.id, name: FRAGRANCE.has(prod.type) ? `${prod.line} ${(D.types[prod.type] || {}).en || ""}`.trim() : prod.line, qty: R() < 0.82 ? 1 : 2, price: local });
+          items.push(line(prod, cc, R() < 0.82 ? 1 : 2));
         }
         // an ambassador's code on about a third of them (and on two still under way, for pending commission)
-        const open = db.ambassadors.map((a, j) => [a, AMB_WEIGHT[j]]).filter(([a]) => Date.parse(a.created_at) < t && (a.status === "active" || t < now - 25 * DAY));
+        const open = ambOpen(t);
         const amb = i === 1 || i === 7 ? db.ambassadors[i === 1 ? 0 : 1] : R() < 0.34 && open.length ? weighted(open) : null;
-        const sub = round3(items.reduce((s, x) => s + x.price * x.qty, 0));
-        const disc = amb ? (cc.decimals ? round3((sub * friendPct) / 100) : Math.round((sub * friendPct) / 100)) : 0;
-        const delivery = sub >= cc.freeOver ? 0 : cc.fee;
-        const total = round3(sub - disc + delivery);
-        const pct = amb ? settings.referral.tiers[0].pct : null;
-        const c = customer(p, "checkout", t);
-        const o = {
-          id: uuid(),
-          number: "",
-          status,
-          country: p.country,
-          currency: cc.currency,
-          lang: p.v.lang,
-          items,
-          subtotal: sub,
-          discount: disc,
-          delivery,
-          total,
-          total_aed: round2(total / cc.rate),
-          ref_code: amb ? amb.code : null,
-          ambassador_id: amb ? amb.id : null,
-          commission_pct: pct,
-          commission_aed: amb ? round2(((Math.max(sub - disc, 0) / cc.rate) * pct) / 100) : null,
-          commission_paid: !!amb && status === "delivered" && h > 18 * 24,
-          customer: { name: p.name, email: R() < 0.8 ? p.email : "", phone: p.tel, city: p.city, area: p.area, street: p.street, apt: p.apt, notes: R() < 0.2 ? pick(["Please call when you arrive", "Leave it with the concierge", "Evening delivery if possible"]) : "" },
-          customer_id: c.id,
-          payment: weighted(cc.pay.map((m) => [m, { cod: 28, card: 26, applepay: 24, mada: 14, knet: 14, benefit: 10, tabby: 8, tamara: 5 }[m] || 5])),
-          gift_note: i % 9 === 4 ? GIFTS[(i / 9) | 0] || GIFTS[0] : null,
-          note: NOTES[i] || null,
-          created_at: iso(t),
-          updated_at: iso(Math.min(now, t + (status === "new" ? 0 : int(2, 30) * HOUR))),
-        };
-        order.push(o);
-        c.orders_count++;
-        c.spent_aed = round2(c.spent_aed + o.total_aed);
-        if (R() < 0.55) c.marketing = true;
-        // the visit that ended in the order, and for a first order a look around a few days before
-        if (c.orders_count === 1) seen(p, t - int(1, 5) * DAY - int(1, 10) * HOUR, ["home", "shop", "product"]);
-        seen(p, t - int(6, 25) * 60e3, ["home", ["product", visitPath("product", items[0])], ...(items[1] ? [["product", visitPath("product", items[1])]] : []), "checkout"], { ref: amb && amb.code });
+        addOrder(p, t, STATUS(i), items, amb, i);
       });
+    function addOrder(p, t, status, items, amb, i) {
+      const cc = D.countries[p.country];
+      const h = (now - t) / HOUR;
+      const sub = round3(items.reduce((s, x) => s + x.price * x.qty, 0));
+      const disc = amb ? (cc.decimals ? round3((sub * friendPct) / 100) : Math.round((sub * friendPct) / 100)) : 0;
+      const delivery = sub >= cc.freeOver ? 0 : cc.fee;
+      const total = round3(sub - disc + delivery);
+      const pct = amb ? settings.referral.tiers[0].pct : null;
+      const c = customer(p, "checkout", t);
+      const o = {
+        id: uuid(),
+        number: "",
+        status,
+        country: p.country,
+        currency: cc.currency,
+        lang: p.v.lang,
+        items,
+        subtotal: sub,
+        discount: disc,
+        delivery,
+        total,
+        total_aed: round2(total / cc.rate),
+        ref_code: amb ? amb.code : null,
+        ambassador_id: amb ? amb.id : null,
+        commission_pct: pct,
+        commission_aed: amb ? round2(((Math.max(sub - disc, 0) / cc.rate) * pct) / 100) : null,
+        commission_paid: !!amb && status === "delivered" && h > 18 * 24,
+        customer: { name: p.name, email: R() < 0.8 ? p.email : "", phone: p.tel, city: p.city, area: p.area, street: p.street, apt: p.apt, notes: R() < 0.2 ? pick(["Please call when you arrive", "Leave it with the concierge", "Evening delivery if possible"]) : "" },
+        customer_id: c.id,
+        payment: weighted(cc.pay.map((m) => [m, { cod: 28, card: 26, applepay: 24, mada: 14, knet: 14, benefit: 10, tabby: 8, tamara: 5 }[m] || 5])),
+        gift_note: i >= 0 && i % 9 === 4 ? GIFTS[(i / 9) | 0] || GIFTS[0] : null,
+        note: NOTES[i] || null,
+        created_at: iso(t),
+        updated_at: iso(Math.min(now, t + (status === "new" ? 0 : int(2, 30) * HOUR))),
+      };
+      order.push(o);
+      c.orders_count++;
+      c.spent_aed = round2(c.spent_aed + o.total_aed);
+      if (R() < 0.55) c.marketing = true;
+      // the visit that ended in the order, and for a first order a look around a few days before
+      if (c.orders_count === 1) seen(p, t - int(1, 5) * DAY - int(1, 10) * HOUR, ["home", "shop", "product"]);
+      seen(p, t - int(6, 25) * 60e3, ["home", ["product", visitPath("product", items[0])], ...(items[1] ? [["product", visitPath("product", items[1])]] : []), "checkout"], { ref: amb && amb.code });
+      return o;
+    }
+
+    // The prize draw (settings.draw) opened 70 days ago and brought bigger baskets: more people
+    // ordering 4 or 5 products, busier each week. Round 1 filled its AED 50,000 and was drawn a
+    // day later; round 2 is about 60% of the way, its newest orders not yet confirmed.
+    const DRAW = settings.draw;
+    const drawFrom = now - 70 * DAY;
+    const spendOf = (o) => round2(Math.max(o.subtotal - o.discount, 0) / D.countries[o.country].rate);
+    const counts = (o) => o.status !== "cancelled" && o.status !== "returned";
+    const before = order.filter((o) => Date.parse(o.created_at) >= drawFrom && counts(o) && spendOf(o) >= DRAW.minAed).reduce((s, o) => s + spendOf(o), 0);
+    const fans = FIRST.map((first, i) => person(first, 44 + i)).concat(FIRST.slice(0, 22).map((first, i) => person(first, 88 + i)));
+    const baskets = [];
+    for (let entered = before; entered < DRAW.aedPerPrize * 1.61; ) {
+      // what they set out to spend (AED, products): mostly AED 300 and up
+      const aim = weighted([[[300, 420], 34], [[420, 650], 30], [[650, 950], 20], [[950, 1500], 9], [[110, 299], 14]]);
+      const lost = R() < 0.06; // cancelled or returned later
+      baskets.push({ aim: aim[0] + R() * (aim[1] - aim[0]), lost });
+      if (!lost && aim[0] >= 300) entered += aim[0] + R() * 40 + 20;
+    }
+    baskets.forEach((b, k) => {
+      // busier each week: the k-th basket at the k-th share of the draw's 70 days, squared
+      const t = drawFrom + (now - 2 * HOUR - drawFrom) * Math.sqrt((k + 0.5) / baskets.length);
+      const age = (now - t) / DAY;
+      const status = b.lost ? (R() < 0.7 ? "cancelled" : "returned") : age < 1 ? weighted([["new", 3], ["confirmed", 1]]) : age < 3 ? weighted([["confirmed", 2], ["shipped", 3]]) : age < 5 ? weighted([["shipped", 1], ["delivered", 3]]) : "delivered";
+      const p = R() < 0.22 && k > 10 ? pick(buyers.concat(fans.slice(0, Math.min(fans.length, k)))) : fans[k % fans.length];
+      const cc = D.countries[p.country];
+      const items = [];
+      const aim = b.aim * cc.rate;
+      while (items.reduce((s, x) => s + x.price * x.qty, 0) < aim && items.length < 9) {
+        const prod = bestseller();
+        if (items.some((x) => x.id === prod.id)) continue;
+        items.push(line(prod, cc, R() < 0.85 ? 1 : 2));
+      }
+      const open = ambOpen(t);
+      addOrder(p, t, status, items, R() < 0.22 && open.length ? weighted(open) : null, -1);
+    });
+
     db.orders = order.sort((a, b) => (a.created_at < b.created_at ? -1 : 1));
     db.orders.forEach((o, i) => (o.number = "WPG-" + (100001 + i)));
+
+    // Entries, as place_order gives them: the round open when the order came in, which closes
+    // once its entered orders (not cancelled or returned) reach the target.
+    let round = 1;
+    let filled = 0;
+    let closed = 0;
+    db.orders.forEach((o) => {
+      const spend = spendOf(o);
+      Object.assign(o, { draw_round: null, draw_aed: null, draw_tickets: null });
+      if (Date.parse(o.created_at) < drawFrom || spend < DRAW.minAed) return;
+      Object.assign(o, { draw_round: round, draw_aed: spend, draw_tickets: Math.floor(spend / DRAW.minAed) });
+      if (counts(o)) filled += spend;
+      if (filled >= DRAW.aedPerPrize && round === 1) (closed = Date.parse(o.created_at)), (round = 2), (filled = 0);
+    });
+    // Round 1's winner, drawn a day after it filled: one entry among its confirmed and delivered orders.
+    const inDraw = db.orders.filter((o) => o.draw_round === 1 && ["confirmed", "shipped", "delivered"].includes(o.status));
+    const total = inDraw.reduce((s, o) => s + o.draw_tickets, 0);
+    if (closed && total) {
+      const ticket = int(1, total);
+      let cum = 0;
+      const won = inDraw.find((o) => (cum += o.draw_tickets) >= ticket);
+      const [first, last] = won.customer.name.split(" ");
+      db.draw_winners.push({
+        round: 1,
+        order_id: won.id,
+        order_number: won.number,
+        ticket,
+        tickets: total,
+        entries: inDraw.map((o) => ({ number: o.number, tickets: o.draw_tickets })),
+        winner: { name: first + (last ? " " + last.charAt(0) + "." : ""), city: won.customer.city, country: won.country },
+        drawn_at: iso(Math.min(now - 2 * HOUR, closed + 1.1 * DAY)),
+        drawn_by: EMAIL,
+      });
+    }
 
     // Some buyers joined the Club first; one signs in with Google.
     buyers.forEach((p, i) => {

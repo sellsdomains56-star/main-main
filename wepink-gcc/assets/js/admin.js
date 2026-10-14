@@ -1,8 +1,8 @@
 /* wepink Gulf — admin panel (admin.html).
  *
  * Signs in with Supabase Auth and edits the store's database: products and
- * their photos, orders, ambassadors and commission, customers, visitor stats
- * and store settings. The store picks up changes on a shopper's next page
+ * their photos, orders, ambassadors and commission, customers, visitor stats,
+ * the prize draw and store settings. The store picks up changes on a shopper's next page
  * load. Only emails listed in the `admins` table get in (see
  * supabase/schema.sql); everyone else is refused by the database itself.
  */
@@ -40,6 +40,7 @@
     up: '<path d="M12 20V8M6 14l6-6 6 6M4 4h16"/>',
     chat: '<path d="M20.5 11.6a8.4 8.4 0 0 1-12.4 7.4L3.5 20.5l1.5-4.4a8.4 8.4 0 1 1 15.5-4.5Z"/>',
     image: '<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m4 18 5-5 4 4 3-3 4 4"/>',
+    phone: '<rect x="6.5" y="2.5" width="11" height="19" rx="2.8"/><path d="M10.5 5.3h3M11 18.6h2"/>',
   };
   const icon = (n) => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n] || ""}</svg>`;
   const fmt = (n, d) => Number(n || 0).toLocaleString("en-US", { minimumFractionDigits: d || 0, maximumFractionDigits: d == null ? 2 : d });
@@ -130,6 +131,7 @@
     orders: null,
     ambassadors: null,
     customers: null,
+    winners: null,
     days: 30,
   };
   const markupPct = () => Number(S.settings.pricing && S.settings.pricing.markupPct != null ? S.settings.pricing.markupPct : D.config.pricing.markupPct) || 0;
@@ -259,6 +261,7 @@
     ["orders", "Orders", "bag"],
     ["ambassadors", "Ambassadors", "star"],
     ["customers", "Customers", "users"],
+    ["draw", "Draw", "phone"],
     ["settings", "Settings", "gear"],
   ];
   function renderShell() {
@@ -302,6 +305,12 @@
     window.scrollTo(0, 0);
   }
   const head = (title, sub, actions) => `<div class="top"><div><h1>${esc(title)}</h1>${sub ? `<p>${sub}</p>` : ""}</div>${actions ? `<div class="top-actions">${actions}</div>` : ""}</div>`;
+  // A store setting (the settings table, key → value), as the store reads it.
+  async function saveSetting(key, value) {
+    const { error } = await sb.from("settings").upsert({ key, value });
+    if (error) throw error;
+    S.settings[key] = value;
+  }
 
   /* ---------- drawer ---------- */
   let drawerKeys = null;
@@ -1078,6 +1087,7 @@
           <dt>Payment</dt><dd>${esc(L(D.payNames[o.payment]) || o.payment || "")}</dd>
           ${o.gift_note ? `<dt>Gift card note</dt><dd>${esc(o.gift_note)}</dd>` : ""}
           <dt>Placed</dt><dd>${esc(when(o.created_at))} · ${esc(LANG_NAME[o.lang] || "English")} store</dd>
+          <dt>Draw entries</dt><dd>${drawEntriesText(o)}</dd>
         </dl>
       </section>
       <section class="section"><h3>Items</h3>
@@ -1154,6 +1164,9 @@
         ["commission_paid", (o) => (o.commission_aed != null ? (o.commission_paid ? "yes" : "no") : "")],
         ["gift_note", (o) => o.gift_note],
         ["team_note", (o) => o.note],
+        ["draw_round", (o) => o.draw_round],
+        ["draw_aed", (o) => o.draw_aed],
+        ["draw_entries", (o) => o.draw_tickets],
       ])
     );
   }
@@ -1451,6 +1464,269 @@
   }
 
   /* =====================================================================
+   * Prize draw
+   * ===================================================================== */
+  // The rules as the database applies them (supabase/schema.sql: place_order, draw_round_now,
+  // draw_pick): an order gets one entry per full minAed of products after discounts; a round
+  // closes when its entered orders (not cancelled or returned) reach aedPerPrize, and only its
+  // confirmed, shipped and delivered orders take part in its draw.
+  const DV = { round: null, picked: null, confirm: null, all: false };
+  const IN_DRAW = ["confirmed", "shipped", "delivered"];
+  const drawCfg = () => {
+    const def = D.config.draw || {};
+    const own = S.settings.draw || {};
+    return Object.assign({}, def, own, { prize: Object.assign({}, def.prize, own.prize) });
+  };
+  // "iPhone #2": the prize's first word and the round
+  const roundName = (n) => `${(L(drawCfg().prize) || "iPhone").split(" ")[0]} #${n}`;
+  function drawEntriesText(o) {
+    if (o.draw_round == null) return `<span class="muted">None — under ${aed(drawCfg().minAed || 300)} of products, or the draw was off</span>`;
+    const why = IN_DRAW.includes(o.status) ? "" : o.status === "new" ? " · count once the order is confirmed" : " · out of the draw (cancelled or returned)";
+    return `<strong>${fmt(o.draw_tickets)}</strong> in ${esc(roundName(o.draw_round))} · ${aed(o.draw_aed)} of products counted${why}`;
+  }
+  // Every round so far and the one new orders go into now.
+  function drawRounds(cfg) {
+    const target = Math.max(1, Number(cfg.aedPerPrize) || 50000);
+    const won = new Map((S.winners || []).map((w) => [w.round, w]));
+    const entered = S.orders.filter((o) => o.draw_round != null);
+    const sum = (list, k) => list.reduce((s, o) => s + Number(o[k] || 0), 0);
+    const round = (n) => {
+      const orders = entered.filter((o) => o.draw_round === n).sort((a, b) => (a.created_at < b.created_at ? -1 : 1));
+      const live = orders.filter((o) => o.status !== "cancelled" && o.status !== "returned");
+      const inDraw = orders.filter((o) => IN_DRAW.includes(o.status));
+      return { n, orders, sales: sum(live, "draw_aed"), confirmedSales: sum(inDraw, "draw_aed"), tickets: sum(inDraw, "draw_tickets"), waiting: sum(orders.filter((o) => o.status === "new"), "draw_tickets"), winner: won.get(n) || null };
+    };
+    const last = Math.max(1, ...entered.map((o) => o.draw_round));
+    const list = Array.from({ length: last }, (_, i) => round(i + 1));
+    const top = list[last - 1];
+    // draw_round_now: the latest round, until it's full or drawn
+    const open = top.sales >= target || top.winner ? last + 1 : last;
+    if (open > last) list.push(round(open));
+    return { list, open, target };
+  }
+
+  async function viewDraw(v) {
+    if (!S.orders) await loadOrders();
+    const { data: winners, error } = await sb.from("draw_winners").select("*").order("round", { ascending: false });
+    if (error) throw error;
+    S.winners = winners || [];
+    const cfg = drawCfg();
+    const R = drawRounds(cfg);
+    if (!R.list.some((x) => x.n === DV.round)) DV.round = R.open;
+    const open = R.list.find((x) => x.n === R.open);
+    const prize = L(cfg.prize) || "iPhone";
+    const min = Math.max(1, Number(cfg.minAed) || 300);
+    const value = Number(cfg.prizeValueAed) || 0;
+    const pct = (x) => Math.min(100, Math.floor((100 * x.sales) / R.target));
+    const perRound = Math.floor(R.target / min);
+    const lastWin = S.winners[0];
+    v.innerHTML = `${head(
+      "Prize draw",
+      `${cfg.on ? `<span class="pill good">On</span>` : `<span class="pill off">Off — hidden on the store</span>`} An ${esc(prize)} for every ${aed(R.target)} of orders, one entry per full ${aed(min)} of products after discounts. Only confirmed, shipped and delivered orders take part in a round's draw.`,
+      `<a class="btn" href="${esc(STORE)}#draw" target="_blank" rel="noopener">${icon("ext")}See it on the store</a><button class="btn" type="button" data-reload>Refresh</button>`
+    )}
+      <div class="kpis">
+        <div class="kpi hero"><p class="label">Open round</p><p class="value">${esc(roundName(R.open))}</p><p class="hint">${pct(open)}% · ${aed(open.sales)} of ${aed(R.target)} in entered orders</p></div>
+        <div class="kpi"><p class="label">Entries in the open round</p><p class="value">${fmt(open.tickets)}</p><p class="hint">confirmed · ${fmt(open.waiting)} more not yet confirmed</p></div>
+        <div class="kpi"><p class="label">Prizes drawn</p><p class="value">${fmt(S.winners.length)}</p><p class="hint">${lastWin ? `last: ${esc(lastWin.winner.name)}, ${esc(day(lastWin.drawn_at))}` : "none yet"}</p></div>
+        <div class="kpi"><p class="label">Prize cost</p><p class="value">${value ? fmt((100 * value) / R.target, 1) + "%" : "—"}</p><p class="hint">of entered sales (${aed(value)} per ${aed(R.target)})</p></div>
+      </div>
+      <div class="dash-grid draw-admin">
+        <section class="card wide" id="draw-round"></section>
+        <section class="card">
+          <div class="card-head"><div><h2>Winners</h2><p class="sub">Shown on the store as first name, initial and city</p></div></div>
+          ${
+            S.winners.length
+              ? `<ul class="winners">${S.winners
+                  .map((w) => {
+                    const o = S.orders.find((x) => x.id === w.order_id);
+                    const phone = o && o.customer && o.customer.phone;
+                    return `<li>
+                  <span class="win-round">${esc(roundName(w.round))}</span>
+                  <span class="win-who"><strong>${esc(w.winner.name)}</strong><span class="sub">${esc([w.winner.city, countryName(w.winner.country)].filter(Boolean).join(", "))}</span></span>
+                  <span class="win-meta">Ticket #${fmt(w.ticket)} of ${fmt(w.tickets)} · ${esc(w.order_number)}<span class="sub">${esc(day(w.drawn_at))}${w.drawn_by ? ` · ${esc(w.drawn_by)}` : ""}</span></span>
+                  ${phone ? `<a class="btn btn-sm" href="https://wa.me/${digits(phone)}" target="_blank" rel="noopener" aria-label="WhatsApp ${esc(w.winner.name)}">${icon("chat")}</a>` : ""}
+                </li>`;
+                  })
+                  .join("")}</ul>`
+              : `<p class="empty">No winners yet — ${esc(roundName(1))} is drawn once round 1 reaches ${aed(R.target)}.</p>`
+          }
+        </section>
+        <section class="card">
+          <div class="card-head"><div><h2>What the prize costs</h2><p class="sub">From the settings below; the store never shows the prize's value</p></div></div>
+          <dl class="kv econ">
+            <dt>Prize</dt><dd>${esc(prize)} · ${value ? aed(value) : "value not set"}</dd>
+            <dt>Prize cost</dt><dd><strong>${value ? `${fmt((100 * value) / R.target, 1)}% of sales` : "—"}</strong> <span class="muted">(${aed(value)} ÷ ${aed(R.target)} of entered orders)</span></dd>
+            <dt>Entries per round</dt><dd><strong>≈ ${fmt(perRound)} at most</strong> <span class="muted">(${aed(R.target)} ÷ ${aed(min)}; what's left of a basket under ${aed(min)} earns none, so usually fewer)</span></dd>
+            <dt>Each entry</dt><dd>≈ ${value ? aed(Math.round(value / Math.max(1, perRound))) : "—"} of prize value · about a 1 in ${fmt(perRound)} chance</dd>
+            ${R.list
+              .filter((x) => x.winner)
+              .slice(-1)
+              .map((x) => `<dt>${esc(roundName(x.n))}</dt><dd>${fmt(x.winner.tickets)} entries from ${fmt(x.orders.filter((o) => IN_DRAW.includes(o.status)).length)} orders · ${aed(x.confirmedSales)} of confirmed orders</dd>`)
+              .join("")}
+          </dl>
+        </section>
+        <form class="card wide draw-settings" data-form="draw">
+          <div class="card-head"><div><h2>Draw settings</h2><p class="sub">Saved for the store straight away. Changing the amounts changes what new orders earn; entries already made stay as they are.</p></div></div>
+          <label class="switch"><input type="checkbox" name="on" ${cfg.on ? "checked" : ""}><span class="track"></span>Prize draw on the store (home page, Campaign page, announcement, bag, checkout, help)</label>
+          <div class="grid-3">
+            <label class="field"><span>Prize (English)</span><input name="prize_en" maxlength="60" value="${esc((cfg.prize || {}).en || "")}"></label>
+            <label class="field"><span>Prize (Arabic)</span><input name="prize_ar" dir="rtl" maxlength="60" value="${esc((cfg.prize || {}).ar || "")}"></label>
+            <label class="field"><span>Prize (Portuguese)</span><input name="prize_pt" lang="pt-BR" maxlength="60" value="${esc((cfg.prize || {}).pt || "")}"></label>
+          </div>
+          <div class="grid-4">
+            <label class="field"><span>AED of products per entry</span><input name="minAed" type="number" min="1" step="1" value="${esc(min)}"><small>Orders under this get no entry</small></label>
+            <label class="field"><span>AED of orders per ${esc(prize.split(" ")[0])}</span><input name="aedPerPrize" type="number" min="1" step="100" value="${esc(R.target)}"><small>A round closes at this</small></label>
+            <label class="field"><span>Prize value (AED)</span><input name="prizeValueAed" type="number" min="0" step="1" value="${esc(value || "")}"><small>For the cost sums here only</small></label>
+            <label class="field"><span>Entries close on</span><input name="endsAt" type="date" value="${esc(cfg.endsAt ? String(cfg.endsAt).slice(0, 10) : "")}"><small>End of that day, Gulf time; empty: no end</small></label>
+          </div>
+          <div class="grid-2">
+            <label class="field"><span>Promotion permit number</span><input name="permit" maxlength="60" placeholder="Shown with the rules once set" value="${esc(cfg.permit || "")}"></label>
+            <div class="field"><span>On the store</span><label class="switch"><input type="checkbox" name="showProgress" ${cfg.showProgress !== false ? "checked" : ""}><span class="track"></span>Show how far the open round is from its draw</label></div>
+          </div>
+          <p class="note">A prize draw needs a promotion permit in each country before it runs (in the UAE from the emirate's economy department, e.g. Dubai's DET; in Saudi Arabia from the Ministry of Commerce), and the draw itself may need an official present. Set the permit number above once you have it.</p>
+          <div><button class="btn btn-primary" type="submit">Save draw settings</button></div>
+        </form>
+      </div>`;
+
+    // The round on show: its progress, its draw and its orders.
+    const box = v.querySelector("#draw-round");
+    const drawBox = () => {
+      const x = R.list.find((r) => r.n === DV.round);
+      const status = x.winner ? ["Drawn", "good"] : x.confirmedSales >= R.target && x.tickets ? ["Ready to draw", "warn"] : x.n === R.open ? ["Open", "info"] : ["Full — confirm its orders to draw", "warn"];
+      const p = pct(x);
+      const ready = !x.winner && x.confirmedSales >= R.target && x.tickets > 0;
+      const shown = x.orders.slice().reverse();
+      const win = x.winner;
+      const winOrder = win && S.orders.find((o) => o.id === win.order_id);
+      const picked = DV.picked && DV.picked.round === x.n ? DV.picked : win ? Object.assign({ ticket: win.ticket, tickets: win.tickets, number: win.order_number }, win.winner, winOrder ? { fullName: winOrder.customer.name, phone: winOrder.customer.phone, email: winOrder.customer.email } : {}) : null;
+      box.innerHTML = `
+        <div class="card-head"><div><h2>${esc(roundName(x.n))} <span class="pill ${status[1]}">${status[0]}</span></h2><p class="sub">${x.n === R.open ? "New orders of " + aed(min) + " or more go into this round" : x.winner ? `Drawn ${esc(when(x.winner.drawn_at))}` : "Closed to new orders"}</p></div>
+          ${R.list.length > 1 ? `<div class="range" role="group" aria-label="Round">${R.list.map((r) => `<button type="button" data-round="${r.n}" aria-pressed="${r.n === x.n}">#${r.n}</button>`).join("")}</div>` : ""}
+        </div>
+        <div class="round-bar"><div class="round-meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}" aria-label="${esc(roundName(x.n))}"><i style="width:${Math.max(p, 1)}%"></i></div><b>${p}%</b></div>
+        <div class="round-stats">
+          <div><span>Entered sales</span><strong>${aed(x.sales)}</strong><small>of ${aed(R.target)} · cancelled and returned left out</small></div>
+          <div><span>Confirmed sales</span><strong>${aed(x.confirmedSales)}</strong><small>what the draw counts</small></div>
+          <div><span>Entries</span><strong>${fmt(x.tickets)}</strong><small>confirmed · ${fmt(x.waiting)} not yet confirmed</small></div>
+          <div><span>Orders</span><strong>${fmt(x.orders.length)}</strong><small>with an entry in this round</small></div>
+        </div>
+        ${picked ? winnerHTML(x.n, picked) : ""}
+        ${
+          x.winner
+            ? ""
+            : DV.confirm === x.n
+            ? `<div class="confirm-box" role="alert">
+            <p><strong>Draw ${esc(roundName(x.n))} now, at ${p}% of its target?</strong> Do this only when the campaign ends. The winner is picked from the ${fmt(x.tickets)} confirmed entries so far, the round closes, and new orders go into a new round. This can't be undone.</p>
+            <div class="row-btns"><button class="btn btn-danger" type="button" data-pick="${x.n}" data-force>Yes, draw ${esc(roundName(x.n))} now</button><button class="btn" type="button" data-cancel>Cancel</button></div>
+            <p class="msg err" id="pick-msg"></p>
+          </div>`
+            : `<div class="draw-go">
+            ${
+              ready
+                ? `<button class="btn btn-primary" type="button" data-pick="${x.n}">${icon("star")}Draw the winner of ${esc(roundName(x.n))}</button><span class="small muted">Picks one of the ${fmt(x.tickets)} confirmed entries with a cryptographic random number and saves it with the full list of entries.</span>`
+                : `<span class="small muted">${x.tickets ? `The winner can be drawn once the round's confirmed orders reach ${aed(R.target)}.` : "No confirmed entries in this round yet."}</span>${x.tickets ? `<button class="btn btn-sm btn-danger" type="button" data-ask="${x.n}">Draw now anyway…</button><span class="tag">End of campaign only</span>` : ""}`
+            }
+            <p class="msg err" id="pick-msg"></p>
+          </div>`
+        }
+        <div class="table-card flat"><div class="table-scroll"><table>
+          <thead><tr><th>Order</th><th>Customer</th><th class="num">Products (AED)</th><th class="num">Entries</th><th>Status</th></tr></thead>
+          <tbody>${
+            shown
+              .slice(0, DV.all ? shown.length : 40)
+              .map(
+                (o) => `<tr class="${IN_DRAW.includes(o.status) ? "" : "out"}${win && win.order_id === o.id ? " won" : ""}">
+              <td><span class="strong">${esc(o.number)}</span>${win && win.order_id === o.id ? ` <span class="tag">Winner</span>` : ""}<span class="sub">${esc(when(o.created_at))}</span></td>
+              <td><span class="strong">${esc(o.customer && o.customer.name)}</span><span class="sub">${esc([o.customer && o.customer.city, countryName(o.country)].filter(Boolean).join(", "))}</span></td>
+              <td class="num">${aed(o.draw_aed)}</td>
+              <td class="num strong">${fmt(o.draw_tickets)}</td>
+              <td><span class="pill ${STATUS[o.status][1]}">${STATUS[o.status][0]}</span></td>
+            </tr>`
+              )
+              .join("") || `<tr><td colspan="5" class="empty">No orders in this round yet — orders of ${aed(min)} or more join it as they come in.</td></tr>`
+          }</tbody>
+        </table></div>${shown.length > 40 && !DV.all ? `<div class="more"><button class="btn" type="button" data-all>Show all ${fmt(shown.length)}</button></div>` : ""}</div>`;
+    };
+    // The winner: what the store shows, and how to reach them.
+    function winnerHTML(n, w) {
+      const wa = digits(w.phone);
+      const first = String(w.fullName || w.name || "").split(" ")[0];
+      const text = `Hello ${first}! This is wepink Gulf 💗 Congratulations: your order ${w.number} won the ${prize} in our prize draw (${roundName(n)}). We'll arrange the delivery with you.`;
+      return `<div class="draw-result">
+        <div class="win-badge" aria-hidden="true">${icon("star")}</div>
+        <div class="win-body">
+          <p class="label">Winner of ${esc(roundName(n))}</p>
+          <p class="win-name">${esc(w.name)} <span>${esc([w.city, countryName(w.country)].filter(Boolean).join(", "))}</span></p>
+          <p class="sub">Ticket #${fmt(w.ticket)} of ${fmt(w.tickets)} · order ${esc(w.number)}</p>
+          <dl class="kv">
+            <dt>Full name</dt><dd>${esc(w.fullName || "—")}</dd>
+            <dt>Phone</dt><dd dir="ltr">${esc(w.phone || "—")}</dd>
+            <dt>Email</dt><dd>${w.email ? `<a href="mailto:${esc(w.email)}">${esc(w.email)}</a>` : "—"}</dd>
+          </dl>
+          ${wa ? `<div class="row-btns"><a class="btn btn-primary btn-sm" href="https://wa.me/${wa}?text=${encodeURIComponent(text)}" target="_blank" rel="noopener">${icon("chat")}WhatsApp ${esc(first)}</a><a class="btn btn-sm" href="tel:+${wa}">Call</a></div>` : ""}
+        </div>
+      </div>`;
+    }
+    drawBox();
+
+    v.addEventListener("click", async (e) => {
+      if (e.target.closest("[data-reload]")) return (S.orders = null), (DV.picked = DV.confirm = null), go("draw");
+      const r = e.target.closest("[data-round]");
+      if (r) return (DV.round = +r.dataset.round), (DV.confirm = null), (DV.all = false), drawBox();
+      if (e.target.closest("[data-all]")) return (DV.all = true), drawBox();
+      if (e.target.closest("[data-cancel]")) return (DV.confirm = null), drawBox();
+      const ask = e.target.closest("[data-ask]");
+      if (ask) return (DV.confirm = +ask.dataset.ask), drawBox();
+      const pick = e.target.closest("[data-pick]");
+      if (!pick) return;
+      pick.disabled = true;
+      const { data, error } = await sb.rpc("draw_pick", { p_round: +pick.dataset.pick, p_force: pick.hasAttribute("data-force") });
+      if (error) {
+        pick.disabled = false;
+        const m = v.querySelector("#pick-msg");
+        if (m) m.textContent = error.message;
+        return fail(error);
+      }
+      DV.picked = data;
+      DV.confirm = null;
+      DV.round = data.round;
+      toast(`${roundName(data.round)} goes to ${data.name}`);
+      go("draw");
+    });
+    v.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const btn = f.querySelector("[type=submit]");
+      const num = (k) => Number(f[k].value);
+      try {
+        const minAed = Math.round(num("minAed"));
+        const aedPerPrize = Math.round(num("aedPerPrize"));
+        if (!(minAed >= 1)) throw new Error("The AED per entry needs to be 1 or more");
+        if (!(aedPerPrize >= minAed)) throw new Error("The AED per prize needs to be at least the AED per entry");
+        const en = f.prize_en.value.trim() || "iPhone";
+        btn.disabled = true;
+        await saveSetting("draw", {
+          on: f.on.checked,
+          minAed,
+          aedPerPrize,
+          prize: { en, ar: f.prize_ar.value.trim() || en, pt: f.prize_pt.value.trim() || en },
+          showProgress: f.showProgress.checked,
+          endsAt: f.endsAt.value ? `${f.endsAt.value}T23:59:59+04:00` : null,
+          permit: f.permit.value.trim(),
+          prizeValueAed: Math.max(0, num("prizeValueAed") || 0),
+        });
+        toast(f.on.checked ? "Draw settings saved — the store shows them now" : "Prize draw off — hidden on the store");
+        go("draw");
+      } catch (err) {
+        fail(err);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+
+  /* =====================================================================
    * Settings
    * ===================================================================== */
   async function viewSettings(v) {
@@ -1528,11 +1804,6 @@
     };
     eg();
     v.querySelector('[name="markupPct"]').addEventListener("input", eg);
-    const saveSetting = async (key, value) => {
-      const { error } = await sb.from("settings").upsert({ key, value });
-      if (error) throw error;
-      S.settings[key] = value;
-    };
     v.addEventListener("submit", async (e) => {
       e.preventDefault();
       const f = e.target;
@@ -1601,13 +1872,13 @@
     });
   }
 
-  const VIEWS = { dashboard: viewDashboard, products: viewProducts, orders: viewOrders, ambassadors: viewAmbassadors, customers: viewCustomers, settings: viewSettings };
+  const VIEWS = { dashboard: viewDashboard, products: viewProducts, orders: viewOrders, ambassadors: viewAmbassadors, customers: viewCustomers, draw: viewDraw, settings: viewSettings };
 
   /* ---------- start ---------- */
   sb.auth.onAuthStateChange((event) => {
     if (event === "SIGNED_OUT") {
       S.user = null;
-      S.products = S.orders = S.ambassadors = S.customers = null;
+      S.products = S.orders = S.ambassadors = S.customers = S.winners = null;
       closeDrawer();
       renderLogin();
     }
