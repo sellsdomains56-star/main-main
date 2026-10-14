@@ -5,6 +5,12 @@
 //
 //   node wepink-gcc/scripts/build-single.mjs [out.html]
 //   → dist/wepink-gulf.html and dist/wepink-admin.html
+//
+// Product photos (assets/products/r/, hero/) stay outside the file. To send the
+// file to someone, set WP_ASSET_BASE to a public copy of the site's folder and
+// both files load them from there, e.g. this repository through jsDelivr at a
+// pushed commit:
+//   WP_ASSET_BASE=https://cdn.jsdelivr.net/gh/<owner>/<repo>@<commit>/wepink-gcc/ node …
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -47,6 +53,7 @@ const catalogJs = (() => {
 })();
 
 const css = read("assets/css/styles.css");
+const assetBase = process.env.WP_ASSET_BASE ? ` window.WP_ASSET_BASE = ${JSON.stringify(process.env.WP_ASSET_BASE)};` : "";
 // Full product details (product pages) ride along inline, in their own marked tag.
 const details = existsSync(join(root, "assets/js/details.js")) ? `<script id="wp-details">\n${read("assets/js/details.js").replace(/<\/script/gi, "<\\/script")}\n</script>` : "";
 const js = [catalogJs, ...["data.js", "sync.js", "i18n.js", "art.js", "silk.js", "app.js", "brain.js", "assistant.js", "pages.js"].map((f) => read(`assets/js/${f}`))].map((text) => script(inlinePhotos(inlineFilm(text))));
@@ -65,7 +72,7 @@ ${meta}
 ${css}
   </style>
   <script>
-    window.WP_SINGLE = true;
+    window.WP_SINGLE = true;${assetBase}
     (function () {
       try {
         var q = new URLSearchParams((location.hash.split("?")[1] || "")).get("lang");
@@ -127,7 +134,7 @@ ${read("assets/css/admin.css")}
   <div id="app"><p class="boot">Loading…</p></div>
   <noscript><p class="boot">The admin panel needs JavaScript.</p></noscript>
   <script src="${supabaseJs}"></script>
-  <script>window.WP_STORE_URL = ${JSON.stringify(basename(out))};</script>
+  <script>window.WP_STORE_URL = ${JSON.stringify(basename(out))};${assetBase}</script>
 ${[adminCatalog, read("assets/js/data.js"), read("assets/js/admin-demo.js"), read("assets/js/admin.js")].map((text) => script(inlinePhotos(text))).join("\n")}
 </body>
 </html>

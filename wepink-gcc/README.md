@@ -22,6 +22,8 @@ node wepink-gcc/scripts/build-single.mjs   # → wepink-gcc/dist/wepink-gulf.htm
 
 Builds the whole store as a single HTML file (styles, scripts and logos inlined) that opens with a double-click, no server needed, and can be sent to the client as an attachment. Pages switch with the address hash (`#/shop?c=perfume`). Fonts load from Google Fonts when online. It also writes `dist/wepink-admin.html`, the admin panel as one file; keep the two files in the same folder so "Open the store" works. Both need an internet connection to reach the database.
 
+Product photos stay files beside the page (`assets/products/r/`, `assets/products/hero/`). To send the files to someone, build them with `WP_ASSET_BASE` set to a public copy of the `wepink-gcc/` folder and they load the photos from there, e.g. this repository through jsDelivr at a pushed commit: `WP_ASSET_BASE=https://cdn.jsdelivr.net/gh/<owner>/<repo>@<commit>/wepink-gcc/ node wepink-gcc/scripts/build-single.mjs /tmp/send/wepink-gulf.html`. The admin opens on its sign-in; add `#demo` to its address for the demo (sample data, nothing saved).
+
 The campaign photos stay files beside the page (`assets/products/hero/`). The second photo of each product (shown when the pointer is over a card, and in the product gallery) can also come in packs for hosts that limit the number of files: `node wepink-gcc/scripts/build-photo-packs.mjs` writes `dist/assets/products/hero2/` (19 packs and an index); the preview loads a pack the first time it needs one and uses the plain file when there's no pack.
 
 ## Pages
