@@ -5600,7 +5600,7 @@ html[lang="ar"] .pdp-tagline {
   position: absolute;
   z-index: 2;
   inset-inline: 0;
-  bottom: clamp(28px, 6vh, 64px);
+  bottom: max(24px, env(safe-area-inset-bottom, 0px));
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -5652,9 +5652,12 @@ html[lang="ar"] .pdp-tagline {
   -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent);
   mask-image: linear-gradient(180deg, #000 82%, transparent);
 }
-/* at the bottom of the film, just above where it fades into the page */
-.shop-film .film-bar {
-  bottom: max(20%, 96px);
+/* the bar sits at the foot of the film: keep its buttons clear of the WhatsApp and Lina
+   buttons fixed in the corner (20px in, 56px wide) wherever the page is narrow enough to meet them */
+@media (max-width: 1464px) {
+  .film-bar .film-actions {
+    margin-inline-end: max(0px, calc(92px - var(--gutter)));
+  }
 }
 @media (max-width: 720px) {
   .film-actions,
