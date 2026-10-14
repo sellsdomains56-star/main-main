@@ -64,7 +64,7 @@ window.WP_DATA = (function () {
       campaign: "assets/photos/campaign/vf-golden-lips.webp", // the "Liquid gold" perfume spotlight on the home page (Nano Banana Pro 4K, VF Golden)
       club: "assets/photos/campaign/the-oil-socks.webp", // the Club pop-up: "the oil." in pink socks (from the wepink team)
       earn: "assets/photos/campaign/the-oil-blonde.webp", // Earn with wepink hero: Samara with "the oil." (from the client)
-      about: "assets/photos/campaign/golden-hour.webp", // About page
+      about: "assets/photos/campaign/pink-bags.webp", // About page
       earnBand: "assets/photos/campaign/pink-bags.webp", // the ambassador band on the home page
       gift: "assets/photos/campaign/gift-box.webp", // the gifting promo on the home page
     },
@@ -264,10 +264,10 @@ window.WP_DATA = (function () {
       { photo: "assets/photos/campaign/peach.webp", product: "splash-perfect-pear-peach-200-ml", cat: "body-splash", title: { en: "Squeeze the day", ar: "اعتصري يومكِ", pt: "Aproveite cada gota" } },
       { photo: "assets/photos/campaign/fruit-creams.webp", product: "cream-vf-golden-200-ml", also: ["cream-ruby-rhodolite-200-ml", "cream-obsessed-200-ml"], cat: "body-care", title: { en: "Freshly stacked", ar: "طبقات من الانتعاش", pt: "Empilhados e fresquinhos" } },
       { photo: "assets/photos/campaign/torn-lip.webp", product: "makeup-lip-oil-jujuba-3-5-g", cat: "makeup", title: { en: "Tear into colour", ar: "انطلقي نحو اللون", pt: "Mergulhe na cor" } },
-      { photo: "assets/photos/campaign/serum-glow.webp", product: "skincare-serum-10-em-1-40-ml", cat: "skincare", pos: "50% 30%", title: { en: "Glow, drop by drop", ar: "إشراقة قطرة بقطرة", pt: "Brilho gota a gota" } },
+      { photo: "assets/photos/campaign/chess.webp", product: "colonia-ruby-100-ml", also: ["colonia-king-blue-deep-100-ml"], cat: "perfume", pos: "60% 50%", title: { en: "Your move", ar: "دورك الآن", pt: "Sua vez de jogar" } },
       { photo: "assets/photos/campaign/king-blue-skyline.webp", product: "colonia-king-blue-supreme-100-ml", also: ["splash-king-blue-supreme-200-ml"], cat: "men", pos: "50% 60%", title: { en: "Own the night", ar: "الليل لك", pt: "Dono da noite" } },
-      { photo: "assets/photos/campaign/golden-hour.webp", product: "colonia-liberte-nuit-100-ml", cat: "perfume", title: { en: "After golden hour", ar: "بعد الساعة الذهبية", pt: "Depois da hora dourada" } },
-      { photo: "assets/photos/campaign/red-stripe.webp", product: "colonia-red-obsidian-100-ml", cat: "perfume", title: { en: "Seen in red", ar: "حضورٌ بالأحمر", pt: "Vista de vermelho" } },
+      { photo: "assets/photos/campaign/hair-silk.webp", product: "haircare-booster-repair-oleo-capilar-30-ml", cat: "hair", title: { en: "Liquid silk", ar: "حرير سائل", pt: "Seda líquida" } },
+      { photo: "assets/photos/campaign/gift-box.webp", product: "set-kit-linha-vf-golden", cat: "gift-sets", title: { en: "Gold, gift-wrapped", ar: "ذهب في علبة هدية", pt: "Ouro para presentear" } },
       { photo: "assets/photos/campaign/pink-heaven-water.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", title: { en: "Making waves", ar: "تموّجات وردية", pt: "Ondas cor-de-rosa" } },
       { photo: "assets/photos/campaign/pink-obsessed-smoke.webp", product: "colonia-obsessed-lovely-100-ml", cat: "perfume", title: { en: "Lost in a pink cloud", ar: "في سحابة وردية", pt: "Nas nuvens cor-de-rosa" } },
       { photo: "assets/photos/campaign/pink-scarlette-heart.webp", product: "colonia-scarlette-50-ml", cat: "perfume", title: { en: "Love, bottled", ar: "الحب في زجاجة", pt: "Amor engarrafado" } },
@@ -288,7 +288,7 @@ window.WP_DATA = (function () {
       "body-care": { src: "assets/photos/campaign/liberte-cream-giant.webp", pos: "48% 50%" }, // from the client
       hair: { src: "assets/photos/campaign/hair-silk.webp", pos: "50% 50%" },
       makeup: { src: "assets/photos/campaign/torn-lip.webp", pos: "50% 45%" },
-      skincare: { src: "assets/photos/campaign/serum-glow.webp", pos: "50% 30%" }, // Nano Banana Pro 4K: Sérum 10 em 1
+      skincare: { src: "assets/products/r/skincare-serum-10-em-1-40-ml-1.webp", pos: "50% 50%" }, // the Sérum 10 em 1 re-shot product photo
       "gift-sets": { src: "assets/photos/campaign/gift-box.webp", pos: "50% 50%" },
     },
     categories: {
