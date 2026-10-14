@@ -1466,7 +1466,7 @@ window.WP = (function () {
         const id = el.getAttribute("data-add");
         const qtyEl = el.closest("form, .pdp-buy");
         const qty = qtyEl && qtyEl.querySelector("[data-qty-value]") ? parseInt(qtyEl.querySelector("[data-qty-value]").textContent, 10) || 1 : 1;
-        bag.add(id, qty);
+        id.split(",").forEach((x) => bag.add(x, qty)); // "a,b": Buy together adds both
         open("bag");
       } else if (el.hasAttribute("data-buy")) {
         // "Buy": into the bag and straight to checkout

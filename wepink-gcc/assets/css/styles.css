@@ -7626,6 +7626,207 @@ html[lang="ar"] .fav-name {
   }
 }
 
+/* ---------- product page: wepink Brasil's full details and "Buy together" ---------- */
+.pdp-feats {
+  margin: -6px 0 24px;
+  padding: 16px 18px;
+  border-radius: var(--r);
+  background: var(--petal);
+}
+.pdp-feats-title {
+  margin: 0 0 10px;
+  font-weight: 800;
+  font-size: 15px;
+}
+.pdp-feats ul {
+  display: grid;
+  gap: 8px;
+}
+.pdp-feats li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.pdp-feats .icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--pink);
+  color: #fff;
+  stroke-width: 3;
+}
+.actives {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 22px;
+}
+.active-row dt {
+  font-weight: 700;
+  color: var(--fg);
+}
+.active-row dt::first-letter {
+  text-transform: uppercase;
+}
+.active-row dd {
+  margin: 2px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.pdp-how {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 22px;
+  color: var(--muted);
+}
+.pdp-pre {
+  margin: 0;
+  white-space: pre-line;
+  line-height: 1.6;
+}
+.pdp-caution {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border-inline-start: 3px solid var(--pink);
+  border-radius: 10px;
+  background: var(--petal);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.pdp-caution p {
+  margin: 0;
+}
+.pdp-caution strong {
+  color: var(--fg);
+}
+.accordion .pdp-ingredients {
+  padding-bottom: 8px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.accordion .pdp-ingredients + .small {
+  padding-bottom: 22px;
+}
+.pair {
+  margin: 20px 0 4px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--r) * 1.2);
+  background: linear-gradient(180deg, var(--petal), transparent 70%);
+}
+.pair-head {
+  margin-bottom: 12px;
+}
+.pair-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 2px;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 800;
+}
+.pair-title .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--pink);
+}
+.pair-head p {
+  margin: 0;
+}
+.pair-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+.pair-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 8px;
+  border-radius: 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--fg);
+}
+a.pair-item:hover {
+  border-color: var(--pink);
+}
+.pair-item .media {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.pair-item span {
+  display: grid;
+  min-width: 0;
+}
+.pair-item strong {
+  font-size: 13.5px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.pair-item small {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.pair-plus {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--pink);
+  color: #fff;
+}
+.pair-plus .icon {
+  width: 14px;
+  height: 14px;
+}
+.pair-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+.pair-foot p {
+  display: grid;
+  margin: 0;
+  line-height: 1.2;
+}
+.pair-foot strong {
+  font-size: 20px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 480px) {
+  .pair-row {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
+  }
+  .pair-plus {
+    justify-self: center;
+  }
+  .pair-foot .btn {
+    flex: 1 1 auto;
+  }
+}
+
 /* "Most loved" card: the product as it appears in the hero photo */
 .glass-photo {
   overflow: hidden;

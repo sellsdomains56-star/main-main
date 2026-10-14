@@ -224,6 +224,9 @@ window.WP_SYNC = (function () {
     Object.fromEntries(
       Object.entries(notes || {}).map(([k, list]) => [k, (Array.isArray(list) ? list : []).map((n) => (n[2] || !PT_NOTES.has(n[0]) ? n : [n[0], n[1] || n[0], PT_NOTES.get(n[0])]))])
     );
+  // wepink Brasil's official notes and fuller descriptions came after the database was filled:
+  // while a row still holds the earlier text (b.was), the bundled version shows instead.
+  const notesSig = (n) => ["top", "heart", "base"].map((k) => ((n && n[k]) || []).map((x) => x[0]).join(",")).join("|");
   // A row with no images of its own keeps the photos that ship with the site.
   // Campaign scenes ("scene") are full-frame shots; the original cut-out and
   // packshots stay available for staged spots and the product gallery.
@@ -248,8 +251,13 @@ window.WP_SYNC = (function () {
       color: r.color || (b && b.color) || "#F06FA8",
       color2: r.color2 || (b && b.color2) || "#FCE4EF",
       tagline: r.tagline && (r.tagline.en || r.tagline.ar || r.tagline.pt) ? withPt(r.tagline, b && b.tagline) : undefined,
-      desc: r.description && (r.description.en || r.description.ar || r.description.pt) ? withPt(r.description, b && b.desc) : undefined,
-      notes: notesPt(r.notes),
+      desc:
+        b && b.was && b.was.desc && r.description && (r.description.en || "").slice(0, 60) === b.was.desc
+          ? b.desc
+          : r.description && (r.description.en || r.description.ar || r.description.pt)
+          ? withPt(r.description, b && b.desc)
+          : undefined,
+      notes: b && b.was && b.was.notes != null && notesSig(r.notes) === b.was.notes ? b.notes : notesPt(r.notes),
       image: images[0],
       images,
       cutout: r.cutout || (own && !scene ? "" : (b && b.cutout) || ""),

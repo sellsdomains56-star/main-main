@@ -599,10 +599,17 @@
     // the English is still the original (saving the product stores it).
     const orig = CATALOG.get(d.id) || {};
     const ptFrom = (v, o) => (v && !v.pt && o && o.pt && o.en === v.en ? Object.assign({}, v, { pt: o.pt }) : v);
+    // wepink Brasil's official notes and fuller description replace the earlier ones while
+    // the row still holds those (orig.was), as on the storefront.
+    const was = orig.was || {};
+    const notesSig = (n) => ["top", "heart", "base"].map((k) => ((n && n[k]) || []).map((x) => x[0]).join(",")).join("|");
     const tl = ptFrom(d.tagline || {}, orig.tagline);
-    const ds = ptFrom(d.description || {}, orig.desc);
+    const ds = was.desc && d.description && (d.description.en || "").slice(0, 60) === was.desc ? orig.desc : ptFrom(d.description || {}, orig.desc);
     const ptNote = new Map(Object.values(orig.notes || {}).flat().filter((n) => n[2]).map((n) => [n[0], n[2]]));
-    const nt = Object.fromEntries(Object.entries(d.notes || {}).map(([k, list]) => [k, (list || []).map((n) => (n[2] || !ptNote.has(n[0]) ? n : [n[0], n[1] || n[0], ptNote.get(n[0])]))]));
+    const nt =
+      was.notes != null && notesSig(d.notes) === was.notes
+        ? orig.notes
+        : Object.fromEntries(Object.entries(d.notes || {}).map(([k, list]) => [k, (list || []).map((n) => (n[2] || !ptNote.has(n[0]) ? n : [n[0], n[1] || n[0], ptNote.get(n[0])]))]));
     const sel = (name, opts, val) => `<select name="${name}">${opts.map(([k, l]) => `<option value="${esc(k)}"${String(val || "") === k ? " selected" : ""}>${esc(l)}</option>`).join("")}</select>`;
     const body = `<form id="pform" class="drawer-form" novalidate style="display:grid;gap:16px">
       <section class="section"><h3>Photos</h3><div id="photos"></div></section>

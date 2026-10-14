@@ -940,6 +940,63 @@ window.WP_PAGES = (function () {
   }
 
   /* ---------------- product ---------------- */
+  // Full product details from wepink Brasil's product pages (highlights, scent family, key
+  // ingredients, the ingredient list, how to use and precautions): assets/js/details.js, loaded
+  // the first time a product page needs it (the one-file build carries it inline). Strings are
+  // shared in one table (tx) and products point at them by index.
+  let detailsLoad = null;
+  function details() {
+    if (window.WP_DETAILS) return Promise.resolve(window.WP_DETAILS);
+    return (detailsLoad =
+      detailsLoad ||
+      new Promise((done) => {
+        const s = document.createElement("script");
+        s.src = "assets/js/details.js";
+        s.onload = () => done(window.WP_DETAILS || null);
+        s.onerror = () => done(null);
+        document.head.appendChild(s);
+      }));
+  }
+
+  // "Buy together": the product from the same line that completes it (a body splash with its
+  // body cream, a perfume with its splash…); otherwise the category's best seller.
+  const PAIR = {
+    splash: ["cream", "colonia", "lotion", "bodyoil", "hairmist", "rollon", "butter"],
+    colonia: ["splash", "cream", "lotion", "rollon"],
+    cream: ["splash", "colonia", "hairmist"],
+    lotion: ["splash", "colonia"],
+    butter: ["splash", "colonia"],
+    bodyoil: ["splash", "cream", "colonia"],
+    hairmist: ["splash", "colonia", "cream"],
+    rollon: ["splash", "colonia"],
+    scrub: ["cream", "splash"],
+    shower: ["cream", "splash"],
+    soap: ["cream", "splash"],
+  };
+  function pairFor(p) {
+    if (p.cat === "gift-sets") return null;
+    const same = D.products.filter((x) => x !== p && x.line === p.line && x.type !== p.type && x.cat !== "gift-sets");
+    for (const ty of PAIR[p.type] || []) {
+      const hit = same.find((x) => x.type === ty);
+      if (hit) return hit;
+    }
+    return same[0] || featured().find((x) => x !== p && x.cat === p.cat && x.line !== p.line) || null;
+  }
+  function pairHTML(p) {
+    const q = pairFor(p);
+    if (!q) return "";
+    const item = (x, link) =>
+      `<${link ? `a href="product.html?id=${encodeURIComponent(x.id)}"` : "div"} class="pair-item">${media(x, "media-sm")}<span><strong>${esc(fullName(x))}</strong><small>${esc(money(priceOf(x)))}</small></span></${link ? "a" : "div"}>`;
+    return `<section class="pair" aria-labelledby="pair-title">
+            <div class="pair-head"><h2 id="pair-title" class="pair-title">${icon("sparkle")}${esc(t("pair.title"))}</h2><p class="muted small">${esc(t("pair.lead"))}</p></div>
+            <div class="pair-row">${item(p)}<span class="pair-plus" aria-hidden="true">${icon("plus")}</span>${item(q, true)}</div>
+            <div class="pair-foot">
+              <p><span class="muted">${esc(t("pair.total"))}</span><strong>${esc(money(priceOf(p) + priceOf(q)))}</strong></p>
+              <button class="btn btn-primary" type="button" data-add="${esc(p.id)},${esc(q.id)}">${icon("bag")}${esc(t("pair.add"))}</button>
+            </div>
+          </section>`;
+  }
+
   function product(main) {
     const p = byId(W.route().params.get("id"));
     if (!p && W.sync.pending()) {
@@ -979,6 +1036,32 @@ window.WP_PAGES = (function () {
     const noteRow = (k) => (p.notes[k] && p.notes[k].length ? `<div class="note-row"><dt>${esc(t("pdp." + k))}</dt><dd>${p.notes[k].map((n) => `<span class="note">${esc(L(n))}</span>`).join("")}</dd></div>` : "");
     const notesHTML = noteRow("top") + noteRow("heart") + noteRow("base");
     const eachText = W.num(each, c.decimals || 2);
+    // The accordion: scent notes, key ingredients, how to use (with precautions), the full
+    // ingredient list and the import details. `d` is this product's entry in WP_DETAILS.
+    function accordion(DT) {
+      const d = DT && DT.p[p.id];
+      const tx = (i) => (i == null || !DT.tx[i] ? "" : L(DT.tx[i]));
+      const fam = d && d.f != null ? `<div class="note-row"><dt>${esc(t("pdp.family"))}</dt><dd>${esc(tx(d.f))}</dd></div>` : "";
+      const actives = d && d.a && d.a.length ? d.a.map(([n, x]) => `<div class="active-row"><dt>${esc(tx(n))}</dt><dd>${esc(tx(x))}</dd></div>`).join("") : "";
+      const howText = d && d.u != null ? tx(d.u) : how ? t("pdp." + how) : "";
+      const caution = d && (d.c != null || d.w != null) ? `<div class="pdp-caution">${d.c != null ? `<p><strong>${esc(t("pdp.caution"))}</strong> ${esc(tx(d.c))}</p>` : ""}${d.w != null ? `<p><strong>${esc(t("pdp.warning"))}</strong> ${esc(tx(d.w))}</p>` : ""}</div>` : "";
+      const ingredients = d && d.i != null ? tx(d.i) : "";
+      const open = notesHTML || fam ? "notes" : actives ? "actives" : "how";
+      const sec = (key, title, body) => `<details${open === key ? " open" : ""}><summary>${esc(title)}${icon("chevron")}</summary>${body}</details>`;
+      return [
+        notesHTML || fam ? sec("notes", t("pdp.notes"), `<dl class="notes">${fam}${notesHTML}</dl>`) : "",
+        actives ? sec("actives", t("pdp.actives"), `<dl class="actives">${actives}</dl>`) : "",
+        howText || caution ? sec("how", t("pdp.how"), `<div class="pdp-how">${howText ? `<p class="pdp-pre">${esc(howText)}</p>` : ""}${caution}</div>`) : "",
+        ingredients ? sec("ingredients", t("pdp.ingredients"), `<p class="pdp-ingredients" dir="auto">${esc(ingredients)}</p>${W.state.lang === "pt" ? "" : `<p class="muted small">${esc(t("pdp.inci"))}</p>`}`) : "",
+        sec("details", t("pdp.details"), `<p>${esc(t("pdp.detailsBody"))}</p>`),
+      ].join("");
+    }
+    // "Why you'll love it": wepink Brasil's highlights for this product
+    function feats(DT) {
+      const d = DT && DT.p[p.id];
+      if (!d || !d.h || !d.h.length) return "";
+      return `<div class="pdp-feats"><p class="pdp-feats-title">${esc(t("pdp.feats"))}</p><ul>${d.h.map((i) => `<li>${icon("check")}<span>${esc(L(DT.tx[i]))}</span></li>`).join("")}</ul></div>`;
+    }
 
     main.innerHTML = `
       <div class="container">
@@ -1010,6 +1093,7 @@ window.WP_PAGES = (function () {
           <p class="muted small">${esc(c.vat ? t("pdp.vat") : t("pdp.vatNone", { country: L(c.short) }))}</p>
           ${bnplOk ? `<p class="bnpl">${icon("split")}<span>${esc(t("pdp.bnpl", { amount: W.withSymbol(eachText, c) }))}</span></p>` : ""}
           <p class="pdp-desc">${esc(L(p.desc))}</p>
+          <div class="pdp-feats-slot"></div>
 
           <div class="pdp-buy">
             <div class="stepper stepper-lg" role="group" aria-label="${esc(t("pdp.qty"))}">
@@ -1020,6 +1104,7 @@ window.WP_PAGES = (function () {
             <button class="btn btn-primary btn-lg btn-grow" type="button" data-add="${esc(p.id)}">${icon("bag")}${esc(t("pdp.add"))} · ${esc(money(priceOf(p)))}</button>
           </div>
           ${W.ritual.pct() && W.ritual.step(p) ? `<button class="pdp-ritual" type="button" data-open="ritual" data-line="${esc(p.line)}">${icon("sparkle")}<span><strong>${esc(t("rit.pdpTitle", { pct: W.ritual.pct() }))}</strong>${esc(t("rit.pdpText"))}</span>${icon("arrow", "flip")}</button>` : ""}
+          ${pairHTML(p)}
 
           <ul class="pdp-service">
             <li>${icon("truck")}<span><strong>${esc(t("pdp.delivery", { country: L(c.short) }))}</strong>${esc(L(c.delivery))} · ${esc(t("pdp.freeOver", { amount: money(W.country().freeOver) }))}</span></li>
@@ -1028,20 +1113,7 @@ window.WP_PAGES = (function () {
           </ul>
           <button class="share-earn" type="button" data-share>${icon("sparkle")}<span>${esc(t("pdp.share"))}</span>${icon("arrow", "flip")}</button>
 
-          <div class="accordion">
-            ${notesHTML ? `<details open>
-              <summary>${esc(t("pdp.notes"))}${icon("chevron")}</summary>
-              <dl class="notes">${notesHTML}</dl>
-            </details>` : ""}
-            ${how ? `<details${notesHTML ? "" : " open"}>
-              <summary>${esc(t("pdp.how"))}${icon("chevron")}</summary>
-              <p>${esc(t("pdp." + how))}</p>
-            </details>` : ""}
-            <details>
-              <summary>${esc(t("pdp.details"))}${icon("chevron")}</summary>
-              <p>${esc(t("pdp.detailsBody"))}</p>
-            </details>
-          </div>
+          <div class="accordion" id="pdp-acc">${accordion(null)}</div>
         </div>
       </section>
 
@@ -1052,6 +1124,11 @@ window.WP_PAGES = (function () {
         </div>
       </section>`;
 
+    details().then((DT) => {
+      if (!DT || !DT.p[p.id] || !main.isConnected) return;
+      main.querySelector(".pdp-feats-slot").innerHTML = feats(DT);
+      main.querySelector("#pdp-acc").innerHTML = accordion(DT);
+    });
     W.pics.hydrate(main.querySelector(".pdp-thumbs") || main);
     main.querySelectorAll("[data-shot]").forEach((b) =>
       b.addEventListener("click", () => {

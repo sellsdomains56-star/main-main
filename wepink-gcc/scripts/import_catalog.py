@@ -11,6 +11,9 @@ the Gulf store's catalogue in three steps:
   python3 scripts/import_catalog.py update RAW_DIR  # later runs: add products new on
                                                     # wepink.com.br, keep the rest, refresh
                                                     # badges and the best-seller ranking
+  python3 scripts/import_catalog.py details         # each product page's full details
+                                                    # (highlights, notes, ingredients, how to
+                                                    # use) -> data/details-source.json
   python3 scripts/import_catalog.py js              # merge data/translations.json
                                                     # into assets/js/catalog.js
 
@@ -20,6 +23,7 @@ import keeps the translations. GCC prices are placeholders
 by product type; set the real ones with the franchise.
 """
 import concurrent.futures
+import gzip
 import html
 import io
 import json
@@ -75,6 +79,8 @@ def get(url, binary=False):
     req = urllib.request.Request(url, headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=60) as r:
         data = r.read()
+    if data[:2] == b"\x1f\x8b":  # product pages come gzipped even unasked
+        data = gzip.decompress(data)
     return data if binary else data.decode("utf-8")
 
 
@@ -395,9 +401,191 @@ def update(raw_dir):
         print("  new:", prod["id"], "|", prod["name_pt"])
 
 
+# ---- product page details -------------------------------------------------------------
+# The VTEX API only carries the description; wepink.com.br's product pages add a
+# "Características" box, top/heart/base notes, the full ingredient list and how to use
+# (with precautions). They are site-editor blocks embedded in each page as JSON.
+DETAILS = os.path.join(ROOT, "data", "details-source.json")
+BLOCK = re.compile(r'\{"contentJSON":"((?:[^"\\]|\\.)*)","contentIds":\[[^\]]*\],"treePath":"((?:[^"\\]|\\.)*)"\}')
+
+
+def page_details(link):
+    text = get(link)
+    d = {}
+    for m in BLOCK.finditer(text):
+        try:
+            c = json.loads(json.loads('"' + m.group(1) + '"'))
+            tp = json.loads('"' + m.group(2) + '"')
+        except ValueError:
+            continue
+        leaf = tp.rsplit("/", 1)[-1]
+        if leaf == "rich-text#list-benefits":
+            d["benefits"] = c.get("text", "")
+        elif leaf == "rich-text#description-product-pdp":
+            d["description"] = c.get("text", "")
+        elif "product-tab-layout-content-03" in tp and leaf.startswith("rich-text#text-") and c.get("text", "").strip():
+            d.setdefault("howto", []).append(c["text"])
+        elif leaf == "garbe-product-composition":
+            d["composition"] = [[i.get("__editorItemTitle", "").strip(" :"), i.get("description", "").strip()] for i in c.get("compositionList", [])]
+    return d
+
+
+def details():
+    src = json.load(open(SOURCE))
+    out = json.load(open(DETAILS)) if os.path.exists(DETAILS) else {}
+
+    def one(p):
+        for attempt in range(3):
+            try:
+                return p["id"], page_details(p["link"])
+            except Exception as e:  # noqa: BLE001 - retry network errors
+                err = e
+                time.sleep(2 * (attempt + 1))
+        print("  failed", p["id"], err)
+        return p["id"], None
+
+    todo = [p for p in src if p.get("link")]
+    with concurrent.futures.ThreadPoolExecutor(6) as ex:
+        for i, (pid, d) in enumerate(ex.map(one, todo), 1):
+            if d is not None:
+                out[pid] = d
+            if i % 50 == 0:
+                print(f"  {i}/{len(todo)}")
+    with open(DETAILS, "w") as f:
+        json.dump(out, f, ensure_ascii=False, indent=1)
+    filled = sum(1 for d in out.values() if d.get("composition") or d.get("howto"))
+    print(f"{len(out)} products -> {DETAILS} ({filled} with notes/ingredients or how to use)")
+
+
+DETAILS_TR = os.path.join(ROOT, "data", "details-translations.json")  # Portuguese -> {en, ar, pt_gulf?}
+DETAILS_JS = os.path.join(ROOT, "assets", "js", "details.js")
+NOTE_KEYS = {"notas de saída": "top", "notas de topo": "top", "notas de corpo": "heart", "notas de coração": "heart", "notas de fundo": "base"}
+
+
+def tidy(t):
+    t = re.sub(r"</?p>|<br\s*/?>", "\n", t).replace("**", "")  # stray <P> go in tri()
+    return re.sub(r"\n{2,}", "\n\n", t).strip()
+
+
+def split_list(v):
+    """'Pimenta Rosa, Bergamota e Mandarina.' -> ['Pimenta Rosa', 'Bergamota', 'Mandarina']"""
+    return [n.strip(" .") for n in re.split(r",\s*|\s+e\s+", v.strip(" .")) if n.strip(" .")]
+
+
+def ingredient_list(v):
+    """'Alcohol/Álcool Etílico, Aqua/Água, …' -> (INCI names, Portuguese names)."""
+    items = [i.strip() for i in re.split(r",\s*(?![^()]*\))", v.strip().rstrip(".")) if i.strip()]
+    items = [i for i in items if "/" in i or not i[0].islower()]  # drop stray fragments ("de Benzila")
+    inci = [i.split("/", 1)[0].strip() for i in items]
+    pt = [i.split("/", 1)[1].strip() if "/" in i else i for i in items]
+    return ", ".join(inci) + ".", ", ".join(pt) + "."
+
+
+def parsed_details(d):
+    """One product's page blocks -> family, highlights, notes, actives, ingredients, how to use."""
+    out = {"highlights": [], "notes": {}, "actives": []}
+    for line in (d.get("benefits") or "").split("\n"):
+        line = line.strip(" •\t-")
+        if not line:
+            continue
+        if line.lower().startswith("caminho olfativo"):
+            out["family"] = line.split(":", 1)[1].strip(" .")
+        else:
+            out["highlights"].append(line)
+    for label, v in d.get("composition", []):
+        lab = label.lower().strip()
+        if lab == "caminho olfativo":
+            out["family"] = v.strip(" .")
+        elif lab in NOTE_KEYS:
+            out["notes"][NOTE_KEYS[lab]] = split_list(v)
+        elif lab.startswith("composi"):
+            out["ingredients"] = ingredient_list(v)
+        elif v.strip():
+            out["actives"].append((label.strip(), v.strip()))
+    for h in d.get("howto", []):
+        parts = re.split(r"\n?Precauções:?", tidy(h), maxsplit=1)
+        out["howto"] = re.sub(r"^modo de usar:?\s*", "", parts[0].strip(), flags=re.I)
+        if len(parts) > 1:
+            rest = re.split(r"\n?Advertência:?", parts[1], maxsplit=1)
+            out["caution"] = rest[0].strip()
+            if len(rest) > 1:
+                out["warning"] = rest[1].strip()
+    out["description"] = tidy(d.get("description", ""))
+    return out
+
+
+def details_js(tr_desc):
+    """Write assets/js/details.js (loaded by product pages) and return the official notes and
+    the longer page descriptions for catalog.js."""
+    if not (os.path.exists(DETAILS) and os.path.exists(DETAILS_TR)):
+        return {}, {}
+    raw = json.load(open(DETAILS))
+    trs = json.load(open(DETAILS_TR))
+    tx, index, missing = [], {}, set()
+
+    def tri(pt, strip_label=False):
+        pt = re.sub(r"</?p>", "", pt, flags=re.I).strip()
+        t = trs.get(pt)
+        if not t:
+            missing.add(pt[:60])
+            t = {"en": pt, "ar": pt}
+        row = {"en": t["en"], "ar": t["ar"], "pt": t.get("pt_gulf") or pt}
+        if strip_label:  # "Modo de usar: …" was translated with its label; keep the text only
+            row = {k: re.sub(r"^[^:\n]{2,30}:\s*", "", v) if k != "pt" else v for k, v in row.items()}
+        return row
+
+    def ref(row):
+        key = json.dumps(row, ensure_ascii=False, sort_keys=True)
+        if key not in index:
+            index[key] = len(tx)
+            tx.append(row)
+        return index[key]
+
+    prods, notes, descs = {}, {}, {}
+    for pid, d in raw.items():
+        x = parsed_details(d)
+        e = {}
+        if x.get("family"):
+            e["f"] = ref(tri(x["family"]))
+        if x["highlights"]:
+            e["h"] = [ref(tri(h)) for h in x["highlights"]]
+        if x["actives"]:
+            e["a"] = [[ref(tri(n)), ref(tri(v))] for n, v in x["actives"]]
+        if x.get("ingredients"):
+            inci, pt = x["ingredients"]
+            e["i"] = ref({"en": inci, "ar": inci, "pt": pt})
+        if x.get("howto"):
+            raw_how = next((tidy(h) for h in d.get("howto", [])), "")
+            labelled = bool(re.match(r"^modo de usar:?", raw_how, flags=re.I))
+            e["u"] = ref(tri(re.split(r"\n?Precauções:?", raw_how, maxsplit=1)[0].strip(), strip_label=labelled))
+        if x.get("caution"):
+            e["c"] = ref(tri(x["caution"]))
+        if x.get("warning"):
+            e["w"] = ref(tri(x["warning"]))
+        if e:
+            prods[pid] = e
+        if x["notes"]:
+            notes[pid] = {k: [[tri(n)["en"], tri(n)["ar"], tri(n)["pt"]] for n in v] for k, v in x["notes"].items()}
+        if x["description"] and x["description"] in trs:
+            descs[pid] = tri(x["description"])
+    with open(DETAILS_JS, "w") as f:
+        f.write("/* wepink Gulf — full product details from wepink.com.br's product pages (highlights,\n")
+        f.write(" * scent family, key ingredients, ingredient list, how to use, precautions), generated by\n")
+        f.write(" * scripts/import_catalog.py from data/details-source.json and data/details-translations.json.\n")
+        f.write(" * tx: shared strings {en, ar, pt}; p: product id -> indexes into tx\n")
+        f.write(" * (f family, h highlights, a [ingredient, what it does], i ingredient list, u how to use,\n")
+        f.write(" * c precautions, w warning). Loaded by product pages when they need it. */\n")
+        f.write("window.WP_DETAILS = ")
+        json.dump({"tx": tx, "p": prods}, f, ensure_ascii=False, separators=(",", ":"))
+        f.write(";\n")
+    print(f"{len(prods)} products, {len(tx)} strings -> {DETAILS_JS} ({os.path.getsize(DETAILS_JS) // 1024} KB, {len(missing)} untranslated)")
+    return notes, descs
+
+
 def js():
     src = json.load(open(SOURCE))
     tr = json.load(open(TRANSLATIONS)) if os.path.exists(TRANSLATIONS) else {}
+    page_notes, page_desc = details_js(tr)  # wepink Brasil's official notes and fuller descriptions
     rows, missing = [], 0
     for p in src:
         t = tr.get(p["id"])
@@ -426,10 +614,20 @@ def js():
             "rank": p.get("rank"),  # wepink Brasil's best-seller ranking (1 = top seller)
             "hero": os.path.exists(os.path.join(ROOT, "assets/products/hero", p["id"] + ".webp")) or None,  # has campaign shots
             "tagline": {"en": t.get("tagline_en") or "", "ar": t.get("tagline_ar") or "", "pt": t.get("tagline_pt") or ""},
-            "desc": {"en": t.get("desc_en") or p["short_pt"] or p["desc_pt"][:300], "ar": t.get("desc_ar") or t.get("desc_en") or p["short_pt"], "pt": t.get("desc_pt") or ""},
-            "notes": t.get("notes") or {},
+            "desc": page_desc.get(p["id"]) or {"en": t.get("desc_en") or p["short_pt"] or p["desc_pt"][:300], "ar": t.get("desc_ar") or t.get("desc_en") or p["short_pt"], "pt": t.get("desc_pt") or ""},
+            "notes": page_notes.get(p["id"]) or t.get("notes") or {},
             "source": p["link"],
         }
+        # The live store reads products from the database, which was filled with the earlier
+        # notes and descriptions; "was" lets it tell an untouched row (show wepink Brasil's
+        # official notes / fuller description) from one the team edited in the admin panel.
+        was = {}
+        if p["id"] in page_notes and t.get("notes"):
+            was["notes"] = "|".join(",".join(n[0] for n in t["notes"].get(k, [])) for k in ("top", "heart", "base"))
+        if p["id"] in page_desc:
+            was["desc"] = (t.get("desc_en") or p["short_pt"] or p["desc_pt"][:300])[:60]
+        if was:
+            row["was"] = was
         rows.append({k: v for k, v in row.items() if v not in (None, "", [], {})} | {"notes": row["notes"]})
     with open(CATALOG_JS, "w") as f:
         f.write("/* wepink Gulf — product catalogue, generated by scripts/import_catalog.py.\n")
@@ -448,6 +646,8 @@ if __name__ == "__main__":
         build(sys.argv[2])
     elif cmd == "update":
         update(sys.argv[2])
+    elif cmd == "details":
+        details()
     elif cmd == "js":
         js()
     else:

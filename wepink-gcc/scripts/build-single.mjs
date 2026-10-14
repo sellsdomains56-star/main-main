@@ -47,6 +47,8 @@ const catalogJs = (() => {
 })();
 
 const css = read("assets/css/styles.css");
+// Full product details (product pages) ride along inline, in their own marked tag.
+const details = existsSync(join(root, "assets/js/details.js")) ? `<script id="wp-details">\n${read("assets/js/details.js").replace(/<\/script/gi, "<\\/script")}\n</script>` : "";
 const js = [catalogJs, ...["data.js", "sync.js", "i18n.js", "art.js", "silk.js", "app.js", "assistant.js", "pages.js"].map((f) => read(`assets/js/${f}`))].map((text) => script(inlinePhotos(inlineFilm(text))));
 const head = read("index.html").match(/<head>([\s\S]*?)<\/head>/)[1];
 const meta = head
@@ -84,6 +86,7 @@ ${css}
   <div id="app-footer"></div>
   <noscript><p style="padding:24px;text-align:center">Please enable JavaScript to shop wepink Gulf. · يرجى تفعيل JavaScript للتسوق.</p></noscript>
 ${js.join("\n")}
+${details}
 </body>
 </html>
 `;
