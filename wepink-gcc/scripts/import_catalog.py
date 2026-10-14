@@ -462,8 +462,8 @@ DETAILS_JS = os.path.join(ROOT, "assets", "js", "details.js")
 NOTE_KEYS = {"notas de saída": "top", "notas de topo": "top", "notas de corpo": "heart", "notas de coração": "heart", "notas de fundo": "base"}
 
 
-def tidy(t):
-    t = re.sub(r"</?p>|<br\s*/?>", "\n", t).replace("**", "")  # stray <P> go in tri()
+def tidy(t, any_case=False):
+    t = re.sub(r"</?p>|<br\s*/?>", "\n", t, flags=re.I if any_case else 0).replace("**", "")  # else stray <P> go in tri()
     return re.sub(r"\n{2,}", "\n\n", t).strip()
 
 
@@ -510,7 +510,7 @@ def parsed_details(d):
             out["caution"] = rest[0].strip()
             if len(rest) > 1:
                 out["warning"] = rest[1].strip()
-    out["description"] = tidy(d.get("description", ""))
+    out["description"] = tidy(d.get("description", ""), any_case=True)
     return out
 
 
