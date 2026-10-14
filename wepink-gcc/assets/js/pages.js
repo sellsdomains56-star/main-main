@@ -166,9 +166,10 @@ window.WP_PAGES = (function () {
     const tiers = D.config.referral.tiers;
     const heroPhoto = photo("virginiaHero", t("hn.photoCaption"));
     const portrait = photo("virginiaPortrait", L({ en: "wepink Liberté Doré", ar: "ليبرتيه دوريه من wepink" }));
-    const campaign = photo("campaign", "", "campaign-img");
+    const spot = F.spotlight && byId(F.spotlight);
     const film = D.config.film && D.config.film.src ? D.config.film : null;
 
+    document.documentElement.classList.toggle("film-top", !!film);
     main.innerHTML = `
       ${film ? filmSection(film, "film.gccLabel", "film.gccEyebrow") : ""}
       <section class="hero-noir">
@@ -322,18 +323,25 @@ window.WP_PAGES = (function () {
         </div>
       </section>
 
-      <section class="campaign${campaign ? " has-photo" : ""}" aria-labelledby="cb-title">
-        ${campaign || satin("flip")}
-        <div class="grain" aria-hidden="true"></div>
-        <div class="container campaign-grid">
-          <div class="campaign-copy" data-reveal>
+      ${
+        spot && D.config.photos && D.config.photos.campaign
+          ? `<section class="spotlight" aria-labelledby="cb-title">
+        <div class="container spotlight-grid">
+          <figure class="spotlight-media" data-reveal><img src="${esc(D.config.photos.campaign)}" alt="${esc(fullName(spot))}" loading="lazy" decoding="async"></figure>
+          <div class="spotlight-copy" data-reveal style="--d:120ms">
+            <p class="eyebrow eyebrow-glow">${icon("sparkle")}${esc(t("cb.eyebrow"))}</p>
             <h2 id="cb-title" class="display-noir display-md">${esc(t("cb.title1"))} <em>${esc(t("cb.title2"))}</em></h2>
             <p class="lead-noir">${esc(t("cb.lead"))}</p>
-            <a class="btn btn-glow btn-lg" href="shop.html?c=perfume">${esc(t("cb.cta"))}${icon("arrow", "flip")}</a>
+            <a class="spotlight-product" href="product.html?id=${encodeURIComponent(spot.id)}">${media(spot, "media-xs")}<span><strong>${esc(fullName(spot))}</strong><small>${esc(money(priceOf(spot)))}</small></span>${icon("arrow", "flip")}</a>
+            <div class="spotlight-actions">
+              <button class="btn btn-glow btn-lg" type="button" data-add="${esc(spot.id)}" aria-label="${esc(t("card.addLabel", { name: fullName(spot) }))}">${icon("bag")}<span>${esc(t("pdp.add"))}</span></button>
+              <a class="btn btn-light btn-lg" href="shop.html?c=perfume">${esc(t("cb.cta"))}${icon("arrow", "flip")}</a>
+            </div>
           </div>
-          ${campaign ? "" : `<div class="campaign-trio" aria-hidden="true" data-reveal style="--d:120ms">${F.campaign.map((id, i) => `<div class="ct ct${i + 1}">${W.art.art(pick(id), { eager: true, stage: true })}</div>`).join("")}<span class="ct-glow"></span></div>`}
         </div>
-      </section>
+      </section>`
+          : ""
+      }
 
       <section class="section" aria-label="${esc(t("home.quizTitle"))}">
         <div class="container duo">
@@ -414,6 +422,24 @@ window.WP_PAGES = (function () {
       </section>`;
 
     playFilm(main.querySelector(".film"), film);
+    // favourites: the slim line under the row shows how far along it is
+    main.querySelectorAll(".favs-wrap").forEach((wrap) => {
+      const track = wrap.querySelector(".favs-track");
+      const bar = wrap.querySelector(".favs-progress i");
+      const [prev, next] = wrap.querySelectorAll("[data-favs]");
+      const update = () => {
+        const max = track.scrollWidth - track.clientWidth;
+        const share = track.scrollWidth ? Math.min(1, track.clientWidth / track.scrollWidth) : 1;
+        const at = max > 0 ? Math.min(1, Math.abs(track.scrollLeft) / max) : 0;
+        bar.style.width = share * 100 + "%";
+        bar.style.insetInlineStart = at * (1 - share) * 100 + "%";
+        prev.disabled = at <= 0.01;
+        next.disabled = at >= 0.99 || max <= 0;
+      };
+      track.addEventListener("scroll", update, { passive: true });
+      addEventListener("resize", update);
+      update();
+    });
 
     const form = main.querySelector(".news-form");
     form.addEventListener("submit", (e) => {
@@ -461,6 +487,7 @@ window.WP_PAGES = (function () {
   // A full-width film band: muted loop, Play button if autoplay is blocked, sound toggle.
   function filmSection(film, labelKey, eyebrowKey, cls) {
     return `<section class="film${cls ? " " + cls : ""}" aria-label="${esc(t(labelKey))}">
+        <canvas class="film-glow" width="32" height="18" aria-hidden="true"></canvas>
         <div class="film-frame">
           <video class="film-video" muted loop playsinline preload="none"${film.poster ? ` poster="${esc(film.poster)}"` : ""} aria-hidden="true"></video>
           <button class="film-play" type="button" data-film-play hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span>${esc(t("film.play"))}</span></button>
@@ -510,6 +537,27 @@ window.WP_PAGES = (function () {
       );
     if (document.readyState === "complete") start();
     else addEventListener("load", start, { once: true });
+    // Where the film is framed rather than cropped (phones, portrait screens), a blurred
+    // copy of the live picture fills the rest of the screen behind the header.
+    const glow = root.querySelector(".film-glow");
+    const framed = matchMedia("(max-aspect-ratio: 5/4)");
+    const g = glow && glow.getContext && glow.getContext("2d");
+    if (g) {
+      let timer = 0;
+      const paint = () => {
+        if (video.readyState < 2) return;
+        try {
+          g.drawImage(video, 0, 0, glow.width, glow.height);
+        } catch (e) {}
+      };
+      const run = () => {
+        clearInterval(timer);
+        timer = framed.matches && !video.paused ? setInterval(paint, 120) : 0;
+        if (framed.matches) paint();
+      };
+      ["play", "pause", "loadeddata"].forEach((ev) => video.addEventListener(ev, run));
+      if (framed.addEventListener) framed.addEventListener("change", run);
+    }
     playBtn.addEventListener("click", () => {
       video.muted = false;
       load()
@@ -813,6 +861,7 @@ window.WP_PAGES = (function () {
       main.querySelector("#shop-look").innerHTML = look ? lookStrip(look) : "";
       // the film shows on Shop all only, and loads the first time it shows
       const film = main.querySelector(".shop-film");
+      document.documentElement.classList.toggle("film-top", !!film && !s.c);
       if (film) {
         film.hidden = !!s.c;
         const v = film.querySelector("video");
@@ -1403,7 +1452,6 @@ window.WP_PAGES = (function () {
       <div class="container">
         <h2 id="favs-title" class="favs-title" data-reveal>${esc(t("favs.title"))}</h2>
         <div class="favs-wrap">
-          <button class="favs-arrow" type="button" data-favs="-1" aria-label="${esc(t("favs.prev"))}">${icon("chevron")}</button>
           <div class="favs-track" tabindex="0" aria-label="${esc(t("favs.title"))}">
             ${list
               .map((p) => {
@@ -1424,7 +1472,11 @@ window.WP_PAGES = (function () {
               })
               .join("")}
           </div>
-          <button class="favs-arrow next" type="button" data-favs="1" aria-label="${esc(t("favs.next"))}">${icon("chevron")}</button>
+          <div class="favs-nav">
+            <button class="favs-arrow" type="button" data-favs="-1" aria-label="${esc(t("favs.prev"))}">${icon("chevron")}</button>
+            <button class="favs-arrow next" type="button" data-favs="1" aria-label="${esc(t("favs.next"))}">${icon("chevron")}</button>
+            <span class="favs-progress" aria-hidden="true"><i></i></span>
+          </div>
         </div>
       </div>
     </section>`;

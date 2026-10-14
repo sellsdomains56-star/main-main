@@ -60,7 +60,7 @@ window.WP_DATA = (function () {
       virginiaHero: "assets/photos/hero-the-oil.webp", // home page hero arch: "the oil." campaign photo (from the client)
       virginiaPortrait: "assets/photos/liberte-dore-campaign.webp", // Liberté Doré crown portrait for the "Created by Virginia" section
       // Campaign images (assets/photos/campaign/): an AI model, not Virginia, with the real products.
-      campaign: "assets/photos/campaign/obsessed-my-lips.webp", // wide campaign image for the "Made to be noticed" band: Obsessed + My Lips (from the client)
+      campaign: "assets/photos/campaign/vf-golden-lips.webp", // the "Liquid gold" perfume spotlight on the home page (Nano Banana Pro 4K, VF Golden)
       club: "assets/photos/campaign/satin-vf.webp", // the Club pop-up
       earn: "assets/photos/campaign/red-stripe.webp", // Earn with wepink hero
       about: "assets/photos/campaign/golden-hour.webp", // About page
@@ -229,6 +229,7 @@ window.WP_DATA = (function () {
     // cut from that photo (the VF body oil in "the oil." campaign photo).
     heroProduct: "bodyoil-vf-120-ml",
     heroThumb: "assets/photos/hero-the-oil-bottle.webp",
+    spotlight: "colonia-vf-golden-75-ml", // the "Liquid gold" band: the perfume in its campaign photo (photos.campaign)
     stage: ["splash-vf-200-ml", "colonia-vf-golden-75-ml", "colonia-ghadan-100-ml"],
     icons: ["colonia-vf-golden-75-ml", "colonia-ghadan-100-ml", "colonia-ruby-rhodolite-100-ml", "splash-king-blue-deep-200-ml"],
     ritual: ["cream-vf-golden-200-ml", "splash-vf-golden-200-ml", "colonia-vf-golden-75-ml"],
@@ -253,8 +254,8 @@ window.WP_DATA = (function () {
       { photo: "assets/photos/campaign/peach.webp", product: "splash-perfect-pear-peach-200-ml", cat: "body-splash", title: { en: "Squeeze the day", ar: "اعتصري يومكِ", pt: "Aproveite cada gota" } },
       { photo: "assets/photos/campaign/fruit-creams.webp", product: "cream-vf-golden-200-ml", also: ["cream-ruby-rhodolite-200-ml", "cream-obsessed-200-ml"], cat: "body-care", title: { en: "Freshly stacked", ar: "طبقات من الانتعاش", pt: "Empilhados e fresquinhos" } },
       { photo: "assets/photos/campaign/torn-lip.webp", product: "makeup-lip-oil-jujuba-3-5-g", cat: "makeup", title: { en: "Tear into colour", ar: "انطلقي نحو اللون", pt: "Mergulhe na cor" } },
-      { photo: "assets/photos/campaign/beach.webp", product: "skincare-protetor-solar-fps-50-suncare-30ml-we-pink-30-ml", cat: "skincare", title: { en: "Sun-kissed, protected", ar: "مشرقة ومحميّة", pt: "Beijada pelo sol, protegida" } },
-      { photo: "assets/photos/campaign/chess.webp", product: "colonia-king-blue-deep-100-ml", also: ["colonia-ruby-rhodolite-100-ml"], cat: "men", title: { en: "Make your move", ar: "حان دورك", pt: "Faça a sua jogada" } },
+      { photo: "assets/photos/campaign/serum-glow.webp", product: "skincare-serum-10-em-1-40-ml", cat: "skincare", pos: "50% 30%", title: { en: "Glow, drop by drop", ar: "إشراقة قطرة بقطرة", pt: "Brilho gota a gota" } },
+      { photo: "assets/photos/campaign/king-blue-skyline.webp", product: "colonia-king-blue-supreme-100-ml", also: ["splash-king-blue-supreme-200-ml"], cat: "men", pos: "50% 35%", title: { en: "Own the night", ar: "الليل لك", pt: "Dono da noite" } },
       { photo: "assets/photos/campaign/golden-hour.webp", product: "colonia-liberte-nuit-100-ml", cat: "perfume", title: { en: "After golden hour", ar: "بعد الساعة الذهبية", pt: "Depois da hora dourada" } },
       { photo: "assets/photos/campaign/red-stripe.webp", product: "colonia-red-obsidian-100-ml", cat: "perfume", title: { en: "Seen in red", ar: "حضورٌ بالأحمر", pt: "Vista de vermelho" } },
     ],
@@ -262,11 +263,11 @@ window.WP_DATA = (function () {
     categoryPhotos: {
       perfume: { src: "assets/photos/campaign/giant-heaven.webp", pos: "50% 40%" },
       "body-splash": { src: "assets/photos/campaign/peach.webp", pos: "50% 50%" },
-      men: { src: "assets/photos/campaign/chess.webp", pos: "68% 50%" },
+      men: { src: "assets/photos/campaign/king-blue-skyline.webp", pos: "55% 40%" }, // Nano Banana Pro 4K: King Blue Supreme, Gulf skyline
       "body-care": { src: "assets/photos/campaign/the-oil-blonde.webp", pos: "50% 30%" },
       hair: { src: "assets/photos/campaign/hair-silk.webp", pos: "50% 50%" },
       makeup: { src: "assets/photos/campaign/torn-lip.webp", pos: "50% 45%" },
-      skincare: { src: "assets/photos/campaign/beach.webp", pos: "50% 40%" },
+      skincare: { src: "assets/photos/campaign/serum-glow.webp", pos: "50% 30%" }, // Nano Banana Pro 4K: Sérum 10 em 1
       "gift-sets": { src: "assets/photos/campaign/gift-box.webp", pos: "50% 50%" },
     },
     categories: {

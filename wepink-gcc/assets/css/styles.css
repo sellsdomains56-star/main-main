@@ -3018,12 +3018,6 @@ html[lang="ar"] em {
 :is(html[data-page="home"], html[data-page="earn"]):not(.is-scrolled) .site-header .icon-btn:hover {
   background: rgba(255, 255, 255, 0.12);
 }
-:is(html[data-page="home"], html[data-page="earn"]):not(.is-scrolled) .logo-pink {
-  display: none;
-}
-:is(html[data-page="home"], html[data-page="earn"]):not(.is-scrolled) .logo-light {
-  display: block;
-}
 :is(html[data-page="home"], html[data-page="earn"]):not(.is-scrolled) .logo-region {
   color: #fff;
   border-color: rgba(255, 255, 255, 0.3);
@@ -5346,12 +5340,17 @@ html[lang="ar"] .pdp-tagline {
   }
 }
 
-/* ---------- homepage film ---------- */
-/* The film opens the home page under the see-through header (the noir hero below it
-   then sits in the normal flow). */
+/* ---------- full-screen films (home, Shop all) ---------- */
+/* A page that opens on a film runs it edge to edge behind the announcement bar and the
+   header (html.film-top). A low dark veil keeps the menu readable, and the foot of the
+   film melts into the section below instead of ending on a hard line. */
 .film {
+  --top-h: calc(38px + var(--header-h) + 1px);
+  --film-end: var(--noir);
   position: relative;
-  margin-top: calc(var(--header-h) * -1);
+  margin-top: calc(var(--top-h) * -1);
+  height: 100svh;
+  min-height: 560px;
   overflow: hidden;
   isolation: isolate;
   background: var(--noir);
@@ -5361,8 +5360,38 @@ html[lang="ar"] .pdp-tagline {
   margin-top: 0;
   padding-top: clamp(64px, 8vw, 110px);
 }
+/* the hero's satin rises out of the film's dark foot */
+.film + .hero-noir > .satin {
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 45%);
+  mask-image: linear-gradient(180deg, transparent, #000 45%);
+}
 .film-frame {
-  position: relative;
+  position: absolute;
+  inset: 0;
+}
+.film-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--noir);
+}
+.film-glow {
+  display: none;
+}
+.film-shade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 3, 8, 0.72) 0,
+    rgba(14, 3, 8, 0.3) calc(var(--top-h) + 70px),
+    rgba(14, 3, 8, 0.22) 48%,
+    rgba(14, 3, 8, 0.5) 76%,
+    var(--film-end) 100%
+  );
 }
 .film-play {
   position: absolute;
@@ -5400,34 +5429,11 @@ html[lang="ar"] .pdp-tagline {
 .film-play[hidden] {
   display: none;
 }
-.film-video {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 100svh;
-  object-fit: cover;
-  background: var(--noir);
-}
-.film::before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  inset: 0 0 auto;
-  height: calc(var(--header-h) * 2);
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(14, 3, 8, 0.6), rgba(14, 3, 8, 0));
-}
-.film-shade {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(14, 3, 8, 0) 58%, rgba(14, 3, 8, 0.78) 100%);
-}
 .film-bar {
   position: absolute;
   z-index: 2;
   inset-inline: 0;
-  bottom: clamp(18px, 3vw, 44px);
+  bottom: clamp(28px, 6vh, 64px);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -5470,22 +5476,111 @@ html[lang="ar"] .pdp-tagline {
   width: 16px;
   height: 16px;
 }
+/* Shop all: the film fades out into the page itself (its colour and silk threads) */
+.film.shop-film {
+  --film-end: rgba(14, 3, 8, 0.45);
+  background: transparent;
+}
+.shop-film :is(.film-frame, .film-glow, .film-shade) {
+  -webkit-mask-image: linear-gradient(180deg, #000 64%, transparent);
+  mask-image: linear-gradient(180deg, #000 64%, transparent);
+}
+.shop-film .film-bar {
+  bottom: 30%;
+}
+/* Portrait screens: the film keeps its whole picture in a band across the middle, and a
+   blurred copy of it (drawn live by playFilm) fills the screen around it. */
+@media (max-aspect-ratio: 5/4) {
+  .film {
+    height: auto;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--top-h);
+  }
+  .film-glow {
+    display: block;
+    position: absolute;
+    inset: -12%;
+    width: 124%;
+    height: 124%;
+    filter: blur(36px) saturate(1.3);
+    opacity: 0.9;
+  }
+  .film-frame {
+    position: relative;
+    inset: auto;
+    margin-block: auto;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .film-video {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .film-bar,
+  .shop-film .film-bar {
+    position: relative;
+    bottom: auto;
+    padding-block: 20px clamp(28px, 6vh, 56px);
+  }
+  .shop-film :is(.film-glow, .film-shade) {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .shop-film .film-frame {
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .shop-film {
+    -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent);
+    mask-image: linear-gradient(180deg, #000 82%, transparent);
+  }
+  .shop-film .film-bar {
+    padding-bottom: clamp(72px, 14vh, 128px);
+  }
+}
 @media (max-width: 720px) {
-  /* phones: a square crop of the film's centre, the bar under it */
+  /* phones: a square cut of the film's centre */
   .film-video {
     aspect-ratio: 1 / 1;
-  }
-  .film-shade {
-    display: none;
-  }
-  .film-bar {
-    position: static;
-    padding-block: 14px 18px;
   }
   .film-actions,
   .film-actions .btn {
     flex: 1 1 auto;
   }
+}
+/* the announcement bar and the header float on the film */
+html.film-top .announce {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  box-shadow: inset 0 -1px rgba(255, 255, 255, 0.12);
+}
+html.film-top:not(.is-scrolled) .site-header {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: #fff;
+}
+html.film-top:not(.is-scrolled) .site-header :is(.icon-btn, .nav-primary a) {
+  color: #fff;
+}
+html.film-top:not(.is-scrolled) .site-header .nav-primary a[aria-current="page"],
+html.film-top:not(.is-scrolled) .site-header .nav-hot {
+  color: var(--pink-300);
+}
+html.film-top:not(.is-scrolled) .site-header .chip-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+html.film-top:not(.is-scrolled) .site-header .icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+html.film-top:not(.is-scrolled) .logo-region {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* ---------- campaign photos in tiles, promos and staged spots ---------- */
@@ -7153,7 +7248,7 @@ html[lang="ar"] .favs-title {
 .fav-media img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition: transform 0.5s var(--ease);
 }
 .fav-card:hover .fav-media img {
@@ -7271,28 +7366,45 @@ html[lang="ar"] .fav-name {
   background: var(--pink);
   color: #fff;
 }
-.favs-arrow {
+/* under the row: a slim progress line and two small arrows (no buttons over the cards) */
+.favs-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: clamp(18px, 3vw, 32px);
+}
+.favs-progress {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  margin-inline-start: 14px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.favs-progress i {
   position: absolute;
-  top: 30%;
-  z-index: 2;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 25%;
+  border-radius: inherit;
+  background: var(--pink);
+  transition: inset-inline-start 0.25s var(--ease), width 0.25s var(--ease);
+}
+.favs-arrow {
   display: grid;
   place-items: center;
-  width: 60px;
-  height: 60px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: var(--pink);
-  color: #fff;
-  box-shadow: var(--shadow-pink);
-  inset-inline-start: -30px;
-  transition: transform 0.2s var(--ease), background 0.2s;
-}
-.favs-arrow.next {
-  inset-inline-start: auto;
-  inset-inline-end: -30px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--fg);
+  transition: border-color 0.2s, color 0.2s, opacity 0.2s;
 }
 .favs-arrow .icon {
-  width: 26px;
-  height: 26px;
+  width: 18px;
+  height: 18px;
   transform: rotate(90deg);
 }
 .favs-arrow.next .icon {
@@ -7304,20 +7416,18 @@ html[lang="ar"] .fav-name {
 [dir="rtl"] .favs-arrow.next .icon {
   transform: rotate(90deg);
 }
-.favs-arrow:hover {
-  background: var(--pink-600);
-  transform: scale(1.06);
+.favs-arrow:hover:not(:disabled) {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+.favs-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 @media (max-width: 1180px) {
   .favs-track {
     grid-auto-columns: calc((100% - 2 * 22px) / 3);
     gap: 22px;
-  }
-  .favs-arrow {
-    inset-inline-start: -14px;
-  }
-  .favs-arrow.next {
-    inset-inline-end: -14px;
   }
 }
 @media (max-width: 720px) {
@@ -7328,6 +7438,9 @@ html[lang="ar"] .fav-name {
   .favs-arrow {
     display: none;
   }
+  .favs-progress {
+    margin-inline-start: 0;
+  }
   .fav-tag {
     font-size: 14px;
   }
@@ -7336,9 +7449,106 @@ html[lang="ar"] .fav-name {
   }
 }
 
-/* a film band inside a page (Shop all): not under the see-through header */
-.film.film-band {
-  margin-top: 0;
+
+/* ---------- perfume spotlight ("Liquid gold"): the campaign photo beside its product ---------- */
+.spotlight {
+  position: relative;
+  padding-block: clamp(64px, 9vw, 128px);
+  background: radial-gradient(60% 70% at 18% 40%, rgba(230, 0, 126, 0.22), transparent 70%), radial-gradient(50% 60% at 90% 80%, rgba(212, 168, 90, 0.16), transparent 70%), var(--noir);
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+}
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+.spotlight-media {
+  margin: 0;
+  border-radius: calc(var(--r) * 1.6);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  box-shadow: 0 40px 90px -40px rgba(230, 0, 126, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.spotlight-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 50%;
+}
+.spotlight-copy {
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+  min-width: 0;
+}
+.spotlight-copy :is(.eyebrow, .display-noir, .lead-noir) {
+  margin: 0;
+}
+.spotlight-product {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 100%;
+  padding: 10px 18px 10px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  transition: border-color 0.2s, background 0.2s;
+}
+[dir="rtl"] .spotlight-product {
+  padding: 10px 10px 10px 18px;
+}
+.spotlight-product:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+}
+.spotlight-product .media {
+  flex: none;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.spotlight-product span {
+  display: grid;
+  min-width: 0;
+}
+.spotlight-product strong {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spotlight-product small {
+  color: var(--pink-300);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.spotlight-product > .icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.spotlight-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+@media (max-width: 900px) {
+  .spotlight-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .spotlight-media {
+    aspect-ratio: 4 / 3;
+  }
+  .spotlight-actions,
+  .spotlight-actions .btn {
+    flex: 1 1 auto;
+  }
 }
 
 /* "Most loved" card: the product as it appears in the hero photo */

@@ -1476,7 +1476,7 @@ window.WP = (function () {
         else location.href = "checkout.html";
       } else if (el.hasAttribute("data-favs")) {
         // carousel arrows: one view's width each way (mirrored in Arabic)
-        const track = el.parentElement.querySelector(".favs-track");
+        const track = el.closest(".favs-wrap").querySelector(".favs-track");
         const dir = Number(el.getAttribute("data-favs")) * (document.documentElement.dir === "rtl" ? -1 : 1);
         track.scrollBy({ left: dir * track.clientWidth * 0.9, behavior: "smooth" });
       } else if (el.hasAttribute("data-qty")) {
@@ -1725,6 +1725,7 @@ window.WP = (function () {
     const page = route().page;
     document.body.dataset.page = page;
     html.dataset.page = page;
+    html.classList.remove("film-top"); // a page that opens on a film sets it again
     renderHeader();
     renderLayers();
     // A fresh <main> each render, so page listeners never pile up.
