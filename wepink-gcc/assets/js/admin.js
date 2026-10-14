@@ -451,9 +451,12 @@
     if (!b) return { own: false, list: [], cutout: "" };
     return { own: false, list: b.images && b.images.length ? b.images : b.image ? [b.image] : [], cutout: b.cutout || "" };
   }
+  // the site's own photos are named by their path in the store; the one-file download loads
+  // them from window.WP_ASSET_BASE (set by scripts/build-single.mjs)
+  const shown = (src) => (window.WP_ASSET_BASE && /^assets\//.test(src || "") ? window.WP_ASSET_BASE + src : src);
   const thumbOf = (r) => {
     const ph = photosOf(r);
-    return ph.cutout || ph.list[0] || "";
+    return shown(ph.cutout || ph.list[0] || "");
   };
 
   async function viewProducts(v) {
@@ -680,7 +683,7 @@
         <div class="photos">
           ${list
             .map(
-              (src, i) => `<div class="photo"><img src="${esc(src)}" alt="">${i === 0 ? `<span class="first">Main</span>` : ""}
+              (src, i) => `<div class="photo"><img src="${esc(shown(src))}" alt="">${i === 0 ? `<span class="first">Main</span>` : ""}
               ${built ? "" : `<div class="tools">${i ? `<button type="button" data-mv="${i}" data-dir="-1" aria-label="Move earlier">${icon("left")}</button>` : ""}${i < list.length - 1 ? `<button type="button" data-mv="${i}" data-dir="1" aria-label="Move later">${icon("right")}</button>` : ""}<button type="button" data-rm="${i}" aria-label="Remove photo">${icon("trash")}</button></div>`}</div>`
             )
             .join("")}
