@@ -5649,11 +5649,12 @@ html[lang="ar"] .pdp-tagline {
   background: transparent;
 }
 .shop-film :is(.film-frame, .film-shade) {
-  -webkit-mask-image: linear-gradient(180deg, #000 64%, transparent);
-  mask-image: linear-gradient(180deg, #000 64%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent);
+  mask-image: linear-gradient(180deg, #000 82%, transparent);
 }
+/* at the bottom of the film, just above where it fades into the page */
 .shop-film .film-bar {
-  bottom: 30%;
+  bottom: max(20%, 96px);
 }
 @media (max-width: 720px) {
   .film-actions,

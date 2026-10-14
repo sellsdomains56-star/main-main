@@ -490,7 +490,8 @@ window.WP_PAGES = (function () {
   }
 
   // A full-width film band: muted loop, Play button if autoplay is blocked, sound toggle.
-  function filmSection(film, labelKey, eyebrowKey, cls) {
+  // `cta` false leaves out "Shop the collection" (the Shop page is the collection)
+  function filmSection(film, labelKey, eyebrowKey, cls, cta = true) {
     return `<section class="film${cls ? " " + cls : ""}" aria-label="${esc(t(labelKey))}">
         <div class="film-frame">
           <video class="film-video" muted loop playsinline preload="none"${film.poster ? ` poster="${esc(film.poster)}"` : ""} aria-hidden="true"></video>
@@ -501,7 +502,7 @@ window.WP_PAGES = (function () {
           <p class="eyebrow eyebrow-glow">${icon("sparkle")}${esc(t(eyebrowKey))}</p>
           <div class="film-actions">
             <button class="film-sound" type="button" data-film-sound aria-pressed="false" hidden>${icon("sparkle")}<span>${esc(t("film.soundOn"))}</span></button>
-            <a class="btn btn-glow" href="shop.html">${esc(t("film.cta"))}${icon("arrow", "flip")}</a>
+            ${cta ? `<a class="btn btn-glow" href="shop.html">${esc(t("film.cta"))}${icon("arrow", "flip")}</a>` : ""}
           </div>
         </div>
       </section>`;
@@ -869,7 +870,7 @@ window.WP_PAGES = (function () {
     const shopFilm = D.config.shopFilm && D.config.shopFilm.src ? D.config.shopFilm : null;
     let filmStarted = false;
     main.innerHTML = `
-      ${shopFilm ? filmSection(shopFilm, "film.label", "film.eyebrow", "film-band shop-film") : ""}
+      ${shopFilm ? filmSection(shopFilm, "film.label", "film.eyebrow", "film-band shop-film", false) : ""}
       <section class="page-head">
         <div class="container">
           <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">wepink</a></li><li aria-current="page" id="crumb-current"></li></ol></nav>
