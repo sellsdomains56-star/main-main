@@ -942,21 +942,9 @@ window.WP_PAGES = (function () {
   /* ---------------- product ---------------- */
   // Full product details from wepink Brasil's product pages (highlights, scent family, key
   // ingredients, the ingredient list, how to use and precautions): assets/js/details.js, loaded
-  // the first time a product page needs it (the one-file build carries it inline). Strings are
-  // shared in one table (tx) and products point at them by index.
-  let detailsLoad = null;
-  function details() {
-    if (window.WP_DETAILS) return Promise.resolve(window.WP_DETAILS);
-    return (detailsLoad =
-      detailsLoad ||
-      new Promise((done) => {
-        const s = document.createElement("script");
-        s.src = "assets/js/details.js";
-        s.onload = () => done(window.WP_DETAILS || null);
-        s.onerror = () => done(null);
-        document.head.appendChild(s);
-      }));
-  }
+  // by W.details() the first time it's needed. Strings are shared in one table (tx) and
+  // products point at them by index.
+  const details = () => W.details();
 
   // "Buy together": the product from the same line that completes it (a body splash with its
   // body cream, a perfume with its splash…); otherwise the category's best seller.

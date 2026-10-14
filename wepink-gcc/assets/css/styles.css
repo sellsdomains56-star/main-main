@@ -6123,18 +6123,31 @@ html[data-tone="noir"] .wa-topics a {
   color: #fff;
   background: radial-gradient(80% 140% at 0% 0%, #ff5fae, transparent 60%), linear-gradient(120deg, var(--pink), #7a003f);
 }
+/* Lina's monogram, with a green "online" dot */
 .ai-avatar {
+  position: relative;
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
+  background: linear-gradient(145deg, #fff, #ffd6ea);
+  color: #b0005a;
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 600;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.45);
   flex: none;
 }
-.ai-avatar .icon {
-  width: 22px;
-  height: 22px;
+.ai-online {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #2bd46a;
+  box-shadow: 0 0 0 2px #c2006a;
 }
 .ai-head-text {
   display: grid;
@@ -6233,6 +6246,13 @@ html[data-tone="noir"] .wa-topics a {
 }
 .ai-card-text strong {
   font-size: 14px;
+}
+.ai-card-notes {
+  overflow: hidden;
+  color: var(--accent-ink);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .ai-card-text a:hover strong {
   color: var(--accent-ink);

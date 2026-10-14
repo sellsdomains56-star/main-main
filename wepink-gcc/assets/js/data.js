@@ -34,11 +34,12 @@ window.WP_DATA = (function () {
     // on a product (`prices: { SAR: 89 }`) are shown as they are.
     pricing: { markupPct: 5 },
 
-    // The beauty assistant answers from the help centre and the catalogue in
-    // the browser. Point `endpoint` at a language-model service (see README,
-    // "Beauty assistant") to let it hold a real conversation; it falls back to
-    // the built-in answers whenever the service can't be reached.
-    assistant: { endpoint: "" },
+    // Lina, the beauty assistant, answers from her brain (brain.js), the help
+    // centre and the catalogue in the browser. `endpoint` is the language-model
+    // service that lets her hold a real conversation (supabase/functions/assistant,
+    // see README, "Lina"): it stays silent until its Anthropic key is set, and
+    // she falls back to her built-in answers whenever it can't help.
+    assistant: { endpoint: "https://jkhtnytpkkqwnmhvgfmm.supabase.co/functions/v1/assistant" },
 
     // The ritual set: a body cream (or lotion / butter), a body splash and an
     // eau de cologne together are this % off. 0 turns it off.

@@ -1708,6 +1708,22 @@ window.WP = (function () {
     };
   }
 
+  // Full product details (details.js): loaded the first time a product page or
+  // Lina needs them; the one-file build carries them inline.
+  let detailsLoad = null;
+  function details() {
+    if (window.WP_DETAILS) return Promise.resolve(window.WP_DETAILS);
+    return (detailsLoad =
+      detailsLoad ||
+      new Promise((done) => {
+        const s = document.createElement("script");
+        s.src = "assets/js/details.js";
+        s.onload = () => done(window.WP_DETAILS || null);
+        s.onerror = () => done(null);
+        document.head.appendChild(s);
+      }));
+  }
+
   /* ---------- render ---------- */
   function render() {
     const html = document.documentElement;
@@ -1808,7 +1824,7 @@ window.WP = (function () {
     if (notice !== "signedIn") scheduleClub();
   }
 
-  return { init, render, route, SINGLE, LANGS, num, locale, withSymbol, ref, welcome, seo, pics, ritual, season, seasonDeco, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, sync: SYNC, data: D, art: ART };
+  return { init, render, route, SINGLE, LANGS, num, locale, withSymbol, ref, welcome, seo, pics, ritual, season, seasonDeco, crumbsLd, pname, fullName, recordName, state, store, t, L, esc, icon, money, local, moneyAED, priceOf, product, country, bag, card, media, badge, priceHTML, sizeText, open, closeAll, toast, validate, details, sync: SYNC, data: D, art: ART };
 })();
 
 document.addEventListener("DOMContentLoaded", () => window.WP.init());
