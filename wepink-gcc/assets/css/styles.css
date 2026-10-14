@@ -8079,3 +8079,590 @@ a.pair-item:hover {
   object-fit: cover;
   display: block;
 }
+
+/* ---------- the prize draw: the home band, the Campaign banner, bag, checkout, rules ---------- */
+/* The prize photo is a light pink scene in both the white and the black version, so
+   these pieces keep their own colours: wine ink on blush, burgundy and gold accents. */
+.draw-band,
+.draw-banner {
+  --draw-ink: #2a0616;
+  --draw-soft: rgba(42, 6, 22, 0.72);
+  --draw-wine: #8a1640;
+  --draw-wash: 236, 205, 200;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--draw-ink);
+  background: rgb(var(--draw-wash));
+}
+.draw-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+.draw-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 50%;
+}
+/* a soft blush wash behind the copy, clear of the phone */
+.draw-band::before,
+.draw-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(var(--draw-wash), 0.94) 0%, rgba(var(--draw-wash), 0.78) 34%, rgba(var(--draw-wash), 0) 56%);
+}
+/* The photo keeps the phone on the right, so in Arabic the copy stays on the left too. */
+[dir="rtl"] :is(.draw-band .draw-grid, .draw-banner) {
+  direction: ltr;
+}
+[dir="rtl"] :is(.draw-band, .draw-banner) .draw-copy {
+  direction: rtl;
+}
+.draw-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-items: center;
+  min-height: clamp(620px, 50vw, 780px);
+  padding-block: clamp(56px, 6vw, 96px);
+}
+.draw-copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+  max-width: 580px;
+  min-width: 0;
+}
+.draw-copy > * {
+  margin: 0;
+}
+.draw-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 11px;
+  padding-inline: 11px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(138, 22, 64, 0.22);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--draw-wine);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.draw-eyebrow .icon {
+  width: 15px;
+  height: 15px;
+  color: var(--pink);
+}
+.draw-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(46px, 5.2vw, 84px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: var(--draw-ink);
+}
+.draw-title em {
+  display: inline-block;
+  padding-inline-end: 0.06em;
+  font-style: italic;
+  background: linear-gradient(100deg, var(--pink) 0%, #b0105e 45%, var(--draw-wine) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+html[lang="ar"] .draw-title {
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+.draw-when {
+  font-size: clamp(18px, 1.6vw, 23px);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--draw-wine);
+}
+.draw-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+.draw-steps li {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 3px;
+  padding: 14px 14px 15px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 30px -22px rgba(138, 22, 64, 0.55);
+}
+.draw-steps .icon {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 6px;
+  color: var(--pink);
+}
+.draw-num {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 14px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(138, 22, 64, 0.55);
+}
+.draw-steps strong {
+  font-size: 14.5px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.draw-steps span:last-child {
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--draw-soft);
+}
+.draw-round {
+  display: grid;
+  gap: 8px;
+  width: min(100%, 460px);
+  padding: 14px 18px 12px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.66);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.draw-round-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.draw-round-head span {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--draw-wine);
+}
+html[lang="ar"] .draw-round-head span {
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.draw-round-head strong {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+.draw-round .meter,
+.draw-meter .meter {
+  height: 8px;
+  background: rgba(138, 22, 64, 0.14);
+}
+.draw-round .meter span,
+.draw-meter .meter span {
+  background: linear-gradient(90deg, #f3c77a, var(--pink) 60%, #8a1640);
+}
+.draw-round-note {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--draw-soft);
+}
+.draw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.draw-actions .draw-rules-btn {
+  border-color: rgba(42, 6, 22, 0.32);
+  background: rgba(255, 255, 255, 0.42);
+  color: var(--draw-ink);
+}
+.draw-actions .draw-rules-btn:hover {
+  background: var(--draw-ink);
+  border-color: var(--draw-ink);
+  color: #fff;
+}
+.draw-ends {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+.draw-ends .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--pink);
+}
+.draw-winners {
+  display: grid;
+  gap: 8px;
+}
+.draw-winners-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--draw-wine);
+}
+html[lang="ar"] .draw-winners-title {
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.draw-winners-title .icon {
+  width: 14px;
+  height: 14px;
+}
+.draw-winners ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.draw-winners li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+}
+.draw-winners li span {
+  color: var(--draw-soft);
+}
+
+/* Campaign page: the banner over the looks */
+.draw-banner {
+  display: grid;
+  align-items: center;
+  min-height: clamp(360px, 32vw, 460px);
+  margin-block: 14px 34px;
+  border-radius: var(--r-lg);
+  box-shadow: 0 30px 60px -40px rgba(138, 22, 64, 0.6);
+}
+.draw-banner .draw-photo img {
+  object-position: 76% 50%;
+}
+.draw-banner::before {
+  background: linear-gradient(90deg, rgba(var(--draw-wash), 0.95) 0%, rgba(var(--draw-wash), 0.82) 36%, rgba(var(--draw-wash), 0) 60%);
+}
+.draw-banner .draw-copy {
+  gap: 14px;
+  max-width: 600px;
+  padding: clamp(26px, 4vw, 52px);
+}
+.draw-banner .draw-title {
+  font-size: clamp(36px, 4vw, 62px);
+}
+.draw-banner .draw-when {
+  font-size: clamp(16px, 1.3vw, 19px);
+}
+.draw-banner .draw-round {
+  padding: 12px 16px 10px;
+}
+.draw-banner .btn-lg {
+  height: 52px;
+  padding: 0 24px;
+  font-size: 15px;
+}
+
+/* bag: the line under free delivery */
+.free-meter + .draw-meter {
+  padding-top: 2px;
+}
+.draw-meter p {
+  flex-wrap: wrap;
+}
+.draw-meter p > span {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.draw-meter .link-btn {
+  color: var(--muted);
+  font-weight: 600;
+}
+.draw-meter.is-in .icon {
+  color: #b0105e;
+}
+html[data-tone="noir"] .draw-meter.is-in .icon {
+  color: var(--pink-300);
+}
+html[data-tone="noir"] .draw-meter .meter {
+  background: var(--line);
+}
+
+/* checkout: the order's entries under the total */
+.sum-draw {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1.5px dashed var(--pink-300);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.sum-draw .icon {
+  width: 20px;
+  height: 20px;
+  color: var(--pink);
+}
+.sum-draw.is-in {
+  border-style: solid;
+  border-color: transparent;
+  background: linear-gradient(120deg, color-mix(in srgb, var(--pink) 12%, var(--surface)), color-mix(in srgb, #f3c77a 18%, var(--surface)));
+  color: var(--accent-ink);
+}
+
+/* the order confirmation: "You're in the draw" */
+.thanks-draw {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 560px;
+  padding: 14px 20px 14px 14px;
+  padding-inline: 14px 20px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(120deg, var(--petal), color-mix(in srgb, #f3c77a 14%, var(--surface)));
+  text-align: start;
+}
+.thanks-draw-photo {
+  width: 92px;
+  height: 116px;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: 50% 55%;
+}
+.thanks-draw > div {
+  display: grid;
+  gap: 6px;
+}
+.thanks-draw .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.thanks-draw .eyebrow .icon {
+  width: 16px;
+  height: 16px;
+}
+.thanks-draw .h3 {
+  font-size: clamp(20px, 2.2vw, 24px);
+  line-height: 1.25;
+}
+.thanks-draw a {
+  color: var(--accent-ink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* help centre: the rules */
+.draw-rules {
+  background: linear-gradient(180deg, var(--bg), var(--petal) 26%, var(--petal) 74%, var(--bg));
+}
+.draw-rules .container {
+  display: grid;
+  gap: 22px;
+}
+.draw-rules-head {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr);
+  align-items: center;
+  gap: 26px;
+}
+.draw-rules-photo {
+  width: 128px;
+  height: 160px;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: 50% 55%;
+  box-shadow: 0 24px 40px -26px rgba(138, 22, 64, 0.8);
+}
+.draw-rules-head .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.draw-rules-head .eyebrow .icon {
+  width: 16px;
+  height: 16px;
+}
+.draw-rules-head .h2 {
+  margin-bottom: 8px;
+}
+.draw-rules-list {
+  display: grid;
+  gap: 10px;
+  counter-reset: rule;
+}
+.draw-rules-list li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 2px 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  counter-increment: rule;
+}
+.draw-rules-list li::before {
+  content: counter(rule);
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--blush);
+  color: var(--accent-ink);
+  font-weight: 800;
+  font-size: 14px;
+}
+.draw-rules-list strong {
+  font-weight: 800;
+}
+.draw-rules-list span {
+  color: var(--muted);
+}
+.draw-rules .draw-ends,
+.draw-permit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+.draw-permit .icon {
+  width: 20px;
+  height: 20px;
+  color: var(--pink);
+}
+
+@media (max-width: 1180px) {
+  .draw-copy {
+    max-width: 520px;
+  }
+  .draw-band::before {
+    background: linear-gradient(90deg, rgba(var(--draw-wash), 0.95) 0%, rgba(var(--draw-wash), 0.85) 44%, rgba(var(--draw-wash), 0) 66%);
+  }
+}
+@media (max-width: 900px) {
+  .draw-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .draw-steps li {
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 1px 12px;
+    padding: 12px 14px;
+  }
+  .draw-steps .icon {
+    grid-row: span 2;
+    margin: 2px 0 0;
+  }
+  .draw-num {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+/* phones: the portrait photo on top, the copy on blush below it */
+@media (max-width: 720px) {
+  .draw-band,
+  .draw-banner {
+    display: block;
+    min-height: 0;
+    background: linear-gradient(180deg, #ddafaf 0, #f0d1cf 30%, #f9e7e5 100%);
+  }
+  .draw-band::before,
+  .draw-banner::before {
+    display: none;
+  }
+  .draw-photo {
+    position: relative;
+    aspect-ratio: 1 / 1.05;
+  }
+  .draw-banner .draw-photo {
+    aspect-ratio: 4 / 3;
+  }
+  .draw-photo::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 38%;
+    background: linear-gradient(180deg, rgba(221, 175, 175, 0), #ddafaf);
+  }
+  .draw-photo img {
+    object-position: 50% 62%;
+  }
+  .draw-banner .draw-photo img {
+    object-position: 50% 58%;
+  }
+  .draw-grid {
+    display: block;
+    min-height: 0;
+    margin-top: -56px;
+    padding-block: 0 48px;
+  }
+  .draw-copy {
+    gap: 16px;
+    max-width: none;
+  }
+  .draw-banner .draw-copy {
+    margin-top: -48px;
+    padding: 0 18px 24px;
+  }
+  .draw-title {
+    font-size: clamp(40px, 11vw, 52px);
+  }
+  .draw-banner .draw-title {
+    font-size: clamp(34px, 9.5vw, 44px);
+  }
+  .draw-round {
+    width: 100%;
+  }
+  .draw-actions,
+  .draw-actions .btn {
+    flex: 1 1 auto;
+  }
+  .thanks-draw {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .thanks-draw-photo {
+    width: 72px;
+    height: 92px;
+  }
+  .draw-rules-head {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .draw-rules-photo {
+    width: 88px;
+    height: 110px;
+  }
+  .draw-rules-list li {
+    padding: 14px;
+  }
+}

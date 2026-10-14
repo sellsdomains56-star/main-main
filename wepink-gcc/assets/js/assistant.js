@@ -87,6 +87,13 @@ window.WP_ASSIST = (function () {
     [["account", 1], ["email", "e-mail", "ايميل", "بريد", "meu e-mail"]],
     [["account", 2], ["club", "newsletter", "offers", "birthday", "نادي", "عروض", "عيد ميلاد", "clube", "novidades", "ofertas", "promocao", "promocoes", "aniversario", "cupom"]],
     [["account", 3], ["ambassador", "affiliate", "commission", "influencer", "earn", "سفيره", "عموله", "اربح", "مسوقه", "embaixadora", "afiliada", "comissao", "influenciadora", "ganhar dinheiro", "revender", "revenda", "ganhe"]],
+    // The prize draw (only while it's on): the narrower questions first, so a tie goes to them.
+    [["draw", 1], ["how many entries", "how many chances", "how many tickets", "entries", "entry", "my entries", "كم فرصه", "كم فرص", "عدد الفرص", "فرصي", "quantos numeros", "numeros da sorte", "numero da sorte", "quantas chances", "meus numeros"]],
+    [["draw", 2], ["when is the draw", "when is the winner", "when do you draw", "when will you draw", "draw date", "متي السحب", "موعد السحب", "متي يكون السحب", "quando e o sorteio", "quando vai ser o sorteio", "quando sai o sorteio", "data do sorteio"]],
+    [["draw", 3], ["how is the winner", "how do you pick", "how do you choose", "random", "fair", "كيف يتم اختيار", "كيف تختارون", "عشوائي", "como e escolhido", "como escolhem", "aleatorio", "justo"]],
+    [["draw", 4], ["did i win", "have i won", "winner", "winners", "who won", "فزت", "الفائز", "الفائزين", "الفائزه", "ganhei", "ganhador", "ganhadora", "ganhadores", "quem ganhou", "vencedor"]],
+    [["draw", 5], ["who can enter", "who can take part", "can i enter", "eligible", "يحق لي", "من يحق", "مين يقدر يشارك", "اقدر اشارك", "quem pode participar", "posso participar"]],
+    [["draw", 0], ["iphone", "draw", "prize", "raffle", "giveaway", "win", "win the iphone", "سحب", "آيفون", "جائزة", "اربح الايفون", "اربح ايفون", "الفوز بالايفون", "sorteio", "premio", "concorrer", "ganhar o iphone", "ganhar um iphone"]],
   ];
   const HUMAN = ["human", "agent", "person", "someone", "whatsapp", "call", "talk to", "speak to", "موظف", "شخص", "واتساب", "اتصل", "اكلم", "خدمه العملاء", "atendente", "humano", "pessoa", "falar com", "atendimento", "ligar", "zap"];
   const HELLO = ["hi", "hello", "hey", "salam", "good morning", "good evening", "مرحبا", "السلام", "هلا", "اهلا", "هاي", "صباح", "مساء", "oi", "ola", "bom dia", "boa tarde", "boa noite", "e ai"];
@@ -223,7 +230,7 @@ window.WP_ASSIST = (function () {
     const it = g && g.items[n];
     if (!it) return "";
     const c = W.country();
-    const vars = { free: W.money(c.freeOver), fee: W.money(c.fee), days: D.config.returnsDays, quality: D.config.qualityDays, delivery: L(c.delivery), country: L(c.name), vat: c.vat, hours: D.config.hours, email: D.config.email };
+    const vars = Object.assign({ free: W.money(c.freeOver), fee: W.money(c.fee), days: D.config.returnsDays, quality: D.config.qualityDays, delivery: L(c.delivery), country: L(c.name), vat: c.vat, hours: D.config.hours, email: D.config.email }, W.draw.vars());
     return L(it.a).replace(/\{(\w+)\}/g, (m, k) => (vars[k] != null ? vars[k] : m));
   }
 
@@ -536,6 +543,7 @@ window.WP_ASSIST = (function () {
     let bestFaq = null;
     let faqScore = 0;
     for (const [ref, words] of INTENTS) {
+      if (ref[0] === "draw" && !W.draw.on()) continue;
       const s = weigh(q, words);
       if (s > faqScore) {
         bestFaq = ref;
@@ -606,6 +614,7 @@ window.WP_ASSIST = (function () {
       products: [t("ai.c_best"), t("ai.c_find")],
       about: [t("ai.c_best"), t("ai.c_stores")],
       account: [t("ai.c_find"), t("ai.c_best")],
+      draw: [t("ai.c_drawEntries"), t("ai.c_drawWin", { prize: W.draw.prize() }), t("ai.c_find")],
     };
     return map[topic] || starters();
   }

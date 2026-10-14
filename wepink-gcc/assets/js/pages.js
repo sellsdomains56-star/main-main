@@ -153,6 +153,114 @@ window.WP_PAGES = (function () {
       </a>`;
   }
 
+  /* ---------------- the prize draw ---------------- */
+  // The home page's section, the Campaign page's banner and the help centre's rules
+  // (W.draw in app.js; every piece disappears while the draw is off).
+  // "Win an iPhone 18 Pro Max with us", the prize in the headline's italics
+  function drawTitle() {
+    const [a, b] = t("draw.title").split("{prize}");
+    return `${esc(a)}<em>${esc(W.draw.prize())}</em>${esc(b || "")}`;
+  }
+  // The prize photo: the wide one, the portrait one on phones.
+  function drawPhoto(cls) {
+    const c = W.draw.cfg();
+    const wide = c.photoWide || c.photo;
+    if (!wide) return "";
+    return `<picture class="${cls}">${c.photo && c.photo !== wide ? `<source media="(max-width: 720px)" srcset="${esc(c.photo)}">` : ""}<img src="${esc(wide)}" alt="${esc(t("draw.photoAlt", { prize: W.draw.prize() }))}" loading="lazy" decoding="async"></picture>`;
+  }
+  // The open round and how far it is from its draw (store_state; hidden when the team hides it).
+  function drawRound() {
+    const st = W.draw.state();
+    if (!st || !st.round) return "";
+    const known = st.progress != null;
+    const pct = known ? Math.max(0, Math.min(100, Math.round(Number(st.progress) || 0))) : 0;
+    return `<div class="draw-round">
+        <p class="draw-round-head"><span>${esc(t("draw.open"))}</span><strong>${esc(W.draw.round(st.round))}</strong></p>
+        ${known ? `<div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="${esc(W.draw.round(st.round))}"><span style="width:${Math.max(pct, 2)}%"></span></div>` : ""}
+        <p class="draw-round-note">${esc(known ? t("draw.progress", { pct }) : t("draw.progressHidden", { min: W.draw.money(W.draw.min()) }))}</p>
+      </div>`;
+  }
+  const drawActions = () => `<div class="draw-actions">
+      <a class="btn btn-glow btn-lg" href="shop.html">${esc(t("draw.shop"))}${icon("arrow", "flip")}</a>
+      <a class="btn btn-ghost btn-lg draw-rules-btn" href="help.html#draw">${esc(t("draw.rules"))}</a>
+    </div>`;
+  function drawEnds() {
+    const at = W.draw.cfg().endsAt;
+    return at ? `<p class="draw-ends">${icon("clock")}<span>${esc(t("draw.ends", { date: new Date(at).toLocaleDateString(W.locale(), { day: "numeric", month: "long", year: "numeric" }) }))}</span></p>` : "";
+  }
+  // Past winners as the site may show them: first name and initial, city, round.
+  function drawWinners() {
+    const list = ((W.draw.state() || {}).winners || []).slice(0, 3);
+    if (!list.length) return "";
+    return `<div class="draw-winners"><p class="draw-winners-title">${icon("sparkle")}${esc(t("draw.winners"))}</p>
+        <ul>${list.map((w) => `<li><strong>${esc(w.name)}</strong><span>${esc([W.draw.city(w), W.draw.round(w.round)].filter(Boolean).join(" · "))}</span></li>`).join("")}</ul>
+      </div>`;
+  }
+  // Home: "Win an iPhone 18 Pro Max with us", how it works in three steps, the open
+  // round and the latest winners, over the prize photo.
+  function drawSection() {
+    const dr = W.draw;
+    if (!dr.on()) return "";
+    const v = Object.assign({ short: dr.prize().split(" ")[0] }, dr.vars());
+    const steps = [
+      ["bag", t("draw.step1", v), t("draw.step1b")],
+      ["ticket", t("draw.step2", v), t("draw.step2b", { eg: dr.money(dr.min() * 3) })],
+      ["phone", t("draw.step3", v), t("draw.step3b")],
+    ];
+    return `<section class="draw-band" id="draw" aria-labelledby="draw-title">
+        ${drawPhoto("draw-photo")}
+        <div class="container draw-grid">
+          <div class="draw-copy" data-reveal>
+            <p class="eyebrow draw-eyebrow">${icon("sparkle")}${esc(t("draw.eyebrow"))}</p>
+            <h2 id="draw-title" class="draw-title">${drawTitle()}</h2>
+            <p class="draw-when">${esc(t("draw.when", v))}</p>
+            <ol class="draw-steps">${steps.map(([ic, a, b], i) => `<li><span class="draw-num">0${i + 1}</span>${icon(ic)}<strong>${esc(a)}</strong><span>${esc(b)}</span></li>`).join("")}</ol>
+            ${drawRound()}
+            ${drawActions()}
+            ${drawEnds()}
+            ${drawWinners()}
+          </div>
+        </div>
+      </section>`;
+  }
+  // Campaign page: the same prize, as a banner over the looks.
+  function drawBanner() {
+    const dr = W.draw;
+    if (!dr.on()) return "";
+    return `<section class="draw-banner" aria-labelledby="draw-banner-title">
+        ${drawPhoto("draw-photo")}
+        <div class="draw-copy">
+          <p class="eyebrow draw-eyebrow">${icon("sparkle")}${esc(t("draw.eyebrow"))}</p>
+          <h2 id="draw-banner-title" class="draw-title">${drawTitle()}</h2>
+          <p class="draw-when">${esc(t("draw.campLine", dr.vars()))}</p>
+          ${drawRound()}
+          ${drawActions()}
+        </div>
+      </section>`;
+  }
+  // Help centre: the rules (data.js drawRules), the permit once there is one, and Apple's note.
+  function drawRulesHTML() {
+    const dr = W.draw;
+    const v = dr.vars();
+    const c = dr.cfg();
+    return `<section class="section draw-rules" id="draw" aria-labelledby="draw-rules-title">
+        <div class="container narrow">
+          <div class="draw-rules-head">
+            ${c.photo ? `<img class="draw-rules-photo" src="${esc(c.photo)}" alt="" loading="lazy" decoding="async">` : ""}
+            <div>
+              <p class="eyebrow">${icon("phone")}${esc(t("draw.eyebrow"))}</p>
+              <h2 id="draw-rules-title" class="h2">${esc(t("draw.rulesTitle", v))}</h2>
+              <p class="muted">${esc(t("draw.rulesLead", v))}</p>
+            </div>
+          </div>
+          <ol class="draw-rules-list">${D.drawRules.map((r) => `<li><strong>${esc(L(r.title))}</strong><span>${esc(fill(L(r.text), v))}</span></li>`).join("")}</ol>
+          ${drawEnds()}
+          ${c.permit ? `<p class="draw-permit">${icon("shield")}<span>${esc(t("draw.permit", { permit: c.permit }))}</span></p>` : ""}
+          <p class="small muted draw-apple">${esc(t("draw.apple"))}</p>
+        </div>
+      </section>`;
+  }
+
   /* ---------------- home ---------------- */
   function home(main) {
     const F = D.featured;
@@ -221,6 +329,8 @@ window.WP_PAGES = (function () {
       </section>
 
       <div class="marquee marquee-glow" aria-hidden="true"><div class="marquee-track">${`<span>${esc(t("marquee"))}</span><span class="marquee-dot">✦</span>`.repeat(6)}</div></div>
+
+      ${drawSection()}
 
       ${favorites()}
 
@@ -1315,6 +1425,7 @@ window.WP_PAGES = (function () {
       <section class="camp-hero">
         <div class="container">
           ${crumbs([["wepink", "index.html"], [t("nav.campaign")]])}
+          ${drawBanner()}
           <p class="eyebrow">${icon("sparkle")}${esc(t("looks.eyebrow"))}</p>
           <h1 class="h1 camp-title">${esc(t("looks.title"))}</h1>
           <p class="lead">${esc(t("camp.lead", { n: list.length }))}</p>
@@ -1402,10 +1513,12 @@ window.WP_PAGES = (function () {
   /* ---------------- help ---------------- */
   function help(main) {
     const c = W.country();
-    const vars = {
+    const vars = Object.assign({
       free: money(c.freeOver), fee: money(c.fee), days: D.config.returnsDays, quality: D.config.qualityDays, delivery: L(c.delivery),
       country: L(c.name), vat: c.vat, hours: D.config.hours, email: D.config.email,
-    };
+    }, W.draw.vars());
+    // the prize draw's questions only while it's on
+    const faq = D.faq.filter((g) => g.id !== "draw" || W.draw.on());
     const wa = (text) => `https://wa.me/${D.config.whatsapp}${text ? "?text=" + encodeURIComponent(text) : ""}`;
     const waNumber = "+" + D.config.whatsapp.replace(/^(\d{3})(\d{2})(\d{3})(\d+)$/, "$1 $2 $3 $4");
     main.innerHTML = `
@@ -1417,13 +1530,13 @@ window.WP_PAGES = (function () {
           <label class="help-search">${icon("search")}<span class="sr-only">${esc(t("help.search"))}</span><input id="help-q" type="search" autocomplete="off" placeholder="${esc(t("help.search"))}"></label>
           <div class="help-topics" role="group" aria-label="${esc(t("help.topics"))}">
             <button class="pill" type="button" data-topic="" aria-pressed="true">${esc(t("help.all"))}</button>
-            ${D.faq.map((g) => `<button class="pill" type="button" data-topic="${g.id}" aria-pressed="false">${icon(g.icon)}${esc(L(g.title))}</button>`).join("")}
+            ${faq.map((g) => `<button class="pill" type="button" data-topic="${g.id}" aria-pressed="false">${icon(g.icon)}${esc(L(g.title))}</button>`).join("")}
           </div>
         </div>
       </section>
       <section class="section help-faq" id="faq">
         <div class="container narrow">
-          ${D.faq
+          ${faq
             .map(
               (g) => `<div class="faq-topic" data-group="${g.id}">
                 <h2 class="h3 faq-topic-title">${icon(g.icon)}${esc(L(g.title))}</h2>
@@ -1436,6 +1549,7 @@ window.WP_PAGES = (function () {
           <p class="faq-none muted" hidden></p>
         </div>
       </section>
+      ${W.draw.on() ? drawRulesHTML() : ""}
       <section class="section section-tint" id="contact">
         <div class="container">
           <div class="section-head"><div><h2 class="h2">${esc(t("help.stillTitle"))}</h2><p class="muted">${esc(t("help.stillLead"))}</p></div></div>
@@ -1518,7 +1632,7 @@ window.WP_PAGES = (function () {
         {
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: D.faq.flatMap((g) => g.items.map((it) => ({ "@type": "Question", name: fill(L(it.q), vars), acceptedAnswer: { "@type": "Answer", text: fill(L(it.a), vars) } }))),
+          mainEntity: faq.flatMap((g) => g.items.map((it) => ({ "@type": "Question", name: fill(L(it.q), vars), acceptedAnswer: { "@type": "Answer", text: fill(L(it.a), vars) } }))),
         },
       ],
     });
@@ -1686,20 +1800,14 @@ window.WP_PAGES = (function () {
     }
 
     function totals() {
-      const sub = W.bag.subtotal();
-      const del = W.bag.delivery();
       // the ritual set's saving first, then one code on what's left: a
-      // friend's code, or the Club welcome offer
-      const friend = W.ref.get();
-      const welcomeOn = !friend && W.welcome.ready();
-      const code = friend || (welcomeOn ? W.welcome.code() : "");
-      const pct = friend ? W.ref.pct() : welcomeOn ? W.welcome.pct() : 0;
-      const rit = W.bag.ritual();
-      const raw = code ? ((sub - rit.amount) * pct) / 100 : 0;
-      const refDisc = c.decimals ? Math.round(raw * 1000) / 1000 : Math.round(raw);
-      const disc = rit.amount + refDisc;
+      // friend's code, or the Club welcome offer (W.bag.discounts)
+      const { sub, code, pct, welcomeOn, refDisc, rit, disc } = W.bag.discounts();
+      const del = W.bag.delivery();
       const codeLabel = welcomeOn ? t("co.welcomeDiscount", { code, pct }) : t("co.discount", { code });
-      return { sub, del, code, pct, welcomeOn, codeLabel, disc, refDisc, rit, total: sub - disc + del };
+      // the prize draw: entries for the products after discounts
+      const entry = W.draw.on() ? W.draw.of(sub - disc) : null;
+      return { sub, del, code, pct, welcomeOn, codeLabel, disc, refDisc, rit, entry, total: sub - disc + del };
     }
     function codeBox(code, error, pct) {
       return code
@@ -1711,7 +1819,7 @@ window.WP_PAGES = (function () {
           </form>${error ? `<p class="field-error">${esc(error)}</p>` : ""}`;
     }
     function summary(error) {
-      const { sub, del, code, pct, codeLabel, refDisc, rit, total } = totals();
+      const { sub, del, code, pct, codeLabel, refDisc, rit, entry, total } = totals();
       const vat = c.vat ? total - total / (1 + c.vat / 100) : 0;
       const vatText = c.decimals ? Math.round(vat * 1000) / 1000 : Math.round(vat * 100) / 100;
       return `<ul class="sum-lines">${W.bag
@@ -1732,7 +1840,12 @@ window.WP_PAGES = (function () {
           <div><dt>${esc(t("co.delivery"))}</dt><dd>${del ? esc(money(del)) : `<span class="free">${esc(t("co.free"))}</span>`}</dd></div>
           <div class="sum-total"><dt>${esc(t("co.total"))}</dt><dd>${esc(money(total))}</dd></div>
         </dl>
-        <p class="muted small">${esc(c.vat ? t("co.vatIncl", { rate: c.vat, amount: money(vatText) }) : t("co.vatNone"))}</p>`;
+        <p class="muted small">${esc(c.vat ? t("co.vatIncl", { rate: c.vat, amount: money(vatText) }) : t("co.vatNone"))}</p>
+        ${
+          entry
+            ? `<p class="sum-draw${entry.tickets ? " is-in" : ""}">${icon(entry.tickets ? "ticket" : "phone")}<span>${esc(entry.tickets ? t("draw.bagIn", { entries: W.draw.entries(entry.tickets), prize: W.draw.prize() }) : t("draw.bagShort", { amount: money(entry.short), prize: W.draw.prize() }))}</span></p>`
+            : ""
+        }`;
     }
 
     main.innerHTML = `
@@ -1850,17 +1963,22 @@ window.WP_PAGES = (function () {
       btn.disabled = true;
       btn.querySelector("span").textContent = t("co.placing");
       const items = W.bag.items();
-      const { sub, del, code, welcomeOn, codeLabel, disc, refDisc, rit, total } = totals();
+      const { sub, del, code, welcomeOn, codeLabel, disc, refDisc, rit, entry, total } = totals();
       const f = Object.fromEntries(new FormData(form).entries());
       const phone = `${c.dial} ${f.phone}`;
 
-      function finish(id) {
+      // `r`: what place_order answered; without it, the prize draw's entries are this bag's own count.
+      function finish(id, r) {
+        const st = W.draw.state();
+        const won = r && "drawTickets" in r ? (r.drawTickets ? { n: r.drawTickets, round: r.drawRound } : null) : entry && entry.tickets ? { n: entry.tickets, round: st && st.round } : null;
+        const entries = won ? W.draw.entries(won.n) : "";
         const lines = [
           t("co.waIntro", { id }),
           ...items.map((i) => `• ${i.qty} × ${fullName(i.p)} — ${money(priceOf(i.p) * i.qty)}`),
           rit.amount ? `${t("rit.discount", { pct: rit.pct })}: − ${money(rit.amount)}` : "",
           refDisc ? `${codeLabel}: − ${money(refDisc)}` : "",
           `${t("co.total")}: ${money(total)}`,
+          won ? t("draw.wa", { prize: W.draw.prize(), entries }) : "",
           `${f.name} · ${phone}`,
           `${f.street}${f.apt ? ", " + f.apt : ""}, ${f.area}, ${f.city}, ${L(c.name)}`,
           `${t("co.payment")}: ${L(D.payNames[f.pay])}`,
@@ -1878,6 +1996,18 @@ window.WP_PAGES = (function () {
           <span class="thanks-icon">${icon("check")}</span>
           <h1 class="h1">${esc(t("co.thanksTitle", { name: f.name.split(" ")[0] }))}</h1>
           <p class="lead">${esc(t("co.thanksLead", { id, phone }))}</p>
+          ${
+            won
+              ? `<div class="thanks-draw">
+            ${W.draw.cfg().photo ? `<img class="thanks-draw-photo" src="${esc(W.draw.cfg().photo)}" alt="" decoding="async">` : ""}
+            <div>
+              <p class="eyebrow">${icon("ticket")}${esc(t("draw.eyebrow"))}</p>
+              <h2 class="h3">${esc(won.round ? t("draw.thanks", { entries, round: W.draw.round(won.round) }) : t("draw.thanksAny", { entries, prize: W.draw.prize() }))}</h2>
+              <p class="small muted">${esc(t("draw.thanksNote"))} <a href="help.html#draw">${esc(t("draw.rules"))}</a></p>
+            </div>
+          </div>`
+              : ""
+          }
           <div class="btn-row center">
             <a class="btn btn-primary btn-lg" href="${wa}" target="_blank" rel="noopener">${icon("chat")}${esc(t("co.thanksWa"))}</a>
             <a class="btn btn-ghost btn-lg" href="shop.html">${esc(t("co.thanksShop"))}</a>
@@ -1905,7 +2035,7 @@ window.WP_PAGES = (function () {
         customer: { name: f.name.trim(), email: f.email.trim(), phone, city: f.city, area: f.area, street: f.street, apt: f.apt, notes: f.notes },
       };
       W.sync.rpc("place_order", { p: Object.assign(order, W.sync.context()) }).then(
-        (r) => finish(r.number),
+        (r) => finish(r.number, r),
         () => finish(localId)
       );
     });
