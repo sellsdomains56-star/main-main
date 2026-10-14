@@ -55,12 +55,14 @@ window.WP_DATA = (function () {
     // `aedPerPrize` and the admin panel draws its winner (Draw tab, draw_pick in
     // supabase/schema.sql). The database's settings.draw (admin: Draw) replaces these;
     // `on: false` hides the draw everywhere. Needs a promotion permit in each country first.
+    // Shoppers only read "buy more than 4 products, minAed or more": aedPerPrize and the
+    // rounds stay in the admin panel.
     draw: {
       on: true,
       minAed: 300,
       aedPerPrize: 50000,
       prize: { en: "iPhone 18 Pro Max", ar: "آيفون 18 برو ماكس", pt: "iPhone 18 Pro Max" },
-      showProgress: true, // the store shows how far the open round is from its draw
+      showProgress: false, // store_state keeps the open round's progress to itself: the store never shows rounds
       endsAt: null, // ISO date and time when entries stop; null: until it's switched off
       permit: "", // the promotion permit number, shown with the rules once set
       prizeValueAed: 5499, // iPhone 18 Pro Max 256 GB, UAE price: the admin's cost sums only, never shown to shoppers
@@ -416,19 +418,20 @@ window.WP_DATA = (function () {
           a: { en: "Sign up on the Earn page to get your own code. Your friends get a discount on their first order and you earn commission on every order they place.", ar: "سجّلي في صفحة اربحي معنا لتحصلي على كودكِ الخاص. تحصل صديقاتكِ على خصم على طلبهن الأول وتربحين عمولة على كل طلب.", pt: "Cadastre-se na página Ganhe com a wepink para receber seu código exclusivo. Seus amigos ganham desconto no primeiro pedido e você ganha comissão em cada pedido que eles fizerem." } },
       ],
     },
-    // The prize draw (config.draw): shown only while it's on. {prize}, {min} and {target}
-    // are filled in with the prize's name and the amounts in the shopper's currency.
+    // The prize draw (config.draw): shown only while it's on. {prize} and {min} are
+    // filled in with the prize's name and the amount in the shopper's currency. How many
+    // orders fund each iPhone (aedPerPrize) stays with the team.
     {
       id: "draw", icon: "phone", title: { en: "iPhone draw", ar: "سحب الآيفون", pt: "Sorteio do iPhone" },
       items: [
         { q: { en: "How do I win the {prize}?", ar: "كيف أربح {prize}؟", pt: "Como ganho o {prize}?" },
-          a: { en: "Spend {min} or more and your order goes into the {prize} draw by itself: one entry for every full {min} of products after discounts (delivery doesn't count). A new {prize} is drawn every {target} of orders, so there's always a round open, and the more entries you have, the better your chances.", ar: "تسوّقي بقيمة {min} أو أكثر ويدخل طلبكِ سحب {prize} تلقائيًا: فرصة لكل {min} كاملة من المنتجات بعد الخصم (التوصيل لا يُحتسب). يُسحب {prize} جديد مع كل {target} من الطلبات، فهناك دائمًا جولة مفتوحة، وكلما زادت فرصكِ زاد احتمال فوزكِ.", pt: "Compre a partir de {min} e o seu pedido já entra no sorteio do {prize}: um número da sorte a cada {min} inteiros em produtos, depois dos descontos (o frete não conta). Um novo {prize} é sorteado a cada {target} em pedidos, então sempre tem uma rodada aberta, e quanto mais números, mais chances." } },
+          a: { en: "Buy more than 4 products — {min} or more — and your order goes into the {prize} draw by itself: one entry for every full {min} of products after discounts (delivery doesn't count). The more entries you have, the better your chances.", ar: "اشتري أكثر من 4 منتجات بقيمة {min} أو أكثر ويدخل طلبكِ سحب {prize} تلقائيًا: فرصة لكل {min} كاملة من المنتجات بعد الخصم (التوصيل لا يُحتسب). وكلما زادت فرصكِ زاد احتمال فوزكِ.", pt: "Compre mais de 4 produtos, a partir de {min}, e o seu pedido já entra no sorteio do {prize}: um número da sorte a cada {min} inteiros em produtos, depois dos descontos (o frete não conta). Quanto mais números, mais chances." } },
         { q: { en: "How many entries does my order get?", ar: "كم فرصة يحصل عليها طلبي؟", pt: "Quantos números da sorte meu pedido ganha?" },
           a: { en: "One for every full {min} of products after any discount, delivery excluded: an order of {min} gets 1 entry, three times that gets 3. Orders under {min} aren't entered, and entries can't be bought on their own. Your bag and checkout show your entries before you order.", ar: "فرصة لكل {min} كاملة من المنتجات بعد أي خصم، دون التوصيل: طلب بقيمة {min} يحصل على فرصة واحدة، وثلاثة أضعافه على 3 فرص. الطلبات الأقل من {min} لا تدخل السحب، ولا تُشترى الفرص وحدها. تعرض حقيبتكِ وصفحة الدفع فرصكِ قبل الطلب.", pt: "Um a cada {min} inteiros em produtos, depois de qualquer desconto e sem o frete: um pedido de {min} ganha 1 número, o triplo disso ganha 3. Pedidos abaixo de {min} não participam, e os números não podem ser comprados separadamente. A sacola e o checkout mostram seus números antes de você finalizar." } },
         { q: { en: "When is the winner drawn?", ar: "متى يتم السحب على الفائز؟", pt: "Quando é o sorteio?" },
-          a: { en: "Each round closes when its entered orders reach {target}. Its winner is drawn once those orders are confirmed, and a new round, with a new {prize}, opens straight away. The home page shows how far the current round has come.", ar: "تُغلق كل جولة عندما تصل طلباتها المشاركة إلى {target}، ويُسحب الفائز بعد تأكيد هذه الطلبات، وتبدأ فورًا جولة جديدة بجهاز {prize} جديد. تعرض الصفحة الرئيسية تقدّم الجولة الحالية.", pt: "Cada rodada fecha quando os pedidos participantes chegam a {target}. O ganhador é sorteado assim que esses pedidos são confirmados, e uma nova rodada, com um novo {prize}, começa na hora. A página inicial mostra quanto falta para o sorteio da rodada atual." } },
+          a: { en: "Draws are held throughout the promotion, once the entered orders are confirmed, and each one gives away a {prize}. We call or WhatsApp every winner and show winners on the site.", ar: "نُجري السحوبات طوال فترة العرض بعد تأكيد الطلبات المشاركة، وفي كل سحب جهاز {prize}. نتصل بكل فائز أو نراسله على واتساب، ونعرض الفائزين على الموقع.", pt: "Os sorteios acontecem ao longo da promoção, depois que os pedidos participantes são confirmados, e cada um dá um {prize}. A gente liga ou chama cada ganhador no WhatsApp e mostra os ganhadores no site." } },
         { q: { en: "How is the winner picked?", ar: "كيف يتم اختيار الفائز؟", pt: "Como o ganhador é escolhido?" },
-          a: { en: "At random among all the entries in the round, each with the same chance. Only confirmed and delivered orders take part (cancelled and returned orders don't count), and every draw is recorded with its full list of entries, in line with the promotion permit.", ar: "عشوائيًا من بين كل فرص الجولة، ولكل فرصة الاحتمال نفسه. تشارك الطلبات المؤكدة والمسلّمة فقط (الطلبات الملغاة والمرتجعة لا تُحتسب)، ويُوثّق كل سحب مع القائمة الكاملة للفرص، وفق تصريح العرض الترويجي.", pt: "Por sorteio, entre todos os números da rodada, cada um com a mesma chance. Só participam pedidos confirmados e entregues (pedidos cancelados e devolvidos não contam), e cada sorteio fica registrado com a lista completa de números, conforme a autorização da promoção." } },
+          a: { en: "At random among all the entries in the draw, each with the same chance. Only confirmed and delivered orders take part (cancelled and returned orders don't count), and every draw is recorded with its full list of entries, in line with the promotion permit.", ar: "عشوائيًا من بين كل فرص السحب، ولكل فرصة الاحتمال نفسه. تشارك الطلبات المؤكدة والمسلّمة فقط (الطلبات الملغاة والمرتجعة لا تُحتسب)، ويُوثّق كل سحب مع القائمة الكاملة للفرص، وفق تصريح العرض الترويجي.", pt: "Por sorteio, entre todos os números participantes, cada um com a mesma chance. Só participam pedidos confirmados e entregues (pedidos cancelados e devolvidos não contam), e cada sorteio fica registrado com a lista completa de números, conforme a autorização da promoção." } },
         { q: { en: "How will I know if I've won?", ar: "كيف أعرف إن فزت؟", pt: "Como vou saber se ganhei?" },
           a: { en: "We'll call or WhatsApp you on the number you gave with your order. Winners are shown on the site by first name, initial and city. The prize can't be exchanged for cash.", ar: "سنتصل بكِ أو نراسلكِ على واتساب على الرقم الذي أدخلتِه مع طلبكِ. نعرض الفائزين على الموقع بالاسم الأول والحرف الأول من اسم العائلة والمدينة. لا يمكن استبدال الجائزة بمبلغ نقدي.", pt: "A gente liga ou manda mensagem no WhatsApp para o número informado no pedido. Os ganhadores aparecem no site com o primeiro nome, a inicial do sobrenome e a cidade. O prêmio não pode ser trocado por dinheiro." } },
         { q: { en: "Who can take part?", ar: "من يحق له المشاركة؟", pt: "Quem pode participar?" },
@@ -438,7 +441,7 @@ window.WP_DATA = (function () {
   ];
 
   // The prize draw's rules, on the help centre (help.html#draw) and linked from every
-  // draw banner. {prize}, {min} and {target} as in the help centre; the permit number
+  // draw banner. {prize} and {min} as in the help centre; the permit number
   // (config.draw.permit) and Apple's trademark note follow them.
   const drawRules = [
     {
@@ -450,8 +453,8 @@ window.WP_DATA = (function () {
       text: { en: "One entry for every full {min} of products in an order, after discounts; delivery doesn't count. Entries come with orders only and can't be bought.", ar: "فرصة لكل {min} كاملة من المنتجات في الطلب بعد الخصومات، ولا يُحتسب التوصيل. تأتي الفرص مع الطلبات فقط ولا يمكن شراؤها.", pt: "Um número da sorte a cada {min} inteiros em produtos no pedido, depois dos descontos; o frete não conta. Os números vêm só com os pedidos e não podem ser comprados." },
     },
     {
-      title: { en: "Rounds", ar: "الجولات", pt: "Rodadas" },
-      text: { en: "Each round has one {prize}. A round closes when its entered orders reach {target}, and a new round, with a new {prize}, opens straight away.", ar: "لكل جولة جهاز {prize} واحد. تُغلق الجولة عندما تصل طلباتها المشاركة إلى {target}، وتبدأ فورًا جولة جديدة بجهاز {prize} جديد.", pt: "Cada rodada tem um {prize}. A rodada fecha quando os pedidos participantes chegam a {target}, e uma nova rodada, com um novo {prize}, começa na hora." },
+      title: { en: "Draws", ar: "السحوبات", pt: "Sorteios" },
+      text: { en: "Each draw gives away one {prize}. Draws are held throughout the promotion as orders come in.", ar: "في كل سحب جهاز {prize} واحد. تُجرى السحوبات طوال فترة العرض مع وصول الطلبات.", pt: "Cada sorteio dá um {prize}. Os sorteios acontecem ao longo da promoção, conforme os pedidos chegam." },
     },
     {
       title: { en: "Orders that count", ar: "الطلبات المحتسبة", pt: "Pedidos que valem" },
@@ -459,7 +462,7 @@ window.WP_DATA = (function () {
     },
     {
       title: { en: "The draw", ar: "السحب", pt: "O sorteio" },
-      text: { en: "The winner is picked at random among all the round's entries, each with the same chance. Every draw is recorded with its full list of entries and held in line with the promotion permit.", ar: "يُختار الفائز عشوائيًا من بين كل فرص الجولة، ولكل فرصة الاحتمال نفسه. يُوثّق كل سحب مع القائمة الكاملة للفرص ويُجرى وفق تصريح العرض الترويجي.", pt: "O ganhador é sorteado entre todos os números da rodada, cada um com a mesma chance. Cada sorteio fica registrado com a lista completa de números e é feito conforme a autorização da promoção." },
+      text: { en: "The winner is picked at random among all the draw's entries, each with the same chance. Every draw is recorded with its full list of entries and held in line with the promotion permit.", ar: "يُختار الفائز عشوائيًا من بين كل فرص السحب، ولكل فرصة الاحتمال نفسه. يُوثّق كل سحب مع القائمة الكاملة للفرص ويُجرى وفق تصريح العرض الترويجي.", pt: "O ganhador é sorteado entre todos os números participantes, cada um com a mesma chance. Cada sorteio fica registrado com a lista completa de números e é feito conforme a autorização da promoção." },
     },
     {
       title: { en: "Winners", ar: "الفائزون", pt: "Ganhadores" },
@@ -467,7 +470,7 @@ window.WP_DATA = (function () {
     },
     {
       title: { en: "The prize", ar: "الجائزة", pt: "O prêmio" },
-      text: { en: "One {prize} per round. The prize can't be exchanged for cash or for another product.", ar: "جهاز {prize} واحد لكل جولة. لا يمكن استبدال الجائزة بمبلغ نقدي أو بمنتج آخر.", pt: "Um {prize} por rodada. O prêmio não pode ser trocado por dinheiro nem por outro produto." },
+      text: { en: "One {prize} per draw. The prize can't be exchanged for cash or for another product.", ar: "جهاز {prize} واحد لكل سحب. لا يمكن استبدال الجائزة بمبلغ نقدي أو بمنتج آخر.", pt: "Um {prize} por sorteio. O prêmio não pode ser trocado por dinheiro nem por outro produto." },
     },
   ];
 

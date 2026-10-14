@@ -168,18 +168,6 @@ window.WP_PAGES = (function () {
     if (!wide) return "";
     return `<picture class="${cls}">${c.photo && c.photo !== wide ? `<source media="(max-width: 720px)" srcset="${esc(c.photo)}">` : ""}<img src="${esc(wide)}" alt="${esc(t("draw.photoAlt", { prize: W.draw.prize() }))}" loading="lazy" decoding="async"></picture>`;
   }
-  // The open round and how far it is from its draw (store_state; hidden when the team hides it).
-  function drawRound() {
-    const st = W.draw.state();
-    if (!st || !st.round) return "";
-    const known = st.progress != null;
-    const pct = known ? Math.max(0, Math.min(100, Math.round(Number(st.progress) || 0))) : 0;
-    return `<div class="draw-round">
-        <p class="draw-round-head"><span>${esc(t("draw.open"))}</span><strong>${esc(W.draw.round(st.round))}</strong></p>
-        ${known ? `<div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="${esc(W.draw.round(st.round))}"><span style="width:${Math.max(pct, 2)}%"></span></div>` : ""}
-        <p class="draw-round-note">${esc(known ? t("draw.progress", { pct }) : t("draw.progressHidden", { min: W.draw.money(W.draw.min()) }))}</p>
-      </div>`;
-  }
   const drawActions = () => `<div class="draw-actions">
       <a class="btn btn-glow btn-lg" href="shop.html">${esc(t("draw.shop"))}${icon("arrow", "flip")}</a>
       <a class="btn btn-ghost btn-lg draw-rules-btn" href="help.html#draw">${esc(t("draw.rules"))}</a>
@@ -188,34 +176,26 @@ window.WP_PAGES = (function () {
     const at = W.draw.cfg().endsAt;
     return at ? `<p class="draw-ends">${icon("clock")}<span>${esc(t("draw.ends", { date: new Date(at).toLocaleDateString(W.locale(), { day: "numeric", month: "long", year: "numeric" }) }))}</span></p>` : "";
   }
-  // Past winners as the site may show them: first name and initial, city, round.
+  // Past winners as the site may show them: first name and initial, city.
   function drawWinners() {
     const list = ((W.draw.state() || {}).winners || []).slice(0, 3);
     if (!list.length) return "";
     return `<div class="draw-winners"><p class="draw-winners-title">${icon("sparkle")}${esc(t("draw.winners"))}</p>
-        <ul>${list.map((w) => `<li><strong><bdi>${esc(w.name)}</bdi></strong><span>${esc([W.draw.city(w), W.draw.round(w.round)].filter(Boolean).join(" · "))}</span></li>`).join("")}</ul>
+        <ul>${list.map((w) => `<li><strong><bdi>${esc(w.name)}</bdi></strong>${W.draw.city(w) ? `<span>${esc(W.draw.city(w))}</span>` : ""}</li>`).join("")}</ul>
       </div>`;
   }
-  // Home: "Win an iPhone 18 Pro Max with us", how it works in three steps, the open
-  // round and the latest winners, over the prize photo.
+  // Home: "Win an iPhone 18 Pro Max with us", one line on how to enter and the latest
+  // winners, over the prize photo. How many orders fund each iPhone stays with the team.
   function drawSection() {
     const dr = W.draw;
     if (!dr.on()) return "";
-    const v = Object.assign({ short: dr.prize().split(" ")[0] }, dr.vars());
-    const steps = [
-      ["bag", t("draw.step1", v), t("draw.step1b")],
-      ["ticket", t("draw.step2", v), t("draw.step2b", { eg: dr.money(dr.min() * 3) })],
-      ["phone", t("draw.step3", v), t("draw.step3b")],
-    ];
     return `<section class="draw-band" id="draw" aria-labelledby="draw-title">
         ${drawPhoto("draw-photo")}
         <div class="container draw-grid">
           <div class="draw-copy" data-reveal>
             <p class="eyebrow draw-eyebrow">${icon("sparkle")}${esc(t("draw.eyebrow"))}</p>
             <h2 id="draw-title" class="draw-title">${drawTitle()}</h2>
-            <p class="draw-line">${esc(t("draw.line", v))}</p>
-            <ol class="draw-steps">${steps.map(([ic, a, b], i) => `<li><span class="draw-num">0${i + 1}</span>${icon(ic)}<strong>${esc(a)}</strong><span>${esc(b)}</span></li>`).join("")}</ol>
-            ${drawRound()}
+            <p class="draw-line">${esc(t("draw.line", dr.vars()))}</p>
             ${drawActions()}
             ${drawEnds()}
             ${drawWinners()}
@@ -233,7 +213,6 @@ window.WP_PAGES = (function () {
           <p class="eyebrow draw-eyebrow">${icon("sparkle")}${esc(t("draw.eyebrow"))}</p>
           <h2 id="draw-banner-title" class="draw-title">${drawTitle()}</h2>
           <p class="draw-line">${esc(t("draw.line", dr.vars()))}</p>
-          ${drawRound()}
           ${drawActions()}
         </div>
       </section>`;
@@ -1969,9 +1948,8 @@ window.WP_PAGES = (function () {
 
       // `r`: what place_order answered; without it, the prize draw's entries are this bag's own count.
       function finish(id, r) {
-        const st = W.draw.state();
-        const won = r && "drawTickets" in r ? (r.drawTickets ? { n: r.drawTickets, round: r.drawRound } : null) : entry && entry.tickets ? { n: entry.tickets, round: st && st.round } : null;
-        const entries = won ? W.draw.entries(won.n) : "";
+        const won = r && "drawTickets" in r ? r.drawTickets : entry && entry.tickets;
+        const entries = won ? W.draw.entries(won) : "";
         const lines = [
           t("co.waIntro", { id }),
           ...items.map((i) => `• ${i.qty} × ${fullName(i.p)} — ${money(priceOf(i.p) * i.qty)}`),
@@ -2002,7 +1980,7 @@ window.WP_PAGES = (function () {
             ${W.draw.cfg().photo ? `<img class="thanks-draw-photo" src="${esc(W.draw.cfg().photo)}" alt="" decoding="async">` : ""}
             <div>
               <p class="eyebrow">${icon("ticket")}${esc(t("draw.eyebrow"))}</p>
-              <h2 class="h3">${esc(won.round ? t("draw.thanks", { entries, round: W.draw.round(won.round) }) : t("draw.thanksAny", { entries, prize: W.draw.prize() }))}</h2>
+              <h2 class="h3">${esc(t("draw.thanks", { entries, prize: W.draw.prize() }))}</h2>
               <p class="small muted">${esc(t("draw.thanksNote"))} <a href="help.html#draw">${esc(t("draw.rules"))}</a></p>
             </div>
           </div>`

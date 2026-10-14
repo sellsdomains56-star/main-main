@@ -73,7 +73,7 @@ insert into public.settings (key, value) values
   ('pricing', '{"markupPct": 5}'),
   ('referral', '{"friendDiscountPct": 10, "tiers": [{"id": "pink", "minOrders": 0, "pct": 10}, {"id": "hot", "minOrders": 20, "pct": 15}, {"id": "diamond", "minOrders": 50, "pct": 20}]}'),
   ('contact', '{"whatsapp": "", "email": "", "instagram": "", "tiktok": ""}'),
-  ('draw', '{"on": true, "minAed": 300, "aedPerPrize": 50000, "prize": {"en": "iPhone 18 Pro Max", "ar": "آيفون 18 برو ماكس", "pt": "iPhone 18 Pro Max"}, "showProgress": true, "endsAt": null, "permit": ""}');
+  ('draw', '{"on": true, "minAed": 300, "aedPerPrize": 50000, "prize": {"en": "iPhone 18 Pro Max", "ar": "آيفون 18 برو ماكس", "pt": "iPhone 18 Pro Max"}, "showProgress": false, "endsAt": null, "permit": ""}');
 
 -- ---------------------------------------------------------------------------
 -- Products

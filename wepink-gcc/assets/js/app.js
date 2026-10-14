@@ -321,8 +321,9 @@ window.WP = (function () {
    * An iPhone for every config.draw.aedPerPrize of orders. Each order gets one
    * entry per full config.draw.minAed of products after discounts (delivery
    * doesn't count), worked out in AED with the country's rate, as place_order
-   * does in the database. The open round, its progress and past winners come
-   * from store_state (sync.js). Switched off, or past its end: no draw anywhere. */
+   * does in the database. Past winners come from store_state (sync.js). How many
+   * orders fund each iPhone stays with the team: the store never shows it.
+   * Switched off, or past its end: no draw anywhere. */
   // an amount rounded up to the currency's last digit, so a threshold is never short
   const upLocal = (v) => (country().decimals ? Math.ceil(Math.round(v * 1e6) / 1e3) / 1e3 : Math.ceil(Math.round(v * 1e3) / 1e3));
   const draw = {
@@ -332,10 +333,7 @@ window.WP = (function () {
       return !!c.on && !(c.endsAt && Date.now() >= Date.parse(c.endsAt));
     },
     min: () => Math.max(1, Number(draw.cfg().minAed) || 300),
-    target: () => Math.max(1, Number(draw.cfg().aedPerPrize) || 50000),
     prize: () => L(draw.cfg().prize) || "iPhone",
-    // "iPhone #2": the prize's first word and the round's number
-    round: (n) => t("draw.round", { short: draw.prize().split(" ")[0], n }),
     state: () => SYNC.drawState(),
     // an AED amount in the shopper's currency, rounded up
     local: (aed) => upLocal(aed * country().rate),
@@ -353,8 +351,8 @@ window.WP = (function () {
       const key = "draw.entries_" + (n === 1 ? "one" : n === 2 ? "two" : n <= 10 ? "few" : "many");
       return t((I[state.lang] || {})[key] ? key : n === 1 ? "draw.entries_one" : "draw.entries_many", { n });
     },
-    // {prize}, {min} and {target} in the help centre's answers and the rules
-    vars: () => ({ prize: draw.prize(), min: draw.money(draw.min()), target: draw.money(draw.target()) }),
+    // {prize} and {min} in the help centre's answers and the rules
+    vars: () => ({ prize: draw.prize(), min: draw.money(draw.min()) }),
     // a winner's city in the shopper's language (orders keep the English name)
     city(w) {
       const k = D.countries[w.country];
