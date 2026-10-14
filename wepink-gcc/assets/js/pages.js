@@ -1095,7 +1095,7 @@ window.WP_PAGES = (function () {
               <span data-qty-value aria-live="polite">1</span>
               <button type="button" data-step="1" aria-label="${esc(t("bag.increase"))}">${icon("plus")}</button>
             </div>
-            <button class="btn btn-primary btn-lg btn-grow" type="button" data-add="${esc(p.id)}">${icon("bag")}${esc(t("pdp.add"))} · ${esc(money(priceOf(p)))}</button>
+            <button class="btn btn-primary btn-lg btn-grow" type="button" data-add="${esc(p.id)}">${icon("bag")}${esc(t("pdp.add"))} · <span data-add-total>${esc(money(priceOf(p)))}</span></button>
           </div>
           ${W.ritual.pct() && W.ritual.step(p) ? `<button class="pdp-ritual" type="button" data-open="ritual" data-line="${esc(p.line)}">${icon("sparkle")}<span><strong>${esc(t("rit.pdpTitle", { pct: W.ritual.pct() }))}</strong>${esc(t("rit.pdpText"))}</span>${icon("arrow", "flip")}</button>` : ""}
           ${pairHTML(p)}
@@ -1133,11 +1133,14 @@ window.WP_PAGES = (function () {
         main.querySelectorAll(".pdp-thumb[data-shot]").forEach((x) => x.classList.toggle("is-on", x.dataset.shot === b.dataset.shot));
       })
     );
+    // The quantity stepper; the Add to bag button shows the price for that many.
     const qtyEl = main.querySelector("[data-qty-value]");
+    const addTotal = main.querySelector("[data-add-total]");
     main.querySelectorAll("[data-step]").forEach((b) =>
       b.addEventListener("click", () => {
         const v = Math.max(1, Math.min(20, parseInt(qtyEl.textContent, 10) + parseInt(b.dataset.step, 10)));
         qtyEl.textContent = v;
+        if (addTotal) addTotal.textContent = money(priceOf(p) * v);
       })
     );
 
