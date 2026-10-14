@@ -241,10 +241,10 @@ window.WP_DATA = (function () {
     // shop (`cat`). Every product in a picture (`product`, then `also`) shows it on
     // its page with an "As seen in the campaign" badge. `pos` frames it in cards.
     looks: [
-      { photo: "assets/photos/campaign/satin-vf.webp", product: "colonia-vf-75-ml", cat: "perfume", home: true, pos: "50% 30%", title: { en: "Wrapped in pink", ar: "ملفوفة بالوردي", pt: "Envolta em rosa" } },
-      { photo: "assets/photos/campaign/red-studio.webp", product: "colonia-fatal-black-for-her-100-ml", cat: "perfume", home: true, pos: "60% 50%", title: { en: "Power, bottled", ar: "القوة في زجاجة", pt: "Poder em frasco" } },
+      { photo: "assets/photos/campaign/the-sunny-satin.webp", product: "colonia-the-sunny-75-ml", cat: "perfume", home: true, pos: "54% 50%", title: { en: "Wrapped in pink", ar: "ملفوفة بالوردي", pt: "Envolta em rosa" } },
+      { photo: "assets/photos/campaign/my-lips-infinity-plim.webp", product: "colonia-infinity-plim-75-ml", also: ["makeup-gloss-my-lips-4-ml"], cat: "perfume", home: true, pos: "50% 30%", title: { en: "Turn up the shine", ar: "ارفعي مستوى اللمعان", pt: "Aumenta o brilho" } },
       { photo: "assets/photos/campaign/sit-golden.webp", product: "splash-vf-golden-200-ml", cat: "body-splash", home: true, pos: "50% 40%", title: { en: "Golden, all day", ar: "ذهبية طوال اليوم", pt: "Dourada o dia todo" } },
-      { photo: "assets/photos/campaign/crown.webp", product: "colonia-liberte-dore-100-ml", cat: "perfume", home: true, pos: "50% 30%", title: { en: "Crowned in gold", ar: "متوّجة بالذهب", pt: "Coroada de ouro" } },
+      { photo: "assets/photos/campaign/fatal-rouge-crown.webp", product: "colonia-fatal-rouge-100-ml", cat: "perfume", home: true, pos: "45% 40%", title: { en: "Crowned in rouge", ar: "متوّجة بالأحمر", pt: "Coroada de vermelho" } },
       // From the client: these three head Perfumes, Body Care and Makeup in the shop.
       { photo: "assets/photos/campaign/heaven-straw.webp", product: "colonia-heaven-pink-100-ml", cat: "perfume", pos: "75% 40%", title: { en: "Sip on Heaven", ar: "رشفة من هيفن", pt: "Um gole de Heaven" } },
       { photo: "assets/photos/campaign/the-oil-blonde.webp", product: "bodyoil-vf-120-ml", cat: "body-care", pos: "50% 30%", title: { en: "Glow, oiled up", ar: "توهّج مع الزيت", pt: "Brilho com óleo" } },
