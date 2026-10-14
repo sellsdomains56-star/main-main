@@ -24,6 +24,7 @@ const pages = [
   ...categories.map((c) => [`shop.html?c=${c}`, "0.8", "weekly"]),
   ...products.map((p) => [`product.html?id=${encodeURIComponent(p.id)}`, p.badge === "bestseller" ? "0.8" : "0.7", "weekly"]),
   ["earn.html", "0.6", "monthly"],
+  ["campaign.html", "0.6", "monthly"],
   ["stores.html", "0.5", "monthly"],
   ["about.html", "0.5", "monthly"],
   ["help.html", "0.5", "monthly"],

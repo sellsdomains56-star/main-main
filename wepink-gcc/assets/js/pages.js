@@ -108,6 +108,8 @@ window.WP_PAGES = (function () {
   // Campaign looks (data.js → featured.looks) whose product is still in the store.
   const looks = () => (D.featured.looks || []).map((l) => Object.assign({}, l, { p: byId(l.product) })).filter((l) => l.p);
   const lookOf = (p) => looks().find((l) => l.p === p || (l.also || []).includes(p.id));
+  // a look's address on the campaign page, from its English title: campaign.html?look=making-waves
+  const lookId = (l) => String((l.title && l.title.en) || l.product || "").toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const thumbOf = (p) => p.cutout || p.image || "";
   function looksSection() {
     const list = looks().filter((l) => l.home);
@@ -118,6 +120,7 @@ window.WP_PAGES = (function () {
             <p class="eyebrow">${icon("sparkle")}${esc(t("looks.eyebrow"))}</p>
             <h2 id="looks-title" class="h2">${esc(t("looks.title"))}</h2>
             <p class="lead">${esc(t("looks.lead"))}</p>
+            <a class="btn btn-ghost looks-all" href="campaign.html">${esc(t("camp.all"))}${icon("arrow", "flip")}</a>
           </div>
           <div class="looks-grid">
             ${list
@@ -1010,10 +1013,9 @@ window.WP_PAGES = (function () {
       (p.images || []).forEach((src) => shots.push({ cls: "photo", src }));
       (p.remote || []).slice((p.images || []).length).forEach((src) => shots.push({ cls: "photo", src }));
     }
-    // Products from the campaign also show the campaign photo, after their own campaign shots.
+    // Campaign photos stay on the campaign page; the gallery is the product's own photos.
+    // A product in the campaign links to its photo there.
     const look = lookOf(p);
-    const lookShot = look ? Math.min(shots.length, p.scene ? p.images.length : 1) : -1;
-    if (look) shots.splice(lookShot, 0, ...looks().filter((l) => l.p === p || (l.also || []).includes(p.id)).map((l) => ({ cls: "scene look", src: l.photo })));
     const related = [
       ...D.products.filter((x) => x !== p && x.line.split(" ")[0] === p.line.split(" ")[0]),
       ...D.products.filter((x) => x !== p && x.family === p.family),
@@ -1074,7 +1076,7 @@ window.WP_PAGES = (function () {
         <div class="pdp-info">
           <p class="card-type">${esc(L(p.typeName))}${p.family ? ` · ${esc(L(D.families[p.family]))}` : ""}</p>
           <h1 class="h1 pdp-title">${esc(pname(p))}</h1>
-          ${look ? `<button class="pdp-pick" type="button" data-shot="${lookShot}">${look.photo ? `<img src="${esc(look.photo)}" alt="" loading="lazy">` : ""}<span><strong>${esc(t("looks.pick"))}</strong>${esc(t("looks.seen"))}</span></button>` : ""}
+          ${look ? `<a class="pdp-pick" href="campaign.html?look=${encodeURIComponent(lookId(look))}">${look.photo ? `<img src="${esc(look.photo)}" alt="" loading="lazy">` : ""}<span><strong>${esc(t("looks.pick"))}</strong>${esc(t("looks.seen"))}</span>${icon("arrow", "flip")}</a>` : ""}
           ${p.tagline && L(p.tagline) ? `<p class="pdp-tagline">${esc(L(p.tagline))}</p>` : ""}
           <p class="pdp-size">${esc(sizeText(p))}</p>
           <div class="pdp-price">${priceHTML(p)}</div>
@@ -1291,6 +1293,68 @@ window.WP_PAGES = (function () {
   }
 
   /* ---------------- about ---------------- */
+  /* ---------------- campaign ---------------- */
+  // Every campaign photo in one place, each with the product it shows (tap to shop it).
+  // campaign.html?look=<photo name> opens on that photo.
+  function campaign(main) {
+    const F = D.featured;
+    const all = looks();
+    const spot = F.spotlight && byId(F.spotlight);
+    if (spot && D.config.photos.campaign && !all.some((l) => l.photo === D.config.photos.campaign)) all.unshift({ photo: D.config.photos.campaign, p: spot, cat: spot.cat, title: { en: `${t("cb.title1")} ${t("cb.title2")}`, ar: `${t("cb.title1")} ${t("cb.title2")}`, pt: `${t("cb.title1")} ${t("cb.title2")}` } });
+    const list = [...all.filter((l) => l.home), ...all.filter((l) => !l.home)].filter((l, i, a) => a.findIndex((x) => x.photo === l.photo) === i);
+    const cats = D.categories.filter((c) => list.some((l) => (l.cat || l.p.cat) === c.id));
+    const want = W.route().params.get("look") || "";
+    main.innerHTML = `
+      <section class="camp-hero">
+        <div class="container">
+          ${crumbs([["wepink", "index.html"], [t("nav.campaign")]])}
+          <p class="eyebrow">${icon("sparkle")}${esc(t("looks.eyebrow"))}</p>
+          <h1 class="h1 camp-title">${esc(t("looks.title"))}</h1>
+          <p class="lead">${esc(t("camp.lead", { n: list.length }))}</p>
+          <div class="camp-filter" role="group" aria-label="${esc(t("nav.campaign"))}">
+            <button type="button" class="pill" data-camp="" aria-pressed="true">${esc(t("camp.every"))}</button>
+            ${cats.map((c) => `<button type="button" class="pill" data-camp="${c.id}" aria-pressed="false">${esc(L(c.name))}</button>`).join("")}
+          </div>
+        </div>
+      </section>
+      <section class="container camp-grid" aria-label="${esc(t("looks.title"))}">
+        ${list
+          .map(
+            (l, i) => `<figure class="camp-item${lookId(l) === want ? " is-focus" : ""}" id="look-${esc(lookId(l))}" data-cat="${esc(l.cat || l.p.cat)}">
+          <a class="camp-photo" href="product.html?id=${encodeURIComponent(l.p.id)}" aria-label="${esc(t("looks.shop"))}: ${esc(fullName(l.p))}">
+            <img src="${esc(l.photo)}" alt="${esc(L(l.title))}" loading="${i < 4 ? "eager" : "lazy"}" decoding="async">
+            <span class="camp-num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
+          </a>
+          <figcaption>
+            <p class="camp-name">${esc(L(l.title))}</p>
+            <div class="camp-product">
+              <a href="product.html?id=${encodeURIComponent(l.p.id)}">
+                ${thumbOf(l.p) ? `<img src="${esc(thumbOf(l.p))}" alt="" loading="lazy">` : ""}
+                <span><strong>${esc(fullName(l.p))}</strong><span class="muted">${esc(money(priceOf(l.p)))}</span></span>
+              </a>
+              <button class="camp-add" type="button" data-add="${esc(l.p.id)}" aria-label="${esc(t("card.addLabel", { name: fullName(l.p) }))}">${icon("plus")}</button>
+            </div>
+          </figcaption>
+        </figure>`
+          )
+          .join("")}
+      </section>`;
+    main.querySelectorAll("[data-camp]").forEach((b) =>
+      b.addEventListener("click", () => {
+        main.querySelectorAll("[data-camp]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+        main.querySelectorAll(".camp-item").forEach((it) => (it.hidden = !!b.dataset.camp && it.dataset.cat !== b.dataset.camp));
+      })
+    );
+    const focus = want && main.querySelector(".camp-item.is-focus");
+    if (focus) setTimeout(() => focus.scrollIntoView({ block: "center" }), 60);
+    W.seo.set({
+      description: t("camp.lead", { n: list.length }),
+      image: list[0] && list[0].photo,
+      ld: [W.crumbsLd([["wepink", ""], ["Campaign", "campaign.html"]])],
+    });
+    return t("nav.campaign");
+  }
+
   function about(main) {
     const vals = [["heart", "v1"], ["sparkle", "v2"], ["leaf", "v3"], ["pin", "v4"]];
     main.innerHTML = `
@@ -1841,5 +1905,5 @@ window.WP_PAGES = (function () {
     return t("co.title");
   }
 
-  return { home, shop, product, stores, about, help, checkout, earn };
+  return { home, shop, product, stores, about, help, checkout, earn, campaign };
 })();

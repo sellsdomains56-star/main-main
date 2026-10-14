@@ -32,7 +32,7 @@ window.WP = (function () {
    * hash instead: shop.html?c=perfume becomes #/shop?c=perfume.
    */
   const SINGLE = !!window.WP_SINGLE;
-  const PAGE_LINK = /^(index|shop|product|stores|about|help|checkout|earn)\.html(\?[^#]*)?(#.*)?$/;
+  const PAGE_LINK = /^(index|shop|product|stores|about|help|checkout|earn|campaign)\.html(\?[^#]*)?(#.*)?$/;
   function route() {
     if (!SINGLE) return { page: document.body.dataset.page, params: new URLSearchParams(location.search) };
     const m = location.hash.match(/^#\/([a-z]+)(?:\?([^#]*))?/);
@@ -477,12 +477,13 @@ window.WP = (function () {
     return [
       { href: "shop.html", label: t("nav.shop"), key: "shop" },
       ...cats.map((c) => ({ href: `shop.html?c=${c.id}`, label: L(c.name), key: "cat:" + c.id })),
+      { href: "campaign.html", label: t("nav.campaign"), key: "campaign" },
       { href: "earn.html", label: t("nav.earn"), key: "earn", hot: true },
     ];
   }
   function isActive(key) {
     const { page, params } = route();
-    if (key === "stores" || key === "earn") return page === key;
+    if (key === "stores" || key === "earn" || key === "campaign") return page === key;
     if (key === "shop") return page === "shop" && !params.get("c");
     if (key.startsWith("cat:")) return page === "shop" && params.get("c") === key.slice(4);
     return false;
@@ -633,6 +634,7 @@ window.WP = (function () {
             <nav class="footer-col" aria-label="${esc(t("footer.company"))}">
               <h2>${esc(t("footer.company"))}</h2>
               <a href="about.html">${esc(t("footer.about"))}</a>
+              <a href="campaign.html">${esc(t("nav.campaign"))}</a>
               <a href="earn.html">${esc(t("footer.earn"))}</a>
               <a href="stores.html">${esc(t("footer.storesLink"))}</a>
               <button class="footer-club" type="button" data-open="club">${icon("sparkle")}<span>${esc(welcome.pct() ? t("club.footerOffer", { pct: welcome.pct() }) : t("club.footer"))}</span></button>
