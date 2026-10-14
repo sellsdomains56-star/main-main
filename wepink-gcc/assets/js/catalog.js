@@ -3235,6 +3235,7 @@ window.WP_CATALOG = [
   ],
   "rank": 33,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "The elegance of mystery, an essence of you",
    "ar": "أناقة الغموض، جوهر يشبهك",
@@ -5615,6 +5616,7 @@ window.WP_CATALOG = [
   ],
   "rank": 27,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The VF Golden line, together in one set.",
    "ar": "مجموعة في إف جولدن مجتمعة في طقم واحد.",
@@ -7114,6 +7116,7 @@ window.WP_CATALOG = [
   ],
   "rank": 53,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "The Obsessed line, together in one set.",
    "ar": "مجموعة أوبسيسد مجتمعة في طقم واحد.",
@@ -17475,6 +17478,7 @@ window.WP_CATALOG = [
   ],
   "rank": 230,
   "hero": true,
+  "renders": 5,
   "tagline": {
    "en": "Plump lips with cherry color and flavor!",
    "ar": "شفاه ممتلئة بلون الكرز ونكهته!",
@@ -18715,6 +18719,7 @@ window.WP_CATALOG = [
    "https://wepink.vteximg.com.br/arquivos/ids/166064-800-800/kit-4bs.webp?v=639273247839800000"
   ],
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "Favorite body splashes, together in one set",
    "ar": "بخاخات جسم مختارة معًا في طقم واحد",
@@ -26601,6 +26606,7 @@ window.WP_CATALOG = [
   ],
   "rank": 350,
   "hero": true,
+  "renders": 1,
   "tagline": {
    "en": "Sweet at heart, luxurious in every detail",
    "ar": "حلو في جوهره، فاخر في كل تفاصيله",

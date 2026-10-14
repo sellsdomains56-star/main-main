@@ -215,12 +215,16 @@ window.WP_DATA = (function () {
   // Every catalogue product also has its Nano Banana Pro campaign shot in assets/products/hero/,
   // shown first everywhere; the studio photos follow on the product page.
   // (`hero` in catalog.js); a product added later shows its wepink Brasil photo until it has them.
+  // Products whose wepink Brasil photos have been re-shot (`renders` in catalog.js: the product
+  // alone, with its box, details… in assets/products/r/<id>-<n>.webp, in wepink Brasil's order)
+  // show those instead, then any of wepink Brasil's photos not re-shot yet.
   const products = (window.WP_CATALOG || []).map((p) => {
     const hero = "assets/products/hero/" + p.id + ".webp";
     const hero2 = "assets/products/hero/" + p.id + "-2.webp"; // second campaign shot (cards show it on hover)
     const studio = p.images && p.images.length ? p.images : p.image ? [p.image] : [];
-    const images = p.hero ? [hero, hero2] : studio;
-    return Object.assign({}, p, { typeName: T[p.type] || T.bodycare, notes: p.notes || {}, scene: true, image: images[0], images, packshots: studio });
+    const shot = Array.from({ length: p.renders || 0 }, (_, k) => `assets/products/r/${p.id}-${k + 1}.webp`);
+    const images = shot.length ? [...shot, ...(p.remote || []).slice(shot.length)] : p.hero ? [hero, hero2] : studio;
+    return Object.assign({}, p, { typeName: T[p.type] || T.bodycare, notes: p.notes || {}, scene: true, rendered: shot.length > 0, image: images[0], images, packshots: shot.length ? [] : studio });
   });
 
   // Products the home page features (ids from catalog.js).

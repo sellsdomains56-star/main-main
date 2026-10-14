@@ -582,6 +582,14 @@ def details_js(tr_desc):
     return notes, descs
 
 
+def renders(pid):
+    """How many of the product's photos are re-shot: assets/products/r/<id>-1.webp, -2…"""
+    n = 0
+    while os.path.exists(os.path.join(ROOT, "assets/products/r", f"{pid}-{n + 1}.webp")):
+        n += 1
+    return n
+
+
 def js():
     src = json.load(open(SOURCE))
     tr = json.load(open(TRANSLATIONS)) if os.path.exists(TRANSLATIONS) else {}
@@ -613,6 +621,7 @@ def js():
             "remote": p.get("remote", []),
             "rank": p.get("rank"),  # wepink Brasil's best-seller ranking (1 = top seller)
             "hero": os.path.exists(os.path.join(ROOT, "assets/products/hero", p["id"] + ".webp")) or None,  # has campaign shots
+            "renders": renders(p["id"]) or None,  # wepink Brasil's photos re-shot (assets/products/r/<id>-<n>.webp)
             "tagline": {"en": t.get("tagline_en") or "", "ar": t.get("tagline_ar") or "", "pt": t.get("tagline_pt") or ""},
             "desc": page_desc.get(p["id"]) or {"en": t.get("desc_en") or p["short_pt"] or p["desc_pt"][:300], "ar": t.get("desc_ar") or t.get("desc_en") or p["short_pt"], "pt": t.get("desc_pt") or ""},
             "notes": page_notes.get(p["id"]) or t.get("notes") or {},

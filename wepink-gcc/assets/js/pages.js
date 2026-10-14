@@ -1003,7 +1003,10 @@ window.WP_PAGES = (function () {
     const how = { splash: "howSplash", colonia: "howPerfume", hairmist: "howMist", cream: "howLotion", lotion: "howLotion", butter: "howLotion", bodyoil: "howLotion", set: "howSet" }[p.type];
     // Gallery: the staged cut-out first, then the studio photos (local, then the brand's CDN).
     const shots = [];
-    if (p.scene) {
+    if (p.rendered) {
+      // wepink Brasil's photos re-shot (product alone, with its box, details), then any not re-shot yet
+      p.images.forEach((src) => shots.push({ cls: String(src).includes("products/r/") ? "scene" : "photo", src }));
+    } else if (p.scene) {
       // Campaign shots first, then the real packshots.
       p.images.forEach((src) => shots.push({ cls: "scene", src }));
       if (p.cutout) shots.push({ cls: "cut", src: p.cutout });

@@ -235,6 +235,8 @@ window.WP_SYNC = (function () {
     const own = Array.isArray(r.images) && r.images.length > 0;
     const scene = own ? r.photo_style === "scene" : !!(b && b.scene);
     const images = own ? r.images : (b && b.images) || [];
+    // re-shot product photos (assets/products/r/) replace the studio packshots in the gallery
+    const rendered = images.some((x) => String(x).includes("products/r/"));
     return {
       id: r.id,
       cat: D.categories.some((c) => c.id === r.cat) ? r.cat : "body-care",
@@ -262,7 +264,8 @@ window.WP_SYNC = (function () {
       images,
       cutout: r.cutout || (own && !scene ? "" : (b && b.cutout) || ""),
       scene,
-      packshots: scene ? (b && (b.packshots || b.images)) || [] : [],
+      rendered,
+      packshots: rendered ? [] : scene ? (b && (b.packshots || b.images)) || [] : [],
       remote: own ? [] : (b && b.remote) || [],
       source: r.source || undefined,
       rank: b ? b.rank : undefined, // wepink Brasil's best-seller ranking
