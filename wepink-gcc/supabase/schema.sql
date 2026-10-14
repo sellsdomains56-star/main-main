@@ -72,7 +72,8 @@ create policy "admins remove settings" on public.settings for delete to authenti
 insert into public.settings (key, value) values
   ('pricing', '{"markupPct": 5}'),
   ('referral', '{"friendDiscountPct": 10, "tiers": [{"id": "pink", "minOrders": 0, "pct": 10}, {"id": "hot", "minOrders": 20, "pct": 15}, {"id": "diamond", "minOrders": 50, "pct": 20}]}'),
-  ('contact', '{"whatsapp": "", "email": "", "instagram": "", "tiktok": ""}');
+  ('contact', '{"whatsapp": "", "email": "", "instagram": "", "tiktok": ""}'),
+  ('draw', '{"on": true, "minAed": 300, "aedPerPrize": 50000, "prize": {"en": "iPhone 18 Pro Max", "ar": "آيفون 18 برو ماكس", "pt": "iPhone 18 Pro Max"}, "showProgress": true, "endsAt": null, "permit": ""}');
 
 -- ---------------------------------------------------------------------------
 -- Products
@@ -210,12 +211,16 @@ create table public.orders (
   payment text,
   gift_note text,
   note text,
+  draw_round int,              -- prize draw: the round the order entered (null: no entry)
+  draw_aed numeric(12, 2),     -- what counted towards the round (products after discount, AED)
+  draw_tickets int,            -- entries: one per full AED 300 (settings.draw.minAed)
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 create index orders_created_idx on public.orders (created_at desc);
 create index orders_ambassador_idx on public.orders (ambassador_id, created_at);
 create index orders_customer_idx on public.orders (customer_id);
+create index orders_draw_idx on public.orders (draw_round, created_at) where draw_round is not null;
 alter table public.orders enable row level security;
 create trigger orders_touch before update on public.orders for each row execute function public.touch_updated_at();
 
@@ -250,17 +255,123 @@ create policy "admins read visits" on public.visits for select to authenticated 
 create policy "admins remove visits" on public.visits for delete to authenticated using ((select public.is_admin()));
 
 -- ---------------------------------------------------------------------------
+-- Prize draw: every order worth AED 300 or more (products, after discount) gets
+-- one entry per AED 300; each AED 50,000 of entered orders is one round with one
+-- prize (settings.draw). The admin draws a round's winner with draw_pick.
+-- ---------------------------------------------------------------------------
+create table public.draw_winners (
+  round int primary key,
+  order_id uuid references public.orders (id) on delete set null,
+  order_number text not null,
+  ticket int not null,       -- the winning entry, counting from 1 in order of purchase
+  tickets int not null,      -- entries in the round when it was drawn
+  entries jsonb not null,    -- snapshot: [{"number", "tickets"}] in order of purchase
+  winner jsonb not null,     -- what the store may show: first name and initial, city, country
+  drawn_at timestamptz not null default now(),
+  drawn_by text
+);
+alter table public.draw_winners enable row level security;
+create policy "admins read draw winners" on public.draw_winners for select to authenticated using ((select public.is_admin()));
+
+-- The round new entries go into: the latest one, until its entered orders reach the target
+-- (cancelled and returned orders don't count) or it has been drawn.
+create function public.draw_round_now() returns int
+language sql stable security definer set search_path = ''
+as $$
+  with cfg as (
+    select coalesce((select (value ->> 'aedPerPrize')::numeric from public.settings where key = 'draw'), 50000) as target
+  ), last as (
+    select coalesce(max(draw_round), 1) as r from public.orders where draw_round is not null
+  )
+  select case
+    when (select coalesce(sum(o.draw_aed), 0) from public.orders o where o.draw_round = (select r from last) and o.status not in ('cancelled', 'returned')) >= (select target from cfg)
+      or exists (select 1 from public.draw_winners w where w.round = (select r from last))
+    then (select r from last) + 1
+    else (select r from last)
+  end;
+$$;
+
+-- What the store shows: the round now open, how far it is to its draw, and past winners.
+create function public.draw_state() returns jsonb
+language sql stable security definer set search_path = ''
+as $$
+  with cfg as (
+    select value from public.settings where key = 'draw'
+  ), cur as (
+    select public.draw_round_now() as r
+  )
+  select case when coalesce(((select value from cfg) ->> 'on')::boolean, false) then jsonb_build_object(
+    'round', (select r from cur),
+    'progress', case when coalesce(((select value from cfg) ->> 'showProgress')::boolean, true) then
+      least(100, floor(100 * (select coalesce(sum(o.draw_aed), 0) from public.orders o where o.draw_round = (select r from cur) and o.status not in ('cancelled', 'returned'))
+        / greatest(coalesce(((select value from cfg) ->> 'aedPerPrize')::numeric, 50000), 1))) end,
+    'winners', coalesce((select jsonb_agg(w.winner || jsonb_build_object('round', w.round, 'drawnAt', w.drawn_at) order by w.round desc) from public.draw_winners w), '[]'::jsonb)
+  ) end;
+$$;
+
+-- Draws a round's winner (admins only). Every entry of a confirmed, shipped or delivered order
+-- in the round has the same chance; the pick uses a cryptographic random number, and the
+-- entries are saved with the result so the draw can be checked later.
+create function public.draw_pick(p_round int, p_force boolean default false) returns jsonb
+language plpgsql security definer set search_path = ''
+as $$
+declare
+  v_target numeric;
+  v_sum numeric;
+  v_total int;
+  v_pick int;
+  v_won record;
+  v_entries jsonb;
+  v_first text;
+  v_last text;
+  v_winner jsonb;
+begin
+  if not (select public.is_admin()) then raise exception 'Admins only'; end if;
+  if exists (select 1 from public.draw_winners where round = p_round) then raise exception 'This round already has a winner'; end if;
+  select coalesce((select (value ->> 'aedPerPrize')::numeric from public.settings where key = 'draw'), 50000) into v_target;
+  select coalesce(sum(draw_aed), 0), coalesce(sum(draw_tickets), 0) into v_sum, v_total
+  from public.orders where draw_round = p_round and status in ('confirmed', 'shipped', 'delivered');
+  if v_total = 0 then raise exception 'No confirmed entries in this round yet'; end if;
+  if v_sum < v_target and not p_force then raise exception 'This round has not reached its target yet'; end if;
+
+  v_pick := (('x' || lpad(encode(extensions.gen_random_bytes(7), 'hex'), 16, '0'))::bit(64)::bigint % v_total)::int;
+  select e.id, e.number, e.customer, e.country, e.cum, e.draw_tickets into v_won
+  from (
+    select o.id, o.number, o.customer, o.country, o.draw_tickets,
+           sum(o.draw_tickets) over (order by o.created_at, o.id) as cum
+    from public.orders o
+    where o.draw_round = p_round and o.status in ('confirmed', 'shipped', 'delivered')
+  ) e
+  where e.cum > v_pick
+  order by e.cum
+  limit 1;
+
+  select jsonb_agg(jsonb_build_object('number', o.number, 'tickets', o.draw_tickets) order by o.created_at, o.id) into v_entries
+  from public.orders o where o.draw_round = p_round and o.status in ('confirmed', 'shipped', 'delivered');
+
+  v_first := split_part(btrim(coalesce(v_won.customer ->> 'name', '')), ' ', 1);
+  v_last := nullif(split_part(btrim(coalesce(v_won.customer ->> 'name', '')), ' ', 2), '');
+  v_winner := jsonb_build_object('name', v_first || coalesce(' ' || left(v_last, 1) || '.', ''), 'city', v_won.customer ->> 'city', 'country', v_won.country);
+  insert into public.draw_winners (round, order_id, order_number, ticket, tickets, entries, winner, drawn_by)
+  values (p_round, v_won.id, v_won.number, v_pick + 1, v_total, v_entries, v_winner, (select auth.jwt()) ->> 'email');
+  return v_winner || jsonb_build_object('round', p_round, 'number', v_won.number, 'ticket', v_pick + 1, 'tickets', v_total,
+    'fullName', v_won.customer ->> 'name', 'phone', v_won.customer ->> 'phone', 'email', v_won.customer ->> 'email');
+end;
+$$;
+
+-- ---------------------------------------------------------------------------
 -- Functions the store calls (anon). Each checks and trims its input.
 -- ---------------------------------------------------------------------------
 
 -- Catalogue version (changes whenever a product is added, edited, hidden or
--- removed) and the public settings, in one call.
+-- removed), the public settings and the prize draw's state, in one call.
 create function public.store_state() returns jsonb
 language sql stable security definer set search_path = ''
 as $$
   select jsonb_build_object(
     'version', (select count(*)::text || '/' || coalesce(max(updated_at)::text, '') from public.products),
-    'settings', coalesce((select jsonb_object_agg(key, value) from public.settings where key in ('pricing', 'referral', 'contact', 'season', 'ritual', 'welcome')), '{}'::jsonb)
+    'settings', coalesce((select jsonb_object_agg(key, value) from public.settings where key in ('pricing', 'referral', 'contact', 'season', 'ritual', 'welcome', 'draw')), '{}'::jsonb),
+    'draw', public.draw_state()
   );
 $$;
 
@@ -437,6 +548,11 @@ declare
   v_comm numeric;
   v_number text;
   v_customer uuid;
+  v_draw jsonb;
+  v_spend numeric;
+  v_min numeric;
+  v_round int;
+  v_tickets int;
 begin
   -- AED -> local rates, as in assets/js/data.js.
   select f.rate, f.cur into v_rate, v_currency
@@ -495,13 +611,27 @@ begin
       'checkout', round(v_total / v_rate, 2));
   end if;
 
+  -- Prize draw: one entry per full AED 300 of products (after discount, before delivery).
+  select value into v_draw from public.settings where key = 'draw';
+  if coalesce((v_draw ->> 'on')::boolean, false)
+     and (nullif(v_draw ->> 'endsAt', '') is null or now() < (v_draw ->> 'endsAt')::timestamptz) then
+    v_min := greatest(coalesce((v_draw ->> 'minAed')::numeric, 300), 1);
+    v_spend := round(greatest(v_sub - v_disc, 0) / v_rate, 2);
+    if v_spend >= v_min then
+      v_tickets := floor(v_spend / v_min)::int;
+      v_round := public.draw_round_now();
+    end if;
+  end if;
+
   v_number := 'WPG-' || nextval('public.order_number_seq');
   insert into public.orders (number, country, currency, lang, items, subtotal, discount, delivery, total, total_aed,
-                             ref_code, ambassador_id, commission_pct, commission_aed, customer, customer_id, payment, gift_note)
+                             ref_code, ambassador_id, commission_pct, commission_aed, customer, customer_id, payment, gift_note,
+                             draw_round, draw_aed, draw_tickets)
   values (v_number, v_country, v_currency, left(p ->> 'lang', 2), v_items, v_sub, v_disc, v_del, v_total, round(v_total / v_rate, 2),
           left(v_code, 16), v_amb_id, case when v_amb_id is not null then v_pct end, v_comm, v_c, v_customer,
-          left(p ->> 'payment', 20), nullif(left(p ->> 'gift', 300), ''));
-  return jsonb_build_object('number', v_number);
+          left(p ->> 'payment', 20), nullif(left(p ->> 'gift', 300), ''),
+          v_round, case when v_round is not null then v_spend end, v_tickets);
+  return jsonb_build_object('number', v_number, 'drawRound', v_round, 'drawTickets', v_tickets);
 end;
 $$;
 
@@ -677,6 +807,10 @@ grant execute on function public.track_ref_click(text) to anon, authenticated;
 grant execute on function public.register_ambassador(jsonb) to anon, authenticated;
 grant execute on function public.ambassador_stats(text, text) to anon, authenticated;
 grant execute on function public.place_order(jsonb) to anon, authenticated;
+revoke execute on function public.draw_round_now() from public, anon, authenticated;
+revoke execute on function public.draw_state() from public, anon, authenticated;
+revoke execute on function public.draw_pick(int, boolean) from public, anon;
+grant execute on function public.draw_pick(int, boolean) to authenticated;
 grant execute on function public.track_visit(jsonb) to anon, authenticated;
 grant execute on function public.admin_overview(int) to authenticated;
 grant execute on function public.my_account() to authenticated;
