@@ -1494,7 +1494,8 @@
       const orders = entered.filter((o) => o.draw_round === n).sort((a, b) => (a.created_at < b.created_at ? -1 : 1));
       const live = orders.filter((o) => o.status !== "cancelled" && o.status !== "returned");
       const inDraw = orders.filter((o) => IN_DRAW.includes(o.status));
-      return { n, orders, sales: sum(live, "draw_aed"), confirmedSales: sum(inDraw, "draw_aed"), tickets: sum(inDraw, "draw_tickets"), waiting: sum(orders.filter((o) => o.status === "new"), "draw_tickets"), winner: won.get(n) || null };
+      // sales in whole AED (each order's share is kept to the fils)
+      return { n, orders, sales: Math.round(sum(live, "draw_aed")), confirmedSales: Math.round(sum(inDraw, "draw_aed")), tickets: sum(inDraw, "draw_tickets"), waiting: sum(orders.filter((o) => o.status === "new"), "draw_tickets"), winner: won.get(n) || null };
     };
     const last = Math.max(1, ...entered.map((o) => o.draw_round));
     const list = Array.from({ length: last }, (_, i) => round(i + 1));
@@ -1553,7 +1554,7 @@
           }
         </section>
         <section class="card">
-          <div class="card-head"><div><h2>What the prize costs</h2><p class="sub">From the settings below; the store never shows the prize's value</p></div></div>
+          <div class="card-head"><div><h2>What the prize costs</h2><p class="sub">From the settings below; the store never shows these numbers</p></div></div>
           <dl class="kv econ">
             <dt>Prize</dt><dd>${esc(prize)} · ${value ? aed(value) : "value not set"}</dd>
             <dt>Prize cost</dt><dd><strong>${value ? `${fmt((100 * value) / R.target, 1)}% of sales` : "—"}</strong> <span class="muted">(${aed(value)} ÷ ${aed(R.target)} of entered orders)</span></dd>
@@ -1567,7 +1568,7 @@
           </dl>
         </section>
         <form class="card wide draw-settings" data-form="draw">
-          <div class="card-head"><div><h2>Draw settings</h2><p class="sub">Saved for the store straight away. Changing the amounts changes what new orders earn; entries already made stay as they are.</p></div></div>
+          <div class="card-head"><div><h2>Draw settings</h2><p class="sub">Saved for the store straight away. Changing the amounts changes what new orders earn; entries already made stay as they are. Shoppers see the prize and the AED per entry only: the rounds, their target and progress stay in this panel.</p></div></div>
           <label class="switch"><input type="checkbox" name="on" ${cfg.on ? "checked" : ""}><span class="track"></span>Prize draw on the store (home page, Campaign page, announcement, bag, checkout, help)</label>
           <div class="grid-3">
             <label class="field"><span>Prize (English)</span><input name="prize_en" maxlength="60" value="${esc((cfg.prize || {}).en || "")}"></label>
@@ -1576,13 +1577,12 @@
           </div>
           <div class="grid-4">
             <label class="field"><span>AED of products per entry</span><input name="minAed" type="number" min="1" step="1" value="${esc(min)}"><small>Orders under this get no entry</small></label>
-            <label class="field"><span>AED of orders per ${esc(prize.split(" ")[0])}</span><input name="aedPerPrize" type="number" min="1" step="100" value="${esc(R.target)}"><small>A round closes at this</small></label>
+            <label class="field"><span>AED of orders per ${esc(prize.split(" ")[0])}</span><input name="aedPerPrize" type="number" min="1" step="1" value="${esc(R.target)}"><small>A round closes at this · team only</small></label>
             <label class="field"><span>Prize value (AED)</span><input name="prizeValueAed" type="number" min="0" step="1" value="${esc(value || "")}"><small>For the cost sums here only</small></label>
             <label class="field"><span>Entries close on</span><input name="endsAt" type="date" value="${esc(cfg.endsAt ? String(cfg.endsAt).slice(0, 10) : "")}"><small>End of that day, Gulf time; empty: no end</small></label>
           </div>
           <div class="grid-2">
             <label class="field"><span>Promotion permit number</span><input name="permit" maxlength="60" placeholder="Shown with the rules once set" value="${esc(cfg.permit || "")}"></label>
-            <div class="field"><span>On the store</span><label class="switch"><input type="checkbox" name="showProgress" ${cfg.showProgress !== false ? "checked" : ""}><span class="track"></span>Show how far the open round is from its draw</label></div>
           </div>
           <p class="note">A prize draw needs a promotion permit in each country before it runs (in the UAE from the emirate's economy department, e.g. Dubai's DET; in Saudi Arabia from the Ministry of Commerce), and the draw itself may need an official present. Set the permit number above once you have it.</p>
           <div><button class="btn btn-primary" type="submit">Save draw settings</button></div>
@@ -1636,7 +1636,7 @@
             shown
               .slice(0, DV.all ? shown.length : 40)
               .map(
-                (o) => `<tr class="${IN_DRAW.includes(o.status) ? "" : "out"}${win && win.order_id === o.id ? " won" : ""}">
+                (o) => `<tr class="${o.status === "new" ? "wait" : IN_DRAW.includes(o.status) ? "" : "out"}${win && win.order_id === o.id ? " won" : ""}">
               <td><span class="strong">${esc(o.number)}</span>${win && win.order_id === o.id ? ` <span class="tag">Winner</span>` : ""}<span class="sub">${esc(when(o.created_at))}</span></td>
               <td><span class="strong">${esc(o.customer && o.customer.name)}</span><span class="sub">${esc([o.customer && o.customer.city, countryName(o.country)].filter(Boolean).join(", "))}</span></td>
               <td class="num">${aed(o.draw_aed)}</td>
@@ -1711,7 +1711,8 @@
           minAed,
           aedPerPrize,
           prize: { en, ar: f.prize_ar.value.trim() || en, pt: f.prize_pt.value.trim() || en },
-          showProgress: f.showProgress.checked,
+          // the store never shows a round's progress, and store_state then leaves it out too
+          showProgress: false,
           endsAt: f.endsAt.value ? `${f.endsAt.value}T23:59:59+04:00` : null,
           permit: f.permit.value.trim(),
           prizeValueAed: Math.max(0, num("prizeValueAed") || 0),

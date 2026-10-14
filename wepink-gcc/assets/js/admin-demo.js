@@ -117,8 +117,9 @@
       season: { id: (C.season || {}).id || "", announce: (C.season || {}).announce || null },
       ritual: { pct: (C.ritual || {}).pct || 0 },
       welcome: { pct: (C.welcome || {}).pct || 0, code: (C.welcome || {}).code || "WELCOME10" },
-      // as the database holds it: no photos, and no prize value until the team sets one
-      draw: (({ on, minAed, aedPerPrize, prize, showProgress, endsAt, permit }) => ({ on, minAed, aedPerPrize, prize: clone(prize), showProgress, endsAt, permit }))(C.draw || {}),
+      // as the database holds it: no photos, no prize value until the team sets one, and the
+      // rounds' progress kept from the store (showProgress false)
+      draw: (({ on, minAed, aedPerPrize, prize, endsAt, permit }) => ({ on, minAed, aedPerPrize, prize: clone(prize), showProgress: false, endsAt, permit }))(C.draw || {}),
     };
     db.settings = Object.keys(settings).map((key) => ({ key, value: settings[key], updated_at: made }));
     db.admins = [{ email: EMAIL, created_at: made }];
@@ -316,12 +317,14 @@
     const before = order.filter((o) => Date.parse(o.created_at) >= drawFrom && counts(o) && spendOf(o) >= DRAW.minAed).reduce((s, o) => s + spendOf(o), 0);
     const fans = FIRST.map((first, i) => person(first, 44 + i)).concat(FIRST.slice(0, 22).map((first, i) => person(first, 88 + i)));
     const baskets = [];
-    for (let entered = before; entered < DRAW.aedPerPrize * 1.61; ) {
+    for (let entered = before; entered < DRAW.aedPerPrize * 1.6; ) {
       // what they set out to spend (AED, products): mostly AED 300 and up
-      const aim = weighted([[[300, 420], 34], [[420, 650], 30], [[650, 950], 20], [[950, 1500], 9], [[110, 299], 14]]);
+      const [lo, hi] = weighted([[[300, 420], 34], [[420, 650], 30], [[650, 950], 20], [[950, 1500], 9], [[110, 299], 14]]);
+      const aim = lo + R() * (hi - lo);
       const lost = R() < 0.06; // cancelled or returned later
-      baskets.push({ aim: aim[0] + R() * (aim[1] - aim[0]), lost });
-      if (!lost && aim[0] >= 300) entered += aim[0] + R() * 40 + 20;
+      baskets.push({ aim, lost });
+      // whole products take a basket a little over its aim
+      if (!lost && aim >= DRAW.minAed) entered += aim * 1.12;
     }
     baskets.forEach((b, k) => {
       // busier each week: the k-th basket at the k-th share of the draw's 70 days, squared
@@ -485,8 +488,31 @@
     };
   }
 
+  /* ---------- draw_pick, as the database works it out ---------- */
+  // One entry among the round's confirmed, shipped and delivered orders, each with the same
+  // chance (a random number from the browser's crypto), saved with the list of entries.
+  function drawPick(db, round, force) {
+    const no = (message) => ({ data: null, error: { message } });
+    if (db.draw_winners.some((w) => w.round === round)) return no("This round already has a winner");
+    const cfg = (db.settings.find((x) => x.key === "draw") || {}).value || {};
+    const list = db.orders
+      .filter((o) => o.draw_round === round && ["confirmed", "shipped", "delivered"].includes(o.status))
+      .sort((a, b) => (a.created_at < b.created_at ? -1 : a.created_at > b.created_at ? 1 : a.id < b.id ? -1 : 1));
+    const sum = list.reduce((s, o) => s + Number(o.draw_aed), 0);
+    const total = list.reduce((s, o) => s + o.draw_tickets, 0);
+    if (!total) return no("No confirmed entries in this round yet");
+    if (sum < (Number(cfg.aedPerPrize) || 50000) && !force) return no("This round has not reached its target yet");
+    const pick = crypto.getRandomValues(new Uint32Array(1))[0] % total;
+    let cum = 0;
+    const won = list.find((o) => (cum += o.draw_tickets) > pick);
+    const [first, last] = String(won.customer.name || "").trim().split(" ");
+    const winner = { name: first + (last ? " " + last.charAt(0) + "." : ""), city: won.customer.city, country: won.country };
+    db.draw_winners.push({ round, order_id: won.id, order_number: won.number, ticket: pick + 1, tickets: total, entries: list.map((o) => ({ number: o.number, tickets: o.draw_tickets })), winner, drawn_at: iso(Date.now()), drawn_by: EMAIL });
+    return { data: Object.assign({}, winner, { round, number: won.number, ticket: pick + 1, tickets: total, fullName: won.customer.name, phone: won.customer.phone, email: won.customer.email }), error: null };
+  }
+
   /* ---------- the query builder: from(table).select/insert/update/upsert/delete + filters ---------- */
-  const KEYS = { products: "id", settings: "key", admins: "email" };
+  const KEYS = { products: "id", settings: "key", admins: "email", draw_winners: "round" };
   const same = (a, b) => a === b || (a != null && b != null && typeof a !== "object" && String(a) === String(b));
   const cmp = (a, b) => (a == null ? (b == null ? 0 : 1) : b == null ? -1 : a < b ? -1 : a > b ? 1 : 0);
   // "*, ambassadors(code,name)" → ["*", "ambassadors(code,name)"]
@@ -711,6 +737,7 @@
       rpc: (name, args) => {
         if (name === "is_admin") return ok(true);
         if (name === "admin_overview") return ok(overview(db, args && args.p_days));
+        if (name === "draw_pick") return Promise.resolve(drawPick(db, Number(args && args.p_round), !!(args && args.p_force)));
         return Promise.resolve({ data: null, error: { message: `${name} isn't part of the demo` } });
       },
       from: (table) => new Query(db, table),
