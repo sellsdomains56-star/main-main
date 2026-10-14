@@ -965,6 +965,10 @@ td .sub {
   height: 32px;
   font-size: 12.5px;
 }
+/* the bar's white text would otherwise carry into its light buttons */
+.bulk .btn:not(.btn-danger) {
+  color: var(--ink);
+}
 
 /* ---------- drawer (editors & details) ---------- */
 .scrim {
