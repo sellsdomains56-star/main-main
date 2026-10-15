@@ -17,9 +17,9 @@ Source: Abdullah Ahli's own 123 s podcast-style take (WeTransfer, 1080x1920 25 f
 | 53.3 - 62.4 | card | ADGM integration of Al Reem (Finance Middle East, markers on ADGM and Al Reem Island) |
 | 62.4 - 67.7 | pills | more companies -> more professionals -> need places to live |
 | 67.7 - 76.7 | type + pills | stronger demand; rental income / business districts; worth exploring |
-| 76.7 - 82.1 | satellite | **Hudayriyat** outlined + pinned |
-| 82.1 - 89.9 | card + pills | Khaleej Times on Hudayriyat (markers: villas, beaches), sporting facilities / master plans |
-| 89.9 - 100.7 | graphic | still taking shape: growth line, longer investment horizon |
+| 76.8 - 82.5 | satellite | **Hudayriyat** outlined + pinned |
+| 82.5 - 90.0 | card + pills | Khaleej Times on Hudayriyat (markers: villas, beaches), sporting facilities / master plans |
+| 90.0 - 100.8 | graphic | still taking shape: growth line, longer investment horizon |
 | 100.8 - 103.6 | **FACE** | "which of these four would I choose?" (WHICH ONE? stamp) |
 | 103.6 - 116.8 | pills + type | depends on budget, goals, exit strategy; where / what / how much / how easily you sell |
 | 116.8 - 119.7 | **FACE** | name: ABDULLAH AHLI |
