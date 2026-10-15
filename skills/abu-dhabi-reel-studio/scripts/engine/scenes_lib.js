@@ -300,7 +300,8 @@ function mapBuild(t, cam, key, a0, a1) {
 function hudTitle(t, kicker, name, sub, a0, a1, color) {
   const al = ea(t, a0, a0 + 0.35) * (a1 ? 1 - ea(t, a1, a1 + 0.35) : 1); if (al <= 0.003) return;
   const e = ea(t, a0, a0 + 0.7, E.out4), dy = (1 - e) * 34, X = HUD_X, MW = SAFE.x1 - HUD_X, f = F.d(800, 60), f3 = F.d(700, 32);
-  ctx.save(); ctx.globalAlpha *= al; ctx.shadowColor = 'rgba(0,0,0,0.75)'; ctx.shadowBlur = 16 * SS; ctx.shadowOffsetY = 2 * SS;
+  ctx.save(); ctx.globalAlpha *= al; { const g = ctx.createLinearGradient(0, 270, 0, 590); g.addColorStop(0, 'rgba(8,8,10,0)'); g.addColorStop(0.2, 'rgba(8,8,10,0.62)'); g.addColorStop(0.62, 'rgba(8,8,10,0.62)'); g.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = g; ctx.fillRect(0, 270, W, 320); }   // dark scrim so the title stays readable over bright fills
+  ctx.shadowColor = 'rgba(0,0,0,0.75)'; ctx.shadowBlur = 16 * SS; ctx.shadowOffsetY = 2 * SS;
   T(kicker, X, 360 + dy, { font: F.d(700, 30), ls: 8, color: C.dim, align: 'left', sx: Math.min(1, MW / M(kicker, F.d(700, 30), 8)) });
   T(name, X, 424 + dy, { font: f, ls: 1, color: C.ink, align: 'left', sx: Math.min(1, MW / M(name, f, 1)), alpha: 1 });
   rr(X, 440 + dy, 120 * e, 6, 3); ctx.fillStyle = color || C.gold; ctx.fill();
