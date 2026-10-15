@@ -241,6 +241,7 @@ function gauge(t, o) {
 
 // ------------------------------------------------------------------------------------------------- map storytelling (one continuous satellite journey)
 // Everything below draws over the satellite scene from its cfg.top(t, cam). The camera path is SAT_SCENES.<id>.keys built with camKey().
+const HUD_X = 330;                                                       // the HUD title sits right of the face bubble (bubble x 130-290)
 const MAP_Y0 = 540, MAP_Y1 = 1270;                                              // callout labels stay between the HUD and the captions
 const mpp = (cam, lat) => 156543.03 * Math.cos(lat * Math.PI / 180) / Math.pow(2, cam.z);          // metres per screen pixel
 function camKey(sec, lon, lat, z, dy = 0) {                                     // waypoint that shows (lon, lat) dy px ABOVE the screen's map centre (room for the HUD / panel)
@@ -296,20 +297,20 @@ function mapBuild(t, cam, key, a0, a1) {
   const bx = x0 + (x1 - x0) * p; line(bx, y0 - 10, bx, y1 + 10, { color: C.gold, w: 4, alpha: al * (1 - E.in3(p)) });
 }
 // top-left title block (the face bubble sits top-right): small "NUMBER n", the name, a gold subtitle
-function hudTitle(t, kicker, name, sub, a0, a1) {
+function hudTitle(t, kicker, name, sub, a0, a1, color) {
   const al = ea(t, a0, a0 + 0.35) * (a1 ? 1 - ea(t, a1, a1 + 0.35) : 1); if (al <= 0.003) return;
-  const e = ea(t, a0, a0 + 0.7, E.out4), dy = (1 - e) * 34, X = SAFE.x0, f = F.d(800, 62), f3 = F.d(700, 34);
+  const e = ea(t, a0, a0 + 0.7, E.out4), dy = (1 - e) * 34, X = HUD_X, MW = SAFE.x1 - HUD_X, f = F.d(800, 60), f3 = F.d(700, 32);
   ctx.save(); ctx.globalAlpha *= al; ctx.shadowColor = 'rgba(0,0,0,0.75)'; ctx.shadowBlur = 16 * SS; ctx.shadowOffsetY = 2 * SS;
-  T(kicker, X, 348 + dy, { font: F.d(700, 32), ls: 9, color: C.dim, align: 'left' });
-  T(name, X, 412 + dy, { font: f, ls: 1, color: C.ink, align: 'left', sx: Math.min(1, 585 / M(name, f, 1)), alpha: 1 });
-  rr(X, 430 + dy, 120 * e, 6, 3); ctx.fillStyle = C.gold; ctx.fill();
-  if (sub) T(sub, X, 480 + dy, { font: f3, ls: 3, color: C.gold, align: 'left', sx: Math.min(1, 585 / M(sub, f3, 3)) });
+  T(kicker, X, 360 + dy, { font: F.d(700, 30), ls: 8, color: C.dim, align: 'left', sx: Math.min(1, MW / M(kicker, F.d(700, 30), 8)) });
+  T(name, X, 424 + dy, { font: f, ls: 1, color: C.ink, align: 'left', sx: Math.min(1, MW / M(name, f, 1)), alpha: 1 });
+  rr(X, 440 + dy, 120 * e, 6, 3); ctx.fillStyle = color || C.gold; ctx.fill();
+  if (sub) T(sub, X, 488 + dy, { font: f3, ls: 3, color: color || C.gold, align: 'left', sx: Math.min(1, MW / M(sub, f3, 3)) });
   ctx.restore();
 }
 // "fully broken down": a frosted checklist panel that fills row by row as he names each point. o: {title, items:[{txt, a, gold}], a0, a1, bottom, rowH, size, alpha}
 function breakdown(t, o) {
   const al = ea(t, o.a0, o.a0 + 0.4, E.out3) * (o.a1 ? 1 - ea(t, o.a1, o.a1 + 0.4) : 1) * (o.alpha ?? 1); if (al <= 0.003) return;
-  const X = SAFE.x0, Wd = SAFE.w, rowH = o.rowH ?? 54, hh = 62, h = hh + o.items.length * rowH + 20, y0 = (o.bottom ?? 1262) - h, sz = o.size ?? 33;
+  const X = SAFE.x0, Wd = SAFE.w, rowH = o.rowH ?? 54, hh = 62, hFull = hh + o.items.length * rowH + 20, y0 = (o.bottom ?? 1262) - hFull, sz = o.size ?? 33, vis = o.items.reduce((n, it) => n + ea(t, it.a, it.a + 0.45, E.out4), 0), h = hh + 14 + rowH * vis;
   ctx.save(); ctx.globalAlpha *= al; ctx.translate(0, (1 - ea(t, o.a0, o.a0 + 0.5, E.out4)) * 36);
   glassPill(X, y0, Wd, h, 28);
   T(o.title, X + 34, y0 + 42, { font: F.d(800, 28), ls: 7, color: C.gold, align: 'left' });
@@ -332,4 +333,43 @@ function islandBadge(t, cam, n, lon, lat, name, a0, a1) {
   const [x, y] = satProj(cam, lon, lat), e = ea(t, a0, a0 + 0.55, E.back), f = F.d(800, 30), w = M(name, f, 2) + 40;
   ctx.save(); ctx.globalAlpha *= al; glow(x, y, 70, '233,196,124', 0.35); dot(x, y, 30 * e, C.gold); T(String(n), x, y + 14 * e, { font: F.d(800, 40), color: '#0A0A0B', sx: e, sy: e });
   const lx = clamp(x, SAFE.x0 + w / 2, SAFE.x1 - w / 2), ly = y + 62; glassPill(lx - w / 2, ly - 22, w, 44, 22); T(name, lx, ly + 10, { font: f, ls: 2, color: '#FFFFFF' }); ctx.restore();
+}
+
+// a coloured island overlay like the reference reels: translucent fill that wipes in west to east, a glowing white edge, and the name written along the island's main axis.
+// wins = [[tIn, tOut], ...] windows where it is at full strength (label shown); between/after them it stays as a faint fill (o.base). label = string or [line1, line2].
+const _isl = {};
+function mapIsland(t, cam, key, c0, c1, wins, label, o = {}) {
+  const pts = OUTLINES[key]; if (!pts || !wins.length) return;
+  const first = wins[0][0]; if (t < first) return;
+  let full = 0; for (const [a, b] of wins) full = Math.max(full, ea(t, a, a + 0.5) * (1 - ea(t, b, b + 0.6)));
+  const base = o.base ?? 0.2, al = base + (1 - base) * full, p = ea(t, first, first + (o.dur ?? 1.0), E.inOut2); if (al <= 0.003 || p <= 0.002) return;
+  let I = _isl[key]; if (!I) { const k = Math.cos(24.5 * Math.PI / 180); let mx = 0, my = 0; pts.forEach(([lo, la]) => { mx += lo * k; my += la; }); mx /= pts.length; my /= pts.length; let sxx = 0, syy = 0, sxy = 0; pts.forEach(([lo, la]) => { const dx = lo * k - mx, dy = la - my; sxx += dx * dx; syy += dy * dy; sxy += dx * dy; });
+    let ang = -0.5 * Math.atan2(2 * sxy, sxx - syy); while (ang > Math.PI / 2) ang -= Math.PI; while (ang <= -Math.PI / 2) ang += Math.PI; ang = clamp(ang, -0.85, 0.85); I = _isl[key] = { ang }; }
+  const P = pts.map(([lo, la]) => satProj(cam, lo, la)); let cx = 0, cy = 0, x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9; P.forEach(([x, y]) => { cx += x; cy += y; x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }); cx /= P.length; cy /= P.length;
+  if (x1 < -50 || x0 > W + 50 || y1 < 0 || y0 > H) return;
+  const ca = Math.cos(I.ang), sa = Math.sin(I.ang); let u0 = 1e9, u1 = -1e9; P.forEach(([x, y]) => { const u = (x - cx) * ca + (y - cy) * sa; u0 = Math.min(u0, u); u1 = Math.max(u1, u); }); const len = u1 - u0;
+  const fa = lerp(0.62, 0.2, clamp((len - 450) / 1100, 0, 1));
+  ctx.save(); ctx.globalAlpha *= al;
+  if (p < 0.999) { ctx.beginPath(); ctx.rect(x0 - 30, 0, (x1 - x0 + 60) * p, H); ctx.clip(); }
+  const g = ctx.createLinearGradient(x0, y1, x1, y0); g.addColorStop(0, c0); g.addColorStop(1, c1);
+  ctx.beginPath(); P.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath();
+  ctx.globalAlpha *= fa; ctx.fillStyle = g; ctx.fill(); ctx.globalAlpha /= fa;
+  ctx.lineJoin = 'round'; ctx.shadowColor = c1; ctx.shadowBlur = 14 * SS; ctx.strokeStyle = 'rgba(255,255,255,0.92)'; ctx.lineWidth = 3.5; ctx.stroke(); ctx.shadowColor = 'transparent';
+  ctx.restore();
+  if (p < 0.999) { const fx = x0 - 30 + (x1 - x0 + 60) * p; ctx.save(); ctx.globalAlpha *= al * (1 - p) * 0.9; const lg = ctx.createLinearGradient(fx - 40, 0, fx, 0); lg.addColorStop(0, 'rgba(255,255,255,0)'); lg.addColorStop(1, 'rgba(255,255,255,0.55)'); ctx.fillStyle = lg; ctx.fillRect(fx - 40, Math.max(0, y0 - 20), 40, Math.min(H, y1 + 20) - Math.max(0, y0 - 20)); ctx.restore(); }
+  let la = 0; for (const [a, b, ld] of wins) la = Math.max(la, ea(t, a + 0.45, a + 0.9) * (1 - ea(t, b, b + 0.6)) * (ld ? 1 - ea(t, a + ld, a + ld + 0.6) : 1)); if (la > 0.01 && label) {
+    const lines = Array.isArray(label) ? label : [label], sz = clamp(len * 0.095, 30, 46), f = F.d(800, sz), lh = sz * 1.12;
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(I.ang); ctx.globalAlpha *= la; ctx.shadowColor = 'rgba(0,0,0,0.85)'; ctx.shadowBlur = 12 * SS; ctx.shadowOffsetY = 2 * SS;
+    lines.forEach((ln, i) => T(ln, 0, (i - (lines.length - 1) / 2) * lh + sz * 0.36, { font: f, ls: 1, color: '#FFFFFF', sx: Math.min(1, (len * 0.95) / M(ln, f, 1)) }));
+    ctx.restore();
+  }
+}
+// a big white title across the map (like "MOST IMPORTANT" in the reference): pops in, soft shadow, optional gold sub line
+function bigTitle(t, text, y, a0, a1, o = {}) {
+  const al = ea(t, a0, a0 + 0.3) * (a1 ? 1 - ea(t, a1, a1 + 0.4) : 1); if (al <= 0.003) return;
+  const e = ea(t, a0, a0 + 0.6, E.back), f = F.d(800, o.size ?? 100), sx = Math.min(1, SAFE.w / M(text, f, 1));
+  ctx.save(); ctx.globalAlpha *= al; ctx.shadowColor = 'rgba(0,0,0,0.8)'; ctx.shadowBlur = 22 * SS; ctx.shadowOffsetY = 3 * SS;
+  T(text, CX, y + (1 - e) * 30, { font: f, ls: 1, color: '#FFFFFF', sx: sx * (0.92 + 0.08 * e), sy: 0.92 + 0.08 * e });
+  if (o.sub) T(o.sub, CX, y + 62 + (1 - e) * 30, { font: F.d(700, 36), ls: 8, color: C.gold });
+  ctx.restore();
 }

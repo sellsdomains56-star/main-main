@@ -38,7 +38,7 @@ function buildScenes() {
   const present = (t, a, b) => ea(t, a, a + 0.3) * (1 - ea(t, b, b + 0.3));          // how much a lower-area card is on screen (the checklist panel steps aside)
 
   // ---- the camera: ONE satellite journey for the whole reel (island centre sits ~190 px above the map centre: room for the panel below)
-  const OV = [54.47, 24.488, 11.75, 130];
+  const OV = [54.47, 24.488, 11.75, 95], OV2 = [54.47, 24.488, 11.5, 155];   // opening overview / closing overview (smaller, so the checklist panel stays below the islands)
   const keys = [
     camKey(0, ...OV), camKey(K.num1 - 0.9, ...OV),
     camKey(K.num1 + 1.0, 54.436, 24.546, 12.5, 190), camKey(K.louvre - 0.6, 54.436, 24.546, 12.5, 190), camKey(K.gugg + 0.2, 54.4005, 24.5368, 14.0, 150), camKey(K.beach - 0.4, 54.4005, 24.5368, 14.0, 150),
@@ -50,12 +50,12 @@ function buildScenes() {
     camKey(K.stronger, 54.3995, 24.4955, 13.1, 190), camKey(K.stronger + 1.2, 54.4087, 24.4868, 13.3, 190), camKey(K.num4 - 0.4, 54.4087, 24.4868, 13.3, 190),
     camKey(K.num4 + 0.7, 54.40, 24.45, 11.6, 190), camKey(K.hud + 1.3, 54.370, 24.421, 12.4, 190), camKey(K.villas - 0.6, 54.370, 24.421, 12.4, 190), camKey(K.beaches, 54.3516, 24.4124, 13.6, 170),
     camKey(K.sporting - 0.2, 54.3516, 24.4124, 13.6, 170), camKey(K.sporting + 0.7, 54.3317, 24.4241, 13.8, 170), camKey(K.master + 0.8, 54.370, 24.421, 12.4, 190), camKey(K.which - 0.4, 54.370, 24.421, 12.4, 190),
-    camKey(K.which + 1.2, ...OV),
+    camKey(K.which + 1.2, ...OV2),
   ].sort((a, b) => a[0] - b[0]);
   SAT_SCENES.journey = { a: 0, b: DUR, veil: 'top', keys };
 
-  // ---- the face bubble: top-right, then it grows to the middle for the call to action
-  const BUBBLE = { t0: 0.1, src: { cx: 560, cy: 830, size: 640 }, keys: [{ t: 0, cx: 852, cy: 392, r: 90 }, { t: K.im - 0.4, cx: 852, cy: 392, r: 90 }, { t: K.im + 0.7, cx: 540, cy: 470, r: 150 }] };
+  // ---- the face bubble: small, top-left (like the reference), then it grows to the middle for the call to action
+  const BUBBLE = { t0: 0.1, src: { cx: 560, cy: 830, size: 640 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.im - 0.4, cx: 215, cy: 418, r: 78 }, { t: K.im + 0.7, cx: 540, cy: 470, r: 150 }] };
 
   // ---- the checklist panels ("fully broken down"): what he names, in the order he names it
   const P = (title, a0, a1, items, o = {}) => ({ title, a0, a1, items, ...o });
@@ -71,21 +71,28 @@ function buildScenes() {
     P('MAKING MONEY IS ALSO ABOUT', K.where - 0.5, K.im - 0.45, [{ txt: 'WHERE YOU BUY', a: K.where }, { txt: 'WHAT YOU BUY', a: K.what }, { txt: 'HOW MUCH YOU PAY', a: K.how1 }, { txt: 'HOW EASILY YOU CAN SELL', a: K.easily, gold: true }]),
   ];
 
+  // ---- island colours (the same colour follows an island through the whole reel)
+  const COL = { saadiyat: ['#6C63FF', '#A79BFF'], yas: ['#2FD8B5', '#93F3DF'], reem: ['#9ED63A', '#DDF47E'], hudayriyat: ['#FF4A3A', '#FFB03C'] };
+  const COLS = [
+    { key: 'saadiyat', label: ['AL SAADIYAT', 'ISLAND'], wins: [[0.7, K.num1 - 0.3], [K.saad - 0.3, K.num2 - 0.3, 3.4], [K.which + 0.9, K.im - 0.5]] },
+    { key: 'yas', label: 'YAS ISLAND', wins: [[1.4, K.num1 - 0.3], [K.yas - 0.3, K.num3 - 0.3, 3.4], [K.which + 1.25, K.im - 0.5]] },
+    { key: 'reem', label: ['AL REEM', 'ISLAND'], wins: [[2.1, K.num1 - 0.3], [K.reem - 0.3, K.num4 - 0.3, 3.4], [K.which + 1.6, K.im - 0.5]] },
+    { key: 'hudayriyat', label: ['HUDAYRIYAT', 'ISLAND'], wins: [[2.8, K.num1 - 0.3], [K.hud - 0.3, K.which - 0.3, 3.4], [K.which + 1.95, K.im - 0.5]] },
+  ].map(c => ({ ...c, c0: COL[c.key][0], c1: COL[c.key][1] }));
+
   // ---- everything that is drawn over the map
   const top = (t, cam) => {
+    // 0. the four islands, each in its own colour with its name written along it (opening, own section, and the closing overview)
+    COLS.forEach(c => mapIsland(t, cam, c.key, c.c0, c.c1, c.wins, c.label));
     // 0. the four islands outlined and numbered as he says "four major islands"
-    ['saadiyat', 'yas', 'reem', 'hudayriyat'].forEach((k, i) => mapOutline(t, cam, k, 0.7 + i * 0.7, K.num1 - 0.3, { keep: 0.32, dur: 1.1 }));
-    [['SAADIYAT', 'saadiyat'], ['YAS', 'yas'], ['AL REEM', 'reem'], ['HUDAYRIYAT', 'hudayriyat']].forEach(([nm, k], i) => islandBadge(t, cam, i + 1, ISL[k][0], ISL[k][1], nm, 1.0 + i * 0.7, K.num1 - 0.4));
-    hudTitle(t, 'ABU DHABI', 'THE 4 KEY ISLANDS', 'WHERE TO INVEST', 0.4, K.num1 - 0.3);
+    bigTitle(t, '4 KEY ISLANDS', 1180, 0.4, K.num1 - 0.3, { size: 104, sub: 'WHERE TO INVEST' });
     // 1. SAADIYAT
-    hudTitle(t, 'NUMBER ONE', 'SAADIYAT ISLAND', 'LUXURY & CULTURE', K.num1 - 0.05, K.num2 - 0.25);
-    mapOutline(t, cam, 'saadiyat', K.saad - 0.3, K.num2 - 0.3, { keep: 0.32 });
+    hudTitle(t, 'NUMBER ONE', 'SAADIYAT ISLAND', 'LUXURY & CULTURE', K.num1 - 0.05, K.num2 - 0.25, COL.saadiyat[1]);
     mapTag(t, cam, { lon: POI.louvre[0], lat: POI.louvre[1], a0: K.louvre - 0.1, a1: K.beach - 0.3, title: 'LOUVRE ABU DHABI', sub: 'MUSEUM', dx: -150, dy: -90 });
     mapTag(t, cam, { lon: POI.gugg[0], lat: POI.gugg[1], a0: K.gugg - 0.1, a1: K.beach - 0.3, title: 'GUGGENHEIM', sub: 'PLANNED MUSEUM', dx: 150, dy: -150 });
     mapTag(t, cam, { lon: POI.saadBeach[0], lat: POI.saadBeach[1], a0: K.beach - 0.1, a1: K.wealthy - 0.2, title: 'BEACHFRONT', sub: 'SAADIYAT BEACH', dx: 0, dy: -110 });
     // 2. YAS
-    hudTitle(t, 'NUMBER TWO', 'YAS ISLAND', 'ENTERTAINMENT & LIFESTYLE', K.num2 - 0.05, K.num3 - 0.25);
-    mapOutline(t, cam, 'yas', K.yas - 0.3, K.num3 - 0.3, { keep: 0.32 });
+    hudTitle(t, 'NUMBER TWO', 'YAS ISLAND', 'ENTERTAINMENT & LIFESTYLE', K.num2 - 0.05, K.num3 - 0.25, COL.yas[1]);
     mapTag(t, cam, { lon: POI.ferrari[0], lat: POI.ferrari[1], a0: K.ferrari - 0.1, a1: K.attract - 0.2, title: 'FERRARI WORLD', dx: 150, dy: 80 });
     mapTag(t, cam, { lon: POI.warner[0], lat: POI.warner[1], a0: K.warner - 0.1, a1: K.attract - 0.2, title: 'WARNER BROS. WORLD', dx: -90, dy: -95 });
     mapTag(t, cam, { lon: POI.circuit[0], lat: POI.circuit[1], a0: K.formula - 0.1, a1: K.attract - 0.2, title: 'FORMULA ONE CIRCUIT', sub: 'YAS MARINA', dx: 0, dy: 100 });
@@ -95,8 +102,7 @@ function buildScenes() {
     mapPulse(t, cam, 54.603, 24.486, 2600, K.resid1 - 0.1, K.num3 - 0.3);
     mapTag(t, cam, { lon: 54.603, lat: 24.486, a0: K.resid1, a1: K.num3 - 0.3, title: 'GROWING RESIDENTIAL', sub: 'COMMUNITY', dx: 0, dy: -150 });
     // 3. AL REEM
-    hudTitle(t, 'NUMBER THREE', 'AL REEM ISLAND', 'BUSINESS & RENTAL INCOME', K.num3 - 0.05, K.num4 - 0.25);
-    mapOutline(t, cam, 'reem', K.reem - 0.3, K.num4 - 0.3, { keep: 0.32 });
+    hudTitle(t, 'NUMBER THREE', 'AL REEM ISLAND', 'BUSINESS & RENTAL INCOME', K.num3 - 0.05, K.num4 - 0.25, COL.reem[1]);
     mapTag(t, cam, { lon: POI.maryah[0], lat: POI.maryah[1], a0: K.financial - 0.1, a1: K.think + 0.9, title: 'ADGM', sub: 'AL MARYAH · FINANCIAL CENTRE', dx: -60, dy: -120 });
     mapPulse(t, cam, POI.reem[0], POI.reem[1], 1700, K.adgm - 0.1, K.think + 1.0);
     mapTag(t, cam, { lon: POI.reem[0] + 0.004, lat: POI.reem[1] - 0.004, a0: K.adgm, a1: K.think + 1.0, title: 'ADGM EXPANSION', sub: 'ONTO AL REEM', dx: 110, dy: 120 });
@@ -106,14 +112,11 @@ function buildScenes() {
     mapPulse(t, cam, POI.reem[0], POI.reem[1], 1300, K.stronger - 0.1, K.num4 - 0.3);
     mapTag(t, cam, { lon: POI.reem[0], lat: POI.reem[1], a0: K.stronger, a1: K.num4 - 0.3, title: 'STRONGER DEMAND', sub: 'APARTMENTS', dx: 60, dy: -140 });
     // 4. HUDAYRIYAT
-    hudTitle(t, 'NUMBER FOUR', 'HUDAYRIYAT ISLAND', 'WATERFRONT LIFESTYLE', K.num4 - 0.05, K.which - 0.25);
-    mapOutline(t, cam, 'hudayriyat', K.hud - 0.3, K.which - 0.3, { keep: 0.32 });
+    hudTitle(t, 'NUMBER FOUR', 'HUDAYRIYAT ISLAND', 'WATERFRONT LIFESTYLE', K.num4 - 0.05, K.which - 0.25, COL.hudayriyat[1]);
     mapTag(t, cam, { lon: POI.hudBeach[0], lat: POI.hudBeach[1], a0: K.beaches - 0.1, a1: K.master + 0.3, title: 'HUDAYRIYAT BEACH', dx: 20, dy: -120 });
     mapTag(t, cam, { lon: POI.surf[0], lat: POI.surf[1], a0: K.sporting - 0.1, a1: K.master + 0.3, title: 'SURF ABU DHABI', sub: 'SPORTING FACILITIES', dx: 40, dy: -120 });
     mapBuild(t, cam, 'hudayriyat', K.but2, K.develops);
     // 5. back to the overview: the four islands, numbered
-    ['saadiyat', 'yas', 'reem', 'hudayriyat'].forEach((k, i) => mapOutline(t, cam, k, K.which + 0.9 + i * 0.35, null, { dur: 0.9 }));
-    [['SAADIYAT', 'saadiyat'], ['YAS', 'yas'], ['AL REEM', 'reem'], ['HUDAYRIYAT', 'hudayriyat']].forEach(([nm, k], i) => islandBadge(t, cam, i + 1, ISL[k][0], ISL[k][1], nm, K.which + 1.1 + i * 0.35, K.im - 0.5));
     hudTitle(t, 'WHICH ONE?', 'IT DEPENDS', 'BUDGET · GOALS · EXIT STRATEGY', K.which - 0.05, K.because - 0.25);
     hudTitle(t, 'MAKING MONEY', 'IS NOT JUST WHERE', 'IT\'S WHAT, HOW MUCH & HOW EASILY', K.because - 0.05, K.im - 0.45);
     // 6. the lower-area cards (real news) and the checklist panels
@@ -144,7 +147,7 @@ function buildScenes() {
   };
   add({ id: 'journey', kind: 'sat', a: 0, b: DUR, last: true, cfg: { top } });
   // name chip under the bubble while he is introduced
-  OVERLAYS.push(t => { const a = ea(t, 0.5, 1.0) * (1 - ea(t, 4.6, 5.0)); if (a <= 0.003) return; ctx.save(); ctx.globalAlpha *= a; const w = M('ABDULLAH AHLI', F.d(800, 26), 3) + 44; glassPill(852 - w / 2, 508, w, 46, 23); T('ABDULLAH AHLI', 852, 541, { font: F.d(800, 26), ls: 3, color: '#FFFFFF' }); ctx.restore(); });
+  OVERLAYS.push(t => { const a = ea(t, 0.5, 1.0) * (1 - ea(t, 4.6, 5.0)); if (a <= 0.003) return; ctx.save(); ctx.globalAlpha *= a; const w = M('ABDULLAH AHLI', F.d(800, 26), 3) + 44; glassPill(130, 514, w, 46, 23); T('ABDULLAH AHLI', 130 + w / 2, 547, { font: F.d(800, 26), ls: 3, color: '#FFFFFF' }); ctx.restore(); });
 
   // ---- sound: whooshes on the camera moves and the call-outs (very quiet)
   [K.num1, K.louvre - 0.2, K.beach, K.num2, K.youve2, K.num3, K.adgm, K.live, K.num4, K.villas, K.which, K.because].forEach(x => cues.push({ k: 'wh', t: x - 0.1, d: 0.5 }));
