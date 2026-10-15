@@ -116,7 +116,7 @@ function buildScenes() {
     mapTag(t, cam, { lon: POI.reem[0], lat: POI.reem[1], a0: K.stronger, a1: K.num4 - 0.3, title: 'STRONGER DEMAND', sub: 'APARTMENTS', dx: 60, dy: -140 });
     // 4. HUDAYRIYAT
     hudTitle(t, 'NUMBER FOUR', 'HUDAYRIYAT ISLAND', 'WATERFRONT LIFESTYLE', K.num4 - 0.05, K.which - 0.25, COL.hudayriyat[1]);
-    mapTag(t, cam, { lon: POI.hudBeach[0], lat: POI.hudBeach[1], a0: K.beaches - 0.1, a1: K.master + 0.3, title: 'HUDAYRIYAT BEACH', dx: 20, dy: -120 });
+    mapTag(t, cam, { lon: POI.hudBeach[0], lat: POI.hudBeach[1], a0: K.beaches - 0.1, a1: K.sporting - 0.2, title: 'HUDAYRIYAT BEACH', dx: 20, dy: -120 });
     mapTag(t, cam, { lon: POI.surf[0], lat: POI.surf[1], a0: K.sporting - 0.1, a1: K.master + 0.3, title: 'SURF ABU DHABI', sub: 'SPORTING FACILITIES', dx: 40, dy: -120 });
     mapBuild(t, cam, 'hudayriyat', K.but2, K.develops);
     // 5. back to the overview: the four islands, numbered
