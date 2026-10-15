@@ -22,3 +22,6 @@ Peg (primary press source): The National, 14 Oct 2026, "Aldar to launch major Du
 
 ## Selling it honestly
 Funnel = "message me Aldar" (lead capture), then send the real numbers when Aldar announces them. Check RERA/DLD advertising rules (ad permit number, disclaimers) and do not take deposits or reservations for an unlaunched project. The AI avatar video must be labelled as AI-generated.
+
+## Production note (HeyGen)
+Paste `speaker_master.txt` into HeyGen with the twin "abdullah -- 3" and its voice. Export 9:16, 1080p, no captions, no music, no HeyGen branding; send the mp4 and it is edited in the map style (Blue Line route, DSO map, small face circle). Optional A/B hooks (generate each as a separate 5-second clip): see `hooks.md` (5 and 3).
