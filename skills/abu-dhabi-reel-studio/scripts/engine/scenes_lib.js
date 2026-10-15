@@ -374,3 +374,16 @@ function bigTitle(t, text, y, a0, a1, o = {}) {
   if (o.sub) T(o.sub, CX, y + 62 + (1 - e) * 30, { font: F.d(700, 36), ls: 8, color: C.gold });
   ctx.restore();
 }
+
+// a compact pin: dot with a soft pulse + a small dark pill with the name beside it (side 'r' or 'l'). Use it when several places sit close together (mapTag's big labels would hide the pins).
+function mapDot(t, cam, o) {
+  const al = ea(t, o.a0, o.a0 + 0.3) * (o.a1 ? 1 - ea(t, o.a1, o.a1 + 0.4) : 1); if (al <= 0.003) return;
+  const [x, y] = satProj(cam, o.lon, o.lat), e = ea(t, o.a0, o.a0 + 0.45, E.back), sz = o.size ?? 28, f = F.d(800, sz), tw0 = M(o.text, f, 1), pad = 18, h = sz + 22, right = (o.side || 'r') === 'r';
+  const avail = right ? SAFE.x1 - (x + 24) : (x - 24) - SAFE.x0, w = Math.max(60, Math.min(tw0 + pad * 2, avail)), sx = Math.min(1, (w - pad * 2) / tw0), lx = right ? x + 24 : x - 24 - w, ly = clamp(y - h / 2, MAP_Y0, MAP_Y1 - h), u = ((t - o.a0) / 2) % 1;
+  ctx.save(); ctx.globalAlpha *= al;
+  ring(x, y, 14 + 40 * u, { color: '#FFFFFF', w: 2.5, alpha: (1 - u) * 0.6 });
+  dot(x, y, 15 * e, 'rgba(255,255,255,0.95)'); dot(x, y, 8.5 * e, C.gold);
+  rr(lx, ly, w, h, h / 2); ctx.fillStyle = 'rgba(8,8,10,0.86)'; ctx.fill(); ctx.strokeStyle = 'rgba(233,196,124,0.6)'; ctx.lineWidth = 2; ctx.stroke();
+  T(o.text, lx + w / 2, ly + h / 2 + sz * 0.36, { font: f, ls: 1, color: '#FFFFFF', sx });
+  ctx.restore();
+}
