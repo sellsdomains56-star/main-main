@@ -349,3 +349,14 @@ export interface ReelComment {
   mine: boolean;
   createdAt: string;
 }
+
+/** A campaign banner on Home (offers, seasonal highlights). */
+export interface Campaign {
+  id: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  cta: string;
+  photoUrl: string;
+  link: { pathname: string; params?: Record<string, string> };
+}

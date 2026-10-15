@@ -4,6 +4,7 @@
  *   npx tsx scripts/export-demo-data.ts > ../app/demo-data.json
  */
 import { readFileSync } from "node:fs";
+import { CAMPAIGNS } from "../src/campaigns.js";
 import { GIFT_AMOUNTS, PLANS } from "../src/club.js";
 import { FAQ, SUPPORT_EMAIL } from "../src/faq.js";
 import { PRODUCTS, SHIPPING } from "../src/products.js";
@@ -26,12 +27,13 @@ const data = {
   countries: COUNTRIES,
   barbers: BARBERS.map((b) => ({
     ...b,
-    photoUrl: "", // stock portraits come from another site, which the demo page can't load; initials show instead
+    photoUrl: inline(b.photoUrl),
     gallery: b.gallery.map((g) => ({ ...g, url: inline(g.url) })),
     transformations: b.transformations.map((t) => ({ ...t, beforeUrl: inline(t.beforeUrl), afterUrl: inline(t.afterUrl) })),
   })),
   reels: DEMO_REELS.map((r) => ({ id: r.id, barberId: r.barberId, videoUrl: inline(r.videoUrl), posterUrl: inline(r.posterUrl), caption: r.caption, likes: r.likedBy.length, views: r.views ?? 0, shares: r.shares ?? 0, comments: (r.comments ?? []).map((c) => ({ id: c.id, name: c.name, text: c.text, likes: c.likedBy.length, createdAt: c.createdAt })), createdAt: r.createdAt })),
-  shops: SHOPS,
+  shops: SHOPS.map((s) => ({ ...s, photoUrl: inline(s.photoUrl) })),
+  campaigns: CAMPAIGNS.map((c) => ({ ...c, photoUrl: inline(c.photoUrl) })),
   plans: PLANS,
   giftAmounts: GIFT_AMOUNTS,
   products: PRODUCTS,

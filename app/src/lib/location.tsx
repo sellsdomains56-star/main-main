@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { api } from "./api";
+import { DEMO_DATA } from "./config";
 import { storage } from "./storage";
 import type { Country } from "./types";
 
@@ -36,6 +37,8 @@ export function LocationProvider({ children }: { children: ReactNode }) {
     reload();
     storage.get(KEY).then((saved) => {
       if (saved) setPlaceState(JSON.parse(saved));
+      // The demo page opens in Dubai so there's plenty to see straight away.
+      else if (DEMO_DATA) setPlaceState({ countryCode: "AE", city: "Dubai" });
     });
   }, [reload]);
 

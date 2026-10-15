@@ -8,7 +8,8 @@ import type { Barber, Booking, GiftCard, Membership, PlanId, Purchase, Service, 
 // ---------- The Club: monthly memberships ----------
 
 const charm = (minor: number) => Math.max(99, Math.round(minor / 100) * 100 - 1);
-const price = (eur: number): Record<string, number> => ({ eur, gbp: charm(eur * 0.86), usd: charm(eur * 1.1), aed: charm(eur * 4) });
+// Dirham prices are whole dirhams (VAT included).
+const price = (eur: number, aed: number): Record<string, number> => ({ eur, gbp: charm(eur * 0.86), usd: charm(eur * 1.1), aed: aed * 100 });
 
 export interface Plan {
   id: PlanId;
@@ -23,15 +24,15 @@ export interface Plan {
 
 export const PLANS: Plan[] = [
   {
-    id: "fresh", name: "Fresh", tagline: "One cut a month, always on point.", prices: price(3900), cutsPerPeriod: 1, productDiscount: 10, freeHomeVisits: false,
+    id: "fresh", name: "Fresh", tagline: "One cut a month, always on point.", prices: price(3900, 159), cutsPerPeriod: 1, productDiscount: 10, freeHomeVisits: false,
     perks: ["1 service a month with any barber", "10% off JB's Fresh products", "Member card in the app"],
   },
   {
-    id: "regular", name: "Regular", tagline: "Every two weeks. Never grown out.", prices: price(6900), cutsPerPeriod: 2, productDiscount: 15, freeHomeVisits: false,
+    id: "regular", name: "Regular", tagline: "Every two weeks. Never grown out.", prices: price(6900, 279), cutsPerPeriod: 2, productDiscount: 15, freeHomeVisits: false,
     perks: ["2 services a month with any barber", "15% off JB's Fresh products", "Member card in the app"],
   },
   {
-    id: "black", name: "Black", tagline: "Unlimited. At the shop or at your door.", prices: price(14900), cutsPerPeriod: null, productDiscount: 20, freeHomeVisits: true,
+    id: "black", name: "Black", tagline: "Unlimited. At the shop or at your door.", prices: price(14900, 599), cutsPerPeriod: null, productDiscount: 20, freeHomeVisits: true,
     perks: ["Unlimited services with any barber", "Home, hotel and yacht visits included", "20% off JB's Fresh products", "Black member card in the app"],
   },
 ];

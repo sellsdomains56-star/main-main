@@ -41,6 +41,7 @@ export interface DemoData {
   barbers: SeedBarber[];
   shops: SeedShop[];
   plans: SeedPlan[];
+  campaigns: { id: string; eyebrow: string; title: string; body: string; cta: string; photoUrl: string; link: { pathname: string; params?: Record<string, string> }; countries?: string[]; except?: string[] }[];
   giftAmounts: Record<string, number[]>;
   reels: SeedReel[];
   products: SeedProduct[];
@@ -855,6 +856,11 @@ export function createDemoServer(data: DemoData) {
 
     if (path === "/health") return { ok: true, demoPayments: true, aiStylist: true, assistant: true, tryOn: false };
 
+    if (path === "/campaigns") {
+      return seed.campaigns
+        .filter((c) => (!c.countries || (q.country && c.countries.includes(q.country))) && !(q.country && c.except?.includes(q.country)))
+        .map(({ countries: _c, except: _e, ...c }) => c);
+    }
     if (path === "/locations") {
       return seed.countries.map((c) => ({
         code: c.code, name: c.name, currency: c.currency,

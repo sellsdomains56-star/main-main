@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AppNotification, AssistantAction, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Plan, Preferences, Purchase, VenueKind, Order, Reel, ReelComment, Review, Shop, ShopSummary, StyleAdvice, User } from "./types";
+import type { AppNotification, AssistantAction, Campaign, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Plan, Preferences, Purchase, VenueKind, Order, Reel, ReelComment, Review, Shop, ShopSummary, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -87,6 +87,7 @@ export const api = {
   },
 
   locations: () => request<Country[]>("/locations"),
+  campaigns: (country?: string) => request<Campaign[]>("/campaigns" + qs({ country })),
   barbers: (f: BarberSearch) =>
     request<Barber[]>(
       "/barbers" +

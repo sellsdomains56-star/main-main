@@ -38,7 +38,9 @@ function load(): Data {
       data.barbers = data.barbers.map((b) => {
         const seeded = BARBERS.find((s) => s.id === b.id);
         const centre = COUNTRIES.find((c) => c.code === b.countryCode)?.cities.find((c) => c.name === b.city);
-        return { ...defaults, shopId: seeded?.shopId, ...b, lat: b.lat ?? seeded?.lat ?? centre?.lat ?? 0, lng: b.lng ?? seeded?.lng ?? centre?.lng ?? 0 };
+        // Sample barbers get the new sample photos (the old placeholder portraits came from another site).
+        const photoUrl = seeded && b.photoUrl.startsWith("https://i.pravatar.cc/") ? seeded.photoUrl : b.photoUrl;
+        return { ...defaults, shopId: seeded?.shopId, ...b, photoUrl, lat: b.lat ?? seeded?.lat ?? centre?.lat ?? 0, lng: b.lng ?? seeded?.lng ?? centre?.lng ?? 0 };
       });
       // Sample barbers added since the file was written (e.g. new cities).
       for (const s of BARBERS) if (!data.barbers.some((b) => b.id === s.id)) data.barbers.push(structuredClone(s));

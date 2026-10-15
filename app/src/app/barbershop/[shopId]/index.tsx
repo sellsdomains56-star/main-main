@@ -17,12 +17,18 @@ import type { Shop } from "../../../lib/types";
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-/** "Mon–Sat" for a run of days, else a list. */
+/** "Mon–Sat", or "Sat–Thu" for a Gulf week: the run of days wrapping around the week; else a list. */
 function dayRange(days: number[]) {
-  const sorted = [...days].sort((a, b) => ((a + 6) % 7) - ((b + 6) % 7)); // Monday first
-  const idx = sorted.map((d) => (d + 6) % 7);
-  const consecutive = idx.every((d, i) => i === 0 || d === idx[i - 1] + 1);
-  return consecutive && sorted.length > 2 ? `${DAYS[sorted[0]]}–${DAYS[sorted[sorted.length - 1]]}` : sorted.map((d) => DAYS[d]).join(", ");
+  const set = new Set(days);
+  if (set.size > 2 && set.size < 7) {
+    for (const start of days) {
+      if (set.has((start + 6) % 7)) continue; // not the first day of the run
+      const run = Array.from({ length: set.size }, (_, i) => (start + i) % 7);
+      if (run.every((d) => set.has(d))) return `${DAYS[run[0]]}–${DAYS[run[run.length - 1]]}`;
+    }
+  }
+  if (set.size === 7) return "Every day";
+  return [...days].sort((a, b) => ((a + 6) % 7) - ((b + 6) % 7)).map((d) => DAYS[d]).join(", ");
 }
 
 export default function ShopPage() {

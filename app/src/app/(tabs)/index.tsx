@@ -9,6 +9,7 @@ import { LogoLockup } from "../../components/Brand";
 import { LocationPill } from "../../components/LocationSheet";
 import { BarberMap } from "../../components/map/BarberMap";
 import { ShopTile } from "../../components/ShopCard";
+import { CampaignCarousel } from "../../components/CampaignCarousel";
 import { barberPins } from "../../components/map/types";
 import { ReelThumb } from "../../components/ReelThumb";
 import { SlideToConfirm } from "../../components/SlideToConfirm";
@@ -22,7 +23,7 @@ import { useCart } from "../../lib/cart";
 import { APP_NAME, SHOP_NAME } from "../../lib/config";
 import { dateTime, money, STATUS_LABEL } from "../../lib/format";
 import { useLocation } from "../../lib/location";
-import type { Barber, Booking, Reel, ShopSummary } from "../../lib/types";
+import type { Barber, Booking, Campaign, Reel, ShopSummary } from "../../lib/types";
 import { useCatalog } from "../../lib/useCatalog";
 
 type ArtName = ComponentProps<typeof MaterialCommunityIcons>["name"];
@@ -40,6 +41,7 @@ export default function Home() {
   const [barbers, setBarbers] = useState<Barber[] | null>(null);
   const [reels, setReels] = useState<Reel[] | null>(null);
   const [shops, setShops] = useState<ShopSummary[]>([]);
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [next, setNext] = useState<Booking | null>(null);
 
   useEffect(() => {
@@ -50,6 +52,9 @@ export default function Home() {
     api.reels(filter).then(setReels, () => setReels([]));
     api.shops(filter).then(setShops, () => setShops([]));
   }, [place]);
+  useEffect(() => {
+    api.campaigns(place?.countryCode).then(setCampaigns, () => setCampaigns([]));
+  }, [place?.countryCode]);
 
   useFocusEffect(
     useCallback(() => {
@@ -185,6 +190,12 @@ export default function Home() {
                 <Tag label={STATUS_LABEL[next.status]} tone={next.status === "pending_payment" ? "neutral" : "accent"} />
               </Row>
             </Card>
+          )}
+
+          {campaigns.length > 0 && (
+            <View style={{ marginTop: 28 }}>
+              <CampaignCarousel campaigns={campaigns} width={contentW} />
+            </View>
           )}
 
           <Section eyebrow="More from JB" title="Fresh, your way">

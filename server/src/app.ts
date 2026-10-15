@@ -16,6 +16,7 @@ import { SHOPS } from "./seed.js";
 import { registerAssistantRoutes } from "./routes/assistant.js";
 import { registerNotificationRoutes } from "./routes/notifications.js";
 import { registerPortfolioRoutes } from "./routes/portfolio.js";
+import { campaignsFor } from "./campaigns.js";
 import { registerClubRoutes } from "./routes/club.js";
 import { registerReelRoutes, reelView } from "./routes/reels.js";
 import { activeMembership, fulfil, getPlan, returnPerks } from "./club.js";
@@ -112,6 +113,12 @@ export function createApp() {
       ok: true, demoPayments, aiStylist: config.anthropicConfigured, assistant: config.anthropicConfigured, tryOn: config.openaiConfigured,
       appleSignIn: config.appleAudiences.length > 0, googleSignIn: config.googleClientIds.length > 0,
     });
+  });
+
+  // ---------- Campaign banners on Home ----------
+  app.get("/campaigns", (req, res) => {
+    const { country } = parse(z.object({ country: z.string().optional() }), req.query);
+    res.json(campaignsFor(country).map(({ countries: _c, except: _e, ...c }) => c));
   });
 
   // ---------- Locations ----------

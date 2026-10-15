@@ -1,5 +1,7 @@
 export function money(minor: number, currency: string) {
-  return new Intl.NumberFormat(undefined, { style: "currency", currency: currency.toUpperCase() }).format(minor / 100);
+  // Dirham prices are whole numbers ("AED 120"), as UAE customers expect.
+  const whole = currency.toLowerCase() === "aed" && minor % 100 === 0;
+  return new Intl.NumberFormat(undefined, { style: "currency", currency: currency.toUpperCase(), ...(whole ? { minimumFractionDigits: 0, maximumFractionDigits: 0 } : {}) }).format(minor / 100);
 }
 
 export function dateTime(iso: string, timeZone?: string) {

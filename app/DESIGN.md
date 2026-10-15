@@ -37,6 +37,7 @@ Inter throughout. Headlines are **Inter Medium with tight tracking** (34px scree
 - **Cards you hold:** `MemberCard` (Club) and `GiftCardArt` are credit-card proportioned (1.586:1) with the monogram, wide-tracked uppercase labels and a slow light sweep; the member card tilts when dragged.
 - **Barbershop page:** a photo header with the name over a dark gradient, then numbered action cards ("01 — Book a chair", "02 — Private hire", "03 — Delivery") that alternate dark and light, black and white only, with the arrow in a contrasting circle. Shop tiles on Home reuse the photo-with-gradient look.
 - **Step flow:** `StepCard` + `StepConnector` (try-on, booking). Active step has the black edge, done steps a check, upcoming steps are dimmed.
+- **Campaign banners:** `CampaignCarousel` on Home — full-bleed photos under a dark gradient, wide-tracked eyebrow, a 28px headline, one line of copy and a white pill CTA with the arrow in a black circle; swipes on its own until touched. Content lives in `server/src/campaigns.ts`.
 - **Photography:** the hero carousel (with dots), service tiles and AI Try-On panel use the photos listed in `src/lib/brandMedia.ts`; tiles without a photo fall back to line art on black.
 
 ## Shape & spacing

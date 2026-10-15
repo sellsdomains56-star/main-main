@@ -1,0 +1,39 @@
+# Sample photos from Unsplash (https://unsplash.com/license — free to use, including commercially).
+# They are placeholders for the demo: they do not show the barbers named in the app.
+# Replace them with your barbers' own photos before launch.
+# name                 unsplash photo id
+shave-moody            1503951914875-452162b0f3f1
+chair-leather          1512690459411-b9245aed614b
+beard-clipper-bw       1517832606299-7ae9b720a186
+kids-cut-bw            1521490683712-35a1cb235d1c
+beard-brush-bw         1532710093739-9470acff878f
+fade-tattoo            1541533848490-bc8115cd6522
+curls-cut              1567894340315-735d7c361db0
+shop-brick             1585747860715-2ba37e788b70
+comb-slick             1590540179852-2110a54f813a
+shop-vintage-red       1592647420148-bfcc177e2117
+fade-clipper           1593702275687-f8b402bf1fb5
+hot-towel              1596728325488-58c87691e9af
+hair-design            1599351431202-1e0f0137899a
+clippers-table         1599351431613-18ef1fdd27e1
+shop-minimal           1600948836101-f9ffda59d250
+blow-dry               1605497788044-5a32c7078486
+products-flatlay       1621605815971-fbc98d665033
+dryer-case             1621607512214-68297480165e
+crop-scissors          1622286342621-4bd786c2447c
+cut-busy               1622287162716-f311baa1a2b8
+shop-busy              1622288432450-277d0fef5ed6
+fade-finished          1622296089863-eb7fc530daa8
+scissor-beard          1647140655214-e4a2d914971f
+neck-clipper           1493256338651-d82f7acb2b38
+razor-line             1514336937476-a5b961020a5c
+shop-bright            1560066984-138dadb4c035
+chair-window           1580087433295-ab2600c1030e
+pomade-comb            1587909209111-5097ee578ec3
+barber-cap             1593702295094-aea22597af65
+finish-spray           1598524374912-6b0b0bab43dd
+beard-trim             1598887142487-3c854d51eabb
+tools-stand            1621607512022-6aecc4fed814
+shop-chairs-row        1629881544138-c45fc917eb81
+shop-luxury            1633681926022-84c23e8cb2d6
+barber-hat             1635273051937-a0ddef9573b6
