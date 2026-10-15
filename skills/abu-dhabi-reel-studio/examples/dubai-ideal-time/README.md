@@ -24,6 +24,18 @@ Peg: Sheikh Mohammed bin Rashid Al Maktoum, 13 October 2026, Mohammed bin Rashid
 - RTA release via Dubai Media Office, 9 Nov 2025: Blue Line = 30-km project, 14 stations, opening targeted for 9.9.2029.
 - District pins: Mirdif, Dubai Creek Harbour (The National, 9 Jul 2026), International City, Dubai Silicon Oasis - **area centres from OpenStreetMap, indicative, not station positions**. Airport pin from OSM.
 
+## Real-life photos and the Blue Line route (added in the second pass)
+Photos pop in on the map band, each with a credit chip; they are not committed (`assets/`):
+| Where | Photo | Source / licence |
+|---|---|---|
+| hook | portrait of Sheikh Mohammed bin Rashid (round badge) | Wikipedia infobox image "Mohammed bin Rashid Al Maktoum (15-02-2021).jpg" (Wikimedia Commons) - **check the licence line on the file page before posting** (the API was rate-limited when I tried) |
+| 2.1 trillion; "city within a city" | Dubai Creek Harbour with the skyline | Wikimedia Commons "Dubai Creek Harbour.jpg", CC BY-SA 4.0, CoolP1x4rt |
+| 350,000 homes; "more supply" | Dubai Marina towers | Wikimedia Commons "Dubai Marina Skyline.jpg" (licence line to be confirmed on the file page) |
+| Al Maktoum Airport | terminal front | Wikimedia Commons "Dubai-World Central - Al Maktoum International Airport.jpg", CC0, Marlin Le |
+| roads and metro | Dubai Metro train on Sheikh Zayed Road | Wikimedia Commons "Dubai Metro (29129193311).jpg", CC BY 2.0, Stefan Wisselink |
+| Blue Line | RTA site visit in front of the Blue Line plan board | RTA / Dubai Media Office release of 9 Nov 2025 (press photo - check usage rights) |
+Blue Line route: the real alignment from OpenStreetMap (via Wikidata Q16335308 geometry, (c) OpenStreetMap contributors, ODbL), two branches that meet at International City: Creek -> Academic City (20.1 km) and Centrepoint -> International City (9.8 km) = 29.9 km, matching the RTA's 30 km. Stations shown are the named areas (Creek, Dubai Creek Harbour, International City, Dubai Silicon Oasis, Academic City, Centrepoint); positions are indicative. The alignment is as mapped in OSM while under construction. Photo credits to add to the caption if you want them visible: see the table.
+
 ## Check before posting
 - He says "over 2.1 trillion"; the release says "nearly AED2.1 trillion". The screen says only "DH 2.1 TRILLION".
 - "capacity to handle 260 million passengers every year" = design capacity "over the next decade".

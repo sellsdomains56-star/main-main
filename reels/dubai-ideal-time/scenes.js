@@ -29,19 +29,20 @@ function buildScenes() {
   };
 
   const FACE_SEGS = [], PUNCHES = [], OVERLAYS = [];
-  const IMAGES = { mo: 'assets/mo.png', rta: 'assets/rta.png' };
+  const IMAGES = { mo: 'assets/mo.png', rta: 'assets/rta.png', sheikh: 'assets/sheikh.jpg', skyline: 'assets/skyline.jpg', marina: 'assets/marina.jpg', airport: 'assets/airport.jpg', metro: 'assets/metro.jpg', rtasite: 'assets/rtasite.jpg' };
   if (FACE === 'photo') IMAGES.avatar = 'assets/avatar.png';
   const POI = {                                                                        // [lon, lat] (OpenStreetMap / Nominatim; district centres are indicative)
     airport: [55.1595, 24.8863], mirdif: [55.4231, 25.2218], dso: [55.3855, 25.1217], intcity: [55.4128, 25.1754], creek: [55.3604, 25.1980],
   };
+  const STN = { creek: [55.3399, 25.2182], harbour: [55.3619, 25.1987], ic: [55.4133, 25.1579], dso: [55.3888, 25.1208], acad: [55.4124, 25.0977], cp: [55.3898, 25.2306] };   // station areas on the OSM alignment
   const present = (t, a, b) => ea(t, a, a + 0.3) * (1 - ea(t, b, b + 0.3));          // how much a lower-area card is on screen (panels step aside)
 
   // ---- the camera: ONE satellite journey for the whole reel
   const OV = [55.20, 25.12, 10.5, 105], MID = [55.25, 25.17, 11.1, 120], OV2 = [55.26, 25.11, 10.6, 120];
   const keys = [
     camKey(0, ...OV), camKey(K.cur - 0.1, ...OV), camKey(K.cur + 1.6, ...MID), camKey(K.notall - 0.3, ...MID),
-    camKey(K.airport + 0.9, 55.1595, 24.8863, 12.2, 170), camKey(K.year, 55.1595, 24.8863, 12.2, 170),
-    camKey(K.roads, ...OV2), camKey(K.blue1 + 1.0, ...OV2), camKey(K.blue2 + 1.2, 55.392, 25.172, 11.6, 170), camKey(K.y2029 + 0.6, 55.392, 25.172, 11.6, 170),
+    camKey(K.airport + 0.9, 55.1027, 24.8863, 12.2, 170), camKey(K.year, 55.1027, 24.8863, 12.2, 170),
+    camKey(K.roads, ...OV2), camKey(K.blue1 + 1.0, ...OV2), camKey(K.blue2 + 1.0, 55.3766, 25.164, 11.3, 185), camKey(K.y2029 + 0.6, 55.3766, 25.164, 11.3, 185),
     camKey(K.coming + 1.0, ...OV), camKey(K.which, ...OV2), camKey(DUR, 55.22, 25.12, 10.8, 105),
   ].sort((a, b) => a[0] - b[0]);
   SAT_SCENES.journey = { a: 0, b: DUR, veil: 'top', keys };
@@ -65,19 +66,22 @@ function buildScenes() {
   const top = (t, cam) => {
     // call-outs on real places
     mapPulse(t, cam, ...POI.airport, 4200, K.airport - 0.1, K.another - 0.2);
-    mapTag(t, cam, { lon: POI.airport[0], lat: POI.airport[1], a0: K.alm - 0.1, a1: K.another - 0.2, title: 'AL MAKTOUM INTERNATIONAL', sub: 'AIRPORT · DUBAI SOUTH', dx: 20, dy: -120 });
-    [['MIRDIF', POI.mirdif, 'r'], ['DUBAI CREEK HARBOUR', POI.creek, 'l'], ['INTERNATIONAL CITY', POI.intcity, 'r'], ['DUBAI SILICON OASIS', POI.dso, 'r']].forEach(([nm, p, side], i) =>
-      mapDot(t, cam, { lon: p[0], lat: p[1], a0: K.blue2 + 0.2 + i * 0.35, a1: K.according - 0.3, text: nm, side }));
+    mapTag(t, cam, { lon: POI.airport[0], lat: POI.airport[1], a0: K.alm - 0.1, a1: K.another - 0.2, title: 'AL MAKTOUM', sub: 'INTERNATIONAL AIRPORT', dx: 20, dy: 135 });
+    // the Blue Line itself: the real alignment (OpenStreetMap), drawn on as he says "will stretch 30 kilometers"; stations pop up as the line passes them
+    mapRoute(t, cam, OUTLINES.blue_main, K.blue2 - 0.1, K.according - 0.3, { dur: 2.6 });
+    mapRoute(t, cam, OUTLINES.blue_branch, K.km30 + 0.1, K.according - 0.3, { dur: 1.5 });
+    [['CREEK', STN.creek, 'l', 0.15, -14], ['DUBAI CREEK HARBOUR', STN.harbour, 'l', 0.75, 12], ['INTERNATIONAL CITY', STN.ic, 'r', 1.5], ['DUBAI SILICON OASIS', STN.dso, 'l', 1.9], ['ACADEMIC CITY', STN.acad, 'r', 2.5], ['CENTREPOINT', STN.cp, 'r', 2.2]].forEach(([nm, p, side, d, dy]) =>
+      mapDot(t, cam, { lon: p[0], lat: p[1], a0: K.blue2 + d, a1: K.according - 0.3, text: nm, side, size: 26, dy: dy || 0 }));
 
     // HUD title per beat (right of the bubble)
     const cnt = (a, b, v, dec) => numberStr(v * ea(t, a, b, E.out3), dec);
     hudTitle(t, '13 OCTOBER 2026', 'IDEAL TIME TO INVEST?', 'SHEIKH MOHAMMED BIN RASHID', K.hook - 0.1, K.cur - 0.15);
-    hudTitle(t, 'DUBAI · PROJECTS UNDER WAY', 'DH ' + cnt(K.two1 - 0.3, K.trill + 0.4, 2.1, 1) + ' TRILLION', 'ACTIVE PROJECTS', K.cur - 0.05, K.half - 0.2);
-    hudTitle(t, 'REAL ESTATE', 'DH ' + cnt(K.one1 - 0.3, K.one1 + 0.7, 1.1, 1) + ' TRILLION', 'MORE THAN HALF · THROUGH 2030', K.half - 0.1, K.were - 0.2);
-    hudTitle(t, 'HOUSING', cnt(K.h350 - 0.3, K.h350 + 0.9, 350000, 0) + ' NEW HOMES', 'PLANNED', K.were - 0.1, K.notall - 0.15);
-    hudTitle(t, 'AVIATION', 'AL MAKTOUM AIRPORT', 'DH ' + cnt(K.b128 - 0.3, K.b128 + 0.8, 128, 0) + ' BILLION INVESTMENT', K.notall - 0.05, K.another - 0.2, '#8CC8FF');
-    hudTitle(t, 'ROADS & METRO', 'DH ' + cnt(K.b100 - 0.3, K.b100 + 0.7, 100, 0) + ' BILLION', 'INCLUDING THE BLUE AND GOLD LINES', K.another - 0.1, K.blue2 - 0.15);
-    hudTitle(t, 'METRO BLUE LINE', cnt(K.km30 - 0.3, K.km30 + 0.5, 30, 0) + ' KM · ' + cnt(K.st14 - 0.3, K.st14 + 0.5, 14, 0) + ' STATIONS', 'OPENING SEPTEMBER 2029', K.blue2 - 0.05, K.according - 0.15, '#8CC8FF');
+    hudTitle(t, 'DUBAI · PROJECTS UNDER WAY', 'DH ' + cnt(K.cur, K.two1 + 0.5, 2.1, 1) + ' TRILLION', 'ACTIVE PROJECTS', K.cur - 0.05, K.half - 0.2);
+    hudTitle(t, 'REAL ESTATE', 'DH ' + cnt(K.half, K.one1 + 0.5, 1.1, 1) + ' TRILLION', 'MORE THAN HALF · THROUGH 2030', K.half - 0.1, K.were - 0.2);
+    hudTitle(t, 'HOUSING', cnt(K.were, K.h350 + 0.9, 350000, 0) + ' NEW HOMES', 'PLANNED', K.were - 0.1, K.notall - 0.15);
+    hudTitle(t, 'AVIATION', 'AL MAKTOUM AIRPORT', 'DH ' + cnt(K.notall, K.b128 + 0.8, 128, 0) + ' BILLION INVESTMENT', K.notall - 0.05, K.another - 0.2, '#8CC8FF');
+    hudTitle(t, 'ROADS & METRO', 'DH ' + cnt(K.another, K.b100 + 0.6, 100, 0) + ' BILLION', 'INCLUDING THE BLUE AND GOLD LINES', K.another - 0.1, K.blue2 - 0.15);
+    hudTitle(t, 'METRO BLUE LINE', cnt(K.blue2, K.km30 + 0.5, 30, 0) + ' KM' + (t > K.st14 - 0.4 ? ' · ' + cnt(K.st14 - 0.4, K.st14 + 0.5, 14, 0) + ' STATIONS' : ''), 'OPENING SEPTEMBER 2029', K.blue2 - 0.05, K.according - 0.15, '#8CC8FF');
     hudTitle(t, 'SHEIKH MOHAMMED', 'MORE TO COME', 'MORE PROJECTS TO BE ANNOUNCED', K.according - 0.05, K.describes - 0.15);
     hudTitle(t, 'HIS WORDS', 'A CITY WITHIN A CITY', null, K.describes - 0.05, K.idea - 0.15);
     hudTitle(t, 'THE IDEA', 'SIMPLE: MORE ROOM', 'TO LIVE AND WORK', K.idea - 0.05, K.but2 - 0.15);
@@ -86,7 +90,7 @@ function buildScenes() {
     hudTitle(t, 'WHICH IS WHY', 'LOCATION & DEVELOPER', 'MATTER MORE THAN EVER', K.which - 0.05, K.if1 - 0.25);
 
     // lower area: real pages (proof) ...
-    const cA = present(t, 0.45, K.half - 0.2), cB = present(t, K.according - 0.1, K.idea - 0.1), cC = present(t, K.blue2 - 0.15, K.according - 0.1);
+    const cA = present(t, 0.45, K.half - 0.2), cB = present(t, K.according - 0.1, K.idea - 0.1), cC = present(t, K.blue2 - 0.15, K.st14 + 1.0), cD = present(t, K.st14 + 1.0, K.according - 0.1);
     const mk = (b, t0, t1) => ({ bbox: b, t0, t1 });
     card(t, 'mo', { x: 150, y: 890, w: 780, h: 340, a: 0.45, out: K.half - 0.2, from: [0, 90], rot: -1.2, fit: 'cover', fy: 0, zoom: [1, 1.03], chip: 'DUBAI MEDIA OFFICE · 13 OCT',
       focus: [{ bbox: [0, 5040, 1440, 240], t0: K.hook, t1: K.hook + 0.5, zoom: 1.0 }, { bbox: [0, 4800, 1440, 200], t0: K.cur + 0.4, t1: K.two1 - 0.2, zoom: 1.0 }],
@@ -94,10 +98,20 @@ function buildScenes() {
     card(t, 'mo', { x: 150, y: 890, w: 780, h: 340, a: K.according - 0.1, out: K.idea - 0.1, from: [0, 90], rot: 1.2, fit: 'cover', fy: 0, zoom: [1, 1.03], chip: 'DUBAI MEDIA OFFICE · 13 OCT',
       focus: [{ bbox: [0, 4880, 1440, 200], t0: K.according - 0.05, t1: K.even, zoom: 1.0 }, { bbox: [0, 4850, 1440, 200], t0: K.describes, t1: K.building, zoom: 1.0 }],
       hl: [mk([921, 4906, 481, 52], K.even - 0.1, K.coming), mk([37, 4974, 469, 52], K.coming - 0.4, K.coming + 0.3), mk([256, 4839, 614, 52], K.building - 0.1, K.building + 1.2)] });
-    card(t, 'rta', { x: 150, y: 890, w: 780, h: 340, a: K.blue2 - 0.15, out: K.according - 0.1, from: [0, 90], rot: -1.2, fit: 'cover', fy: 0, zoom: [1, 1.03], chip: 'RTA · DUBAI MEDIA OFFICE',
-      focus: [{ bbox: [0, 3050, 1440, 140], t0: K.blue2 - 0.05, t1: K.blue2 + 0.4, zoom: 1.0 }, { bbox: [0, 3700, 1440, 140], t0: K.sept - 0.9, t1: K.sept - 0.3, zoom: 1.0 }],
-      hl: [mk([1215, 3036, 187, 52], K.km30 - 0.1, K.km30 + 0.5), mk([37, 3105, 651, 52], K.km30 + 0.3, K.st14 + 0.8), mk([158, 3786, 637, 52], K.sept - 0.2, K.y2029 + 0.2)] });
-    const cardOn = Math.max(cA, cB, cC);
+    card(t, 'rta', { x: 150, y: 890, w: 780, h: 340, a: K.blue2 - 0.15, out: K.st14 + 1.0, from: [0, 90], rot: -1.2, fit: 'cover', fy: 0, zoom: [1, 1.03], chip: 'RTA · DUBAI MEDIA OFFICE',
+      focus: [{ bbox: [0, 3050, 1440, 140], t0: K.blue2 - 0.05, t1: K.blue2 + 0.4, zoom: 1.0 }, ],
+      hl: [mk([1215, 3036, 187, 52], K.km30 - 0.1, K.km30 + 0.5), mk([37, 3105, 651, 52], K.km30 + 0.3, K.st14 + 0.8)] });
+    card(t, 'rtasite', { x: 150, y: 890, w: 780, h: 340, a: K.st14 + 1.0, out: K.according - 0.1, from: [0, 90], rot: 1.2, fit: 'cover', fx: 0.5, fy: 0.42, zoom: [1, 1.06], chip: 'RTA · BLUE LINE SITE' });
+        // real-life photos on the map band (left side), each with the credit on its chip
+    const ph = (id, a, out, o = {}) => card(t, id, { x: 140, y: 595, w: 340, h: 232, a, out, from: [-90, 0], rot: -2, fit: 'cover', zoom: [1, 1.07], ...o });
+    ph('skyline', K.cur - 0.1, K.half - 0.2, { chip: 'DUBAI SKYLINE · COMMONS' });
+    ph('marina', K.were - 0.1, K.notall - 0.15, { chip: 'DUBAI MARINA · COMMONS', fx: 0.6 });
+    ph('airport', K.notall, K.another - 0.2, { chip: 'AL MAKTOUM · COMMONS', fx: 0.3 });
+    ph('metro', K.another - 0.1, K.blue2 - 0.2, { chip: 'DUBAI METRO · COMMONS', fx: 0.35 });
+    ph('skyline', K.describes - 0.1, K.but2 - 0.2, { chip: 'CREEK HARBOUR · COMMONS' });
+    ph('marina', K.those - 0.1, K.which - 0.2, { chip: 'DUBAI MARINA · COMMONS', fx: 0.6 });
+    badge(t, 'sheikh', 760, 690, 105, 0.35, 'SHEIKH MOHAMMED', { out: K.cur - 0.15, fx: 0.5, fy: 0.22, zoom: 1.5 });
+    const cardOn = Math.max(cA, cB, cC, cD);
 
     // ... and the two custom panels: real estate share (bar) and the homes counter
     const pa = (a0, a1) => ea(t, a0, a0 + 0.4, E.out3) * (1 - ea(t, a1, a1 + 0.4)) * (1 - cardOn);

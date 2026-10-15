@@ -379,11 +379,23 @@ function bigTitle(t, text, y, a0, a1, o = {}) {
 function mapDot(t, cam, o) {
   const al = ea(t, o.a0, o.a0 + 0.3) * (o.a1 ? 1 - ea(t, o.a1, o.a1 + 0.4) : 1); if (al <= 0.003) return;
   const [x, y] = satProj(cam, o.lon, o.lat), e = ea(t, o.a0, o.a0 + 0.45, E.back), sz = o.size ?? 28, f = F.d(800, sz), tw0 = M(o.text, f, 1), pad = 18, h = sz + 22, right = (o.side || 'r') === 'r';
-  const avail = right ? SAFE.x1 - (x + 24) : (x - 24) - SAFE.x0, w = Math.max(60, Math.min(tw0 + pad * 2, avail)), sx = Math.min(1, (w - pad * 2) / tw0), lx = right ? x + 24 : x - 24 - w, ly = clamp(y - h / 2, MAP_Y0, MAP_Y1 - h), u = ((t - o.a0) / 2) % 1;
+  const avail = right ? SAFE.x1 - (x + 24) : (x - 24) - SAFE.x0, w = Math.max(60, Math.min(tw0 + pad * 2, avail)), sx = Math.min(1, (w - pad * 2) / tw0), lx = right ? x + 24 : x - 24 - w, ly = clamp(y - h / 2 + (o.dy || 0), MAP_Y0, MAP_Y1 - h), u = ((t - o.a0) / 2) % 1;
   ctx.save(); ctx.globalAlpha *= al;
   ring(x, y, 14 + 40 * u, { color: '#FFFFFF', w: 2.5, alpha: (1 - u) * 0.6 });
   dot(x, y, 15 * e, 'rgba(255,255,255,0.95)'); dot(x, y, 8.5 * e, C.gold);
   rr(lx, ly, w, h, h / 2); ctx.fillStyle = 'rgba(8,8,10,0.86)'; ctx.fill(); ctx.strokeStyle = 'rgba(233,196,124,0.6)'; ctx.lineWidth = 2; ctx.stroke();
   T(o.text, lx + w / 2, ly + h / 2 + sz * 0.36, { font: f, ls: 1, color: '#FFFFFF', sx });
+  ctx.restore();
+}
+
+// an animated route along real coordinates (e.g. a metro line from OpenStreetMap): a glowing line that draws on from the first point, with a bright head. pts = [[lon, lat], ...]
+function mapRoute(t, cam, pts, a0, a1, o = {}) {
+  const al = a1 ? 1 - ea(t, a1, a1 + 0.5) : 1, p = ea(t, a0, a0 + (o.dur ?? 2.2), E.inOut2); if (p <= 0.002 || al <= 0.003) return;
+  const P = pts.map(([lo, la]) => satProj(cam, lo, la)), col = o.color || '#3D8BFF', w = o.w ?? 9;
+  ctx.save(); ctx.globalAlpha *= al; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  strokePoly(P, p, { color: 'rgba(8,9,11,0.7)', w: w + 9 });
+  ctx.shadowColor = col; ctx.shadowBlur = 20 * SS; const hd = strokePoly(P, p, { color: col, w }); ctx.shadowColor = 'transparent';
+  strokePoly(P, p, { color: 'rgba(255,255,255,0.9)', w: 2.5 });
+  if (hd && p < 0.995) { glow(hd.x, hd.y, 64, '170,215,255', 0.6); dot(hd.x, hd.y, 9, '#FFFFFF'); }
   ctx.restore();
 }
