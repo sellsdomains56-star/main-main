@@ -241,7 +241,7 @@ function gauge(t, o) {
 
 // ------------------------------------------------------------------------------------------------- map storytelling (one continuous satellite journey)
 // Everything below draws over the satellite scene from its cfg.top(t, cam). The camera path is SAT_SCENES.<id>.keys built with camKey().
-const HUD_X = 330;                                                       // the HUD title sits right of the face bubble (bubble x 130-290)
+let HUD_X = 330;                                                         // the HUD title sits right of the face bubble (bubble x 130-290); scenes.js sets it to SAFE.x0 when there is no bubble
 const MAP_Y0 = 540, MAP_Y1 = 1270;                                              // callout labels stay between the HUD and the captions
 const mpp = (cam, lat) => 156543.03 * Math.cos(lat * Math.PI / 180) / Math.pow(2, cam.z);          // metres per screen pixel
 function camKey(sec, lon, lat, z, dy = 0) {                                     // waypoint that shows (lon, lat) dy px ABOVE the screen's map centre (room for the HUD / panel)

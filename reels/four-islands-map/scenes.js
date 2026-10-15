@@ -5,6 +5,7 @@
 // panel fills row by row ("fully broken down"); real news pages (Wikipedia, Finance Middle East, Khaleej Times) slide in as proof. Safe zone: x 130-950, y 300-1270.
 // ---------------------------------------------------------------------------
 function buildScenes() {
+  const SHOW_FACE = false;                                                            // true = small round face bubble top-left (previous version); false = map only, his voice only
   const cues = [], SCENES = [], tw = (re, n = 0, fb = 0, from = 0) => wt(re, n, fb, from);
   const add = (s) => { SCENES.push(s); return s; };
 
@@ -55,7 +56,8 @@ function buildScenes() {
   SAT_SCENES.journey = { a: 0, b: DUR, veil: 'top', keys };
 
   // ---- the face bubble: small, top-left (like the reference), then it grows to the middle for the call to action
-  const BUBBLE = { t0: 0.1, src: { cx: 560, cy: 830, size: 640 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.im - 0.4, cx: 215, cy: 418, r: 78 }, { t: K.im + 0.7, cx: 540, cy: 470, r: 150 }] };
+  const BUBBLE = !SHOW_FACE ? null : { t0: 0.1, src: { cx: 560, cy: 830, size: 640 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.im - 0.4, cx: 215, cy: 418, r: 78 }, { t: K.im + 0.7, cx: 540, cy: 470, r: 150 }] };
+  HUD_X = SHOW_FACE ? 330 : SAFE.x0;                                                  // title block: right of the bubble, or at the left edge when there is none
 
   // ---- the checklist panels ("fully broken down"): what he names, in the order he names it
   const P = (title, a0, a1, items, o = {}) => ({ title, a0, a1, items, ...o });
@@ -147,7 +149,7 @@ function buildScenes() {
   };
   add({ id: 'journey', kind: 'sat', a: 0, b: DUR, last: true, cfg: { top } });
   // name chip under the bubble while he is introduced
-  OVERLAYS.push(t => { const a = ea(t, 0.5, 1.0) * (1 - ea(t, 4.6, 5.0)); if (a <= 0.003) return; ctx.save(); ctx.globalAlpha *= a; const w = M('ABDULLAH AHLI', F.d(800, 26), 3) + 44; glassPill(130, 514, w, 46, 23); T('ABDULLAH AHLI', 130 + w / 2, 547, { font: F.d(800, 26), ls: 3, color: '#FFFFFF' }); ctx.restore(); });
+  if (SHOW_FACE) OVERLAYS.push(t => { const a = ea(t, 0.5, 1.0) * (1 - ea(t, 4.6, 5.0)); if (a <= 0.003) return; ctx.save(); ctx.globalAlpha *= a; const w = M('ABDULLAH AHLI', F.d(800, 26), 3) + 44; glassPill(130, 514, w, 46, 23); T('ABDULLAH AHLI', 130 + w / 2, 547, { font: F.d(800, 26), ls: 3, color: '#FFFFFF' }); ctx.restore(); });
 
   // ---- sound: whooshes on the camera moves and the call-outs (very quiet)
   [K.num1, K.louvre - 0.2, K.beach, K.num2, K.youve2, K.num3, K.adgm, K.live, K.num4, K.villas, K.which, K.because].forEach(x => cues.push({ k: 'wh', t: x - 0.1, d: 0.5 }));

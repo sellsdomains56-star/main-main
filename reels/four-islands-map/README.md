@@ -1,5 +1,7 @@
 # 4 islands in Abu Dhabi - map version (reel 08)
 
+**Current cut: no face at all** (`SHOW_FACE = false` at the top of `scenes.js`; the user asked to remove the circle and keep everything else). With `SHOW_FACE = true` you get the previous cut with the small round face bubble top-left; the title block then sits right of it (`HUD_X = 330`), otherwise at the left edge (`HUD_X = 130`). The name chip under the bubble only exists with the face.
+
 126 s vertical reel (1080x1920, 30 fps), same footage and voice as reel 07 (`../four-islands`, Abdullah Ahli's own take, unedited), but built differently: **his face is only a small round bubble** (top-left, 156 px, gold ring that pulses while he speaks) and **the whole picture behind it is one continuous real satellite journey** over Abu Dhabi. Look follows the reference the user sent: **every island is filled in its own colour** (Saadiyat violet, Yas mint, Al Reem lime, Hudayriyat red-orange) with a glowing white edge and its name written along it, a big white title across the map ("4 KEY ISLANDS"). Each island is "fully broken down" while he talks about it: the camera flies there, the coloured fill wipes in west to east, call-outs are pinned on the real places he names, and a checklist panel grows row by row as he says each point. Whoosh-only sound at a very low level, frosted-glass captions, everything inside the Instagram Reels safe zone (top 220 / bottom 450 / right 100 px).
 
 | Time | Map | Bubble | What is broken down |
