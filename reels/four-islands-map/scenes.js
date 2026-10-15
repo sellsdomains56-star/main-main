@@ -5,7 +5,8 @@
 // panel fills row by row ("fully broken down"); real news pages (Wikipedia, Finance Middle East, Khaleej Times) slide in as proof. Safe zone: x 130-950, y 300-1270.
 // ---------------------------------------------------------------------------
 function buildScenes() {
-  const SHOW_FACE = false;                                                            // true = small round face bubble top-left (previous version); false = map only, his voice only
+  const FACE = 'photo';                                                               // 'photo' = small round bubble top-left with his still Instagram portrait; 'video' = the same bubble with the live footage; 'none' = map only
+  const SHOW_FACE = FACE !== 'none';
   const cues = [], SCENES = [], tw = (re, n = 0, fb = 0, from = 0) => wt(re, n, fb, from);
   const add = (s) => { SCENES.push(s); return s; };
 
@@ -29,7 +30,7 @@ function buildScenes() {
   };
 
   const FACE_SEGS = [], PUNCHES = [], OVERLAYS = [];                                   // no full-screen face: he is a small round bubble the whole time
-  const IMAGES = { louvre: 'assets/louvre.png', gugg: 'assets/gugg.png', fme: 'assets/fme.png', hud: 'assets/hud.png' };
+  const IMAGES = { louvre: 'assets/louvre.png', gugg: 'assets/gugg.png', fme: 'assets/fme.png', hud: 'assets/hud.png', avatar: 'assets/avatar.png' };
   const POI = {                                                                        // [lon, lat] from OpenStreetMap / Wikipedia
     louvre: [54.3986, 24.5337], gugg: [54.3993, 24.5402], saadBeach: [54.4368, 24.5488],
     ferrari: [54.6099, 24.4841], warner: [54.6004, 24.4920], circuit: [54.6031, 24.4672], seaworld: [54.6190, 24.4859], waterworld: [54.5995, 24.4879], yasMall: [54.6085, 24.4859],
@@ -56,7 +57,7 @@ function buildScenes() {
   SAT_SCENES.journey = { a: 0, b: DUR, veil: 'top', keys };
 
   // ---- the face bubble: small, top-left (like the reference), then it grows to the middle for the call to action
-  const BUBBLE = !SHOW_FACE ? null : { t0: 0.1, src: { cx: 560, cy: 830, size: 640 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.im - 0.4, cx: 215, cy: 418, r: 78 }, { t: K.im + 0.7, cx: 540, cy: 470, r: 150 }] };
+  const BUBBLE = !SHOW_FACE ? null : { t0: 0.1, ...(FACE === 'photo' ? { img: 'avatar' } : { src: { cx: 560, cy: 830, size: 640 } }), keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.im - 0.4, cx: 215, cy: 418, r: 78 }, { t: K.im + 0.7, cx: 540, cy: 470, r: 125 }] };
   HUD_X = SHOW_FACE ? 330 : SAFE.x0;                                                  // title block: right of the bubble, or at the left edge when there is none
 
   // ---- the checklist panels ("fully broken down"): what he names, in the order he names it

@@ -90,14 +90,14 @@ function bubbleAt(t) {
 }
 function speakingAt(t) { for (const w of WORDS) if (t >= w.t - 0.05 && t <= w.end + 0.1) return 1; return 0; }
 function drawBubble(t) {
-  if (!FOOT) return;
-  const B = CFG.BUBBLE, { cx, cy, r } = bubbleAt(t), S = B.src, sp = Math.max(speakingAt(t), 0.55 * speakingAt(t - 0.12), 0.3 * speakingAt(t - 0.25)), a = ea(t, B.t0 ?? 0, (B.t0 ?? 0) + 0.5, E.out4), s0 = lerp(0.6, 1, a);
+  const B = CFG.BUBBLE, PH = B.img ? IMG[B.img] : null; if (!PH && !FOOT) return;                    // B.img = a still portrait (IMAGES id) instead of the live footage
+  const { cx, cy, r } = bubbleAt(t), S = B.src || {}, sp = Math.max(speakingAt(t), 0.55 * speakingAt(t - 0.12), 0.3 * speakingAt(t - 0.25)), a = ea(t, B.t0 ?? 0, (B.t0 ?? 0) + 0.5, E.out4), s0 = lerp(0.6, 1, a);
   ctx.save(); ctx.globalAlpha *= a; ctx.translate(cx, cy); ctx.scale(s0, s0);
   glow(0, 0, r * 1.9, '233,196,124', 0.10 + 0.22 * sp);
   ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 30 * SS; ctx.shadowOffsetY = 10 * SS; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fillStyle = '#111'; ctx.fill(); ctx.restore();
   ctx.save(); ctx.beginPath(); ctx.arc(0, 0, r - 3, 0, 7); ctx.clip();
-  const sz = S.size, sx = clamp(S.cx - sz / 2, 0, 1080 - sz), sy = clamp(S.cy - sz / 2, 0, 1920 - sz), kx = FOOT.naturalWidth / 1080, ky = FOOT.naturalHeight / 1920;
-  ctx.drawImage(FOOT, sx * kx, sy * ky, sz * kx, sz * ky, -r, -r, 2 * r, 2 * r);
+  if (PH) ctx.drawImage(PH, -r, -r, 2 * r, 2 * r);
+  else { const sz = S.size, sx = clamp(S.cx - sz / 2, 0, 1080 - sz), sy = clamp(S.cy - sz / 2, 0, 1920 - sz), kx = FOOT.naturalWidth / 1080, ky = FOOT.naturalHeight / 1920; ctx.drawImage(FOOT, sx * kx, sy * ky, sz * kx, sz * ky, -r, -r, 2 * r, 2 * r); }
   const g = ctx.createRadialGradient(0, 0, r * 0.55, 0, 0, r); g.addColorStop(0, 'rgba(8,8,10,0)'); g.addColorStop(1, 'rgba(8,8,10,0.38)'); ctx.fillStyle = g; ctx.fillRect(-r, -r, 2 * r, 2 * r);   // soft vignette
   ctx.restore();
   ring(0, 0, r - 1, { color: C.gold, w: 5 });
@@ -122,7 +122,7 @@ function draw(t) {
 async function prepare(t) {
   const load = src => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
   const jobs = [], k = clamp(Math.round(t * FPS), 0, Math.min(TL.frames - 1, CFG.FOOT_MAX ?? 1e9));
-  if ((faceF(t) > 0.001 || CFG.BUBBLE) && !(k === FOOT_K && FOOT)) jobs.push(load(`build/footage/f_${pad5(k)}.jpg`).then(im => { FOOT = im; FOOT_K = k; }));
+  if ((faceF(t) > 0.001 || (CFG.BUBBLE && !CFG.BUBBLE.img)) && !(k === FOOT_K && FOOT)) jobs.push(load(`build/footage/f_${pad5(k)}.jpg`).then(im => { FOOT = im; FOOT_K = k; }));
   for (const sc of CFG.SCENES) if (sc.kind === 'sat' && t >= sc.a - 0.2 && t <= sc.b + 0.5) jobs.push(satEnsure(SAT_SCENES[sc.id], t));
   await Promise.all(jobs);
 }
