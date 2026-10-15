@@ -28,9 +28,9 @@ Peg: Sheikh Mohammed bin Rashid Al Maktoum, 13 October 2026, Mohammed bin Rashid
 Photos pop in on the map band, each with a credit chip; they are not committed (`assets/`):
 | Where | Photo | Source / licence |
 |---|---|---|
-| hook | portrait of Sheikh Mohammed bin Rashid (round badge) | Wikipedia infobox image "Mohammed bin Rashid Al Maktoum (15-02-2021).jpg" (Wikimedia Commons) - **check the licence line on the file page before posting** (the API was rate-limited when I tried) |
+| hook | portrait of Sheikh Mohammed bin Rashid (round badge) | Wikimedia Commons "Mohammed bin Rashid Al Maktoum (15-02-2021).jpg", CC BY 4.0, president.gov.ua |
 | 2.1 trillion; "city within a city" | Dubai Creek Harbour with the skyline | Wikimedia Commons "Dubai Creek Harbour.jpg", CC BY-SA 4.0, CoolP1x4rt |
-| 350,000 homes; "more supply" | Dubai Marina towers | Wikimedia Commons "Dubai Marina Skyline.jpg" (licence line to be confirmed on the file page) |
+| 350,000 homes; "more supply" | Dubai Marina towers | Wikimedia Commons "Dubai Marina Skyline.jpg", CC BY 2.0, Norlando Pobre (flickr.com/photos/npobre/49981386642) |
 | Al Maktoum Airport | terminal front | Wikimedia Commons "Dubai-World Central - Al Maktoum International Airport.jpg", CC0, Marlin Le |
 | roads and metro | Dubai Metro train on Sheikh Zayed Road | Wikimedia Commons "Dubai Metro (29129193311).jpg", CC BY 2.0, Stefan Wisselink |
 | Blue Line | RTA site visit in front of the Blue Line plan board | RTA / Dubai Media Office release of 9 Nov 2025 (press photo - check usage rights) |
