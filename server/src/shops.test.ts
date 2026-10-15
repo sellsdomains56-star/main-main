@@ -159,3 +159,14 @@ test("shipped orders still work as before", async () => {
   assert.equal(r.json.order.fulfilment, "shipping");
   assert.equal(r.json.order.shop, null);
 });
+
+test("every UAE barber has an exact pin, and barbers at a shop stand at its address", async () => {
+  const { json: barbers } = await call("/barbers?country=AE");
+  const { json: shops } = await call("/shops?country=AE");
+  assert.ok(barbers.length >= 20);
+  for (const b of barbers) {
+    assert.ok(b.lat > 22.5 && b.lat < 26.5 && b.lng > 51.5 && b.lng < 56.5, `${b.name} is in the UAE`);
+    const shop = shops.find((s: { id: string }) => s.id === b.shop?.id);
+    if (shop) assert.deepEqual([b.lat, b.lng, b.shopAddress], [shop.lat, shop.lng, shop.address]);
+  }
+});

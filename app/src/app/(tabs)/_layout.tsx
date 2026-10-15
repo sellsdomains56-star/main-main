@@ -24,6 +24,7 @@ export default function TabsLayout() {
     >
       <Tabs.Screen name="index" options={{ title: "Home", tabBarIcon: icon("home", "home-outline") }} />
       <Tabs.Screen name="reels" options={{ title: "Reels", tabBarIcon: icon("play-circle", "play-circle-outline"), sceneStyle: { backgroundColor: "#000" } }} />
+      <Tabs.Screen name="concierge" options={{ title: "Concierge", tabBarIcon: icon("sparkles", "sparkles-outline") }} />
       <Tabs.Screen name="bookings" options={{ title: "Bookings", tabBarIcon: icon("calendar", "calendar-outline") }} />
       <Tabs.Screen name="account" options={{ title: "Account", tabBarIcon: icon("person", "person-outline") }} />
     </Tabs>

@@ -186,7 +186,7 @@ export const api = {
     if (!res.ok) throw new ApiError(res.status, data.error ?? "Upload failed.");
     return data;
   },
-  updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties" | "offersConsultations"> & { videoLink: string }>) =>
+  updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties" | "offersConsultations" | "lat" | "lng" | "shopAddress"> & { videoLink: string }>) =>
     request<Barber>("/barbers/me", { method: "PATCH", body }),
   notifications: () => request<{ unread: number; items: AppNotification[] }>("/notifications"),
   markNotificationsRead: (ids?: string[]) => request<void>("/notifications/read", { body: { ids } }),

@@ -100,7 +100,15 @@ export default function BarberProfile() {
       {/* Where to find them */}
       <View style={{ marginTop: 22 }}>
         <T variant="heading" style={{ marginBottom: 10 }}>Location</T>
-        <BarberMap pins={barberPins([barber])} height={200} placeName={barber.city} />
+        <BarberMap
+          pins={barberPins([barber])}
+          selectedId={barber.id}
+          height={230}
+          interactive={false}
+          orbit
+          onPress={() => router.push({ pathname: "/map", params: { focus: barber.id, country: barber.countryCode } })}
+          placeName={barber.city}
+        />
         <Row style={{ justifyContent: "space-between", marginTop: 10 }} gap={10}>
           <View style={{ flex: 1 }}>
             <T variant="strong">{barber.shop ? barber.shop.name : barber.shopAddress}</T>

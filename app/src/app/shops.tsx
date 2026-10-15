@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useWindowDimensions, View } from "react-native";
 import { LocationPill } from "../components/LocationSheet";
 import { BarberMap } from "../components/map/BarberMap";
-import type { MapPin } from "../components/map/types";
+import { shopPins } from "../components/map/types";
 import { ShopCard } from "../components/ShopCard";
 import { Divider, EmptyState, ErrorBox, Loading, Pill, Row, Screen, T } from "../components/ui";
 import { api } from "../lib/api";
@@ -25,7 +25,7 @@ export default function Shops() {
   }, [place?.countryCode, place?.city]);
 
   const where = place?.city || country?.name || "the world";
-  const pins: MapPin[] = (list ?? []).map((s) => ({ id: s.id, lat: s.lat, lng: s.lng, label: s.name.split(" ").slice(0, 2).join(" "), free: s.offersDelivery }));
+  const pins = shopPins(list ?? []);
 
   return (
     <Screen>
@@ -51,7 +51,7 @@ export default function Shops() {
             <BarberMap pins={pins} height={Math.max(300, Math.min(height * 0.45, 480))} selectedId={selected} onSelect={setSelected} placeName={place?.city || country?.name} />
             {(() => {
               const s = list.find((x) => x.id === selected);
-              return s ? <ShopCard shop={s} /> : <T variant="caption" muted style={{ marginTop: 12 }}>Tap a pin to see the shop. Filled pins deliver.</T>;
+              return s ? <ShopCard shop={s} /> : <T variant="caption" muted style={{ marginTop: 12 }}>Tap a shop to see it. Drag to move, right-drag or two fingers to turn and tilt.</T>;
             })()}
           </View>
         )}

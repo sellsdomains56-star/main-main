@@ -60,6 +60,7 @@ export default function RootLayout() {
                   <Stack.Screen name="preferences" options={{ title: "My chair" }} />
                   <Stack.Screen name="checkout/[purchaseId]" options={{ title: "Payment" }} />
                   <Stack.Screen name="shops" options={{ title: "Barbershops" }} />
+                  <Stack.Screen name="map" options={{ headerShown: false, title: "Map" }} />
                   <Stack.Screen name="barbershop/[shopId]/index" options={{ title: "" }} />
                   <Stack.Screen name="barbershop/[shopId]/book" options={{ title: "Book a chair" }} />
                   <Stack.Screen name="barbershop/[shopId]/hire" options={{ title: "Private hire" }} />

@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Linking, Platform, Pressable, useWindowDimensions, View } from "react-native";
 import { BarberCard } from "../../../components/BarberCard";
 import { BarberMap } from "../../../components/map/BarberMap";
-import { directionsUrl } from "../../../components/map/types";
+import { directionsUrl, shopPins } from "../../../components/map/types";
 import { shopHours, ShopPhoto } from "../../../components/ShopCard";
 import { colors, fonts, radius, raise, shadow } from "../../../components/theme";
 import { Button, Divider, ErrorBox, IconLine, Loading, Rating, Row, Screen, styles, T } from "../../../components/ui";
@@ -141,7 +141,15 @@ export default function ShopPage() {
 
       <View style={{ marginTop: 24 }}>
         <T variant="heading" style={{ marginBottom: 10 }}>Location</T>
-        <BarberMap pins={[{ id: shop.id, lat: shop.lat, lng: shop.lng, label: shop.name.split(" ").slice(0, 2).join(" "), free: true }]} height={200} placeName={shop.city} />
+        <BarberMap
+          pins={shopPins([shop])}
+          selectedId={shop.id}
+          height={230}
+          interactive={false}
+          orbit
+          onPress={() => router.push({ pathname: "/map", params: { focus: shop.id, country: shop.countryCode } })}
+          placeName={shop.city}
+        />
         <Row gap={8} style={{ marginTop: 12, flexWrap: "wrap" }}>
           <Button title="Directions" icon="navigate-outline" size="sm" variant="secondary" onPress={() => Linking.openURL(directionsUrl(shop.lat, shop.lng, Platform.OS === "ios"))} />
           <Button title="Call the shop" icon="call-outline" size="sm" variant="secondary" onPress={() => Linking.openURL(`tel:${shop.phone.replace(/[^\d+]/g, "")}`)} />

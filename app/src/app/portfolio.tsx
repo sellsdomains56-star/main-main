@@ -1,7 +1,9 @@
 import { router } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
-import { Image, Pressable, useWindowDimensions, View } from "react-native";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Image, Platform, Pressable, useWindowDimensions, View } from "react-native";
 import { BeforeAfter } from "../components/BeforeAfter";
+import { BarberMap } from "../components/map/BarberMap";
+import { barberPins } from "../components/map/types";
 import { colors, radius } from "../components/theme";
 import { Button, EmptyState, ErrorBox, Field, IconButton, Loading, OptionRow, Photo, Row, Screen, Section, T } from "../components/ui";
 import { api, mediaUrl } from "../lib/api";
@@ -21,6 +23,9 @@ export default function Portfolio() {
   const [savedNote, setSavedNote] = useState<string | null>(null);
   const [pair, setPair] = useState<{ before?: string; after?: string; caption: string }>({ caption: "" });
   const [busy, setBusy] = useState<string | null>(null);
+  const [address, setAddress] = useState("");
+  const [spotSaved, setSpotSaved] = useState(false);
+  const spot = useRef<{ lat: number; lng: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(() => {
@@ -29,6 +34,7 @@ export default function Portfolio() {
       setBarber(b);
       setYears(b.yearsExperience ? String(b.yearsExperience) : "");
       setLanguages(b.languages.join(", "));
+      setAddress(b.shopAddress);
     }, (e: Error) => setError(e.message));
     api.myBarberSettings().then((s) => {
       setMeetLink(s.videoLink);
@@ -93,6 +99,38 @@ export default function Portfolio() {
           }))}
           style={{ alignSelf: "flex-start" }}
         />
+      </Section>
+
+      <Section title="Your spot on the map">
+        {barber.shop ? (
+          <T variant="caption" muted>You work at {barber.shop.name}, so customers see the shop's pin at {barber.shopAddress}.</T>
+        ) : Platform.OS === "web" && barber.countryCode !== "AE" ? (
+          <T variant="caption" muted>Set your exact spot in the JB Always Fresh app on your phone — the website's detailed 3D map covers the UAE.</T>
+        ) : (
+          <>
+            <T variant="caption" muted style={{ marginBottom: 12 }}>Customers see exactly where your chair is, down to the building. Move the map until the pin sits on your door, then save.</T>
+            <BarberMap pins={barberPins([barber])} height={300} tilt={false} onCenter={(lat, lng) => (spot.current = { lat, lng })} placeName={barber.city} />
+            <View style={{ marginTop: 12 }}>
+              <Field label="Address customers see" value={address} onChangeText={setAddress} placeholder="e.g. Shop 4, Bay Avenue, Business Bay" />
+            </View>
+            <Row gap={12}>
+              <Button
+                title="Save this spot"
+                icon="location-outline"
+                size="md"
+                loading={busy === "spot"}
+                onPress={() => run("spot", async () => {
+                  const at = spot.current;
+                  if (!at) return;
+                  const b = await api.updateMyBarber({ lat: Math.round(at.lat * 1e6) / 1e6, lng: Math.round(at.lng * 1e6) / 1e6, ...(address.trim() ? { shopAddress: address.trim() } : {}) });
+                  setSpotSaved(true);
+                  return b;
+                })}
+              />
+              {spotSaved && <T variant="caption" muted>Saved — that's your pin now.</T>}
+            </Row>
+          </>
+        )}
       </Section>
 
       <Section title="Consultations">

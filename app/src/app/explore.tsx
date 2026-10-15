@@ -151,9 +151,12 @@ export default function Explore() {
                   onSelect={setSelected}
                   placeName={near ? place!.city || country?.name : undefined}
                 />
-                <Row gap={14} style={{ marginTop: 10 }}>
-                  <Row gap={6}><View style={{ width: 22, height: 12, borderRadius: 6, backgroundColor: colors.ink }} /><T variant="small" muted>Free today</T></Row>
-                  <Row gap={6}><View style={{ width: 22, height: 12, borderRadius: 6, borderWidth: 1.5, borderColor: colors.ink, backgroundColor: colors.card }} /><T variant="small" muted>Next free later</T></Row>
+                <Row gap={10} style={{ marginTop: 10, justifyContent: "space-between" }}>
+                  <Row gap={6}>
+                    <View style={{ width: 12, height: 12, borderRadius: 6, backgroundColor: colors.card, borderWidth: 2.5, borderColor: colors.ink }} />
+                    <T variant="small" muted>Dot on the photo = free today</T>
+                  </Row>
+                  <Button title="Full screen" icon="expand-outline" size="sm" variant="secondary" onPress={() => router.push({ pathname: "/map", params: place?.countryCode ? { country: place.countryCode } : {} })} />
                 </Row>
                 {(() => {
                   const b = list.find((x) => x.id === selected);

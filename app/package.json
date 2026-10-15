@@ -26,7 +26,6 @@
     "expo-status-bar": "~57.0.1",
     "expo-video": "~57.0.5",
     "expo-web-browser": "~57.0.3",
-    "leaflet": "^1.9.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.86.3",
@@ -37,8 +36,10 @@
     "react-native-web": "~0.21.0"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.9.22",
+    "@mapbox/vector-tile": "^2.0.5",
     "@types/react": "~19.2.2",
+    "clipper-lib": "^6.4.2",
+    "pbf": "^4.0.2",
     "typescript": "~6.0.3"
   },
   "scripts": {

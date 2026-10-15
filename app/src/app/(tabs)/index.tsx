@@ -13,7 +13,7 @@ import { CampaignCarousel } from "../../components/CampaignCarousel";
 import { barberPins } from "../../components/map/types";
 import { ReelThumb } from "../../components/ReelThumb";
 import { SlideToConfirm } from "../../components/SlideToConfirm";
-import { colors, fonts, radius, raise } from "../../components/theme";
+import { colors, fonts, radius } from "../../components/theme";
 import { Avatar, Card, IconBadge, IconButton, Loading, Rating, Row, SearchBar, Section, styles, T, Tag, Timeline, type IconName } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAlerts } from "../../lib/alerts";
@@ -86,8 +86,7 @@ export default function Home() {
       <T variant="body" style={{ fontFamily: fonts.medium, fontSize: 17, lineHeight: 24 }}>
         Precision cuts.{"\n"}Timeless style.{"\n"}Built for confidence.
       </T>
-      {/* On phones, stop short of the floating concierge button so the knob can reach the end. */}
-      <View style={{ marginTop: 20, width: wide ? 270 : Math.min(contentW - 76, 300) }}>
+      <View style={{ marginTop: 20, width: wide ? 270 : Math.min(contentW, 320) }}>
         <SlideToConfirm label="Book appointment" onConfirm={() => router.push("/explore")} resetAfter />
       </View>
     </View>
@@ -234,18 +233,10 @@ export default function Home() {
 
             {!!barbers?.length && (
               <View style={block}>
-                <Section
-                  eyebrow="On the map"
-                  title={`Barbers in ${where}`}
-                  action={{ label: "Open map", onPress: () => router.push({ pathname: "/explore", params: { view: "map" } }) }}
-                >
-                  <Pressable onPress={() => router.push({ pathname: "/explore", params: { view: "map" } })} accessibilityRole="button" accessibilityLabel={`Open the map of barbers in ${where}`}>
-                    <View pointerEvents="none">
-                      <BarberMap pins={barberPins(barbers)} height={wide ? 360 : 240} interactive={false} placeName={where ?? undefined} />
-                    </View>
-                  </Pressable>
+                <Section eyebrow="On the map · 3D" title={`Barbers in ${where}`} action={{ label: "Open map", onPress: () => router.push("/map") }}>
+                  <BarberMap pins={barberPins(barbers)} height={wide ? 400 : 280} interactive={false} orbit onPress={() => router.push("/map")} placeName={where ?? undefined} />
                   <T variant="caption" muted style={{ marginTop: 8 }}>
-                    {barbers.length} {barbers.length === 1 ? "barber" : "barbers"} · {barberPins(barbers).filter((p) => p.free).length} free today
+                    {barbers.length} {barbers.length === 1 ? "barber" : "barbers"} at their exact address · {barberPins(barbers).filter((p) => p.free).length} free today · tap to explore in 3D
                   </T>
                 </Section>
               </View>
@@ -330,21 +321,6 @@ export default function Home() {
           </View>
         </View>
       </ScrollView>
-
-      {!wide && (
-        <Pressable
-          onPress={() => router.push("/assistant")}
-          accessibilityRole="button"
-          accessibilityLabel="Ask JB Concierge"
-          style={({ pressed }) => [
-            { position: "absolute", right: 20, bottom: 18, width: 58, height: 58, borderRadius: 29, alignItems: "center", justifyContent: "center", backgroundColor: colors.ink, borderWidth: 1, borderColor: "rgba(244,242,238,0.18)" },
-            raise,
-            pressed && styles.pressed,
-          ]}
-        >
-          <Ionicons name="sparkles" size={22} color={colors.onInk} />
-        </Pressable>
-      )}
     </View>
   );
 }
