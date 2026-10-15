@@ -44,8 +44,8 @@ function layoutChunk(c) {
 CAP.pillH = 84; CAP.padX = 42; CAP.cy = 1352; CAP.pitch = 94; CAP.blur = 18; CAP.pad = 46; CAP.style = 'glass';
 let CAP_OFF = null, CAP_H = 0;
 function capHeight(font) { if (!CAP_H) { ctx.save(); ctx.font = font; ctx.letterSpacing = '0px'; CAP_H = ctx.measureText('H').actualBoundingBoxAscent; ctx.restore(); } return CAP_H; }
-function glassPill(x, y, w, h) {                                                   // backdrop blur + tint + hairline, drawn in canvas units (ctx is scaled by SS)
-  const r = h / 2, pad = CAP.pad, cv = ctx.canvas, k = cv.width / W;                // k = pixels per canvas unit (the supersampling)
+function glassPill(x, y, w, h, rad) {                                              // backdrop blur + tint + hairline, drawn in canvas units (ctx is scaled by SS); rad = corner radius (default: a full pill)
+  const r = rad ?? h / 2, pad = CAP.pad, cv = ctx.canvas, k = cv.width / W;                // k = pixels per canvas unit (the supersampling)
   ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.38)'; ctx.shadowBlur = 34 * SS; ctx.shadowOffsetY = 8 * SS; rr(x, y, w, h, r); ctx.fillStyle = 'rgba(12,12,16,0.5)'; ctx.fill(); ctx.restore();
   const sx = Math.max(0, Math.round((x - pad) * k)), sy = Math.max(0, Math.round((y - pad) * k)), sw = Math.min(cv.width - sx, Math.round((w + 2 * pad) * k)), sh = Math.min(cv.height - sy, Math.round((h + 2 * pad) * k));
   if (!CAP_OFF) CAP_OFF = document.createElement('canvas');

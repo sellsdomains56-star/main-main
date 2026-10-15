@@ -47,6 +47,8 @@ python3 -I audio.py build/voice48k.wav build/mix.wav    # voice + very quiet who
 python3 -I safe_scan.py build/frames 3 --skip 0-4.7     # nothing in the app-UI margins
 bash encode.sh <slug>                                    # -> build/<slug>.mp4 (<= 30 MB, loudnorm -14 LUFS)
 ```
+**Variant - "face as a small circle, the rest is a map journey"** (user request: "his face in a circle, the rest map animation, every island fully broken down"): no `FACE_SEGS`; set `BUBBLE` (see `references/scene-api.md` section 13) and make ONE `kind: 'sat'` scene for the whole reel whose `top(t, cam)` draws everything with the `map*` helpers. Working example: `examples/four-islands-map/`.
+
 Then look at 3-4 frames of the final mp4, send it, write a short `README.md` (beats table, sources, credits), commit the code (never the third-party assets or build/).
 
 ## The look in six rules (details: `references/style-guide.md`)

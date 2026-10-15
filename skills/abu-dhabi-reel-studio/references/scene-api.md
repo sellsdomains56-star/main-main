@@ -1,6 +1,6 @@
 # Scene API (what you can call inside scenes.js)
 
-Contents: 1 contract, 2 timing helpers, 3 text, 4 numbers, 5 cards/pictures, 6 charts and pills, 7 map scenes, 8 face beat + overlays, 9 chat CTA, 10 sound cues, 11 low-level, 12 recipes.
+Contents: 1 contract, 2 timing helpers, 3 text, 4 numbers, 5 cards/pictures, 6 charts and pills, 7 map scenes, 8 face beat + overlays, 9 chat CTA, 10 sound cues, 11 low-level, 12 recipes, 13 map-first reel with a face bubble.
 Everything draws into the global `ctx` and is a pure function of time `t` (seconds). Coordinates are the 1080x1920 canvas. Files: `lib.js` (helpers), `scenes_lib.js` (blocks), `satmap.js` (map), `captions.js`, `main.js` (compositor).
 
 ## 1. Contract
@@ -75,3 +75,12 @@ background + dust -> scenes (alpha = 1 - faceness) -> face beat (if any) -> OVER
 - **Scarcity**: card + `ovStamp('RARE', t, 1e9)` called inside the scene, then two lines of `bw`.
 - **Payment plan**: a line drawn with `strokePoly`, one gold dot per instalment popping with `E.back`, a larger gold dot with a house icon at the end, `bw` for "THE REST AT HANDOVER" and a gold-box year.
 See the three finished scenes.js files in `examples/` for full working versions.
+
+## 13. Map-first reel with a face bubble
+Use when the speaker should be "a small circle" and the picture is a map journey that "fully breaks down" each place while he talks. `FACE_SEGS = []`, `PUNCHES = []`, one sat scene `{a: 0, b: DUR, last: true}` with `SAT_SCENES.journey = {a: 0, b: DUR, veil: 'top', keys}`; all drawing happens in its `cfg.top(t, cam)` (cam = current camera, so call-outs stay glued to real coordinates).
+- `BUBBLE = {t0, src: {cx, cy, size}, keys: [{t, cx, cy, r}, ...]}` returned from `buildScenes()`: `src` = the square (in 1080x1920 footage pixels) that is cropped into the circle (centre on the face; size 600-700 for a chest-up podcast shot); `keys` = bubble centre/radius over time, eased (top right `cx 852 cy 392 r 90` stays clear of the Reels top UI and the HUD; grow to `540,470,r150` for the end card). Gold ring, soft pulse ring while a word is being spoken (`speakingAt`), vignette. The footage frames are loaded for the whole reel.
+- `camKey(sec, lon, lat, zoom, dy)` builds a camera key whose point sits at screen centre + `dy`; `MAP_Y0/MAP_Y1 = 540/1270` is the free map band between the HUD and the captions; `mpp(zoom, lat)` metres per pixel.
+- `mapTag(t, cam, {lon, lat, a0, a1, title, sub, dx, dy})` pin + leader line + label at a real coordinate (offset the label with dx/dy to avoid overlaps; labels are clamped into the safe zone). `mapOutline(t, cam, key, a0, a1, {keep, dur, color})` animated OSM outline. `mapPulse(t, cam, lon, lat, meters, a0, a1)` radius ring. `mapFlow(t, cam, A, B, a0, a1, {bend})` animated curved arrow between two places. `mapBuild(t, cam, key, a0, a1)` west-to-east hatching for "still taking shape". `islandBadge(t, cam, n, lon, lat, name, a0, a1)` numbered gold dot + glass name pill.
+- `hudTitle(t, kicker, name, sub, a0, a1)` top-left block (max 585 px wide so it stays clear of the bubble) with a text shadow for bright maps. `breakdown(t, {title, items: [{txt, a, gold}], a0, a1, bottom: 1262, rowH: 54, size: 33, alpha})` frosted checklist panel; each row ticks when its word `a` is said, panel height is fixed from all items. Start the panel ~0.5 s before the first row so it is never empty; pass `alpha: 1 - cardOn` to hide it while a real-news card occupies the same lower area (`x150 y890 w780 h340`).
+- Keep one hero per beat: camera move + outline, then 2-3 tags, then the panel. Pin only places whose coordinates you verified (OSM/Wikipedia) and flag them as indicative in the hand-over.
+- Ending: dim the map (`rgba(8,8,10,.62)`), fade the numbered badges out first, enlarge the bubble, type the call-to-action into a chat field.

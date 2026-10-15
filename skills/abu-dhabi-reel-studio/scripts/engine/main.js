@@ -81,6 +81,29 @@ function drawGrain(frame) {
   ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 0.045; ctx.globalCompositeOperation = 'overlay';
   ctx.translate(-ox, -oy); ctx.fillStyle = NOISE_PAT; ctx.fillRect(0, 0, W * SS + 256, H * SS + 256); ctx.restore();
 }
+// him as a small round "live video" bubble that stays on screen. CFG.BUBBLE = { t0, keys: [{t, cx, cy, r}], src: {cx, cy, size} (crop of the 1080x1920 footage frame) }:
+// the bubble glides between keys (eased) and its ring glows while he speaks.
+function bubbleAt(t) {
+  const ks = CFG.BUBBLE.keys; let i = 0; while (i < ks.length - 2 && t > ks[i + 1].t) i++;
+  const A = ks[i], B = ks[Math.min(i + 1, ks.length - 1)], u = B.t > A.t ? E.inOut3(prog(t, A.t, B.t)) : 1;
+  return { cx: lerp(A.cx, B.cx, u), cy: lerp(A.cy, B.cy, u), r: lerp(A.r, B.r, u) };
+}
+function speakingAt(t) { for (const w of WORDS) if (t >= w.t - 0.05 && t <= w.end + 0.1) return 1; return 0; }
+function drawBubble(t) {
+  if (!FOOT) return;
+  const B = CFG.BUBBLE, { cx, cy, r } = bubbleAt(t), S = B.src, sp = Math.max(speakingAt(t), 0.55 * speakingAt(t - 0.12), 0.3 * speakingAt(t - 0.25)), a = ea(t, B.t0 ?? 0, (B.t0 ?? 0) + 0.5, E.out4), s0 = lerp(0.6, 1, a);
+  ctx.save(); ctx.globalAlpha *= a; ctx.translate(cx, cy); ctx.scale(s0, s0);
+  glow(0, 0, r * 1.9, '233,196,124', 0.10 + 0.22 * sp);
+  ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 30 * SS; ctx.shadowOffsetY = 10 * SS; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fillStyle = '#111'; ctx.fill(); ctx.restore();
+  ctx.save(); ctx.beginPath(); ctx.arc(0, 0, r - 3, 0, 7); ctx.clip();
+  const sz = S.size, sx = clamp(S.cx - sz / 2, 0, 1080 - sz), sy = clamp(S.cy - sz / 2, 0, 1920 - sz), kx = FOOT.naturalWidth / 1080, ky = FOOT.naturalHeight / 1920;
+  ctx.drawImage(FOOT, sx * kx, sy * ky, sz * kx, sz * ky, -r, -r, 2 * r, 2 * r);
+  const g = ctx.createRadialGradient(0, 0, r * 0.55, 0, 0, r); g.addColorStop(0, 'rgba(8,8,10,0)'); g.addColorStop(1, 'rgba(8,8,10,0.38)'); ctx.fillStyle = g; ctx.fillRect(-r, -r, 2 * r, 2 * r);   // soft vignette
+  ctx.restore();
+  ring(0, 0, r - 1, { color: C.gold, w: 5 });
+  ring(0, 0, r + 10 + 6 * sp, { color: C.gold, w: 2.5, alpha: 0.22 + 0.5 * sp });                                    // speaking pulse
+  ctx.restore();
+}
 function draw(t) {
   const F = faceF(t);
   ctx.setTransform(SS, 0, 0, SS, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.letterSpacing = '0px';
@@ -89,6 +112,7 @@ function draw(t) {
   ctx.save(); ctx.globalAlpha *= Math.min(1, A * 1.6); for (const sc of CFG.SCENES) runScene(sc, t); ctx.restore();
   drawPerson(t, F);
   for (const ov of CFG.OVERLAYS) ov(t);
+  if (CFG.BUBBLE) drawBubble(t);
   drawCutSweep(t);
   drawCaptions(t, F);
   drawGrain(Math.round(t * FPS));
@@ -98,7 +122,7 @@ function draw(t) {
 async function prepare(t) {
   const load = src => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
   const jobs = [], k = clamp(Math.round(t * FPS), 0, Math.min(TL.frames - 1, CFG.FOOT_MAX ?? 1e9));
-  if (faceF(t) > 0.001 && !(k === FOOT_K && FOOT)) jobs.push(load(`build/footage/f_${pad5(k)}.jpg`).then(im => { FOOT = im; FOOT_K = k; }));
+  if ((faceF(t) > 0.001 || CFG.BUBBLE) && !(k === FOOT_K && FOOT)) jobs.push(load(`build/footage/f_${pad5(k)}.jpg`).then(im => { FOOT = im; FOOT_K = k; }));
   for (const sc of CFG.SCENES) if (sc.kind === 'sat' && t >= sc.a - 0.2 && t <= sc.b + 0.5) jobs.push(satEnsure(SAT_SCENES[sc.id], t));
   await Promise.all(jobs);
 }

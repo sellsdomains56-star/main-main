@@ -238,3 +238,98 @@ function gauge(t, o) {
   if (o.l1) bw(t, o.l1, cy + 260, o.a0 - 0.55, { size: 50, ls: 3, x: o.cx, maxW: 380 });
   if (o.l2) bw(t, o.l2, cy + 325, o.a0 - 0.45, { size: 50, ls: 3, x: o.cx, maxW: 380, color: C.dim });
 }
+
+// ------------------------------------------------------------------------------------------------- map storytelling (one continuous satellite journey)
+// Everything below draws over the satellite scene from its cfg.top(t, cam). The camera path is SAT_SCENES.<id>.keys built with camKey().
+const MAP_Y0 = 540, MAP_Y1 = 1270;                                              // callout labels stay between the HUD and the captions
+const mpp = (cam, lat) => 156543.03 * Math.cos(lat * Math.PI / 180) / Math.pow(2, cam.z);          // metres per screen pixel
+function camKey(sec, lon, lat, z, dy = 0) {                                     // waypoint that shows (lon, lat) dy px ABOVE the screen's map centre (room for the HUD / panel)
+  const y = worldY(lat, z) + dy, n = Math.PI - 2 * Math.PI * y / (256 * Math.pow(2, z));
+  return [sec, lon, Math.atan(Math.sinh(n)) * 180 / Math.PI, z];
+}
+// a callout anchored to a place: pulse ring + dot + leader line + a frosted label. o: {lon, lat, a0, a1, title, sub, dx, dy}
+function mapTag(t, cam, o) {
+  const al = ea(t, o.a0, o.a0 + 0.25) * (o.a1 ? 1 - ea(t, o.a1, o.a1 + 0.4) : 1); if (al <= 0.003) return;
+  const [x, y] = satProj(cam, o.lon, o.lat); if (x < -60 || x > W + 60 || y < 260 || y > 1500) return;
+  const e = ea(t, o.a0, o.a0 + 0.5, E.back), f1 = F.d(800, 36), f2 = F.d(700, 25), w1 = M(o.title, f1, 1), w2 = o.sub ? M(o.sub, f2, 1) : 0, pw = Math.max(w1, w2) + 54, ph = o.sub ? 90 : 62;
+  const lx = clamp(x + (o.dx ?? 0), SAFE.x0 + pw / 2, SAFE.x1 - pw / 2), ly = clamp(y + (o.dy ?? -100), MAP_Y0 + ph / 2, MAP_Y1 - ph / 2), ey = ly + (y > ly ? ph / 2 : -ph / 2), p = ea(t, o.a0 + 0.1, o.a0 + 0.55, E.out3);
+  ctx.save(); ctx.globalAlpha *= al;
+  line(x, y, lerp(x, lx, p), lerp(y, ey, p), { color: 'rgba(255,255,255,0.75)', w: 2.5 });
+  const u = ((t - o.a0) / 1.8) % 1; ring(x, y, 14 + 54 * E.out3(u), { color: '#FFFFFF', w: 3, alpha: (1 - u) * 0.6 });
+  dot(x, y, 17 * e, 'rgba(255,255,255,0.95)'); dot(x, y, 9.5 * e, C.gold);
+  ctx.save(); ctx.translate(lx, ly); ctx.scale(lerp(0.85, 1, e), lerp(0.85, 1, e)); ctx.translate(-lx, -ly);
+  glassPill(lx - pw / 2, ly - ph / 2, pw, ph, 22);
+  T(o.title, lx, ly + (o.sub ? -4 : 12), { font: f1, ls: 1, color: '#FFFFFF' });
+  if (o.sub) T(o.sub, lx, ly + 30, { font: f2, ls: 1.5, color: C.gold });
+  ctx.restore(); ctx.restore();
+}
+// an island outline that traces in at a0, fades back to a faint `keep` outline at a1.  Outlines come from OUTLINES (outlines.json)
+function mapOutline(t, cam, key, a0, a1, o = {}) {
+  const pts = OUTLINES[key]; if (!pts) return;
+  const p = ea(t, a0, a0 + (o.dur ?? 1.5), E.inOut2), keep = o.keep ?? 0, f = a1 ? 1 - (1 - keep) * ea(t, a1, a1 + 0.7) : 1; if (p <= 0.001 || f <= 0.003) return;
+  ctx.save(); ctx.globalAlpha *= f; satOutline(cam, pts, p, o.color || C.gold); ctx.restore();
+}
+// "this area matters": soft glow + three expanding rings + a dashed boundary, radius in metres
+function mapPulse(t, cam, lon, lat, meters, a0, a1) {
+  const al = ea(t, a0, a0 + 0.3) * (a1 ? 1 - ea(t, a1, a1 + 0.5) : 1); if (al <= 0.003) return;
+  const [x, y] = satProj(cam, lon, lat), R = meters / mpp(cam, lat);
+  glow(x, y, R * 1.25, '233,196,124', 0.26 * al);
+  for (let i = 0; i < 3; i++) { const u = ((t - a0) / 2.4 + i / 3) % 1; ring(x, y, R * (0.2 + 0.8 * u), { color: 'rgb(233,196,124)', w: 4, alpha: al * (1 - u) * 0.85 }); }
+  ring(x, y, R, { color: 'rgb(255,236,190)', w: 3, alpha: al * 0.85, dash: [18, 12] });
+}
+// an animated route between two places (dashed gold curve that draws on, with dots travelling along it). A, B = [lon, lat]
+function mapFlow(t, cam, A, B, a0, a1, o = {}) {
+  const al = a1 ? 1 - ea(t, a1, a1 + 0.5) : 1, p = ea(t, a0, a0 + (o.dur ?? 1.3), E.inOut2); if (p <= 0.002 || al <= 0.003) return;
+  const [x0, y0] = satProj(cam, A[0], A[1]), [x1, y1] = satProj(cam, B[0], B[1]), bend = o.bend ?? 0.28, mx = (x0 + x1) / 2 + (y1 - y0) * bend, my = (y0 + y1) / 2 - (x1 - x0) * bend, pts = [];
+  for (let i = 0; i <= 40; i++) { const u = i / 40, v = 1 - u; pts.push([v * v * x0 + 2 * v * u * mx + u * u * x1, v * v * y0 + 2 * v * u * my + u * u * y1]); }
+  ctx.save(); ctx.globalAlpha *= al; ctx.setLineDash([22, 16]); ctx.lineDashOffset = -t * 45; strokePoly(pts, p, { color: 'rgba(8,8,10,0.55)', w: 13 }); strokePoly(pts, p, { color: C.gold, w: 7 }); ctx.setLineDash([]);
+  for (let k = 0; k < 3; k++) { const u = (((t - a0) * 0.45 + k / 3) % 1) * p, i = Math.min(40, Math.floor(u * 40)); glow(pts[i][0], pts[i][1], 40, '255,246,222', 0.5); dot(pts[i][0], pts[i][1], 10, '#FFF6DE', 0.95); }
+  ctx.restore();
+}
+// hatching that builds up across an island, west to east: "still taking shape" (construction in progress)
+function mapBuild(t, cam, key, a0, a1) {
+  const pts = OUTLINES[key]; if (!pts) return; const p = ea(t, a0, a1, E.inOut2), al = ea(t, a0, a0 + 0.4); if (p <= 0.002 || al <= 0.003) return;
+  const P = pts.map(([lo, la]) => satProj(cam, lo, la)), xs = P.map(q => q[0]), ys = P.map(q => q[1]), x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  ctx.save(); ctx.globalAlpha *= al; ctx.beginPath(); P.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); ctx.clip();
+  ctx.beginPath(); ctx.rect(x0, y0, (x1 - x0) * p, y1 - y0); ctx.clip(); ctx.strokeStyle = 'rgba(233,196,124,0.55)'; ctx.lineWidth = 5; ctx.beginPath();
+  for (let d = -(y1 - y0); d < x1 - x0 + 40; d += 26) { ctx.moveTo(x0 + d, y1); ctx.lineTo(x0 + d + (y1 - y0), y0); } ctx.stroke(); ctx.restore();
+  const bx = x0 + (x1 - x0) * p; line(bx, y0 - 10, bx, y1 + 10, { color: C.gold, w: 4, alpha: al * (1 - E.in3(p)) });
+}
+// top-left title block (the face bubble sits top-right): small "NUMBER n", the name, a gold subtitle
+function hudTitle(t, kicker, name, sub, a0, a1) {
+  const al = ea(t, a0, a0 + 0.35) * (a1 ? 1 - ea(t, a1, a1 + 0.35) : 1); if (al <= 0.003) return;
+  const e = ea(t, a0, a0 + 0.7, E.out4), dy = (1 - e) * 34, X = SAFE.x0, f = F.d(800, 62), f3 = F.d(700, 34);
+  ctx.save(); ctx.globalAlpha *= al; ctx.shadowColor = 'rgba(0,0,0,0.75)'; ctx.shadowBlur = 16 * SS; ctx.shadowOffsetY = 2 * SS;
+  T(kicker, X, 348 + dy, { font: F.d(700, 32), ls: 9, color: C.dim, align: 'left' });
+  T(name, X, 412 + dy, { font: f, ls: 1, color: C.ink, align: 'left', sx: Math.min(1, 585 / M(name, f, 1)), alpha: 1 });
+  rr(X, 430 + dy, 120 * e, 6, 3); ctx.fillStyle = C.gold; ctx.fill();
+  if (sub) T(sub, X, 480 + dy, { font: f3, ls: 3, color: C.gold, align: 'left', sx: Math.min(1, 585 / M(sub, f3, 3)) });
+  ctx.restore();
+}
+// "fully broken down": a frosted checklist panel that fills row by row as he names each point. o: {title, items:[{txt, a, gold}], a0, a1, bottom, rowH, size, alpha}
+function breakdown(t, o) {
+  const al = ea(t, o.a0, o.a0 + 0.4, E.out3) * (o.a1 ? 1 - ea(t, o.a1, o.a1 + 0.4) : 1) * (o.alpha ?? 1); if (al <= 0.003) return;
+  const X = SAFE.x0, Wd = SAFE.w, rowH = o.rowH ?? 54, hh = 62, h = hh + o.items.length * rowH + 20, y0 = (o.bottom ?? 1262) - h, sz = o.size ?? 33;
+  ctx.save(); ctx.globalAlpha *= al; ctx.translate(0, (1 - ea(t, o.a0, o.a0 + 0.5, E.out4)) * 36);
+  glassPill(X, y0, Wd, h, 28);
+  T(o.title, X + 34, y0 + 42, { font: F.d(800, 28), ls: 7, color: C.gold, align: 'left' });
+  line(X + 30, y0 + hh - 6, X + Wd - 30, y0 + hh - 6, { color: 'rgba(243,239,230,0.22)', w: 2 });
+  let latest = -1; o.items.forEach((it, i) => { if (t >= it.a && (latest < 0 || it.a >= o.items[latest].a)) latest = i; });
+  o.items.forEach((it, i) => {
+    const e = ea(t, it.a, it.a + 0.45, E.out4); if (e <= 0.003) return;
+    const cy = y0 + hh + i * rowH + rowH / 2, hi = i === latest ? 1 - ea(t, it.a + 0.3, it.a + 2.2) : 0;
+    if (hi > 0.01) { rr(X + 14, cy - rowH / 2 + 4, Wd - 28, rowH - 8, 16); ctx.fillStyle = `rgba(233,196,124,${0.16 * hi})`; ctx.fill(); }
+    ctx.save(); ctx.globalAlpha *= e; ctx.translate((1 - e) * -34, 0);
+    dot(X + 52, cy, 17, it.gold ? C.gold : C.goldSoft); icon('check', X + 52, cy + 1, 10, { p: ea(t, it.a + 0.1, it.a + 0.5), color: it.gold ? '#0A0A0B' : C.gold, w: 4 });
+    T(it.txt, X + 88, cy + sz * 0.36, { font: F.d(800, sz), ls: 1, color: it.gold ? C.gold : C.ink, align: 'left', sx: Math.min(1, (Wd - 130) / M(it.txt, F.d(800, sz), 1)) });
+    ctx.restore();
+  });
+  ctx.restore();
+}
+// a numbered island badge (overview): gold disc with the number + a small name label
+function islandBadge(t, cam, n, lon, lat, name, a0, a1) {
+  const al = ea(t, a0, a0 + 0.3) * (a1 ? 1 - ea(t, a1, a1 + 0.4) : 1); if (al <= 0.003) return;
+  const [x, y] = satProj(cam, lon, lat), e = ea(t, a0, a0 + 0.55, E.back), f = F.d(800, 30), w = M(name, f, 2) + 40;
+  ctx.save(); ctx.globalAlpha *= al; glow(x, y, 70, '233,196,124', 0.35); dot(x, y, 30 * e, C.gold); T(String(n), x, y + 14 * e, { font: F.d(800, 40), color: '#0A0A0B', sx: e, sy: e });
+  const lx = clamp(x, SAFE.x0 + w / 2, SAFE.x1 - w / 2), ly = y + 62; glassPill(lx - w / 2, ly - 22, w, 44, 22); T(name, lx, ly + 10, { font: f, ls: 2, color: '#FFFFFF' }); ctx.restore();
+}
