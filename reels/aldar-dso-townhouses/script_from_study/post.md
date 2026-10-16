@@ -1,7 +1,7 @@
 # Instagram post for the Aldar reel (comment-to-get-the-study)
 
 **Caption**
-New community. New community. New community. Aldar keeps launching them in Dubai and people buy a lot, in days. So what happens to the buyers after?
+A new community is about to be launched by Aldar, one of Dubai's tier-one developers. And buyers are buying a lot of these. So what will it cost, and what happens to the buyers after?
 
 3 launches. Almost $5bn of sales. The price went up every time.
 My estimate for the new one: $400-450 per sq ft. My number, not Aldar's.

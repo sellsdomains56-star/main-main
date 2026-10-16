@@ -1,11 +1,11 @@
 # Aldar reel, walkthrough version: follows the order of the study
 
-Files: `speaker_walkthrough_usd.txt` (dollars), `speaker_walkthrough_aed.txt` (dirhams), `teleprompter_walkthrough_usd.txt` (one paragraph). 393 words, about 2 min 35 s at a calm pace. Older, shorter scripts (`speaker_usd.txt`, ~80 s, and the 40 s cut) stay as alternatives.
+Files: `speaker_walkthrough_usd.txt` (dollars), `speaker_walkthrough_aed.txt` (dirhams), `teleprompter_walkthrough_usd.txt` (one paragraph). about 395 words, about 2 min 35 s at a calm pace. Older, shorter scripts (`speaker_usd.txt`, ~80 s, and the 40 s cut) stay as alternatives.
 Option: split in two reels at the line "Not cheaper." (Part 1 = hook to price comparison, 233 words, ~95 s; Part 2 = momentum, estimate, risks, CTA, 160 words, ~65 s; end Part 1 with "Part two: what happens after you buy.").
 
 | # | Section (your order) | Study page shown as the background | Said | Fact check |
 |---|---|---|---|---|
-| 1 | Hook | none yet; three name slams HAVEN / ATHLON / THE WILDS | "New community x3 ... what happens to the buyers after?" | 3 launches (Nov 2023, May 2024, Mar 2025) |
+| 1 | Hook | none yet; gold chips NEW COMMUNITY / ALDAR / TIER-ONE DEVELOPER / BUYERS BUY A LOT / COST ? / AFTER ? | "A new community is about to be launched by Aldar, one of Dubai's tier-one developers. And buyers are buying a lot of these. So what will it cost, and what happens to the buyers after?" | Aldar + Emaar + Damac launches in the study |
 | 2 | Summary | p.2 executive summary: the four stat tiles, estimate tile highlighted | 18,000 sales; $400-450 per sq ft; "the catch comes after you buy" | 18,542 records; AED 1,400-1,650 = $381-449; estimate, not Aldar's |
 | 3 | Aldar | p.5 track record table + cumulative chart | 3 communities, almost $5bn | AED 17.9bn = $4.87bn, 3,552 homes |
 | 4 | The product + location | p.3 "known vs not" table, then p.4 map (Blue Line, 5 km ring) | very large villa + townhouse community, unnamed, near Silicon Oasis, above the Blue Line extension; Haven 5 km | The National 14 Oct 2026; Haven 5.2 km from Silicon Oasis centre |
