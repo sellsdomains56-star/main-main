@@ -20,16 +20,16 @@ Files: `speaker_usd.txt` (full, ~180 words, ~72 s), `speaker_short_usd.txt` (~85
 
 Do not say: a project name ("Greenwoods" is unconfirmed), an Aldar price, a return, a handover date for the new project, "sold out" urgency. Label the AI avatar if HeyGen is used. Check advertising rules (permit number, disclaimers) before posting.
 
-## Graphics plan (same map style as the Dubai reel; stills available from the study)
-| Beat | Words | Visual |
+## Graphics plan: the study is the background
+The satellite map is NOT the backdrop here. The pages of `../study/Aldar_Dubai_Townhouse_Study.pdf` (rendered at 200 dpi, dimmed with the same gradient scrim) are the backdrop, drifting and zooming slowly behind the small face circle; each beat pulls the relevant page or chart forward as a card with a marker highlight (same `card` + `hl` method as the Media Office page in the Dubai reel). Map only appears as the study's own map page.
+| Beat | Words | Study background / card |
 |---|---|---|
-| hook | "Aldar hasn't told anyone the price ... eighteen thousand real Dubai sales" | HUD "ALDAR'S NEXT DUBAI PROJECT" + chips NAME ? / PRICE ?, counter 18,000 SALES ANALYSED (18,542 DLD records, study p.6) |
-| 1 | three communities | satellite fly-over: Haven, Athlon, The Wilds pins (study map, p.4) |
-| 2 | five billion dollars, price up each time | counter $4.9bn; bar steps $334 -> $370 -> $511 per sq ft (+11%, +38%) |
-| 3 | my estimate | big range bar $381-$449 per sq ft with chip "ANALYST ESTIMATE, NOT ALDAR'S PRICE"; ticket $0.87-1.03m |
-| 4 | the catch | two bars: resale growth Aldar 3-4% vs Emaar/Damac 11-13% (study p.8 chart); "FIRST DUBAI HANDOVER: 2027" |
-| 5 | upside is location | camera to Silicon Oasis, Blue Line route drawn, Haven 5 km ring (study p.4 map) |
-| 6 | market -38% | counter -38% with chip "DUBAI TRANSACTIONS, Q3 2026 vs Q3 2025" |
-| CTA | comment the word Aldar and I'll send it | comment box: "Aldar" typed and posted, reply bubble "Sent. Check your DMs", small PDF cover icon flies to a DM |
+| hook (0-4 s) | "Every Aldar launch ... what happens to the buyers after?" | no study yet: dark map-free gradient, face circle, big question mark chips "SELL-OUT IN DAYS" / "AFTER?" |
+| 1 | "fourth community ... hasn't named it or priced it ... last three launches are public record" | cover page slides in as the backdrop; chips NAME ? / PRICE ?; then p.5 table (3 launches) with marker on "AED 17.9bn / 3,552 homes" |
+| 2 | "price up every time, 11% then 38%" | chart: Aldar new-sale price per sq ft (p.8 left chart) $334 -> $370 -> $511, +11% / +38% labels |
+| 3 | "my estimate ... 400-450 dollars" | scenario chart (p.12) with the base-case bar highlighted; chip "ANALYST ESTIMATE, NOT ALDAR'S PRICE"; ticket row ($0.87-1.03m, p.13) |
+| 4 | "after the launch? resale 3-4% vs 11-13%" | resale growth bars (p.8 bottom chart), Haven/Athlon vs Emaar/Damac bars highlighted; chip "FIRST DUBAI HANDOVER: 2027" (p.11 row) |
+| 5 | "location, Blue Line, 5 km from Haven; transactions -38%" | map page (p.4) as a card, Blue Line route + 5 km ring; then exec-summary tile "-38%" (p.2) |
+| CTA | "it's all in a study, and that's what you're looking at. Comment the word Aldar" | backdrop pulls back to show the whole study as a stack of pages; comment box "Aldar" typed and posted, reply "Sent. Check your DMs" |
 
-Dollars on screen: say "dollars" and show US$ with the AED figure as a small second line (e.g. "$381-$449 / sq ft (AED 1,400-1,650)") so the source numbers stay checkable.
+Dollars on screen: say "dollars" and show US$ with the AED figure as a small second line (e.g. "$381-$449 / sq ft (AED 1,400-1,650)") so the source numbers stay checkable. Study page numbers are those of the 16-page PDF (cover = p.1).

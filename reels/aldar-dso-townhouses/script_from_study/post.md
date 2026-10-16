@@ -1,12 +1,13 @@
 # Instagram post for the Aldar reel (comment-to-get-the-study)
 
 **Caption**
-Aldar hasn't told anyone the price of its new Dubai townhouses. I worked it out from 18,000 real Dubai sales.
+Every Aldar launch in Dubai sells out in days. So what happens to the buyers after?
 
 3 launches. Almost $5bn of sales. The price went up every time.
 My estimate for the new one: $400-450 per sq ft. My number, not Aldar's.
 The catch: its resale prices grew 3-4% last year. Emaar and Damac communities grew 11-13%.
 
+Aldar hasn't priced its next community yet; this is my estimate from 18,000 Dubai sales.
 Comment ALDAR and I'll send you the full study (16 pages: prices, sales momentum, volume, tier-one comparison, risks).
 
 Based on Dubai Land Department records and Aldar's own announcements. Analyst estimate, not an Aldar price. Not investment advice.
