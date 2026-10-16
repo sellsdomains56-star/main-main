@@ -20,15 +20,12 @@
   /* ---------- Shared drawings ---------- */
   document.body.insertAdjacentHTML('afterbegin', `
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="hava-wordmark" viewBox="0 0 264 84">
-    <g fill="none" stroke="currentColor" stroke-width="4.2">
-      <path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/>
-      <path d="M4 79H260" stroke-width="2.4"/>
-    </g>
+  <symbol id="hava-wordmark" viewBox="0 0 1619 567.5">
+    <path fill="currentColor" d="M1 0L43 0L43 412L1 412ZM300 0L342 0L342 412L300 412ZM1 177L342 177L342 215L1 215ZM414.4 412L600.7 0L645.7 0L832 412L787 412L623.2 49.76L459.4 412ZM814.7 0L859.7 0L1017.5 360.59L1175.3 0L1220.3 0L1040 412L995 412ZM1201.1 412L1387.4 0L1432.4 0L1618.7 412L1573.7 412L1409.9 49.76L1246.1 412ZM0 561L1619 561L1619 567.5L0 567.5Z"/>
   </symbol>
-  <symbol id="hava-mark" viewBox="0 0 40 40">
-    <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.3"/>
-    <path d="M13.5 26.5L20 12.5L26.5 26.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <symbol id="hava-mark" viewBox="0 0 687 687">
+    <circle cx="343.5" cy="343.5" r="334" fill="none" stroke="currentColor" stroke-width="19"/>
+    <path fill="currentColor" d="M194.76 487L327.47 193.5L359.53 193.5L492.24 487L460.19 487L343.5 228.95L226.81 487Z"/>
   </symbol>
 </svg>`);
 
@@ -38,7 +35,7 @@
   document.body.insertAdjacentHTML('afterbegin', `
 <header class="site-header">
   <div class="bar">
-    <a class="brand" href="index.html" aria-label="HAVA"><svg viewBox="0 0 264 84" aria-hidden="true"><use href="#hava-wordmark"/></svg></a>
+    <a class="brand" href="index.html" aria-label="HAVA"><svg viewBox="0 0 1619 567.5" aria-hidden="true"><use href="#hava-wordmark"/></svg></a>
     <nav class="nav" aria-label="Main">${navLinks}</nav>
     <div class="lang">
       <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" data-i18n-attr="aria-label:lang.label" aria-label="Language">
@@ -64,7 +61,7 @@
 <footer class="site-footer" data-ridges="band">${footerCta}
   <div class="wrap footer-grid">
     <div class="footer-brand">
-      <svg viewBox="0 0 264 84" role="img" aria-label="HAVA"><use href="#hava-wordmark"/></svg>
+      <svg viewBox="0 0 1619 567.5" role="img" aria-label="HAVA"><use href="#hava-wordmark"/></svg>
       <p data-i18n="footer.tagline">The essence of Sweden.</p>
     </div>
     <div>

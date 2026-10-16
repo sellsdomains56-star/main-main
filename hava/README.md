@@ -63,11 +63,21 @@ These are facts about Sweden. The page doesn't name a spring or make claims abou
 `brochure/HAVA-Catalogue-2026.pdf` is an 11-page A4 landscape catalogue for clients who want to order: the cover, Who is HAVA, Why Sweden (with sources), From sky to bottle, the collection, HAVA Still, HAVA Sparkling, the nine flavours, every size, how to order with an order form, and a back page. The Contact and FAQ pages link to it.
 
 - **Contact details:** the back page has blank lines for email, phone and web. Fill in `CONTACT` at the top of `brochure/build.py` and they print instead.
-- **To rebuild it:** in `brochure/`, run `python3 build.py && node print.js` (needs Playwright). The layout is in `catalogue.css`; the photos are compressed copies in `brochure/img/`.
+- **To rebuild it:** in `brochure/`, run `python3 build.py && node print.js` (needs Playwright). The layout is in `catalogue.css`; the photos are compressed copies in `brochure/img/`. The logo comes from `brand/logo/svg/`.
+
+## The brand kit
+
+`brand/` holds the HAVA logo, redrawn as clean vectors from the brand book (`water_final.pdf`), and the brand guidelines.
+
+- **Logo files:** `brand/logo/svg`, `png` (transparent) and `pdf` (vector, for print). Six designs (wordmark, wordmark with tagline, plain wordmark without the line, vertical, icon, monogram), each in deepwater, white, gold and ink. The website header, footer, favicon and the catalogue use the same drawing.
+- **Social and icons:** `brand/social/` (profile pictures, app icon, favicons, covers for LinkedIn, X and Facebook, a story). **Mountains and peak pattern:** `brand/pattern/`. **Colour swatches:** `brand/colours/`.
+- **Guidelines:** `brand/HAVA-Brand-Guidelines.pdf`, 18 pages: the brand, logo (versions, clear space, colours, misuse), palette, type, mountains, photography, film, the range, applications and voice.
+- **To rebuild:** in `brand/`, run `python3 logos.py /path/to/Montserrat[wght].ttf` (the font, free from Google Fonts, only outlines the tagline; needs `fonttools`), then `node render.js`, then `python3 guidelines.py && node print.js`. The guideline photos, film stills and website screenshots are in `brand/img/`.
+- **Colours from the brand book:** Deep Water #0D2B45, Glacial Ice #C9DDE4, Fog #F4F2ED, Steel #B8BCC0, Ink #1A1A1A, plus the packaging Gold #C9A66B.
 
 ## Publishing an update
 
-Every page loads its styles, scripts and films with a version tag (`?v=18`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
+Every page loads its styles, scripts and films with a version tag (`?v=19`). After changing any of those files, raise the number on every page (and in `js/film.js` and `js/flavours.js` for the films) so phones and browsers fetch the new files instead of an old copy.
 
 ## Menu and languages
 

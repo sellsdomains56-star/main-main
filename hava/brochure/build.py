@@ -5,6 +5,8 @@
 Contact details for the back page and the order form are set in CONTACT below. Leave a value empty and
 that line prints as a blank line to fill in by hand.
 """
+import os
+import re
 from html import escape
 
 CONTACT = {
@@ -33,11 +35,16 @@ RANGE = [  # product, size, material, photo
     ('Sparkling <em>flavours</em>', '330 ml', 'Can · 9 flavours', 'img/p/flavours-blueberry.jpg'),
 ]
 
-WORDMARK = ('<svg class="wordmark" viewBox="0 0 264 84" aria-label="HAVA"><g fill="none" stroke="currentColor" stroke-width="4.2">'
-            '<path d="M4 8V64M44 8V64M4 36H44M70 64L95 8L120 64M140 8L165 64L190 8M210 64L235 8L260 64"/>'
-            '<path d="M4 79H260" stroke-width="2.4"/></g></svg>')
-MARK = ('<svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.3"/>'
-        '<path d="M13.5 26.5L20 12.5L26.5 26.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>')
+# The logo, as drawn in brand/logos.py from the brand book.
+def _logo_path(name):
+    svg = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'brand', 'logo', 'svg', name)).read()
+    return re.search(r'<path d="([^"]+)"', svg).group(1)
+
+WORDMARK = (f'<svg class="wordmark" viewBox="0 0 1619 567.5" aria-label="HAVA">'
+            f'<path fill="currentColor" d="{_logo_path("hava-wordmark-white.svg")}"/></svg>')
+MARK = (f'<svg class="mark" viewBox="0 0 687 687" aria-hidden="true">'
+        f'<circle cx="343.5" cy="343.5" r="334" fill="none" stroke="currentColor" stroke-width="19"/>'
+        f'<path fill="currentColor" d="{_logo_path("hava-icon-white.svg")}"/></svg>')
 
 pages = []
 def page(cls, body, folio=True, ridge=None):

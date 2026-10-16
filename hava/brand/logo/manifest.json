@@ -1,0 +1,170 @@
+[
+ {
+  "file": "hava-wordmark-deepwater",
+  "design": "wordmark",
+  "colour": "deepwater",
+  "w": 1619.0,
+  "h": 567.5
+ },
+ {
+  "file": "hava-wordmark-white",
+  "design": "wordmark",
+  "colour": "white",
+  "w": 1619.0,
+  "h": 567.5
+ },
+ {
+  "file": "hava-wordmark-ink",
+  "design": "wordmark",
+  "colour": "ink",
+  "w": 1619.0,
+  "h": 567.5
+ },
+ {
+  "file": "hava-wordmark-gold",
+  "design": "wordmark",
+  "colour": "gold",
+  "w": 1619.0,
+  "h": 567.5
+ },
+ {
+  "file": "hava-wordmark-plain-deepwater",
+  "design": "wordmark-plain",
+  "colour": "deepwater",
+  "w": 1619.0,
+  "h": 412.0
+ },
+ {
+  "file": "hava-wordmark-plain-white",
+  "design": "wordmark-plain",
+  "colour": "white",
+  "w": 1619.0,
+  "h": 412.0
+ },
+ {
+  "file": "hava-wordmark-plain-ink",
+  "design": "wordmark-plain",
+  "colour": "ink",
+  "w": 1619.0,
+  "h": 412.0
+ },
+ {
+  "file": "hava-wordmark-plain-gold",
+  "design": "wordmark-plain",
+  "colour": "gold",
+  "w": 1619.0,
+  "h": 412.0
+ },
+ {
+  "file": "hava-wordmark-tagline-deepwater",
+  "design": "wordmark-tagline",
+  "colour": "deepwater",
+  "w": 1650.0,
+  "h": 788.0
+ },
+ {
+  "file": "hava-wordmark-tagline-white",
+  "design": "wordmark-tagline",
+  "colour": "white",
+  "w": 1650.0,
+  "h": 788.0
+ },
+ {
+  "file": "hava-wordmark-tagline-ink",
+  "design": "wordmark-tagline",
+  "colour": "ink",
+  "w": 1650.0,
+  "h": 788.0
+ },
+ {
+  "file": "hava-wordmark-tagline-gold",
+  "design": "wordmark-tagline",
+  "colour": "gold",
+  "w": 1650.0,
+  "h": 788.0
+ },
+ {
+  "file": "hava-wordmark-vertical-deepwater",
+  "design": "wordmark-vertical",
+  "colour": "deepwater",
+  "w": 597.0,
+  "h": 2386.3
+ },
+ {
+  "file": "hava-wordmark-vertical-white",
+  "design": "wordmark-vertical",
+  "colour": "white",
+  "w": 597.0,
+  "h": 2386.3
+ },
+ {
+  "file": "hava-wordmark-vertical-ink",
+  "design": "wordmark-vertical",
+  "colour": "ink",
+  "w": 597.0,
+  "h": 2386.3
+ },
+ {
+  "file": "hava-wordmark-vertical-gold",
+  "design": "wordmark-vertical",
+  "colour": "gold",
+  "w": 597.0,
+  "h": 2386.3
+ },
+ {
+  "file": "hava-icon-deepwater",
+  "design": "icon",
+  "colour": "deepwater",
+  "w": 687.0,
+  "h": 687.0
+ },
+ {
+  "file": "hava-icon-white",
+  "design": "icon",
+  "colour": "white",
+  "w": 687.0,
+  "h": 687.0
+ },
+ {
+  "file": "hava-icon-ink",
+  "design": "icon",
+  "colour": "ink",
+  "w": 687.0,
+  "h": 687.0
+ },
+ {
+  "file": "hava-icon-gold",
+  "design": "icon",
+  "colour": "gold",
+  "w": 687.0,
+  "h": 687.0
+ },
+ {
+  "file": "hava-monogram-deepwater",
+  "design": "monogram",
+  "colour": "deepwater",
+  "w": 687.0,
+  "h": 687.0
+ },
+ {
+  "file": "hava-monogram-white",
+  "design": "monogram",
+  "colour": "white",
+  "w": 687.0,
+  "h": 687.0
+ },
+ {
+  "file": "hava-monogram-ink",
+  "design": "monogram",
+  "colour": "ink",
+  "w": 687.0,
+  "h": 687.0
+ },
+ {
+  "file": "hava-monogram-gold",
+  "design": "monogram",
+  "colour": "gold",
+  "w": 687.0,
+  "h": 687.0
+ }
+]
