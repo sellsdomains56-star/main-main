@@ -25,3 +25,6 @@ Funnel = "message me Aldar" (lead capture), then send the real numbers when Alda
 
 ## Production note (HeyGen)
 Paste `speaker_master.txt` into HeyGen with the twin "abdullah -- 3" and its voice. Export 9:16, 1080p, no captions, no music, no HeyGen branding; send the mp4 and it is edited in the map style (Blue Line route, DSO map, small face circle). Optional A/B hooks (generate each as a separate 5-second clip): see `hooks.md` (5 and 3).
+
+## Update 16 Oct 2026: analytical study replaces the hype scripts
+The user did not like the first Aldar content and asked for a full analytical study (tier-one comparison, expected price per sq ft, sales momentum, volume). See `study/README.md` and `study/Aldar_Dubai_Townhouse_Study.pdf`. Any new reel on this topic should quote the study's verified numbers (Aldar's three launches, price ladder 1,228 -> 1,360 -> 1,875 per sq ft, resale growth gap, delivery gap) and label the AED 1,400-1,650 per sq ft as an analyst estimate, never as Aldar's price.

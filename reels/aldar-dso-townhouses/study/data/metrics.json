@@ -1,0 +1,8368 @@
+{
+ "n_raw_rows": 23600,
+ "n_clean": 23493,
+ "n_peer_set": 18542,
+ "date_min": "2021-10-03",
+ "date_max": "2026-10-14",
+ "loc": {
+  "Arabian Ranches 3|16": {
+   "lat": 25.074213,
+   "lon": 55.335999,
+   "km_dso": 8.33867126449796,
+   "km_blue": 7.240666238241746
+  },
+  "Athlon by Aldar|3": {
+   "lat": 25.059111,
+   "lon": 55.313267,
+   "km_dso": 11.153592366062872,
+   "km_blue": 10.077738418984412
+  },
+  "DAMAC Hills 2|16": {
+   "lat": 24.983532,
+   "lon": 55.380762,
+   "km_dso": 16.035851013083835,
+   "km_blue": 13.08841953436063
+  },
+  "DAMAC Lagoons|16": {
+   "lat": 25.007515,
+   "lon": 55.234943,
+   "km_dso": 20.873609126359437,
+   "km_blue": 19.83026350687902
+  },
+  "Dubai Silicon Oasis (DSO)|3": {
+   "lat": 25.127206,
+   "lon": 55.394624,
+   "km_dso": 0.002506555150174655,
+   "km_blue": 0.1484726629104159
+  },
+  "Dubai South|16": {
+   "lat": 24.852949,
+   "lon": 55.161437,
+   "km_dso": 38.49910314205868,
+   "km_blue": 37.15455065160001
+  },
+  "Haven by Aldar|3": {
+   "lat": 25.083143,
+   "lon": 55.376725,
+   "km_dso": 5.219079796344033,
+   "km_blue": 3.6314460424135993
+  },
+  "The Valley|16": {
+   "lat": 25.011215,
+   "lon": 55.452369,
+   "km_dso": 14.148710074018634,
+   "km_blue": 10.426264455951857
+  },
+  "The Wilds|3": {
+   "lat": 25.080169,
+   "lon": 55.304505,
+   "km_dso": 10.471225511705079,
+   "km_blue": 9.538635786444598
+  },
+  "Tilal Al Ghaf|16": {
+   "lat": 25.026393,
+   "lon": 55.23409,
+   "km_dso": 19.671606134606254,
+   "km_blue": 18.684419040921664
+  }
+ },
+ "band": [
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "n": 1,
+   "psf": 1130.9455398322464,
+   "p25": 1130.9455398322464,
+   "p75": 1130.9455398322464,
+   "price": 2780888.0,
+   "bua": 2458.905316
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "n": 215,
+   "psf": 1430.1907549672096,
+   "p25": 1325.514751743776,
+   "p75": 1554.4108953942828,
+   "price": 2850000.0,
+   "bua": 1997.456923
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "n": 535,
+   "psf": 1359.926668685537,
+   "p25": 1301.706701644203,
+   "p75": 1407.4608390627677,
+   "price": 3884094.0,
+   "bua": 3003.3433779999996
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "n": 98,
+   "psf": 1397.4390013829875,
+   "p25": 1351.9239817815483,
+   "p75": 1501.0286610528913,
+   "price": 3852500.0,
+   "bua": 2958.780832
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "n": 9,
+   "psf": 636.9176871118182,
+   "p25": 609.1731666505078,
+   "p75": 675.518759057989,
+   "price": 1320000.0,
+   "bua": 2072.4813059999997
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "n": 6,
+   "psf": 680.3695534825683,
+   "p25": 646.5679550983608,
+   "p75": 758.0751161208809,
+   "price": 1432500.0,
+   "bua": 2103.911894
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "n": 99,
+   "psf": 1339.22497182778,
+   "p25": 1313.8917703990787,
+   "p75": 1365.8483854807353,
+   "price": 2988000.0,
+   "bua": 2231.141192
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "n": 1689,
+   "psf": 1103.2021533093935,
+   "p25": 1014.130036947447,
+   "p75": 1205.3236131648716,
+   "price": 2600000.0,
+   "bua": 2272.905124
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "n": 79,
+   "psf": 1131.4597309243934,
+   "p25": 1084.8611450116123,
+   "p75": 1191.628984116957,
+   "price": 2300000.0,
+   "bua": 1946.543676
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "n": 299,
+   "psf": 1228.471382472967,
+   "p25": 1216.5287812208499,
+   "p75": 1292.2464643671947,
+   "price": 2889254.0,
+   "bua": 2297.231538
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "n": 223,
+   "psf": 1335.003751305828,
+   "p25": 1287.1491150472882,
+   "p75": 1398.4856594550392,
+   "price": 3650000.0,
+   "bua": 2958.673193
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "n": 359,
+   "psf": 1388.9172245149816,
+   "p25": 1280.4203116379367,
+   "p75": 1475.9307177511728,
+   "price": 2850000.0,
+   "bua": 2084.859791
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "n": 616,
+   "psf": 1874.9958225501293,
+   "p25": 1810.2242466714097,
+   "p75": 1935.1735220863636,
+   "price": 5933750.0,
+   "bua": 3003.3433779999996
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Resale",
+   "n": 6,
+   "psf": 1815.6400907373497,
+   "p25": 1697.4990808211207,
+   "p75": 1936.5462584461898,
+   "price": 6122503.5,
+   "bua": 3371.8454945
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "n": 1,
+   "psf": 1801.4797566804673,
+   "p25": 1801.4797566804673,
+   "p75": 1801.4797566804673,
+   "price": 4400000.0,
+   "bua": 2442.436549
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "n": 231,
+   "psf": 1817.3045538009108,
+   "p25": 1694.579978696553,
+   "p75": 1931.9572964171398,
+   "price": 4080000.0,
+   "bua": 2170.3251569999998
+  }
+ ],
+ "hy": [
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "h": "2022-H2",
+   "n": 66,
+   "psf": 1045.3112734473716,
+   "price": 2003388.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "h": "2023-H1",
+   "n": 514,
+   "psf": 1142.5965482686734,
+   "price": 2241888.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "h": "2023-H2",
+   "n": 13,
+   "psf": 1115.4815805744495,
+   "price": 2206888.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2021-H2",
+   "n": 12,
+   "psf": 796.4187975039224,
+   "price": 1562535.5
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2022-H1",
+   "n": 31,
+   "psf": 845.3259357618127,
+   "price": 1750000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2022-H2",
+   "n": 32,
+   "psf": 946.0185082576695,
+   "price": 1996464.5
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2023-H1",
+   "n": 67,
+   "psf": 1124.3910052112917,
+   "price": 2200000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2023-H2",
+   "n": 46,
+   "psf": 1185.834522385062,
+   "price": 2377500.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2024-H1",
+   "n": 38,
+   "psf": 1213.2075238383286,
+   "price": 2390000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2024-H2",
+   "n": 69,
+   "psf": 1205.984605936564,
+   "price": 2400000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2025-H1",
+   "n": 62,
+   "psf": 1362.728213730051,
+   "price": 2717500.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2025-H2",
+   "n": 54,
+   "psf": 1474.0939872137253,
+   "price": 2880000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2026-H1",
+   "n": 42,
+   "psf": 1508.6270260152448,
+   "price": 3000000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "h": "2026-H2",
+   "n": 27,
+   "psf": 1625.3532863388316,
+   "price": 3350000.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "h": "2024-H2",
+   "n": 823,
+   "psf": 1329.572640210373,
+   "price": 3811943.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "h": "2025-H1",
+   "n": 318,
+   "psf": 1363.3226748668067,
+   "price": 3905922.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "h": "2025-H2",
+   "n": 62,
+   "psf": 1363.235975669736,
+   "price": 3241137.5
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "h": "2026-H1",
+   "n": 17,
+   "psf": 1406.293182319353,
+   "price": 4165172.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "h": "2026-H2",
+   "n": 11,
+   "psf": 1359.926668685537,
+   "price": 3174899.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "h": "2025-H1",
+   "n": 18,
+   "psf": 1381.5641606972163,
+   "price": 3225000.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "h": "2025-H2",
+   "n": 31,
+   "psf": 1382.55236549963,
+   "price": 3300000.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "h": "2026-H1",
+   "n": 32,
+   "psf": 1435.3768182019767,
+   "price": 4300000.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "h": "2026-H2",
+   "n": 13,
+   "psf": 1375.5687869195535,
+   "price": 4050000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "h": "2021-H2",
+   "n": 16,
+   "psf": 748.002196134448,
+   "price": 1666000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "h": "2022-H1",
+   "n": 1902,
+   "psf": 772.6076807077987,
+   "price": 1709000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "h": "2022-H2",
+   "n": 1806,
+   "psf": 810.1069979710155,
+   "price": 1877000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "h": "2023-H1",
+   "n": 1398,
+   "psf": 928.327354151365,
+   "price": 2221000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "h": "2023-H2",
+   "n": 767,
+   "psf": 1275.1322104585122,
+   "price": 2965000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "h": "2024-H1",
+   "n": 314,
+   "psf": 1348.9344397289503,
+   "price": 3191090.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "h": "2024-H2",
+   "n": 213,
+   "psf": 1339.22497182778,
+   "price": 2988000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "h": "2025-H1",
+   "n": 44,
+   "psf": 1339.22497182778,
+   "price": 2988825.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "h": "2022-H2",
+   "n": 22,
+   "psf": 777.6565195121627,
+   "price": 1715000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "h": "2023-H1",
+   "n": 172,
+   "psf": 838.6177390916553,
+   "price": 1900000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "h": "2023-H2",
+   "n": 305,
+   "psf": 910.8782215864767,
+   "price": 2100000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "h": "2024-H1",
+   "n": 295,
+   "psf": 928.3972716594299,
+   "price": 2100000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "h": "2024-H2",
+   "n": 392,
+   "psf": 968.1161753531412,
+   "price": 2200000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "h": "2025-H1",
+   "n": 474,
+   "psf": 1040.2473043416926,
+   "price": 2400000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "h": "2025-H2",
+   "n": 431,
+   "psf": 1143.961472120521,
+   "price": 2700000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "h": "2026-H1",
+   "n": 337,
+   "psf": 1175.807987663281,
+   "price": 2800000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "h": "2026-H2",
+   "n": 274,
+   "psf": 1149.7356963016696,
+   "price": 2650000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "h": "2022-H1",
+   "n": 10,
+   "psf": 653.4781026742185,
+   "price": 1451888.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "h": "2024-H1",
+   "n": 64,
+   "psf": 1079.1719910483753,
+   "price": 3321108.5
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "h": "2024-H2",
+   "n": 53,
+   "psf": 1085.3532468343828,
+   "price": 3353888.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "h": "2022-H1",
+   "n": 12,
+   "psf": 554.5696233997542,
+   "price": 1080000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "h": "2022-H2",
+   "n": 11,
+   "psf": 587.895270248354,
+   "price": 1425000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "h": "2023-H1",
+   "n": 13,
+   "psf": 666.1126986122275,
+   "price": 1530000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "h": "2023-H2",
+   "n": 60,
+   "psf": 797.1206852822784,
+   "price": 1590000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "h": "2024-H1",
+   "n": 83,
+   "psf": 873.4394471903503,
+   "price": 1790000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "h": "2024-H2",
+   "n": 28,
+   "psf": 1056.446291073698,
+   "price": 2112500.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "h": "2025-H1",
+   "n": 28,
+   "psf": 1090.1227169192668,
+   "price": 2137500.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "h": "2025-H2",
+   "n": 20,
+   "psf": 1158.2037798985348,
+   "price": 2310000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "h": "2026-H1",
+   "n": 15,
+   "psf": 1207.2680561830866,
+   "price": 2860000.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "h": "2024-H1",
+   "n": 696,
+   "psf": 1213.788783140291,
+   "price": 3492393.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "h": "2024-H2",
+   "n": 215,
+   "psf": 1228.3753551785521,
+   "price": 2822277.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "h": "2025-H1",
+   "n": 116,
+   "psf": 1277.1802779805912,
+   "price": 3832136.5
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "h": "2024-H2",
+   "n": 25,
+   "psf": 1285.72074133992,
+   "price": 3650000.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "h": "2025-H1",
+   "n": 61,
+   "psf": 1315.2873512002816,
+   "price": 3050000.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "h": "2025-H2",
+   "n": 74,
+   "psf": 1346.3278706642081,
+   "price": 3800000.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "h": "2026-H1",
+   "n": 48,
+   "psf": 1371.6514078636444,
+   "price": 3225000.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "h": "2026-H2",
+   "n": 28,
+   "psf": 1299.6204099565618,
+   "price": 3893358.5
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "h": "2021-H2",
+   "n": 232,
+   "psf": 741.655474554704,
+   "price": 1442888.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "h": "2022-H1",
+   "n": 264,
+   "psf": 782.787202623622,
+   "price": 1551888.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "h": "2022-H2",
+   "n": 130,
+   "psf": 819.7163866698854,
+   "price": 1587888.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "h": "2023-H2",
+   "n": 224,
+   "psf": 1002.5145190772148,
+   "price": 3322388.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "h": "2023-H1",
+   "n": 30,
+   "psf": 797.6174723423164,
+   "price": 1562500.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "h": "2023-H2",
+   "n": 54,
+   "psf": 897.1499880159537,
+   "price": 1750000.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "h": "2024-H1",
+   "n": 118,
+   "psf": 1013.5831087633783,
+   "price": 2000000.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "h": "2024-H2",
+   "n": 95,
+   "psf": 1104.8205195005537,
+   "price": 2300000.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "h": "2025-H1",
+   "n": 89,
+   "psf": 1310.2271947432307,
+   "price": 2800000.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "h": "2025-H2",
+   "n": 108,
+   "psf": 1433.2102436454493,
+   "price": 2925000.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "h": "2026-H1",
+   "n": 102,
+   "psf": 1452.0403925308879,
+   "price": 2900000.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "h": "2026-H2",
+   "n": 25,
+   "psf": 1377.1489380457413,
+   "price": 2750000.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "h": "2025-H1",
+   "n": 18,
+   "psf": 1777.134526805271,
+   "price": 5876161.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "h": "2025-H2",
+   "n": 543,
+   "psf": 1868.4843168805326,
+   "price": 5859600.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "h": "2026-H1",
+   "n": 50,
+   "psf": 2037.3173880700247,
+   "price": 6262027.5
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "h": "2021-H2",
+   "n": 208,
+   "psf": 865.7860253140561,
+   "price": 1887000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "h": "2022-H1",
+   "n": 21,
+   "psf": 855.461601348495,
+   "price": 1850000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "h": "2023-H1",
+   "n": 10,
+   "psf": 1032.1532597515368,
+   "price": 2211000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2021-H2",
+   "n": 25,
+   "psf": 794.151585360398,
+   "price": 1740000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2022-H1",
+   "n": 94,
+   "psf": 839.9563309567368,
+   "price": 1813431.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2022-H2",
+   "n": 59,
+   "psf": 917.3139554101176,
+   "price": 2000000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2023-H1",
+   "n": 148,
+   "psf": 1083.0659346523962,
+   "price": 2387500.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2023-H2",
+   "n": 148,
+   "psf": 1306.8806199341598,
+   "price": 2800000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2024-H1",
+   "n": 111,
+   "psf": 1405.319378141457,
+   "price": 3050000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2024-H2",
+   "n": 65,
+   "psf": 1575.6975900007897,
+   "price": 3400000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2025-H1",
+   "n": 54,
+   "psf": 1704.8303772484596,
+   "price": 3700000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2025-H2",
+   "n": 73,
+   "psf": 1888.7431577152324,
+   "price": 4150000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2026-H1",
+   "n": 49,
+   "psf": 1901.5799675685605,
+   "price": 4300000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "h": "2026-H2",
+   "n": 26,
+   "psf": 1785.790602000895,
+   "price": 4062500.0
+  }
+ ],
+ "q": [
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "q": "2021Q4",
+   "n": 5,
+   "value": 8853440.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "q": "2022Q1",
+   "n": 7,
+   "value": 11615020.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "q": "2022Q4",
+   "n": 66,
+   "value": 141332372.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "q": "2023Q1",
+   "n": 468,
+   "value": 1121250995.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "q": "2023Q2",
+   "n": 46,
+   "value": 108844228.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "q": "2023Q3",
+   "n": 9,
+   "value": 17618539.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "q": "2023Q4",
+   "n": 4,
+   "value": 9027255.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "q": "2024Q1",
+   "n": 5,
+   "value": 13225494.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "q": "2024Q4",
+   "n": 1,
+   "value": 2780888.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2021Q4",
+   "n": 12,
+   "value": 18779002.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2022Q1",
+   "n": 17,
+   "value": 30975000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2022Q2",
+   "n": 14,
+   "value": 26800000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2022Q3",
+   "n": 12,
+   "value": 24112929.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2022Q4",
+   "n": 20,
+   "value": 39880000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2023Q1",
+   "n": 27,
+   "value": 58795500.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2023Q2",
+   "n": 40,
+   "value": 96710000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2023Q3",
+   "n": 23,
+   "value": 56485000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2023Q4",
+   "n": 23,
+   "value": 61925752.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2024Q1",
+   "n": 10,
+   "value": 24880000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2024Q2",
+   "n": 28,
+   "value": 73241510.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2024Q3",
+   "n": 31,
+   "value": 77166737.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2024Q4",
+   "n": 38,
+   "value": 97467564.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2025Q1",
+   "n": 33,
+   "value": 97542770.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2025Q2",
+   "n": 29,
+   "value": 84768277.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 27,
+   "value": 81950000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 27,
+   "value": 86865000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 14,
+   "value": 46140000.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2026Q2",
+   "n": 28,
+   "value": 86196052.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 25,
+   "value": 85454888.0
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "q": "2026Q4",
+   "n": 2,
+   "value": 6970000.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2024Q3",
+   "n": 478,
+   "value": 1982212363.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2024Q4",
+   "n": 450,
+   "value": 1959276487.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2025Q1",
+   "n": 203,
+   "value": 937812885.56
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2025Q2",
+   "n": 162,
+   "value": 741711398.12
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2025Q3",
+   "n": 69,
+   "value": 398049208.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2025Q4",
+   "n": 22,
+   "value": 159010407.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2026Q1",
+   "n": 27,
+   "value": 254754403.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2026Q2",
+   "n": 18,
+   "value": 148624606.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2026Q3",
+   "n": 11,
+   "value": 58517260.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "q": "2026Q4",
+   "n": 2,
+   "value": 8114564.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "q": "2024Q4",
+   "n": 4,
+   "value": 14254569.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "q": "2025Q1",
+   "n": 6,
+   "value": 23064528.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "q": "2025Q2",
+   "n": 13,
+   "value": 48430000.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 17,
+   "value": 69616633.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 17,
+   "value": 69736179.85
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 23,
+   "value": 110580000.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "q": "2026Q2",
+   "n": 12,
+   "value": 49846306.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 11,
+   "value": 45081314.0
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "q": "2026Q4",
+   "n": 2,
+   "value": 6342000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2023Q1",
+   "n": 4,
+   "value": 4807500.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2023Q2",
+   "n": 7,
+   "value": 7210000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2023Q3",
+   "n": 9,
+   "value": 8922500.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2023Q4",
+   "n": 8,
+   "value": 8650000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2024Q1",
+   "n": 11,
+   "value": 13011000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2024Q2",
+   "n": 6,
+   "value": 6705000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2024Q3",
+   "n": 14,
+   "value": 16640000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2024Q4",
+   "n": 9,
+   "value": 11366000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2025Q1",
+   "n": 5,
+   "value": 6241000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2025Q2",
+   "n": 7,
+   "value": 9527000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2025Q3",
+   "n": 4,
+   "value": 5050000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2025Q4",
+   "n": 6,
+   "value": 7877700.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2026Q1",
+   "n": 6,
+   "value": 8520000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2026Q2",
+   "n": 4,
+   "value": 5376083.34
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "q": "2026Q3",
+   "n": 3,
+   "value": 4109000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "q": "2024Q1",
+   "n": 1,
+   "value": 950000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "q": "2024Q2",
+   "n": 2,
+   "value": 2100000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "q": "2024Q4",
+   "n": 1,
+   "value": 1340000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "q": "2025Q1",
+   "n": 1,
+   "value": 1175000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "q": "2025Q2",
+   "n": 1,
+   "value": 1600000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 5,
+   "value": 7185000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 1,
+   "value": 1650000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 3,
+   "value": 4420000.0
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 1,
+   "value": 1275000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2021Q4",
+   "n": 16,
+   "value": 30834000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2022Q1",
+   "n": 836,
+   "value": 1572834474.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2022Q2",
+   "n": 1066,
+   "value": 2023933110.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2022Q3",
+   "n": 1144,
+   "value": 2296998240.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2022Q4",
+   "n": 728,
+   "value": 1596420431.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2023Q1",
+   "n": 1086,
+   "value": 2544025934.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2023Q2",
+   "n": 413,
+   "value": 983516169.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2023Q3",
+   "n": 611,
+   "value": 1791305030.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2023Q4",
+   "n": 156,
+   "value": 541879310.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2024Q1",
+   "n": 189,
+   "value": 658123176.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2024Q2",
+   "n": 125,
+   "value": 424628983.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2024Q3",
+   "n": 107,
+   "value": 323062530.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2024Q4",
+   "n": 106,
+   "value": 320332955.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2025Q1",
+   "n": 40,
+   "value": 124721390.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2025Q2",
+   "n": 5,
+   "value": 15042360.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2025Q3",
+   "n": 3,
+   "value": 9454820.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "q": "2026Q2",
+   "n": 1,
+   "value": 3012000.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2022Q2",
+   "n": 5,
+   "value": 8121280.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2022Q3",
+   "n": 3,
+   "value": 5048300.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2022Q4",
+   "n": 19,
+   "value": 32210940.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2023Q1",
+   "n": 62,
+   "value": 113817396.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2023Q2",
+   "n": 111,
+   "value": 230740549.99
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2023Q3",
+   "n": 169,
+   "value": 385074580.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2023Q4",
+   "n": 143,
+   "value": 324044020.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2024Q1",
+   "n": 146,
+   "value": 328718400.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2024Q2",
+   "n": 150,
+   "value": 343400280.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2024Q3",
+   "n": 188,
+   "value": 444689468.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2024Q4",
+   "n": 218,
+   "value": 531118033.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2025Q1",
+   "n": 227,
+   "value": 568479919.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2025Q2",
+   "n": 261,
+   "value": 687604315.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 243,
+   "value": 687074180.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 196,
+   "value": 582575500.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 165,
+   "value": 512484800.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2026Q2",
+   "n": 178,
+   "value": 500754300.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 237,
+   "value": 667596991.0
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "q": "2026Q4",
+   "n": 40,
+   "value": 118613000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2022Q1",
+   "n": 2,
+   "value": 7165000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2022Q3",
+   "n": 1,
+   "value": 3450000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2022Q4",
+   "n": 1,
+   "value": 4050000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2023Q2",
+   "n": 1,
+   "value": 3400000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2023Q3",
+   "n": 1,
+   "value": 2800000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2023Q4",
+   "n": 2,
+   "value": 7450000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2024Q1",
+   "n": 2,
+   "value": 7311823.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2024Q2",
+   "n": 1,
+   "value": 4225000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2025Q1",
+   "n": 1,
+   "value": 8250000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "q": "2026Q1",
+   "n": 1,
+   "value": 5000000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2021Q4",
+   "n": 11,
+   "value": 36535000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2022Q1",
+   "n": 8,
+   "value": 27913000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2022Q2",
+   "n": 6,
+   "value": 22275000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2022Q3",
+   "n": 8,
+   "value": 29010000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2022Q4",
+   "n": 6,
+   "value": 19775000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2023Q1",
+   "n": 7,
+   "value": 27050000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2023Q2",
+   "n": 7,
+   "value": 25662000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2023Q3",
+   "n": 9,
+   "value": 36775000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2023Q4",
+   "n": 9,
+   "value": 36000000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2024Q1",
+   "n": 10,
+   "value": 43425000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2024Q2",
+   "n": 7,
+   "value": 31265000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2024Q3",
+   "n": 3,
+   "value": 16400000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2024Q4",
+   "n": 9,
+   "value": 43650000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2025Q1",
+   "n": 8,
+   "value": 38100000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2025Q2",
+   "n": 11,
+   "value": 58950000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 5,
+   "value": 26550000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 5,
+   "value": 28950000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 5,
+   "value": 25580000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2026Q2",
+   "n": 7,
+   "value": 36699000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 3,
+   "value": 14890000.0
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "q": "2026Q4",
+   "n": 1,
+   "value": 11250000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "q": "2021Q4",
+   "n": 4,
+   "value": 5894552.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "q": "2022Q1",
+   "n": 2,
+   "value": 2778776.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "q": "2022Q2",
+   "n": 8,
+   "value": 12300906.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "q": "2022Q3",
+   "n": 6,
+   "value": 8833328.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "q": "2023Q2",
+   "n": 1,
+   "value": 1392888.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "q": "2023Q4",
+   "n": 1,
+   "value": 1401888.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "q": "2024Q1",
+   "n": 1,
+   "value": 1096888.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "q": "2024Q2",
+   "n": 152,
+   "value": 562864860.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "q": "2024Q3",
+   "n": 80,
+   "value": 284092555.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2021Q4",
+   "n": 2,
+   "value": 2425000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2022Q1",
+   "n": 9,
+   "value": 9590000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2022Q2",
+   "n": 3,
+   "value": 3408142.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2022Q3",
+   "n": 9,
+   "value": 11970000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2022Q4",
+   "n": 2,
+   "value": 3190000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2023Q1",
+   "n": 4,
+   "value": 6160000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2023Q2",
+   "n": 9,
+   "value": 13550000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2023Q3",
+   "n": 17,
+   "value": 27055000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2023Q4",
+   "n": 43,
+   "value": 74145000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2024Q1",
+   "n": 43,
+   "value": 78825000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2024Q2",
+   "n": 40,
+   "value": 81109750.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2024Q3",
+   "n": 17,
+   "value": 37060000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2024Q4",
+   "n": 11,
+   "value": 26390000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2025Q1",
+   "n": 7,
+   "value": 16170000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2025Q2",
+   "n": 22,
+   "value": 52962000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 9,
+   "value": 23160000.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 11,
+   "value": 27450888.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 14,
+   "value": 40657776.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2026Q2",
+   "n": 4,
+   "value": 11948888.0
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 7,
+   "value": 19580888.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2024Q1",
+   "n": 12,
+   "value": 42742955.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2024Q2",
+   "n": 834,
+   "value": 3485188730.18
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2024Q3",
+   "n": 64,
+   "value": 400109087.96
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2024Q4",
+   "n": 176,
+   "value": 566898209.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2025Q1",
+   "n": 96,
+   "value": 368709177.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2025Q2",
+   "n": 24,
+   "value": 99937247.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2025Q3",
+   "n": 4,
+   "value": 31734547.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2026Q1",
+   "n": 2,
+   "value": 5503253.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2026Q2",
+   "n": 3,
+   "value": 10877991.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "q": "2026Q3",
+   "n": 2,
+   "value": 6244656.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2024Q2",
+   "n": 8,
+   "value": 32566573.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2024Q3",
+   "n": 15,
+   "value": 66470950.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2024Q4",
+   "n": 19,
+   "value": 81076047.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2025Q1",
+   "n": 33,
+   "value": 134711738.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2025Q2",
+   "n": 36,
+   "value": 142174010.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 38,
+   "value": 164646189.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 47,
+   "value": 189810881.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 38,
+   "value": 173126187.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2026Q2",
+   "n": 17,
+   "value": 70023670.0
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 29,
+   "value": 130419254.97
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "q": "2026Q4",
+   "n": 4,
+   "value": 18016312.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2021Q4",
+   "n": 232,
+   "value": 351465464.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2022Q1",
+   "n": 174,
+   "value": 286760832.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2022Q2",
+   "n": 90,
+   "value": 145714124.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2022Q3",
+   "n": 99,
+   "value": 168257268.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2022Q4",
+   "n": 31,
+   "value": 50232511.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2023Q1",
+   "n": 2,
+   "value": 3135776.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2023Q2",
+   "n": 1,
+   "value": 1621888.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2023Q3",
+   "n": 464,
+   "value": 1648398766.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2023Q4",
+   "n": 249,
+   "value": 1086307253.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2024Q1",
+   "n": 87,
+   "value": 384324930.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2024Q2",
+   "n": 3,
+   "value": 13698664.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "q": "2024Q3",
+   "n": 1,
+   "value": 3741888.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2022Q2",
+   "n": 1,
+   "value": 1700888.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2022Q3",
+   "n": 2,
+   "value": 3112000.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2022Q4",
+   "n": 3,
+   "value": 4242000.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2023Q1",
+   "n": 11,
+   "value": 18062776.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2023Q2",
+   "n": 19,
+   "value": 30721776.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2023Q3",
+   "n": 21,
+   "value": 37905749.23
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2023Q4",
+   "n": 33,
+   "value": 63144924.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2024Q1",
+   "n": 59,
+   "value": 117762449.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2024Q2",
+   "n": 69,
+   "value": 177275950.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2024Q3",
+   "n": 63,
+   "value": 165906506.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2024Q4",
+   "n": 48,
+   "value": 140720000.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2025Q1",
+   "n": 64,
+   "value": 216261540.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2025Q2",
+   "n": 64,
+   "value": 230881782.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 57,
+   "value": 199270812.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 82,
+   "value": 297737276.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 80,
+   "value": 262830108.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2026Q2",
+   "n": 47,
+   "value": 160843047.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 35,
+   "value": 123159300.0
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "q": "2026Q4",
+   "n": 7,
+   "value": 23120000.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "q": "2025Q2",
+   "n": 28,
+   "value": 204109615.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "q": "2025Q3",
+   "n": 774,
+   "value": 5259115607.85
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "q": "2025Q4",
+   "n": 5,
+   "value": 31250342.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "q": "2026Q1",
+   "n": 51,
+   "value": 434447225.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "q": "2026Q2",
+   "n": 27,
+   "value": 276525547.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "q": "2026Q3",
+   "n": 4,
+   "value": 24555932.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "q": "2026Q4",
+   "n": 4,
+   "value": 27220375.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 2,
+   "value": 17100000.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 1,
+   "value": 10700000.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 4,
+   "value": 41427388.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Resale",
+   "q": "2026Q2",
+   "n": 2,
+   "value": 11231467.0
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 2,
+   "value": 11663540.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "q": "2021Q4",
+   "n": 208,
+   "value": 412103000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "q": "2022Q1",
+   "n": 19,
+   "value": 37304000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "q": "2022Q2",
+   "n": 2,
+   "value": 3839000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "q": "2023Q1",
+   "n": 10,
+   "value": 23473000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "q": "2023Q3",
+   "n": 1,
+   "value": 3200000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "q": "2025Q1",
+   "n": 1,
+   "value": 4400000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2021Q4",
+   "n": 25,
+   "value": 45475000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2022Q1",
+   "n": 32,
+   "value": 58940426.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2022Q2",
+   "n": 62,
+   "value": 119785907.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2022Q3",
+   "n": 25,
+   "value": 51143150.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2022Q4",
+   "n": 34,
+   "value": 73239000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2023Q1",
+   "n": 67,
+   "value": 152770000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2023Q2",
+   "n": 81,
+   "value": 206114000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2023Q3",
+   "n": 70,
+   "value": 200823000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2023Q4",
+   "n": 78,
+   "value": 233637663.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2024Q1",
+   "n": 52,
+   "value": 158625000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2024Q2",
+   "n": 59,
+   "value": 195060250.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2024Q3",
+   "n": 30,
+   "value": 105340000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2024Q4",
+   "n": 35,
+   "value": 127386000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2025Q1",
+   "n": 31,
+   "value": 120705000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2025Q2",
+   "n": 23,
+   "value": 91330000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2025Q3",
+   "n": 28,
+   "value": 112337995.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2025Q4",
+   "n": 45,
+   "value": 194235998.99
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2026Q1",
+   "n": 31,
+   "value": 136687624.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2026Q2",
+   "n": 18,
+   "value": 78925000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2026Q3",
+   "n": 21,
+   "value": 84960000.0
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "q": "2026Q4",
+   "n": 5,
+   "value": 20430000.0
+  }
+ ],
+ "mom": [
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Primary",
+   "n_l": 7,
+   "n_p": 299,
+   "psf_l": 1217.4337509082366,
+   "psf_p": 1230.3328711238275,
+   "val_l": 0.0226259,
+   "val_p": 1.064446098,
+   "yoy_psf": -1.048425228516292
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "mkt": "Resale",
+   "n_l": 128,
+   "n_p": 131,
+   "psf_l": 1365.115005100953,
+   "psf_p": 1323.3319975428615,
+   "val_l": 0.55444630497,
+   "val_p": 0.541937984,
+   "yoy_psf": 3.157409299833569
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Primary",
+   "n_l": 78,
+   "n_p": 577,
+   "psf_l": 1550.57035519059,
+   "psf_p": 1366.5910411607601,
+   "val_l": 0.623039718,
+   "val_p": 2.6854658416799997,
+   "yoy_psf": 13.462645991997778
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "mkt": "Resale",
+   "n_l": 61,
+   "n_p": 44,
+   "psf_l": 1434.2419285449257,
+   "psf_p": 1374.7310644772651,
+   "val_l": 0.26733579985,
+   "val_p": 0.16961573,
+   "yoy_psf": 4.328909530409808
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Primary",
+   "n_l": 91,
+   "n_p": 802,
+   "psf_l": 2034.9324838340217,
+   "psf_p": 1836.153474163598,
+   "val_l": 0.793999421,
+   "val_p": 5.46322522285,
+   "yoy_psf": 10.825838497022765
+  },
+  {
+   "key": "The Wilds|3",
+   "mkt": "Resale",
+   "n_l": 9,
+   "n_p": 2,
+   "psf_l": 1836.3926668001104,
+   "psf_p": 1973.1964389890722,
+   "val_l": 0.075022395,
+   "val_p": 0.0171,
+   "yoy_psf": -6.9331045549144825
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Primary",
+   "n_l": 0,
+   "n_p": 1,
+   "psf_l": null,
+   "psf_p": 1130.9455398322464,
+   "val_l": 0.0,
+   "val_p": 0.002780888,
+   "yoy_psf": null
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "mkt": "Resale",
+   "n_l": 89,
+   "n_p": 126,
+   "psf_l": 1525.8851579757102,
+   "psf_p": 1367.1169763068651,
+   "val_l": 0.28697594,
+   "val_p": 0.366453611,
+   "yoy_psf": 11.613357482966968
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Primary",
+   "n_l": 0,
+   "n_p": 0,
+   "psf_l": null,
+   "psf_p": null,
+   "val_l": 0.0,
+   "val_p": 0.0,
+   "yoy_psf": null
+  },
+  {
+   "key": "The Valley|16",
+   "mkt": "Resale",
+   "n_l": 235,
+   "n_p": 243,
+   "psf_l": 1389.328442235728,
+   "psf_p": 1225.116163457634,
+   "val_l": 0.814024731,
+   "val_p": 0.822494134,
+   "yoy_psf": 13.403812934329373
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Primary",
+   "n_l": 1,
+   "n_p": 99,
+   "psf_l": 1356.2632186807728,
+   "psf_p": 1339.22497182778,
+   "val_l": 0.003012,
+   "val_p": 0.302991405,
+   "yoy_psf": 1.2722468003071086
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "mkt": "Resale",
+   "n_l": 772,
+   "n_p": 953,
+   "psf_l": 1166.1273116128052,
+   "psf_p": 1047.1180582370846,
+   "val_l": 2.254938591,
+   "val_p": 2.506136447,
+   "yoy_psf": 11.365409319373509
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Primary",
+   "n_l": 18,
+   "n_p": 24,
+   "psf_l": 769.006196404173,
+   "psf_p": 724.1225662638516,
+   "val_l": 0.02452278334,
+   "val_p": 0.030673,
+   "yoy_psf": 6.198347107438029
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "mkt": "Resale",
+   "n_l": 5,
+   "n_p": 8,
+   "psf_l": 772.7097708722492,
+   "psf_p": 763.9940063322069,
+   "val_l": 0.007345,
+   "val_p": 0.0113,
+   "yoy_psf": 1.1408158268001456
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Primary",
+   "n_l": 0,
+   "n_p": 1,
+   "psf_l": null,
+   "psf_p": 1801.4797566804673,
+   "val_l": 0.0,
+   "val_p": 0.0044,
+   "yoy_psf": null
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "mkt": "Resale",
+   "n_l": 108,
+   "n_p": 123,
+   "psf_l": 1890.8371080009476,
+   "psf_p": 1727.2578295254123,
+   "val_l": 0.462982623,
+   "val_p": 0.48188199499,
+   "yoy_psf": 9.470460962998262
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Primary",
+   "n_l": 0,
+   "n_p": 0,
+   "psf_l": null,
+   "psf_p": null,
+   "val_l": 0.0,
+   "val_p": 0.0,
+   "yoy_psf": null
+  },
+  {
+   "key": "Dubai South|16",
+   "mkt": "Resale",
+   "n_l": 34,
+   "n_p": 50,
+   "psf_l": 1182.4647094667616,
+   "psf_p": 1094.4701098491278,
+   "val_l": 0.09446344,
+   "val_p": 0.121657,
+   "yoy_psf": 8.039927159798266
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Primary",
+   "n_l": 1,
+   "n_p": 1,
+   "psf_l": 1240.2297472425716,
+   "psf_p": 1133.8029907221658,
+   "val_l": 0.005,
+   "val_p": 0.00825,
+   "yoy_psf": 9.386706278894042
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "mkt": "Resale",
+   "n_l": 20,
+   "n_p": 34,
+   "psf_l": 1295.0172545848375,
+   "psf_p": 1212.1745250143388,
+   "val_l": 0.111919,
+   "val_p": 0.1727,
+   "yoy_psf": 6.834224598930483
+  }
+ ],
+ "beh": [
+  {
+   "key": "Haven by Aldar|3",
+   "n": 1501,
+   "n_primary": 1217,
+   "n_resale": 284,
+   "resale_share": 18.920719520319786,
+   "hold_med": 411.0,
+   "hold_n": 284,
+   "val_primary": 5.0179458531400005,
+   "val_resale": 1.20304181197,
+   "first_primary": "2024-03-04",
+   "last_primary": "2026-09-29"
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "n": 1547,
+   "n_primary": 1442,
+   "n_resale": 105,
+   "resale_share": 6.787330316742081,
+   "hold_med": 390.0,
+   "hold_n": 103,
+   "val_primary": 6.64808358168,
+   "val_resale": 0.43695152985,
+   "first_primary": "2024-08-07",
+   "last_primary": "2026-10-05"
+  },
+  {
+   "key": "The Wilds|3",
+   "n": 904,
+   "n_primary": 893,
+   "n_resale": 11,
+   "resale_share": 1.2168141592920354,
+   "hold_med": 239.0,
+   "hold_n": 11,
+   "val_primary": 6.257224643850001,
+   "val_resale": 0.092122395,
+   "first_primary": "2025-06-25",
+   "last_primary": "2026-10-02"
+  },
+  {
+   "key": "Arabian Ranches 3|16",
+   "n": 1091,
+   "n_primary": 611,
+   "n_resale": 480,
+   "resale_share": 43.996333638863426,
+   "hold_med": 786.0,
+   "hold_n": 479,
+   "val_primary": 1.434548231,
+   "val_resale": 1.263105981,
+   "first_primary": "2021-10-11",
+   "last_primary": "2024-12-04"
+  },
+  {
+   "key": "The Valley|16",
+   "n": 2198,
+   "n_primary": 1433,
+   "n_resale": 765,
+   "resale_share": 34.80436760691538,
+   "hold_med": 667.0,
+   "hold_n": 765,
+   "val_primary": 4.143659364,
+   "val_resale": 2.27465888323,
+   "first_primary": "2021-10-05",
+   "last_primary": "2024-09-24"
+  },
+  {
+   "key": "DAMAC Lagoons|16",
+   "n": 9393,
+   "n_primary": 6632,
+   "n_resale": 2761,
+   "resale_share": 29.3942297455552,
+   "hold_med": 749.0,
+   "hold_n": 2761,
+   "val_primary": 15.260124912,
+   "val_resale": 7.07216625199,
+   "first_primary": "2021-12-16",
+   "last_primary": "2026-04-29"
+  },
+  {
+   "key": "DAMAC Hills 2|16",
+   "n": 119,
+   "n_primary": 103,
+   "n_resale": 16,
+   "resale_share": 13.445378151260504,
+   "hold_med": 487.0,
+   "hold_n": 12,
+   "val_primary": 0.12401278334,
+   "val_resale": 0.021695,
+   "first_primary": "2023-03-07",
+   "last_primary": "2026-09-23"
+  },
+  {
+   "key": "Tilal Al Ghaf|16",
+   "n": 1093,
+   "n_primary": 241,
+   "n_resale": 852,
+   "resale_share": 77.95059469350412,
+   "hold_med": 777.5,
+   "hold_n": 852,
+   "val_primary": 0.484319,
+   "val_resale": 2.5679510139899997,
+   "first_primary": "2021-10-07",
+   "last_primary": "2025-03-06"
+  },
+  {
+   "key": "Dubai South|16",
+   "n": 538,
+   "n_primary": 255,
+   "n_resale": 283,
+   "resale_share": 52.60223048327137,
+   "hold_med": 1443.0,
+   "hold_n": 283,
+   "val_primary": 0.880656641,
+   "val_resale": 0.566808332,
+   "first_primary": "2021-10-05",
+   "last_primary": "2024-09-09"
+  },
+  {
+   "key": "Dubai Silicon Oasis (DSO)|3",
+   "n": 158,
+   "n_primary": 13,
+   "n_resale": 145,
+   "resale_share": 91.77215189873418,
+   "hold_med": 1723.0,
+   "hold_n": 63,
+   "val_primary": 0.053101823,
+   "val_resale": 0.636704,
+   "first_primary": "2022-01-26",
+   "last_primary": "2026-02-25"
+  }
+ ],
+ "aldar": {
+  "Haven by Aldar|3": {
+   "announce": "2023-11-01",
+   "units": 786,
+   "bn": 3.1,
+   "first_reg_month": 4.073587385019711,
+   "n_all": 1217,
+   "bn_all": 5.0179458531400005,
+   "cum": [
+    {
+     "m": 0,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 1,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 2,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 3,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 4,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 5,
+     "n": 12,
+     "bn": 0.042742955
+    },
+    {
+     "m": 6,
+     "n": 78,
+     "bn": 0.26474350577
+    },
+    {
+     "m": 7,
+     "n": 495,
+     "bn": 1.96274125357
+    },
+    {
+     "m": 8,
+     "n": 846,
+     "bn": 3.52793168518
+    },
+    {
+     "m": 9,
+     "n": 899,
+     "bn": 3.8231855661400003
+    },
+    {
+     "m": 10,
+     "n": 909,
+     "bn": 3.9252726051400004
+    },
+    {
+     "m": 11,
+     "n": 910,
+     "bn": 3.92804077314
+    },
+    {
+     "m": 12,
+     "n": 928,
+     "bn": 3.9886046841400002
+    },
+    {
+     "m": 13,
+     "n": 1065,
+     "bn": 4.42759355214
+    },
+    {
+     "m": 14,
+     "n": 1086,
+     "bn": 4.494938982139999
+    },
+    {
+     "m": 15,
+     "n": 1152,
+     "bn": 4.740955207139999
+    },
+    {
+     "m": 16,
+     "n": 1177,
+     "bn": 4.84473265014
+    },
+    {
+     "m": 17,
+     "n": 1182,
+     "bn": 4.86364815914
+    },
+    {
+     "m": 18,
+     "n": 1194,
+     "bn": 4.90302210114
+    },
+    {
+     "m": 19,
+     "n": 1205,
+     "bn": 4.948132907140001
+    },
+    {
+     "m": 20,
+     "n": 1206,
+     "bn": 4.96358540614
+    },
+    {
+     "m": 21,
+     "n": 1209,
+     "bn": 4.99152293014
+    },
+    {
+     "m": 22,
+     "n": 1209,
+     "bn": 4.99152293014
+    },
+    {
+     "m": 23,
+     "n": 1210,
+     "bn": 4.99531995314
+    },
+    {
+     "m": 24,
+     "n": 1210,
+     "bn": 4.99531995314
+    },
+    {
+     "m": 25,
+     "n": 1210,
+     "bn": 4.99531995314
+    },
+    {
+     "m": 26,
+     "n": 1210,
+     "bn": 4.99531995314
+    },
+    {
+     "m": 27,
+     "n": 1210,
+     "bn": 4.99531995314
+    },
+    {
+     "m": 28,
+     "n": 1210,
+     "bn": 4.99531995314
+    },
+    {
+     "m": 29,
+     "n": 1212,
+     "bn": 5.000823206140001
+    },
+    {
+     "m": 30,
+     "n": 1215,
+     "bn": 5.011701197140001
+    },
+    {
+     "m": 31,
+     "n": 1215,
+     "bn": 5.011701197140001
+    },
+    {
+     "m": 32,
+     "n": 1215,
+     "bn": 5.011701197140001
+    },
+    {
+     "m": 33,
+     "n": 1215,
+     "bn": 5.011701197140001
+    },
+    {
+     "m": 34,
+     "n": 1216,
+     "bn": 5.01515882314
+    },
+    {
+     "m": 35,
+     "n": 1217,
+     "bn": 5.0179458531400005
+    },
+    {
+     "m": 36,
+     "n": 1217,
+     "bn": 5.0179458531400005
+    }
+   ],
+   "at12": {
+    "m": 12,
+    "n": 928,
+    "bn": 3.9886046841400002
+   },
+   "psf_med": 1228.183920303561,
+   "months_since": 35.4796320630749,
+   "curve": [
+    [
+     4.073587385019711,
+     1,
+     0.005689831
+    ],
+    [
+     4.763469119579501,
+     5,
+     0.020838084
+    ],
+    [
+     4.763469119579501,
+     9,
+     0.031960696
+    ],
+    [
+     5.026281208935611,
+     13,
+     0.045511622
+    ],
+    [
+     5.026281208935611,
+     17,
+     0.05819247507
+    ],
+    [
+     5.059132720105125,
+     21,
+     0.07032783007
+    ],
+    [
+     5.7490144546649145,
+     25,
+     0.08329845707
+    ],
+    [
+     5.7490144546649145,
+     29,
+     0.09887971006999999
+    ],
+    [
+     5.7490144546649145,
+     33,
+     0.11147647107
+    ],
+    [
+     5.7490144546649145,
+     37,
+     0.12361303519999998
+    ],
+    [
+     5.7490144546649145,
+     41,
+     0.1376500822
+    ],
+    [
+     5.7490144546649145,
+     45,
+     0.15113136819999998
+    ],
+    [
+     5.7490144546649145,
+     49,
+     0.16397792819999998
+    ],
+    [
+     5.781865965834428,
+     53,
+     0.17777135519999998
+    ],
+    [
+     5.781865965834428,
+     57,
+     0.1894613402
+    ],
+    [
+     5.814717477003942,
+     61,
+     0.20274218119999998
+    ],
+    [
+     5.946123521681997,
+     65,
+     0.21480524503
+    ],
+    [
+     5.946123521681997,
+     69,
+     0.22968555677000002
+    ],
+    [
+     5.946123521681997,
+     73,
+     0.24727344477000002
+    ],
+    [
+     5.946123521681997,
+     77,
+     0.26202666577
+    ],
+    [
+     6.14323258869908,
+     81,
+     0.27379199976999996
+    ],
+    [
+     6.14323258869908,
+     85,
+     0.28999869476
+    ],
+    [
+     6.14323258869908,
+     89,
+     0.30195025076
+    ],
+    [
+     6.14323258869908,
+     93,
+     0.32456995539
+    ],
+    [
+     6.14323258869908,
+     97,
+     0.34034089139
+    ],
+    [
+     6.2089356110381075,
+     101,
+     0.35162491338999996
+    ],
+    [
+     6.2089356110381075,
+     105,
+     0.36337760738999997
+    ],
+    [
+     6.2089356110381075,
+     109,
+     0.37446404339
+    ],
+    [
+     6.2089356110381075,
+     113,
+     0.38681108139
+    ],
+    [
+     6.3731931668856765,
+     117,
+     0.39885270839
+    ],
+    [
+     6.438896189224704,
+     121,
+     0.41670275039
+    ],
+    [
+     6.438896189224704,
+     125,
+     0.43032869738999996
+    ],
+    [
+     6.438896189224704,
+     129,
+     0.44292400539
+    ],
+    [
+     6.438896189224704,
+     133,
+     0.46126234939
+    ],
+    [
+     6.438896189224704,
+     137,
+     0.47489922338999996
+    ],
+    [
+     6.471747700394218,
+     141,
+     0.48763994838999997
+    ],
+    [
+     6.471747700394218,
+     145,
+     0.49984674138999996
+    ],
+    [
+     6.471747700394218,
+     149,
+     0.51183537239
+    ],
+    [
+     6.471747700394218,
+     153,
+     0.52474439039
+    ],
+    [
+     6.471747700394218,
+     157,
+     0.53760001539
+    ],
+    [
+     6.471747700394218,
+     161,
+     0.54936903539
+    ],
+    [
+     6.471747700394218,
+     165,
+     0.56244725839
+    ],
+    [
+     6.471747700394218,
+     169,
+     0.57695828796
+    ],
+    [
+     6.636005256241787,
+     173,
+     0.59615883296
+    ],
+    [
+     6.636005256241787,
+     177,
+     0.6271580319100001
+    ],
+    [
+     6.636005256241787,
+     181,
+     0.6566837220900001
+    ],
+    [
+     6.636005256241787,
+     185,
+     0.6826558361800001
+    ],
+    [
+     6.636005256241787,
+     189,
+     0.7078623221800002
+    ],
+    [
+     6.636005256241787,
+     193,
+     0.7418808571800002
+    ],
+    [
+     6.636005256241787,
+     197,
+     0.7652165154300001
+    ],
+    [
+     6.636005256241787,
+     201,
+     0.8008005094300001
+    ],
+    [
+     6.636005256241787,
+     205,
+     0.8282081754300001
+    ],
+    [
+     6.636005256241787,
+     209,
+     0.8464266884000002
+    ],
+    [
+     6.636005256241787,
+     213,
+     0.8701254824000002
+    ],
+    [
+     6.668856767411301,
+     217,
+     0.8882694298900002
+    ],
+    [
+     6.668856767411301,
+     221,
+     0.9036735053000002
+    ],
+    [
+     6.668856767411301,
+     225,
+     0.9166713163000002
+    ],
+    [
+     6.668856767411301,
+     229,
+     0.9295931293000002
+    ],
+    [
+     6.668856767411301,
+     233,
+     0.9466077331000001
+    ],
+    [
+     6.668856767411301,
+     237,
+     0.9601273911000001
+    ],
+    [
+     6.668856767411301,
+     241,
+     0.9885482166900001
+    ],
+    [
+     6.668856767411301,
+     245,
+     1.0037028636900003
+    ],
+    [
+     6.668856767411301,
+     249,
+     1.0211697476900001
+    ],
+    [
+     6.668856767411301,
+     253,
+     1.0361177766900003
+    ],
+    [
+     6.668856767411301,
+     257,
+     1.04892313469
+    ],
+    [
+     6.668856767411301,
+     261,
+     1.07043521748
+    ],
+    [
+     6.668856767411301,
+     265,
+     1.09066436648
+    ],
+    [
+     6.701708278580814,
+     269,
+     1.1100724234800001
+    ],
+    [
+     6.701708278580814,
+     273,
+     1.12199549048
+    ],
+    [
+     6.701708278580814,
+     277,
+     1.13605662748
+    ],
+    [
+     6.701708278580814,
+     281,
+     1.15416689248
+    ],
+    [
+     6.701708278580814,
+     285,
+     1.1679507254800001
+    ],
+    [
+     6.701708278580814,
+     289,
+     1.18073134048
+    ],
+    [
+     6.701708278580814,
+     293,
+     1.19430391948
+    ],
+    [
+     6.701708278580814,
+     297,
+     1.20542649848
+    ],
+    [
+     6.701708278580814,
+     301,
+     1.22012915748
+    ],
+    [
+     6.701708278580814,
+     305,
+     1.23201595548
+    ],
+    [
+     6.701708278580814,
+     309,
+     1.24535979248
+    ],
+    [
+     6.734559789750328,
+     313,
+     1.25953011948
+    ],
+    [
+     6.734559789750328,
+     317,
+     1.27235351648
+    ],
+    [
+     6.734559789750328,
+     321,
+     1.28480791748
+    ],
+    [
+     6.734559789750328,
+     325,
+     1.29748231048
+    ],
+    [
+     6.734559789750328,
+     329,
+     1.31016467748
+    ],
+    [
+     6.734559789750328,
+     333,
+     1.32289792448
+    ],
+    [
+     6.931668856767411,
+     337,
+     1.34253672548
+    ],
+    [
+     6.931668856767411,
+     341,
+     1.3550757364800001
+    ],
+    [
+     6.931668856767411,
+     345,
+     1.36702264148
+    ],
+    [
+     6.931668856767411,
+     349,
+     1.37956151248
+    ],
+    [
+     6.931668856767411,
+     353,
+     1.39525269551
+    ],
+    [
+     6.931668856767411,
+     357,
+     1.40863338251
+    ],
+    [
+     6.931668856767411,
+     361,
+     1.42061630351
+    ],
+    [
+     6.931668856767411,
+     365,
+     1.43406693551
+    ],
+    [
+     6.931668856767411,
+     369,
+     1.44654035651
+    ],
+    [
+     6.931668856767411,
+     373,
+     1.47274290061
+    ],
+    [
+     6.931668856767411,
+     377,
+     1.48687991661
+    ],
+    [
+     6.931668856767411,
+     381,
+     1.50094757061
+    ],
+    [
+     6.931668856767411,
+     385,
+     1.51710320584
+    ],
+    [
+     6.931668856767411,
+     389,
+     1.52991049784
+    ],
+    [
+     6.931668856767411,
+     393,
+     1.54386913784
+    ],
+    [
+     6.931668856767411,
+     397,
+     1.56392286584
+    ],
+    [
+     6.931668856767411,
+     401,
+     1.57491542884
+    ],
+    [
+     6.931668856767411,
+     405,
+     1.5908184668399998
+    ],
+    [
+     6.931668856767411,
+     409,
+     1.6061775678399999
+    ],
+    [
+     6.931668856767411,
+     413,
+     1.6228571691199998
+    ],
+    [
+     6.931668856767411,
+     417,
+     1.6463440621199998
+    ],
+    [
+     6.931668856767411,
+     421,
+     1.6668670181199998
+    ],
+    [
+     6.931668856767411,
+     425,
+     1.67966652712
+    ],
+    [
+     6.931668856767411,
+     429,
+     1.6944756611199998
+    ],
+    [
+     6.931668856767411,
+     433,
+     1.7075043051199998
+    ],
+    [
+     6.931668856767411,
+     437,
+     1.72234384812
+    ],
+    [
+     6.931668856767411,
+     441,
+     1.73425112512
+    ],
+    [
+     6.931668856767411,
+     445,
+     1.7517852241199998
+    ],
+    [
+     6.931668856767411,
+     449,
+     1.7646994355699999
+    ],
+    [
+     6.931668856767411,
+     453,
+     1.78198348957
+    ],
+    [
+     6.931668856767411,
+     457,
+     1.8035070385699998
+    ],
+    [
+     6.931668856767411,
+     461,
+     1.82142624357
+    ],
+    [
+     6.931668856767411,
+     465,
+     1.8352543105699999
+    ],
+    [
+     6.931668856767411,
+     469,
+     1.85391288257
+    ],
+    [
+     6.931668856767411,
+     473,
+     1.87349052157
+    ],
+    [
+     6.931668856767411,
+     477,
+     1.8895703015699998
+    ],
+    [
+     6.931668856767411,
+     481,
+     1.90167716057
+    ],
+    [
+     6.931668856767411,
+     485,
+     1.92775947957
+    ],
+    [
+     6.931668856767411,
+     489,
+     1.94111047257
+    ],
+    [
+     6.931668856767411,
+     493,
+     1.95472200057
+    ],
+    [
+     7.063074901445466,
+     497,
+     1.97062422657
+    ],
+    [
+     7.063074901445466,
+     501,
+     1.9825979085699998
+    ],
+    [
+     7.063074901445466,
+     505,
+     2.00489005957
+    ],
+    [
+     7.063074901445466,
+     509,
+     2.02292639357
+    ],
+    [
+     7.063074901445466,
+     513,
+     2.03595902657
+    ],
+    [
+     7.063074901445466,
+     517,
+     2.05025613257
+    ],
+    [
+     7.063074901445466,
+     521,
+     2.06404807457
+    ],
+    [
+     7.063074901445466,
+     525,
+     2.08466867357
+    ],
+    [
+     7.063074901445466,
+     529,
+     2.09853015157
+    ],
+    [
+     7.063074901445466,
+     533,
+     2.11354296957
+    ],
+    [
+     7.063074901445466,
+     537,
+     2.13705681957
+    ],
+    [
+     7.063074901445466,
+     541,
+     2.1600802465699998
+    ],
+    [
+     7.063074901445466,
+     545,
+     2.1727167205699995
+    ],
+    [
+     7.063074901445466,
+     549,
+     2.1913375495699996
+    ],
+    [
+     7.063074901445466,
+     553,
+     2.2061154035699997
+    ],
+    [
+     7.063074901445466,
+     557,
+     2.2226070205699995
+    ],
+    [
+     7.063074901445466,
+     561,
+     2.25122869357
+    ],
+    [
+     7.063074901445466,
+     565,
+     2.28045493005
+    ],
+    [
+     7.063074901445466,
+     569,
+     2.2945381600499997
+    ],
+    [
+     7.063074901445466,
+     573,
+     2.3102032040499996
+    ],
+    [
+     7.063074901445466,
+     577,
+     2.3226713250499995
+    ],
+    [
+     7.063074901445466,
+     581,
+     2.3384029700499998
+    ],
+    [
+     7.063074901445466,
+     585,
+     2.35083899605
+    ],
+    [
+     7.063074901445466,
+     589,
+     2.3678868160499995
+    ],
+    [
+     7.063074901445466,
+     593,
+     2.3798344980499997
+    ],
+    [
+     7.063074901445466,
+     597,
+     2.3975125940499997
+    ],
+    [
+     7.063074901445466,
+     601,
+     2.4227207050499997
+    ],
+    [
+     7.063074901445466,
+     605,
+     2.4432272230499996
+    ],
+    [
+     7.063074901445466,
+     609,
+     2.4585551938199997
+    ],
+    [
+     7.063074901445466,
+     613,
+     2.4731311668199996
+    ],
+    [
+     7.063074901445466,
+     617,
+     2.49350966382
+    ],
+    [
+     7.063074901445466,
+     621,
+     2.5107631798199996
+    ],
+    [
+     7.063074901445466,
+     625,
+     2.5312827458199996
+    ],
+    [
+     7.063074901445466,
+     629,
+     2.55328527482
+    ],
+    [
+     7.063074901445466,
+     633,
+     2.56846716882
+    ],
+    [
+     7.063074901445466,
+     637,
+     2.5831078338199998
+    ],
+    [
+     7.1616294349540075,
+     641,
+     2.5964292238199995
+    ],
+    [
+     7.1616294349540075,
+     645,
+     2.6141093348199997
+    ],
+    [
+     7.1616294349540075,
+     649,
+     2.62726474182
+    ],
+    [
+     7.1616294349540075,
+     653,
+     2.64140000882
+    ],
+    [
+     7.1616294349540075,
+     657,
+     2.65780752882
+    ],
+    [
+     7.1616294349540075,
+     661,
+     2.6732844398199997
+    ],
+    [
+     7.1616294349540075,
+     665,
+     2.6945017398199997
+    ],
+    [
+     7.1616294349540075,
+     669,
+     2.7064478978199995
+    ],
+    [
+     7.1616294349540075,
+     673,
+     2.7258194528199997
+    ],
+    [
+     7.1616294349540075,
+     677,
+     2.74506185441
+    ],
+    [
+     7.194480946123521,
+     681,
+     2.75906807341
+    ],
+    [
+     7.194480946123521,
+     685,
+     2.79170258941
+    ],
+    [
+     7.194480946123521,
+     689,
+     2.80797384541
+    ],
+    [
+     7.293035479632063,
+     693,
+     2.8323159794099997
+    ],
+    [
+     7.293035479632063,
+     697,
+     2.84792004941
+    ],
+    [
+     7.293035479632063,
+     701,
+     2.86524022041
+    ],
+    [
+     7.293035479632063,
+     705,
+     2.8801691354099996
+    ],
+    [
+     7.293035479632063,
+     709,
+     2.8969680484099998
+    ],
+    [
+     7.293035479632063,
+     713,
+     2.91506946041
+    ],
+    [
+     7.293035479632063,
+     717,
+     2.93377905741
+    ],
+    [
+     7.293035479632063,
+     721,
+     2.94922360041
+    ],
+    [
+     7.457293035479632,
+     725,
+     2.97088660841
+    ],
+    [
+     7.457293035479632,
+     729,
+     2.9892860084099997
+    ],
+    [
+     7.457293035479632,
+     733,
+     3.02712639541
+    ],
+    [
+     7.457293035479632,
+     737,
+     3.05423223041
+    ],
+    [
+     7.621550591327201,
+     741,
+     3.0873720574099996
+    ],
+    [
+     7.621550591327201,
+     745,
+     3.11238969441
+    ],
+    [
+     7.621550591327201,
+     749,
+     3.13456443341
+    ],
+    [
+     7.621550591327201,
+     753,
+     3.16314311341
+    ],
+    [
+     7.621550591327201,
+     757,
+     3.17891401141
+    ],
+    [
+     7.621550591327201,
+     761,
+     3.1995716544099997
+    ],
+    [
+     7.621550591327201,
+     765,
+     3.2141208564099997
+    ],
+    [
+     7.621550591327201,
+     769,
+     3.23613359341
+    ],
+    [
+     7.621550591327201,
+     773,
+     3.25258019841
+    ],
+    [
+     7.621550591327201,
+     777,
+     3.27302638941
+    ],
+    [
+     7.621550591327201,
+     781,
+     3.29238746241
+    ],
+    [
+     7.752956636005256,
+     785,
+     3.3111874394
+    ],
+    [
+     7.752956636005256,
+     789,
+     3.3256158463999994
+    ],
+    [
+     7.752956636005256,
+     793,
+     3.3407551423999995
+    ],
+    [
+     7.9500657030223385,
+     797,
+     3.3547966943999996
+    ],
+    [
+     7.9500657030223385,
+     801,
+     3.3669425133999997
+    ],
+    [
+     7.9500657030223385,
+     805,
+     3.3815859641699997
+    ],
+    [
+     7.9500657030223385,
+     809,
+     3.3934467611699994
+    ],
+    [
+     7.9500657030223385,
+     813,
+     3.4061149621699998
+    ],
+    [
+     7.9500657030223385,
+     817,
+     3.4218950891699995
+    ],
+    [
+     7.9500657030223385,
+     821,
+     3.4330801081699995
+    ],
+    [
+     7.9500657030223385,
+     825,
+     3.4589122441699995
+    ],
+    [
+     7.9500657030223385,
+     829,
+     3.47400060918
+    ],
+    [
+     7.9500657030223385,
+     833,
+     3.4864937601799997
+    ],
+    [
+     7.9500657030223385,
+     837,
+     3.49928484918
+    ],
+    [
+     7.9500657030223385,
+     841,
+     3.5117820471799996
+    ],
+    [
+     7.9500657030223385,
+     845,
+     3.52519079018
+    ],
+    [
+     8.015768725361367,
+     849,
+     3.53625485718
+    ],
+    [
+     8.04862023653088,
+     853,
+     3.5595131186499995
+    ],
+    [
+     8.114323258869907,
+     857,
+     3.5760148901399993
+    ],
+    [
+     8.245729303547963,
+     861,
+     3.595358950139999
+    ],
+    [
+     8.245729303547963,
+     865,
+     3.6141500181399993
+    ],
+    [
+     8.47568988173456,
+     869,
+     3.6293568411399995
+    ],
+    [
+     8.47568988173456,
+     873,
+     3.6414763671399992
+    ],
+    [
+     8.902759526938238,
+     877,
+     3.671431574139999
+    ],
+    [
+     8.902759526938238,
+     881,
+     3.7045767661399993
+    ],
+    [
+     8.935611038107753,
+     885,
+     3.7321791071399995
+    ],
+    [
+     8.935611038107753,
+     889,
+     3.7482768061399994
+    ],
+    [
+     8.935611038107753,
+     893,
+     3.7778564161399992
+    ],
+    [
+     8.935611038107753,
+     897,
+     3.8148124101399996
+    ],
+    [
+     9.00131406044678,
+     901,
+     3.8543199791399996
+    ],
+    [
+     9.00131406044678,
+     905,
+     3.8992923941399993
+    ],
+    [
+     9.494086727989487,
+     909,
+     3.9252726051399995
+    ],
+    [
+     11.76084099868594,
+     913,
+     3.9394850741399994
+    ],
+    [
+     11.76084099868594,
+     917,
+     3.9504575101399992
+    ],
+    [
+     11.76084099868594,
+     921,
+     3.9622950341399994
+    ],
+    [
+     11.85939553219448,
+     925,
+     3.9781939011399996
+    ],
+    [
+     12.12220762155059,
+     929,
+     3.9913250831399996
+    ],
+    [
+     12.253613666228645,
+     933,
+     4.006072362139999
+    ],
+    [
+     12.253613666228645,
+     937,
+     4.017243241139999
+    ],
+    [
+     12.417871222076215,
+     941,
+     4.03125029614
+    ],
+    [
+     12.417871222076215,
+     945,
+     4.045479800139999
+    ],
+    [
+     12.483574244415243,
+     949,
+     4.058034555139999
+    ],
+    [
+     12.614980289093298,
+     953,
+     4.070356748139999
+    ],
+    [
+     12.614980289093298,
+     957,
+     4.084087621139999
+    ],
+    [
+     12.614980289093298,
+     961,
+     4.097619570139999
+    ],
+    [
+     12.614980289093298,
+     965,
+     4.108846185139999
+    ],
+    [
+     12.614980289093298,
+     969,
+     4.121420973139999
+    ],
+    [
+     12.64783180026281,
+     973,
+     4.132481961139999
+    ],
+    [
+     12.64783180026281,
+     977,
+     4.145751186139999
+    ],
+    [
+     12.64783180026281,
+     981,
+     4.157066199139999
+    ],
+    [
+     12.64783180026281,
+     985,
+     4.169394669139999
+    ],
+    [
+     12.64783180026281,
+     989,
+     4.182869892139999
+    ],
+    [
+     12.64783180026281,
+     993,
+     4.196083423139999
+    ],
+    [
+     12.64783180026281,
+     997,
+     4.20719840514
+    ],
+    [
+     12.64783180026281,
+     1001,
+     4.2203719911399995
+    ],
+    [
+     12.64783180026281,
+     1005,
+     4.23401319914
+    ],
+    [
+     12.64783180026281,
+     1009,
+     4.246309846139999
+    ],
+    [
+     12.680683311432325,
+     1013,
+     4.2576248861399995
+    ],
+    [
+     12.680683311432325,
+     1017,
+     4.27128864914
+    ],
+    [
+     12.680683311432325,
+     1021,
+     4.283598251139999
+    ],
+    [
+     12.680683311432325,
+     1025,
+     4.296955539139999
+    ],
+    [
+     12.680683311432325,
+     1029,
+     4.309318504139999
+    ],
+    [
+     12.680683311432325,
+     1033,
+     4.321544263139999
+    ],
+    [
+     12.680683311432325,
+     1037,
+     4.33280146014
+    ],
+    [
+     12.713534822601838,
+     1041,
+     4.34801737714
+    ],
+    [
+     12.713534822601838,
+     1045,
+     4.36145959614
+    ],
+    [
+     12.81208935611038,
+     1049,
+     4.373886629139999
+    ],
+    [
+     12.81208935611038,
+     1053,
+     4.386949188139999
+    ],
+    [
+     12.81208935611038,
+     1057,
+     4.39901826714
+    ],
+    [
+     12.81208935611038,
+     1061,
+     4.41152602414
+    ],
+    [
+     12.910643889618921,
+     1065,
+     4.427593552139999
+    ],
+    [
+     13.370565045992116,
+     1069,
+     4.44053970314
+    ],
+    [
+     13.370565045992116,
+     1073,
+     4.45327149114
+    ],
+    [
+     13.370565045992116,
+     1077,
+     4.46643338914
+    ],
+    [
+     13.501971090670171,
+     1081,
+     4.479765857139999
+    ],
+    [
+     13.961892247043364,
+     1085,
+     4.49082770014
+    ],
+    [
+     14.224704336399475,
+     1089,
+     4.50328447014
+    ],
+    [
+     14.421813403416557,
+     1093,
+     4.51682107814
+    ],
+    [
+     14.421813403416557,
+     1097,
+     4.530883899139999
+    ],
+    [
+     14.421813403416557,
+     1101,
+     4.544829729139999
+    ],
+    [
+     14.421813403416557,
+     1105,
+     4.55977440314
+    ],
+    [
+     14.45466491458607,
+     1109,
+     4.57338091714
+    ],
+    [
+     14.45466491458607,
+     1113,
+     4.59001226614
+    ],
+    [
+     14.45466491458607,
+     1117,
+     4.60609423514
+    ],
+    [
+     14.45466491458607,
+     1121,
+     4.6211050791399995
+    ],
+    [
+     14.520367936925098,
+     1125,
+     4.63805821114
+    ],
+    [
+     14.520367936925098,
+     1129,
+     4.653970479139999
+    ],
+    [
+     14.520367936925098,
+     1133,
+     4.67677035614
+    ],
+    [
+     14.684625492772668,
+     1137,
+     4.690723215139999
+    ],
+    [
+     14.71747700394218,
+     1141,
+     4.70461570014
+    ],
+    [
+     14.71747700394218,
+     1145,
+     4.718172600139999
+    ],
+    [
+     14.88173455978975,
+     1149,
+     4.731598721139999
+    ],
+    [
+     15.013140604467806,
+     1153,
+     4.743683248139999
+    ],
+    [
+     15.013140604467806,
+     1157,
+     4.75934822114
+    ],
+    [
+     15.111695137976346,
+     1161,
+     4.774019708139999
+    ],
+    [
+     15.440210249671484,
+     1165,
+     4.80034526414
+    ],
+    [
+     15.604467805519054,
+     1169,
+     4.81677755414
+    ],
+    [
+     15.604467805519054,
+     1173,
+     4.8305220991399995
+    ],
+    [
+     15.637319316688567,
+     1177,
+     4.844732650139999
+    ],
+    [
+     16.72141918528252,
+     1181,
+     4.860064069139999
+    ],
+    [
+     17.279894875164256,
+     1185,
+     4.874425552139999
+    ],
+    [
+     17.41130091984231,
+     1189,
+     4.88689307614
+    ],
+    [
+     17.772667542706962,
+     1193,
+     4.900281574139999
+    ],
+    [
+     18.199737187910642,
+     1197,
+     4.91556369914
+    ],
+    [
+     18.659658344283837,
+     1201,
+     4.930997008139999
+    ],
+    [
+     18.922470433639948,
+     1205,
+     4.94813290714
+    ],
+    [
+     20.69645203679369,
+     1209,
+     4.9915229301399995
+    ],
+    [
+     29.204993429697765,
+     1213,
+     5.00362780214
+    ],
+    [
+     34.92115637319316,
+     1217,
+     5.01794585314
+    ]
+   ]
+  },
+  "Athlon by Aldar|3": {
+   "announce": "2024-05-09",
+   "units": 1000,
+   "bn": 4.1,
+   "first_reg_month": 2.9566360052562417,
+   "n_all": 1442,
+   "bn_all": 6.64808358168,
+   "cum": [
+    {
+     "m": 0,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 1,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 2,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 3,
+     "n": 1,
+     "bn": 0.003004125
+    },
+    {
+     "m": 4,
+     "n": 189,
+     "bn": 0.811964108
+    },
+    {
+     "m": 5,
+     "n": 657,
+     "bn": 2.772991004
+    },
+    {
+     "m": 6,
+     "n": 862,
+     "bn": 3.654746511
+    },
+    {
+     "m": 7,
+     "n": 886,
+     "bn": 3.744989556
+    },
+    {
+     "m": 8,
+     "n": 932,
+     "bn": 3.959394608
+    },
+    {
+     "m": 9,
+     "n": 1007,
+     "bn": 4.329709848
+    },
+    {
+     "m": 10,
+     "n": 1048,
+     "bn": 4.4924323585599995
+    },
+    {
+     "m": 11,
+     "n": 1209,
+     "bn": 5.278333185559999
+    },
+    {
+     "m": 12,
+     "n": 1260,
+     "bn": 5.45983310856
+    },
+    {
+     "m": 13,
+     "n": 1274,
+     "bn": 5.55228042568
+    },
+    {
+     "m": 14,
+     "n": 1293,
+     "bn": 5.62101313368
+    },
+    {
+     "m": 15,
+     "n": 1315,
+     "bn": 5.71609845968
+    },
+    {
+     "m": 16,
+     "n": 1361,
+     "bn": 6.0086762916800005
+    },
+    {
+     "m": 17,
+     "n": 1364,
+     "bn": 6.0250438636800006
+    },
+    {
+     "m": 18,
+     "n": 1373,
+     "bn": 6.09760182568
+    },
+    {
+     "m": 19,
+     "n": 1378,
+     "bn": 6.1405469766800005
+    },
+    {
+     "m": 20,
+     "n": 1385,
+     "bn": 6.18199483568
+    },
+    {
+     "m": 21,
+     "n": 1390,
+     "bn": 6.236715134680001
+    },
+    {
+     "m": 22,
+     "n": 1402,
+     "bn": 6.3797022316800005
+    },
+    {
+     "m": 23,
+     "n": 1416,
+     "bn": 6.479082468680001
+    },
+    {
+     "m": 24,
+     "n": 1424,
+     "bn": 6.54913337268
+    },
+    {
+     "m": 25,
+     "n": 1427,
+     "bn": 6.57315672968
+    },
+    {
+     "m": 26,
+     "n": 1429,
+     "bn": 6.58145175768
+    },
+    {
+     "m": 27,
+     "n": 1429,
+     "bn": 6.58145175768
+    },
+    {
+     "m": 28,
+     "n": 1435,
+     "bn": 6.61113431168
+    },
+    {
+     "m": 29,
+     "n": 1442,
+     "bn": 6.64808358168
+    },
+    {
+     "m": 30,
+     "n": 1442,
+     "bn": 6.64808358168
+    },
+    {
+     "m": 31,
+     "n": 1442,
+     "bn": 6.64808358168
+    },
+    {
+     "m": 32,
+     "n": 1442,
+     "bn": 6.64808358168
+    },
+    {
+     "m": 33,
+     "n": 1442,
+     "bn": 6.64808358168
+    },
+    {
+     "m": 34,
+     "n": 1442,
+     "bn": 6.64808358168
+    },
+    {
+     "m": 35,
+     "n": 1442,
+     "bn": 6.64808358168
+    },
+    {
+     "m": 36,
+     "n": 1442,
+     "bn": 6.64808358168
+    }
+   ],
+   "at12": {
+    "m": 12,
+    "n": 1260,
+    "bn": 5.45983310856
+   },
+   "psf_med": 1364.5361720078747,
+   "months_since": 29.23784494086728,
+   "curve": [
+    [
+     2.9566360052562417,
+     1,
+     0.003004125
+    ],
+    [
+     3.1208935611038107,
+     5,
+     0.017528298
+    ],
+    [
+     3.1865965834428382,
+     9,
+     0.032241462
+    ],
+    [
+     3.1865965834428382,
+     13,
+     0.045767874
+    ],
+    [
+     3.1865965834428382,
+     17,
+     0.061435384
+    ],
+    [
+     3.1865965834428382,
+     21,
+     0.074943742
+    ],
+    [
+     3.1865965834428382,
+     25,
+     0.088500296
+    ],
+    [
+     3.219448094612352,
+     29,
+     0.102909682
+    ],
+    [
+     3.219448094612352,
+     33,
+     0.114888498
+    ],
+    [
+     3.219448094612352,
+     37,
+     0.128823398
+    ],
+    [
+     3.219448094612352,
+     41,
+     0.142231655
+    ],
+    [
+     3.219448094612352,
+     45,
+     0.1545889
+    ],
+    [
+     3.252299605781866,
+     49,
+     0.16776247
+    ],
+    [
+     3.252299605781866,
+     53,
+     0.181135422
+    ],
+    [
+     3.252299605781866,
+     57,
+     0.194241439
+    ],
+    [
+     3.350854139290407,
+     61,
+     0.2089674
+    ],
+    [
+     3.350854139290407,
+     65,
+     0.224423262
+    ],
+    [
+     3.383705650459921,
+     69,
+     0.236799562
+    ],
+    [
+     3.383705650459921,
+     73,
+     0.249903384
+    ],
+    [
+     3.383705650459921,
+     77,
+     0.263281012
+    ],
+    [
+     3.416557161629435,
+     81,
+     0.275657412
+    ],
+    [
+     3.416557161629435,
+     85,
+     0.289878108
+    ],
+    [
+     3.5808147174770038,
+     89,
+     0.305323559
+    ],
+    [
+     3.5808147174770038,
+     93,
+     0.318483821
+    ],
+    [
+     3.6465177398160313,
+     97,
+     0.337442413
+    ],
+    [
+     3.6465177398160313,
+     101,
+     0.353994275
+    ],
+    [
+     3.6465177398160313,
+     105,
+     0.376709827
+    ],
+    [
+     3.6465177398160313,
+     109,
+     0.390708823
+    ],
+    [
+     3.6465177398160313,
+     113,
+     0.407944064
+    ],
+    [
+     3.6465177398160313,
+     117,
+     0.422327511
+    ],
+    [
+     3.679369250985545,
+     121,
+     0.445476643
+    ],
+    [
+     3.679369250985545,
+     125,
+     0.467571254
+    ],
+    [
+     3.679369250985545,
+     129,
+     0.48699636
+    ],
+    [
+     3.679369250985545,
+     133,
+     0.507698347
+    ],
+    [
+     3.712220762155059,
+     137,
+     0.529059508
+    ],
+    [
+     3.8107752956636003,
+     141,
+     0.546459935
+    ],
+    [
+     3.8107752956636003,
+     145,
+     0.570945465
+    ],
+    [
+     3.8107752956636003,
+     149,
+     0.589897391
+    ],
+    [
+     3.843626806833114,
+     153,
+     0.619768782
+    ],
+    [
+     3.843626806833114,
+     157,
+     0.639885816
+    ],
+    [
+     3.876478318002628,
+     161,
+     0.661354738
+    ],
+    [
+     3.876478318002628,
+     165,
+     0.684931934
+    ],
+    [
+     3.876478318002628,
+     169,
+     0.708598359
+    ],
+    [
+     3.876478318002628,
+     173,
+     0.733149294
+    ],
+    [
+     3.876478318002628,
+     177,
+     0.754323502
+    ],
+    [
+     3.876478318002628,
+     181,
+     0.773658675
+    ],
+    [
+     3.876478318002628,
+     185,
+     0.792469397
+    ],
+    [
+     3.9093298291721417,
+     189,
+     0.811964108
+    ],
+    [
+     4.040735873850197,
+     193,
+     0.826102903
+    ],
+    [
+     4.040735873850197,
+     197,
+     0.839393061
+    ],
+    [
+     4.040735873850197,
+     201,
+     0.85989878
+    ],
+    [
+     4.073587385019711,
+     205,
+     0.874071348
+    ],
+    [
+     4.106438896189225,
+     209,
+     0.886814562
+    ],
+    [
+     4.106438896189225,
+     213,
+     0.902097438
+    ],
+    [
+     4.106438896189225,
+     217,
+     0.914588993
+    ],
+    [
+     4.106438896189225,
+     221,
+     0.926352336
+    ],
+    [
+     4.139290407358739,
+     225,
+     0.944624947
+    ],
+    [
+     4.1721419185282524,
+     229,
+     0.960752563
+    ],
+    [
+     4.1721419185282524,
+     233,
+     0.979025688
+    ],
+    [
+     4.204993429697766,
+     237,
+     0.994001221
+    ],
+    [
+     4.204993429697766,
+     241,
+     1.007347549
+    ],
+    [
+     4.204993429697766,
+     245,
+     1.020401006
+    ],
+    [
+     4.270696452036794,
+     249,
+     1.034541859
+    ],
+    [
+     4.270696452036794,
+     253,
+     1.049920428
+    ],
+    [
+     4.270696452036794,
+     257,
+     1.068817865
+    ],
+    [
+     4.270696452036794,
+     261,
+     1.082950238
+    ],
+    [
+     4.270696452036794,
+     265,
+     1.09981083
+    ],
+    [
+     4.303547963206308,
+     269,
+     1.113835471
+    ],
+    [
+     4.303547963206308,
+     273,
+     1.131038441
+    ],
+    [
+     4.303547963206308,
+     277,
+     1.148063022
+    ],
+    [
+     4.303547963206308,
+     281,
+     1.167327247
+    ],
+    [
+     4.303547963206308,
+     285,
+     1.185337179
+    ],
+    [
+     4.336399474375821,
+     289,
+     1.198084802
+    ],
+    [
+     4.336399474375821,
+     293,
+     1.221411152
+    ],
+    [
+     4.336399474375821,
+     297,
+     1.232834115
+    ],
+    [
+     4.336399474375821,
+     301,
+     1.247681967
+    ],
+    [
+     4.336399474375821,
+     305,
+     1.267829273
+    ],
+    [
+     4.336399474375821,
+     309,
+     1.291257193
+    ],
+    [
+     4.336399474375821,
+     313,
+     1.306156706
+    ],
+    [
+     4.369250985545335,
+     317,
+     1.320863243
+    ],
+    [
+     4.369250985545335,
+     321,
+     1.341306514
+    ],
+    [
+     4.369250985545335,
+     325,
+     1.359864484
+    ],
+    [
+     4.369250985545335,
+     329,
+     1.37492243
+    ],
+    [
+     4.369250985545335,
+     333,
+     1.394639854
+    ],
+    [
+     4.369250985545335,
+     337,
+     1.410561096
+    ],
+    [
+     4.369250985545335,
+     341,
+     1.428072107
+    ],
+    [
+     4.369250985545335,
+     345,
+     1.442241605
+    ],
+    [
+     4.369250985545335,
+     349,
+     1.46149382
+    ],
+    [
+     4.369250985545335,
+     353,
+     1.47501151
+    ],
+    [
+     4.402102496714849,
+     357,
+     1.48793733
+    ],
+    [
+     4.402102496714849,
+     361,
+     1.503082125
+    ],
+    [
+     4.402102496714849,
+     365,
+     1.515277122
+    ],
+    [
+     4.402102496714849,
+     369,
+     1.528065971
+    ],
+    [
+     4.402102496714849,
+     373,
+     1.541136838
+    ],
+    [
+     4.402102496714849,
+     377,
+     1.553902847
+    ],
+    [
+     4.402102496714849,
+     381,
+     1.566705356
+    ],
+    [
+     4.402102496714849,
+     385,
+     1.579537079
+    ],
+    [
+     4.467805519053877,
+     389,
+     1.600790811
+    ],
+    [
+     4.467805519053877,
+     393,
+     1.621786007
+    ],
+    [
+     4.467805519053877,
+     397,
+     1.637008395
+    ],
+    [
+     4.50065703022339,
+     401,
+     1.658274856
+    ],
+    [
+     4.50065703022339,
+     405,
+     1.679586287
+    ],
+    [
+     4.533508541392904,
+     409,
+     1.692317328
+    ],
+    [
+     4.533508541392904,
+     413,
+     1.705158463
+    ],
+    [
+     4.533508541392904,
+     417,
+     1.721652251
+    ],
+    [
+     4.533508541392904,
+     421,
+     1.734060483
+    ],
+    [
+     4.533508541392904,
+     425,
+     1.750893761
+    ],
+    [
+     4.566360052562418,
+     429,
+     1.76556688
+    ],
+    [
+     4.566360052562418,
+     433,
+     1.780058684
+    ],
+    [
+     4.566360052562418,
+     437,
+     1.796032637
+    ],
+    [
+     4.566360052562418,
+     441,
+     1.811728414
+    ],
+    [
+     4.566360052562418,
+     445,
+     1.830004794
+    ],
+    [
+     4.566360052562418,
+     449,
+     1.846062786
+    ],
+    [
+     4.599211563731932,
+     453,
+     1.863174418
+    ],
+    [
+     4.599211563731932,
+     457,
+     1.875991345
+    ],
+    [
+     4.6320630749014455,
+     461,
+     1.889482082
+    ],
+    [
+     4.6320630749014455,
+     465,
+     1.902901289
+    ],
+    [
+     4.730617608409987,
+     469,
+     1.923825012
+    ],
+    [
+     4.730617608409987,
+     473,
+     1.952039055
+    ],
+    [
+     4.730617608409987,
+     477,
+     1.972904207
+    ],
+    [
+     4.763469119579501,
+     481,
+     1.993108516
+    ],
+    [
+     4.763469119579501,
+     485,
+     2.020695224
+    ],
+    [
+     4.763469119579501,
+     489,
+     2.043367817
+    ],
+    [
+     4.763469119579501,
+     493,
+     2.061526474
+    ],
+    [
+     4.763469119579501,
+     497,
+     2.081536776
+    ],
+    [
+     4.763469119579501,
+     501,
+     2.096664096
+    ],
+    [
+     4.763469119579501,
+     505,
+     2.113525716
+    ],
+    [
+     4.763469119579501,
+     509,
+     2.131124003
+    ],
+    [
+     4.763469119579501,
+     513,
+     2.145939893
+    ],
+    [
+     4.7963206307490145,
+     517,
+     2.159220115
+    ],
+    [
+     4.7963206307490145,
+     521,
+     2.180109029
+    ],
+    [
+     4.7963206307490145,
+     525,
+     2.197722159
+    ],
+    [
+     4.7963206307490145,
+     529,
+     2.215470088
+    ],
+    [
+     4.7963206307490145,
+     533,
+     2.230524751
+    ],
+    [
+     4.7963206307490145,
+     537,
+     2.247300639
+    ],
+    [
+     4.829172141918528,
+     541,
+     2.263201795
+    ],
+    [
+     4.829172141918528,
+     545,
+     2.27883136
+    ],
+    [
+     4.829172141918528,
+     549,
+     2.292267237
+    ],
+    [
+     4.829172141918528,
+     553,
+     2.309165717
+    ],
+    [
+     4.829172141918528,
+     557,
+     2.32220603
+    ],
+    [
+     4.829172141918528,
+     561,
+     2.338726945
+    ],
+    [
+     4.862023653088042,
+     565,
+     2.372037733
+    ],
+    [
+     4.862023653088042,
+     569,
+     2.401277689
+    ],
+    [
+     4.862023653088042,
+     573,
+     2.439127186
+    ],
+    [
+     4.862023653088042,
+     577,
+     2.454832766
+    ],
+    [
+     4.862023653088042,
+     581,
+     2.468843693
+    ],
+    [
+     4.862023653088042,
+     585,
+     2.484342957
+    ],
+    [
+     4.894875164257556,
+     589,
+     2.500283419
+    ],
+    [
+     4.9605781865965834,
+     593,
+     2.515249459
+    ],
+    [
+     4.9605781865965834,
+     597,
+     2.530624839
+    ],
+    [
+     4.9605781865965834,
+     601,
+     2.544516382
+    ],
+    [
+     4.9605781865965834,
+     605,
+     2.561416289
+    ],
+    [
+     4.9605781865965834,
+     609,
+     2.577524032
+    ],
+    [
+     4.9605781865965834,
+     613,
+     2.598306977
+    ],
+    [
+     4.9605781865965834,
+     617,
+     2.615155971
+    ],
+    [
+     4.9605781865965834,
+     621,
+     2.62894005
+    ],
+    [
+     4.9605781865965834,
+     625,
+     2.646456606
+    ],
+    [
+     4.9605781865965834,
+     629,
+     2.662886715
+    ],
+    [
+     4.9605781865965834,
+     633,
+     2.67700478
+    ],
+    [
+     4.9605781865965834,
+     637,
+     2.691070867
+    ],
+    [
+     4.993429697766097,
+     641,
+     2.704437711
+    ],
+    [
+     4.993429697766097,
+     645,
+     2.721213143
+    ],
+    [
+     4.993429697766097,
+     649,
+     2.737813072
+    ],
+    [
+     4.993429697766097,
+     653,
+     2.758705044
+    ],
+    [
+     4.993429697766097,
+     657,
+     2.772991004
+    ],
+    [
+     5.059132720105125,
+     661,
+     2.794519582
+    ],
+    [
+     5.059132720105125,
+     665,
+     2.808035746
+    ],
+    [
+     5.059132720105125,
+     669,
+     2.821377138
+    ],
+    [
+     5.059132720105125,
+     673,
+     2.835425069
+    ],
+    [
+     5.059132720105125,
+     677,
+     2.848379091
+    ],
+    [
+     5.059132720105125,
+     681,
+     2.861602221
+    ],
+    [
+     5.059132720105125,
+     685,
+     2.874400438
+    ],
+    [
+     5.059132720105125,
+     689,
+     2.88948992
+    ],
+    [
+     5.091984231274639,
+     693,
+     2.903261451
+    ],
+    [
+     5.091984231274639,
+     697,
+     2.918309611
+    ],
+    [
+     5.124835742444152,
+     701,
+     2.933868109
+    ],
+    [
+     5.19053876478318,
+     705,
+     2.95241019
+    ],
+    [
+     5.19053876478318,
+     709,
+     2.979737684
+    ],
+    [
+     5.19053876478318,
+     713,
+     2.99992557
+    ],
+    [
+     5.19053876478318,
+     717,
+     3.014855868
+    ],
+    [
+     5.19053876478318,
+     721,
+     3.03423761
+    ],
+    [
+     5.19053876478318,
+     725,
+     3.052986444
+    ],
+    [
+     5.19053876478318,
+     729,
+     3.07270628
+    ],
+    [
+     5.19053876478318,
+     733,
+     3.091202821
+    ],
+    [
+     5.223390275952694,
+     737,
+     3.10765521
+    ],
+    [
+     5.223390275952694,
+     741,
+     3.129106863
+    ],
+    [
+     5.223390275952694,
+     745,
+     3.142797756
+    ],
+    [
+     5.223390275952694,
+     749,
+     3.158874421
+    ],
+    [
+     5.223390275952694,
+     753,
+     3.1764556
+    ],
+    [
+     5.223390275952694,
+     757,
+     3.19031128
+    ],
+    [
+     5.256241787122208,
+     761,
+     3.208292239
+    ],
+    [
+     5.256241787122208,
+     765,
+     3.225187838
+    ],
+    [
+     5.256241787122208,
+     769,
+     3.240710637
+    ],
+    [
+     5.256241787122208,
+     773,
+     3.25899212
+    ],
+    [
+     5.256241787122208,
+     777,
+     3.276634005
+    ],
+    [
+     5.256241787122208,
+     781,
+     3.307173773
+    ],
+    [
+     5.256241787122208,
+     785,
+     3.328224546
+    ],
+    [
+     5.289093298291721,
+     789,
+     3.346353307
+    ],
+    [
+     5.289093298291721,
+     793,
+     3.362334041
+    ],
+    [
+     5.289093298291721,
+     797,
+     3.382341376
+    ],
+    [
+     5.289093298291721,
+     801,
+     3.402719876
+    ],
+    [
+     5.321944809461235,
+     805,
+     3.426464277
+    ],
+    [
+     5.387647831800263,
+     809,
+     3.449529905
+    ],
+    [
+     5.4204993429697765,
+     813,
+     3.462041706
+    ],
+    [
+     5.4204993429697765,
+     817,
+     3.479411582
+    ],
+    [
+     5.4204993429697765,
+     821,
+     3.494376328
+    ],
+    [
+     5.4204993429697765,
+     825,
+     3.510591484
+    ],
+    [
+     5.4204993429697765,
+     829,
+     3.526218257
+    ],
+    [
+     5.486202365308804,
+     833,
+     3.540315066
+    ],
+    [
+     5.683311432325887,
+     837,
+     3.554274001
+    ],
+    [
+     5.683311432325887,
+     841,
+     3.568231418
+    ],
+    [
+     5.683311432325887,
+     845,
+     3.58353873
+    ],
+    [
+     5.683311432325887,
+     849,
+     3.59962438
+    ],
+    [
+     5.716162943495401,
+     853,
+     3.612858084
+    ],
+    [
+     5.88042049934297,
+     857,
+     3.63738146
+    ],
+    [
+     5.913272010512483,
+     861,
+     3.651523592
+    ],
+    [
+     6.176084099868594,
+     865,
+     3.665018598
+    ],
+    [
+     6.176084099868594,
+     869,
+     3.678973887
+    ],
+    [
+     6.340341655716163,
+     873,
+     3.693738998
+    ],
+    [
+     6.340341655716163,
+     877,
+     3.711771362
+    ],
+    [
+     6.603153745072273,
+     881,
+     3.726345403
+    ],
+    [
+     6.931668856767411,
+     885,
+     3.740346497
+    ],
+    [
+     7.09592641261498,
+     889,
+     3.760976552
+    ],
+    [
+     7.1616294349540075,
+     893,
+     3.784416783
+    ],
+    [
+     7.260183968462549,
+     897,
+     3.797422012
+    ],
+    [
+     7.260183968462549,
+     901,
+     3.812942284
+    ],
+    [
+     7.260183968462549,
+     905,
+     3.828322854
+    ],
+    [
+     7.260183968462549,
+     909,
+     3.844601994
+    ],
+    [
+     7.293035479632063,
+     913,
+     3.869229413
+    ],
+    [
+     7.293035479632063,
+     917,
+     3.893771247
+    ],
+    [
+     7.3258869908015765,
+     921,
+     3.911037199
+    ],
+    [
+     7.391590013140604,
+     925,
+     3.930034301
+    ],
+    [
+     7.982917214191852,
+     929,
+     3.945990236
+    ],
+    [
+     8.015768725361367,
+     933,
+     3.968898373
+    ],
+    [
+     8.377135348226018,
+     937,
+     3.986879972
+    ],
+    [
+     8.409986859395532,
+     941,
+     4.019302925
+    ],
+    [
+     8.409986859395532,
+     945,
+     4.038515499
+    ],
+    [
+     8.409986859395532,
+     949,
+     4.067035866
+    ],
+    [
+     8.409986859395532,
+     953,
+     4.097449484
+    ],
+    [
+     8.409986859395532,
+     957,
+     4.116728317
+    ],
+    [
+     8.409986859395532,
+     961,
+     4.139558883
+    ],
+    [
+     8.409986859395532,
+     965,
+     4.164627521
+    ],
+    [
+     8.442838370565045,
+     969,
+     4.183368008
+    ],
+    [
+     8.541392904073588,
+     973,
+     4.202957808
+    ],
+    [
+     8.639947437582128,
+     977,
+     4.224052471
+    ],
+    [
+     8.705650459921156,
+     981,
+     4.236653526
+    ],
+    [
+     8.869908015768726,
+     985,
+     4.249171754
+    ],
+    [
+     8.869908015768726,
+     989,
+     4.26248089
+    ],
+    [
+     8.869908015768726,
+     993,
+     4.276540669
+    ],
+    [
+     8.902759526938238,
+     997,
+     4.291722581
+    ],
+    [
+     8.902759526938238,
+     1001,
+     4.305959566
+    ],
+    [
+     8.902759526938238,
+     1005,
+     4.321845474
+    ],
+    [
+     9.132720105124836,
+     1009,
+     4.337718763
+    ],
+    [
+     9.198423127463863,
+     1013,
+     4.358042985
+    ],
+    [
+     9.198423127463863,
+     1017,
+     4.375948638
+    ],
+    [
+     9.231274638633376,
+     1021,
+     4.389403966
+    ],
+    [
+     9.296977660972404,
+     1025,
+     4.401268862
+    ],
+    [
+     9.395532194480946,
+     1029,
+     4.419381874
+    ],
+    [
+     9.42838370565046,
+     1033,
+     4.433421388
+    ],
+    [
+     9.526938239159001,
+     1037,
+     4.452158441
+    ],
+    [
+     9.85545335085414,
+     1041,
+     4.46786519956
+    ],
+    [
+     9.888304862023652,
+     1045,
+     4.481162532560001
+    ],
+    [
+     10.019710906701707,
+     1049,
+     4.49561832256
+    ],
+    [
+     10.019710906701707,
+     1053,
+     4.51032885656
+    ],
+    [
+     10.052562417871222,
+     1057,
+     4.52692921856
+    ],
+    [
+     10.052562417871222,
+     1061,
+     4.5395427035600004
+    ],
+    [
+     10.085413929040735,
+     1065,
+     4.553970667560001
+    ],
+    [
+     10.249671484888305,
+     1069,
+     4.56939806156
+    ],
+    [
+     10.249671484888305,
+     1073,
+     4.58814126856
+    ],
+    [
+     10.249671484888305,
+     1077,
+     4.6095784575600005
+    ],
+    [
+     10.249671484888305,
+     1081,
+     4.63391246856
+    ],
+    [
+     10.282522996057818,
+     1085,
+     4.66246876756
+    ],
+    [
+     10.282522996057818,
+     1089,
+     4.67652100956
+    ],
+    [
+     10.282522996057818,
+     1093,
+     4.69146068656
+    ],
+    [
+     10.348226018396845,
+     1097,
+     4.70856063356
+    ],
+    [
+     10.348226018396845,
+     1101,
+     4.746909206560001
+    ],
+    [
+     10.348226018396845,
+     1105,
+     4.76761220756
+    ],
+    [
+     10.348226018396845,
+     1109,
+     4.791681304560001
+    ],
+    [
+     10.348226018396845,
+     1113,
+     4.80795487756
+    ],
+    [
+     10.38107752956636,
+     1117,
+     4.8235326165600005
+    ],
+    [
+     10.4796320630749,
+     1121,
+     4.839944221560001
+    ],
+    [
+     10.4796320630749,
+     1125,
+     4.856599790560001
+    ],
+    [
+     10.512483574244415,
+     1129,
+     4.8712687615600005
+    ],
+    [
+     10.775295663600525,
+     1133,
+     4.893840385560001
+    ],
+    [
+     10.775295663600525,
+     1137,
+     4.917249823560001
+    ],
+    [
+     10.775295663600525,
+     1141,
+     4.95561602356
+    ],
+    [
+     10.775295663600525,
+     1145,
+     4.993100266560001
+    ],
+    [
+     10.775295663600525,
+     1149,
+     5.029238177560001
+    ],
+    [
+     10.775295663600525,
+     1153,
+     5.06319177656
+    ],
+    [
+     10.808147174770038,
+     1157,
+     5.0925826155600005
+    ],
+    [
+     10.939553219448094,
+     1161,
+     5.10717546656
+    ],
+    [
+     10.939553219448094,
+     1165,
+     5.12167636956
+    ],
+    [
+     10.939553219448094,
+     1169,
+     5.13660167356
+    ],
+    [
+     10.939553219448094,
+     1173,
+     5.1510236355600005
+    ],
+    [
+     10.939553219448094,
+     1177,
+     5.165467969560001
+    ],
+    [
+     10.939553219448094,
+     1181,
+     5.17989118756
+    ],
+    [
+     10.939553219448094,
+     1185,
+     5.19417790456
+    ],
+    [
+     10.939553219448094,
+     1189,
+     5.2088062735600005
+    ],
+    [
+     10.939553219448094,
+     1193,
+     5.222668539560001
+    ],
+    [
+     10.939553219448094,
+     1197,
+     5.23724559756
+    ],
+    [
+     10.939553219448094,
+     1201,
+     5.25170793856
+    ],
+    [
+     10.939553219448094,
+     1205,
+     5.26504461656
+    ],
+    [
+     10.972404730617608,
+     1209,
+     5.27833318556
+    ],
+    [
+     11.005256241787121,
+     1213,
+     5.29175763056
+    ],
+    [
+     11.038107752956636,
+     1217,
+     5.3071399795600005
+    ],
+    [
+     11.202365308804204,
+     1221,
+     5.32170354756
+    ],
+    [
+     11.268068331143231,
+     1225,
+     5.33642021456
+    ],
+    [
+     11.300919842312746,
+     1229,
+     5.351453059560001
+    ],
+    [
+     11.399474375821287,
+     1233,
+     5.3659662935600005
+    ],
+    [
+     11.465177398160314,
+     1237,
+     5.38073376256
+    ],
+    [
+     11.498028909329829,
+     1241,
+     5.39506509056
+    ],
+    [
+     11.629434954007884,
+     1245,
+     5.4086314175600005
+    ],
+    [
+     11.662286465177397,
+     1249,
+     5.422178300560001
+    ],
+    [
+     11.85939553219448,
+     1253,
+     5.43573884556
+    ],
+    [
+     11.925098554533507,
+     1257,
+     5.44838208056
+    ],
+    [
+     12.155059132720105,
+     1261,
+     5.46307745356
+    ],
+    [
+     12.54927726675427,
+     1265,
+     5.47652374156
+    ],
+    [
+     12.582128777923783,
+     1269,
+     5.50117781668
+    ],
+    [
+     12.779237844940866,
+     1273,
+     5.538541228680001
+    ],
+    [
+     13.074901445466491,
+     1277,
+     5.56353414568
+    ],
+    [
+     13.140604467805518,
+     1281,
+     5.5776507976800005
+    ],
+    [
+     13.272010512483574,
+     1285,
+     5.59224483068
+    ],
+    [
+     13.272010512483574,
+     1289,
+     5.606549445680001
+    ],
+    [
+     13.699080157687254,
+     1293,
+     5.62101313368
+    ],
+    [
+     14.060446780551905,
+     1297,
+     5.63454662268
+    ],
+    [
+     14.45466491458607,
+     1301,
+     5.65253739268
+    ],
+    [
+     14.914586070959263,
+     1305,
+     5.68161920168
+    ],
+    [
+     14.914586070959263,
+     1309,
+     5.69504338568
+    ],
+    [
+     14.914586070959263,
+     1313,
+     5.7077909706800005
+    ],
+    [
+     15.111695137976346,
+     1317,
+     5.72394641268
+    ],
+    [
+     15.111695137976346,
+     1321,
+     5.74942017568
+    ],
+    [
+     15.308804204993429,
+     1325,
+     5.76990547068
+    ],
+    [
+     15.308804204993429,
+     1329,
+     5.80113347368
+    ],
+    [
+     15.308804204993429,
+     1333,
+     5.82704208068
+    ],
+    [
+     15.407358738501971,
+     1337,
+     5.841854183680001
+    ],
+    [
+     15.407358738501971,
+     1341,
+     5.85542239668
+    ],
+    [
+     15.440210249671484,
+     1345,
+     5.871064700680001
+    ],
+    [
+     15.538764783180026,
+     1349,
+     5.88458193468
+    ],
+    [
+     15.801576872536137,
+     1353,
+     5.919603110680001
+    ],
+    [
+     15.801576872536137,
+     1357,
+     5.964987095680001
+    ],
+    [
+     15.83442838370565,
+     1361,
+     6.0086762916800005
+    ],
+    [
+     17.509855453350852,
+     1365,
+     6.03556220768
+    ],
+    [
+     17.641261498028907,
+     1369,
+     6.07277384468
+    ],
+    [
+     17.706964520367936,
+     1373,
+     6.09760182568
+    ],
+    [
+     18.988173455978973,
+     1377,
+     6.12636408368
+    ],
+    [
+     19.11957950065703,
+     1381,
+     6.15753143568
+    ],
+    [
+     19.97371879106439,
+     1385,
+     6.18199483568
+    ],
+    [
+     20.2365308804205,
+     1389,
+     6.22435070668
+    ],
+    [
+     21.517739816031536,
+     1393,
+     6.271058051680001
+    ],
+    [
+     21.55059132720105,
+     1397,
+     6.31843266868
+    ],
+    [
+     21.55059132720105,
+     1401,
+     6.36906607768
+    ],
+    [
+     22.207621550591327,
+     1405,
+     6.39945734868
+    ],
+    [
+     22.24047306176084,
+     1409,
+     6.4226034076800005
+    ],
+    [
+     22.766097240473062,
+     1413,
+     6.46021875368
+    ],
+    [
+     23.028909329829172,
+     1417,
+     6.48964783468
+    ],
+    [
+     23.19316688567674,
+     1421,
+     6.53036054668
+    ],
+    [
+     24.31011826544021,
+     1425,
+     6.559519320680001
+    ],
+    [
+     25.657030223390276,
+     1429,
+     6.58145175768
+    ],
+    [
+     27.33245729303548,
+     1433,
+     6.6034525336800005
+    ],
+    [
+     28.318002628120894,
+     1437,
+     6.62963410468
+    ],
+    [
+     28.876478318002626,
+     1441,
+     6.64526072768
+    ]
+   ]
+  },
+  "The Wilds|3": {
+   "announce": "2025-03-05",
+   "units": 734,
+   "bn": 5.0,
+   "first_reg_month": 3.679369250985545,
+   "n_all": 893,
+   "bn_all": 6.257224643850001,
+   "cum": [
+    {
+     "m": 0,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 1,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 2,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 3,
+     "n": 0,
+     "bn": 0.0
+    },
+    {
+     "m": 4,
+     "n": 114,
+     "bn": 0.805329125
+    },
+    {
+     "m": 5,
+     "n": 716,
+     "bn": 4.90457119985
+    },
+    {
+     "m": 6,
+     "n": 793,
+     "bn": 5.40768456185
+    },
+    {
+     "m": 7,
+     "n": 802,
+     "bn": 5.46322522285
+    },
+    {
+     "m": 8,
+     "n": 805,
+     "bn": 5.483502869850001
+    },
+    {
+     "m": 9,
+     "n": 807,
+     "bn": 5.49447556485
+    },
+    {
+     "m": 10,
+     "n": 807,
+     "bn": 5.49447556485
+    },
+    {
+     "m": 11,
+     "n": 807,
+     "bn": 5.49447556485
+    },
+    {
+     "m": 12,
+     "n": 851,
+     "bn": 5.88256037885
+    },
+    {
+     "m": 13,
+     "n": 864,
+     "bn": 5.96855464185
+    },
+    {
+     "m": 14,
+     "n": 876,
+     "bn": 6.055413751850001
+    },
+    {
+     "m": 15,
+     "n": 882,
+     "bn": 6.145221768850001
+    },
+    {
+     "m": 16,
+     "n": 885,
+     "bn": 6.20544833685
+    },
+    {
+     "m": 17,
+     "n": 889,
+     "bn": 6.23000426885
+    },
+    {
+     "m": 18,
+     "n": 889,
+     "bn": 6.23000426885
+    },
+    {
+     "m": 19,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 20,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 21,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 22,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 23,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 24,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 25,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 26,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 27,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 28,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 29,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 30,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 31,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 32,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 33,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 34,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 35,
+     "n": 893,
+     "bn": 6.257224643850001
+    },
+    {
+     "m": 36,
+     "n": 893,
+     "bn": 6.257224643850001
+    }
+   ],
+   "at12": {
+    "m": 12,
+    "n": 851,
+    "bn": 5.88256037885
+   },
+   "psf_med": 1843.1415875821112,
+   "months_since": 19.38239159001314,
+   "curve": [
+    [
+     3.679369250985545,
+     1,
+     0.0051325
+    ],
+    [
+     3.679369250985545,
+     5,
+     0.0396739
+    ],
+    [
+     3.679369250985545,
+     9,
+     0.075328252
+    ],
+    [
+     3.679369250985545,
+     13,
+     0.100026421
+    ],
+    [
+     3.679369250985545,
+     17,
+     0.12498515
+    ],
+    [
+     3.712220762155059,
+     21,
+     0.157189375
+    ],
+    [
+     3.843626806833114,
+     25,
+     0.18514703
+    ],
+    [
+     3.876478318002628,
+     29,
+     0.210765768
+    ],
+    [
+     3.876478318002628,
+     33,
+     0.248846022
+    ],
+    [
+     3.876478318002628,
+     37,
+     0.290859679
+    ],
+    [
+     3.876478318002628,
+     41,
+     0.330728202
+    ],
+    [
+     3.9093298291721417,
+     45,
+     0.366459104
+    ],
+    [
+     3.9093298291721417,
+     49,
+     0.391555557
+    ],
+    [
+     3.9750328515111693,
+     53,
+     0.416178392
+    ],
+    [
+     3.9750328515111693,
+     57,
+     0.440684169
+    ],
+    [
+     3.9750328515111693,
+     61,
+     0.464570068
+    ],
+    [
+     3.9750328515111693,
+     65,
+     0.490817238
+    ],
+    [
+     3.9750328515111693,
+     69,
+     0.512870672
+    ],
+    [
+     3.9750328515111693,
+     73,
+     0.537054328
+    ],
+    [
+     3.9750328515111693,
+     77,
+     0.562378094
+    ],
+    [
+     3.9750328515111693,
+     81,
+     0.585462881
+    ],
+    [
+     3.9750328515111693,
+     85,
+     0.618044406
+    ],
+    [
+     3.9750328515111693,
+     89,
+     0.643779432
+    ],
+    [
+     3.9750328515111693,
+     93,
+     0.671330248
+    ],
+    [
+     3.9750328515111693,
+     97,
+     0.699746831
+    ],
+    [
+     3.9750328515111693,
+     101,
+     0.725428759
+    ],
+    [
+     3.9750328515111693,
+     105,
+     0.747915763
+    ],
+    [
+     3.9750328515111693,
+     109,
+     0.771050706
+    ],
+    [
+     3.9750328515111693,
+     113,
+     0.797506631
+    ],
+    [
+     4.073587385019711,
+     117,
+     0.823489717
+    ],
+    [
+     4.073587385019711,
+     121,
+     0.859301066
+    ],
+    [
+     4.073587385019711,
+     125,
+     0.882469149
+    ],
+    [
+     4.073587385019711,
+     129,
+     0.909905174
+    ],
+    [
+     4.073587385019711,
+     133,
+     0.933388407
+    ],
+    [
+     4.073587385019711,
+     137,
+     0.958058441
+    ],
+    [
+     4.073587385019711,
+     141,
+     0.984235005
+    ],
+    [
+     4.073587385019711,
+     145,
+     1.012313532
+    ],
+    [
+     4.073587385019711,
+     149,
+     1.034942738
+    ],
+    [
+     4.073587385019711,
+     153,
+     1.05969826
+    ],
+    [
+     4.073587385019711,
+     157,
+     1.083234549
+    ],
+    [
+     4.073587385019711,
+     161,
+     1.109027861
+    ],
+    [
+     4.073587385019711,
+     165,
+     1.13639813
+    ],
+    [
+     4.073587385019711,
+     169,
+     1.164105681
+    ],
+    [
+     4.073587385019711,
+     173,
+     1.192438077
+    ],
+    [
+     4.073587385019711,
+     177,
+     1.219551323
+    ],
+    [
+     4.106438896189225,
+     181,
+     1.248060423
+    ],
+    [
+     4.106438896189225,
+     185,
+     1.27429291
+    ],
+    [
+     4.106438896189225,
+     189,
+     1.302581723
+    ],
+    [
+     4.106438896189225,
+     193,
+     1.327970368
+    ],
+    [
+     4.106438896189225,
+     197,
+     1.356614764
+    ],
+    [
+     4.106438896189225,
+     201,
+     1.388043418
+    ],
+    [
+     4.106438896189225,
+     205,
+     1.416053494
+    ],
+    [
+     4.106438896189225,
+     209,
+     1.444469557
+    ],
+    [
+     4.106438896189225,
+     213,
+     1.473391471
+    ],
+    [
+     4.106438896189225,
+     217,
+     1.500921097
+    ],
+    [
+     4.106438896189225,
+     221,
+     1.52702992
+    ],
+    [
+     4.106438896189225,
+     225,
+     1.552101304
+    ],
+    [
+     4.106438896189225,
+     229,
+     1.57896713
+    ],
+    [
+     4.106438896189225,
+     233,
+     1.606157197
+    ],
+    [
+     4.106438896189225,
+     237,
+     1.632513044
+    ],
+    [
+     4.106438896189225,
+     241,
+     1.658241094
+    ],
+    [
+     4.106438896189225,
+     245,
+     1.687159809
+    ],
+    [
+     4.106438896189225,
+     249,
+     1.713522765
+    ],
+    [
+     4.139290407358739,
+     253,
+     1.741179716
+    ],
+    [
+     4.139290407358739,
+     257,
+     1.771610918
+    ],
+    [
+     4.139290407358739,
+     261,
+     1.799374591
+    ],
+    [
+     4.139290407358739,
+     265,
+     1.829250996
+    ],
+    [
+     4.139290407358739,
+     269,
+     1.857988598
+    ],
+    [
+     4.139290407358739,
+     273,
+     1.8868241
+    ],
+    [
+     4.139290407358739,
+     277,
+     1.912892636
+    ],
+    [
+     4.139290407358739,
+     281,
+     1.935907236
+    ],
+    [
+     4.139290407358739,
+     285,
+     1.96597778985
+    ],
+    [
+     4.139290407358739,
+     289,
+     1.9895832218499998
+    ],
+    [
+     4.139290407358739,
+     293,
+     2.0155155098499997
+    ],
+    [
+     4.139290407358739,
+     297,
+     2.04230607985
+    ],
+    [
+     4.139290407358739,
+     301,
+     2.07183880185
+    ],
+    [
+     4.139290407358739,
+     305,
+     2.09856938585
+    ],
+    [
+     4.139290407358739,
+     309,
+     2.12889011385
+    ],
+    [
+     4.303547963206308,
+     313,
+     2.15934846985
+    ],
+    [
+     4.303547963206308,
+     317,
+     2.18204096685
+    ],
+    [
+     4.303547963206308,
+     321,
+     2.21192449085
+    ],
+    [
+     4.303547963206308,
+     325,
+     2.2341855488499998
+    ],
+    [
+     4.303547963206308,
+     329,
+     2.26163802485
+    ],
+    [
+     4.303547963206308,
+     333,
+     2.29183059885
+    ],
+    [
+     4.303547963206308,
+     337,
+     2.32228164385
+    ],
+    [
+     4.303547963206308,
+     341,
+     2.35262790485
+    ],
+    [
+     4.303547963206308,
+     345,
+     2.37620720885
+    ],
+    [
+     4.303547963206308,
+     349,
+     2.40202030185
+    ],
+    [
+     4.303547963206308,
+     353,
+     2.42668624685
+    ],
+    [
+     4.303547963206308,
+     357,
+     2.4518776348499998
+    ],
+    [
+     4.303547963206308,
+     361,
+     2.4814812158499997
+    ],
+    [
+     4.303547963206308,
+     365,
+     2.50444426385
+    ],
+    [
+     4.303547963206308,
+     369,
+     2.52636748285
+    ],
+    [
+     4.303547963206308,
+     373,
+     2.5602957858499997
+    ],
+    [
+     4.303547963206308,
+     377,
+     2.58869281685
+    ],
+    [
+     4.303547963206308,
+     381,
+     2.61319660785
+    ],
+    [
+     4.303547963206308,
+     385,
+     2.65139972785
+    ],
+    [
+     4.303547963206308,
+     389,
+     2.68028485785
+    ],
+    [
+     4.303547963206308,
+     393,
+     2.71395928185
+    ],
+    [
+     4.303547963206308,
+     397,
+     2.73784827585
+    ],
+    [
+     4.303547963206308,
+     401,
+     2.76435342885
+    ],
+    [
+     4.303547963206308,
+     405,
+     2.7901312958499997
+    ],
+    [
+     4.303547963206308,
+     409,
+     2.8183050008499997
+    ],
+    [
+     4.303547963206308,
+     413,
+     2.84212495385
+    ],
+    [
+     4.336399474375821,
+     417,
+     2.86713440785
+    ],
+    [
+     4.336399474375821,
+     421,
+     2.89468759785
+    ],
+    [
+     4.336399474375821,
+     425,
+     2.91885990885
+    ],
+    [
+     4.336399474375821,
+     429,
+     2.94799959885
+    ],
+    [
+     4.336399474375821,
+     433,
+     2.97686858185
+    ],
+    [
+     4.336399474375821,
+     437,
+     3.00055717885
+    ],
+    [
+     4.336399474375821,
+     441,
+     3.02287839685
+    ],
+    [
+     4.336399474375821,
+     445,
+     3.04715590485
+    ],
+    [
+     4.336399474375821,
+     449,
+     3.07148790085
+    ],
+    [
+     4.336399474375821,
+     453,
+     3.09721004585
+    ],
+    [
+     4.336399474375821,
+     457,
+     3.12240176285
+    ],
+    [
+     4.336399474375821,
+     461,
+     3.15091190785
+    ],
+    [
+     4.336399474375821,
+     465,
+     3.17584601685
+    ],
+    [
+     4.336399474375821,
+     469,
+     3.19926874485
+    ],
+    [
+     4.336399474375821,
+     473,
+     3.22759807385
+    ],
+    [
+     4.336399474375821,
+     477,
+     3.25325026985
+    ],
+    [
+     4.336399474375821,
+     481,
+     3.27886189085
+    ],
+    [
+     4.336399474375821,
+     485,
+     3.30407282285
+    ],
+    [
+     4.369250985545335,
+     489,
+     3.3328003268499997
+    ],
+    [
+     4.369250985545335,
+     493,
+     3.35994788585
+    ],
+    [
+     4.369250985545335,
+     497,
+     3.38317540785
+    ],
+    [
+     4.369250985545335,
+     501,
+     3.4089068658499997
+    ],
+    [
+     4.369250985545335,
+     505,
+     3.43453214585
+    ],
+    [
+     4.369250985545335,
+     509,
+     3.46199752085
+    ],
+    [
+     4.369250985545335,
+     513,
+     3.48832007185
+    ],
+    [
+     4.369250985545335,
+     517,
+     3.51473237385
+    ],
+    [
+     4.369250985545335,
+     521,
+     3.58764833185
+    ],
+    [
+     4.369250985545335,
+     525,
+     3.61084751185
+    ],
+    [
+     4.369250985545335,
+     529,
+     3.63808762485
+    ],
+    [
+     4.369250985545335,
+     533,
+     3.66066655385
+    ],
+    [
+     4.369250985545335,
+     537,
+     3.69072124085
+    ],
+    [
+     4.434954007884363,
+     541,
+     3.71491457585
+    ],
+    [
+     4.533508541392904,
+     545,
+     3.73808042285
+    ],
+    [
+     4.533508541392904,
+     549,
+     3.76522920485
+    ],
+    [
+     4.533508541392904,
+     553,
+     3.78975469985
+    ],
+    [
+     4.533508541392904,
+     557,
+     3.81711607185
+    ],
+    [
+     4.533508541392904,
+     561,
+     3.84563265085
+    ],
+    [
+     4.533508541392904,
+     565,
+     3.87289199485
+    ],
+    [
+     4.533508541392904,
+     569,
+     3.90062304985
+    ],
+    [
+     4.533508541392904,
+     573,
+     3.92463709085
+    ],
+    [
+     4.533508541392904,
+     577,
+     3.94935494285
+    ],
+    [
+     4.566360052562418,
+     581,
+     3.97473521585
+    ],
+    [
+     4.566360052562418,
+     585,
+     3.99742580085
+    ],
+    [
+     4.566360052562418,
+     589,
+     4.03035257885
+    ],
+    [
+     4.566360052562418,
+     593,
+     4.0538962848499995
+    ],
+    [
+     4.599211563731932,
+     597,
+     4.08331360785
+    ],
+    [
+     4.599211563731932,
+     601,
+     4.1184756908499995
+    ],
+    [
+     4.599211563731932,
+     605,
+     4.14251122085
+    ],
+    [
+     4.599211563731932,
+     609,
+     4.16558740185
+    ],
+    [
+     4.599211563731932,
+     613,
+     4.18724395285
+    ],
+    [
+     4.599211563731932,
+     617,
+     4.21228762585
+    ],
+    [
+     4.599211563731932,
+     621,
+     4.24166640885
+    ],
+    [
+     4.599211563731932,
+     625,
+     4.27338008285
+    ],
+    [
+     4.599211563731932,
+     629,
+     4.29835020785
+    ],
+    [
+     4.599211563731932,
+     633,
+     4.32521176085
+    ],
+    [
+     4.6320630749014455,
+     637,
+     4.3491627928500005
+    ],
+    [
+     4.6320630749014455,
+     641,
+     4.37202340285
+    ],
+    [
+     4.6320630749014455,
+     645,
+     4.40060923485
+    ],
+    [
+     4.6320630749014455,
+     649,
+     4.42332097485
+    ],
+    [
+     4.6320630749014455,
+     653,
+     4.447437622850001
+    ],
+    [
+     4.6320630749014455,
+     657,
+     4.4724575068500005
+    ],
+    [
+     4.6320630749014455,
+     661,
+     4.49662419985
+    ],
+    [
+     4.6320630749014455,
+     665,
+     4.52139667485
+    ],
+    [
+     4.6320630749014455,
+     669,
+     4.546751605850001
+    ],
+    [
+     4.6320630749014455,
+     673,
+     4.57120016385
+    ],
+    [
+     4.6320630749014455,
+     677,
+     4.59432051785
+    ],
+    [
+     4.763469119579501,
+     681,
+     4.620037396850001
+    ],
+    [
+     4.763469119579501,
+     685,
+     4.64720658385
+    ],
+    [
+     4.7963206307490145,
+     689,
+     4.6718523458500005
+    ],
+    [
+     4.7963206307490145,
+     693,
+     4.70207694685
+    ],
+    [
+     4.829172141918528,
+     697,
+     4.73273057985
+    ],
+    [
+     4.829172141918528,
+     701,
+     4.79683759285
+    ],
+    [
+     4.829172141918528,
+     705,
+     4.82623052985
+    ],
+    [
+     4.829172141918528,
+     709,
+     4.855883433850001
+    ],
+    [
+     4.829172141918528,
+     713,
+     4.88664863585
+    ],
+    [
+     5.026281208935611,
+     717,
+     4.9104091288500005
+    ],
+    [
+     5.026281208935611,
+     721,
+     4.9391490858500005
+    ],
+    [
+     5.026281208935611,
+     725,
+     4.9664320998500004
+    ],
+    [
+     5.026281208935611,
+     729,
+     4.9955829758500006
+    ],
+    [
+     5.026281208935611,
+     733,
+     5.021671109850001
+    ],
+    [
+     5.026281208935611,
+     737,
+     5.047325676850001
+    ],
+    [
+     5.059132720105125,
+     741,
+     5.0721705768500005
+    ],
+    [
+     5.059132720105125,
+     745,
+     5.0950880208500005
+    ],
+    [
+     5.124835742444152,
+     749,
+     5.1175394478500005
+    ],
+    [
+     5.124835742444152,
+     753,
+     5.1417845918500005
+    ],
+    [
+     5.124835742444152,
+     757,
+     5.1649307888500005
+    ],
+    [
+     5.223390275952694,
+     761,
+     5.188109331850001
+    ],
+    [
+     5.289093298291721,
+     765,
+     5.21423920685
+    ],
+    [
+     5.289093298291721,
+     769,
+     5.23844384585
+    ],
+    [
+     5.354796320630749,
+     773,
+     5.2701271188500005
+    ],
+    [
+     5.551905387647832,
+     777,
+     5.29842059885
+    ],
+    [
+     5.683311432325887,
+     781,
+     5.32328887585
+    ],
+    [
+     5.716162943495401,
+     785,
+     5.3486685638500004
+    ],
+    [
+     5.7490144546649145,
+     789,
+     5.38140450685
+    ],
+    [
+     5.978975032851511,
+     793,
+     5.40768456185
+    ],
+    [
+     6.14323258869908,
+     797,
+     5.4307461988500005
+    ],
+    [
+     6.668856767411301,
+     801,
+     5.4532544318500005
+    ],
+    [
+     7.752956636005256,
+     805,
+     5.483502869850001
+    ],
+    [
+     11.662286465177397,
+     809,
+     5.50849151385
+    ],
+    [
+     11.695137976346912,
+     813,
+     5.582054241850001
+    ],
+    [
+     11.695137976346912,
+     817,
+     5.62065169485
+    ],
+    [
+     11.695137976346912,
+     821,
+     5.653523802850001
+    ],
+    [
+     11.695137976346912,
+     825,
+     5.6946497138500005
+    ],
+    [
+     11.695137976346912,
+     829,
+     5.72103934485
+    ],
+    [
+     11.695137976346912,
+     833,
+     5.750877792850001
+    ],
+    [
+     11.695137976346912,
+     837,
+     5.77687017685
+    ],
+    [
+     11.76084099868594,
+     841,
+     5.80736463085
+    ],
+    [
+     11.990801576872535,
+     845,
+     5.834217472850001
+    ],
+    [
+     11.990801576872535,
+     849,
+     5.868564370850001
+    ],
+    [
+     12.12220762155059,
+     853,
+     5.896134986850001
+    ],
+    [
+     12.680683311432325,
+     857,
+     5.92298903985
+    ],
+    [
+     12.877792378449408,
+     861,
+     5.94969630885
+    ],
+    [
+     13.074901445466491,
+     865,
+     5.97604525985
+    ],
+    [
+     13.074901445466491,
+     869,
+     6.00319869585
+    ],
+    [
+     13.140604467805518,
+     873,
+     6.0371397058500005
+    ],
+    [
+     14.027595269382392,
+     877,
+     6.1085134528500005
+    ],
+    [
+     14.290407358738502,
+     881,
+     6.13744636085
+    ],
+    [
+     15.505913272010512,
+     885,
+     6.20544833685
+    ],
+    [
+     16.392904073587385,
+     889,
+     6.23000426885
+    ],
+    [
+     18.922470433639948,
+     893,
+     6.257224643850001
+    ]
+   ]
+  }
+ },
+ "unit_mix": [
+  {
+   "key": "Haven by Aldar|3",
+   "beds": "3",
+   "n": 581,
+   "bua": 2289.266252,
+   "price": 2788383.0,
+   "psf": 1213.8642282618766
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "beds": "4",
+   "n": 485,
+   "bua": 3115.287938,
+   "price": 3866717.0,
+   "psf": 1240.5394068771418
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "beds": "5",
+   "n": 128,
+   "bua": 4441.292779,
+   "price": 5696614.5,
+   "psf": 1281.7182481002114
+  },
+  {
+   "key": "Haven by Aldar|3",
+   "beds": "6",
+   "n": 23,
+   "bua": 9231.335917999999,
+   "price": 16356634.0,
+   "psf": 1774.1159183760083
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "beds": "3",
+   "n": 675,
+   "bua": 2293.894729,
+   "price": 3113903.0,
+   "psf": 1361.5773036636153
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "beds": "4",
+   "n": 594,
+   "bua": 3117.5483569999997,
+   "price": 4182771.0,
+   "psf": 1342.783375663721
+  },
+  {
+   "key": "Athlon by Aldar|3",
+   "beds": "5",
+   "n": 159,
+   "bua": 4452.271957,
+   "price": 6927150.0,
+   "psf": 1556.9913668685626
+  },
+  {
+   "key": "The Wilds|3",
+   "beds": "3",
+   "n": 322,
+   "bua": 2958.780832,
+   "price": 5503485.0,
+   "psf": 1860.022020042612
+  },
+  {
+   "key": "The Wilds|3",
+   "beds": "4",
+   "n": 326,
+   "bua": 3393.319475,
+   "price": 6433242.0,
+   "psf": 1902.9979133233521
+  },
+  {
+   "key": "The Wilds|3",
+   "beds": "5",
+   "n": 242,
+   "bua": 4446.459451,
+   "price": 7790364.5,
+   "psf": 1747.3049883596768
+  }
+ ],
+ "anchors": {
+  "haven_primary": 1228.471382472967,
+  "athlon_primary": 1359.926668685537,
+  "wilds_primary": 1874.9958225501293,
+  "haven_resale": 1335.003751305828,
+  "athlon_resale": 1397.4390013829875,
+  "valley_resale": 1388.9172245149816,
+  "ara3_resale": 1430.1907549672096,
+  "lagoons_primary": 1339.22497182778,
+  "lagoons_resale": 1103.2021533093935,
+  "tilal_resale": 1817.3045538009108,
+  "wilds_latest": 2037.3173880700247
+ },
+ "scenarios": [
+  {
+   "name": "Conservative",
+   "lo": 1250,
+   "hi": 1400,
+   "why": "priced like Haven and Athlon at launch; a soft market forces sharper pricing"
+  },
+  {
+   "name": "Base case",
+   "lo": 1400,
+   "hi": 1650,
+   "why": "a step above Athlon (Blue Line access, newer phase), still capped by what 2-3 year old Emaar townhouses resell for"
+  },
+  {
+   "name": "Stretch",
+   "lo": 1650,
+   "hi": 1900,
+   "why": "Wilds-style premium positioning (Wilds new sales reached about 2,040 in 2026); needs a strong launch event and a landmark product"
+  }
+ ],
+ "ref_sizes": {
+  "3": 2289.266252,
+  "4": 3117.5483569999997,
+  "5": 4452.271957
+ },
+ "totals": {
+  "aldar_units": 3552,
+  "aldar_bn": 17.923254078670002
+ },
+ "unit_size": {
+  "Haven by Aldar|3": 3104.846955,
+  "Athlon by Aldar|3": 3112.704602,
+  "The Wilds|3": 3350.371514,
+  "Arabian Ranches 3|16": 1997.456923,
+  "The Valley|16": 2285.498887,
+  "DAMAC Lagoons|16": 2272.905124,
+  "DAMAC Hills 2|16": 1697.1441129999998,
+  "Tilal Al Ghaf|16": 2169.248767,
+  "Dubai South|16": 2552.981802,
+  "Dubai Silicon Oasis (DSO)|3": 3856.70537
+ },
+ "ready": {
+  "Haven by Aldar|3": {
+   "n_ready": 0,
+   "n": 1501
+  },
+  "Athlon by Aldar|3": {
+   "n_ready": 0,
+   "n": 1547
+  },
+  "The Wilds|3": {
+   "n_ready": 0,
+   "n": 904
+  },
+  "Arabian Ranches 3|16": {
+   "n_ready": 220,
+   "n": 1091
+  },
+  "The Valley|16": {
+   "n_ready": 263,
+   "n": 2198
+  },
+  "DAMAC Lagoons|16": {
+   "n_ready": 579,
+   "n": 9393
+  },
+  "DAMAC Hills 2|16": {
+   "n_ready": 119,
+   "n": 119
+  },
+  "Tilal Al Ghaf|16": {
+   "n_ready": 446,
+   "n": 1093
+  },
+  "Dubai South|16": {
+   "n_ready": 243,
+   "n": 538
+  },
+  "Dubai Silicon Oasis (DSO)|3": {
+   "n_ready": 158,
+   "n": 158
+  }
+ },
+ "oasis": {
+  "n_primary": 2160,
+  "bn_primary": 37.717834666,
+  "median_price": 15300000.0
+ }
+}

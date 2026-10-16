@@ -1,0 +1,51 @@
+@page { size: 210mm 297mm; margin: 0 }
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact }
+body { font-family: 'Inter', sans-serif; color: #0b0b0b; background: #fcfcfb; font-size: 10pt; line-height: 1.45 }
+.page { width: 210mm; height: 297mm; padding: 15mm 16mm 17mm; position: relative; overflow: hidden; page-break-after: always; background: #fcfcfb }
+.page > header { display: flex; justify-content: space-between; font-size: 7pt; font-weight: 700; letter-spacing: .09em; color: #85847e; border-bottom: 1px solid #e6e5e0; padding-bottom: 2.2mm; margin-bottom: 5mm }
+.page > footer { position: absolute; left: 16mm; right: 16mm; bottom: 8mm; display: flex; justify-content: space-between; font-size: 7pt; color: #85847e; border-top: 1px solid #e6e5e0; padding-top: 2mm }
+h2 { font-size: 19pt; line-height: 1.12; font-weight: 800; letter-spacing: -.01em; margin-bottom: 4mm }
+h3 { font-size: 11.4pt; font-weight: 800; margin: 4.2mm 0 1.8mm }
+p { margin-bottom: 2.2mm }
+.lead { font-size: 11.6pt; font-weight: 600; line-height: 1.35; margin-bottom: 3mm }
+.note { font-size: 7.8pt; color: #52514e; line-height: 1.38; margin-top: 2.2mm }
+.note.big { font-size: 8.8pt }
+img.fig { display: block; width: 100%; margin: 1.5mm 0 2mm }
+img.map { width: 100%; border-radius: 2mm; margin-bottom: 3mm }
+ul.bul, ol.find, ol.chk, ul.src { padding-left: 4.2mm }
+ul.bul li, ol.find li, ol.chk li, ul.src li { margin-bottom: 2mm }
+ol.find li { margin-bottom: 2.6mm }
+ul.bul li::marker { color: #2a78d6 }
+ol.find li::marker { color: #2a78d6; font-weight: 800 }
+ul.src { font-size: 9pt }
+table { width: 100%; border-collapse: collapse; margin: 1mm 0 2mm; font-size: 9pt }
+th { text-align: left; font-size: 7.3pt; font-weight: 800; color: #52514e; letter-spacing: .02em; padding: 1.6mm 2mm; border-bottom: 1.5px solid #0b0b0b; vertical-align: bottom }
+td { padding: 1.7mm 2mm; border-bottom: 1px solid #e6e5e0; vertical-align: top }
+table.small { font-size: 8.3pt } table.small td { padding: 1.4mm 1.8mm }
+table.score { font-size: 8.4pt } table.score td { padding: 2.1mm 1.8mm }
+td small, th small { font-size: 6.9pt; color: #85847e; font-weight: 500 }
+.stats { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.4mm; margin: 0 0 5mm }
+.stat { border: 1px solid #e6e5e0; border-radius: 2mm; padding: 3mm 3mm 3.2mm; background: #fff }
+.stat b { display: block; font-size: 13pt; white-space: nowrap; line-height: 1.1; font-weight: 800; letter-spacing: -.01em; margin-bottom: 1.4mm }
+.stat span { font-size: 7.6pt; color: #52514e; line-height: 1.3; display: block }
+.stat.gold { background: #08080A; border-color: #08080A } .stat.gold b { color: #E9C47C } .stat.gold span { color: #d8d4c8 }
+.verdict { margin-top: 4mm; padding: 3.6mm 4.4mm; border-left: 3px solid #E9C47C; background: #f3efe6; font-size: 9.8pt; line-height: 1.42 }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; align-items: start }
+.two .txt p { font-size: 9pt }
+.tl { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2mm; margin-top: 2mm; position: relative }
+.tl div { border-top: 2px solid #c9c8c3; padding-top: 2.4mm; position: relative }
+.tl i { position: absolute; top: -4.6px; left: 0; width: 8px; height: 8px; border-radius: 50%; background: #2a78d6; border: 2px solid #fcfcfb }
+.tl .now { border-top-color: #E9C47C } .tl .now i { background: #E9C47C; box-shadow: 0 0 0 1.5px #08080A }
+.tl b { display: block; font-size: 9pt; margin-bottom: 1mm } .tl span { font-size: 8.2pt; color: #52514e; line-height: 1.3; display: block }
+.tag { display: inline-block; font-size: 6.9pt; font-weight: 800; padding: .3mm 1.8mm; border-radius: 3mm; margin-right: 1mm; letter-spacing: .01em }
+.tag.green { background: #dcefe4; color: #0d5a37 } .tag.amber { background: #f9ecd0; color: #7a4c00 } .tag.red { background: #f8dcd9; color: #8f1d1b }
+ol.chk { font-size: 8.8pt }
+.cover { background: #08080A; color: #F3EFE6; padding: 20mm 20mm 18mm; display: flex; flex-direction: column; justify-content: space-between }
+.cover .cv-top { display: flex; justify-content: space-between; font-size: 8pt; font-weight: 800; letter-spacing: .14em; color: #E9C47C }
+.cover .cv-k { font-size: 9pt; font-weight: 800; letter-spacing: .16em; color: #E9C47C; margin-bottom: 7mm }
+.cover h1 { font-size: 37pt; line-height: 1.05; font-weight: 800; letter-spacing: -.02em; margin-bottom: 7mm }
+.cover .cv-s { font-size: 13pt; line-height: 1.38; color: #d8d4c8; max-width: 150mm; font-weight: 500; margin-bottom: 14mm }
+.cv-n { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; border-top: 1px solid #3a3a3a; padding-top: 6mm }
+.cv-n b { display: block; font-size: 17pt; font-weight: 800; color: #E9C47C; margin-bottom: 1mm } .cv-n span { font-size: 8.2pt; color: #b9b5aa }
+.cover .cv-bot { font-size: 8pt; color: #9a968b; max-width: 150mm; line-height: 1.45 }
