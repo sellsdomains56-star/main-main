@@ -1,10 +1,11 @@
 # Aldar video from the study: script, numbers, and graphics plan
 
-Files: `speaker_usd.txt` (full, ~182 words, ~73 s), `speaker_short_usd.txt` (~80 words, ~32 s), the same two with dirhams (`*_aed.txt`), `hooks.md` (5 alternative first lines). Source: `../study/Aldar_Dubai_Townhouse_Study.pdf` (page numbers below).
+Files: `speaker_usd.txt` (full, ~180 words, ~72 s), `speaker_short_usd.txt` (~85 words, ~35 s), `post.md` (caption, pinned comment, auto-reply DM), the same two with dirhams (`*_aed.txt`), `hooks.md` (5 alternative first lines). Source: `../study/Aldar_Dubai_Townhouse_Study.pdf` (page numbers below).
 
 ## Every number in the script
 | Said | Value | Study | Notes |
 |---|---|---|---|
+| "eighteen thousand real Dubai sales" | 18,542 DLD records in the comparison set | p.6, p.15 | all communities, not only Aldar's |
 | "three communities", "three launches" | Haven, Athlon, The Wilds | p.5 | |
 | "almost five billion dollars of sales" | AED 17.9bn = $4.87bn (3,552 homes) at the 3.6725 peg | p.2, p.5 | DLD-registered new sales, not Aldar's announced totals |
 | "eleven percent ... thirty-eight percent" | AED/sq ft 1,228 -> 1,360 -> 1,875 (+10.7%, +37.9%) | p.7, p.12 | same % in dollars (peg) |
@@ -22,13 +23,13 @@ Do not say: a project name ("Greenwoods" is unconfirmed), an Aldar price, a retu
 ## Graphics plan (same map style as the Dubai reel; stills available from the study)
 | Beat | Words | Visual |
 |---|---|---|
-| hook | "Aldar hasn't named ... hasn't priced it" | HUD "ALDAR'S NEXT DUBAI PROJECT" + two crossed-out chips NAME ? / PRICE ? |
+| hook | "Aldar hasn't told anyone the price ... eighteen thousand real Dubai sales" | HUD "ALDAR'S NEXT DUBAI PROJECT" + chips NAME ? / PRICE ?, counter 18,000 SALES ANALYSED (18,542 DLD records, study p.6) |
 | 1 | three communities | satellite fly-over: Haven, Athlon, The Wilds pins (study map, p.4) |
 | 2 | five billion dollars, price up each time | counter $4.9bn; bar steps $334 -> $370 -> $511 per sq ft (+11%, +38%) |
 | 3 | my estimate | big range bar $381-$449 per sq ft with chip "ANALYST ESTIMATE, NOT ALDAR'S PRICE"; ticket $0.87-1.03m |
 | 4 | the catch | two bars: resale growth Aldar 3-4% vs Emaar/Damac 11-13% (study p.8 chart); "FIRST DUBAI HANDOVER: 2027" |
 | 5 | upside is location | camera to Silicon Oasis, Blue Line route drawn, Haven 5 km ring (study p.4 map) |
 | 6 | market -38% | counter -38% with chip "DUBAI TRANSACTIONS, Q3 2026 vs Q3 2025" |
-| CTA | message me Aldar | chat: "Aldar" typed, sent, answered "Study sent" |
+| CTA | comment the word Aldar and I'll send it | comment box: "Aldar" typed and posted, reply bubble "Sent. Check your DMs", small PDF cover icon flies to a DM |
 
 Dollars on screen: say "dollars" and show US$ with the AED figure as a small second line (e.g. "$381-$449 / sq ft (AED 1,400-1,650)") so the source numbers stay checkable.
