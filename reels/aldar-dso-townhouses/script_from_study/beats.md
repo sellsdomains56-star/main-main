@@ -1,6 +1,6 @@
 # Aldar video from the study: script, numbers, and graphics plan
 
-Files: `speaker.txt` (~215 words, ~85 s, dirhams), `speaker_short.txt` (~110 words, ~45 s); dollar versions `*_usd.txt`, `post.md` (caption, pinned comment, auto-reply DM), the same two with dirhams (`*_aed.txt`), `hooks.md` (5 alternative first lines). Source: `../study/Aldar_Dubai_Townhouse_Study.pdf` (page numbers below).
+Files: `speaker.txt` (~255 words, ~100 s, dirhams), `speaker_short.txt` (~130 words, ~55 s); dollar versions `*_usd.txt`, `post.md` (caption, pinned comment, auto-reply DM), the same two with dirhams (`*_aed.txt`), `hooks.md` (5 alternative first lines). Source: `../study/Aldar_Dubai_Townhouse_Study.pdf` (page numbers below).
 
 ## Every number in the script
 | Said | Value | Study | Notes |
@@ -24,7 +24,7 @@ Do not say: a project name ("Greenwoods" is unconfirmed), an Aldar price, a retu
 The satellite map is NOT the backdrop here. The pages of `../study/Aldar_Dubai_Townhouse_Study.pdf` (rendered at 200 dpi, dimmed with the same gradient scrim) are the backdrop, drifting and zooming slowly behind the small face circle; each beat pulls the relevant page or chart forward as a card with a marker highlight (same `card` + `hl` method as the Media Office page in the Dubai reel). Map only appears as the study's own map page.
 | Beat | Words | Study background / card |
 |---|---|---|
-| hook (0-12 s) | "A new community is about to be launched by Aldar, one of Dubai's tier-one developers. And buyers are buying a lot of these. So what will it cost, and what happens to the buyers after?" | no study yet. Gold chips slam in on the words: NEW COMMUNITY, ALDAR, TIER-ONE DEVELOPER, BUYERS BUY A LOT, then "COST ?" and "AFTER ?" (names of the three earlier launches come later, at beat 1) |
+| hook (0-10 s) | "Aldar, one of Dubai's tier-one developers, is about to launch a new community near Silicon Oasis. I went through the sales data to see what its earlier launches suggest." | no study yet; a quiet title card: NEW COMMUNITY · ALDAR · TIER-ONE DEVELOPER · NEAR SILICON OASIS (no price, no hype chips) |
 | 1 | "fourth community ... hasn't named it or priced it ... last three launches are public record" | cover page slides in as the backdrop; chips NAME ? / PRICE ?; then p.5 table (3 launches) with marker on "AED 17.9bn / 3,552 homes" |
 | 2 | "price up every time, 11% then 38%" | chart: Aldar new-sale price per sq ft (p.8 left chart) AED 1,228 -> 1,360 -> 1,875, +11% / +38% labels |
 | 3 | "my estimate ... 400-450 dollars" | scenario chart (p.12) with the base-case bar highlighted; chip "ANALYST ESTIMATE, NOT ALDAR'S PRICE"; ticket row (AED 3.2-3.8m, p.13) |

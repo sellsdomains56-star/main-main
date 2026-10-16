@@ -1,24 +1,22 @@
 # Instagram post for the Aldar reel (comment-to-get-the-study)
 
 **Caption**
-A new community is about to be launched by Aldar, one of Dubai's tier-one developers. And buyers are buying a lot of these. So what will it cost, and what happens to the buyers after?
+Aldar, one of Dubai's tier-one developers, is about to launch a new community near Silicon Oasis. It hasn't announced a price, so I analysed 18,000 Dubai sales to see what its earlier launches suggest.
 
-3 launches. Almost AED 18bn of sales. The price went up every time.
-My estimate for the new one: AED 1,400-1,650 per sq ft. My number, not Aldar's.
-The catch: its resale prices grew 3-4% last year. Emaar and Damac communities grew 11-13%.
+- 3 launches, almost AED 18bn of registered sales; the price per sq ft was higher at each launch
+- My estimate for the new one: AED 1,400-1,650 per sq ft (an estimate, not an Aldar price)
+- Resale prices at Haven and Athlon grew 3-4% last year; Emaar and Damac communities 11-13%
 
-Aldar hasn't priced its next community yet; this is my estimate from 18,000 Dubai sales.
-Comment ALDAR and I'll send you the full study (16 pages: prices, sales momentum, volume, tier-one comparison, risks).
+The full 16-page study covers prices, sales momentum, volume, liquidity, a comparison with other developers and the risks. If you'd like a copy, comment ALDAR.
 
-Based on Dubai Land Department records and Aldar's own announcements. Analyst estimate, not an Aldar price. Not investment advice.
+Source: Dubai Land Department records and Aldar announcements. Not investment advice.
 
 **Pinned comment**
-Comment ALDAR and I'll send you the study. (Estimate = my analysis of public sales data; Aldar has not announced a price.)
+If you'd like the study, comment ALDAR and I'll send it. (The price is my estimate from public sales data; Aldar has not announced one.)
 
 **Auto-reply DM (sent to everyone who comments the keyword)**
 Hi {first name}, here is the study: Aldar's next Dubai townhouse community, expected price per sq ft, sales momentum and volume, and how Aldar compares with Emaar, Damac and MAF. [PDF: Aldar_Dubai_Townhouse_Study.pdf]
-Quick note: the price in it is my estimate from public data, not an Aldar price. Aldar has not named or priced the project yet. Not investment advice.
-If you'd like to talk about where I'd look to invest in Dubai, reply "call" and I'll message you.
+The price in it is my estimate from public data, not an Aldar price; Aldar hasn't named or priced the project yet. Not investment advice.
 
 **Setup notes**
 - Needs a comment-to-DM tool on the Instagram account (or reply by hand). Test with your own account first; send the PDF as a file, or link it from a page you control.
