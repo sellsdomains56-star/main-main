@@ -1,7 +1,7 @@
 # Instagram post for the Aldar reel (comment-to-get-the-study)
 
 **Caption**
-Every Aldar launch in Dubai sells out in days. So what happens to the buyers after?
+New community. New community. New community. Aldar keeps launching them in Dubai and people buy a lot, in days. So what happens to the buyers after?
 
 3 launches. Almost $5bn of sales. The price went up every time.
 My estimate for the new one: $400-450 per sq ft. My number, not Aldar's.
