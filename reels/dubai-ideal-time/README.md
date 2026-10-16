@@ -53,3 +53,11 @@ node render.mjs --out build/frames --fmt jpg --workers 4 --ss 1.5 --skip
 python3 -I audio.py build/voice48k.wav build/mix.wav
 CRF=22 MAXRATE=2.2M BUFSIZE=4.4M bash encode.sh dubai-ideal-time
 ```
+
+## Variant without the spoken word "dirhams" (16 Oct 2026)
+`build/dubai-ideal-time_no-dirham.mp4`: same picture and timing; his four spoken "dirhams" (about 5.76-6.42 s, 10.19-10.80 s, 21.87-22.57 s, 28.56-29.18 s) are muted in the voice track (the on-screen "DIRHAMS" text stays). Made with `mute_words.py` (exact windows, 8 ms fades) -> `audio.py` -> video stream copied, audio re-encoded with the same loudnorm (-14 LUFS). Window edges were set from spectrograms so the neighbouring words ("trillion", "billion", "worth", "is", "in") are untouched.
+```bash
+python3 -I mute_words.py build/voice48k.wav build/voice48k_nodirham.wav '[[5.755,6.42],[10.185,10.80],[21.865,22.565],[28.555,29.175]]' --exact
+python3 -I audio.py build/voice48k_nodirham.wav build/mix_nodirham.wav
+ffmpeg -y -i build/dubai-ideal-time.mp4 -i build/mix_nodirham.wav -map 0:v:0 -map 1:a:0 -c:v copy -af "loudnorm=I=-14:TP=-1.5:LRA=11" -c:a aac -b:a 192k -ar 48000 -movflags +faststart -shortest build/dubai-ideal-time_no-dirham.mp4
+```
