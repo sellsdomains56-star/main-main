@@ -1,7 +1,7 @@
 # Aldar reel, walkthrough version: follows the order of the study
 
-Files: `speaker_walkthrough_usd.txt` (dollars), `speaker_walkthrough_aed.txt` (dirhams), `teleprompter_walkthrough_usd.txt` (one paragraph). ~365 words, ~2 min 25 s. Older, shorter scripts (`speaker_usd.txt`, ~80 s, and the 40 s cut) stay as alternatives.
-Option: split in two reels at the line "Not cheaper." (Part 1 = hook to price comparison, ~75 s; Part 2 = momentum, estimate, risks, ~70 s; end Part 1 with "Part two: what happens after you buy.").
+Files: `speaker_walkthrough_usd.txt` (dollars), `speaker_walkthrough_aed.txt` (dirhams), `teleprompter_walkthrough_usd.txt` (one paragraph). 393 words, about 2 min 35 s at a calm pace. Older, shorter scripts (`speaker_usd.txt`, ~80 s, and the 40 s cut) stay as alternatives.
+Option: split in two reels at the line "Not cheaper." (Part 1 = hook to price comparison, 233 words, ~95 s; Part 2 = momentum, estimate, risks, CTA, 160 words, ~65 s; end Part 1 with "Part two: what happens after you buy.").
 
 | # | Section (your order) | Study page shown as the background | Said | Fact check |
 |---|---|---|---|---|
