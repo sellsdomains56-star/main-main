@@ -1,6 +1,6 @@
 # Aldar video from the study: script, numbers, and graphics plan
 
-Files: `speaker_usd.txt` (full, ~180 words, ~72 s), `speaker_short_usd.txt` (~85 words, ~35 s), `post.md` (caption, pinned comment, auto-reply DM), the same two with dirhams (`*_aed.txt`), `hooks.md` (5 alternative first lines). Source: `../study/Aldar_Dubai_Townhouse_Study.pdf` (page numbers below).
+Files: `speaker.txt` (~215 words, ~85 s, dirhams), `speaker_short.txt` (~110 words, ~45 s); dollar versions `*_usd.txt`, `post.md` (caption, pinned comment, auto-reply DM), the same two with dirhams (`*_aed.txt`), `hooks.md` (5 alternative first lines). Source: `../study/Aldar_Dubai_Townhouse_Study.pdf` (page numbers below).
 
 ## Every number in the script
 | Said | Value | Study | Notes |
@@ -26,10 +26,10 @@ The satellite map is NOT the backdrop here. The pages of `../study/Aldar_Dubai_T
 |---|---|---|
 | hook (0-12 s) | "A new community is about to be launched by Aldar, one of Dubai's tier-one developers. And buyers are buying a lot of these. So what will it cost, and what happens to the buyers after?" | no study yet. Gold chips slam in on the words: NEW COMMUNITY, ALDAR, TIER-ONE DEVELOPER, BUYERS BUY A LOT, then "COST ?" and "AFTER ?" (names of the three earlier launches come later, at beat 1) |
 | 1 | "fourth community ... hasn't named it or priced it ... last three launches are public record" | cover page slides in as the backdrop; chips NAME ? / PRICE ?; then p.5 table (3 launches) with marker on "AED 17.9bn / 3,552 homes" |
-| 2 | "price up every time, 11% then 38%" | chart: Aldar new-sale price per sq ft (p.8 left chart) $334 -> $370 -> $511, +11% / +38% labels |
-| 3 | "my estimate ... 400-450 dollars" | scenario chart (p.12) with the base-case bar highlighted; chip "ANALYST ESTIMATE, NOT ALDAR'S PRICE"; ticket row ($0.87-1.03m, p.13) |
+| 2 | "price up every time, 11% then 38%" | chart: Aldar new-sale price per sq ft (p.8 left chart) AED 1,228 -> 1,360 -> 1,875, +11% / +38% labels |
+| 3 | "my estimate ... 400-450 dollars" | scenario chart (p.12) with the base-case bar highlighted; chip "ANALYST ESTIMATE, NOT ALDAR'S PRICE"; ticket row (AED 3.2-3.8m, p.13) |
 | 4 | "after the launch? resale 3-4% vs 11-13%" | resale growth bars (p.8 bottom chart), Haven/Athlon vs Emaar/Damac bars highlighted; chip "FIRST DUBAI HANDOVER: 2027" (p.11 row) |
 | 5 | "location, Blue Line, 5 km from Haven; transactions -38%" | map page (p.4) as a card, Blue Line route + 5 km ring; then exec-summary tile "-38%" (p.2) |
 | CTA | "it's all in a study, and that's what you're looking at. Comment the word Aldar" | backdrop pulls back to show the whole study as a stack of pages; comment box "Aldar" typed and posted, reply "Sent. Check your DMs" |
 
-Dollars on screen: say "dollars" and show US$ with the AED figure as a small second line (e.g. "$381-$449 / sq ft (AED 1,400-1,650)") so the source numbers stay checkable. Study page numbers are those of the 16-page PDF (cover = p.1).
+Dirhams on screen (AED, as in the study); no dollar line.

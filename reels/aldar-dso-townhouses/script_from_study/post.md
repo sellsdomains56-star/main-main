@@ -3,8 +3,8 @@
 **Caption**
 A new community is about to be launched by Aldar, one of Dubai's tier-one developers. And buyers are buying a lot of these. So what will it cost, and what happens to the buyers after?
 
-3 launches. Almost $5bn of sales. The price went up every time.
-My estimate for the new one: $400-450 per sq ft. My number, not Aldar's.
+3 launches. Almost AED 18bn of sales. The price went up every time.
+My estimate for the new one: AED 1,400-1,650 per sq ft. My number, not Aldar's.
 The catch: its resale prices grew 3-4% last year. Emaar and Damac communities grew 11-13%.
 
 Aldar hasn't priced its next community yet; this is my estimate from 18,000 Dubai sales.
