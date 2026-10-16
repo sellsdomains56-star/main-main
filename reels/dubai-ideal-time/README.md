@@ -55,9 +55,9 @@ CRF=22 MAXRATE=2.2M BUFSIZE=4.4M bash encode.sh dubai-ideal-time
 ```
 
 ## Variant without the spoken word "dirhams" (16 Oct 2026)
-`build/dubai-ideal-time_no-dirham.mp4`: same picture and timing; his four spoken "dirhams" (about 5.76-6.42 s, 10.19-10.80 s, 21.87-22.57 s, 28.56-29.18 s) are muted in the voice track (the on-screen "DIRHAMS" text stays). Made with `mute_words.py` (exact windows, 8 ms fades) -> `audio.py` -> video stream copied, audio re-encoded with the same loudnorm (-14 LUFS). Window edges were set from spectrograms so the neighbouring words ("trillion", "billion", "worth", "is", "in") are untouched.
+`build/dubai-ideal-time_no-dirham.mp4`: same picture and timing; only the four spoken "dirhams" are muted in the voice track (the on-screen "DIRHAMS" text stays). Windows (seconds, found by splitting the voice at candidate points and transcribing each side, plus the energy dips between words): 6.12-6.595 ("2.1 trillion"), 10.455-10.795 ("1.1 trillion"), 21.875-22.755 ("128 billion"), 28.865-29.345 ("100 billion"). Note that Whisper's own word times for these words are ~0.1-0.3 s early (it puts the end of "trillion"/"billion" inside "dirhams"); a first attempt using those times clipped "trillion" and left "ams" behind. Re-transcribing the result gives "trillion worth of projects", "1.1 trillion, is going", "128 billion in investment", "100 billion is going towards roads".
 ```bash
-python3 -I mute_words.py build/voice48k.wav build/voice48k_nodirham.wav '[[5.755,6.42],[10.185,10.80],[21.865,22.565],[28.555,29.175]]' --exact
+python3 -I mute_words.py build/voice48k.wav build/voice48k_nodirham.wav '[[6.12,6.595],[10.455,10.795],[21.875,22.755],[28.865,29.345]]' --exact
 python3 -I audio.py build/voice48k_nodirham.wav build/mix_nodirham.wav
 ffmpeg -y -i build/dubai-ideal-time.mp4 -i build/mix_nodirham.wav -map 0:v:0 -map 1:a:0 -c:v copy -af "loudnorm=I=-14:TP=-1.5:LRA=11" -c:a aac -b:a 192k -ar 48000 -movflags +faststart -shortest build/dubai-ideal-time_no-dirham.mp4
 ```
