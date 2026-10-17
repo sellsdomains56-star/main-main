@@ -1,25 +1,26 @@
 # Aldar's new Dubai community near Silicon Oasis - map reel (reel 10)
 
-101.4 s vertical reel (1080x1920, 30 fps) plus a 3 s end card, from Abdullah Ahli's own recording (WeTransfer, 17 Oct 2026, 1080x1920 25 fps, English, one continuous take, voice and picture unedited). Same look as `../dubai-ideal-time`: one continuous real satellite journey (Esri World Imagery) over east Dubai, **pages of our own study (`../aldar-dso-townhouses/study/Aldar_Dubai_Townhouse_Study.pdf`) shown as proof cards with marker highlights on the numbers he says**, his **live face as a small round bubble** top-left (gold ring, pulses while he speaks), a HUD title next to it, frosted checklist panels that grow row by row, real pages as proof cards with marker highlights, frosted-glass captions, whoosh-only sound at a very low level, everything inside the Instagram Reels safe zone. Call to action: "comment green" (typed into a comment field, answered "Sending you the information").
+100.8 s vertical reel (1080x1920, 30 fps) plus a 3 s end card, from the **HeyGen avatar video** (share link, 720x1280 25 fps, 100.8 s, English, the avatar reads `script.txt`; the on-screen label AI-GENERATED AVATAR stays on for the whole reel). The earlier cut used his own WeTransfer recording; this one replaces the picture and voice with the HeyGen take. Same look as `../dubai-ideal-time`: **one background per beat, moving from background to background** (not layered): real satellite flights (Esri World Imagery) over east Dubai, **pages of our own study (`../aldar-dso-townhouses/study/Aldar_Dubai_Townhouse_Study.pdf`) shown as proof cards with marker highlights on the numbers he says**, his **live face as a small round bubble** top-left (gold ring, pulses while he speaks), a HUD title next to it, frosted checklist panels that grow row by row, real pages as proof cards with marker highlights, frosted-glass captions, whoosh-only sound at a very low level, everything inside the Instagram Reels safe zone. Call to action: "comment green" (typed into a comment field, answered "Sending you the information").
 
 Script as spoken: `script.txt` (editor markup). The recording is NOT the reworded script from `../aldar-dso-townhouses/script_from_study/`; it is a different text that names the project "Greenwoods".
 
-| Time | What he says | On screen |
+| Time | What he says | Background (one per beat) |
 |------|--------------|-----------|
-| 0 - 7.7 | Aldar is preparing to launch one of its largest communities in Dubai, 3-bedroom townhouses expected from 3 million dirhams | HUD NEW COMMUNITY, then DH 3 MILLION counter; The National headline card with markers on "launch major Dubai villa and townhouse project" |
-| 7.7 - 12.1 | "Greenwoods", with Dubai Holding | HUD GREENWOODS / ALDAR x DUBAI HOLDING; pin on Dubai Silicon Oasis; The National CEO quote, marker on "partnership with Dubai Holding" |
-| 12.2 - 20.3 | ~43 million sq ft, ~8,000 homes: apartments, villas, townhouses | HUD counters (43 MILLION SQ FT, 8,000 NEW HOMES), checklist panel "THE COMMUNITY · AS REPORTED" |
-| 20.4 - 27.9 | 3-bed townhouse ~2,227 sq ft, 3 million start | HUD 2,227 SQ FT, DH 3 MILLION; **study p.13** (what it means in dirhams): markers on "3-bedroom townhouse", "~2,290 sq ft" and the conservative cell "AED 2.9-3.2m" |
-| 27.9 - 36 | ~1,350 per sq ft; potentially 15% below some nearby competing communities | HUD DH 1,350 / SQ FT, 15% BELOW; **study p.7** (price per sq ft today): markers on Athlon new sale 1,360 and Haven resale 1,335, then The Wilds 1,875 and Tilal Al Ghaf resale 1,817 |
-| 36.2 - 42 | close to Dubai Silicon Oasis and Academic City, connected to Sheikh Mohammed bin Zayed Road | real OSM outlines of both districts fill in; **study p.4** (our location map with the Blue Line): marker on "Dubai Silicon Oasis - Aldar's 4th Dubai project: 'near' here" |
-| 42 - 52.7 | AED 12.8 bn expansion of Silicon Oasis into a tech and AI hub, 70,000+ jobs | Dubai Media Office release (22 Jan 2026), markers on "AED12.8 billion" and "70,000 direct and indirect jobs"; HUD counters |
-| 52.7 - 57.3 | Academic City keeps expanding its educational institutions | Academic City island, panel |
-| 57.3 - 64.5 | Blue Line by 2029 connects both to the metro network | the real Blue Line alignment (OSM) draws on, station dots, RTA release card with markers on "9.9.2029" and "connects the Red and Green Lines" |
-| 64.8 - 72.6 | Haven, Athlon, The Wilds showed strong demand at launch | **study p.5** (Aldar's Dubai record): markers on the Haven, Athlon and The Wilds rows as he names them, then "3,552 homes and AED 17.9bn of new sales are on the Dubai Land Department record" |
-| 72.6 - 81.4 | Haven reportedly 8.8% return on repeat sales, median prices +20% in 13 months | HUD 8.8% / UP 20%+; **study p.7** marker on "Haven resells 9% above its new-sale median"; for the +20% claim a panel marked REPORTED (the study has nothing to support it) |
-| 81.5 - 91.3 | major Aldar development, entry price expected below some neighbours, near billions of investment | **study p.2** (executive summary): markers on "AED 1,400-1,650 per sq ft" and "The Wilds 1,875", then "Blue Line: 30 km, 14 stations, opening targeted for September 2029" |
-| 91.4 - 96.7 | depends on final pricing, payment plan, future supply | **study p.14** (questions to put to Aldar at launch): markers on the price-per-sq-ft basis, the payment plan, and how many homes the first release holds |
-| 96.8 - 104.4 | comment "green" and I'll send the information | map dims, bubble grows, the study cover pops up beside it, ABDULLAH AHLI / PORTFOLIO STRATEGIST, "green" typed, sent, answered |
+| 0 - 8 | Aldar launches one of its largest communities in Dubai, 3-bed townhouses expected from 3 million | MAP: satellite flight to Dubai Silicon Oasis (pin "near the new community"); HUD NEW COMMUNITY, AED 3 MILLION |
+| 8 - 12.2 | "Greenwoods", with Dubai Holding | PAGE: The National, CEO quote, marker on "partnership with Dubai Holding" |
+| 12.2 - 20.3 | ~43 million sq ft, ~8,000 homes: apartments, villas, townhouses | STAT: big numbers 43 MILLION SQ FT, 8,000 NEW HOMES, three chips |
+| 20.3 - 27.6 | 3-bed ~2,227 sq ft, 3 million start | PAGE: study p.13 (what it means in dirhams), markers on 3-bedroom, ~2,290 sq ft, AED 2.9-3.2m |
+| 27.6 - 35.4 | ~1,350 per sq ft; potentially 15% below some nearby communities | PAGE: study p.7 (price per sq ft today), markers on Athlon new sale 1,360, Haven resale 1,335, then The Wilds 1,875 and Tilal Al Ghaf 1,817 |
+| 35.4 - 41.3 | close to Dubai Silicon Oasis and Academic City, Sheikh Mohammed bin Zayed Road | MAP: OSM outlines of both districts fill in |
+| 41.3 - 52.2 | AED 12.8 bn expansion of Silicon Oasis, tech and AI hub, 70,000+ jobs | PAGE: Dubai Media Office release (22 Jan 2026), markers on "AED12.8 billion" and "70,000 direct and indirect jobs" |
+| 52.2 - 63.9 | Academic City expands; Blue Line by 2029 connects both | MAP: Academic City, then the real Blue Line alignment draws on with the two station areas |
+| 64 - 72.2 | Haven, Athlon, The Wilds: strong demand at launch | PAGE: study p.5 (Aldar's Dubai record), markers on the three rows, then "3,552 homes and AED 17.9bn ... on the DLD record" |
+| 72.2 - 78.6 | Haven reportedly 8.8% return on repeat sales | PAGE: study p.7 bullet, marker on "Haven resells 9% above its new-sale median" |
+| 78.6 - 81 | median prices +20% over 13 months | STAT: +20% marked REPORTED (the study has nothing to support it) |
+| 81 - 86.3 | major Aldar development, entry price expected below some neighbours | PAGE: study p.2 (executive summary), markers on "AED 1,400-1,650 per sq ft" and "The Wilds 1,875" |
+| 86.3 - 90.7 | near billions in infrastructure and technology | MAP: both districts, pulse over the area |
+| 90.7 - 96 | depends on final pricing, payment plan, future supply | PAGE: study p.14 (questions to put to Aldar at launch), markers on the price basis, payment plan, homes in the first release |
+| 96 - 103.8 | comment "green" and I'll send the information | dark: bubble grows, study cover pops up beside it, "green" typed, sent, answered; line "AI-GENERATED AVATAR" |
 
 ## Facts and sources (what is verified and what is only his claim)
 Verified (primary pages shown on screen):
