@@ -20,7 +20,7 @@ const ea = (t, a, b, f = E.out3) => f(prog(t, a, b));
 const T = { title: 0.20, draw0: 1.10, draw1: 25.90, end0: 28.40, end1: 30.00, dur: 32.0 };
 
 // ---- layout (inside the Reels safe zone: x 130..950, y 300..~1440) ----
-const L = { nameR: 378, barX: 392, barLen: 548, y0: 722, pitch: 50, bh: 40, rows: 10, textX: 335 };
+const L = { nameR: 378, barX: 392, barLen: 548, y0: 722, pitch: 50, bh: 40, rows: 10, k: 1, textX: 335 };
 const KICK = 'DUBAI  ·  2016 – 2026';
 const TITLE = ['Price per sq ft:', 'top 10 areas'];
 const SUB = ['The most expensive areas,', 'quarter by quarter'];
@@ -90,15 +90,15 @@ function drawRow(a, f, vmax, alphaBase, leadGlow) {
   const y = L.y0 + pos * L.pitch, len = Math.max(6, v / vmax * L.barLen);
   ctx.globalAlpha = alphaBase * al;
   // name on the left of the bar, shrunk to fit its column
-  let size = 28; ctx.font = `800 ${size}px "Inter"`; const wmax = L.nameR - 130, w0 = ctx.measureText(a.short).width; if (w0 > wmax) size = Math.max(21, Math.floor(size * wmax / w0));
+  let size = Math.round(28 * L.k); ctx.font = `800 ${size}px "Inter"`; const wmax = L.nameR - 130, w0 = ctx.measureText(a.short).width; if (w0 > wmax) size = Math.max(16, Math.floor(size * wmax / w0));
   txt(a.short, L.nameR, y + L.bh / 2 + size * 0.36, size, 800, C.ink, 'right', 'Inter');
   // bar (rounded data end), rank-1 gets a soft gold halo
-  if (leadGlow > 0.01) { ctx.save(); ctx.shadowColor = C.gold; ctx.shadowBlur = 22 * leadGlow; ctx.fillStyle = a.color; rr(L.barX, y, len, L.bh, [0, 12, 12, 0]); ctx.fill(); ctx.restore(); }
-  ctx.fillStyle = a.color; rr(L.barX, y, len, L.bh, [0, 12, 12, 0]); ctx.fill();
+  if (leadGlow > 0.01) { ctx.save(); ctx.shadowColor = C.gold; ctx.shadowBlur = 22 * leadGlow; ctx.fillStyle = a.color; rr(L.barX, y, len, L.bh, [0, L.bh * 0.3, L.bh * 0.3, 0]); ctx.fill(); ctx.restore(); }
+  ctx.fillStyle = a.color; rr(L.barX, y, len, L.bh, [0, L.bh * 0.3, L.bh * 0.3, 0]); ctx.fill();
   // number inside the bar end (dark ink on the light bar)
-  const label = fmt(v); ctx.font = '800 29px "Inter Display"'; const lw = ctx.measureText(label).width;
-  if (len > lw + 30) txt(label, L.barX + len - 14, y + L.bh / 2 + 10, 29, 800, C.bar, 'right');
-  else txt(label, L.barX + len + 12, y + L.bh / 2 + 10, 29, 800, C.ink, 'left');
+  const vs = Math.round(29 * L.k), label = fmt(v); ctx.font = `800 ${vs}px "Inter Display"`; const lw = ctx.measureText(label).width;
+  if (len > lw + 30) txt(label, L.barX + len - 14, y + L.bh / 2 + vs * 0.35, vs, 800, C.bar, 'right');
+  else txt(label, L.barX + len + 12, y + L.bh / 2 + vs * 0.35, vs, 800, C.ink, 'left');
   ctx.globalAlpha = alphaBase;
 }
 
@@ -150,6 +150,7 @@ function draw(t) {
 
 async function boot() {
   const q = new URLSearchParams(location.search); SS = +q.get('ss') || 1;
+  const n = +q.get('layout') || 10; L.rows = n; L.pitch = 500 / n; L.bh = Math.round(L.pitch * 0.8); L.k = Math.min(1, 1.1 * 10 / n);   // number of bars on screen: 10 default; text scales down when more
   const cv = document.getElementById('c'); cv.width = Math.round(W * SS); cv.height = Math.round(H * SS); cv.style.width = W + 'px'; cv.style.height = H + 'px'; ctx = cv.getContext('2d');
   D = await (await fetch('chart_data.json')).json(); prep(); D.caps = buildCaptions();
   await Promise.all([700, 800].flatMap(w => [document.fonts.load(`${w} 40px "Inter Display"`), document.fonts.load(`${w} 40px "Inter"`)]));
