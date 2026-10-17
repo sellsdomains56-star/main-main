@@ -36,7 +36,7 @@ function txt(s, x, y, size, weight, color, align = 'left', fam = 'Inter Display'
 const fmt = v => Math.round(v).toLocaleString('en-US');
 
 // ---- race progress: one quarter per step; in each step every bar moves to its new value / row during the first MOVE of the step, then rests ----
-const MOVE = 0.50, mv = u => sm(prog(u, 0, MOVE));
+const MOVE = 0.50, mv = u => sm(prog(u, 0, MOVE)), RAMP = 3, RAMP_DOWN = 1;
 const fAt = t => clamp((t - T.draw0) / (T.draw1 - T.draw0)) * (D.Q - 1);          // fractional quarter index at time t
 const timeOfP = p => T.draw0 + p * (T.draw1 - T.draw0);
 
@@ -44,10 +44,20 @@ const timeOfP = p => T.draw0 + p * (T.draw1 - T.draw0);
 function prep() {
   const Q = D.quarters.length; D.Q = Q;
   const A = D.areas.map(a => ({ ...a }));
-  for (const a of A) a.val = a.v.map(x => (x == null ? null : x));
+  for (const a of A) {
+    a.val = a.v.map(x => (x == null ? null : x));                         // real values (null = no data that quarter)
+    // shown value: exact wherever there is data. Before its first data point a bar grows from 0 over RAMP quarters and lands exactly on the real value;
+    // after its last data point it shrinks to 0 within one step (an area without data is never shown with a made-up number)
+    a.eff = a.val.map((x, k) => {
+      if (x != null) return x;
+      let p = -1, n = -1; for (let j = k - 1; j >= 0; j--) if (a.val[j] != null) { p = j; break; } for (let j = k + 1; j < Q; j++) if (a.val[j] != null) { n = j; break; }
+      const down = p >= 0 ? a.val[p] * sm(1 - (k - p) / RAMP_DOWN) : 0, up = n >= 0 ? a.val[n] * sm(1 - (n - k) / RAMP) : 0;
+      return Math.max(down, up);
+    });
+  }
+  A.forEach(a => { a.rank = new Array(Q).fill(A.length); });
   for (let k = 0; k < Q; k++) {
-    const order = A.filter(a => a.val[k] != null).sort((x, y) => y.val[k] - x.val[k]);
-    A.forEach(a => { a.rank = a.rank || new Array(Q).fill(L.rows + 2); });
+    const order = A.filter(a => a.eff[k] > 0.5).sort((x, y) => y.eff[k] - x.eff[k]);
     order.forEach((a, i) => { a.rank[k] = i; });
   }
   // colours: greedy colouring - an area gets the palette colour that clashes least with the areas it shares the top 12 with (the most prominent areas choose first)
@@ -61,13 +71,10 @@ function prep() {
   }
   D.A = A.filter(a => top(a) > 0);                                  // only areas that ever reach the top 10 need to be drawn
 }
-// effective value of an area at fractional quarter index f: a quarter without data borrows its neighbour's value (so a bar never has a hole) but is scaled by
-// availability (0..1), so an area grows in / shrinks away smoothly when its data starts or ends
+// shown value of an area at fractional quarter index f: moves from the value of quarter k to quarter k+1 during the move phase of the step
 function valueAt(a, f) {
-  const k = Math.min(D.Q - 1, Math.floor(f)), j = Math.min(D.Q - 1, k + 1), u = mv(f - k);
-  let v0 = a.val[k], v1 = a.val[j]; const h0 = v0 == null ? 0 : 1, h1 = v1 == null ? 0 : 1; if (!h0 && !h1) return 0;
-  if (v0 == null) v0 = v1; if (v1 == null) v1 = v0;
-  return lerp(v0, v1, u) * lerp(h0, h1, u);
+  const k = Math.min(D.Q - 1, Math.floor(f)), j = Math.min(D.Q - 1, k + 1);
+  return lerp(a.eff[k], a.eff[j], mv(f - k));
 }
 // row position of an area: it slides from its rank in quarter k to its rank in quarter k+1 together with every other bar
 function posAt(a, f) { const k = Math.min(D.Q - 1, Math.floor(f)), j = Math.min(D.Q - 1, k + 1); return lerp(a.rank[k], a.rank[j], mv(f - k)); }
