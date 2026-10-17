@@ -6,7 +6,7 @@
 // ---------------------------------------------------------------------------
 const W = 1080, H = 1920, FPS = 30;
 const C = { bg: '#08080A', ink: '#F3EFE6', dim: 'rgba(243,239,230,0.68)', mute: 'rgba(243,239,230,0.36)', faint: 'rgba(243,239,230,0.10)',
-            gold: '#E9C47C', blue: '#4A8FE0', orange: '#E58A1F' };
+            gold: '#E9C47C', rent: '#2FCB8B', eq: '#9B7BF0' };   // rent+invest = green, home equity = violet (validated pair, direct labels)
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, t) => a + (b - a) * t;
 const prog = (t, a, b) => clamp((t - a) / (b - a));
@@ -17,13 +17,14 @@ const ea = (t, a, b, f = E.out3) => f(prog(t, a, b));
 const T = { title: 0.20, draw0: 1.10, draw1: 24.60, end0: 27.20, end1: 28.80, dur: 31.0 };
 
 // ---- layout (inside the Reels safe zone: x 130..950, y 300..~1420) ----
-const L = { px0: 215, px1: 868, py0: 660, py1: 1130, labelRight: 950, textX: 130 };
+const L = { px0: 215, px1: 868, py0: 670, py1: 1130, labelRight: 950, textX: 335 };
 const MON = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
-const TITLE = ['Renting + Investing', 'vs. Buying a Home', 'in Dubai'];
-const SUB = ['What happened to your money if you', 'started in January 2003'];
+const KICK = 'DUBAI  ·  2003 – 2026';
+const TITLE = ['Renting + Investing', 'vs. Buying a Home'];
+const SUB = ['What happened to your money', 'if you started in January 2003'];
 const FOOT = ['AED 1M home, Jan 2003: 20% down + 6% fees = AED 260K',
               'Equity only: the rent saved by owning is not counted',
-              'Dashed = estimated between REIDIN index points',
+              'Dashed line = estimated between REIDIN index points',
               'Sources: REIDIN, Dubai Land Dept, S&P 500 total return'];
 
 let ctx, SS = 1, D = null, IMG = {};
@@ -111,13 +112,19 @@ function tipLabel(name, value, color, tipX, tipY, off, alpha) {
   ctx.globalAlpha = 1;
 }
 
-function avatar(cx, cy, d, ring, glow) {
-  const im = IMG.avatar; if (!im) return;
+function glow(cx, cy, r, rgb, a) { const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r); g.addColorStop(0, `rgba(${rgb},${a})`); g.addColorStop(1, `rgba(${rgb},0)`); ctx.fillStyle = g; ctx.fillRect(cx - r, cy - r, 2 * r, 2 * r); }
+function ring(cx, cy, r, color, w, alpha = 1) { ctx.globalAlpha *= alpha; ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.stroke(); ctx.globalAlpha /= alpha; }
+// his picture as the round bubble we use in every reel: gold ring, soft glow, vignette, a slow pulse ring
+function avatar(cx, cy, r, pulse, big) {
+  const im = IMG.avatar; if (!im || r < 2) return;
   ctx.save();
-  if (glow > 0) { ctx.shadowColor = `rgba(233,196,124,${0.55 * glow})`; ctx.shadowBlur = 60 * glow; ctx.fillStyle = C.bg; ctx.beginPath(); ctx.arc(cx, cy, d / 2 + ring, 0, 7); ctx.fill(); ctx.shadowBlur = 0; }
-  ctx.beginPath(); ctx.arc(cx, cy, d / 2 + ring, 0, 7); ctx.fillStyle = C.gold; ctx.fill();
-  ctx.beginPath(); ctx.arc(cx, cy, d / 2, 0, 7); ctx.clip();
-  ctx.drawImage(im, cx - d / 2, cy - d / 2, d, d); ctx.restore();
+  glow(cx, cy, r * 1.9, '233,196,124', 0.10 + 0.20 * pulse + 0.25 * big);
+  ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 30; ctx.shadowOffsetY = 10; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fillStyle = '#111'; ctx.fill(); ctx.restore();
+  ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r - 3, 0, 7); ctx.clip(); ctx.drawImage(im, cx - r, cy - r, 2 * r, 2 * r);
+  const g = ctx.createRadialGradient(cx, cy, r * 0.55, cx, cy, r); g.addColorStop(0, 'rgba(8,8,10,0)'); g.addColorStop(1, 'rgba(8,8,10,0.38)'); ctx.fillStyle = g; ctx.fillRect(cx - r, cy - r, 2 * r, 2 * r); ctx.restore();
+  ring(cx, cy, r - 1, C.gold, 5 + 3 * big);
+  ring(cx, cy, r + 10 + 6 * pulse, C.gold, 2.5, 0.22 + 0.5 * pulse);
+  ctx.restore();
 }
 
 function draw(t) {
@@ -130,8 +137,10 @@ function draw(t) {
   ctx.globalAlpha = dim;
   // ---- title block ----
   ctx.globalAlpha = dim * tin; const ty = (1 - tin) * 22;
-  TITLE.forEach((s, i) => txt(s, L.textX, 350 + i * 66 + ty, 60, 800, C.ink));
-  SUB.forEach((s, i) => txt(s, L.textX, 545 + i * 44 + ty, 34, 700, C.dim, 'left', 'Inter'));
+  ctx.letterSpacing = '6px'; txt(KICK, L.textX, 372 + ty, 26, 700, C.dim, 'left', 'Inter'); ctx.letterSpacing = '0px';
+  TITLE.forEach((s, i) => txt(s, L.textX, 436 + i * 62 + ty, 56, 800, C.ink));
+  ctx.fillStyle = C.gold; ctx.fillRect(L.textX, 520 + ty, 120, 5);
+  SUB.forEach((s, i) => txt(s, L.textX, 578 + i * 40 + ty, 31, 700, C.gold, 'left', 'Inter'));
   ctx.globalAlpha = dim;
 
   // ---- chart ----
@@ -144,9 +153,9 @@ function draw(t) {
   if (t >= T.draw0 - 0.05) {
     ctx.save(); ctx.beginPath(); ctx.rect(L.px0 - 6, L.py0 - 50, L.px1 - L.px0 + 40, L.py1 - L.py0 + 56); ctx.clip();
     const estIdx = D.months.indexOf(D.est_until);
-    const tipR = plotLine(D.renter, f, X, Y, C.blue, null);
-    const tipE = plotLine(D.equity, f, X, Y, C.orange, estIdx);
-    for (const [tip, col] of [[tipR, C.blue], [tipE, C.orange]]) {                // tip dots + a slow pulse once the race is over
+    const tipR = plotLine(D.renter, f, X, Y, C.rent, null);
+    const tipE = plotLine(D.equity, f, X, Y, C.eq, estIdx);
+    for (const [tip, col] of [[tipR, C.rent], [tipE, C.eq]]) {                // tip dots + a slow pulse once the race is over
       const pulse = t > T.draw1 ? ((t - T.draw1) * 0.9) % 1 : 0;
       if (t > T.draw1) { ctx.globalAlpha = dim * (1 - pulse) * 0.5; ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(tip[0], tip[1], 12 + 26 * pulse, 0, 7); ctx.stroke(); ctx.globalAlpha = dim; }
       ctx.fillStyle = col; ctx.beginPath(); ctx.arc(tip[0], tip[1], 12, 0, 7); ctx.fill(); ctx.strokeStyle = C.bg; ctx.lineWidth = 3.5; ctx.stroke();
@@ -155,8 +164,8 @@ function draw(t) {
     // end labels: the higher line's label sits above its tip, the other below; they trade places smoothly when the lines cross
     const vR = at(D.renter, f), vE = at(D.equity, f), sE = leadSign(t);          // sE = +1: home equity is the higher line
     const lab = ea(t, T.draw0, T.draw0 + 0.6);
-    tipLabel('Home Equity', money(vE), C.orange, tipE[0], tipE[1], -sE * 86, dim * lab);
-    tipLabel('Rent + Invest', money(vR), C.blue, tipR[0], tipR[1], sE * 86, dim * lab);
+    tipLabel('Home Equity', money(vE), C.eq, tipE[0], tipE[1], -sE * 86, dim * lab);
+    tipLabel('Rent + Invest', money(vR), C.rent, tipR[0], tipR[1], sE * 86, dim * lab);
 
     // date ticker + caption
     const di = Math.round(f), y = +D.months[di].slice(0, 4), m = +D.months[di].slice(5) - 1;
@@ -172,10 +181,10 @@ function draw(t) {
   FOOT.forEach((s, i) => txt(s, 540, 1352 + i * 29, 24, 700, C.mute, 'center', 'Inter'));
   ctx.globalAlpha = 1;
 
-  // ---- his picture: top right, then the middle for the closing frame ----
+  // ---- his picture: top left (the round bubble of every reel), then the middle for the closing frame ----
   const sc = ea(t, T.title + 0.1, T.title + 0.9, E.out4);
-  const cx = lerp(872, 540, endK), cy = lerp(378, 880, endK), d = lerp(150, 430, endK);
-  if (sc > 0) avatar(cx, cy, d * sc, lerp(5, 9, endK), endK);
+  const cx = lerp(215, 540, endK), cy = lerp(420, 880, endK), r = lerp(90, 215, endK), pulse = 0.5 + 0.5 * Math.sin(t * 2.4);
+  if (sc > 0) avatar(cx, cy, r * sc, 0.35 * pulse, endK);
 }
 
 async function boot() {

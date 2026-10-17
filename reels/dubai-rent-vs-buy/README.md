@@ -1,6 +1,6 @@
 # Renting + investing vs buying a home - Dubai, January 2003 to September 2026
 
-31 s vertical reel (1080x1920, 30 fps), same format as the reference video (dark background, title + subtitle, two lines racing with a running date, end values, closing frame). Branding is only Abdullah Ahli's profile picture (top right, then centred in the closing frame); no handle, no logo. Quiet whoosh-only sound (`make_audio.py`, -26 dBFS peak).
+31 s vertical reel (1080x1920, 30 fps), same format as the reference video (dark background, title + subtitle, two lines racing with a running date, end values, closing frame) but in our colours: green = Rent + Invest, violet = Home Equity (not the reference blue/orange), gold accents. Branding is only Abdullah Ahli's picture as the round gold-ring bubble we use in every reel (top left, then large in the middle for the closing frame); no handle, no logo. Quiet whoosh-only sound (`make_audio.py`, -26 dBFS peak).
 
 Result at Sep 2026 (AED, same start cash of AED 260,000):
 - **Rent + Invest** (S&P 500 total return): **3.47 M**
