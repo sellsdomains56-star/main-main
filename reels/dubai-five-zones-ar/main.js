@@ -24,7 +24,7 @@ function faceZoom(t) {                                       // a slow push over
 }
 function initAssets() {
   GRID = document.createElement('canvas'); GRID.width = W * SS; GRID.height = (H + GRID_STEP) * SS;
-  const g = GRID.getContext('2d'); g.scale(SS, SS); g.fillStyle = 'rgba(243,239,230,1)';
+  const g = GRID.getContext('2d'); g.scale(SS, SS); g.fillStyle = 'rgba(255,255,255,1)';
   for (let y = 0; y < H + GRID_STEP; y += GRID_STEP) for (let x = GRID_STEP / 2; x < W; x += GRID_STEP) { g.beginPath(); g.arc(x, y, 1.5, 0, Math.PI * 2); g.fill(); }
   const n = document.createElement('canvas'); n.width = n.height = 256;
   const nc = n.getContext('2d'), id = nc.createImageData(256, 256), r = rng(7);
@@ -34,37 +34,27 @@ function initAssets() {
 let DUST = null;
 function drawDust(t) {                                           // a few slow motes of light, parallax by size: keeps the black alive without adding clutter
   if (!DUST) { const r = rng(21); DUST = Array.from({ length: 26 }, () => ({ x: r() * W, y: r() * H, s: 1.2 + r() * 2.6, v: 6 + r() * 16, ph: r() * 6.28, a: 0.10 + r() * 0.22 })); }
-  ctx.save(); for (const d of DUST) { const y = ((d.y - t * d.v) % H + H) % H, x = d.x + Math.sin(t * 0.3 + d.ph) * 22; ctx.globalAlpha = d.a * (0.7 + 0.3 * Math.sin(t * 1.3 + d.ph)); ctx.fillStyle = d.s > 2.4 ? '#E9C47C' : '#F3EFE6'; ctx.beginPath(); ctx.arc(x, y, d.s, 0, 7); ctx.fill(); } ctx.restore();
+  ctx.save(); for (const d of DUST) { const y = ((d.y - t * d.v) % H + H) % H, x = d.x + Math.sin(t * 0.3 + d.ph) * 22; ctx.globalAlpha = d.a * (0.7 + 0.3 * Math.sin(t * 1.3 + d.ph)); ctx.fillStyle = d.s > 2.4 ? '#A9D4FF' : '#FFFFFF'; ctx.beginPath(); ctx.arc(x, y, d.s, 0, 7); ctx.fill(); } ctx.restore();
 }
 function drawCutSweep(t) {                                       // a quick gold light sweep across the screen on every beat change
   for (const tc of CFG.CUTS || []) {
     const p = prog(t, tc - 0.2, tc + 0.32); if (p <= 0 || p >= 1) continue;
     const y = lerp(-300, H + 300, E.inOut2(p)), a = Math.sin(Math.PI * p) * 0.34, g = ctx.createLinearGradient(0, y - 260, 0, y + 260);
-    g.addColorStop(0, 'rgba(233,196,124,0)'); g.addColorStop(0.5, `rgba(255,236,190,${a})`); g.addColorStop(1, 'rgba(233,196,124,0)');
+    g.addColorStop(0, 'rgba(169,212,255,0)'); g.addColorStop(0.5, `rgba(220,238,255,${a})`); g.addColorStop(1, 'rgba(169,212,255,0)');
     ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = g; ctx.fillRect(0, y - 260, W, 520); ctx.restore();
   }
 }
-function drawBG(t) {
-  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
-  glow(180 + 70 * Math.sin(t * 0.21), 700 + 40 * Math.cos(t * 0.17), 820, '233,196,124', 0.05);
-  glow(900 + 60 * Math.cos(t * 0.19), 1400 + 50 * Math.sin(t * 0.23), 900, '233,196,124', 0.035);
-  ctx.save(); ctx.globalAlpha = 0.07; ctx.drawImage(GRID, 0, -((t * 7) % GRID_STEP), W, H + GRID_STEP); ctx.restore();
-  const v = ctx.createRadialGradient(CX, 1000, 360, CX, 1000, 1250); v.addColorStop(0, 'rgba(8,8,10,0)'); v.addColorStop(1, 'rgba(8,8,10,0.92)');
-  ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+function drawBG(t) {                                           // blue, calm: a vertical blue gradient with two slow soft glows (no black, no grid)
+  const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#1F73FF'); g.addColorStop(0.5, '#0F4ED0'); g.addColorStop(1, '#0A3590'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  glow(300 + 120 * Math.sin(t * 0.21), 560 + 60 * Math.cos(t * 0.17), 760, '150,200,255', 0.22);
+  glow(840 + 90 * Math.cos(t * 0.19), 1380 + 60 * Math.sin(t * 0.23), 820, '90,160,255', 0.20);
   drawDust(t);
 }
 // him: the full frame, only in the FACE beats (fades through the cut into / out of the graphics)
-function drawPerson(t, F) {
+function drawPerson(t, F) {                                    // the frontal camera angle, re-framed so he sits in the MIDDLE; clean (no grade, no vignette, no dark scrims)
   if (F <= 0.002 || !FOOT) return;
-  const S = faceZoom(t), bv = E.inOut2(F), g = bv * bv;
-  const PV = CFG.PIV || PIV; ctx.save(); ctx.globalAlpha *= bv; ctx.translate(PV[0], PV[1]); ctx.scale(S, S); ctx.translate(-PV[0], -PV[1]); ctx.drawImage(FOOT, 0, 0, W, H); ctx.restore();
-  ctx.save(); ctx.globalAlpha = 0.24 * g; ctx.globalCompositeOperation = 'soft-light'; ctx.fillStyle = '#E9C47C'; ctx.fillRect(0, 0, W, H); ctx.restore();   // warm grade
-  const vg = ctx.createRadialGradient(CX, 800, 300, CX, 800, 1100); vg.addColorStop(0, 'rgba(8,8,10,0)'); vg.addColorStop(1, `rgba(8,8,10,${0.5 * g})`);
-  ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
-  const tg1 = ctx.createLinearGradient(0, 0, 0, 300); tg1.addColorStop(0, `rgba(8,8,10,${0.45 * g})`); tg1.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = tg1; ctx.fillRect(0, 0, W, 300);
-  const y0 = 1050, y1 = 1400, sg = ctx.createLinearGradient(0, y0, 0, H);                  // bottom scrim under the captions
-  sg.addColorStop(0, 'rgba(8,8,10,0)'); sg.addColorStop(clamp((y1 - y0) / (H - y0)), `rgba(8,8,10,${0.8 * g})`); sg.addColorStop(1, `rgba(8,8,10,${0.92 * g})`);
-  ctx.fillStyle = sg; ctx.fillRect(0, y0, W, H - y0);
+  const R = CFG.REFRAME, S = faceZoom(t) / 1.05, bv = E.inOut2(F);
+  ctx.save(); ctx.globalAlpha *= bv; ctx.translate(CX, R.ty * H); ctx.scale(R.s * S, R.s * S); ctx.translate(-R.cx * W, -R.cy * H); ctx.drawImage(FOOT, 0, 0, W, H); ctx.restore();
 }
 function runScene(sc, t) {
   if (sc.kind === 'sat') return runSat(sc, t);
@@ -94,12 +84,12 @@ function drawBubble(t) {
   const B = CFG.BUBBLE, PH = B.img ? IMG[B.img] : null; if (!PH && !FOOT) return;                    // B.img = a still portrait (IMAGES id) instead of the live footage
   const { cx, cy, r } = bubbleAt(t), S = B.src || {}, sp = Math.max(speakingAt(t), 0.55 * speakingAt(t - 0.12), 0.3 * speakingAt(t - 0.25)), a = ea(t, B.t0 ?? 0, (B.t0 ?? 0) + 0.5, E.out4), s0 = lerp(0.6, 1, a);
   ctx.save(); ctx.globalAlpha *= a; ctx.translate(cx, cy); ctx.scale(s0, s0);
-  glow(0, 0, r * 1.9, '233,196,124', 0.10 + 0.22 * sp);
-  ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 30 * SS; ctx.shadowOffsetY = 10 * SS; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fillStyle = '#111'; ctx.fill(); ctx.restore();
+  glow(0, 0, r * 1.9, '169,212,255', 0.10 + 0.22 * sp);
+  ctx.save(); ctx.shadowColor = 'rgba(0,30,100,0.5)'; ctx.shadowBlur = 30 * SS; ctx.shadowOffsetY = 10 * SS; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fillStyle = '#0B3A9C'; ctx.fill(); ctx.restore();
   ctx.save(); ctx.beginPath(); ctx.arc(0, 0, r - 3, 0, 7); ctx.clip();
   if (PH) ctx.drawImage(PH, -r, -r, 2 * r, 2 * r);
   else { const sz = S.size, sx = clamp(S.cx - sz / 2, 0, 1080 - sz), sy = clamp(S.cy - sz / 2, 0, 1920 - sz), kx = FOOT.naturalWidth / 1080, ky = FOOT.naturalHeight / 1920; ctx.drawImage(FOOT, sx * kx, sy * ky, sz * kx, sz * ky, -r, -r, 2 * r, 2 * r); }
-  const g = ctx.createRadialGradient(0, 0, r * 0.55, 0, 0, r); g.addColorStop(0, 'rgba(8,8,10,0)'); g.addColorStop(1, 'rgba(8,8,10,0.38)'); ctx.fillStyle = g; ctx.fillRect(-r, -r, 2 * r, 2 * r);   // soft vignette
+  const g = ctx.createRadialGradient(0, 0, r * 0.55, 0, 0, r); g.addColorStop(0, 'rgba(6,36,110,0)'); g.addColorStop(1, 'rgba(6,36,110,0.38)'); ctx.fillStyle = g; ctx.fillRect(-r, -r, 2 * r, 2 * r);   // soft vignette
   ctx.restore();
   ring(0, 0, r - 1, { color: C.gold, w: 5 });
   ring(0, 0, r + 10 + 6 * sp, { color: C.gold, w: 2.5, alpha: 0.22 + 0.5 * sp });                                    // speaking pulse

@@ -4,15 +4,15 @@
 // Everything draws into the global `ctx` and is a pure function of time.
 // ---------------------------------------------------------------------------
 const W = 1080, H = 1920, FPS = 30, CX = 540; let DUR = 46.72;
-const C = {                      // the original palette: near-black, warm ivory, gold
-  bg: '#08080A',
-  ink: '#F3EFE6',
-  dim: 'rgba(243,239,230,0.62)',
-  mute: 'rgba(243,239,230,0.30)',
-  faint: 'rgba(243,239,230,0.14)',
-  gold: '#E9C47C',
-  goldSoft: 'rgba(233,196,124,0.16)',
-  panel: '#141417',
+const C = {                      // Arabic reel: blue, white and a sky-blue accent (no black)
+  bg: '#0B3A9C',
+  ink: '#FFFFFF',
+  dim: 'rgba(255,255,255,0.80)',
+  mute: 'rgba(255,255,255,0.50)',
+  faint: 'rgba(255,255,255,0.18)',
+  gold: '#A9D4FF',
+  goldSoft: 'rgba(169,212,255,0.20)',
+  panel: '#1352CC',
 };
 
 // Instagram Reels safe zone (1080x1920): the top 220 px, the bottom 450 px and a 100 px strip on the right (like / comment / share) get covered by the app's UI.
@@ -111,7 +111,7 @@ function line(x1, y1, x2, y2, o = {}) {
 function dot(x, y, r, color = C.ink, alpha = 1) {
   ctx.save(); ctx.globalAlpha *= alpha; ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
 }
-function glow(x, y, r, color = '233,196,124', a = 0.25) {
+function glow(x, y, r, color = '169,212,255', a = 0.25) {
   if (a <= 0.003) return;
   const g = ctx.createRadialGradient(x, y, 0, x, y, r);
   g.addColorStop(0, `rgba(${color},${a})`); g.addColorStop(1, `rgba(${color},0)`);
@@ -243,7 +243,7 @@ function logo(key, x, y, size, o = {}) {
   if (useShine) {
     const bw = w * 0.45, cx = lerp(left - bw, left + w + bw, E.inOut2(shine));
     const g = ctx.createLinearGradient(cx - bw / 2, y - h, cx + bw / 2, y + h);
-    g.addColorStop(0, 'rgba(233,196,124,0)'); g.addColorStop(0.5, 'rgba(255,236,190,0.95)'); g.addColorStop(1, 'rgba(233,196,124,0)');
+    g.addColorStop(0, 'rgba(169,212,255,0)'); g.addColorStop(0.5, 'rgba(220,238,255,0.95)'); g.addColorStop(1, 'rgba(169,212,255,0)');
     ctx.save(); ctx.globalCompositeOperation = 'source-atop'; ctx.fillStyle = g; ctx.fillRect(left - 40, y - h, w + 80, h * 2); ctx.restore();
     const oc2 = ctx; ctx = main;
     ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha *= alpha; ctx.drawImage(_off, 0, 0); ctx.restore();

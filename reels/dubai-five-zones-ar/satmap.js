@@ -74,7 +74,7 @@ function satPlane(cam) {
   }
   // grade: a little less saturated, a little darker, so the line work and type sit on it
   ctx.globalCompositeOperation = 'saturation'; ctx.globalAlpha = 0.2; ctx.fillStyle = '#808080'; ctx.fillRect(X0, Y0, WW, HH);
-  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(8,8,10,0.05)'; ctx.fillRect(X0, Y0, WW, HH);
+  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(6,36,110,0.05)'; ctx.fillRect(X0, Y0, WW, HH);
   ctx.restore();
 }
 // paints a flat plane with `drawFlat` (plane coordinates = the 1080x1920 frame, margins allowed) and shows it tilted by `pitch` degrees: each screen row samples its own row of the plane at its own scale
@@ -94,13 +94,11 @@ function planeRender(pitch, drawFlat) {
   }
   ctx.restore();
 }
-function satVeil(sc, cam) {
+function satVeil(sc, cam) {                                      // a light blue haze at the top and bottom (text sits there); the middle stays clear
   ctx.save();
-  if (sc.veil === 'tl' || sc.veil === 'top') { const gv = ctx.createRadialGradient(0, 380, 0, 0, 380, 980); gv.addColorStop(0, 'rgba(8,8,10,0.92)'); gv.addColorStop(0.6, 'rgba(8,8,10,0.55)'); gv.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = gv; ctx.fillRect(0, 0, W, 1400); }
-  if (sc.veil === 'top') { const g2 = ctx.createLinearGradient(0, 0, 0, 1000); g2.addColorStop(0, 'rgba(8,8,10,0.6)'); g2.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = g2; ctx.fillRect(0, 0, W, 1000); }
-  const hz = clamp((cam.pitch || 0) / 30);                         // tilted: the far ground fades into the dark (haze), which also hides the low-resolution horizon
-  const gt = ctx.createLinearGradient(0, 0, 0, 640 + 260 * hz); gt.addColorStop(0, `rgba(8,8,10,${0.82 + 0.1 * hz})`); gt.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = gt; ctx.fillRect(0, 0, W, 900);
-  const gb = ctx.createLinearGradient(0, 1180, 0, H); gb.addColorStop(0, 'rgba(8,8,10,0)'); gb.addColorStop(0.45, 'rgba(8,8,10,0.78)'); gb.addColorStop(1, 'rgba(8,8,10,0.92)'); ctx.fillStyle = gb; ctx.fillRect(0, 1180, W, H - 1180);
+  const hz = clamp((cam.pitch || 0) / 30);
+  const gt = ctx.createLinearGradient(0, 0, 0, 640 + 200 * hz); gt.addColorStop(0, `rgba(10,60,170,${0.62 + 0.1 * hz})`); gt.addColorStop(1, 'rgba(10,60,170,0)'); ctx.fillStyle = gt; ctx.fillRect(0, 0, W, 900);
+  const gb = ctx.createLinearGradient(0, 1220, 0, H); gb.addColorStop(0, 'rgba(10,60,170,0)'); gb.addColorStop(0.5, 'rgba(10,60,170,0.5)'); gb.addColorStop(1, 'rgba(10,60,170,0.7)'); ctx.fillStyle = gb; ctx.fillRect(0, 1220, W, H - 1220);
   ctx.restore();
 }
 function satDraw(sc, tg) {
@@ -113,9 +111,9 @@ function satOutline(cam, pts, p, color = C.gold) {                // animated tr
   if (p <= 0.001) return;
   const P = pts.map(([lo, la]) => satProj(cam, lo, la));
   ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  if (p >= 0.995) { ctx.beginPath(); P.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); ctx.fillStyle = 'rgba(233,196,124,0.16)'; ctx.fill(); }
+  if (p >= 0.995) { ctx.beginPath(); P.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); ctx.fillStyle = 'rgba(169,212,255,0.16)'; ctx.fill(); }
   strokePoly(P, p, { color: 'rgba(8,9,11,0.6)', w: 13 });
-  ctx.shadowColor = 'rgba(233,196,124,0.9)'; ctx.shadowBlur = 16 * SS; const hd = strokePoly(P, p, { color, w: 6 }); ctx.shadowColor = 'transparent';
+  ctx.shadowColor = 'rgba(169,212,255,0.9)'; ctx.shadowBlur = 16 * SS; const hd = strokePoly(P, p, { color, w: 6 }); ctx.shadowColor = 'transparent';
   if (hd && p < 0.995) { glow(hd.x, hd.y, 60, '255,246,222', 0.55); dot(hd.x, hd.y, 7, '#FFF8E6'); }
   ctx.restore();
 }
@@ -126,7 +124,7 @@ function satPin(x, y, t, a0, title, sub) {                         // pin + one 
   dot(x, y, 20 * e, 'rgba(255,255,255,0.95)'); dot(x, y, 11 * e, C.gold);
   const f1 = F.d(700, 50), f2 = F.d(500, 36), w1 = M(title, f1, 1), w2 = sub ? M(sub, f2, 1) : 0, pw = Math.max(w1, w2) + 70, ph = sub ? 124 : 84;
   const lx = Math.min(SAFE.x1 - pw / 2, Math.max(SAFE.x0 + pw / 2, x)), ly = y + 40 + (1 - e) * 20;
-  ctx.save(); ctx.globalAlpha *= al; rr(lx - pw / 2, ly, pw, ph, 22); ctx.fillStyle = 'rgba(8,8,10,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(233,196,124,0.7)'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.globalAlpha *= al; rr(lx - pw / 2, ly, pw, ph, 22); ctx.fillStyle = 'rgba(6,36,110,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(169,212,255,0.7)'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
   T(title, lx, ly + 58, { font: f1, ls: 1, color: '#FFFFFF', alpha: al });
   if (sub) T(sub, lx, ly + 100, { font: f2, ls: 1, color: C.gold, alpha: al });
 }
