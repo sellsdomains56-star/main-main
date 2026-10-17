@@ -44,19 +44,43 @@ function buildScenes() {
 
   // ---- the satellite flights (keys are seconds into each flight)
   const flight = (id, [a, b], keys) => { SAT_SCENES[id] = { a, b, veil: 'top', keys: keys.map(k => camKey(...k)).sort((p, q) => p[0] - q[0]) }; add({ id, kind: 'sat', a, b, cfg: {} }); return SAT_SCENES[id]; };
-  const OV = [55.27, 25.15, 10.7, 105], d1 = T_MAP1[1] - T_MAP1[0];
-  flight('m1', T_MAP1, [[0, ...OV], [d1 * 0.5, 55.31, 25.14, 11.5, 150], [d1 + 0.6, 55.385, 25.125, 12.4, 170]]);
+  const d1 = T_MAP1[1] - T_MAP1[0];
+  flight('m1', T_MAP1, [[0, 55.27, 25.15, 10.7, 105, 0], [d1 * 0.5, 55.31, 25.14, 11.7, 150, 18], [d1 + 0.6, 55.385, 25.125, 12.6, 170, 32]]);
   const dl = T_MLOC[1] - T_MLOC[0];
-  flight('mloc', T_MLOC, [[0, 55.40, 25.121, 12.5, 170], [2.0, ...MIDc, 13.0, 160], [dl + 0.6, ...MIDc, 13.2, 160]]);
+  flight('mloc', T_MLOC, [[0, 55.40, 25.121, 12.5, 170, 28], [2.0, ...MIDc, 13.0, 160, 33], [dl + 0.6, ...MIDc, 13.3, 160, 35]]);
   const da = T_MAC[1] - T_MAC[0], ra = t => t - T_MAC[0];
-  flight('mac', T_MAC, [[0, 55.40, 25.118, 13.1, 170], [ra(K.expanding), ...ACc, 13.4, 170], [ra(K.by) - 0.2, ...ACc, 13.4, 170], [ra(K.metro) + 0.9, 55.3766, 25.164, 11.3, 185], [ra(K.dso2) - 0.2, 55.3766, 25.164, 11.3, 185], [ra(K.acad3) + 0.5, 55.3985, 25.108, 11.9, 165], [da + 0.6, 55.3985, 25.108, 11.9, 165]]);
+  flight('mac', T_MAC, [[0, 55.40, 25.118, 13.0, 170, 30], [ra(K.expanding), ...ACc, 13.4, 170, 33], [ra(K.by) - 0.2, ...ACc, 13.4, 170, 33], [ra(K.metro) + 0.9, 55.3766, 25.164, 11.3, 185, 22], [ra(K.dso2) - 0.2, 55.3766, 25.164, 11.3, 185, 22], [ra(K.acad3) + 0.5, 55.3985, 25.108, 11.9, 165, 28], [da + 0.6, 55.3985, 25.108, 11.9, 165, 28]]);
   const di = T_MINF[1] - T_MINF[0];
-  flight('minf', T_MINF, [[0, 55.395, 25.121, 12.9, 165], [di + 0.6, 55.395, 25.121, 12.3, 165]]);
+  flight('minf', T_MINF, [[0, 55.395, 25.121, 12.9, 165, 30], [di + 0.6, 55.395, 25.121, 12.3, 165, 34]]);
+
+  // ---- the study / news pages as full-screen backgrounds, flown like the map: from the whole page down to the line he is reading, with a 3D tilt; the marker highlights are drawn on the page
+  const mk = (b, t0, t1) => ({ bbox: b, t0, t1 });
+  const page = (id, img, [a, b], keys, hl) => add({ id, kind: 'page', img, a, b, keys, hl });
+  const rel = (T, t) => t - T[0], dur = T => T[1] - T[0];
+  page('p_nat', 'national', T_NAT, [[0, 700, 2850, 0.42, 0], [0.85, 840, 2570, 0.82, 18], [dur(T_NAT) + 0.5, 840, 2560, 0.86, 20]], [mk([572, 2470, 478, 36], K.part - 0.1, K.holding)]);
+  page('p_p13', 'st13', T_P13, [[0, 1240, 1500, 0.42, 0], [0.9, 740, 830, 0.88, 20], [dur(T_P13) + 0.5, 760, 850, 0.92, 22]],
+    [mk([205, 645, 430, 44], K.three2 + 0.2, K.three2 + 1.2), mk([205, 700, 200, 40], K.s2227 - 0.1, K.space), mk([795, 645, 250, 44], K.p3 - 0.1, K.aed2 + 0.6)]);
+  page('p_p7', 'st7', T_P7, [[0, 1240, 1500, 0.42, 0], [0.9, 975, 1130, 0.62, 20], [dur(T_P7) + 0.5, 975, 1110, 0.66, 22]],
+    [mk([385, 1098, 1010, 50], K.p1350 - 0.1, K.p1350 + 0.9), mk([385, 1288, 1130, 50], K.p1350 + 0.9, K.foot), mk([330, 625, 1440, 48], K.nearby - 0.2, K.nearby + 0.8), mk([340, 720, 1440, 48], K.nearby + 0.3, K.comm2)]);
+  page('p_dmo', 'dmo', T_DMO, [[0, 480, 700, 0.5, 0], [rel(T_DMO, K.b128) - 0.35, 480, 2105, 1.12, 18], [rel(T_DMO, K.target) - 0.55, 480, 2105, 1.12, 18], [rel(T_DMO, K.target) + 0.1, 480, 6385, 1.12, 18], [dur(T_DMO) + 0.5, 480, 6385, 1.16, 20]],
+    [mk([330, 2080, 226, 48], K.b128 - 0.05, K.billion + 0.9), mk([277, 6390, 442, 48], K.j70 - 0.1, K.jobs + 0.3)]);
+  page('p_p5', 'st5', T_P5, [[0, 1240, 1500, 0.42, 0], [0.9, 760, 990, 0.82, 20], [rel(T_P5, K.demand) - 0.6, 760, 990, 0.82, 20], [rel(T_P5, K.demand) - 0.1, 880, 2150, 0.78, 20], [dur(T_P5) + 0.5, 880, 2150, 0.8, 22]],
+    [mk([205, 632, 1030, 92], K.haven1 - 0.1, K.haven1 + 0.9), mk([205, 766, 1030, 95], K.athlon - 0.1, K.athlon + 0.9), mk([205, 904, 1030, 95], K.wilds - 0.1, K.wilds + 0.9), mk([235, 2104, 640, 50], K.demand + 0.1, K.phases)]);
+  page('p_p7b', 'st7', T_P7B, [[0, 1240, 2300, 0.42, 0], [0.9, 1350, 2290, 0.75, 20], [dur(T_P7B) + 0.5, 1350, 2290, 0.79, 22]], [mk([1230, 2228, 805, 52], K.p88 - 0.2, K.ret + 0.9)]);
+  page('p_p2', 'st2', T_P2, [[0, 1240, 1300, 0.42, 0], [0.9, 940, 1210, 0.8, 20], [dur(T_P2) + 0.5, 940, 1210, 0.84, 22]], [mk([780, 1072, 790, 52], K.expected - 0.1, K.surr), mk([630, 1193, 340, 50], K.surr - 0.1, K.surr + 1.0)]);
+  page('p_p14', 'st14', T_P14, [[0, 1240, 2200, 0.42, 0], [0.9, 1850, 2760, 0.9, 20], [dur(T_P14) + 0.5, 1850, 2760, 0.94, 22]],
+    [mk([1320, 2356, 560, 52], K.final - 0.1, K.pricing + 0.5), mk([1320, 2488, 1000, 52], K.payment - 0.1, K.payment + 1.0), mk([1320, 2746, 1000, 100], K.future - 0.1, K.supply + 0.3)]);
 
   // ---- the face bubble: small, top-left; grows to the middle for the call to action
   const BUBBLE = { t0: 0.1, src: { cx: 570, cy: 830, size: 640 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.if1 - 0.2, cx: 215, cy: 418, r: 78 }, { t: K.if1 + 0.9, cx: 540, cy: 470, r: 125 }] };
   HUD_X = 330;
 
+  // a dashed ring of `meters` radius around a place, projected through the tilt (an ellipse on the tilted ground)
+  const ringAt = (t, cam, lon, lat, meters, a0) => {
+    const al = ea(t, a0, a0 + 0.5); if (al <= 0.003) return; const pts = [];
+    for (let i = 0; i <= 72; i++) { const th = i / 72 * Math.PI * 2; pts.push(satProj(cam, lon + meters * Math.cos(th) / (111320 * Math.cos(lat * Math.PI / 180)), lat + meters * Math.sin(th) / 110540)); }
+    ctx.save(); ctx.globalAlpha *= al; ctx.setLineDash([18, 12]); ctx.lineDashOffset = -t * 30; ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.strokeStyle = 'rgba(255,236,190,0.9)'; ctx.lineWidth = 4; ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+  };
   // ---- map beats: only map elements (outlines, route, one tag) on top of the imagery
   SCENES.find(s => s.id === 'm1').cfg.top = (t, cam) => {
     mapTag(t, cam, { lon: DSOc[0], lat: DSOc[1], a0: K.dub1, a1: T_MAP1[1], title: 'DUBAI SILICON OASIS', sub: 'NEAR THE NEW COMMUNITY', dx: 0, dy: -95 });
@@ -76,12 +100,12 @@ function buildScenes() {
   SCENES.find(s => s.id === 'minf').cfg.top = (t, cam) => {
     mapIsland(t, cam, 'dso', '#6C63FF', '#A79BFF', [[T_MINF[0] + 0.2, T_MINF[1]]], ['DUBAI SILICON', 'OASIS']);
     mapIsland(t, cam, 'academic', '#2FD8B5', '#93F3DF', [[T_MINF[0] + 0.5, T_MINF[1]]], ['ACADEMIC', 'CITY']);
-    mapPulse(t, cam, ...MIDc, 3400, T_MINF[0] + 0.4, 0);
+    ringAt(t, cam, MIDc[0], MIDc[1], 3400, T_MINF[0] + 0.4);
   };
 
   // ---- everything that sits above the backgrounds: HUD title, the page / stat of the beat, the call to action
   const overlay = (t) => {
-    const cnt = (a, b, v, dec) => numberStr(v * ea(t, a, b, E.out3), dec), mk = (b, t0, t1) => ({ bbox: b, t0, t1 });
+    const cnt = (a, b, v, dec) => numberStr(v * ea(t, a, b, E.out3), dec);
 
     // HUD title per beat (right of the bubble)
     hudTitle(t, 'ALDAR PROPERTIES', 'NEW COMMUNITY', 'ONE OF ITS LARGEST IN DUBAI', K.aldar - 0.1, K.three1 - 0.2);
@@ -109,33 +133,6 @@ function buildScenes() {
     hudTitle(t, 'THE BIG PICTURE', 'ENTRY PRICE', 'BELOW SOME NEIGHBOURS · EXPECTED', K.so - 0.25, K.located - 0.55);
     hudTitle(t, 'THE BIG PICTURE', 'BILLIONS IN INVESTMENT', 'INFRASTRUCTURE & TECHNOLOGY', K.located - 0.45, K.but - 0.5);
     hudTitle(t, 'BUT', 'IT DEPENDS ON', 'THE INVESTMENT POTENTIAL', K.but - 0.4, K.if1 - 0.4);
-
-    // the page of the beat: one big real page, marker on the words he says
-    const PG = { x: 130, y: 600, w: 820, h: 680, from: [0, 90], fit: 'cover', fy: 0, zoom: [1, 1.02] }, chipT = (n) => 'ALDAR STUDY · P.' + n;
-    card(t, 'national', { ...PG, a: T_NAT[0], out: T_NAT[1], rot: -1.0, chip: 'THE NATIONAL · CEO QUOTE',
-      focus: [{ bbox: [372, 2580, 930, 120], t0: T_NAT[0], t1: T_NAT[0] + 0.4, zoom: 1.0 }],
-      hl: [mk([572, 2470, 478, 36], K.part - 0.1, K.holding)] });
-    card(t, 'st13', { ...PG, a: T_P13[0], out: T_P13[1], rot: -1.0, chip: chipT(13),
-      focus: [{ bbox: [188, 540, 1100, 400], t0: T_P13[0], t1: T_P13[0] + 0.5, zoom: 1.0 }],
-      hl: [mk([205, 645, 430, 44], K.three2 + 0.2, K.three2 + 1.2), mk([205, 700, 200, 40], K.s2227 - 0.1, K.space), mk([795, 645, 250, 44], K.p3 - 0.1, K.aed2 + 0.6)] });
-    card(t, 'st7', { ...PG, a: T_P7[0], out: T_P7[1], rot: 1.0, chip: chipT(7),
-      focus: [{ bbox: [225, 640, 1450, 1000], t0: T_P7[0], t1: T_P7[0] + 0.5, zoom: 1.0 }],
-      hl: [mk([385, 1098, 1010, 50], K.p1350 - 0.1, K.p1350 + 0.9), mk([385, 1288, 1130, 50], K.p1350 + 0.9, K.foot), mk([330, 625, 1440, 48], K.nearby - 0.2, K.nearby + 0.8), mk([340, 720, 1440, 48], K.nearby + 0.3, K.comm2)] });
-    card(t, 'dmo', { ...PG, a: T_DMO[0], out: T_DMO[1], rot: -1.0, chip: 'DUBAI MEDIA OFFICE · 22 JAN',
-      focus: [{ bbox: [23, 345, 914, 260], t0: T_DMO[0], t1: T_DMO[0] + 0.4, zoom: 1.0 }, { bbox: [23, 2040, 914, 140], t0: K.b128 - 0.6, t1: K.b128 - 0.1, zoom: 1.0 }, { bbox: [23, 6340, 914, 100], t0: K.target - 0.2, t1: K.target + 0.4, zoom: 1.0 }],
-      hl: [mk([330, 2080, 226, 48], K.b128 - 0.05, K.billion + 0.9), mk([277, 6390, 442, 48], K.j70 - 0.1, K.jobs + 0.3)] });
-    card(t, 'st5', { ...PG, a: T_P5[0], out: T_P5[1], rot: 1.0, chip: chipT(5),
-      focus: [{ bbox: [188, 900, 1250, 80], t0: T_P5[0], t1: T_P5[0] + 0.5, zoom: 1.0 }, { bbox: [188, 2060, 1500, 180], t0: K.demand - 0.5, t1: K.demand - 0.05, zoom: 1.0 }],
-      hl: [mk([205, 632, 1030, 92], K.haven1 - 0.1, K.haven1 + 0.9), mk([205, 766, 1030, 95], K.athlon - 0.1, K.athlon + 0.9), mk([205, 904, 1030, 95], K.wilds - 0.1, K.wilds + 0.9), mk([235, 2104, 640, 50], K.demand + 0.1, K.phases)] });
-    card(t, 'st7', { ...PG, a: T_P7B[0], out: T_P7B[1], rot: -1.0, chip: chipT(7),
-      focus: [{ bbox: [600, 2210, 1500, 190], t0: T_P7B[0], t1: T_P7B[0] + 0.4, zoom: 1.0 }],
-      hl: [mk([1230, 2228, 805, 52], K.p88 - 0.2, K.ret + 0.9)] });
-    card(t, 'st2', { ...PG, a: T_P2[0], out: T_P2[1], rot: 1.0, chip: chipT(2),
-      focus: [{ bbox: [238, 1060, 1400, 300], t0: T_P2[0], t1: T_P2[0] + 0.5, zoom: 1.0 }],
-      hl: [mk([780, 1072, 790, 52], K.expected - 0.1, K.surr), mk([630, 1193, 340, 50], K.surr - 0.1, K.surr + 1.0)] });
-    card(t, 'st14', { ...PG, a: T_P14[0], out: T_P14[1], rot: -1.0, chip: chipT(14),
-      focus: [{ bbox: [1230, 2742, 1260, 40], t0: T_P14[0], t1: T_P14[0] + 0.5, zoom: 1.0 }],
-      hl: [mk([1320, 2356, 560, 52], K.final - 0.1, K.pricing + 0.5), mk([1320, 2488, 1000, 52], K.payment - 0.1, K.payment + 1.0), mk([1320, 2746, 1000, 100], K.future - 0.1, K.supply + 0.3)] });
 
     // STAT beat 1: the size of the community, big and calm
     const s1 = ea(t, T_STAT1[0] + 0.05, T_STAT1[0] + 0.4) * (1 - ea(t, T_STAT1[1] - 0.15, T_STAT1[1] + 0.15));

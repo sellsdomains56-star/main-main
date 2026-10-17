@@ -68,6 +68,7 @@ function drawPerson(t, F) {
 }
 function runScene(sc, t) {
   if (sc.kind === 'sat') return runSat(sc, t);
+  if (sc.kind === 'page') return runPage(sc, t);
   const { a, b } = sc;
   if (t < a - 0.1 || t > b + 0.3) return;
   const inA = ea(t, a - 0.08, a + 0.18, E.out2), inD = (1 - ea(t, a - 0.08, a + 0.5, E.out5)) * 96;

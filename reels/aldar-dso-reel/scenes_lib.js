@@ -97,6 +97,34 @@ function ovStamp(txt, tHit, tEnd, o = {}) {
     ctx.restore();
   };
 }
+// full-screen PAGE beat: a real page (screenshot / PDF page) is the whole background, flown like the map (pan, zoom, 3D tilt) with marker highlights drawn on the page itself.
+// sc = { id, kind: 'page', img (IMAGES id), a, b, keys: [[seconds into the beat, centre x, centre y (image px), scale (screen px per image px), pitch deg], ...], hl: [{ bbox: [x, y, w, h] (image px), t0, t1, color }] }
+function pageCam(sc, tg) {
+  const keys = sc.keys, lt = Math.min(Math.max(tg - sc.a, 0), (sc.b - sc.a) + 0.5);
+  let i = 0; while (i < keys.length - 2 && lt > keys[i + 1][0]) i++;
+  const k0 = keys[i], k1 = keys[Math.min(i + 1, keys.length - 1)], u = k1[0] > k0[0] ? sEase(clamp((lt - k0[0]) / (k1[0] - k0[0]))) : 1;
+  return { cx: sLerp(k0[1], k1[1], u), cy: sLerp(k0[2], k1[2], u), k: Math.exp(sLerp(Math.log(k0[3]), Math.log(k1[3]), u)), pitch: sLerp(k0[4] || 0, k1[4] || 0, u) };
+}
+function runPage(sc, t) {
+  if (t < sc.a - 0.15 || t > sc.b + 0.4 || !imgOK(sc.img)) return;
+  const alpha = ea(t, sc.a - 0.12, sc.a + 0.3, E.out2) * (1 - prog(t, sc.b - 0.12, sc.b + 0.2)); if (alpha <= 0.002) return;
+  const im = IMG[sc.img], cam = pageCam(sc, t), ex = p3ext(cam.pitch);
+  ctx.save(); ctx.globalAlpha *= alpha;
+  planeRender(cam.pitch, () => {
+    ctx.fillStyle = '#0c0c0f'; ctx.fillRect(-ex.ox, -ex.oyT, W + 2 * ex.ox, H + ex.oyT + ex.oyB);
+    ctx.save(); ctx.translate(SAT_CX, SAT_CY); ctx.scale(cam.k, cam.k); ctx.translate(-cam.cx, -cam.cy);
+    ctx.drawImage(im, 0, 0);
+    for (const h of sc.hl || []) {                                              // marker wipes across the exact words
+      const hp = ea(t, h.t0, h.t1, E.out4); if (hp <= 0.002) continue;
+      const [bx, by, bw_, bh] = h.bbox; ctx.save(); ctx.globalCompositeOperation = 'multiply'; ctx.fillStyle = h.color || '#FFC93C'; ctx.fillRect(bx - 8, by - 4, (bw_ + 16) * hp, bh + 8); ctx.restore();
+    }
+    ctx.restore();
+  });
+  // dark veils: the HUD sits on top, the captions below; the page shows through in between (and faintly behind them)
+  const gt = ctx.createLinearGradient(0, 0, 0, 720); gt.addColorStop(0, 'rgba(8,8,10,0.97)'); gt.addColorStop(0.6, 'rgba(8,8,10,0.86)'); gt.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = gt; ctx.fillRect(0, 0, W, 720);
+  const gb = ctx.createLinearGradient(0, 1130, 0, 1480); gb.addColorStop(0, 'rgba(8,8,10,0)'); gb.addColorStop(0.55, 'rgba(8,8,10,0.82)'); gb.addColorStop(1, 'rgba(8,8,10,0.95)'); ctx.fillStyle = gb; ctx.fillRect(0, 1130, W, H - 1130);
+  ctx.restore();
+}
 // full-screen satellite beat: sc.cfg = { outlines:[{key,t0,t1}], pins:[{lon,lat,t,title,sub}], top:(t,cam)=>{} }
 function runSat(sc, t) {
   if (t < sc.a - 0.15 || t > sc.b + 0.4) return;
@@ -244,9 +272,9 @@ function gauge(t, o) {
 let HUD_X = 330;                                                         // the HUD title sits right of the face bubble (bubble x 130-290); scenes.js sets it to SAFE.x0 when there is no bubble
 const MAP_Y0 = 540, MAP_Y1 = 1270;                                              // callout labels stay between the HUD and the captions
 const mpp = (cam, lat) => 156543.03 * Math.cos(lat * Math.PI / 180) / Math.pow(2, cam.z);          // metres per screen pixel
-function camKey(sec, lon, lat, z, dy = 0) {                                     // waypoint that shows (lon, lat) dy px ABOVE the screen's map centre (room for the HUD / panel)
+function camKey(sec, lon, lat, z, dy = 0, pitch = 0) {                          // waypoint that shows (lon, lat) dy px ABOVE the screen's map centre (room for the HUD / panel); pitch = 3D tilt in degrees (0 = top-down)
   const y = worldY(lat, z) + dy, n = Math.PI - 2 * Math.PI * y / (256 * Math.pow(2, z));
-  return [sec, lon, Math.atan(Math.sinh(n)) * 180 / Math.PI, z];
+  return [sec, lon, Math.atan(Math.sinh(n)) * 180 / Math.PI, z, pitch];
 }
 // a callout anchored to a place: pulse ring + dot + leader line + a frosted label. o: {lon, lat, a0, a1, title, sub, dx, dy}
 function mapTag(t, cam, o) {
