@@ -1,0 +1,423 @@
+{
+ "Dubai Marina": {
+  "apartments": {
+   "n_total": 2427,
+   "n_used": 136,
+   "median_psf": 1954,
+   "p25_psf": 1410,
+   "p75_psf": 2828,
+   "median_price": 2100000,
+   "median_size": 1179,
+   "newest": "2026-10-16",
+   "oldest": "2026-09-22"
+  }
+ },
+ "Palm Jumeirah": {
+  "apartments": {
+   "n_total": 1285,
+   "n_used": 140,
+   "median_psf": 3225,
+   "p25_psf": 2251,
+   "p75_psf": 4682,
+   "median_price": 6100000,
+   "median_size": 1969,
+   "newest": "2026-10-16",
+   "oldest": "2026-08-21"
+  },
+  "villas": {
+   "n_total": 99,
+   "n_used": 90,
+   "median_psf": 4870,
+   "p25_psf": 3728,
+   "p75_psf": 6568,
+   "median_price": 39854978,
+   "median_size": 5000,
+   "newest": "2026-10-14",
+   "oldest": "2025-10-01"
+  }
+ },
+ "Downtown Dubai": {
+  "apartments": {
+   "n_total": 2755,
+   "n_used": 140,
+   "median_psf": 2978,
+   "p25_psf": 2328,
+   "p75_psf": 3781,
+   "median_price": 3425000,
+   "median_size": 1260,
+   "newest": "2026-10-16",
+   "oldest": "2026-09-17"
+  }
+ },
+ "Business Bay": {
+  "apartments": {
+   "n_total": 6752,
+   "n_used": 140,
+   "median_psf": 2223,
+   "p25_psf": 1728,
+   "p75_psf": 2550,
+   "median_price": 1876200,
+   "median_size": 836,
+   "newest": "2026-10-16",
+   "oldest": "2026-10-05"
+  }
+ },
+ "Dubai Hills": {
+  "apartments": {
+   "n_total": 2737,
+   "n_used": 139,
+   "median_psf": 2298,
+   "p25_psf": 2098,
+   "p75_psf": 2488,
+   "median_price": 2215000,
+   "median_size": 1031,
+   "newest": "2026-10-16",
+   "oldest": "2026-09-18"
+  },
+  "villas": {
+   "n_total": 324,
+   "n_used": 137,
+   "median_psf": 2242,
+   "p25_psf": 1835,
+   "p75_psf": 2604,
+   "median_price": 9400000,
+   "median_size": 3357,
+   "newest": "2026-10-14",
+   "oldest": "2026-04-02"
+  }
+ },
+ "Tilal Al Ghaf": {
+  "apartments": {
+   "n_total": 396,
+   "n_used": 140,
+   "median_psf": 2147,
+   "p25_psf": 1892,
+   "p75_psf": 2410,
+   "median_price": 8825000,
+   "median_size": 4449,
+   "newest": "2026-10-16",
+   "oldest": "2026-05-13"
+  },
+  "villas": {
+   "n_total": 273,
+   "n_used": 140,
+   "median_psf": 2169,
+   "p25_psf": 1895,
+   "p75_psf": 2414,
+   "median_price": 10600000,
+   "median_size": 5096,
+   "newest": "2026-10-16",
+   "oldest": "2026-02-27"
+  },
+  "townhouses": {
+   "n_total": 121,
+   "n_used": 121,
+   "median_psf": 2432,
+   "p25_psf": 2060,
+   "p75_psf": 2651,
+   "median_price": 4200000,
+   "median_size": 2172,
+   "newest": "2026-10-15",
+   "oldest": "2025-10-01"
+  }
+ },
+ "Arjan": {
+  "apartments": {
+   "n_total": 3879,
+   "n_used": 140,
+   "median_psf": 1518,
+   "p25_psf": 1393,
+   "p75_psf": 1815,
+   "median_price": 1030944,
+   "median_size": 709,
+   "newest": "2026-10-16",
+   "oldest": "2026-09-29"
+  }
+ },
+ "Motor City": {
+  "apartments": {
+   "n_total": 4037,
+   "n_used": 140,
+   "median_psf": 1487,
+   "p25_psf": 1384,
+   "p75_psf": 1778,
+   "median_price": 1100000,
+   "median_size": 745,
+   "newest": "2026-10-16",
+   "oldest": "2026-10-05"
+  },
+  "villas": {
+   "n_total": 31,
+   "n_used": 31,
+   "median_psf": 1559,
+   "p25_psf": 1014,
+   "p75_psf": 1643,
+   "median_price": 7075000,
+   "median_size": 4303,
+   "newest": "2026-10-09",
+   "oldest": "2025-10-16"
+  }
+ },
+ "The Valley": {
+  "apartments": {
+   "n_total": 1426,
+   "n_used": 140,
+   "median_psf": 1340,
+   "p25_psf": 1074,
+   "p75_psf": 1651,
+   "median_price": 3751444,
+   "median_size": 2748,
+   "newest": "2026-10-16",
+   "oldest": "2026-08-20"
+  },
+  "villas": {
+   "n_total": 1175,
+   "n_used": 140,
+   "median_psf": 1366,
+   "p25_psf": 1074,
+   "p75_psf": 1660,
+   "median_price": 3487944,
+   "median_size": 2621,
+   "newest": "2026-10-16",
+   "oldest": "2026-08-06"
+  },
+  "townhouses": {
+   "n_total": 251,
+   "n_used": 140,
+   "median_psf": 1253,
+   "p25_psf": 1142,
+   "p75_psf": 1468,
+   "median_price": 3300000,
+   "median_size": 2189,
+   "newest": "2026-10-14",
+   "oldest": "2026-02-03"
+  }
+ },
+ "Arabian Ranches 3": {
+  "apartments": {
+   "n_total": 443,
+   "n_used": 140,
+   "median_psf": 1669,
+   "p25_psf": 1422,
+   "p75_psf": 1924,
+   "median_price": 3677500,
+   "median_size": 2363,
+   "newest": "2026-10-15",
+   "oldest": "2026-06-17"
+  },
+  "villas": {
+   "n_total": 346,
+   "n_used": 140,
+   "median_psf": 1576,
+   "p25_psf": 1422,
+   "p75_psf": 1959,
+   "median_price": 4025000,
+   "median_size": 2446,
+   "newest": "2026-10-13",
+   "oldest": "2026-05-02"
+  },
+  "townhouses": {
+   "n_total": 97,
+   "n_used": 97,
+   "median_psf": 1792,
+   "p25_psf": 1467,
+   "p75_psf": 1893,
+   "median_price": 3000000,
+   "median_size": 1997,
+   "newest": "2026-10-15",
+   "oldest": "2025-10-07"
+  }
+ },
+ "Dubailand": {
+  "apartments": {
+   "n_total": 185,
+   "n_used": 139,
+   "median_psf": 2351,
+   "p25_psf": 2125,
+   "p75_psf": 2777,
+   "median_price": 2170094,
+   "median_size": 1727,
+   "newest": "2026-10-16",
+   "oldest": "2025-11-19"
+  },
+  "villas": {
+   "n_total": 182,
+   "n_used": 140,
+   "median_psf": 2357,
+   "p25_psf": 2125,
+   "p75_psf": 2782,
+   "median_price": 2170484,
+   "median_size": 1727,
+   "newest": "2026-10-16",
+   "oldest": "2025-11-19"
+  }
+ },
+ "Majan": {
+  "apartments": {
+   "n_total": 6295,
+   "n_used": 140,
+   "median_psf": 1403,
+   "p25_psf": 1247,
+   "p75_psf": 1463,
+   "median_price": 1050000,
+   "median_size": 723,
+   "newest": "2026-10-16",
+   "oldest": "2026-10-05"
+  }
+ },
+ "Liwan": {
+  "apartments": {
+   "n_total": 1074,
+   "n_used": 139,
+   "median_psf": 1081,
+   "p25_psf": 792,
+   "p75_psf": 1288,
+   "median_price": 860000,
+   "median_size": 833,
+   "newest": "2026-10-16",
+   "oldest": "2026-07-01"
+  },
+  "villas": {
+   "n_total": 3,
+   "n_used": 2,
+   "median_psf": 873,
+   "p25_psf": 856,
+   "p75_psf": 889,
+   "median_price": 1987500,
+   "median_size": 2277,
+   "newest": "2026-07-08",
+   "oldest": "2025-10-09"
+  }
+ },
+ "Dubai South": {
+  "apartments": {
+   "n_total": 14866,
+   "n_used": 140,
+   "median_psf": 1602,
+   "p25_psf": 1393,
+   "p75_psf": 1731,
+   "median_price": 1054890,
+   "median_size": 666,
+   "newest": "2026-10-16",
+   "oldest": "2026-10-14"
+  },
+  "villas": {
+   "n_total": 1224,
+   "n_used": 140,
+   "median_psf": 1352,
+   "p25_psf": 1223,
+   "p75_psf": 1519,
+   "median_price": 4945000,
+   "median_size": 3802,
+   "newest": "2026-10-16",
+   "oldest": "2026-08-20"
+  },
+  "townhouses": {
+   "n_total": 48,
+   "n_used": 37,
+   "median_psf": 1393,
+   "p25_psf": 1101,
+   "p75_psf": 1538,
+   "median_price": 2525000,
+   "median_size": 1950,
+   "newest": "2026-10-16",
+   "oldest": "2025-10-10"
+  }
+ },
+ "Palm Jebel Ali": {
+  "apartments": {
+   "n_total": 711,
+   "n_used": 140,
+   "median_psf": 3392,
+   "p25_psf": 3310,
+   "p75_psf": 3793,
+   "median_price": 4932000,
+   "median_size": 1397,
+   "newest": "2026-10-15",
+   "oldest": "2026-08-06"
+  },
+  "villas": {
+   "n_total": 291,
+   "n_used": 140,
+   "median_psf": 3019,
+   "p25_psf": 2542,
+   "p75_psf": 4089,
+   "median_price": 30814000,
+   "median_size": 8320,
+   "newest": "2026-10-15",
+   "oldest": "2026-02-10"
+  }
+ },
+ "JBR": {
+  "apartments": {
+   "n_total": 529,
+   "n_used": 140,
+   "median_psf": 1612,
+   "p25_psf": 1410,
+   "p75_psf": 1958,
+   "median_price": 2507500,
+   "median_size": 1420,
+   "newest": "2026-10-16",
+   "oldest": "2026-06-29"
+  }
+ },
+ "Damac Hills 2": {
+  "apartments": {
+   "n_total": 1518,
+   "n_used": 120,
+   "median_psf": 1088,
+   "p25_psf": 1010,
+   "p75_psf": 1393,
+   "median_price": 1860000,
+   "median_size": 2345,
+   "newest": "2026-10-16",
+   "oldest": "2026-09-09"
+  },
+  "villas": {
+   "n_total": 1018,
+   "n_used": 140,
+   "median_psf": 1076,
+   "p25_psf": 1010,
+   "p75_psf": 1366,
+   "median_price": 1965000,
+   "median_size": 2345,
+   "newest": "2026-10-16",
+   "oldest": "2026-08-14"
+  },
+  "townhouses": {
+   "n_total": 24,
+   "n_used": 24,
+   "median_psf": 1057,
+   "p25_psf": 1020,
+   "p75_psf": 1102,
+   "median_price": 1345000,
+   "median_size": 1697,
+   "newest": "2026-09-23",
+   "oldest": "2025-10-13"
+  }
+ },
+ "Expo City": {
+  "apartments": {
+   "n_total": 1508,
+   "n_used": 139,
+   "median_psf": 2162,
+   "p25_psf": 1955,
+   "p75_psf": 2228,
+   "median_price": 2300000,
+   "median_size": 1111,
+   "newest": "2026-10-14",
+   "oldest": "2026-06-29"
+  },
+  "villas": {
+   "n_total": 11,
+   "n_used": 11,
+   "median_psf": 2268,
+   "p25_psf": 2123,
+   "p75_psf": 2321,
+   "median_price": 4350000,
+   "median_size": 2726,
+   "newest": "2026-08-14",
+   "oldest": "2025-10-29"
+  }
+ }
+}

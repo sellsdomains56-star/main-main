@@ -1,0 +1,411 @@
+{
+ "Dubai Marina": {
+  "slug": "dubai-marina",
+  "id": "5003",
+  "lon": 55.14430056087,
+  "lat": 25.083189748036,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "5003",
+    "2",
+    "Dubai Marina"
+   ]
+  ]
+ },
+ "Palm Jumeirah": {
+  "slug": "palm-jumeirah",
+  "id": "5460",
+  "lon": 55.135936456106,
+  "lat": 25.118690512606,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "5460",
+    "2",
+    "Palm Jumeirah"
+   ]
+  ]
+ },
+ "Downtown Dubai": {
+  "slug": "downtown-dubai",
+  "id": "6901",
+  "lon": 55.276027274692,
+  "lat": 25.193357636539,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "6901",
+    "2",
+    "Downtown Dubai"
+   ]
+  ]
+ },
+ "Business Bay": {
+  "slug": "business-bay",
+  "id": "5093",
+  "lon": 55.273177410169,
+  "lat": 25.184351310439,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "5093",
+    "2",
+    "Business Bay"
+   ]
+  ]
+ },
+ "Dubai Hills": {
+  "slug": "dubai-hills-estate",
+  "id": "8288",
+  "lon": 55.258928890104,
+  "lat": 25.114489469098,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "8288",
+    "2",
+    "Dubai Hills Estate"
+   ]
+  ]
+ },
+ "Tilal Al Ghaf": {
+  "slug": "tilal-al-ghaf",
+  "id": "11943",
+  "lon": 55.227983700698,
+  "lat": 25.025212381954,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "11943",
+    "2",
+    "Tilal Al Ghaf"
+   ]
+  ]
+ },
+ "Arjan": {
+  "slug": "arjan",
+  "id": "5785",
+  "lon": 55.235346790528,
+  "lat": 25.060642922979,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "5785",
+    "2",
+    "Arjan"
+   ]
+  ]
+ },
+ "Motor City": {
+  "slug": "motor-city",
+  "id": "7153",
+  "lon": 55.238159084755,
+  "lat": 25.049668700526,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "7153",
+    "2",
+    "Motor City"
+   ]
+  ]
+ },
+ "The Valley": {
+  "slug": "the-valley",
+  "id": "12790",
+  "lon": 55.454575880863,
+  "lat": 25.006760856189,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "12790",
+    "2",
+    "The Valley by Emaar"
+   ]
+  ]
+ },
+ "Arabian Ranches 3": {
+  "slug": "arabian-ranches-3",
+  "id": "12423",
+  "lon": 55.327415769985,
+  "lat": 25.067610388689,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "12423",
+    "2",
+    "Arabian Ranches 3"
+   ]
+  ]
+ },
+ "Dubailand": {
+  "slug": "dubailand",
+  "id": "5746",
+  "lon": 55.3432786594,
+  "lat": 25.027398828967,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "5746",
+    "2",
+    "Dubailand"
+   ]
+  ]
+ },
+ "Majan": {
+  "slug": "majan",
+  "id": "5787",
+  "lon": 55.318139998375,
+  "lat": 25.094454203642,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "5787",
+    "2",
+    "Majan"
+   ]
+  ]
+ },
+ "Liwan": {
+  "slug": "liwan",
+  "id": "5786",
+  "lon": 55.367328467822,
+  "lat": 25.110815985237,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "5786",
+    "2",
+    "Liwan"
+   ]
+  ]
+ },
+ "Dubai South": {
+  "slug": "dubai-south",
+  "id": "8881",
+  "lon": 55.16429559172,
+  "lat": 24.924388761493,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "8881",
+    "2",
+    "Dubai South"
+   ]
+  ]
+ },
+ "Palm Jebel Ali": {
+  "slug": "palm-jebel-ali",
+  "id": "5486",
+  "lon": 54.987946990059,
+  "lat": 25.000545960248,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "5486",
+    "2",
+    "Palm Jebel Ali"
+   ]
+  ]
+ },
+ "JBR": {
+  "slug": "jumeirah-beach-residence-jbr",
+  "id": "5549",
+  "lon": 55.132803550535,
+  "lat": 25.076949254064,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "5549",
+    "2",
+    "Jumeirah Beach Residence (JBR)"
+   ]
+  ]
+ },
+ "Damac Hills 2": {
+  "slug": "damac-hills-2-akoya-oxygen",
+  "id": "8657",
+  "lon": 55.385618639168,
+  "lat": 24.989257947868,
+  "hierarchy": [
+   [
+    "5001",
+    "0",
+    "UAE"
+   ],
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "8657",
+    "2",
+    "DAMAC Hills 2 (Akoya by DAMAC)"
+   ]
+  ]
+ },
+ "Expo City": {
+  "slug": "expo-city",
+  "id": "18505",
+  "lon": 55.158010547156,
+  "lat": 24.962693448336,
+  "hierarchy": [
+   [
+    "5002",
+    "1",
+    "Dubai"
+   ],
+   [
+    "18505",
+    "2",
+    "Expo City"
+   ]
+  ]
+ }
+}
