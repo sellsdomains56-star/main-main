@@ -158,7 +158,7 @@ function buildScenes() {
     // the call to action: dark background, the bubble grows, the study cover pops up beside it, "green" is typed, sent and answered
     const ce = ea(t, K.if1 + 0.3, K.if1 + 1.0, E.out4);
     if (ce > 0.003) {
-      ctx.save(); ctx.globalAlpha *= ce; T('ABDULLAH AHLI', CX, 690, { font: F.d(800, 62), ls: 2, color: C.ink }); T('PORTFOLIO STRATEGIST', CX, 744, { font: F.d(700, 34), ls: 6, color: C.gold }); T('AI-GENERATED AVATAR', CX, 790, { font: F.d(700, 26), ls: 5, color: C.dim }); ctx.restore();
+      ctx.save(); ctx.globalAlpha *= ce; T('ABDULLAH AHLI', CX, 690, { font: F.d(800, 62), ls: 2, color: C.ink }); T('PORTFOLIO STRATEGIST', CX, 744, { font: F.d(700, 34), ls: 6, color: C.gold }); ctx.restore();
       const send = K.info + 0.4, sent = ea(t, send, send + 0.35), ia = ea(t, K.if1 + 0.8, K.if1 + 1.4, E.out4), iy = 1185, X0 = SAFE.x0, X1 = SAFE.x1, BW = X1 - X0, msg = 'green', typed = msg.slice(0, Math.floor(msg.length * ea(t, K.greenW - 0.05, K.greenW + 0.4, E.lin) + 0.0001));
       ctx.save(); ctx.globalAlpha *= ia; rr(X0, iy - 65, BW, 130, 65); ctx.fillStyle = C.panel; ctx.fill(); ctx.strokeStyle = 'rgba(243,239,230,0.28)'; ctx.lineWidth = 3; ctx.stroke();
       T(typed, X0 + 56, iy + 20, { font: F.d(700, 60), color: C.ink, align: 'left', alpha: 1 - sent }); T('Add a comment…', X0 + 56, iy + 20, { font: F.d(700, 60), color: C.mute, align: 'left', alpha: (1 - ea(t, K.greenW - 0.05, K.greenW + 0.05)) * (1 - sent) });
@@ -170,9 +170,9 @@ function buildScenes() {
     card(t, 'st1', { x: 735, y: 335, w: 205, h: 290, a: K.full + 0.3, from: [60, 0], rot: 4, fit: 'cover', fy: 0, zoom: [1, 1.04], r: 16 });
     { const g = ea(t, K.full + 0.9, K.full + 1.3, E.out3); if (g > 0.01) { ctx.save(); ctx.globalAlpha *= g; ctx.translate(838, 480); ctx.rotate(4 * Math.PI / 180); ctx.scale(1.02, 1.02); rr(-103, -146, 206, 292, 18); ctx.strokeStyle = C.gold; ctx.lineWidth = 4; ctx.stroke(); ctx.restore(); } }
 
-    // the avatar is AI-generated: small label under the bubble for the whole reel (the call to action carries its own line)
-    const ai = ea(t, 0.4, 0.9) * (1 - ea(t, K.if1 - 0.1, K.if1 + 0.3));
-    if (ai > 0.003) { ctx.save(); ctx.globalAlpha *= ai; const f = F.d(800, 21), w = M('AI-GENERATED AVATAR', f, 3) + 36; glassPill(130, 506, w, 36, 18); T('AI-GENERATED AVATAR', 130 + w / 2, 531, { font: f, ls: 3, color: '#FFFFFF' }); ctx.restore(); }
+    // name chip under the bubble while he is introduced (as in the other reels)
+    const nm = ea(t, 0.5, 1.0) * (1 - ea(t, 3.6, 4.0));
+    if (nm > 0.003) { ctx.save(); ctx.globalAlpha *= nm; const f = F.d(800, 26), w = M('ABDULLAH AHLI', f, 3) + 44; glassPill(130, 514, w, 46, 23); T('ABDULLAH AHLI', 130 + w / 2, 547, { font: f, ls: 3, color: '#FFFFFF' }); ctx.restore(); }
   };
   OVERLAYS.push(overlay);
 
