@@ -32,7 +32,7 @@ function buildScenes() {
   };
 
   const FACE_SEGS = [], PUNCHES = [], OVERLAYS = [];
-  const IMAGES = { national: 'assets/national.png', dmo: 'assets/dmo.png', rta: 'assets/rta.png' };
+  const IMAGES = { national: 'assets/national.png', dmo: 'assets/dmo.png', rta: 'assets/rta.png', st1: 'assets/study_p01.png', st2: 'assets/study_p02.png', st4: 'assets/study_p04.png', st5: 'assets/study_p05.png', st7: 'assets/study_p07.png', st13: 'assets/study_p13.png', st14: 'assets/study_p14.png' };   // st* = pages of our own study (Aldar_Dubai_Townhouse_Study.pdf, 300 dpi)
   const DSOc = [55.3854, 25.1237], MIDc = [55.401, 25.122], ACc = [55.405, 25.113];
   const STN = { dso: [55.3888, 25.1208], acad: [55.4124, 25.0977] };                          // Blue Line station areas on the OSM alignment (indicative)
 
@@ -56,13 +56,8 @@ function buildScenes() {
   const P = (title, a0, a1, items, o = {}) => ({ title, a0, a1, items, ...o });
   const panels = [
     P('THE COMMUNITY · AS REPORTED', K.s43 - 0.35, K.three2 - 0.15, [{ txt: 'APPROX. 43 MILLION SQ FT', a: K.s43 }, { txt: 'AROUND 8,000 NEW HOMES', a: K.h8000 }, { txt: 'APARTMENTS', a: K.apts }, { txt: 'VILLAS', a: K.villas }, { txt: 'TOWNHOUSES', a: K.th, gold: true }]),
-    P('THE MATHS · EXPECTED', K.three2 + 0.8, K.pot - 0.2, [{ txt: '3-BED TOWNHOUSE · ~2,227 SQ FT', a: K.s2227 }, { txt: 'STARTING PRICE · DH 3 MILLION', a: K.p3 }, { txt: '≈ DH 1,350 PER SQ FT', a: K.p1350, gold: true }]),
-    P('THE LOCATION', K.loc - 0.1, K.dub2 - 0.15, [{ txt: 'DUBAI SILICON OASIS', a: K.dsoW }, { txt: 'ACADEMIC CITY', a: K.acadW }, { txt: 'SHEIKH MOHAMMED BIN ZAYED ROAD', a: K.sheikh, gold: true }], { size: 32 }),
     P('ACADEMIC CITY · EXPECTED', K.acad2 - 0.05, K.by - 0.15, [{ txt: 'CONTINUES TO EXPAND', a: K.expanding }, { txt: 'MORE EDUCATIONAL INSTITUTIONS', a: K.edu, gold: true }]),
-    P('ALDAR · ITS DUBAI LAUNCHES', K.looking + 0.3, K.haven2 - 0.15, [{ txt: 'HAVEN · NOV 2023 · 786 HOMES', a: K.haven1 }, { txt: 'ATHLON · MAY 2024 · 1,000+ HOMES', a: K.athlon }, { txt: 'THE WILDS · MAR 2025 · 734 VILLAS', a: K.wilds }, { txt: '3,552 HOMES · AED 17.9BN ON DLD RECORD', a: K.demand, gold: true }], { size: 30 }),
-    P('HAVEN · REPORTED', K.haven2 - 0.1, K.so - 0.15, [{ txt: '8.8% RETURN ON REPEAT SALES', a: K.p88 }, { txt: 'MEDIAN PRICES +20% IN 13 MONTHS', a: K.p20, gold: true }], { size: 32 }),
-    P('THE BIG PICTURE', K.so - 0.1, K.but - 0.15, [{ txt: 'A MAJOR NEW ALDAR DEVELOPMENT', a: K.major }, { txt: 'EXPECTED ENTRY PRICE BELOW SOME NEIGHBOURS', a: K.expected }, { txt: 'NEAR BILLIONS IN INFRASTRUCTURE & TECH', a: K.billions, gold: true }], { size: 30 }),
-    P('THE POTENTIAL DEPENDS ON', K.but - 0.1, K.if1 - 0.2, [{ txt: 'THE FINAL PRICING', a: K.final }, { txt: 'THE PAYMENT PLAN', a: K.payment }, { txt: 'FUTURE SUPPLY', a: K.future, gold: true }]),
+    P('HAVEN · REPORTED', K.p20 - 0.35, K.so - 0.15, [{ txt: '8.8% RETURN ON REPEAT SALES', a: K.p88 }, { txt: 'MEDIAN PRICES +20% IN 13 MONTHS', a: K.p20, gold: true }], { size: 32 }),
   ];
 
   // ---- everything that is drawn over the map
@@ -85,11 +80,13 @@ function buildScenes() {
     hudTitle(t, 'THE PROJECT', 'GREENWOODS', 'ALDAR × DUBAI HOLDING', K.proj - 0.05, K.s43 - 0.2);
     hudTitle(t, 'SIZE · APPROXIMATELY', cnt(K.s43, K.s43 + 0.9, 43, 0) + ' MILLION SQ FT', null, K.s43 - 0.1, K.h8000 - 0.25);
     hudTitle(t, 'HOUSING · AROUND', cnt(K.h8000 - 0.1, K.h8000 + 1.2, 8000, 0) + ' NEW HOMES', 'APARTMENTS · VILLAS · TOWNHOUSES', K.h8000 - 0.15, K.three2 - 0.15);
-    hudTitle(t, '3-BEDROOM TOWNHOUSE', cnt(K.s2227 - 0.15, K.s2227 + 1.4, 2227, 0) + ' SQ FT', 'EXPECTED SIZE · AROUND', K.three2 - 0.05, K.p3 - 0.3);
+    hudTitle(t, 'ALDAR PROPERTIES', '3-BEDROOM TOWNHOUSES', 'EXPECTED SIZE', K.three2 - 0.05, K.s2227 - 0.25);
+    hudTitle(t, '3-BEDROOM TOWNHOUSE', cnt(K.s2227 - 0.2, K.s2227 + 1.4, 2227, 0) + ' SQ FT', 'EXPECTED SIZE · AROUND', K.s2227 - 0.3, K.p3 - 0.3);
     hudTitle(t, 'STARTING PRICE', 'DH ' + cnt(K.p3 - 0.1, K.p3 + 0.7, 3, 0) + ' MILLION', 'EXPECTED', K.p3 - 0.25, K.works - 0.1);
     hudTitle(t, 'WORKS OUT TO ABOUT', 'DH ' + cnt(K.works + 0.05, K.p1350 + 1.2, 1350, 0) + ' / SQ FT', 'DH 3 MILLION ÷ 2,227 SQ FT', K.works - 0.05, K.pot - 0.15);
     hudTitle(t, 'POTENTIALLY', cnt(K.pot, K.p15 + 0.9, 15, 0) + '% BELOW', 'SOME NEARBY COMPETING COMMUNITIES', K.pot - 0.1, K.loc - 0.15);
-    hudTitle(t, 'THE LOCATION', 'SILICON OASIS', '& ACADEMIC CITY', K.loc - 0.05, K.dub2 - 0.15);
+    hudTitle(t, 'THE LOCATION', 'SILICON OASIS', '& ACADEMIC CITY', K.loc - 0.05, K.conn - 0.1);
+    hudTitle(t, 'CONNECTIVITY TO', 'SHEIKH MOHAMMED BIN ZAYED ROAD', 'CLOSE TO BOTH DISTRICTS', K.conn - 0.05, K.dub2 - 0.15);
     hudTitle(t, 'DUBAI · 22 JANUARY 2026', 'SILICON OASIS', 'EXPANSION ANNOUNCED', K.dub2 - 0.05, K.b128 - 0.2);
     hudTitle(t, 'EXPANSION INVESTMENT', 'DH ' + cnt(K.b128 - 0.1, K.b128 + 1.0, 12.8, 1) + ' BILLION', 'SILICON OASIS', K.b128 - 0.15, K.tech - 0.2);
     hudTitle(t, 'SILICON OASIS', 'TECH & AI HUB', 'MAJOR EXPANSION', K.tech - 0.1, K.target - 0.15, '#8CC8FF');
@@ -118,24 +115,36 @@ function buildScenes() {
       focus: [{ bbox: [30, 3740, 1380, 120], t0: K.by - 0.1, t1: K.by + 0.45, zoom: 1.0 }, { bbox: [30, 4020, 1380, 130], t0: K.wider - 0.9, t1: K.wider - 0.4, zoom: 1.0 }],
       hl: [mk([600, 3786, 196, 52], K.y2029 - 0.05, K.y2029 + 0.9), mk([34, 4054, 1270, 46], K.connect - 0.1, K.net)] });
 
-    // custom panel: the "15% below" index bars
-    const pa = (a0, a1) => ea(t, a0, a0 + 0.4, E.out3) * (1 - ea(t, a1, a1 + 0.4));
-    const cm = pa(K.pot - 0.2, K.loc - 0.2);
-    if (cm > 0.003) {
-      const X = SAFE.x0, Wd = SAFE.w, h = 330, y0 = 1262 - h, bx = X + 34, bw = Wd - 68, bh = 62;
-      ctx.save(); ctx.globalAlpha *= cm; ctx.translate(0, (1 - ea(t, K.pot - 0.2, K.pot + 0.3, E.out4)) * 36); glassPill(X, y0, Wd, h, 28);
-      T('PRICE PER SQ FT · INDEX · POTENTIAL', X + 34, y0 + 42, { font: F.d(800, 28), ls: 6, color: C.gold, align: 'left' });
-      const g1 = ea(t, K.p15 - 0.2, K.p15 + 1.0, E.out3), g2 = ea(t, K.p15 - 0.1, K.p15 + 1.2, E.out3);
-      T('SOME NEARBY COMPETING COMMUNITIES', bx, y0 + 98, { font: F.d(700, 30), ls: 1, color: C.dim, align: 'left', alpha: ea(t, K.nearby - 0.2, K.nearby + 0.3), sx: Math.min(1, bw / M('SOME NEARBY COMPETING COMMUNITIES', F.d(700, 30), 1)) });
-      rr(bx, y0 + 112, Math.max(40, bw * g1), bh, 16); ctx.fillStyle = 'rgba(243,239,230,0.34)'; ctx.fill();
-      T('100', bx + 24, y0 + 112 + 44, { font: F.d(800, 38), color: C.ink, align: 'left', alpha: ea(t, K.p15 + 0.5, K.p15 + 1.0) });
-      T('THIS COMMUNITY · POTENTIALLY', bx, y0 + 218, { font: F.d(700, 30), ls: 1, color: C.gold, align: 'left', alpha: ea(t, K.p15 - 0.1, K.p15 + 0.4) });
-      rr(bx, y0 + 232, Math.max(40, bw * 0.85 * g2), bh, 16); ctx.fillStyle = C.gold; ctx.fill();
-      T('85', bx + 24, y0 + 232 + 44, { font: F.d(800, 38), color: '#0A0A0B', align: 'left', alpha: ea(t, K.p15 + 0.6, K.p15 + 1.1) });
-      const gp = ea(t, K.below - 0.1, K.below + 0.5, E.out4);                                  // the 15% gap: dashed ghost + gold box
-      if (gp > 0.01) { ctx.save(); ctx.globalAlpha *= gp; ctx.setLineDash([14, 10]); rr(bx + bw * 0.85, y0 + 232, bw * 0.15, bh, 14); ctx.strokeStyle = C.gold; ctx.lineWidth = 3; ctx.stroke(); ctx.setLineDash([]); T('−15%', bx + bw * 0.925, y0 + 232 + 44, { font: F.d(800, 36), color: C.gold }); ctx.restore(); }
-      ctx.restore();
-    }
+
+    // pages of OUR study as proof cards, with markers on the numbers he says (boxes measured with study_boxes.py, px at 300 dpi)
+    const SC = { x: 140, y: 880, w: 800, h: 360, from: [0, 90], fit: 'cover', fy: 0, zoom: [1, 1.03] }, chipT = (n) => 'ALDAR STUDY · P.' + n;
+    card(t, 'st13', { ...SC, a: K.three2 + 0.45, out: K.works - 0.3, rot: -1.0, chip: chipT(13),
+      focus: [{ bbox: [188, 540, 1040, 200], t0: K.three2 + 0.45, t1: K.three2 + 1.0, zoom: 1.0 }],
+      hl: [mk([205, 645, 430, 44], K.three2 + 0.6, K.three2 + 1.6), mk([205, 700, 200, 40], K.s2227 - 0.1, K.space), mk([795, 645, 250, 44], K.p3 - 0.1, K.dirh2 + 0.6)] });
+    card(t, 'st7', { ...SC, a: K.works, out: K.loc - 0.15, rot: 1.0, chip: chipT(7),
+      focus: [{ bbox: [225, 700, 1500, 640], t0: K.works, t1: K.works + 0.5, zoom: 1.0 }, { bbox: [225, 545, 1500, 640], t0: K.nearby - 0.7, t1: K.nearby - 0.2, zoom: 1.0 }],
+      hl: [mk([385, 1098, 1010, 50], K.p1350 - 0.1, K.p1350 + 0.9), mk([385, 1288, 1130, 50], K.p1350 + 0.9, K.foot), mk([330, 625, 1440, 48], K.nearby - 0.2, K.nearby + 0.8), mk([340, 720, 1440, 48], K.nearby + 0.3, K.comm2)] });
+    card(t, 'st4', { ...SC, a: K.loc - 0.2, out: K.dub2 - 0.4, rot: -1.0, chip: chipT(4),
+      focus: [{ bbox: [790, 700, 1500, 600], t0: K.loc - 0.2, t1: K.loc + 0.4, zoom: 1.0 }],
+      hl: [mk([960, 930, 700, 140], K.dsoW - 0.1, K.acadW + 0.4)] });
+    card(t, 'st5', { ...SC, a: K.looking + 0.2, out: K.haven2 - 0.35, rot: 1.0, chip: chipT(5),
+      focus: [{ bbox: [188, 520, 1112, 520], t0: K.looking + 0.2, t1: K.looking + 0.75, zoom: 1.0 }, { bbox: [188, 2060, 1250, 180], t0: K.demand - 0.5, t1: K.demand - 0.05, zoom: 1.0 }],
+      hl: [mk([205, 632, 1030, 92], K.haven1 - 0.1, K.haven1 + 0.9), mk([205, 766, 1030, 95], K.athlon - 0.1, K.athlon + 0.9), mk([205, 904, 1030, 95], K.wilds - 0.1, K.wilds + 0.9), mk([235, 2104, 640, 50], K.demand + 0.1, K.phases)] });
+    card(t, 'st7', { ...SC, a: K.haven2 - 0.2, out: K.p20 - 0.4, rot: -1.0, chip: chipT(7),
+      focus: [{ bbox: [600, 2210, 1400, 170], t0: K.haven2 - 0.2, t1: K.haven2 + 0.35, zoom: 1.0 }],
+      hl: [mk([1230, 2228, 805, 52], K.p88 - 0.2, K.ret + 0.9)] });
+    card(t, 'st2', { ...SC, a: K.so + 0.05, out: K.located - 0.45, rot: 1.0, chip: chipT(2),
+      focus: [{ bbox: [238, 1040, 1300, 300], t0: K.so + 0.05, t1: K.so + 0.6, zoom: 1.0 }],
+      hl: [mk([780, 1072, 790, 52], K.expected - 0.1, K.surr), mk([630, 1193, 340, 50], K.surr - 0.1, K.surr + 1.0)] });
+    card(t, 'st2', { ...SC, a: K.located - 0.1, out: K.but - 0.35, rot: -1.0, chip: chipT(2),
+      focus: [{ bbox: [238, 1990, 1400, 220], t0: K.located - 0.1, t1: K.located + 0.5, zoom: 1.0 }],
+      hl: [mk([235, 2040, 1340, 52], K.infra - 0.4, K.invest)] });
+    card(t, 'st14', { ...SC, a: K.but - 0.05, out: K.if1 - 0.25, rot: 1.0, chip: chipT(14),
+      focus: [{ bbox: [1230, 2258, 1260, 596], t0: K.but - 0.05, t1: K.but + 0.55, zoom: 1.0 }],
+      hl: [mk([1320, 2356, 560, 52], K.final - 0.1, K.pricing + 0.5), mk([1320, 2488, 1000, 52], K.payment - 0.1, K.payment + 1.0), mk([1320, 2746, 1000, 100], K.future - 0.1, K.supply + 0.3)] });
+    // the call to action: the study cover pops up next to the bubble ("I'll send you the information")
+    card(t, 'st1', { x: 735, y: 335, w: 205, h: 290, a: K.full + 0.3, from: [60, 0], rot: 4, fit: 'cover', fy: 0, zoom: [1, 1.04], r: 16 });
+    { const g = ea(t, K.full + 0.9, K.full + 1.3, E.out3); if (g > 0.01) { ctx.save(); ctx.globalAlpha *= g; ctx.translate(838, 480); ctx.rotate(4 * Math.PI / 180); ctx.scale(1.02, 1.02); rr(-103, -146, 206, 292, 18); ctx.strokeStyle = C.gold; ctx.lineWidth = 4; ctx.stroke(); ctx.restore(); } }
     panels.forEach(pn => breakdown(t, pn));
 
     // the end: the map dims, the bubble grows, "green" is typed, sent and answered
