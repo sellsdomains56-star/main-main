@@ -1,0 +1,814 @@
+[
+ {
+  "name": "Al Barari",
+  "slug": "al-barari",
+  "id": "6709",
+  "level": "2",
+  "page_name": "Al Barari"
+ },
+ {
+  "name": "Al Barsha",
+  "slug": "al-barsha",
+  "id": "5661",
+  "level": "2",
+  "page_name": "Al Barsha"
+ },
+ {
+  "name": "Al Furjan",
+  "slug": "al-furjan",
+  "id": "6688",
+  "level": "2",
+  "page_name": "Al Furjan"
+ },
+ {
+  "name": "Al Jaddaf",
+  "slug": "al-jaddaf",
+  "id": "5643",
+  "level": "2",
+  "page_name": "Al Jaddaf"
+ },
+ {
+  "name": "Al Khail Heights",
+  "id": null
+ },
+ {
+  "name": "Al Quoz",
+  "slug": "al-quoz",
+  "id": "5659",
+  "level": "2",
+  "page_name": "Al Quoz"
+ },
+ {
+  "name": "Al Safa",
+  "slug": "al-safa",
+  "id": "5655",
+  "level": "2",
+  "page_name": "Al Safa"
+ },
+ {
+  "name": "Al Satwa",
+  "slug": "al-satwa",
+  "id": "5652",
+  "level": "2",
+  "page_name": "Al Satwa"
+ },
+ {
+  "name": "Al Sufouh",
+  "slug": "al-sufouh",
+  "id": "5660",
+  "level": "2",
+  "page_name": "Al Sufouh"
+ },
+ {
+  "name": "Al Waha",
+  "id": null
+ },
+ {
+  "name": "Al Wasl",
+  "slug": "al-wasl",
+  "id": "5654",
+  "level": "2",
+  "page_name": "Al Wasl"
+ },
+ {
+  "name": "Arabian Ranches",
+  "slug": "arabian-ranches",
+  "id": "5223",
+  "level": "2",
+  "page_name": "Arabian Ranches"
+ },
+ {
+  "name": "Arabian Ranches 2",
+  "slug": "arabian-ranches-2",
+  "id": "11296",
+  "level": "2",
+  "page_name": "Arabian Ranches 2"
+ },
+ {
+  "name": "Arabian Ranches 3",
+  "slug": "arabian-ranches-3",
+  "id": "12423",
+  "level": "2",
+  "page_name": "Arabian Ranches 3"
+ },
+ {
+  "name": "Arjan",
+  "slug": "arjan",
+  "id": "5785",
+  "level": "2",
+  "page_name": "Arjan"
+ },
+ {
+  "name": "Athlon by Aldar",
+  "slug": "athlon-by-aldar",
+  "id": "20112",
+  "level": "2",
+  "page_name": "Athlon by Aldar"
+ },
+ {
+  "name": "Azizi Milan",
+  "id": null
+ },
+ {
+  "name": "Barsha Heights (Tecom)",
+  "slug": "tecom",
+  "id": "5933",
+  "level": "2",
+  "page_name": "Barsha Heights (Tecom)"
+ },
+ {
+  "name": "Barsha South",
+  "id": null
+ },
+ {
+  "name": "Bianca",
+  "id": null
+ },
+ {
+  "name": "Bluewaters Island",
+  "slug": "bluewaters-island",
+  "id": "9157",
+  "level": "2",
+  "page_name": "Bluewaters Island"
+ },
+ {
+  "name": "Bur Dubai",
+  "slug": "bur-dubai",
+  "id": "6796",
+  "level": "2",
+  "page_name": "Bur Dubai"
+ },
+ {
+  "name": "Business Bay",
+  "slug": "business-bay",
+  "id": "5093",
+  "level": "2",
+  "page_name": "Business Bay"
+ },
+ {
+  "name": "City Walk",
+  "id": null
+ },
+ {
+  "name": "City of Arabia",
+  "slug": "city-of-arabia",
+  "id": "5527",
+  "level": "2",
+  "page_name": "City of Arabia"
+ },
+ {
+  "name": "Culture Village",
+  "slug": "culture-village",
+  "id": "5382",
+  "level": "2",
+  "page_name": "Culture Village (Jaddaf Waterfront)"
+ },
+ {
+  "name": "DAMAC Hills",
+  "slug": "damac-hills",
+  "id": "9026",
+  "level": "2",
+  "page_name": "DAMAC Hills"
+ },
+ {
+  "name": "DAMAC Hills 2 (Akoya by DAMAC)",
+  "slug": "damac-hills-2-akoya-by-damac",
+  "id": "8657",
+  "level": "2",
+  "page_name": "DAMAC Hills 2 (Akoya by DAMAC)"
+ },
+ {
+  "name": "DAMAC Islands",
+  "id": null
+ },
+ {
+  "name": "DAMAC Islands 2",
+  "slug": "damac-islands-2",
+  "id": "22759",
+  "level": "2",
+  "page_name": "DAMAC Islands 2"
+ },
+ {
+  "name": "DAMAC Lagoons",
+  "slug": "damac-lagoons",
+  "id": "14852",
+  "level": "2",
+  "page_name": "DAMAC Lagoons"
+ },
+ {
+  "name": "DAMAC Riverside",
+  "id": null
+ },
+ {
+  "name": "Deira",
+  "slug": "deira",
+  "id": "6794",
+  "level": "2",
+  "page_name": "Deira"
+ },
+ {
+  "name": "Discovery Gardens",
+  "slug": "discovery-gardens",
+  "id": "5234",
+  "level": "2",
+  "page_name": "Discovery Gardens"
+ },
+ {
+  "name": "Downtown Dubai",
+  "slug": "downtown-dubai",
+  "id": "6901",
+  "level": "2",
+  "page_name": "Downtown Dubai"
+ },
+ {
+  "name": "Downtown Jebel Ali",
+  "slug": "downtown-jebel-ali",
+  "id": "5987",
+  "level": "2",
+  "page_name": "Downtown Jebel Ali"
+ },
+ {
+  "name": "Dubai Creek Harbour",
+  "slug": "dubai-creek-harbour",
+  "id": "8617",
+  "level": "2",
+  "page_name": "Dubai Creek Harbour"
+ },
+ {
+  "name": "Dubai Design District (D3)",
+  "slug": "dubai-design-district-d3",
+  "id": "14646",
+  "level": "2",
+  "page_name": "Dubai Design District (D3)"
+ },
+ {
+  "name": "Dubai Festival City",
+  "slug": "dubai-festival-city",
+  "id": "5927",
+  "level": "2",
+  "page_name": "Dubai Festival City"
+ },
+ {
+  "name": "Dubai Harbour",
+  "slug": "dubai-harbour",
+  "id": "11876",
+  "level": "2",
+  "page_name": "Dubai Harbour"
+ },
+ {
+  "name": "Dubai Healthcare City",
+  "id": null
+ },
+ {
+  "name": "Dubai Healthcare City Phase 2",
+  "id": null
+ },
+ {
+  "name": "Dubai Hills Estate",
+  "slug": "dubai-hills-estate",
+  "id": "8288",
+  "level": "2",
+  "page_name": "Dubai Hills Estate"
+ },
+ {
+  "name": "Dubai Industrial City",
+  "slug": "dubai-industrial-city",
+  "id": "5666",
+  "level": "2",
+  "page_name": "Dubai Industrial City"
+ },
+ {
+  "name": "Dubai Internet City",
+  "slug": "dubai-internet-city",
+  "id": "7934",
+  "level": "2",
+  "page_name": "Dubai Internet City"
+ },
+ {
+  "name": "Dubai Investments Park (DIP)",
+  "id": null
+ },
+ {
+  "name": "Dubai Islands",
+  "slug": "dubai-islands",
+  "id": "5667",
+  "level": "2",
+  "page_name": "Dubai Islands"
+ },
+ {
+  "name": "Dubai Land Residence Complex (DLRC)",
+  "slug": "dubai-land-residence-complex-dlrc",
+  "id": "9038",
+  "level": "2",
+  "page_name": "Dubai Land Residence Complex (DLRC)"
+ },
+ {
+  "name": "Dubai Marina",
+  "slug": "dubai-marina",
+  "id": "5003",
+  "level": "2",
+  "page_name": "Dubai Marina"
+ },
+ {
+  "name": "Dubai Maritime City",
+  "slug": "dubai-maritime-city",
+  "id": "5633",
+  "level": "2",
+  "page_name": "Dubai Maritime City"
+ },
+ {
+  "name": "Dubai Production City (IMPZ)",
+  "slug": "dubai-production-city-impz",
+  "id": "5900",
+  "level": "2",
+  "page_name": "Dubai Production City (IMPZ)"
+ },
+ {
+  "name": "Dubai Science Park",
+  "slug": "dubai-science-park",
+  "id": "6859",
+  "level": "2",
+  "page_name": "Dubai Science Park"
+ },
+ {
+  "name": "Dubai Silicon Oasis (DSO)",
+  "slug": "dubai-silicon-oasis-dso",
+  "id": "5361",
+  "level": "2",
+  "page_name": "Dubai Silicon Oasis (DSO)"
+ },
+ {
+  "name": "Dubai South",
+  "slug": "dubai-south",
+  "id": "8881",
+  "level": "2",
+  "page_name": "Dubai South"
+ },
+ {
+  "name": "Dubai Sports City",
+  "slug": "dubai-sports-city",
+  "id": "5274",
+  "level": "2",
+  "page_name": "Dubai Sports City"
+ },
+ {
+  "name": "Dubai Studio City",
+  "slug": "dubai-studio-city",
+  "id": "8173",
+  "level": "2",
+  "page_name": "Dubai Studio City"
+ },
+ {
+  "name": "Dubai Water Canal",
+  "id": null
+ },
+ {
+  "name": "Dubai Waterfront",
+  "slug": "dubai-waterfront",
+  "id": "5488",
+  "level": "2",
+  "page_name": "Dubai Waterfront"
+ },
+ {
+  "name": "Dubai World Trade Centre (DWTC)",
+  "id": null
+ },
+ {
+  "name": "Dubailand",
+  "slug": "dubailand",
+  "id": "5746",
+  "level": "2",
+  "page_name": "Dubailand"
+ },
+ {
+  "name": "Emirates Hills",
+  "slug": "emirates-hills",
+  "id": "6703",
+  "level": "2",
+  "page_name": "Emirates Hills"
+ },
+ {
+  "name": "Expo City",
+  "slug": "expo-city",
+  "id": "18505",
+  "level": "2",
+  "page_name": "Expo City"
+ },
+ {
+  "name": "Falcon City of Wonders",
+  "slug": "falcon-city-of-wonders",
+  "id": "7142",
+  "level": "2",
+  "page_name": "Falcon City of Wonders"
+ },
+ {
+  "name": "Grand Polo Club & Resort",
+  "id": null
+ },
+ {
+  "name": "Green Community",
+  "slug": "green-community",
+  "id": "5244",
+  "level": "2",
+  "page_name": "Green Community"
+ },
+ {
+  "name": "Greenz by Danube",
+  "slug": "greenz-by-danube",
+  "id": "23684",
+  "level": "2",
+  "page_name": "Greenz by Danube"
+ },
+ {
+  "name": "Haven by Aldar",
+  "id": null
+ },
+ {
+  "name": "International City",
+  "slug": "international-city",
+  "id": "5317",
+  "level": "2",
+  "page_name": "International City"
+ },
+ {
+  "name": "International City Phase 2 (Warsan 4)",
+  "id": null
+ },
+ {
+  "name": "Jumeirah",
+  "slug": "jumeirah",
+  "id": "5687",
+  "level": "2",
+  "page_name": "Jumeirah"
+ },
+ {
+  "name": "Jumeirah Bay Island",
+  "id": null
+ },
+ {
+  "name": "Jumeirah Bay Islands",
+  "id": null
+ },
+ {
+  "name": "Jumeirah Beach Residence (JBR)",
+  "slug": "jumeirah-beach-residence-jbr",
+  "id": "5549",
+  "level": "2",
+  "page_name": "Jumeirah Beach Residence (JBR)"
+ },
+ {
+  "name": "Jumeirah Garden City",
+  "id": null
+ },
+ {
+  "name": "Jumeirah Golf Estates",
+  "slug": "jumeirah-golf-estates",
+  "id": "5499",
+  "level": "2",
+  "page_name": "Jumeirah Golf Estates"
+ },
+ {
+  "name": "Jumeirah Heights",
+  "slug": "jumeirah-heights",
+  "id": "8449",
+  "level": "2",
+  "page_name": "Jumeirah Heights"
+ },
+ {
+  "name": "Jumeirah Islands",
+  "slug": "jumeirah-islands",
+  "id": "5662",
+  "level": "2",
+  "page_name": "Jumeirah Islands"
+ },
+ {
+  "name": "Jumeirah Lake Towers (JLT)",
+  "slug": "jumeirah-lake-towers-jlt",
+  "id": "5152",
+  "level": "2",
+  "page_name": "Jumeirah Lake Towers (JLT)"
+ },
+ {
+  "name": "Jumeirah Park",
+  "slug": "jumeirah-park",
+  "id": "5505",
+  "level": "2",
+  "page_name": "Jumeirah Park"
+ },
+ {
+  "name": "Jumeirah Village Circle (JVC)",
+  "slug": "jumeirah-village-circle-jvc",
+  "id": "5416",
+  "level": "2",
+  "page_name": "Jumeirah Village Circle (JVC)"
+ },
+ {
+  "name": "Jumeirah Village Triangle (JVT)",
+  "slug": "jumeirah-village-triangle-jvt",
+  "id": "6893",
+  "level": "2",
+  "page_name": "Jumeirah Village Triangle (JVT)"
+ },
+ {
+  "name": "La Mer",
+  "id": null
+ },
+ {
+  "name": "Living Legends",
+  "slug": "living-legends",
+  "id": "8612",
+  "level": "2",
+  "page_name": "Living Legends"
+ },
+ {
+  "name": "Liwan",
+  "slug": "liwan",
+  "id": "5786",
+  "level": "2",
+  "page_name": "Liwan"
+ },
+ {
+  "name": "Madinat Jumeirah Living",
+  "id": null
+ },
+ {
+  "name": "Majan",
+  "slug": "majan",
+  "id": "5787",
+  "level": "2",
+  "page_name": "Majan"
+ },
+ {
+  "name": "Mercedes-Benz Places Binghatti City",
+  "id": null
+ },
+ {
+  "name": "Meydan",
+  "id": null
+ },
+ {
+  "name": "Meydan Horizon",
+  "slug": "meydan-horizon",
+  "id": "22384",
+  "level": "2",
+  "page_name": "Meydan Horizon"
+ },
+ {
+  "name": "Mina Rashid",
+  "slug": "mina-rashid",
+  "id": "12579",
+  "level": "2",
+  "page_name": "Mina Rashid"
+ },
+ {
+  "name": "Mirdif",
+  "slug": "mirdif",
+  "id": "5603",
+  "level": "2",
+  "page_name": "Mirdif"
+ },
+ {
+  "name": "Mohammed Bin Rashid City (MBR City)",
+  "slug": "mohammed-bin-rashid-city-mbr-city",
+  "id": "8256",
+  "level": "2",
+  "page_name": "Mohammed Bin Rashid City (MBR City)"
+ },
+ {
+  "name": "Motor City",
+  "slug": "motor-city",
+  "id": "7153",
+  "level": "2",
+  "page_name": "Motor City"
+ },
+ {
+  "name": "Mudon",
+  "slug": "mudon",
+  "id": "8230",
+  "level": "2",
+  "page_name": "Mudon"
+ },
+ {
+  "name": "Nad Al Sheba",
+  "slug": "nad-al-sheba",
+  "id": "5645",
+  "level": "2",
+  "page_name": "Nad Al Sheba"
+ },
+ {
+  "name": "Nad Al Sheba Gardens",
+  "id": null
+ },
+ {
+  "name": "Palm Jebel Ali",
+  "slug": "palm-jebel-ali",
+  "id": "5486",
+  "level": "2",
+  "page_name": "Palm Jebel Ali"
+ },
+ {
+  "name": "Palm Jumeirah",
+  "slug": "palm-jumeirah",
+  "id": "5460",
+  "level": "2",
+  "page_name": "Palm Jumeirah"
+ },
+ {
+  "name": "Port de La Mer",
+  "id": null
+ },
+ {
+  "name": "R. Hills",
+  "id": null
+ },
+ {
+  "name": "Reem",
+  "slug": "reem",
+  "id": "8212",
+  "level": "2",
+  "page_name": "Reem"
+ },
+ {
+  "name": "Remraam",
+  "slug": "remraam",
+  "id": "5784",
+  "level": "2",
+  "page_name": "Remraam"
+ },
+ {
+  "name": "Reportage Village",
+  "id": null
+ },
+ {
+  "name": "Rukan",
+  "slug": "rukan",
+  "id": "11481",
+  "level": "2",
+  "page_name": "Rukan"
+ },
+ {
+  "name": "Serena",
+  "slug": "serena",
+  "id": "8939",
+  "level": "2",
+  "page_name": "Serena"
+ },
+ {
+  "name": "Sheikh Zayed Road",
+  "slug": "sheikh-zayed-road",
+  "id": "5342",
+  "level": "2",
+  "page_name": "Sheikh Zayed Road"
+ },
+ {
+  "name": "Sobha Central",
+  "slug": "sobha-central",
+  "id": "22095",
+  "level": "2",
+  "page_name": "Sobha Central"
+ },
+ {
+  "name": "Sobha Elwood",
+  "slug": "sobha-elwood",
+  "id": "20633",
+  "level": "2",
+  "page_name": "Sobha Elwood"
+ },
+ {
+  "name": "Sobha Hartland",
+  "slug": "sobha-hartland",
+  "id": "8949",
+  "level": "2",
+  "page_name": "Sobha Hartland"
+ },
+ {
+  "name": "Sobha Hartland 2",
+  "slug": "sobha-hartland-2",
+  "id": "16812",
+  "level": "2",
+  "page_name": "Sobha Hartland 2"
+ },
+ {
+  "name": "Sobha Sanctuary",
+  "slug": "sobha-sanctuary",
+  "id": "23104",
+  "level": "2",
+  "page_name": "Sobha Sanctuary"
+ },
+ {
+  "name": "The Acres",
+  "slug": "the-acres",
+  "id": "19515",
+  "level": "2",
+  "page_name": "The Acres"
+ },
+ {
+  "name": "The Greens",
+  "slug": "the-greens",
+  "id": "5246",
+  "level": "2",
+  "page_name": "The Greens"
+ },
+ {
+  "name": "The Heights Country Club and Wellness",
+  "slug": "the-heights-country-club-and-wellness",
+  "id": "20175",
+  "level": "2",
+  "page_name": "The Heights Country Club and Wellness"
+ },
+ {
+  "name": "The Lakes",
+  "slug": "the-lakes",
+  "id": "6716",
+  "level": "2",
+  "page_name": "The Lakes"
+ },
+ {
+  "name": "The Meadows",
+  "slug": "the-meadows",
+  "id": "5273",
+  "level": "2",
+  "page_name": "The Meadows"
+ },
+ {
+  "name": "The Oasis by Emaar",
+  "slug": "the-oasis-by-emaar",
+  "id": "16663",
+  "level": "2",
+  "page_name": "The Oasis by Emaar"
+ },
+ {
+  "name": "The Springs",
+  "slug": "the-springs",
+  "id": "5245",
+  "level": "2",
+  "page_name": "The Springs"
+ },
+ {
+  "name": "The Sustainable City",
+  "slug": "the-sustainable-city",
+  "id": "8300",
+  "level": "2",
+  "page_name": "The Sustainable City"
+ },
+ {
+  "name": "The Valley by Emaar",
+  "slug": "the-valley-by-emaar",
+  "id": "12790",
+  "level": "2",
+  "page_name": "The Valley by Emaar"
+ },
+ {
+  "name": "The Villa",
+  "slug": "the-villa",
+  "id": "5210",
+  "level": "2",
+  "page_name": "The Villa"
+ },
+ {
+  "name": "The Wilds",
+  "slug": "the-wilds",
+  "id": "21549",
+  "level": "2",
+  "page_name": "The Wilds"
+ },
+ {
+  "name": "Tilal Al Ghaf",
+  "slug": "tilal-al-ghaf",
+  "id": "11943",
+  "level": "2",
+  "page_name": "Tilal Al Ghaf"
+ },
+ {
+  "name": "Town Square",
+  "slug": "town-square",
+  "id": "8539",
+  "level": "2",
+  "page_name": "Town Square"
+ },
+ {
+  "name": "Umm Suqeim",
+  "slug": "umm-suqeim",
+  "id": "5656",
+  "level": "2",
+  "page_name": "Umm Suqeim"
+ },
+ {
+  "name": "Villanova",
+  "id": null
+ },
+ {
+  "name": "Wasl Gate",
+  "slug": "wasl-gate",
+  "id": "12237",
+  "level": "2",
+  "page_name": "Wasl Gate"
+ },
+ {
+  "name": "Za'abeel",
+  "slug": "za-abeel",
+  "id": "9399",
+  "level": "2",
+  "page_name": "Za'abeel"
+ }
+]

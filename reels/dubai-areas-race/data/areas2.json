@@ -1,0 +1,97 @@
+[
+ {
+  "name": "City Walk",
+  "slug": "al-wasl/city-walk",
+  "id": "8733",
+  "level": "2",
+  "page_name": "City Walk"
+ },
+ {
+  "name": "Meydan",
+  "slug": "meydan-city",
+  "id": "6854",
+  "level": "2",
+  "page_name": "Meydan"
+ },
+ {
+  "name": "La Mer",
+  "slug": "jumeirah/la-mer",
+  "id": "11908",
+  "level": "2",
+  "page_name": "La Mer"
+ },
+ {
+  "name": "Jumeirah Bay Islands",
+  "id": null
+ },
+ {
+  "name": "Jumeirah Garden City",
+  "slug": "al-satwa/jumeirah-garden-city",
+  "id": "14550",
+  "level": "2",
+  "page_name": "Jumeirah Garden City"
+ },
+ {
+  "name": "Madinat Jumeirah Living",
+  "slug": "umm-suqeim/madinat-jumeirah-living",
+  "id": "12108",
+  "level": "2",
+  "page_name": "Madinat Jumeirah Living"
+ },
+ {
+  "name": "Dubai Investments Park (DIP)",
+  "slug": "dubai-investment-park-dip",
+  "id": "5241",
+  "level": "2",
+  "page_name": "Dubai Investments Park (DIP)"
+ },
+ {
+  "name": "Dubai World Trade Centre (DWTC)",
+  "slug": "world-trade-centre",
+  "id": "9112",
+  "level": "2",
+  "page_name": "Dubai World Trade Centre (DWTC)"
+ },
+ {
+  "name": "Grand Polo Club & Resort",
+  "id": null
+ },
+ {
+  "name": "Nad Al Sheba Gardens",
+  "id": null
+ },
+ {
+  "name": "Al Khail Heights",
+  "slug": "al-quoz/al-khail-heights",
+  "id": "8255",
+  "level": "2",
+  "page_name": "Al Khail Heights"
+ },
+ {
+  "name": "Barsha South",
+  "id": null
+ },
+ {
+  "name": "Dubai Healthcare City",
+  "id": null
+ },
+ {
+  "name": "Dubai Water Canal",
+  "id": null
+ },
+ {
+  "name": "DAMAC Islands",
+  "id": null
+ },
+ {
+  "name": "DAMAC Riverside",
+  "id": null
+ },
+ {
+  "name": "Villanova",
+  "slug": "dubailand/villanova",
+  "id": "9035",
+  "level": "2",
+  "page_name": "Villanova"
+ }
+]
