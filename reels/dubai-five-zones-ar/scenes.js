@@ -88,11 +88,10 @@ function buildScenes() {
   };
 
   const overlay = (t) => {
-    // brand + name: BK Group top-left on every beat, his name chip while he is introduced
-    const onPage = [T_P1, T_P2].reduce((m, T) => Math.max(m, ea(t, T[0] - 0.12, T[0] + 0.2) * (1 - ea(t, T[1] - 0.1, T[1] + 0.25))), 0);
-    bkTile(t, 130, 300, 118, ea(t, 0.4, 0.9) * (1 - onPage));                                  // no BK on the full-page pages of the study
+    // his name chip while he is introduced
+    // BK Group appears only where he says it (the card in the face beat at 'BK Real Estate Brokerage'); no persistent logo
     const nm = ea(t, 0.6, 1.1) * (1 - ea(t, 3.5, 3.9));
-    if (nm > 0.003) { ctx.save(); ctx.globalAlpha *= nm; const f = F.d(800, 26), w = M('ABDULLAH AHLI', f, 3) + 44; glassPill(130, 432, w, 46, 23); T('ABDULLAH AHLI', 130 + w / 2, 464, { font: f, ls: 3, color: '#FFFFFF' }); ctx.restore(); }
+    if (nm > 0.003) { ctx.save(); ctx.globalAlpha *= nm; const f = F.d(800, 26), w = M('ABDULLAH AHLI', f, 3) + 44; glassPill(130, 330, w, 46, 23); T('ABDULLAH AHLI', 130 + w / 2, 362, { font: f, ls: 3, color: '#FFFFFF' }); ctx.restore(); }
 
     // beat G0: the complaint (type over a flight above a townhouse community)
     const g0 = ea(t, T_G0[0] + 0.05, T_G0[0] + 0.4) * (1 - ea(t, T_G0[1] - 0.15, T_G0[1] + 0.15));
@@ -132,7 +131,7 @@ function buildScenes() {
       ctx.restore(); }
 
     // face beat 4: BK Group, and the developer as a blurred pop-up
-    popBK(t, K.bk - 0.15, 42.15);
+    popBK(t, K.bk - 0.15, K.partners - 0.2);
     popDev(t, K.dev2 - 0.5, 42.15);
 
     // study pages + the study cover as a small pop-up on the face beat in between
