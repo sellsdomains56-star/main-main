@@ -1,6 +1,6 @@
 'use strict';
 // ---------------------------------------------------------------------------
-// "Aldar's new Dubai community near Silicon Oasis" - 100.8 s + 3 s end card, built on the HeyGen avatar take (AI-generated, labelled on screen).
+// "Two government-backed developers' new Dubai community near Silicon Oasis" - the developers are NOT named (no Aldar / Dubai Holding / Greenwoods / project names on screen: names on the pages are covered by dark bars). Built on the HeyGen take.
 // ONE background per beat, moving from background to background (no layering):
 //   MAP    real satellite flights (Esri) with the OSM outlines of Dubai Silicon Oasis / Academic City and the real Blue Line route - only map elements on top
 //   PAGE   a real page as the whole picture, big and readable, marker on the words he says: The National, Dubai Media Office, pages of OUR study (Aldar_Dubai_Townhouse_Study.pdf)
@@ -15,21 +15,21 @@ function buildScenes() {
 
   // ---- key times (from the spoken words)
   const K = {
-    aldar: tw(/^ALDAR$/, 0, 0.14), launch: tw(/^LAUNCH$/, 0, 1.08), comm: tw(/^COMMUNITIES$/, 0, 2.6), dub1: tw(/^DUBAI,$/, 0, 3.5),
-    three1: tw(/^THREE-BEDROOM$/, 0, 4.2), townh: tw(/^TOWNHOUSES$/, 0, 4.8), three: tw(/^THREE$/, 0, 6.7), mill1: tw(/^MILLION$/, 0, 7.0), aed1: tw(/^AED\.$/, 0, 7.3),
-    proj: tw(/^PROJECT,$/, 0, 8.3), green: tw(/^GREENWOODS,$/, 0, 9.1), part: tw(/^PARTNERSHIP$/, 0, 10.8), holding: tw(/^HOLDING\.$/, 0, 11.8),
-    s43: tw(/^43$/, 0, 13.3), feet: tw(/^FEET,$/, 0, 14.7), h8000: tw(/^8,000$/, 0, 15.7), homes: tw(/^HOMES$/, 0, 16.6), apts: tw(/^APARTMENTS,$/, 0, 17.8), villas: tw(/^VILLAS,$/, 0, 18.8), th: tw(/^TOWNHOUSES\.$/, 0, 19.5),
-    three2: tw(/^THREE-BEDROOM$/, 1, 20.45), s2227: tw(/^2,227$/, 0, 22.5), space: tw(/^SPACE\.$/, 0, 24.8), p3: tw(/^3$/, 0, 26.4), aed2: tw(/^AED,$/, 0, 26.8), works: tw(/^WORKS$/, 0, 27.8), p1350: tw(/^1,350$/, 0, 28.8), foot: tw(/^FOOT\.$/, 0, 31.1),
-    pot: tw(/^POTENTIALLY$/, 0, 31.8), p15: tw(/^15%$/, 0, 32.2), below: tw(/^BELOW$/, 0, 32.9), nearby: tw(/^NEARBY$/, 0, 33.5), comm2: tw(/^COMMUNITIES\.$/, 0, 34.2),
-    loc: tw(/^LOCATION$/, 0, 35.84), dsoW: tw(/^SILICON$/, 0, 37.2), acadW: tw(/^ACADEMIC$/, 0, 38.1), conn: tw(/^CONNECTIVITY$/, 0, 39.3), sheikh: tw(/^SHEIKH$/, 0, 40.0), road: tw(/^ROAD\.$/, 0, 41.0),
-    dub2: tw(/^DUBAI$/, 0, 41.7, 41.4), announced: tw(/^ANNOUNCED$/, 0, 42.2), b128: tw(/^12\.8$/, 0, 42.7), billion: tw(/^BILLION$/, 0, 43.4, 43.2), expand: tw(/^EXPAND$/, 0, 44.9), tech: tw(/^TECHNOLOGY$/, 0, 46.8, 45.8), hub: tw(/^HUB,$/, 0, 48.3), target: tw(/^TARGETING$/, 0, 49.2), j70: tw(/^70,000$/, 0, 49.9), jobs: tw(/^JOBS\.$/, 0, 51.7),
-    acad2: tw(/^ACADEMIC$/, 0, 52.6, 52.3), expanding: tw(/^EXPANDING$/, 0, 54.4), edu: tw(/^EDUCATIONAL$/, 0, 55.2), inst: tw(/^INSTITUTIONS,$/, 0, 55.5),
-    by: tw(/^BY$/, 0, 56.8, 56.5), y2029: tw(/^2029,$/, 0, 56.9), metro: tw(/^METRO$/, 0, 58.3), blue: tw(/^BLUE$/, 0, 58.6), sched: tw(/^SCHEDULED$/, 0, 59.3), connect: tw(/^CONNECT$/, 0, 59.7), dso2: tw(/^SILICON$/, 0, 60.2, 60.0), acad3: tw(/^ACADEMIC$/, 0, 61.4, 61.0), wider: tw(/^WIDER$/, 0, 63.0), net: tw(/^NETWORK\.$/, 0, 63.7),
-    looking: tw(/^LOOKING$/, 0, 64.3), prev: tw(/^PREVIOUS$/, 0, 65.2), haven1: tw(/^HAVEN,$/, 0, 66.8), athlon: tw(/^ATHLON,$/, 0, 67.2), wilds: tw(/^WILDS$/, 0, 68.2), demand: tw(/^DEMAND$/, 0, 69.8), phases: tw(/^PHASES\.$/, 0, 71.4),
-    haven2: tw(/^HAVEN$/, 0, 72.6), report: tw(/^REPORTEDLY$/, 0, 73.2), p88: tw(/^8\.8%$/, 0, 74.2), ret: tw(/^RETURN$/, 0, 75.1), repeat: tw(/^REPEAT$/, 0, 75.7), median: tw(/^MEDIAN$/, 0, 77.5), p20: tw(/^20%$/, 0, 79.0), m13: tw(/^13$/, 0, 80.1), months: tw(/^MONTHS\.$/, 0, 80.4),
-    so: tw(/^SO$/, 0, 81.3), major: tw(/^MAJOR$/, 0, 81.8, 81.5), dev: tw(/^DEVELOPMENT$/, 0, 82.1), expected: tw(/^EXPECTED$/, 0, 83.8, 83.5), entry: tw(/^ENTRY$/, 0, 84.1), surr: tw(/^SURROUNDING$/, 0, 85.4), located: tw(/^LOCATED$/, 0, 86.8), billions: tw(/^BILLIONS$/, 0, 87.9), infra: tw(/^INFRASTRUCTURE$/, 0, 88.8), techn: tw(/^TECHNOLOGY$/, 0, 89.7, 89.4), invest: tw(/^INVESTMENT\.$/, 0, 90.1),
-    but: tw(/^BUT$/, 0, 91.1), potential: tw(/^POTENTIAL$/, 0, 91.5), final: tw(/^FINAL$/, 0, 93.3), pricing: tw(/^PRICING,$/, 0, 93.6), payment: tw(/^PAYMENT$/, 0, 94.4), future: tw(/^FUTURE$/, 0, 95.4), supply: tw(/^SUPPLY\.$/, 0, 95.5),
-    if1: tw(/^IF$/, 0, 96.3), full: tw(/^FULL$/, 0, 96.6), comment: tw(/^COMMENT$/, 0, 98.4), greenW: tw(/^GREEN$/, 0, 98.8), send: tw(/^SEND$/, 0, 99.7), info: tw(/^INFORMATION\.$/, 0, 100.1),
+    aldar: tw(/^TWO$/, 0, 0.14), launch: tw(/^LAUNCH$/, 0, 1.08), comm: tw(/^COMMUNITIES$/, 0, 3.0), dub1: tw(/^DUBAI,$/, 0, 3.6),
+    three1: tw(/^THREE-BEDROOM$/, 0, 4.9), townh: tw(/^TOWNHOUSES$/, 0, 5.4), three: tw(/^THREE$/, 0, 7.3), mill1: tw(/^MILLION$/, 0, 7.6), aed1: tw(/^AED\.$/, 0, 7.9),
+    proj: tw(/^PROJECT$/, 0, 8.9), part: tw(/^JOINT$/, 0, 10.6), holding: tw(/^DEVELOPERS\.$/, 0, 12.2),
+    s43: tw(/^43$/, 0, 13.7), feet: tw(/^FEET,$/, 0, 15.0), h8000: tw(/^8,000$/, 0, 16.0), homes: tw(/^HOMES$/, 0, 17.0), apts: tw(/^APARTMENTS,$/, 0, 18.2), villas: tw(/^VILLAS,$/, 0, 19.2), th: tw(/^TOWNHOUSES\.$/, 0, 19.9),
+    three2: tw(/^THREE-BEDROOM$/, 1, 20.8), s2227: tw(/^2,227$/, 0, 22.9), space: tw(/^SPACE\.$/, 0, 25.2), p3: tw(/^3$/, 0, 26.9), aed2: tw(/^AED,$/, 0, 27.2), works: tw(/^WORKS$/, 0, 28.2), p1350: tw(/^1,350$/, 0, 29.2), foot: tw(/^FOOT\.$/, 0, 31.5),
+    pot: tw(/^POTENTIALLY$/, 0, 32.2), p15: tw(/^15%$/, 0, 32.6), below: tw(/^BELOW$/, 0, 33.3), nearby: tw(/^NEARBY$/, 0, 33.9), comm2: tw(/^COMMUNITIES\.$/, 0, 34.6),
+    loc: tw(/^LOCATION$/, 0, 36.2), dsoW: tw(/^SILICON$/, 0, 37.6), acadW: tw(/^ACADEMIC$/, 0, 38.5), conn: tw(/^CONNECTIVITY$/, 0, 39.7), sheikh: tw(/^SHEIKH$/, 0, 40.4), road: tw(/^ROAD\.$/, 0, 41.4),
+    dub2: tw(/^DUBAI$/, 1, 42.1), announced: tw(/^ANNOUNCED$/, 0, 42.6), b128: tw(/^12\.8$/, 0, 43.1), billion: tw(/^BILLION$/, 0, 43.8), expand: tw(/^EXPAND$/, 0, 45.3), tech: tw(/^TECHNOLOGY$/, 0, 47.2), hub: tw(/^HUB,$/, 0, 48.7), target: tw(/^TARGETING$/, 0, 49.6), j70: tw(/^70,000$/, 0, 50.3), jobs: tw(/^JOBS\.$/, 0, 52.1),
+    acad2: tw(/^ACADEMIC$/, 1, 53.0), expanding: tw(/^EXPANDING$/, 0, 54.8), edu: tw(/^EDUCATIONAL$/, 0, 55.6), inst: tw(/^INSTITUTIONS\.$/, 0, 56.0),
+    by: tw(/^BY$/, 0, 57.2), y2029: tw(/^2029,$/, 0, 57.4), metro: tw(/^METRO$/, 0, 58.7), blue: tw(/^BLUE$/, 0, 59.0), sched: tw(/^SCHEDULED$/, 0, 59.7), connect: tw(/^CONNECT$/, 0, 60.1), dso2: tw(/^SILICON$/, 2, 60.6), acad3: tw(/^ACADEMIC$/, 2, 61.8), wider: tw(/^WIDER$/, 0, 63.4), net: tw(/^NETWORK\.$/, 0, 64.1),
+    looking: tw(/^LOOKING$/, 0, 64.7), prev: tw(/^PREVIOUS$/, 0, 66.3), haven1: tw(/^SEVERAL$/, 0, 67.6), athlon: tw(/^MAJOR$/, 1, 68.0), wilds: tw(/^COMMUNITIES$/, 1, 68.6), demand: tw(/^DEMAND$/, 0, 70.0), phases: tw(/^PHASES\.$/, 0, 71.8),
+    haven2: tw(/^ONE$/, 1, 72.8), report: tw(/^REPORTEDLY$/, 0, 74.0), p88: tw(/^8\.8%$/, 0, 74.8), ret: tw(/^RETURN$/, 0, 75.8), repeat: tw(/^REPEAT$/, 0, 76.4), median: tw(/^MEDIAN$/, 0, 78.2), p20: tw(/^20%$/, 0, 79.8), m13: tw(/^13$/, 0, 80.9), months: tw(/^MONTHS\.$/, 0, 81.2),
+    so: tw(/^SO$/, 0, 82.0), major: tw(/^MAJOR$/, 2, 82.6), expected: tw(/^EXPECTED$/, 3, 84.6), entry: tw(/^ENTRY$/, 0, 84.9), surr: tw(/^SURROUNDING$/, 0, 86.2), located: tw(/^LOCATED$/, 0, 87.6), billions: tw(/^BILLIONS$/, 0, 88.7), infra: tw(/^INFRASTRUCTURE$/, 0, 89.6), techn: tw(/^TECHNOLOGY$/, 1, 90.5), invest: tw(/^INVESTMENT\.$/, 0, 90.9),
+    but: tw(/^BUT$/, 0, 91.9), potential: tw(/^POTENTIAL$/, 0, 92.3), final: tw(/^FINAL$/, 0, 94.1), pricing: tw(/^PRICING,$/, 0, 94.4), payment: tw(/^PAYMENT$/, 0, 95.2), future: tw(/^FUTURE$/, 0, 96.2), supply: tw(/^SUPPLY\.$/, 0, 96.3),
+    if1: tw(/^IF$/, 0, 97.1), full: tw(/^FULL$/, 0, 97.5), comment: tw(/^COMMENT$/, 0, 99.4), greenW: tw(/^GREEN$/, 0, 99.8), send: tw(/^SEND$/, 0, 100.7), info: tw(/^INFORMATION\.$/, 0, 101.1),
   };
 
   const FACE_SEGS = [], PUNCHES = [], OVERLAYS = [];
@@ -108,12 +108,12 @@ function buildScenes() {
     const cnt = (a, b, v, dec) => numberStr(v * ea(t, a, b, E.out3), dec);
 
     // HUD title per beat (right of the bubble)
-    hudTitle(t, 'ALDAR PROPERTIES', 'NEW COMMUNITY', 'ONE OF ITS LARGEST IN DUBAI', K.aldar - 0.1, K.three1 - 0.2);
-    hudTitle(t, 'ALDAR PROPERTIES', '3-BEDROOM TOWNHOUSES', 'EXPECTED STARTING PRICE', K.three1 - 0.1, K.three - 0.3);
+    hudTitle(t, 'TWO GOVERNMENT-BACKED DEVELOPERS', 'NEW COMMUNITY', 'ONE OF THE LARGEST IN DUBAI', K.aldar - 0.1, K.three1 - 0.2);
+    hudTitle(t, 'NEW COMMUNITY · EXPECTED', '3-BEDROOM TOWNHOUSES', 'EXPECTED STARTING PRICE', K.three1 - 0.1, K.three - 0.3);
     hudTitle(t, '3-BEDROOM TOWNHOUSE · EXPECTED', 'AED ' + cnt(K.three, K.mill1 + 0.5, 3, 0) + ' MILLION', 'FROM · STARTING PRICE', K.three - 0.25, K.proj - 0.15);
-    hudTitle(t, 'THE PROJECT', 'GREENWOODS', 'ALDAR × DUBAI HOLDING', K.proj - 0.05, K.s43 - 0.2);
-    hudTitle(t, 'THE COMMUNITY · AS REPORTED', 'GREENWOODS', 'ALDAR × DUBAI HOLDING', K.s43 - 0.1, K.three2 - 0.15);
-    hudTitle(t, 'ALDAR PROPERTIES', '3-BEDROOM TOWNHOUSES', 'EXPECTED SIZE', K.three2 - 0.05, K.s2227 - 0.25);
+    hudTitle(t, 'THE PROJECT', 'JOINT VENTURE', 'TWO TIER-ONE DEVELOPERS', K.proj - 0.05, K.s43 - 0.2);
+    hudTitle(t, 'THE COMMUNITY · AS REPORTED', 'JOINT VENTURE', 'TWO TIER-ONE DEVELOPERS', K.s43 - 0.1, K.three2 - 0.15);
+    hudTitle(t, 'NEW COMMUNITY · EXPECTED', '3-BEDROOM TOWNHOUSES', 'EXPECTED SIZE', K.three2 - 0.05, K.s2227 - 0.25);
     hudTitle(t, '3-BEDROOM TOWNHOUSE', cnt(K.s2227 - 0.2, K.s2227 + 1.4, 2227, 0) + ' SQ FT', 'EXPECTED SIZE · AROUND', K.s2227 - 0.3, K.p3 - 0.3);
     hudTitle(t, 'STARTING PRICE', 'AED ' + cnt(K.p3 - 0.1, K.p3 + 0.7, 3, 0) + ' MILLION', 'EXPECTED', K.p3 - 0.25, K.works - 0.1);
     hudTitle(t, 'WORKS OUT TO ABOUT', 'AED ' + cnt(K.works + 0.05, K.p1350 + 1.2, 1350, 0) + ' / SQ FT', 'AED 3 MILLION ÷ 2,227 SQ FT', K.works - 0.05, K.pot - 0.15);
@@ -126,10 +126,10 @@ function buildScenes() {
     hudTitle(t, 'TARGETING MORE THAN', cnt(K.target + 0.1, K.j70 + 1.0, 70000, 0) + ' JOBS', 'DIRECT AND INDIRECT', K.target - 0.05, K.acad2 - 0.45);
     hudTitle(t, 'ACADEMIC CITY', 'EDUCATION HUB', 'EXPANDING ITS INSTITUTIONS', K.acad2 - 0.35, K.by - 0.2);
     hudTitle(t, 'METRO BLUE LINE', 'OPENING 2029', 'CONNECTS SILICON OASIS & ACADEMIC CITY', K.by - 0.1, K.looking - 0.45, '#8CC8FF');
-    hudTitle(t, 'ALDAR · BEFORE THIS', 'THREE LAUNCHES', 'HAVEN · ATHLON · THE WILDS', K.looking - 0.35, K.haven2 - 0.45);
-    hudTitle(t, 'ALDAR · DUBAI', 'HAVEN', 'RESALES · REPORTED', K.haven2 - 0.35, K.p88 - 0.25);
-    hudTitle(t, 'HAVEN · REPORTED', cnt(K.p88 - 0.15, K.p88 + 0.8, 8.8, 1) + '% RETURN', 'ON REPEAT SALES', K.p88 - 0.2, K.median - 0.25);
-    hudTitle(t, 'HAVEN · REPORTED', 'MEDIAN PRICES', 'OVER 13 MONTHS', K.median - 0.15, K.so - 0.35);
+    hudTitle(t, 'THE DEVELOPERS · BEFORE THIS', 'PREVIOUS PROJECTS', 'STRONG DEMAND AT LAUNCH', K.looking - 0.35, K.haven2 - 0.45);
+    hudTitle(t, 'ONE PREVIOUS COMMUNITY', 'REPEAT SALES', 'REPORTED', K.haven2 - 0.35, K.p88 - 0.25);
+    hudTitle(t, 'ONE PREVIOUS COMMUNITY · REPORTED', cnt(K.p88 - 0.15, K.p88 + 0.8, 8.8, 1) + '% RETURN', 'ON REPEAT SALES', K.p88 - 0.2, K.median - 0.25);
+    hudTitle(t, 'ONE PREVIOUS COMMUNITY · REPORTED', 'MEDIAN PRICES', 'OVER 13 MONTHS', K.median - 0.15, K.so - 0.35);
     hudTitle(t, 'THE BIG PICTURE', 'ENTRY PRICE', 'BELOW SOME NEIGHBOURS · EXPECTED', K.so - 0.25, K.located - 0.55);
     hudTitle(t, 'THE BIG PICTURE', 'BILLIONS IN INVESTMENT', 'INFRASTRUCTURE & TECHNOLOGY', K.located - 0.45, K.but - 0.5);
     hudTitle(t, 'BUT', 'IT DEPENDS ON', 'THE INVESTMENT POTENTIAL', K.but - 0.4, K.if1 - 0.4);
@@ -139,7 +139,7 @@ function buildScenes() {
     if (s1 > 0.003) {
       ctx.save(); ctx.globalAlpha *= s1;
       const blk = (y, lab, num, unit, a0, a1, dec) => { T(lab, CX, y - 150, { font: F.d(800, 30), ls: 8, color: C.gold, alpha: ea(t, a0 - 0.1, a0 + 0.3) }); T(num, CX, y + 20, { font: F.d(800, 190), ls: 0, color: C.ink, alpha: ea(t, a0 - 0.1, a0 + 0.3), sx: 1 }); T(unit, CX, y + 100, { font: F.d(800, 66), ls: 6, color: C.ink, alpha: ea(t, a0, a0 + 0.5) }); };
-      blk(780, 'APPROXIMATELY', cnt(K.s43 - 0.05, K.s43 + 0.9, 43, 0), 'MILLION SQ FT', K.s43 - 0.1);
+      blk(745, 'APPROXIMATELY', cnt(K.s43 - 0.05, K.s43 + 0.9, 43, 0), 'MILLION SQ FT', K.s43 - 0.1);
       blk(1040, 'AROUND', cnt(K.h8000 - 0.1, K.h8000 + 1.1, 8000, 0), 'NEW HOMES', K.h8000 - 0.15);
       [['APARTMENTS', K.apts], ['VILLAS', K.villas], ['TOWNHOUSES', K.th]].forEach(([txt, a], i) => { const e = ea(t, a - 0.05, a + 0.4, E.out4); if (e <= 0.003) return; const w = [300, 190, 270][i], x0 = [130, 450, 660][i]; ctx.save(); ctx.globalAlpha *= e; rr(x0, 1196, w, 54, 27); ctx.fillStyle = i === 2 ? C.gold : 'rgba(233,196,124,0.16)'; ctx.fill(); T(txt, x0 + w / 2, 1233, { font: F.d(800, 27), ls: 3, color: i === 2 ? '#0A0A0B' : C.ink }); ctx.restore(); });
       ctx.restore();
