@@ -5,14 +5,14 @@
 // ---------------------------------------------------------------------------
 const W = 1080, H = 1920, FPS = 30, CX = 540; let DUR = 46.72;
 const C = {                      // Arabic reel: blue, white and a sky-blue accent (no black)
-  bg: '#0B3A9C',
+  bg: '#0B1220',
   ink: '#FFFFFF',
   dim: 'rgba(255,255,255,0.80)',
   mute: 'rgba(255,255,255,0.50)',
   faint: 'rgba(255,255,255,0.18)',
   gold: '#A9D4FF',
   goldSoft: 'rgba(169,212,255,0.20)',
-  panel: '#1352CC',
+  panel: '#10182A',
 };
 
 // Instagram Reels safe zone (1080x1920): the top 220 px, the bottom 450 px and a 100 px strip on the right (like / comment / share) get covered by the app's UI.

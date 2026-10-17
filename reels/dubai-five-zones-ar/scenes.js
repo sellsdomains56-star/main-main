@@ -27,21 +27,21 @@ function buildScenes() {
   const PUNCHES = [[K.hal, 0.03], [K.joint, 0.03], [K.success, 0.04], [K.bk, 0.03], [K.partners, 0.03], [K.data, 0.03]];
   const REFRAME = { s: 1.3, cx: 0.60, cy: 0.40, ty: 0.37 };                   // source point (60% across, 40% down = his face) -> 37% down the screen, zoomed 1.3x: he is centred and big
   const T_G0 = [0, 3.95], T_MAP = [9.45, 17.9], T_G1 = [17.8, 22.65], T_G2 = [25.0, 27.3], T_G3 = [30.15, 36.15], T_P1 = [42.05, 45.2], T_P2 = [47.95, 54.5], T_CTA = [54.4, 99];
-  const OVERLAYS = [], IMAGES = { st1: 'assets/study_p01_blue.png', st2: 'assets/study_p02.png', st5: 'assets/study_p05.png', bk: 'assets/brand/bk_logo_raw.png', aldar: 'assets/brand/aldar_frame.png' };
+  const OVERLAYS = [], IMAGES = { st1: 'assets/study_p01.png', st2: 'assets/study_p02.png', st5: 'assets/study_p05.png', bk: 'assets/brand/bk_logo_raw.png', aldar: 'assets/brand/aldar_frame.png' };
   const rel = (T, t) => t - T[0], dur = T => T[1] - T[0];
   const DSOc = [55.3854, 25.1237], MIDc = [55.401, 25.122];
   const STN = { dso: [55.3888, 25.1208], acad: [55.4124, 25.0977] };
-  const BLUE = '#2F8BFF', SKY = '#A9D4FF', CYAN = '#7FE7FF', NAVY = '#0A2A78';
+  const BLUE = '#2F8BFF', SKY = '#A9D4FF', CYAN = '#7FE7FF', NAVY = '#0B1A33';
 
   const flight = (id, [a, b], keys, cfg = {}) => { SAT_SCENES[id] = { a, b, veil: 'none', keys: keys.map(k => camKey(...k)).sort((p, q) => p[0] - q[0]) }; add({ id, kind: 'sat', a, b, cfg }); return SAT_SCENES[id]; };
   // aerial flights over real townhouse communities (Esri World Imagery, tilted): background of the text beats
   const AR3 = [55.3235, 25.0652], DH2 = [55.3868, 24.9903], VAL = [55.4506, 25.0085], TIL = [55.2236, 25.0262];
-  const air = (id, T, [lon, lat], dl = 0.0016, z = 16.9) => flight(id, T, [[0, lon - dl, lat - dl * 0.6, z, 120, 34], [dur(T) / 2, lon, lat, z + 0.15, 120, 35], [dur(T) + 0.6, lon + dl, lat + dl * 0.6, z + 0.3, 120, 34]], { tint: 0.2 });
-  air('air0', T_G0, AR3); air('air1', T_G1, DH2); air('air2', T_G2, VAL, 0.0012); air('air3', T_G3, TIL); air('air4', T_CTA, AR3, 0.0014, 16.8); SAT_SCENES.air4.tint = 0.4; SCENES.find(x => x.id === 'air4').cfg.tint = 0.4;
+  const air = (id, T, [lon, lat], dl = 0.0016, z = 16.9) => flight(id, T, [[0, lon - dl, lat - dl * 0.6, z, 120, 34], [dur(T) / 2, lon, lat, z + 0.15, 120, 35], [dur(T) + 0.6, lon + dl, lat + dl * 0.6, z + 0.3, 120, 34]], { tint: 0.1 });
+  air('air0', T_G0, AR3); air('air1', T_G1, DH2); air('air2', T_G2, VAL, 0.0012); air('air3', T_G3, TIL); air('air4', T_CTA, AR3, 0.0014, 16.8); SCENES.find(x => x.id === 'air4').cfg.tint = 0.28;
 
   // ---- the map beat: Silicon Oasis -> Academic City -> the Blue Line
   const dm = dur(T_MAP);
-  flight('map', T_MAP, [[0, 55.40, 25.121, 12.4, 170, 26], [rel(T_MAP, K.silicon) - 0.4, ...DSOc, 13.0, 165, 31], [rel(T_MAP, K.nearby) - 0.3, ...MIDc, 13.2, 160, 34], [rel(T_MAP, K.cross) - 0.3, ...MIDc, 13.2, 160, 34], [rel(T_MAP, K.blue) + 0.7, 55.3766, 25.150, 11.5, 80, 22], [dm + 0.6, 55.3766, 25.150, 11.5, 80, 22]], { tint: 0.12 });
+  flight('map', T_MAP, [[0, 55.40, 25.121, 12.4, 170, 26], [rel(T_MAP, K.silicon) - 0.4, ...DSOc, 13.0, 165, 31], [rel(T_MAP, K.nearby) - 0.3, ...MIDc, 13.2, 160, 34], [rel(T_MAP, K.cross) - 0.3, ...MIDc, 13.2, 160, 34], [rel(T_MAP, K.blue) + 0.7, 55.3766, 25.150, 11.5, 80, 22], [dm + 0.6, 55.3766, 25.150, 11.5, 80, 22]], { tint: 0.05 });
   SCENES.find(s => s.id === 'map').cfg.top = (t, cam) => {
     mapIsland(t, cam, 'dso', '#FFFFFF', '#CFE6FF', [[K.silicon - 0.2, K.nearby - 0.1], [K.cross + 1.6, T_MAP[1]]], 'السيليكون أويسس');
     mapIsland(t, cam, 'academic', '#00D4FF', '#9BF0FF', [[K.nearby - 0.1, K.cross], [K.cross + 1.6, T_MAP[1]]], 'المدينة الجامعية');
@@ -52,7 +52,7 @@ function buildScenes() {
   };
 
   // ---- the study pages (ours), full screen, flown like the map; the developer's name is blurred on the page
-  const mk = (b, t0, t1) => ({ bbox: b, t0, t1, color: '#9BD0FF' });
+  const mk = (b, t0, t1) => ({ bbox: b, t0, t1, color: '#FFD25A' });
   const page = (id, img, [a, b], keys, hl) => add({ id, kind: 'page', img, a, b, keys, hl });
   page('p2', 'st2', T_P1, [[0, 1240, 1300, 0.42, 0], [0.9, 940, 1210, 0.8, 20], [dur(T_P1) + 0.5, 940, 1210, 0.84, 22]], [mk([780, 1072, 790, 52], K.expected, K.expected + 1.4)]);
   page('p5', 'st5', T_P2, [[0, 1240, 1500, 0.42, 0], [0.9, 760, 990, 0.82, 20], [rel(T_P2, K.three) + 0.3, 760, 990, 0.82, 20], [rel(T_P2, K.exist) + 0.3, 880, 2150, 0.78, 20], [dur(T_P2) + 0.5, 880, 2150, 0.8, 22]],
@@ -62,7 +62,8 @@ function buildScenes() {
   const hudAr = (t, kicker, name, sub, a0, a1, color) => {
     const al = ea(t, a0, a0 + 0.35) * (a1 ? 1 - ea(t, a1, a1 + 0.35) : 1); if (al <= 0.003) return;
     const e = ea(t, a0, a0 + 0.7, E.out4), dy = (1 - e) * 34, X = SAFE.x1, MW = SAFE.w - 150, f = F.d(800, 62), f3 = F.d(700, 36), fk = F.d(700, 30);
-    ctx.save(); ctx.globalAlpha *= al; ctx.shadowColor = 'rgba(0,30,110,0.6)'; ctx.shadowBlur = 14 * SS; ctx.shadowOffsetY = 2 * SS;
+    ctx.save(); ctx.globalAlpha *= al; { const pw = Math.min(SAFE.w - 10, Math.max(M(kicker, fk), M(name, f), sub ? M(sub, f3) : 0) + 80); glassPill(X - pw + 28, 318 + dy * 0.5, pw, sub ? 250 : 190, 30); }
+    ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 10 * SS; ctx.shadowOffsetY = 2 * SS;
     T(kicker, X, 370 + dy, { font: fk, color: C.dim, align: 'right', sx: Math.min(1, MW / M(kicker, fk)) });
     T(name, X, 438 + dy, { font: f, color: C.ink, align: 'right', sx: Math.min(1, MW / M(name, f)) });
     const bw0 = 130 * e; rr(X - bw0, 462 + dy, bw0, 6, 3); ctx.fillStyle = color || SKY; ctx.fill();
@@ -88,7 +89,8 @@ function buildScenes() {
 
   const overlay = (t) => {
     // brand + name: BK Group top-left on every beat, his name chip while he is introduced
-    bkTile(t, 130, 300, 118, ea(t, 0.4, 0.9));
+    const onPage = [T_P1, T_P2].reduce((m, T) => Math.max(m, ea(t, T[0] - 0.12, T[0] + 0.2) * (1 - ea(t, T[1] - 0.1, T[1] + 0.25))), 0);
+    bkTile(t, 130, 300, 118, ea(t, 0.4, 0.9) * (1 - onPage));                                  // no BK on the full-page pages of the study
     const nm = ea(t, 0.6, 1.1) * (1 - ea(t, 3.5, 3.9));
     if (nm > 0.003) { ctx.save(); ctx.globalAlpha *= nm; const f = F.d(800, 26), w = M('ABDULLAH AHLI', f, 3) + 44; glassPill(130, 432, w, 46, 23); T('ABDULLAH AHLI', 130 + w / 2, 464, { font: f, ls: 3, color: '#FFFFFF' }); ctx.restore(); }
 
@@ -96,8 +98,8 @@ function buildScenes() {
     const g0 = ea(t, T_G0[0] + 0.05, T_G0[0] + 0.4) * (1 - ea(t, T_G0[1] - 0.15, T_G0[1] + 0.15));
     if (g0 > 0.003) { ctx.save(); ctx.globalAlpha *= g0;
       bw(t, 'كثير يشتكون', 780, K.complain - 0.1, { size: 92, ls: 0 });
-      bw(t, 'من أسعار التاون هاوس', 930, K.complain + 0.7, { size: 100, ls: 0, hl: true, color: C.ink });
-      bw(t, 'في دبي', 1070, K.complain + 1.9, { size: 92, ls: 0, color: SKY });
+      bw(t, 'من أسعار التاون هاوس', 930, K.complain + 0.7, { size: 100, ls: 0, hl: '#FFFFFF', color: C.ink });
+      bw(t, 'في دبي', 1070, K.complain + 1.9, { size: 92, ls: 0, color: '#FFFFFF' });
       ctx.restore(); }
     // his face beat 1: pop-up of the developer (blurred) when he says "one of the biggest developers"
     popDev(t, K.akbar - 0.1, 9.55);
@@ -111,22 +113,22 @@ function buildScenes() {
     const g1 = ea(t, T_G1[0] + 0.05, T_G1[0] + 0.4) * (1 - ea(t, T_G1[1] - 0.15, T_G1[1] + 0.15));
     if (g1 > 0.003) { ctx.save(); ctx.globalAlpha *= g1;
       bw(t, 'لم يعلن عنه لحد الآن', 800, K.notyet - 0.1, { size: 96, ls: 0 });
-      bw(t, 'كثير طلب واستفسارات', 960, K.demand - 0.1, { size: 100, ls: 0, hl: true, color: C.ink });
+      bw(t, 'كثير طلب واستفسارات', 960, K.demand - 0.1, { size: 100, ls: 0, hl: '#FFFFFF', color: C.ink });
       ctx.restore(); }
 
     // beat G2: how do I secure a unit
     const g2 = ea(t, T_G2[0] + 0.05, T_G2[0] + 0.35) * (1 - ea(t, T_G2[1] - 0.15, T_G2[1] + 0.15));
     if (g2 > 0.003) { ctx.save(); ctx.globalAlpha *= g2;
-      bw(t, 'كيف أضمن الحجز', 820, K.how - 0.05, { size: 124, ls: 0, hl: true, color: C.ink });
-      bw(t, 'مع المطور؟', 980, K.how + 0.6, { size: 100, ls: 0, color: SKY });
+      bw(t, 'كيف أضمن الحجز', 820, K.how - 0.05, { size: 124, ls: 0, hl: '#FFFFFF', color: C.ink });
+      bw(t, 'مع المطور؟', 980, K.how + 0.6, { size: 100, ls: 0, color: '#FFFFFF' });
       ctx.restore(); }
 
     // beat G3: the main element is the strength of the broker
     const g3 = ea(t, T_G3[0] + 0.05, T_G3[0] + 0.4) * (1 - ea(t, T_G3[1] - 0.15, T_G3[1] + 0.15));
     if (g3 > 0.003) { ctx.save(); ctx.globalAlpha *= g3;
       bw(t, 'العنصر الأساسي', 760, K.main - 0.1, { size: 104, ls: 0 });
-      bw(t, 'مدى حصولك على الوحدة', 890, K.main + 1.8, { size: 70, ls: 0, color: SKY });
-      bw(t, 'قوة الوسيط', 1060, K.pow - 0.05, { size: 150, ls: 0, hl: true, color: C.ink });
+      bw(t, 'مدى حصولك على الوحدة', 890, K.main + 1.8, { size: 70, ls: 0, color: '#FFFFFF' });
+      bw(t, 'قوة الوسيط', 1060, K.pow - 0.05, { size: 150, ls: 0, hl: '#FFFFFF', color: C.ink });
       ctx.restore(); }
 
     // face beat 4: BK Group, and the developer as a blurred pop-up
@@ -144,12 +146,12 @@ function buildScenes() {
       const send = K.end + 0.5, sent = ea(t, send, send + 0.35), ia = ea(t, T_CTA[0] + 0.5, T_CTA[0] + 1.1, E.out4), iy = 1185, X0 = SAFE.x0, X1 = SAFE.x1, BW = X1 - X0, msg = 'مشروع', typed = msg.slice(0, Math.floor(msg.length * ea(t, K.proj - 0.1, K.proj + 0.55, E.lin) + 0.0001));
       card(t, 'st1', { x: 390, y: 330, w: 300, h: 424, a: T_CTA[0] + 0.15, from: [0, 60], rot: 3, fit: 'cover', fy: 0, zoom: [1, 1.04], r: 18 });
       ctx.save(); ctx.globalAlpha *= ce; glassPill(CX - 280, 776, 560, 128, 34); T('ABDULLAH AHLI', CX, 834, { font: F.d(800, 54), ls: 2, color: C.ink }); T('PORTFOLIO STRATEGIST', CX, 880, { font: F.d(700, 28), ls: 6, color: SKY }); ctx.restore();
-      ctx.save(); ctx.globalAlpha *= ia; rr(X0, iy - 65, BW, 130, 65); ctx.fillStyle = 'rgba(8,48,150,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,0.45)'; ctx.lineWidth = 3; ctx.stroke();
+      ctx.save(); ctx.globalAlpha *= ia; rr(X0, iy - 65, BW, 130, 65); ctx.fillStyle = 'rgba(12,16,26,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,0.45)'; ctx.lineWidth = 3; ctx.stroke();
       T(typed, X1 - 56, iy + 20, { font: F.d(700, 60), color: C.ink, align: 'right', alpha: 1 - sent }); T('أضف تعليقاً…', X1 - 56, iy + 20, { font: F.d(700, 60), color: C.mute, align: 'right', alpha: (1 - ea(t, K.proj - 0.1, K.proj)) * (1 - sent) });
       dot(X0 + 66, iy, 48, '#FFFFFF'); icon('plane', X0 + 66, iy, 20, { p: 1, color: BLUE, w: 4.5, rot: -0.5 + 0.5 * sent + Math.PI }); ctx.restore();
       const b1 = ea(t, send, send + 0.5, E.out4), b2 = ea(t, send + 0.8, send + 1.3, E.out4);
       if (b1 > 0.002) { ctx.save(); ctx.globalAlpha *= b1; ctx.translate(0, (1 - b1) * 36); const w = M(msg, F.d(700, 58)) + 84; rr(X1 - w, 925, w, 112, 56); ctx.fillStyle = '#FFFFFF'; ctx.fill(); T(msg, X1 - w / 2, 1000, { font: F.d(700, 58), color: NAVY }); ctx.restore(); }
-      if (b2 > 0.002) { ctx.save(); ctx.globalAlpha *= b2; ctx.translate(0, (1 - b2) * 36); const rp = 'جاري إرسال الدراسة إليك', w = M(rp, F.d(700, 46)) + 130; rr(X0, 1048, w, 112, 56); ctx.fillStyle = 'rgba(8,48,150,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,0.45)'; ctx.lineWidth = 3; ctx.stroke(); icon('check', X0 + 66, 1105, 24, { p: ea(t, send + 1.0, send + 1.4), color: SKY, w: 5 }); T(rp, X0 + w - 50, 1121, { font: F.d(700, 46), color: C.ink, align: 'right' }); ctx.restore(); }
+      if (b2 > 0.002) { ctx.save(); ctx.globalAlpha *= b2; ctx.translate(0, (1 - b2) * 36); const rp = 'جاري إرسال الدراسة إليك', w = M(rp, F.d(700, 46)) + 130; rr(X0, 1048, w, 112, 56); ctx.fillStyle = 'rgba(12,16,26,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,0.45)'; ctx.lineWidth = 3; ctx.stroke(); icon('check', X0 + 66, 1105, 24, { p: ea(t, send + 1.0, send + 1.4), color: SKY, w: 5 }); T(rp, X0 + w - 50, 1121, { font: F.d(700, 46), color: C.ink, align: 'right' }); ctx.restore(); }
     }
   };
   OVERLAYS.push(overlay);

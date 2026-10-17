@@ -46,14 +46,14 @@ let CAP_OFF = null, CAP_H = 0;
 function capHeight(font) { if (!CAP_H) { ctx.save(); ctx.font = font; ctx.letterSpacing = '0px'; CAP_H = ctx.measureText('H').actualBoundingBoxAscent; ctx.restore(); } return CAP_H; }
 function glassPill(x, y, w, h, rad) {                                              // backdrop blur + tint + hairline, drawn in canvas units (ctx is scaled by SS); rad = corner radius (default: a full pill)
   const r = rad ?? h / 2, pad = CAP.pad, cv = ctx.canvas, k = cv.width / W;                // k = pixels per canvas unit (the supersampling)
-  ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.38)'; ctx.shadowBlur = 34 * SS; ctx.shadowOffsetY = 8 * SS; rr(x, y, w, h, r); ctx.fillStyle = 'rgba(8,40,120,0.5)'; ctx.fill(); ctx.restore();
+  ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.38)'; ctx.shadowBlur = 34 * SS; ctx.shadowOffsetY = 8 * SS; rr(x, y, w, h, r); ctx.fillStyle = 'rgba(10,12,18,0.5)'; ctx.fill(); ctx.restore();
   const sx = Math.max(0, Math.round((x - pad) * k)), sy = Math.max(0, Math.round((y - pad) * k)), sw = Math.min(cv.width - sx, Math.round((w + 2 * pad) * k)), sh = Math.min(cv.height - sy, Math.round((h + 2 * pad) * k));
   if (!CAP_OFF) CAP_OFF = document.createElement('canvas');
   if (CAP_OFF.width !== sw || CAP_OFF.height !== sh) { CAP_OFF.width = sw; CAP_OFF.height = sh; }
   const oc = CAP_OFF.getContext('2d'); oc.setTransform(1, 0, 0, 1, 0, 0); oc.globalAlpha = 1; oc.clearRect(0, 0, sw, sh); oc.drawImage(cv, sx, sy, sw, sh, 0, 0, sw, sh);
   ctx.save(); rr(x, y, w, h, r); ctx.clip(); ctx.filter = `blur(${CAP.blur * k}px)`;
   ctx.drawImage(CAP_OFF, sx / k, sy / k, sw / k, sh / k); ctx.filter = 'none';
-  const g = ctx.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, 'rgba(14,60,170,0.52)'); g.addColorStop(1, 'rgba(6,36,110,0.66)'); ctx.fillStyle = g; ctx.fillRect(x, y, w, h);   // darken: keeps white text readable on white cards
+  const g = ctx.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, 'rgba(16,18,24,0.52)'); g.addColorStop(1, 'rgba(8,10,18,0.66)'); ctx.fillStyle = g; ctx.fillRect(x, y, w, h);   // darken: keeps white text readable on white cards
   const gl = ctx.createLinearGradient(0, y, 0, y + h * 0.5); gl.addColorStop(0, 'rgba(255,255,255,0.10)'); gl.addColorStop(1, 'rgba(255,255,255,0)'); ctx.fillStyle = gl; ctx.fillRect(x, y, w, h * 0.5);   // faint glass sheen on the top half
   ctx.restore();
   ctx.save(); rr(x + 0.75, y + 0.75, w - 1.5, h - 1.5, r); ctx.strokeStyle = 'rgba(255,255,255,0.20)'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.restore();
@@ -68,7 +68,7 @@ function drawCaptions(tg, Fv = 1) {
     L.lines.forEach((ln, li) => {
       const cy = cy0 + li * CAP.pitch, w = ln.w + CAP.padX * 2, h = CAP.pillH;
       if (CAP.style === 'bar') {                                                    // the old look: black on white
-        rr(CX - w / 2, cy - h / 2, w, h, CAP.r); ctx.fillStyle = '#FFFFFF'; ctx.fill(); ctx.fillStyle = '#0A2A78'; ctx.fillText(ln.txt, CX, cy + capH / 2); return;
+        rr(CX - w / 2, cy - h / 2, w, h, CAP.r); ctx.fillStyle = '#FFFFFF'; ctx.fill(); ctx.fillStyle = '#0B1A33'; ctx.fillText(ln.txt, CX, cy + capH / 2); return;
       }
       glassPill(CX - w / 2, cy - h / 2, w, h);
       ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.45)'; ctx.shadowBlur = 8 * SS; ctx.shadowOffsetY = 2 * SS; ctx.fillStyle = '#FFFFFF'; ctx.fillText(ln.txt, CX, cy + capH / 2); ctx.restore();   // centred on cap height

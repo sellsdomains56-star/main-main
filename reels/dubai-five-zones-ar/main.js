@@ -44,10 +44,10 @@ function drawCutSweep(t) {                                       // a quick gold
     ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = g; ctx.fillRect(0, y - 260, W, 520); ctx.restore();
   }
 }
-function drawBG(t) {                                           // blue, calm: a vertical blue gradient with two slow soft glows (no black, no grid)
-  const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#1F73FF'); g.addColorStop(0.5, '#0F4ED0'); g.addColorStop(1, '#0A3590'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-  glow(300 + 120 * Math.sin(t * 0.21), 560 + 60 * Math.cos(t * 0.17), 760, '150,200,255', 0.22);
-  glow(840 + 90 * Math.cos(t * 0.19), 1380 + 60 * Math.sin(t * 0.23), 820, '90,160,255', 0.20);
+function drawBG(t) {                                           // dark navy, calm: a vertical gradient with two slow soft glows (no black, no grid)
+  const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#17233D'); g.addColorStop(0.5, '#0F1A30'); g.addColorStop(1, '#0B1220'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  glow(300 + 120 * Math.sin(t * 0.21), 560 + 60 * Math.cos(t * 0.17), 760, '150,200,255', 0.07);
+  glow(840 + 90 * Math.cos(t * 0.19), 1380 + 60 * Math.sin(t * 0.23), 820, '90,160,255', 0.06);
   drawDust(t);
 }
 // him: the full frame, only in the FACE beats (fades through the cut into / out of the graphics)
@@ -85,11 +85,11 @@ function drawBubble(t) {
   const { cx, cy, r } = bubbleAt(t), S = B.src || {}, sp = Math.max(speakingAt(t), 0.55 * speakingAt(t - 0.12), 0.3 * speakingAt(t - 0.25)), a = ea(t, B.t0 ?? 0, (B.t0 ?? 0) + 0.5, E.out4), s0 = lerp(0.6, 1, a);
   ctx.save(); ctx.globalAlpha *= a; ctx.translate(cx, cy); ctx.scale(s0, s0);
   glow(0, 0, r * 1.9, '169,212,255', 0.10 + 0.22 * sp);
-  ctx.save(); ctx.shadowColor = 'rgba(0,30,100,0.5)'; ctx.shadowBlur = 30 * SS; ctx.shadowOffsetY = 10 * SS; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fillStyle = '#0B3A9C'; ctx.fill(); ctx.restore();
+  ctx.save(); ctx.shadowColor = 'rgba(0,30,100,0.5)'; ctx.shadowBlur = 30 * SS; ctx.shadowOffsetY = 10 * SS; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fillStyle = '#0B1220'; ctx.fill(); ctx.restore();
   ctx.save(); ctx.beginPath(); ctx.arc(0, 0, r - 3, 0, 7); ctx.clip();
   if (PH) ctx.drawImage(PH, -r, -r, 2 * r, 2 * r);
   else { const sz = S.size, sx = clamp(S.cx - sz / 2, 0, 1080 - sz), sy = clamp(S.cy - sz / 2, 0, 1920 - sz), kx = FOOT.naturalWidth / 1080, ky = FOOT.naturalHeight / 1920; ctx.drawImage(FOOT, sx * kx, sy * ky, sz * kx, sz * ky, -r, -r, 2 * r, 2 * r); }
-  const g = ctx.createRadialGradient(0, 0, r * 0.55, 0, 0, r); g.addColorStop(0, 'rgba(6,36,110,0)'); g.addColorStop(1, 'rgba(6,36,110,0.38)'); ctx.fillStyle = g; ctx.fillRect(-r, -r, 2 * r, 2 * r);   // soft vignette
+  const g = ctx.createRadialGradient(0, 0, r * 0.55, 0, 0, r); g.addColorStop(0, 'rgba(8,10,18,0)'); g.addColorStop(1, 'rgba(8,10,18,0.38)'); ctx.fillStyle = g; ctx.fillRect(-r, -r, 2 * r, 2 * r);   // soft vignette
   ctx.restore();
   ring(0, 0, r - 1, { color: C.gold, w: 5 });
   ring(0, 0, r + 10 + 6 * sp, { color: C.gold, w: 2.5, alpha: 0.22 + 0.5 * sp });                                    // speaking pulse

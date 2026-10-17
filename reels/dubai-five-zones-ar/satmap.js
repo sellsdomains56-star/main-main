@@ -74,7 +74,7 @@ function satPlane(cam) {
   }
   // grade: a little less saturated, a little darker, so the line work and type sit on it
   ctx.globalCompositeOperation = 'saturation'; ctx.globalAlpha = 0.2; ctx.fillStyle = '#808080'; ctx.fillRect(X0, Y0, WW, HH);
-  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(6,36,110,0.05)'; ctx.fillRect(X0, Y0, WW, HH);
+  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(8,10,18,0.05)'; ctx.fillRect(X0, Y0, WW, HH);
   ctx.restore();
 }
 // paints a flat plane with `drawFlat` (plane coordinates = the 1080x1920 frame, margins allowed) and shows it tilted by `pitch` degrees: each screen row samples its own row of the plane at its own scale
@@ -97,8 +97,8 @@ function planeRender(pitch, drawFlat) {
 function satVeil(sc, cam) {                                      // a light blue haze at the top and bottom (text sits there); the middle stays clear
   ctx.save();
   const hz = clamp((cam.pitch || 0) / 30);
-  const gt = ctx.createLinearGradient(0, 0, 0, 640 + 200 * hz); gt.addColorStop(0, `rgba(10,60,170,${0.62 + 0.1 * hz})`); gt.addColorStop(1, 'rgba(10,60,170,0)'); ctx.fillStyle = gt; ctx.fillRect(0, 0, W, 900);
-  const gb = ctx.createLinearGradient(0, 1220, 0, H); gb.addColorStop(0, 'rgba(10,60,170,0)'); gb.addColorStop(0.5, 'rgba(10,60,170,0.5)'); gb.addColorStop(1, 'rgba(10,60,170,0.7)'); ctx.fillStyle = gb; ctx.fillRect(0, 1220, W, H - 1220);
+  const gt = ctx.createLinearGradient(0, 0, 0, 640 + 200 * hz); gt.addColorStop(0, `rgba(8,10,18,${0.42 + 0.06 * hz})`); gt.addColorStop(1, 'rgba(8,10,18,0)'); ctx.fillStyle = gt; ctx.fillRect(0, 0, W, 900);
+  const gb = ctx.createLinearGradient(0, 1220, 0, H); gb.addColorStop(0, 'rgba(8,10,18,0)'); gb.addColorStop(0.5, 'rgba(8,10,18,0.34)'); gb.addColorStop(1, 'rgba(8,10,18,0.5)'); ctx.fillStyle = gb; ctx.fillRect(0, 1220, W, H - 1220);
   ctx.restore();
 }
 function satDraw(sc, tg) {
@@ -124,7 +124,7 @@ function satPin(x, y, t, a0, title, sub) {                         // pin + one 
   dot(x, y, 20 * e, 'rgba(255,255,255,0.95)'); dot(x, y, 11 * e, C.gold);
   const f1 = F.d(700, 50), f2 = F.d(500, 36), w1 = M(title, f1, 1), w2 = sub ? M(sub, f2, 1) : 0, pw = Math.max(w1, w2) + 70, ph = sub ? 124 : 84;
   const lx = Math.min(SAFE.x1 - pw / 2, Math.max(SAFE.x0 + pw / 2, x)), ly = y + 40 + (1 - e) * 20;
-  ctx.save(); ctx.globalAlpha *= al; rr(lx - pw / 2, ly, pw, ph, 22); ctx.fillStyle = 'rgba(6,36,110,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(169,212,255,0.7)'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.globalAlpha *= al; rr(lx - pw / 2, ly, pw, ph, 22); ctx.fillStyle = 'rgba(8,10,18,0.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(169,212,255,0.7)'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
   T(title, lx, ly + 58, { font: f1, ls: 1, color: '#FFFFFF', alpha: al });
   if (sub) T(sub, lx, ly + 100, { font: f2, ls: 1, color: C.gold, alpha: al });
 }
