@@ -8,7 +8,7 @@
 const W = 1080, H = 1920, FPS = 30;
 const C = { bg: '#08080A', ink: '#F3EFE6', dim: 'rgba(243,239,230,0.68)', mute: 'rgba(243,239,230,0.36)', faint: 'rgba(243,239,230,0.10)', gold: '#E9C47C', bar: '#0B0B0E' };
 // one fixed colour per area (colour follows the area, never its rank); every bar also carries its name, so colour is never the only cue
-const PAL = ['#2FCB8B', '#9B7BF0', '#E9C47C', '#F0708A', '#5CC8D6', '#B8E05A', '#E58BE6', '#F29B62', '#7FA7FF', '#7DE3B6', '#C7A6FF', '#F5D76E', '#FF8FA3', '#6FD6C8', '#D4E56B', '#E0A3F0'];
+const PAL = ['#2FCB8B', '#9B7BF0', '#E9C47C', '#F0708A', '#5CC8D6', '#B8E05A', '#E58BE6', '#F29B62', '#7FA7FF', '#7DE3B6', '#C7A6FF', '#F5D76E', '#FF8FA3', '#6FD6C8', '#D4E56B', '#E0A3F0', '#FF7A7A', '#8DE0A3', '#B9A3FF', '#FFC27A'];
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, t) => a + (b - a) * t;
 const prog = (t, a, b) => clamp((t - a) / (b - a));
@@ -17,7 +17,7 @@ const E = { out3: x => 1 - (1 - x) ** 3, out4: x => 1 - (1 - x) ** 4, inOut3: x 
 const ea = (t, a, b, f = E.out3) => f(prog(t, a, b));
 
 // ---- timeline (seconds) ----
-const T = { title: 0.20, draw0: 1.10, draw1: 25.90, end0: 28.40, end1: 30.00, dur: 32.0 };
+const T = { title: 0.20, draw0: 1.10, draw1: 32.30, end0: 34.90, end1: 36.50, dur: 38.5 };   // 39 quarter steps of 0.8 s: all bars move together for half a step, then rest
 
 // ---- layout (inside the Reels safe zone: x 130..950, y 300..~1440) ----
 const L = { nameR: 378, barX: 392, barLen: 548, y0: 722, pitch: 50, bh: 40, rows: 10, k: 1, textX: 335 };
@@ -25,7 +25,7 @@ const KICK = 'DUBAI  ·  2016 – 2026';
 const TITLE = ['Price per sq ft:', 'top 10 areas'];
 const SUB = ['The most expensive areas,', 'quarter by quarter'];
 const FOOT = ['Median price per sq ft of sampled Dubai Land Department sales',
-              'Apartments, villas and townhouses; 25+ sales in the quarter',
+              'Apartments, villas and townhouses; rolling 12-month median',
               'Source: Dubai Land Department transactions, via Bayut'];
 
 let ctx, SS = 1, D = null, IMG = {};
@@ -35,9 +35,10 @@ function txt(s, x, y, size, weight, color, align = 'left', fam = 'Inter Display'
 }
 const fmt = v => Math.round(v).toLocaleString('en-US');
 
-// ---- race progress: 0..1 over draw0..draw1, a touch of ease at both ends ----
-function raceP(t) { const u = prog(t, T.draw0, T.draw1); const s = u * u * (3 - 2 * u); return lerp(u, s, 0.30); }
-function timeOfP(p) { let a = T.draw0, b = T.draw1; for (let k = 0; k < 40; k++) { const m = (a + b) / 2; if (raceP(m) < p) a = m; else b = m; } return (a + b) / 2; }
+// ---- race progress: one quarter per step; in each step every bar moves to its new value / row during the first MOVE of the step, then rests ----
+const MOVE = 0.50, mv = u => sm(prog(u, 0, MOVE));
+const fAt = t => clamp((t - T.draw0) / (T.draw1 - T.draw0)) * (D.Q - 1);          // fractional quarter index at time t
+const timeOfP = p => T.draw0 + p * (T.draw1 - T.draw0);
 
 // ---- data prep: per area values per quarter (null -> no data), ranks per quarter ----
 function prep() {
@@ -49,24 +50,45 @@ function prep() {
     A.forEach(a => { a.rank = a.rank || new Array(Q).fill(L.rows + 2); });
     order.forEach((a, i) => { a.rank[k] = i; });
   }
-  // colours: areas that spend the most quarters in the top 10 get the first (most distinct) colours
-  const top = a => a.rank.filter(r => r < L.rows).length;
-  A.slice().sort((x, y) => top(y) - top(x)).forEach((a, i) => { a.color = PAL[i % PAL.length]; });
+  // colours: greedy colouring - an area gets the palette colour that clashes least with the areas it shares the top 12 with (the most prominent areas choose first)
+  const top = a => a.rank.filter(r => r < L.rows).length, near = (a, k) => a.rank[k] < L.rows + 2;
+  const order = A.slice().sort((x, y) => top(y) - top(x)), done = [];
+  for (const a of order) {
+    if (top(a) === 0) { a.color = PAL[0]; continue; }
+    const cost = PAL.map(() => 0);
+    for (const b of done) { let c = 0; for (let k = 0; k < Q; k++) if (near(a, k) && near(b, k)) c++; if (c) cost[PAL.indexOf(b.color)] += c; }
+    a.color = PAL[cost.indexOf(Math.min(...cost))]; done.push(a);
+  }
   D.A = A.filter(a => top(a) > 0);                                  // only areas that ever reach the top 10 need to be drawn
 }
-// value of an area at fractional quarter index f (a missing quarter borrows its neighbour so a bar never grows from nothing mid-list)
+// effective value of an area at fractional quarter index f: a quarter without data borrows its neighbour's value (so a bar never has a hole) but is scaled by
+// availability (0..1), so an area grows in / shrinks away smoothly when its data starts or ends
 function valueAt(a, f) {
-  const k = Math.min(D.Q - 1, Math.floor(f)), j = Math.min(D.Q - 1, k + 1), u = sm(f - k);
-  let v0 = a.val[k], v1 = a.val[j]; if (v0 == null && v1 == null) return 0; if (v0 == null) v0 = v1; if (v1 == null) v1 = v0;
-  return lerp(v0, v1, u);
+  const k = Math.min(D.Q - 1, Math.floor(f)), j = Math.min(D.Q - 1, k + 1), u = mv(f - k);
+  let v0 = a.val[k], v1 = a.val[j]; const h0 = v0 == null ? 0 : 1, h1 = v1 == null ? 0 : 1; if (!h0 && !h1) return 0;
+  if (v0 == null) v0 = v1; if (v1 == null) v1 = v0;
+  return lerp(v0, v1, u) * lerp(h0, h1, u);
 }
-function posAt(a, f) {
-  const k = Math.min(D.Q - 1, Math.floor(f)), j = Math.min(D.Q - 1, k + 1), u = sm(prog(f - k, 0.04, 0.96));
-  return lerp(a.rank[k], a.rank[j], u);
-}
+// row position of an area: it slides from its rank in quarter k to its rank in quarter k+1 together with every other bar
+function posAt(a, f) { const k = Math.min(D.Q - 1, Math.floor(f)), j = Math.min(D.Q - 1, k + 1); return lerp(a.rank[k], a.rank[j], mv(f - k)); }
 
-// ---- captions under the date ----
-function buildCaptions() { return (D.caps || []).map(c => ({ ...c, t0: timeOfP(D.quarters.indexOf(c.q) / (D.Q - 1)) })); }
+// ---- captions under the date: every line is computed from the data (first leader, lead changes that last, what the 10th place costs then and now) ----
+function buildCaptions() {
+  const Q = D.Q, caps = [], lead = [], v10 = [];
+  for (let k = 0; k < Q; k++) {
+    const s = D.A.filter(a => a.val[k] != null).sort((x, y) => y.val[k] - x.val[k]);
+    lead.push(s[0]); v10.push(s[9] ? s[9].val[k] : null);
+  }
+  const tq = k => timeOfP((k - 0.7) / (Q - 1));                       // a new leader is on top about two thirds of the way through the move into its quarter
+  caps.push({ t0: T.draw0 + 0.25, len: 3.0, text: `${lead[0].short} starts in the lead` });
+  let last = caps[0].t0;
+  for (let k = 1; k < Q - 3; k++) {
+    if (lead[k] !== lead[k - 1] && lead[k + 1] === lead[k] && tq(k) - last >= 3.3 && tq(k) > caps[0].t0 + 3.4) { caps.push({ t0: tq(k), len: 2.6, text: `${lead[k].short} takes the lead` }); last = tq(k); }
+  }
+  const e = { t0: T.draw1 - 0.6, len: T.end0 - T.draw1 + 0.6, text: `10th place: AED ${fmt(v10[0])} in 2016, AED ${fmt(v10[Q - 1])} now` };
+  if (caps.length > 1 && caps[caps.length - 1].t0 + caps[caps.length - 1].len > e.t0 - 0.2) caps.pop();
+  caps.push(e); return caps;
+}
 
 function glow(cx, cy, r, rgb, a) { const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r); g.addColorStop(0, `rgba(${rgb},${a})`); g.addColorStop(1, `rgba(${rgb},0)`); ctx.fillStyle = g; ctx.fillRect(cx - r, cy - r, 2 * r, 2 * r); }
 function ring(cx, cy, r, color, w, alpha = 1) { ctx.globalAlpha *= alpha; ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.stroke(); ctx.globalAlpha /= alpha; }
@@ -83,18 +105,18 @@ function avatar(cx, cy, r, pulse, big) {
   ctx.restore();
 }
 
-function drawRow(a, f, vmax, alphaBase, leadGlow) {
-  const pos = posAt(a, f), v = valueAt(a, f); if (v <= 0) return;
-  const vis = clamp(L.rows + 0.45 - pos) * clamp(1.6 - Math.max(0, pos - (L.rows - 1)) * 1.0 + 0.9);   // fades out as it slides below the 10th row
-  const al = clamp(L.rows + 0.55 - pos, 0, 1); if (al <= 0.01) return;
+function drawRow(a, v, pos, vmax, alphaBase, leadGlow) {
+  if (v <= 0.5) return;
+  const al = clamp(L.rows - 0.1 - pos, 0, 1); if (al <= 0.01) return;      // a bar sliding below the last row fades out before the edge
   const y = L.y0 + pos * L.pitch, len = Math.max(6, v / vmax * L.barLen);
   ctx.globalAlpha = alphaBase * al;
   // name on the left of the bar, shrunk to fit its column
   let size = Math.round(28 * L.k); ctx.font = `800 ${size}px "Inter"`; const wmax = L.nameR - 130, w0 = ctx.measureText(a.short).width; if (w0 > wmax) size = Math.max(16, Math.floor(size * wmax / w0));
   txt(a.short, L.nameR, y + L.bh / 2 + size * 0.36, size, 800, C.ink, 'right', 'Inter');
-  // bar (rounded data end), rank-1 gets a soft gold halo
-  if (leadGlow > 0.01) { ctx.save(); ctx.shadowColor = C.gold; ctx.shadowBlur = 22 * leadGlow; ctx.fillStyle = a.color; rr(L.barX, y, len, L.bh, [0, L.bh * 0.3, L.bh * 0.3, 0]); ctx.fill(); ctx.restore(); }
-  ctx.fillStyle = a.color; rr(L.barX, y, len, L.bh, [0, L.bh * 0.3, L.bh * 0.3, 0]); ctx.fill();
+  // bar (rounded data end); the leader gets a soft gold halo
+  const rad = [0, L.bh * 0.3, L.bh * 0.3, 0];
+  if (leadGlow > 0.01) { ctx.save(); ctx.shadowColor = C.gold; ctx.shadowBlur = 22 * leadGlow; ctx.fillStyle = a.color; rr(L.barX, y, len, L.bh, rad); ctx.fill(); ctx.restore(); }
+  ctx.fillStyle = a.color; rr(L.barX, y, len, L.bh, rad); ctx.fill();
   // number inside the bar end (dark ink on the light bar)
   const vs = Math.round(29 * L.k), label = fmt(v); ctx.font = `800 ${vs}px "Inter Display"`; const lw = ctx.measureText(label).width;
   if (len > lw + 30) txt(label, L.barX + len - 14, y + L.bh / 2 + vs * 0.35, vs, 800, C.bar, 'right');
@@ -104,7 +126,7 @@ function drawRow(a, f, vmax, alphaBase, leadGlow) {
 
 function draw(t) {
   ctx.setTransform(SS, 0, 0, SS, 0, 0); ctx.globalAlpha = 1; ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
-  const Q = D.Q, p = raceP(t), f = p * (Q - 1);
+  const Q = D.Q, f = fAt(t);
   const endK = ea(t, T.end0, T.end1, E.inOut3);                       // 0 -> 1: chart dims, his picture comes to the middle
   const dim = lerp(1, 0.13, endK), tin = ea(t, T.title, T.title + 0.8);
 
@@ -122,15 +144,15 @@ function draw(t) {
     ctx.globalAlpha = dim * grid; txt('AED per sq ft', L.barX, L.y0 - 20, 26, 700, C.mute, 'left', 'Inter');
     ctx.strokeStyle = 'rgba(243,239,230,0.30)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(L.barX - 1, L.y0 - 4); ctx.lineTo(L.barX - 1, L.y0 + L.rows * L.pitch - 4); ctx.stroke();
     // axis scale follows the leader so the longest bar always fills the track
-    let top = 0; for (const a of D.A) top = Math.max(top, valueAt(a, f)); const vmax = top * 1.02;
-    const fin = ea(t, T.draw0 - 0.1, T.draw0 + 0.9);                  // bars grow in at the start
-    ctx.save(); ctx.beginPath(); ctx.rect(120, L.y0 - 8, 840, L.rows * L.pitch + 16); ctx.clip();
-    const rows = D.A.map(a => ({ a, pos: posAt(a, f) })).sort((x, y) => y.pos - x.pos);   // lower rows first, so a climbing bar passes over the ones it overtakes
-    for (const { a, pos } of rows) drawRow(a, f, vmax, dim * grid, clamp(1 - pos * 2) * 0.8);
+    const vals = D.A.map(a => valueAt(a, f)); const top = Math.max(...vals), vmax = top * 1.02;
+    const pos = D.A.map(a => posAt(a, f));
+    ctx.save(); ctx.beginPath(); ctx.rect(120, L.y0 - 8, 840, L.rows * L.pitch + 4); ctx.clip();
+    D.A.map((a, i) => i).sort((x, y) => pos[y] - pos[x])               // lower rows first, so a climbing bar passes over the ones it overtakes
+      .forEach(i => drawRow(D.A[i], vals[i], pos[i], vmax, dim * grid, clamp(1 - pos[i] * 2) * 0.8));
     ctx.restore(); ctx.globalAlpha = dim;
 
     // date ticker + caption
-    const di = Math.round(f);
+    const kq = Math.min(Q - 1, Math.floor(f)), di = mv(f - kq) > 0.5 ? Math.min(Q - 1, kq + 1) : kq;   // the quarter label flips half-way through the move
     ctx.globalAlpha = dim * grid; txt(D.quarters[di], 540, 1300, 70, 800, C.ink, 'center');
     for (const c of D.caps) {
       const a = Math.min(prog(t, c.t0, c.t0 + 0.35), 1 - prog(t, c.t0 + c.len - 0.4, c.t0 + c.len)); if (a <= 0) continue;
@@ -150,7 +172,7 @@ function draw(t) {
 
 async function boot() {
   const q = new URLSearchParams(location.search); SS = +q.get('ss') || 1;
-  const n = +q.get('layout') || 10; L.rows = n; L.pitch = 500 / n; L.bh = Math.round(L.pitch * 0.8); L.k = Math.min(1, 1.1 * 10 / n);   // number of bars on screen: 10 default; text scales down when more
+  const n = +q.get('layout') || 10; L.rows = n; L.pitch = 500 / n; L.bh = Math.round(L.pitch * 0.8); L.k = Math.min(1, 1.1 * 10 / n); TITLE[1] = `top ${n} areas`;   // number of bars on screen: 10 default; text scales down when more
   const cv = document.getElementById('c'); cv.width = Math.round(W * SS); cv.height = Math.round(H * SS); cv.style.width = W + 'px'; cv.style.height = H + 'px'; ctx = cv.getContext('2d');
   D = await (await fetch('chart_data.json')).json(); prep(); D.caps = buildCaptions();
   await Promise.all([700, 800].flatMap(w => [document.fonts.load(`${w} 40px "Inter Display"`), document.fonts.load(`${w} 40px "Inter"`)]));

@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """cache2.json (pull_areas.py full) -> ../chart_data.json.
-Per community and calendar quarter (Q4 2016 .. Q3 2026): weighted median of the sampled sales' price per sq ft (apartments + villas + townhouses pooled; every
+Per community and calendar quarter (Q4 2016 .. Q3 2026), over a rolling 6-month window (that quarter + the one before; the first quarter has only itself): weighted median of the sampled sales' price per sq ft (apartments + villas + townhouses pooled; every
 sampled sale weighs K = how many pages one sampled page stands for, so the pooled sample is position-uniform and the home-type mix is the real one).
-A quarter needs >= MIN_S sampled sales and an estimated >= MIN_N sales, else it is left empty.  1-2-1 smoothing across neighbouring quarters.
+A window needs >= MIN_S sampled sales and an estimated >= MIN_N sales, else the quarter is left empty.
 python3 -I build_series.py"""
 import json, re
 from collections import defaultdict
-MIN_N, MIN_S = 25, 12
+import sys
+W = int(sys.argv[2]) if len(sys.argv) > 2 else 2                              # rolling window in quarters (2 = 6 months, 4 = 12 months)
+PASSES = int(sys.argv[1]) if len(sys.argv) > 1 else 0                       # number of 1-2-1 smoothing passes across quarters (after bridging gaps)
+MIN_N, MIN_S = 25, 10                                  # per quarter in the window (scaled below by the number of quarters the window really holds)                      # a rolling 6-month window (this quarter + the one before) needs about 50 sales, 20 of them sampled
 cache = json.load(open('cache2.json'))
 areas = {a['id']: a for f in ('areas.json', 'areas2.json') for a in json.load(open(f)) if a.get('id')}
 hits = defaultdict(list)
@@ -42,11 +45,22 @@ for aid, hs in hits.items():
         if 0 <= qi < 40: b[qi].append((p, w))
     raw = []; nn = []
     for qi in range(40):
-        pr = b.get(qi, []); n = sum(w for _, w in pr); nn.append(round(n))
-        raw.append(wmedian(pr) if len(pr) >= MIN_S and n >= MIN_N else None)
+        pr = [x for j in range(max(0, qi - W + 1), qi + 1) for x in b.get(j, [])]; n = sum(w for _, w in pr); nn.append(round(n))
+        wq = min(qi + 1, W); raw.append(wmedian(pr) if len(pr) >= MIN_S * wq and n >= MIN_N * wq else None)
     if sum(1 for x in raw if x) < 3: continue
-    sm = smooth(raw); name = areas[aid]['name']; short = SHORT.get(name) or re.sub(r'\s*\(.*?\)', '', name).strip()
-    data.append(dict(id=aid, name=name, short=short, v=[None if x is None else round(x) for x in sm], raw=[None if x is None else round(x) for x in raw], n=nn))
+    filled = [False] * 40; i = 0                                  # a gap of 1-2 quarters between two valid windows (too few sales for a median) is bridged by a straight line
+    while i < 40:
+        if raw[i] is None and i > 0 and raw[i - 1] is not None:
+            j = i
+            while j < 40 and raw[j] is None: j += 1
+            if j < 40 and j - i <= 2:
+                for k in range(i, j): raw[k] = raw[i - 1] + (raw[j] - raw[i - 1]) * (k - i + 1) / (j - i + 1); filled[k] = True
+            i = j
+        else: i += 1
+    sm = raw
+    for _ in range(PASSES): sm = smooth(sm)
+    name = areas[aid]['name']; short = SHORT.get(name) or re.sub(r'\s*\(.*?\)', '', name).strip()
+    data.append(dict(id=aid, name=name, short=short, v=[None if x is None else round(x) for x in sm], raw=[None if x is None else round(x) for x in raw], n=nn, filled=filled))
 out = dict(quarters=[qlabel(i) for i in range(40)], areas=data)
 json.dump(out, open('../chart_data.json', 'w'), separators=(',', ':'))
 print(len(data), 'areas with data')

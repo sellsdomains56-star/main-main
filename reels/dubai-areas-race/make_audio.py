@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Very quiet whoosh-only sound for the chart reel (no music, no voice). Two soft whooshes: title in (0.25 s) and his picture gliding to the middle (28.4 s).
+"""Very quiet whoosh-only sound for the chart reel (no music, no voice). Two soft whooshes: title in (0.25 s) and his picture gliding to the middle (34.9 s).
 python3 -I make_audio.py build/mix.wav"""
 import sys, wave, numpy as np
-SR = 48000; DUR = 32.0
+SR = 48000; DUR = 38.5
 rng = np.random.default_rng(7)
 def whoosh(dur, f0, f1, peak):
     n = int(dur * SR); t = np.arange(n) / SR
@@ -16,7 +16,7 @@ def whoosh(dur, f0, f1, peak):
     out = out * env; out = out / (np.abs(out).max() + 1e-9) * peak
     return out
 mix = np.zeros(int(DUR * SR))
-for t0, d, a, b, pk in [(0.25, 0.9, 500, 2600, 0.060), (28.4, 1.1, 900, 400, 0.055)]:
+for t0, d, a, b, pk in [(0.25, 0.9, 500, 2600, 0.060), (34.9, 1.1, 900, 400, 0.055)]:
     w = whoosh(d, a, b, pk); i = int(t0 * SR); mix[i:i + len(w)] += w
 mix = np.convolve(mix, np.ones(8) / 8, mode='same')
 pcm = (np.clip(mix, -1, 1) * 32767).astype('<i2')
