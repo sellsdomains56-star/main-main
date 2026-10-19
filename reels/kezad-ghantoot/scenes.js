@@ -1,10 +1,10 @@
 'use strict';
 // ---------------------------------------------------------------------------
 // "KEZAD: what Abu Dhabi is building on the other side" - HeyGen take 5829259d (55 s, English), Abdullah Ahli's twin.
-// Face beats (full screen, clean) for the hook and the investor question; everything else is ONE accurate map per beat (Esri satellite,
-// OpenStreetMap geometry via mapfx.js): the E11 between Dubai and Abu Dhabi, JAFZA + Jebel Ali Port and the homes around them, Khalifa Port +
-// KEZAD (Khalifa Industrial district, Al Ma'mourah), the homes near KEZAD, Ghantoot between the two corridors with measured distances.
-// His face is the small round bubble top-left on the map beats. Safe zone: x 130-950, y 300-1420.
+// No full-screen face: the map runs from the first frame. ONE accurate map per beat (Esri satellite, OpenStreetMap geometry via mapfx.js):
+// Dubai -> Abu Dhabi along the E11, JAFZA + Jebel Ali Port and the homes around them, Khalifa Port + KEZAD (Khalifa Industrial district,
+// Al Ma'mourah), the homes near KEZAD, the investor question (both job hubs feeding Ghantoot), Ghantoot between the two corridors with
+// measured distances. His face is only the small round bubble top-left. Safe zone: x 130-950, y 300-1420.
 // ---------------------------------------------------------------------------
 function buildScenes() {
   const cues = [], SCENES = [], tw = (re, n = 0, fb = 0, from = 0) => wt(re, n, fb, from);
@@ -12,7 +12,7 @@ function buildScenes() {
 
   // ---- key times (from the spoken words)
   const K = {
-    side: tw(/^SIDE\.$/, 0, 2.5), called: tw(/^CALLED$/, 0, 3.24), kezad1: tw(/^KEZAD\.$/, 0, 3.44),
+    abu1: tw(/^ABU$/, 0, 1.22), side: tw(/^SIDE\.$/, 0, 2.5), called: tw(/^CALLED$/, 0, 3.24), kezad1: tw(/^KEZAD\.$/, 0, 3.44),
     think: tw(/^THINK$/, 0, 4.06), jafza: tw(/^JAFZA$/, 0, 4.86), dubai1: tw(/^DUBAI\.$/, 0, 5.52),
     biz1: tw(/^BUSINESSES$/, 0, 6.1), jebel1: tw(/^JEBEL$/, 0, 7.26), port1: tw(/^PORT$/, 0, 7.76), trade: tw(/^TRADE$/, 0, 8.16), logist1: tw(/^LOGISTICS\.$/, 0, 8.74),
     those: tw(/^THOSE$/, 0, 9.48), biz2: tw(/^BUSINESSES$/, 1, 9.9), jobs: tw(/^JOBS,$/, 0, 10.58), demand1: tw(/^DEMAND$/, 0, 11.78), homes: tw(/^HOMES$/, 0, 12.44), around: tw(/^SURROUNDING$/, 0, 12.92), areas: tw(/^AREAS\.$/, 0, 13.24),
@@ -27,31 +27,31 @@ function buildScenes() {
     comment: tw(/^COMMENT$/, 0, 51.68), area: tw(/^AREA,$/, 0, 52.1), send: tw(/^SEND$/, 0, 52.98), report: tw(/^REPORT$/, 0, 53.66), at: tw(/^AT\.$/, 0, 54.86),
   };
 
-  const FACE_SEGS = [[0, K.side + 0.42], [K.for1 - 0.12, K.look2 - 0.1]], PUNCHES = [], OVERLAYS = [], IMAGES = {};
-  const REFRAME = { s: 1.06, cx: 0.52, cy: 0.42, ty: 0.42 };                         // the close-up as shot, nudged so his face sits in the middle
-  const DUB = ['#FF8A5B', '#FFC7A3'], AUH = ['#3DB2FF', '#A9DEFF'], HOME = ['#2FD8A0', '#A6F3D6'], GOLD = '#E9C47C';
+  const FACE_SEGS = [], PUNCHES = [], OVERLAYS = [], IMAGES = {};
+    const DUB = ['#FF8A5B', '#FFC7A3'], AUH = ['#3DB2FF', '#A9DEFF'], HOME = ['#2FD8A0', '#A6F3D6'], GOLD = '#E9C47C';
 
   // ---- the beats
-  const T_B1 = [K.side + 0.3, K.biz1 - 0.2], T_B2 = [K.biz1 - 0.2, K.now - 0.15], T_B3 = [K.now - 0.15, K.these - 0.15], T_B4 = [K.these - 0.15, K.for1 - 0.05], T_B5 = [K.look2 - 0.2, K.comment - 0.2];
+  const T_B1 = [0, K.biz1 - 0.2], T_B2 = [K.biz1 - 0.2, K.now - 0.15], T_B3 = [K.now - 0.15, K.these - 0.15], T_B4 = [K.these - 0.15, K.for1 - 0.05], T_B5 = [K.for1 - 0.05, K.comment - 0.2];
   const rel = (T, t) => t - T[0], dur = T => T[1] - T[0];
   const flight = (id, [a, b], keys) => { SAT_SCENES[id] = { a, b, veil: 'map', keys: keys.map(k => camKey(...k)).sort((p, q) => p[0] - q[0]) }; add({ id, kind: 'sat', a, b, cfg: {} }); return SAT_SCENES[id]; };
-  flight('b1', T_B1, [[0, 54.86, 24.83, 9.75, 110, 8], [dur(T_B1) + 0.5, 54.9, 24.85, 9.95, 110, 14]]);
+  flight('b1', T_B1, [[0, 55.13, 25.05, 10.45, 110, 12], [2.6, 54.86, 24.83, 9.75, 110, 8], [dur(T_B1) + 0.5, 54.9, 24.85, 9.95, 110, 14]]);   // opens on Dubai, pans to Abu Dhabi
   flight('b2', T_B2, [[0, 55.0, 24.95, 10.6, 120, 14], [1.1, 55.095, 25.008, 12.3, 120, 26], [dur(T_B2) + 0.5, 55.105, 25.01, 12.5, 120, 28]]);
   flight('b3', T_B3, [[0, 54.98, 24.92, 10.7, 120, 14], [1.6, 54.80, 24.76, 11.0, 120, 22], [dur(T_B3) + 0.5, 54.79, 24.75, 11.15, 120, 24]]);
   flight('b4', T_B4, [[0, 54.80, 24.73, 11.1, 110, 20], [1.0, 54.78, 24.665, 11.7, 110, 26], [dur(T_B4) + 0.5, 54.775, 24.66, 11.85, 110, 28]]);
-  flight('b5', T_B5, [[0, 54.9, 24.86, 11.4, 110, 20], [1.0, 54.9, 24.865, 10.55, 120, 16], [dur(T_B5) + 0.5, 54.9, 24.865, 10.65, 120, 18]]);
+  const r5 = t => rel(T_B5, t);                                                   // the question over both job hubs, then into Ghantoot, then out to both corridors
+  flight('b5', T_B5, [[0, 54.95, 24.84, 10.3, 110, 12], [r5(K.look2), 54.94, 24.845, 10.4, 112, 14], [r5(K.ghantoot) + 0.6, 54.9, 24.86, 11.2, 118, 20], [r5(K.jebel2) + 0.7, 54.9, 24.865, 10.55, 120, 16], [dur(T_B5) + 0.5, 54.9, 24.865, 10.65, 120, 18]]);
 
   // ---- the face bubble (live video, small, top-left on the map beats; grows for the call to action)
-  const BUBBLE = { t0: K.side + 0.3, src: { cx: 562, cy: 820, size: 600 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.comment - 0.2, cx: 215, cy: 418, r: 78 }, { t: K.comment + 0.9, cx: 540, cy: 470, r: 125 }] };
+  const BUBBLE = { t0: 0.1, src: { cx: 562, cy: 820, size: 600 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.comment - 0.2, cx: 215, cy: 418, r: 78 }, { t: K.comment + 0.9, cx: 540, cy: 470, r: 125 }] };
   HUD_X = 330;
 
   const S = id => SCENES.find(s => s.id === id).cfg;
   const PT = GEO.x.points || {}, cen = k => centroid(OUTLINES[k] || [[0, 0]]), JAP = PT.jebel_ali_port || [55.0599, 24.9805], GH = PT.ghantoot || [54.9008, 24.8647], KIZ = [54.8729, 24.6757];
   S('b1').top = (t, cam) => {
-    mapName(t, cam, 54.62, 25.02, 'ARABIAN GULF', T_B1[0] + 0.2, 0, { rot: -0.62, size: 26 });
-    mapName(t, cam, 55.17, 25.0, 'DUBAI', T_B1[0] + 0.3, 0, { color: '#FFFFFF', size: 34, ls: 10, alpha: 0.9 });
-    mapName(t, cam, 54.47, 24.52, 'ABU DHABI', T_B1[0] + 0.3, 0, { color: '#FFFFFF', size: 34, ls: 10, alpha: 0.9 });
-    mapRoad(t, cam, 'E11', { a0: T_B1[0] + 0.05, dur: 1.6, name: '', shields: [[54.95, 24.89], [55.0, 24.93]] });
+    mapName(t, cam, 54.62, 25.02, 'ARABIAN GULF', 1.9, 0, { rot: -0.62, size: 26 });
+    mapName(t, cam, 55.17, 25.0, 'DUBAI', 0.15, 0, { color: '#FFFFFF', size: 34, ls: 10, alpha: 0.9 });
+    mapName(t, cam, 54.47, 24.52, 'ABU DHABI', K.abu1 - 0.1, 0, { color: '#FFFFFF', size: 34, ls: 10, alpha: 0.9 });
+    mapRoad(t, cam, 'E11', { a0: 0.5, dur: 2.0, name: '', shields: [[54.95, 24.89], [55.0, 24.93]] });
     mapArea(t, cam, 'kezad', { c: AUH, a0: K.kezad1 - 0.2, on: [K.kezad1 - 0.15, T_B1[1]], label: 'KEZAD', sub: 'ABU DHABI', dx: -60, dy: 170, tag: 0 });
     mapArea(t, cam, 'jafza', { c: DUB, a0: K.jafza - 0.2, on: [K.jafza - 0.15, T_B1[1]], label: 'JAFZA', sub: 'DUBAI', dx: 40, dy: -150, tag: 0 });
     mapScale(t, cam, T_B1[0] + 0.4, 0);
@@ -91,9 +91,14 @@ function buildScenes() {
   S('b5').top = (t, cam) => {
     mapName(t, cam, 54.78, 25.06, 'ARABIAN GULF', T_B5[0] + 0.3, 0, { rot: -0.62, size: 26 });
     mapRoad(t, cam, 'E11', { a0: T_B5[0], dur: 1.6, alpha: 0.95, name: '', shields: [[54.86, 24.83], [54.94, 24.89]] });
+    // the question: two job hubs, where could they feed homes? (flows converge on Ghantoot before it is named)
+    mapArea(t, cam, 'jafza', { c: DUB, a0: T_B5[0] + 0.2, on: [K.question - 0.2, K.look2 - 0.3], label: 'JAFZA', sub: 'JOBS', dx: 60, dy: -150, a1: K.look2 - 0.2 });
+    mapArea(t, cam, 'kezad', { c: AUH, a0: T_B5[0] + 0.45, on: [K.question, K.look2 - 0.3], label: 'KEZAD', sub: 'JOBS', dx: -40, dy: 160, a1: K.look2 - 0.2 });
+    mapFlow(t, cam, cen('jafza'), GH, K.resid - 0.45, K.ghantoot + 0.9, { dur: 1.0, bend: 0.2 });
+    mapFlow(t, cam, cen('kezad'), GH, K.resid - 0.2, K.ghantoot + 0.9, { dur: 1.0, bend: -0.2 });
     mapPulse(t, cam, GH[0], GH[1], 3200, K.ghantoot - 0.1, 0);
     mapLandmark(t, cam, { lon: GH[0], lat: GH[1], a0: K.ghantoot, text: 'GHANTOOT', icon: 'dot', side: 'r', dy: 34 });
-    ['jafza', 'dwc', 'expo'].forEach((k, i) => mapArea(t, cam, k, { c: DUB, a0: K.jebel2 - 0.15 + i * 0.25, on: i ? null : [K.jebel2 - 0.1, K.abu3 - 0.2], label: i ? null : ['JEBEL ALI ·', 'DUBAI SOUTH'], sub: 'CORRIDOR', dx: 30, dy: -170, base: 0.75, tag: 0 }));
+    [['dwc', 1], ['expo', 2], ['jafza', 0]].forEach(([k, i]) => mapArea(t, cam, k, { c: DUB, a0: K.jebel2 - 0.15 + i * 0.25, on: i ? null : [K.jebel2 - 0.1, K.abu3 - 0.2], label: i ? null : ['JEBEL ALI ·', 'DUBAI SOUTH'], sub: 'CORRIDOR', dx: 30, dy: -170, base: 0.75, tag: 0 }));
     ['kport', 'maamoura', 'kezad'].forEach((k, i) => mapArea(t, cam, k, { c: AUH, a0: K.abu3 - 0.15 + i * 0.25, on: i < 2 ? null : [K.abu3, K.other2 + 0.2], label: i < 2 ? null : ['ABU DHABI', 'INDUSTRIAL'], sub: 'GROWTH CORRIDOR', dx: -60, dy: 170, base: 0.75, tag: 0 }));
     mapMeasure(t, cam, GH, JAP, { a0: K.other2 + 0.15, to: 'JEBEL ALI PORT', at: 0.55 });
     mapMeasure(t, cam, GH, cen('kport'), { a0: K.other2 + 0.45, to: 'KHALIFA PORT', at: 0.55 });
@@ -122,7 +127,8 @@ function buildScenes() {
     hudTitle(t, 'NOW LOOK AT ABU DHABI', 'KHALIFA PORT', 'THE CORRIDOR AROUND IT', T_B3[0] + 0.1, K.kezad2 - 0.15, AUH[0]);
     hudTitle(t, 'KEZAD', 'KHALIFA ECONOMIC ZONES', 'ABU DHABI · PART OF AD PORTS GROUP', K.kezad2 - 0.1, T_B3[1] - 0.1, AUH[0]);
     hudTitle(t, 'THE EMPLOYERS', 'WHERE DO THEY LIVE?', 'HOMES NEAR KEZAD', T_B4[0] + 0.1, T_B4[1] - 0.1, HOME[0]);
-    hudTitle(t, 'A LOCATION WORTH STUDYING', 'GHANTOOT', 'BETWEEN TWO GROWTH CORRIDORS', T_B5[0] + 0.1, K.but - 0.15, GOLD);
+    hudTitle(t, 'FOR PROPERTY INVESTORS', 'THE QUESTION', 'WHERE WILL THE WORKERS LIVE?', T_B5[0] + 0.1, K.look2 - 0.15, GOLD);
+    hudTitle(t, 'A LOCATION WORTH STUDYING', 'GHANTOOT', 'BETWEEN TWO GROWTH CORRIDORS', K.look2 - 0.1, K.but - 0.15, GOLD);
     hudTitle(t, 'GHANTOOT', 'STILL CHECK', 'BEFORE YOU BUY', K.but - 0.1, T_B5[1] - 0.1, GOLD);
     chain(t);
     breakdown(t, { title: 'KEZAD · WHO IS THERE', a0: K.brings - 0.2, a1: K.these - 0.3, items: [{ txt: 'MANUFACTURING', a: K.manuf }, { txt: 'LOGISTICS', a: K.logist2 }, { txt: 'FOOD PROCESSING', a: K.food }, { txt: 'AND OTHER INDUSTRIES', a: K.other - 0.25, gold: true }] });
@@ -142,15 +148,15 @@ function buildScenes() {
       if (b1 > 0.002) { ctx.save(); ctx.globalAlpha *= b1; ctx.translate(0, (1 - b1) * 36); const w = M(msg, F.d(700, 58)) + 84; rr(X1 - w, 900, w, 112, 56); ctx.fillStyle = C.gold; ctx.fill(); T(msg, X1 - w / 2, 975, { font: F.d(700, 58), color: '#17181B' }); ctx.restore(); }
       if (b2 > 0.002) { ctx.save(); ctx.globalAlpha *= b2; ctx.translate(0, (1 - b2) * 36); const rp = 'Sending you the full report', w = M(rp, F.d(700, 46)) + 130; rr(X0, 1030, w, 112, 56); ctx.fillStyle = C.panel; ctx.fill(); ctx.strokeStyle = 'rgba(243,239,230,0.28)'; ctx.lineWidth = 3; ctx.stroke(); icon('check', X0 + 66, 1087, 24, { p: ea(t, send + 1.0, send + 1.4), color: C.gold, w: 5 }); T(rp, X0 + 112, 1102, { font: F.d(700, 46), color: C.ink, align: 'left' }); ctx.restore(); }
     }
-    // name chip while he is introduced (on his face, low left)
-    const nm = ea(t, 0.4, 0.9) * (1 - ea(t, K.side, K.side + 0.3));
-    if (nm > 0.003) { ctx.save(); ctx.globalAlpha *= nm; const f = F.d(800, 30), w = M('ABDULLAH AHLI', f, 3) + 50; glassPill(SAFE.x0, 1130, w, 54, 27); T('ABDULLAH AHLI', SAFE.x0 + w / 2, 1168, { font: f, ls: 3, color: '#FFFFFF' }); ctx.restore(); }
+    // name chip under the bubble while he is introduced
+    const nm = ea(t, 0.5, 1.0) * (1 - ea(t, 3.6, 4.0));
+    if (nm > 0.003) { ctx.save(); ctx.globalAlpha *= nm; const f = F.d(800, 26), w = M('ABDULLAH AHLI', f, 3) + 44; glassPill(130, 514, w, 46, 23); T('ABDULLAH AHLI', 130 + w / 2, 547, { font: f, ls: 3, color: '#FFFFFF' }); ctx.restore(); }
   };
   OVERLAYS.push(overlay);
 
   // ---- sound: very quiet whooshes on the beat changes, soft pins on the places
-  [T_B1[0], T_B2[0], T_B3[0], T_B4[0], T_B5[0], K.comment].forEach(x => cues.push({ k: 'wh', t: x - 0.1, d: 0.5 }));
+  [T_B2[0], T_B3[0], T_B4[0], T_B5[0], K.look2, K.comment].forEach(x => cues.push({ k: 'wh', t: x - 0.1, d: 0.5 }));
   [K.kezad1, K.jafza, K.jebel1, K.homes, K.khalifa1, K.kezad2, K.somewhere, K.ghantoot].forEach(x => cues.push({ k: 'pin', t: x }));
   cues.push({ k: 'send', t: K.area + 0.75 });
-  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, REFRAME, FOOT_MAX: 1659 };
+  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, FOOT_MAX: 1659 };
 }
