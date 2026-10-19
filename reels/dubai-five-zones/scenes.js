@@ -1,6 +1,6 @@
 'use strict';
 // ---------------------------------------------------------------------------
-// "Five Dubai zones before you invest" - built on the HeyGen take (90 s, English), Abdullah Ahli's twin.
+// "Five Dubai zones before you invest" - built on the HeyGen take 055eb7df version v25f8c4c5 (92 s, English, new voice), Abdullah Ahli's twin.
 // ONE background per beat, moving from background to background: MAP flights (Esri satellite, OSM outlines of the named communities, 3D tilt) - one per zone - then the price ladder (dark) and the call to action.
 // The communities, the roads (E11 / E311 / E611) and the price ranges are exactly what he says; nothing else is claimed on screen.
 // His face is the small round bubble top-left (live video, gold ring); the HUD title sits right of it. Safe zone: x 130-950, y 300-1270.
@@ -13,7 +13,7 @@ function buildScenes() {
   const K = {
     five: tw(/^FIVE$/, 0, 2.2), wrong: tw(/^WRONG$/, 0, 4.3),
     z1: tw(/^ZONE$/, 0, 5.25), sheikh: tw(/^SHEIKH$/, 0, 6.1), coast: tw(/^COASTLINE,$/, 0, 7.2), marina: tw(/^MARINA,$/, 0, 8.12) - 0.1, jbr: tw(/^JBR,$/, 0, 8.89), palm1: tw(/^PALM$/, 0, 9.78), down: tw(/^DOWNTOWN,$/, 0, 10.71), bbay: tw(/^BUSINESS$/, 0, 11.7),
-    prime: tw(/^PRIME$/, 0, 12.32), lux: tw(/^LUXURY$/, 0, 13.55), strong: tw(/^STRONG$/, 0, 14.9), price1: tw(/^PRICES$/, 0, 16.24), p2000: tw(/^2,000$/, 0, 17.0), p4000: tw(/^4,000,$/, 0, 17.78), p5000: tw(/^5,000$/, 0, 18.48), foot1: tw(/^FOOT\.$/, 0, 19.72),
+    prime: tw(/^PRIME$/, 0, 12.32), lux: tw(/^LUXURY$/, 0, 13.55), strong: tw(/^STRONG$/, 0, 14.9), price1: tw(/^PRICES$/, 0, 16.24), p2000: tw(/^2,000$/, 0, 17.0), p4500: tw(/^4,500$/, 0, 18.06), foot1: tw(/^FOOT\.$/, 0, 19.72),
     z2: tw(/^ZONE$/, 1, 20.16), e11: tw(/^E11$/, 0, 21.4), e311a: tw(/^E311,$/, 0, 22.32), dhills: tw(/^HILLS,$/, 0, 23.76) - 0.15, tilal: tw(/^TILAL$/, 0, 24.58), arjan: tw(/^ARJAN,$/, 0, 25.66), motor: tw(/^MOTOR$/, 0, 26.52),
     family: tw(/^FAMILY$/, 0, 27.02), stable: tw(/^STABLE$/, 0, 28.26), growth: tw(/^GROWTH$/, 0, 29.6), price2: tw(/^PRICES$/, 1, 30.16), p1200: tw(/^1,200$/, 0, 31.32), p1800: tw(/^1,800$/, 0, 32.46), foot2: tw(/^FOOT\.$/, 1, 34.4),
     z3: tw(/^ZONE$/, 2, 34.7), e311b: tw(/^E311$/, 0, 36.18), e611: tw(/^E611\.$/, 0, 37.4), valley: tw(/^VALLEY,$/, 0, 38.9), ar3: tw(/^ARABIAN$/, 0, 39.57), damac: tw(/^DAMAC$/, 0, 40.42), dland1: tw(/^LAND\.$/, 0, 42.34) - 0.15,
@@ -139,7 +139,7 @@ function buildScenes() {
     mapScale(t, cam, a + 0.4, 0);
   };
 
-  // ---- the price panel: "AED 2,000 – 5,000" counts up as he says the two numbers
+  // ---- the price panel: "AED 2,000 – 4,500" counts up as he says the two numbers
   const pricePanel = (t, o) => {
     const al = ea(t, o.a0, o.a0 + 0.4, E.out3) * (1 - ea(t, o.a1, o.a1 + 0.4)); if (al <= 0.003) return;
     const X = SAFE.x0, Wd = SAFE.w, y0 = 1062, h = 200;
@@ -154,13 +154,13 @@ function buildScenes() {
     drawNumber(numberStr(o.hi * ea(t, o.aHi - 0.05, o.aHi + (o.hiDur ?? 0.7), E.out3), 0), fin[1], x0 + wA + gap + w1 + dash, by, { font: fN, ls: 0, color: C.ink, alpha: da });
     ctx.restore();
   };
-  const ladder = [[1, 'THE COAST', 2000, 5000], [2, 'E11 – E311', 1200, 1800], [3, 'E311 – E611', 900, 1400], [4, 'THE FRONTIER', 700, 1100], [5, 'AIRPORT CORRIDOR', 1100, 1500]];
+  const ladder = [[1, 'THE COAST', 2000, 4500], [2, 'E11 – E311', 1200, 1800], [3, 'E311 – E611', 900, 1400], [4, 'THE FRONTIER', 700, 1100], [5, 'AIRPORT CORRIDOR', 1100, 1500]];
 
   const overlay = (t) => {
     // HUD title per beat (right of the bubble)
     hudTitle(t, 'BEFORE YOU INVEST IN DUBAI', '5 ZONES', 'DON\'T BUY IN THE WRONG LOCATION', 0.5, K.z1 - 0.35);
     hudTitle(t, 'ZONE 1', 'THE COAST', 'SHEIKH ZAYED ROAD', T_Z1[0] + 0.1, K.price1 - 0.1, ZH[1]);
-    hudTitle(t, 'ZONE 1 · THE COAST', 'PRICE PER SQ FT', 'AED 2,000 – 5,000', K.price1 - 0.05, T_Z1[1] - 0.1, ZH[1]);
+    hudTitle(t, 'ZONE 1 · THE COAST', 'PRICE PER SQ FT', 'AED 2,000 – 4,500', K.price1 - 0.05, T_Z1[1] - 0.1, ZH[1]);
     hudTitle(t, 'ZONE 2', 'E11 TO E311', 'FAMILY COMMUNITIES', T_Z2[0] + 0.1, K.price2 - 0.1, ZH[2]);
     hudTitle(t, 'ZONE 2 · E11 TO E311', 'PRICE PER SQ FT', 'AED 1,200 – 1,800', K.price2 - 0.05, T_Z2[1] - 0.1, ZH[2]);
     hudTitle(t, 'ZONE 3', 'E311 TO E611', 'VILLAS & TOWNHOUSES', T_Z3[0] + 0.1, K.price3 - 0.1, ZH[3]);
@@ -181,7 +181,7 @@ function buildScenes() {
     breakdown(t, { title: 'ZONE 5 · WHAT YOU GET', a0: K.major - 0.2, a1: K.selected - 0.3, items: [{ txt: 'MAJOR INFRASTRUCTURE INVESTMENT', a: K.major }, { txt: 'LONG-TERM DEVELOPMENT POTENTIAL', a: K.longterm, gold: true }] });
 
     // the price of each zone, counting up as he says the two numbers
-    pricePanel(t, { n: 1, lo: 2000, hi: 5000, a0: K.price1, aLo: K.p2000, aHi: K.p4000, hiDur: 1.1, a1: T_Z1[1] - 0.15 });
+    pricePanel(t, { n: 1, lo: 2000, hi: 4500, a0: K.price1, aLo: K.p2000, aHi: K.p4500, a1: T_Z1[1] - 0.15 });
     pricePanel(t, { n: 2, lo: 1200, hi: 1800, a0: K.price2, aLo: K.p1200, aHi: K.p1800, a1: T_Z2[1] - 0.15 });
     pricePanel(t, { n: 3, lo: 900, hi: 1400, a0: K.price3, aLo: K.p900, aHi: K.p1400, a1: T_Z3[1] - 0.15 });
     pricePanel(t, { n: 4, lo: 700, hi: 1100, a0: K.price4, aLo: K.p700, aHi: K.p1100, a1: K.lower - 0.25 });
@@ -229,5 +229,5 @@ function buildScenes() {
   [T_Z1[0], T_Z2[0], T_Z3[0], T_Z4[0], T_Z5[0], T_LAD[0]].forEach(x => cues.push({ k: 'wh', t: x - 0.1, d: 0.5 }));
   [K.marina, K.jbr, K.palm1, K.down, K.bbay, K.dhills, K.tilal, K.arjan, K.motor, K.valley, K.ar3, K.damac, K.majan, K.liwan, K.expo, K.maktoum].forEach(x => cues.push({ k: 'pin', t: x }));
   cues.push({ k: 'send', t: K.details + 0.45 });
-  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, FOOT_MAX: 2700 };
+  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, FOOT_MAX: 2754 };
 }

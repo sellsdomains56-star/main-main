@@ -1,19 +1,19 @@
 # Five Dubai zones before you invest - map reel (reel 11)
 
-93 s vertical reel (1080x1920, 30 fps; 90 s voice + 3 s end card) from the **HeyGen avatar video** `055eb7dfb62e4d8ca2ce6350b69322b9` (new take of 17 Oct 2026, 720x1280 25 fps, 90 s, English; the link used to hold a different 105 s take, see `../aldar-dso-reel`). Same look and engine as `../aldar-dso-reel`: **one background per beat**, real Esri satellite flights with 3D tilt, OSM outlines of every community he names (filled in the zone colour as he says the name), his live face as the small round gold-ring bubble top-left, frosted checklist panels, frosted-glass captions, whoosh-only sound at a very low level, everything inside the Reels safe zone.
+95 s vertical reel (1080x1920, 30 fps; 92 s voice + 3 s end card) from the **HeyGen avatar video** `055eb7dfb62e4d8ca2ce6350b69322b9`, **version v25f8c4c5 (19 Oct 2026, new voice**, 720x1280 25 fps, 91.9 s, English; the same link held the 90 s take vae6ecf02 with the old voice before, and a 105 s take before that, see `../aldar-dso-reel`). Always re-fetch the share page: HeyGen replaces the video behind the same link. Same look and engine as `../aldar-dso-reel`: **one background per beat**, real Esri satellite flights with 3D tilt, OSM outlines of every community he names (filled in the zone colour as he says the name), his live face as the small round gold-ring bubble top-left, frosted checklist panels, frosted-glass captions, whoosh-only sound at a very low level, everything inside the Reels safe zone.
 
 Script as spoken: `script.txt` (editor markup). Nothing is added on screen that he does not say: the zone numbers, the roads (E11 / E311 / E611), the communities and the price ranges are his.
 
 | Time | What he says | Background (one per beat) |
 |------|--------------|-----------|
-| 0 - 5.1 | stop investing without understanding these five zones | MAP: wide Dubai, five numbered zone badges drop in; HUD 5 ZONES |
-| 5.1 - 20 | Zone 1, Sheikh Zayed Road and the coastline: Marina, JBR, Palm Jumeirah, Downtown, Business Bay; prime, luxury, strong rental demand; AED 2,000 - 4,000/5,000 per sq ft | MAP flight along the coast, coral outlines; checklist; price panel counts up |
-| 20 - 34.5 | Zone 2, between E11 and E311: Dubai Hills, Tilal Al Ghaf, Arjan, Motor City; family, stable rent, growth; AED 1,200 - 1,800 | MAP, amber |
-| 34.5 - 49 | Zone 3, between E311 and E611: The Valley, Arabian Ranches 3, DAMAC Hills 2, Dubai Land; villas, townhouses; AED 900 - 1,400 | MAP, teal; Dubai Land has no OSM outline: pulse + pin |
-| 49 - 62.5 | Zone 4, the affordable frontier: Majan, Liwan, emerging Dubai Land; AED 700 - 1,100; lower entry prices, future infrastructure | MAP, indigo |
-| 62.5 - 80 | Zone 5, Dubai South and the airport corridor: Expo City, Al Maktoum Airport, Palm Jebel Ali corridor; AED 1,100 - 1,500 | MAP, blue; dashed corridor to Palm Jebel Ali |
-| 80 - 83.9 | ask which zone makes sense for your budget | DARK: the five ranges on one scale |
-| 83.9 - 93 | comment CONSULTATION | dark: bubble grows, "consultation" typed, sent, answered "Sending you the details" |
+| 0 - 5.3 | stop investing without understanding these five zones | MAP: wide Dubai, five numbered zone badges drop in; HUD 5 ZONES |
+| 5.3 - 20.4 | Zone 1, Sheikh Zayed Road and the coastline: Marina, JBR, Palm Jumeirah, Downtown, Business Bay; prime, luxury, strong rental demand; AED 2,000 - 4,500 per sq ft | MAP flight along the coast, coral outlines; checklist; price panel counts up |
+| 20.4 - 34.9 | Zone 2, between E11 and E311: Dubai Hills, Tilal Al Ghaf, Arjan, Motor City; family, stable rent, growth; AED 1,200 - 1,800 | MAP, amber |
+| 34.9 - 50.2 | Zone 3, between E311 and E611: The Valley, Arabian Ranches 3, DAMAC Hills 2, Dubai Land; villas, townhouses; AED 900 - 1,400 | MAP, teal; Dubai Land has no OSM outline: pulse + pin |
+| 50.2 - 63.8 | Zone 4, the affordable frontier: Majan, Liwan, emerging Dubai Land; AED 700 - 1,100; lower entry prices, future infrastructure | MAP, indigo |
+| 63.8 - 80.6 | Zone 5, Dubai South and the airport corridor: Expo City, Al Maktoum Airport, Palm Jebel Ali corridor; AED 1,100 - 1,500 | MAP, blue; dashed corridor to Palm Jebel Ali |
+| 80.6 - 85.7 | ask which zone makes sense for your budget | DARK: the five ranges on one scale |
+| 85.7 - 94.9 | comment CONSULTATION | dark: bubble grows, "consultation" typed, sent, answered "Sending you the details" |
 
 ## Map layer v2 (19 Oct 2026) - accurate roads, bands, callouts
 Feedback: the map animation must be accurate and more professional, highlight more, draw more lines. Rebuilt in `mapfx.js` (loaded after `scenes_lib.js`):
@@ -31,7 +31,7 @@ The reel shows his numbers. I also pulled the DLD sale transactions (Bayut trans
 
 | Zone | Stated by him (AED / sq ft) | Community | DLD median, last 12 months (AED / sq ft) | sales in 12 months |
 |---|---|---|---|---|
-| 1 The coast (Sheikh Zayed Road) | 2,000 - 5,000 | JBR | apartments 1,612 | 529 |
+| 1 The coast (Sheikh Zayed Road) | 2,000 - 4,500 | JBR | apartments 1,612 | 529 |
 | 1  |  | Dubai Marina | apartments 1,954 | 2,427 |
 | 1  |  | Business Bay | apartments 2,223 | 6,752 |
 | 1  |  | Downtown Dubai | apartments 2,978 | 2,755 |
@@ -55,7 +55,7 @@ The reel shows his numbers. I also pulled the DLD sale transactions (Bayut trans
 - Zone 3: DAMAC Hills 2 (about 1,080) and The Valley (about 1,250 - 1,370) fit; Arabian Ranches 3 (about 1,580 - 1,790) is above; "Dubailand" (about 2,350) is a different, small market.
 - Zone 4: Liwan (about 1,080) fits; Majan (about 1,400) is above 1,100.
 - Zone 5: Dubai South (about 1,350 - 1,600) is slightly above 1,500 for apartments; Expo City (about 2,160) and Palm Jebel Ali (about 3,000 - 3,400) are far above.
-- His Zone 1 price is spoken as "2,000 to 4,000, 5,000" (the HeyGen voice); the screen shows 2,000 - 5,000.
+- His Zone 1 price: the new-voice take says "2,000 to 4,500" and the screen shows 2,000 - 4,500 (the old take said "2,000 to 4,000, 5,000").
 Consider correcting the script (or adding "selected properties") before posting; DLD / RERA advertising rules apply to price claims. A `DLD median` overlay (pin labels) can be added to the map beats if wanted.
 
 ## Data and credits
