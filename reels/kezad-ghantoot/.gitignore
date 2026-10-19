@@ -1,0 +1,9 @@
+build/
+frames/
+stills/
+*.wav
+*.mp4
+cues.json
+sat_scenes.json
+*.log
+assets/

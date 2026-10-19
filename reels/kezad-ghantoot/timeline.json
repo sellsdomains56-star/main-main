@@ -1,0 +1,1058 @@
+{
+"fps": 30,
+"frames": 1660,
+"voice_dur": 55.333333333333336,
+"dur": 58.333,
+"words": [
+{
+"t": 0.165,
+"e": 0.36,
+"text": "Fewer",
+"chunk": 0
+},
+{
+"t": 0.36,
+"e": 0.48,
+"text": "people",
+"chunk": 0
+},
+{
+"t": 0.48,
+"e": 0.7,
+"text": "are",
+"chunk": 0
+},
+{
+"t": 0.7,
+"e": 1.02,
+"text": "watching",
+"chunk": 1
+},
+{
+"t": 1.02,
+"e": 1.22,
+"text": "what",
+"chunk": 1
+},
+{
+"t": 1.22,
+"e": 1.4,
+"text": "Abu",
+"chunk": 1
+},
+{
+"t": 1.4,
+"e": 1.74,
+"text": "Dhabi",
+"chunk": 2
+},
+{
+"t": 1.74,
+"e": 1.84,
+"text": "is",
+"chunk": 2
+},
+{
+"t": 1.84,
+"e": 2.08,
+"text": "building",
+"chunk": 2
+},
+{
+"t": 2.08,
+"e": 2.26,
+"text": "on",
+"chunk": 3
+},
+{
+"t": 2.26,
+"e": 2.34,
+"text": "the",
+"chunk": 3
+},
+{
+"t": 2.34,
+"e": 2.5,
+"text": "other",
+"chunk": 3
+},
+{
+"t": 2.5,
+"e": 2.8,
+"text": "side.",
+"chunk": 4
+},
+{
+"t": 3.17,
+"e": 3.24,
+"text": "It's",
+"chunk": 5
+},
+{
+"t": 3.24,
+"e": 3.44,
+"text": "called",
+"chunk": 5
+},
+{
+"t": 3.44,
+"e": 3.98,
+"text": "KEZAD.",
+"chunk": 5
+},
+{
+"t": 4.06,
+"e": 4.5,
+"text": "Think",
+"chunk": 6
+},
+{
+"t": 4.5,
+"e": 4.64,
+"text": "about",
+"chunk": 6
+},
+{
+"t": 4.64,
+"e": 4.86,
+"text": "what",
+"chunk": 6
+},
+{
+"t": 4.86,
+"e": 5.18,
+"text": "JAFZA",
+"chunk": 7
+},
+{
+"t": 5.18,
+"e": 5.32,
+"text": "did",
+"chunk": 7
+},
+{
+"t": 5.32,
+"e": 5.52,
+"text": "for",
+"chunk": 7
+},
+{
+"t": 5.52,
+"e": 5.78,
+"text": "Dubai.",
+"chunk": 8
+},
+{
+"t": 6.205,
+"e": 6.62,
+"text": "Businesses",
+"chunk": 9
+},
+{
+"t": 6.62,
+"e": 6.72,
+"text": "moved",
+"chunk": 9
+},
+{
+"t": 6.72,
+"e": 7.04,
+"text": "close",
+"chunk": 10
+},
+{
+"t": 7.04,
+"e": 7.26,
+"text": "to",
+"chunk": 10
+},
+{
+"t": 7.26,
+"e": 7.46,
+"text": "Jebel",
+"chunk": 10
+},
+{
+"t": 7.46,
+"e": 7.76,
+"text": "Ali",
+"chunk": 11
+},
+{
+"t": 7.76,
+"e": 7.92,
+"text": "Port",
+"chunk": 11
+},
+{
+"t": 7.92,
+"e": 8.16,
+"text": "for",
+"chunk": 11
+},
+{
+"t": 8.16,
+"e": 8.5,
+"text": "trade",
+"chunk": 12
+},
+{
+"t": 8.5,
+"e": 8.74,
+"text": "and",
+"chunk": 12
+},
+{
+"t": 8.74,
+"e": 9.04,
+"text": "logistics.",
+"chunk": 12
+},
+{
+"t": 9.84,
+"e": 9.9,
+"text": "Those",
+"chunk": 13
+},
+{
+"t": 9.9,
+"e": 10.24,
+"text": "businesses",
+"chunk": 13
+},
+{
+"t": 10.24,
+"e": 10.58,
+"text": "created",
+"chunk": 14
+},
+{
+"t": 10.58,
+"e": 10.96,
+"text": "jobs,",
+"chunk": 14
+},
+{
+"t": 11.425,
+"e": 11.52,
+"text": "helping",
+"chunk": 15
+},
+{
+"t": 11.52,
+"e": 11.78,
+"text": "drive",
+"chunk": 15
+},
+{
+"t": 11.78,
+"e": 12.1,
+"text": "demand",
+"chunk": 15
+},
+{
+"t": 12.1,
+"e": 12.44,
+"text": "for",
+"chunk": 16
+},
+{
+"t": 12.44,
+"e": 12.74,
+"text": "homes",
+"chunk": 16
+},
+{
+"t": 12.74,
+"e": 12.92,
+"text": "in",
+"chunk": 16
+},
+{
+"t": 12.92,
+"e": 13.24,
+"text": "surrounding",
+"chunk": 17
+},
+{
+"t": 13.24,
+"e": 13.66,
+"text": "areas.",
+"chunk": 17
+},
+{
+"t": 14.31,
+"e": 14.72,
+"text": "Employment",
+"chunk": 18
+},
+{
+"t": 14.72,
+"e": 14.94,
+"text": "helped",
+"chunk": 18
+},
+{
+"t": 14.94,
+"e": 15.26,
+"text": "shape",
+"chunk": 19
+},
+{
+"t": 15.26,
+"e": 15.5,
+"text": "where",
+"chunk": 19
+},
+{
+"t": 15.5,
+"e": 15.72,
+"text": "people",
+"chunk": 19
+},
+{
+"t": 15.72,
+"e": 15.92,
+"text": "wanted",
+"chunk": 20
+},
+{
+"t": 15.92,
+"e": 16.1,
+"text": "to",
+"chunk": 20
+},
+{
+"t": 16.1,
+"e": 16.28,
+"text": "live.",
+"chunk": 20
+},
+{
+"t": 16.64,
+"e": 16.76,
+"text": "Now",
+"chunk": 21
+},
+{
+"t": 16.68,
+"e": 16.82,
+"text": "look",
+"chunk": 21
+},
+{
+"t": 16.82,
+"e": 16.96,
+"text": "at",
+"chunk": 21
+},
+{
+"t": 16.96,
+"e": 17.01,
+"text": "the",
+"chunk": 22
+},
+{
+"t": 17.0,
+"e": 17.26,
+"text": "corridor",
+"chunk": 22
+},
+{
+"t": 17.26,
+"e": 17.62,
+"text": "around",
+"chunk": 22
+},
+{
+"t": 17.62,
+"e": 18.06,
+"text": "Khalifa",
+"chunk": 23
+},
+{
+"t": 18.06,
+"e": 18.3,
+"text": "Port",
+"chunk": 23
+},
+{
+"t": 18.3,
+"e": 18.52,
+"text": "in",
+"chunk": 23
+},
+{
+"t": 18.52,
+"e": 18.66,
+"text": "Abu",
+"chunk": 24
+},
+{
+"t": 18.66,
+"e": 19.06,
+"text": "Dhabi.",
+"chunk": 24
+},
+{
+"t": 19.355,
+"e": 19.72,
+"text": "KEZAD",
+"chunk": 25
+},
+{
+"t": 19.72,
+"e": 19.96,
+"text": "stands",
+"chunk": 25
+},
+{
+"t": 19.96,
+"e": 20.3,
+"text": "for",
+"chunk": 25
+},
+{
+"t": 20.3,
+"e": 20.76,
+"text": "Khalifa",
+"chunk": 26
+},
+{
+"t": 20.76,
+"e": 20.96,
+"text": "Economic",
+"chunk": 26
+},
+{
+"t": 20.96,
+"e": 21.56,
+"text": "Zones",
+"chunk": 27
+},
+{
+"t": 21.56,
+"e": 21.84,
+"text": "Abu",
+"chunk": 27
+},
+{
+"t": 21.84,
+"e": 22.24,
+"text": "Dhabi,",
+"chunk": 27
+},
+{
+"t": 22.24,
+"e": 22.54,
+"text": "part",
+"chunk": 28
+},
+{
+"t": 22.54,
+"e": 22.76,
+"text": "of",
+"chunk": 28
+},
+{
+"t": 22.76,
+"e": 23.0,
+"text": "AD",
+"chunk": 28
+},
+{
+"t": 23.0,
+"e": 23.38,
+"text": "Ports",
+"chunk": 29
+},
+{
+"t": 23.38,
+"e": 23.56,
+"text": "Group.",
+"chunk": 29
+},
+{
+"t": 23.985,
+"e": 24.105,
+"text": "It",
+"chunk": 30
+},
+{
+"t": 23.98,
+"e": 24.16,
+"text": "brings",
+"chunk": 30
+},
+{
+"t": 24.16,
+"e": 24.44,
+"text": "together",
+"chunk": 30
+},
+{
+"t": 24.44,
+"e": 24.82,
+"text": "businesses",
+"chunk": 31
+},
+{
+"t": 24.82,
+"e": 25.2,
+"text": "across",
+"chunk": 31
+},
+{
+"t": 25.2,
+"e": 25.84,
+"text": "manufacturing,",
+"chunk": 32
+},
+{
+"t": 26.16,
+"e": 26.48,
+"text": "logistics,",
+"chunk": 33
+},
+{
+"t": 26.94,
+"e": 27.22,
+"text": "food",
+"chunk": 34
+},
+{
+"t": 27.22,
+"e": 27.68,
+"text": "processing,",
+"chunk": 34
+},
+{
+"t": 27.84,
+"e": 28.1,
+"text": "and",
+"chunk": 35
+},
+{
+"t": 28.1,
+"e": 28.28,
+"text": "other",
+"chunk": 35
+},
+{
+"t": 28.28,
+"e": 28.66,
+"text": "industries.",
+"chunk": 35
+},
+{
+"t": 28.66,
+"e": 29.12,
+"text": "These",
+"chunk": 36
+},
+{
+"t": 29.12,
+"e": 29.34,
+"text": "are",
+"chunk": 36
+},
+{
+"t": 29.34,
+"e": 29.42,
+"text": "the",
+"chunk": 36
+},
+{
+"t": 29.42,
+"e": 29.8,
+"text": "employers",
+"chunk": 37
+},
+{
+"t": 29.8,
+"e": 30.14,
+"text": "behind",
+"chunk": 37
+},
+{
+"t": 30.14,
+"e": 30.34,
+"text": "the",
+"chunk": 37
+},
+{
+"t": 30.34,
+"e": 30.86,
+"text": "warehouses,",
+"chunk": 38
+},
+{
+"t": 31.355,
+"e": 31.56,
+"text": "factories,",
+"chunk": 39
+},
+{
+"t": 31.8,
+"e": 32.02,
+"text": "and",
+"chunk": 40
+},
+{
+"t": 32.02,
+"e": 32.24,
+"text": "supply",
+"chunk": 40
+},
+{
+"t": 32.24,
+"e": 32.56,
+"text": "chains,",
+"chunk": 40
+},
+{
+"t": 33.01,
+"e": 33.13,
+"text": "and",
+"chunk": 41
+},
+{
+"t": 33.02,
+"e": 33.18,
+"text": "their",
+"chunk": 41
+},
+{
+"t": 33.18,
+"e": 33.56,
+"text": "employees",
+"chunk": 41
+},
+{
+"t": 33.56,
+"e": 33.94,
+"text": "need",
+"chunk": 42
+},
+{
+"t": 33.94,
+"e": 34.2,
+"text": "somewhere",
+"chunk": 42
+},
+{
+"t": 34.2,
+"e": 34.42,
+"text": "to",
+"chunk": 42
+},
+{
+"t": 34.42,
+"e": 34.6,
+"text": "live.",
+"chunk": 43
+},
+{
+"t": 34.99,
+"e": 35.11,
+"text": "For",
+"chunk": 44
+},
+{
+"t": 34.98,
+"e": 35.3,
+"text": "property",
+"chunk": 44
+},
+{
+"t": 35.3,
+"e": 35.62,
+"text": "investors,",
+"chunk": 45
+},
+{
+"t": 36.31,
+"e": 36.43,
+"text": "the",
+"chunk": 46
+},
+{
+"t": 36.3,
+"e": 36.58,
+"text": "question",
+"chunk": 46
+},
+{
+"t": 36.58,
+"e": 36.74,
+"text": "is",
+"chunk": 46
+},
+{
+"t": 36.74,
+"e": 36.96,
+"text": "where",
+"chunk": 47
+},
+{
+"t": 36.96,
+"e": 37.14,
+"text": "that",
+"chunk": 47
+},
+{
+"t": 37.14,
+"e": 37.5,
+"text": "employment",
+"chunk": 47
+},
+{
+"t": 37.5,
+"e": 37.8,
+"text": "could",
+"chunk": 48
+},
+{
+"t": 37.8,
+"e": 38.12,
+"text": "support",
+"chunk": 48
+},
+{
+"t": 38.12,
+"e": 38.62,
+"text": "residential",
+"chunk": 49
+},
+{
+"t": 38.62,
+"e": 39.02,
+"text": "demand.",
+"chunk": 49
+},
+{
+"t": 40.0,
+"e": 40.08,
+"text": "Look",
+"chunk": 50
+},
+{
+"t": 40.08,
+"e": 40.22,
+"text": "at",
+"chunk": 50
+},
+{
+"t": 40.22,
+"e": 40.66,
+"text": "Ghantoot,",
+"chunk": 50
+},
+{
+"t": 40.8,
+"e": 41.2,
+"text": "between",
+"chunk": 51
+},
+{
+"t": 41.2,
+"e": 41.44,
+"text": "the",
+"chunk": 51
+},
+{
+"t": 41.44,
+"e": 41.72,
+"text": "Jebel",
+"chunk": 51
+},
+{
+"t": 41.72,
+"e": 41.94,
+"text": "Ali",
+"chunk": 52
+},
+{
+"t": 41.94,
+"e": 42.26,
+"text": "and",
+"chunk": 52
+},
+{
+"t": 42.26,
+"e": 42.48,
+"text": "Dubai",
+"chunk": 52
+},
+{
+"t": 42.48,
+"e": 42.8,
+"text": "South",
+"chunk": 53
+},
+{
+"t": 42.8,
+"e": 43.38,
+"text": "corridor",
+"chunk": 53
+},
+{
+"t": 43.38,
+"e": 43.46,
+"text": "on",
+"chunk": 53
+},
+{
+"t": 43.46,
+"e": 43.64,
+"text": "one",
+"chunk": 54
+},
+{
+"t": 43.64,
+"e": 43.92,
+"text": "side",
+"chunk": 54
+},
+{
+"t": 43.92,
+"e": 44.18,
+"text": "and",
+"chunk": 54
+},
+{
+"t": 44.18,
+"e": 44.4,
+"text": "Abu",
+"chunk": 55
+},
+{
+"t": 44.4,
+"e": 44.82,
+"text": "Dhabi's",
+"chunk": 55
+},
+{
+"t": 44.82,
+"e": 45.04,
+"text": "industrial",
+"chunk": 56
+},
+{
+"t": 45.04,
+"e": 45.52,
+"text": "growth",
+"chunk": 56
+},
+{
+"t": 45.52,
+"e": 46.06,
+"text": "corridor",
+"chunk": 57
+},
+{
+"t": 46.06,
+"e": 46.12,
+"text": "on",
+"chunk": 57
+},
+{
+"t": 46.12,
+"e": 46.2,
+"text": "the",
+"chunk": 57
+},
+{
+"t": 46.2,
+"e": 46.4,
+"text": "other.",
+"chunk": 58
+},
+{
+"t": 46.71,
+"e": 46.76,
+"text": "That",
+"chunk": 59
+},
+{
+"t": 46.76,
+"e": 46.94,
+"text": "gives",
+"chunk": 59
+},
+{
+"t": 46.94,
+"e": 47.06,
+"text": "it",
+"chunk": 59
+},
+{
+"t": 47.06,
+"e": 47.14,
+"text": "a",
+"chunk": 60
+},
+{
+"t": 47.14,
+"e": 47.38,
+"text": "location",
+"chunk": 60
+},
+{
+"t": 47.38,
+"e": 47.7,
+"text": "worth",
+"chunk": 60
+},
+{
+"t": 47.7,
+"e": 48.12,
+"text": "studying,",
+"chunk": 61
+},
+{
+"t": 48.545,
+"e": 48.62,
+"text": "but",
+"chunk": 62
+},
+{
+"t": 48.62,
+"e": 48.7,
+"text": "the",
+"chunk": 62
+},
+{
+"t": 48.7,
+"e": 49.16,
+"text": "project,",
+"chunk": 62
+},
+{
+"t": 49.36,
+"e": 49.74,
+"text": "price,",
+"chunk": 63
+},
+{
+"t": 50.06,
+"e": 50.26,
+"text": "and",
+"chunk": 64
+},
+{
+"t": 50.26,
+"e": 50.58,
+"text": "everyday",
+"chunk": 64
+},
+{
+"t": 50.58,
+"e": 50.96,
+"text": "commute",
+"chunk": 64
+},
+{
+"t": 50.96,
+"e": 51.18,
+"text": "still",
+"chunk": 65
+},
+{
+"t": 51.18,
+"e": 51.46,
+"text": "matter.",
+"chunk": 65
+},
+{
+"t": 51.94,
+"e": 52.1,
+"text": "Comment",
+"chunk": 66
+},
+{
+"t": 52.1,
+"e": 52.44,
+"text": "AREA,",
+"chunk": 66
+},
+{
+"t": 52.64,
+"e": 52.88,
+"text": "and",
+"chunk": 67
+},
+{
+"t": 52.88,
+"e": 52.98,
+"text": "I'll",
+"chunk": 67
+},
+{
+"t": 52.98,
+"e": 53.18,
+"text": "send",
+"chunk": 67
+},
+{
+"t": 53.18,
+"e": 53.28,
+"text": "you",
+"chunk": 68
+},
+{
+"t": 53.28,
+"e": 53.4,
+"text": "the",
+"chunk": 68
+},
+{
+"t": 53.4,
+"e": 53.66,
+"text": "detailed",
+"chunk": 68
+},
+{
+"t": 53.66,
+"e": 53.96,
+"text": "report",
+"chunk": 69
+},
+{
+"t": 53.96,
+"e": 54.16,
+"text": "on",
+"chunk": 69
+},
+{
+"t": 54.16,
+"e": 54.24,
+"text": "the",
+"chunk": 69
+},
+{
+"t": 54.24,
+"e": 54.52,
+"text": "project",
+"chunk": 70
+},
+{
+"t": 54.52,
+"e": 54.74,
+"text": "we're",
+"chunk": 70
+},
+{
+"t": 54.74,
+"e": 54.86,
+"text": "looking",
+"chunk": 70
+},
+{
+"t": 54.86,
+"e": 55.08,
+"text": "at.",
+"chunk": 71
+}
+]
+}
