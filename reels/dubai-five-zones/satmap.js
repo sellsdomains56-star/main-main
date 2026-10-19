@@ -98,6 +98,11 @@ function satVeil(sc, cam) {
   ctx.save();
   if (sc.veil === 'tl' || sc.veil === 'top') { const gv = ctx.createRadialGradient(0, 380, 0, 0, 380, 980); gv.addColorStop(0, 'rgba(8,8,10,0.92)'); gv.addColorStop(0.6, 'rgba(8,8,10,0.55)'); gv.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = gv; ctx.fillRect(0, 0, W, 1400); }
   if (sc.veil === 'top') { const g2 = ctx.createLinearGradient(0, 0, 0, 1000); g2.addColorStop(0, 'rgba(8,8,10,0.6)'); g2.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = g2; ctx.fillRect(0, 0, W, 1000); }
+  if (sc.veil === 'map') {                                         // map layer v2: keep the ground clear, darken only behind the HUD (top) and the captions (bottom)
+    const gm = ctx.createLinearGradient(0, 0, 0, 760); gm.addColorStop(0, 'rgba(8,8,10,0.9)'); gm.addColorStop(0.5, 'rgba(8,8,10,0.6)'); gm.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = gm; ctx.fillRect(0, 0, W, 760);
+    const gb = ctx.createLinearGradient(0, 1240, 0, H); gb.addColorStop(0, 'rgba(8,8,10,0)'); gb.addColorStop(0.4, 'rgba(8,8,10,0.75)'); gb.addColorStop(1, 'rgba(8,8,10,0.92)'); ctx.fillStyle = gb; ctx.fillRect(0, 1240, W, H - 1240);
+    ctx.restore(); return;
+  }
   const hz = clamp((cam.pitch || 0) / 30);                         // tilted: the far ground fades into the dark (haze), which also hides the low-resolution horizon
   const gt = ctx.createLinearGradient(0, 0, 0, 640 + 260 * hz); gt.addColorStop(0, `rgba(8,8,10,${0.82 + 0.1 * hz})`); gt.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = gt; ctx.fillRect(0, 0, W, 900);
   const gb = ctx.createLinearGradient(0, 1180, 0, H); gb.addColorStop(0, 'rgba(8,8,10,0)'); gb.addColorStop(0.45, 'rgba(8,8,10,0.78)'); gb.addColorStop(1, 'rgba(8,8,10,0.92)'); ctx.fillStyle = gb; ctx.fillRect(0, 1180, W, H - 1180);

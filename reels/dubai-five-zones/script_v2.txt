@@ -1,0 +1,22 @@
+Five Dubai zones - script v2 (geography corrected against the real road lines; changes marked in the notes below)
+
+Stop investing in Dubai without understanding these five zones, or you could end up buying in the wrong location.
+
+Zone 1, Sheikh Zayed Road and the coastline: Dubai Marina, JBR, Palm Jumeirah, Downtown, and Business Bay. Prime locations, luxury properties, and strong rental demand. Prices range from 2,000 to 5,000 AED per square foot.
+
+Zone 2, between E11 and E311: Dubai Hills, JVC, Arjan, and Al Barsha South. Family communities with stable rental demand and growth potential. Prices range from 1,200 to 1,800 AED per square foot.
+
+Zone 3, between E311 and E611: Arabian Ranches 3, Motor City, Tilal Al Ghaf, and Dubai Land. More villas, townhouses, and family living. Prices range from 900 to 1,400 AED per square foot.
+
+Zone 4, the affordable frontier: Majan, Liwan, and beyond E611, The Valley and DAMAC Hills 2. Prices range from 700 to 1,100 AED per square foot. Lower entry prices, but you're investing in future infrastructure and growth.
+
+Zone 5, Dubai South and the airport corridor: Expo City, Al Maktoum International Airport, and the wider Palm Jebel Ali corridor. Major infrastructure investment and long-term development potential. Selected properties range from 1,100 to 1,500 AED per square foot.
+
+So don't just ask which developer is best. Ask which zone makes sense for your budget. If you're planning to buy property in Dubai and want expert advice, comment CONSULTATION and I'll send you the details.
+
+---
+What changed and why (checked with OpenStreetMap road lines E11 / E311 / E611 and point-in-zone tests, data/build_bands.py):
+- Zone 1: "2,000 to 4,000, 5,000" -> "2,000 to 5,000" (the old take stumbles).
+- Zone 2: Tilal Al Ghaf and Motor City are NOT between E11 and E311 (they are between E311 and E611). Replaced by JVC and Al Barsha South, which are.
+- Zone 3: The Valley and DAMAC Hills 2 are beyond E611, not between E311 and E611. Replaced by Motor City and Tilal Al Ghaf, which are; The Valley and DAMAC Hills 2 move to zone 4 ("beyond E611").
+- Prices are still his ranges: several communities trade above them in the Dubai Land Department record (README table) - check before posting; RERA / DLD advertising rules apply to price claims.

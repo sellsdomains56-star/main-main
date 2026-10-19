@@ -37,12 +37,12 @@ function buildScenes() {
   const rel = (T, t) => t - T[0], dur = T => T[1] - T[0];
 
   // ---- the satellite flights (keys are seconds into each flight)
-  const flight = (id, [a, b], keys) => { SAT_SCENES[id] = { a, b, veil: 'top', keys: keys.map(k => camKey(...k)).sort((p, q) => p[0] - q[0]) }; add({ id, kind: 'sat', a, b, cfg: {} }); return SAT_SCENES[id]; };
+  const flight = (id, [a, b], keys) => { SAT_SCENES[id] = { a, b, veil: 'map', keys: keys.map(k => camKey(...k)).sort((p, q) => p[0] - q[0]) }; add({ id, kind: 'sat', a, b, cfg: {} }); return SAT_SCENES[id]; };
   const d0 = dur(T_M0);
   flight('m0', T_M0, [[0, 55.08, 25.17, 10.9, 130, 8], [2.4, 55.2, 25.08, 11.5, 160, 26], [d0 + 0.6, 55.27, 25.04, 11.75, 170, 32]]);
-  flight('z1', T_Z1, [[0, 55.19, 25.12, 11.6, 150, 22], [rel(T_Z1, K.marina) - 0.6, 55.138, 25.100, 13.25, 150, 32], [rel(T_Z1, K.down) - 0.9, 55.138, 25.100, 13.25, 150, 32], [rel(T_Z1, K.down) + 0.25, 55.274, 25.19, 13.0, 150, 30], [dur(T_Z1) + 0.6, 55.274, 25.19, 12.7, 150, 30]]);
+  flight('z1', T_Z1, [[0, 55.19, 25.12, 11.6, 150, 22], [rel(T_Z1, K.marina) - 0.6, 55.138, 25.100, 13.25, 150, 32], [rel(T_Z1, K.down) - 0.9, 55.138, 25.100, 13.25, 150, 32], [rel(T_Z1, K.down) + 0.25, 55.274, 25.19, 13.0, 60, 30], [dur(T_Z1) + 0.6, 55.274, 25.19, 12.7, 60, 30]]);
   flight('z2', T_Z2, [[0, 55.235, 25.09, 11.9, 150, 22], [rel(T_Z2, K.e311a) + 0.2, 55.236, 25.066, 12.9, 160, 30], [dur(T_Z2) + 0.6, 55.236, 25.066, 13.05, 160, 33]]);
-  flight('z3', T_Z3, [[0, 55.34, 25.05, 11.8, 150, 18], [rel(T_Z3, K.e611) + 0.4, 55.388, 25.03, 12.5, 160, 28], [dur(T_Z3) + 0.6, 55.388, 25.03, 12.72, 160, 31]]);
+  flight('z3', T_Z3, [[0, 55.30, 25.07, 11.7, 140, 18], [rel(T_Z3, K.e611) + 0.4, 55.37, 25.035, 12.15, 110, 24], [dur(T_Z3) + 0.6, 55.375, 25.03, 12.3, 110, 26]]);
   flight('z4', T_Z4, [[0, 55.30, 25.06, 11.9, 150, 20], [rel(T_Z4, K.afford) + 0.4, 55.34, 25.068, 12.8, 160, 30], [dur(T_Z4) + 0.6, 55.34, 25.068, 12.95, 160, 33]]);
   flight('z5', T_Z5, [[0, 55.12, 24.95, 11.7, 150, 20], [rel(T_Z5, K.expo) - 0.5, 55.155, 24.945, 12.5, 150, 30], [rel(T_Z5, K.palm2) - 0.3, 55.155, 24.945, 12.3, 150, 30], [rel(T_Z5, K.palm2) + 1.0, 55.07, 24.965, 11.75, 150, 26], [dur(T_Z5) + 0.6, 55.075, 24.965, 11.9, 150, 28]]);
 
@@ -50,47 +50,93 @@ function buildScenes() {
   const BUBBLE = { t0: 0.1, src: { cx: 550, cy: 830, size: 620 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.if1 - 0.2, cx: 215, cy: 418, r: 78 }, { t: K.if1 + 0.9, cx: 540, cy: 470, r: 125 }] };
   HUD_X = 330;
 
-  // ---- map beats: outlines of the communities named, filled in the zone colour as he says each name; places without an OSM outline get a pulse + pin
-  const isl = (t, cam, key, z, wins, label, o) => mapIsland(t, cam, key, ZC[z][0], ZC[z][1], wins, label, o);
+  // ---- map beats (map layer v2, mapfx.js): the real highways draw themselves with route shields, the zone bands between them sweep in,
+  // every community he names traces its OSM outline and gets a callout, landmarks and the Red Line give orientation, measured lines give distances.
   const S = id => SCENES.find(s => s.id === id).cfg;
+  const PT = GEO.x.points || {}, BK = PT.burj_khalifa || [55.27413, 25.19703], cen = k => centroid(OUTLINES[k] || (GEO.x.outlines || {})[k] || [[0, 0]]);
+  const ROADS3 = (t, cam, a, o = {}) => {                             // the three highways, one after the other
+    mapRoad(t, cam, 'E11', { a0: a, dur: 1.5, name: '', shields: [[55.10, 25.03], [55.13, 25.06]], ...o.e11 });
+    mapRoad(t, cam, 'E311', { a0: a + (o.gap ?? 0.45), dur: 1.6, name: '', shields: [[55.33, 25.15], [55.30, 25.12]], ...o.e311 });
+    mapRoad(t, cam, 'E611', { a0: a + 2 * (o.gap ?? 0.45), dur: 1.7, name: '', shields: [[55.45, 25.13], [55.42, 25.11]], ...o.e611 });
+  };
+  const Z = n => ({ c: ZC[n] });
   S('m0').top = (t, cam) => {
-    [[1, 55.17, 25.145, 'THE COAST', 2.35], [2, 55.24, 25.07, 'E11 – E311', 2.75], [3, 55.395, 25.03, 'E311 – E611', 3.15], [4, 55.335, 25.115, 'FRONTIER', 3.55], [5, 55.16, 24.935, 'AIRPORT', 3.95]]
+    mapName(t, cam, 55.06, 25.19, 'ARABIAN GULF', 0.4, 0, { rot: -0.55 });
+    ROADS3(t, cam, 0.35, { gap: 0.4 });
+    mapBand(t, cam, 'band2', ZC[2][0], { a0: 1.9, dur: 1.1, fill: 0.2 }); mapBand(t, cam, 'band3', ZC[3][0], { a0: 2.25, dur: 1.1, fill: 0.2 });
+    [[1, 55.16, 25.115, 'THE COAST', 2.35], [2, 55.225, 25.085, 'E11 – E311', 2.75], [3, 55.30, 25.025, 'E311 – E611', 3.15], [4, 55.365, 25.105, 'FRONTIER', 3.55], [5, 55.165, 24.9, 'AIRPORT', 3.95]]
       .forEach(([n, lo, la, name, a0]) => islandBadge(t, cam, n, lo, la, name, a0, 0));
+    mapScale(t, cam, 0.6, 0);
   };
   S('z1').top = (t, cam) => {
-    isl(t, cam, 'marina', 1, [[K.marina, K.jbr - 0.1]], ['DUBAI', 'MARINA']);
-    isl(t, cam, 'jbr', 1, [[K.jbr - 0.1, K.palm1 - 0.1]], 'JBR');
-    isl(t, cam, 'palm', 1, [[K.palm1 - 0.1, K.down - 0.2]], ['PALM', 'JUMEIRAH']);
-    isl(t, cam, 'downtown', 1, [[K.down - 0.15, K.bbay - 0.1]], 'DOWNTOWN');
-    isl(t, cam, 'bbay', 1, [[K.bbay - 0.1, K.prime + 0.6]], ['BUSINESS', 'BAY']);
+    const a = T_Z1[0];
+    mapName(t, cam, 55.105, 25.135, 'ARABIAN GULF', a + 0.3, 0, { rot: -0.6, size: 30 });
+    mapMetro(t, cam, { a0: a + 0.9, dur: 3.0, alpha: 0.95 });
+    mapRoad(t, cam, 'E11', { a0: a + 0.1, dur: 1.6, hi: 0.7, shields: [[55.163, 25.087], [55.21, 25.13], [55.265, 25.205]] });
+    mapArea(t, cam, 'palm', { ...Z(1), a0: K.palm1 - 0.15, on: [K.palm1 - 0.1, K.down - 0.9], label: ['PALM', 'JUMEIRAH'], dx: -60, dy: -230 });
+    mapArea(t, cam, 'marina', { ...Z(1), a0: K.marina - 0.15, on: [K.marina - 0.1, K.jbr - 0.1], label: ['DUBAI', 'MARINA'], dx: 170, dy: 150 });
+    mapArea(t, cam, 'jbr', { ...Z(1), a0: K.jbr - 0.15, on: [K.jbr - 0.1, K.palm1 - 0.1], label: 'JBR', dx: -110, dy: 140 });
+    mapArea(t, cam, 'bbay', { ...Z(1), a0: K.bbay - 0.15, on: [K.bbay - 0.1, K.prime + 0.6], label: ['BUSINESS', 'BAY'], dx: -160, dy: -150 });
+    mapArea(t, cam, 'downtown', { ...Z(1), a0: K.down - 0.15, on: [K.down - 0.1, K.bbay - 0.1], label: 'DOWNTOWN', dx: 120, dy: -190 });
+    mapLandmark(t, cam, { lon: PT.burj_al_arab[0], lat: PT.burj_al_arab[1], a0: K.palm1 + 0.3, a1: K.down - 0.9, text: 'BURJ AL ARAB', icon: 'tower', side: 'r' });
+    mapLandmark(t, cam, { lon: BK[0], lat: BK[1], a0: K.down + 0.2, text: 'BURJ KHALIFA', icon: 'tower', side: 'r', dy: -34 });
+    mapScale(t, cam, a + 0.4, 0);
   };
   S('z2').top = (t, cam) => {
-    isl(t, cam, 'dhills', 2, [[K.dhills, K.tilal - 0.1]], ['DUBAI', 'HILLS']);
-    isl(t, cam, 'tilal', 2, [[K.tilal - 0.1, K.arjan - 0.1]], ['TILAL', 'AL GHAF']);
-    isl(t, cam, 'arjan', 2, [[K.arjan - 0.1, K.motor - 0.1]], 'ARJAN');
-    isl(t, cam, 'motor', 2, [[K.motor - 0.1, K.family + 0.4]], ['MOTOR', 'CITY']);
+    const a = T_Z2[0];
+    mapRoad(t, cam, 'E11', { a0: K.e11 - 0.35, dur: 1.2, hi: 0.6, shields: [[55.19, 25.105], [55.17, 25.09]] });
+    mapRoad(t, cam, 'E311', { a0: K.e311a - 0.35, dur: 1.2, hi: 0.6, shields: [[55.27, 25.09], [55.255, 25.08], [55.235, 25.06]] });
+    mapRoad(t, cam, 'E611', { a0: a + 0.2, dur: 1.2, alpha: 0.55, name: '' });
+    mapBand(t, cam, 'band2', ZC[2][0], { a0: K.e311a + 0.25, dur: 1.2, fill: 0.12, hatch: 0.16 });
+    mapArea(t, cam, 'dhills', { ...Z(2), a0: K.dhills - 0.15, on: [K.dhills - 0.1, K.tilal - 0.1], label: ['DUBAI', 'HILLS'], dx: 140, dy: -150 });
+    mapArea(t, cam, 'tilal', { ...Z(2), a0: K.tilal - 0.15, on: [K.tilal - 0.1, K.arjan - 0.1], label: ['TILAL', 'AL GHAF'], dx: -150, dy: 120 });
+    mapArea(t, cam, 'arjan', { ...Z(2), a0: K.arjan - 0.15, on: [K.arjan - 0.1, K.motor - 0.1], label: 'ARJAN', dx: -170, dy: -120 });
+    mapArea(t, cam, 'motor', { ...Z(2), a0: K.motor - 0.15, on: [K.motor - 0.1, K.family + 0.4], label: ['MOTOR', 'CITY'], dx: 170, dy: 110 });
+    mapMeasure(t, cam, cen('dhills'), BK, { a0: K.stable - 0.2, a1: K.price2 - 0.3, to: 'BURJ KHALIFA' });
+    mapScale(t, cam, a + 0.4, 0);
   };
   S('z3').top = (t, cam) => {
-    isl(t, cam, 'valley', 3, [[K.valley - 0.15, K.ar3 - 0.1]], ['THE', 'VALLEY']);
-    isl(t, cam, 'ar3', 3, [[K.ar3 - 0.1, K.damac - 0.1]], ['ARABIAN', 'RANCHES 3']);
-    isl(t, cam, 'damac2', 3, [[K.damac - 0.1, K.dland1 - 0.1]], ['DAMAC', 'HILLS 2']);
-    mapPulse(t, cam, DLm[0], DLm[1], 2300, K.dland1, 0);
-    mapDot(t, cam, { lon: DLm[0], lat: DLm[1], a0: K.dland1, text: 'DUBAI LAND', side: 'l', size: 26 });
+    const a = T_Z3[0];
+    mapRoad(t, cam, 'E311', { a0: K.e311b - 0.35, dur: 1.2, hi: 0.6, shields: [[55.30, 25.12], [55.28, 25.10], [55.25, 25.07]] });
+    mapRoad(t, cam, 'E611', { a0: K.e611 - 0.35, dur: 1.2, hi: 0.6, shields: [[55.37, 25.08], [55.35, 25.06], [55.40, 25.10]] });
+    mapBand(t, cam, 'band3', ZC[3][0], { a0: K.e611 + 0.25, dur: 1.2, fill: 0.14, hatch: 0.18 });
+    mapArea(t, cam, 'valley', { ...Z(3), a0: K.valley - 0.2, on: [K.valley - 0.15, K.ar3 - 0.1], label: ['THE', 'VALLEY'], dx: -140, dy: -170 });
+    mapArea(t, cam, 'ar3', { ...Z(3), a0: K.ar3 - 0.15, on: [K.ar3 - 0.1, K.damac - 0.1], label: ['ARABIAN', 'RANCHES 3'], dx: -120, dy: -150 });
+    mapArea(t, cam, 'damac2', { ...Z(3), a0: K.damac - 0.15, on: [K.damac - 0.1, K.dland1 - 0.1], label: ['DAMAC', 'HILLS 2'], dx: -160, dy: 130 });
+    mapPulse(t, cam, DLm[0], DLm[1], 1800, K.dland1, 0);
+    mapLandmark(t, cam, { lon: DLm[0], lat: DLm[1], a0: K.dland1, text: 'DUBAI LAND', icon: 'dot', side: 'l' });
+    mapMeasure(t, cam, cen('damac2'), BK, { a0: K.townh - 0.2, a1: K.price3 - 0.3, to: 'BURJ KHALIFA' });
+    mapScale(t, cam, a + 0.4, 0);
   };
   S('z4').top = (t, cam) => {
-    isl(t, cam, 'majan', 4, [[K.majan - 0.1, K.liwan - 0.1]], 'MAJAN');
-    isl(t, cam, 'liwan', 4, [[K.liwan - 0.1, K.emerging - 0.1]], 'LIWAN');
-    mapPulse(t, cam, DLm[0], DLm[1], 2800, K.emerging - 0.1, 0);
-    mapDot(t, cam, { lon: DLm[0], lat: DLm[1], a0: K.emerging - 0.1, text: 'EMERGING · DUBAI LAND', side: 'r', size: 26 });
+    const a = T_Z4[0];
+    mapRoad(t, cam, 'E311', { a0: a + 0.1, dur: 1.2, alpha: 0.85, shields: [[55.30, 25.12], [55.28, 25.10]] });
+    mapRoad(t, cam, 'E611', { a0: a + 0.3, dur: 1.2, alpha: 0.85, shields: [[55.40, 25.10], [55.37, 25.08]] });
+    mapBand(t, cam, 'band3', ZC[3][0], { a0: a + 0.6, dur: 1.0, fill: 0.1, hatch: 0.12, alpha: 0.8 });
+    mapArea(t, cam, 'majan', { ...Z(4), a0: K.majan - 0.15, on: [K.majan - 0.1, K.liwan - 0.1], label: 'MAJAN', dx: -150, dy: -140 });
+    mapArea(t, cam, 'liwan', { ...Z(4), a0: K.liwan - 0.15, on: [K.liwan - 0.1, K.emerging - 0.1], label: 'LIWAN', dx: 150, dy: 140 });
+    mapPulse(t, cam, DLm[0], DLm[1], 2400, K.emerging - 0.1, 0);
+    mapLandmark(t, cam, { lon: DLm[0], lat: DLm[1], a0: K.emerging - 0.1, text: 'EMERGING · DUBAI LAND', icon: 'dot', side: 'r' });
+    mapMeasure(t, cam, cen('majan'), BK, { a0: K.lower - 0.2, a1: T_Z4[1] - 0.3, to: 'BURJ KHALIFA' });
+    mapScale(t, cam, a + 0.4, 0);
   };
   S('z5').top = (t, cam) => {
-    mapPulse(t, cam, DSO[0], DSO[1], 3200, K.dsouth - 0.2, K.expo - 0.1);
-    mapDot(t, cam, { lon: DSO[0], lat: DSO[1], a0: K.dsouth - 0.1, a1: K.expo - 0.1, text: 'DUBAI SOUTH', side: 'r', size: 26 });
-    isl(t, cam, 'expo', 5, [[K.expo - 0.1, K.maktoum - 0.15]], ['EXPO', 'CITY'], { base: 0.28 });
-    isl(t, cam, 'airport', 5, [[K.maktoum - 0.15, K.palm2 - 0.2]], ['AL MAKTOUM', 'INTL AIRPORT'], { base: 0.16 });
-    mapFlow(t, cam, APT, PJA, K.palm2 - 0.7, 0, { dur: 2.2, bend: 0.12 });
-    mapPulse(t, cam, PJA[0], PJA[1], 2600, K.palm2 - 0.1, 0);
-    mapDot(t, cam, { lon: PJA[0], lat: PJA[1], a0: K.palm2, text: 'PALM JEBEL ALI', side: 'r', size: 26 });
+    const a = T_Z5[0], DS = PT.dubai_south || DSO, PJ = PT.palm_jebel_ali || PJA, JP = PT.jebel_ali_port, AP = cen('airport'), DXB = cen('dxb');
+    mapRoad(t, cam, 'E11', { a0: a + 0.1, dur: 1.4, alpha: 0.85, name: '', shields: [[55.06, 25.0], [55.09, 25.02]] });
+    mapRoad(t, cam, 'E311', { a0: a + 0.35, dur: 1.4, alpha: 0.85, name: '', shields: [[55.115, 24.915], [55.13, 24.93]] });
+    mapRoad(t, cam, 'E611', { a0: a + 0.6, dur: 1.4, alpha: 0.85, name: '', shields: [[55.22, 24.89], [55.20, 24.87]] });
+    mapMetro(t, cam, { a0: K.expo - 0.6, dur: 1.4, from: 0.8, labels: ['Expo City Dubai'] });
+    mapPulse(t, cam, DS[0], DS[1], 2600, K.dsouth - 0.2, K.expo - 0.1);
+    mapLandmark(t, cam, { lon: DS[0], lat: DS[1], a0: K.dsouth - 0.1, a1: K.maktoum - 0.2, text: 'DUBAI SOUTH', icon: 'dot', side: 'r' });
+    mapArea(t, cam, 'expo', { ...Z(5), a0: K.expo - 0.15, on: [K.expo - 0.1, K.maktoum - 0.15], label: ['EXPO', 'CITY'], dx: -170, dy: -150 });
+    mapArea(t, cam, 'airport', { ...Z(5), a0: K.maktoum - 0.2, on: [K.maktoum - 0.15, K.palm2 - 0.2], label: ['AL MAKTOUM', 'INTL AIRPORT'], dx: 150, dy: 150, base: 0.45 });
+    mapLandmark(t, cam, { lon: AP[0], lat: AP[1], a0: K.palm2 - 0.2, text: 'DWC', icon: 'plane', side: 'r' });
+    mapLandmark(t, cam, { lon: JP[0], lat: JP[1], a0: K.palm2 + 0.4, a1: K.major - 0.3, text: 'JEBEL ALI PORT', icon: 'port', side: 'r' });
+    mapPulse(t, cam, PJ[0], PJ[1], 2400, K.palm2 - 0.1, 0);
+    mapLandmark(t, cam, { lon: PJ[0], lat: PJ[1], a0: K.palm2, text: 'PALM JEBEL ALI', icon: 'dot', side: 'r', dy: -36 });
+    mapMeasure(t, cam, AP, PJ, { a0: K.corr2 - 0.1, a1: K.selected - 0.3, to: 'PALM JEBEL ALI', at: 0.62 });
+    mapMeasure(t, cam, AP, DXB, { a0: K.major - 0.1, a1: K.selected - 0.3, to: 'DXB AIRPORT', at: 0.8 });
+    mapScale(t, cam, a + 0.4, 0);
   };
 
   // ---- the price panel: "AED 2,000 – 5,000" counts up as he says the two numbers

@@ -15,6 +15,17 @@ Script as spoken: `script.txt` (editor markup). Nothing is added on screen that 
 | 80 - 83.9 | ask which zone makes sense for your budget | DARK: the five ranges on one scale |
 | 83.9 - 93 | comment CONSULTATION | dark: bubble grows, "consultation" typed, sent, answered "Sending you the details" |
 
+## Map layer v2 (19 Oct 2026) - accurate roads, bands, callouts
+Feedback: the map animation must be accurate and more professional, highlight more, draw more lines. Rebuilt in `mapfx.js` (loaded after `scenes_lib.js`):
+- **The real highways** E11 (Sheikh Zayed Road), E311 (Sheikh Mohammed Bin Zayed Road), E611 (Emirates Road): every named motorway segment from OpenStreetMap (`data/nominatim_roads.py` -> `data/osm/*.json`), joined end to end per carriageway and simplified to 12 m (`data/build_roads.py` -> `roads.json`: 54 / 79 / 87 km). They draw themselves south-west -> north-east with a UAE-style route shield (one per road per view) and the road name.
+- **Zone bands** between the highways (`data/build_bands.py` -> `geo_extra.json` bands): zone 2 = E11-E311, zone 3 = E311-E611, swept in with a tinted, hatched fill.
+- **Communities**: each OSM outline traces itself, fills in the zone colours and gets a callout (leader + plate) while he says it, then stays on the map with a small name tag.
+- **Orientation**: Dubai Metro Red Line Centrepoint -> Expo City Dubai with its 30 stations (OSM relation 420297, `data/build_extra.py`), landmarks (Burj Khalifa, Burj Al Arab, Jebel Ali Port, Dubai South, DWC), "ARABIAN GULF", a scale bar + north arrow, and measured straight-line distances (Dubai Hills -> Burj Khalifa 10.5 km, DAMAC Hills 2 -> Burj Khalifa 25.7 km, Majan -> Burj Khalifa 12.2 km, DWC -> Palm Jebel Ali 21.2 km, DWC -> DXB 44.4 km).
+- Lighter veil (`veil: 'map'`): the ground stays clear, dark only behind the HUD and the captions.
+- QA overlay over the raw imagery: `python3 -I data/check_map.py OUT.png 11` (roads, bands, outlines, metro, landmarks).
+
+**What the accurate map shows about the script** (point-in-zone test against the road lines): of zone 2 ("between E11 and E311") only Dubai Hills and Arjan are actually there - Tilal Al Ghaf and Motor City lie between E311 and E611; of zone 3 ("between E311 and E611") Arabian Ranches 3 and Dubai Land are there - The Valley and DAMAC Hills 2 lie beyond E611. `script_v2.txt` is a corrected script for a new HeyGen take (also fixes the "4,000, 5,000" stumble).
+
 ## Check before posting - his price ranges against the Dubai Land Department record
 The reel shows his numbers. I also pulled the DLD sale transactions (Bayut transaction feed, last 12 months to 16 Oct 2026, median of up to 700 most recent sales per community, AED per sq ft of built-up area; `data/pull_prices.py`, `data/prices.json`). Several communities sit **above** the range he gives for their zone:
 
@@ -48,7 +59,7 @@ The reel shows his numbers. I also pulled the DLD sale transactions (Bayut trans
 Consider correcting the script (or adding "selected properties") before posting; DLD / RERA advertising rules apply to price claims. A `DLD median` overlay (pin labels) can be added to the map beats if wanted.
 
 ## Data and credits
-- Imagery (c) Esri, Maxar, Earthstar Geographics; outlines (c) OpenStreetMap contributors (ODbL) via Nominatim (`outlines.json`: Dubai Marina, JBR, Palm Jumeirah, Downtown, Business Bay, Dubai Hills, Tilal Al Ghaf, Arjan, Motor City, The Valley, Arabian Ranches 3, DAMAC Hills 2, Majan, Liwan, Expo City, Al Maktoum Airport). Dubai Land, Dubai South and Palm Jebel Ali have no usable OSM polygon: pulse + pin at the Bayut community centre (`data/locations.json`). The E11 / E311 / E611 road lines are not drawn (Overpass was unreachable); the HUD names them.
+- Imagery (c) Esri, Maxar, Earthstar Geographics; outlines (c) OpenStreetMap contributors (ODbL) via Nominatim (`outlines.json`: Dubai Marina, JBR, Palm Jumeirah, Downtown, Business Bay, Dubai Hills, Tilal Al Ghaf, Arjan, Motor City, The Valley, Arabian Ranches 3, DAMAC Hills 2, Majan, Liwan, Expo City, Al Maktoum Airport). Dubai Land, Dubai South and Palm Jebel Ali have no usable OSM polygon: pulse + pin at the Bayut community centre (`data/locations.json`). The E11 / E311 / E611 road lines are drawn from OSM since map layer v2 (Nominatim + OSM API; Overpass was unreachable).
 - Prices on screen are his; the DLD table above is from the Bayut transaction feed (DLD records).
 
 ## Rebuild

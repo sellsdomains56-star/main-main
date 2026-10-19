@@ -132,6 +132,7 @@ async function boot() {
   cv.width = Math.round(W * ss); cv.height = Math.round(H * ss); cv.style.width = W + 'px'; cv.style.height = H + 'px'; setCtx(cv.getContext('2d'), ss);
   TL = await (await fetch('timeline.json')).json(); DUR = TL.dur; parseTimeline(TL);
   try { Object.assign(OUTLINES, await (await fetch('outlines.json')).json()); } catch (e) { /* no island outlines in this reel */ }
+  if (typeof loadGeo === 'function') await loadGeo();
   await Promise.all([700, 800].flatMap(w => [document.fonts.load(`${w} 40px "Inter Display"`), document.fonts.load(`${w} 40px "Inter"`)]));
   await loadLogos();
   CFG = buildScenes();
