@@ -1,5 +1,20 @@
 # Arabic version - the new launch near Silicon Oasis (reel 12, blue edit v2)
 
+**Current cut (v4, 20 Oct 2026): no captions, graphics only while he answers.** Feedback: "don't add captions; graphics or animation only when he answers; keep the footage the same". His recording is shown exactly as shot (both camera angles, no crop, no zoom, no name chip, nothing on top) for the intro, his three questions and the call to action; the graphics run only during the three answers. `timeline.json` dur trimmed to 63.9 s (the end card is gone). The v3 scenes are kept in `build/scenes_v3_blue.js` (not committed).
+
+| Time | What he says | Picture |
+|------|--------------|---------|
+| 0 - 11.2 | many complain about townhouse prices; today I brought the solution ... joint venture; **where will the project be?** | FOOTAGE as recorded |
+| 11.1 - 17.9 | answer: Silicon Oasis, near Academic City, crossing the Blue Line | MAP |
+| 17.8 - 25.5 | not announced yet, lots of demand; a clear sign it will succeed | AERIAL + type |
+| 25.5 - 27.1 | **how do I secure a unit with the developer?** | FOOTAGE |
+| 27.1 - 42.3 | answer: many couldn't get the units; the main element is the broker and the company behind him; BK Real Estate Brokerage is one of the developer's distinguished partners | AERIAL + type, BK card, blurred developer pop-up |
+| 42.3 - 44.9 | **what are the expected scenarios?** | FOOTAGE |
+| 44.9 - 54.7 | answer: I prepared a full study from vital data on the developer's own record and its three communities | STUDY p.2 (cover pop-up), STUDY p.5 |
+| 54.6 - 63.9 | write "مشروع" in the comments and I'll send you a copy | FOOTAGE |
+
+Previous cut (v3) below.
+
 67 s vertical reel (1080x1920, 30 fps; 63.5 s of his own recording + 3.5 s end card) from his Arabic recording (WeTransfer 17 Oct 2026, 4K, 25 fps, Gulf Arabic). Engine as `../aldar-dso-reel`, restyled after the feedback "blue, no black, no empty backgrounds, add BK Group and pictures of townhouses, blur Aldar, use the frontal camera angle and put him in the middle, keep it simple":
 
 - **Colour (v3, after the second round of feedback)**: natural imagery, only a light neutral haze; **black glass behind every piece of text** (captions, the HUD title plate, the pop-ups, the comment field); blue only as a small accent (map outline, underline, sub-titles). The dark scrims on his face and the heavy veils are gone. White Arabic text (Cairo bold, right-to-left). **No persistent BK logo; it appears only where he says it.**

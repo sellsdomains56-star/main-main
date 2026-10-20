@@ -17,7 +17,7 @@ function faceF(t) {                                          // 1 on the face be
   return clamp(f);
 }
 function faceZoom(t) {                                       // a slow push over each face beat + a quick punch on key words
-  let z = 1.05;
+  let z = 1.05; if (CFG.STATIC_FACE) return z;                 // CFG.STATIC_FACE: his footage exactly as recorded (no push, no punch)
   for (const [a, b] of CFG.FACE_SEGS) if (t >= a - 0.4 && t <= b + 0.4) z = lerp(1.05, 1.13, prog(t, a, b));
   for (const [t0, am] of CFG.PUNCHES) if (t > t0) z += am * Math.exp(-(t - t0) * 6) * (1 - Math.exp(-(t - t0) * 40));
   return z;
@@ -105,7 +105,7 @@ function draw(t) {
   for (const ov of CFG.OVERLAYS) ov(t);
   if (CFG.BUBBLE) drawBubble(t);
   drawCutSweep(t);
-  drawCaptions(t, F);
+  if (!CFG.NO_CAPTIONS) drawCaptions(t, F);
   drawGrain(Math.round(t * FPS));
   const fa = 1 - ea(t, 0, 0.1, E.out2), fb = ea(t, DUR - 0.22, DUR - 0.02, E.in2), k = Math.max(fa, fb);
   if (k > 0.002) { ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = k; ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W * SS, H * SS); ctx.restore(); }
