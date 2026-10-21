@@ -7,7 +7,7 @@ import { colors } from "../../components/theme";
 import { Avatar, Button, Card, Divider, ListRow, Loading, Row, Screen, Section, T } from "../../components/ui";
 import { useAlerts } from "../../lib/alerts";
 import { useAuth } from "../../lib/auth";
-import { APP_NAME, SHOP_NAME } from "../../lib/config";
+import { APP_NAME, DEMO_DATA, SHOP_NAME } from "../../lib/config";
 import { flag, useLocation } from "../../lib/location";
 
 export default function Account() {
@@ -85,6 +85,13 @@ export default function Account() {
         <ListRow icon="chatbubble-ellipses-outline" title="JB Concierge" subtitle="Ask anything, 24/7" onPress={() => router.push("/assistant")} />
         <ListRow icon="help-circle-outline" title="Help centre" subtitle="FAQs and contact support" onPress={() => router.push("/help")} />
       </Section>
+
+      {!user && DEMO_DATA && (
+        <Section title="Demo">
+          <ListRow icon="cut-outline" title="Try as a barber" subtitle="Dashboard, earnings, services, hours" onPress={() => router.push("/login")} />
+          <ListRow icon="shield-checkmark-outline" title="Try as the JB team" subtitle="The admin panel with sample data" onPress={() => router.push("/login")} />
+        </Section>
+      )}
 
       {!user && (
         <Section title="For barbers">
