@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AppNotification, AssistantAction, Campaign, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Plan, Preferences, Purchase, VenueKind, Order, Reel, ReelComment, Review, Shop, ShopSummary, StyleAdvice, User } from "./types";
+import type { AdminBarberDetail, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, BarberStatus, BusinessDashboard, WorkingHours, AssistantAction, Campaign, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Plan, Preferences, Purchase, VenueKind, Order, Reel, ReelComment, Review, Shop, ShopSummary, StyleAdvice, User } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -186,13 +186,34 @@ export const api = {
     if (!res.ok) throw new ApiError(res.status, data.error ?? "Upload failed.");
     return data;
   },
-  updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties" | "offersConsultations" | "lat" | "lng" | "shopAddress"> & { videoLink: string }>) =>
+  updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties" | "offersConsultations" | "offersHomeVisits" | "homeVisitFee" | "lat" | "lng" | "shopAddress"> & { videoLink: string } & Partial<WorkingHours>>) =>
     request<Barber>("/barbers/me", { method: "PATCH", body }),
   notifications: () => request<{ unread: number; items: AppNotification[] }>("/notifications"),
   markNotificationsRead: (ids?: string[]) => request<void>("/notifications/read", { body: { ids } }),
   addPushToken: (token: string) => request<void>("/me/push-tokens", { body: { token } }),
   removePushToken: (token: string) => request<void>("/me/push-tokens", { method: "DELETE", body: { token } }),
   myBarberSettings: () => request<{ videoLink: string; offersConsultations: boolean }>("/barbers/me/settings"),
+  business: () => request<BusinessDashboard>("/barbers/me/business"),
+  saveServices: (services: { id?: string; name: string; durationMin: number; price: number }[]) => request<Barber>("/barbers/me/services", { method: "PUT", body: { services } }),
+
+  // Admin panel (the JB Always Fresh team)
+  admin: {
+    overview: () => request<AdminOverview>("/admin/overview"),
+    barbers: (f: { status?: string; q?: string }) => request<AdminBarberRow[]>("/admin/barbers" + qs(f)),
+    barber: (id: string) => request<AdminBarberDetail>(`/admin/barbers/${id}`),
+    updateBarber: (id: string, body: { status?: BarberStatus; verified?: boolean }) => request<AdminBarberRow>(`/admin/barbers/${id}`, { method: "PATCH", body }),
+    bookings: (f: { status?: string; q?: string }) => request<AdminBookingRow[]>("/admin/bookings" + qs(f)),
+    cancelBooking: (id: string, reason: string) => request<AdminBookingRow>(`/admin/bookings/${id}/cancel`, { body: { reason } }),
+    customers: (q?: string) => request<AdminCustomerRow[]>("/admin/customers" + qs({ q })),
+    shops: () => request<AdminShopRow[]>("/admin/shops"),
+    orders: () => request<AdminOrderRow[]>("/admin/orders"),
+    reports: () => request<AdminTicket[]>("/admin/reports"),
+    resolveReport: (id: string, action: "remove" | "dismiss") => request<AdminTicket>(`/admin/reports/${id}`, { body: { action } }),
+    tickets: (status: "open" | "closed" | "all") => request<AdminTicket[]>("/admin/tickets" + qs({ status })),
+    updateTicket: (id: string, body: { reply?: string; status?: "open" | "closed" }) => request<AdminTicket>(`/admin/tickets/${id}`, { method: "PATCH", body }),
+    settings: () => request<AdminSettings>("/admin/settings"),
+    updateSettings: (body: Partial<{ platformFeePercent: number; reviewNewBarbers: boolean; hiddenCampaigns: string[] }>) => request<AdminSettings>("/admin/settings", { method: "PATCH", body }),
+  },
   addGalleryPhoto: (url: string, caption: string) => request<Barber>("/barbers/me/gallery", { body: { url, caption } }),
   removeGalleryPhoto: (id: string) => request<Barber>(`/barbers/me/gallery/${id}`, { method: "DELETE" }),
   addTransformation: (beforeUrl: string, afterUrl: string, caption: string) =>

@@ -36,7 +36,7 @@ export function availableSlots(
   now = new Date(),
 ): string[] {
   const weekday = new Date(`${date}T12:00:00Z`).getUTCDay();
-  if (!barber.workingDays.includes(weekday)) return [];
+  if (!barber.workingDays.includes(weekday) || barber.timeOff?.includes(date)) return [];
 
   const taken = bookings
     .filter((b) => b.barberId === barber.id && b.status !== "cancelled")

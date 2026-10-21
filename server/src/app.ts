@@ -3,7 +3,7 @@ import cors from "cors";
 import express, { type ErrorRequestHandler } from "express";
 import { z } from "zod";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { createSession, hashPassword, publicUser, requireAuth, verifyPassword } from "./auth.js";
+import { createSession, hashPassword, isAdmin, optionalAuth, publicUser, requireAuth, verifyPassword } from "./auth.js";
 import { config } from "./config.js";
 import { db, newId, save, UPLOADS_DIR } from "./db.js";
 import { clientSecretFor, createPaymentIntent, demoPayments, paymentSucceeded, refund, stripe } from "./payments.js";
@@ -16,6 +16,8 @@ import { SHOPS } from "./seed.js";
 import { registerAssistantRoutes } from "./routes/assistant.js";
 import { registerNotificationRoutes } from "./routes/notifications.js";
 import { registerPortfolioRoutes } from "./routes/portfolio.js";
+import { registerBusinessRoutes } from "./routes/business.js";
+import { registerAdminRoutes } from "./routes/admin.js";
 import { campaignsFor } from "./campaigns.js";
 import { registerClubRoutes } from "./routes/club.js";
 import { registerReelRoutes, reelView } from "./routes/reels.js";
@@ -24,7 +26,7 @@ import { registerShopRoutes } from "./routes/shops.js";
 import { registerSupportRoutes } from "./routes/support.js";
 import { registerTryOnRoutes } from "./routes/tryon.js";
 import { bookingView, NewBooking, placeBooking } from "./bookings.js";
-import { barberView, cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError, parse } from "./common.js";
+import { barberView, cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError, isLive, parse, reviewNewBarbers } from "./common.js";
 import { availableSlots } from "./slots.js";
 import { upsertSocialUser, verifyIdentityToken } from "./social.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
@@ -118,7 +120,8 @@ export function createApp() {
   // ---------- Campaign banners on Home ----------
   app.get("/campaigns", (req, res) => {
     const { country } = parse(z.object({ country: z.string().optional() }), req.query);
-    res.json(campaignsFor(country).map(({ countries: _c, except: _e, ...c }) => c));
+    const hidden = new Set(db.settings.hiddenCampaigns ?? []);
+    res.json(campaignsFor(country).filter((c) => !hidden.has(c.id)).map(({ countries: _c, except: _e, ...c }) => c));
   });
 
   // ---------- Locations ----------
@@ -150,7 +153,7 @@ export function createApp() {
   app.post("/auth/register", (req, res) => {
     const body = parse(Register, req.body);
     if (db.users.some((u) => u.email === body.email)) throw new HttpError(409, "An account with this email already exists.");
-    const user = { id: newId(), role: "customer" as const, passwordHash: hashPassword(body.password), ...body };
+    const user = { id: newId(), role: "customer" as const, passwordHash: hashPassword(body.password), createdAt: new Date().toISOString(), ...body };
     delete (user as { password?: string }).password;
     db.users.push(user);
     save();
@@ -237,14 +240,17 @@ export function createApp() {
       offersHomeVisits: body.offersHomeVisits, homeVisitFee: body.offersHomeVisits ? Math.round(p * 0.5) : 0,
       yearsExperience: body.yearsExperience, languages: body.languages, gallery: [], transformations: [],
       workingDays: [1, 2, 3, 4, 5, 6], openHour: 9, closeHour: 19, ratingSum: 0, ratingCount: 0,
+      status: reviewNewBarbers() ? "pending" : "live", joinedAt: new Date().toISOString(),
     });
-    const user = { id: newId(), name: body.name, email: body.email, role: "barber" as const, barberId, countryCode: body.countryCode, city: body.city, passwordHash: hashPassword(body.password) };
+    const user = { id: newId(), name: body.name, email: body.email, role: "barber" as const, barberId, countryCode: body.countryCode, city: body.city, passwordHash: hashPassword(body.password), createdAt: new Date().toISOString() };
     db.users.push(user);
     save();
     res.status(201).json({ token: createSession(user.id), user: publicUser(user) });
   });
 
   registerPortfolioRoutes(app);
+  registerBusinessRoutes(app);
+  registerAdminRoutes(app);
   registerNotificationRoutes(app);
   registerSupportRoutes(app);
   registerAssistantRoutes(app);
@@ -289,8 +295,10 @@ export function createApp() {
     res.json(allSpecialties());
   });
 
-  app.get("/barbers/:id", (req, res) => {
-    const barber = getBarber(req.params.id);
+  app.get("/barbers/:id", optionalAuth, (req, res) => {
+    const barber = getBarber(String(req.params.id));
+    // Waiting for approval or suspended: only the barber and the team can see the profile.
+    if (!isLive(barber) && req.user?.barberId !== barber.id && !isAdmin(req.user)) throw new HttpError(404, "Barber not found.");
     const reviews = db.reviews
       .filter((r) => r.barberId === barber.id)
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
@@ -301,6 +309,7 @@ export function createApp() {
 
   app.get("/barbers/:id/availability", (req, res) => {
     const barber = getBarber(req.params.id);
+    if (!isLive(barber)) throw new HttpError(404, "Barber not found.");
     const q = parse(z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), serviceId: z.string() }), req.query);
     const service = findService(barber, q.serviceId);
     if (!service) throw new HttpError(404, "Service not found.");

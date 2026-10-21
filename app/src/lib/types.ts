@@ -33,7 +33,11 @@ export interface Barber {
   gallery: PortfolioPhoto[];
   transformations: Transformation[];
   nextAvailable: string | null;
+  status?: BarberStatus; // pending = waiting for approval, suspended = paused by the team
+  verified?: boolean; // ID and licence checked by the team
 }
+
+export type BarberStatus = "pending" | "live" | "suspended";
 
 export interface PortfolioPhoto {
   id: string;
@@ -68,6 +72,7 @@ export interface User {
   name: string;
   email: string;
   role: "customer" | "barber";
+  admin?: boolean; // on the JB Always Fresh team: can open the admin panel
   barberId?: string;
   countryCode?: string;
   city?: string;
@@ -142,7 +147,7 @@ export type LocationType = "shop" | "home" | "video" | "phone";
 export const CONSULTATION_ID = "consultation";
 export const isConsultation = (b: Pick<Booking, "locationType">) => b.locationType === "video" || b.locationType === "phone";
 
-export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist";
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist" | "account";
 
 /** An alert in the app's inbox (also sent as a push notification on phones). */
 export interface AppNotification {
@@ -359,4 +364,160 @@ export interface Campaign {
   cta: string;
   photoUrl: string;
   link: { pathname: string; params?: Record<string, string> };
+}
+
+/** One sum per currency (amounts in minor units), largest first. */
+export type Money = { currency: string; amount: number }[];
+
+export interface Earnings {
+  count: number;
+  gross: number;
+  fee: number;
+  tips: number;
+  net: number;
+}
+
+export interface WorkingHours {
+  workingDays: number[]; // 0 = Sunday
+  openHour: number;
+  closeHour: number;
+  timeOff: string[]; // YYYY-MM-DD
+}
+
+/** The barber's business dashboard. */
+export interface BusinessDashboard {
+  barber: Barber;
+  status: BarberStatus;
+  verified: boolean;
+  currency: string;
+  feePercent: number;
+  today: Booking[];
+  next: Booking | null;
+  upcomingCount: number;
+  week: { date: string; count: number; working: boolean }[];
+  earnings: { today: Earnings; week: Earnings; month: Earnings };
+  completedThisMonth: number;
+  cancelledThisMonth: number;
+  reviews: Review[];
+  checklist: { key: string; label: string; done: boolean }[];
+  hours: WorkingHours;
+}
+
+// ---------- Admin panel ----------
+
+export interface AdminBookingRow {
+  id: string;
+  startsAt: string;
+  createdAt: string;
+  status: BookingStatus;
+  amount: number;
+  currency: string;
+  fee: number;
+  locationType: LocationType;
+  service: string;
+  barber: { id: string; name: string; photoUrl: string; city: string } | null;
+  customer: { id: string; name: string; email: string } | null;
+  coveredBy: "membership" | null;
+}
+
+export interface AdminBarberRow {
+  id: string;
+  name: string;
+  photoUrl: string;
+  city: string;
+  countryCode: string;
+  status: BarberStatus;
+  verified: boolean;
+  joinedAt: string | null;
+  rating: number | null;
+  ratingCount: number;
+  bookings: number;
+  revenue30: Money;
+  email: string | null;
+  shop: { id: string; name: string } | null;
+  profileDone: number;
+  profileTotal: number;
+}
+
+export interface AdminBarberDetail extends AdminBarberRow {
+  profile: Barber;
+  checklist: { key: string; label: string; done: boolean }[];
+  hours: WorkingHours;
+  stats: { paid: number; completed: number; cancelled: number; revenue: Money; reels: number; reports: number };
+  recent: AdminBookingRow[];
+}
+
+export interface AdminOverview {
+  feePercent: number;
+  bookings: { today: number; last7: number; last30: number; upcoming: number; cancelled30: number };
+  revenue30: { bookings: Money; fees: Money; hires: Money; shop: Money; clubAndGifts: Money };
+  customers: { total: number; new7: number; members: number };
+  barbers: { live: number; pending: number; suspended: number; total: number };
+  pendingBarbers: AdminBarberRow[];
+  openTickets: number;
+  openReports: number;
+  ordersToShip: number;
+  series: { date: string; count: number }[];
+  recent: AdminBookingRow[];
+}
+
+export interface AdminCustomerRow {
+  id: string;
+  name: string;
+  email: string;
+  city?: string;
+  createdAt?: string;
+  bookings: number;
+  cancelled: number;
+  spent: Money;
+  member: PlanId | null;
+  lastBooking: string | null;
+}
+
+export interface AdminShopRow {
+  id: string;
+  name: string;
+  city: string;
+  address: string;
+  photoUrl: string;
+  team: { id: string; name: string; photoUrl: string; status: BarberStatus }[];
+  bookings30: number;
+  hires: number;
+  deliveries: number;
+  privateHire: boolean;
+  delivery: boolean;
+}
+
+export interface AdminOrderRow {
+  id: string;
+  createdAt: string;
+  status: Order["status"];
+  amount: number;
+  currency: string;
+  fulfilment: "shipping" | "delivery";
+  items: number;
+  customer: { name: string; email: string } | null;
+  shop: { id: string; name: string } | null;
+  address: string;
+}
+
+export interface AdminTicket {
+  id: string;
+  userId?: string;
+  name: string;
+  email: string;
+  topic: string;
+  message: string;
+  status: "open" | "closed";
+  createdAt: string;
+  reelId?: string;
+  replies?: { at: string; by: string; text: string }[];
+  reel: { id: string; caption: string; posterUrl: string | null; videoUrl: string; barber: { id: string; name: string } | null } | null;
+  reelRemoved: boolean;
+}
+
+export interface AdminSettings {
+  platformFeePercent: number;
+  reviewNewBarbers: boolean;
+  campaigns: { id: string; eyebrow: string; title: string; photoUrl: string; countries: string[] | null; except: string[] | null; hidden: boolean }[];
 }

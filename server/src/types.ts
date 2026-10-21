@@ -47,6 +47,21 @@ export interface Barber {
   ratingSum: number;
   ratingCount: number;
   shopId?: string; // the barbershop they work at; independent barbers have none
+  /** pending = waiting for the team to approve (hidden), live = bookable, suspended = hidden by the team. Missing = live. */
+  status?: BarberStatus;
+  verified?: boolean; // ID and trade licence checked by the team: shows a "Verified" badge
+  timeOff?: string[]; // local dates (YYYY-MM-DD) the barber isn't working
+  joinedAt?: string; // ISO
+  pinSetAt?: string; // when the barber last placed their exact pin
+}
+
+export type BarberStatus = "pending" | "live" | "suspended";
+
+/** Settings the team changes from the admin panel (otherwise the server's defaults apply). */
+export interface Settings {
+  platformFeePercent?: number;
+  reviewNewBarbers?: boolean; // new barbers wait for approval before they appear
+  hiddenCampaigns?: string[]; // campaign ids switched off on Home
 }
 
 /** A barbershop: its team are the barbers with this `shopId`. */
@@ -107,6 +122,7 @@ export interface Transformation {
 
 export interface User {
   id: string;
+  createdAt?: string; // ISO (accounts from before this field have none)
   name: string;
   email: string;
   passwordHash: string;
@@ -171,7 +187,7 @@ export interface Booking {
   createdAt: string;
 }
 
-export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist";
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist" | "account";
 
 /** An alert shown in the app's inbox and, when the user has a phone registered, sent as a push notification. */
 export interface AppNotification {
@@ -270,6 +286,8 @@ export interface SupportTicket {
   bookingId?: string;
   source: "form" | "assistant";
   status: "open" | "closed";
+  reelId?: string; // a reported reel, for the moderation queue
+  replies?: { at: string; by: string; text: string }[]; // the team's replies and notes
   createdAt: string;
 }
 

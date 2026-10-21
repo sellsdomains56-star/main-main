@@ -43,10 +43,19 @@ export default function Account() {
 
       {user?.role === "barber" && user.barberId && (
         <Section title="Your business">
-          <ListRow icon="images-outline" title="My work" subtitle="Profile photo, portfolio, before & afters" onPress={() => router.push("/portfolio")} />
+          <ListRow icon="speedometer-outline" title="Dashboard" subtitle="Today's chairs, earnings, reviews" onPress={() => router.push("/business")} />
+          <ListRow icon="pricetags-outline" title="Services & prices" subtitle="What you offer, how long, how much; home visits" onPress={() => router.push("/business/services")} />
+          <ListRow icon="time-outline" title="Hours & days off" subtitle="Working days, opening hours, holidays" onPress={() => router.push("/business/hours")} />
+          <ListRow icon="images-outline" title="My work" subtitle="Photo, bio, portfolio, before & afters" onPress={() => router.push("/portfolio")} />
           <ListRow icon="videocam-outline" title="Post a reel" subtitle="Show off your latest cut" onPress={() => router.push("/post-reel")} />
           <ListRow icon="person-circle-outline" title="My public profile" subtitle="Services, reels and reviews" onPress={() => router.push({ pathname: "/barber/[id]", params: { id: user.barberId! } })} />
           <ListRow icon="calendar-outline" title="Appointments" onPress={() => router.push("/bookings")} />
+        </Section>
+      )}
+
+      {user?.admin && (
+        <Section title="JB team">
+          <ListRow icon="shield-checkmark-outline" title="Admin panel" subtitle="Approve barbers, bookings & refunds, support, settings" onPress={() => router.push("/admin")} />
         </Section>
       )}
 

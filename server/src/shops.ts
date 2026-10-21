@@ -16,7 +16,7 @@ export function getShop(id: string): Shop {
 
 export const shopTimeZone = (shop: Shop) => findCountry(shop.countryCode)!.cities.find((c) => c.name === shop.city)!.timeZone;
 export const shopCurrency = (shop: Shop) => findCountry(shop.countryCode)!.currency;
-export const shopTeam = (shop: Shop): Barber[] => db.barbers.filter((b) => b.shopId === shop.id);
+export const shopTeam = (shop: Shop): Barber[] => db.barbers.filter((b) => b.shopId === shop.id && (b.status ?? "live") === "live");
 
 /** Services as one menu for "any barber": grouped by name, priced from the cheapest barber. */
 export function shopMenu(shop: Shop) {

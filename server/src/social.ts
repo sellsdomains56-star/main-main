@@ -53,6 +53,7 @@ export function upsertSocialUser(id: SocialIdentity, name?: string): User {
       email: id.email,
       passwordHash: hashPassword(randomBytes(24).toString("hex")), // no password; they sign in with Apple/Google
       role: "customer",
+      createdAt: new Date().toISOString(),
       [key]: id.sub,
     };
     db.users.push(user);

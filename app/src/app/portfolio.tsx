@@ -18,6 +18,8 @@ export default function Portfolio() {
   const [barber, setBarber] = useState<Barber | null>(null);
   const [years, setYears] = useState("");
   const [languages, setLanguages] = useState("");
+  const [bio, setBio] = useState("");
+  const [specialties, setSpecialties] = useState("");
   const [meetLink, setMeetLink] = useState("");
   const [consults, setConsults] = useState(true);
   const [savedNote, setSavedNote] = useState<string | null>(null);
@@ -34,6 +36,8 @@ export default function Portfolio() {
       setBarber(b);
       setYears(b.yearsExperience ? String(b.yearsExperience) : "");
       setLanguages(b.languages.join(", "));
+      setBio(b.bio);
+      setSpecialties(b.specialties.join(", "));
       setAddress(b.shopAddress);
     }, (e: Error) => setError(e.message));
     api.myBarberSettings().then((s) => {
@@ -86,7 +90,9 @@ export default function Portfolio() {
         </Row>
       </Section>
 
-      <Section title="Experience">
+      <Section title="About you">
+        <Field label="Short bio" value={bio} onChangeText={setBio} multiline maxLength={400} placeholder="e.g. Precision fades and beard sculpting. Ten years behind the chair in Beirut and Dubai." />
+        <Field label="Specialties" value={specialties} onChangeText={setSpecialties} placeholder="e.g. skin fade, beard, curly hair" />
         <Field label="Years of experience" value={years} onChangeText={setYears} keyboardType="number-pad" placeholder="e.g. 8" />
         <Field label="Languages you speak" value={languages} onChangeText={setLanguages} placeholder="e.g. English, Arabic, French" />
         <Button
@@ -94,6 +100,8 @@ export default function Portfolio() {
           size="md"
           loading={busy === "details"}
           onPress={() => run("details", () => api.updateMyBarber({
+            bio: bio.trim(),
+            specialties: specialties.split(",").map((t) => t.trim()).filter(Boolean).slice(0, 8),
             yearsExperience: Math.max(0, Math.min(70, parseInt(years, 10) || 0)),
             languages: languages.split(",").map((l) => l.trim()).filter(Boolean),
           }))}

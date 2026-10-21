@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { z } from "zod";
 import { requireAuth } from "../auth.js";
 import { bookingView, placeBooking } from "../bookings.js";
-import { HttpError, parse } from "../common.js";
+import { HttpError, parse, platformFee } from "../common.js";
 import { config } from "../config.js";
 import { db, newId, save } from "../db.js";
 import { hireCancelled, hireConfirmed } from "../notify.js";
@@ -95,7 +95,7 @@ export function registerShopRoutes(app: Express) {
       amount: terms.pricePerHour * body.hours, currency: shopCurrency(shop), status: "pending_payment", createdAt: new Date().toISOString(),
     };
     const intent = await createPaymentIntent(`hire-${hire.id}`, hire.amount, hire.currency, {
-      kind: "hire", hireId: hire.id, shopId: shop.id, platformFee: String(Math.round((hire.amount * config.platformFeePercent) / 100)),
+      kind: "hire", hireId: hire.id, shopId: shop.id, platformFee: String(platformFee(hire.amount)),
     });
     hire.paymentIntentId = intent?.id;
     db.hires.push(hire);

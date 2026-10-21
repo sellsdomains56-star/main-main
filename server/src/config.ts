@@ -28,4 +28,10 @@ export const config = {
   appleAudiences: [process.env.APPLE_BUNDLE_ID || "com.alwaysfresh.app", process.env.APPLE_SERVICE_ID].filter((a): a is string => !!a),
   // Sign in with Google: OAuth client IDs (web, iOS, Android), comma-separated.
   googleClientIds: (process.env.GOOGLE_CLIENT_IDS ?? "").split(",").map((s) => s.trim()).filter(Boolean),
+  // The team: anyone who signs in with one of these emails gets the admin panel.
+  adminEmails: (process.env.ADMIN_EMAILS ?? "").split(",").map((s) => s.trim().toLowerCase()).filter(Boolean),
+  // New barbers wait for the team's approval before they appear (switchable in the admin panel).
+  reviewNewBarbers: process.env.REVIEW_NEW_BARBERS ? process.env.REVIEW_NEW_BARBERS === "true" : process.env.NODE_ENV !== "test",
+  // Sample logins and bookings for trying the barber side and the admin panel. Never in production.
+  demoAccounts: process.env.DEMO_ACCOUNTS === "1",
 };

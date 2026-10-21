@@ -70,8 +70,16 @@ export default function BarberProfile() {
       <Stack.Screen options={{ title: "" }} />
       <View style={{ alignItems: "center" }}>
         <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 112, height: 112 }} rounded={56} />
-        <T variant="title" style={{ marginTop: 14 }}>{barber.name}</T>
-        <T variant="caption" muted style={{ marginTop: 2 }}>{flag(barber.countryCode)} {barber.city}, {barber.countryName}</T>
+        <Row gap={6} style={{ marginTop: 14 }}>
+          <T variant="title">{barber.name}</T>
+          {barber.verified && <Ionicons name="shield-checkmark" size={18} color={colors.text} accessibilityLabel="Verified by JB" />}
+        </Row>
+        <T variant="caption" muted style={{ marginTop: 2 }}>{flag(barber.countryCode)} {barber.city}, {barber.countryName}{barber.verified ? " · Verified by JB" : ""}</T>
+        {isMe && barber.status && barber.status !== "live" && (
+          <Pressable onPress={() => router.push("/business")} style={{ marginTop: 10 }}>
+            <Tag label={barber.status === "pending" ? "In review — only you can see this" : "Paused — customers can't see this"} tone={barber.status === "pending" ? "neutral" : "danger"} icon={barber.status === "pending" ? "time-outline" : "pause"} />
+          </Pressable>
+        )}
       </View>
 
       <Row gap={10} style={{ marginTop: 18 }}>

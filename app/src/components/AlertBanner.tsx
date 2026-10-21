@@ -21,6 +21,7 @@ export const ALERT_ICON: Record<NotificationKind, keyof typeof Ionicons.glyphMap
   gift: "gift-outline",
   tip: "heart-outline",
   waitlist: "time-outline",
+  account: "shield-checkmark-outline",
 };
 
 /**

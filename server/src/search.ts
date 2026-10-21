@@ -1,5 +1,5 @@
 import { busy } from "./busy.js";
-import { availableToday, barberView, cityOf, findCountry } from "./common.js";
+import { availableToday, barberView, cityOf, findCountry, isLive } from "./common.js";
 import { db } from "./db.js";
 import { availableSlots } from "./slots.js";
 import type { Barber } from "./types.js";
@@ -39,6 +39,7 @@ function freeOn(b: Barber, date: string) {
 export function searchBarbers(f: BarberFilters) {
   const list = db.barbers.filter(
     (b) =>
+      isLive(b) &&
       (!f.country || b.countryCode === f.country) &&
       (!f.city || b.city.toLowerCase() === f.city.toLowerCase()) &&
       (!f.specialties?.length || f.specialties.some((s) => b.specialties.includes(s))) &&

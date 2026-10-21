@@ -1,5 +1,6 @@
 import { busy } from "./busy.js";
 import { z } from "zod";
+import { config } from "./config.js";
 import { db } from "./db.js";
 import { COUNTRIES, SHOPS } from "./seed.js";
 import { availableSlots } from "./slots.js";
@@ -12,6 +13,16 @@ export class HttpError extends Error {
 }
 
 export const findCountry = (code: string) => COUNTRIES.find((c) => c.code === code);
+
+/** Bookable and listed: approved by the team and not suspended. */
+export const isLive = (b: Barber) => (b.status ?? "live") === "live";
+
+/** The platform fee in percent: the admin panel's setting, else PLATFORM_FEE_PERCENT. */
+export const platformFeePercent = () => db.settings.platformFeePercent ?? config.platformFeePercent;
+export const platformFee = (amount: number) => Math.round((amount * platformFeePercent()) / 100);
+
+/** Whether new barbers wait for the team's approval before they appear. */
+export const reviewNewBarbers = () => db.settings.reviewNewBarbers ?? config.reviewNewBarbers;
 
 export function cityOf(barber: Barber) {
   const city = findCountry(barber.countryCode)?.cities.find((c) => c.name === barber.city);
@@ -67,6 +78,8 @@ export function barberView(b: Barber) {
     gallery: b.gallery,
     transformations: b.transformations,
     nextAvailable: nextAvailable(b),
+    status: b.status ?? "live",
+    verified: !!b.verified,
   };
 }
 

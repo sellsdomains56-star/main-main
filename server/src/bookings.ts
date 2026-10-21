@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { busy } from "./busy.js";
-import { cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError } from "./common.js";
-import { config } from "./config.js";
+import { cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError, isLive, platformFee } from "./common.js";
 import { db, newId, save } from "./db.js";
 import { applyPerks, priceBooking } from "./club.js";
 import { bookingConfirmed } from "./notify.js";
@@ -45,6 +44,7 @@ export const NewBooking = z.object({
 /** Checks the slot is still free, stores the booking and starts the payment (free consultations confirm straight away). */
 export async function placeBooking(customerId: string, body: z.infer<typeof NewBooking>): Promise<{ booking: Booking; clientSecret: string | null }> {
   const barber = getBarber(body.barberId);
+  if (!isLive(barber)) throw new HttpError(404, "Barber not found.");
   const service = findService(barber, body.serviceId);
   if (!service) throw new HttpError(404, "Service not found.");
   const consultation = service.id === CONSULTATION.id;
@@ -97,7 +97,7 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
     kind: "booking",
     bookingId: booking.id,
     barberId: booking.barberId,
-    platformFee: String(Math.round((booking.amount * config.platformFeePercent) / 100)),
+    platformFee: String(platformFee(booking.amount)),
   });
   booking.paymentIntentId = intent?.id;
   db.bookings.push(booking);

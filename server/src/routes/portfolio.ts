@@ -42,6 +42,12 @@ export function registerPortfolioRoutes(app: Express) {
         offersConsultations: z.boolean().optional(),
         lat: z.number().min(-90).max(90).optional(), // the shop's pin on the map
         lng: z.number().min(-180).max(180).optional(),
+        // Working hours: days of the week (0 = Sunday), opening and closing hour in local time, days off.
+        workingDays: z.array(z.number().int().min(0).max(6)).max(7).optional(),
+        openHour: z.number().int().min(0).max(23).optional(),
+        closeHour: z.number().int().min(1).max(24).optional(),
+        timeOff: z.array(z.string().regex(/^\d{4}-\d{2}-\d{2}$/)).max(120).optional(),
+        homeVisitFee: z.number().int().min(0).max(10_000_000).optional(), // minor units
         videoLink: z
           .string()
           .trim()
@@ -51,7 +57,13 @@ export function registerPortfolioRoutes(app: Express) {
       }),
       req.body,
     );
+    const open = body.openHour ?? barber.openHour;
+    const close = body.closeHour ?? barber.closeHour;
+    if (close - open < 1) throw new HttpError(400, "Closing time must be after opening time.");
+    if (body.workingDays && !body.workingDays.length) throw new HttpError(400, "Pick at least one working day.");
+    if (body.timeOff) body.timeOff = [...new Set(body.timeOff)].sort();
     Object.assign(barber, body);
+    if (body.lat !== undefined || body.lng !== undefined) barber.pinSetAt = new Date().toISOString();
     save();
     res.json({ ...barberView(barber), videoLink: barber.videoLink ?? "" });
   });

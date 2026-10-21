@@ -39,7 +39,7 @@ export function registerReelRoutes(app: Express) {
     const barbersById = new Map(db.barbers.map((b) => [b.id, b]));
     const list = db.reels.filter((r) => {
       const b = barbersById.get(r.barberId);
-      return b && (!q.barberId || b.id === q.barberId) && (!q.country || b.countryCode === q.country) && (!q.city || b.city === q.city);
+      return b && (b.status ?? "live") === "live" && (!q.barberId || b.id === q.barberId) && (!q.country || b.countryCode === q.country) && (!q.city || b.city === q.city);
     });
     // Newest first, with a boost for popular reels.
     const score = (r: Reel) => Date.parse(r.createdAt) / 3_600_000 + Math.log1p(r.likedBy.length) * 24;
@@ -128,7 +128,7 @@ export function registerReelRoutes(app: Express) {
   app.post("/reels/:id/report", requireAuth, (req, res) => {
     const reel = getReel(String(req.params.id));
     const { reason } = parse(z.object({ reason: z.string().trim().min(1).max(200) }), req.body);
-    createTicket({ userId: req.user!.id, name: req.user!.name, email: req.user!.email, topic: "other", message: `Reported reel ${reel.id} by ${getBarber(reel.barberId).name}: ${reason}`, source: "form" });
+    createTicket({ userId: req.user!.id, name: req.user!.name, email: req.user!.email, topic: "other", message: `Reported reel by ${getBarber(reel.barberId).name}: ${reason}`, source: "form", reelId: reel.id });
     res.status(201).json({ ok: true });
   });
 
