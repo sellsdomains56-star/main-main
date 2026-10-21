@@ -50,6 +50,14 @@ Design: minimal black and white (off-white page, black type and panels, real bar
 - **AI Hairstyle Try-On:** upload a selfie → Claude analyses face shape, hair type and current cut and recommends haircuts, fades, colours and beard styles with exact "tell your barber" words → **OpenAI image editing renders each look on your own photo** (compare with a slider, or describe your own idea) → **Find barbers for this look** searches barbers with that specialty. Photos are not stored.
 - **JB Concierge (Claude):** a chat assistant that searches barbers worldwide, explains profiles and prices, checks availability, shows your bookings, prepares a booking for you to confirm and pay (it never books or charges on its own), answers policy questions from the help centre, and opens support tickets. Conversations are kept server-side, append-only.
 
+### For barbers
+- Same app, same sign-in. A barber account gets **Your business** in Account: a **dashboard** (today's clients with *On my way* / *Mark done*, earnings today / this week / this month after the JB fee and tips, the next 7 days, reviews, a profile checklist), **Services & prices** (add, rename, remove, duration, price, home visits and travel fee), **Hours & days off** (working days, opening hours, tap dates on a calendar to take them off) and **My work** (photo, bio, specialties, portfolio, before-and-afters, map pin).
+- New barbers start **in review** (hidden from customers) until the team approves them, when `REVIEW_NEW_BARBERS` is on (default outside tests; the admin panel can switch it).
+
+### For the team: admin panel
+- `/admin` on the website (sidebar on a laptop, tabs on a phone), for emails listed in `ADMIN_EMAILS`; the API checks `requireAdmin` on every call.
+- **Overview** (fees, bookings, barbers, customers, 14-day chart, what needs attention), **Barbers** (approve, verify, pause, reinstate), **Bookings** (search, cancel with a full refund and alerts to both sides), **Customers**, **Shops & orders**, **Reported reels** (remove or keep), **Support** (reply and close), **Settings** (JB fee, new-barber review, home banners).
+
 ### Support & shop
 - **Help centre:** searchable FAQ, a contact form that creates support tickets, and the concierge 24/7.
 - **JB's Fresh shop:** "Buy all JB's Fresh products" with local-currency prices, cart, delivery and the same checkout.
@@ -76,6 +84,8 @@ npm install
 cp .env.example .env      # set EXPO_PUBLIC_API_URL, optional Stripe publishable key
 npx expo start            # press w for the website, scan the QR code for your phone
 ```
+
+Sample logins: start the API with `DEMO_ACCOUNTS=1` to seed a team account (`admin@demo.jbalwaysfresh.com` / `jb-team-demo`), a barber (`mateo@demo.jbalwaysfresh.com` / `jb-barber-demo`) with a month of bookings, two barbers waiting for approval, support tickets and a reported reel. Never set it in production. For real team access, list emails in `ADMIN_EMAILS`.
 
 On a physical phone, set `EXPO_PUBLIC_API_URL` to your computer's LAN IP (e.g. `http://192.168.1.20:4000`), not `localhost`.
 
