@@ -69,6 +69,8 @@ Design: minimal black and white (off-white page, black type and panels, real bar
 
 ## Tester link (Netlify)
 
+**Live tester link: https://jb-always-fresh.netlify.app** (Netlify site `jb-always-fresh`; preview deploys stay behind the team login).
+
 `node app/scripts/build-netlify.mjs` builds the same demo as a website for testers in `app/dist-netlify`: on a phone, open the link and **Add to Home Screen** — it opens full screen with the app's icon, like an installed app. Two ways to publish it:
 
 - **Connected to GitHub (recommended):** in Netlify, *Add new site → Import an existing project → GitHub*, pick this repository and the branch to publish. `netlify.toml` holds the build settings, and every push updates the tester link.
