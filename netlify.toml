@@ -1,0 +1,14 @@
+# Netlify builds the tester demo of the app from this repository (see README → "Tester link").
+[build]
+  base = "app"
+  command = "npm ci --prefix ../server && node scripts/build-netlify.mjs"
+  publish = "dist-netlify"
+
+[build.environment]
+  NODE_VERSION = "22"
+  EXPO_OFFLINE = "1"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"

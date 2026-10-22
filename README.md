@@ -67,6 +67,15 @@ Design: minimal black and white (off-white page, black type and panels, real bar
 
 `node app/scripts/build-demo-page.mjs out.html` builds the website as one self-contained page (code, fonts, icons, demo media and seed data inlined) that runs with an in-browser demo server (`app/src/lib/demo/server.ts`) instead of the API — bookings, reviews, reels likes, shop orders and support tickets are kept on the viewer's device and payments are simulated. Published as a claude.ai Artifact with the `sample` capability, the concierge and the AI stylist's photo analysis run on the viewer's Claude; try-on picture previews need the real server's OpenAI connection.
 
+## Tester link (Netlify)
+
+`node app/scripts/build-netlify.mjs` builds the same demo as a website for testers in `app/dist-netlify`: on a phone, open the link and **Add to Home Screen** — it opens full screen with the app's icon, like an installed app. Two ways to publish it:
+
+- **Connected to GitHub (recommended):** in Netlify, *Add new site → Import an existing project → GitHub*, pick this repository and the branch to publish. `netlify.toml` holds the build settings, and every push updates the tester link.
+- **With a token:** set `NETLIFY_AUTH_TOKEN` (and, after the first upload, `NETLIFY_SITE_ID`), then `NODE_USE_ENV_PROXY=1 node app/scripts/deploy-netlify.mjs`. It prints the link.
+
+The AI concierge and try-on need the real server (or the claude.ai demo page); everything else runs on sample data in the browser.
+
 ## Run it locally
 
 Requirements: Node 20+.
