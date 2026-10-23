@@ -22,3 +22,10 @@ NODE_PATH=$(npm root -g) node src/check_overflow.mjs study.html   # every page m
 - Haven/Athlon unit counts and buyer shares come from news-agency copies of Aldar's releases; The Wilds figures are from Aldar's own release PDF (5 Mar 2025).
 - Sobha Hartland, Mudon, Nad Al Sheba, Dubai Hills Estate record under other categories and are not in the data set. Emaar's luxury The Oasis is context only.
 - Not investment advice; check advertising rules (permit number, disclaimers) before using any of this publicly.
+
+## Arabic version (23 Oct 2026)
+`Aldar_Dubai_Townhouse_Study_AR.pdf` (16 pages, same layout, numbers and charts; right-to-left; IBM Plex Sans Arabic in `fonts_ar/`, OFL, with Inter for digits).
+- `src_ar/pages/pages_ar_1..4.html`: the translated pages (tags identical to the English `study.html`), glossary in `src_ar/pages/GLOSSARY.md`. Please have a native speaker read it before publishing.
+- `src_ar/charts_ar.py charts charts_ar`: Arabic copies of the SVG charts (every label translated; Arabic labels right-to-left with mirrored anchors; signed numbers, ranges and chains kept left-to-right).
+- `python3 src_ar/map_ar.py data charts_ar <tile_cache> <plex-arabic-700.ttf>`: the locator map with Arabic labels (matplotlib 3.11 shapes Arabic itself). The TTF is converted from `fonts_ar/plex-arabic-700.woff2` with fontTools.
+- `src_ar/build_ar.py study.html src_ar/pages study_ar.html` then `node src/print_pdf.mjs study_ar.html Aldar_Dubai_Townhouse_Study_AR.pdf`; `node src/check_overflow.mjs study_ar.html` must report every page ok.

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="479.72675pt" height="207.988128pt" viewBox="0 0 479.72675 207.988128" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-16T17:14:54.587010</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 207.988128 
+L 479.72675 207.988128 
+L 479.72675 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 88.94675 170.4168 
+L 473.96675 170.4168 
+L 473.96675 5.76 
+L 88.94675 5.76 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 88.94675 170.4168 
+L 88.94675 5.76 
+" clip-path="url(#p182b764fd4)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="ma8cd5ffa3a" d="M 0 0 
+L 0 3.5 
+" style="stroke: #52514e; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#ma8cd5ffa3a" x="88.94675" y="170.4168" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 8.6px; font-family: 'Inter'; text-anchor: middle; fill: #52514e" x="88.94675" y="185.74805" transform="rotate(-0 88.94675 185.74805)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 147.283114 170.4168 
+L 147.283114 5.76 
+" clip-path="url(#p182b764fd4)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#ma8cd5ffa3a" x="147.283114" y="170.4168" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 8.6px; font-family: 'Inter'; text-anchor: middle; fill: #52514e" x="147.283114" y="185.74805" transform="rotate(-0 147.283114 185.74805)">5</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 205.619477 170.4168 
+L 205.619477 5.76 
+" clip-path="url(#p182b764fd4)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#ma8cd5ffa3a" x="205.619477" y="170.4168" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 8.6px; font-family: 'Inter'; text-anchor: middle; fill: #52514e" x="205.619477" y="185.74805" transform="rotate(-0 205.619477 185.74805)">10</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 263.955841 170.4168 
+L 263.955841 5.76 
+" clip-path="url(#p182b764fd4)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#ma8cd5ffa3a" x="263.955841" y="170.4168" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 8.6px; font-family: 'Inter'; text-anchor: middle; fill: #52514e" x="263.955841" y="185.74805" transform="rotate(-0 263.955841 185.74805)">15</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 322.292205 170.4168 
+L 322.292205 5.76 
+" clip-path="url(#p182b764fd4)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#ma8cd5ffa3a" x="322.292205" y="170.4168" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 8.6px; font-family: 'Inter'; text-anchor: middle; fill: #52514e" x="322.292205" y="185.74805" transform="rotate(-0 322.292205 185.74805)">20</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 380.628568 170.4168 
+L 380.628568 5.76 
+" clip-path="url(#p182b764fd4)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#ma8cd5ffa3a" x="380.628568" y="170.4168" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 8.6px; font-family: 'Inter'; text-anchor: middle; fill: #52514e" x="380.628568" y="185.74805" transform="rotate(-0 380.628568 185.74805)">25</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_13">
+      <path d="M 438.964932 170.4168 
+L 438.964932 5.76 
+" clip-path="url(#p182b764fd4)" style="fill: none; stroke: #e6e5e0; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#ma8cd5ffa3a" x="438.964932" y="170.4168" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 8.6px; font-family: 'Inter'; text-anchor: middle; fill: #52514e" x="438.964932" y="185.74805" transform="rotate(-0 438.964932 185.74805)">30</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="direction: rtl; unicode-bidi: embed; font-size: 8.6px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: middle; fill: #52514e" x="281.45675" y="200.153714" transform="rotate(-0 281.45675 200.153714)">التغير في وسيط سعر إعادة البيع (درهم/قدم²)، آخر 12 شهراً مقارنة بالـ12 شهراً السابقة</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_15"/>
+     <g id="text_9">
+      <text style="direction: rtl; unicode-bidi: embed; font-size: 8.8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: start; fill: #52514e" x="85.44675" y="161.46805" transform="rotate(-0 85.44675 161.46805)">هافن</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_16"/>
+     <g id="text_10">
+      <text style="direction: rtl; unicode-bidi: embed; font-size: 8.8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: start; fill: #52514e" x="85.44675" y="141.720293" transform="rotate(-0 85.44675 141.720293)">أثلون</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_17"/>
+     <g id="text_11">
+      <text style="direction: rtl; unicode-bidi: embed; font-size: 8.8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: start; fill: #52514e" x="85.44675" y="121.972536" transform="rotate(-0 85.44675 121.972536)">واحة دبي للسيليكون</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_18"/>
+     <g id="text_12">
+      <text style="direction: rtl; unicode-bidi: embed; font-size: 8.8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: start; fill: #52514e" x="85.44675" y="102.224779" transform="rotate(-0 85.44675 102.224779)">دبي الجنوب</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_19"/>
+     <g id="text_13">
+      <text style="direction: rtl; unicode-bidi: embed; font-size: 8.8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: start; fill: #52514e" x="85.44675" y="82.477021" transform="rotate(-0 85.44675 82.477021)">تلال الغاف</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_20"/>
+     <g id="text_14">
+      <text style="direction: rtl; unicode-bidi: embed; font-size: 8.8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: start; fill: #52514e" x="85.44675" y="62.729264" transform="rotate(-0 85.44675 62.729264)">داماك لاجونز</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_21"/>
+     <g id="text_15">
+      <text style="direction: rtl; unicode-bidi: embed; font-size: 8.8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: start; fill: #52514e" x="85.44675" y="42.981507" transform="rotate(-0 85.44675 42.981507)">المرابع العربية 3</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_22"/>
+     <g id="text_16">
+      <text style="direction: rtl; unicode-bidi: embed; font-size: 8.8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: start; fill: #52514e" x="85.44675" y="23.23375" transform="rotate(-0 85.44675 23.23375)">ذا فالي</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 88.94675 162.9324 
+L 125.785105 162.9324 
+L 125.785105 151.478701 
+L 88.94675 151.478701 
+z
+" clip-path="url(#p182b764fd4)" style="fill: #2a78d6"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 88.94675 143.184643 
+L 139.453318 143.184643 
+L 139.453318 131.730944 
+L 88.94675 131.730944 
+z
+" clip-path="url(#p182b764fd4)" style="fill: #2a78d6"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 88.94675 123.436885 
+L 168.683512 123.436885 
+L 168.683512 111.983186 
+L 88.94675 111.983186 
+z
+" clip-path="url(#p182b764fd4)" style="fill: #85847e"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 88.94675 103.689128 
+L 182.750773 103.689128 
+L 182.750773 92.235429 
+L 88.94675 92.235429 
+z
+" clip-path="url(#p182b764fd4)" style="fill: #85847e"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 88.94675 83.941371 
+L 199.441201 83.941371 
+L 199.441201 72.487672 
+L 88.94675 72.487672 
+z
+" clip-path="url(#p182b764fd4)" style="fill: #6250d6"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 88.94675 64.193614 
+L 221.55008 64.193614 
+L 221.55008 52.739915 
+L 88.94675 52.739915 
+z
+" clip-path="url(#p182b764fd4)" style="fill: #1baf7a"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 88.94675 44.445856 
+L 224.442959 44.445856 
+L 224.442959 32.992157 
+L 88.94675 32.992157 
+z
+" clip-path="url(#p182b764fd4)" style="fill: #eb6834"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 88.94675 24.698099 
+L 245.332691 24.698099 
+L 245.332691 13.2444 
+L 88.94675 13.2444 
+z
+" clip-path="url(#p182b764fd4)" style="fill: #eb6834"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 88.94675 170.4168 
+L 473.96675 170.4168 
+" style="fill: none; stroke: #c9c8c3; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_17">
+    <text style="direction: rtl; unicode-bidi: embed; font-size: 8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: end; fill: #52514e" x="128.701924" y="160.115707" transform="rotate(-0 128.701924 160.115707)">⁦+3.2%⁩   (⁦1,323 → 1,365⁩ درهم للقدم · ⁦n=131 / 128⁩)</text>
+   </g>
+   <g id="text_18">
+    <text style="direction: rtl; unicode-bidi: embed; font-size: 8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: end; fill: #52514e" x="142.370136" y="140.367949" transform="rotate(-0 142.370136 140.367949)">⁦+4.3%⁩   (⁦1,375 → 1,434⁩ درهم للقدم · ⁦n=44 / 61⁩)</text>
+   </g>
+   <g id="text_19">
+    <text style="direction: rtl; unicode-bidi: embed; font-size: 8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: end; fill: #52514e" x="171.60033" y="120.620192" transform="rotate(-0 171.60033 120.620192)">⁦+6.8%⁩   (⁦1,212 → 1,295⁩ درهم للقدم · ⁦n=34 / 20⁩)</text>
+   </g>
+   <g id="text_20">
+    <text style="direction: rtl; unicode-bidi: embed; font-size: 8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: end; fill: #52514e" x="185.667591" y="100.872435" transform="rotate(-0 185.667591 100.872435)">⁦+8.0%⁩   (⁦1,094 → 1,182⁩ درهم للقدم · ⁦n=50 / 34⁩)</text>
+   </g>
+   <g id="text_21">
+    <text style="direction: rtl; unicode-bidi: embed; font-size: 8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: end; fill: #52514e" x="202.358019" y="81.124678" transform="rotate(-0 202.358019 81.124678)">⁦+9.5%⁩   (⁦1,727 → 1,891⁩ درهم للقدم · ⁦n=123 / 108⁩)</text>
+   </g>
+   <g id="text_22">
+    <text style="direction: rtl; unicode-bidi: embed; font-size: 8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: end; fill: #52514e" x="224.466898" y="61.37692" transform="rotate(-0 224.466898 61.37692)">⁦+11.4%⁩   (⁦1,047 → 1,166⁩ درهم للقدم · ⁦n=953 / 772⁩)</text>
+   </g>
+   <g id="text_23">
+    <text style="direction: rtl; unicode-bidi: embed; font-size: 8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: end; fill: #52514e" x="227.359777" y="41.629163" transform="rotate(-0 227.359777 41.629163)">⁦+11.6%⁩   (⁦1,367 → 1,526⁩ درهم للقدم · ⁦n=126 / 89⁩)</text>
+   </g>
+   <g id="text_24">
+    <text style="direction: rtl; unicode-bidi: embed; font-size: 8px; font-family: 'Inter', 'IBM Plex Sans Arabic'; text-anchor: end; fill: #52514e" x="248.249509" y="21.881406" transform="rotate(-0 248.249509 21.881406)">⁦+13.4%⁩   (⁦1,225 → 1,389⁩ درهم للقدم · ⁦n=243 / 235⁩)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p182b764fd4">
+   <rect x="88.94675" y="5.76" width="385.02" height="164.6568"/>
+  </clipPath>
+ </defs>
+</svg>
