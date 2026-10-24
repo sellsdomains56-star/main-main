@@ -33,7 +33,7 @@ async function guestKey() {
   return key;
 }
 
-/** JB Concierge: Claude-powered help with finding barbers, bookings and support. */
+/** JB Concierge: AI help with finding barbers, bookings and support. */
 export default function Assistant() {
   const insets = useSafeAreaInsets();
   const { user } = useAuth();

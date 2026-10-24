@@ -25,7 +25,7 @@ interface Preview {
 }
 
 /**
- * AI Hairstyle Try-On: Claude analyses the photo and recommends looks; OpenAI image editing
+ * AI Hairstyle Try-On: the server's AI reads the photo and recommends looks; image editing
  * renders each look on the customer's own face. Photos stay on the device except while a
  * request is being processed.
  */
@@ -184,11 +184,13 @@ export default function TryOn() {
         <StepCard step={3} title="Looks for you" state={step3}>
           {result ? (
             <>
-              <Row gap={8} style={{ flexWrap: "wrap" }}>
-                <Tag label={`${result.advice.faceShape} face`} tone="accent" />
-                <Tag label={result.advice.hairType} />
-              </Row>
-              <T style={{ marginTop: 12 }}>{result.advice.summary}</T>
+              {!!(result.advice.faceShape || result.advice.hairType) && (
+                <Row gap={8} style={{ flexWrap: "wrap", marginBottom: 12 }}>
+                  {!!result.advice.faceShape && <Tag label={`${result.advice.faceShape} face`} tone="accent" />}
+                  {!!result.advice.hairType && <Tag label={result.advice.hairType} />}
+                </Row>
+              )}
+              <T>{result.advice.summary}</T>
               {!tryOnEnabled && (
                 <View style={{ marginTop: 12 }}>
                   <IconLine icon="information-circle-outline" muted>Picture previews aren't switched on yet — the recommendations and booking still work.</IconLine>

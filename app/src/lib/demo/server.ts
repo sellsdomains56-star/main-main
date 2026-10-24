@@ -2,9 +2,8 @@
  * In-browser stand-in for the API, used only by the self-contained demo page
  * (scripts/build-demo-page.mjs sets `globalThis.__AF_DEMO__` before the app starts).
  * It mirrors the real server's rules for search, availability, bookings, reviews,
- * reels, the shop and support, keeps changes on the viewer's device, and asks
- * Claude through the page's `sample` capability for the concierge and photo analysis.
- * Try-on images need the OpenAI connection, which only the real server has.
+ * reels, the shop and support, and keeps changes on the viewer's device. Its concierge and
+ * stylist answer from the demo's own data; the real app uses the server's AI for both.
  */
 import type { AssistantAction, ChatMessage } from "../types";
 
@@ -576,281 +575,165 @@ const currencyFor = (code?: string) => {
   return seed.shipping[cur] ? cur : "eur";
 };
 
-const fmtMoney = (minor: number, currency: string) => new Intl.NumberFormat("en", { style: "currency", currency: currency.toUpperCase() }).format(minor / 100);
 const fmtLocal = (iso: string, tz: string) => new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: tz }).format(new Date(iso));
 
-// ---------- Claude (the page's `sample` capability) ----------
+// ---------- Built-in concierge and stylist ----------
+// The demo answers from its own barbers, bookings and help centre. The real app uses the server's AI for both.
 
-type Sample = ((input: unknown, opts?: unknown) => Promise<{ text: string }>) & {
-  json: (input: unknown, opts?: unknown) => Promise<unknown>;
-  limits: () => Promise<{ images?: { maxCount: number }; tools?: { maxCount: number } }>;
-};
+type Look = { name: string; category: "haircut" | "color" | "beard"; description: string; whyItSuits: string; length: string; maintenance: string; askYourBarber: string; specialtyTags: string[]; vibes: string[] };
+const LOOKS: Look[] = [
+  { name: "Skin fade with textured top", category: "haircut", description: "Sides faded to the skin, a few centimetres of texture on top.", whyItSuits: "Sharp and modern, and it works with most hair types.", length: "short", maintenance: "high", askYourBarber: "Skin fade on the sides, blended high, keep 4–5 cm on top and texture it with scissors.", specialtyTags: ["skin fade", "textured crop"], vibes: ["trendy", "bold"] },
+  { name: "Classic taper", category: "haircut", description: "Gradual taper at the sides and neckline, neat length on top.", whyItSuits: "Clean and timeless — looks right at work and at the weekend.", length: "short", maintenance: "medium", askYourBarber: "Low taper, a number 2 blending up, scissor cut on top and a natural neckline.", specialtyTags: ["taper", "scissor cut"], vibes: ["clean & classic", "professional"] },
+  { name: "French crop", category: "haircut", description: "Short sides with a forward fringe cut straight across.", whyItSuits: "Low effort and smart; easy to style in the morning.", length: "short", maintenance: "low", askYourBarber: "Mid fade, crop on top pushed forward with a short blunt fringe.", specialtyTags: ["french crop", "textured crop"], vibes: ["trendy", "natural"] },
+  { name: "Side part", category: "haircut", description: "Tapered sides with a hard or soft parting and length to comb over.", whyItSuits: "Polished and professional — a boardroom favourite.", length: "medium", maintenance: "medium", askYourBarber: "Scissor-over-comb sides, a side parting on the left, leave 6–7 cm on top.", specialtyTags: ["side part", "scissor cut"], vibes: ["clean & classic", "professional"] },
+  { name: "Buzz cut with sharp line-up", category: "haircut", description: "One length all over, crisp edges at the hairline.", whyItSuits: "The lowest-maintenance cut there is, and very clean.", length: "very short", maintenance: "low", askYourBarber: "Number 2 all over with a sharp line-up at the front and temples.", specialtyTags: ["buzz cut", "line-up"], vibes: ["bold", "natural"] },
+  { name: "Curtains", category: "haircut", description: "Middle parting with longer, soft lengths framing the face.", whyItSuits: "Relaxed and on-trend if you're growing it out.", length: "medium", maintenance: "medium", askYourBarber: "Keep the length, middle part, tidy the sides and back with scissors.", specialtyTags: ["curtains", "long hair"], vibes: ["trendy", "natural"] },
+  { name: "Waves with a taper", category: "haircut", description: "Short, brushed waves with a low taper.", whyItSuits: "Shows off texture with a neat outline.", length: "very short", maintenance: "high", askYourBarber: "Low taper, keep the top at a number 1.5 for waves, sharp line-up.", specialtyTags: ["waves", "taper", "afro"], vibes: ["bold", "trendy"] },
+  { name: "Pompadour", category: "haircut", description: "Volume swept up and back, short sides.", whyItSuits: "A statement cut with classic roots.", length: "medium", maintenance: "high", askYourBarber: "Short faded sides, keep 8 cm at the front graduating back, styled up and back.", specialtyTags: ["pompadour", "quiff"], vibes: ["bold", "clean & classic"] },
+  { name: "Natural long layers", category: "haircut", description: "Shoulder-length hair with light layers to remove weight.", whyItSuits: "Keeps the length while giving it shape and movement.", length: "long", maintenance: "low", askYourBarber: "Keep the length, add light layers and a soft finish at the ends.", specialtyTags: ["long hair", "curly hair"], vibes: ["natural"] },
+  { name: "Ash or dark-brown tone", category: "color", description: "A subtle colour refresh or grey blending.", whyItSuits: "Adds depth without looking dyed.", length: "any", maintenance: "medium", askYourBarber: "Subtle grey blending, one shade from my natural colour.", specialtyTags: ["hair color"], vibes: ["professional", "clean & classic", "natural"] },
+  { name: "Short boxed beard", category: "beard", description: "A trimmed, defined beard with clean cheek and neck lines.", whyItSuits: "Frames the jaw and pairs with almost any cut.", length: "any", maintenance: "medium", askYourBarber: "Trim to 1 cm, define the cheek line and the neckline two fingers above the Adam's apple.", specialtyTags: ["beard", "line-up"], vibes: ["clean & classic", "professional", "bold"] },
+  { name: "Hot towel shave", category: "beard", description: "A full traditional shave with hot towels.", whyItSuits: "The cleanest finish for events and big days.", length: "any", maintenance: "high", askYourBarber: "Traditional hot towel shave, against the grain on the second pass.", specialtyTags: ["hot towel shave"], vibes: ["clean & classic", "professional"] },
+];
 
-let samplePromise: Promise<Sample | null> | undefined;
-function getSample(): Promise<Sample | null> {
-  const claude = (globalThis as { claude?: { use: (name: string) => Promise<unknown> } }).claude;
-  samplePromise ??= claude ? (claude.use("sample") as Promise<Sample | null>).catch(() => null) : Promise.resolve(null);
-  return samplePromise;
-}
-
-const OPEN_IN_CLAUDE = "The AI features in this demo run on Claude. Open the demo link in the Claude app or on claude.ai to use them.";
-
-function sampleError(e: unknown): DemoError {
-  const code = (e as { code?: string })?.code;
-  switch (code) {
-    case "not_granted":
-    case "sampling_disabled":
-    case "capability_disabled":
-    case "not_declared":
-      return new DemoError(503, "Claude isn't allowed for this page. Allow it when asked (or in the page's permissions) to use the AI features.");
-    case "rate_limited":
-      return new DemoError(429, "Lots of questions at once — please wait a minute and try again.");
-    case "refused":
-      return new DemoError(422, "Claude couldn't help with that one. Try asking another way.");
-    case "image_rejected":
-    case "images_unavailable":
-      return new DemoError(422, "That photo couldn't be used. Try a clear JPEG or PNG of your face.");
-    case "session_expired":
-      return new DemoError(401, "Please sign in to Claude again.");
-    case "invalid_json":
-      return new DemoError(502, "The analysis came back incomplete. Please try again.");
-    default:
-      return new DemoError(502, "Claude couldn't answer just now. Please try again.");
-  }
-}
-
-function base64ToBlob(b64: string, type: string) {
-  const bin = atob(b64.replace(/^data:[^,]+,/, ""));
-  const bytes = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-  return new Blob([bytes], { type });
-}
-
-async function haircutAdvice(body: { imageBase64: string; mediaType?: string; preferences?: Record<string, string>; country?: string; city?: string }) {
-  const sample = await getSample();
-  if (!sample) throw new DemoError(503, OPEN_IN_CLAUDE);
-  const limits = await sample.limits().catch(() => null);
-  if (!limits?.images) throw new DemoError(503, "Photo analysis isn't available in this view of Claude. Try the Claude app or claude.ai in a browser.");
-  const specialties = [...new Set(allBarbers().flatMap((b) => b.specialties))].sort();
+function haircutAdvice(body: { preferences?: Record<string, string>; country?: string; city?: string }) {
   const p = body.preferences ?? {};
-  const prompt = `You are the JB Always Fresh AI stylist — a master barber who gives honest, specific, flattering advice from a photo.
-Look at the person's face shape, hairline, hair texture, density and current cut in the attached photo. Recommend looks a barber can actually do with their hair. Never comment on attractiveness, age, ethnicity or anything other than hair, head shape and grooming. If the photo doesn't clearly show a head or face, say so in "summary" and give general recommendations.
-
-Preferences — length: ${p.length || "any"}, maintenance: ${p.maintenance || "any"}, vibe: ${p.vibe || "any"}.${p.notes ? `\nCustomer notes: ${p.notes}` : ""}
-Barber specialties on the platform (use these exact strings for specialtyTags): ${specialties.join(", ")}.
-
-Reply with only a JSON object:
-{"faceShape": string, "hairType": string, "currentStyle": string, "summary": "2-3 friendly sentences",
- "recommendations": [ 4 to 6 items, best match first: mostly haircuts plus one hair-colour idea and one beard style when they suit the person —
-   {"name": string, "category": "haircut"|"color"|"beard", "description": string, "whyItSuits": string,
-    "length": "very short"|"short"|"medium"|"long", "maintenance": "low"|"medium"|"high",
-    "askYourBarber": "exact words to tell the barber", "specialtyTags": [strings from the list], "previewPrompt": "one-sentence description of the hair/beard result"} ],
- "beardAdvice": string (empty if not relevant)}`;
-  let advice: Record<string, unknown>;
-  try {
-    advice = (await sample.json(prompt, { images: [base64ToBlob(body.imageBase64, body.mediaType ?? "image/jpeg")] })) as Record<string, unknown>;
-  } catch (e) {
-    throw sampleError(e);
-  }
-  const recs = Array.isArray(advice?.recommendations) ? (advice.recommendations as Record<string, unknown>[]) : [];
-  const recommendations = recs
-    .filter((r) => r && typeof r.name === "string")
-    .map((r) => ({
-      name: String(r.name),
-      category: ["haircut", "color", "beard"].includes(String(r.category)) ? String(r.category) : "haircut",
-      description: String(r.description ?? ""),
-      whyItSuits: String(r.whyItSuits ?? ""),
-      length: String(r.length ?? ""),
-      maintenance: String(r.maintenance ?? ""),
-      askYourBarber: String(r.askYourBarber ?? ""),
-      specialtyTags: Array.isArray(r.specialtyTags) ? r.specialtyTags.map(String) : [],
-      previewPrompt: String(r.previewPrompt ?? r.name),
-    }));
-  if (!recommendations.length) throw new DemoError(502, "The analysis came back incomplete. Please try again.");
-  const result = {
-    faceShape: String(advice.faceShape ?? "—"),
-    hairType: String(advice.hairType ?? "—"),
-    currentStyle: String(advice.currentStyle ?? "—"),
-    summary: String(advice.summary ?? ""),
-    beardAdvice: String(advice.beardAdvice ?? ""),
-    recommendations,
-  };
+  const fits = (l: Look) => (!p.length || l.length === "any" || l.length === p.length ? 2 : 0) + (!p.maintenance || l.maintenance === p.maintenance ? 1 : 0) + (!p.vibe || l.vibes.includes(p.vibe) ? 2 : 0);
+  const pick = (cat: Look["category"], n: number) => LOOKS.filter((l) => l.category === cat).sort((a, b) => fits(b) - fits(a)).slice(0, n);
+  const recommendations = [...pick("haircut", 4), ...pick("color", 1), ...pick("beard", 1)].map(({ vibes: _v, ...l }) => ({ ...l, previewPrompt: l.name }));
   const wanted = new Set(recommendations.flatMap((r) => r.specialtyTags));
   const barbers = allBarbers()
-    .filter((b) => (!body.country || b.countryCode === body.country) && (!body.city || b.city === body.city))
+    .filter((b) => (b.status ?? "live") === "live" && (!body.country || b.countryCode === body.country) && (!body.city || b.city === body.city))
     .map((b) => ({ b, score: b.specialties.filter((s) => wanted.has(s)).length }))
     .filter((x) => x.score > 0)
     .sort((x, y) => y.score - x.score || rating(y.b).raw - rating(x.b).raw)
     .slice(0, 5)
     .map((x) => barberView(x.b));
-  return { advice: result, barbers };
+  const chosen = [p.length, p.maintenance, p.vibe].filter(Boolean).join(", ");
+  return {
+    advice: {
+      faceShape: "", hairType: "", currentStyle: "",
+      summary: `${chosen ? `Picked for ${chosen}.` : "A mix of our most-booked looks."} In the full app, the AI stylist also reads your face shape and hair from the photo.`,
+      beardAdvice: "",
+      recommendations,
+    },
+    barbers,
+  };
 }
 
-function concierge(context: string, signedInAs?: User) {
-  const where = context;
-  return `You are the JB Always Fresh concierge — the in-app assistant for a global barber and hairstyling platform where people discover, compare and book barbers anywhere in the world, shop JB's Fresh grooming products, and preview hairstyles with the AI Try-On.
+const words = (s: string) => s.toLowerCase().replace(/[^a-z0-9\s'-]/g, " ").split(/\s+/).filter(Boolean);
+/** "cancellation", "cancelled", "cancel" → "cancel": enough to match help-centre questions. */
+const stem = (w: string) => w.replace(/(lations?|ations?|ings?|ed|es|s)$/, "").slice(0, 6);
+/** Whole dirhams as "AED 120"; other currencies keep their cents. */
+const price = (minor: number, currency: string) =>
+  new Intl.NumberFormat("en", { style: "currency", currency: currency.toUpperCase(), ...(minor % 100 === 0 ? { minimumFractionDigits: 0, maximumFractionDigits: 0 } : {}) }).format(minor / 100);
+const STOP = new Set(["a", "an", "the", "i", "me", "my", "is", "are", "do", "does", "can", "to", "for", "of", "in", "on", "and", "or", "it", "you", "your", "what", "how", "with", "if", "be", "at", "get", "want", "need", "please"]);
 
-How to help:
-- Find and recommend barbers with search_barbers. Recommend at most 3 and say briefly why each fits (rating, specialty, price, next availability, home visits).
-- Use get_barber for services, prices, reviews and address, and check_availability for free times. Times are in the barber's local time zone — always say so.
-- To book: once the customer has chosen barber, service, time and shop-or-home, call prepare_booking. It does NOT book or charge — it shows a "Review & book" button so they confirm and pay. Never claim a booking is made.
-- Their appointments: list_my_bookings (they must be signed in).
-- If something needs a human (refund dispute, no-show, account deletion, complaint), offer a support ticket and call create_support_ticket once they agree. Support email: ${seed.supportEmail}.
-- For hairstyle ideas, suggest AI Try-On (Home → AI Try-On).
-
-Style: warm, confident, brief — a phone chat. Short paragraphs or a few bullets, no tables or headings. Use the tools silently: don't narrate what you're about to do, just give the final answer. Prices always with the currency from the tools. Never invent barbers, prices, times, policies or reviews.
-
-Customer context: ${where}; signed in: ${signedInAs ? `yes, as ${signedInAs.name.split(" ")[0]}` : "no"}. Today is ${new Date().toISOString().slice(0, 10)}.
-
-Help centre (official policies):
-${seed.faq.map((f) => `Q: ${f.question}\nA: ${f.answer}`).join("\n")}`;
+function faqAnswer(text: string) {
+  const asked = new Set(words(text).filter((w) => !STOP.has(w) && w.length > 2).map(stem));
+  let best: { score: number; answer: string } | null = null;
+  for (const f of seed.faq) {
+    const qw = new Set(words(f.question).filter((w) => !STOP.has(w) && w.length > 2).map(stem));
+    const aw = new Set(words(f.answer).map(stem));
+    const score = [...asked].reduce((n, w) => n + (qw.has(w) ? 2 : aw.has(w) ? 0.5 : 0), 0);
+    if (score > (best?.score ?? 0)) best = { score, answer: f.answer };
+  }
+  return best && best.score >= 2 ? best.answer : null;
 }
 
-function conciergeTools(user: User | undefined, actions: AssistantAction[]) {
-  const summary = (v: ReturnType<typeof barberView>) => ({
-    id: v.id, name: v.name, location: `${v.city}, ${v.countryName}`,
-    rating: v.rating ? `${v.rating} (${v.ratingCount} reviews)` : "new", from: fmtMoney(v.startingPrice, v.currency),
-    specialties: v.specialties, years_experience: v.yearsExperience, home_visits: v.offersHomeVisits,
-    next_available: v.nextAvailable ? `${fmtLocal(v.nextAvailable, v.timeZone)} (${v.city} time)` : "nothing in the next 2 weeks",
-  });
-  return [
-    {
-      name: "search_barbers",
-      description: "Search barbers worldwide; returns up to 8 with id, rating, starting price, specialties, next free time and home visits.",
-      inputSchema: {
-        type: "object",
-        properties: {
-          query: { type: "string", description: "Free text: style, name, city or country" },
-          country_code: { type: "string", description: "ISO code, e.g. GB" },
-          city: { type: "string" },
-          specialties: { type: "array", items: { type: "string" } },
-          min_rating: { type: "number" },
-          available_today: { type: "boolean" },
-          home_visits: { type: "boolean" },
-          sort: { type: "string", enum: ["rating", "price", "soonest", "experience"] },
-        },
-      },
-      execute(i: Record<string, unknown>) {
-        const res = search({
-          q: i.query ? String(i.query) : undefined,
-          country: i.country_code ? String(i.country_code).toUpperCase() : undefined,
-          city: i.city ? String(i.city) : undefined,
-          specialties: Array.isArray(i.specialties) ? i.specialties.map(String) : undefined,
-          minRating: i.min_rating ? Number(i.min_rating) : undefined,
-          availableToday: !!i.available_today,
-          homeVisits: !!i.home_visits,
-          sort: i.sort ? String(i.sort) : undefined,
-          limit: 8,
-        });
-        if (res.length) actions.push({ type: "barbers", barberIds: res.slice(0, 3).map((b) => b.id) });
-        return res.length ? res.map(summary) : "No barbers match. Try fewer filters or a nearby city.";
-      },
-    },
-    {
-      name: "get_barber",
-      description: "Full profile of one barber: bio, services with ids and prices, address, languages, experience, next free time.",
-      inputSchema: { type: "object", properties: { barber_id: { type: "string" } }, required: ["barber_id"] },
-      execute(i: Record<string, unknown>) {
-        const v = barberView(getBarber(String(i.barber_id)));
-        actions.push({ type: "barbers", barberIds: [v.id] });
-        return {
-          ...summary(v), bio: v.bio, languages: v.languages, shop_address: v.shopAddress, time_zone: v.timeZone,
-          home_visit_fee: v.offersHomeVisits ? fmtMoney(v.homeVisitFee, v.currency) : null,
-          services: v.services.map((s) => ({ id: s.id, name: s.name, minutes: s.durationMin, price: fmtMoney(s.price, v.currency) })),
-        };
-      },
-    },
-    {
-      name: "check_availability",
-      description: "Free start times (ISO, with local labels) for a barber's service on a date (YYYY-MM-DD, barber's local time).",
-      inputSchema: { type: "object", properties: { barber_id: { type: "string" }, service_id: { type: "string" }, date: { type: "string" } }, required: ["barber_id", "service_id", "date"] },
-      execute(i: Record<string, unknown>) {
-        const b = getBarber(String(i.barber_id));
-        const s = b.services.find((x) => x.id === String(i.service_id));
-        if (!s) throw new Error("Unknown service id — call get_barber for the list.");
-        const free = slots(b, String(i.date), s.durationMin);
-        const tz = timeZoneOf(b);
-        return free.length ? { time_zone: tz, free_times: free.map((t) => ({ starts_at: t, local: fmtLocal(t, tz) })) } : "No free times that day.";
-      },
-    },
-    {
-      name: "list_my_bookings",
-      description: "The signed-in customer's bookings.",
-      execute() {
-        if (!user) return "The customer is not signed in. Ask them to sign in (Account tab).";
-        const mine = saved.bookings.filter((b) => b.customerId === user.id).slice(-10);
-        return mine.length
-          ? mine.map((bk) => {
-              const b = getBarber(bk.barberId);
-              return { booking_id: bk.id, barber: b.name, service: findService(b, bk.serviceId)?.name ?? CONSULTATION.name, when: `${fmtLocal(bk.startsAt, timeZoneOf(b))} (${b.city} time)`, status: bk.status };
-            })
-          : "No bookings yet.";
-      },
-    },
-    {
-      name: "prepare_booking",
-      description: "Shows the customer a 'Review & book' button pre-filled with this choice. Does not book or charge.",
-      inputSchema: {
-        type: "object",
-        properties: { barber_id: { type: "string" }, service_id: { type: "string" }, starts_at: { type: "string", description: "Exact ISO time from check_availability" }, location_type: { type: "string", enum: ["shop", "home"] } },
-        required: ["barber_id", "service_id", "starts_at", "location_type"],
-      },
-      execute(i: Record<string, unknown>) {
-        const b = getBarber(String(i.barber_id));
-        const s = b.services.find((x) => x.id === String(i.service_id));
-        if (!s) throw new Error("Unknown service id.");
-        const start = new Date(String(i.starts_at));
-        const date = new Intl.DateTimeFormat("en-CA", { timeZone: timeZoneOf(b) }).format(start);
-        if (!slots(b, date, s.durationMin).includes(start.toISOString())) throw new Error("That time is no longer free — check availability again.");
-        const locationType = String(i.location_type) === "home" && b.offersHomeVisits ? "home" : "shop";
-        actions.push({ type: "book", barberId: b.id, serviceId: s.id, startsAt: start.toISOString(), locationType });
-        return "A 'Review & book' button is now shown under your message.";
-      },
-    },
-    {
-      name: "create_support_ticket",
-      description: "Open a ticket for the human support team, only after the customer agrees.",
-      inputSchema: {
-        type: "object",
-        properties: { topic: { type: "string", enum: ["booking", "payment", "account", "barber", "shop", "other"] }, message: { type: "string" }, email: { type: "string" } },
-        required: ["topic", "message"],
-      },
-      execute(i: Record<string, unknown>) {
-        const email = user?.email ?? (i.email ? String(i.email) : "");
-        if (!email.includes("@")) return "Need the customer's email address first — ask for it.";
-        const ticket = { id: newId(), topic: String(i.topic), email, message: String(i.message), createdAt: new Date().toISOString() };
-        saved.tickets.push(ticket);
-        persist();
-        actions.push({ type: "ticket", ticketId: ticket.id });
-        return { ticket_id: ticket.id, reply_to: email };
-      },
-    },
-  ];
+function barberLine(v: ReturnType<typeof barberView>) {
+  const bits = [v.rating ? `${v.rating.toFixed(1)}★ (${v.ratingCount})` : "new", `from ${price(v.startingPrice, v.currency)}`];
+  if (v.nextAvailable) bits.push(`next free ${fmtLocal(v.nextAvailable, v.timeZone)}`);
+  if (v.offersHomeVisits) bits.push("comes to you");
+  return `• ${v.name} — ${bits.join(" · ")}`;
+}
+
+/** Understands the common requests: find a barber, a named barber, my bookings, help-centre questions, talking to a person. */
+function localConcierge(message: string, ctx: { country?: string; city?: string }, user: User | undefined, actions: AssistantAction[]) {
+  const t = message.toLowerCase();
+  const all = allBarbers().filter((b) => (b.status ?? "live") === "live");
+
+  if (/\b(my|upcoming|next)\b.*\b(booking|bookings|appointment|appointments)\b|\bwhen is my\b/.test(t)) {
+    if (!user) return "Sign in first (Account tab) and I'll show your bookings.";
+    const mine = saved.bookings.filter((b) => b.customerId === user.id && b.status !== "cancelled" && Date.parse(b.endsAt) > Date.now()).sort((a, b) => a.startsAt.localeCompare(b.startsAt));
+    if (!mine.length) return "You have no upcoming bookings. Want me to find you a barber? Try “skin fade tomorrow”.";
+    return `Your upcoming bookings:\n${mine.slice(0, 5).map((bk) => {
+      const b = getBarber(bk.barberId);
+      return `• ${findService(b, bk.serviceId)?.name ?? CONSULTATION.name} with ${b.name}, ${fmtLocal(bk.startsAt, timeZoneOf(b))} (${b.city} time)`;
+    }).join("\n")}\nYou can change or cancel them in the Bookings tab.`;
+  }
+
+  if (/\b(human|person|someone|agent|complain|complaint|no.?show|dispute|support)\b/.test(t)) {
+    return `I'll get you to the team. Open Account → Help centre → Contact us and they'll reply by email, or write to ${seed.supportEmail}. Tell them your booking date and barber so they can sort it quickly.`;
+  }
+
+  if (/\b(suit|suits|recommend a (cut|style)|which (cut|style)|what (cut|style)|try.?on)\b/.test(t)) {
+    return "Try the AI Try-On (Home → AI Try-On): pick your length, upkeep and style, and it suggests cuts, colour and beard looks — with barbers who do them.";
+  }
+
+  const named = all.find((b) => t.includes(b.name.toLowerCase()) || t.includes(b.name.split(" ")[0]!.toLowerCase()));
+  if (named) {
+    const v = barberView(named);
+    actions.push({ type: "barbers", barberIds: [v.id] });
+    const services = v.services.slice(0, 4).map((s) => `${s.name} ${price(s.price, v.currency)}`).join(" · ");
+    if (/\bbook\b/.test(t) && v.nextAvailable) {
+      const s = [...v.services].sort((a, b) => a.price - b.price)[0]!;
+      actions.push({ type: "book", barberId: v.id, serviceId: s.id, startsAt: v.nextAvailable, locationType: "shop" });
+      return `${v.name}'s next free time is ${fmtLocal(v.nextAvailable, v.timeZone)} (${v.city} time) for a ${s.name.toLowerCase()} at ${price(s.price, v.currency)}. Tap “Review & book” below to confirm and pay — or open the profile to pick another time.`;
+    }
+    return `${barberLine(v).slice(2)}\n${services}\n${v.shopAddress}`;
+  }
+
+  const policy = faqAnswer(message);
+  if (policy && /\b(cancel\w*|refund\w*|pay\w*|apple|google|card|tip\w*|club|member\w*|gift\w*|account|delet\w*|late|safe\w*|fees?|chang\w*|reschedul\w*|polic\w*|rules?|how)\b/.test(t)) return policy;
+
+  // Find barbers
+  const specialties = [...new Set(all.flatMap((b) => b.specialties))];
+  let wanted = specialties.filter((s) => t.includes(s));
+  if (!wanted.length && /\bfade\b/.test(t)) wanted = specialties.filter((s) => s.includes("fade"));
+  if (!wanted.length && /\bbeard\b/.test(t)) wanted = ["beard"];
+  if (!wanted.length && /\b(kid|kids|son|child|children)\b/.test(t)) wanted = ["kids cut"];
+  if (!wanted.length && /\bshave\b/.test(t)) wanted = ["hot towel shave"];
+  const cities = seed.countries.flatMap((c) => c.cities.map((x) => ({ country: c.code, city: x.name })));
+  const place = cities.find((c) => t.includes(c.city.toLowerCase()));
+  const looksLikeSearch = wanted.length || place || /\b(barber|barbers|cut|haircut|fade|trim|today|tonight|tomorrow|now|home|hotel|office|near|best|cheap|price|book)\b/.test(t);
+  if (!looksLikeSearch) {
+    if (policy) return policy;
+    return "I can find you a barber (try “skin fade tonight” or “barber who comes to my hotel”), show your bookings, or answer questions about payments, cancellations, The Club and gift cards.";
+  }
+  const f: Filters = {
+    country: place?.country ?? ctx.country, city: place?.city ?? ctx.city, specialties: wanted.length ? wanted : undefined,
+    availableToday: /\b(today|tonight|now|asap)\b/.test(t), homeVisits: /\b(home|hotel|office|villa|yacht|my place|come to me|comes to me)\b/.test(t),
+    sort: /\b(cheap|cheapest|budget|affordable|lowest)\b/.test(t) ? "price" : /\b(soon|soonest|earliest|asap|now)\b/.test(t) ? "soonest" : /\b(experience|experienced|senior|master)\b/.test(t) ? "experience" : undefined,
+    limit: 3,
+  };
+  let found = search(f);
+  let note = "";
+  if (!found.length && f.availableToday) {
+    found = search({ ...f, availableToday: false, sort: "soonest" });
+    note = "Nobody has a free slot today, so here are the soonest: ";
+  }
+  if (!found.length && f.city) {
+    found = search({ ...f, city: undefined });
+    if (found.length) note = `Nothing in ${f.city} for that — here's the best across ${country(f.country ?? "")?.name ?? "the country"}: `;
+  }
+  if (!found.length) return "I couldn't find a match. Try fewer details, another area, or browse the map on Home.";
+  actions.push({ type: "barbers", barberIds: found.map((b) => b.id) });
+  const what = [wanted.join(", "), f.homeVisits ? "who come to you" : "", f.availableToday && !note ? "free today" : ""].filter(Boolean).join(" ");
+  return `${note || `Top ${what ? `${what} ` : ""}barbers${f.city ? ` in ${f.city}` : ""}: `}\n${found.map(barberLine).join("\n")}\nTap a barber to see their work and book.`;
 }
 
 async function chat(body: { conversationId?: string; message: string; country?: string; city?: string }, user: User | undefined, ownerKey: string) {
-  const sample = await getSample();
-  if (!sample) throw new DemoError(503, OPEN_IN_CLAUDE);
-  const limits = await sample.limits().catch(() => null);
   let convo = body.conversationId ? saved.conversations.find((c) => c.id === body.conversationId && c.ownerKey === ownerKey) : undefined;
   if (!convo) convo = { id: newId(), ownerKey, turns: [], display: [] };
-  const where = body.city ? `chosen city ${body.city}, ${country(body.country ?? "")?.name ?? ""}` : body.country ? `chosen country ${country(body.country)?.name}` : "no city chosen";
   const actions: AssistantAction[] = [];
-  const turns = [{ role: "user" as const, content: concierge(where, user) }, ...convo.turns.slice(-16), { role: "user" as const, content: body.message }];
-  let text: string;
-  try {
-    const res = await sample(turns, { tools: limits?.tools ? conciergeTools(user, actions) : undefined, modelTier: "quick", cache: false });
-    text = res.text.trim();
-  } catch (e) {
-    throw sampleError(e);
-  }
+  const text = localConcierge(body.message, { country: body.country, city: body.city }, user, actions);
   const at = new Date().toISOString();
-  const deduped = [...[...actions].reverse().filter((a) => a.type === "barbers").slice(0, 1), ...actions.filter((a) => a.type !== "barbers")];
   convo.turns.push({ role: "user", content: body.message }, { role: "assistant", content: text });
-  convo.display.push({ role: "user", text: body.message, at }, { role: "assistant", text, actions: deduped, at });
+  convo.display.push({ role: "user", text: body.message, at }, { role: "assistant", text, actions, at });
   if (!saved.conversations.includes(convo)) saved.conversations.push(convo);
   persist();
-  return { conversationId: convo.id, reply: text, actions: deduped };
+  return { conversationId: convo.id, reply: text, actions };
 }
 
 // ---------- Router ----------

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Builds one self-contained HTML page of the website for a no-install demo
- * (published as a claude.ai Artifact). Everything is inlined — app code, fonts,
- * icons, demo media and seed data — because the page host only loads its own HTML.
+ * Builds one self-contained HTML page of the website for a no-install demo.
+ * Everything is inlined — app code, fonts, icons, demo media and seed data — so the
+ * page works from any host, even one that only serves a single file.
  * In the page, an in-browser demo server (src/lib/demo/server.ts) stands in for the API.
  *
  *   node scripts/build-demo-page.mjs [out.html]
