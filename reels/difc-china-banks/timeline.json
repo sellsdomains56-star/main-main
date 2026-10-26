@@ -1,0 +1,1238 @@
+{
+"fps": 30,
+"frames": 2054,
+"voice_dur": 68.46666666666667,
+"dur": 71.467,
+"words": [
+{
+"t": 0.17,
+"e": 0.46,
+"text": "China's",
+"chunk": 0
+},
+{
+"t": 0.46,
+"e": 0.64,
+"text": "five",
+"chunk": 0
+},
+{
+"t": 0.64,
+"e": 1.02,
+"text": "biggest",
+"chunk": 0
+},
+{
+"t": 1.02,
+"e": 1.36,
+"text": "banks",
+"chunk": 1
+},
+{
+"t": 1.36,
+"e": 1.66,
+"text": "account",
+"chunk": 1
+},
+{
+"t": 1.66,
+"e": 1.96,
+"text": "for",
+"chunk": 1
+},
+{
+"t": 1.96,
+"e": 2.12,
+"text": "more",
+"chunk": 2
+},
+{
+"t": 2.12,
+"e": 2.26,
+"text": "than",
+"chunk": 2
+},
+{
+"t": 2.26,
+"e": 2.64,
+"text": "30%",
+"chunk": 2
+},
+{
+"t": 3.0,
+"e": 3.26,
+"text": "of",
+"chunk": 3
+},
+{
+"t": 3.26,
+"e": 3.84,
+"text": "DIFC's",
+"chunk": 3
+},
+{
+"t": 3.84,
+"e": 4.2,
+"text": "banking",
+"chunk": 3
+},
+{
+"t": 4.2,
+"e": 4.46,
+"text": "and",
+"chunk": 4
+},
+{
+"t": 4.46,
+"e": 4.72,
+"text": "capital",
+"chunk": 4
+},
+{
+"t": 4.72,
+"e": 5.02,
+"text": "markets",
+"chunk": 4
+},
+{
+"t": 5.02,
+"e": 5.46,
+"text": "assets,",
+"chunk": 5
+},
+{
+"t": 6.065,
+"e": 6.18,
+"text": "according",
+"chunk": 6
+},
+{
+"t": 6.18,
+"e": 6.4,
+"text": "to",
+"chunk": 6
+},
+{
+"t": 6.4,
+"e": 6.6,
+"text": "figures",
+"chunk": 6
+},
+{
+"t": 6.6,
+"e": 6.92,
+"text": "published",
+"chunk": 7
+},
+{
+"t": 6.92,
+"e": 7.2,
+"text": "in",
+"chunk": 7
+},
+{
+"t": 7.2,
+"e": 7.54,
+"text": "2024.",
+"chunk": 7
+},
+{
+"t": 8.17,
+"e": 8.29,
+"text": "That",
+"chunk": 8
+},
+{
+"t": 8.2,
+"e": 8.46,
+"text": "doesn't",
+"chunk": 8
+},
+{
+"t": 8.46,
+"e": 8.6,
+"text": "mean",
+"chunk": 8
+},
+{
+"t": 8.6,
+"e": 9.0,
+"text": "thousands",
+"chunk": 9
+},
+{
+"t": 9.0,
+"e": 9.28,
+"text": "of",
+"chunk": 9
+},
+{
+"t": 9.28,
+"e": 9.46,
+"text": "Chinese",
+"chunk": 9
+},
+{
+"t": 9.46,
+"e": 10.02,
+"text": "bankers",
+"chunk": 10
+},
+{
+"t": 10.02,
+"e": 10.14,
+"text": "are",
+"chunk": 10
+},
+{
+"t": 10.14,
+"e": 10.34,
+"text": "moving",
+"chunk": 10
+},
+{
+"t": 10.34,
+"e": 10.64,
+"text": "here",
+"chunk": 11
+},
+{
+"t": 10.64,
+"e": 10.86,
+"text": "and",
+"chunk": 11
+},
+{
+"t": 10.86,
+"e": 11.08,
+"text": "buying",
+"chunk": 11
+},
+{
+"t": 11.08,
+"e": 11.52,
+"text": "apartments.",
+"chunk": 12
+},
+{
+"t": 12.04,
+"e": 12.12,
+"text": "These",
+"chunk": 13
+},
+{
+"t": 12.12,
+"e": 12.44,
+"text": "banks",
+"chunk": 13
+},
+{
+"t": 12.44,
+"e": 12.76,
+"text": "help",
+"chunk": 13
+},
+{
+"t": 12.76,
+"e": 13.12,
+"text": "companies",
+"chunk": 14
+},
+{
+"t": 13.12,
+"e": 13.54,
+"text": "finance,",
+"chunk": 14
+},
+{
+"t": 13.8,
+"e": 14.3,
+"text": "trade,",
+"chunk": 15
+},
+{
+"t": 14.38,
+"e": 14.7,
+"text": "raise",
+"chunk": 16
+},
+{
+"t": 14.7,
+"e": 15.12,
+"text": "capital,",
+"chunk": 16
+},
+{
+"t": 15.34,
+"e": 15.52,
+"text": "and",
+"chunk": 17
+},
+{
+"t": 15.52,
+"e": 15.68,
+"text": "arrange",
+"chunk": 17
+},
+{
+"t": 15.68,
+"e": 16.04,
+"text": "deals",
+"chunk": 17
+},
+{
+"t": 16.04,
+"e": 16.32,
+"text": "across",
+"chunk": 18
+},
+{
+"t": 16.32,
+"e": 16.56,
+"text": "the",
+"chunk": 18
+},
+{
+"t": 16.56,
+"e": 16.82,
+"text": "region.",
+"chunk": 18
+},
+{
+"t": 17.125,
+"e": 17.245,
+"text": "A",
+"chunk": 19
+},
+{
+"t": 17.16,
+"e": 17.36,
+"text": "small",
+"chunk": 19
+},
+{
+"t": 17.36,
+"e": 17.64,
+"text": "team",
+"chunk": 19
+},
+{
+"t": 17.64,
+"e": 17.86,
+"text": "can",
+"chunk": 20
+},
+{
+"t": 17.86,
+"e": 18.18,
+"text": "handle",
+"chunk": 20
+},
+{
+"t": 18.18,
+"e": 18.58,
+"text": "billions",
+"chunk": 20
+},
+{
+"t": 18.58,
+"e": 18.84,
+"text": "in",
+"chunk": 21
+},
+{
+"t": 18.84,
+"e": 19.1,
+"text": "business.",
+"chunk": 21
+},
+{
+"t": 19.58,
+"e": 20.18,
+"text": "CICC",
+"chunk": 22
+},
+{
+"t": 20.18,
+"e": 20.5,
+"text": "officially",
+"chunk": 22
+},
+{
+"t": 20.5,
+"e": 21.12,
+"text": "launched",
+"chunk": 23
+},
+{
+"t": 21.12,
+"e": 21.3,
+"text": "its",
+"chunk": 23
+},
+{
+"t": 21.3,
+"e": 21.8,
+"text": "DIFC",
+"chunk": 23
+},
+{
+"t": 21.8,
+"e": 22.16,
+"text": "branch",
+"chunk": 24
+},
+{
+"t": 22.16,
+"e": 22.52,
+"text": "in",
+"chunk": 24
+},
+{
+"t": 22.52,
+"e": 22.66,
+"text": "May",
+"chunk": 24
+},
+{
+"t": 22.66,
+"e": 23.14,
+"text": "2025,",
+"chunk": 25
+},
+{
+"t": 23.68,
+"e": 24.06,
+"text": "joining",
+"chunk": 26
+},
+{
+"t": 24.06,
+"e": 24.24,
+"text": "the",
+"chunk": 26
+},
+{
+"t": 24.24,
+"e": 24.42,
+"text": "Chinese",
+"chunk": 26
+},
+{
+"t": 24.42,
+"e": 24.84,
+"text": "financial",
+"chunk": 27
+},
+{
+"t": 24.84,
+"e": 25.52,
+"text": "institutions",
+"chunk": 28
+},
+{
+"t": 25.52,
+"e": 26.04,
+"text": "already",
+"chunk": 28
+},
+{
+"t": 26.04,
+"e": 26.44,
+"text": "operating",
+"chunk": 29
+},
+{
+"t": 26.44,
+"e": 26.82,
+"text": "here.",
+"chunk": 29
+},
+{
+"t": 27.14,
+"e": 27.32,
+"text": "Companies",
+"chunk": 30
+},
+{
+"t": 27.32,
+"e": 27.6,
+"text": "doing",
+"chunk": 30
+},
+{
+"t": 27.6,
+"e": 27.94,
+"text": "business",
+"chunk": 31
+},
+{
+"t": 27.94,
+"e": 28.22,
+"text": "through",
+"chunk": 31
+},
+{
+"t": 28.22,
+"e": 28.5,
+"text": "Dubai",
+"chunk": 32
+},
+{
+"t": 28.5,
+"e": 28.84,
+"text": "need",
+"chunk": 32
+},
+{
+"t": 28.84,
+"e": 29.18,
+"text": "lawyers,",
+"chunk": 32
+},
+{
+"t": 29.69,
+"e": 30.32,
+"text": "accountants,",
+"chunk": 33
+},
+{
+"t": 30.38,
+"e": 30.88,
+"text": "advisors,",
+"chunk": 34
+},
+{
+"t": 31.34,
+"e": 31.58,
+"text": "and",
+"chunk": 35
+},
+{
+"t": 31.58,
+"e": 31.88,
+"text": "offices.",
+"chunk": 35
+},
+{
+"t": 32.49,
+"e": 32.61,
+"text": "When",
+"chunk": 36
+},
+{
+"t": 32.52,
+"e": 32.82,
+"text": "firms",
+"chunk": 36
+},
+{
+"t": 32.82,
+"e": 33.16,
+"text": "expand",
+"chunk": 36
+},
+{
+"t": 33.16,
+"e": 33.42,
+"text": "their",
+"chunk": 37
+},
+{
+"t": 33.42,
+"e": 33.66,
+"text": "local",
+"chunk": 37
+},
+{
+"t": 33.66,
+"e": 34.18,
+"text": "operations,",
+"chunk": 38
+},
+{
+"t": 34.765,
+"e": 34.885,
+"text": "they",
+"chunk": 39
+},
+{
+"t": 34.78,
+"e": 34.96,
+"text": "take",
+"chunk": 39
+},
+{
+"t": 34.96,
+"e": 35.16,
+"text": "more",
+"chunk": 39
+},
+{
+"t": 35.16,
+"e": 35.5,
+"text": "space.",
+"chunk": 40
+},
+{
+"t": 35.95,
+"e": 36.0,
+"text": "When",
+"chunk": 41
+},
+{
+"t": 36.0,
+"e": 36.1,
+"text": "they",
+"chunk": 41
+},
+{
+"t": 36.1,
+"e": 36.32,
+"text": "hire",
+"chunk": 41
+},
+{
+"t": 36.32,
+"e": 36.52,
+"text": "people",
+"chunk": 42
+},
+{
+"t": 36.52,
+"e": 36.86,
+"text": "here,",
+"chunk": 42
+},
+{
+"t": 37.27,
+"e": 37.36,
+"text": "those",
+"chunk": 43
+},
+{
+"t": 37.36,
+"e": 37.8,
+"text": "employees",
+"chunk": 43
+},
+{
+"t": 37.8,
+"e": 38.1,
+"text": "need",
+"chunk": 43
+},
+{
+"t": 38.1,
+"e": 38.36,
+"text": "somewhere",
+"chunk": 44
+},
+{
+"t": 38.36,
+"e": 38.58,
+"text": "to",
+"chunk": 44
+},
+{
+"t": 38.58,
+"e": 38.78,
+"text": "live.",
+"chunk": 44
+},
+{
+"t": 39.115,
+"e": 39.2,
+"text": "But",
+"chunk": 45
+},
+{
+"t": 39.2,
+"e": 39.3,
+"text": "you",
+"chunk": 45
+},
+{
+"t": 39.3,
+"e": 39.44,
+"text": "need",
+"chunk": 45
+},
+{
+"t": 39.44,
+"e": 39.56,
+"text": "to",
+"chunk": 46
+},
+{
+"t": 39.56,
+"e": 39.72,
+"text": "see",
+"chunk": 46
+},
+{
+"t": 39.72,
+"e": 39.84,
+"text": "that",
+"chunk": 46
+},
+{
+"t": 39.84,
+"e": 40.14,
+"text": "expansion",
+"chunk": 47
+},
+{
+"t": 40.14,
+"e": 40.58,
+"text": "happening.",
+"chunk": 47
+},
+{
+"t": 41.465,
+"e": 41.585,
+"text": "A",
+"chunk": 48
+},
+{
+"t": 41.5,
+"e": 41.7,
+"text": "banking",
+"chunk": 48
+},
+{
+"t": 41.7,
+"e": 42.0,
+"text": "license",
+"chunk": 48
+},
+{
+"t": 42.0,
+"e": 42.38,
+"text": "alone",
+"chunk": 49
+},
+{
+"t": 42.38,
+"e": 42.74,
+"text": "doesn't",
+"chunk": 49
+},
+{
+"t": 42.74,
+"e": 42.92,
+"text": "tell",
+"chunk": 49
+},
+{
+"t": 42.92,
+"e": 43.04,
+"text": "you",
+"chunk": 50
+},
+{
+"t": 43.04,
+"e": 43.18,
+"text": "how",
+"chunk": 50
+},
+{
+"t": 43.18,
+"e": 43.36,
+"text": "many",
+"chunk": 50
+},
+{
+"t": 43.36,
+"e": 43.78,
+"text": "employees",
+"chunk": 51
+},
+{
+"t": 43.78,
+"e": 44.0,
+"text": "are",
+"chunk": 51
+},
+{
+"t": 44.0,
+"e": 44.26,
+"text": "coming",
+"chunk": 51
+},
+{
+"t": 44.26,
+"e": 44.56,
+"text": "or",
+"chunk": 52
+},
+{
+"t": 44.56,
+"e": 44.68,
+"text": "how",
+"chunk": 52
+},
+{
+"t": 44.68,
+"e": 44.9,
+"text": "much",
+"chunk": 52
+},
+{
+"t": 44.9,
+"e": 45.2,
+"text": "office",
+"chunk": 53
+},
+{
+"t": 45.2,
+"e": 45.44,
+"text": "space",
+"chunk": 53
+},
+{
+"t": 45.44,
+"e": 45.62,
+"text": "a",
+"chunk": 53
+},
+{
+"t": 45.62,
+"e": 45.82,
+"text": "company",
+"chunk": 54
+},
+{
+"t": 45.82,
+"e": 46.2,
+"text": "needs.",
+"chunk": 54
+},
+{
+"t": 46.6,
+"e": 46.66,
+"text": "If",
+"chunk": 55
+},
+{
+"t": 46.66,
+"e": 46.76,
+"text": "you're",
+"chunk": 55
+},
+{
+"t": 46.76,
+"e": 47.1,
+"text": "considering",
+"chunk": 55
+},
+{
+"t": 47.1,
+"e": 47.5,
+"text": "property",
+"chunk": 56
+},
+{
+"t": 47.5,
+"e": 47.8,
+"text": "around",
+"chunk": 56
+},
+{
+"t": 47.8,
+"e": 48.32,
+"text": "DIFC,",
+"chunk": 56
+},
+{
+"t": 48.935,
+"e": 49.04,
+"text": "check",
+"chunk": 57
+},
+{
+"t": 49.04,
+"e": 49.24,
+"text": "which",
+"chunk": 57
+},
+{
+"t": 49.24,
+"e": 49.54,
+"text": "firms",
+"chunk": 57
+},
+{
+"t": 49.54,
+"e": 49.7,
+"text": "are",
+"chunk": 58
+},
+{
+"t": 49.7,
+"e": 50.22,
+"text": "expanding,",
+"chunk": 58
+},
+{
+"t": 50.82,
+"e": 50.94,
+"text": "what",
+"chunk": 59
+},
+{
+"t": 50.86,
+"e": 51.2,
+"text": "tenants",
+"chunk": 59
+},
+{
+"t": 51.2,
+"e": 51.42,
+"text": "are",
+"chunk": 59
+},
+{
+"t": 51.42,
+"e": 51.68,
+"text": "actually",
+"chunk": 60
+},
+{
+"t": 51.68,
+"e": 52.08,
+"text": "paying,",
+"chunk": 60
+},
+{
+"t": 52.28,
+"e": 52.42,
+"text": "and",
+"chunk": 61
+},
+{
+"t": 52.42,
+"e": 52.58,
+"text": "how",
+"chunk": 61
+},
+{
+"t": 52.58,
+"e": 52.76,
+"text": "much",
+"chunk": 61
+},
+{
+"t": 52.76,
+"e": 52.96,
+"text": "new",
+"chunk": 62
+},
+{
+"t": 52.96,
+"e": 53.24,
+"text": "supply",
+"chunk": 62
+},
+{
+"t": 53.24,
+"e": 53.42,
+"text": "is",
+"chunk": 62
+},
+{
+"t": 53.42,
+"e": 53.66,
+"text": "coming.",
+"chunk": 63
+},
+{
+"t": 54.0,
+"e": 54.08,
+"text": "Being",
+"chunk": 64
+},
+{
+"t": 54.08,
+"e": 54.32,
+"text": "close",
+"chunk": 64
+},
+{
+"t": 54.32,
+"e": 54.54,
+"text": "to",
+"chunk": 64
+},
+{
+"t": 54.54,
+"e": 54.76,
+"text": "major",
+"chunk": 65
+},
+{
+"t": 54.76,
+"e": 55.1,
+"text": "financial",
+"chunk": 65
+},
+{
+"t": 55.1,
+"e": 55.72,
+"text": "institutions",
+"chunk": 66
+},
+{
+"t": 55.72,
+"e": 56.12,
+"text": "can",
+"chunk": 66
+},
+{
+"t": 56.12,
+"e": 56.28,
+"text": "make",
+"chunk": 66
+},
+{
+"t": 56.28,
+"e": 56.36,
+"text": "a",
+"chunk": 67
+},
+{
+"t": 56.36,
+"e": 56.62,
+"text": "location",
+"chunk": 67
+},
+{
+"t": 56.62,
+"e": 57.02,
+"text": "attractive,",
+"chunk": 68
+},
+{
+"t": 57.02,
+"e": 57.36,
+"text": "but",
+"chunk": 69
+},
+{
+"t": 57.36,
+"e": 57.82,
+"text": "buying",
+"chunk": 69
+},
+{
+"t": 57.82,
+"e": 57.92,
+"text": "at",
+"chunk": 69
+},
+{
+"t": 57.92,
+"e": 58.0,
+"text": "the",
+"chunk": 70
+},
+{
+"t": 58.0,
+"e": 58.14,
+"text": "right",
+"chunk": 70
+},
+{
+"t": 58.14,
+"e": 58.5,
+"text": "price",
+"chunk": 70
+},
+{
+"t": 58.5,
+"e": 58.74,
+"text": "is",
+"chunk": 71
+},
+{
+"t": 58.74,
+"e": 58.98,
+"text": "still",
+"chunk": 71
+},
+{
+"t": 58.98,
+"e": 59.16,
+"text": "what",
+"chunk": 71
+},
+{
+"t": 59.16,
+"e": 59.38,
+"text": "makes",
+"chunk": 72
+},
+{
+"t": 59.38,
+"e": 59.52,
+"text": "the",
+"chunk": 72
+},
+{
+"t": 59.52,
+"e": 59.8,
+"text": "investment",
+"chunk": 72
+},
+{
+"t": 59.8,
+"e": 60.2,
+"text": "work.",
+"chunk": 73
+},
+{
+"t": 60.36,
+"e": 60.84,
+"text": "There's",
+"chunk": 74
+},
+{
+"t": 60.84,
+"e": 60.89,
+"text": "a",
+"chunk": 74
+},
+{
+"t": 60.86,
+"e": 61.04,
+"text": "full",
+"chunk": 74
+},
+{
+"t": 61.04,
+"e": 61.32,
+"text": "study",
+"chunk": 75
+},
+{
+"t": 61.32,
+"e": 61.64,
+"text": "breaking",
+"chunk": 75
+},
+{
+"t": 61.64,
+"e": 61.96,
+"text": "down",
+"chunk": 75
+},
+{
+"t": 61.96,
+"e": 62.1,
+"text": "the",
+"chunk": 76
+},
+{
+"t": 62.1,
+"e": 62.28,
+"text": "business",
+"chunk": 76
+},
+{
+"t": 62.28,
+"e": 62.68,
+"text": "activity,",
+"chunk": 77
+},
+{
+"t": 63.245,
+"e": 63.42,
+"text": "nearby",
+"chunk": 78
+},
+{
+"t": 63.42,
+"e": 63.98,
+"text": "communities,",
+"chunk": 78
+},
+{
+"t": 64.14,
+"e": 64.5,
+"text": "and",
+"chunk": 79
+},
+{
+"t": 64.5,
+"e": 64.78,
+"text": "property",
+"chunk": 79
+},
+{
+"t": 64.78,
+"e": 65.18,
+"text": "options",
+"chunk": 79
+},
+{
+"t": 65.18,
+"e": 65.54,
+"text": "around",
+"chunk": 80
+},
+{
+"t": 65.54,
+"e": 66.1,
+"text": "DIFC.",
+"chunk": 80
+},
+{
+"t": 66.715,
+"e": 66.88,
+"text": "Comment",
+"chunk": 81
+},
+{
+"t": 66.88,
+"e": 67.2,
+"text": "CHINA",
+"chunk": 81
+},
+{
+"t": 67.2,
+"e": 67.64,
+"text": "and",
+"chunk": 81
+},
+{
+"t": 67.64,
+"e": 67.76,
+"text": "I'll",
+"chunk": 82
+},
+{
+"t": 67.76,
+"e": 67.94,
+"text": "send",
+"chunk": 82
+},
+{
+"t": 67.94,
+"e": 68.06,
+"text": "it",
+"chunk": 82
+},
+{
+"t": 68.06,
+"e": 68.16,
+"text": "to",
+"chunk": 83
+},
+{
+"t": 68.16,
+"e": 68.26,
+"text": "you.",
+"chunk": 83
+}
+]
+}
