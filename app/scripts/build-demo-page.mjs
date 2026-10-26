@@ -5,11 +5,13 @@
  * page works from any host, even one that only serves a single file.
  * In the page, an in-browser demo server (src/lib/demo/server.ts) stands in for the API.
  *
- *   node scripts/build-demo-page.mjs [out.html] [--start barber|shop|admin] [--reuse-build]
+ *   node scripts/build-demo-page.mjs [out.html] [--start barber|shop|admin] [--reuse-build] [--keep-path]
  *
  * --start makes a page for one side: it opens signed in to that side's sample account, on its
  * panel (the barber's dashboard, the barbershop panel or the team's admin panel).
  * --reuse-build skips the web export when app/dist is already built from the current code.
+ * --keep-path keeps the address the page opens at (for hosts that send every app route to the page,
+ * like the tester site), so shared links such as /p/ATLANTIS or /visits/… open their screen.
  */
 import { execSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
@@ -64,9 +66,9 @@ const page = `<meta charset="utf-8">
 <div id="root"></div>
 <script>
   window.__AF_DEMO__ = ${safe(data)};${start ? `\n  window.__AF_DEMO_START__ = ${JSON.stringify(start)};` : ""}
-  // The app routes by URL path; start it at its home screen wherever the page is served.
+${args.includes("--keep-path") ? "" : `  // The app routes by URL path; start it at its home screen wherever the page is served.
   try { if (location.pathname !== "/") history.replaceState(null, "", "/"); } catch (e) {}
-</script>
+`}</script>
 <script>${safe(js)}</script>
 `;
 writeFileSync(out, page);

@@ -4,7 +4,7 @@
  * demo page plus what makes it install like an app on a phone — a web manifest, home-screen
  * icons and full-screen mode — and a rewrite so every app route loads the page.
  *
- *   node scripts/build-netlify.mjs [outDir]     (default: dist-netlify)
+ *   node scripts/build-netlify.mjs [outDir] [--reuse-build]     (default: dist-netlify)
  */
 import { execFileSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -13,10 +13,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const app = join(dirname(fileURLToPath(import.meta.url)), "..");
-const out = process.argv[2] ?? join(app, "dist-netlify");
+const args = process.argv.slice(2);
+const out = args[0] && !args[0].startsWith("--") ? args[0] : join(app, "dist-netlify");
 mkdirSync(out, { recursive: true });
 
-execFileSync(process.execPath, [join(app, "scripts/build-demo-page.mjs"), join(out, "index.html")], { stdio: "inherit" });
+execFileSync(process.execPath, [join(app, "scripts/build-demo-page.mjs"), join(out, "index.html"), "--keep-path", ...args.filter((a) => a === "--reuse-build")], { stdio: "inherit" });
 
 // Home-screen icons from the app icon.
 const icon = join(app, "assets/icon.png");

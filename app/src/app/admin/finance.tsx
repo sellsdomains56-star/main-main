@@ -5,6 +5,7 @@ import { AdminPage, sumText } from "../../components/admin";
 import { colors } from "../../components/theme";
 import { Button, Card, ErrorBox, IconLine, Loading, Pill, Row, T, Wrap } from "../../components/ui";
 import { api } from "../../lib/api";
+import { saveFile } from "../../lib/saveFile";
 import type { AdminFinance } from "../../lib/types";
 
 /** The last six months, newest first, as YYYY-MM. */
@@ -30,14 +31,8 @@ export default function Finance() {
     setBusy(true);
     try {
       const csv = await api.admin.financeCsv(month);
-      if (Platform.OS === "web") {
-        const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `jb-finance-${month}.csv`;
-        a.click();
-        URL.revokeObjectURL(url);
-      } else await Share.share({ message: csv, title: `jb-finance-${month}.csv` });
+      if (Platform.OS === "web") await saveFile(`jb-finance-${month}.csv`, csv, "text/csv");
+      else await Share.share({ message: csv, title: `jb-finance-${month}.csv` });
     } catch (e) {
       setError((e as Error).message);
     } finally {
