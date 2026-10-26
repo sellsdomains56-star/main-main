@@ -16,6 +16,7 @@ export default function Portfolio() {
   const { user } = useAuth();
   const { width } = useWindowDimensions();
   const [barber, setBarber] = useState<Barber | null>(null);
+  const [consent, setConsent] = useState(false); // clients in the photos agreed to them being shared
   const [years, setYears] = useState("");
   const [languages, setLanguages] = useState("");
   const [bio, setBio] = useState("");
@@ -189,10 +190,11 @@ export default function Portfolio() {
         <View style={{ marginTop: 12 }}>
           <Field label="Style name" value={pair.caption} onChangeText={(caption) => setPair((p) => ({ ...p, caption }))} placeholder="e.g. Mid skin fade + beard sculpt" />
         </View>
+        <OptionRow multi label="My client agreed to these photos being shared" sublabel="Ask before you take them. We remove photos posted without consent." selected={consent} onPress={() => setConsent((c) => !c)} />
         <Button
           title="Add transformation"
           size="md"
-          disabled={!pair.before || !pair.after}
+          disabled={!pair.before || !pair.after || !consent}
           loading={busy === "pair"}
           onPress={() => run("pair", async () => {
             const next = await api.addTransformation(pair.before!, pair.after!, pair.caption);
@@ -213,9 +215,11 @@ export default function Portfolio() {
       </Section>
 
       <Section title="Photos of your work">
+        {!consent && <OptionRow multi label="Everyone in my photos agreed to them being shared" sublabel="Tick this before adding photos of clients." selected={consent} onPress={() => setConsent(true)} />}
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
           <Pressable
             accessibilityLabel="Add a photo"
+            disabled={!consent}
             onPress={() => run("gallery", async () => {
               const url = await pickAndUploadImage({ square: true });
               if (url) return api.addGalleryPhoto(url, "");

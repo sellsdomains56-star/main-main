@@ -83,6 +83,15 @@ export interface User {
   countryCode?: string;
   city?: string;
   preferences?: Preferences;
+  alerts?: AlertSettings;
+}
+
+/** Which alerts reach the phone (missing = on). Bookings, payments and account messages always do. */
+export interface AlertSettings {
+  reminders?: boolean;
+  offers?: boolean;
+  social?: boolean;
+  tips?: boolean;
 }
 
 /** "My chair": how the customer likes their visit. Barbers see it on every booking. */

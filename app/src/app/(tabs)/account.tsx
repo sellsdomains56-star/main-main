@@ -84,6 +84,7 @@ export default function Account() {
         />
         <ListRow icon="bag-handle-outline" title={`${SHOP_NAME} orders`} onPress={() => router.push("/orders")} />
         <ListRow icon="location-outline" title="My city" subtitle={where} onPress={() => setSheet(true)} />
+        <ListRow icon="settings-outline" title="Settings" subtitle={user ? "Alerts, your data, legal, delete account" : "Terms and privacy"} onPress={() => router.push("/settings")} />
         <ListRow icon="sparkles-outline" title="AI Try-On" subtitle="See new styles on your own photo" onPress={() => router.push("/stylist")} />
       </Section>
 

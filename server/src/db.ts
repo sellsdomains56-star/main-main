@@ -25,6 +25,8 @@ interface Data {
   settings: Settings; // what the team changed in the admin panel
   blocks: Block[]; // time barbershops blocked in their barbers' calendars
   shopSettings: Record<string, ShopSettings>; // what each barbershop changed in the shop panel
+  resetTokens: { hash: string; userId: string; expires: string }[]; // password-reset links (only the hash is kept)
+  outbox: { id: string; to: string; subject: string; text: string; sentAt: string; delivered: boolean }[]; // recent emails
 }
 
 const DATA_DIR = new URL("../data/", import.meta.url);
@@ -35,7 +37,7 @@ const persist = process.env.NODE_ENV !== "test";
 function load(): Data {
   if (persist) {
     try {
-      const data = { orders: [], hires: [], giftCards: [], purchases: [], waitlist: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], settings: {}, blocks: [], shopSettings: {}, ...JSON.parse(readFileSync(DATA_FILE, "utf8")) } as Data;
+      const data = { orders: [], hires: [], giftCards: [], purchases: [], waitlist: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], settings: {}, blocks: [], shopSettings: {}, resetTokens: [], outbox: [], ...JSON.parse(readFileSync(DATA_FILE, "utf8")) } as Data;
       // Fill fields added after this file was first written.
       const defaults = { yearsExperience: 0, languages: [], gallery: [], transformations: [] };
       data.barbers = data.barbers.map((b) => {
@@ -43,7 +45,10 @@ function load(): Data {
         const centre = COUNTRIES.find((c) => c.code === b.countryCode)?.cities.find((c) => c.name === b.city);
         // Sample barbers get the new sample photos (the old placeholder portraits came from another site).
         const photoUrl = seeded && b.photoUrl.startsWith("https://i.pravatar.cc/") ? seeded.photoUrl : b.photoUrl;
-        return { ...defaults, shopId: seeded?.shopId, ...b, photoUrl, lat: b.lat ?? seeded?.lat ?? centre?.lat ?? 0, lng: b.lng ?? seeded?.lng ?? centre?.lng ?? 0 };
+        // Sample barbers still on the old four-service menu get the full menu (same ids for the four).
+        const oldMenu = seeded && b.services.length === 4 && b.services.every((s) => /-(cut|fade|beard|combo)$/.test(s.id));
+        const services = oldMenu ? seeded.services.map((s) => ({ ...s, price: b.services.find((o) => o.id === s.id)?.price ?? s.price })) : b.services;
+        return { ...defaults, shopId: seeded?.shopId, ...b, services, photoUrl, lat: b.lat ?? seeded?.lat ?? centre?.lat ?? 0, lng: b.lng ?? seeded?.lng ?? centre?.lng ?? 0 };
       });
       // Sample barbers added since the file was written (e.g. new cities).
       for (const s of BARBERS) if (!data.barbers.some((b) => b.id === s.id)) data.barbers.push(structuredClone(s));
@@ -52,7 +57,7 @@ function load(): Data {
       // first run
     }
   }
-  return { users: [], barbers: structuredClone(BARBERS), bookings: [], hires: [], giftCards: [], purchases: [], waitlist: [], reviews: [], orders: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], sessions: {}, settings: {}, blocks: [], shopSettings: {} };
+  return { users: [], barbers: structuredClone(BARBERS), bookings: [], hires: [], giftCards: [], purchases: [], waitlist: [], reviews: [], orders: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], sessions: {}, settings: {}, blocks: [], shopSettings: {}, resetTokens: [], outbox: [] };
 }
 
 export const db: Data = load();

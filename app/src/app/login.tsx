@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import { useCallback, useState } from "react";
-import { View } from "react-native";
+import { Pressable, View } from "react-native";
 import { LogoLockup } from "../components/Brand";
 import { SocialSignIn } from "../components/SocialSignIn";
 import { Button, Card, ErrorBox, Field, Screen, Segmented, T } from "../components/ui";
@@ -81,6 +81,16 @@ export default function Login() {
         {mode === "register" && <Field label="Name" value={name} onChangeText={setName} autoComplete="name" />}
         <Field label="Email" value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" autoComplete="email" />
         <Field label="Password" value={password} onChangeText={setPassword} secureTextEntry autoComplete={mode === "login" ? "current-password" : "new-password"} placeholder={mode === "register" ? "At least 8 characters" : undefined} />
+        {mode === "login" && (
+          <Pressable onPress={() => router.push("/forgot-password")} accessibilityRole="link" hitSlop={8} style={{ alignSelf: "flex-start", marginTop: -4, marginBottom: 12 }}>
+            <T variant="caption" style={{ textDecorationLine: "underline" }}>Forgot password?</T>
+          </Pressable>
+        )}
+        <T variant="small" muted style={{ marginBottom: 12 }}>
+          By continuing you agree to our{" "}
+          <T variant="small" style={{ textDecorationLine: "underline" }} onPress={() => router.push({ pathname: "/legal/[doc]", params: { doc: "terms" } })}>Terms of use</T> and{" "}
+          <T variant="small" style={{ textDecorationLine: "underline" }} onPress={() => router.push({ pathname: "/legal/[doc]", params: { doc: "privacy" } })}>Privacy policy</T>.
+        </T>
       </View>
       {error && <ErrorBox message={error} />}
       {DEMO_DATA && (

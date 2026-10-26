@@ -143,6 +143,16 @@ export interface User {
   credit?: Record<string, number>; // gift-card balance per currency, minor units
   membership?: Membership; // The Club
   manages?: string; // id of the barbershop this person runs in the shop panel (owner or manager)
+  alerts?: AlertSettings; // which alerts they get on their phone (missing = all on)
+  deletedAt?: string; // the account was deleted: personal details removed, bookings kept for the barber's records
+}
+
+/** Which alerts reach the phone. Bookings, payments and account messages always do. */
+export interface AlertSettings {
+  reminders?: boolean; // "tomorrow" and "in an hour" before a booking
+  offers?: boolean; // The Club, gift cards, offers from JB
+  social?: boolean; // likes, comments and replies on reels
+  tips?: boolean; // barbers: "You got a tip"
 }
 
 /** How the customer likes their visit, shown to the barber on each booking. */

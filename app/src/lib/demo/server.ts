@@ -67,6 +67,8 @@ interface User {
   membership?: { plan: SeedPlan["id"]; number: string; currency: string; since: string; paidUntil: string };
   createdAt?: string;
   manages?: string; // id of the barbershop this person runs in the shop panel
+  alerts?: { reminders?: boolean; offers?: boolean; social?: boolean; tips?: boolean };
+  deletedAt?: string;
   seeded?: boolean; // a sample account (see seedDemoAccounts)
 }
 interface GiftCard { id: string; code: string; amount: number; currency: string; buyerId: string; toName: string; toEmail: string; message: string; design: "noir" | "ivory"; status: "pending_payment" | "active" | "redeemed"; createdAt: string }
@@ -403,7 +405,7 @@ function orderAlert(o: Order) {
 
 // ---------- Helpers ----------
 
-const publicUser = (u: User) => ({ id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city, preferences: u.preferences, ...(u.manages ? { manages: u.manages } : {}), ...(isAdmin(u) ? { admin: true } : {}) });
+const publicUser = (u: User) => ({ id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city, preferences: u.preferences, alerts: u.alerts, ...(u.manages ? { manages: u.manages } : {}), ...(isAdmin(u) ? { admin: true } : {}) });
 
 // ---------- The Club, gift cards (mirrors server/src/club.ts) ----------
 
@@ -1680,6 +1682,40 @@ export function createDemoServer(data: DemoData) {
       return undefined;
     }
     if (path === "/me" && method === "GET") return publicUser(requireUser(token));
+    // Password reset: the demo sends no email, so links never arrive (the real app emails one).
+    if (path === "/auth/forgot" && method === "POST") return undefined;
+    if (path === "/auth/reset" && method === "POST") throw new DemoError(400, "This link has expired. Ask for a new one.");
+    if (path === "/me/alerts" && method === "PATCH") {
+      const u = requireUser(token);
+      u.alerts = { ...u.alerts, ...(body as User["alerts"]) };
+      persist();
+      return publicUser(u);
+    }
+    if (path === "/me/export") {
+      const u = requireUser(token);
+      if (method === "POST") return { sentTo: u.email };
+      return {
+        exportedAt: new Date().toISOString(), account: publicUser(u),
+        bookings: saved.bookings.filter((b) => b.customerId === u.id).map(bookingView),
+        reviews: saved.reviews.filter((r) => r.customerId === u.id), orders: saved.orders.filter((o) => o.customerId === u.id),
+        purchases: (saved.purchases ?? []).filter((p) => p.userId === u.id), alerts: (saved.notifications ?? []).filter((n) => n.userId === u.id),
+      };
+    }
+    if (path === "/me" && method === "DELETE") {
+      const u = requireUser(token);
+      if (body?.confirm !== true) throw new DemoError(400, "Confirm to delete your account.");
+      for (const b of saved.bookings) {
+        if ((b.customerId === u.id || (u.barberId && b.barberId === u.barberId)) && ["pending_payment", "confirmed", "on_the_way"].includes(b.status) && Date.parse(b.startsAt) > Date.now()) b.status = "cancelled";
+      }
+      if (u.barberId) saved.barberPatches[u.barberId] = { ...saved.barberPatches[u.barberId], status: "suspended", offline: true };
+      Object.assign(u, { name: "Deleted account", email: `deleted+${u.id}@deleted.jbalwaysfresh.invalid`, passwordHash: newId(), deletedAt: new Date().toISOString() });
+      for (const k of ["preferences", "credit", "manages", "alerts", "membership", "countryCode", "city"] as const) delete u[k];
+      for (const r of saved.reviews) if (r.customerId === u.id) r.customerName = "Former customer";
+      saved.notifications = (saved.notifications ?? []).filter((n) => n.userId !== u.id);
+      for (const [t, id] of Object.entries(saved.sessions)) if (id === u.id) delete saved.sessions[t];
+      persist();
+      return undefined;
+    }
     if (path === "/me/preferences" && method === "PATCH") {
       const u = requireUser(token);
       u.preferences = { ...u.preferences, ...(body as Record<string, string>) };
@@ -1767,6 +1803,7 @@ export function createDemoServer(data: DemoData) {
       if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
       const b = getBarber(u.barberId);
       const patch = (saved.barberPatches[u.barberId] ??= {});
+      if (method === "POST" && body?.consent !== true) throw new DemoError(400, "Tick the box to confirm everyone in the photo agreed to it being shared.");
       if (x[1] === "gallery") {
         const list = method === "DELETE" ? b.gallery.filter((p) => p.id !== x![2]) : [{ id: newId(), url: String(body?.url), caption: String(body?.caption ?? "") }, ...b.gallery];
         patch.gallery = list;

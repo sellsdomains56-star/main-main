@@ -1,4 +1,5 @@
 import { config } from "./config.js";
+import { letter, sendEmail } from "./email.js";
 import { cityOf, CONSULTATION, findService, getBarber } from "./common.js";
 import { db, newId, save } from "./db.js";
 import { SHOPS } from "./seed.js";
@@ -17,8 +18,17 @@ export function notify(userId: string, n: { kind: NotificationKind; title: strin
     db.notifications = db.notifications.filter((x) => !drop.has(x.id));
   }
   save();
-  void sendPush(userId, item);
+  if (wantsPush(userId, n.kind)) void sendPush(userId, item);
   return item;
+}
+
+/** Alerts people can switch off (Account → Alerts); everything else always reaches the phone. */
+const OPTIONAL: Partial<Record<NotificationKind, "reminders" | "offers" | "tips">> = { reminder: "reminders", club: "offers", gift: "offers", tip: "tips" };
+
+function wantsPush(userId: string, kind: NotificationKind) {
+  const pref = OPTIONAL[kind];
+  if (!pref) return true;
+  return db.users.find((u) => u.id === userId)?.alerts?.[pref] !== false;
 }
 
 /** Sends through Expo's push service (works for both iOS and Android builds). */
@@ -78,6 +88,7 @@ export function bookingConfirmed(b: Booking) {
     body: `${d.service} with ${d.barber.name}, ${d.when}, ${d.where}.`,
     bookingId: b.id,
   });
+  bookingEmail(b, d);
   if (d.barberUserId) {
     notify(d.barberUserId, {
       kind: "new_booking",
@@ -86,6 +97,30 @@ export function bookingConfirmed(b: Booking) {
       bookingId: b.id,
     });
   }
+}
+
+/** The confirmation and receipt by email. */
+function bookingEmail(b: Booking, d: ReturnType<typeof details>) {
+  const customer = db.users.find((u) => u.id === b.customerId);
+  if (!customer || customer.deletedAt) return;
+  const barber = d.barber;
+  const money = (v: number) => new Intl.NumberFormat("en", { style: "currency", currency: b.currency.toUpperCase() }).format(v / 100);
+  const extras = (b.extras ?? []).map((id) => barber.services.find((s) => s.id === id)).filter((s) => !!s);
+  const lines = [
+    `You're booked: ${d.service} with ${barber.name}, ${d.when}, ${d.where}.`,
+    "",
+    "Receipt",
+    `${d.service}: ${b.coveredBy ? "included in The Club" : money(findService(barber, b.serviceId)?.price ?? 0)}`,
+    ...extras.map((s) => `${s.name}: ${money(s.price)}`),
+    ...(b.locationType === "home" ? [`Home visit: ${money(Math.max(0, b.amount + (b.creditUsed ?? 0) - (b.coveredBy ? 0 : findService(barber, b.serviceId)?.price ?? 0) - extras.reduce((t, s) => t + s.price, 0)))}`] : []),
+    ...(b.creditUsed ? [`Gift credit: -${money(b.creditUsed)}`] : []),
+    ...(b.tip ? [`Tip for ${first(barber.name)}: ${money(b.tip)}`] : []),
+    `Total paid: ${money(b.amount + (b.tip ?? 0))}`,
+    "Prices include VAT where it applies.",
+    "",
+    `Change or cancel in the app (Bookings), or open ${config.appUrl}/bookings`,
+  ];
+  void sendEmail({ to: customer.email, subject: `${d.consult ? "Consultation booked" : "You're booked"}: ${d.service} with ${first(barber.name)}, ${d.when}`, text: letter(customer.name, lines) });
 }
 
 export function barberOnTheWay(b: Booking) {

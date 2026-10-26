@@ -76,9 +76,10 @@ test("barbers manage photo, gallery and before/after", async () => {
   assert.equal(patched.json.yearsExperience, 5);
 
   assert.equal((await call("/barbers/me/gallery", { token: acc.token, body: { url: "https://evil.example/x.jpg" } })).status, 400);
-  const g = await call("/barbers/me/gallery", { token: acc.token, body: { url, caption: "Fresh fade" } });
+  assert.equal((await call("/barbers/me/gallery", { token: acc.token, body: { url, caption: "No consent" } })).status, 400, "consent is required");
+  const g = await call("/barbers/me/gallery", { token: acc.token, body: { url, caption: "Fresh fade", consent: true } });
   assert.equal(g.json.gallery[0].caption, "Fresh fade");
-  const t = await call("/barbers/me/transformations", { token: acc.token, body: { beforeUrl: url, afterUrl: url, caption: "Skin fade" } });
+  const t = await call("/barbers/me/transformations", { token: acc.token, body: { beforeUrl: url, afterUrl: url, caption: "Skin fade", consent: true } });
   assert.equal(t.json.transformations.length, 1);
   const removed = await call(`/barbers/me/gallery/${g.json.gallery[0].id}`, { method: "DELETE", token: acc.token });
   assert.equal(removed.json.gallery.length, 0);

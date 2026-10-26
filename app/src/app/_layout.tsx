@@ -56,6 +56,10 @@ export default function RootLayout() {
                   <Stack.Screen name="pay/[bookingId]" options={{ title: "Payment" }} />
                   <Stack.Screen name="review/[bookingId]" options={{ title: "Rate your cut", presentation: "modal" }} />
                   <Stack.Screen name="login" options={{ title: "", presentation: "modal" }} />
+                  <Stack.Screen name="forgot-password" options={{ title: "Reset password" }} />
+                  <Stack.Screen name="reset-password" options={{ title: "New password" }} />
+                  <Stack.Screen name="settings" options={{ title: "Settings" }} />
+                  <Stack.Screen name="legal/[doc]" options={{ title: "" }} />
                   <Stack.Screen name="become-barber" options={{ title: "Join as a barber" }} />
                   <Stack.Screen name="post-reel" options={{ title: "New reel" }} />
                   <Stack.Screen name="notifications" options={{ title: "Alerts" }} />

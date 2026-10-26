@@ -34,4 +34,9 @@ export const config = {
   reviewNewBarbers: process.env.REVIEW_NEW_BARBERS ? process.env.REVIEW_NEW_BARBERS === "true" : process.env.NODE_ENV !== "test",
   // Sample logins and bookings for trying the barber side and the admin panel. Never in production.
   demoAccounts: process.env.DEMO_ACCOUNTS === "1",
+  // Email (receipts, password reset, your data) through Resend; without a key emails are only logged.
+  resendApiKey: process.env.RESEND_API_KEY || undefined,
+  emailFrom: process.env.EMAIL_FROM || "JB Always Fresh <hello@jbalwaysfresh.com>",
+  // Where links in emails open (the website), e.g. https://jbalwaysfresh.com
+  appUrl: (process.env.APP_URL || "http://localhost:8081").replace(/\/$/, ""),
 };

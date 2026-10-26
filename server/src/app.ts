@@ -19,6 +19,7 @@ import { registerPortfolioRoutes } from "./routes/portfolio.js";
 import { registerBusinessRoutes } from "./routes/business.js";
 import { registerAdminRoutes } from "./routes/admin.js";
 import { registerManageRoutes } from "./routes/manage.js";
+import { clearTries, limit, loginKey, registerAccountRoutes } from "./routes/account.js";
 import { campaignsFor } from "./campaigns.js";
 import { registerClubRoutes } from "./routes/club.js";
 import { registerReelRoutes, reelView } from "./routes/reels.js";
@@ -95,6 +96,7 @@ export function createApp() {
   app.post("/reels", requireAuth, express.raw({ type: ["video/*", "application/octet-stream"], limit: "100mb" }), (req, res) => {
     const user = req.user!;
     if (user.role !== "barber" || !user.barberId) throw new HttpError(403, "Only barbers can post reels.");
+    if (req.query.consent !== "1") throw new HttpError(400, "Tick the box to confirm everyone in the video agreed to it being shared.");
     if (!Buffer.isBuffer(req.body) || req.body.length < 1000) throw new HttpError(400, "Please attach a video.");
     const type = req.header("content-type") ?? "";
     const ext = type.includes("quicktime") ? "mov" : type.includes("webm") ? "webm" : "mp4";
@@ -164,8 +166,11 @@ export function createApp() {
 
   app.post("/auth/login", (req, res) => {
     const body = parse(z.object({ email: z.string().trim().toLowerCase(), password: z.string() }), req.body);
-    const user = db.users.find((u) => u.email === body.email);
+    // Ten wrong tries in 15 minutes locks that email from that address for a while.
+    limit(loginKey(req, body.email), 10, 15 * 60_000, "Too many tries. Wait 15 minutes, or reset your password.");
+    const user = db.users.find((u) => u.email === body.email && !u.deletedAt);
     if (!user || !verifyPassword(body.password, user.passwordHash)) throw new HttpError(401, "Wrong email or password.");
+    clearTries(loginKey(req, body.email));
     res.json({ token: createSession(user.id), user: publicUser(user) });
   });
 
@@ -254,6 +259,7 @@ export function createApp() {
   registerBusinessRoutes(app);
   registerAdminRoutes(app);
   registerManageRoutes(app);
+  registerAccountRoutes(app);
   registerNotificationRoutes(app);
   registerSupportRoutes(app);
   registerAssistantRoutes(app);

@@ -17,6 +17,9 @@ function myBarber(req: Request) {
 }
 
 /** Barbers manage their own profile photo, portfolio gallery and before/after transformations. */
+/** Photos of clients are only posted with their agreement (the barber confirms it each time). */
+const Consent = z.literal(true, { message: "Tick the box to confirm everyone in the photo agreed to it being shared." });
+
 export function registerPortfolioRoutes(app: Express) {
   app.post("/uploads/image", requireAuth, express.raw({ type: Object.keys(IMAGE_TYPES), limit: "15mb" }), (req, res) => {
     myBarber(req);
@@ -76,7 +79,7 @@ export function registerPortfolioRoutes(app: Express) {
 
   app.post("/barbers/me/gallery", requireAuth, (req, res) => {
     const barber = myBarber(req);
-    const body = parse(z.object({ url: MediaPath, caption: z.string().max(200).default("") }), req.body);
+    const body = parse(z.object({ url: MediaPath, caption: z.string().max(200).default(""), consent: Consent }), req.body);
     barber.gallery.unshift({ id: newId(), url: body.url, caption: body.caption.trim() });
     save();
     res.status(201).json(barberView(barber));
@@ -91,7 +94,7 @@ export function registerPortfolioRoutes(app: Express) {
 
   app.post("/barbers/me/transformations", requireAuth, (req, res) => {
     const barber = myBarber(req);
-    const body = parse(z.object({ beforeUrl: MediaPath, afterUrl: MediaPath, caption: z.string().max(200).default("") }), req.body);
+    const body = parse(z.object({ beforeUrl: MediaPath, afterUrl: MediaPath, caption: z.string().max(200).default(""), consent: Consent }), req.body);
     barber.transformations.unshift({ id: newId(), beforeUrl: body.beforeUrl, afterUrl: body.afterUrl, caption: body.caption.trim() });
     save();
     res.status(201).json(barberView(barber));

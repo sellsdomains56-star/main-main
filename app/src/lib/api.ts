@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AdminBarberDetail, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Review, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, VenueKind, WorkingHours } from "./types";
+import type { AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Review, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, VenueKind, WorkingHours } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -74,7 +74,7 @@ export const api = {
         throw new ApiError((e as DemoError).status ?? 500, (e as Error).message);
       }
     }
-    const res = await fetch(`${API_URL}/reels?caption=${encodeURIComponent(caption)}`, {
+    const res = await fetch(`${API_URL}/reels?consent=1&caption=${encodeURIComponent(caption)}`, {
       method: "POST",
       headers: { "content-type": contentType, ...(authToken ? { authorization: `Bearer ${authToken}` } : {}) },
       body: video,
@@ -117,6 +117,12 @@ export const api = {
     request<{ token: string; user: User }>(`/auth/${provider}`, { body: { idToken, name } }),
   logout: () => request<void>("/auth/logout", { method: "POST" }),
   me: () => request<User>("/me"),
+  forgotPassword: (email: string) => request<void>("/auth/forgot", { body: { email } }),
+  resetPassword: (token: string, password: string) => request<{ token: string; user: User }>("/auth/reset", { body: { token, password } }),
+  updateAlerts: (body: Partial<AlertSettings>) => request<User>("/me/alerts", { method: "PATCH", body }),
+  myData: () => request<Record<string, unknown>>("/me/export"),
+  emailMyData: () => request<{ sentTo: string }>("/me/export", { method: "POST" }),
+  deleteAccount: () => request<void>("/me", { method: "DELETE", body: { confirm: true } }),
   updateMe: (body: Partial<Pick<User, "name" | "countryCode" | "city">>) => request<User>("/me", { method: "PATCH", body }),
 
   createBooking: (body: {
@@ -232,10 +238,10 @@ export const api = {
     updateSettings: (body: Partial<{ about: string; phone: string; workingDays: number[]; openHour: number; closeHour: number }>) =>
       request<{ about: string; phone: string; workingDays: number[]; openHour: number; closeHour: number }>("/manage/settings", { method: "PATCH", body }),
   },
-  addGalleryPhoto: (url: string, caption: string) => request<Barber>("/barbers/me/gallery", { body: { url, caption } }),
+  addGalleryPhoto: (url: string, caption: string) => request<Barber>("/barbers/me/gallery", { body: { url, caption, consent: true } }),
   removeGalleryPhoto: (id: string) => request<Barber>(`/barbers/me/gallery/${id}`, { method: "DELETE" }),
   addTransformation: (beforeUrl: string, afterUrl: string, caption: string) =>
-    request<Barber>("/barbers/me/transformations", { body: { beforeUrl, afterUrl, caption } }),
+    request<Barber>("/barbers/me/transformations", { body: { beforeUrl, afterUrl, caption, consent: true } }),
   removeTransformation: (id: string) => request<Barber>(`/barbers/me/transformations/${id}`, { method: "DELETE" }),
 
   // Help centre & assistant

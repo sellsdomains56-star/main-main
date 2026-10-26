@@ -45,6 +45,7 @@ export function T({
   center,
   numberOfLines,
   style,
+  onPress,
 }: {
   children: ReactNode;
   variant?: keyof typeof variants;
@@ -53,9 +54,10 @@ export function T({
   center?: boolean;
   numberOfLines?: number;
   style?: StyleProp<TextStyle>;
+  onPress?: () => void; // a link inside a sentence
 }) {
   return (
-    <Text numberOfLines={numberOfLines} style={[variants[variant], { color: color ?? (muted ? colors.muted : colors.text) }, center && { textAlign: "center" }, style]}>
+    <Text numberOfLines={numberOfLines} onPress={onPress} accessibilityRole={onPress ? "link" : undefined} style={[variants[variant], { color: color ?? (muted ? colors.muted : colors.text) }, center && { textAlign: "center" }, style]}>
       {children}
     </Text>
   );

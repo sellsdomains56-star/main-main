@@ -4,7 +4,7 @@ import { useVideoPlayer, VideoView } from "expo-video";
 import { useState } from "react";
 import { View } from "react-native";
 import { colors, radius } from "../components/theme";
-import { Button, EmptyState, IconBadge, ErrorBox, Field, Screen, T } from "../components/ui";
+import { Button, EmptyState, IconBadge, ErrorBox, Field, OptionRow, Screen, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 
@@ -20,6 +20,8 @@ export default function PostReel() {
     p.muted = true;
     p.play();
   });
+
+  const [consent, setConsent] = useState(false);
 
   if (user?.role !== "barber") {
     return <Screen><EmptyState icon="videocam-outline" title="Reels are for barbers" body="Create a barber profile to post reels of your cuts." action={{ label: "Join as a barber", onPress: () => router.replace("/become-barber") }} /></Screen>;
@@ -53,14 +55,14 @@ export default function PostReel() {
   }
 
   return (
-    <Screen footer={<Button title="Post reel" icon="cloud-upload-outline" onPress={upload} loading={busy} disabled={!video} />}>
+    <Screen footer={<Button title="Post reel" icon="cloud-upload-outline" onPress={upload} loading={busy} disabled={!video || !consent} />}>
       <T variant="title">Show off your work</T>
       <T muted style={{ marginTop: 6 }}>Vertical videos up to 60 seconds work best. Before/after transformations get the most bookings.</T>
 
       <View style={{ marginTop: 20, alignItems: "center" }}>
         {video ? (
           <View style={{ width: 220, height: 390, borderRadius: radius.lg, overflow: "hidden", backgroundColor: "#000" }}>
-            <VideoView player={player} style={{ width: "100%", height: "100%" }} contentFit="cover" nativeControls={false} />
+            <VideoView player={player} style={{ width: "100%", height: "100%" }} contentFit="cover" nativeControls={false} playsInline />
           </View>
         ) : (
           <View style={{ width: "100%", borderWidth: 2, borderStyle: "dashed", borderColor: colors.surfaceStrong, borderRadius: radius.xl, padding: 28, alignItems: "center", backgroundColor: colors.surface }}>
@@ -73,6 +75,7 @@ export default function PostReel() {
 
       <View style={{ marginTop: 20 }}>
         <Field label="Caption" value={caption} onChangeText={setCaption} placeholder="e.g. Skin fade + beard sculpt #fade" maxLength={300} multiline />
+        <OptionRow multi label="Everyone in this video agreed to it being shared" sublabel="Ask your client before you film. We remove reels posted without consent." selected={consent} onPress={() => setConsent((c) => !c)} />
       </View>
       {error && <ErrorBox message={error} />}
     </Screen>

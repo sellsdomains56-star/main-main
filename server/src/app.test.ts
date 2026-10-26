@@ -156,7 +156,7 @@ test("reels: feed by city, like toggle, barber upload", async () => {
   assert.equal(unliked.json.likes, berlin[0].likes);
 
   const upload = (token: string) =>
-    fetch(`${base}/reels?caption=${encodeURIComponent("Fresh fade")}`, { method: "POST", headers: { authorization: `Bearer ${token}`, "content-type": "video/mp4" }, body: new Uint8Array(5000) });
+    fetch(`${base}/reels?consent=1&caption=${encodeURIComponent("Fresh fade")}`, { method: "POST", headers: { authorization: `Bearer ${token}`, "content-type": "video/mp4" }, body: new Uint8Array(5000) });
   assert.equal((await upload(fan.token)).status, 403);
   const { json: barber } = await call("/auth/login", { body: { email: "barber@example.com", password: "password123" } });
   const res = await upload(barber.token);
