@@ -11,11 +11,13 @@ import { colors, fonts, radius } from "../components/theme";
 import { Button, Divider, EmptyState, ErrorBox, Field, IconButton, Loading, Placeholder, Pill, Row, SearchBar, Segmented, T, Wrap, styles } from "../components/ui";
 import { api } from "../lib/api";
 import { useLocation } from "../lib/location";
+import { currentPosition } from "../lib/position";
 import type { Barber, BarberSearch } from "../lib/types";
 
 type Sort = NonNullable<BarberSearch["sort"]>;
 const SORTS: { value: Sort; label: string }[] = [
   { value: "rating", label: "Top rated" },
+  { value: "nearest", label: "Nearest" },
   { value: "soonest", label: "Soonest" },
   { value: "price", label: "Lowest price" },
   { value: "experience", label: "Most experienced" },
@@ -27,6 +29,7 @@ interface Filters {
   minRating: number;
   maxPrice: string; // major units, only with a country selected
   availableToday: boolean;
+  openNow: boolean;
   homeVisits: boolean;
   sort: Sort;
 }
@@ -45,12 +48,29 @@ export default function Explore() {
     minRating: 0,
     maxPrice: "",
     availableToday: false,
+    openNow: false,
     homeVisits: params.home === "1",
     sort: "rating",
   });
   const [sheet, setSheet] = useState(false);
   const [list, setList] = useState<Barber[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [here, setHere] = useState<{ lat: number; lng: number; approx: boolean } | null>(null); // for "Nearest"
+
+  // "Nearest" needs to know where you are: the phone's position, or your city's centre if you'd rather not say.
+  useEffect(() => {
+    if (filters.sort !== "nearest" || here) return;
+    let live = true;
+    currentPosition().then((pos) => {
+      if (!live) return;
+      const centre = country?.cities.find((c) => c.name === place?.city) ?? country?.cities[0];
+      if (pos) setHere({ ...pos, approx: false });
+      else if (centre) setHere({ lat: centre.lat, lng: centre.lng, approx: true });
+    });
+    return () => {
+      live = false;
+    };
+  }, [filters.sort, here, country, place?.city]);
 
   const near = scope === "near" && !!place;
   const query = useMemo<BarberSearch>(
@@ -62,10 +82,12 @@ export default function Explore() {
       minRating: filters.minRating || undefined,
       maxPrice: near && parseFloat(filters.maxPrice) > 0 ? Math.round(parseFloat(filters.maxPrice) * 100) : undefined,
       availableToday: filters.availableToday,
+      openNow: filters.openNow,
       homeVisits: filters.homeVisits,
-      sort: filters.sort,
+      sort: filters.sort === "nearest" && !here ? "rating" : filters.sort,
+      near: here ? { lat: here.lat, lng: here.lng } : undefined,
     }),
-    [near, place, search, filters],
+    [near, place, search, filters, here],
   );
 
   useEffect(() => {
@@ -75,7 +97,7 @@ export default function Explore() {
   }, [query]);
 
   const activeCount =
-    filters.specialty.length + (filters.minRating ? 1 : 0) + (near && filters.maxPrice ? 1 : 0) + (filters.availableToday ? 1 : 0) + (filters.homeVisits ? 1 : 0) + (filters.sort !== "rating" ? 1 : 0);
+    filters.specialty.length + (filters.minRating ? 1 : 0) + (near && filters.maxPrice ? 1 : 0) + (filters.availableToday ? 1 : 0) + (filters.openNow ? 1 : 0) + (filters.homeVisits ? 1 : 0) + (filters.sort !== "rating" ? 1 : 0);
   const set = (patch: Partial<Filters>) => setFilters((f) => ({ ...f, ...patch }));
 
   return (
@@ -108,6 +130,8 @@ export default function Explore() {
 
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -20, marginTop: 4, marginBottom: -10 }} contentContainerStyle={{ gap: 8, paddingHorizontal: 20, paddingVertical: 10 }}>
             <Pill label={activeCount ? `Filters · ${activeCount}` : "Filters"} icon="options-outline" selected={activeCount > 0} onPress={() => setSheet(true)} />
+            <Pill label="Nearest" icon="navigate-outline" selected={filters.sort === "nearest"} onPress={() => set({ sort: filters.sort === "nearest" ? "rating" : "nearest" })} />
+            <Pill label="Open now" icon="radio-button-on-outline" selected={filters.openNow} onPress={() => set({ openNow: !filters.openNow })} />
             <Pill label="Available today" icon="time-outline" selected={filters.availableToday} onPress={() => set({ availableToday: !filters.availableToday })} />
             <Pill label="Comes to me" icon="home-outline" selected={filters.homeVisits} onPress={() => set({ homeVisits: !filters.homeVisits })} />
             <Pill label="4.5+" icon="star-outline" selected={filters.minRating === 4.5} onPress={() => set({ minRating: filters.minRating === 4.5 ? 0 : 4.5 })} />
@@ -135,6 +159,7 @@ export default function Explore() {
                 <T variant="caption" muted style={{ flex: 1 }}>
                   {list.length} {list.length === 1 ? "barber" : "barbers"} {near ? `in ${place!.city || country?.name}` : "worldwide"}
                   {view === "map" ? ` · ${barberPins(list).filter((p) => p.free).length} free today` : ""}
+                  {filters.sort === "nearest" && here ? (here.approx ? " · from the city centre" : " · nearest to you") : ""}
                 </T>
                 <Row gap={6}>
                   <Pill label="List" icon="list-outline" selected={view === "list"} onPress={() => setView("list")} />
@@ -223,12 +248,13 @@ function FilterSheet({ visible, onClose, filters, set, near, currency, count }: 
 
           <T variant="heading" style={{ marginTop: 22, marginBottom: 10 }}>Availability & location</T>
           <Wrap>
+            <Pill label="Open now" icon="radio-button-on-outline" selected={filters.openNow} onPress={() => set({ openNow: !filters.openNow })} />
             <Pill label="Available today" icon="time-outline" selected={filters.availableToday} onPress={() => set({ availableToday: !filters.availableToday })} />
             <Pill label="Comes to me" icon="home-outline" selected={filters.homeVisits} onPress={() => set({ homeVisits: !filters.homeVisits })} />
           </Wrap>
         </ScrollView>
         <Row gap={12} style={{ paddingHorizontal: 20, paddingTop: 12, borderTopWidth: 1, borderTopColor: colors.border }}>
-          <Button title="Reset" variant="ghost" size="md" onPress={() => set({ specialty: [], minRating: 0, maxPrice: "", availableToday: false, homeVisits: false, sort: "rating" })} />
+          <Button title="Reset" variant="ghost" size="md" onPress={() => set({ specialty: [], minRating: 0, maxPrice: "", availableToday: false, openNow: false, homeVisits: false, sort: "rating" })} />
           <Button title={count === undefined ? "Show barbers" : `Show ${count} ${count === 1 ? "barber" : "barbers"}`} onPress={onClose} style={{ flex: 1 }} />
         </Row>
       </View>

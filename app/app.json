@@ -46,6 +46,12 @@
         }
       ],
       "expo-video",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "JB Always Fresh uses your location to show the barbers nearest to you."
+        }
+      ],
       "expo-apple-authentication",
       "expo-web-browser",
       [

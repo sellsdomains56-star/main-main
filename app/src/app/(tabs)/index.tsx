@@ -23,7 +23,7 @@ import { useCart } from "../../lib/cart";
 import { APP_NAME, SHOP_NAME } from "../../lib/config";
 import { dateTime, money, STATUS_LABEL } from "../../lib/format";
 import { useLocation } from "../../lib/location";
-import type { Barber, Booking, Campaign, Reel, ShopSummary } from "../../lib/types";
+import type { Barber, Booking, Campaign, Reel, ShopSummary, Usual } from "../../lib/types";
 import { useCatalog } from "../../lib/useCatalog";
 
 type ArtName = ComponentProps<typeof MaterialCommunityIcons>["name"];
@@ -43,6 +43,7 @@ export default function Home() {
   const [shops, setShops] = useState<ShopSummary[]>([]);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [next, setNext] = useState<Booking | null>(null);
+  const [usual, setUsual] = useState<Usual | null>(null); // "book your usual" when nothing is coming up
 
   useEffect(() => {
     if (!place) return;
@@ -58,7 +59,11 @@ export default function Home() {
 
   useFocusEffect(
     useCallback(() => {
-      if (!user || user.role !== "customer") return setNext(null);
+      if (!user || user.role !== "customer") {
+        setUsual(null);
+        return setNext(null);
+      }
+      api.usual().then(setUsual, () => setUsual(null));
       api.bookings().then(
         (list) => setNext(list.filter((b) => ["confirmed", "on_the_way", "pending_payment"].includes(b.status) && Date.parse(b.endsAt) > Date.now()).sort((a, b) => a.startsAt.localeCompare(b.startsAt))[0] ?? null),
         () => {},
@@ -187,6 +192,26 @@ export default function Home() {
                   <T variant="caption" muted>{dateTime(next.startsAt, next.barber.timeZone)}</T>
                 </View>
                 <Tag label={STATUS_LABEL[next.status]} tone={next.status === "pending_payment" ? "neutral" : "accent"} />
+              </Row>
+            </Card>
+          )}
+
+          {/* Nothing coming up: one tap to book the last cut again */}
+          {!next && usual && (
+            <Card
+              style={{ marginTop: 20 }}
+              onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: usual.barber.id, serviceId: usual.service.id, locationType: usual.locationType, ...(usual.extras.length ? { extras: usual.extras.join(",") } : {}) } })}
+            >
+              <Row gap={12}>
+                <Avatar uri={usual.barber.photoUrl} name={usual.barber.name} size={48} />
+                <View style={{ flex: 1 }}>
+                  <T variant="eyebrow" muted>Book your usual</T>
+                  <T variant="strong" style={{ marginTop: 2 }}>{usual.service.name} · {usual.barber.name}</T>
+                  <T variant="caption" muted>
+                    {usual.barber.nextAvailable ? `Next free ${dateTime(usual.barber.nextAvailable, usual.barber.timeZone)}` : "See free times"} · {money(usual.service.price, usual.barber.currency)}
+                  </T>
+                </View>
+                <Ionicons name="repeat" size={20} color={colors.text} />
               </Row>
             </Card>
           )}

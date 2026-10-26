@@ -1,6 +1,7 @@
 import { config } from "./config.js";
 import { createApp } from "./app.js";
 import { startReminderLoop } from "./notify.js";
+import { startPerksLoop } from "./rewards.js";
 import { demoPayments } from "./payments.js";
 import { seedDemoAccounts } from "./demoAccounts.js";
 
@@ -13,3 +14,4 @@ createApp().listen(config.port, () => {
   if (!config.adminEmails.length && !config.demoAccounts) console.log("ADMIN_EMAILS not set — nobody can open the admin panel.");
 });
 startReminderLoop(); // "tomorrow" and "in 1 hour" alerts
+startPerksLoop(); // "time for your next cut" and birthday treats

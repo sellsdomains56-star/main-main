@@ -1,11 +1,20 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Review, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, VenueKind, WorkingHours } from "./types";
+import type { AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Referral, Review, SharedVisit, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, Usual, VenueKind, WorkingHours } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
   authToken = token;
 };
+
+// Screens opened straight from a link (a review, a payment) can ask before the saved sign-in is read:
+// requests wait for it, so they go out signed in. Never longer than 3 seconds.
+let markAuthLoaded: () => void = () => {};
+const authLoaded = new Promise<void>((resolve) => {
+  markAuthLoaded = resolve;
+  setTimeout(resolve, 3000);
+});
+export const savedSignInRead = () => markAuthLoaded();
 
 export class ApiError extends Error {
   constructor(public status: number, message: string) {
@@ -16,6 +25,7 @@ export class ApiError extends Error {
 const demo = DEMO_DATA ? createDemoServer(DEMO_DATA) : null;
 
 async function request<T>(path: string, init: { method?: string; body?: unknown; headers?: Record<string, string> } = {}): Promise<T> {
+  await authLoaded;
   if (demo) {
     try {
       return (await demo(init.method ?? (init.body !== undefined ? "POST" : "GET"), path, init.body as never, authToken, init.headers)) as T;
@@ -100,6 +110,9 @@ export const api = {
           maxPrice: f.maxPrice ? String(f.maxPrice) : undefined,
           availableToday: f.availableToday ? "true" : undefined,
           homeVisits: f.homeVisits ? "true" : undefined,
+          openNow: f.openNow ? "true" : undefined,
+          lat: f.near ? String(f.near.lat) : undefined,
+          lng: f.near ? String(f.near.lng) : undefined,
           sort: f.sort,
         }),
     ),
@@ -108,7 +121,7 @@ export const api = {
   availability: (id: string, date: string, serviceId: string, extras: string[] = []) =>
     request<{ timeZone: string; slots: string[] }>(`/barbers/${id}/availability` + qs({ date, serviceId, extras: extras.length ? extras.join(",") : undefined })),
 
-  register: (body: { name: string; email: string; password: string; countryCode?: string; city?: string }) =>
+  register: (body: { name: string; email: string; password: string; countryCode?: string; city?: string; invite?: string }) =>
     request<{ token: string; user: User }>("/auth/register", { body }),
   registerBarber: (body: Record<string, unknown>) => request<{ token: string; user: User }>("/auth/register-barber", { body }),
   login: (email: string, password: string) => request<{ token: string; user: User }>("/auth/login", { body: { email, password } }),
@@ -123,7 +136,16 @@ export const api = {
   myData: () => request<Record<string, unknown>>("/me/export"),
   emailMyData: () => request<{ sentTo: string }>("/me/export", { method: "POST" }),
   deleteAccount: () => request<void>("/me", { method: "DELETE", body: { confirm: true } }),
-  updateMe: (body: Partial<Pick<User, "name" | "countryCode" | "city">>) => request<User>("/me", { method: "PATCH", body }),
+  updateMe: (body: Partial<Pick<User, "name" | "countryCode" | "city" | "photoUrl" | "phone" | "whatsapp" | "birthday">>) => request<User>("/me", { method: "PATCH", body }),
+  toggleFavourite: (barberId: string) => request<{ favourite: boolean; favourites: string[] }>(`/barbers/${barberId}/favourite`, { method: "POST" }),
+  favourites: () => request<Barber[]>("/me/favourites"),
+  usual: () => request<Usual | null>("/me/usual"),
+  cuts: () => request<Booking[]>("/me/cuts"),
+  setRebook: (body: { everyWeeks: number | null; barberId?: string; serviceId?: string }) => request<User>("/me/rebook", { method: "PATCH", body }),
+  referral: () => request<Referral>("/me/referral"),
+  shareVisit: (bookingId: string) => request<{ token: string; url: string }>(`/bookings/${bookingId}/share`, { method: "POST" }),
+  visit: (token: string) => request<SharedVisit>(`/visits/${token}`),
+  reschedule: (bookingId: string, startsAt: string) => request<Booking>(`/bookings/${bookingId}/reschedule`, { body: { startsAt } }),
 
   createBooking: (body: {
     barberId: string; serviceId: string; startsAt: string; locationType: LocationType; address?: string; phone?: string; notes?: string;
@@ -136,7 +158,10 @@ export const api = {
   confirmPayment: (id: string) => request<Booking>(`/bookings/${id}/confirm-payment`, { method: "POST" }),
   cancelBooking: (id: string) => request<Booking>(`/bookings/${id}/cancel`, { method: "POST" }),
   setBookingStatus: (id: string, status: "on_the_way" | "completed") => request<Booking>(`/bookings/${id}/status`, { body: { status } }),
-  review: (id: string, rating: number, comment: string) => request<Barber>(`/bookings/${id}/review`, { body: { rating, comment } }),
+  review: (id: string, rating: number, comment: string, photoUrl?: string) => request<Barber>(`/bookings/${id}/review`, { body: { rating, comment, ...(photoUrl ? { photoUrl } : {}) } }),
+  addCutPhoto: (bookingId: string, url: string) => request<{ cutPhotos: string[] }>(`/bookings/${bookingId}/cut-photo`, { body: { url } }),
+  myReviews: () => request<Review[]>("/business/reviews"),
+  replyToReview: (reviewId: string, text: string) => request<Review>(`/reviews/${reviewId}/reply`, { body: { text } }),
 
   // Barbershops: book any barber, hire the whole shop, order for delivery
   shops: (f: { country?: string; city?: string }) => request<ShopSummary[]>("/shops" + qs(f)),

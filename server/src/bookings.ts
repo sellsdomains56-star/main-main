@@ -17,6 +17,7 @@ export function bookingView(b: Booking) {
   return {
     ...b,
     paymentIntentId: undefined,
+    shareToken: undefined, // only the customer gets it, through "share my visit"
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: cityOf(barber).timeZone },
     shop: shop ? { id: shop.id, name: shop.name } : null,
     customerName: b.guest?.name ?? customer?.name ?? "Customer",

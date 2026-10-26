@@ -4,9 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AddToCalendar } from "../../components/AddToCalendar";
+import { Reschedule } from "../../components/Reschedule";
 import { colors, radius } from "../../components/theme";
-import { Avatar, Button, Card, EmptyState, ErrorBox, Field, IconLine, Loading, Placeholder, Row, Screen, Segmented, T, Tag } from "../../components/ui";
+import { Avatar, Button, Card, EmptyState, ErrorBox, Field, IconLine, Loading, Photo, Placeholder, Row, Screen, Segmented, T, Tag } from "../../components/ui";
 import { api } from "../../lib/api";
+import { shareText } from "../../lib/share";
+import { pickAndUploadImage } from "../../lib/upload";
 import { useAuth } from "../../lib/auth";
 import { enablePush, pushState, type PushState } from "../../lib/push";
 import { dateTime, money, STATUS_LABEL, time } from "../../lib/format";
@@ -51,6 +54,8 @@ export default function Bookings() {
   const [confirmingCancel, setConfirmingCancel] = useState<string | null>(null); // in-app confirm (works on web too)
   const [tipping, setTipping] = useState<string | null>(null); // booking id with the tip picker open
   const [notesDraft, setNotesDraft] = useState<Record<string, string>>({}); // barber's cut notes being written
+  const [moving, setMoving] = useState<string | null>(null); // booking id with "change the time" open
+  const [sharedNote, setSharedNote] = useState<Record<string, string>>({}); // "Link copied" after sharing a visit
   const { booked, hired } = useLocalSearchParams<{ booked?: string; hired?: string }>(); // just booked: offer calendar + alerts
   const [push, setPush] = useState<PushState>("unsupported");
   useEffect(() => {
@@ -116,6 +121,15 @@ export default function Bookings() {
           </T>
           <Row gap={8} style={{ marginTop: 14, flexWrap: "wrap", alignItems: "flex-start" }}>
             <AddToCalendar booking={justBooked} size="sm" variant="light" />
+            {justBooked.service && !isConsultation(justBooked) && (
+              <Button
+                title="Add a friend right after"
+                icon="person-add-outline"
+                size="sm"
+                variant="light"
+                onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: justBooked.barber.id, serviceId: justBooked.service!.id, startsAt: justBooked.endsAt, locationType: justBooked.locationType === "home" ? "home" : "shop", guest: "1" } })}
+              />
+            )}
             {push === "ask" && <Button title="Turn on alerts" icon="notifications-outline" size="sm" variant="light" onPress={async () => setPush(await enablePush(true))} />}
           </Row>
         </Card>
@@ -223,7 +237,16 @@ export default function Bookings() {
               {!!b.notes && <IconLine icon="document-text-outline" muted>{b.notes}</IconLine>}
               {!!b.cutNotes && !isBarber && <IconLine icon="cut-outline">Your barber's notes: {b.cutNotes}</IconLine>}
               {!!b.tip && <IconLine icon="heart-outline" muted>{isBarber ? "Tipped" : "You tipped"} {money(b.tip, b.currency)}</IconLine>}
+              {!isBarber && b.locationType === "home" && ["confirmed", "on_the_way"].includes(b.status) && (
+                <IconLine icon="shield-checkmark-outline" muted>Barbers are ID-checked. In an emergency call 999.</IconLine>
+              )}
+              {!!sharedNote[b.id] && <IconLine icon="checkmark-circle-outline">{sharedNote[b.id]}</IconLine>}
             </View>
+            {!!b.cutPhotos?.length && (
+              <Row gap={8} style={{ marginTop: 12 }}>
+                {b.cutPhotos.map((p) => <Photo key={p} uri={p} name="The finished cut" style={{ width: 72, height: 72 }} />)}
+              </Row>
+            )}
             <Row gap={8} style={{ marginTop: 14, flexWrap: "wrap" }}>
               {b.locationType === "video" && !!b.videoLink && ["confirmed", "on_the_way"].includes(b.status) && (
                 <Button title="Join Google Meet" icon="videocam" size="md" onPress={() => Linking.openURL(b.videoLink!)} />
@@ -257,10 +280,48 @@ export default function Bookings() {
               {!isBarber && b.status === "completed" && !isConsultation(b) && !b.tip && tipping !== b.id && (
                 <Button title="Leave a tip" icon="heart-outline" size="md" variant="ghost" onPress={() => setTipping(b.id)} />
               )}
+              {!isBarber && ["pending_payment", "confirmed"].includes(b.status) && !isConsultation(b) && Date.parse(b.startsAt) - now > 60 * 60_000 && moving !== b.id && (
+                <Button title="Change time" icon="time-outline" size="md" variant="secondary" onPress={() => setMoving(b.id)} />
+              )}
+              {!isBarber && b.locationType === "home" && ["confirmed", "on_the_way"].includes(b.status) && (
+                <Button
+                  title="Share my visit"
+                  icon="share-social-outline"
+                  size="md"
+                  variant="ghost"
+                  onPress={run(async () => {
+                    const { url } = await api.shareVisit(b.id);
+                    const how = await shareText("My barber visit", `I've got a barber visit: ${b.barber.name}, ${dateTime(b.startsAt, b.barber.timeZone)}. Follow it here:`, url);
+                    if (how === "copied") setSharedNote((n) => ({ ...n, [b.id]: "Link copied — paste it to a friend." }));
+                  })}
+                />
+              )}
+              {isBarber && b.status === "completed" && (b.cutPhotos?.length ?? 0) < 4 && (
+                <Button
+                  title="Add photo of the cut"
+                  icon="camera-outline"
+                  size="md"
+                  variant="ghost"
+                  onPress={run(async () => {
+                    const url = await pickAndUploadImage({ square: true });
+                    if (url) await api.addCutPhoto(b.id, url);
+                  })}
+                />
+              )}
               {["pending_payment", "confirmed"].includes(b.status) && confirmingCancel !== b.id && (
                 <Button title="Cancel" size="md" variant="ghost" onPress={() => setConfirmingCancel(b.id)} />
               )}
             </Row>
+            {moving === b.id && (
+              <Reschedule
+                booking={b}
+                onCancel={() => setMoving(null)}
+                onDone={() => {
+                  setMoving(null);
+                  load();
+                }}
+              />
+            )}
             {tipping === b.id && (
               <View style={{ marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: colors.surface }}>
                 <T variant="caption">Thank {b.barber.name.split(" ")[0]} — 100% goes to your barber.</T>

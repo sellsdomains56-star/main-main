@@ -19,7 +19,8 @@ type TabKey = "portfolio" | "services" | "reels" | "reviews";
 
 export default function BarberProfile() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+  const [favBusy, setFavBusy] = useState(false);
   const [barber, setBarber] = useState<(Barber & { reviews: Review[] }) | null>(null);
   const [reels, setReels] = useState<Reel[]>([]);
   const [tab, setTab] = useState<TabKey>("portfolio");
@@ -43,6 +44,19 @@ export default function BarberProfile() {
 
   const service = barber.services.find((s) => s.id === serviceId);
   const isMe = user?.barberId === barber.id;
+  const favourite = !!user?.favourites?.includes(barber.id);
+  const toggleFavourite = async () => {
+    if (!user) return router.push("/login");
+    setFavBusy(true);
+    try {
+      const r = await api.toggleFavourite(barber.id);
+      setUser({ ...user, favourites: r.favourites });
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setFavBusy(false);
+    }
+  };
 
   return (
     <Screen
@@ -68,7 +82,16 @@ export default function BarberProfile() {
         )
       }
     >
-      <Stack.Screen options={{ title: "" }} />
+      <Stack.Screen
+        options={{
+          title: "",
+          headerRight: isMe || user?.role === "barber" ? undefined : () => (
+            <Pressable onPress={toggleFavourite} disabled={favBusy} hitSlop={10} accessibilityRole="button" accessibilityLabel={favourite ? "Remove from favourites" : "Save to favourites"} accessibilityState={{ selected: favourite }} style={{ paddingHorizontal: 8 }}>
+              <Ionicons name={favourite ? "heart" : "heart-outline"} size={24} color={colors.text} />
+            </Pressable>
+          ),
+        }}
+      />
       <View style={{ alignItems: "center" }}>
         <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 112, height: 112 }} rounded={56} />
         <Row gap={6} style={{ marginTop: 14 }}>
@@ -249,6 +272,20 @@ export default function BarberProfile() {
                   <Rating value={r.rating} />
                 </Row>
                 {!!r.comment && <T style={{ marginTop: 8 }}>{r.comment}</T>}
+                {!!r.photoUrl && (
+                  <Pressable onPress={() => setViewer(mediaUrl(r.photoUrl!))} accessibilityLabel="Open the customer's photo" style={{ marginTop: 10, alignSelf: "flex-start" }}>
+                    <Photo uri={r.photoUrl} name={r.customerName} style={{ width: 96, height: 96 }} />
+                  </Pressable>
+                )}
+                {r.reply && (
+                  <View style={{ marginTop: 10, marginLeft: 12, paddingLeft: 12, borderLeftWidth: 2, borderLeftColor: colors.border }}>
+                    <T variant="caption" muted>Reply from {barber.name.split(" ")[0]}</T>
+                    <T variant="caption" style={{ marginTop: 2 }}>{r.reply.text}</T>
+                  </View>
+                )}
+                {isMe && !r.reply && (
+                  <Button title="Reply" icon="chatbubble-outline" size="sm" variant="ghost" style={{ alignSelf: "flex-start", marginTop: 6 }} onPress={() => router.push("/business/reviews")} />
+                )}
               </View>
             </View>
           ))}

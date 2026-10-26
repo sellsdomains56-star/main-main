@@ -4,7 +4,14 @@ import { config } from "./config.js";
 import { db } from "./db.js";
 import { COUNTRIES, SHOPS } from "./seed.js";
 import { availableSlots } from "./slots.js";
+import { isExtra } from "./services.js";
 import type { Barber, Booking, Service } from "./types.js";
+
+/** The services you can book on their own (extras only go with one). */
+export const mainServices = (b: Barber) => {
+  const main = b.services.filter((s) => !isExtra(s));
+  return main.length ? main : b.services;
+};
 
 export class HttpError extends Error {
   constructor(public status: number, message: string) {
@@ -74,7 +81,7 @@ export function barberView(b: Barber) {
     currency: country.currency,
     rating: b.ratingCount ? Math.round((b.ratingSum / b.ratingCount) * 10) / 10 : null,
     ratingCount: b.ratingCount,
-    startingPrice: Math.min(...b.services.map((s) => s.price)),
+    startingPrice: Math.min(...mainServices(b).map((s) => s.price)),
     yearsExperience: b.yearsExperience,
     languages: b.languages,
     gallery: b.gallery,
@@ -94,7 +101,7 @@ export function upcomingDates(timeZone: string, days: number, from = new Date())
 /** Earliest bookable start (ISO) for the barber's shortest service in the next two weeks, or null. */
 export function nextAvailable(b: Barber, now = new Date()): string | null {
   const tz = cityOf(b).timeZone;
-  const shortest = Math.min(...b.services.map((s) => s.durationMin));
+  const shortest = Math.min(...mainServices(b).map((s) => s.durationMin));
   for (const date of upcomingDates(tz, 14, now)) {
     const slots = availableSlots(b, tz, date, shortest, busy(), now);
     if (slots.length) return slots[0];
@@ -105,7 +112,7 @@ export function nextAvailable(b: Barber, now = new Date()): string | null {
 /** True if the barber has any free slot on their local "today". */
 export function availableToday(b: Barber, now = new Date()): boolean {
   const tz = cityOf(b).timeZone;
-  const shortest = Math.min(...b.services.map((s) => s.durationMin));
+  const shortest = Math.min(...mainServices(b).map((s) => s.durationMin));
   return availableSlots(b, tz, upcomingDates(tz, 1, now)[0], shortest, busy(), now).length > 0;
 }
 

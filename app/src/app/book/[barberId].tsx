@@ -14,7 +14,7 @@ import { CONSULTATION_ID, type Barber, type LocationType, type Membership, type 
 /** Booking a cut (shop or home), or with `?mode=consult` a free video / phone consultation. */
 export default function Book() {
   const { user } = useAuth();
-  const params = useLocalSearchParams<{ barberId: string; serviceId?: string; startsAt?: string; locationType?: "shop" | "home"; mode?: "consult" }>();
+  const params = useLocalSearchParams<{ barberId: string; serviceId?: string; startsAt?: string; locationType?: "shop" | "home"; mode?: "consult"; extras?: string; guest?: "1" }>();
   const consult = params.mode === "consult";
   const [barber, setBarber] = useState<Barber | null>(null);
   const [serviceId, setServiceId] = useState<string | undefined>(consult ? CONSULTATION_ID : params.serviceId);
@@ -32,14 +32,14 @@ export default function Book() {
   const [venue, setVenue] = useState<VenueKind>("home");
   const [venueDetails, setVenueDetails] = useState("");
   // Booking for someone else.
-  const [forGuest, setForGuest] = useState(false);
+  const [forGuest, setForGuest] = useState(params.guest === "1"); // "add a friend right after" opens this ready for their name
   const [guestName, setGuestName] = useState("");
   const [guestPhone, setGuestPhone] = useState("");
   // The Club and gift credit, to show what's included before paying.
   const [club, setClub] = useState<{ membership: Membership | null; credit: Record<string, number> } | null>(null);
   const [waitlisted, setWaitlisted] = useState<string | null>(null);
   // Extras on top of the service (hot towel, massage…) and an optional tip.
-  const [extras, setExtras] = useState<string[]>([]);
+  const [extras, setExtras] = useState<string[]>(() => (params.extras ? params.extras.split(",").filter(Boolean) : [])); // "book your usual" brings the last extras
   const [section, setSection] = useState<string>("popular");
   const [tipPercent, setTipPercent] = useState<number>(0);
   useEffect(() => {

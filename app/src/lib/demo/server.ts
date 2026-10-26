@@ -70,6 +70,10 @@ interface User {
   alerts?: { reminders?: boolean; offers?: boolean; social?: boolean; tips?: boolean };
   deletedAt?: string;
   seeded?: boolean; // a sample account (see seedDemoAccounts)
+  photoUrl?: string; phone?: string; whatsapp?: boolean; birthday?: string; birthdayGiftYear?: number;
+  favourites?: string[];
+  rebook?: { barberId: string; serviceId: string; everyWeeks: number; nextAt: string };
+  referralCode?: string; referredBy?: string; referralRewarded?: boolean;
 }
 interface GiftCard { id: string; code: string; amount: number; currency: string; buyerId: string; toName: string; toEmail: string; message: string; design: "noir" | "ivory"; status: "pending_payment" | "active" | "redeemed"; createdAt: string }
 interface Purchase { id: string; userId: string; kind: "membership" | "gift" | "tip"; ref: string; label: string; amount: number; currency: string; status: "pending_payment" | "paid" }
@@ -82,9 +86,10 @@ interface Booking {
   coveredBy?: "membership"; creditUsed?: number; tip?: number; cutNotes?: string; extras?: string[];
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; guest?: { name: string; phone: string };
   source?: "app" | "shop"; noShow?: boolean; // "shop": a walk-in or phone booking the barbershop added, paid at the shop
+  cutPhotos?: string[]; shareToken?: string;
   seeded?: boolean;
 }
-interface Review { id: string; barberId: string; customerId: string; customerName: string; bookingId: string; rating: number; comment: string; createdAt: string; seeded?: boolean }
+interface Review { id: string; barberId: string; customerId: string; customerName: string; bookingId: string; rating: number; comment: string; createdAt: string; photoUrl?: string; reply?: { text: string; at: string }; seeded?: boolean }
 interface Ticket {
   id: string; topic: string; email: string; message: string; createdAt: string;
   userId?: string; name?: string; status?: "open" | "closed"; reelId?: string; replies?: { at: string; by: string; text: string }[];
@@ -198,11 +203,11 @@ function zonedTime(date: string, hour: number, minute: number, timeZone: string)
   return new Date(guess - tzOffset(new Date(guess), timeZone));
 }
 
-function slots(b: SeedBarber, date: string, durationMin: number, now = new Date()) {
+function slots(b: SeedBarber, date: string, durationMin: number, now = new Date(), ignoreId?: string) {
   const tz = timeZoneOf(b);
   if (b.offline || !b.workingDays.includes(new Date(`${date}T12:00:00Z`).getUTCDay()) || b.timeOff?.includes(date)) return [];
   const taken = [
-    ...saved.bookings.filter((x) => x.barberId === b.id && x.status !== "cancelled"),
+    ...saved.bookings.filter((x) => x.barberId === b.id && x.status !== "cancelled" && x.id !== ignoreId),
     ...(saved.blocks ?? []).filter((x) => x.barberId === b.id), // time the barbershop blocked
     ...(b.shopId ? (saved.hires ?? []).filter((h) => h.shopId === b.shopId && h.status !== "cancelled") : []), // a private hire books the whole team
   ].map((x) => [Date.parse(x.startsAt), Date.parse(x.endsAt)] as const);
@@ -222,8 +227,14 @@ const localDates = (tz: string, days: number) => {
   return Array.from({ length: days }, (_, i) => fmt.format(new Date(Date.now() + i * 86_400_000)));
 };
 
+/** The services you can book on their own (extras only go with one). */
+function mainServices(b: SeedBarber) {
+  const main = b.services.filter((s) => s.category !== "extras");
+  return main.length ? main : b.services;
+}
+
 function nextAvailable(b: SeedBarber) {
-  const shortest = Math.min(...b.services.map((s) => s.durationMin));
+  const shortest = Math.min(...mainServices(b).map((s) => s.durationMin));
   for (const date of localDates(timeZoneOf(b), 14)) {
     const s = slots(b, date, shortest);
     if (s.length) return s[0];
@@ -246,13 +257,28 @@ function barberView(b: SeedBarber) {
     timeZone: timeZoneOf(b), shopAddress: b.shopAddress, shop: shopRef(b.shopId), lat: b.lat, lng: b.lng, specialties: b.specialties, services: b.services,
     offersHomeVisits: b.offersHomeVisits, homeVisitFee: b.homeVisitFee, offersConsultations: b.offersConsultations !== false, hasVideoLink: !!b.videoLink,
     currency: c.currency, rating: r.rating, ratingCount: r.ratingCount,
-    startingPrice: Math.min(...b.services.map((s) => s.price)), yearsExperience: b.yearsExperience, languages: b.languages,
+    startingPrice: Math.min(...mainServices(b).map((s) => s.price)), yearsExperience: b.yearsExperience, languages: b.languages,
     gallery: b.gallery, transformations: b.transformations, nextAvailable: nextAvailable(b),
     status: b.status ?? "live", verified: !!b.verified,
   };
 }
 
-interface Filters { country?: string; city?: string; q?: string; specialties?: string[]; minRating?: number; maxPrice?: number; availableToday?: boolean; homeVisits?: boolean; sort?: string; limit?: number }
+interface Filters { country?: string; city?: string; q?: string; specialties?: string[]; minRating?: number; maxPrice?: number; availableToday?: boolean; homeVisits?: boolean; openNow?: boolean; near?: { lat: number; lng: number }; sort?: string; limit?: number }
+
+/** Straight-line distance in km. */
+function distanceKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
+  const rad = Math.PI / 180;
+  const h = Math.sin(((b.lat - a.lat) * rad) / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(((b.lng - a.lng) * rad) / 2) ** 2;
+  return 2 * 6371 * Math.asin(Math.sqrt(h));
+}
+
+/** Working right now in the barber's own time zone. */
+function openNow(b: SeedBarber, now = new Date()) {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: timeZoneOf(b), year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hourCycle: "h23", weekday: "short" }).formatToParts(now).map((p) => [p.type, p.value]));
+  const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(parts.weekday!);
+  const hour = Number(parts.hour);
+  return !b.offline && b.workingDays.includes(day) && hour >= b.openHour && hour < b.closeHour && !(b.timeOff ?? []).includes(`${parts.year}-${parts.month}-${parts.day}`);
+}
 
 function search(f: Filters) {
   const words = f.q?.toLowerCase().split(/\s+/).filter(Boolean) ?? [];
@@ -262,23 +288,26 @@ function search(f: Filters) {
     if (f.city && b.city.toLowerCase() !== f.city.toLowerCase()) return false;
     if (f.specialties?.length && !f.specialties.some((s) => b.specialties.includes(s))) return false;
     if (f.minRating && rating(b).raw < f.minRating) return false;
-    if (f.maxPrice && Math.min(...b.services.map((s) => s.price)) > f.maxPrice) return false;
+    if (f.maxPrice && Math.min(...mainServices(b).map((s) => s.price)) > f.maxPrice) return false;
     if (f.homeVisits && !b.offersHomeVisits) return false;
     if (words.length) {
       const hay = [b.name, b.city, country(b.countryCode)?.name ?? "", b.bio, ...b.specialties, ...b.languages].join(" ").toLowerCase();
       if (!words.every((w) => hay.includes(w) || hay.includes(w.replace(/s$/, "")))) return false;
     }
     if (f.availableToday) {
-      const shortest = Math.min(...b.services.map((s) => s.durationMin));
+      const shortest = Math.min(...mainServices(b).map((s) => s.durationMin));
       if (!slots(b, localDates(timeZoneOf(b), 1)[0], shortest).length) return false;
     }
+    if (f.openNow && !openNow(b)) return false;
     return true;
   });
-  const views = list.map(barberView);
+  const near = f.near;
+  const views = list.map((b) => ({ ...barberView(b), ...(near ? { distanceKm: Math.round(distanceKm(near, b) * 10) / 10 } : {}) }));
   const byRating = (a: (typeof views)[number], b: (typeof views)[number]) => (b.rating ?? 0) - (a.rating ?? 0) || b.ratingCount - a.ratingCount;
   if (f.sort === "price") views.sort((a, b) => a.startingPrice - b.startingPrice);
   else if (f.sort === "soonest") views.sort((a, b) => (a.nextAvailable ?? "9999").localeCompare(b.nextAvailable ?? "9999") || byRating(a, b));
   else if (f.sort === "experience") views.sort((a, b) => b.yearsExperience - a.yearsExperience || byRating(a, b));
+  else if (f.sort === "nearest" && near) views.sort((a, b) => (a.distanceKm ?? 0) - (b.distanceKm ?? 0) || byRating(a, b));
   else views.sort(byRating);
   return f.limit ? views.slice(0, f.limit) : views;
 }
@@ -405,7 +434,9 @@ function orderAlert(o: Order) {
 
 // ---------- Helpers ----------
 
-const publicUser = (u: User) => ({ id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city, preferences: u.preferences, alerts: u.alerts, ...(u.manages ? { manages: u.manages } : {}), ...(isAdmin(u) ? { admin: true } : {}) });
+const publicUser = (u: User) => ({
+  id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city, preferences: u.preferences, alerts: u.alerts,
+  photoUrl: u.photoUrl, phone: u.phone, whatsapp: u.whatsapp, birthday: u.birthday, favourites: u.favourites, rebook: u.rebook, credit: u.credit, ...(u.manages ? { manages: u.manages } : {}), ...(isAdmin(u) ? { admin: true } : {}) });
 
 // ---------- The Club, gift cards (mirrors server/src/club.ts) ----------
 
@@ -519,6 +550,7 @@ function bookingConfirmed(b: Booking) {
 }
 
 function dueReminders(now = new Date()) {
+  runPerks(now);
   // The demo's shops are fictional, so play the courier's steps on a timer.
   for (const o of saved.orders) {
     if (o.status === "paid" && o.demoOutAt && now.getTime() >= o.demoOutAt) {
@@ -569,6 +601,7 @@ function bookingView(b: Booking) {
   const barber = getBarber(b.barberId);
   return {
     ...b,
+    shareToken: undefined, // only the customer gets it, through "share my visit"
     extras: (b.extras ?? []).map((id) => barber.services.find((s) => s.id === id)).filter((s): s is SeedService => !!s).map((s) => ({ id: s.id, name: s.name, durationMin: s.durationMin, price: s.price })),
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: timeZoneOf(barber) },
     shop: b.locationType === "shop" ? shopRef(barber.shopId) : null,
@@ -577,6 +610,89 @@ function bookingView(b: Booking) {
     customerPreferences: saved.users.find((u) => u.id === b.customerId)?.preferences ?? null,
     service: findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined),
     videoLink: b.locationType === "video" && ["confirmed", "on_the_way"].includes(b.status) ? barber.videoLink ?? null : null,
+  };
+}
+
+// ---------- Invites, birthdays, rebook reminders, share my visit (mirrors server/src/rewards.ts) ----------
+
+const GIFT: Record<string, { referral: number; birthday: number }> = { aed: { referral: 2500, birthday: 2000 }, eur: { referral: 1000, birthday: 500 }, gbp: { referral: 1000, birthday: 500 }, usd: { referral: 1000, birthday: 500 } };
+const giftFor = (currency: string) => GIFT[currency] ?? GIFT.eur!;
+const currencyOf = (u: User) => (u.countryCode && country(u.countryCode)?.currency) || "aed";
+const addCredit = (u: User, currency: string, amount: number) => {
+  u.credit = { ...u.credit, [currency]: (u.credit?.[currency] ?? 0) + amount };
+};
+
+function referralCode(u: User) {
+  if (!u.referralCode) {
+    const abc = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+    let code = "";
+    do code = `FRESH-${Array.from({ length: 5 }, () => abc[Math.floor(Math.random() * abc.length)]).join("")}`;
+    while (saved.users.some((x) => x.referralCode === code));
+    u.referralCode = code;
+    persist();
+  }
+  return u.referralCode;
+}
+
+function onCompleted(b: Booking) {
+  const customer = saved.users.find((u) => u.id === b.customerId);
+  if (!customer || customer.deletedAt) return;
+  if (customer.referredBy && !customer.referralRewarded) {
+    customer.referralRewarded = true;
+    const amount = giftFor(b.currency).referral;
+    addCredit(customer, b.currency, amount);
+    notify(customer.id, { kind: "gift", title: "Your welcome credit is in", body: "Thanks for your first cut with JB. Your invite credit is ready for the next one." });
+    const friend = saved.users.find((u) => u.id === customer.referredBy && !u.deletedAt);
+    if (friend) {
+      addCredit(friend, b.currency, amount);
+      notify(friend.id, { kind: "gift", title: `${customer.name.split(" ")[0]} had their first cut`, body: "You both got credit for your next booking. Thanks for spreading the word." });
+    }
+  }
+  if (customer.rebook && customer.rebook.barberId === b.barberId) {
+    customer.rebook.nextAt = new Date(Date.parse(b.startsAt) + (customer.rebook.everyWeeks * 7 - 2) * 86_400_000).toISOString();
+  }
+}
+
+function runPerks(now = new Date()) {
+  for (const u of saved.users) {
+    if (u.deletedAt) continue;
+    if (u.rebook && Date.parse(u.rebook.nextAt) <= now.getTime()) {
+      const r = u.rebook;
+      r.nextAt = new Date(now.getTime() + r.everyWeeks * 7 * 86_400_000).toISOString();
+      const hasUpcoming = saved.bookings.some((b) => b.customerId === u.id && ["confirmed", "pending_payment"].includes(b.status) && Date.parse(b.startsAt) > now.getTime());
+      const barber = allBarbers().find((b) => b.id === r.barberId);
+      const service = barber && (findService(barber, r.serviceId) ?? barber.services[0]);
+      if (hasUpcoming || !barber || !service || (barber.status ?? "live") !== "live") continue;
+      let next: string | undefined;
+      for (const date of localDates(timeZoneOf(barber), 10)) if (!next) next = slots(barber, date, service.durationMin, now)[0];
+      const when = next ? new Intl.DateTimeFormat("en-GB", { timeZone: timeZoneOf(barber), weekday: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(next)) : null;
+      const first = barber.name.split(" ")[0];
+      notify(u.id, { kind: "reminder", title: "Time for a fresh cut", body: when ? `It's been ${r.everyWeeks} weeks. ${first} is free ${when} — tap to book your usual.` : `It's been ${r.everyWeeks} weeks. Book your next ${service.name.toLowerCase()} with ${first}.` });
+    }
+    if (u.birthday && u.birthdayGiftYear !== now.getUTCFullYear()) {
+      const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Dubai", month: "2-digit", day: "2-digit" }).format(now);
+      if (today === u.birthday) {
+        u.birthdayGiftYear = now.getUTCFullYear();
+        const cur = currencyOf(u);
+        addCredit(u, cur, giftFor(cur).birthday);
+        notify(u.id, { kind: "gift", title: `Happy birthday, ${u.name.split(" ")[0]}`, body: "A birthday treat from JB is in your account. Use it on your next cut or our products." });
+      }
+    }
+  }
+}
+
+function visitView(b: Booking) {
+  const barber = getBarber(b.barberId);
+  const customer = saved.users.find((u) => u.id === b.customerId);
+  return {
+    barber: { name: barber.name, photoUrl: barber.photoUrl, verified: !!barber.verified, phoneSafety: "999" },
+    customerFirstName: (b.guest?.name ?? customer?.name ?? "").split(" ")[0],
+    status: b.status === "confirmed" && Date.parse(b.endsAt) < Date.now() ? "completed" : b.status,
+    startsAt: b.startsAt, endsAt: b.endsAt, timeZone: timeZoneOf(barber),
+    service: findService(barber, b.serviceId)?.name ?? "Appointment",
+    area: b.locationType === "home" ? (b.address.split(",").slice(-2).join(",").trim() || barber.city) : barber.shopAddress,
+    venue: b.venue?.kind ?? null,
+    appUrl: typeof location !== "undefined" ? location.origin : "",
   };
 }
 
@@ -1646,7 +1762,10 @@ export function createDemoServer(data: DemoData) {
       if (!body?.name || !email.includes("@")) throw new DemoError(400, "Please enter your name and a valid email.");
       if (String(body.password ?? "").length < 8) throw new DemoError(400, "Password must be at least 8 characters.");
       if (saved.users.some((u) => u.email === email)) throw new DemoError(409, "An account with this email already exists.");
-      const u: User = { id: newId(), name: String(body.name).trim(), email, passwordHash: await hash(body.password), role: "customer", countryCode: body.countryCode, city: body.city };
+      const invite = String(body.invite ?? "").trim().toUpperCase();
+      const friend = invite ? saved.users.find((x) => x.referralCode === invite && !x.deletedAt) : undefined;
+      if (invite && !friend) throw new DemoError(400, "That invite code isn't valid. Check it, or leave it empty.");
+      const u: User = { id: newId(), name: String(body.name).trim(), email, passwordHash: await hash(body.password), role: "customer", countryCode: body.countryCode, city: body.city, ...(friend ? { referredBy: friend.id } : {}) };
       saved.users.push(u);
       const t = newId();
       saved.sessions[t] = u.id;
@@ -1724,7 +1843,13 @@ export function createDemoServer(data: DemoData) {
     }
     if (path === "/me" && method === "PATCH") {
       const u = requireUser(token);
+      if (body?.birthday !== undefined && !/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(String(body.birthday))) throw new DemoError(400, "Birthday as MM-DD");
+      if (body?.whatsapp && !(body.phone ?? u.phone)) throw new DemoError(400, "Add your mobile number for WhatsApp.");
       Object.assign(u, { name: body?.name ?? u.name, countryCode: body?.countryCode ?? u.countryCode, city: body?.city ?? u.city });
+      if (body?.photoUrl !== undefined) u.photoUrl = String(body.photoUrl);
+      if (body?.phone !== undefined) u.phone = String(body.phone).trim();
+      if (body?.whatsapp !== undefined) u.whatsapp = !!body.whatsapp;
+      if (body?.birthday !== undefined) u.birthday = String(body.birthday);
       persist();
       return publicUser(u);
     }
@@ -1766,7 +1891,8 @@ export function createDemoServer(data: DemoData) {
       return search({
         country: q.country, city: q.city, q: q.search, specialties: q.specialty?.split(",").filter(Boolean),
         minRating: q.minRating ? Number(q.minRating) : undefined, maxPrice: q.maxPrice ? Number(q.maxPrice) : undefined,
-        availableToday: q.availableToday === "true", homeVisits: q.homeVisits === "true", sort: q.sort,
+        availableToday: q.availableToday === "true", homeVisits: q.homeVisits === "true", sort: q.sort, openNow: q.openNow === "true",
+        near: q.lat && q.lng ? { lat: Number(q.lat), lng: Number(q.lng) } : undefined,
       });
     }
     if (path === "/specialties") {
@@ -1900,6 +2026,116 @@ export function createDemoServer(data: DemoData) {
       dueReminders();
       return saved.bookings.filter((b) => (b.customerId === u.id && fromApp(b)) || (u.barberId && b.barberId === u.barberId)).sort((a, b) => b.startsAt.localeCompare(a.startsAt)).map(bookingView);
     }
+    // Customer extras (mirrors server/src/routes/customer.ts)
+    if ((x = m(/^\/bookings\/([^/]+)\/reschedule$/)) && method === "POST") {
+      const u = requireUser(token);
+      const bk = saved.bookings.find((b) => b.id === x![1] && b.customerId === u.id);
+      if (!bk) throw new DemoError(404, "Booking not found.");
+      if (!["confirmed", "pending_payment"].includes(bk.status)) throw new DemoError(400, "Only upcoming bookings can be moved.");
+      if (Date.parse(bk.startsAt) - Date.now() < 60 * 60_000) throw new DemoError(400, "It's less than an hour away — message your barber, or cancel.");
+      const b = getBarber(bk.barberId);
+      const minutes = (Date.parse(bk.endsAt) - Date.parse(bk.startsAt)) / 60_000;
+      const start = new Date(String(body?.startsAt));
+      const date = new Intl.DateTimeFormat("en-CA", { timeZone: timeZoneOf(b) }).format(start);
+      if (!slots(b, date, minutes, new Date(), bk.id).includes(start.toISOString())) throw new DemoError(409, "That time was just taken — please pick another.");
+      bk.startsAt = start.toISOString();
+      bk.endsAt = new Date(start.getTime() + minutes * 60_000).toISOString();
+      bk.remindedDay = Date.parse(bk.startsAt) - Date.now() < 24 * 3_600_000;
+      bk.remindedHour = false;
+      persist();
+      return bookingView(bk);
+    }
+    if ((x = m(/^\/bookings\/([^/]+)\/share$/)) && method === "POST") {
+      const u = requireUser(token);
+      const bk = saved.bookings.find((b) => b.id === x![1] && b.customerId === u.id);
+      if (!bk) throw new DemoError(404, "Booking not found.");
+      bk.shareToken ??= newId().replace(/-/g, "").slice(0, 16);
+      persist();
+      return { token: bk.shareToken, url: `${typeof location !== "undefined" ? location.origin : ""}/visit/${bk.shareToken}` };
+    }
+    if ((x = m(/^\/visits\/([^/]+)$/))) {
+      const bk = saved.bookings.find((b) => b.shareToken && b.shareToken === x![1]);
+      if (!bk) throw new DemoError(404, "This link isn't valid any more.");
+      return visitView(bk);
+    }
+    if ((x = m(/^\/bookings\/([^/]+)\/cut-photo$/)) && method === "POST") {
+      const u = requireUser(token);
+      const bk = saved.bookings.find((b) => b.id === x![1]);
+      if (!bk || !u.barberId || bk.barberId !== u.barberId) throw new DemoError(404, "Booking not found.");
+      bk.cutPhotos = [...(bk.cutPhotos ?? []), String(body?.url)].slice(-4);
+      persist();
+      return { cutPhotos: bk.cutPhotos };
+    }
+    if ((x = m(/^\/barbers\/([^/]+)\/favourite$/)) && method === "POST") {
+      const u = requireUser(token);
+      const b = getBarber(x[1]);
+      const list = new Set(u.favourites ?? []);
+      if (list.has(b.id)) list.delete(b.id);
+      else list.add(b.id);
+      u.favourites = [...list];
+      persist();
+      return { favourite: list.has(b.id), favourites: u.favourites };
+    }
+    if (path === "/me/favourites") {
+      const u = requireUser(token);
+      return (u.favourites ?? []).map((id) => allBarbers().find((b) => b.id === id)).filter((b): b is SeedBarber => !!b && (b.status ?? "live") === "live").map(barberView);
+    }
+    if (path === "/me/usual") {
+      const u = requireUser(token);
+      const last = saved.bookings
+        .filter((b) => b.customerId === u.id && ["completed", "confirmed", "on_the_way"].includes(b.status) && b.serviceId !== CONSULTATION.id && fromApp(b))
+        .sort((a, b) => b.startsAt.localeCompare(a.startsAt))[0];
+      if (!last) return null;
+      const b = allBarbers().find((x) => x.id === last.barberId);
+      const service = b && findService(b, last.serviceId);
+      if (!b || !service || (b.status ?? "live") !== "live") return null;
+      return { barber: barberView(b), service, extras: (last.extras ?? []).filter((id) => b.services.some((s) => s.id === id)), locationType: last.locationType === "home" ? "home" : "shop", lastAt: last.startsAt };
+    }
+    if (path === "/me/cuts") {
+      const u = requireUser(token);
+      return saved.bookings.filter((b) => b.customerId === u.id && b.status === "completed" && b.serviceId !== CONSULTATION.id).sort((a, b) => b.startsAt.localeCompare(a.startsAt)).map((b) => ({ ...bookingView(b), cutPhotos: b.cutPhotos ?? [] }));
+    }
+    if (path === "/me/rebook" && method === "PATCH") {
+      const u = requireUser(token);
+      if (body?.everyWeeks === null) delete u.rebook;
+      else {
+        const weeks = Number(body?.everyWeeks);
+        if (!(weeks >= 2 && weeks <= 10)) throw new DemoError(400, "Pick every 2 to 10 weeks.");
+        const barberId = body?.barberId ?? u.rebook?.barberId;
+        if (!barberId) throw new DemoError(400, "Pick a barber.");
+        const b = getBarber(barberId);
+        const last = saved.bookings.filter((x) => x.customerId === u.id && x.barberId === barberId && x.status !== "cancelled").sort((a, c) => c.startsAt.localeCompare(a.startsAt))[0];
+        const from = last ? Date.parse(last.startsAt) : Date.now();
+        u.rebook = { barberId, serviceId: body?.serviceId ?? u.rebook?.serviceId ?? b.services[0]!.id, everyWeeks: weeks, nextAt: new Date(Math.max(Date.now() + 86_400_000, from + (weeks * 7 - 2) * 86_400_000)).toISOString() };
+      }
+      persist();
+      return publicUser(u);
+    }
+    if (path === "/me/referral") {
+      const u = requireUser(token);
+      const cur = currencyOf(u);
+      const invited = saved.users.filter((x) => x.referredBy === u.id);
+      const code = referralCode(u);
+      return { code, currency: cur, amount: giftFor(cur).referral, invited: invited.length, rewarded: invited.filter((x) => x.referralRewarded).length, link: `${typeof location !== "undefined" ? location.origin : ""}/login?invite=${code}` };
+    }
+    if (path === "/business/reviews") {
+      const u = requireUser(token);
+      if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
+      return saved.reviews.filter((r) => r.barberId === u.barberId).sort((a, b) => b.createdAt.localeCompare(a.createdAt)).map(({ customerId: _c, ...r }) => r);
+    }
+    if ((x = m(/^\/reviews\/([^/]+)\/reply$/)) && method === "POST") {
+      const u = requireUser(token);
+      const text = String(body?.text ?? "").trim();
+      if (text.length < 2) throw new DemoError(400, "Write a reply");
+      const r = saved.reviews.find((y) => y.id === x![1]);
+      if (!r || !u.barberId || r.barberId !== u.barberId) throw new DemoError(404, "Review not found.");
+      const first = !r.reply;
+      r.reply = { text: text.slice(0, 500), at: new Date().toISOString() };
+      if (first) notify(r.customerId, { kind: "account", title: `${getBarber(r.barberId).name.split(" ")[0]} replied to your review`, body: text.slice(0, 160), bookingId: r.bookingId });
+      persist();
+      const { customerId: _c, ...view } = r;
+      return view;
+    }
     if ((x = m(/^\/bookings\/([^/]+)(?:\/(payment|confirm-payment|cancel|status|review))?$/))) {
       const u = requireUser(token);
       const bk = saved.bookings.find((b) => b.id === x![1] && (b.customerId === u.id || (u.barberId && b.barberId === u.barberId)));
@@ -1931,6 +2167,7 @@ export function createDemoServer(data: DemoData) {
           }
           if (body?.status === "completed" && bk.status !== "completed" && bk.serviceId !== CONSULTATION.id) {
             notify(bk.customerId, { kind: "completed", title: "How was your cut?", body: `Rate ${getBarber(bk.barberId).name} — it helps others choose.`, bookingId: bk.id });
+            onCompleted(bk);
           }
           bk.status = body?.status;
           break;
@@ -1938,7 +2175,7 @@ export function createDemoServer(data: DemoData) {
           if (bk.status !== "completed") throw new DemoError(400, "You can rate your barber once the appointment is completed.");
           if (bk.serviceId === CONSULTATION.id) throw new DemoError(400, "Consultations can't be rated — rate your barber after your cut.");
           if (bk.reviewed) throw new DemoError(409, "You already rated this appointment.");
-          saved.reviews.push({ id: newId(), barberId: bk.barberId, customerId: u.id, customerName: u.name.split(" ")[0], bookingId: bk.id, rating: Number(body?.rating), comment: String(body?.comment ?? "").trim(), createdAt: new Date().toISOString() });
+          saved.reviews.push({ id: newId(), barberId: bk.barberId, customerId: u.id, customerName: u.name.split(" ")[0], bookingId: bk.id, rating: Number(body?.rating), comment: String(body?.comment ?? "").trim(), createdAt: new Date().toISOString(), ...(body?.photoUrl ? { photoUrl: String(body.photoUrl) } : {}) });
           bk.reviewed = true;
           persist();
           return barberView(getBarber(bk.barberId));

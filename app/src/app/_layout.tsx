@@ -79,6 +79,12 @@ export default function RootLayout() {
                   <Stack.Screen name="shop-panel" options={{ headerShown: false, title: "Shop panel" }} />
                   <Stack.Screen name="business/services" options={{ title: "Services & prices" }} />
                   <Stack.Screen name="business/hours" options={{ title: "Hours & days off" }} />
+                  <Stack.Screen name="business/reviews" options={{ title: "Reviews" }} />
+                  <Stack.Screen name="profile" options={{ title: "Profile" }} />
+                  <Stack.Screen name="favourites" options={{ title: "Favourites" }} />
+                  <Stack.Screen name="my-cuts" options={{ title: "My cuts" }} />
+                  <Stack.Screen name="invite" options={{ title: "Invite friends" }} />
+                  <Stack.Screen name="visit/[token]" options={{ title: "Barber visit" }} />
                 </Stack>
                 <AlertBanner />
                 <WelcomeTour />

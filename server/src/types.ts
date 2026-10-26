@@ -144,6 +144,16 @@ export interface User {
   membership?: Membership; // The Club
   manages?: string; // id of the barbershop this person runs in the shop panel (owner or manager)
   alerts?: AlertSettings; // which alerts they get on their phone (missing = all on)
+  photoUrl?: string; // profile photo (uploaded first)
+  phone?: string; // mobile number, for WhatsApp messages when they opt in
+  whatsapp?: boolean; // booking confirmations and reminders on WhatsApp too
+  favourites?: string[]; // barber ids
+  rebook?: { barberId: string; serviceId: string; everyWeeks: number; nextAt: string }; // "remind me to rebook every N weeks"
+  referralCode?: string; // their invite code
+  referredBy?: string; // user id of the friend who invited them
+  referralRewarded?: boolean; // both sides got their credit
+  birthday?: string; // MM-DD, for a birthday treat
+  birthdayGiftYear?: number;
   deletedAt?: string; // the account was deleted: personal details removed, bookings kept for the barber's records
 }
 
@@ -199,6 +209,8 @@ export interface Booking {
   creditUsed?: number; // gift-card balance applied, minor units
   tip?: number; // minor units, all for the barber: chosen when booking (charged with it) or paid after the cut
   extras?: string[]; // ids of extras added to the service (hot towel, massage…): in the time and the amount
+  cutPhotos?: string[]; // the barber's photos of the finished cut, for the customer's cut card
+  shareToken?: string; // "share my visit": a read-only link a friend can open
   cutNotes?: string; // the barber's notes for next time: guards, products, length
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; // where a home visit happens
   guest?: { name: string; phone: string }; // booked for someone else; for shop bookings, the client
@@ -246,6 +258,8 @@ export interface Review {
   rating: number; // 1-5
   comment: string;
   createdAt: string;
+  photoUrl?: string; // the customer's photo of the result
+  reply?: { text: string; at: string }; // the barber's answer
 }
 
 export interface Product {

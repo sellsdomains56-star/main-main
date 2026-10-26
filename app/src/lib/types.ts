@@ -38,6 +38,7 @@ export interface Barber {
   gallery: PortfolioPhoto[];
   transformations: Transformation[];
   nextAvailable: string | null;
+  distanceKm?: number; // when searching near the customer
   status?: BarberStatus; // pending = waiting for approval, suspended = paused by the team
   verified?: boolean; // ID and licence checked by the team
 }
@@ -63,6 +64,9 @@ export interface Review {
   rating: number;
   comment: string;
   createdAt: string;
+  bookingId?: string;
+  photoUrl?: string; // the customer's photo of the cut
+  reply?: { text: string; at: string }; // the barber's answer
 }
 
 export interface Country {
@@ -84,6 +88,45 @@ export interface User {
   city?: string;
   preferences?: Preferences;
   alerts?: AlertSettings;
+  photoUrl?: string;
+  phone?: string;
+  whatsapp?: boolean; // also send booking updates by WhatsApp
+  birthday?: string; // MM-DD
+  favourites?: string[]; // barber ids
+  rebook?: { barberId: string; serviceId: string; everyWeeks: number; nextAt: string }; // "time for a fresh cut" reminders
+  credit?: Record<string, number>;
+}
+
+/** "Your usual": the last thing booked, ready to book again. */
+export interface Usual {
+  barber: Barber;
+  service: Service;
+  extras: string[];
+  locationType: "shop" | "home";
+  lastAt: string;
+}
+
+export interface Referral {
+  code: string;
+  currency: string;
+  amount: number; // what each side gets, minor units
+  invited: number;
+  rewarded: number;
+  link: string;
+}
+
+/** What a friend sees through "share my visit". */
+export interface SharedVisit {
+  barber: { name: string; photoUrl: string; verified: boolean; phoneSafety: string };
+  customerFirstName: string;
+  status: BookingStatus;
+  startsAt: string;
+  endsAt: string;
+  timeZone: string;
+  service: string;
+  area: string;
+  venue: VenueKind | null;
+  appUrl: string;
 }
 
 /** Which alerts reach the phone (missing = on). Bookings, payments and account messages always do. */
@@ -202,6 +245,7 @@ export interface Booking {
   creditUsed?: number; // gift credit applied
   tip?: number;
   cutNotes?: string; // the barber's notes for next time
+  cutPhotos?: string[]; // photos of the finished cut, from the barber
   venue?: { kind: VenueKind; details: string };
   guest?: { name: string; phone: string }; // booked for someone else
   bookedBy?: string | null;
@@ -358,7 +402,9 @@ export interface BarberSearch {
   maxPrice?: number;
   availableToday?: boolean;
   homeVisits?: boolean;
-  sort?: "rating" | "price" | "soonest" | "experience";
+  openNow?: boolean;
+  near?: { lat: number; lng: number }; // the customer's position, for "nearest"
+  sort?: "rating" | "price" | "soonest" | "experience" | "nearest";
 }
 
 export interface ReelComment {

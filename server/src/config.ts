@@ -37,6 +37,11 @@ export const config = {
   // Email (receipts, password reset, your data) through Resend; without a key emails are only logged.
   resendApiKey: process.env.RESEND_API_KEY || undefined,
   emailFrom: process.env.EMAIL_FROM || "JB Always Fresh <hello@jbalwaysfresh.com>",
+  // WhatsApp updates (Meta WhatsApp Cloud API): token, the business phone number's id and an approved template.
+  whatsappToken: process.env.WHATSAPP_TOKEN || undefined,
+  whatsappPhoneId: process.env.WHATSAPP_PHONE_ID || undefined,
+  whatsappTemplate: process.env.WHATSAPP_TEMPLATE || "jb_update",
+  whatsappLanguage: process.env.WHATSAPP_LANGUAGE || "en",
   // Where links in emails open (the website), e.g. https://jbalwaysfresh.com
   appUrl: (process.env.APP_URL || "http://localhost:8081").replace(/\/$/, ""),
 };

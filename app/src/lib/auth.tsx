@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { api, setAuthToken } from "./api";
+import { api, savedSignInRead, setAuthToken } from "./api";
 import { disablePush } from "./push";
 import { storage } from "./storage";
 import type { User } from "./types";
@@ -22,9 +22,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     (async () => {
-      const token = await storage.get(TOKEN_KEY);
+      const token = await storage.get(TOKEN_KEY).catch(() => null);
+      if (token) setAuthToken(token);
+      savedSignInRead();
       if (token) {
-        setAuthToken(token);
         try {
           setUser(await api.me());
         } catch {

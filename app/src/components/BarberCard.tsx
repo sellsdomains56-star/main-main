@@ -18,6 +18,9 @@ export function nextFreeLabel(iso: string | null, timeZone: string) {
   return `${new Intl.DateTimeFormat(undefined, { weekday: "short", timeZone }).format(new Date(iso))} ${t}`;
 }
 
+/** " · 1.2 km" when the search knows where the customer is. */
+const distance = (b: Barber) => (b.distanceKm === undefined ? "" : ` · ${b.distanceKm < 1 ? `${Math.round(b.distanceKm * 1000)} m` : `${b.distanceKm < 100 ? b.distanceKm.toFixed(1) : Math.round(b.distanceKm)} km`}`);
+
 /** List row: photo left, details right. */
 export function BarberCard({ barber, showCountry, onPress }: { barber: Barber; showCountry?: boolean; onPress?: () => void }) {
   const next = nextFreeLabel(barber.nextAvailable, barber.timeZone);
@@ -35,12 +38,12 @@ export function BarberCard({ barber, showCountry, onPress }: { barber: Barber; s
         {showCountry ? (
           <>
             <Rating value={barber.rating} count={barber.ratingCount} />
-            <T variant="caption" muted numberOfLines={1}>{barber.city}, {barber.countryName}</T>
+            <T variant="caption" muted numberOfLines={1}>{barber.city}, {barber.countryName}{distance(barber)}</T>
           </>
         ) : (
           <Row gap={6} style={{ marginTop: 3 }}>
             <Rating value={barber.rating} count={barber.ratingCount} />
-            <T variant="caption" muted>· {barber.city}</T>
+            <T variant="caption" muted>· {barber.city}{distance(barber)}</T>
           </Row>
         )}
         <T variant="caption" muted numberOfLines={1} style={{ marginTop: 3 }}>

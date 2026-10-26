@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useState } from "react";
 import { Pressable, View } from "react-native";
 import { LogoLockup } from "../components/Brand";
@@ -13,7 +13,9 @@ import { useLocation } from "../lib/location";
 export default function Login() {
   const { signIn } = useAuth();
   const { place } = useLocation();
-  const [mode, setMode] = useState<"login" | "register">("login");
+  const params = useLocalSearchParams<{ invite?: string }>(); // opened from a friend's invite link
+  const [mode, setMode] = useState<"login" | "register">(params.invite ? "register" : "login");
+  const [invite, setInvite] = useState(params.invite ?? "");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,7 +50,7 @@ export default function Login() {
     try {
       const res = mode === "login"
         ? await api.login(email, password)
-        : await api.register({ name, email, password, countryCode: place?.countryCode, city: place?.city || undefined });
+        : await api.register({ name, email, password, countryCode: place?.countryCode, city: place?.city || undefined, invite: invite.trim() || undefined });
       await done(res.token, res.user);
     } catch (e) {
       setError((e as Error).message);
@@ -81,6 +83,7 @@ export default function Login() {
         {mode === "register" && <Field label="Name" value={name} onChangeText={setName} autoComplete="name" />}
         <Field label="Email" value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" autoComplete="email" />
         <Field label="Password" value={password} onChangeText={setPassword} secureTextEntry autoComplete={mode === "login" ? "current-password" : "new-password"} placeholder={mode === "register" ? "At least 8 characters" : undefined} />
+        {mode === "register" && <Field label="Invite code (optional)" value={invite} onChangeText={setInvite} autoCapitalize="characters" placeholder="FRESH-XXXXX" />}
         {mode === "login" && (
           <Pressable onPress={() => router.push("/forgot-password")} accessibilityRole="link" hitSlop={8} style={{ alignSelf: "flex-start", marginTop: -4, marginBottom: 12 }}>
             <T variant="caption" style={{ textDecorationLine: "underline" }}>Forgot password?</T>

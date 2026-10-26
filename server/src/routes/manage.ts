@@ -9,6 +9,7 @@ import { barberView, findService, fromApp, HttpError, parse, reviewNewBarbers } 
 import { db, newId, save } from "../db.js";
 import { bookingCancelled, bookingCompleted, notify, waitlistOpened } from "../notify.js";
 import { refund } from "../payments.js";
+import { onCompleted } from "../rewards.js";
 import { getShop, shopCurrency, shopTimeZone } from "../shops.js";
 import { zonedTime } from "../slots.js";
 import type { Barber, Booking, Shop } from "../types.js";
@@ -169,7 +170,10 @@ export function registerManageRoutes(app: Express) {
     if (action === "done") {
       if (b.status === "completed") throw new HttpError(400, "Already marked done.");
       b.status = "completed";
-      if (app) bookingCompleted(b);
+      if (app) {
+        bookingCompleted(b);
+        onCompleted(b);
+      }
     } else if (action === "no_show") {
       if (Date.parse(b.startsAt) > Date.now()) throw new HttpError(400, "You can mark a no-show once the appointment time has started.");
       if (b.status === "completed") throw new HttpError(400, "This one is already done.");

@@ -176,6 +176,7 @@ export default function Business() {
         <ListRow icon="time-outline" title="Hours & days off" subtitle={hoursLine(data)} onPress={() => router.push("/business/hours")} />
         <ListRow icon="images-outline" title="My work" subtitle="Photo, bio, portfolio, before & afters, map pin" onPress={() => router.push("/portfolio")} />
         <ListRow icon="videocam-outline" title="Post a reel" subtitle="Show off your latest cut" onPress={() => router.push("/post-reel")} />
+        <ListRow icon="chatbubbles-outline" title="Reviews" subtitle="Read and reply to what clients say" onPress={() => router.push("/business/reviews")} />
         <ListRow icon="person-circle-outline" title="See my public profile" onPress={() => router.push({ pathname: "/barber/[id]", params: { id: data.barber.id } })} />
       </Section>
 
@@ -193,6 +194,7 @@ export default function Business() {
               <Rating value={r.rating} />
             </Row>
             {!!r.comment && <T variant="caption" style={{ marginTop: 4 }}>{r.comment}</T>}
+            {r.reply ? <T variant="small" muted style={{ marginTop: 6 }}>You replied: {r.reply.text}</T> : <Button title="Reply" size="sm" variant="ghost" style={{ alignSelf: "flex-start", marginTop: 4 }} onPress={() => router.push("/business/reviews")} />}
           </Card>
         ))}
       </Section>

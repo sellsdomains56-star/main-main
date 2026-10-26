@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import { useState } from "react";
-import { View } from "react-native";
+import { Pressable, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LocationSheet } from "../../components/LocationSheet";
 import { colors } from "../../components/theme";
@@ -24,14 +24,16 @@ export default function Account() {
     <Screen>
       <View style={{ marginTop: insets.top + 8 }}>
         {user ? (
-          <Row gap={14}>
-            <Avatar name={user.name} size={64} />
-            <View style={{ flex: 1 }}>
-              <T variant="title">{user.name}</T>
-              <T variant="caption" muted>{user.email}</T>
-              {user.role === "barber" && <T variant="caption" color={colors.accent}>Barber account</T>}
-            </View>
-          </Row>
+          <Pressable onPress={() => router.push("/profile")} accessibilityRole="button" accessibilityLabel="Edit profile">
+            <Row gap={14}>
+              <Avatar uri={user.photoUrl} name={user.name} size={64} />
+              <View style={{ flex: 1 }}>
+                <T variant="title">{user.name}</T>
+                <T variant="caption" muted>{user.email}</T>
+                {user.role === "barber" ? <T variant="caption" color={colors.accent}>Barber account</T> : <T variant="caption" style={{ textDecorationLine: "underline", marginTop: 2 }}>Edit profile</T>}
+              </View>
+            </Row>
+          </Pressable>
         ) : (
           <Card tone="surface">
             <T variant="title">Welcome to {APP_NAME}</T>
@@ -69,6 +71,9 @@ export default function Account() {
         <Section title="Members">
           <ListRow icon="card-outline" title="The Club" subtitle="Monthly cuts, member pricing, your member card" onPress={() => router.push("/club")} />
           <ListRow icon="person-outline" title="My chair" subtitle="Quiet or chatty, your drink, your usual cut" onPress={() => router.push("/preferences")} />
+          <ListRow icon="cut-outline" title="My cuts" subtitle="Notes and photos from every cut, rebook reminders" onPress={() => router.push("/my-cuts")} />
+          <ListRow icon="heart-outline" title="Favourites" subtitle={user?.favourites?.length ? `${user.favourites.length} saved ${user.favourites.length === 1 ? "barber" : "barbers"}` : "Barbers you saved"} onPress={() => router.push("/favourites")} />
+          <ListRow icon="people-outline" title="Invite friends" subtitle="Give credit, get credit after their first cut" onPress={() => router.push("/invite")} />
           <ListRow icon="gift-outline" title="Gift cards" subtitle="Send one, or redeem a code" onPress={() => router.push("/gifts")} />
           <ListRow icon="bookmark-outline" title="Saved reels" subtitle="Your style board for the next cut" onPress={() => router.push("/reels")} />
         </Section>

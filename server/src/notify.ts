@@ -1,5 +1,6 @@
 import { config } from "./config.js";
 import { letter, sendEmail } from "./email.js";
+import { sendWhatsApp } from "./messaging.js";
 import { cityOf, CONSULTATION, findService, getBarber } from "./common.js";
 import { db, newId, save } from "./db.js";
 import { SHOPS } from "./seed.js";
@@ -18,7 +19,10 @@ export function notify(userId: string, n: { kind: NotificationKind; title: strin
     db.notifications = db.notifications.filter((x) => !drop.has(x.id));
   }
   save();
-  if (wantsPush(userId, n.kind)) void sendPush(userId, item);
+  if (wantsPush(userId, n.kind)) {
+    void sendPush(userId, item);
+    void sendWhatsApp(userId, item);
+  }
   return item;
 }
 

@@ -20,6 +20,8 @@ import { registerBusinessRoutes } from "./routes/business.js";
 import { registerAdminRoutes } from "./routes/admin.js";
 import { registerManageRoutes } from "./routes/manage.js";
 import { clearTries, limit, loginKey, registerAccountRoutes } from "./routes/account.js";
+import { registerCustomerRoutes } from "./routes/customer.js";
+import { onCompleted } from "./rewards.js";
 import { campaignsFor } from "./campaigns.js";
 import { registerClubRoutes } from "./routes/club.js";
 import { registerReelRoutes, reelView } from "./routes/reels.js";
@@ -152,12 +154,15 @@ export function createApp() {
     password: z.string().min(8, "Password must be at least 8 characters"),
     countryCode: z.string().length(2).optional(),
     city: z.string().optional(),
+    invite: z.string().trim().toUpperCase().optional(), // a friend's invite code
   });
 
   app.post("/auth/register", (req, res) => {
-    const body = parse(Register, req.body);
+    const { invite, ...body } = parse(Register, req.body);
     if (db.users.some((u) => u.email === body.email)) throw new HttpError(409, "An account with this email already exists.");
-    const user = { id: newId(), role: "customer" as const, passwordHash: hashPassword(body.password), createdAt: new Date().toISOString(), ...body };
+    const friend = invite ? db.users.find((u) => u.referralCode === invite && !u.deletedAt) : undefined;
+    if (invite && !friend) throw new HttpError(400, "That invite code isn't valid. Check it, or leave it empty.");
+    const user = { id: newId(), role: "customer" as const, passwordHash: hashPassword(body.password), createdAt: new Date().toISOString(), ...body, ...(friend ? { referredBy: friend.id } : {}) };
     delete (user as { password?: string }).password;
     db.users.push(user);
     save();
@@ -205,7 +210,13 @@ export function createApp() {
   });
 
   app.patch("/me", requireAuth, (req, res) => {
-    const body = parse(z.object({ name: z.string().trim().min(1).optional(), countryCode: z.string().length(2).optional(), city: z.string().optional() }), req.body);
+    const body = parse(z.object({
+      name: z.string().trim().min(1).optional(), countryCode: z.string().length(2).optional(), city: z.string().optional(),
+      photoUrl: z.string().regex(/^\/(uploads|media)\/[\w./-]+$/, "Upload the photo first").optional(),
+      phone: z.string().trim().max(30).optional(), whatsapp: z.boolean().optional(),
+      birthday: z.string().regex(/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/, "Birthday as MM-DD").optional(),
+    }), req.body);
+    if (body.whatsapp && !(body.phone ?? req.user!.phone)) throw new HttpError(400, "Add your mobile number for WhatsApp.");
     Object.assign(req.user!, body);
     save();
     res.json(publicUser(req.user!));
@@ -260,6 +271,7 @@ export function createApp() {
   registerAdminRoutes(app);
   registerManageRoutes(app);
   registerAccountRoutes(app);
+  registerCustomerRoutes(app);
   registerNotificationRoutes(app);
   registerSupportRoutes(app);
   registerAssistantRoutes(app);
@@ -280,7 +292,10 @@ export function createApp() {
         availableToday: z.enum(["true", "false"]).optional(),
         availableOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
         homeVisits: z.enum(["true", "false"]).optional(),
-        sort: z.enum(["rating", "price", "soonest", "experience"]).default("rating"),
+        openNow: z.enum(["true", "false"]).optional(),
+        lat: z.coerce.number().min(-90).max(90).optional(),
+        lng: z.coerce.number().min(-180).max(180).optional(),
+        sort: z.enum(["rating", "price", "soonest", "experience", "nearest"]).default("rating"),
       }),
       req.query,
     );
@@ -295,6 +310,8 @@ export function createApp() {
         availableToday: q.availableToday === "true",
         availableOn: q.availableOn,
         homeVisits: q.homeVisits === "true",
+        openNow: q.openNow === "true",
+        near: q.lat !== undefined && q.lng !== undefined ? { lat: q.lat, lng: q.lng } : undefined,
         sort: q.sort,
       }),
     );
@@ -392,14 +409,17 @@ export function createApp() {
     const changed = booking.status !== status;
     booking.status = status;
     if (changed && status === "on_the_way") barberOnTheWay(booking);
-    if (changed && status === "completed") bookingCompleted(booking);
+    if (changed && status === "completed") {
+      bookingCompleted(booking);
+      onCompleted(booking);
+    }
     save();
     res.json(bookingView(booking));
   });
 
   // ---------- Ratings ----------
   app.post("/bookings/:id/review", requireAuth, (req, res) => {
-    const body = parse(z.object({ rating: z.number().int().min(1).max(5), comment: z.string().max(2000).default("") }), req.body);
+    const body = parse(z.object({ rating: z.number().int().min(1).max(5), comment: z.string().max(2000).default(""), photoUrl: z.string().regex(/^\/(uploads|media)\/[\w./-]+$/).optional() }), req.body);
     const booking = db.bookings.find((b) => b.id === req.params.id && b.customerId === req.user!.id);
     if (!booking) throw new HttpError(404, "Booking not found.");
     if (booking.status !== "completed") throw new HttpError(400, "You can rate your barber once the appointment is completed.");
@@ -409,6 +429,7 @@ export function createApp() {
     db.reviews.push({
       id: newId(), barberId: barber.id, customerId: req.user!.id, customerName: req.user!.name.split(" ")[0],
       bookingId: booking.id, rating: body.rating, comment: body.comment.trim(), createdAt: new Date().toISOString(),
+      ...(body.photoUrl ? { photoUrl: body.photoUrl } : {}),
     });
     barber.ratingSum += body.rating;
     barber.ratingCount += 1;
