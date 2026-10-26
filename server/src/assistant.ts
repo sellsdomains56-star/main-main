@@ -1,7 +1,7 @@
 import { busy } from "./busy.js";
 import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
-import { barberView, cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError } from "./common.js";
+import { barberView, cityOf, CONSULTATION, findCountry, findService, fromApp, getBarber, HttpError } from "./common.js";
 import { db } from "./db.js";
 import { FAQ, SUPPORT_EMAIL } from "./faq.js";
 import { createTicket, TicketTopic } from "./routes/support.js";
@@ -215,7 +215,7 @@ export async function runTool(name: string, raw: unknown, ctx: TurnContext): Pro
     }
     case "list_my_bookings": {
       if (!ctx.user) return "The customer is not signed in. Ask them to sign in (Account tab) to see bookings.";
-      const mine = db.bookings.filter((b) => b.customerId === ctx.user!.id).slice(-10);
+      const mine = db.bookings.filter((b) => b.customerId === ctx.user!.id && fromApp(b)).slice(-10);
       if (!mine.length) return "No bookings yet.";
       return mine.map((bk) => {
         const b = getBarber(bk.barberId);

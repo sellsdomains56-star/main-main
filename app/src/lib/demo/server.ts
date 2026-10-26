@@ -20,6 +20,7 @@ interface SeedBarber {
   workingDays: number[]; openHour: number; closeHour: number; ratingSum: number; ratingCount: number;
   offersConsultations?: boolean; videoLink?: string; shopId?: string;
   status?: "pending" | "live" | "suspended"; verified?: boolean; timeOff?: string[]; joinedAt?: string; pinSetAt?: string;
+  offline?: boolean; // switched off in the app by their barbershop
 }
 interface SeedPlan { id: "fresh" | "regular" | "black"; name: string; tagline: string; prices: Record<string, number>; cutsPerPeriod: number | null; productDiscount: number; freeHomeVisits: boolean; perks: string[] }
 interface SeedShop {
@@ -65,6 +66,7 @@ interface User {
   credit?: Record<string, number>; // gift-card balance per currency
   membership?: { plan: SeedPlan["id"]; number: string; currency: string; since: string; paidUntil: string };
   createdAt?: string;
+  manages?: string; // id of the barbershop this person runs in the shop panel
   seeded?: boolean; // a sample account (see seedDemoAccounts)
 }
 interface GiftCard { id: string; code: string; amount: number; currency: string; buyerId: string; toName: string; toEmail: string; message: string; design: "noir" | "ivory"; status: "pending_payment" | "active" | "redeemed"; createdAt: string }
@@ -77,6 +79,7 @@ interface Booking {
   status: "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled"; reviewed: boolean; createdAt: string;
   coveredBy?: "membership"; creditUsed?: number; tip?: number; cutNotes?: string;
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; guest?: { name: string; phone: string };
+  source?: "app" | "shop"; noShow?: boolean; // "shop": a walk-in or phone booking the barbershop added, paid at the shop
   seeded?: boolean;
 }
 interface Review { id: string; barberId: string; customerId: string; customerName: string; bookingId: string; rating: number; comment: string; createdAt: string; seeded?: boolean }
@@ -95,6 +98,9 @@ interface Hire {
   id: string; customerId: string; shopId: string; startsAt: string; endsAt: string; hours: number; guests: number; occasion: string; notes: string;
   amount: number; currency: string; status: "pending_payment" | "confirmed" | "completed" | "cancelled"; createdAt: string;
 }
+/** Time a barbershop blocked for a barber (a break, training): the app can't book it. */
+interface Block { id: string; shopId: string; barberId: string; startsAt: string; endsAt: string; reason: string; createdAt: string; seeded?: boolean }
+type ShopSettings = Partial<Pick<SeedShop, "about" | "phone" | "workingDays" | "openHour" | "closeHour">>;
 interface Conversation { id: string; ownerKey: string; turns: { role: "user" | "assistant"; content: string }[]; display: ChatMessage[] }
 interface Saved {
   v: 1;
@@ -118,7 +124,10 @@ interface Saved {
   waitlist?: { id: string; userId: string; barberId: string; date: string; notified: boolean; createdAt: string }[];
   settings?: { platformFeePercent?: number; reviewNewBarbers?: boolean; hiddenCampaigns?: string[] };
   removedReels?: string[];
+  blocks?: Block[];
+  shopSettings?: Record<string, ShopSettings>;
   demoSeededOn?: string; // the Dubai date the sample bookings were last built for
+  demoSeedVersion?: number; // bumped when the sample gains something new, so returning visitors get it today
 }
 interface DemoNotification { id: string; userId: string; kind: string; title: string; body: string; bookingId?: string; orderId?: string; hireId?: string; read: boolean; createdAt: string }
 
@@ -189,9 +198,10 @@ function zonedTime(date: string, hour: number, minute: number, timeZone: string)
 
 function slots(b: SeedBarber, date: string, durationMin: number, now = new Date()) {
   const tz = timeZoneOf(b);
-  if (!b.workingDays.includes(new Date(`${date}T12:00:00Z`).getUTCDay()) || b.timeOff?.includes(date)) return [];
+  if (b.offline || !b.workingDays.includes(new Date(`${date}T12:00:00Z`).getUTCDay()) || b.timeOff?.includes(date)) return [];
   const taken = [
     ...saved.bookings.filter((x) => x.barberId === b.id && x.status !== "cancelled"),
+    ...(saved.blocks ?? []).filter((x) => x.barberId === b.id), // time the barbershop blocked
     ...(b.shopId ? (saved.hires ?? []).filter((h) => h.shopId === b.shopId && h.status !== "cancelled") : []), // a private hire books the whole team
   ].map((x) => [Date.parse(x.startsAt), Date.parse(x.endsAt)] as const);
   const out: string[] = [];
@@ -273,10 +283,13 @@ function search(f: Filters) {
 
 // ---------- Barbershops (mirrors server/src/shops.ts) ----------
 
+/** A shop with the changes its owner made in the shop panel. */
+const withSettings = (s: SeedShop): SeedShop => ({ ...s, ...saved.shopSettings?.[s.id] });
+const allShops = () => seed.shops.map(withSettings);
 function getShop(id: string) {
   const s = seed.shops.find((x) => x.id === id);
   if (!s) throw new DemoError(404, "Barbershop not found.");
-  return s;
+  return withSettings(s);
 }
 function shopRef(id?: string) {
   const s = id ? seed.shops.find((x) => x.id === id) : undefined;
@@ -372,13 +385,13 @@ function hireView(h: Hire) {
 }
 
 function orderView(o: Order) {
-  const s = o.shopId ? seed.shops.find((x) => x.id === o.shopId) : undefined;
+  const s = o.shopId ? allShops().find((x) => x.id === o.shopId) : undefined;
   const { demoOutAt: _a, demoDeliveredAt: _b, ...rest } = o;
   return { ...rest, fulfilment: o.fulfilment ?? "shipping", shop: s ? { id: s.id, name: s.name, address: s.address, phone: s.phone, etaMin: s.delivery?.etaMin ?? 60 } : null };
 }
 
 function orderAlert(o: Order) {
-  const s = o.shopId ? seed.shops.find((x) => x.id === o.shopId) : undefined;
+  const s = o.shopId ? allShops().find((x) => x.id === o.shopId) : undefined;
   if (o.fulfilment !== "delivery" || !s) return;
   const n = o.items.reduce((t, i) => t + i.quantity, 0);
   const demo = " (Demo: in the app the shop taps this when the courier leaves.)";
@@ -389,7 +402,7 @@ function orderAlert(o: Order) {
 
 // ---------- Helpers ----------
 
-const publicUser = (u: User) => ({ id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city, preferences: u.preferences, ...(isAdmin(u) ? { admin: true } : {}) });
+const publicUser = (u: User) => ({ id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city, preferences: u.preferences, ...(u.manages ? { manages: u.manages } : {}), ...(isAdmin(u) ? { admin: true } : {}) });
 
 // ---------- The Club, gift cards (mirrors server/src/club.ts) ----------
 
@@ -655,7 +668,7 @@ function localConcierge(message: string, ctx: { country?: string; city?: string 
 
   if (/\b(my|upcoming|next)\b.*\b(booking|bookings|appointment|appointments)\b|\bwhen is my\b/.test(t)) {
     if (!user) return "Sign in first (Account tab) and I'll show your bookings.";
-    const mine = saved.bookings.filter((b) => b.customerId === user.id && b.status !== "cancelled" && Date.parse(b.endsAt) > Date.now()).sort((a, b) => a.startsAt.localeCompare(b.startsAt));
+    const mine = saved.bookings.filter((b) => b.customerId === user.id && fromApp(b) && b.status !== "cancelled" && Date.parse(b.endsAt) > Date.now()).sort((a, b) => a.startsAt.localeCompare(b.startsAt));
     if (!mine.length) return "You have no upcoming bookings. Want me to find you a barber? Try “skin fade tomorrow”.";
     return `Your upcoming bookings:\n${mine.slice(0, 5).map((bk) => {
       const b = getBarber(bk.barberId);
@@ -746,9 +759,12 @@ type Body = Record<string, any>; // eslint-disable-line @typescript-eslint/no-ex
 export const DEMO_LOGINS = {
   admin: { email: "admin@demo.jbalwaysfresh.com", password: "jb-team-demo" },
   barber: { email: "mateo@demo.jbalwaysfresh.com", password: "jb-barber-demo", barberId: "b37" },
+  shop: { email: "owner@demo.jbalwaysfresh.com", password: "jb-shop-demo", shopId: "s-dubai-downtown" },
 };
 const isAdmin = (u?: User) => !!u && u.email === DEMO_LOGINS.admin.email;
 const PAID = new Set<Booking["status"]>(["confirmed", "on_the_way", "completed"]);
+/** Booked and paid in the app (not a walk-in the barbershop added): only these carry the JB fee. */
+const fromApp = (b: Booking) => b.source !== "shop";
 const feePercent = () => saved.settings?.platformFeePercent ?? 10;
 const reviewNewBarbers = () => saved.settings?.reviewNewBarbers ?? true;
 const platformFee = (amount: number) => Math.round((amount * feePercent()) / 100);
@@ -776,7 +792,7 @@ function profileChecklist(b: SeedBarber) {
 }
 
 function earnings(list: Booking[], since: number, until = Infinity) {
-  const inRange = list.filter((b) => PAID.has(b.status) && Date.parse(b.startsAt) >= since && Date.parse(b.startsAt) < until);
+  const inRange = list.filter((b) => PAID.has(b.status) && fromApp(b) && Date.parse(b.startsAt) >= since && Date.parse(b.startsAt) < until); // walk-ins are paid at the shop
   const gross = inRange.reduce((s, b) => s + b.amount, 0);
   const tips = inRange.reduce((s, b) => s + (b.tip ?? 0), 0);
   const fee = inRange.reduce((s, b) => s + platformFee(b.amount), 0);
@@ -825,7 +841,7 @@ function bookingRow(b: Booking) {
   const service = barber ? findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined) : undefined;
   return {
     id: b.id, startsAt: b.startsAt, createdAt: b.createdAt, status: b.status, amount: b.amount, currency: b.currency, locationType: b.locationType,
-    fee: PAID.has(b.status) ? platformFee(b.amount) : 0, service: service?.name ?? "Service",
+    fee: PAID.has(b.status) && fromApp(b) ? platformFee(b.amount) : 0, service: service?.name ?? "Service",
     barber: barber ? { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city } : null,
     customer: customer ? { id: customer.id, name: b.guest?.name ?? customer.name, email: customer.email } : null,
     coveredBy: b.coveredBy ?? null,
@@ -860,10 +876,27 @@ function rng(seedValue: number) {
   return () => (s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296;
 }
 
-/** Sample team, barber and customers with a month of bookings — rebuilt each day so "today" always has clients. */
-async function seedDemoAccounts() {
+/** Two more chairs at JB's Fresh Downtown, so the shop panel's calendar has a full team. */
+const EXTRA_TEAM: [string, string, string[]][] = [
+  ["demo-dt-1", "Rami Aziz", ["skin fade", "taper", "kids cut"]],
+  ["demo-dt-2", "Leo Santos", ["scissor cut", "textured crop", "beard"]],
+];
+const SEED_VERSION = 2;
+
+/** Requests that arrive together share one run, so the sample accounts are made once. */
+let seeding: Promise<void> | null = null;
+function seedDemoAccounts() {
+  return (seeding ??= buildSample().finally(() => {
+    seeding = null;
+  }));
+}
+
+/** Sample team, barber, barbershop owner and customers with a month of bookings — rebuilt each day so "today" always has clients. */
+async function buildSample() {
   const dubaiDay = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Dubai" }).format(new Date());
-  if (saved.demoSeededOn === dubaiDay) return;
+  if (saved.demoSeededOn === dubaiDay && saved.demoSeedVersion === SEED_VERSION) return;
+  // Earlier versions could make a sample account twice when the page first loaded; keep the first.
+  saved.users = saved.users.filter((u, i, all) => !u.seeded || all.findIndex((x) => x.email === u.email) === i);
   const now = Date.now();
   const ensure = async (name: string, email: string, password: string, extra: Partial<User> = {}, daysAgo = 20) => {
     let u = saved.users.find((x) => x.email === email);
@@ -875,6 +908,16 @@ async function seedDemoAccounts() {
   };
   await ensure("JB Team", DEMO_LOGINS.admin.email, DEMO_LOGINS.admin.password, {}, 60);
   await ensure("Mateo Silva", DEMO_LOGINS.barber.email, DEMO_LOGINS.barber.password, { role: "barber", barberId: DEMO_LOGINS.barber.barberId }, 90);
+  const owner = await ensure("Nadia Haddad", DEMO_LOGINS.shop.email, DEMO_LOGINS.shop.password, { manages: DEMO_LOGINS.shop.shopId }, 120);
+  const base = seed.barbers.find((b) => b.shopId === DEMO_LOGINS.shop.shopId);
+  for (const [id, name, specialties] of EXTRA_TEAM) {
+    if (!base || allBarbers().some((b) => b.id === id)) continue;
+    saved.newBarbers.push({
+      ...structuredClone(base), id, name, bio: `${name.split(" ")[0]} works the chairs at JB's Fresh Downtown.`, photoUrl: "", specialties,
+      services: base.services.map((sv) => ({ ...sv, id: `${id}-${sv.id.split("-").pop()}` })), gallery: [], transformations: [], ratingSum: 0, ratingCount: 0,
+      yearsExperience: 4, workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 21, timeOff: [],
+    });
+  }
   const rand = rng(42);
   const customers: User[] = [];
   for (const n of ["Omar Khalid", "Rashid Al Amiri", "Daniel Moreau", "Ahmed Saleh", "Yusuf Rahman", "Liam Patel", "Faisal Nasser", "Marco Rossi", "Hamdan Ali", "Sami Haddad"]) {
@@ -904,14 +947,27 @@ async function seedDemoAccounts() {
     };
     if (status === "completed" && rand() < 0.5) b.tip = Math.round((service.price * 0.1) / 500) * 500 || 1000;
     saved.bookings.push(b);
+    return b;
   };
-  const DUBAI = ["b37", "b36", "b41", "b19", "b35", "b9", "b38", "b39", "b40", "b20"];
+  const DUBAI = ["b37", "b36", "b41", "b19", "b35", "b9", "b38", "b39", "b40", "b20", "demo-dt-1", "demo-dt-2"];
   for (let d = -30; d <= -1; d++) for (const id of DUBAI) if (rand() < (id === "b37" ? 0.75 : 0.35)) book(id, d, 10 + Math.floor(rand() * 8), rand() < 0.08 ? "cancelled" : "completed");
   for (const h of [10, 12, 15, 17, 19]) book("b37", 0, h, Date.parse(dubai(0, h)) + 3_600_000 < now ? "completed" : "confirmed");
   for (let d = 1; d <= 6; d++) for (const id of DUBAI) {
     const n = id === "b37" ? 2 + Math.floor(rand() * 3) : rand() < 0.4 ? 1 : 0;
     for (let i = 0; i < n; i++) book(id, d, 10 + Math.floor(rand() * 9), "confirmed");
   }
+  // A busy day at JB's Fresh Downtown: app bookings, walk-ins, a lunch break.
+  saved.blocks = (saved.blocks ?? []).filter((k) => !k.seeded);
+  const walkIns = ["Khalid", "Arjun", "Tom", "Majid", "Pedro", "Ali"];
+  ["b36", "b41", "demo-dt-1", "demo-dt-2"].forEach((id, i) => {
+    for (const h of [11, 13, 16, 18]) {
+      const b = book(id, 0, h + (i % 2 ? 1 : 0), Date.parse(dubai(0, h + 1)) < now ? "completed" : "confirmed");
+      if (b && rand() < 0.4) Object.assign(b, { customerId: owner.id, guest: { name: walkIns[Math.floor(rand() * walkIns.length)]!, phone: "" }, source: "shop", reviewed: true });
+    }
+    const lunch = dubai(0, 14 + (i % 2));
+    saved.blocks!.push({ id: newId(), shopId: DEMO_LOGINS.shop.shopId, barberId: id, startsAt: lunch, endsAt: new Date(Date.parse(lunch) + 45 * 60_000).toISOString(), reason: "Lunch", createdAt: new Date(now).toISOString(), seeded: true });
+  });
+
   const comments = ["Sharpest fade I've had in Dubai.", "On time, clean shop, great conversation.", "Exactly what I asked for. Booking again.", "Beard line-up was perfect."];
   saved.bookings.filter((b) => b.seeded && b.barberId === "b37" && b.status === "completed").slice(-4).forEach((b, i) => {
     const c = saved.users.find((u) => u.id === b.customerId)!;
@@ -942,7 +998,363 @@ async function seedDemoAccounts() {
     if (reel && by) ticket(customers[5]!, "other", `Reported reel by ${by.name}: Looks like someone else's photo`, 3, reel.id);
   }
   saved.demoSeededOn = dubaiDay;
+  saved.demoSeedVersion = SEED_VERSION;
   persist();
+}
+
+// ---------- The shop panel (mirrors server/src/routes/manage.ts) ----------
+
+const addDays = (date: string, n: number) => new Date(Date.parse(`${date}T12:00:00Z`) + n * DAY).toISOString().slice(0, 10);
+const localDate = (iso: string | number, tz: string) => new Intl.DateTimeFormat("en-CA", { timeZone: tz }).format(new Date(iso));
+const shopToday = (s: SeedShop) => localDate(Date.now(), shopTz(s));
+const dayStart = (s: SeedShop, date: string) => zonedTime(date, 0, 0, shopTz(s)).getTime();
+const isDay = (v: unknown): v is string => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v);
+/** Everyone on the shop's team, including barbers switched off or waiting for approval. */
+const teamOf = (s: SeedShop) => allBarbers().filter((b) => b.shopId === s.id);
+const isWorking = (b: SeedBarber, date: string) => !b.offline && b.workingDays.includes(new Date(`${date}T12:00:00Z`).getUTCDay()) && !b.timeOff?.includes(date);
+/** Same name → same service: a menu change keeps ids (and so the bookings that use them). */
+const nameKey = (s: string) => s.trim().toLowerCase();
+const firstName = (name: string) => name.split(" ")[0]!;
+
+function teamBarber(s: SeedShop, id: string) {
+  const b = teamOf(s).find((x) => x.id === id);
+  if (!b) throw new DemoError(404, "That barber isn't on your team.");
+  return b;
+}
+
+function shopBooking(s: SeedShop, id: string) {
+  const team = new Set(teamOf(s).map((b) => b.id));
+  const b = saved.bookings.find((x) => x.id === id && team.has(x.barberId));
+  if (!b) throw new DemoError(404, "Booking not found.");
+  return b;
+}
+
+/** Is the barber free from start to end? Bookings, blocked time and private hires all count; `ignore` skips a booking being moved. */
+function isFree(barberId: string, start: number, end: number, ignore?: string) {
+  const shopId = allBarbers().find((b) => b.id === barberId)?.shopId;
+  const taken = [
+    ...saved.bookings.filter((x) => x.barberId === barberId && x.status !== "cancelled" && x.id !== ignore),
+    ...(saved.blocks ?? []).filter((x) => x.barberId === barberId),
+    ...(shopId ? (saved.hires ?? []).filter((h) => h.shopId === shopId && h.status !== "cancelled") : []),
+  ];
+  return !taken.some((x) => start < Date.parse(x.endsAt) && end > Date.parse(x.startsAt));
+}
+
+function calendarBooking(b: Booking) {
+  const v = bookingView(b);
+  return {
+    id: b.id, barberId: b.barberId, startsAt: b.startsAt, endsAt: b.endsAt, status: b.status, noShow: !!b.noShow,
+    source: b.source ?? "app", client: v.customerName, phone: b.guest?.phone || b.phone || "",
+    service: v.service?.name ?? "Appointment", durationMin: Math.round((Date.parse(b.endsAt) - Date.parse(b.startsAt)) / 60_000),
+    amount: b.amount, currency: b.currency, paid: fromApp(b) ? "app" : "at the shop", locationType: b.locationType, address: b.address, notes: b.notes,
+  };
+}
+
+function memberView(b: SeedBarber, date: string) {
+  return {
+    ...barberView(b),
+    status: statusOf(b), offline: !!b.offline, email: barberUser(b.id)?.email ?? null,
+    hours: { workingDays: b.workingDays, openHour: b.openHour, closeHour: b.closeHour, timeOff: b.timeOff ?? [] },
+    workingToday: isWorking(b, date),
+  };
+}
+
+const patchBarber = (id: string, patch: Partial<SeedBarber>) => {
+  const isNew = saved.newBarbers.find((b) => b.id === id);
+  if (isNew) Object.assign(isNew, patch);
+  else saved.barberPatches[id] = { ...saved.barberPatches[id], ...patch };
+};
+
+const hourOk = (v: unknown, min: number, max: number) => v === undefined || (Number.isInteger(v) && (v as number) >= min && (v as number) <= max);
+
+/** The shop panel: a barbershop's owner or manager runs the shop's day. Everything here changes what customers can book in the app. */
+async function manageRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null): Promise<unknown> {
+  const me = requireUser(token);
+  if (!me.manages) throw new DemoError(403, "Only barbershop owners and managers can open the shop panel.");
+  const shop = getShop(me.manages);
+  const tz = shopTz(shop);
+  let x: RegExpMatchArray | null;
+
+  if (path === "/manage" && method === "GET") {
+    const date = shopToday(shop);
+    return {
+      shop: {
+        id: shop.id, name: shop.name, address: shop.address, city: shop.city, phone: shop.phone, about: shop.about, photoUrl: shop.photoUrl,
+        timeZone: tz, currency: shopCurrency(shop), workingDays: shop.workingDays, openHour: shop.openHour, closeHour: shop.closeHour,
+      },
+      today: date,
+      team: teamOf(shop).map((b) => memberView(b, date)),
+    };
+  }
+
+  // One day: every barber's bookings, blocked time and the shop's hours.
+  if (path === "/manage/calendar" && method === "GET") {
+    const date = isDay(q.date) ? q.date : shopToday(shop);
+    const from = dayStart(shop, date);
+    const to = dayStart(shop, addDays(date, 1));
+    const team = teamOf(shop);
+    const ids = new Set(team.map((b) => b.id));
+    const within = (k: { startsAt: string; endsAt: string }) => Date.parse(k.startsAt) < to && Date.parse(k.endsAt) > from;
+    const bookings = saved.bookings.filter((b) => ids.has(b.barberId) && b.status !== "pending_payment" && within(b)).sort((a, b) => a.startsAt.localeCompare(b.startsAt));
+    const hires = (saved.hires ?? []).filter((h) => h.shopId === shop.id && h.status !== "cancelled" && h.status !== "pending_payment" && within(h));
+    const active = bookings.filter((b) => b.status !== "cancelled");
+    return {
+      date, timeZone: tz, currency: shopCurrency(shop),
+      openHour: Math.min(shop.openHour, ...team.map((b) => b.openHour)), closeHour: Math.max(shop.closeHour, ...team.map((b) => b.closeHour)),
+      barbers: team.map((b) => ({ ...memberView(b, date), working: isWorking(b, date), dayOff: !!b.timeOff?.includes(date) })),
+      bookings: bookings.map(calendarBooking),
+      blocks: (saved.blocks ?? []).filter((k) => ids.has(k.barberId) && within(k)).map(({ seeded: _s, ...k }) => k),
+      hires: hires.map((h) => ({ id: h.id, startsAt: h.startsAt, endsAt: h.endsAt, occasion: h.occasion, guests: h.guests })),
+      summary: {
+        bookings: active.length,
+        done: active.filter((b) => b.status === "completed").length,
+        walkIns: active.filter((b) => !fromApp(b)).length,
+        cancelled: bookings.filter((b) => b.status === "cancelled" && !b.noShow).length,
+        noShows: bookings.filter((b) => b.noShow).length,
+        takings: active.reduce((s, b) => s + b.amount, 0),
+      },
+    };
+  }
+
+  // A walk-in or a phone booking, added by the shop. Paid at the shop; the app won't offer that time to anyone else.
+  if (path === "/manage/bookings" && method === "POST") {
+    const barber = teamBarber(shop, String(body?.barberId ?? ""));
+    const service = findService(barber, String(body?.serviceId ?? ""));
+    if (!service || service.id === CONSULTATION.id) throw new DemoError(404, "Pick one of this barber's services.");
+    const name = String(body?.name ?? "").trim().slice(0, 60);
+    if (!name) throw new DemoError(400, "Add the client's name");
+    const start = Date.parse(String(body?.startsAt ?? ""));
+    if (Number.isNaN(start)) throw new DemoError(400, "Pick a time.");
+    const end = start + service.durationMin * 60_000;
+    if (end < Date.now() - 60 * 60_000) throw new DemoError(400, "That time has already passed.");
+    if (!isFree(barber.id, start, end)) throw new DemoError(409, `${firstName(barber.name)} is busy then — pick another time or barber.`);
+    const booking: Booking = {
+      id: newId(), customerId: me.id, barberId: barber.id, serviceId: service.id,
+      startsAt: new Date(start).toISOString(), endsAt: new Date(end).toISOString(), locationType: "shop", address: shop.address,
+      notes: String(body?.notes ?? "").trim().slice(0, 500), amount: service.price, currency: shopCurrency(shop), status: "confirmed", reviewed: true,
+      remindedDay: true, remindedHour: true, guest: { name, phone: String(body?.phone ?? "").trim().slice(0, 30) }, source: "shop", createdAt: new Date().toISOString(),
+    };
+    saved.bookings.push(booking);
+    const bu = barberUser(barber.id);
+    if (bu) {
+      const when = new Intl.DateTimeFormat("en-GB", { timeZone: tz, weekday: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(start));
+      notify(bu.id, { kind: "new_booking", title: "New booking from the shop", body: `${name}: ${service.name}, ${when}.`, bookingId: booking.id });
+    }
+    persist();
+    return calendarBooking(booking);
+  }
+
+  // Move a booking to another time or another barber on the team.
+  if ((x = path.match(/^\/manage\/bookings\/([^/]+)\/move$/)) && method === "POST") {
+    const b = shopBooking(shop, x[1]!);
+    if (b.status === "cancelled" || b.status === "completed") throw new DemoError(400, "Only upcoming bookings can be moved.");
+    const from = teamBarber(shop, b.barberId);
+    const to = teamBarber(shop, String(body?.barberId ?? ""));
+    const service = findService(from, b.serviceId);
+    const target = to.id === from.id ? service : to.services.find((s) => service && nameKey(s.name) === nameKey(service.name));
+    if (!target) throw new DemoError(400, `${firstName(to.name)} doesn't offer ${service?.name ?? "this service"}. Add it in Services first.`);
+    const start = Date.parse(String(body?.startsAt ?? ""));
+    if (Number.isNaN(start)) throw new DemoError(400, "Pick a time.");
+    const end = start + target.durationMin * 60_000;
+    if (!isFree(to.id, start, end, b.id)) throw new DemoError(409, `${firstName(to.name)} is busy then.`);
+    Object.assign(b, { barberId: to.id, serviceId: target.id, startsAt: new Date(start).toISOString(), endsAt: new Date(end).toISOString(), remindedDay: !fromApp(b), remindedHour: !fromApp(b) });
+    if (fromApp(b)) {
+      const when = new Intl.DateTimeFormat("en-GB", { timeZone: tz, weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(start));
+      notify(b.customerId, { kind: "booking_confirmed", title: "Your booking moved", body: `${shop.name} moved your ${target.name.toLowerCase()} to ${when} (${shop.city} time) with ${to.name}.`, bookingId: b.id });
+    }
+    persist();
+    return calendarBooking(b);
+  }
+
+  // Done, no-show or cancel.
+  if ((x = path.match(/^\/manage\/bookings\/([^/]+)$/)) && method === "POST") {
+    const b = shopBooking(shop, x[1]!);
+    const action = String(body?.action ?? "");
+    const reason = String(body?.reason ?? "").trim().slice(0, 300);
+    if (b.status === "cancelled") throw new DemoError(400, "This booking is already cancelled.");
+    const app = fromApp(b);
+    if (action === "done") {
+      if (b.status === "completed") throw new DemoError(400, "Already marked done.");
+      b.status = "completed";
+      if (app && b.serviceId !== CONSULTATION.id) notify(b.customerId, { kind: "completed", title: "How was your cut?", body: `Rate ${getBarber(b.barberId).name} — it helps others choose.`, bookingId: b.id });
+    } else if (action === "no_show") {
+      if (Date.parse(b.startsAt) > Date.now()) throw new DemoError(400, "You can mark a no-show once the appointment time has started.");
+      if (b.status === "completed") throw new DemoError(400, "This one is already done.");
+      b.status = "cancelled";
+      b.noShow = true; // no refund: the client didn't come
+      if (app) notify(b.customerId, { kind: "cancelled", title: "Marked as no-show", body: `${shop.name} marked your appointment as missed. Contact support if this is a mistake.`, bookingId: b.id });
+    } else if (action === "cancel") {
+      if (b.status === "completed") throw new DemoError(400, "A finished booking can't be cancelled.");
+      b.status = "cancelled";
+      if (app) {
+        if (b.creditUsed) {
+          const owner = saved.users.find((u) => u.id === b.customerId);
+          if (owner) owner.credit = { ...owner.credit, [b.currency]: (owner.credit?.[b.currency] ?? 0) + b.creditUsed };
+        }
+        const d = alertDetails(b);
+        notify(b.customerId, { kind: "cancelled", title: "Booking cancelled", body: `${d.barber.name} cancelled ${d.service}, ${d.when}.${b.amount ? " You'll get a full refund." : ""}`, bookingId: b.id });
+        if (reason) notify(b.customerId, { kind: "cancelled", title: `Message from ${shop.name}`, body: reason, bookingId: b.id });
+      }
+    } else throw new DemoError(400, "Choose done, no-show or cancel.");
+    persist();
+    return calendarBooking(b);
+  }
+
+  // Breaks, training, a barber off for the afternoon: blocked time can't be booked in the app.
+  if (path === "/manage/blocks" && method === "POST") {
+    const ids = (body?.barberIds ?? []) as string[];
+    if (!ids.length) throw new DemoError(400, "Pick at least one barber");
+    const start = Date.parse(String(body?.startsAt ?? ""));
+    const end = Date.parse(String(body?.endsAt ?? ""));
+    if (Number.isNaN(start) || Number.isNaN(end) || end - start < 10 * 60_000) throw new DemoError(400, "Block at least 10 minutes.");
+    if (end - start > 14 * DAY) throw new DemoError(400, "For longer than two weeks, use days off instead.");
+    const reason = String(body?.reason ?? "").trim().slice(0, 80) || "Blocked";
+    const created = ids.map((id) => {
+      teamBarber(shop, id);
+      const block: Block = { id: newId(), shopId: shop.id, barberId: id, startsAt: new Date(start).toISOString(), endsAt: new Date(end).toISOString(), reason, createdAt: new Date().toISOString() };
+      (saved.blocks ??= []).push(block);
+      return block;
+    });
+    persist();
+    return created;
+  }
+  if ((x = path.match(/^\/manage\/blocks\/([^/]+)$/)) && method === "DELETE") {
+    const block = (saved.blocks ?? []).find((k) => k.id === x![1] && k.shopId === shop.id);
+    if (!block) throw new DemoError(404, "Not found.");
+    saved.blocks = (saved.blocks ?? []).filter((k) => k !== block);
+    persist();
+    return undefined;
+  }
+
+  // A barber's week: working days, hours, days off, and whether the app takes bookings for them.
+  if ((x = path.match(/^\/manage\/barbers\/([^/]+)$/)) && method === "PATCH") {
+    const b = teamBarber(shop, x[1]!);
+    const p = (body ?? {}) as { workingDays?: number[]; openHour?: number; closeHour?: number; timeOff?: string[]; offline?: boolean };
+    if (p.workingDays && (!p.workingDays.length || p.workingDays.some((d) => !Number.isInteger(d) || d < 0 || d > 6))) throw new DemoError(400, "Pick at least one working day");
+    if (!hourOk(p.openHour, 0, 23) || !hourOk(p.closeHour, 1, 24)) throw new DemoError(400, "Pick hours between 00:00 and 24:00.");
+    if ((p.closeHour ?? b.closeHour) - (p.openHour ?? b.openHour) < 1) throw new DemoError(400, "Closing time must be after opening time.");
+    if (p.timeOff && p.timeOff.some((d) => !isDay(d))) throw new DemoError(400, "Days off must be dates.");
+    const patch: Partial<SeedBarber> = {};
+    if (p.workingDays) patch.workingDays = [...new Set(p.workingDays)].sort();
+    if (p.openHour !== undefined) patch.openHour = p.openHour;
+    if (p.closeHour !== undefined) patch.closeHour = p.closeHour;
+    if (p.timeOff) patch.timeOff = [...new Set(p.timeOff)].sort();
+    if (p.offline !== undefined) patch.offline = !!p.offline;
+    patchBarber(b.id, patch);
+    persist();
+    return memberView(getBarber(b.id), shopToday(shop));
+  }
+
+  // Services, times and prices for the whole team, or for chosen barbers.
+  if (path === "/manage/services" && method === "PUT") {
+    const list = ((body?.services ?? []) as { name: string; durationMin: number; price: number }[]).map((s) => ({ name: String(s.name ?? "").trim(), durationMin: Number(s.durationMin), price: Number(s.price) }));
+    if (!list.length) throw new DemoError(400, "Keep at least one service");
+    if (list.length > 25) throw new DemoError(400, "Up to 25 services.");
+    if (list.some((s) => s.name.length < 2 || s.name.length > 60)) throw new DemoError(400, "Give every service a name");
+    if (list.some((s) => !Number.isInteger(s.durationMin) || s.durationMin < 10 || s.durationMin > 480)) throw new DemoError(400, "Services take between 10 minutes and 8 hours.");
+    if (list.some((s) => !Number.isInteger(s.price) || s.price < 0)) throw new DemoError(400, "Check the prices.");
+    const names = list.map((s) => nameKey(s.name));
+    if (new Set(names).size !== names.length) throw new DemoError(400, "Two services have the same name.");
+    const chosen = (body?.barberIds ?? []) as string[];
+    const targets = chosen.length ? chosen.map((id) => teamBarber(shop, id)) : teamOf(shop);
+    for (const b of targets) {
+      for (const old of b.services) {
+        if (names.includes(nameKey(old.name))) continue;
+        const booked = saved.bookings.some((k) => k.barberId === b.id && k.serviceId === old.id && ["confirmed", "on_the_way"].includes(k.status) && Date.parse(k.endsAt) > Date.now());
+        if (booked) throw new DemoError(409, `${firstName(b.name)} has upcoming bookings for "${old.name}" — keep it until they're done.`);
+      }
+    }
+    for (const b of targets) {
+      patchBarber(b.id, { services: list.map((s) => ({ id: b.services.find((o) => nameKey(o.name) === nameKey(s.name))?.id ?? `${b.id}-${newId().slice(0, 8)}`, ...s })) });
+    }
+    persist();
+    return teamOf(shop).map((b) => memberView(b, shopToday(shop)));
+  }
+
+  // Add a barber to the team: their app account is created, with a first password to hand over.
+  if (path === "/manage/barbers" && method === "POST") {
+    const name = String(body?.name ?? "").trim();
+    const email = String(body?.email ?? "").trim().toLowerCase();
+    if (name.length < 2 || name.length > 60) throw new DemoError(400, "Add their name.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new DemoError(400, "Add a valid email.");
+    if (saved.users.some((u) => u.email === email)) throw new DemoError(409, "There's already an account with that email.");
+    const team = teamOf(shop);
+    const id = newId();
+    const template = team[0]?.services ?? [{ id: "", name: "Classic haircut", durationMin: 30, price: 8000 }];
+    const barber: SeedBarber = {
+      id, name, bio: "", photoUrl: "", countryCode: shop.countryCode, city: shop.city, shopAddress: shop.address, shopId: shop.id,
+      lat: shop.lat, lng: shop.lng, specialties: [], services: template.map((s) => ({ ...s, id: `${id}-${newId().slice(0, 8)}` })),
+      offersHomeVisits: false, homeVisitFee: 0, yearsExperience: 0, languages: [], gallery: [], transformations: [],
+      workingDays: [...shop.workingDays], openHour: shop.openHour, closeHour: shop.closeHour, ratingSum: 0, ratingCount: 0,
+      status: reviewNewBarbers() ? "pending" : "live", joinedAt: new Date().toISOString(),
+    };
+    saved.newBarbers.push(barber);
+    const password = Array.from(crypto.getRandomValues(new Uint8Array(6)), (n) => CODE_CHARS[n % CODE_CHARS.length]).join("").toLowerCase();
+    saved.users.push({ id: newId(), name, email, passwordHash: await hash(password), role: "barber", barberId: id, countryCode: shop.countryCode, city: shop.city, createdAt: new Date().toISOString() });
+    persist();
+    return { barber: memberView(barber, shopToday(shop)), login: { email, password } };
+  }
+
+  // How the shop is doing — today, this week (Monday to Sunday) or this month, including what's already booked.
+  if (path === "/manage/reports" && method === "GET") {
+    const period = (["today", "week", "month"].includes(q.period ?? "") ? q.period : "week") as "today" | "week" | "month";
+    const now = shopToday(shop);
+    const first = period === "today" ? now : period === "week" ? addDays(now, -((new Date(`${now}T12:00:00Z`).getUTCDay() + 6) % 7)) : `${now.slice(0, 8)}01`;
+    const end = period === "today" ? now : period === "week" ? addDays(first, 6) : addDays(`${addDays(`${now.slice(0, 8)}28`, 4).slice(0, 8)}01`, -1);
+    const days = Math.round((Date.parse(`${end}T12:00:00Z`) - Date.parse(`${first}T12:00:00Z`)) / DAY) + 1;
+    const from = dayStart(shop, first);
+    const to = dayStart(shop, addDays(end, 1));
+    const team = teamOf(shop);
+    const inRange = saved.bookings.filter((b) => team.some((t) => t.id === b.barberId) && b.status !== "pending_payment" && Date.parse(b.startsAt) >= from && Date.parse(b.startsAt) < to);
+    const active = inRange.filter((b) => PAID.has(b.status));
+    const dates = Array.from({ length: days }, (_, i) => addDays(first, i));
+    const byBarber = team.map((t) => {
+      const mine = active.filter((b) => b.barberId === t.id);
+      const bookedMin = mine.reduce((m, b) => m + (Date.parse(b.endsAt) - Date.parse(b.startsAt)) / 60_000, 0);
+      const workMin = dates.filter((d) => isWorking(t, d)).length * (t.closeHour - t.openHour) * 60;
+      return {
+        id: t.id, name: t.name, photoUrl: t.photoUrl, bookings: mine.length, completed: mine.filter((b) => b.status === "completed").length,
+        walkIns: mine.filter((b) => !fromApp(b)).length, noShows: inRange.filter((b) => b.barberId === t.id && b.noShow).length,
+        takings: mine.reduce((s, b) => s + b.amount, 0), busyPercent: workMin ? Math.min(100, Math.round((bookedMin / workMin) * 100)) : 0,
+      };
+    }).sort((a, b) => b.takings - a.takings);
+    const services = new Map<string, number>();
+    for (const b of active) {
+      const name = findService(team.find((t) => t.id === b.barberId)!, b.serviceId)?.name ?? "Other";
+      services.set(name, (services.get(name) ?? 0) + 1);
+    }
+    return {
+      period, from: first, to: end, today: now, currency: shopCurrency(shop),
+      totals: {
+        bookings: active.length, completed: active.filter((b) => b.status === "completed").length,
+        fromApp: active.filter(fromApp).length, walkIns: active.filter((b) => !fromApp(b)).length,
+        noShows: inRange.filter((b) => b.noShow).length, cancelled: inRange.filter((b) => b.status === "cancelled" && !b.noShow).length,
+        takings: active.reduce((s, b) => s + b.amount, 0), appTakings: active.filter(fromApp).reduce((s, b) => s + b.amount, 0),
+      },
+      byBarber,
+      topServices: [...services].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count).slice(0, 6),
+      perDay: dates.map((d) => ({ date: d, count: active.filter((b) => localDate(b.startsAt, tz) === d).length })),
+    };
+  }
+
+  // The shop's own details and opening hours.
+  if (path === "/manage/settings" && method === "PATCH") {
+    const p = (body ?? {}) as ShopSettings;
+    if (!hourOk(p.openHour, 0, 23) || !hourOk(p.closeHour, 1, 24)) throw new DemoError(400, "Pick hours between 00:00 and 24:00.");
+    if ((p.closeHour ?? shop.closeHour) - (p.openHour ?? shop.openHour) < 1) throw new DemoError(400, "Closing time must be after opening time.");
+    if (p.workingDays && !p.workingDays.length) throw new DemoError(400, "Pick at least one open day.");
+    const patch: ShopSettings = {};
+    if (p.about !== undefined) patch.about = String(p.about).trim().slice(0, 400);
+    if (p.phone !== undefined) patch.phone = String(p.phone).trim().slice(0, 30);
+    if (p.workingDays) patch.workingDays = [...new Set(p.workingDays)].sort();
+    if (p.openHour !== undefined) patch.openHour = p.openHour;
+    if (p.closeHour !== undefined) patch.closeHour = p.closeHour;
+    saved.shopSettings = { ...saved.shopSettings, [shop.id]: { ...saved.shopSettings?.[shop.id], ...patch } };
+    persist();
+    const s = getShop(shop.id);
+    return { about: s.about, phone: s.phone, workingDays: s.workingDays, openHour: s.openHour, closeHour: s.closeHour };
+  }
+  throw new DemoError(404, "Not found.");
 }
 
 async function teamRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null): Promise<{ hit: boolean; value?: unknown }> {
@@ -975,6 +1387,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
     return hit(barberView(getBarber(b.id)));
   }
 
+  if (path === "/manage" || path.startsWith("/manage/")) return hit(await manageRoutes(method, path, q, body, token));
   if (!path.startsWith("/admin/")) return { hit: false };
   const me = requireUser(token);
   if (!isAdmin(me)) throw new DemoError(403, "Only the JB Always Fresh team can open this.");
@@ -982,7 +1395,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
   const text = (q.q ?? "").trim().toLowerCase();
 
   if (path === "/admin/overview") {
-    const paid = saved.bookings.filter((b) => PAID.has(b.status));
+    const paid = saved.bookings.filter((b) => PAID.has(b.status) && fromApp(b)); // JB's numbers: bookings made and paid in the app
     const paid30 = paid.filter((b) => Date.parse(b.createdAt) >= since(30));
     const customers = saved.users.filter((u) => u.role === "customer" && !isAdmin(u));
     const count = (s: string) => allBarbers().filter((b) => statusOf(b) === s).length;
@@ -1079,7 +1492,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
       .filter((u) => u.role === "customer" && !isAdmin(u))
       .filter((u) => !text || `${u.name} ${u.email} ${u.city ?? ""}`.toLowerCase().includes(text))
       .map((u) => {
-        const mine = saved.bookings.filter((b) => b.customerId === u.id);
+        const mine = saved.bookings.filter((b) => b.customerId === u.id && fromApp(b));
         const paid = mine.filter((b) => PAID.has(b.status));
         return {
           id: u.id, name: u.name, email: u.email, city: u.city, createdAt: u.createdAt, bookings: paid.length, cancelled: mine.filter((b) => b.status === "cancelled").length,
@@ -1089,8 +1502,26 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
       })
       .sort((a, b) => b.bookings - a.bookings));
   }
+  const managersOf = (shopId: string) => saved.users.filter((u) => u.manages === shopId).map((u) => ({ id: u.id, name: u.name, email: u.email }));
+  if ((x = path.match(/^\/admin\/shops\/([^/]+)\/managers$/)) && method === "POST") {
+    const s = getShop(x[1]!);
+    const email = String(body?.email ?? "").trim().toLowerCase();
+    const u = saved.users.find((k) => k.email === email);
+    if (!u) throw new DemoError(404, "No account with that email yet — ask them to sign up in the app first.");
+    u.manages = s.id;
+    notify(u.id, { kind: "account", title: `Your shop panel for ${s.name} is ready`, body: "Open Account → Shop panel to see your barbers' calendar, add walk-ins and set hours." });
+    persist();
+    return hit({ shopId: s.id, managers: managersOf(s.id) });
+  }
+  if ((x = path.match(/^\/admin\/shops\/([^/]+)\/managers\/([^/]+)$/)) && method === "DELETE") {
+    const u = saved.users.find((k) => k.id === x![2] && k.manages === x![1]);
+    if (!u) throw new DemoError(404, "Not found.");
+    delete u.manages;
+    persist();
+    return hit(undefined);
+  }
   if (path === "/admin/shops") {
-    return hit(seed.shops.map((s) => {
+    return hit(allShops().map((s) => {
       const ids = new Set(team(s).map((b) => b.id));
       return {
         id: s.id, name: s.name, city: s.city, address: s.address, photoUrl: s.photoUrl,
@@ -1098,7 +1529,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
         bookings30: saved.bookings.filter((b) => ids.has(b.barberId) && PAID.has(b.status) && Date.parse(b.startsAt) >= since(30)).length,
         hires: (saved.hires ?? []).filter((h) => h.shopId === s.id && h.status !== "pending_payment").length,
         deliveries: saved.orders.filter((o) => o.shopId === s.id && o.status !== "pending_payment").length,
-        privateHire: !!s.privateHire, delivery: !!s.delivery,
+        privateHire: !!s.privateHire, delivery: !!s.delivery, managers: managersOf(s.id),
       };
     }));
   }
@@ -1408,7 +1839,7 @@ export function createDemoServer(data: DemoData) {
     if (path === "/bookings" && method === "GET") {
       const u = requireUser(token);
       dueReminders();
-      return saved.bookings.filter((b) => b.customerId === u.id || (u.barberId && b.barberId === u.barberId)).sort((a, b) => b.startsAt.localeCompare(a.startsAt)).map(bookingView);
+      return saved.bookings.filter((b) => (b.customerId === u.id && fromApp(b)) || (u.barberId && b.barberId === u.barberId)).sort((a, b) => b.startsAt.localeCompare(a.startsAt)).map(bookingView);
     }
     if ((x = m(/^\/bookings\/([^/]+)(?:\/(payment|confirm-payment|cancel|status|review))?$/))) {
       const u = requireUser(token);
@@ -1640,7 +2071,7 @@ export function createDemoServer(data: DemoData) {
 
     // Barbershops
     if (path === "/shops") {
-      return seed.shops.filter((s) => (!q.country || s.countryCode === q.country) && (!q.city || s.city === q.city)).map(shopSummary).sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+      return allShops().filter((s) => (!q.country || s.countryCode === q.country) && (!q.city || s.city === q.city)).map(shopSummary).sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
     }
     if ((x = m(/^\/shops\/([^/]+)\/availability$/))) {
       const s = getShop(x[1]);

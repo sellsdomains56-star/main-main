@@ -2,7 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import { DEMO_REELS } from "./reels.js";
 import { BARBERS, COUNTRIES } from "./seed.js";
-import type { AppNotification, Barber, Booking, Conversation, GiftCard, Hire, Order, Purchase, Reel, Review, SupportTicket, User, WaitlistEntry, Settings } from "./types.js";
+import type { AppNotification, Barber, Block, Booking, Conversation, GiftCard, Hire, Order, Purchase, Reel, Review, SupportTicket, User, WaitlistEntry, Settings, ShopSettings } from "./types.js";
 
 // Simple JSON-file store. Good enough to run the product end-to-end; swap for
 // Postgres (or similar) before going to production — the rest of the code only
@@ -23,6 +23,8 @@ interface Data {
   notifications: AppNotification[];
   sessions: Record<string, string>; // token -> userId
   settings: Settings; // what the team changed in the admin panel
+  blocks: Block[]; // time barbershops blocked in their barbers' calendars
+  shopSettings: Record<string, ShopSettings>; // what each barbershop changed in the shop panel
 }
 
 const DATA_DIR = new URL("../data/", import.meta.url);
@@ -33,7 +35,7 @@ const persist = process.env.NODE_ENV !== "test";
 function load(): Data {
   if (persist) {
     try {
-      const data = { orders: [], hires: [], giftCards: [], purchases: [], waitlist: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], settings: {}, ...JSON.parse(readFileSync(DATA_FILE, "utf8")) } as Data;
+      const data = { orders: [], hires: [], giftCards: [], purchases: [], waitlist: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], settings: {}, blocks: [], shopSettings: {}, ...JSON.parse(readFileSync(DATA_FILE, "utf8")) } as Data;
       // Fill fields added after this file was first written.
       const defaults = { yearsExperience: 0, languages: [], gallery: [], transformations: [] };
       data.barbers = data.barbers.map((b) => {
@@ -50,7 +52,7 @@ function load(): Data {
       // first run
     }
   }
-  return { users: [], barbers: structuredClone(BARBERS), bookings: [], hires: [], giftCards: [], purchases: [], waitlist: [], reviews: [], orders: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], sessions: {}, settings: {} };
+  return { users: [], barbers: structuredClone(BARBERS), bookings: [], hires: [], giftCards: [], purchases: [], waitlist: [], reviews: [], orders: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], sessions: {}, settings: {}, blocks: [], shopSettings: {} };
 }
 
 export const db: Data = load();

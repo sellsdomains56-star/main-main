@@ -4,7 +4,7 @@ import { config } from "./config.js";
 import { db } from "./db.js";
 import { COUNTRIES, SHOPS } from "./seed.js";
 import { availableSlots } from "./slots.js";
-import type { Barber, Service } from "./types.js";
+import type { Barber, Booking, Service } from "./types.js";
 
 export class HttpError extends Error {
   constructor(public status: number, message: string) {
@@ -20,6 +20,8 @@ export const isLive = (b: Barber) => (b.status ?? "live") === "live";
 /** The platform fee in percent: the admin panel's setting, else PLATFORM_FEE_PERCENT. */
 export const platformFeePercent = () => db.settings.platformFeePercent ?? config.platformFeePercent;
 export const platformFee = (amount: number) => Math.round((amount * platformFeePercent()) / 100);
+/** Bookings a barbershop adds itself (walk-ins, phone) are paid at the shop: no JB fee. */
+export const fromApp = (b: Booking) => b.source !== "shop";
 
 /** Whether new barbers wait for the team's approval before they appear. */
 export const reviewNewBarbers = () => db.settings.reviewNewBarbers ?? config.reviewNewBarbers;

@@ -67,6 +67,7 @@ export default function RootLayout() {
                   <Stack.Screen name="hire/[hireId]" options={{ title: "Payment" }} />
                   <Stack.Screen name="business/index" options={{ title: "Dashboard" }} />
                   <Stack.Screen name="admin" options={{ headerShown: false, title: "Admin panel" }} />
+                  <Stack.Screen name="shop-panel" options={{ headerShown: false, title: "Shop panel" }} />
                   <Stack.Screen name="business/services" options={{ title: "Services & prices" }} />
                   <Stack.Screen name="business/hours" options={{ title: "Hours & days off" }} />
                 </Stack>

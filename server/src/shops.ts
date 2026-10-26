@@ -8,11 +8,14 @@ import type { Barber, Shop } from "./types.js";
 
 export const HIRE_NOTICE_HOURS = 24; // private hire needs a day's notice so the shop can clear the books
 
+/** A barbershop as it is now: the seed record plus what the shop changed in its panel (hours, phone, about). */
 export function getShop(id: string): Shop {
   const shop = SHOPS.find((s) => s.id === id);
   if (!shop) throw new HttpError(404, "Barbershop not found.");
-  return shop;
+  return { ...shop, ...db.shopSettings[id] };
 }
+
+export const allShops = () => SHOPS.map((s) => getShop(s.id));
 
 export const shopTimeZone = (shop: Shop) => findCountry(shop.countryCode)!.cities.find((c) => c.name === shop.city)!.timeZone;
 export const shopCurrency = (shop: Shop) => findCountry(shop.countryCode)!.currency;

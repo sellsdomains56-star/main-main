@@ -27,7 +27,7 @@ const register = async (name: string, email: string) => (await call("/auth/regis
 /** A Monday–Saturday date at least `daysAhead` days out. */
 function workday(daysAhead: number): string {
   const d = new Date(Date.now() + daysAhead * 86_400_000);
-  while (d.getUTCDay() === 0) d.setUTCDate(d.getUTCDate() + 1);
+  while (d.getUTCDay() === 0 || d.getUTCDay() === 5) d.setUTCDate(d.getUTCDate() + 1); // most UAE barbers are off on Fridays or Sundays
   return d.toISOString().slice(0, 10);
 }
 

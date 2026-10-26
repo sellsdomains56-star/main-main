@@ -73,6 +73,7 @@ export interface User {
   email: string;
   role: "customer" | "barber";
   admin?: boolean; // on the JB Always Fresh team: can open the admin panel
+  manages?: string; // id of the barbershop this person runs in the shop panel
   barberId?: string;
   countryCode?: string;
   city?: string;
@@ -486,6 +487,7 @@ export interface AdminShopRow {
   deliveries: number;
   privateHire: boolean;
   delivery: boolean;
+  managers: { id: string; name: string; email: string }[];
 }
 
 export interface AdminOrderRow {
@@ -520,4 +522,67 @@ export interface AdminSettings {
   platformFeePercent: number;
   reviewNewBarbers: boolean;
   campaigns: { id: string; eyebrow: string; title: string; photoUrl: string; countries: string[] | null; except: string[] | null; hidden: boolean }[];
+}
+
+// ---------- Shop panel (a barbershop runs its day) ----------
+
+export interface ShopMember extends Barber {
+  status: BarberStatus;
+  offline: boolean; // switched off in the app by the shop
+  email: string | null;
+  hours: WorkingHours;
+  workingToday: boolean;
+}
+
+export interface ShopPanel {
+  shop: { id: string; name: string; address: string; city: string; phone: string; about: string; photoUrl: string; timeZone: string; currency: string; workingDays: number[]; openHour: number; closeHour: number };
+  today: string;
+  team: ShopMember[];
+}
+
+export interface CalBooking {
+  id: string;
+  barberId: string;
+  startsAt: string;
+  endsAt: string;
+  status: BookingStatus;
+  noShow: boolean;
+  source: "app" | "shop";
+  client: string;
+  phone: string;
+  service: string;
+  durationMin: number;
+  amount: number;
+  currency: string;
+  paid: string; // "app" or "at the shop"
+  locationType: LocationType;
+  address: string;
+  notes: string;
+}
+
+export interface CalBlock { id: string; barberId: string; startsAt: string; endsAt: string; reason: string }
+
+export interface ShopCalendar {
+  date: string;
+  timeZone: string;
+  currency: string;
+  openHour: number;
+  closeHour: number;
+  barbers: (ShopMember & { working: boolean; dayOff: boolean })[];
+  bookings: CalBooking[];
+  blocks: CalBlock[];
+  hires: { id: string; startsAt: string; endsAt: string; occasion: string; guests: number }[];
+  summary: { bookings: number; done: number; walkIns: number; cancelled: number; noShows: number; takings: number };
+}
+
+export interface ShopReport {
+  period: "today" | "week" | "month";
+  from: string;
+  to: string;
+  today: string;
+  currency: string;
+  totals: { bookings: number; completed: number; fromApp: number; walkIns: number; noShows: number; cancelled: number; takings: number; appTakings: number };
+  byBarber: { id: string; name: string; photoUrl: string; bookings: number; completed: number; walkIns: number; noShows: number; takings: number; busyPercent: number }[];
+  topServices: { name: string; count: number }[];
+  perDay: { date: string; count: number }[];
 }

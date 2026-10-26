@@ -2,7 +2,7 @@ import type { Express, Request } from "express";
 import { z } from "zod";
 import { requireAuth } from "../auth.js";
 import { bookingView } from "../bookings.js";
-import { barberView, cityOf, findCountry, getBarber, HttpError, parse, platformFee, platformFeePercent } from "../common.js";
+import { barberView, cityOf, findCountry, fromApp, getBarber, HttpError, parse, platformFee, platformFeePercent } from "../common.js";
 import { db, newId, save } from "../db.js";
 import { zonedTime } from "../slots.js";
 import type { Barber, Booking } from "../types.js";
@@ -30,7 +30,7 @@ export function profileChecklist(b: Barber) {
 
 /** Totals of paid bookings (and tips) starting from `since`, before the platform fee and after it. */
 function earnings(list: Booking[], since: number, until = Infinity) {
-  const inRange = list.filter((b) => PAID.has(b.status) && Date.parse(b.startsAt) >= since && Date.parse(b.startsAt) < until);
+  const inRange = list.filter((b) => PAID.has(b.status) && fromApp(b) && Date.parse(b.startsAt) >= since && Date.parse(b.startsAt) < until); // walk-ins are paid at the shop
   const gross = inRange.reduce((s, b) => s + b.amount, 0);
   const tips = inRange.reduce((s, b) => s + (b.tip ?? 0), 0);
   const fee = inRange.reduce((s, b) => s + platformFee(b.amount), 0);

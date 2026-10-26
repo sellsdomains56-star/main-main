@@ -6,10 +6,17 @@ import type { Barber, Booking, User } from "./types.js";
 export const DEMO_LOGINS = {
   admin: { email: DEMO_ADMIN_EMAIL, password: "jb-team-demo" },
   barber: { email: "mateo@demo.jbalwaysfresh.com", password: "jb-barber-demo", barberId: "b37" },
+  shop: { email: "owner@demo.jbalwaysfresh.com", password: "jb-shop-demo", shopId: "s-dubai-downtown" },
 };
 
+/** Two more chairs at JB's Fresh Downtown, so the shop panel's calendar has a full team. */
+const EXTRA_TEAM: [string, string, string[]][] = [
+  ["demo-dt-1", "Rami Aziz", ["skin fade", "taper", "kids cut"]],
+  ["demo-dt-2", "Leo Santos", ["scissor cut", "textured crop", "beard"]],
+];
+
 const CUSTOMERS = ["Omar Khalid", "Rashid Al Amiri", "Daniel Moreau", "Ahmed Saleh", "Yusuf Rahman", "Liam Patel", "Faisal Nasser", "Marco Rossi", "Hamdan Ali", "Sami Haddad"];
-const DUBAI = ["b37", "b36", "b41", "b19", "b35", "b9", "b38", "b39", "b40", "b20"];
+const DUBAI = ["b37", "b36", "b41", "b19", "b35", "b9", "b38", "b39", "b40", "b20", "demo-dt-1", "demo-dt-2"];
 const COMMENTS = ["Sharpest fade I've had in Dubai.", "On time, clean shop, great conversation.", "Exactly what I asked for. Booking again.", "Beard line-up was perfect."];
 
 /** Deterministic pseudo-random numbers, so every restart builds the same sample. */
@@ -35,6 +42,17 @@ export function seedDemoAccounts() {
   };
   user("JB Team", DEMO_LOGINS.admin.email, DEMO_LOGINS.admin.password, {}, 60);
   user("Mateo Silva", DEMO_LOGINS.barber.email, DEMO_LOGINS.barber.password, { role: "barber", barberId: DEMO_LOGINS.barber.barberId }, 90);
+  const owner = user("Nadia Haddad", DEMO_LOGINS.shop.email, DEMO_LOGINS.shop.password, { manages: DEMO_LOGINS.shop.shopId }, 120);
+  const downtown = db.barbers.filter((b) => b.shopId === DEMO_LOGINS.shop.shopId);
+  for (const [id, name, specialties] of EXTRA_TEAM) {
+    if (db.barbers.some((b) => b.id === id) || !downtown[0]) continue;
+    const base = downtown[0];
+    db.barbers.push({
+      ...structuredClone(base), id, name, bio: `${name.split(" ")[0]} works the chairs at JB's Fresh Downtown.`, photoUrl: "", specialties,
+      services: base.services.map((s) => ({ ...s, id: `${id}-${s.id.split("-").pop()}` })), gallery: [], transformations: [], ratingSum: 0, ratingCount: 0,
+      yearsExperience: 4, workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 21, timeOff: [],
+    });
+  }
   const rand = rng(42);
   const customers = CUSTOMERS.map((n, i) => user(n, `${n.split(" ")[0].toLowerCase()}@example.com`, "customer-demo", {}, Math.floor(rand() * 30)));
 
@@ -70,6 +88,16 @@ export function seedDemoAccounts() {
       for (let i = 0; i < n; i++) book(id, d, 10 + Math.floor(rand() * 9), "confirmed");
     }
   }
+
+  // A busy day at JB's Fresh Downtown: app bookings, walk-ins, a lunch break.
+  const walkIns = ["Khalid", "Arjun", "Tom", "Majid", "Pedro", "Ali"];
+  ["b36", "b41", "demo-dt-1", "demo-dt-2"].forEach((id, i) => {
+    for (const h of [11, 13, 16, 18]) {
+      const b = book(id, 0, h + (i % 2 ? 1 : 0), Date.parse(dubai(0, h + 1)) < now ? "completed" : "confirmed");
+      if (b && rand() < 0.4) Object.assign(b, { customerId: owner.id, guest: { name: walkIns[Math.floor(rand() * walkIns.length)]!, phone: "" }, source: "shop", reviewed: true });
+    }
+    db.blocks.push({ id: newId(), shopId: DEMO_LOGINS.shop.shopId, barberId: id, startsAt: dubai(0, 14 + (i % 2)), endsAt: new Date(Date.parse(dubai(0, 14 + (i % 2))) + 45 * 60_000).toISOString(), reason: "Lunch", createdAt: new Date(now).toISOString() });
+  });
 
   // A few reviews for Mateo's recent cuts.
   const done = db.bookings.filter((b) => b.barberId === "b37" && b.status === "completed").slice(-4);
@@ -114,5 +142,5 @@ export function seedDemoAccounts() {
   if (reported && reportedBy) t(5, "other", `Reported reel by ${reportedBy.name}: Looks like someone else's photo`, 3, reported.id);
 
   save();
-  console.log(`Demo accounts ready — admin: ${DEMO_LOGINS.admin.email} / ${DEMO_LOGINS.admin.password}, barber: ${DEMO_LOGINS.barber.email} / ${DEMO_LOGINS.barber.password}`);
+  console.log(`Demo accounts ready — admin: ${DEMO_LOGINS.admin.email} / ${DEMO_LOGINS.admin.password}, barber: ${DEMO_LOGINS.barber.email} / ${DEMO_LOGINS.barber.password}, barbershop: ${DEMO_LOGINS.shop.email} / ${DEMO_LOGINS.shop.password}`);
 }

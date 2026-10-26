@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AdminBarberDetail, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, BarberStatus, BusinessDashboard, WorkingHours, AssistantAction, Campaign, Barber, BarberSearch, Booking, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Plan, Preferences, Purchase, VenueKind, Order, Reel, ReelComment, Review, Shop, ShopSummary, StyleAdvice, User } from "./types";
+import type { AdminBarberDetail, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Review, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, VenueKind, WorkingHours } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -213,6 +213,24 @@ export const api = {
     updateTicket: (id: string, body: { reply?: string; status?: "open" | "closed" }) => request<AdminTicket>(`/admin/tickets/${id}`, { method: "PATCH", body }),
     settings: () => request<AdminSettings>("/admin/settings"),
     updateSettings: (body: Partial<{ platformFeePercent: number; reviewNewBarbers: boolean; hiddenCampaigns: string[] }>) => request<AdminSettings>("/admin/settings", { method: "PATCH", body }),
+    addManager: (shopId: string, email: string) => request<{ shopId: string; managers: { id: string; name: string; email: string }[] }>(`/admin/shops/${shopId}/managers`, { body: { email } }),
+    removeManager: (shopId: string, userId: string) => request<null>(`/admin/shops/${shopId}/managers/${userId}`, { method: "DELETE" }),
+  },
+  // The shop panel: a barbershop's owner or manager runs the shop's day.
+  manage: {
+    panel: () => request<ShopPanel>("/manage"),
+    calendar: (date?: string) => request<ShopCalendar>("/manage/calendar" + qs({ date })),
+    addBooking: (body: { barberId: string; serviceId: string; startsAt: string; name: string; phone?: string; notes?: string }) => request<CalBooking>("/manage/bookings", { body }),
+    act: (id: string, action: "done" | "no_show" | "cancel", reason = "") => request<CalBooking>(`/manage/bookings/${id}`, { body: { action, reason } }),
+    move: (id: string, barberId: string, startsAt: string) => request<CalBooking>(`/manage/bookings/${id}/move`, { body: { barberId, startsAt } }),
+    block: (body: { barberIds: string[]; startsAt: string; endsAt: string; reason: string }) => request<CalBlock[]>("/manage/blocks", { body }),
+    unblock: (id: string) => request<null>(`/manage/blocks/${id}`, { method: "DELETE" }),
+    updateBarber: (id: string, body: Partial<WorkingHours> & { offline?: boolean }) => request<ShopMember>(`/manage/barbers/${id}`, { method: "PATCH", body }),
+    saveServices: (services: { name: string; durationMin: number; price: number }[], barberIds?: string[]) => request<ShopMember[]>("/manage/services", { method: "PUT", body: { services, barberIds } }),
+    addBarber: (name: string, email: string) => request<{ barber: ShopMember; login: { email: string; password: string } }>("/manage/barbers", { body: { name, email } }),
+    reports: (period: "today" | "week" | "month") => request<ShopReport>("/manage/reports" + qs({ period })),
+    updateSettings: (body: Partial<{ about: string; phone: string; workingDays: number[]; openHour: number; closeHour: number }>) =>
+      request<{ about: string; phone: string; workingDays: number[]; openHour: number; closeHour: number }>("/manage/settings", { method: "PATCH", body }),
   },
   addGalleryPhoto: (url: string, caption: string) => request<Barber>("/barbers/me/gallery", { body: { url, caption } }),
   removeGalleryPhoto: (id: string) => request<Barber>(`/barbers/me/gallery/${id}`, { method: "DELETE" }),

@@ -54,6 +54,15 @@ Design: minimal black and white (off-white page, black type and panels, real bar
 - Same app, same sign-in. A barber account gets **Your business** in Account: a **dashboard** (today's clients with *On my way* / *Mark done*, earnings today / this week / this month after the JB fee and tips, the next 7 days, reviews, a profile checklist), **Services & prices** (add, rename, remove, duration, price, home visits and travel fee), **Hours & days off** (working days, opening hours, tap dates on a calendar to take them off) and **My work** (photo, bio, specialties, portfolio, before-and-afters, map pin).
 - New barbers start **in review** (hidden from customers) until the team approves them, when `REVIEW_NEW_BARBERS` is on (default outside tests; the admin panel can switch it).
 
+### For barbershops: the shop panel
+- `/shop-panel` (Account → **Shop panel**), for the owner or manager of a barbershop on the platform. The JB team gives access in the admin panel: **Shops & orders → tap the shop → Give access** with the email of an account they made in the app. API: `server/src/routes/manage.ts`, every route checks that the signed-in person runs that shop.
+- **Calendar:** every barber side by side for a day — app bookings (solid), walk-ins and phone bookings (outlined), breaks and blocked time (striped), days off, private hires, and a line for the time now. Tap an empty half-hour to add a booking; tap a booking to mark it **done** or **no-show**, **move** it to another time or barber (the customer gets an alert), or **cancel** it (app bookings are refunded). **Block time** for one barber or the whole team (lunch, training…).
+- **Barbers:** each barber's working days, hours and days off; **turn a barber off in the app** when they can't take bookings; add a barber (their account is made with a first password to hand over).
+- **Services & times:** one menu for the team or for chosen barbers — how long each service takes (15 minutes to 8 hours) and its price.
+- **Reports:** today, this week or this month — takings, bookings from the app vs walk-ins, no-shows, most-booked services, and how busy each barber is.
+- **Shop settings:** the shop's about text, phone and opening days and hours shown in the app.
+- **Linked to the app:** walk-ins, blocked time, days off, hours and barbers turned off all remove those times from what customers can book; service times set the length of the booking slots. Walk-ins are paid at the shop, so they carry no JB fee and don't count in the barber's in-app earnings or the team's revenue.
+
 ### For the team: admin panel
 - `/admin` on the website (sidebar on a laptop, tabs on a phone), for emails listed in `ADMIN_EMAILS`; the API checks `requireAdmin` on every call.
 - **Overview** (fees, bookings, barbers, customers, 14-day chart, what needs attention), **Barbers** (approve, verify, pause, reinstate), **Bookings** (search, cancel with a full refund and alerts to both sides), **Customers**, **Shops & orders**, **Reported reels** (remove or keep), **Support** (reply and close), **Settings** (JB fee, new-barber review, home banners).
@@ -76,7 +85,7 @@ Design: minimal black and white (off-white page, black type and panels, real bar
 - **Connected to GitHub (recommended):** in Netlify, *Add new site → Import an existing project → GitHub*, pick this repository and the branch to publish. `netlify.toml` holds the build settings, and every push updates the tester link.
 - **With a token:** set `NETLIFY_AUTH_TOKEN` (and, after the first upload, `NETLIFY_SITE_ID`), then `NODE_USE_ENV_PROXY=1 node app/scripts/deploy-netlify.mjs`. It prints the link.
 
-On the demo, the concierge and the try-on suggestions are built in and answer from the demo's own data; the live app uses the server's AI. Everything runs on sample data in the browser.
+On the demo, Account → **Try as a barber**, **Try as a barbershop** and **Try as the JB team** open each side with sample data. The concierge and the try-on suggestions are built in and answer from the demo's own data; the live app uses the server's AI. Everything runs on sample data in the browser.
 
 ## Run it locally
 
@@ -96,7 +105,7 @@ cp .env.example .env      # set EXPO_PUBLIC_API_URL, optional Stripe publishable
 npx expo start            # press w for the website, scan the QR code for your phone
 ```
 
-Sample logins: start the API with `DEMO_ACCOUNTS=1` to seed a team account (`admin@demo.jbalwaysfresh.com` / `jb-team-demo`), a barber (`mateo@demo.jbalwaysfresh.com` / `jb-barber-demo`) with a month of bookings, two barbers waiting for approval, support tickets and a reported reel. Never set it in production. For real team access, list emails in `ADMIN_EMAILS`.
+Sample logins: start the API with `DEMO_ACCOUNTS=1` to seed a team account (`admin@demo.jbalwaysfresh.com` / `jb-team-demo`), a barber (`mateo@demo.jbalwaysfresh.com` / `jb-barber-demo`) with a month of bookings, a barbershop owner (`owner@demo.jbalwaysfresh.com` / `jb-shop-demo`) running JB's Fresh Downtown with a busy day of app bookings, walk-ins and lunch breaks, two barbers waiting for approval, support tickets and a reported reel. Never set it in production. For real team access, list emails in `ADMIN_EMAILS`.
 
 On a physical phone, set `EXPO_PUBLIC_API_URL` to your computer's LAN IP (e.g. `http://192.168.1.20:4000`), not `localhost`.
 

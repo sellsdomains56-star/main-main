@@ -18,6 +18,7 @@ import { registerNotificationRoutes } from "./routes/notifications.js";
 import { registerPortfolioRoutes } from "./routes/portfolio.js";
 import { registerBusinessRoutes } from "./routes/business.js";
 import { registerAdminRoutes } from "./routes/admin.js";
+import { registerManageRoutes } from "./routes/manage.js";
 import { campaignsFor } from "./campaigns.js";
 import { registerClubRoutes } from "./routes/club.js";
 import { registerReelRoutes, reelView } from "./routes/reels.js";
@@ -26,7 +27,7 @@ import { registerShopRoutes } from "./routes/shops.js";
 import { registerSupportRoutes } from "./routes/support.js";
 import { registerTryOnRoutes } from "./routes/tryon.js";
 import { bookingView, NewBooking, placeBooking } from "./bookings.js";
-import { barberView, cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError, isLive, parse, reviewNewBarbers } from "./common.js";
+import { barberView, cityOf, CONSULTATION, findCountry, findService, fromApp, getBarber, HttpError, isLive, parse, reviewNewBarbers } from "./common.js";
 import { availableSlots } from "./slots.js";
 import { upsertSocialUser, verifyIdentityToken } from "./social.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
@@ -251,6 +252,7 @@ export function createApp() {
   registerPortfolioRoutes(app);
   registerBusinessRoutes(app);
   registerAdminRoutes(app);
+  registerManageRoutes(app);
   registerNotificationRoutes(app);
   registerSupportRoutes(app);
   registerAssistantRoutes(app);
@@ -324,7 +326,7 @@ export function createApp() {
 
   app.get("/bookings", requireAuth, (req, res) => {
     const user = req.user!;
-    const mine = db.bookings.filter((b) => b.customerId === user.id || (user.role === "barber" && b.barberId === user.barberId));
+    const mine = db.bookings.filter((b) => (b.customerId === user.id && fromApp(b)) || (user.role === "barber" && b.barberId === user.barberId)); // walk-ins a shop adds aren't the manager's own
     res.json(mine.sort((a, b) => b.startsAt.localeCompare(a.startsAt)).map(bookingView));
   });
 

@@ -3,7 +3,7 @@ import { z } from "zod";
 import { publicUser, requireAdmin } from "../auth.js";
 import { CAMPAIGNS } from "../campaigns.js";
 import { activeMembership, returnPerks } from "../club.js";
-import { barberView, findService, getBarber, HttpError, parse, platformFee, platformFeePercent, reviewNewBarbers, CONSULTATION } from "../common.js";
+import { barberView, findService, fromApp, getBarber, HttpError, parse, platformFee, platformFeePercent, reviewNewBarbers, CONSULTATION } from "../common.js";
 import { db, save } from "../db.js";
 import { notify, waitlistOpened } from "../notify.js";
 import { refund } from "../payments.js";
@@ -31,7 +31,7 @@ function bookingRow(b: Booking) {
   const service = barber ? findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined) : undefined;
   return {
     id: b.id, startsAt: b.startsAt, createdAt: b.createdAt, status: b.status, amount: b.amount, currency: b.currency, locationType: b.locationType,
-    fee: PAID.has(b.status) ? platformFee(b.amount) : 0,
+    fee: PAID.has(b.status) && fromApp(b) ? platformFee(b.amount) : 0,
     service: service?.name ?? "Service",
     barber: barber ? { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city } : null,
     customer: customer ? { id: customer.id, name: b.guest?.name ?? customer.name, email: customer.email } : null,
@@ -73,7 +73,7 @@ function ticketRow(t: (typeof db.tickets)[number]) {
  */
 export function registerAdminRoutes(app: Express) {
   app.get("/admin/overview", requireAdmin, (_req, res) => {
-    const paid = db.bookings.filter((b) => PAID.has(b.status));
+    const paid = db.bookings.filter((b) => PAID.has(b.status) && fromApp(b)); // JB's numbers: bookings made and paid in the app
     const paid30 = paid.filter((b) => Date.parse(b.createdAt) >= since(30));
     const hires30 = db.hires.filter((h) => h.status === "confirmed" || h.status === "completed").filter((h) => Date.parse(h.createdAt) >= since(30));
     const orders30 = db.orders.filter((o) => !["pending_payment", "cancelled"].includes(o.status) && Date.parse(o.createdAt) >= since(30));
@@ -201,7 +201,7 @@ export function registerAdminRoutes(app: Express) {
       .filter((u) => u.role === "customer")
       .filter((u) => !text || `${u.name} ${u.email} ${u.city ?? ""}`.toLowerCase().includes(text))
       .map((u: User) => {
-        const mine = db.bookings.filter((b) => b.customerId === u.id);
+        const mine = db.bookings.filter((b) => b.customerId === u.id && fromApp(b));
         const member = activeMembership(u);
         return {
           ...publicUser(u), preferences: undefined, credit: undefined,
@@ -232,8 +232,30 @@ export function registerAdminRoutes(app: Express) {
         deliveries: orders.length,
         privateHire: !!s.privateHire,
         delivery: !!s.delivery,
+        managers: db.users.filter((u) => u.manages === s.id).map((u) => ({ id: u.id, name: u.name, email: u.email })),
       };
     }));
+  });
+
+  // Give a barbershop's owner or manager their shop panel (their account must exist: they sign up in the app first).
+  app.post("/admin/shops/:id/managers", requireAdmin, (req, res) => {
+    const shop = SHOPS.find((s) => s.id === req.params.id);
+    if (!shop) throw new HttpError(404, "Barbershop not found.");
+    const { email } = parse(z.object({ email: z.string().trim().toLowerCase().email() }), req.body);
+    const user = db.users.find((u) => u.email === email);
+    if (!user) throw new HttpError(404, "No account with that email yet — ask them to sign up in the app first.");
+    user.manages = shop.id;
+    notify(user.id, { kind: "account", title: `Your shop panel for ${shop.name} is ready`, body: "Open Account → Shop panel to see your barbers' calendar, add walk-ins and set hours." });
+    save();
+    res.json({ shopId: shop.id, managers: db.users.filter((u) => u.manages === shop.id).map((u) => ({ id: u.id, name: u.name, email: u.email })) });
+  });
+
+  app.delete("/admin/shops/:id/managers/:userId", requireAdmin, (req, res) => {
+    const user = db.users.find((u) => u.id === req.params.userId && u.manages === req.params.id);
+    if (!user) throw new HttpError(404, "Not found.");
+    delete user.manages;
+    save();
+    res.status(204).end();
   });
 
   app.get("/admin/orders", requireAdmin, (_req, res) => {

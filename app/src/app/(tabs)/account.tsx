@@ -53,6 +53,12 @@ export default function Account() {
         </Section>
       )}
 
+      {user?.manages && (
+        <Section title="Your barbershop">
+          <ListRow icon="storefront-outline" title="Shop panel" subtitle="Calendar, walk-ins, barbers' hours, services, reports" onPress={() => router.push("/shop-panel")} />
+        </Section>
+      )}
+
       {user?.admin && (
         <Section title="JB team">
           <ListRow icon="shield-checkmark-outline" title="Admin panel" subtitle="Approve barbers, bookings & refunds, support, settings" onPress={() => router.push("/admin")} />
@@ -89,6 +95,7 @@ export default function Account() {
       {!user && DEMO_DATA && (
         <Section title="Demo">
           <ListRow icon="cut-outline" title="Try as a barber" subtitle="Dashboard, earnings, services, hours" onPress={() => router.push("/login")} />
+          <ListRow icon="storefront-outline" title="Try as a barbershop" subtitle="The shop panel: calendar, walk-ins, team hours" onPress={() => router.push("/login")} />
           <ListRow icon="shield-checkmark-outline" title="Try as the JB team" subtitle="The admin panel with sample data" onPress={() => router.push("/login")} />
         </Section>
       )}

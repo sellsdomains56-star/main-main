@@ -7,8 +7,7 @@ import { config } from "../config.js";
 import { db, newId, save } from "../db.js";
 import { hireCancelled, hireConfirmed } from "../notify.js";
 import { clientSecretFor, createPaymentIntent, demoPayments, paymentSucceeded, refund } from "../payments.js";
-import { SHOPS } from "../seed.js";
-import { getShop, hireSlots, pickBarber, shopCurrency, shopDetail, shopSlots, shopSummary, shopTimeZone } from "../shops.js";
+import { allShops, getShop, hireSlots, pickBarber, shopCurrency, shopDetail, shopSlots, shopSummary, shopTimeZone } from "../shops.js";
 import type { Hire, User } from "../types.js";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
@@ -35,7 +34,7 @@ function canSeeHire(user: User, h: Hire) {
 export function registerShopRoutes(app: Express) {
   app.get("/shops", (req, res) => {
     const q = parse(z.object({ country: z.string().optional(), city: z.string().optional() }), req.query);
-    const list = SHOPS.filter((s) => (!q.country || s.countryCode === q.country) && (!q.city || s.city === q.city)).map(shopSummary);
+    const list = allShops().filter((s) => (!q.country || s.countryCode === q.country) && (!q.city || s.city === q.city)).map(shopSummary);
     res.json(list.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0)));
   });
 

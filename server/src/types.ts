@@ -53,6 +53,7 @@ export interface Barber {
   timeOff?: string[]; // local dates (YYYY-MM-DD) the barber isn't working
   joinedAt?: string; // ISO
   pinSetAt?: string; // when the barber last placed their exact pin
+  offline?: boolean; // the barbershop switched them off in the app for now (sick, holiday): no free times
 }
 
 export type BarberStatus = "pending" | "live" | "suspended";
@@ -136,6 +137,7 @@ export interface User {
   preferences?: Preferences; // "My chair": what the barber should know before every visit
   credit?: Record<string, number>; // gift-card balance per currency, minor units
   membership?: Membership; // The Club
+  manages?: string; // id of the barbershop this person runs in the shop panel (owner or manager)
 }
 
 /** How the customer likes their visit, shown to the barber on each booking. */
@@ -183,9 +185,25 @@ export interface Booking {
   tip?: number; // paid after the cut, minor units
   cutNotes?: string; // the barber's notes for next time: guards, products, length
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; // where a home visit happens
-  guest?: { name: string; phone: string }; // booked for someone else
+  guest?: { name: string; phone: string }; // booked for someone else; for shop bookings, the client
+  source?: "app" | "shop"; // "shop" = added by the barbershop (walk-in or phone), paid at the shop, no JB fee
+  noShow?: boolean; // cancelled because the client didn't come (no refund)
   createdAt: string;
 }
+
+/** Time a barbershop blocks in a barber's calendar (break, training, personal): no one can book it. */
+export interface Block {
+  id: string;
+  shopId: string;
+  barberId: string;
+  startsAt: string; // ISO UTC
+  endsAt: string;
+  reason: string;
+  createdAt: string;
+}
+
+/** What a barbershop changed about itself in the shop panel. */
+export type ShopSettings = Partial<Pick<Shop, "about" | "phone" | "workingDays" | "openHour" | "closeHour">>;
 
 export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist" | "account";
 
