@@ -1,0 +1,55 @@
+# Checks Dizz Lab (agent/) on every push and pull request that touches it.
+name: Dizz Lab
+
+on:
+  push:
+    paths: ["agent/**", ".github/workflows/dizz-lab.yml"]
+  pull_request:
+    paths: ["agent/**", ".github/workflows/dizz-lab.yml"]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: agent
+
+jobs:
+  check:
+    name: Typecheck, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: agent/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build:demo
+
+  docker:
+    name: Docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          context: agent
+          push: false
+          tags: dizz-lab:ci
+          load: true
+      - name: Start and check health
+        working-directory: .
+        run: |
+          docker run -d --name dizz -p 8787:8787 -e AGENT_PASSWORD=ci-password dizz-lab:ci
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8787/healthz && exit 0; sleep 2; done
+          docker logs dizz
+          exit 1

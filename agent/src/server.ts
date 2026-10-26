@@ -53,6 +53,7 @@ import { onAppEvent } from "./events.js";
 import { mimeFor, readFileBytes, saveUpload, WORKSPACE_DIR } from "./files.js";
 import { getRun, isRunning, runningConversations, stopRun, type ActiveRun } from "./runs.js";
 import { EFFORT_LEVELS, TOOL_GROUPS, type AgentEvent } from "./types.js";
+import { reportError } from "./monitoring.js";
 import { changePassword, createVault, isUnlocked, lock, VaultLockedError, vaultExists } from "./vault.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -637,7 +638,10 @@ export function createApp() {
   app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
     const status =
       err instanceof HttpError ? err.status : err instanceof VaultLockedError ? 423 : ((err as { status?: number }).status ?? 500);
-    if (status >= 500) console.error("[dizz]", err);
+    if (status >= 500) {
+      console.error("[dizz]", err);
+      reportError(err, "http");
+    }
     if (res.headersSent) {
       res.end();
       return;

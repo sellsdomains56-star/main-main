@@ -7,7 +7,7 @@
 set -e
 DB="${DATA_DIR:-/data}/dizzlab.db"
 mkdir -p "$(dirname "$DB")"
-APP="node --import tsx --disable-warning=ExperimentalWarning src/index.ts"
+APP="node --import tsx --import ./src/instrument.ts --disable-warning=ExperimentalWarning src/index.ts"
 
 if [ -z "$LITESTREAM_REPLICA_URL" ]; then
   exec $APP

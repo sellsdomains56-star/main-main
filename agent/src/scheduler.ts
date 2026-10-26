@@ -6,6 +6,7 @@ import { isRunning } from "./runs.js";
 import { nextOccurrence } from "./tools/schedule.js";
 import type { Reminder } from "./types.js";
 import { isUnlocked } from "./vault.js";
+import { reportError } from "./monitoring.js";
 import { tr } from "./i18n.js";
 
 /** Fires due reminders: a ping for plain ones, a full agent run for tasks. */
@@ -47,6 +48,7 @@ export async function tick(now = Date.now()): Promise<void> {
         await fireReminder(reminder, now);
       } catch (err) {
         console.error(`[dizz] reminder ${reminder.id} failed:`, err);
+        reportError(err, "scheduler");
       }
     }
   } finally {

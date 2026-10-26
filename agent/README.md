@@ -156,6 +156,10 @@ npm test           # adapters against local fake Claude/xAI/Google servers, an M
 npm run build:demo # the single-file browser demo in dist/
 ```
 
+GitHub Actions (`.github/workflows/dizz-lab.yml`) runs the type check, the tests and the demo build on every push that touches `agent/`, then builds the Docker image and checks that it starts.
+
+**Error tracking:** set `SENTRY_DSN` and crashes, server errors and failed agent turns are reported to [Sentry](https://sentry.io). Only errors are sent: no request bodies, headers, cookies, AI prompts or replies.
+
 | Path | What's there |
 | --- | --- |
 | `src/agent/providers/` | Claude (Anthropic SDK, Messages API) and Grok (xAI Responses API) adapters: streaming, tool loops, history replay. |

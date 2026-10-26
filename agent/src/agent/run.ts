@@ -8,6 +8,7 @@ import { providerFor } from "./providers/index.js";
 import { TurnError } from "./providers/types.js";
 import { toolsFor } from "./toolkit.js";
 import { tr } from "../i18n.js";
+import { reportError } from "../monitoring.js";
 import type { SubAgentResult, ToolOutcome } from "./tools.js";
 
 export interface TurnOptions {
@@ -219,6 +220,7 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
     } else {
       const error = friendlyError(err, model);
       console.error(`[dizz] ${model.id} turn failed:`, err);
+      reportError(err, "agent-turn");
       data = { ...base, text, status: "error", error, durationMs: Date.now() - started };
       emit({ type: "error", error });
     }
