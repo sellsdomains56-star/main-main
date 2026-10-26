@@ -1,5 +1,46 @@
-// Makes the app installable on phones and desktops. It doesn't cache anything:
+// Makes the app installable and shows push notifications. It doesn't cache anything:
 // your chats are private and always come straight from your server.
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
 self.addEventListener("fetch", () => {});
+
+self.addEventListener("push", (event) => {
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch {
+    data = { body: event.data ? event.data.text() : "" };
+  }
+  event.waitUntil(
+    (async () => {
+      // While the app is open on screen it shows its own notice instead.
+      const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+      if (windows.some((w) => w.visibilityState === "visible")) return;
+      await self.registration.showNotification(data.title || "Dizz Lab", {
+        body: data.body || "",
+        icon: "/icon-512.png",
+        badge: "/icon-512.png",
+        tag: data.tag || undefined,
+        data: { url: data.url || "/" },
+      });
+    })(),
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const url = new URL((event.notification.data && event.notification.data.url) || "/", self.location.origin).href;
+  event.waitUntil(
+    (async () => {
+      const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+      for (const w of windows) {
+        if ("focus" in w) {
+          await w.focus();
+          if ("navigate" in w) await w.navigate(url).catch(() => {});
+          return;
+        }
+      }
+      await self.clients.openWindow(url);
+    })(),
+  );
+});

@@ -438,4 +438,20 @@ export const AR: Record<string, string> = {
   // Smart pick
   "Smart pick": "اختيار ذكي",
   "Picks the right model for each message": "يختار النموذج المناسب لكل رسالة",
+
+  // Push notifications
+  "Turn on notifications in Settings to get reminders on your phone and computer.": "فعّل الإشعارات من الإعدادات لتصلك التذكيرات على هاتفك وحاسوبك.",
+  "Notifications on this device": "الإشعارات على هذا الجهاز",
+  "Send a test": "إرسال تجربة",
+  "Sent. Lock your phone or switch apps to see it.": "أُرسل. اقفل هاتفك أو انتقل إلى تطبيق آخر لتراه.",
+  "No device got it. Turn notifications off and on again.": "لم يستلمه أي جهاز. أوقف الإشعارات ثم فعّلها من جديد.",
+  "Turn off": "إيقاف",
+  "On": "مفعّلة",
+  "On iPhone and iPad: tap Share → Add to Home Screen, open Dizz Lab from there, then turn notifications on here.": "على iPhone وiPad: اضغط مشاركة ← إضافة إلى الشاشة الرئيسية، وافتح Dizz Lab من هناك، ثم فعّل الإشعارات من هنا.",
+  "This browser can't receive notifications.": "هذا المتصفح لا يستقبل الإشعارات.",
+  "Turn on": "تفعيل",
+  "Notifications are on for this device": "الإشعارات مفعّلة على هذا الجهاز",
+  "Notifications are blocked in this browser's settings": "الإشعارات محظورة في إعدادات هذا المتصفح",
+  "Notifications weren't allowed": "لم يُسمح بالإشعارات",
+  "This browser can't do push notifications": "هذا المتصفح لا يدعم إشعارات الدفع",
 };

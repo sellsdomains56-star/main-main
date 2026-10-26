@@ -2381,3 +2381,19 @@ input[type="password"] {
     padding: 7px 6px;
   }
 }
+
+/* ── Notifications control ──────────────────────────────────────────────── */
+.notify-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.notify-on {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--success);
+  font-weight: 600;
+  font-size: 13.5px;
+}

@@ -13,6 +13,8 @@ export interface Bootstrap {
     imageGeneration: boolean;
     codeExecution: boolean;
     phoneNotifications: boolean;
+    /** The server can send Web Push notifications. */
+    webPush?: boolean;
     swarmConcurrency: number;
     swarmMaxTasks: number;
   };

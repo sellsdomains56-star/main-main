@@ -4,6 +4,7 @@ import { icon } from "./icons.js";
 import { EFFORTS, prefs, savePrefs, state, type AgentProfile, type FileRecord, type Settings, type ToolGroup } from "./state.js";
 import { confirmDialog, debounce, formatDateTime, formatSize, promptDialog, toast } from "./util.js";
 import { renderUsage } from "./usage.js";
+import { disablePush, enablePush, pushState } from "./push.js";
 import { lang, plural, t, type Lang } from "./i18n.js";
 
 interface Memory {
@@ -337,9 +338,11 @@ export function openReminders(onOpenChat: (id: string) => void) {
       );
     }
   }
-  const notifyNote = state.boot.features.phoneNotifications
-    ? t("Reminders also go to your phone through ntfy.")
-    : t("Tip: set NTFY_URL in .env to get reminders on your phone too.");
+  const notifyNote = state.boot.features.webPush
+    ? t("Turn on notifications in Settings to get reminders on your phone and computer.")
+    : state.boot.features.phoneNotifications
+      ? t("Reminders also go to your phone through ntfy.")
+      : t("Tip: set NTFY_URL in .env to get reminders on your phone too.");
   const { close } = modal(t("Reminders & tasks"), h("div", null, h("p", { class: "panel-intro" }, `${t("Times are in {zone}.", { zone: state.boot.timezone })} ${notifyNote}`), list));
   void load();
 }
@@ -435,14 +438,7 @@ export function openSettings(onSaved: (s: Settings) => void, onSignOut: (everywh
   });
   const readAloud = h("input", { type: "checkbox", checked: !!prefs().readAloud });
   readAloud.addEventListener("change", () => savePrefs({ readAloud: readAloud.checked }));
-  const notifyBtn = h("button", { class: "btn ghost small", type: "button" }, t("Allow notifications"));
-  const refreshNotify = () => {
-    const p = "Notification" in window ? Notification.permission : "denied";
-    notifyBtn.textContent = p === "granted" ? t("Notifications on") : p === "denied" ? t("Blocked in browser settings") : t("Allow notifications");
-    notifyBtn.disabled = p !== "default";
-  };
-  notifyBtn.addEventListener("click", () => void Notification.requestPermission().then(refreshNotify));
-  refreshNotify();
+  const notifications = notificationsControl();
 
   const form = h(
     "form",
@@ -453,7 +449,7 @@ export function openSettings(onSaved: (s: Settings) => void, onSignOut: (everywh
     h("label", { class: "field" }, t("Personality"), personality),
     h("div", { class: "row" }, h("label", { class: "field grow" }, t("Default model"), model), h("label", { class: "field grow" }, t("Default thinking"), effort)),
     h("label", { class: "field" }, t("Custom instructions"), custom),
-    h("div", { class: "row" }, h("label", { class: "field grow" }, t("Theme"), theme), h("div", { class: "field grow" }, t("Desktop notifications"), notifyBtn)),
+    h("div", { class: "row" }, h("label", { class: "field grow" }, t("Theme"), theme), h("div", { class: "field grow" }, t("Notifications on this device"), notifications)),
     h("label", { class: "check" }, readAloud, t("Read replies aloud automatically")),
     changePasswordSection(),
     h(
@@ -569,6 +565,64 @@ function cloudSecurityRows(row: (ok: boolean, title: string, detail: string) => 
     ),
     row(true, t("Uploads stay in this page"), t("Files you attach are read in this page and aren't saved. Attach them again in a new visit.")),
   );
+}
+
+/** Push notifications for this device (or plain browser notifications where push isn't available). */
+function notificationsControl(): HTMLElement {
+  const wrap = h("div", { class: "notify-control" });
+  const render = async () => {
+    clear(wrap);
+    if (!state.boot.features.webPush || state.boot.cloud || state.boot.demo) {
+      const btn = h("button", { class: "btn ghost small", type: "button" }, t("Allow notifications"));
+      const p = "Notification" in window ? Notification.permission : "denied";
+      btn.textContent = p === "granted" ? t("Notifications on") : p === "denied" ? t("Blocked in browser settings") : t("Allow notifications");
+      btn.disabled = p !== "default";
+      btn.addEventListener("click", () => void Notification.requestPermission().then(render));
+      wrap.append(btn);
+      return;
+    }
+    const s = await pushState();
+    if (s === "on") {
+      const test = h("button", { class: "btn ghost small", type: "button" }, t("Send a test"));
+      test.addEventListener("click", async () => {
+        const r = await api<{ sent: number }>("/api/push/test", { method: "POST" }).catch((err: Error) => (toast(err.message, "error"), null));
+        if (r) toast(r.sent ? t("Sent. Lock your phone or switch apps to see it.") : t("No device got it. Turn notifications off and on again."));
+      });
+      const off = h("button", { class: "btn ghost small", type: "button" }, t("Turn off"));
+      off.addEventListener("click", async () => {
+        await disablePush();
+        void render();
+      });
+      wrap.append(h("span", { class: "notify-on" }, h("span", { html: icon("check", 14) }), t("On")), test, off);
+      return;
+    }
+    if (s === "install-first") {
+      wrap.append(h("small", { class: "muted" }, t("On iPhone and iPad: tap Share → Add to Home Screen, open Dizz Lab from there, then turn notifications on here.")));
+      return;
+    }
+    if (s === "blocked") {
+      wrap.append(h("small", { class: "muted" }, t("Blocked in browser settings")));
+      return;
+    }
+    if (s === "unsupported") {
+      wrap.append(h("small", { class: "muted" }, t("This browser can't receive notifications.")));
+      return;
+    }
+    const on = h("button", { class: "btn small", type: "button" }, h("span", { html: icon("bell", 14) }), t("Turn on"));
+    on.addEventListener("click", async () => {
+      on.disabled = true;
+      try {
+        await enablePush();
+        toast(t("Notifications are on for this device"));
+      } catch (err) {
+        toast(t((err as Error).message), "error");
+      }
+      void render();
+    });
+    wrap.append(on);
+  };
+  void render();
+  return wrap;
 }
 
 function changePasswordSection(): HTMLElement {

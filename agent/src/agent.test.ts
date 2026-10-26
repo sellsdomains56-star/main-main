@@ -127,6 +127,7 @@ function xaiReply(call: number): string {
 }
 
 const googleRequests: Captured[] = [];
+const pushDeliveries: { path: string; headers: http.IncomingHttpHeaders; raw: Buffer }[] = [];
 let tokenCounter = 0;
 
 /** A stand-in for Google's sign-in, Gmail and Calendar APIs. */
@@ -189,8 +190,18 @@ before(async () => {
   let xaiCalls = 0;
   server = http.createServer((req, res) => {
     let raw = "";
-    req.on("data", (c) => (raw += c));
+    const chunks: Buffer[] = [];
+    req.on("data", (c: Buffer) => {
+      raw += c;
+      chunks.push(c);
+    });
     req.on("end", () => {
+      if (req.url!.startsWith("/push/")) {
+        pushDeliveries.push({ path: req.url!, headers: req.headers, raw: Buffer.concat(chunks) });
+        res.writeHead(req.url!.startsWith("/push/gone") ? 410 : 201);
+        res.end();
+        return;
+      }
       let body: Record<string, unknown> = {};
       try {
         body = raw ? JSON.parse(raw) : {};
@@ -753,6 +764,36 @@ describe("Smart pick", () => {
     const req = anthropicRequests.slice(before).find((r) => r.body.stream)!;
     assert.equal(req.body.model, "claude-haiku-5-5");
     assert.equal(listMessages(conversation.id).at(-1)!.model, "claude-haiku-5-5");
+  });
+});
+
+describe("Push notifications", () => {
+  it("sends end-to-end encrypted pushes to every device and forgets ones that unsubscribed", async () => {
+    const { createECDH, randomBytes } = await import("node:crypto");
+    const { subscribePush, pushDevices } = await import("./push.js");
+    const { notify } = await import("./events.js");
+    const { port } = server.address() as AddressInfo;
+    const keys = () => {
+      const ecdh = createECDH("prime256v1");
+      ecdh.generateKeys();
+      return { p256dh: ecdh.getPublicKey().toString("base64url"), auth: randomBytes(16).toString("base64url") };
+    };
+    subscribePush({ endpoint: `http://127.0.0.1:${port}/push/phone`, keys: keys() }, "iPhone");
+    subscribePush({ endpoint: `http://127.0.0.1:${port}/push/gone`, keys: keys() }, "Old laptop");
+    subscribePush({ endpoint: `http://127.0.0.1:${port}/push/phone`, keys: keys() }, "iPhone"); // same device again
+    assert.equal(pushDevices().length, 2, "a device subscribing twice is listed once");
+
+    const before = pushDeliveries.length;
+    await notify("⏰ Reminder", "Call the accountant about the VAT return", "c_test");
+    for (let i = 0; i < 50 && pushDeliveries.length < before + 2; i++) await new Promise((r) => setTimeout(r, 20));
+    const sent = pushDeliveries.slice(before);
+    assert.equal(sent.length, 2);
+    const toPhone = sent.find((d) => d.path === "/push/phone")!;
+    assert.match(String(toPhone.headers.authorization), /^vapid t=/);
+    assert.equal(toPhone.headers["content-encoding"], "aes128gcm");
+    assert.ok(toPhone.raw.length > 0 && !toPhone.raw.toString("latin1").includes("accountant"), "the push service can't read it");
+    for (let i = 0; i < 50 && pushDevices().length > 1; i++) await new Promise((r) => setTimeout(r, 20));
+    assert.deepEqual(pushDevices().map((d) => d.label), ["iPhone"], "the unsubscribed device is forgotten");
   });
 });
 

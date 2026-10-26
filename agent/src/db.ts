@@ -53,6 +53,8 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS agents (
     id TEXT PRIMARY KEY, data TEXT NOT NULL, model TEXT, effort TEXT, tools TEXT,
     created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL);
+  CREATE TABLE IF NOT EXISTS push_subscriptions (
+    id TEXT PRIMARY KEY, data TEXT NOT NULL, created_at INTEGER NOT NULL);
   CREATE TABLE IF NOT EXISTS memory_vectors (
     memory_id TEXT PRIMARY KEY, model TEXT NOT NULL, vector BLOB NOT NULL);
   CREATE TABLE IF NOT EXISTS usage_log (
@@ -530,4 +532,24 @@ export function usageRowsSince(since: number): UsageRow[] {
 export function usageTotal(): { costUsd: number; since: number | null } {
   const r = db.prepare("SELECT COALESCE(SUM(cost_usd), 0) AS cost, MIN(ts) AS since FROM usage_log").get() as Row;
   return { costUsd: r.cost as number, since: (r.since as number | null) ?? null };
+}
+
+// ── Push subscriptions ────────────────────────────────────────────────────────
+// Each device's push address and keys, encrypted (the address is a capability).
+
+export function addPushSubscription(subscription: { endpoint: string; keys: { p256dh: string; auth: string } }, label: string): string {
+  const id = newId("push");
+  db.prepare("INSERT INTO push_subscriptions (id, data, created_at) VALUES (?, ?, ?)").run(id, enc(JSON.stringify({ subscription, label })), Date.now());
+  return id;
+}
+
+export function listPushSubscriptions(): { id: string; label: string; createdAt: number; subscription: { endpoint: string; keys: { p256dh: string; auth: string } } }[] {
+  return (db.prepare("SELECT * FROM push_subscriptions ORDER BY created_at").all() as Row[]).map((r) => {
+    const data = JSON.parse(dec(r.data as string)) as { subscription: { endpoint: string; keys: { p256dh: string; auth: string } }; label: string };
+    return { id: r.id as string, createdAt: r.created_at as number, ...data };
+  });
+}
+
+export function removePushSubscription(id: string): void {
+  db.prepare("DELETE FROM push_subscriptions WHERE id = ?").run(id);
 }

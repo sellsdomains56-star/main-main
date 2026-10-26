@@ -55,7 +55,7 @@ With no key set, the app runs in **demo mode** with scripted replies, so you can
 - **Connection.** Use HTTPS whenever you're not on the same computer (see below). Settings tells you whether your current connection is encrypted.
 - **AI providers.** To answer, each message is sent over TLS to the provider you chose (Anthropic or xAI) under their API data policies. **No AI can reply to a message it can't read**, so this hop can't be end-to-end encrypted, and that's true of every cloud AI, including Grok itself.
 - **The workspace folder** (`data/workspace`) is not encrypted, because programs the agent runs need to open files there. Delete what you don't want kept from **Files**.
-- **Phone pushes** (ntfy) only say "You have a reminder" unless you set `NTFY_SHOW_CONTENT=1`.
+- **Notifications** through Web Push are encrypted end to end to your device. ntfy pushes (if you use ntfy) only say "You have a reminder" unless you set `NTFY_SHOW_CONTENT=1`, because ntfy can read them.
 - Setting `AGENT_PASSWORD` in `.env` makes the app unlock itself on start. That's convenient, but anyone with the `.env` file can then read your data. Leave it empty for full protection.
 
 ## Run it on a server (works from your phone, 24/7)
@@ -98,7 +98,9 @@ The app is a website, so any device that can reach your computer (or your server
 
 Set `TRUST_PROXY=1` and `PUBLIC_URL` to that address in `.env`. Then, in your phone's browser, use **Share → Add to Home Screen**.
 
-For reminders on your phone, install the [ntfy](https://ntfy.sh) app, subscribe to a long random topic name, and put `NTFY_URL=https://ntfy.sh/<your-topic>` in `.env`.
+**Notifications on your phone:** open **Settings → Notifications on this device → Turn on** on each phone or computer. Reminders, finished scheduled tasks and budget alerts then arrive as normal notifications, even when the app is closed. They use the browser's own push system and are encrypted end to end between your server and your device, so Apple and Google can't read them. On iPhone and iPad (iOS 16.4 or later), add the app to your Home Screen first and turn notifications on from there. The app has to be reached over HTTPS.
+
+Prefer [ntfy](https://ntfy.sh)? Subscribe to a long random topic name in its app and put `NTFY_URL=https://ntfy.sh/<your-topic>` in `.env`.
 
 ## Connectors
 

@@ -1,4 +1,5 @@
 import { config } from "./config.js";
+import { sendPush } from "./push.js";
 
 /** App-wide events for open browser tabs: reminders firing, chats changing in the background. */
 export type AppEvent =
@@ -17,9 +18,13 @@ export function broadcast(event: AppEvent): void {
   for (const l of listeners) l(event);
 }
 
-/** Tells open tabs, and your phone through ntfy if it's set up. */
+/** Tells open tabs, your devices through Web Push, and your phone through ntfy if it's set up. */
 export async function notify(title: string, body: string, conversationId: string | null): Promise<void> {
   broadcast({ type: "notification", title, body, conversationId });
+  // Web Push content is end-to-end encrypted to your device, so the text can go in it.
+  void sendPush({ title, body: body.slice(0, 1000), url: conversationId ? `/#/c/${conversationId}` : "/", tag: conversationId ?? undefined }).catch((err) =>
+    console.warn("[dizz] push failed:", err instanceof Error ? err.message : err),
+  );
   if (!config.ntfyUrl) return;
   try {
     const headers: Record<string, string> = { Title: title.replace(/[^\x20-\x7e]/g, "").slice(0, 200) || "Reminder", Tags: "bell" };

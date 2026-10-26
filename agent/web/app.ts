@@ -7,6 +7,7 @@ import { icon, logo } from "./icons.js";
 import { applyTheme, openAgents, openConnectors, openFiles, openMemory, openReminders, openSettings, openUsage } from "./panels.js";
 import { prefs, savePrefs, state, type AgentProfile, type Bootstrap, type ConversationSummary, type OpenConversation } from "./state.js";
 import { confirmDialog, debounce, promptDialog, relativeDay, toast } from "./util.js";
+import { pushOnHere } from "./push.js";
 import { lang, setLang, t, type Lang } from "./i18n.js";
 
 const root = document.getElementById("app")!;
@@ -468,7 +469,8 @@ function listen() {
     if (event.type === "notification") {
       const open = () => event.conversationId && navigate(`#/c/${event.conversationId}`);
       toast(`${event.title}: ${event.body}`, "info", open);
-      if (document.hidden && "Notification" in window && Notification.permission === "granted") {
+      // With push on, the service worker shows it; the page doesn't need to as well.
+      if (document.hidden && !pushOnHere() && "Notification" in window && Notification.permission === "granted") {
         const n = new Notification(event.title, { body: event.body, icon: "/icon.svg", tag: event.conversationId ?? undefined });
         n.onclick = () => {
           window.focus();

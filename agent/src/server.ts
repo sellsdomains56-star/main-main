@@ -43,6 +43,7 @@ import {
   setSecretKV,
   updateAgent,
   updateConversation,
+  removePushSubscription,
   type AgentInput,
 } from "./db.js";
 import { GALLERY } from "./connectors/gallery.js";
@@ -56,6 +57,8 @@ import { EFFORT_LEVELS, TOOL_GROUPS, type AgentEvent } from "./types.js";
 import { reportError } from "./monitoring.js";
 import { spendingReport } from "./spending.js";
 import { indexMemory } from "./memory.js";
+import { pushDevices, pushPublicKey, sendPush, subscribePush, unsubscribePush } from "./push.js";
+import { tr } from "./i18n.js";
 import { changePassword, createVault, isUnlocked, lock, VaultLockedError, vaultExists } from "./vault.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -288,6 +291,34 @@ export function createApp() {
     res.json({ ok: true });
   }));
 
+  // ── Push notifications ──
+  app.get("/api/push", (_req, res) => {
+    res.json({ publicKey: pushPublicKey(), devices: pushDevices() });
+  });
+  app.post("/api/push/subscribe", (req, res) => {
+    const body = parse(
+      z.object({
+        subscription: z.object({ endpoint: z.string().url().max(2000), keys: z.object({ p256dh: z.string().min(10).max(200), auth: z.string().min(8).max(100) }) }),
+        label: z.string().trim().max(80).default("This device"),
+      }),
+      req.body,
+    );
+    if (!body.subscription.endpoint.startsWith("https://") && process.env.NODE_ENV !== "test") throw new HttpError(400, "That push address isn't secure");
+    subscribePush(body.subscription, body.label);
+    res.json({ ok: true, devices: pushDevices() });
+  });
+  app.post("/api/push/unsubscribe", (req, res) => {
+    const body = parse(z.object({ endpoint: z.string().max(2000) }), req.body);
+    res.json({ ok: unsubscribePush(body.endpoint), devices: pushDevices() });
+  });
+  app.delete("/api/push/devices/:id", (req, res) => {
+    removePushSubscription(param(req, "id"));
+    res.json({ ok: true, devices: pushDevices() });
+  });
+  app.post("/api/push/test", async (_req, res) => {
+    res.json(await sendPush({ title: tr("Notifications are on", "الإشعارات مفعّلة"), body: tr("This is how Dizz Lab will reach you.", "هكذا سيصلك Dizz Lab."), url: "/" }));
+  });
+
   app.get("/api/usage", (_req, res) => {
     res.json(spendingReport());
   });
@@ -307,6 +338,7 @@ export function createApp() {
         imageGeneration: !!config.xaiKey,
         codeExecution: config.codeExecution !== "off",
         phoneNotifications: !!config.ntfyUrl,
+        webPush: true,
         swarmConcurrency: config.swarmConcurrency,
         swarmMaxTasks: config.swarmMaxTasks,
       },
