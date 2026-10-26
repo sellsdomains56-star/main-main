@@ -170,5 +170,5 @@ function buildScenes() {
   [T_KT[0] + 0.2, K.sep, K.that, T_W2[0], K.comm, T_W3[0], K.comment].forEach(x => cues.push({ k: 'wh', t: x - 0.2, d: 0.5 }));
   [K.m64, K.m30, K.hour, K.premium].forEach(x => cues.push({ k: 'pin', t: x }));
   cues.push({ k: 'send', t: K.rail + 0.8 });
-  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, FOOT_MAX: 1873 };
+  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, FOOT_MAX: 1872 };
 }
