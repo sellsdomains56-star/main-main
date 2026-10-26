@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 import { config } from "./config.js";
 import { DEMO_REELS } from "./reels.js";
 import { BARBERS, COUNTRIES } from "./seed.js";
-import type { ActivityEntry, AppNotification, Barber, Chat, Partner, Block, Booking, Conversation, GiftCard, Hire, Order, Purchase, QueueEntry, Reel, Review, SupportTicket, User, WaitlistEntry, Settings, ShopSettings } from "./types.js";
+import type { ActivityEntry, BarberApplication, AppNotification, Barber, Chat, Partner, Block, Booking, Conversation, GiftCard, Hire, Order, Purchase, QueueEntry, Reel, Review, SupportTicket, User, WaitlistEntry, Settings, ShopSettings } from "./types.js";
 
 // The data store: a JSON file by default, or Postgres when DATABASE_URL is set (see connectDatabase).
 // The rest of the code only touches the `db` object below.
@@ -33,14 +33,17 @@ interface Data {
   partners: Partner[]; // hotels and companies
   chats: Chat[]; // customer <-> barber messages
   activity: ActivityEntry[]; // what the team did in the admin panel (latest 2,000)
+  applications: BarberApplication[]; // freelance barbers' ID, licence and signed agreement
 }
 
 const DATA_DIR = new URL("../data/", import.meta.url);
 const DATA_FILE = new URL("db.json", DATA_DIR);
 export const UPLOADS_DIR = new URL("uploads/", DATA_DIR);
+/** ID documents and licences: only reachable through short-lived signed links (see applications.ts). */
+export const PRIVATE_DIR = new URL("private/", DATA_DIR);
 const persist = process.env.NODE_ENV !== "test";
 
-const empty = (): Data => ({ users: [], barbers: structuredClone(BARBERS), bookings: [], hires: [], giftCards: [], purchases: [], waitlist: [], reviews: [], orders: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], sessions: {}, settings: {}, blocks: [], shopSettings: {}, resetTokens: [], outbox: [], queue: [], stock: {}, shopNudges: {}, partners: [], chats: [], activity: [] });
+const empty = (): Data => ({ users: [], barbers: structuredClone(BARBERS), bookings: [], hires: [], giftCards: [], purchases: [], waitlist: [], reviews: [], orders: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], sessions: {}, settings: {}, blocks: [], shopSettings: {}, resetTokens: [], outbox: [], queue: [], stock: {}, shopNudges: {}, partners: [], chats: [], activity: [], applications: [] });
 
 /** Saved data (from the file or the database), with fields added since it was first written filled in. */
 function fromSaved(saved: Partial<Data>): Data {

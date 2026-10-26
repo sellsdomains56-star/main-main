@@ -24,6 +24,7 @@ import { registerCustomerRoutes } from "./routes/customer.js";
 import { registerProRoutes } from "./routes/pro.js";
 import { registerShopOpsRoutes } from "./routes/shopOps.js";
 import { awardOf, registerPlatformRoutes } from "./routes/platform.js";
+import { registerApplicationRoutes, startApplication } from "./routes/applications.js";
 import { rateLimit, securityHeaders } from "./security.js";
 import { cancelTerms, inStock, priceRuleAt, takeStock } from "./pro.js";
 import { onCompleted } from "./rewards.js";
@@ -66,6 +67,7 @@ export function createApp() {
   app.disable("x-powered-by");
   // Abuse limits per IP on the routes people (or bots) could hammer.
   app.use("/auth/register", rateLimit("register", 20, 60 * 60_000, "Too many sign-ups from here. Try again later."));
+  app.use("/barbers/me/application/documents", rateLimit("documents", 40, 60 * 60_000, "Too many uploads. Try again later."));
   app.use("/auth/register-barber", rateLimit("register-barber", 10, 60 * 60_000, "Too many sign-ups from here. Try again later."));
   app.use("/auth/forgot", rateLimit("forgot", 10, 60 * 60_000));
   app.use("/support/tickets", rateLimit("tickets", 10, 10 * 60_000));
@@ -275,6 +277,7 @@ export function createApp() {
       workingDays: [1, 2, 3, 4, 5, 6], openHour: 9, closeHour: 19, ratingSum: 0, ratingCount: 0,
       status: reviewNewBarbers() ? "pending" : "live", joinedAt: new Date().toISOString(),
     });
+    startApplication(barberId); // ID, licence and the signed agreement, checked by the team before going live
     const user = { id: newId(), name: body.name, email: body.email, role: "barber" as const, barberId, countryCode: body.countryCode, city: body.city, passwordHash: hashPassword(body.password), createdAt: new Date().toISOString() };
     db.users.push(user);
     save();
@@ -290,6 +293,7 @@ export function createApp() {
   registerProRoutes(app);
   registerShopOpsRoutes(app);
   registerPlatformRoutes(app);
+  registerApplicationRoutes(app);
   registerNotificationRoutes(app);
   registerSupportRoutes(app);
   registerAssistantRoutes(app);

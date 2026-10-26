@@ -8,6 +8,11 @@ export function dateTime(iso: string, timeZone?: string) {
   return new Intl.DateTimeFormat(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone }).format(new Date(iso));
 }
 
+/** "26 Oct 2026" */
+export function shortDay(iso: string) {
+  return new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short", year: "numeric" }).format(new Date(iso));
+}
+
 export function time(iso: string, timeZone?: string) {
   return new Intl.DateTimeFormat(undefined, { hour: "2-digit", minute: "2-digit", timeZone }).format(new Date(iso));
 }

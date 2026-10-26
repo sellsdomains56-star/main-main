@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type Ref } from "react";
 import {
   AccessibilityInfo,
   ActivityIndicator,
@@ -84,18 +84,20 @@ export function Screen({
   scroll = true,
   padded = true,
   background = colors.bg,
+  scrollRef,
 }: {
   children: ReactNode;
   footer?: ReactNode;
   scroll?: boolean;
   padded?: boolean;
   background?: string;
+  scrollRef?: Ref<ScrollView>;
 }) {
   const inner = <View style={[styles.inner, padded && styles.padded]}>{children}</View>;
   return (
     <View style={{ flex: 1, backgroundColor: background }}>
       {scroll ? (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+        <ScrollView ref={scrollRef} contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
           {inner}
         </ScrollView>
       ) : (

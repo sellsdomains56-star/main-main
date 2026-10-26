@@ -3,6 +3,7 @@ import type { Express, Request } from "express";
 import { z } from "zod";
 import { createSession, hashPassword, publicUser, requireAuth } from "../auth.js";
 import { bookingView } from "../bookings.js";
+import { deleteApplication } from "./applications.js";
 import { HttpError, parse } from "../common.js";
 import { config } from "../config.js";
 import { db, save } from "../db.js";
@@ -134,6 +135,7 @@ export function registerAccountRoutes(app: Express) {
     if (user.barberId) {
       const barber = db.barbers.find((b) => b.id === user.barberId);
       if (barber) Object.assign(barber, { status: "suspended", offline: true });
+      deleteApplication(user.barberId);
     }
     const email = user.email;
     const name = user.name;

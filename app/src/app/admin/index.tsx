@@ -1,7 +1,7 @@
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { View } from "react-native";
-import { AdminPage, Bars, BookingTable, Kpi, StatusTag, sumText, useWide } from "../../components/admin";
+import { AdminPage, ApplicationTag, Bars, BookingTable, Kpi, StatusTag, sumText, useWide } from "../../components/admin";
 import { colors } from "../../components/theme";
 import { Avatar, Button, Card, ErrorBox, ListRow, Loading, Row, T } from "../../components/ui";
 import { api } from "../../lib/api";
@@ -20,7 +20,7 @@ export default function Overview() {
   if (!o) return <AdminPage title="Overview">{error ? <ErrorBox message={error} onRetry={load} /> : <Loading />}</AdminPage>;
 
   const todo = [
-    { n: o.barbers.pending, icon: "cut-outline" as const, one: "barber waiting for approval", many: "barbers waiting for approval", href: "/admin/barbers?status=pending" },
+    { n: o.applications, icon: "id-card-outline" as const, one: "barber application to check", many: "barber applications to check", href: "/admin/applications" },
     { n: o.openTickets, icon: "chatbubbles-outline" as const, one: "support question to answer", many: "support questions to answer", href: "/admin/support" },
     { n: o.openReports, icon: "flag-outline" as const, one: "reported reel to check", many: "reported reels to check", href: "/admin/reports" },
     { n: o.ordersToShip, icon: "cube-outline" as const, one: "shop order to ship", many: "shop orders to ship", href: "/admin/shops" },
@@ -65,8 +65,8 @@ export default function Overview() {
       {o.pendingBarbers.length > 0 && (
         <View style={{ marginTop: 28 }}>
           <Row style={{ justifyContent: "space-between", marginBottom: 12 }}>
-            <T variant="title" style={{ fontSize: 20 }}>New barbers to approve</T>
-            <Button title="See all" size="sm" variant="ghost" onPress={() => router.navigate("/admin/barbers?status=pending" as never)} />
+            <T variant="title" style={{ fontSize: 20 }}>New barbers joining</T>
+            <Button title="Applications" size="sm" variant="ghost" onPress={() => router.navigate("/admin/applications")} />
           </Row>
           <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12 }}>
             {o.pendingBarbers.map((b) => (
@@ -77,7 +77,7 @@ export default function Overview() {
                     <T variant="strong">{b.name}</T>
                     <T variant="caption" muted>{b.city} · profile {b.profileDone}/{b.profileTotal}</T>
                   </View>
-                  <StatusTag status={b.status} />
+                  <ApplicationTag status={b.application} />
                 </Row>
               </Card>
             ))}

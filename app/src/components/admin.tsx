@@ -22,7 +22,8 @@ const ADMIN_NAV: (NavItem & { badge?: (o: AdminOverview) => number; roles?: Admi
   { href: "/admin", label: "Overview", icon: "grid-outline" },
   { href: "/admin/analytics", label: "Analytics", icon: "analytics-outline", roles: ["operations", "finance"] },
   { href: "/admin/finance", label: "Finance & VAT", icon: "cash-outline", roles: ["finance"] },
-  { href: "/admin/barbers", label: "Barbers", icon: "cut-outline", badge: (o) => o.barbers.pending, roles: ["operations", "support"] },
+  { href: "/admin/applications", label: "Applications", icon: "id-card-outline", badge: (o) => o.applications, roles: ["operations", "support"] },
+  { href: "/admin/barbers", label: "Barbers", icon: "cut-outline", roles: ["operations", "support"] },
   { href: "/admin/bookings", label: "Bookings", icon: "calendar-outline" },
   { href: "/admin/customers", label: "Customers", icon: "people-outline", roles: ["operations", "support"] },
   { href: "/admin/shops", label: "Shops & orders", icon: "storefront-outline", badge: (o) => o.ordersToShip, roles: ["operations"] },
@@ -283,6 +284,20 @@ export function StatusTag({ status }: { status: string }) {
     delivered: { label: "Delivered", tone: "neutral", icon: "checkmark" },
     open: { label: "Open", tone: "dark" },
     closed: { label: "Closed", tone: "neutral", icon: "checkmark" },
+  };
+  const m = map[status] ?? { label: status, tone: "neutral" as const };
+  return <Tag label={m.label} tone={m.tone} icon={m.icon} />;
+}
+
+/** Where a barber's application (ID, licence, signed agreement) stands. */
+export function ApplicationTag({ status }: { status: string }) {
+  const map: Record<string, { label: string; tone: "neutral" | "accent" | "dark" | "danger"; icon?: IconName }> = {
+    draft: { label: "Not sent yet", tone: "neutral", icon: "create-outline" },
+    submitted: { label: "To review", tone: "dark", icon: "time-outline" },
+    rejected: { label: "Sent back", tone: "danger", icon: "arrow-undo-outline" },
+    approved: { label: "Approved", tone: "accent", icon: "shield-checkmark" },
+    none: { label: "On file", tone: "neutral" },
+    not_needed: { label: "Shop contract", tone: "neutral", icon: "storefront-outline" },
   };
   const m = map[status] ?? { label: status, tone: "neutral" as const };
   return <Tag label={m.label} tone={m.tone} icon={m.icon} />;

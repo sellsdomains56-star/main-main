@@ -14,6 +14,47 @@ type Period = "today" | "week" | "month";
 const PERIOD_LABEL: Record<Period, string> = { today: "Today", week: "This week", month: "This month" };
 const WHERE: Record<string, string> = { shop: "At the shop", home: "Home visit", video: "Video call", phone: "Phone call" };
 
+const APPLICATION_LINE: Record<string, string> = {
+  draft: "ID, licence and agreement: not sent yet",
+  submitted: "With the JB team for checking",
+  rejected: "The team asked for a change",
+  approved: "Approved: ID, licence and signed agreement",
+};
+
+/** Freelancers go live once the JB team has checked their ID, licence and signed agreement. */
+function ApplicationCard({ data }: { data: BusinessDashboard }) {
+  const a = data.application;
+  if (a.status === "draft" || (a.status === "rejected" && data.status === "pending")) {
+    const rejected = a.status === "rejected";
+    return (
+      <Card tone="ink" style={{ marginTop: 16, padding: 20 }}>
+        <T variant="eyebrow" color={colors.inkMuted}>{rejected ? "Action needed" : "Before you go live"}</T>
+        <T variant="heading" color={colors.onInk} style={{ marginTop: 8 }}>{rejected ? "Your application needs a change" : "Send your application"}</T>
+        <T variant="caption" color={colors.inkMuted} style={{ marginTop: 6 }}>
+          {rejected ? a.rejectionReason : `Upload your ${data.barber.countryCode === "AE" ? "Emirates ID" : "passport"} and your barber licence, and sign the barber agreement. ${a.missing ? `${a.missing} ${a.missing === 1 ? "thing" : "things"} left.` : "All done: send it."}`}
+        </T>
+        <Button title={rejected ? "Fix and send again" : a.missing ? "Continue application" : "Review and send"} icon="arrow-forward" variant="light" size="md" onPress={() => router.push("/business/apply")} style={{ alignSelf: "flex-start", marginTop: 14 }} />
+      </Card>
+    );
+  }
+  if (a.status === "submitted") {
+    return (
+      <Card tone="surface" style={{ marginTop: 16 }}>
+        <IconLine icon="time-outline">Application sent. The JB team is checking your ID, licence and agreement, and we'll let you know here. Customers can book you once you're approved, so finish your profile in the meantime.</IconLine>
+        <Button title="View application" variant="ghost" size="sm" onPress={() => router.push("/business/apply")} style={{ alignSelf: "flex-start", paddingHorizontal: 0, marginTop: 4 }} />
+      </Card>
+    );
+  }
+  if (data.status === "pending") {
+    return (
+      <Card tone="surface" style={{ marginTop: 16 }}>
+        <IconLine icon="time-outline">Our team is reviewing your profile. Customers can't book you until you're live, so finish the checklist below in the meantime.</IconLine>
+      </Card>
+    );
+  }
+  return null;
+}
+
 /** The barber's business at a glance: today's chairs, earnings after the fee, and what to fix on the profile. */
 export default function Business() {
   const { user } = useAuth();
@@ -72,11 +113,7 @@ export default function Business() {
         <Tag label={data.barber.city} icon="location-outline" />
       </Row>
 
-      {data.status === "pending" && (
-        <Card tone="surface" style={{ marginTop: 16 }}>
-          <IconLine icon="time-outline">Our team is reviewing your profile — usually within a day. Customers can't book you until you're live, so finish the checklist below in the meantime.</IconLine>
-        </Card>
-      )}
+      <ApplicationCard data={data} />
       {data.status === "suspended" && (
         <Card tone="surface" style={{ marginTop: 16, backgroundColor: colors.dangerSoft }}>
           <T variant="strong" color={colors.danger}>Your profile is paused</T>
@@ -185,6 +222,9 @@ export default function Business() {
         <ListRow icon="images-outline" title="My work" subtitle="Photo, bio, portfolio, before & afters, map pin" onPress={() => router.push("/portfolio")} />
         <ListRow icon="videocam-outline" title="Post a reel" subtitle="Show off your latest cut" onPress={() => router.push("/post-reel")} />
         <ListRow icon="chatbubbles-outline" title="Reviews" subtitle="Read and reply to what clients say" onPress={() => router.push("/business/reviews")} />
+        {data.application.status !== "not_needed" && data.application.status !== "none" && (
+          <ListRow icon="id-card-outline" title="My application" subtitle={APPLICATION_LINE[data.application.status]} onPress={() => router.push("/business/apply")} />
+        )}
         <ListRow icon="person-circle-outline" title="See my public profile" onPress={() => router.push({ pathname: "/barber/[id]", params: { id: data.barber.id } })} />
       </Section>
 

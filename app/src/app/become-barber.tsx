@@ -2,7 +2,7 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 import { LocationPill } from "../components/LocationSheet";
-import { Button, ErrorBox, Field, Pill, Screen, Section, T, Wrap } from "../components/ui";
+import { Button, Card, ErrorBox, Field, Pill, Screen, Section, T, Timeline, Wrap } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { APP_NAME } from "../lib/config";
@@ -35,7 +35,7 @@ export default function BecomeBarber() {
         haircutPrice: Math.round(price * 100),
       });
       await signIn(res.token, res.user);
-      router.replace({ pathname: "/barber/[id]", params: { id: res.user.barberId! } });
+      router.replace("/business/apply"); // next: ID, licence and the signed agreement
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -47,7 +47,7 @@ export default function BecomeBarber() {
     <Screen
       footer={
         <Button
-          title="Create barber profile"
+          title="Create profile and continue"
           onPress={submit}
           loading={busy}
           disabled={!form.name || !form.email || form.password.length < 8 || !form.shopAddress || !(price > 0)}
@@ -56,6 +56,20 @@ export default function BecomeBarber() {
     >
       <T variant="display">Grow your chair</T>
       <T muted style={{ marginTop: 6 }}>Join {APP_NAME}: get booked by customers in your city, get paid upfront, post reels of your best cuts.</T>
+
+      <Card style={{ marginTop: 18, padding: 18 }}>
+        <T variant="eyebrow" muted style={{ marginBottom: 12 }}>How joining works</T>
+        <Timeline
+          active={0}
+          steps={[
+            { title: "Your profile", body: "Your city, prices and specialties (this page)" },
+            { title: "Your ID and licence", body: "Photos of your Emirates ID and your barber licence or permit" },
+            { title: "The agreement", body: "Read the barber agreement and sign it in the app", onPress: () => router.push("/business/agreement") },
+            { title: "Approval", body: "The JB team checks everything, then you go live" },
+          ]}
+        />
+        <T variant="small" muted style={{ marginTop: 14 }}>Work at a barbershop? You don't need to apply: JB signs a contract with your shop and the shop adds you.</T>
+      </Card>
 
       <Section title="Where do you work?">
         <LocationPill label="City" />

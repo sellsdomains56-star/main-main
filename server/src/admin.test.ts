@@ -22,6 +22,16 @@ async function call(path: string, init: { method?: string; body?: unknown; token
   return { status: res.status, json: res.status === 204 ? null : await res.json() };
 }
 
+/** Fills in and sends a freelance barber's application: ID and licence details, the three documents, the signed agreement. */
+async function completeApplication(token: string) {
+  await call("/barbers/me/application", { method: "PATCH", token, body: { legalName: "Karim Pending", idNumber: "784199012345671", idExpiry: "2030-01-31", licenceNumber: "BL-1", licenceAuthority: "Dubai Municipality", licenceExpiry: "2030-01-31" } });
+  for (const kind of ["id_front", "id_back", "licence"]) {
+    await fetch(`${base}/barbers/me/application/documents/${kind}`, { method: "POST", headers: { authorization: `Bearer ${token}`, "content-type": "image/jpeg" }, body: new Uint8Array(2000) });
+  }
+  await call("/barbers/me/application/sign", { token, body: { name: "Karim Pending", svg: "M10 10 L 100 60 L 200 20 L 280 90", agree: true } });
+  return call("/barbers/me/application/submit", { token, method: "POST" });
+}
+
 const register = async (name: string, email: string) => (await call("/auth/register", { body: { name, email, password: "password123", countryCode: "AE", city: "Dubai" } })).json;
 
 /** A Monday–Saturday date at least `daysAhead` days out. */
@@ -59,12 +69,17 @@ test("new barbers wait for approval; the team approves, verifies and suspends", 
   const queue = (await call("/admin/barbers?status=pending", { token: boss.token })).json;
   assert.ok(queue.some((b: { id: string }) => b.id === id));
 
-  const approved = await call(`/admin/barbers/${id}`, { method: "PATCH", token: boss.token, body: { status: "live", verified: true } });
-  assert.equal(approved.json.status, "live");
-  assert.equal(approved.json.verified, true);
+  // A freelancer only goes live once the team approves their application (ID, licence, signed agreement).
+  const tooSoon = await call(`/admin/barbers/${id}`, { method: "PATCH", token: boss.token, body: { status: "live" } });
+  assert.equal(tooSoon.status, 400);
+  await completeApplication(acc.token);
+  assert.equal((await call(`/admin/barbers/${id}/application/approve`, { token: boss.token, method: "POST" })).status, 200);
+  const approved = (await call(`/admin/barbers/${id}`, { token: boss.token })).json;
+  assert.equal(approved.status, "live");
+  assert.equal(approved.verified, true);
   assert.equal(await listed(), true);
   const alerts = (await call("/notifications", { token: acc.token })).json;
-  assert.ok(alerts.items.some((n: { title: string }) => n.title === "You're live on JB Always Fresh"));
+  assert.ok(alerts.items.some((n: { title: string }) => n.title === "You're approved"));
 
   await call(`/admin/barbers/${id}`, { method: "PATCH", token: boss.token, body: { status: "suspended" } });
   assert.equal(await listed(), false);

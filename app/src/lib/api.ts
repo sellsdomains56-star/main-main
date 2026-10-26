@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { ActivityEntry, AdminAnalytics, AdminFinance, AdminRole, Award, ChatMessage2, ChatSummary, ChatThread, Invoice, Partner, PartnerWelcome, Payouts, TeamMember, BookingRules, CheckInRow, Client, Level, Payroll, QueueItem, QueueStatus, ShopHireRow, ShopOrderRow, ShopQueue, ShopStaff, StockRow, AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Referral, Review, SharedVisit, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, Usual, VenueKind, WorkingHours } from "./types";
+import type { ActivityEntry, Agreement, ApplicationDocKind, ApplicationRow, BarberApplication, AdminAnalytics, AdminFinance, AdminRole, Award, ChatMessage2, ChatSummary, ChatThread, Invoice, Partner, PartnerWelcome, Payouts, TeamMember, BookingRules, CheckInRow, Client, Level, Payroll, QueueItem, QueueStatus, ShopHireRow, ShopOrderRow, ShopQueue, ShopStaff, StockRow, AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Referral, Review, SharedVisit, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, Usual, VenueKind, WorkingHours } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -255,6 +255,27 @@ export const api = {
   removePushToken: (token: string) => request<void>("/me/push-tokens", { method: "DELETE", body: { token } }),
   myBarberSettings: () => request<{ videoLink: string; offersConsultations: boolean }>("/barbers/me/settings"),
   business: () => request<BusinessDashboard>("/barbers/me/business"),
+  // Joining as a freelance barber: ID, licence and the signed agreement
+  application: () => request<BarberApplication>("/barbers/me/application"),
+  barberAgreement: () => request<Agreement>("/legal/barber-agreement"),
+  saveApplication: (body: Partial<Pick<BarberApplication, "legalName" | "idNumber" | "idExpiry" | "licenceNumber" | "licenceAuthority" | "licenceExpiry">>) =>
+    request<BarberApplication>("/barbers/me/application", { method: "PATCH", body }),
+  async uploadApplicationDoc(kind: ApplicationDocKind, file: Blob, contentType: string): Promise<BarberApplication> {
+    if (demo) return request<BarberApplication>(`/barbers/me/application/documents/${kind}`, { body: { dataUrl: await demoUpload(file), contentType } });
+    await authLoaded;
+    const res = await fetch(`${API_URL}/barbers/me/application/documents/${kind}`, {
+      method: "POST",
+      headers: { "content-type": contentType, ...(authToken ? { authorization: `Bearer ${authToken}` } : {}) },
+      body: file,
+    }).catch(() => {
+      throw new ApiError(0, "Upload failed. Check your connection.");
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new ApiError(res.status, data.error ?? "Upload failed.");
+    return data;
+  },
+  signApplication: (body: { name: string; svg: string; agree: boolean }) => request<BarberApplication>("/barbers/me/application/sign", { body }),
+  submitApplication: () => request<BarberApplication>("/barbers/me/application/submit", { method: "POST" }),
   myBlocks: () => request<CalBlock[]>("/barbers/me/blocks"),
   addMyBlock: (body: { startsAt: string; endsAt: string; reason: string }) => request<CalBlock>("/barbers/me/blocks", { body }),
   removeMyBlock: (id: string) => request<void>(`/barbers/me/blocks/${id}`, { method: "DELETE" }),
@@ -275,6 +296,9 @@ export const api = {
     barbers: (f: { status?: string; q?: string }) => request<AdminBarberRow[]>("/admin/barbers" + qs(f)),
     barber: (id: string) => request<AdminBarberDetail>(`/admin/barbers/${id}`),
     updateBarber: (id: string, body: { status?: BarberStatus; verified?: boolean }) => request<AdminBarberRow>(`/admin/barbers/${id}`, { method: "PATCH", body }),
+    applications: (status: string) => request<ApplicationRow[]>("/admin/applications" + qs({ status })),
+    approveApplication: (barberId: string) => request<BarberApplication>(`/admin/barbers/${barberId}/application/approve`, { method: "POST" }),
+    rejectApplication: (barberId: string, reason: string) => request<BarberApplication>(`/admin/barbers/${barberId}/application/reject`, { body: { reason } }),
     bookings: (f: { status?: string; q?: string }) => request<AdminBookingRow[]>("/admin/bookings" + qs(f)),
     cancelBooking: (id: string, reason: string) => request<AdminBookingRow>(`/admin/bookings/${id}/cancel`, { body: { reason } }),
     customers: (q?: string) => request<AdminCustomerRow[]>("/admin/customers" + qs({ q })),

@@ -58,6 +58,9 @@ export interface DemoData {
   shipping: Record<string, { fee: number; freeFrom: number }>;
   faq: { id: string; topic: string; question: string; answer: string }[];
   supportEmail: string;
+  agreement: { version: string; title: string; intro: string; sections: { heading: string; body: string }[] }; // {company} and {fee} filled in when shown
+  sampleDocs: Record<DocKind, string>; // "/media/samples/..." paths for the sample applications
+  sampleSignature: string;
   media: Record<string, string>; // "/media/..." path -> data: URI
 }
 
@@ -156,6 +159,16 @@ interface Saved {
   queue?: QueueEntry[];
   stock?: Record<string, Record<string, number>>;
   shopNudges?: Record<string, Record<string, string>>;
+  applications?: DemoApplication[];
+}
+/** A freelance barber's application: ID, licence and the signed agreement (mirrors server/src/routes/applications.ts). Documents are kept as data: URIs. */
+type DocKind = "id_front" | "id_back" | "licence";
+interface DemoApplication {
+  barberId: string; status: "draft" | "submitted" | "approved" | "rejected";
+  legalName?: string; idNumber?: string; idExpiry?: string; licenceNumber?: string; licenceAuthority?: string; licenceExpiry?: string;
+  docs: Partial<Record<DocKind, { url: string; contentType: string; uploadedAt: string }>>;
+  signature?: { name: string; svg: string; version: string; signedAt: string; ip?: string; userAgent?: string };
+  submittedAt?: string; reviewedAt?: string; reviewedBy?: string; rejectionReason?: string; createdAt: string; updatedAt: string;
 }
 interface DemoNotification { id: string; userId: string; kind: string; title: string; body: string; bookingId?: string; orderId?: string; hireId?: string; read: boolean; createdAt: string }
 
@@ -1020,6 +1033,7 @@ function business(b: SeedBarber) {
   }));
   return {
     barber: barberView(b), status: statusOf(b), verified: !!b.verified, currency: country(b.countryCode)!.currency, feePercent: feePercent(),
+    application: { status: applicationStatus(b), missing: missingItems(applicationOf(b.id), b).length, rejectionReason: applicationOf(b.id)?.rejectionReason ?? null },
     today: today.map(bookingView), next: upcoming[0] ? bookingView(upcoming[0]) : null, upcomingCount: upcoming.length, week,
     earnings: { today: earnings(mine, starts.day, starts.day + DAY), week: earnings(mine, starts.week), month: earnings(mine, starts.month) },
     completedThisMonth: mine.filter((x) => x.status === "completed" && Date.parse(x.startsAt) >= starts.month).length,
@@ -1033,6 +1047,168 @@ function business(b: SeedBarber) {
 }
 
 const barberUser = (barberId: string) => saved.users.find((u) => u.barberId === barberId);
+
+// ---------- Freelance barbers' applications (mirrors server/src/routes/applications.ts) ----------
+
+const applicationOf = (barberId: string) => (saved.applications ?? []).find((a) => a.barberId === barberId);
+/** Barbers at a barbershop don't apply: JB's contract with the shop covers them. */
+const needsApplication = (b: SeedBarber) => !b.shopId;
+function startApplication(barberId: string) {
+  const now = new Date().toISOString();
+  const a: DemoApplication = { barberId, status: "draft", docs: {}, createdAt: now, updatedAt: now };
+  (saved.applications ??= []).push(a);
+  return a;
+}
+const inUae = (b: SeedBarber) => b.countryCode === "AE";
+const todayIso = () => new Date().toISOString().slice(0, 10);
+function agreementText() {
+  const fill = (t: string) => t.replaceAll("{company}", "JB Always Fresh").replaceAll("{fee}", String(feePercent()));
+  const a = seed.agreement;
+  return { version: a.version, title: a.title, intro: fill(a.intro), sections: a.sections.map((x) => ({ heading: x.heading, body: fill(x.body) })) };
+}
+function missingItems(a: DemoApplication | undefined, b: SeedBarber) {
+  const id = inUae(b) ? "Emirates ID" : "passport";
+  const m: string[] = [];
+  if (!a?.legalName) m.push("Your full name as on your ID");
+  if (!a?.idNumber) m.push(`Your ${id} number`);
+  if (!a?.idExpiry) m.push(`Your ${id} expiry date`);
+  else if (a.idExpiry < todayIso()) m.push(`Your ${id} has expired: renew it first`);
+  if (!a?.docs.id_front) m.push(inUae(b) ? "Photo of the front of your Emirates ID" : "Photo of your passport's photo page");
+  if (inUae(b) && !a?.docs.id_back) m.push("Photo of the back of your Emirates ID");
+  if (!a?.licenceNumber) m.push("Your licence or permit number");
+  if (!a?.licenceAuthority) m.push("Who issued your licence or permit");
+  if (!a?.licenceExpiry) m.push("Your licence expiry date");
+  else if (a.licenceExpiry < todayIso()) m.push("Your licence has expired: renew it first");
+  if (!a?.docs.licence) m.push("Photo or PDF of your licence or permit");
+  if (!a?.signature || a.signature.version !== seed.agreement.version) m.push("Sign the barber agreement");
+  return m;
+}
+function applicationStatus(b: SeedBarber) {
+  if (!needsApplication(b)) return "not_needed";
+  return applicationOf(b.id)?.status ?? (statusOf(b) === "pending" ? "draft" : "none");
+}
+function applicationView(b: SeedBarber, team = false) {
+  const a = applicationOf(b.id);
+  const status = applicationStatus(b);
+  const sig = a?.signature;
+  return {
+    required: needsApplication(b), status, canEdit: status === "draft" || status === "rejected", uae: inUae(b), idLabel: inUae(b) ? "Emirates ID" : "Passport",
+    legalName: a?.legalName ?? "", idNumber: a?.idNumber ?? "", idExpiry: a?.idExpiry ?? "", licenceNumber: a?.licenceNumber ?? "", licenceAuthority: a?.licenceAuthority ?? "", licenceExpiry: a?.licenceExpiry ?? "",
+    docs: a?.docs ?? {},
+    signature: sig ? { name: sig.name, svg: sig.svg, version: sig.version, signedAt: sig.signedAt, current: sig.version === seed.agreement.version, ...(team ? { ip: sig.ip ?? null, userAgent: sig.userAgent ?? null } : {}) } : null,
+    submittedAt: a?.submittedAt ?? null, reviewedAt: a?.reviewedAt ?? null, rejectionReason: a?.rejectionReason ?? null, ...(team ? { reviewedBy: a?.reviewedBy ?? null } : {}),
+    missing: needsApplication(b) ? missingItems(a, b) : [], agreement: agreementText(),
+  };
+}
+function idNumberFor(b: SeedBarber, raw: string) {
+  if (inUae(b)) {
+    const d = raw.replace(/\D/g, "");
+    if (d.length !== 15 || !d.startsWith("784")) throw new DemoError(400, "An Emirates ID number has 15 digits and starts with 784.");
+    return `${d.slice(0, 3)}-${d.slice(3, 7)}-${d.slice(7, 14)}-${d.slice(14)}`;
+  }
+  const v = raw.replace(/\s/g, "").toUpperCase();
+  if (!/^[A-Z0-9]{5,20}$/.test(v)) throw new DemoError(400, "Enter your passport number (letters and numbers only).");
+  return v;
+}
+const isIsoDay = (v: unknown) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v) && !Number.isNaN(Date.parse(v));
+
+function applicationRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null): { hit: boolean; value?: unknown } {
+  const hit = (value: unknown) => ({ hit: true, value });
+  let x: RegExpMatchArray | null;
+  if (path === "/legal/barber-agreement") return hit(agreementText());
+  if (path.startsWith("/barbers/me/application")) {
+    const u = requireUser(token);
+    if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
+    const b = getBarber(u.barberId);
+    if (path === "/barbers/me/application" && method === "GET") return hit(applicationView(b));
+    if (!needsApplication(b)) throw new DemoError(400, "Barbers at a barbershop don't apply: JB's contract with your shop covers you.");
+    const a = applicationOf(b.id) ?? startApplication(b.id);
+    if (a.status === "submitted") throw new DemoError(409, "Your application is with the JB team. You can change it if they ask you to.");
+    if (a.status === "approved") throw new DemoError(409, "Your application is approved. To update a document, contact support.");
+    const touch = () => {
+      a.updatedAt = new Date().toISOString();
+      persist();
+      return hit(applicationView(b));
+    };
+    if (path === "/barbers/me/application" && method === "PATCH") {
+      const v = body ?? {};
+      if (v.legalName !== undefined && String(v.legalName).trim().length < 3) throw new DemoError(400, "Enter your full name as on your ID");
+      for (const k of ["idExpiry", "licenceExpiry"]) if (v[k] !== undefined && !isIsoDay(v[k])) throw new DemoError(400, "Use a date like 2027-05-31");
+      for (const k of ["legalName", "licenceNumber", "licenceAuthority", "idExpiry", "licenceExpiry"] as const) if (v[k] !== undefined) a[k] = String(v[k]).trim();
+      if (v.idNumber !== undefined) a.idNumber = idNumberFor(b, String(v.idNumber));
+      return touch();
+    }
+    if ((x = path.match(/^\/barbers\/me\/application\/documents\/([a-z_]+)$/)) && method === "POST") {
+      const kind = x[1] as DocKind;
+      if (!["id_front", "id_back", "licence"].includes(kind)) throw new DemoError(400, "Unknown document.");
+      const type = String(body?.contentType ?? "");
+      if (!/^(image\/(jpeg|png|webp|heic)|application\/pdf)$/.test(type) || !String(body?.dataUrl ?? "").startsWith("data:")) throw new DemoError(400, "Attach a photo (JPEG, PNG, WebP) or a PDF.");
+      a.docs[kind] = { url: String(body!.dataUrl), contentType: type, uploadedAt: new Date().toISOString() };
+      return touch();
+    }
+    if (path === "/barbers/me/application/sign" && method === "POST") {
+      const name = String(body?.name ?? "").trim();
+      const svg = String(body?.svg ?? "");
+      if (name.length < 3) throw new DemoError(400, "Type your full name to sign");
+      if (svg.length < 20 || !/^[MLQCZmlqcz0-9.,\s-]+$/.test(svg)) throw new DemoError(400, "Draw your signature in the box");
+      if (body?.agree !== true) throw new DemoError(400, "Tick the box to confirm you've read and agree to the agreement.");
+      a.signature = { name, svg, version: seed.agreement.version, signedAt: new Date().toISOString(), userAgent: typeof navigator !== "undefined" ? navigator.userAgent.slice(0, 300) : undefined };
+      a.legalName ||= name;
+      return touch();
+    }
+    if (path === "/barbers/me/application/submit" && method === "POST") {
+      const missing = missingItems(a, b);
+      if (missing.length) throw new DemoError(400, `Still needed: ${missing.join("; ")}.`);
+      Object.assign(a, { status: "submitted", submittedAt: new Date().toISOString() });
+      delete a.rejectionReason;
+      for (const t of saved.users.filter((y) => ["owner", "operations"].includes(adminRole(y) ?? ""))) notify(t.id, { kind: "account", title: "New barber application", body: `${a.legalName} (${b.city}) sent their ID, licence and signed agreement for review.` });
+      return touch();
+    }
+    return { hit: false };
+  }
+  if (!path.startsWith("/admin/")) return { hit: false };
+  const me = requireUser(token);
+  const role = adminRole(me);
+  if (path === "/admin/applications") {
+    if (!role || !["owner", "operations", "support"].includes(role)) throw new DemoError(403, "Your team role doesn't include this.");
+    const order: Record<string, number> = { submitted: 0, rejected: 1, draft: 2, approved: 3 };
+    const f = q.status ?? "all";
+    return hit(allBarbers()
+      .filter(needsApplication)
+      .map((b) => ({ b, a: applicationOf(b.id), status: applicationStatus(b) }))
+      .filter((r) => r.status !== "none" && (f === "all" || r.status === f))
+      .map(({ b, a, status }) => ({
+        barberId: b.id, name: b.name, legalName: a?.legalName ?? null, photoUrl: b.photoUrl, city: b.city, email: barberUser(b.id)?.email ?? null, status, barberStatus: statusOf(b),
+        submittedAt: a?.submittedAt ?? null, updatedAt: a?.updatedAt ?? b.joinedAt ?? null, missing: missingItems(a, b).length, idExpiry: a?.idExpiry ?? null, licenceExpiry: a?.licenceExpiry ?? null,
+      }))
+      .sort((p, r) => order[p.status]! - order[r.status]! || (p.submittedAt ?? p.updatedAt ?? "").localeCompare(r.submittedAt ?? r.updatedAt ?? "")));
+  }
+  if ((x = path.match(/^\/admin\/barbers\/([^/]+)\/application\/(approve|reject)$/)) && method === "POST") {
+    if (role !== "owner" && role !== "operations") throw new DemoError(403, "Your team role doesn't include this.");
+    const b = getBarber(x[1]!);
+    const a = applicationOf(b.id);
+    if (!a || a.status !== "submitted") throw new DemoError(409, `There's no submitted application to ${x[2] === "approve" ? "approve" : "send back"}.`);
+    const bu = barberUser(b.id);
+    if (x[2] === "approve") {
+      const missing = missingItems(a, b);
+      if (missing.length) throw new DemoError(400, `This application isn't complete: ${missing.join("; ")}.`);
+      Object.assign(a, { status: "approved", reviewedAt: new Date().toISOString(), reviewedBy: me.email, updatedAt: new Date().toISOString() });
+      const wentLive = statusOf(b) === "pending";
+      saved.barberPatches[b.id] = { ...saved.barberPatches[b.id], verified: true, ...(wentLive ? { status: "live" as const } : {}) };
+      logActivity(me, "application.approved", b.name);
+      if (bu) notify(bu.id, { kind: "account", title: "You're approved", body: wentLive ? "Your ID, licence and agreement are checked. You're live: clients can find and book you now." : "Your ID, licence and agreement are checked. Your profile now shows the Verified badge." });
+    } else {
+      const reason = String(body?.reason ?? "").trim();
+      if (reason.length < 5) throw new DemoError(400, "Tell the barber what to fix");
+      Object.assign(a, { status: "rejected", rejectionReason: reason, reviewedAt: new Date().toISOString(), reviewedBy: me.email, updatedAt: new Date().toISOString() });
+      logActivity(me, "application.rejected", b.name, reason);
+      if (bu) notify(bu.id, { kind: "account", title: "Your application needs a change", body: `${reason} Open Dashboard → Your application to fix it and send it again.` });
+    }
+    persist();
+    return hit(applicationView(getBarber(b.id), true));
+  }
+  return { hit: false };
+}
 
 function bookingRow(b: Booking) {
   const barber = allBarbers().find((x) => x.id === b.barberId);
@@ -1053,7 +1229,7 @@ function barberRow(b: SeedBarber) {
   const list = profileChecklist(b);
   const r = rating(b);
   return {
-    id: b.id, name: b.name, photoUrl: b.photoUrl, city: b.city, countryCode: b.countryCode, status: statusOf(b), verified: !!b.verified, joinedAt: b.joinedAt ?? null,
+    id: b.id, name: b.name, photoUrl: b.photoUrl, city: b.city, countryCode: b.countryCode, status: statusOf(b), verified: !!b.verified, joinedAt: b.joinedAt ?? null, application: applicationStatus(b),
     rating: r.rating, ratingCount: r.ratingCount, bookings: paid.length, revenue30: byCurrency(paid.filter((x) => Date.parse(x.startsAt) >= Date.now() - 30 * DAY)),
     email: barberUser(b.id)?.email ?? null, shop, profileDone: list.filter((c) => c.done).length, profileTotal: list.length,
   };
@@ -1080,7 +1256,7 @@ const EXTRA_TEAM: [string, string, string[]][] = [
   ["demo-dt-1", "Rami Aziz", ["skin fade", "taper", "kids cut"]],
   ["demo-dt-2", "Leo Santos", ["scissor cut", "textured crop", "beard"]],
 ];
-const SEED_VERSION = 5;
+const SEED_VERSION = 6;
 
 /** Requests that arrive together share one run, so the sample accounts are made once. */
 let seeding: Promise<void> | null = null;
@@ -1131,7 +1307,7 @@ async function buildSample() {
   saved.bookings = saved.bookings.filter((b) => !b.seeded);
   saved.reviews = saved.reviews.filter((r) => !r.seeded);
   const dubai = (dayOffset: number, hour: number) => {
-    const d = new Date();
+    const d = new Date(Date.now() + 4 * 3_600_000); // today's date in Dubai, not in UTC (they differ after 8pm UTC)
     return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + dayOffset, hour) - 4 * 3_600_000).toISOString();
   };
   const taken = new Set<string>();
@@ -1257,6 +1433,21 @@ async function buildSample() {
         { id: newId(), from: "customer", text: "Perfect, I'll be 5 minutes early.", at: at(40) },
       ],
     });
+  }
+
+  // Applications: Karim's is waiting for the team, Yusuf is still filling his in, Mateo was approved when he joined.
+  if (!saved.applications) {
+    const stamp = (h: number) => new Date(now - h * 3_600_000).toISOString();
+    const doc = (kind: DocKind, h: number) => ({ url: seed.sampleDocs[kind], contentType: "image/jpeg", uploadedAt: stamp(h) });
+    const docs = (h: number) => ({ id_front: doc("id_front", h), id_back: doc("id_back", h), licence: doc("licence", h) });
+    const signed = (name: string, h: number) => ({ name, svg: seed.sampleSignature, version: seed.agreement.version, signedAt: stamp(h), ip: "203.0.113.24", userAgent: "Sample phone" });
+    const pending = (id: string) => allBarbers().some((b) => b.id === id && statusOf(b) === "pending");
+    const admin = saved.users.find((u) => u.email === DEMO_LOGINS.admin.email)!;
+    saved.applications = [
+      { barberId: DEMO_LOGINS.barber.barberId, status: "approved", legalName: "Mateo Silva", idNumber: "784-1989-2468013-5", idExpiry: "2028-11-30", licenceNumber: "BL-2025-118734", licenceAuthority: "Dubai Municipality", licenceExpiry: "2027-12-31", docs: docs(2880), signature: signed("Mateo Silva", 2880), submittedAt: stamp(2880), reviewedAt: stamp(2856), reviewedBy: admin.email, createdAt: stamp(2900), updatedAt: stamp(2856) },
+      ...(pending("demo-pending-1") ? [{ barberId: "demo-pending-1", status: "submitted" as const, legalName: "Karim Haddad", idNumber: "784-1990-1234567-1", idExpiry: "2028-06-30", licenceNumber: "BL-2026-004512", licenceAuthority: "Dubai Municipality", licenceExpiry: "2027-09-30", docs: docs(3), signature: signed("Karim Haddad", 3), submittedAt: stamp(3), createdAt: stamp(7), updatedAt: stamp(3) }] : []),
+      ...(pending("demo-pending-2") ? [{ barberId: "demo-pending-2", status: "draft" as const, legalName: "Yusuf Rahman", idNumber: "784-1996-7654321-2", idExpiry: "2029-02-28", docs: { id_front: doc("id_front", 13) }, createdAt: stamp(14), updatedAt: stamp(13) }] : []),
+    ];
   }
 
   saved.demoSeededOn = dubaiDay;
@@ -2334,6 +2525,8 @@ function adminPlatform(method: string, path: string, q: Record<string, string>, 
 async function teamRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null, headers: Record<string, string> = {}): Promise<{ hit: boolean; value?: unknown }> {
   const hit = (value: unknown) => ({ hit: true, value });
   let x: RegExpMatchArray | null;
+  const applications = applicationRoutes(method, path, q, body, token);
+  if (applications.hit) return applications;
 
   // The barber's business
   if (path === "/barbers/me/business" && method === "GET") {
@@ -2403,6 +2596,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
       openTickets: saved.tickets.filter((t) => (t.status ?? "open") === "open" && !t.reelId).length,
       openReports: saved.tickets.filter((t) => (t.status ?? "open") === "open" && t.reelId).length,
       ordersToShip: saved.orders.filter((o) => o.status === "paid").length,
+      applications: (saved.applications ?? []).filter((a) => a.status === "submitted").length,
       series: days.map((date) => ({ date, count: saved.bookings.filter((b) => b.status !== "pending_payment" && b.createdAt.slice(0, 10) === date).length })),
       recent: [...saved.bookings].filter((b) => b.status !== "pending_payment").sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 8).map(bookingRow),
     });
@@ -2419,6 +2613,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
     const b = getBarber(x[1]!);
     if (method === "PATCH") {
       const before = statusOf(b);
+      if (body?.status === "live" && before === "pending" && needsApplication(b) && applicationOf(b.id)?.status !== "approved") throw new DemoError(400, "Check and approve their application first: ID, licence and signed agreement.");
       const patch: Partial<SeedBarber> = {};
       if (body?.status) patch.status = body.status;
       if (body?.verified !== undefined) patch.verified = !!body.verified;
@@ -2435,7 +2630,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
     }
     const mine = saved.bookings.filter((k) => k.barberId === b.id);
     return hit({
-      ...barberRow(b), profile: barberView(b), checklist: profileChecklist(b),
+      ...barberRow(b), profile: barberView(b), checklist: profileChecklist(b), application: applicationView(b, true),
       hours: { workingDays: b.workingDays, openHour: b.openHour, closeHour: b.closeHour, timeOff: b.timeOff ?? [] },
       stats: {
         paid: mine.filter((k) => PAID.has(k.status)).length, completed: mine.filter((k) => k.status === "completed").length, cancelled: mine.filter((k) => k.status === "cancelled").length,
@@ -2682,6 +2877,7 @@ export function createDemoServer(data: DemoData) {
         if ((b.customerId === u.id || (u.barberId && b.barberId === u.barberId)) && ["pending_payment", "confirmed", "on_the_way"].includes(b.status) && Date.parse(b.startsAt) > Date.now()) b.status = "cancelled";
       }
       if (u.barberId) saved.barberPatches[u.barberId] = { ...saved.barberPatches[u.barberId], status: "suspended", offline: true };
+      if (u.barberId) saved.applications = (saved.applications ?? []).filter((a) => a.barberId !== u.barberId); // the ID documents go with the account
       Object.assign(u, { name: "Deleted account", email: `deleted+${u.id}@deleted.jbalwaysfresh.invalid`, passwordHash: newId(), deletedAt: new Date().toISOString() });
       for (const k of ["preferences", "credit", "manages", "alerts", "membership", "countryCode", "city"] as const) delete u[k];
       for (const r of saved.reviews) if (r.customerId === u.id) r.customerName = "Former customer";
@@ -2733,6 +2929,7 @@ export function createDemoServer(data: DemoData) {
         workingDays: [1, 2, 3, 4, 5, 6], openHour: 9, closeHour: 19, ratingSum: 0, ratingCount: 0,
         status: reviewNewBarbers() ? "pending" : "live", joinedAt: new Date().toISOString(),
       });
+      startApplication(id); // ID, licence and the signed agreement, checked by the team before going live
       const u: User = { id: newId(), name: String(body.name).trim(), email, passwordHash: await hash(body.password), role: "barber", barberId: id, countryCode: body.countryCode, city: body.city };
       saved.users.push(u);
       const t = newId();

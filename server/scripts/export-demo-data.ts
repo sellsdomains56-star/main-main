@@ -4,6 +4,7 @@
  *   npx tsx scripts/export-demo-data.ts > ../app/demo-data.json
  */
 import { readFileSync } from "node:fs";
+import { AGREEMENT, AGREEMENT_VERSION, SAMPLE_SIGNATURE } from "../src/agreement.js";
 import { CAMPAIGNS } from "../src/campaigns.js";
 import { GIFT_AMOUNTS, PLANS } from "../src/club.js";
 import { FAQ, SUPPORT_EMAIL } from "../src/faq.js";
@@ -40,6 +41,10 @@ const data = {
   shipping: SHIPPING,
   faq: FAQ,
   supportEmail: SUPPORT_EMAIL,
+  // Joining as a freelance barber: the agreement and the sample documents the sample applications use.
+  agreement: { version: AGREEMENT_VERSION, ...AGREEMENT },
+  sampleDocs: { id_front: inline("/media/samples/sample-id-front.jpg"), id_back: inline("/media/samples/sample-id-back.jpg"), licence: inline("/media/samples/sample-licence.jpg") },
+  sampleSignature: SAMPLE_SIGNATURE,
   media,
 };
 

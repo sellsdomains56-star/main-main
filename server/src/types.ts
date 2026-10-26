@@ -100,6 +100,37 @@ export interface QueueEntry {
 
 export type BarberStatus = "pending" | "live" | "suspended";
 
+/**
+ * A freelance barber's application to join: their ID, their licence to work as a barber and the signed
+ * barber agreement. The team checks it before the barber goes live. Barbers at a barbershop don't apply:
+ * JB signs a contract with the shop itself.
+ */
+export type ApplicationStatus = "draft" | "submitted" | "approved" | "rejected";
+export type ApplicationDocKind = "id_front" | "id_back" | "licence";
+export interface ApplicationDoc {
+  file: string; // in the private documents folder, never served publicly
+  contentType: string;
+  uploadedAt: string;
+}
+export interface BarberApplication {
+  barberId: string;
+  status: ApplicationStatus;
+  legalName?: string; // as on the ID
+  idNumber?: string; // Emirates ID (784-YYYY-NNNNNNN-N) or passport number outside the UAE
+  idExpiry?: string; // YYYY-MM-DD
+  licenceNumber?: string;
+  licenceAuthority?: string; // who issued the licence or permit
+  licenceExpiry?: string; // YYYY-MM-DD
+  docs: Partial<Record<ApplicationDocKind, ApplicationDoc>>;
+  signature?: { name: string; svg: string; version: string; signedAt: string; ip?: string; userAgent?: string };
+  submittedAt?: string;
+  reviewedAt?: string;
+  reviewedBy?: string; // team member's email
+  rejectionReason?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 /** Settings the team changes from the admin panel (otherwise the server's defaults apply). */
 export interface Settings {
   platformFeePercent?: number;

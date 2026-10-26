@@ -106,6 +106,8 @@ export default function RootLayout() {
                   <Stack.Screen name="awards" options={{ title: "Top 10" }} />
                   <Stack.Screen name="p/[code]" options={{ title: "" }} />
                   <Stack.Screen name="business/payouts" options={{ title: "Payouts" }} />
+                  <Stack.Screen name="business/apply" options={{ title: "Your application" }} />
+                  <Stack.Screen name="business/agreement" options={{ title: "Barber agreement" }} />
                   <Stack.Screen name="profile" options={{ title: "Profile" }} />
                   <Stack.Screen name="favourites" options={{ title: "Favourites" }} />
                   <Stack.Screen name="my-cuts" options={{ title: "My cuts" }} />

@@ -457,10 +457,55 @@ export interface WorkingHours {
 }
 
 /** The barber's business dashboard. */
+/**
+ * A freelance barber's application to join: ID, licence and the signed agreement, checked by the JB team.
+ * "none": joined before applications existed; "not_needed": works at a barbershop (JB's contract with the shop covers them).
+ */
+export type ApplicationStatus = "draft" | "submitted" | "approved" | "rejected" | "none" | "not_needed";
+export type ApplicationDocKind = "id_front" | "id_back" | "licence";
+export interface Agreement { version: string; title: string; intro: string; sections: { heading: string; body: string }[] }
+export interface BarberApplication {
+  required: boolean;
+  status: ApplicationStatus;
+  canEdit: boolean;
+  uae: boolean;
+  idLabel: string; // "Emirates ID" or "Passport"
+  legalName: string;
+  idNumber: string;
+  idExpiry: string;
+  licenceNumber: string;
+  licenceAuthority: string;
+  licenceExpiry: string;
+  docs: Partial<Record<ApplicationDocKind, { url: string; contentType: string; uploadedAt: string }>>;
+  signature: { name: string; svg: string; version: string; signedAt: string; current: boolean; ip?: string | null; userAgent?: string | null } | null;
+  submittedAt: string | null;
+  reviewedAt: string | null;
+  reviewedBy?: string | null;
+  rejectionReason: string | null;
+  missing: string[];
+  agreement: Agreement;
+}
+export interface ApplicationRow {
+  barberId: string;
+  name: string;
+  legalName: string | null;
+  photoUrl: string;
+  city: string;
+  email: string | null;
+  status: ApplicationStatus;
+  barberStatus: BarberStatus;
+  submittedAt: string | null;
+  updatedAt: string | null;
+  missing: number;
+  idExpiry: string | null;
+  licenceExpiry: string | null;
+}
+
 export interface BusinessDashboard {
   barber: Barber;
   status: BarberStatus;
   verified: boolean;
+  application: { status: ApplicationStatus; missing: number; rejectionReason: string | null };
   currency: string;
   feePercent: number;
   today: Booking[];
@@ -502,6 +547,7 @@ export interface AdminBarberRow {
   city: string;
   countryCode: string;
   status: BarberStatus;
+  application: ApplicationStatus;
   verified: boolean;
   joinedAt: string | null;
   rating: number | null;
@@ -514,8 +560,9 @@ export interface AdminBarberRow {
   profileTotal: number;
 }
 
-export interface AdminBarberDetail extends AdminBarberRow {
+export interface AdminBarberDetail extends Omit<AdminBarberRow, "application"> {
   profile: Barber;
+  application: BarberApplication;
   checklist: { key: string; label: string; done: boolean }[];
   hours: WorkingHours;
   stats: { paid: number; completed: number; cancelled: number; revenue: Money; reels: number; reports: number };
@@ -529,6 +576,7 @@ export interface AdminOverview {
   customers: { total: number; new7: number; members: number };
   barbers: { live: number; pending: number; suspended: number; total: number };
   pendingBarbers: AdminBarberRow[];
+  applications: number; // submitted, waiting for the team
   openTickets: number;
   openReports: number;
   ordersToShip: number;

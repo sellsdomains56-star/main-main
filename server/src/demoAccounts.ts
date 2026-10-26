@@ -1,3 +1,4 @@
+import { AGREEMENT_VERSION, SAMPLE_SIGNATURE } from "./agreement.js";
 import { DEMO_ADMIN_EMAIL, hashPassword } from "./auth.js";
 import { db, newId, save } from "./db.js";
 import { mainServices } from "./common.js";
@@ -29,7 +30,7 @@ function rng(seed: number) {
 
 /** Dubai wall-clock time → ISO UTC (Dubai is UTC+4 all year). */
 const dubai = (dayOffset: number, hour: number, minute = 0) => {
-  const d = new Date();
+  const d = new Date(Date.now() + 4 * 3_600_000); // today's date in Dubai, not in UTC (they differ after 8pm UTC)
   const local = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + dayOffset, hour, minute));
   return new Date(local.getTime() - 4 * 3_600_000).toISOString();
 };
@@ -133,6 +134,26 @@ export function seedDemoAccounts() {
     db.barbers.push(barber);
     user(name, `${name.split(" ")[0]!.toLowerCase()}.barber@example.com`, "barber-demo", { role: "barber", barberId: id, city }, 0);
   });
+
+  // Applications: Karim's is waiting for the team, Yusuf is still filling his in, Mateo was approved when he joined.
+  const doc = (file: string, ago: number) => ({ file, contentType: "image/jpeg", uploadedAt: new Date(now - ago).toISOString() });
+  const docs = (ago: number) => ({ id_front: doc("sample-id-front.jpg", ago), id_back: doc("sample-id-back.jpg", ago), licence: doc("sample-licence.jpg", ago) });
+  const signed = (name: string, ago: number) => ({ name, svg: SAMPLE_SIGNATURE, version: AGREEMENT_VERSION, signedAt: new Date(now - ago).toISOString(), ip: "203.0.113.24", userAgent: "Sample phone" });
+  const stamp = (ago: number) => new Date(now - ago).toISOString();
+  db.applications.push(
+    {
+      barberId: "demo-pending-1", status: "submitted", legalName: "Karim Haddad", idNumber: "784-1990-1234567-1", idExpiry: "2028-06-30",
+      licenceNumber: "BL-2026-004512", licenceAuthority: "Dubai Municipality", licenceExpiry: "2027-09-30",
+      docs: docs(3 * 3_600_000), signature: signed("Karim Haddad", 3 * 3_600_000), submittedAt: stamp(3 * 3_600_000), createdAt: stamp(7 * 3_600_000), updatedAt: stamp(3 * 3_600_000),
+    },
+    { barberId: "demo-pending-2", status: "draft", legalName: "Yusuf Rahman", idNumber: "784-1996-7654321-2", idExpiry: "2029-02-28", docs: { id_front: doc("sample-id-front.jpg", 13 * 3_600_000) }, createdAt: stamp(14 * 3_600_000), updatedAt: stamp(13 * 3_600_000) },
+    {
+      barberId: DEMO_LOGINS.barber.barberId, status: "approved", legalName: "Mateo Silva", idNumber: "784-1989-2468013-5", idExpiry: "2028-11-30",
+      licenceNumber: "BL-2025-118734", licenceAuthority: "Dubai Municipality", licenceExpiry: "2027-12-31",
+      docs: docs(120 * 86_400_000), signature: signed("Mateo Silva", 120 * 86_400_000), submittedAt: stamp(120 * 86_400_000),
+      reviewedAt: stamp(119 * 86_400_000), reviewedBy: DEMO_ADMIN_EMAIL, createdAt: stamp(121 * 86_400_000), updatedAt: stamp(119 * 86_400_000),
+    },
+  );
 
   // Mateo's booking rules: free cancellation up to 24 hours, then half; 15% off quiet weekday mornings.
   const mateo = db.barbers.find((b) => b.id === DEMO_LOGINS.barber.barberId);

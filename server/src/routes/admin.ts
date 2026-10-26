@@ -10,6 +10,7 @@ import { notify, waitlistOpened } from "../notify.js";
 import { refund } from "../payments.js";
 import { SHOPS } from "../seed.js";
 import type { Barber, Booking, User } from "../types.js";
+import { applicationOf, applicationStatus, applicationView, needsApplication } from "./applications.js";
 import { profileChecklist } from "./business.js";
 
 const DAY = 86_400_000;
@@ -47,7 +48,7 @@ function barberRow(b: Barber) {
   const shop = b.shopId ? SHOPS.find((s) => s.id === b.shopId) : undefined;
   return {
     id: b.id, name: b.name, photoUrl: b.photoUrl, city: b.city, countryCode: b.countryCode,
-    status: b.status ?? "live", verified: !!b.verified, joinedAt: b.joinedAt ?? null,
+    status: b.status ?? "live", verified: !!b.verified, joinedAt: b.joinedAt ?? null, application: applicationStatus(b),
     rating: b.ratingCount ? Math.round((b.ratingSum / b.ratingCount) * 10) / 10 : null, ratingCount: b.ratingCount,
     bookings: paid.length,
     revenue30: byCurrency(paid.filter((x) => Date.parse(x.startsAt) >= since(30))),
@@ -103,6 +104,7 @@ export function registerAdminRoutes(app: Express) {
       customers: { total: customers.length, new7: customers.filter((u) => u.createdAt && Date.parse(u.createdAt) >= since(7)).length, members: customers.filter((u) => activeMembership(u)).length },
       barbers: { live: count("live"), pending: count("pending"), suspended: count("suspended"), total: db.barbers.length },
       pendingBarbers: db.barbers.filter((b) => b.status === "pending").slice(0, 6).map(barberRow),
+      applications: db.applications.filter((a) => a.status === "submitted").length,
       openTickets: db.tickets.filter((t) => t.status === "open" && !t.reelId).length,
       openReports: db.tickets.filter((t) => t.status === "open" && t.reelId).length,
       ordersToShip: db.orders.filter((o) => o.status === "paid").length,
@@ -131,6 +133,7 @@ export function registerAdminRoutes(app: Express) {
       ...barberRow(barber),
       profile: barberView(barber),
       checklist: profileChecklist(barber),
+      application: applicationView(barber, true),
       hours: { workingDays: barber.workingDays, openHour: barber.openHour, closeHour: barber.closeHour, timeOff: barber.timeOff ?? [] },
       stats: {
         paid: mine.filter((b) => PAID.has(b.status)).length,
@@ -148,6 +151,8 @@ export function registerAdminRoutes(app: Express) {
     const barber = getBarber(String(req.params.id));
     const body = parse(z.object({ status: z.enum(["pending", "live", "suspended"]).optional(), verified: z.boolean().optional() }), req.body);
     const before = barber.status ?? "live";
+    if (body.status === "live" && before === "pending" && needsApplication(barber) && applicationOf(barber.id)?.status !== "approved")
+      throw new HttpError(400, "Check and approve their application first: ID, licence and signed agreement.");
     if (body.status) barber.status = body.status;
     if (body.verified !== undefined) barber.verified = body.verified;
     if (body.status && body.status !== before) logActivity(req, `barber.${body.status}`, barber.name);

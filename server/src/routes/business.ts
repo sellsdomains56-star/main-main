@@ -8,6 +8,7 @@ import { db, newId, save } from "../db.js";
 import { levelOf } from "../pro.js";
 import { zonedTime } from "../slots.js";
 import type { Barber, Booking } from "../types.js";
+import { applicationOf, applicationStatus, missingItems } from "./applications.js";
 
 const PAID = new Set<Booking["status"]>(["confirmed", "on_the_way", "completed"]);
 
@@ -88,6 +89,7 @@ export function registerBusinessRoutes(app: Express) {
       barber: barberView(barber),
       status: barber.status ?? "live",
       verified: !!barber.verified,
+      application: { status: applicationStatus(barber), missing: missingItems(applicationOf(barber.id), barber).length, rejectionReason: applicationOf(barber.id)?.rejectionReason ?? null },
       currency: findCountry(barber.countryCode)!.currency,
       feePercent: platformFeePercent(),
       today: today.map(bookingView),

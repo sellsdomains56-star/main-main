@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useCallback, useState } from "react";
 import { View } from "react-native";
-import { AdminPage, StatusTag, sumText, Table, Toolbar } from "../../../components/admin";
+import { AdminPage, ApplicationTag, StatusTag, sumText, Table, Toolbar } from "../../../components/admin";
 import { colors } from "../../../components/theme";
 import { Avatar, ErrorBox, Loading, Rating, Row, T } from "../../../components/ui";
 import { api } from "../../../lib/api";
@@ -24,7 +24,7 @@ export default function Barbers() {
   useFocusEffect(load);
 
   return (
-    <AdminPage title="Barbers" subtitle="Approve new barbers, verify their ID and licence, pause anyone who breaks the rules.">
+    <AdminPage title="Barbers" subtitle="Everyone on the platform. New freelancers are approved from Applications; pause anyone who breaks the rules.">
       <Toolbar
         q={q}
         onQ={setQ}
@@ -59,6 +59,7 @@ export default function Barbers() {
             },
             { label: "City", render: (b) => <T variant="caption">{b.city}</T> },
             { label: "Status", render: (b) => <StatusTag status={b.status} /> },
+            { label: "Application", render: (b) => <ApplicationTag status={b.application} /> },
             { label: "Rating", render: (b) => <Rating value={b.rating} count={b.ratingCount} /> },
             { label: "Bookings", align: "right", render: (b) => <T variant="caption">{b.bookings}</T> },
             { label: "Revenue · 30d", flex: 1.2, align: "right", render: (b) => <T variant="caption">{sumText(b.revenue30)}</T> },

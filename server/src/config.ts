@@ -1,3 +1,4 @@
+import { randomBytes } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 // Minimal .env loader so the server runs with `npm start` and no extra deps.
@@ -51,4 +52,6 @@ export const config = {
   vatPercent: Number(process.env.VAT_PERCENT ?? 5), // UAE standard rate, applied to AED prices (which include VAT)
   // Postgres: when set, all data is kept in the database instead of server/data/db.json.
   databaseUrl: process.env.DATABASE_URL || undefined,
+  // Signs the short-lived links to barbers' ID documents. Without it a new key is made at each start (old links stop working).
+  fileUrlSecret: process.env.FILE_URL_SECRET || randomBytes(32).toString("hex"),
 };
