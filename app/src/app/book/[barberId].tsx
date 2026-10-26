@@ -1,6 +1,6 @@
 import { Stack, router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { DayPicker } from "../../components/DayPicker";
 import { SlideToConfirm } from "../../components/SlideToConfirm";
 import { colors } from "../../components/theme";
@@ -8,6 +8,7 @@ import { Avatar, Button, ErrorBox, Field, IconLine, Loading, OptionRow, Pill, Ro
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { money, time, upcomingDays } from "../../lib/format";
+import { isExtra, minutes, sections, tipChoices } from "../../lib/menu";
 import { CONSULTATION_ID, type Barber, type LocationType, type Membership, type VenueKind } from "../../lib/types";
 
 /** Booking a cut (shop or home), or with `?mode=consult` a free video / phone consultation. */
@@ -37,6 +38,10 @@ export default function Book() {
   // The Club and gift credit, to show what's included before paying.
   const [club, setClub] = useState<{ membership: Membership | null; credit: Record<string, number> } | null>(null);
   const [waitlisted, setWaitlisted] = useState<string | null>(null);
+  // Extras on top of the service (hot towel, massage…) and an optional tip.
+  const [extras, setExtras] = useState<string[]>([]);
+  const [section, setSection] = useState<string>("popular");
+  const [tipPercent, setTipPercent] = useState<number>(0);
   useEffect(() => {
     if (user) api.clubMe().then(setClub, () => setClub(null));
   }, [user]);
@@ -65,7 +70,7 @@ export default function Book() {
     if (!barber || !date || !serviceId) return;
     setSlots(null);
     setSlot(null);
-    api.availability(barber.id, date, serviceId).then((r) => {
+    api.availability(barber.id, date, serviceId, extras).then((r) => {
       // Until the customer picks a day themselves, skip ahead to the first day with free times.
       const i = days.findIndex((d) => d.date === date);
       if (!r.slots.length && !userPickedDate && i >= 0 && i < days.length - 1) setDate(days[i + 1].date);
@@ -74,15 +79,26 @@ export default function Book() {
         if (params.startsAt && r.slots.includes(params.startsAt)) setSlot(params.startsAt);
       }
     }, (e: Error) => setError(e.message));
-  }, [barber, date, serviceId, days, userPickedDate, params.startsAt]);
+  }, [barber, date, serviceId, extras, days, userPickedDate, params.startsAt]);
 
   const service = barber?.services.find((s) => s.id === serviceId);
+  const added = (barber?.services ?? []).filter((s) => extras.includes(s.id));
+  const extrasPrice = added.reduce((t, s) => t + s.price, 0);
   const member = club?.membership?.active ? club.membership : null;
   const clubCovers = !consult && !!member && (member.cutsLeft === null || member.cutsLeft > 0);
   const clubHomeFree = !consult && !!member?.freeHomeVisits && locationType === "home";
-  const before = consult ? 0 : (clubCovers ? 0 : service?.price ?? 0) + (locationType === "home" && !clubHomeFree ? barber?.homeVisitFee ?? 0 : 0);
+  const before = consult ? 0 : (clubCovers ? 0 : service?.price ?? 0) + extrasPrice + (locationType === "home" && !clubHomeFree ? barber?.homeVisitFee ?? 0 : 0);
   const credit = barber ? Math.min(club?.credit?.[barber.currency] ?? 0, before) : 0;
-  const total = before - credit;
+  const subtotal = before - credit;
+  // Tips are worked out on the service and extras (not the travel fee); none on a booking with nothing to pay.
+  const tipBase = (service?.price ?? 0) + extrasPrice;
+  const tip = consult || subtotal === 0 ? 0 : tipChoices(tipBase).find((c) => c.percent === tipPercent)?.amount ?? 0;
+  const total = subtotal + tip;
+  const menu = barber ? sections(barber.services) : [];
+  const mains = menu.filter((m) => m.id !== "extras");
+  const extraItems = menu.find((m) => m.id === "extras")?.items ?? [];
+  const shown = section === "popular" ? (barber?.services ?? []).filter((s) => !isExtra(s)).slice(0, 4) : mains.find((m) => m.id === section)?.items ?? [];
+  const totalMinutes = (service?.durationMin ?? 0) + added.reduce((m, s) => m + s.durationMin, 0);
   const whereDone = (consult ? locationType === "video" || phone.replace(/\D/g, "").length >= 6 : locationType === "shop" || address.trim().length > 4) && (!forGuest || guestName.trim().length > 0);
   const ready = !!slot && (consult || !!service) && whereDone;
 
@@ -95,17 +111,18 @@ export default function Book() {
         barberId: barber.id, serviceId, startsAt: slot, locationType, address, phone, notes,
         venue: locationType === "home" ? { kind: venue, details: venueDetails } : undefined,
         guest: forGuest && guestName.trim() ? { name: guestName.trim(), phone: guestPhone.trim() } : undefined,
+        extras, tip,
       });
       // Paid bookings go to Review & pay (Apple Pay / Google Pay); free consultations are confirmed already.
       if (booking.status === "pending_payment") router.replace({ pathname: "/pay/[bookingId]", params: { bookingId: booking.id } });
       else router.replace({ pathname: "/bookings", params: { booked: booking.id } });
     } catch (e) {
       setError((e as Error).message);
-      if (date) api.availability(barber.id, date, serviceId).then((r) => setSlots(r.slots), () => {});
+      if (date) api.availability(barber.id, date, serviceId, extras).then((r) => setSlots(r.slots), () => {});
     } finally {
       setSubmitting(false);
     }
-  }, [barber, slot, serviceId, locationType, address, phone, notes, date, venue, venueDetails, forGuest, guestName, guestPhone]);
+  }, [barber, slot, serviceId, locationType, address, phone, notes, date, venue, venueDetails, forGuest, guestName, guestPhone, extras, tip]);
 
   if (!barber) return <Screen>{error ? <ErrorBox message={error} /> : <Loading />}</Screen>;
   if (consult && !barber.offersConsultations) return <Screen><ErrorBox message={`${barber.name} doesn't offer consultations right now.`} /></Screen>;
@@ -118,6 +135,7 @@ export default function Book() {
             <T variant="eyebrow" color={colors.muted}>Total</T>
             <T variant="title">{consult ? "Free" : total === 0 && clubCovers ? "Included" : money(total, barber.currency)}</T>
             {!consult && (clubCovers || credit > 0) && <T variant="small" muted>{clubCovers ? `Cut included · The Club` : `${money(credit, barber.currency)} gift credit`}</T>}
+            {!consult && tip > 0 && <T variant="small" muted>incl. {money(tip, barber.currency)} tip</T>}
           </View>
           <View style={{ flex: 1 }}>
             {user ? (
@@ -162,16 +180,40 @@ export default function Book() {
         ) : (
           <>
             <StepCard step={1} title="Choose a service" state={service ? "done" : "active"}>
-              {barber.services.map((s) => (
+              {/* Sections of the menu, like a barbershop's price list */}
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingBottom: 12 }}>
+                {[{ id: "popular", label: "Popular" }, ...mains].map((m) => <Pill key={m.id} label={m.label} selected={section === m.id} onPress={() => setSection(m.id)} />)}
+              </ScrollView>
+              {shown.map((s) => (
                 <OptionRow
                   key={s.id}
                   label={s.name}
-                  sublabel={`${s.durationMin} min`}
+                  sublabel={`${minutes(s.durationMin)}${s.description ? ` · ${s.description}` : ""}`}
                   selected={s.id === serviceId}
                   onPress={() => setServiceId(s.id)}
                   right={<T variant="strong">{money(s.price, barber.currency)}</T>}
                 />
               ))}
+              {service && !shown.some((s) => s.id === service.id) && (
+                <IconLine icon="checkmark-circle-outline">{service.name} · {money(service.price, barber.currency)}</IconLine>
+              )}
+              {extraItems.length > 0 && service && (
+                <View style={{ marginTop: 14 }}>
+                  <T variant="eyebrow" muted style={{ marginBottom: 8 }}>Add extras</T>
+                  {extraItems.map((s) => (
+                    <OptionRow
+                      key={s.id}
+                      multi
+                      label={s.name}
+                      sublabel={`+${minutes(s.durationMin)}${s.description ? ` · ${s.description}` : ""}`}
+                      selected={extras.includes(s.id)}
+                      onPress={() => setExtras((x) => (x.includes(s.id) ? x.filter((y) => y !== s.id) : [...x, s.id]))}
+                      right={<T variant="strong">+{money(s.price, barber.currency)}</T>}
+                    />
+                  ))}
+                  {added.length > 0 && <T variant="caption" muted style={{ marginTop: 4 }}>{minutes(totalMinutes)} in the chair</T>}
+                </View>
+              )}
             </StepCard>
 
             <StepConnector lit={!!service} side="right" />
@@ -252,6 +294,16 @@ export default function Book() {
                 </Row>
               )}
               {!!user?.preferences && <View style={{ marginTop: 10 }}><IconLine icon="person-outline" muted>Your barber sees “My chair”: {[user.preferences.conversation === "quiet" ? "quiet please" : user.preferences.conversation === "chatty" ? "happy to chat" : null, user.preferences.drink].filter(Boolean).join(", ") || "your preferences"}.</IconLine></View>}
+            </View>
+          )}
+          {!consult && subtotal > 0 && (
+            <View style={{ marginBottom: 14 }}>
+              <T variant="strong">Tip {barber.name.split(" ")[0]}</T>
+              <T variant="caption" muted style={{ marginBottom: 8 }}>Optional · 100% goes to your barber</T>
+              <Wrap gap={8}>
+                <Pill label="No tip" selected={tipPercent === 0} onPress={() => setTipPercent(0)} />
+                {tipChoices(tipBase).map((c) => <Pill key={c.percent} label={`${c.percent}% · ${money(c.amount, barber.currency)}`} selected={tipPercent === c.percent} onPress={() => setTipPercent(c.percent)} />)}
+              </Wrap>
             </View>
           )}
           <Field

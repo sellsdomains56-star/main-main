@@ -3,11 +3,12 @@ import { router } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { Pressable, View } from "react-native";
 import { colors, radius } from "../../components/theme";
-import { Button, Card, ErrorBox, Field, IconButton, IconLine, Loading, OptionRow, Row, Screen, Section, T } from "../../components/ui";
+import { Button, Card, ErrorBox, Field, IconButton, IconLine, Loading, OptionRow, Pill, Row, Screen, Section, T, Wrap } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { money } from "../../lib/format";
-import type { Barber } from "../../lib/types";
+import { CATEGORIES, categoryOf } from "../../lib/menu";
+import type { Barber, ServiceCategory } from "../../lib/types";
 
 interface Draft {
   key: string;
@@ -15,9 +16,11 @@ interface Draft {
   name: string;
   durationMin: number;
   price: string; // what the barber types, in whole units ("120" = AED 120)
+  category: ServiceCategory;
+  description: string;
 }
 
-const toDraft = (b: Barber): Draft[] => b.services.map((s) => ({ key: s.id, id: s.id, name: s.name, durationMin: s.durationMin, price: String(s.price / 100) }));
+const toDraft = (b: Barber): Draft[] => b.services.map((s) => ({ key: s.id, id: s.id, name: s.name, durationMin: s.durationMin, price: String(s.price / 100), category: categoryOf(s), description: s.description ?? "" }));
 const toMinor = (v: string) => Math.round((parseFloat(v.replace(",", ".")) || 0) * 100);
 
 /** Barbers set what they offer: services, how long each takes, prices, and home visits. */
@@ -50,7 +53,7 @@ export default function Services() {
   };
   const add = () => {
     setSaved(false);
-    setRows((r) => [...r, { key: `new-${Date.now()}`, name: "", durationMin: 30, price: "" }]);
+    setRows((r) => [...r, { key: `new-${Date.now()}`, name: "", durationMin: 30, price: "", category: "hair", description: "" }]);
   };
   const remove = (key: string) => {
     setSaved(false);
@@ -63,7 +66,7 @@ export default function Services() {
     if (rows.some((r) => toMinor(r.price) <= 0)) return setError("Every service needs a price.");
     setBusy(true);
     try {
-      await api.saveServices(rows.map((r) => ({ id: r.id, name: r.name.trim(), durationMin: r.durationMin, price: toMinor(r.price) })));
+      await api.saveServices(rows.map((r) => ({ id: r.id, name: r.name.trim(), durationMin: r.durationMin, price: toMinor(r.price), category: r.category, description: r.description.trim() })));
       const next = await api.updateMyBarber({ offersHomeVisits: home, homeVisitFee: home ? toMinor(homeFee) : 0 });
       setBarber(next);
       setRows(toDraft(next));
@@ -96,6 +99,9 @@ export default function Services() {
               {rows.length > 1 && <IconButton icon="trash-outline" label={`Remove ${r.name || "service"}`} tone="plain" onPress={() => remove(r.key)} />}
             </Row>
             <Field label="Name" value={r.name} onChangeText={(name) => edit(r.key, { name })} placeholder="e.g. Skin fade" maxLength={60} />
+            <T variant="caption" muted style={{ marginBottom: 6 }}>Section</T>
+            <Wrap gap={6}>{CATEGORIES.map((c) => <Pill key={c.id} label={c.id === "extras" ? "Extra (add-on)" : c.label} selected={r.category === c.id} onPress={() => edit(r.key, { category: c.id })} />)}</Wrap>
+            <Field label="Description (optional)" value={r.description} onChangeText={(description) => edit(r.key, { description })} placeholder="e.g. Faded to the skin with a sharp line-up" maxLength={200} style={{ marginTop: 12 }} />
             <Row gap={12} style={{ alignItems: "flex-start" }}>
               <View style={{ flex: 1 }}>
                 <T variant="caption" muted style={{ marginBottom: 6 }}>Takes</T>
@@ -105,7 +111,7 @@ export default function Services() {
             </Row>
           </Card>
         ))}
-        {rows.length < 25 && <Button title="Add a service" icon="add" variant="secondary" size="md" onPress={add} style={{ alignSelf: "flex-start" }} />}
+        {rows.length < 40 && <Button title="Add a service" icon="add" variant="secondary" size="md" onPress={add} style={{ alignSelf: "flex-start" }} />}
       </Section>
 
       <Section title="Home visits">

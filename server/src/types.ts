@@ -14,11 +14,16 @@ export interface City {
   lng: number;
 }
 
+/** Menu sections; "extras" (hot towel, massage…) can be added to any booking. */
+export type ServiceCategory = "hair" | "beard" | "face" | "colour" | "kids" | "packages" | "extras";
+
 export interface Service {
   id: string;
   name: string;
   durationMin: number;
   price: number; // minor units (cents) in the barber's currency
+  category?: ServiceCategory; // missing on older services: placed by name (see services.ts)
+  description?: string;
 }
 
 export interface Barber {
@@ -182,7 +187,8 @@ export interface Booking {
   remindedHour?: boolean; // "in an hour" reminder sent
   coveredBy?: "membership"; // the service was included in the customer's Club plan
   creditUsed?: number; // gift-card balance applied, minor units
-  tip?: number; // paid after the cut, minor units
+  tip?: number; // minor units, all for the barber: chosen when booking (charged with it) or paid after the cut
+  extras?: string[]; // ids of extras added to the service (hot towel, massage…): in the time and the amount
   cutNotes?: string; // the barber's notes for next time: guards, products, length
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; // where a home visit happens
   guest?: { name: string; phone: string }; // booked for someone else; for shop bookings, the client

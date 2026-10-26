@@ -1,3 +1,4 @@
+import { fullMenu } from "./services.js";
 import type { Barber, Country, Shop } from "./types.js";
 
 export const COUNTRIES: Country[] = [
@@ -520,8 +521,11 @@ const SHOP_TEAMS: Record<string, string[]> = {
 export const BARBERS: Barber[] = BASE_BARBERS.map((b) => {
   const p = PROFILE[b.id] ?? { years: 5, languages: ["English"], gallery: [], transformations: [] };
   const shop = SHOPS.find((s) => SHOP_TEAMS[s.id]?.includes(b.id));
+  const price = (suffix: string) => b.services.find((s) => s.id.endsWith(`-${suffix}`))!.price;
   return {
     ...b,
+    // The full menu (cuts, beard, face, colour, kids, packages, extras) from the four core prices.
+    services: fullMenu(b.services[0]!.id.replace(/-cut$/, ""), b.specialties, { cut: price("cut"), beard: price("beard"), combo: price("combo"), fade: price("fade") }),
     ...(shop ? { shopId: shop.id, shopAddress: shop.address, lat: shop.lat, lng: shop.lng } : {}), // at the shop's chair
     yearsExperience: p.years,
     languages: p.languages,

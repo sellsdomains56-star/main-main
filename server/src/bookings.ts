@@ -6,6 +6,7 @@ import { applyPerks, priceBooking } from "./club.js";
 import { bookingConfirmed } from "./notify.js";
 import { createPaymentIntent } from "./payments.js";
 import { SHOPS } from "./seed.js";
+import { extrasFor } from "./services.js";
 import { availableSlots } from "./slots.js";
 import type { Booking } from "./types.js";
 
@@ -22,6 +23,7 @@ export function bookingView(b: Booking) {
     bookedBy: b.guest ? customer?.name ?? null : null,
     customerPreferences: customer?.preferences ?? null, // "My chair": shown to the barber
     service: findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined),
+    extras: (b.extras ?? []).map((id) => barber.services.find((s) => s.id === id)).filter((s) => !!s).map((s) => ({ id: s.id, name: s.name, durationMin: s.durationMin, price: s.price })),
     // Video consultations: the barber's Google Meet link, once the booking is confirmed.
     videoLink: b.locationType === "video" && ["confirmed", "on_the_way"].includes(b.status) ? barber.videoLink ?? null : null,
   };
@@ -39,6 +41,10 @@ export const NewBooking = z.object({
   venue: z.object({ kind: z.enum(["home", "hotel", "yacht", "office"]), details: z.string().trim().max(300).default("") }).optional(),
   // Booking for someone else (a guest, family member or client).
   guest: z.object({ name: z.string().trim().min(1).max(60), phone: z.string().trim().max(30).default("") }).optional(),
+  // Extras on top of the service (hot towel, massage…): they add time and price.
+  extras: z.array(z.string()).max(8).default([]),
+  // A tip chosen while booking, charged with it; all of it goes to the barber (no JB fee).
+  tip: z.number().int().min(0).max(100_000_000).default(0),
 });
 
 /** Checks the slot is still free, stores the booking and starts the payment (free consultations confirm straight away). */
@@ -56,9 +62,12 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
   if (body.locationType === "home" && !body.address.trim()) throw new HttpError(400, "Please enter the address the barber should come to.");
   if (body.locationType === "phone" && body.phone.replace(/[^\d]/g, "").length < 6) throw new HttpError(400, "Please enter the phone number your barber should call.");
 
+  const extras = consultation ? [] : extrasFor(barber, body.extras);
+  if (!extras) throw new HttpError(400, "One of the extras isn't on this barber's menu.");
+  const minutes = service.durationMin + extras.reduce((m, s) => m + s.durationMin, 0);
   const tz = cityOf(barber).timeZone;
   const date = new Intl.DateTimeFormat("en-CA", { timeZone: tz }).format(new Date(body.startsAt));
-  const free = availableSlots(barber, tz, date, service.durationMin, busy());
+  const free = availableSlots(barber, tz, date, minutes, busy());
   if (!free.includes(new Date(body.startsAt).toISOString())) throw new HttpError(409, "That time was just taken — please pick another slot.");
 
   const start = new Date(body.startsAt);
@@ -68,7 +77,7 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
     barberId: barber.id,
     serviceId: service.id,
     startsAt: start.toISOString(),
-    endsAt: new Date(start.getTime() + service.durationMin * 60_000).toISOString(),
+    endsAt: new Date(start.getTime() + minutes * 60_000).toISOString(),
     locationType: body.locationType,
     address: body.locationType === "home" ? body.address.trim() : body.locationType === "shop" ? barber.shopAddress : body.locationType === "video" ? "Video call · Google Meet" : "Phone call",
     phone: body.locationType === "phone" ? body.phone : undefined,
@@ -77,14 +86,17 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
     currency: findCountry(barber.countryCode)!.currency,
     venue: body.locationType === "home" ? body.venue : undefined,
     guest: body.guest,
+    ...(extras.length ? { extras: extras.map((s) => s.id) } : {}),
     status: "pending_payment",
     reviewed: false,
     createdAt: new Date().toISOString(),
   };
   const customer = db.users.find((u) => u.id === customerId);
-  const price = priceBooking(customer, barber, service, body.locationType, booking.currency);
+  const price = priceBooking(customer, barber, service, body.locationType, booking.currency, extras.reduce((t, s) => t + s.price, 0));
   booking.amount = price.amount;
   if (customer) applyPerks(customer, booking, price.covered, price.creditUsed);
+  // A tip rides along with a payment; on a free booking it can be left after the cut instead.
+  if (body.tip > 0 && booking.amount > 0) booking.tip = body.tip;
   // Nothing left to pay (consultations, Club cuts, gift credit): confirmed straight away.
   if (booking.amount === 0) {
     booking.status = "confirmed";
@@ -93,11 +105,12 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
     save();
     return { booking, clientSecret: null };
   }
-  const intent = await createPaymentIntent(`booking-${booking.id}`, booking.amount, booking.currency, {
+  const intent = await createPaymentIntent(`booking-${booking.id}`, booking.amount + (booking.tip ?? 0), booking.currency, {
     kind: "booking",
     bookingId: booking.id,
     barberId: booking.barberId,
-    platformFee: String(platformFee(booking.amount)),
+    platformFee: String(platformFee(booking.amount)), // never on the tip
+    tip: String(booking.tip ?? 0),
   });
   booking.paymentIntentId = intent?.id;
   db.bookings.push(booking);

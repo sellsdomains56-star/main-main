@@ -57,7 +57,7 @@ function calendarBooking(b: Booking) {
   return {
     id: b.id, barberId: b.barberId, startsAt: b.startsAt, endsAt: b.endsAt, status: b.status, noShow: !!b.noShow,
     source: b.source ?? "app", client: v.customerName, phone: b.guest?.phone || b.phone || "",
-    service: v.service?.name ?? "Appointment", durationMin: Math.round((Date.parse(b.endsAt) - Date.parse(b.startsAt)) / 60_000),
+    service: `${v.service?.name ?? "Appointment"}${v.extras.length ? ` + ${v.extras.map((x) => x.name.toLowerCase()).join(", ")}` : ""}`, durationMin: Math.round((Date.parse(b.endsAt) - Date.parse(b.startsAt)) / 60_000),
     amount: b.amount, currency: b.currency, paid: fromApp(b) ? "app" : "at the shop", locationType: b.locationType, address: b.address, notes: b.notes,
   };
 }
@@ -75,7 +75,10 @@ function memberView(b: Barber, date: string) {
 /** Same name → same service: a menu change keeps ids (and so the bookings that use them). */
 const nameKey = (s: string) => s.trim().toLowerCase();
 
-const ServiceInput = z.object({ name: z.string().trim().min(2, "Give every service a name").max(60), durationMin: z.number().int().min(10).max(480), price: z.number().int().min(0).max(100_000_000) });
+const ServiceInput = z.object({
+  name: z.string().trim().min(2, "Give every service a name").max(60), durationMin: z.number().int().min(10).max(480), price: z.number().int().min(0).max(100_000_000),
+  category: z.enum(["hair", "beard", "face", "colour", "kids", "packages", "extras"]).optional(), description: z.string().trim().max(200).optional(),
+});
 
 /**
  * The shop panel: a barbershop's owner or manager runs the shop's day — the calendar of every barber,
@@ -200,7 +203,8 @@ export function registerManageRoutes(app: Express) {
     const target = to.id === from.id ? service : to.services.find((s) => service && nameKey(s.name) === nameKey(service.name));
     if (!target) throw new HttpError(400, `${to.name.split(" ")[0]} doesn't offer ${service?.name ?? "this service"}. Add it in Services first.`);
     const start = Date.parse(body.startsAt);
-    const end = start + target.durationMin * 60_000;
+    const extraMin = Math.max(0, (Date.parse(b.endsAt) - Date.parse(b.startsAt)) / 60_000 - (service?.durationMin ?? 0)); // extras keep their time
+    const end = start + (target.durationMin + extraMin) * 60_000;
     if (!isFree(to.id, start, end, b.id)) throw new HttpError(409, `${to.name.split(" ")[0]} is busy then.`);
     Object.assign(b, { barberId: to.id, serviceId: target.id, startsAt: new Date(start).toISOString(), endsAt: new Date(end).toISOString(), remindedDay: !fromApp(b), remindedHour: !fromApp(b) });
     if (fromApp(b)) {
@@ -262,7 +266,7 @@ export function registerManageRoutes(app: Express) {
   // Services, times and prices for the whole team, or for chosen barbers.
   app.put("/manage/services", requireAuth, (req, res) => {
     const shop = myShop(req);
-    const body = parse(z.object({ services: z.array(ServiceInput).min(1, "Keep at least one service").max(25), barberIds: z.array(z.string()).optional() }), req.body);
+    const body = parse(z.object({ services: z.array(ServiceInput).min(1, "Keep at least one service").max(40), barberIds: z.array(z.string()).optional() }), req.body);
     const names = body.services.map((s) => nameKey(s.name));
     if (new Set(names).size !== names.length) throw new HttpError(400, "Two services have the same name.");
     const targets = body.barberIds?.length ? body.barberIds.map((id) => teamBarber(shop, id)) : teamOf(shop);
@@ -274,7 +278,10 @@ export function registerManageRoutes(app: Express) {
       }
     }
     for (const b of targets) {
-      b.services = body.services.map((s) => ({ id: b.services.find((o) => nameKey(o.name) === nameKey(s.name))?.id ?? `${b.id}-${newId().slice(0, 8)}`, name: s.name, durationMin: s.durationMin, price: s.price }));
+      b.services = body.services.map((s) => {
+        const old = b.services.find((o) => nameKey(o.name) === nameKey(s.name));
+        return { id: old?.id ?? `${b.id}-${newId().slice(0, 8)}`, name: s.name, durationMin: s.durationMin, price: s.price, category: s.category ?? old?.category, description: s.description ?? old?.description };
+      });
     }
     save();
     res.json(teamOf(shop).map((b) => memberView(b, today(shop))));

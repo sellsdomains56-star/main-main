@@ -56,6 +56,8 @@ const ServiceInput = z.object({
   name: z.string().trim().min(2, "Give every service a name").max(60),
   durationMin: z.number().int().min(10).max(480),
   price: z.number().int().min(0).max(100_000_000), // minor units
+  category: z.enum(["hair", "beard", "face", "colour", "kids", "packages", "extras"]).optional(),
+  description: z.string().trim().max(200).optional(),
 });
 
 /** The barber's business side: dashboard numbers, services and prices. */
@@ -100,7 +102,7 @@ export function registerBusinessRoutes(app: Express) {
   // Replace the service list. Services with upcoming bookings can't be removed until those are done.
   app.put("/barbers/me/services", requireAuth, (req, res) => {
     const barber = myBarber(req);
-    const { services } = parse(z.object({ services: z.array(ServiceInput).min(1, "Keep at least one service").max(25) }), req.body);
+    const { services } = parse(z.object({ services: z.array(ServiceInput).min(1, "Keep at least one service").max(40) }), req.body);
     const keep = new Set(services.map((s) => s.id).filter(Boolean));
     const now = Date.now();
     for (const old of barber.services) {
@@ -108,7 +110,10 @@ export function registerBusinessRoutes(app: Express) {
       const booked = db.bookings.some((b) => b.barberId === barber.id && b.serviceId === old.id && PAID.has(b.status) && b.status !== "completed" && Date.parse(b.endsAt) > now);
       if (booked) throw new HttpError(409, `You have upcoming bookings for "${old.name}" — keep it until they're done.`);
     }
-    barber.services = services.map((s) => ({ id: s.id && barber.services.some((o) => o.id === s.id) ? s.id : `${barber.id}-${newId().slice(0, 8)}`, name: s.name, durationMin: s.durationMin, price: s.price }));
+    barber.services = services.map((s) => {
+      const old = s.id ? barber.services.find((o) => o.id === s.id) : undefined;
+      return { id: old ? old.id : `${barber.id}-${newId().slice(0, 8)}`, name: s.name, durationMin: s.durationMin, price: s.price, category: s.category ?? old?.category, description: s.description ?? old?.description };
+    });
     save();
     res.json(barberView(barber));
   });

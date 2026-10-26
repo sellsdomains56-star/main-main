@@ -1,3 +1,4 @@
+import { isExtra } from "./services.js";
 import { busy } from "./busy.js";
 import { barberView, findCountry, HttpError } from "./common.js";
 import { db } from "./db.js";
@@ -26,6 +27,7 @@ export function shopMenu(shop: Shop) {
   const menu = new Map<string, { key: string; name: string; durationMin: number; fromPrice: number; barbers: number }>();
   for (const b of shopTeam(shop)) {
     for (const s of b.services) {
+      if (isExtra(s)) continue; // extras are added to a service, not booked alone
       const key = s.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
       const item = menu.get(key);
       if (!item) menu.set(key, { key, name: s.name, durationMin: s.durationMin, fromPrice: s.price, barbers: 1 });

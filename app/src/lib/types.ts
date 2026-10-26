@@ -1,8 +1,13 @@
+/** Menu sections; "extras" (hot towel, massage…) are added to a service. */
+export type ServiceCategory = "hair" | "beard" | "face" | "colour" | "kids" | "packages" | "extras";
+
 export interface Service {
   id: string;
   name: string;
   durationMin: number;
   price: number;
+  category?: ServiceCategory;
+  description?: string;
 }
 
 export interface Barber {
@@ -183,6 +188,7 @@ export interface Booking {
   barber: { id: string; name: string; photoUrl: string; city: string; timeZone: string };
   shop?: { id: string; name: string } | null; // at a barbershop's chair
   service?: Service;
+  extras?: Pick<Service, "id" | "name" | "durationMin" | "price">[];
   coveredBy?: "membership"; // included in the Club plan
   creditUsed?: number; // gift credit applied
   tip?: number;

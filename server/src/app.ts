@@ -27,6 +27,7 @@ import { registerShopRoutes } from "./routes/shops.js";
 import { registerSupportRoutes } from "./routes/support.js";
 import { registerTryOnRoutes } from "./routes/tryon.js";
 import { bookingView, NewBooking, placeBooking } from "./bookings.js";
+import { extrasFor } from "./services.js";
 import { barberView, cityOf, CONSULTATION, findCountry, findService, fromApp, getBarber, HttpError, isLive, parse, reviewNewBarbers } from "./common.js";
 import { availableSlots } from "./slots.js";
 import { upsertSocialUser, verifyIdentityToken } from "./social.js";
@@ -312,10 +313,13 @@ export function createApp() {
   app.get("/barbers/:id/availability", (req, res) => {
     const barber = getBarber(req.params.id);
     if (!isLive(barber)) throw new HttpError(404, "Barber not found.");
-    const q = parse(z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), serviceId: z.string() }), req.query);
+    const q = parse(z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), serviceId: z.string(), extras: z.string().optional() }), req.query);
     const service = findService(barber, q.serviceId);
     if (!service) throw new HttpError(404, "Service not found.");
-    res.json({ timeZone: cityOf(barber).timeZone, slots: availableSlots(barber, cityOf(barber).timeZone, q.date, service.durationMin, busy()) });
+    const extras = extrasFor(barber, q.extras ? q.extras.split(",").filter(Boolean) : []);
+    if (!extras) throw new HttpError(400, "One of the extras isn't on this barber's menu.");
+    const minutes = service.durationMin + extras.reduce((m, s) => m + s.durationMin, 0);
+    res.json({ timeZone: cityOf(barber).timeZone, slots: availableSlots(barber, cityOf(barber).timeZone, q.date, minutes, busy()) });
   });
 
   // ---------- Bookings & payments ----------

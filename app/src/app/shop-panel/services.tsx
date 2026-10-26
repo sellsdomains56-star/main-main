@@ -7,9 +7,10 @@ import { MinutesStepper } from "../../components/shopPanel";
 import { colors } from "../../components/theme";
 import { Button, Card, ErrorBox, Field, IconButton, IconLine, Loading, Pill, Row, T, Wrap } from "../../components/ui";
 import { api } from "../../lib/api";
-import type { ShopPanel } from "../../lib/types";
+import { CATEGORIES, categoryOf } from "../../lib/menu";
+import type { ServiceCategory, ShopPanel } from "../../lib/types";
 
-interface Draft { key: string; name: string; durationMin: number; price: string }
+interface Draft { key: string; name: string; durationMin: number; price: string; category: ServiceCategory; description: string }
 
 /** The shop's menu, from what the team offers now: each service once, with the most common time and price. */
 function menuOf(panel: ShopPanel): Draft[] {
@@ -17,7 +18,7 @@ function menuOf(panel: ShopPanel): Draft[] {
   for (const b of panel.team) {
     for (const s of b.services) {
       const k = s.name.trim().toLowerCase();
-      if (!seen.has(k)) seen.set(k, { key: s.id, name: s.name, durationMin: s.durationMin, price: String(s.price / 100) });
+      if (!seen.has(k)) seen.set(k, { key: s.id, name: s.name, durationMin: s.durationMin, price: String(s.price / 100), category: categoryOf(s), description: s.description ?? "" });
     }
   }
   return [...seen.values()];
@@ -51,7 +52,7 @@ export default function Services() {
     setSaved(false);
     const team = panel.team.filter((b) => b.id === id)[0];
     setWho((w) => (w.includes(id) ? w.filter((x) => x !== id) : [...w, id]));
-    if (team && who.length === 0) setRows(team.services.map((s) => ({ key: s.id, name: s.name, durationMin: s.durationMin, price: String(s.price / 100) })));
+    if (team && who.length === 0) setRows(team.services.map((s) => ({ key: s.id, name: s.name, durationMin: s.durationMin, price: String(s.price / 100), category: categoryOf(s), description: s.description ?? "" })));
   };
 
   const save = async () => {
@@ -59,7 +60,7 @@ export default function Services() {
     if (rows.some((r) => r.name.trim().length < 2)) return setError("Give every service a name.");
     setBusy(true);
     try {
-      await api.manage.saveServices(rows.map((r) => ({ name: r.name.trim(), durationMin: r.durationMin, price: toMinor(r.price) })), who.length ? who : undefined);
+      await api.manage.saveServices(rows.map((r) => ({ name: r.name.trim(), durationMin: r.durationMin, price: toMinor(r.price), category: r.category, description: r.description.trim() })), who.length ? who : undefined);
       setSaved(true);
       api.manage.panel().then(setPanel, () => {});
     } catch (e) {
@@ -97,10 +98,17 @@ export default function Services() {
               <Field label={`Price (${cur})`} value={r.price} onChangeText={(price) => edit(r.key, { price: price.replace(/[^\d.,]/g, "") })} keyboardType="decimal-pad" style={{ flex: 1, marginBottom: 0 }} />
               {rows.length > 1 && <IconButton icon="trash-outline" label={`Remove ${r.name}`} tone="plain" onPress={() => { setSaved(false); setRows((x) => x.filter((y) => y.key !== r.key)); }} />}
             </View>
+            <View style={{ flexDirection: wide ? "row" : "column", gap: 12, marginTop: 12, alignItems: wide ? "flex-end" : "stretch" }}>
+              <View style={{ flex: 1.3 }}>
+                <T variant="caption" muted style={{ marginBottom: 6 }}>Section</T>
+                <Wrap gap={6}>{CATEGORIES.map((c) => <Pill key={c.id} label={c.id === "extras" ? "Extra" : c.label} selected={r.category === c.id} onPress={() => edit(r.key, { category: c.id })} />)}</Wrap>
+              </View>
+              <Field label="Description" value={r.description} onChangeText={(description) => edit(r.key, { description })} placeholder="What's included" maxLength={200} style={{ flex: 1, marginBottom: 0 }} />
+            </View>
           </Card>
         ))}
       </View>
-      {rows.length < 25 && <Button title="Add a service" icon="add" variant="secondary" size="md" onPress={() => { setSaved(false); setRows((r) => [...r, { key: `new-${Date.now()}`, name: "", durationMin: 30, price: "" }]); }} style={{ alignSelf: "flex-start", marginTop: 12 }} />}
+      {rows.length < 40 && <Button title="Add a service" icon="add" variant="secondary" size="md" onPress={() => { setSaved(false); setRows((r) => [...r, { key: `new-${Date.now()}`, name: "", durationMin: 30, price: "", category: "hair", description: "" }]); }} style={{ alignSelf: "flex-start", marginTop: 12 }} />}
       <View style={{ marginTop: 18, gap: 6 }}>
         <IconLine icon="information-circle-outline" muted>Bookings already made keep their time and price. A service with upcoming bookings can't be removed until they're done.</IconLine>
       </View>

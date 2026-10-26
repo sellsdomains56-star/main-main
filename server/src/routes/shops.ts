@@ -51,11 +51,11 @@ export function registerShopRoutes(app: Express) {
 
   app.post("/shops/:id/bookings", requireAuth, async (req, res) => {
     const shop = getShop(String(req.params.id));
-    const body = parse(z.object({ service: z.string(), startsAt: z.string().datetime(), notes: z.string().max(1000).default("") }), req.body);
+    const body = parse(z.object({ service: z.string(), startsAt: z.string().datetime(), notes: z.string().max(1000).default(""), tip: z.number().int().min(0).max(100_000_000).default(0) }), req.body);
     const pick = pickBarber(shop, body.service, body.startsAt);
     if (!pick) throw new HttpError(409, "That time was just taken — please pick another slot.");
     const { booking, clientSecret } = await placeBooking(req.user!.id, {
-      barberId: pick.barber.id, serviceId: pick.service.id, startsAt: body.startsAt, locationType: "shop", address: "", phone: "", notes: body.notes,
+      barberId: pick.barber.id, serviceId: pick.service.id, startsAt: body.startsAt, locationType: "shop", address: "", phone: "", notes: body.notes, extras: [], tip: body.tip,
     });
     res.status(201).json({ booking: bookingView(booking), clientSecret, demoPayments });
   });

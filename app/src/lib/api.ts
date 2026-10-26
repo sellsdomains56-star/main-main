@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AdminBarberDetail, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Review, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, VenueKind, WorkingHours } from "./types";
+import type { AdminBarberDetail, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Review, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, VenueKind, WorkingHours } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -105,8 +105,8 @@ export const api = {
     ),
   specialties: () => request<string[]>("/specialties"),
   barber: (id: string) => request<Barber & { reviews: Review[] }>(`/barbers/${id}`),
-  availability: (id: string, date: string, serviceId: string) =>
-    request<{ timeZone: string; slots: string[] }>(`/barbers/${id}/availability` + qs({ date, serviceId })),
+  availability: (id: string, date: string, serviceId: string, extras: string[] = []) =>
+    request<{ timeZone: string; slots: string[] }>(`/barbers/${id}/availability` + qs({ date, serviceId, extras: extras.length ? extras.join(",") : undefined })),
 
   register: (body: { name: string; email: string; password: string; countryCode?: string; city?: string }) =>
     request<{ token: string; user: User }>("/auth/register", { body }),
@@ -121,7 +121,7 @@ export const api = {
 
   createBooking: (body: {
     barberId: string; serviceId: string; startsAt: string; locationType: LocationType; address?: string; phone?: string; notes?: string;
-    venue?: { kind: VenueKind; details: string }; guest?: { name: string; phone: string };
+    venue?: { kind: VenueKind; details: string }; guest?: { name: string; phone: string }; extras?: string[]; tip?: number;
   }) =>
     request<{ booking: Booking; clientSecret: string | null; demoPayments: boolean }>("/bookings", { body }),
   bookings: () => request<Booking[]>("/bookings"),
@@ -194,7 +194,7 @@ export const api = {
   removePushToken: (token: string) => request<void>("/me/push-tokens", { method: "DELETE", body: { token } }),
   myBarberSettings: () => request<{ videoLink: string; offersConsultations: boolean }>("/barbers/me/settings"),
   business: () => request<BusinessDashboard>("/barbers/me/business"),
-  saveServices: (services: { id?: string; name: string; durationMin: number; price: number }[]) => request<Barber>("/barbers/me/services", { method: "PUT", body: { services } }),
+  saveServices: (services: { id?: string; name: string; durationMin: number; price: number; category?: ServiceCategory; description?: string }[]) => request<Barber>("/barbers/me/services", { method: "PUT", body: { services } }),
 
   // Admin panel (the JB Always Fresh team)
   admin: {
@@ -226,7 +226,7 @@ export const api = {
     block: (body: { barberIds: string[]; startsAt: string; endsAt: string; reason: string }) => request<CalBlock[]>("/manage/blocks", { body }),
     unblock: (id: string) => request<null>(`/manage/blocks/${id}`, { method: "DELETE" }),
     updateBarber: (id: string, body: Partial<WorkingHours> & { offline?: boolean }) => request<ShopMember>(`/manage/barbers/${id}`, { method: "PATCH", body }),
-    saveServices: (services: { name: string; durationMin: number; price: number }[], barberIds?: string[]) => request<ShopMember[]>("/manage/services", { method: "PUT", body: { services, barberIds } }),
+    saveServices: (services: { name: string; durationMin: number; price: number; category?: ServiceCategory; description?: string }[], barberIds?: string[]) => request<ShopMember[]>("/manage/services", { method: "PUT", body: { services, barberIds } }),
     addBarber: (name: string, email: string) => request<{ barber: ShopMember; login: { email: string; password: string } }>("/manage/barbers", { body: { name, email } }),
     reports: (period: "today" | "week" | "month") => request<ShopReport>("/manage/reports" + qs({ period })),
     updateSettings: (body: Partial<{ about: string; phone: string; workingDays: number[]; openHour: number; closeHour: number }>) =>

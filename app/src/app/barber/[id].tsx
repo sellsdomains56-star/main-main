@@ -11,6 +11,7 @@ import { Avatar, Button, Divider, EmptyState, ErrorBox, IconButton, IconLine, Lo
 import { api, mediaUrl } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { dateTime, money } from "../../lib/format";
+import { minutes, sections } from "../../lib/menu";
 import { flag } from "../../lib/location";
 import type { Barber, Reel, Review } from "../../lib/types";
 
@@ -192,22 +193,28 @@ export default function BarberProfile() {
 
       {tab === "services" && (
         <View style={{ marginTop: 8 }}>
-          {barber.services.map((s, i) => {
-            const selected = s.id === serviceId;
-            return (
-              <View key={s.id}>
-                {i > 0 && <Divider style={{ marginVertical: 0 }} />}
-                <Pressable onPress={() => setServiceId(s.id)} style={{ flexDirection: "row", alignItems: "center", paddingVertical: 16, gap: 12 }} accessibilityState={{ selected }}>
-                  <View style={{ flex: 1 }}>
-                    <T variant="strong">{s.name}</T>
-                    <T variant="caption" muted>{s.durationMin} min</T>
+          {sections(barber.services).map((sec) => (
+            <View key={sec.id} style={{ marginBottom: 6 }}>
+              <T variant="eyebrow" muted style={{ marginTop: 14, marginBottom: 2 }}>{sec.id === "extras" ? "Extras · add to any service" : sec.label}</T>
+              {sec.items.map((s, i) => {
+                const extra = sec.id === "extras";
+                const selected = s.id === serviceId;
+                return (
+                  <View key={s.id}>
+                    {i > 0 && <Divider style={{ marginVertical: 0 }} />}
+                    <Pressable disabled={extra} onPress={() => setServiceId(s.id)} style={{ flexDirection: "row", alignItems: "center", paddingVertical: 14, gap: 12 }} accessibilityRole={extra ? undefined : "radio"} accessibilityState={{ selected }}>
+                      <View style={{ flex: 1 }}>
+                        <T variant="strong">{s.name}</T>
+                        <T variant="caption" muted>{extra ? "+" : ""}{minutes(s.durationMin)}{s.description ? ` · ${s.description}` : ""}</T>
+                      </View>
+                      <T variant="strong">{extra ? "+" : ""}{money(s.price, barber.currency)}</T>
+                      {!extra && <Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={selected ? colors.accent : colors.faint} />}
+                    </Pressable>
                   </View>
-                  <T variant="strong">{money(s.price, barber.currency)}</T>
-                  <Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={selected ? colors.accent : colors.faint} />
-                </Pressable>
-              </View>
-            );
-          })}
+                );
+              })}
+            </View>
+          ))}
           {barber.offersHomeVisits && <T variant="caption" muted>Home visit: +{money(barber.homeVisitFee, barber.currency)} travel fee</T>}
         </View>
       )}

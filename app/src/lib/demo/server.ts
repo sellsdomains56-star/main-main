@@ -9,7 +9,7 @@ import type { AssistantAction, ChatMessage } from "../types";
 
 // ---------- Seed data shapes (exported from the server's seed files) ----------
 
-interface SeedService { id: string; name: string; durationMin: number; price: number }
+interface SeedService { id: string; name: string; durationMin: number; price: number; category?: string; description?: string }
 interface SeedBarber {
   id: string; name: string; bio: string; photoUrl: string; countryCode: string; city: string; shopAddress: string;
   lat: number; lng: number;
@@ -77,7 +77,7 @@ interface Booking {
   remindedDay?: boolean; remindedHour?: boolean;
   demoOnTheWayAt?: number; // demo only: when to play the "barber is on the way" alert
   status: "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled"; reviewed: boolean; createdAt: string;
-  coveredBy?: "membership"; creditUsed?: number; tip?: number; cutNotes?: string;
+  coveredBy?: "membership"; creditUsed?: number; tip?: number; cutNotes?: string; extras?: string[];
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; guest?: { name: string; phone: string };
   source?: "app" | "shop"; noShow?: boolean; // "shop": a walk-in or phone booking the barbershop added, paid at the shop
   seeded?: boolean;
@@ -304,6 +304,7 @@ function shopMenu(s: SeedShop) {
   const menu = new Map<string, { key: string; name: string; durationMin: number; fromPrice: number }>();
   for (const b of team(s)) {
     for (const sv of b.services) {
+      if (sv.category === "extras") continue; // added to a service, not booked alone
       const key = menuKey(sv.name);
       const item = menu.get(key);
       if (!item) menu.set(key, { key, name: sv.name, durationMin: sv.durationMin, fromPrice: sv.price });
@@ -555,10 +556,18 @@ function dueReminders(now = new Date()) {
 const CONSULTATION = { id: "consultation", name: "Free consultation", durationMin: 15, price: 0 };
 const findService = (b: SeedBarber, id: string) => (id === CONSULTATION.id ? (b.offersConsultations !== false ? CONSULTATION : undefined) : b.services.find((s) => s.id === id));
 
+/** The extras a customer picked (hot towel, massage…), checked against the barber's menu. */
+function extrasOf(b: SeedBarber, ids: string[]) {
+  const out = [...new Set(ids)].map((id) => b.services.find((s) => s.id === id));
+  if (out.some((s) => !s || s.category !== "extras")) throw new DemoError(400, "One of the extras isn't on this barber's menu.");
+  return out as SeedService[];
+}
+
 function bookingView(b: Booking) {
   const barber = getBarber(b.barberId);
   return {
     ...b,
+    extras: (b.extras ?? []).map((id) => barber.services.find((s) => s.id === id)).filter((s): s is SeedService => !!s).map((s) => ({ id: s.id, name: s.name, durationMin: s.durationMin, price: s.price })),
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: timeZoneOf(barber) },
     shop: b.locationType === "shop" ? shopRef(barber.shopId) : null,
     customerName: b.guest?.name ?? saved.users.find((u) => u.id === b.customerId)?.name ?? "Customer",
@@ -1045,7 +1054,7 @@ function calendarBooking(b: Booking) {
   return {
     id: b.id, barberId: b.barberId, startsAt: b.startsAt, endsAt: b.endsAt, status: b.status, noShow: !!b.noShow,
     source: b.source ?? "app", client: v.customerName, phone: b.guest?.phone || b.phone || "",
-    service: v.service?.name ?? "Appointment", durationMin: Math.round((Date.parse(b.endsAt) - Date.parse(b.startsAt)) / 60_000),
+    service: `${v.service?.name ?? "Appointment"}${v.extras.length ? ` + ${v.extras.map((e) => e.name.toLowerCase()).join(", ")}` : ""}`, durationMin: Math.round((Date.parse(b.endsAt) - Date.parse(b.startsAt)) / 60_000),
     amount: b.amount, currency: b.currency, paid: fromApp(b) ? "app" : "at the shop", locationType: b.locationType, address: b.address, notes: b.notes,
   };
 }
@@ -1155,7 +1164,8 @@ async function manageRoutes(method: string, path: string, q: Record<string, stri
     if (!target) throw new DemoError(400, `${firstName(to.name)} doesn't offer ${service?.name ?? "this service"}. Add it in Services first.`);
     const start = Date.parse(String(body?.startsAt ?? ""));
     if (Number.isNaN(start)) throw new DemoError(400, "Pick a time.");
-    const end = start + target.durationMin * 60_000;
+    const extraMin = Math.max(0, (Date.parse(b.endsAt) - Date.parse(b.startsAt)) / 60_000 - (service?.durationMin ?? 0)); // extras keep their time
+    const end = start + (target.durationMin + extraMin) * 60_000;
     if (!isFree(to.id, start, end, b.id)) throw new DemoError(409, `${firstName(to.name)} is busy then.`);
     Object.assign(b, { barberId: to.id, serviceId: target.id, startsAt: new Date(start).toISOString(), endsAt: new Date(end).toISOString(), remindedDay: !fromApp(b), remindedHour: !fromApp(b) });
     if (fromApp(b)) {
@@ -1247,9 +1257,9 @@ async function manageRoutes(method: string, path: string, q: Record<string, stri
 
   // Services, times and prices for the whole team, or for chosen barbers.
   if (path === "/manage/services" && method === "PUT") {
-    const list = ((body?.services ?? []) as { name: string; durationMin: number; price: number }[]).map((s) => ({ name: String(s.name ?? "").trim(), durationMin: Number(s.durationMin), price: Number(s.price) }));
+    const list = ((body?.services ?? []) as { name: string; durationMin: number; price: number; category?: string; description?: string }[]).map((s) => ({ name: String(s.name ?? "").trim(), durationMin: Number(s.durationMin), price: Number(s.price), category: s.category, description: s.description }));
     if (!list.length) throw new DemoError(400, "Keep at least one service");
-    if (list.length > 25) throw new DemoError(400, "Up to 25 services.");
+    if (list.length > 40) throw new DemoError(400, "Up to 40 services.");
     if (list.some((s) => s.name.length < 2 || s.name.length > 60)) throw new DemoError(400, "Give every service a name");
     if (list.some((s) => !Number.isInteger(s.durationMin) || s.durationMin < 10 || s.durationMin > 480)) throw new DemoError(400, "Services take between 10 minutes and 8 hours.");
     if (list.some((s) => !Number.isInteger(s.price) || s.price < 0)) throw new DemoError(400, "Check the prices.");
@@ -1265,7 +1275,10 @@ async function manageRoutes(method: string, path: string, q: Record<string, stri
       }
     }
     for (const b of targets) {
-      patchBarber(b.id, { services: list.map((s) => ({ id: b.services.find((o) => nameKey(o.name) === nameKey(s.name))?.id ?? `${b.id}-${newId().slice(0, 8)}`, ...s })) });
+      patchBarber(b.id, { services: list.map((s) => {
+        const old = b.services.find((o) => nameKey(o.name) === nameKey(s.name));
+        return { id: old?.id ?? `${b.id}-${newId().slice(0, 8)}`, ...s, category: s.category ?? old?.category, description: s.description ?? old?.description };
+      }) });
     }
     persist();
     return teamOf(shop).map((b) => memberView(b, shopToday(shop)));
@@ -1371,7 +1384,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
     const u = requireUser(token);
     if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
     const b = getBarber(u.barberId);
-    const list = (body?.services ?? []) as { id?: string; name: string; durationMin: number; price: number }[];
+    const list = (body?.services ?? []) as { id?: string; name: string; durationMin: number; price: number; category?: string; description?: string }[];
     if (!list.length) throw new DemoError(400, "Keep at least one service");
     if (list.some((s) => String(s.name ?? "").trim().length < 2)) throw new DemoError(400, "Give every service a name");
     const keep = new Set(list.map((s) => s.id).filter(Boolean));
@@ -1381,7 +1394,10 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
         throw new DemoError(409, `You have upcoming bookings for "${old.name}" — keep it until they're done.`);
       }
     }
-    const services = list.map((s) => ({ id: s.id && b.services.some((o) => o.id === s.id) ? s.id : `${b.id}-${newId().slice(0, 8)}`, name: s.name.trim(), durationMin: Number(s.durationMin), price: Number(s.price) }));
+    const services = list.map((s) => {
+      const old = s.id ? b.services.find((o) => o.id === s.id) : undefined;
+      return { id: old ? old.id : `${b.id}-${newId().slice(0, 8)}`, name: s.name.trim(), durationMin: Number(s.durationMin), price: Number(s.price), category: s.category ?? old?.category, description: s.description ?? old?.description };
+    });
     saved.barberPatches[b.id] = { ...saved.barberPatches[b.id], services };
     persist();
     return hit(barberView(getBarber(b.id)));
@@ -1765,7 +1781,8 @@ export function createDemoServer(data: DemoData) {
       const b = getBarber(x[1]);
       const s = findService(b, q.serviceId);
       if (!s) throw new DemoError(404, "Service not found.");
-      return { timeZone: timeZoneOf(b), slots: slots(b, q.date, s.durationMin) };
+      const ex = extrasOf(b, q.extras ? q.extras.split(",").filter(Boolean) : []);
+      return { timeZone: timeZoneOf(b), slots: slots(b, q.date, s.durationMin + ex.reduce((t, e) => t + e.durationMin, 0)) };
     }
     if ((x = m(/^\/barbers\/([^/]+)$/))) {
       const b = getBarber(x[1]);
@@ -1786,12 +1803,15 @@ export function createDemoServer(data: DemoData) {
       if (locationType === "home" && !String(body?.address ?? "").trim()) throw new DemoError(400, "Please enter the address the barber should come to.");
       const phone = String(body?.phone ?? "").trim();
       if (locationType === "phone" && phone.replace(/[^\d]/g, "").length < 6) throw new DemoError(400, "Please enter the phone number your barber should call.");
+      const ex = consultation ? [] : extrasOf(b, (body?.extras ?? []) as string[]);
+      const minutes = s.durationMin + ex.reduce((t, e) => t + e.durationMin, 0);
       const start = new Date(body?.startsAt);
       const date = new Intl.DateTimeFormat("en-CA", { timeZone: timeZoneOf(b) }).format(start);
-      if (!slots(b, date, s.durationMin).includes(start.toISOString())) throw new DemoError(409, "That time was just taken — please pick another slot.");
+      if (!slots(b, date, minutes).includes(start.toISOString())) throw new DemoError(409, "That time was just taken — please pick another slot.");
       const bk: Booking = {
         id: newId(), customerId: u.id, barberId: b.id, serviceId: s.id, startsAt: start.toISOString(),
-        endsAt: new Date(start.getTime() + s.durationMin * 60_000).toISOString(), locationType,
+        endsAt: new Date(start.getTime() + minutes * 60_000).toISOString(), locationType,
+        ...(ex.length ? { extras: ex.map((e) => e.id) } : {}),
         address: locationType === "home" ? String(body?.address).trim() : locationType === "shop" ? b.shopAddress : locationType === "video" ? "Video call · Google Meet" : "Phone call",
         phone: locationType === "phone" ? phone : undefined, notes: String(body?.notes ?? ""),
         amount: 0, currency: country(b.countryCode)!.currency,
@@ -1803,7 +1823,7 @@ export function createDemoServer(data: DemoData) {
       const m = activeMembership(u);
       const plan = m ? planOf(m.plan)! : null;
       const covered = !consultation && !!plan && (plan.cutsPerPeriod === null || cutsUsed(u) < plan.cutsPerPeriod);
-      const due = (covered ? 0 : s.price) + (locationType === "home" && !(plan?.freeHomeVisits && !consultation) ? b.homeVisitFee : 0);
+      const due = (covered ? 0 : s.price) + ex.reduce((t, e) => t + e.price, 0) + (locationType === "home" && !(plan?.freeHomeVisits && !consultation) ? b.homeVisitFee : 0);
       const credit = Math.min(u.credit?.[bk.currency] ?? 0, due);
       bk.amount = due - credit;
       if (covered) bk.coveredBy = "membership";
@@ -1811,6 +1831,8 @@ export function createDemoServer(data: DemoData) {
         bk.creditUsed = credit;
         u.credit = { ...u.credit, [bk.currency]: (u.credit?.[bk.currency] ?? 0) - credit };
       }
+      const tip = Math.max(0, Math.round(Number(body?.tip ?? 0)) || 0);
+      if (tip > 0 && bk.amount > 0) bk.tip = tip; // paid with the booking; all of it to the barber
       if (bk.amount === 0) bk.status = "confirmed";
       saved.bookings.push(bk);
       if (bk.status === "confirmed") bookingConfirmed(bk);

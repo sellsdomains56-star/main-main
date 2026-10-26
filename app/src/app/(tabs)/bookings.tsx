@@ -10,6 +10,7 @@ import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { enablePush, pushState, type PushState } from "../../lib/push";
 import { dateTime, money, STATUS_LABEL, time } from "../../lib/format";
+import { tipChoices } from "../../lib/menu";
 import { isConsultation, type Booking, type Hire, type Order, type Preferences } from "../../lib/types";
 import { ShopPhoto } from "../../components/ShopCard";
 
@@ -30,10 +31,9 @@ function chairSummary(p: Preferences) {
   ].filter(Boolean).join(" · ");
 }
 
-/** 10%, 15% and 20% of the price (or of the service, for Club cuts), rounded to whole units. */
+/** 10%, 15% and 20% of the service and extras (the service price for Club cuts). */
 function tipOptions(b: Booking) {
-  const base = b.service?.price || b.amount || 2000;
-  return [0.1, 0.15, 0.2].map((r) => Math.max(100, Math.round((base * r) / 100) * 100));
+  return tipChoices((b.service?.price || b.amount || 2000) + (b.extras ?? []).reduce((t, x) => t + x.price, 0));
 }
 
 const HIRE_LABEL: Record<Hire["status"], string> = { pending_payment: "Awaiting payment", confirmed: "Confirmed", completed: "Completed", cancelled: "Cancelled" };
@@ -200,7 +200,7 @@ export default function Bookings() {
               <Avatar uri={isBarber ? null : b.barber.photoUrl} name={isBarber ? b.customerName : b.barber.name} size={48} />
               <View style={{ flex: 1 }}>
                 <T variant="strong">{isBarber ? b.customerName : b.barber.name}{!isBarber && b.shop ? ` · ${b.shop.name}` : ""}</T>
-                <T variant="caption" muted>{b.service?.name} · {b.amount ? money(b.amount, b.currency) : "Free"}</T>
+                <T variant="caption" muted>{b.service?.name}{b.extras?.length ? ` + ${b.extras.map((x) => x.name.toLowerCase()).join(", ")}` : ""} · {b.amount ? money(b.amount, b.currency) : "Free"}</T>
               </View>
               <Tag label={STATUS_LABEL[b.status]} tone={tone(b.status)} />
             </Row>
@@ -265,10 +265,10 @@ export default function Bookings() {
               <View style={{ marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: colors.surface }}>
                 <T variant="caption">Thank {b.barber.name.split(" ")[0]} — 100% goes to your barber.</T>
                 <Row gap={8} style={{ marginTop: 10, flexWrap: "wrap" }}>
-                  {tipOptions(b).map((amt) => (
+                  {tipOptions(b).map(({ percent, amount: amt }) => (
                     <Button
                       key={amt}
-                      title={money(amt, b.currency).replace(/[.,]00$/, "")}
+                      title={`${percent}% · ${money(amt, b.currency).replace(/[.,]00$/, "")}`}
                       size="sm"
                       variant="secondary"
                       onPress={run(async () => {

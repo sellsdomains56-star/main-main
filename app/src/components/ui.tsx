@@ -292,16 +292,20 @@ export function Pill({ label, selected, onPress, icon }: { label: string; select
   );
 }
 
-/** A full-width option with a radio and optional icon. */
-export function OptionRow({ label, sublabel, selected, onPress, icon, right }: { label: string; sublabel?: string; selected?: boolean; onPress: () => void; icon?: IconName; right?: ReactNode }) {
+/** A full-width option with a radio (or, with `multi`, a checkbox) and optional icon. */
+export function OptionRow({ label, sublabel, selected, onPress, icon, right, multi }: { label: string; sublabel?: string; selected?: boolean; onPress: () => void; icon?: IconName; right?: ReactNode; multi?: boolean }) {
   return (
     <Pressable
       onPress={onPress}
-      accessibilityRole="radio"
-      accessibilityState={{ selected }}
+      accessibilityRole={multi ? "checkbox" : "radio"}
+      accessibilityState={multi ? { checked: !!selected } : { selected }}
       style={({ pressed, focused }: { pressed: boolean; focused?: boolean }) => [styles.option, selected && styles.optionSelected, pressed && styles.pressed, focused && styles.focusRing]}
     >
-      <View style={[styles.radio, selected && { borderColor: colors.accent }]}>{selected && <View style={styles.radioDot} />}</View>
+      {multi ? (
+        <View style={[styles.radio, { borderRadius: 6 }, selected && { borderColor: colors.accent, backgroundColor: colors.accent }]}>{selected && <Ionicons name="checkmark" size={14} color={colors.onAccent} />}</View>
+      ) : (
+        <View style={[styles.radio, selected && { borderColor: colors.accent }]}>{selected && <View style={styles.radioDot} />}</View>
+      )}
       <View style={{ flex: 1 }}>
         <T variant="strong">{label}</T>
         {sublabel && <T variant="caption" muted>{sublabel}</T>}

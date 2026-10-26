@@ -28,9 +28,12 @@ export default function Pay() {
   if (error && !data) return <Screen><ErrorBox message={error} onRetry={load} /></Screen>;
   if (!data) return <Screen><Loading /></Screen>;
   const { booking } = data;
-  const amount = money(booking.amount, booking.currency);
+  const tip = booking.tip ?? 0;
+  const charge = booking.amount + tip; // the tip is paid with the booking
+  const amount = money(charge, booking.currency);
   const servicePrice = booking.coveredBy ? 0 : booking.service?.price ?? booking.amount;
-  const fee = Math.max(0, booking.amount + (booking.creditUsed ?? 0) - servicePrice);
+  const extrasPrice = (booking.extras ?? []).reduce((t, x) => t + x.price, 0);
+  const fee = Math.max(0, booking.amount + (booking.creditUsed ?? 0) - servicePrice - extrasPrice);
 
   return (
     <Screen>
@@ -46,7 +49,9 @@ export default function Pay() {
         </Row>
         <Divider />
         <SummaryLine label={booking.service?.name ?? "Service"} value={booking.coveredBy ? "Included · The Club" : money(servicePrice, booking.currency)} />
+        {(booking.extras ?? []).map((x) => <SummaryLine key={x.id} label={x.name} value={money(x.price, booking.currency)} />)}
         {fee > 0 && <SummaryLine label="Home visit" value={money(fee, booking.currency)} />}
+        {tip > 0 && <SummaryLine label={`Tip for ${booking.barber.name.split(" ")[0]}`} value={money(tip, booking.currency)} />}
         {!!booking.creditUsed && <SummaryLine label="Gift credit" value={`−${money(booking.creditUsed, booking.currency)}`} />}
         <View style={{ marginTop: 6 }}><IconLine icon={booking.locationType === "home" ? "home-outline" : "storefront-outline"} muted>{booking.address}</IconLine></View>
         <Divider />
@@ -60,7 +65,7 @@ export default function Pay() {
         ) : data.clientSecret && !STRIPE_PUBLISHABLE_KEY ? (
           <ErrorBox message="This app build is missing EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY, so it can't take payments." />
         ) : data.clientSecret ? (
-          <PayButton clientSecret={data.clientSecret} currency={booking.currency} amount={booking.amount} amountLabel={amount} label={`${booking.service?.name ?? "Appointment"} with ${booking.barber.name}`} onPaid={onPaid} />
+          <PayButton clientSecret={data.clientSecret} currency={booking.currency} amount={charge} amountLabel={amount} label={`${booking.service?.name ?? "Appointment"} with ${booking.barber.name}`} onPaid={onPaid} />
         ) : data.demoPayments ? (
           <>
             <Button
