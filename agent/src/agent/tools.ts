@@ -24,7 +24,7 @@ import {
 import { runCode } from "../tools/code.js";
 import { generateImage } from "../tools/image.js";
 import { formatWhen } from "../tools/schedule.js";
-import type { AgentProfile, FileRecord } from "../types.js";
+import type { AgentProfile, EmailApproval, FileRecord } from "../types.js";
 
 export interface ToolContext {
   conversationId: string;
@@ -51,6 +51,8 @@ export interface ToolOutcome {
   files?: FileRecord[];
   /** Images the model should see (Claude reads them in the tool result). */
   images?: { mime: string; data: string }[];
+  /** Something waiting for your OK, shown as a card in the chat. */
+  approval?: EmailApproval;
 }
 
 export interface AgentTool {

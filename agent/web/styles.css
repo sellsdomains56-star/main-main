@@ -1681,6 +1681,264 @@ button.step-line:disabled {
   margin: 16px auto 0;
 }
 
+/* Connectors */
+.section-title {
+  font-size: 13px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin: 22px 0 10px;
+}
+.connector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+.connector-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg);
+}
+.connector-card.connected {
+  border-color: color-mix(in srgb, var(--success) 35%, var(--border));
+}
+.conn-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.app-tile {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+}
+.conn-name {
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+}
+.conn-status {
+  display: block;
+  font-size: 12px;
+  font-weight: 450;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.conn-status.connected {
+  color: var(--success);
+}
+.conn-status.error {
+  color: var(--danger);
+  white-space: normal;
+}
+.conn-status.needs_auth {
+  color: var(--warn);
+}
+.conn-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.conn-desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.conn-tools {
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+.conn-tools summary {
+  cursor: pointer;
+  color: var(--muted);
+}
+.conn-tools ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.check.small {
+  font-size: 13px;
+  color: var(--text-2);
+}
+.switch {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 22px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+.switch input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+.switch-track {
+  flex: 1;
+  border-radius: 999px;
+  background: var(--border-strong);
+  transition: background 0.15s;
+  position: relative;
+}
+.switch-track::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s;
+}
+.switch input:checked + .switch-track {
+  background: var(--success);
+}
+.switch input:checked + .switch-track::after {
+  transform: translateX(14px);
+}
+.switch input:focus-visible + .switch-track {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+.setup-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  margin: 6px 0 12px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 16px;
+  background: var(--bg-elev);
+}
+.setup-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+.setup-steps {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13.5px;
+  color: var(--text-2);
+}
+.setup-steps li {
+  margin: 4px 0;
+}
+.setup-steps a,
+.linkish {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.linkish {
+  font-size: 13px;
+  margin-top: 8px;
+}
+.copy-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.copy-row code {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.small-text {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* Approval cards (emails the agent drafted) */
+.approvals {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.approvals:empty {
+  display: none;
+}
+.approval {
+  border: 1px solid color-mix(in srgb, var(--brand) 45%, var(--border));
+  border-radius: 16px;
+  background: var(--bg-elev);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 620px;
+}
+.approval.sent {
+  border-color: color-mix(in srgb, var(--success) 45%, var(--border));
+}
+.approval.discarded {
+  opacity: 0.6;
+}
+.approval-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.approval-status {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--brand);
+}
+.approval.sent .approval-status {
+  color: var(--success);
+}
+.approval-meta {
+  font-size: 13.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.approval-preview {
+  font-size: 13.5px;
+  color: var(--text-2);
+  white-space: pre-wrap;
+  max-height: 180px;
+  overflow-y: auto;
+  border-left: 2px solid var(--border-strong);
+  padding-left: 12px;
+}
+.approval-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.approval-actions:empty {
+  display: none;
+}
+
 /* ── Toasts ─────────────────────────────────────────────────────────────── */
 .toasts {
   position: fixed;

@@ -61,6 +61,7 @@ const ABILITY_LABELS: Record<ToolGroup, string> = {
   files: "Files",
   code: "Run code",
   images: "Image generation",
+  connectors: "Connected apps (Gmail…)",
   agents: "Run other agents",
 };
 
@@ -530,4 +531,298 @@ export function applyTheme() {
   const theme = prefs().theme ?? "system";
   if (theme === "system") delete document.documentElement.dataset.theme;
   else document.documentElement.dataset.theme = theme;
+}
+
+// ── Connectors ────────────────────────────────────────────────────────────────
+
+interface ConnectorView {
+  id: string;
+  kind: "gmail" | "google_calendar" | "google_drive" | "mcp";
+  name: string;
+  enabled: boolean;
+  status: "connected" | "needs_auth" | "error";
+  error?: string;
+  account?: string;
+  autoSend: boolean;
+  url?: string;
+  usesToken: boolean;
+  tools: { name: string; description: string }[];
+}
+interface GalleryApp {
+  id: string;
+  name: string;
+  url: string;
+  description: string;
+  auth: "signin" | "token";
+  tokenHelp?: string;
+}
+interface ConnectorsData {
+  connectors: ConnectorView[];
+  google: { configured: boolean; fromEnv: boolean; redirectUri: string; services: { kind: ConnectorView["kind"]; name: string; description: string }[] };
+  gallery: GalleryApp[];
+}
+
+const APP_TILE: Record<string, { letter: string; color: string }> = {
+  gmail: { letter: "M", color: "#ea4335" },
+  google_calendar: { letter: "31", color: "#4285f4" },
+  google_drive: { letter: "D", color: "#0f9d58" },
+  notion: { letter: "N", color: "#2f2f2f" },
+  linear: { letter: "L", color: "#5e6ad2" },
+  atlassian: { letter: "J", color: "#0c66e4" },
+  zapier: { letter: "Z", color: "#ff4f00" },
+  canva: { letter: "C", color: "#00c4cc" },
+  stripe: { letter: "S", color: "#635bff" },
+  paypal: { letter: "P", color: "#003087" },
+  vercel: { letter: "▲", color: "#111" },
+  sentry: { letter: "S", color: "#362d59" },
+  github: { letter: "G", color: "#24292f" },
+};
+
+function appTile(key: string, name: string) {
+  const t = APP_TILE[key] ?? { letter: name.slice(0, 1).toUpperCase(), color: "#3f3f46" };
+  return h("span", { class: "app-tile", style: `background:${t.color}` }, t.letter);
+}
+
+/** Sends you to the app's sign-in page; you come back to #/connectors. */
+function goSignIn(authUrl: string) {
+  location.href = authUrl;
+}
+
+export function openConnectors() {
+  const body = h("div", { class: "connectors" });
+  const { close } = modal("Connectors", body, { wide: true });
+
+  async function render() {
+    let data: ConnectorsData;
+    try {
+      data = await api<ConnectorsData>("/api/connectors");
+    } catch (err) {
+      clear(body);
+      body.append(empty("Couldn't load connectors.", (err as Error).message));
+      return;
+    }
+    clear(body);
+    body.append(
+      h(
+        "p",
+        { class: "panel-intro" },
+        `Let ${state.boot.agentName} use your apps: read and draft email, check your calendar, find documents, work in Notion, Linear, Jira and more. `,
+        "Sign-in tokens are stored encrypted, like your chats. Emails it writes wait for your OK before sending.",
+      ),
+    );
+
+    // Google
+    body.append(h("h3", { class: "section-title" }, "Google"));
+    if (!data.google.configured) body.append(googleSetup(data.google.redirectUri, render));
+    const googleGrid = h("div", { class: "connector-grid" });
+    for (const svc of data.google.services) {
+      const c = data.connectors.find((x) => x.kind === svc.kind);
+      googleGrid.append(connectorCard(svc.kind, svc.name, svc.description, c, data.google.configured, render));
+    }
+    body.append(googleGrid);
+    if (data.google.configured && !data.google.fromEnv) {
+      body.append(
+        h("button", { class: "linkish", type: "button", onclick: () => body.prepend(googleSetup(data.google.redirectUri, render)) }, "Change Google OAuth client"),
+      );
+    }
+
+    // Apps by link
+    body.append(h("h3", { class: "section-title" }, "Apps"));
+    const appGrid = h("div", { class: "connector-grid" });
+    for (const app of data.gallery) {
+      const c = data.connectors.find((x) => x.kind === "mcp" && x.url === app.url);
+      appGrid.append(connectorCard(app.id, app.name, app.description, c, true, render, app));
+    }
+    body.append(appGrid);
+
+    // Custom links
+    const custom = data.connectors.filter((c) => c.kind === "mcp" && !data.gallery.some((g) => g.url === c.url));
+    body.append(h("h3", { class: "section-title" }, "Added by link"));
+    const customGrid = h("div", { class: "connector-grid" });
+    for (const c of custom) customGrid.append(connectorCard("", c.name, c.url ?? "", c, true, render));
+    if (custom.length) body.append(customGrid);
+    body.append(addByLinkForm(render));
+  }
+
+  void render();
+  return close;
+}
+
+function googleSetup(redirectUri: string, onSaved: () => void): HTMLElement {
+  const clientId = h("input", { class: "input", placeholder: "Client ID (….apps.googleusercontent.com)" });
+  const clientSecret = h("input", { class: "input", type: "password", placeholder: "Client secret" });
+  const copy = h("button", { class: "btn small", type: "button" }, h("span", { html: icon("copy", 13) }), "Copy");
+  copy.addEventListener("click", () => void navigator.clipboard.writeText(redirectUri).then(() => toast("Copied", "success")));
+  const form = h(
+    "form",
+    { class: "setup-box" },
+    h("div", { class: "setup-title" }, h("span", { html: icon("settings", 15) }), "One-time setup: connect Dizz Lab to Google"),
+    h(
+      "ol",
+      { class: "setup-steps" },
+      h("li", null, "Open ", h("a", { href: "https://console.cloud.google.com/apis/credentials", target: "_blank", rel: "noopener" }, "Google Cloud → Credentials"), " (create a project if asked)."),
+      h(
+        "li",
+        null,
+        "Enable the ",
+        h("a", { href: "https://console.cloud.google.com/apis/library/gmail.googleapis.com", target: "_blank", rel: "noopener" }, "Gmail"),
+        ", ",
+        h("a", { href: "https://console.cloud.google.com/apis/library/calendar-json.googleapis.com", target: "_blank", rel: "noopener" }, "Calendar"),
+        " and ",
+        h("a", { href: "https://console.cloud.google.com/apis/library/drive.googleapis.com", target: "_blank", rel: "noopener" }, "Drive"),
+        " APIs.",
+      ),
+      h("li", null, "OAuth consent screen: choose External, add your own email as a test user, then press ", h("b", null, "Publish app"), " so sign-ins don't expire after 7 days. (Google will warn the app is unverified; that's expected for a private app. Continue.)"),
+      h("li", null, "Create credentials → OAuth client ID → Web application, and add this redirect URI:"),
+    ),
+    h("div", { class: "copy-row" }, h("code", null, redirectUri), copy),
+    h("div", { class: "row" }, h("label", { class: "field grow" }, "Client ID", clientId), h("label", { class: "field grow" }, "Client secret", clientSecret)),
+    h("div", { class: "modal-actions" }, h("button", { class: "btn primary small", type: "submit" }, "Save")),
+  );
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    try {
+      await api("/api/connectors/google/setup", { method: "PUT", body: { clientId: clientId.value, clientSecret: clientSecret.value } });
+      toast("Google is set up. Now connect Gmail, Calendar or Drive.", "success");
+      onSaved();
+    } catch (err) {
+      toast((err as Error).message, "error");
+    }
+  });
+  return form;
+}
+
+function connectorCard(
+  key: string,
+  name: string,
+  description: string,
+  c: ConnectorView | undefined,
+  available: boolean,
+  refresh: () => void,
+  app?: GalleryApp,
+): HTMLElement {
+  const statusText = !c
+    ? ""
+    : c.status === "connected"
+      ? c.account && c.kind !== "mcp"
+        ? c.account
+        : `Connected · ${c.tools.length} tools`
+      : c.status === "needs_auth"
+        ? "Needs sign-in"
+        : c.error ?? "Error";
+  const status = c ? h("span", { class: `conn-status ${c.status}` }, statusText) : null;
+
+  const connect = async () => {
+    try {
+      if (app && app.auth === "token" && !c) {
+        const token = prompt(`Paste your ${app.name} token.${app.tokenHelp ? `\n\nCreate one at ${app.tokenHelp}` : ""}`)?.trim();
+        if (!token) return;
+        const r = await api<{ connector: ConnectorView; authUrl?: string }>("/api/connectors/mcp", { body: { name: app.name, url: app.url, token } });
+        return r.connector.status === "connected" ? (toast(`${app.name} connected`, "success"), refresh()) : (toast(r.connector.error ?? "Couldn't connect", "error"), refresh());
+      }
+      type Result = { authUrl?: string; connector?: ConnectorView };
+      const isGoogle = ["gmail", "google_calendar", "google_drive"].includes(key);
+      const r = c
+        ? await api<Result>(`/api/connectors/${c.id}/connect`, { body: {} })
+        : isGoogle
+          ? await api<Result>(`/api/connectors/google/${key}/connect`, { body: {} })
+          : await api<Result>("/api/connectors/mcp", { body: { name: app?.name, url: app?.url } });
+      if (r.authUrl) return goSignIn(r.authUrl);
+      if (r.connector?.status === "connected") toast(`${name} connected`, "success");
+      else if (r.connector?.error) toast(r.connector.error, "error");
+      refresh();
+    } catch (err) {
+      toast((err as Error).message, "error");
+    }
+  };
+
+  const actions = h("div", { class: "conn-actions" });
+  if (!c || c.status !== "connected") {
+    actions.append(h("button", { class: "btn primary small", type: "button", disabled: !available, onclick: () => void connect() }, c ? "Reconnect" : "Connect"));
+  }
+  if (c) {
+    if (c.status === "connected") {
+      const toggle = h("input", { type: "checkbox", checked: c.enabled, title: "Let the agent use it" });
+      toggle.addEventListener("change", async () => {
+        await api(`/api/connectors/${c.id}`, { method: "PATCH", body: { enabled: toggle.checked } });
+        toast(toggle.checked ? `${name} is on` : `${name} is off`);
+      });
+      actions.append(h("label", { class: "switch", title: "On / off" }, toggle, h("span", { class: "switch-track" })));
+      if (c.kind === "mcp") actions.append(h("button", { class: "icon-btn", title: "Refresh tools", html: icon("refresh", 15), onclick: () => void connect() }));
+    }
+    actions.append(
+      h("button", {
+        class: "icon-btn",
+        title: "Disconnect",
+        html: icon("trash", 15),
+        onclick: async () => {
+          if (!(await confirmDialog(`Disconnect ${name}?`, "Disconnect"))) return;
+          await api(`/api/connectors/${c.id}`, { method: "DELETE" });
+          refresh();
+        },
+      }),
+    );
+  }
+
+  const extra: HTMLElement[] = [];
+  if (c?.kind === "gmail" && c.status === "connected") {
+    const auto = h("input", { type: "checkbox", checked: c.autoSend });
+    auto.addEventListener("change", async () => {
+      await api(`/api/connectors/${c.id}`, { method: "PATCH", body: { autoSend: auto.checked } });
+      toast(auto.checked ? "Emails will be sent without asking" : "Emails wait for your OK", auto.checked ? "info" : "success");
+    });
+    extra.push(h("label", { class: "check small" }, auto, "Send emails without asking me first"));
+  }
+  if (c?.kind === "mcp" && c.tools.length) {
+    extra.push(
+      h(
+        "details",
+        { class: "conn-tools" },
+        h("summary", null, `${c.tools.length} tools`),
+        h("ul", null, c.tools.map((t) => h("li", null, h("b", null, t.name), t.description ? ` — ${t.description.slice(0, 140)}` : ""))),
+      ),
+    );
+  }
+
+  return h(
+    "div",
+    { class: `connector-card${c?.status === "connected" ? " connected" : ""}` },
+    h("div", { class: "conn-top" }, appTile(key, name), h("div", { class: "conn-name" }, h("div", null, name), status), actions),
+    h("p", { class: "conn-desc" }, description),
+    ...extra,
+  );
+}
+
+function addByLinkForm(refresh: () => void): HTMLElement {
+  const url = h("input", { class: "input", type: "url", placeholder: "https://example.com/mcp", required: true });
+  const name = h("input", { class: "input", placeholder: "Name (optional)", maxlength: 60 });
+  const token = h("input", { class: "input", type: "password", placeholder: "API key or token (only if the app gave you one)" });
+  const button = h("button", { class: "btn primary small", type: "submit" }, h("span", { html: icon("plus", 14) }), "Connect");
+  const form = h(
+    "form",
+    { class: "setup-box" },
+    h("div", { class: "setup-title" }, h("span", { html: icon("globe", 15) }), "Add any app by link"),
+    h("p", { class: "muted small-text" }, "Paste the connector (MCP) link from the app's docs or settings. If it needs you to sign in, you'll be taken to its sign-in page."),
+    h("div", { class: "row" }, h("label", { class: "field grow" }, "Link", url), h("label", { class: "field" }, "Name", name)),
+    h("label", { class: "field" }, "Token", token),
+    h("div", { class: "modal-actions" }, button),
+  );
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    button.disabled = true;
+    try {
+      const r = await api<{ connector: ConnectorView; authUrl?: string }>("/api/connectors/mcp", {
+        body: { url: url.value.trim(), name: name.value.trim() || undefined, token: token.value.trim() || undefined },
+      });
+      if (r.authUrl) return goSignIn(r.authUrl);
+      if (r.connector.status === "connected") toast(`${r.connector.name} connected with ${r.connector.tools.length} tools`, "success");
+      else toast(r.connector.error ?? "Couldn't connect", "error");
+      refresh();
+    } catch (err) {
+      toast((err as Error).message, "error");
+    } finally {
+      button.disabled = false;
+    }
+  });
+  return form;
 }

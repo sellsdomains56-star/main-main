@@ -1,4 +1,4 @@
-import type { AgentEvent, Source, Step } from "../src/types.js";
+import type { AgentEvent, EmailApproval, Source, Step } from "../src/types.js";
 import { api, stream, upload } from "./api.js";
 import { $, append, clear, h } from "./dom.js";
 import { icon, logo, type IconName } from "./icons.js";
@@ -55,6 +55,15 @@ const STEP_ICONS: Record<string, IconName> = {
   list_agents: "bot",
   update_agent: "bot",
   delete_agents: "bot",
+  gmail_search: "mail",
+  gmail_read: "mail",
+  gmail_save_attachment: "mail",
+  gmail_send_email: "mail",
+  calendar_list_events: "clock",
+  calendar_create_event: "clock",
+  calendar_delete_event: "clock",
+  drive_search: "folder",
+  drive_read: "file",
 };
 
 function thinkingSeconds(steps: Step[]): number {
@@ -91,6 +100,7 @@ class AssistantView {
   private activityHead: HTMLElement;
   private activityBody: HTMLElement;
   private content: HTMLElement;
+  private approvalsEl: HTMLElement;
   private filesEl: HTMLElement;
   private sourcesEl: HTMLElement;
   private footer: HTMLElement;
@@ -115,6 +125,7 @@ class AssistantView {
     this.activityBody = h("div", { class: "activity-body" });
     this.activity = h("div", { class: "activity", hidden: true }, this.activityHead, this.activityBody);
     this.content = h("div", { class: "markdown" });
+    this.approvalsEl = h("div", { class: "approvals" });
     this.filesEl = h("div", { class: "msg-files" });
     this.sourcesEl = h("div", { class: "sources" });
     this.footer = h("div", { class: "msg-footer" });
@@ -122,7 +133,7 @@ class AssistantView {
       "div",
       { class: "msg assistant" },
       avatar,
-      h("div", { class: "msg-body" }, this.activity, this.content, this.filesEl, this.sourcesEl, this.footer),
+      h("div", { class: "msg-body" }, this.activity, this.content, this.approvalsEl, this.filesEl, this.sourcesEl, this.footer),
     );
     if (saved) this.load(saved);
     else this.schedule();
@@ -244,6 +255,13 @@ class AssistantView {
       this.content.append(h("div", { class: "msg-note" }, "Stopped"));
     }
 
+    // Things waiting for your OK (emails it drafted)
+    const approvals = this.steps.flatMap((s) => (s.kind === "tool" && s.approval ? [s.approval] : []));
+    if (approvals.length !== this.approvalsEl.childElementCount) {
+      clear(this.approvalsEl);
+      for (const a of approvals) this.approvalsEl.append(emailApprovalCard(a));
+    }
+
     // Files and images it made
     clear(this.filesEl);
     for (const f of this.files) this.filesEl.append(fileView(f));
@@ -292,6 +310,71 @@ class AssistantView {
   }
 }
 
+// Drafts you've already sent or discarded, remembered in this browser.
+const DRAFTS_KEY = "dizz.drafts";
+function draftState(id: string): string | undefined {
+  try {
+    return (JSON.parse(localStorage.getItem(DRAFTS_KEY) ?? "{}") as Record<string, string>)[id];
+  } catch {
+    return undefined;
+  }
+}
+function setDraftState(id: string, value: string) {
+  try {
+    const all = JSON.parse(localStorage.getItem(DRAFTS_KEY) ?? "{}") as Record<string, string>;
+    all[id] = value;
+    localStorage.setItem(DRAFTS_KEY, JSON.stringify(all));
+  } catch {
+    // private mode
+  }
+}
+
+function emailApprovalCard(a: EmailApproval): HTMLElement {
+  const actions = h("div", { class: "approval-actions" });
+  const statusEl = h("span", { class: "approval-status" });
+  const card = h(
+    "div",
+    { class: "approval" },
+    h("div", { class: "approval-head" }, h("span", { html: icon("mail", 16) }), h("span", null, "Email draft"), statusEl),
+    h("div", { class: "approval-meta" }, h("div", null, h("span", { class: "muted" }, "To "), a.to), h("div", null, h("span", { class: "muted" }, "Subject "), a.subject || "(no subject)")),
+    h("div", { class: "approval-preview" }, a.preview),
+    actions,
+  );
+  const settle = (state: "sent" | "discarded") => {
+    setDraftState(a.draftId, state);
+    card.classList.add(state);
+    statusEl.textContent = state === "sent" ? "Sent" : "Discarded";
+    clear(actions);
+  };
+  const act = async (action: "send" | "discard", button: HTMLButtonElement) => {
+    button.disabled = true;
+    try {
+      await api(`/api/connectors/${a.connectorId}/email/${action}`, { body: { draftId: a.draftId } });
+      settle(action === "send" ? "sent" : "discarded");
+      if (action === "send") toast(`Sent to ${a.to}`, "success");
+    } catch (err) {
+      toast((err as Error).message, "error");
+      button.disabled = false;
+    }
+  };
+  const known = draftState(a.draftId);
+  if (known === "sent" || known === "discarded") {
+    settle(known);
+    return card;
+  }
+  statusEl.textContent = "Waiting for you";
+  const send = h("button", { class: "btn primary small", type: "button" }, h("span", { html: icon("send", 14) }), "Send");
+  const discard = h("button", { class: "btn ghost small", type: "button" }, "Discard");
+  send.addEventListener("click", () => void act("send", send));
+  discard.addEventListener("click", () => void act("discard", discard));
+  actions.append(
+    send,
+    discard,
+    h("a", { class: "btn ghost small", href: "https://mail.google.com/mail/u/0/#drafts", target: "_blank", rel: "noopener" }, "Edit in Gmail", h("span", { html: icon("external", 13) })),
+  );
+  return card;
+}
+
 function renderStep(step: Step): HTMLElement {
   if (step.kind === "thinking") {
     return h(
@@ -305,7 +388,7 @@ function renderStep(step: Step): HTMLElement {
   const line = h(
     "button",
     { class: "step-line", type: "button", disabled: !detail },
-    h("span", { class: "step-icon", html: icon(STEP_ICONS[step.name] ?? "zap", 14) }),
+    h("span", { class: "step-icon", html: icon(STEP_ICONS[step.name] ?? (step.name.includes("__") ? "plug" : "zap"), 14) }),
     h("span", { class: "step-label" }, step.label),
     step.result ? h("span", { class: "step-result" }, step.result) : null,
     h("span", { class: `step-status ${step.status}`, html: step.status === "ok" ? icon("check", 13) : step.status === "error" ? icon("x", 13) : "" }),

@@ -165,6 +165,7 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
             : { ok: false, content: `There is no tool called ${name}.` };
           step.status = outcome.ok ? "ok" : "error";
           step.result = outcome.result ?? (outcome.ok ? "Done" : outcome.content.slice(0, 200));
+          if (outcome.approval) step.approval = outcome.approval;
           emit({ type: "step", step });
           for (const f of outcome.files ?? []) {
             if (files.some((x) => x.id === f.id)) continue;

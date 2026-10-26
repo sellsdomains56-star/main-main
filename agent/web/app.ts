@@ -4,7 +4,7 @@ import { api, setUnauthorizedHandler } from "./api.js";
 import { applyModelFor, focusComposer, isBusy, mountChat, refreshIfOpen, renderHeader, showConversation } from "./chat.js";
 import { $, clear, h } from "./dom.js";
 import { icon, logo } from "./icons.js";
-import { applyTheme, openAgents, openFiles, openMemory, openReminders, openSettings } from "./panels.js";
+import { applyTheme, openAgents, openConnectors, openFiles, openMemory, openReminders, openSettings } from "./panels.js";
 import { prefs, savePrefs, state, type AgentProfile, type Bootstrap, type ConversationSummary, type OpenConversation } from "./state.js";
 import { confirmDialog, debounce, relativeDay, toast } from "./util.js";
 
@@ -234,6 +234,10 @@ function buildShell() {
         closeSidebarOnMobile();
         openAgents((a) => startAgentChat(a));
       }),
+      navItem("plug", "Connectors", () => {
+        closeSidebarOnMobile();
+        openConnectors();
+      }),
       navItem("bell", "Reminders & tasks", () => {
         closeSidebarOnMobile();
         openReminders((id) => navigate(`#/c/${id}`));
@@ -330,6 +334,20 @@ async function route() {
   if (hash === currentRoute && state.current) return;
   currentRoute = hash;
   document.querySelector(".popover")?.remove();
+  // Coming back from signing in to an app.
+  if (hash.startsWith("#/connectors")) {
+    const params = new URLSearchParams(hash.split("?")[1] ?? "");
+    history.replaceState(null, "", "#/");
+    currentRoute = "#/";
+    state.draftAgent = null;
+    applyModelFor(null);
+    showConversation(null);
+    renderConversationList();
+    openConnectors();
+    if (params.get("connected")) toast(`${params.get("connected")} connected`, "success");
+    if (params.get("error")) toast(params.get("error")!, "error");
+    return;
+  }
   const [, kind, id] = hash.match(/^#\/(c|agent)\/([\w-]+)/) ?? [];
   try {
     if (kind === "c") {

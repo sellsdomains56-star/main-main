@@ -56,6 +56,13 @@ export const mockProvider: ProviderAdapter = {
         tasks: topics.map((t) => ({ task: `Write two sentences on ${t} of: ${text}` })),
       });
       reply = `I split that across ${topics.length} agents. Here's what came back:\n\n${outcome.content.slice(0, 1500)}`;
+    } else if (/\b(email|e-mail|mail)\b/.test(lower) && has("gmail_send_email")) {
+      const outcome = await call("gmail_send_email", {
+        to: "bob@example.com",
+        subject: "Re: Lunch",
+        body: "Hi Bob,\n\nFriday at 1 works for me. See you then!\n\nBest",
+      });
+      reply = outcome.ok ? "I drafted the email. Review it below and press **Send** when you're happy." : `I couldn't draft it: ${outcome.content}`;
     } else if (/\b(code|python|calculate|compute)\b/.test(lower) && has("run_code")) {
       const outcome = await call("run_code", {
         language: "python",

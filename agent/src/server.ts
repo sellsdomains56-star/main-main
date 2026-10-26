@@ -40,10 +40,15 @@ import {
   listReminders,
   markFileDeleted,
   saveSettings,
+  setSecretKV,
   updateAgent,
   updateConversation,
   type AgentInput,
 } from "./db.js";
+import { GALLERY } from "./connectors/gallery.js";
+import { discardGmailDraft, finishGoogleAuth, GOOGLE_SERVICES, googleClient, isGoogleKind, sendGmailDraft, startGoogleAuth } from "./connectors/google.js";
+import { addMcpConnector, closeMcp, connectMcp, finishMcpAuth } from "./connectors/mcp.js";
+import { getConnector, listConnectors, publicConnector, removeConnector, takeAuth, updateConnector } from "./connectors/store.js";
 import { onAppEvent } from "./events.js";
 import { mimeFor, readFileBytes, saveUpload, WORKSPACE_DIR } from "./files.js";
 import { getRun, isRunning, runningConversations, stopRun, type ActiveRun } from "./runs.js";
@@ -220,6 +225,28 @@ export function createApp() {
     clearLoginFailures(ip);
     issueSession(res, req.secure);
     res.json({ ok: true });
+  }));
+
+  // Where Google and other apps send you back after you sign in. The cookie isn't sent on that cross-site
+  // redirect (it's SameSite=Strict), so the single-use, unguessable `state` is what ties it to your request.
+  app.get("/api/connectors/oauth/callback", asyncRoute(async (req, res) => {
+    const back = (params: Record<string, string>) => res.redirect(302, `/#/connectors?${new URLSearchParams(params)}`);
+    const pendingAuth = takeAuth(String(req.query.state ?? ""));
+    if (!pendingAuth) return back({ error: "That sign-in link expired. Try connecting again." });
+    if (req.query.error) return back({ error: `Sign-in was cancelled (${String(req.query.error)}).` });
+    if (!isUnlocked()) return back({ error: "Dizz Lab was locked. Sign in, then connect again." });
+    const connector = getConnector(pendingAuth.connectorId);
+    if (!connector) return back({ error: "That connector was removed." });
+    try {
+      const code = String(req.query.code ?? "");
+      const done =
+        pendingAuth.kind === "mcp"
+          ? await finishMcpAuth(connector.id, code, pendingAuth.redirectUrl)
+          : await finishGoogleAuth(pendingAuth, code, connector);
+      back({ connected: done.name });
+    } catch (err) {
+      back({ error: `${connector.name}: ${err instanceof Error ? err.message : String(err)}` });
+    }
   }));
 
   app.post("/api/logout", (_req, res) => {
@@ -442,6 +469,86 @@ export function createApp() {
   app.delete("/api/agents/:id", (req, res) => {
     res.json({ ok: deleteAgent(param(req, "id")) });
   });
+
+  // ── Connectors ──
+  const redirectUrl = (req: Request) => `${config.publicUrl || `${req.protocol}://${req.get("host")}`}/api/connectors/oauth/callback`;
+
+  app.get("/api/connectors", (req, res) => {
+    res.json({
+      connectors: listConnectors().map(publicConnector),
+      google: {
+        configured: !!googleClient(),
+        fromEnv: !!(config.googleClientId && config.googleClientSecret),
+        redirectUri: redirectUrl(req),
+        services: Object.entries(GOOGLE_SERVICES).map(([kind, s]) => ({ kind, name: s.name, description: s.description })),
+      },
+      gallery: GALLERY,
+    });
+  });
+
+  app.put("/api/connectors/google/setup", (req, res) => {
+    const body = parse(z.object({ clientId: z.string().trim().min(10), clientSecret: z.string().trim().min(6) }), req.body);
+    setSecretKV("google_oauth", JSON.stringify(body));
+    res.json({ ok: true });
+  });
+
+  app.post("/api/connectors/google/:kind/connect", (req, res) => {
+    const kind = param(req, "kind");
+    if (!isGoogleKind(kind)) throw new HttpError(404, "Unknown Google service");
+    res.json({ authUrl: startGoogleAuth(kind, redirectUrl(req)) });
+  });
+
+  app.post("/api/connectors/mcp", asyncRoute(async (req, res) => {
+    const body = parse(z.object({ name: z.string().max(60).optional(), url: z.string().url("That isn't a valid link"), token: z.string().max(4000).optional() }), req.body);
+    const { connector, authUrl } = await addMcpConnector(body, redirectUrl(req));
+    res.json({ connector: publicConnector(connector), authUrl });
+  }));
+
+  app.post("/api/connectors/:id/connect", asyncRoute(async (req, res) => {
+    const connector = getConnector(param(req, "id"));
+    if (!connector) throw new HttpError(404, "Connector not found");
+    if (isGoogleKind(connector.kind)) {
+      res.json({ authUrl: startGoogleAuth(connector.kind, redirectUrl(req)) });
+      return;
+    }
+    const { connector: updated, authUrl } = await connectMcp(connector.id, redirectUrl(req));
+    res.json({ connector: publicConnector(updated), authUrl });
+  }));
+
+  app.patch("/api/connectors/:id", (req, res) => {
+    const patch = parse(z.object({ enabled: z.boolean().optional(), autoSend: z.boolean().optional(), name: z.string().trim().min(1).max(60).optional() }), req.body);
+    const updated = updateConnector(param(req, "id"), patch);
+    if (!updated) throw new HttpError(404, "Connector not found");
+    res.json(publicConnector(updated));
+  });
+
+  app.delete("/api/connectors/:id", asyncRoute(async (req, res) => {
+    const connector = getConnector(param(req, "id"));
+    if (!connector) throw new HttpError(404, "Connector not found");
+    closeMcp(connector.id);
+    // Best effort: tell Google to forget the grant too.
+    if (connector.google?.refreshToken && !config.googleApiOrigin) {
+      await fetch(`https://oauth2.googleapis.com/revoke?token=${encodeURIComponent(connector.google.refreshToken)}`, { method: "POST" }).catch(() => {});
+    }
+    removeConnector(connector.id);
+    res.json({ ok: true });
+  }));
+
+  // The Send / Discard buttons on an email the agent drafted.
+  app.post("/api/connectors/:id/email/:action", asyncRoute(async (req, res) => {
+    const connector = getConnector(param(req, "id"));
+    if (!connector || connector.kind !== "gmail") throw new HttpError(404, "Gmail isn't connected");
+    const { draftId } = parse(z.object({ draftId: z.string().min(1) }), req.body);
+    try {
+      if (param(req, "action") === "send") await sendGmailDraft(connector, draftId);
+      else if (param(req, "action") === "discard") await discardGmailDraft(connector, draftId);
+      else throw new HttpError(404, "Unknown action");
+    } catch (err) {
+      if (err instanceof HttpError) throw err;
+      throw new HttpError(409, `This draft was already sent or deleted (${err instanceof Error ? err.message : String(err)})`);
+    }
+    res.json({ ok: true });
+  }));
 
   // ── Files ──
   app.get("/api/files", (_req, res) => {

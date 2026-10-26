@@ -26,6 +26,16 @@ export interface Source {
   title: string;
 }
 
+/** Something the agent prepared that waits for your click (e.g. an email it drafted). */
+export interface EmailApproval {
+  kind: "email";
+  connectorId: string;
+  draftId: string;
+  to: string;
+  subject: string;
+  preview: string;
+}
+
 export type Step =
   | { kind: "thinking"; text: string; startedAt: number; endedAt?: number }
   | {
@@ -38,6 +48,7 @@ export type Step =
       status: "running" | "ok" | "error";
       result?: string;
       server?: boolean;
+      approval?: EmailApproval;
     };
 
 export interface MessageData {
@@ -80,7 +91,7 @@ export interface Conversation {
 }
 
 /** Groups of abilities an agent can be given. */
-export const TOOL_GROUPS = ["web", "memory", "reminders", "files", "code", "images", "agents"] as const;
+export const TOOL_GROUPS = ["web", "memory", "reminders", "files", "code", "images", "connectors", "agents"] as const;
 export type ToolGroup = (typeof TOOL_GROUPS)[number];
 
 /** A custom agent: its own identity, instructions, model and abilities. You can have as many as you like. */

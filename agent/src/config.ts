@@ -36,6 +36,11 @@ export const config = {
   xaiKey: env.XAI_API_KEY ?? "",
   xaiBaseUrl: env.XAI_BASE_URL ?? "https://api.x.ai/v1",
   xaiImageModel: env.XAI_IMAGE_MODEL?.trim() || "grok-imagine-image-2.0",
+  /** Your Google Cloud OAuth client, for the Gmail, Calendar and Drive connectors (can also be entered in the app). */
+  googleClientId: env.GOOGLE_CLIENT_ID?.trim() ?? "",
+  googleClientSecret: env.GOOGLE_CLIENT_SECRET?.trim() ?? "",
+  /** Tests point Google's hosts at a local stand-in. */
+  googleApiOrigin: env.GOOGLE_API_ORIGIN?.trim() ?? "",
   ntfyUrl: env.NTFY_URL?.trim() ?? "",
   /** Put the reminder text in phone pushes (it then passes through the ntfy server). */
   ntfyShowContent: env.NTFY_SHOW_CONTENT === "1",

@@ -98,6 +98,47 @@ function xaiReply(call: number): string {
   ]);
 }
 
+const googleRequests: Captured[] = [];
+let tokenCounter = 0;
+
+/** A stand-in for Google's sign-in, Gmail and Calendar APIs. */
+function googleReply(method: string, path: string, raw: string): unknown {
+  const b64 = (s: string) => Buffer.from(s).toString("base64url");
+  if (path.startsWith("/oauth2.googleapis.com/token")) {
+    const form = new URLSearchParams(raw);
+    tokenCounter++;
+    return { access_token: `access-${tokenCounter}`, expires_in: 3600, scope: "gmail", ...(form.get("grant_type") === "authorization_code" ? { refresh_token: "refresh-1" } : {}) };
+  }
+  if (path.startsWith("/openidconnect.googleapis.com/v1/userinfo")) return { email: "me@example.com" };
+  const gmail = "/gmail.googleapis.com/gmail/v1/users/me";
+  if (path.startsWith(`${gmail}/messages?`)) return { messages: [{ id: "m1", threadId: "t1" }] };
+  if (path.startsWith(`${gmail}/messages/m1`)) {
+    return {
+      id: "m1",
+      threadId: "t1",
+      labelIds: ["UNREAD"],
+      snippet: "Lunch on Friday?",
+      payload: {
+        mimeType: "multipart/alternative",
+        headers: [
+          { name: "From", value: "Bob <bob@example.com>" },
+          { name: "To", value: "me@example.com" },
+          { name: "Subject", value: "Lunch" },
+          { name: "Date", value: "Mon, 26 Oct 2026 09:00:00 +0400" },
+          { name: "Message-ID", value: "<abc@mail>" },
+        ],
+        parts: [
+          { mimeType: "text/plain", body: { data: b64("Hi! Lunch on Friday at 1?") } },
+          { mimeType: "text/html", body: { data: b64("<p>Hi! Lunch on <b>Friday</b> at 1?</p>") } },
+        ],
+      },
+    };
+  }
+  if (path === `${gmail}/drafts` && method === "POST") return { id: "draft-1", message: { id: "dm1" } };
+  if (path === `${gmail}/drafts/send` && method === "POST") return { id: "sent-1" };
+  return {};
+}
+
 let server: http.Server;
 
 before(async () => {
@@ -107,8 +148,19 @@ before(async () => {
     let raw = "";
     req.on("data", (c) => (raw += c));
     req.on("end", () => {
-      const body = raw ? JSON.parse(raw) : {};
+      let body: Record<string, unknown> = {};
+      try {
+        body = raw ? JSON.parse(raw) : {};
+      } catch {
+        body = Object.fromEntries(new URLSearchParams(raw));
+      }
       if (body.stream) res.writeHead(200, { "content-type": "text/event-stream" });
+      if (req.url!.startsWith("/google/")) {
+        googleRequests.push({ path: req.url!, headers: req.headers, body: body ?? {} });
+        res.writeHead(200, { "content-type": "application/json" });
+        res.end(JSON.stringify(googleReply(req.method!, req.url!.slice("/google".length), raw)));
+        return;
+      }
       if (req.url!.startsWith("/anthropic/")) {
         anthropicRequests.push({ path: req.url!, headers: req.headers, body });
         // Title requests are plain (non-streaming) calls.
@@ -137,6 +189,7 @@ before(async () => {
   process.env.XAI_BASE_URL = `http://127.0.0.1:${port}/xai/v1`;
   process.env.AGENT_PASSWORD = "correct horse";
   process.env.TIMEZONE = "Asia/Dubai";
+  process.env.GOOGLE_API_ORIGIN = `http://127.0.0.1:${port}/google`;
   const { initAuth } = await import("./auth.js");
   await initAuth(); // creates the vault from AGENT_PASSWORD and unlocks it
 });
@@ -384,6 +437,140 @@ describe("Encryption at rest", () => {
     assert.equal(await changePassword("correct horse", "new password 2"), true);
     assert.equal(await unlock("new password 2"), true);
     assert.equal(await changePassword("new password 2", "correct horse"), true);
+  });
+});
+
+describe("Connectors", () => {
+  async function signedIn() {
+    const { createApp } = await import("./server.js");
+    const srv = createApp().listen(0);
+    const base = `http://127.0.0.1:${(srv.address() as AddressInfo).port}`;
+    const headers = { "content-type": "application/json", "x-requested-with": "agent" };
+    const login = await fetch(`${base}/api/login`, { method: "POST", headers, body: '{"password":"correct horse"}' });
+    const cookie = login.headers.get("set-cookie")!.split(";")[0];
+    const call = (path: string, init: { method?: string; body?: unknown } = {}) =>
+      fetch(`${base}${path}`, {
+        method: init.method ?? (init.body ? "POST" : "GET"),
+        headers: { ...headers, cookie },
+        body: init.body ? JSON.stringify(init.body) : undefined,
+        redirect: "manual",
+      });
+    return { srv, base, call };
+  }
+
+  it("connects Gmail through Google sign-in, reads mail and drafts emails that wait for your OK", async () => {
+    const { srv, base, call } = await signedIn();
+    try {
+      assert.equal((await call("/api/connectors/google/setup", { method: "PUT", body: { clientId: "client-123.apps.googleusercontent.com", clientSecret: "secret-xyz" } })).status, 200);
+      const { authUrl } = (await (await call("/api/connectors/google/gmail/connect", { body: {} })).json()) as { authUrl: string };
+      const auth = new URL(authUrl);
+      assert.match(auth.searchParams.get("scope")!, /gmail\.readonly/);
+      assert.equal(auth.searchParams.get("code_challenge_method"), "S256");
+      assert.equal(auth.searchParams.get("access_type"), "offline");
+      const state = auth.searchParams.get("state")!;
+
+      // Google sends you back without our cookie; the state alone completes it, once.
+      const back = await fetch(`${base}/api/connectors/oauth/callback?code=good-code&state=${state}`, { redirect: "manual" });
+      assert.equal(back.status, 302);
+      assert.equal(back.headers.get("location"), "/#/connectors?connected=Gmail");
+      const replay = await fetch(`${base}/api/connectors/oauth/callback?code=good-code&state=${state}`, { redirect: "manual" });
+      assert.match(replay.headers.get("location")!, /error=/);
+      const exchange = googleRequests.find((r) => r.path.includes("/token") && String(r.body.grant_type) === "authorization_code")!;
+      assert.equal(exchange.body.code, "good-code");
+      assert.ok(String(exchange.body.code_verifier).length >= 43);
+
+      const listed = (await (await call("/api/connectors")).json()) as { connectors: { kind: string; status: string; account: string; id: string }[] };
+      const gmail = listed.connectors.find((c) => c.kind === "gmail")!;
+      assert.equal(gmail.status, "connected");
+      assert.equal(gmail.account, "me@example.com");
+      assert.doesNotMatch(JSON.stringify(listed), /access-\d|refresh-1|secret-xyz/, "tokens never reach the browser");
+
+      const { rawRow } = await import("./db.js");
+      assert.doesNotMatch(JSON.stringify(rawRow("connectors", gmail.id)), /refresh-1|access-\d/, "tokens are encrypted at rest");
+
+      const { toolsFor } = await import("./agent/toolkit.js");
+      const tools = toolsFor(null, false).tools;
+      const tool = (name: string) => tools.find((t) => t.name === name)!;
+      const ctx = { conversationId: "c_x", signal: new AbortController().signal, progress() {} };
+
+      const found = await tool("gmail_search").run({ query: "is:unread" }, ctx);
+      assert.match(found.content, /Subject: Lunch/);
+      assert.match(found.content, /\[unread\]/);
+      const read = await tool("gmail_read").run({ message_id: "m1" }, ctx);
+      assert.match(read.content, /Lunch on Friday at 1\?/);
+
+      const drafted = await tool("gmail_send_email").run({ to: "bob@example.com", subject: "Re: Lunch", body: "Friday works!", reply_to_message_id: "m1" }, ctx);
+      assert.ok(drafted.approval, "it waits for approval");
+      assert.equal(drafted.approval!.draftId, "draft-1");
+      const draftReq = googleRequests.find((r) => r.path.endsWith("/drafts") && r.body.message)!;
+      const rawEmail = Buffer.from((draftReq.body.message as { raw: string }).raw, "base64url").toString();
+      assert.match(rawEmail, /To: bob@example\.com/);
+      assert.match(rawEmail, /In-Reply-To: <abc@mail>/);
+      assert.equal((draftReq.body.message as { threadId: string }).threadId, "t1");
+      assert.ok(!googleRequests.some((r) => r.path.endsWith("/drafts/send")), "nothing sent yet");
+
+      assert.equal((await call(`/api/connectors/${gmail.id}/email/send`, { body: { draftId: "draft-1" } })).status, 200);
+      assert.ok(googleRequests.some((r) => r.path.endsWith("/drafts/send")));
+
+      // An expired access token is refreshed automatically.
+      const { getConnector, saveConnector } = await import("./connectors/store.js");
+      const c = getConnector(gmail.id)!;
+      saveConnector({ ...c, google: { ...c.google!, expiresAt: 0 } });
+      await tool("gmail_search").run({ query: "" }, ctx);
+      assert.ok(googleRequests.some((r) => r.path.includes("/token") && r.body.grant_type === "refresh_token" && r.body.refresh_token === "refresh-1"));
+    } finally {
+      srv.close();
+    }
+  });
+
+  it("adds an app by link (an MCP server) with a token and lets the agent use its tools", async () => {
+    const { McpServer } = await import("@modelcontextprotocol/sdk/server/mcp.js");
+    const { StreamableHTTPServerTransport } = await import("@modelcontextprotocol/sdk/server/streamableHttp.js");
+    const { z } = await import("zod");
+    const express = (await import("express")).default;
+    const appServer = express();
+    appServer.use(express.json());
+    appServer.post("/mcp", async (req, res) => {
+      if (req.headers.authorization !== "Bearer sk-good") {
+        res.status(401).json({ error: "unauthorized" });
+        return;
+      }
+      const mcp = new McpServer({ name: "calculator", version: "1.0.0" });
+      mcp.registerTool("add", { description: "Add two numbers", inputSchema: { a: z.number(), b: z.number() } }, async ({ a, b }) => ({
+        content: [{ type: "text", text: String(a + b) }],
+      }));
+      const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+      res.on("close", () => void transport.close());
+      await mcp.connect(transport);
+      await transport.handleRequest(req, res, req.body);
+    });
+    const mcpSrv = appServer.listen(0);
+    const url = `http://127.0.0.1:${(mcpSrv.address() as AddressInfo).port}/mcp`;
+    const { srv, call } = await signedIn();
+    try {
+      const bad = (await (await call("/api/connectors/mcp", { body: { url, name: "Calc", token: "sk-wrong" } })).json()) as { connector: { status: string; error: string } };
+      assert.equal(bad.connector.status, "error");
+      const good = (await (await call("/api/connectors/mcp", { body: { url, name: "Calc", token: "sk-good" } })).json()) as {
+        connector: { status: string; tools: { name: string }[]; usesToken: boolean };
+      };
+      assert.equal(good.connector.status, "connected");
+      assert.deepEqual(good.connector.tools.map((t) => t.name), ["add"]);
+
+      const { toolsFor } = await import("./agent/toolkit.js");
+      const add = toolsFor(null, false).tools.find((t) => t.name === "calc__add");
+      assert.ok(add, "tool is namespaced by app");
+      const out = await add!.run({ a: 2, b: 3 }, { conversationId: "c_x", signal: new AbortController().signal, progress() {} });
+      assert.equal(out.ok, true);
+      assert.equal(out.content, "5");
+      assert.equal((await add!.run({ a: 2 }, { conversationId: "c_x", signal: new AbortController().signal, progress() {} })).ok, false);
+
+      // Custom agents only get connectors if you give them that ability.
+      const limited = toolsFor({ id: "a", name: "a", emoji: "", description: "", instructions: "", model: null, effort: null, tools: ["memory"], createdAt: 0, updatedAt: 0 }, false);
+      assert.ok(!limited.tools.some((t) => t.name === "calc__add"));
+    } finally {
+      srv.close();
+      mcpSrv.close();
+    }
   });
 });
 

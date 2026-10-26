@@ -49,6 +49,7 @@ db.exec(`
     conversation_id TEXT, path TEXT NOT NULL, created_at INTEGER NOT NULL, deleted INTEGER NOT NULL DEFAULT 0);
   CREATE INDEX IF NOT EXISTS files_by_path ON files(path);
   CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+  CREATE TABLE IF NOT EXISTS connectors (id TEXT PRIMARY KEY, data TEXT NOT NULL, created_at INTEGER NOT NULL);
   CREATE TABLE IF NOT EXISTS agents (
     id TEXT PRIMARY KEY, data TEXT NOT NULL, model TEXT, effort TEXT, tools TEXT,
     created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL);
@@ -298,6 +299,17 @@ export function setKV(key: string, value: string): void {
   db.prepare("INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value").run(key, value);
 }
 
+/** Encrypted key/value pairs (e.g. your Google OAuth client). */
+export function getSecretKV(key: string): string | null {
+  const raw = getKV(key);
+  return raw === null ? null : dec(raw);
+}
+
+export function setSecretKV(key: string, value: string | null): void {
+  if (value === null) db.prepare("DELETE FROM settings WHERE key = ?").run(key);
+  else setKV(key, enc(value));
+}
+
 const DEFAULT_SETTINGS: Settings = {
   userName: "",
   defaultModel: "",
@@ -417,7 +429,25 @@ export function deleteAgent(id: string): boolean {
   return deleted;
 }
 
+// ── Connectors (whole record encrypted; see connectors/store.ts) ───────────────
+
+export function listConnectorRows(): string[] {
+  return (db.prepare("SELECT data FROM connectors ORDER BY created_at").all() as Row[]).map((r) => dec(r.data as string));
+}
+
+export function addConnectorRow(id: string, json: string, createdAt: number): void {
+  db.prepare("INSERT INTO connectors (id, data, created_at) VALUES (?, ?, ?)").run(id, enc(json), createdAt);
+}
+
+export function updateConnectorRow(id: string, json: string): void {
+  db.prepare("UPDATE connectors SET data = ? WHERE id = ?").run(enc(json), id);
+}
+
+export function deleteConnectorRow(id: string): boolean {
+  return db.prepare("DELETE FROM connectors WHERE id = ?").run(id).changes > 0;
+}
+
 /** The stored (encrypted) form of a row, for tests that check nothing readable reaches the disk. */
-export function rawRow(table: "conversations" | "messages" | "memories" | "agents", id: string): Row | undefined {
+export function rawRow(table: "conversations" | "messages" | "memories" | "agents" | "connectors", id: string): Row | undefined {
   return db.prepare(`SELECT * FROM ${table} WHERE id = ?`).get(id) as Row | undefined;
 }
