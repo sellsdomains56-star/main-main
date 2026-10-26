@@ -4,6 +4,7 @@ import { broadcast } from "../events.js";
 import { startRun, type ActiveRun } from "../runs.js";
 import type { Effort, FileRecord } from "../types.js";
 import { turnContext } from "./prompt.js";
+import { AUTO_MODEL, routeModel } from "./router.js";
 import { runTurn } from "./run.js";
 import { autoTitle } from "./title.js";
 
@@ -49,11 +50,12 @@ function launch(conversationId: string, model: ReturnType<typeof findModel>, eff
 
 /** Saves your message and starts the agent on it. */
 export function sendMessage(opts: SendOptions): ActiveRun {
-  const { agent, model, effort } = resolveModelAndEffort(opts.conversationId, opts.model, opts.effort);
+  const { agent, model: chosen, effort } = resolveModelAndEffort(opts.conversationId, opts.model, opts.effort);
   const attachments = (opts.attachmentIds ?? [])
     .map((id) => getFile(id))
     .filter((f): f is FileRecord & { path: string } => !!f)
     .map(({ path: _path, ...f }) => f);
+  const model = chosen.id === AUTO_MODEL.id ? routeModel({ text: opts.text, attachments, effort, scheduled: opts.scheduled }) : chosen;
   addMessage(opts.conversationId, "user", {
     text: opts.text,
     attachments: attachments.length ? attachments : undefined,
@@ -70,5 +72,10 @@ export function regenerate(conversationId: string, model?: string, effort?: Effo
   if (!last) throw new Error("Nothing to regenerate");
   if (last.role === "assistant") deleteMessage(last.id);
   const resolved = resolveModelAndEffort(conversationId, model, effort);
-  return launch(conversationId, resolved.model, resolved.effort, resolved.agent);
+  const lastUser = messages.findLast((m) => m.role === "user");
+  const picked =
+    resolved.model.id === AUTO_MODEL.id
+      ? routeModel({ text: lastUser?.text ?? "", attachments: lastUser?.attachments, effort: resolved.effort, scheduled: lastUser?.scheduled })
+      : resolved.model;
+  return launch(conversationId, picked, resolved.effort, resolved.agent);
 }

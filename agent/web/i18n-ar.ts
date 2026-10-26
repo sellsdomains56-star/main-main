@@ -434,4 +434,8 @@ export const AR: Record<string, string> = {
   "Chats": "المحادثات",
   "Swarm agents": "وكلاء السرب",
   "Scheduled tasks": "المهام المجدولة",
+
+  // Smart pick
+  "Smart pick": "اختيار ذكي",
+  "Picks the right model for each message": "يختار النموذج المناسب لكل رسالة",
 };

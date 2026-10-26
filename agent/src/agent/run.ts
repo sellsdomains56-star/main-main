@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
-import { findModel, type ModelInfo } from "../config.js";
+import { AUTO_MODEL, findModel, type ModelInfo } from "../config.js";
+import { routeModel } from "./router.js";
 import { addMessage, getKV, getSettings, newId, setKV } from "../db.js";
 import { recordUsage } from "../spending.js";
 import type { AgentEvent, AgentProfile, Effort, FileRecord, MessageData, Source, Step, StoredMessage, TurnUsage } from "../types.js";
@@ -261,7 +262,8 @@ function savedContainer(key: string): string | null {
 
 /** One task for one agent, in a fresh context, for a swarm. */
 async function runSubAgent(parent: TurnOptions, profile: AgentProfile | null, task: string, signal: AbortSignal): Promise<SubAgentResult> {
-  const model = findModel(profile?.model ?? parent.model.id);
+  const named = findModel(profile?.model ?? parent.model.id);
+  const model = named.id === AUTO_MODEL.id ? routeModel({ text: task, effort: profile?.effort ?? parent.effort }) : named;
   const userMessage: StoredMessage = {
     id: newId("m"),
     conversationId: parent.conversationId,

@@ -654,6 +654,34 @@ describe("Connectors", () => {
   });
 });
 
+describe("Smart pick", () => {
+  it("picks a model per message", async () => {
+    const { routeModel } = await import("./agent/router.js");
+    const pick = (text: string, effort: "fast" | "auto" | "deep" | "max" = "auto", attachments = 0) =>
+      routeModel({ text, effort, attachments: Array.from({ length: attachments }, (_, i) => ({ id: `f${i}`, name: "a.pdf", mime: "application/pdf", size: 1, origin: "upload" as const, conversationId: null, createdAt: 0 })) }).id;
+    assert.equal(pick("thanks!"), "claude-haiku-5-5");
+    assert.equal(pick("شكرا"), "claude-haiku-5-5");
+    assert.equal(pick("What's a good name for a grey cat?"), "claude-sonnet-5-5");
+    assert.equal(pick("Analyze my Q3 numbers and build a budget for next year"), "claude-opus-5-5");
+    assert.equal(pick("حلل أرقام المبيعات"), "claude-opus-5-5");
+    assert.equal(pick("summarise", "auto", 1), "claude-opus-5-5");
+    assert.equal(pick("hi", "deep"), "claude-opus-5-5");
+    assert.equal(pick("Anything", "max"), "claude-fable-5-1");
+    assert.equal(pick("What's trending on X right now?"), "grok-4.7");
+  });
+
+  it("answers with the picked model and records it on the reply", async () => {
+    const { createConversation, listMessages } = await import("./db.js");
+    const { sendMessage } = await import("./agent/chat.js");
+    const conversation = createConversation();
+    const before = anthropicRequests.length;
+    await untilDone(sendMessage({ conversationId: conversation.id, text: "thanks", model: "auto" }));
+    const req = anthropicRequests.slice(before).find((r) => r.body.stream)!;
+    assert.equal(req.body.model, "claude-haiku-5-5");
+    assert.equal(listMessages(conversation.id).at(-1)!.model, "claude-haiku-5-5");
+  });
+});
+
 describe("Spending", () => {
   it("prices requests from published rates, caching and long prompts included", async () => {
     const { requestCost } = await import("./pricing.js");

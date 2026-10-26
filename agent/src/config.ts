@@ -70,6 +70,9 @@ export const config = {
 // Dates on the server (reminder repeats, "today") follow your time zone.
 process.env.TZ = config.timezone;
 
+/** Not a real model: picks one for each message (see agent/router.ts). */
+export const AUTO_MODEL: ModelInfo = { id: "auto", label: "Smart pick", provider: "anthropic", blurb: "Picks the right model for each message" };
+
 /** A readable name for any model id, including ones no longer in the menu. */
 export function modelLabel(id: string): string {
   const known = KNOWN_MODELS[id];
@@ -80,6 +83,8 @@ export function modelLabel(id: string): string {
 export function availableModels(): ModelInfo[] {
   const models: ModelInfo[] = [];
   if (config.anthropicKey) models.push(...config.anthropicModels.map((id) => describe(id, "anthropic")));
+  // Auto picks among the Claude models (and Grok for X questions) per message; see agent/router.ts.
+  if (config.anthropicKey && models.length > 1) models.splice(1, 0, AUTO_MODEL);
   if (config.xaiKey) models.push(...config.xaiModels.map((id) => describe(id, "xai")));
   if (config.mock || models.length === 0) {
     models.push({ id: "mock", label: "Demo mode", provider: "mock", blurb: "No API key set: scripted replies" });
