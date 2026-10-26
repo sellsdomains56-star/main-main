@@ -16,8 +16,13 @@
 | **Connectors** | Connect **Gmail**, **Google Calendar** and **Google Drive**, or one-click apps like **Notion, Linear, Jira & Confluence, Zapier, Canva, Stripe, PayPal, Vercel, Sentry and GitHub**, or **any app by pasting its link**. The agent can then read and draft email, check and add events, find documents and work in those apps. Emails it writes wait for your **Send** click unless you allow automatic sending. |
 | **Agents** | Create unlimited named agents, each with its own instructions, model and abilities. Chat with one directly, or tell the main agent "create 20 agents for…". Import and export them as JSON. |
 | **Swarms** | "Use my research agents to compare these 200 companies." The work is split across many agents running in parallel (8 at a time by default), with live progress, and you get one combined answer plus a full report file. |
+| **Arabic & English** | The whole app is in English or Arabic (with a full right-to-left layout); switch under **Settings** or on the sign-in screen. The agent replies in Arabic when the app is in Arabic, and always in the language you write in. |
 | **Voice** | Dictate with the mic button; turn on read-aloud in Settings. |
 | **Anywhere** | Works on desktop and phone; install it to your home screen like an app. Dark and light themes. |
+
+## Try it without installing
+
+`npm run build:demo` builds **`dist/dizz-lab-demo.html`**: the whole app in one file that runs in any browser (desktop or phone) with **scripted replies**, so you can click through everything, including chats, agents, swarms, memory, reminders, connectors, the email approval card and Arabic, before setting anything up. Nothing leaves the page, and everything is forgotten when you close it.
 
 ## Quick start
 
@@ -113,7 +118,8 @@ Copy the whole `data` folder while the app is stopped. It's encrypted, so the ba
 ```bash
 npm run dev        # restart on changes
 npm run typecheck  # server and browser code
-npm test           # adapters against local fake Claude/xAI/Google servers, an MCP app, swarms, reminders, encryption, auth
+npm test           # adapters against local fake Claude/xAI/Google servers, an MCP app, swarms, reminders, encryption, auth, Arabic coverage
+npm run build:demo # the single-file browser demo in dist/
 ```
 
 | Path | What's there |
@@ -124,4 +130,4 @@ npm test           # adapters against local fake Claude/xAI/Google servers, an M
 | `src/connectors/` | Gmail, Calendar and Drive (Google OAuth + REST), apps by link (MCP client with OAuth and automatic registration), and the app gallery. |
 | `src/vault.ts`, `db.ts`, `files.ts` | Encryption, the encrypted SQLite store, and files/workspace. |
 | `src/server.ts`, `auth.ts`, `scheduler.ts` | HTTP API, sign-in and the reminder scheduler. |
-| `web/` | The browser app (TypeScript, bundled on the fly with esbuild). |
+| `web/` | The browser app (TypeScript, bundled on the fly with esbuild). `web/i18n-ar.ts` holds the Arabic text; `web/demo/` is the in-page backend for the demo build. |

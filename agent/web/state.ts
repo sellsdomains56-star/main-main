@@ -17,6 +17,8 @@ export interface Bootstrap {
     swarmMaxTasks: number;
   };
   running: string[];
+  /** Set by the browser-only demo build. */
+  demo?: boolean;
 }
 
 export interface ConversationSummary extends Conversation {

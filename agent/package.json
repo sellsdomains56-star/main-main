@@ -12,7 +12,8 @@
     "start": "NODE_ENV=production tsx --env-file-if-exists=.env --disable-warning=ExperimentalWarning src/index.ts",
     "demo": "AGENT_MOCK=1 AGENT_PASSWORD=demo DATA_DIR=./data-demo tsx --disable-warning=ExperimentalWarning src/index.ts",
     "typecheck": "tsc --noEmit -p . && tsc --noEmit -p tsconfig.web.json",
-    "test": "NODE_ENV=test AGENT_MOCK=1 DATA_DIR=./data-test tsx --disable-warning=ExperimentalWarning --test src/**/*.test.ts"
+    "test": "NODE_ENV=test AGENT_MOCK=1 DATA_DIR=./data-test tsx --disable-warning=ExperimentalWarning --test src/**/*.test.ts",
+    "build:demo": "node scripts/build-demo.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0",

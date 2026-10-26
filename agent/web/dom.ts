@@ -39,3 +39,27 @@ export function clear(el: Element): void {
 }
 
 export const $ = <T extends Element = HTMLElement>(selector: string, root: ParentNode = document) => root.querySelector<T>(selector);
+
+/**
+ * Runs `handler` when a form is submitted. Besides the submit event, it listens
+ * for the submit button and Enter, because embedded viewers (sandboxed frames)
+ * often block form submission entirely. The browser's own field checks still run.
+ */
+export function onSubmit(form: HTMLFormElement, handler: () => unknown): void {
+  let busy = false;
+  const run = (e: Event) => {
+    e.preventDefault();
+    if (busy || !form.reportValidity()) return;
+    busy = true;
+    void Promise.resolve(handler()).finally(() => (busy = false));
+  };
+  form.addEventListener("submit", run);
+  form.addEventListener("click", (e) => {
+    const button = (e.target as HTMLElement).closest("button");
+    if (button && button.type === "submit" && form.contains(button)) run(e);
+  });
+  form.addEventListener("keydown", (e) => {
+    const target = e.target as HTMLElement;
+    if (e.key === "Enter" && !e.isComposing && target.tagName === "INPUT" && (target as HTMLInputElement).type !== "checkbox") run(e);
+  });
+}

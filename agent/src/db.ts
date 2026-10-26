@@ -311,6 +311,7 @@ export function setSecretKV(key: string, value: string | null): void {
 }
 
 const DEFAULT_SETTINGS: Settings = {
+  language: "",
   userName: "",
   defaultModel: "",
   effort: "auto",
@@ -318,15 +319,21 @@ const DEFAULT_SETTINGS: Settings = {
   customInstructions: "",
 };
 
+let settingsCache: Settings | null = null;
+onLock(() => (settingsCache = null));
+
 export function getSettings(): Settings {
+  if (settingsCache) return { ...settingsCache };
   const raw = getKV("settings");
-  return { ...DEFAULT_SETTINGS, ...(raw ? (JSON.parse(dec(raw)) as Partial<Settings>) : {}) };
+  settingsCache = { ...DEFAULT_SETTINGS, ...(raw ? (JSON.parse(dec(raw)) as Partial<Settings>) : {}) };
+  return { ...settingsCache };
 }
 
 export function saveSettings(patch: Partial<Settings>): Settings {
   const next = { ...getSettings(), ...patch };
   setKV("settings", enc(JSON.stringify(next)));
-  return next;
+  settingsCache = next;
+  return { ...next };
 }
 
 // ── Custom agents ─────────────────────────────────────────────────────────────

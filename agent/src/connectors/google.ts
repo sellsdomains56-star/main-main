@@ -7,6 +7,7 @@ import { config } from "../config.js";
 import { getSecretKV } from "../db.js";
 import { registerGenerated, safeName, WORKSPACE_DIR, formatSize } from "../files.js";
 import { formatWhen } from "../tools/schedule.js";
+import { tr, trCount } from "../i18n.js";
 import { createConnector, findConnector, rememberAuth, saveConnector, type Connector, type ConnectorKind, type PendingAuth } from "./store.js";
 
 /**
@@ -249,19 +250,19 @@ const gmailSearch = defineTool({
     query: z.string().default("").describe("Gmail search query; empty for the latest messages"),
     max_results: z.number().int().min(1).max(50).default(10),
   }),
-  label: (i) => (i.query ? `Searched Gmail for “${i.query}”` : "Checked Gmail"),
+  label: (i) => (i.query ? tr(`Searched Gmail for “${i.query}”`, `بحث في Gmail عن «${i.query}»`) : tr("Checked Gmail", "تفقّد Gmail")),
   async run({ query, max_results }, ctx) {
     const c = connected("gmail");
     const list = await gapi<{ messages?: { id: string }[] }>(c, `${GMAIL}/messages?${new URLSearchParams({ q: query, maxResults: String(max_results) })}`, {}, ctx.signal);
     const ids = list.messages ?? [];
-    if (!ids.length) return { ok: true, content: "No emails match.", result: "No matches" };
+    if (!ids.length) return { ok: true, content: "No emails match.", result: tr("No matches", "لا نتائج") };
     const meta = "format=metadata&metadataHeaders=From&metadataHeaders=To&metadataHeaders=Subject&metadataHeaders=Date";
     const messages = await Promise.all(ids.map((m) => gapi<GmailMessage>(c, `${GMAIL}/messages/${m.id}?${meta}`, {}, ctx.signal)));
     const lines = messages.map(
       (m) =>
         `- id ${m.id}${m.labelIds?.includes("UNREAD") ? " [unread]" : ""} · ${header(m, "Date")}\n  From: ${header(m, "From")}\n  Subject: ${header(m, "Subject") || "(no subject)"}\n  ${m.snippet ?? ""}`,
     );
-    return { ok: true, content: lines.join("\n"), result: `${messages.length} email${messages.length === 1 ? "" : "s"}` };
+    return { ok: true, content: lines.join("\n"), result: trCount(messages.length, ["{n} email", "{n} emails"], ["رسالة واحدة", "رسالتان", "{n} رسائل", "{n} رسالة"]) };
   },
 });
 
@@ -269,7 +270,7 @@ const gmailRead = defineTool({
   name: "gmail_read",
   description: "Read one email in full (headers, text and a list of attachments) by its id from gmail_search.",
   schema: z.object({ message_id: z.string() }),
-  label: () => "Read an email",
+  label: () => tr("Read an email", "قرأ رسالة"),
   async run({ message_id }, ctx) {
     const c = connected("gmail");
     const m = await gapi<GmailMessage>(c, `${GMAIL}/messages/${encodeURIComponent(message_id)}?format=full`, {}, ctx.signal);
@@ -298,7 +299,7 @@ const gmailAttachment = defineTool({
   name: "gmail_save_attachment",
   description: "Save an email attachment into the workspace so you can read or analyse it (e.g. with read_file or run_code).",
   schema: z.object({ message_id: z.string(), attachment_id: z.string(), filename: z.string() }),
-  label: (i) => `Saved ${i.filename ?? "an attachment"}`,
+  label: (i) => (i.filename ? tr(`Saved ${i.filename}`, `حفظ ${i.filename}`) : tr("Saved an attachment", "حفظ مرفقًا")),
   async run({ message_id, attachment_id, filename }, ctx) {
     const c = connected("gmail");
     const a = await gapi<{ data: string }>(c, `${GMAIL}/messages/${encodeURIComponent(message_id)}/attachments/${encodeURIComponent(attachment_id)}`, {}, ctx.signal);
@@ -325,7 +326,7 @@ const gmailSend = defineTool({
     bcc: z.string().optional(),
     reply_to_message_id: z.string().optional().describe("The id of the email being replied to"),
   }),
-  label: (i) => (i.reply_to_message_id ? "Drafted a reply" : "Drafted an email"),
+  label: (i) => (i.reply_to_message_id ? tr("Drafted a reply", "صاغ ردًّا") : tr("Drafted an email", "صاغ رسالة")),
   detail: (i) => [`To: ${i.to ?? ""}`, `Subject: ${i.subject ?? ""}`, "", i.body ?? ""].join("\n"),
   async run({ to, subject, body, cc, bcc, reply_to_message_id }, ctx): Promise<ToolOutcome> {
     const c = connected("gmail");
@@ -343,12 +344,12 @@ const gmailSend = defineTool({
     const draft = await gapi<{ id: string }>(c, `${GMAIL}/drafts`, { method: "POST", body: JSON.stringify({ message: { raw, threadId } }) }, ctx.signal);
     if (c.autoSend) {
       await sendGmailDraft(c, draft.id);
-      return { ok: true, content: `Sent to ${to}.`, result: `Sent to ${to}` };
+      return { ok: true, content: `Sent to ${to}.`, result: tr(`Sent to ${to}`, `أُرسلت إلى ${to}`) };
     }
     return {
       ok: true,
       content: `Saved as a draft for the user to review. A card with a Send button is shown in the chat; it is NOT sent yet.`,
-      result: "Waiting for you to send",
+      result: tr("Waiting for you to send", "بانتظار إرسالك"),
       approval: { kind: "email", connectorId: c.id, draftId: draft.id, to, subject, preview: body.slice(0, 600) },
     };
   },
@@ -381,7 +382,7 @@ const calendarList = defineTool({
     query: z.string().optional(),
     max_results: z.number().int().min(1).max(100).default(25),
   }),
-  label: (i) => (i.query ? `Searched your calendar for “${i.query}”` : "Checked your calendar"),
+  label: (i) => (i.query ? tr(`Searched your calendar for “${i.query}”`, `بحث في تقويمك عن «${i.query}»`) : tr("Checked your calendar", "تفقّد تقويمك")),
   async run({ time_min, time_max, query, max_results }, ctx) {
     const c = connected("google_calendar");
     const start = time_min ? new Date(time_min) : new Date();
@@ -397,13 +398,13 @@ const calendarList = defineTool({
     if (query) params.set("q", query);
     const data = await gapi<{ items?: CalEvent[] }>(c, `${CAL}/primary/events?${params}`, {}, ctx.signal);
     const items = data.items ?? [];
-    if (!items.length) return { ok: true, content: "No events in that range.", result: "Nothing scheduled" };
+    if (!items.length) return { ok: true, content: "No events in that range.", result: tr("Nothing scheduled", "لا مواعيد") };
     const lines = items.map(
       (e) =>
         `- ${when(e.start)} → ${when(e.end)}: ${e.summary ?? "(no title)"}${e.location ? ` @ ${e.location}` : ""} (id ${e.id})` +
         (e.attendees?.length ? `\n  with ${e.attendees.map((a) => a.email).join(", ")}` : ""),
     );
-    return { ok: true, content: lines.join("\n"), result: `${items.length} event${items.length === 1 ? "" : "s"}` };
+    return { ok: true, content: lines.join("\n"), result: trCount(items.length, ["{n} event", "{n} events"], ["موعد واحد", "موعدان", "{n} مواعيد", "{n} موعدًا"]) };
   },
 });
 
@@ -421,7 +422,7 @@ const calendarCreate = defineTool({
     guests: z.array(z.string()).optional().describe("Email addresses"),
     notify_guests: z.boolean().default(false),
   }),
-  label: (i) => `Added “${i.title ?? "an event"}” to your calendar`,
+  label: (i) => tr(`Added “${i.title ?? "an event"}” to your calendar`, `أضاف «${i.title ?? "موعدًا"}» إلى تقويمك`),
   detail: (i) => [i.start, i.end, i.location].filter(Boolean).join(" · "),
   async run({ title, start, end, location, description, guests, notify_guests }, ctx) {
     const c = connected("google_calendar");
@@ -451,11 +452,11 @@ const calendarDelete = defineTool({
   name: "calendar_delete_event",
   description: "Delete an event from the user's Google Calendar by id. Only when the user clearly asks to cancel or remove it.",
   schema: z.object({ event_id: z.string() }),
-  label: () => "Removed a calendar event",
+  label: () => tr("Removed a calendar event", "حذف موعدًا من التقويم"),
   async run({ event_id }, ctx) {
     const c = connected("google_calendar");
     await gapi(c, `${CAL}/primary/events/${encodeURIComponent(event_id)}?sendUpdates=none`, { method: "DELETE" }, ctx.signal);
-    return { ok: true, content: "Deleted.", result: "Deleted" };
+    return { ok: true, content: "Deleted.", result: tr("Deleted", "حُذف") };
   },
 });
 
@@ -472,7 +473,7 @@ const driveSearch = defineTool({
   name: "drive_search",
   description: "Search the user's Google Drive by file name and content. Returns names, types, dates, links and ids.",
   schema: z.object({ query: z.string().min(1), max_results: z.number().int().min(1).max(50).default(15) }),
-  label: (i) => `Searched Drive for “${i.query ?? ""}”`,
+  label: (i) => tr(`Searched Drive for “${i.query ?? ""}”`, `بحث في Drive عن «${i.query ?? ""}»`),
   async run({ query, max_results }, ctx) {
     const c = connected("google_drive");
     const safe = query.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
@@ -489,9 +490,9 @@ const driveSearch = defineTool({
       ctx.signal,
     );
     const files = data.files ?? [];
-    if (!files.length) return { ok: true, content: "No files match.", result: "No matches" };
+    if (!files.length) return { ok: true, content: "No files match.", result: tr("No matches", "لا نتائج") };
     const lines = files.map((f) => `- ${f.name} (${f.mimeType.replace("application/vnd.google-apps.", "google ")}, modified ${f.modifiedTime.slice(0, 10)}) id ${f.id}${f.webViewLink ? ` ${f.webViewLink}` : ""}`);
-    return { ok: true, content: lines.join("\n"), result: `${files.length} file${files.length === 1 ? "" : "s"}` };
+    return { ok: true, content: lines.join("\n"), result: trCount(files.length, ["{n} file", "{n} files"], ["ملف واحد", "ملفان", "{n} ملفات", "{n} ملفًا"]) };
   },
 });
 
@@ -499,7 +500,7 @@ const driveRead = defineTool({
   name: "drive_read",
   description: "Read a Google Drive file by id: Docs and Slides as text, Sheets as CSV. Other files (PDFs, images, Office) are saved to the workspace.",
   schema: z.object({ file_id: z.string() }),
-  label: () => "Read a Drive file",
+  label: () => tr("Read a Drive file", "قرأ ملفًا من Drive"),
   async run({ file_id }, ctx): Promise<ToolOutcome> {
     const c = connected("google_drive");
     const id = encodeURIComponent(file_id);

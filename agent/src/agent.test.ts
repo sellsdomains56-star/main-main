@@ -574,6 +574,41 @@ describe("Connectors", () => {
   });
 });
 
+describe("Arabic", () => {
+  it("has an Arabic translation for every string in the interface", async () => {
+    const fs = await import("node:fs");
+    const path = await import("node:path");
+    const { AR } = await import("../web/i18n-ar.js");
+    const webDir = path.resolve(import.meta.dirname, "../web");
+    const missing: string[] = [];
+    for (const file of fs.readdirSync(webDir).filter((f) => f.endsWith(".ts"))) {
+      const code = fs.readFileSync(path.join(webDir, file), "utf8").replace(/^\s*\/\/.*$|\/\*[\s\S]*?\*\//gm, "");
+      for (const m of code.matchAll(/(?<![\w.])t\(\s*"((?:[^"\\]|\\.)*)"/g)) {
+        const key = m[1].replace(/\\"/g, '"');
+        if (!(key in AR)) missing.push(`${file}: ${key}`);
+      }
+    }
+    assert.deepEqual(missing, []);
+    assert.ok(Object.keys(AR).length > 200);
+  });
+
+  it("labels the agent's activity and sets its reply language from Settings", async () => {
+    const { saveSettings, getSettings } = await import("./db.js");
+    const { BASE_TOOLS } = await import("./agent/tools.js");
+    const { systemPrompt } = await import("./agent/prompt.js");
+    const remember = BASE_TOOLS.memory[0];
+    saveSettings({ language: "ar" });
+    try {
+      assert.equal(remember.label({}), "حُفظ في الذاكرة");
+      assert.match(systemPrompt(getSettings()), /Reply in Arabic/);
+    } finally {
+      saveSettings({ language: "en" });
+    }
+    assert.equal(remember.label({}), "Saved to memory");
+    assert.match(systemPrompt(getSettings()), /reply in the language the user writes in/);
+  });
+});
+
 describe("HTTP API", () => {
   it("requires the password and blocks cross-site writes", async () => {
     const { createApp } = await import("./server.js");

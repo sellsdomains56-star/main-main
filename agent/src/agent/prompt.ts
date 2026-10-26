@@ -41,6 +41,10 @@ export function systemPrompt(settings: Settings, agent: AgentProfile | null = nu
         "the facts, figures and sources it needs, no chit-chat."
       : "",
     PERSONALITIES[settings.personality] ?? PERSONALITIES.default,
+    settings.language === "ar"
+      ? "Language: the user's app is in Arabic. Reply in Arabic (Modern Standard Arabic, or match their dialect if they write in one), " +
+        "unless they write to you in another language. Keep code, commands and product names as they are."
+      : "Language: reply in the language the user writes in (for example Arabic or English).",
     [
       "How you work:",
       "- Search the web for anything current: news, prices, scores, weather, releases, people, or facts that may have changed. Cite the sources you used.",

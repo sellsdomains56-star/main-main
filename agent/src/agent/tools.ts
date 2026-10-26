@@ -24,6 +24,7 @@ import {
 import { runCode } from "../tools/code.js";
 import { generateImage } from "../tools/image.js";
 import { formatWhen } from "../tools/schedule.js";
+import { tr, trCount } from "../i18n.js";
 import type { AgentProfile, EmailApproval, FileRecord } from "../types.js";
 
 export interface ToolContext {
@@ -91,7 +92,7 @@ export function defineTool<S extends z.ZodObject>(tool: {
       // Tool input is model output: validate it before acting on it.
       const parsed = tool.schema.safeParse(input);
       if (!parsed.success) {
-        return { ok: false, content: `Invalid input for ${tool.name}: ${z.prettifyError(parsed.error)}`, result: "Invalid input" };
+        return { ok: false, content: `Invalid input for ${tool.name}: ${z.prettifyError(parsed.error)}`, result: tr("Invalid input", "مدخلات غير صالحة") };
       }
       try {
         return await tool.run(parsed.data, ctx);
@@ -102,6 +103,8 @@ export function defineTool<S extends z.ZodObject>(tool: {
     },
   };
 }
+
+const REPEAT_AR: Record<string, string> = { hourly: "كل ساعة", daily: "يوميًا", weekdays: "أيام العمل", weekly: "أسبوعيًا", monthly: "شهريًا" };
 
 const quote = (s: string | undefined, max = 60) => (s ? `“${s.length > max ? `${s.slice(0, max)}…` : s}”` : "");
 
@@ -128,11 +131,11 @@ const remember = defineTool({
     fact: z.string().min(2).max(600).describe("The fact, one sentence"),
     category: z.enum(["about_me", "preference", "person", "project", "instruction", "other"]).describe("What kind of fact it is"),
   }),
-  label: () => "Saved to memory",
+  label: () => tr("Saved to memory", "حُفظ في الذاكرة"),
   detail: (i) => i.fact,
   async run({ fact, category }) {
     const duplicate = listMemories().find((m) => m.text.toLowerCase() === fact.toLowerCase());
-    if (duplicate) return { ok: true, content: `Already remembered (${duplicate.id}).`, result: "Already known" };
+    if (duplicate) return { ok: true, content: `Already remembered (${duplicate.id}).`, result: tr("Already known", "معروف مسبقًا") };
     const memory = addMemory(fact, category);
     return { ok: true, content: `Saved as ${memory.id}.`, result: fact };
   },
@@ -142,11 +145,11 @@ const forget = defineTool({
   name: "forget",
   description: "Delete a memory by its id (ids appear in the memory list in your context). Use when a fact is wrong, outdated or the user asks you to forget it.",
   schema: z.object({ memory_id: z.string().describe("The memory id, e.g. mem_abc123") }),
-  label: () => "Removed a memory",
+  label: () => tr("Removed a memory", "حُذفت معلومة من الذاكرة"),
   async run({ memory_id }) {
     return deleteMemory(memory_id)
-      ? { ok: true, content: "Deleted.", result: "Deleted" }
-      : { ok: false, content: `No memory with id ${memory_id}.`, result: "Not found" };
+      ? { ok: true, content: "Deleted.", result: tr("Deleted", "حُذفت") }
+      : { ok: false, content: `No memory with id ${memory_id}.`, result: tr("Not found", "غير موجود") };
   },
 });
 
@@ -156,10 +159,10 @@ const searchPast = defineTool({
     "Search the text of all earlier conversations with the user, newest first. Use it when they refer to something you discussed " +
     "before (\"that recipe from last week\", \"what did we decide about…\") that isn't in this conversation or your memory.",
   schema: z.object({ query: z.string().min(2).describe("A distinctive word or phrase to look for") }),
-  label: (i) => `Searched past chats for ${quote(i.query)}`,
+  label: (i) => tr(`Searched past chats for ${quote(i.query)}`, `بحث في المحادثات السابقة عن ${quote(i.query)}`),
   async run({ query }, ctx) {
     const hits = searchMessages(query, 15).filter((m) => m.conversationId !== ctx.conversationId);
-    if (!hits.length) return { ok: true, content: "No earlier messages match.", result: "No matches" };
+    if (!hits.length) return { ok: true, content: "No earlier messages match.", result: tr("No matches", "لا نتائج") };
     const lines = hits.map((m) => {
       const i = m.text.toLowerCase().indexOf(query.toLowerCase());
       const start = Math.max(0, i - 200);
@@ -167,7 +170,7 @@ const searchPast = defineTool({
       const when = formatWhen(m.createdAt, config.timezone);
       return `- [${when}] "${m.title || "Untitled"}" (${m.role}): …${snippet}…`;
     });
-    return { ok: true, content: lines.join("\n"), result: `${hits.length} match${hits.length === 1 ? "" : "es"}` };
+    return { ok: true, content: lines.join("\n"), result: trCount(hits.length, ["{n} match", "{n} matches"], ["نتيجة واحدة", "نتيجتان", "{n} نتائج", "{n} نتيجة"]) };
   },
 });
 
@@ -185,7 +188,7 @@ const setReminder = defineTool({
     repeat: z.enum(["none", "hourly", "daily", "weekdays", "weekly", "monthly"]).default("none"),
     task: z.string().max(2000).optional().describe("Instructions for you to carry out at that time, if this is a task, not just a ping"),
   }),
-  label: (i) => (i.task ? "Scheduled a task" : "Set a reminder"),
+  label: (i) => (i.task ? tr("Scheduled a task", "جدول مهمة") : tr("Set a reminder", "ضبط تذكيرًا")),
   detail: (i) => [i.message, i.when, i.repeat && i.repeat !== "none" ? `repeats ${i.repeat}` : ""].filter(Boolean).join(" · "),
   async run({ message, when, repeat, task }, ctx) {
     const at = Date.parse(when);
@@ -194,7 +197,8 @@ const setReminder = defineTool({
     const reminder = addReminder({ message, task: task?.trim() || null, nextRun: at, repeat, conversationId: ctx.conversationId });
     const whenText = formatWhen(at, config.timezone);
     const repeatText = repeat === "none" ? "" : `, then ${repeat}`;
-    return { ok: true, content: `Scheduled ${reminder.id} for ${whenText}${repeatText}.`, result: `${whenText}${repeatText}` };
+    const shown = formatWhen(at, config.timezone, true) + (repeat === "none" ? "" : tr(`, then ${repeat}`, `، ثم ${REPEAT_AR[repeat]}`));
+    return { ok: true, content: `Scheduled ${reminder.id} for ${whenText}${repeatText}.`, result: shown };
   },
 });
 
@@ -202,16 +206,16 @@ const listRemindersTool = defineTool({
   name: "list_reminders",
   description: "List the user's upcoming reminders and scheduled tasks with their ids.",
   schema: z.object({}),
-  label: () => "Checked reminders",
+  label: () => tr("Checked reminders", "راجع التذكيرات"),
   async run() {
     const all = listReminders();
-    if (!all.length) return { ok: true, content: "No upcoming reminders.", result: "None" };
+    if (!all.length) return { ok: true, content: "No upcoming reminders.", result: tr("None", "لا شيء") };
     const lines = all.map(
       (r) =>
         `- ${r.id}: ${r.message} — next ${formatWhen(r.nextRun, config.timezone)}${r.repeat !== "none" ? ` (${r.repeat})` : ""}` +
         (r.task ? ` — task: ${r.task}` : ""),
     );
-    return { ok: true, content: lines.join("\n"), result: `${all.length} upcoming` };
+    return { ok: true, content: lines.join("\n"), result: trCount(all.length, ["{n} upcoming", "{n} upcoming"], ["تذكير قادم", "تذكيران قادمان", "{n} تذكيرات قادمة", "{n} تذكيرًا قادمًا"]) };
   },
 });
 
@@ -219,11 +223,11 @@ const cancelReminderTool = defineTool({
   name: "cancel_reminder",
   description: "Cancel a reminder or scheduled task by id (from list_reminders).",
   schema: z.object({ reminder_id: z.string() }),
-  label: () => "Cancelled a reminder",
+  label: () => tr("Cancelled a reminder", "ألغى تذكيرًا"),
   async run({ reminder_id }) {
     return cancelReminder(reminder_id)
-      ? { ok: true, content: "Cancelled.", result: "Cancelled" }
-      : { ok: false, content: `No active reminder ${reminder_id}.`, result: "Not found" };
+      ? { ok: true, content: "Cancelled.", result: tr("Cancelled", "أُلغي") }
+      : { ok: false, content: `No active reminder ${reminder_id}.`, result: tr("Not found", "غير موجود") };
   },
 });
 
@@ -233,12 +237,12 @@ const listFilesTool = defineTool({
   name: "list_files",
   description: "List the files in your workspace folder (uploads from the user and files you created).",
   schema: z.object({}),
-  label: () => "Looked at files",
+  label: () => tr("Looked at files", "اطّلع على الملفات"),
   async run() {
     const files = [...snapshotWorkspace().keys()].sort();
-    if (!files.length) return { ok: true, content: "The workspace is empty.", result: "Empty" };
+    if (!files.length) return { ok: true, content: "The workspace is empty.", result: tr("Empty", "فارغ") };
     const lines = files.slice(0, 300).map((rel) => `- ${rel} (${formatSize(fs.statSync(workspacePath(rel)).size)})`);
-    return { ok: true, content: lines.join("\n"), result: `${files.length} file${files.length === 1 ? "" : "s"}` };
+    return { ok: true, content: lines.join("\n"), result: trCount(files.length, ["{n} file", "{n} files"], ["ملف واحد", "ملفان", "{n} ملفات", "{n} ملفًا"]) };
   },
 });
 
@@ -252,10 +256,10 @@ const readFileTool = defineTool({
     offset: z.number().int().min(0).default(0).describe("Character to start from, for long files"),
     max_chars: z.number().int().min(100).max(100_000).default(40_000),
   }),
-  label: (i) => `Read ${i.path ?? "a file"}`,
+  label: (i) => (i.path ? tr(`Read ${i.path}`, `قرأ ${i.path}`) : tr("Read a file", "قرأ ملفًا")),
   async run({ path: rel, offset, max_chars }) {
     const full = workspacePath(rel);
-    if (!fs.existsSync(full)) return { ok: false, content: `No file "${rel}" in the workspace.`, result: "Not found" };
+    if (!fs.existsSync(full)) return { ok: false, content: `No file "${rel}" in the workspace.`, result: tr("Not found", "غير موجود") };
     const mime = mimeFor(rel, "application/octet-stream");
     const size = fs.statSync(full).size;
     if (isVisionImage(mime) && size <= MAX_IMAGE_FOR_MODEL) {
@@ -268,7 +272,7 @@ const readFileTool = defineTool({
     }
     const buf = fs.readFileSync(full);
     if (!isTextMime(mime) && buf.subarray(0, 8000).includes(0)) {
-      return { ok: false, content: `${rel} is a binary file (${mime}, ${formatSize(size)}). Use run_code to process it.`, result: "Binary file" };
+      return { ok: false, content: `${rel} is a binary file (${mime}, ${formatSize(size)}). Use run_code to process it.`, result: tr("Binary file", "ملف ثنائي") };
     }
     const text = buf.toString("utf8");
     const slice = text.slice(offset, offset + max_chars);
@@ -286,7 +290,7 @@ const writeFileTool = defineTool({
     path: z.string().min(1).describe("Path relative to the workspace, e.g. notes/plan.md"),
     content: z.string().describe("The full file contents"),
   }),
-  label: (i) => `Wrote ${i.path ?? "a file"}`,
+  label: (i) => (i.path ? tr(`Wrote ${i.path}`, `كتب ${i.path}`) : tr("Wrote a file", "كتب ملفًا")),
   async run({ path: rel, content }, ctx) {
     const full = workspacePath(rel);
     fs.mkdirSync(path.dirname(full), { recursive: true });
@@ -308,7 +312,10 @@ const runCodeTool = defineTool({
     code: z.string().min(1).describe("The program to run"),
     timeout_seconds: z.number().int().min(1).max(300).default(60),
   }),
-  label: (i) => `Ran ${i.language === "javascript" ? "JavaScript" : i.language === "bash" ? "a shell command" : "Python"}`,
+  label: (i) =>
+    i.language === "bash"
+      ? tr("Ran a shell command", "نفّذ أمرًا في الطرفية")
+      : tr(`Ran ${i.language === "javascript" ? "JavaScript" : "Python"}`, `شغّل كود ${i.language === "javascript" ? "JavaScript" : "Python"}`),
   detail: (i) => i.code,
   async run({ language, code, timeout_seconds }, ctx) {
     const before = snapshotWorkspace();
@@ -321,7 +328,12 @@ const runCodeTool = defineTool({
       files.length ? `Files created or changed (shown to the user): ${files.map((f) => f.name).join(", ")}` : "",
     ].filter(Boolean);
     const ok = !r.timedOut && r.exitCode === 0;
-    const summary = r.timedOut ? "Timed out" : ok ? `Done in ${(r.durationMs / 1000).toFixed(1)}s` : `Exited with ${r.exitCode}`;
+    const secs = (r.durationMs / 1000).toFixed(1);
+    const summary = r.timedOut
+      ? tr("Timed out", "انتهت المهلة")
+      : ok
+        ? tr(`Done in ${secs}s`, `اكتمل في ${secs} ث`)
+        : tr(`Exited with ${r.exitCode}`, `انتهى برمز ${r.exitCode}`);
     return { ok, content: parts.join("\n\n"), result: summary, files, images: imagesFor(files) };
   },
 });
@@ -335,7 +347,7 @@ const generateImageTool = defineTool({
     prompt: z.string().min(3).max(4000),
     aspect_ratio: z.enum(["1:1", "16:9", "9:16", "4:3", "3:4", "3:2", "2:3"]).optional(),
   }),
-  label: () => "Generated an image",
+  label: () => tr("Generated an image", "أنشأ صورة"),
   detail: (i) => i.prompt,
   async run({ prompt, aspect_ratio }, ctx) {
     const file = await generateImage(prompt, aspect_ratio, ctx.conversationId, ctx.signal);

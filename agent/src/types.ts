@@ -133,6 +133,8 @@ export interface Reminder {
 }
 
 export interface Settings {
+  /** Interface language; the agent replies in it too (unless you write in another). "" = not chosen yet. */
+  language: "" | "en" | "ar";
   userName: string;
   defaultModel: string;
   effort: Effort;

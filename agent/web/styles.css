@@ -217,7 +217,7 @@ select.input {
   background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
   background-size: 5px 5px;
   background-repeat: no-repeat;
-  padding-right: 34px;
+  padding-inline-end: 34px;
 }
 kbd {
   font-family: var(--font);
@@ -333,18 +333,18 @@ details.field[open] summary {
   display: flex;
   flex-direction: column;
   background: var(--bg-elev);
-  border-right: 1px solid var(--border);
+  border-inline-end: 1px solid var(--border);
   padding: 10px 10px 8px;
   gap: 4px;
-  transition: margin-left 0.25s ease;
+  transition: margin-inline-start 0.25s ease;
 }
 .shell.collapsed .sidebar {
-  margin-left: calc(-1 * var(--side-w));
+  margin-inline-start: calc(-1 * var(--side-w));
 }
 .expand-btn {
   position: fixed;
   top: 10px;
-  left: 10px;
+  inset-inline-start: 10px;
   z-index: 5;
   display: none;
 }
@@ -380,7 +380,7 @@ details.field[open] summary {
   background: var(--bg-hover);
 }
 .new-chat kbd {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 .side-search-wrap {
   display: flex;
@@ -417,7 +417,7 @@ details.field[open] summary {
   padding: 0 12px;
   border-radius: 10px;
   color: var(--text-2);
-  text-align: left;
+  text-align: start;
 }
 .nav-item:hover {
   background: var(--bg-hover);
@@ -440,7 +440,8 @@ details.field[open] summary {
   align-items: center;
   gap: 8px;
   height: 36px;
-  padding: 0 4px 0 12px;
+  padding-block: 0;
+  padding-inline: 12px 4px;
   border-radius: 10px;
   color: var(--text-2);
   position: relative;
@@ -496,7 +497,7 @@ details.field[open] summary {
   color: var(--text-2);
   border-top: 1px solid var(--border);
   margin-top: 4px;
-  text-align: left;
+  text-align: start;
 }
 .side-user:hover {
   background: var(--bg-hover);
@@ -534,7 +535,7 @@ details.field[open] summary {
   flex-shrink: 0;
 }
 .shell.collapsed .topbar {
-  padding-left: 54px;
+  padding-inline-start: 54px;
 }
 .menu-btn {
   display: none;
@@ -545,7 +546,7 @@ details.field[open] summary {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  padding-left: 6px;
+  padding-inline-start: 6px;
 }
 .thread {
   flex: 1;
@@ -598,6 +599,16 @@ details.field[open] summary {
   display: flex;
   justify-content: center;
   opacity: 0.95;
+}
+.demo-note {
+  margin: 14px auto 0;
+  max-width: 520px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--text-2);
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand) 30%, transparent);
 }
 .hero-emoji {
   font-size: 52px;
@@ -716,7 +727,7 @@ details.field[open] summary {
   display: flex;
   align-items: center;
   gap: 2px;
-  margin-left: -6px;
+  margin-inline-start: -6px;
   min-height: 30px;
 }
 .msg-footer .icon-btn {
@@ -729,7 +740,7 @@ details.field[open] summary {
 .msg-meta {
   font-size: 12px;
   color: var(--muted);
-  margin-left: 8px;
+  margin-inline-start: 8px;
 }
 .msg-error {
   display: flex;
@@ -747,7 +758,7 @@ details.field[open] summary {
   color: var(--danger);
 }
 .msg-error .btn {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 .msg-note {
   color: var(--muted);
@@ -774,7 +785,7 @@ details.field[open] summary {
   padding: 9px 12px;
   color: var(--text-2);
   font-size: 13.5px;
-  text-align: left;
+  text-align: start;
 }
 .activity-head:hover {
   color: var(--text);
@@ -833,7 +844,7 @@ details.field[open] summary {
   border-radius: 8px;
   font-size: 13px;
   color: var(--text-2);
-  text-align: left;
+  text-align: start;
 }
 button.step-line:not(:disabled):hover {
   background: var(--bg-hover);
@@ -863,7 +874,7 @@ button.step-line:disabled {
   content: "· ";
 }
 .step-status {
-  margin-left: auto;
+  margin-inline-start: auto;
   flex-shrink: 0;
 }
 .step-status.ok {
@@ -881,7 +892,8 @@ button.step-line:disabled {
   animation: spin 0.8s linear infinite;
 }
 .step-detail {
-  margin: 2px 8px 8px 31px;
+  margin-block: 2px 8px;
+  margin-inline: 31px 8px;
   padding: 10px 12px;
   background: var(--code-bg);
   color: #e4e4e7;
@@ -894,9 +906,10 @@ button.step-line:disabled {
   overflow: auto;
 }
 .thinking-text {
-  margin: 0 8px 6px 31px;
-  padding-left: 12px;
-  border-left: 2px solid var(--border-strong);
+  margin-block: 0 6px;
+  margin-inline: 31px 8px;
+  padding-inline-start: 12px;
+  border-inline-start: 2px solid var(--border-strong);
   color: var(--muted);
   font-size: 13px;
   white-space: pre-wrap;
@@ -941,7 +954,7 @@ button.step-line:disabled {
 }
 .markdown ul,
 .markdown ol {
-  padding-left: 22px;
+  padding-inline-start: 22px;
 }
 .markdown li {
   margin: 4px 0;
@@ -959,7 +972,7 @@ button.step-line:disabled {
   font-weight: 650;
 }
 .markdown blockquote {
-  border-left: 3px solid var(--border-strong);
+  border-inline-start: 3px solid var(--border-strong);
   padding: 2px 0 2px 14px;
   color: var(--text-2);
 }
@@ -994,7 +1007,7 @@ button.step-line:disabled {
 .markdown td {
   padding: 8px 12px;
   border-bottom: 1px solid var(--border);
-  text-align: left;
+  text-align: start;
   vertical-align: top;
 }
 .markdown th {
@@ -1015,7 +1028,8 @@ button.step-line:disabled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 8px 6px 14px;
+  padding-block: 6px;
+  padding-inline: 14px 8px;
   font-size: 12px;
   color: #a1a1aa;
   background: #18181b;
@@ -1055,7 +1069,7 @@ button.step-line:disabled {
   display: inline-block;
   width: 8px;
   height: 8px;
-  margin-left: 6px;
+  margin-inline-start: 6px;
   border-radius: 50%;
   background: var(--text);
   vertical-align: middle;
@@ -1179,7 +1193,8 @@ button.step-line:disabled {
   border-radius: var(--radius-lg);
   background: var(--bg-elev);
   box-shadow: var(--shadow);
-  padding: 10px 10px 8px 16px;
+  padding-block: 10px 8px;
+  padding-inline: 16px 10px;
   transition: border-color 0.15s;
 }
 .composer:focus-within {
@@ -1194,7 +1209,8 @@ button.step-line:disabled {
   background: transparent;
   font-size: 15.5px;
   line-height: 1.5;
-  padding: 6px 4px 8px 0;
+  padding-block: 6px 8px;
+  padding-inline: 0 4px;
   max-height: 40vh;
 }
 .composer textarea::placeholder {
@@ -1204,7 +1220,7 @@ button.step-line:disabled {
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-left: -6px;
+  margin-inline-start: -6px;
 }
 .model-wrap {
   position: relative;
@@ -1267,7 +1283,8 @@ button.step-line:disabled {
   gap: 8px;
   max-width: 220px;
   height: 52px;
-  padding: 4px 30px 4px 4px;
+  padding-block: 4px;
+  padding-inline: 4px 30px;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--bg);
@@ -1305,7 +1322,7 @@ button.step-line:disabled {
 .chip-x {
   position: absolute;
   top: 50%;
-  right: 6px;
+  inset-inline-end: 6px;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
@@ -1359,7 +1376,7 @@ button.step-line:disabled {
 .model-menu {
   position: absolute;
   bottom: calc(100% + 8px);
-  left: 0;
+  inset-inline-start: 0;
   width: 290px;
 }
 .menu-label {
@@ -1377,7 +1394,7 @@ button.step-line:disabled {
   width: 100%;
   padding: 8px 10px;
   border-radius: 9px;
-  text-align: left;
+  text-align: start;
   font-size: 14px;
 }
 .menu-item:hover {
@@ -1451,7 +1468,8 @@ button.step-line:disabled {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 14px 12px 22px;
+  padding-block: 14px 12px;
+  padding-inline: 22px 14px;
   border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
 }
@@ -1470,6 +1488,10 @@ button.step-line:disabled {
 }
 .modal.confirm p {
   margin: 0 0 18px;
+}
+.modal.confirm .prompt-message {
+  margin: 0;
+  overflow-wrap: anywhere;
 }
 .modal-actions {
   display: flex;
@@ -1674,7 +1696,7 @@ button.step-line:disabled {
   gap: 4px;
 }
 .agent-card-actions .btn {
-  margin-right: auto;
+  margin-inline-end: auto;
 }
 .load-more {
   display: flex;
@@ -1767,7 +1789,7 @@ button.step-line:disabled {
 }
 .conn-tools ul {
   margin: 6px 0 0;
-  padding-left: 18px;
+  padding-inline-start: 18px;
   max-height: 180px;
   overflow-y: auto;
 }
@@ -1835,7 +1857,7 @@ button.step-line:disabled {
 }
 .setup-steps {
   margin: 0;
-  padding-left: 20px;
+  padding-inline-start: 20px;
   font-size: 13.5px;
   color: var(--text-2);
 }
@@ -1907,7 +1929,7 @@ button.step-line:disabled {
   font-size: 14px;
 }
 .approval-status {
-  margin-left: auto;
+  margin-inline-start: auto;
   font-size: 12px;
   font-weight: 500;
   color: var(--brand);
@@ -1927,8 +1949,8 @@ button.step-line:disabled {
   white-space: pre-wrap;
   max-height: 180px;
   overflow-y: auto;
-  border-left: 2px solid var(--border-strong);
-  padding-left: 12px;
+  border-inline-start: 2px solid var(--border-strong);
+  padding-inline-start: 12px;
 }
 .approval-actions {
   display: flex;
@@ -2048,7 +2070,7 @@ button.step-line:disabled {
     inset: 0 auto 0 0;
     z-index: 40;
     width: min(86vw, 320px);
-    margin-left: 0 !important;
+    margin-inline-start: 0 !important;
     transform: translateX(-100%);
     transition: transform 0.25s ease;
     box-shadow: var(--shadow);
@@ -2110,5 +2132,66 @@ button.step-line:disabled {
   }
   .model-menu {
     width: min(290px, calc(100vw - 40px));
+  }
+}
+
+/* ── Arabic & right-to-left ─────────────────────────────────────────────── */
+:root[lang="ar"] {
+  --font: "SF Arabic", "Noto Sans Arabic", "Segoe UI", "Geeza Pro", "Dubai", Tahoma, ui-sans-serif, system-ui, sans-serif;
+}
+:root[lang="ar"] body {
+  line-height: 1.7;
+}
+[dir="rtl"] .bubble {
+  border-radius: 20px 20px 20px 6px;
+}
+[dir="rtl"] select.input {
+  background-position: 13px 50%, 18px 50%;
+}
+[dir="rtl"] .switch input:checked + .switch-track::after {
+  transform: translateX(-14px);
+}
+[dir="rtl"] .switch-track::after {
+  left: auto;
+  right: 3px;
+}
+/* Code, links and technical values always read left to right. */
+.codeblock,
+.codeblock pre,
+.step-detail,
+.copy-row code,
+.markdown :not(pre) > code,
+input[type="url"],
+input[type="password"] {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.lang-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 6px;
+}
+.lang-toggle button {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.lang-toggle button.active {
+  color: var(--text);
+  background: var(--bg-hover);
+}
+.lang-seg {
+  margin: 0;
+  max-width: 320px;
+}
+@media (max-width: 899px) {
+  [dir="rtl"] .sidebar {
+    inset: 0 0 0 auto;
+    transform: translateX(100%);
+  }
+  [dir="rtl"] .shell.sidebar-open .sidebar {
+    transform: none;
   }
 }

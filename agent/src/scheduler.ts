@@ -6,20 +6,21 @@ import { isRunning } from "./runs.js";
 import { nextOccurrence } from "./tools/schedule.js";
 import type { Reminder } from "./types.js";
 import { isUnlocked } from "./vault.js";
+import { tr } from "./i18n.js";
 
 /** Fires due reminders: a ping for plain ones, a full agent run for tasks. */
 export async function fireReminder(reminder: Reminder, now = Date.now()): Promise<void> {
   let conversationId = reminder.conversationId && getConversation(reminder.conversationId) ? reminder.conversationId : null;
   // Wait for a reply that's still being written in that chat; we'll try again on the next tick.
   if (conversationId && isRunning(conversationId)) return;
-  if (!conversationId) conversationId = createConversation(reminder.task ? `⏰ ${reminder.message}` : "Reminders").id;
+  if (!conversationId) conversationId = createConversation(reminder.task ? `⏰ ${reminder.message}` : tr("Reminders", "التذكيرات")).id;
 
   rescheduleReminder(reminder.id, nextOccurrence(reminder.nextRun, reminder.repeat, now), now);
 
   if (!reminder.task) {
-    addMessage(conversationId, "assistant", { text: `⏰ **Reminder:** ${reminder.message}`, provider: "system", status: "complete" });
+    addMessage(conversationId, "assistant", { text: tr(`⏰ **Reminder:** ${reminder.message}`, `⏰ **تذكير:** ${reminder.message}`), provider: "system", status: "complete" });
     broadcast({ type: "conversation", conversationId, running: false });
-    await notify("⏰ Reminder", reminder.message, conversationId);
+    await notify(tr("⏰ Reminder", "⏰ تذكير"), reminder.message, conversationId);
     return;
   }
 
@@ -29,7 +30,7 @@ export async function fireReminder(reminder: Reminder, now = Date.now()): Promis
     if (event.type !== "done") return;
     const text = event.message.text.replace(/[#*_`>]/g, "").replace(/\s+/g, " ").trim();
     const title = event.message.status === "complete" ? `✅ ${reminder.message}` : `⚠️ ${reminder.message}`;
-    void notify(title, text.slice(0, 300) || event.message.error || "Open the chat for details.", conversationId);
+    void notify(title, text.slice(0, 300) || event.message.error || tr("Open the chat for details.", "افتح المحادثة للتفاصيل."), conversationId);
   });
 }
 

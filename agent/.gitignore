@@ -3,3 +3,4 @@ data/
 .env
 data-demo/
 data-test/
+dist/

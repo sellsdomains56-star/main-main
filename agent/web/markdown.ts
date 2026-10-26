@@ -2,6 +2,7 @@ import DOMPurify from "dompurify";
 import hljs from "highlight.js/lib/common";
 import { Marked, type Tokens } from "marked";
 import { icon } from "./icons.js";
+import { t } from "./i18n.js";
 
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
@@ -16,7 +17,7 @@ const marked = new Marked({
       else body = escape(text);
       return (
         `<div class="codeblock"><div class="codeblock-head"><span>${escape(language || "text")}</span>` +
-        `<button class="copy-code" type="button" title="Copy code">${icon("copy", 14)}<span>Copy</span></button></div>` +
+        `<button class="copy-code" type="button" title="${escape(t("Copy code"))}">${icon("copy", 14)}<span>${escape(t("Copy"))}</span></button></div>` +
         `<pre><code class="hljs">${body}</code></pre></div>`
       );
     },
@@ -32,6 +33,8 @@ const marked = new Marked({
 });
 
 DOMPurify.addHook("afterSanitizeAttributes", (node) => {
+  // Each block picks its own direction, so mixed Arabic and English answers read naturally.
+  if (/^(P|LI|H[1-6]|BLOCKQUOTE|TD|TH)$/.test(node.tagName)) node.setAttribute("dir", "auto");
   if (node.tagName === "A") {
     node.setAttribute("target", "_blank");
     node.setAttribute("rel", "noopener noreferrer");
@@ -44,7 +47,7 @@ export function renderMarkdown(text: string): string {
   const fences = (text.match(/^```/gm) ?? []).length;
   const source = fences % 2 === 1 ? `${text}\n\`\`\`` : text;
   const html = marked.parse(source, { async: false }) as string;
-  return DOMPurify.sanitize(html, { ADD_ATTR: ["target"], FORBID_TAGS: ["style", "form", "input", "iframe"] });
+  return DOMPurify.sanitize(html, { ADD_ATTR: ["target", "dir"], FORBID_TAGS: ["style", "form", "input", "iframe"] });
 }
 
 document.addEventListener("click", (e) => {
@@ -53,10 +56,10 @@ document.addEventListener("click", (e) => {
   const code = button.closest(".codeblock")?.querySelector("code")?.textContent ?? "";
   void navigator.clipboard.writeText(code).then(() => {
     button.classList.add("copied");
-    button.querySelector("span")!.textContent = "Copied";
+    button.querySelector("span")!.textContent = t("Copied");
     setTimeout(() => {
       button.classList.remove("copied");
-      button.querySelector("span")!.textContent = "Copy";
+      button.querySelector("span")!.textContent = t("Copy");
     }, 1500);
   });
 });

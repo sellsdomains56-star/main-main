@@ -5,6 +5,7 @@ import { availableModels, config } from "../config.js";
 import { countAgents, createAgent, deleteAgent, findAgent, listAgents, updateAgent } from "../db.js";
 import { registerGenerated, WORKSPACE_DIR } from "../files.js";
 import { TOOL_GROUPS, type AgentProfile, type FileRecord } from "../types.js";
+import { tr, trCount } from "../i18n.js";
 import { defineTool, type SubAgentResult } from "./tools.js";
 
 /** One shared limit for every swarm, so two swarms at once can't double the load. */
@@ -58,7 +59,10 @@ const createAgentsTool = defineTool({
     "user's Agents list (they can chat with it directly) and can be given tasks with delegate_tasks. Create as many as the user " +
     "asks for; write specific, expert instructions for each.",
   schema: z.object({ agents: z.array(agentSpec).min(1).max(200) }),
-  label: (i) => `Created ${i.agents?.length ?? ""} agent${i.agents?.length === 1 ? "" : "s"}`.replace("  ", " "),
+  label: (i) =>
+    i.agents?.length
+      ? trCount(i.agents.length, ["Created {n} agent", "Created {n} agents"], ["أنشأ وكيلًا", "أنشأ وكيلين", "أنشأ {n} وكلاء", "أنشأ {n} وكيلًا"])
+      : tr("Creating agents", "ينشئ وكلاء"),
   detail: (i) => i.agents?.map((a) => `${a.emoji ?? "🤖"} ${a.name}`).join("\n"),
   async run({ agents }) {
     const made: AgentProfile[] = [];
@@ -82,7 +86,7 @@ const createAgentsTool = defineTool({
     }
     const lines = made.map(describeAgent);
     if (skipped.length) lines.push(`Skipped (name already taken): ${skipped.join(", ")}`);
-    return { ok: made.length > 0 || skipped.length > 0, content: lines.join("\n"), result: `${made.length} created` };
+    return { ok: made.length > 0 || skipped.length > 0, content: lines.join("\n"), result: tr(`${made.length} created`, `أُنشئ ${made.length}`) };
   },
 });
 
@@ -94,13 +98,13 @@ const listAgentsTool = defineTool({
     limit: z.number().int().min(1).max(1000).default(100),
     offset: z.number().int().min(0).default(0),
   }),
-  label: () => "Looked at agents",
+  label: () => tr("Looked at agents", "اطّلع على الوكلاء"),
   async run({ query, limit, offset }) {
     const agents = listAgents(query ?? "", limit, offset);
     const total = countAgents();
-    if (!agents.length) return { ok: true, content: total ? "No agents match." : "The user has no custom agents yet.", result: "None" };
+    if (!agents.length) return { ok: true, content: total ? "No agents match." : "The user has no custom agents yet.", result: tr("None", "لا شيء") };
     const more = offset + agents.length < total && !query ? `\n(${total - offset - agents.length} more; use offset)` : "";
-    return { ok: true, content: agents.map(describeAgent).join("\n") + more, result: `${agents.length} of ${total}` };
+    return { ok: true, content: agents.map(describeAgent).join("\n") + more, result: tr(`${agents.length} of ${total}`, `${agents.length} من ${total}`) };
   },
 });
 
@@ -108,16 +112,16 @@ const updateAgentTool = defineTool({
   name: "update_agent",
   description: "Change a custom agent's name, instructions, model, effort or abilities.",
   schema: agentSpec.partial().extend({ agent: z.string().describe("The agent's id or exact name") }),
-  label: (i) => `Updated ${i.agent ?? "an agent"}`,
+  label: (i) => (i.agent ? tr(`Updated ${i.agent}`, `حدّث ${i.agent}`) : tr("Updated an agent", "حدّث وكيلًا")),
   async run({ agent, abilities: groups, model, ...rest }) {
     const target = findAgent(agent);
-    if (!target) return { ok: false, content: `No agent called "${agent}".`, result: "Not found" };
+    if (!target) return { ok: false, content: `No agent called "${agent}".`, result: tr("Not found", "غير موجود") };
     const updated = updateAgent(target.id, {
       ...Object.fromEntries(Object.entries(rest).filter(([, v]) => v !== undefined)),
       ...(model !== undefined ? { model: checkModel(model) } : {}),
       ...(groups !== undefined ? { tools: groups.length ? groups : null } : {}),
     });
-    return { ok: true, content: `Updated:\n${describeAgent(updated!)}`, result: "Saved" };
+    return { ok: true, content: `Updated:\n${describeAgent(updated!)}`, result: tr("Saved", "حُفظ") };
   },
 });
 
@@ -125,7 +129,8 @@ const deleteAgentsTool = defineTool({
   name: "delete_agents",
   description: "Delete custom agents by id or exact name. Their past chats are kept.",
   schema: z.object({ agents: z.array(z.string()).min(1).max(1000) }),
-  label: (i) => `Deleted ${i.agents?.length ?? ""} agent${i.agents?.length === 1 ? "" : "s"}`,
+  label: (i) =>
+    trCount(i.agents?.length ?? 0, ["Deleted {n} agent", "Deleted {n} agents"], ["حذف وكيلًا", "حذف وكيلين", "حذف {n} وكلاء", "حذف {n} وكيلًا"]),
   async run({ agents }) {
     let deleted = 0;
     const missing: string[] = [];
@@ -134,7 +139,7 @@ const deleteAgentsTool = defineTool({
       if (a && deleteAgent(a.id)) deleted++;
       else missing.push(ref);
     }
-    return { ok: true, content: `Deleted ${deleted}.${missing.length ? ` Not found: ${missing.join(", ")}` : ""}`, result: `${deleted} deleted` };
+    return { ok: true, content: `Deleted ${deleted}.${missing.length ? ` Not found: ${missing.join(", ")}` : ""}`, result: tr(`${deleted} deleted`, `حُذف ${deleted}`) };
   },
 });
 
@@ -160,7 +165,9 @@ const delegateTool = defineTool({
   }),
   label: (i) => {
     const n = (i.tasks?.length ?? 0) + (i.items?.length ?? 0);
-    return n ? `Running ${n} agent${n === 1 ? "" : "s"}` : "Running agents";
+    return n
+      ? trCount(n, ["Running {n} agent", "Running {n} agents"], ["يشغّل وكيلًا", "يشغّل وكيلين", "يشغّل {n} وكلاء", "يشغّل {n} وكيلًا"])
+      : tr("Running agents", "يشغّل الوكلاء");
   },
   detail: (i) =>
     [i.title, i.template, ...(i.tasks ?? []).slice(0, 20).map((t) => `• ${t.task}`), ...(i.items ?? []).slice(0, 20).map((x) => `• ${x}`)]
@@ -191,7 +198,10 @@ const delegateTool = defineTool({
     const results: SubAgentResult[] = new Array(resolved.length);
     let done = 0;
     let failed = 0;
-    const report = () => ctx.progress(`${done}/${resolved.length} done${failed ? ` · ${failed} failed` : ""}`);
+    const report = () =>
+      ctx.progress(
+        tr(`${done}/${resolved.length} done`, `اكتمل ${done}/${resolved.length}`) + (failed ? tr(` · ${failed} failed`, ` · فشل ${failed}`) : ""),
+      );
     report();
     const runOne = (i: number) =>
       slots.run(async () => {
@@ -237,7 +247,7 @@ const delegateTool = defineTool({
     return {
       ok: failed < resolved.length,
       content: `${resolved.length - failed} of ${resolved.length} tasks succeeded.\n\n${content}`,
-      result: `${resolved.length - failed}/${resolved.length} succeeded`,
+      result: tr(`${resolved.length - failed}/${resolved.length} succeeded`, `نجح ${resolved.length - failed}/${resolved.length}`),
       files,
     };
   },

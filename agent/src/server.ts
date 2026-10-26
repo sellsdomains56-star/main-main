@@ -603,6 +603,7 @@ export function createApp() {
         defaultModel: z.string().optional(),
         effort: effort.optional(),
         personality: z.enum(["default", "fun", "concise", "professional"]).optional(),
+        language: z.enum(["en", "ar"]).optional(),
         customInstructions: z.string().max(20_000).optional(),
       }),
       req.body,

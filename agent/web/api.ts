@@ -1,4 +1,5 @@
 import type { AgentEvent } from "../src/types.js";
+import { t } from "./i18n.js";
 
 export class ApiError extends Error {
   constructor(
@@ -10,6 +11,25 @@ export class ApiError extends Error {
 }
 
 let onUnauthorized: () => void = () => {};
+
+/** Where a stored file is shown or downloaded from (the browser-only demo serves them from memory). */
+let fileUrlResolver = (id: string, download: boolean) => `/api/files/${encodeURIComponent(id)}${download ? "?download=1" : ""}`;
+export const fileUrl = (id: string, download = false) => fileUrlResolver(id, download);
+export function setFileUrlResolver(fn: typeof fileUrlResolver) {
+  fileUrlResolver = fn;
+}
+
+/** Fetches something from the API and saves it as a file. */
+export async function downloadFrom(path: string, filename: string): Promise<void> {
+  const res = await fetch(path, { headers: { "X-Requested-With": "agent" } });
+  if (!res.ok) throw await failure(res);
+  const url = URL.createObjectURL(await res.blob());
+  const a = Object.assign(document.createElement("a"), { href: url, download: filename });
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+}
 export function setUnauthorizedHandler(fn: () => void) {
   onUnauthorized = fn;
 }
@@ -18,7 +38,7 @@ async function failure(res: Response): Promise<ApiError> {
   let message = `${res.status} ${res.statusText}`;
   try {
     const body = await res.json();
-    if (body?.error) message = body.error;
+    if (body?.error) message = t(body.error);
   } catch {
     // not JSON
   }

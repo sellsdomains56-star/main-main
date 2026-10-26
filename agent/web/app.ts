@@ -1,12 +1,13 @@
 import "highlight.js/styles/github-dark.css";
 import "./styles.css";
-import { api, setUnauthorizedHandler } from "./api.js";
+import { api, downloadFrom, setUnauthorizedHandler } from "./api.js";
 import { applyModelFor, focusComposer, isBusy, mountChat, refreshIfOpen, renderHeader, showConversation } from "./chat.js";
-import { $, clear, h } from "./dom.js";
+import { $, clear, h, onSubmit } from "./dom.js";
 import { icon, logo } from "./icons.js";
 import { applyTheme, openAgents, openConnectors, openFiles, openMemory, openReminders, openSettings } from "./panels.js";
 import { prefs, savePrefs, state, type AgentProfile, type Bootstrap, type ConversationSummary, type OpenConversation } from "./state.js";
-import { confirmDialog, debounce, relativeDay, toast } from "./util.js";
+import { confirmDialog, debounce, promptDialog, relativeDay, toast } from "./util.js";
+import { lang, setLang, t, type Lang } from "./i18n.js";
 
 const root = document.getElementById("app")!;
 applyTheme();
@@ -20,41 +21,42 @@ function showLogin(agentName: string, gate: Gate) {
   const password = h("input", {
     class: "input",
     type: "password",
-    placeholder: gate === "setup" ? "Choose a password" : "Password",
+    placeholder: gate === "setup" ? t("Choose a password") : t("Password"),
     autocomplete: gate === "setup" ? "new-password" : "current-password",
     required: true,
     minlength: gate === "setup" ? 8 : undefined,
   });
-  const confirm = gate === "setup" ? h("input", { class: "input", type: "password", placeholder: "Type it again", autocomplete: "new-password", required: true }) : null;
+  const confirm = gate === "setup" ? h("input", { class: "input", type: "password", placeholder: t("Type it again"), autocomplete: "new-password", required: true }) : null;
   const error = h("p", { class: "form-error", hidden: true });
-  const button = h("button", { class: "btn primary block", type: "submit" }, gate === "setup" ? "Create my lab" : gate === "unlock" ? "Unlock" : "Sign in");
+  const buttonText = () => (gate === "setup" ? t("Create my lab") : gate === "unlock" ? t("Unlock") : t("Sign in"));
+  const button = h("button", { class: "btn primary block", type: "submit" }, buttonText());
   const intro = {
-    setup: "Choose a password. It signs you in and encrypts everything you store here. It can't be recovered, so keep it somewhere safe.",
-    login: "Your private AI lab",
-    unlock: "The server restarted, so your data is locked. Enter your password to unlock it.",
+    setup: t("Choose a password. It signs you in and encrypts everything you store here. It can't be recovered, so keep it somewhere safe."),
+    login: t("Your private AI lab"),
+    unlock: t("The server restarted, so your data is locked. Enter your password to unlock it."),
   }[gate];
   const form = h(
     "form",
     { class: "login-card" },
     h("div", { class: "login-logo", html: logo(48) }),
-    h("h1", null, gate === "setup" ? `Welcome to ${agentName}` : agentName),
+    h("h1", null, gate === "setup" ? t("Welcome to {name}", { name: agentName }) : agentName),
     h("p", { class: "muted" }, intro),
     password,
     confirm,
     error,
     button,
-    h("div", { class: "login-lock", html: `${icon("lock", 13)}<span>Encrypted with AES-256 · key never stored</span>` }),
+    h("div", { class: "login-lock" }, h("span", { html: icon("lock", 13) }), h("span", null, t("Encrypted with AES-256 · key never stored"))),
+    languageToggle(() => showLogin(agentName, gate)),
   );
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  onSubmit(form, async () => {
     error.hidden = true;
     if (confirm && confirm.value !== password.value) {
-      error.textContent = "The passwords don't match";
+      error.textContent = t("The passwords don't match");
       error.hidden = false;
       return;
     }
     button.disabled = true;
-    button.textContent = gate === "setup" ? "Setting up…" : "Unlocking…";
+    button.textContent = gate === "setup" ? t("Setting up…") : t("Unlocking…");
     try {
       await api(gate === "setup" ? "/api/setup" : "/api/login", { body: { password: password.value } });
       await start();
@@ -62,12 +64,35 @@ function showLogin(agentName: string, gate: Gate) {
       error.textContent = (err as Error).message;
       error.hidden = false;
       button.disabled = false;
-      button.textContent = gate === "setup" ? "Create my lab" : gate === "unlock" ? "Unlock" : "Sign in";
+      button.textContent = buttonText();
       password.select();
     }
   });
   root.append(h("div", { class: "login" }, form));
   password.focus();
+}
+
+/** English | العربية, for the sign-in screen (the same choice is in Settings). */
+function languageToggle(redraw: () => void): HTMLElement {
+  const wrap = h("div", { class: "lang-toggle" });
+  for (const [code, label] of [["en", "English"], ["ar", "العربية"]] as [Lang, string][]) {
+    wrap.append(
+      h(
+        "button",
+        {
+          type: "button",
+          class: lang() === code ? "active" : "",
+          lang: code,
+          onclick: () => {
+            setLang(code);
+            redraw();
+          },
+        },
+        label,
+      ),
+    );
+  }
+  return wrap;
 }
 
 setUnauthorizedHandler(() => {
@@ -82,6 +107,16 @@ let searchInput: HTMLInputElement;
 
 function closeSidebarOnMobile() {
   shell.classList.remove("sidebar-open");
+}
+
+/** Click handler for in-app links (works even where the URL can't change). */
+function go(hash: string) {
+  return (e: MouseEvent) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return; // let "open in new tab" work
+    e.preventDefault();
+    closeSidebarOnMobile();
+    navigate(hash);
+  };
 }
 
 function navItem(iconName: Parameters<typeof icon>[0], label: string, onclick: () => void) {
@@ -107,13 +142,13 @@ function conversationMenu(c: { id: string; title: string; pinned: boolean }, anc
   const menu = h(
     "div",
     { class: "popover conv-menu" },
-    item("pin", c.pinned ? "Unpin" : "Pin", async () => {
+    item("pin", c.pinned ? t("Unpin") : t("Pin"), async () => {
       await api(`/api/conversations/${c.id}`, { method: "PATCH", body: { pinned: !c.pinned } });
       if (state.current?.conversation.id === c.id) state.current.conversation.pinned = !c.pinned;
       void loadConversations();
     }),
-    item("edit", "Rename", async () => {
-      const title = prompt("Rename chat", c.title)?.trim();
+    item("edit", t("Rename"), async () => {
+      const title = (await promptDialog(t("Rename chat"), c.title))?.trim();
       if (!title) return;
       await api(`/api/conversations/${c.id}`, { method: "PATCH", body: { title } });
       if (state.current?.conversation.id === c.id) {
@@ -122,14 +157,16 @@ function conversationMenu(c: { id: string; title: string; pinned: boolean }, anc
       }
       void loadConversations();
     }),
-    item("download", "Export as Markdown", () => {
-      location.href = `/api/conversations/${c.id}/export`;
+    item("download", t("Export as Markdown"), () => {
+      void downloadFrom(`/api/conversations/${c.id}/export`, `${(c.title || "chat").replace(/[\\/:*?"<>|]+/g, "")}.md`).catch((err: Error) =>
+        toast(err.message, "error"),
+      );
     }),
     item(
       "trash",
-      "Delete",
+      t("Delete"),
       async () => {
-        if (!(await confirmDialog("Delete this chat? This can't be undone."))) return;
+        if (!(await confirmDialog(t("Delete this chat? This can't be undone.")))) return;
         await api(`/api/conversations/${c.id}`, { method: "DELETE" });
         if (state.current?.conversation.id === c.id) navigate("#/");
         void loadConversations();
@@ -154,18 +191,18 @@ function conversationMenu(c: { id: string; title: string; pinned: boolean }, anc
 function renderConversationList() {
   clear(listEl);
   if (!state.conversations.length) {
-    listEl.append(h("div", { class: "side-empty" }, state.search ? "No chats match." : "Your chats will appear here."));
+    listEl.append(h("div", { class: "side-empty" }, state.search ? t("No chats match.") : t("Your chats will appear here.")));
     return;
   }
   let group = "";
   for (const c of state.conversations) {
-    const label = c.pinned ? "Pinned" : relativeDay(c.updatedAt);
+    const label = c.pinned ? t("Pinned") : relativeDay(c.updatedAt);
     if (label !== group) {
       group = label;
       listEl.append(h("div", { class: "side-group" }, label));
     }
     const active = state.current?.conversation.id === c.id;
-    const more = h("button", { class: "icon-btn side-more", title: "Options", html: icon("dots", 15) });
+    const more = h("button", { class: "icon-btn side-more", title: t("Options"), html: icon("dots", 15) });
     more.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -174,10 +211,10 @@ function renderConversationList() {
     listEl.append(
       h(
         "a",
-        { class: `side-item${active ? " active" : ""}`, href: `#/c/${c.id}`, onclick: closeSidebarOnMobile },
+        { class: `side-item${active ? " active" : ""}`, href: `#/c/${c.id}`, onclick: go(`#/c/${c.id}`) },
         c.agent ? h("span", { class: "side-emoji" }, c.agent.emoji) : null,
-        h("span", { class: "side-title" }, c.title || "New chat"),
-        c.running ? h("span", { class: "side-running", title: "Working…" }) : null,
+        h("span", { class: "side-title", dir: "auto" }, c.title || t("New chat")),
+        c.running ? h("span", { class: "side-running", title: t("Working…") }) : null,
         more,
       ),
     );
@@ -192,7 +229,7 @@ const loadConversationsSoon = debounce(() => void loadConversations(), 250);
 
 function buildShell() {
   clear(root);
-  searchInput = h("input", { class: "side-search", type: "search", placeholder: "Search chats", "aria-label": "Search chats" });
+  searchInput = h("input", { class: "side-search", type: "search", placeholder: t("Search chats"), "aria-label": t("Search chats") });
   searchInput.addEventListener(
     "input",
     debounce(() => {
@@ -207,11 +244,11 @@ function buildShell() {
     h(
       "div",
       { class: "side-head" },
-      h("a", { class: "brand", href: "#/", onclick: closeSidebarOnMobile }, h("span", { html: logo(26) }), h("span", null, state.boot.agentName)),
+      h("a", { class: "brand", href: "#/", onclick: go("#/") }, h("span", { html: logo(26) }), h("span", null, state.boot.agentName)),
       h("div", { class: "spacer" }),
       h("button", {
         class: "icon-btn collapse-btn",
-        title: "Hide sidebar",
+        title: t("Hide sidebar"),
         html: icon("sidebar", 18),
         onclick: () => {
           shell.classList.toggle("collapsed");
@@ -221,32 +258,32 @@ function buildShell() {
     ),
     h(
       "a",
-      { class: "new-chat", href: "#/", onclick: closeSidebarOnMobile },
+      { class: "new-chat", href: "#/", onclick: go("#/") },
       h("span", { html: icon("plus", 17) }),
-      h("span", null, "New chat"),
+      h("span", null, t("New chat")),
       h("kbd", null, navigator.platform.includes("Mac") ? "⌘⇧O" : "Ctrl⇧O"),
     ),
     h("div", { class: "side-search-wrap" }, h("span", { html: icon("search", 15) }), searchInput),
     h(
       "div",
       { class: "side-nav" },
-      navItem("users", "Agents", () => {
+      navItem("users", t("Agents"), () => {
         closeSidebarOnMobile();
         openAgents((a) => startAgentChat(a));
       }),
-      navItem("plug", "Connectors", () => {
+      navItem("plug", t("Connectors"), () => {
         closeSidebarOnMobile();
         openConnectors();
       }),
-      navItem("bell", "Reminders & tasks", () => {
+      navItem("bell", t("Reminders & tasks"), () => {
         closeSidebarOnMobile();
         openReminders((id) => navigate(`#/c/${id}`));
       }),
-      navItem("bookmark", "Memory", () => {
+      navItem("bookmark", t("Memory"), () => {
         closeSidebarOnMobile();
         openMemory();
       }),
-      navItem("folder", "Files", () => {
+      navItem("folder", t("Files"), () => {
         closeSidebarOnMobile();
         openFiles();
       }),
@@ -262,14 +299,21 @@ function buildShell() {
           openSettings(
             (s) => {
               state.boot.settings = s;
-              if (!state.current) showConversation(null);
+              // A new language redraws everything.
+              if (s.language && s.language !== lang()) {
+                setLang(s.language);
+                buildShell();
+                void loadConversations();
+                currentRoute = "";
+                void route();
+              } else if (!state.current) showConversation(null);
             },
             (everywhere) => void signOut(everywhere),
           );
         },
       },
       h("span", { class: "side-avatar" }, (state.boot.settings.userName || "You").slice(0, 1).toUpperCase()),
-      h("span", null, state.boot.settings.userName || "Settings"),
+      h("span", null, state.boot.settings.userName || t("Settings")),
       h("span", { class: "spacer" }),
       h("span", { html: icon("settings", 16) }),
     ),
@@ -280,7 +324,7 @@ function buildShell() {
     shell,
     {
       created(id) {
-        history.replaceState(null, "", `#/c/${id}`);
+        setHash(`#/c/${id}`, false);
         currentRoute = `#/c/${id}`;
         void loadConversations();
       },
@@ -295,13 +339,13 @@ function buildShell() {
     (anchor) => {
       const c = state.current?.conversation;
       if (c) conversationMenu(c, anchor);
-      else toast("Send a message first");
+      else toast(t("Send a message first"));
     },
   );
   // The "show sidebar" button for when it's collapsed on desktop.
   shell.append(h("button", {
     class: "icon-btn expand-btn",
-    title: "Show sidebar",
+    title: t("Show sidebar"),
     html: icon("sidebar", 18),
     onclick: () => {
       shell.classList.remove("collapsed");
@@ -312,7 +356,7 @@ function buildShell() {
 
 async function signOut(everywhere: boolean) {
   await api(everywhere ? "/api/logout-all" : "/api/logout", { body: {} });
-  location.hash = "";
+  setHash("#/", false);
   location.reload();
 }
 
@@ -320,9 +364,40 @@ async function signOut(everywhere: boolean) {
 
 let currentRoute = "";
 
+/**
+ * Where you are in the app lives in the URL (#/c/<chat>). Embedded viewers
+ * (sandboxed frames) don't allow changing it, so then it's tracked here instead.
+ */
+let virtualHash: string | null = null;
+const currentHash = () => virtualHash ?? (location.hash || "#/");
+
+/** Returns true when the browser will announce the change itself (a hashchange event follows). */
+function setHash(hash: string, push: boolean): boolean {
+  try {
+    if (push) {
+      if (location.hash !== hash) {
+        location.hash = hash;
+        if (location.hash === hash) {
+          virtualHash = null;
+          return true;
+        }
+      }
+    } else {
+      history.replaceState(null, "", hash);
+      if (location.hash === hash) {
+        virtualHash = null;
+        return false;
+      }
+    }
+  } catch {
+    // not allowed here
+  }
+  virtualHash = hash;
+  return false;
+}
+
 function navigate(hash: string) {
-  if (location.hash === hash) void route();
-  else location.hash = hash;
+  if (!setHash(hash, true)) void route();
 }
 
 function startAgentChat(agent: AgentProfile) {
@@ -330,22 +405,22 @@ function startAgentChat(agent: AgentProfile) {
 }
 
 async function route() {
-  const hash = location.hash || "#/";
+  const hash = currentHash();
   if (hash === currentRoute && state.current) return;
   currentRoute = hash;
   document.querySelector(".popover")?.remove();
   // Coming back from signing in to an app.
   if (hash.startsWith("#/connectors")) {
     const params = new URLSearchParams(hash.split("?")[1] ?? "");
-    history.replaceState(null, "", "#/");
+    setHash("#/", false);
     currentRoute = "#/";
     state.draftAgent = null;
     applyModelFor(null);
     showConversation(null);
     renderConversationList();
     openConnectors();
-    if (params.get("connected")) toast(`${params.get("connected")} connected`, "success");
-    if (params.get("error")) toast(params.get("error")!, "error");
+    if (params.get("connected")) toast(t("{name} connected", { name: params.get("connected")! }), "success");
+    if (params.get("error")) toast(t(params.get("error")!), "error");
     return;
   }
   const [, kind, id] = hash.match(/^#\/(c|agent)\/([\w-]+)/) ?? [];
@@ -369,7 +444,7 @@ async function route() {
     toast((err as Error).message, "error");
     state.draftAgent = null;
     showConversation(null);
-    history.replaceState(null, "", "#/");
+    setHash("#/", false);
     currentRoute = "#/";
   }
   renderConversationList();
@@ -405,11 +480,17 @@ function listen() {
 
 async function start() {
   state.boot = await api<Bootstrap>("/api/bootstrap");
+  // The language saved in Settings wins over this browser's guess.
+  if (state.boot.settings.language && state.boot.settings.language !== lang()) setLang(state.boot.settings.language);
+  else if (!state.boot.settings.language) void api("/api/settings", { method: "PUT", body: { language: lang() } }).catch(() => {});
   state.effort = prefs().effort ?? state.boot.settings.effort;
   document.title = state.boot.agentName;
   buildShell();
   await loadConversations();
-  window.addEventListener("hashchange", () => void route());
+  window.addEventListener("hashchange", () => {
+    virtualHash = null;
+    void route();
+  });
   await route();
   listen();
   document.addEventListener("keydown", (e) => {
@@ -424,7 +505,7 @@ async function start() {
       searchInput.focus();
     }
   });
-  if ("serviceWorker" in navigator) void navigator.serviceWorker.register("/sw.js").catch(() => {});
+  if ("serviceWorker" in navigator && !state.boot.demo) void navigator.serviceWorker.register("/sw.js").catch(() => {});
 }
 
 (async () => {
@@ -433,5 +514,5 @@ async function start() {
   if (session.authenticated) await start();
   else showLogin(session.agentName, session.setupRequired ? "setup" : session.locked ? "unlock" : "login");
 })().catch((err) => {
-  root.textContent = `Couldn't start: ${(err as Error).message}`;
+  root.textContent = t("Couldn't start: {error}", { error: (err as Error).message });
 });

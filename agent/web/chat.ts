@@ -1,10 +1,11 @@
 import type { AgentEvent, EmailApproval, Source, Step } from "../src/types.js";
-import { api, stream, upload } from "./api.js";
+import { api, fileUrl, stream, upload } from "./api.js";
 import { $, append, clear, h } from "./dom.js";
 import { icon, logo, type IconName } from "./icons.js";
 import { renderMarkdown } from "./markdown.js";
 import { EFFORTS, modelInfo, prefs, savePrefs, state, type FileRecord, type OpenConversation, type StoredMessage } from "./state.js";
 import { formatSize, greeting, hostOf, prepareImage, toast } from "./util.js";
+import { lang, plural, t } from "./i18n.js";
 
 export interface ChatHooks {
   /** A fresh chat got its id (after the first send). */
@@ -31,7 +32,7 @@ let streamAbort: AbortController | null = null;
 let pending: { file: FileRecord | null; name: string; preview?: string; el: HTMLElement; promise: Promise<FileRecord | null> }[] = [];
 let stickToBottom = true;
 
-const shortModel = (id: string) => (modelInfo(id)?.label ?? id).replace(/^Claude /, "");
+const shortModel = (id: string) => t(modelInfo(id)?.label ?? id).replace(/^Claude /, "");
 
 // ── Steps ─────────────────────────────────────────────────────────────────────
 
@@ -75,21 +76,21 @@ function thinkingSeconds(steps: Step[]): number {
 function activitySummary(steps: Step[], running: boolean): string {
   if (running) {
     const last = steps.at(-1);
-    if (!last || last.kind === "thinking") return "Thinking…";
+    if (!last || last.kind === "thinking") return t("Thinking…");
     return last.status === "running" ? `${last.label}…` : last.label;
   }
   const tools = steps.filter((s): s is Extract<Step, { kind: "tool" }> => s.kind === "tool");
   const parts: string[] = [];
-  if (steps.some((s) => s.kind === "thinking")) parts.push(`Thought for ${thinkingSeconds(steps)}s`);
+  if (steps.some((s) => s.kind === "thinking")) parts.push(t("Thought for {n}s", { n: thinkingSeconds(steps) }));
   const searches = tools.filter((t) => ["web_search", "x_search"].includes(t.name)).length;
   const pages = tools.filter((t) => t.name === "web_fetch").length;
   const agents = tools.filter((t) => t.name === "delegate_tasks").length;
   const other = tools.length - searches - pages - agents;
-  if (searches) parts.push(`${searches} search${searches === 1 ? "" : "es"}`);
-  if (pages) parts.push(`read ${pages} page${pages === 1 ? "" : "s"}`);
-  if (agents) parts.push(`ran a swarm`);
-  if (other) parts.push(`${other} action${other === 1 ? "" : "s"}`);
-  return parts.join(" · ") || "Done";
+  if (searches) parts.push(plural(searches, ["{n} search", "{n} searches"], ["بحث واحد", "بحثان", "{n} عمليات بحث", "{n} عملية بحث"]));
+  if (pages) parts.push(plural(pages, ["read {n} page", "read {n} pages"], ["قرأ صفحة", "قرأ صفحتين", "قرأ {n} صفحات", "قرأ {n} صفحة"]));
+  if (agents) parts.push(t("ran a swarm"));
+  if (other) parts.push(plural(other, ["{n} action", "{n} actions"], ["إجراء واحد", "إجراءان", "{n} إجراءات", "{n} إجراء"]));
+  return parts.join(" · ") || t("Done");
 }
 
 // ── A reply from the agent ────────────────────────────────────────────────────
@@ -136,7 +137,10 @@ class AssistantView {
       h("div", { class: "msg-body" }, this.activity, this.content, this.approvalsEl, this.filesEl, this.sourcesEl, this.footer),
     );
     if (saved) this.load(saved);
-    else this.schedule();
+    else {
+      this.el.classList.add("streaming");
+      this.schedule();
+    }
   }
 
   private load(m: StoredMessage) {
@@ -247,12 +251,12 @@ class AssistantView {
           "div",
           { class: "msg-error" },
           h("span", { html: icon("alert", 16) }),
-          h("span", null, this.error || "Something went wrong."),
-          isLast(this.el) ? h("button", { class: "btn small", onclick: () => void regenerate() }, "Retry") : null,
+          h("span", null, t(this.error || "Something went wrong.")),
+          isLast(this.el) ? h("button", { class: "btn small", onclick: () => void regenerate() }, t("Retry")) : null,
         ),
       );
     } else if (this.status === "stopped") {
-      this.content.append(h("div", { class: "msg-note" }, "Stopped"));
+      this.content.append(h("div", { class: "msg-note" }, t("Stopped")));
     }
 
     // Things waiting for your OK (emails it drafted)
@@ -272,7 +276,7 @@ class AssistantView {
       const shown = this.sources.slice(0, 6);
       for (const s of shown) this.sourcesEl.append(sourceChip(s));
       if (this.sources.length > shown.length) {
-        const more = h("button", { class: "source more", type: "button" }, `+${this.sources.length - shown.length} more`);
+        const more = h("button", { class: "source more", type: "button" }, t("+{n} more", { n: this.sources.length - shown.length }));
         more.addEventListener("click", () => {
           more.remove();
           for (const s of this.sources.slice(shown.length)) this.sourcesEl.append(sourceChip(s));
@@ -284,7 +288,7 @@ class AssistantView {
     // Actions
     clear(this.footer);
     if (!streaming) {
-      const copy = h("button", { class: "icon-btn", title: "Copy", html: icon("copy", 15) });
+      const copy = h("button", { class: "icon-btn", title: t("Copy"), html: icon("copy", 15) });
       copy.addEventListener("click", () => {
         void navigator.clipboard.writeText(this.text).then(() => {
           copy.innerHTML = icon("check", 15);
@@ -297,11 +301,11 @@ class AssistantView {
         copy,
         this.message?.provider === "system"
           ? null
-          : h("button", { class: "icon-btn act-regenerate", title: "Regenerate", html: icon("refresh", 15), onclick: () => void regenerate() }),
-        this.text ? h("button", { class: "icon-btn", title: "Read aloud", html: icon("volume", 15), onclick: () => speak(this.text) }) : null,
+          : h("button", { class: "icon-btn act-regenerate", title: t("Regenerate"), html: icon("refresh", 15), onclick: () => void regenerate() }),
+        this.text ? h("button", { class: "icon-btn", title: t("Read aloud"), html: icon("volume", 15), onclick: () => speak(this.text) }) : null,
         h(
           "span",
-          { class: "msg-meta", title: usage ? `${usage.inputTokens.toLocaleString()} tokens in · ${usage.outputTokens.toLocaleString()} out` : "" },
+          { class: "msg-meta", title: usage ? t("{in} tokens in · {out} out", { in: usage.inputTokens.toLocaleString(), out: usage.outputTokens.toLocaleString() }) : "" },
           [this.model && this.message?.provider !== "system" ? shortModel(this.model) : "", seconds].filter(Boolean).join(" · "),
         ),
       ]);
@@ -335,15 +339,15 @@ function emailApprovalCard(a: EmailApproval): HTMLElement {
   const card = h(
     "div",
     { class: "approval" },
-    h("div", { class: "approval-head" }, h("span", { html: icon("mail", 16) }), h("span", null, "Email draft"), statusEl),
-    h("div", { class: "approval-meta" }, h("div", null, h("span", { class: "muted" }, "To "), a.to), h("div", null, h("span", { class: "muted" }, "Subject "), a.subject || "(no subject)")),
-    h("div", { class: "approval-preview" }, a.preview),
+    h("div", { class: "approval-head" }, h("span", { html: icon("mail", 16) }), h("span", null, t("Email draft")), statusEl),
+    h("div", { class: "approval-meta" }, h("div", null, h("span", { class: "muted" }, `${t("To")} `), a.to), h("div", null, h("span", { class: "muted" }, `${t("Subject")} `), a.subject || t("(no subject)"))),
+    h("div", { class: "approval-preview", dir: "auto" }, a.preview),
     actions,
   );
   const settle = (state: "sent" | "discarded") => {
     setDraftState(a.draftId, state);
     card.classList.add(state);
-    statusEl.textContent = state === "sent" ? "Sent" : "Discarded";
+    statusEl.textContent = state === "sent" ? t("Sent") : t("Discarded");
     clear(actions);
   };
   const act = async (action: "send" | "discard", button: HTMLButtonElement) => {
@@ -351,7 +355,7 @@ function emailApprovalCard(a: EmailApproval): HTMLElement {
     try {
       await api(`/api/connectors/${a.connectorId}/email/${action}`, { body: { draftId: a.draftId } });
       settle(action === "send" ? "sent" : "discarded");
-      if (action === "send") toast(`Sent to ${a.to}`, "success");
+      if (action === "send") toast(t("Sent to {to}", { to: a.to }), "success");
     } catch (err) {
       toast((err as Error).message, "error");
       button.disabled = false;
@@ -362,15 +366,15 @@ function emailApprovalCard(a: EmailApproval): HTMLElement {
     settle(known);
     return card;
   }
-  statusEl.textContent = "Waiting for you";
-  const send = h("button", { class: "btn primary small", type: "button" }, h("span", { html: icon("send", 14) }), "Send");
-  const discard = h("button", { class: "btn ghost small", type: "button" }, "Discard");
+  statusEl.textContent = t("Waiting for you");
+  const send = h("button", { class: "btn primary small", type: "button" }, h("span", { html: icon("send", 14) }), t("Send"));
+  const discard = h("button", { class: "btn ghost small", type: "button" }, t("Discard"));
   send.addEventListener("click", () => void act("send", send));
   discard.addEventListener("click", () => void act("discard", discard));
   actions.append(
     send,
     discard,
-    h("a", { class: "btn ghost small", href: "https://mail.google.com/mail/u/0/#drafts", target: "_blank", rel: "noopener" }, "Edit in Gmail", h("span", { html: icon("external", 13) })),
+    h("a", { class: "btn ghost small", href: "https://mail.google.com/mail/u/0/#drafts", target: "_blank", rel: "noopener" }, t("Edit in Gmail"), h("span", { html: icon("external", 13) })),
   );
   return card;
 }
@@ -380,8 +384,8 @@ function renderStep(step: Step): HTMLElement {
     return h(
       "div",
       { class: "step thinking" },
-      h("div", { class: "step-line" }, h("span", { class: "step-icon", html: icon("brain", 14) }), h("span", null, step.endedAt ? "Thought" : "Thinking")),
-      step.text.trim() ? h("div", { class: "thinking-text" }, step.text.trim()) : null,
+      h("div", { class: "step-line" }, h("span", { class: "step-icon", html: icon("brain", 14) }), h("span", null, step.endedAt ? t("Thought") : t("Thinking"))),
+      step.text.trim() ? h("div", { class: "thinking-text", dir: "auto" }, step.text.trim()) : null,
     );
   }
   const detail = step.detail ? h("pre", { class: "step-detail", hidden: true }, step.detail) : null;
@@ -389,7 +393,7 @@ function renderStep(step: Step): HTMLElement {
     "button",
     { class: "step-line", type: "button", disabled: !detail },
     h("span", { class: "step-icon", html: icon(STEP_ICONS[step.name] ?? (step.name.includes("__") ? "plug" : "zap"), 14) }),
-    h("span", { class: "step-label" }, step.label),
+    h("span", { class: "step-label", dir: "auto" }, step.label),
     step.result ? h("span", { class: "step-result" }, step.result) : null,
     h("span", { class: `step-status ${step.status}`, html: step.status === "ok" ? icon("check", 13) : step.status === "error" ? icon("x", 13) : "" }),
   );
@@ -409,7 +413,7 @@ function sourceChip(s: Source): HTMLElement {
 const isImage = (f: FileRecord) => /^image\/(png|jpeg|gif|webp)$/.test(f.mime);
 
 function fileView(f: FileRecord): HTMLElement {
-  const url = `/api/files/${encodeURIComponent(f.id)}`;
+  const url = fileUrl(f.id);
   if (isImage(f)) {
     return h(
       "a",
@@ -419,7 +423,7 @@ function fileView(f: FileRecord): HTMLElement {
   }
   return h(
     "a",
-    { class: "file-card", href: `${url}?download=1`, download: f.name.split("/").pop() },
+    { class: "file-card", href: fileUrl(f.id, true), download: f.name.split("/").pop() },
     h("span", { class: "file-card-icon", html: icon("file", 18) }),
     h("span", { class: "file-card-text" }, h("span", { class: "file-card-name" }, f.name), h("span", { class: "file-card-size" }, formatSize(f.size))),
     h("span", { class: "file-card-dl", html: icon("download", 16) }),
@@ -429,12 +433,12 @@ function fileView(f: FileRecord): HTMLElement {
 function userView(m: Pick<StoredMessage, "text" | "attachments" | "scheduled">): HTMLElement {
   const attachments = (m.attachments ?? []).map((a) =>
     isImage(a)
-      ? h("a", { class: "user-image", href: `/api/files/${a.id}`, target: "_blank" }, h("img", { src: `/api/files/${a.id}`, alt: a.name }))
+      ? h("a", { class: "user-image", href: fileUrl(a.id), target: "_blank" }, h("img", { src: fileUrl(a.id), alt: a.name }))
       : h("span", { class: "chip" }, h("span", { html: icon("file", 13) }), a.name),
   );
-  const copy = h("button", { class: "icon-btn", title: "Copy", html: icon("copy", 14) });
+  const copy = h("button", { class: "icon-btn", title: t("Copy"), html: icon("copy", 14) });
   copy.addEventListener("click", () => void navigator.clipboard.writeText(m.text));
-  const edit = h("button", { class: "icon-btn", title: "Edit in the composer", html: icon("edit", 14) });
+  const edit = h("button", { class: "icon-btn", title: t("Edit in the composer"), html: icon("edit", 14) });
   edit.addEventListener("click", () => {
     textarea.value = m.text;
     autosize();
@@ -443,9 +447,9 @@ function userView(m: Pick<StoredMessage, "text" | "attachments" | "scheduled">):
   return h(
     "div",
     { class: `msg user${m.scheduled ? " scheduled" : ""}` },
-    m.scheduled ? h("div", { class: "scheduled-tag", html: `${icon("clock", 12)} Scheduled task` }) : null,
+    m.scheduled ? h("div", { class: "scheduled-tag" }, h("span", { html: icon("clock", 12) }), t("Scheduled task")) : null,
     attachments.length ? h("div", { class: "user-attachments" }, attachments) : null,
-    m.text ? h("div", { class: "bubble" }, m.text) : null,
+    m.text ? h("div", { class: "bubble", dir: "auto" }, m.text) : null,
     h("div", { class: "msg-footer user-footer" }, copy, edit),
   );
 }
@@ -455,7 +459,7 @@ const isLast = (el: HTMLElement) => el.parentElement?.lastElementChild === el;
 // ── Speech ───────────────────────────────────────────────────────────────────
 
 function speak(markdown: string) {
-  if (!("speechSynthesis" in window)) return toast("This browser can't read aloud", "error");
+  if (!("speechSynthesis" in window)) return toast(t("This browser can't read aloud"), "error");
   if (speechSynthesis.speaking) {
     speechSynthesis.cancel();
     return;
@@ -482,7 +486,7 @@ let recognition: Recognition | null = null;
 function toggleDictation() {
   const Ctor = (window as unknown as Record<string, new () => Recognition>).SpeechRecognition ??
     (window as unknown as Record<string, new () => Recognition>).webkitSpeechRecognition;
-  if (!Ctor) return toast("Voice input isn't supported in this browser", "error");
+  if (!Ctor) return toast(t("Voice input isn't supported in this browser"), "error");
   if (recognition) {
     recognition.stop();
     return;
@@ -491,7 +495,7 @@ function toggleDictation() {
   recognition = new Ctor();
   recognition.continuous = true;
   recognition.interimResults = true;
-  recognition.lang = navigator.language || "en-US";
+  recognition.lang = lang() === "ar" ? (navigator.language?.startsWith("ar") ? navigator.language : "ar-AE") : navigator.language || "en-US";
   recognition.onresult = (e) => {
     let transcript = "";
     for (let i = 0; i < e.results.length; i++) transcript += e.results[i][0].transcript;
@@ -499,7 +503,7 @@ function toggleDictation() {
     autosize();
   };
   recognition.onerror = (e) => {
-    if (e.error !== "aborted" && e.error !== "no-speech") toast(`Voice input: ${e.error}`, "error");
+    if (e.error !== "aborted" && e.error !== "no-speech") toast(t("Voice input: {error}", { error: e.error }), "error");
   };
   recognition.onend = () => {
     recognition = null;
@@ -520,14 +524,14 @@ function autosize() {
 function updateSendState() {
   if (busy) {
     sendBtn.innerHTML = icon("stop", 16);
-    sendBtn.title = "Stop";
+    sendBtn.title = t("Stop");
     sendBtn.disabled = false;
     sendBtn.classList.add("stop");
     return;
   }
   sendBtn.classList.remove("stop");
   sendBtn.innerHTML = icon("send", 18);
-  sendBtn.title = "Send (Enter)";
+  sendBtn.title = t("Send (Enter)");
   sendBtn.disabled = !textarea.value.trim() && pending.length === 0;
 }
 
@@ -536,7 +540,7 @@ function updateModelButton() {
   modelBtn.innerHTML = "";
   modelBtn.append(
     h("span", { class: "model-name" }, shortModel(state.model)),
-    h("span", { class: "model-effort" }, effort.label),
+    h("span", { class: "model-effort" }, t(effort.label)),
     h("span", { html: icon("chevron", 14) }),
   );
 }
@@ -550,7 +554,7 @@ function openModelMenu() {
   const menu = h("div", { class: "popover model-menu", role: "menu" });
   const groups = new Map<string, typeof state.boot.models>();
   for (const m of state.boot.models) {
-    const label = m.provider === "anthropic" ? "Claude" : m.provider === "xai" ? "Grok" : "Demo";
+    const label = m.provider === "anthropic" ? "Claude" : m.provider === "xai" ? "Grok" : t("Demo");
     groups.set(label, [...(groups.get(label) ?? []), m]);
   }
   for (const [label, models] of groups) {
@@ -569,7 +573,7 @@ function openModelMenu() {
               menu.remove();
             },
           },
-          h("span", { class: "menu-item-text" }, h("span", null, m.label), h("small", null, m.blurb)),
+          h("span", { class: "menu-item-text" }, h("span", null, t(m.label)), h("small", null, t(m.blurb))),
           m.id === state.model ? h("span", { class: "menu-check", html: icon("check", 15) }) : null,
         ),
       );
@@ -583,7 +587,7 @@ function openModelMenu() {
         {
           class: e.id === state.effort ? "active" : "",
           type: "button",
-          title: e.hint,
+          title: t(e.hint),
           onclick: () => {
             state.effort = e.id;
             savePrefs({ effort: e.id });
@@ -591,11 +595,11 @@ function openModelMenu() {
             menu.remove();
           },
         },
-        e.label,
+        t(e.label),
       ),
     );
   }
-  menu.append(h("div", { class: "menu-label" }, "Thinking"), seg);
+  menu.append(h("div", { class: "menu-label" }, t("Thinking")), seg);
   modelBtn.parentElement!.append(menu);
   const close = (ev: MouseEvent) => {
     if (!menu.contains(ev.target as Node) && ev.target !== modelBtn && !modelBtn.contains(ev.target as Node)) {
@@ -609,11 +613,11 @@ function openModelMenu() {
 export function addFiles(files: Iterable<File>) {
   for (const file of files) {
     if (pending.length >= 20) {
-      toast("Up to 20 files per message", "error");
+      toast(t("Up to 20 files per message"), "error");
       break;
     }
     const preview = file.type.startsWith("image/") ? URL.createObjectURL(file) : undefined;
-    const remove = h("button", { class: "chip-x", type: "button", title: "Remove", html: icon("x", 12) });
+    const remove = h("button", { class: "chip-x", type: "button", title: t("Remove"), html: icon("x", 12) });
     const el = h(
       "div",
       { class: "attachment uploading" },
@@ -634,7 +638,7 @@ export function addFiles(files: Iterable<File>) {
           return record;
         })
         .catch((err: Error) => {
-          toast(`Couldn't upload ${file.name}: ${err.message}`, "error");
+          toast(t("Couldn't upload {name}: {error}", { name: file.name, error: t(err.message) }), "error");
           drop();
           return null;
         }),
@@ -671,6 +675,7 @@ async function send(textOverride?: string) {
     }
     const conversationId = state.current.conversation.id;
     main.classList.remove("empty");
+    threadInner.querySelector(".empty-state")?.remove();
     renderHeader();
     for (const p of pending) if (p.preview) URL.revokeObjectURL(p.preview);
     pending = [];
@@ -751,19 +756,27 @@ async function regenerate() {
 export function renderHeader() {
   const c = state.current;
   const agent = c?.agent ?? state.draftAgent;
-  titleEl.textContent = c?.conversation.title || (agent ? `${agent.emoji} ${agent.name}` : c ? "New chat" : "");
+  titleEl.textContent = c?.conversation.title || (agent ? `${agent.emoji} ${agent.name}` : c ? t("New chat") : "");
   document.title = c?.conversation.title ? `${c.conversation.title} · ${state.boot.agentName}` : state.boot.agentName;
 }
 
 function suggestionList(): { label: string; prompt?: string; action?: () => void; icon: IconName }[] {
   const items: { label: string; prompt?: string; action?: () => void; icon: IconName }[] = [
-    { icon: "globe", label: "What's happening in the world today?", prompt: "What are the biggest news stories today? Give me a quick briefing with sources." },
-    { icon: "users", label: "Build me a team of agents", prompt: "Create a team of 5 specialist agents to help me launch a business: a strategist, a market researcher, a marketer, a finance analyst and a copywriter." },
-    { icon: "bell", label: "Daily briefing at 8am", prompt: "Every weekday at 8:00, give me a short briefing: top news, the weather where I am, and anything on my reminders." },
-    { icon: "file", label: "Analyse a file", action: () => fileInput.click() },
+    { icon: "globe", label: t("What's happening in the world today?"), prompt: t("What are the biggest news stories today? Give me a quick briefing with sources.") },
+    {
+      icon: "users",
+      label: t("Build me a team of agents"),
+      prompt: t("Create a team of 5 specialist agents to help me launch a business: a strategist, a market researcher, a marketer, a finance analyst and a copywriter."),
+    },
+    {
+      icon: "bell",
+      label: t("Daily briefing at 8am"),
+      prompt: t("Every weekday at 8:00, give me a short briefing: top news, the weather where I am, and anything on my reminders."),
+    },
+    { icon: "file", label: t("Analyse a file"), action: () => fileInput.click() },
   ];
-  if (state.boot.features.imageGeneration) items.push({ icon: "image", label: "Generate an image", prompt: "Generate an image of a futuristic desert city at golden hour, cinematic, ultra detailed." });
-  if (state.boot.features.codeExecution) items.push({ icon: "code", label: "Chart something with code", prompt: "Write and run Python to plot compound interest on $10,000 at 7% over 30 years, and show me the chart." });
+  if (state.boot.features.imageGeneration) items.push({ icon: "image", label: t("Generate an image"), prompt: t("Generate an image of a futuristic desert city at golden hour, cinematic, ultra detailed.") });
+  if (state.boot.features.codeExecution) items.push({ icon: "code", label: t("Chart something with code"), prompt: t("Write and run Python to plot compound interest on $10,000 at 7% over 30 years, and show me the chart.") });
   return items;
 }
 
@@ -782,7 +795,10 @@ function renderEmpty() {
         { class: "hero" },
         h("div", { class: "hero-logo", html: logo(52) }),
         h("h1", null, greeting(state.boot.settings.userName)),
-        h("p", { class: "hero-sub" }, "What can I do for you?"),
+        h("p", { class: "hero-sub" }, t("What can I do for you?")),
+        state.boot.demo
+          ? h("p", { class: "demo-note" }, t("Demo: this runs in your browser with scripted replies. Install Dizz Lab on your computer to talk to Claude and Grok."))
+          : null,
       );
   const suggestions = h("div", { class: "suggestions" });
   if (!agent) {
@@ -853,12 +869,12 @@ export function focusComposer() {
 export function mountChat(root: HTMLElement, chatHooks: ChatHooks, onMenu: () => void, onConversationMenu: (anchor: HTMLElement) => void) {
   hooks = chatHooks;
   titleEl = h("div", { class: "topbar-title" });
-  const more = h("button", { class: "icon-btn", title: "Chat options", html: icon("dots", 18) });
+  const more = h("button", { class: "icon-btn", title: t("Chat options"), html: icon("dots", 18) });
   more.addEventListener("click", () => onConversationMenu(more));
   const topbar = h(
     "header",
     { class: "topbar" },
-    h("button", { class: "icon-btn menu-btn", title: "Menu", html: icon("menu", 20), onclick: onMenu }),
+    h("button", { class: "icon-btn menu-btn", title: t("Menu"), html: icon("menu", 20), onclick: onMenu }),
     titleEl,
     h("div", { class: "spacer" }),
     more,
@@ -870,7 +886,7 @@ export function mountChat(root: HTMLElement, chatHooks: ChatHooks, onMenu: () =>
     stickToBottom = thread.scrollHeight - thread.scrollTop - thread.clientHeight < 80;
   });
 
-  textarea = h("textarea", { rows: 1, placeholder: "Ask anything", "aria-label": "Message", enterkeyhint: "send" });
+  textarea = h("textarea", { rows: 1, placeholder: t("Ask anything"), "aria-label": t("Message"), enterkeyhint: "send", dir: "auto" });
   textarea.addEventListener("input", autosize);
   textarea.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey && !e.isComposing && !matchMedia("(pointer: coarse)").matches) {
@@ -894,9 +910,9 @@ export function mountChat(root: HTMLElement, chatHooks: ChatHooks, onMenu: () =>
   attachRow = h("div", { class: "attachments", hidden: true });
   sendBtn = h("button", { class: "send-btn", type: "button" });
   sendBtn.addEventListener("click", () => (busy ? void stop() : void send()));
-  modelBtn = h("button", { class: "model-btn", type: "button", title: "Model and thinking" });
+  modelBtn = h("button", { class: "model-btn", type: "button", title: t("Model and thinking") });
   modelBtn.addEventListener("click", openModelMenu);
-  micBtn = h("button", { class: "icon-btn mic-btn", type: "button", title: "Dictate", html: icon("mic", 18), onclick: toggleDictation });
+  micBtn = h("button", { class: "icon-btn mic-btn", type: "button", title: t("Dictate"), html: icon("mic", 18), onclick: toggleDictation });
   const hasSpeech = "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
 
   const composer = h(
@@ -907,7 +923,7 @@ export function mountChat(root: HTMLElement, chatHooks: ChatHooks, onMenu: () =>
     h(
       "div",
       { class: "composer-bar" },
-      h("button", { class: "icon-btn", type: "button", title: "Attach files", html: icon("paperclip", 18), onclick: () => fileInput.click() }),
+      h("button", { class: "icon-btn", type: "button", title: t("Attach files"), html: icon("paperclip", 18), onclick: () => fileInput.click() }),
       h("div", { class: "model-wrap" }, modelBtn),
       h("div", { class: "spacer" }),
       hasSpeech ? micBtn : null,
@@ -915,9 +931,9 @@ export function mountChat(root: HTMLElement, chatHooks: ChatHooks, onMenu: () =>
     ),
     fileInput,
   );
-  const dock = h("div", { class: "composer-dock" }, composer, h("div", { class: "disclaimer" }, "AI can make mistakes. Check important facts."));
+  const dock = h("div", { class: "composer-dock" }, composer, h("div", { class: "disclaimer" }, t("AI can make mistakes. Check important facts.")));
 
-  const dropzone = h("div", { class: "dropzone" }, h("div", null, h("span", { html: icon("upload", 28) }), h("p", null, "Drop files to attach")));
+  const dropzone = h("div", { class: "dropzone" }, h("div", null, h("span", { html: icon("upload", 28) }), h("p", null, t("Drop files to attach"))));
   main = h("main", { class: "main empty" }, topbar, thread, dock, dropzone);
   let dragDepth = 0;
   main.addEventListener("dragenter", (e) => {

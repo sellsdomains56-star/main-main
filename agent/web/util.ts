@@ -1,5 +1,6 @@
-import { h } from "./dom.js";
+import { h, onSubmit } from "./dom.js";
 import { icon } from "./icons.js";
+import { locale, t } from "./i18n.js";
 
 export function formatSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
@@ -8,7 +9,7 @@ export function formatSize(bytes: number): string {
 }
 
 export function formatDateTime(ms: number, timeZone?: string): string {
-  return new Intl.DateTimeFormat(undefined, {
+  return new Intl.DateTimeFormat(locale(), {
     timeZone,
     weekday: "short",
     day: "numeric",
@@ -21,17 +22,17 @@ export function formatDateTime(ms: number, timeZone?: string): string {
 export function relativeDay(ms: number): string {
   const day = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
   const diff = Math.round((day(new Date()) - day(new Date(ms))) / 86_400_000);
-  if (diff <= 0) return "Today";
-  if (diff === 1) return "Yesterday";
-  if (diff < 7) return "Previous 7 days";
-  if (diff < 30) return "Previous 30 days";
-  return new Intl.DateTimeFormat(undefined, { month: "long", year: "numeric" }).format(ms);
+  if (diff <= 0) return t("Today");
+  if (diff === 1) return t("Yesterday");
+  if (diff < 7) return t("Previous 7 days");
+  if (diff < 30) return t("Previous 30 days");
+  return new Intl.DateTimeFormat(locale(), { month: "long", year: "numeric" }).format(ms);
 }
 
 export function greeting(name: string): string {
   const hour = new Date().getHours();
-  const part = hour < 5 ? "Up late" : hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
-  return name ? `${part}, ${name}` : part;
+  const part = hour < 5 ? t("Up late") : hour < 12 ? t("Good morning") : hour < 18 ? t("Good afternoon") : t("Good evening");
+  return name ? t("{greeting}, {name}", { greeting: part, name }) : part;
 }
 
 let toastHost: HTMLElement | null = null;
@@ -84,7 +85,37 @@ export async function prepareImage(file: File): Promise<Blob> {
   }
 }
 
-export function confirmDialog(message: string, confirmLabel = "Delete"): Promise<boolean> {
+/** A text prompt that works everywhere (the browser's own prompt() is blocked in embedded viewers). */
+export function promptDialog(message: string, value = "", opts: { password?: boolean } = {}): Promise<string | null> {
+  return new Promise((resolve) => {
+    const input = h("input", { class: "input", value, type: opts.password ? "password" : "text" });
+    const form = h(
+      "form",
+      { class: "form" },
+      h("p", { class: "prompt-message" }, message),
+      input,
+      h(
+        "div",
+        { class: "modal-actions" },
+        h("button", { class: "btn ghost", type: "button", onclick: () => close(null) }, t("Cancel")),
+        h("button", { class: "btn primary", type: "submit" }, t("OK")),
+      ),
+    );
+    const dialog = h("dialog", { class: "modal confirm" }, form);
+    const close = (result: string | null) => {
+      dialog.close();
+      dialog.remove();
+      resolve(result);
+    };
+    onSubmit(form, () => close(input.value));
+    dialog.addEventListener("cancel", () => close(null));
+    document.body.append(dialog);
+    dialog.showModal();
+    input.select();
+  });
+}
+
+export function confirmDialog(message: string, confirmLabel = t("Delete")): Promise<boolean> {
   return new Promise((resolve) => {
     const dialog = h(
       "dialog",
@@ -93,7 +124,7 @@ export function confirmDialog(message: string, confirmLabel = "Delete"): Promise
       h(
         "div",
         { class: "modal-actions" },
-        h("button", { class: "btn ghost", onclick: () => close(false) }, "Cancel"),
+        h("button", { class: "btn ghost", onclick: () => close(false) }, t("Cancel")),
         h("button", { class: "btn danger", onclick: () => close(true) }, confirmLabel),
       ),
     );

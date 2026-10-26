@@ -7,6 +7,7 @@ import { systemPrompt, turnContext } from "./prompt.js";
 import { providerFor } from "./providers/index.js";
 import { TurnError } from "./providers/types.js";
 import { toolsFor } from "./toolkit.js";
+import { tr } from "../i18n.js";
 import type { SubAgentResult, ToolOutcome } from "./tools.js";
 
 export interface TurnOptions {
@@ -33,9 +34,9 @@ function serverLabel(name: string, input: Record<string, unknown>): { label: str
   const query = (input.query ?? (Array.isArray(input.queries) ? input.queries[0] : undefined)) as string | undefined;
   switch (name) {
     case "web_search":
-      return { label: query ? `Searched the web for ${quote(query)}` : "Searching the web" };
+      return { label: query ? tr(`Searched the web for ${quote(query)}`, `بحث في الويب عن ${quote(query)}`) : tr("Searching the web", "يبحث في الويب") };
     case "x_search":
-      return { label: query ? `Searched X for ${quote(query)}` : "Searching X" };
+      return { label: query ? tr(`Searched X for ${quote(query)}`, `بحث في X عن ${quote(query)}`) : tr("Searching X", "يبحث في X") };
     case "web_fetch": {
       const url = (input.url as string | undefined) ?? "";
       let host = "";
@@ -44,7 +45,7 @@ function serverLabel(name: string, input: Record<string, unknown>): { label: str
       } catch {
         host = url;
       }
-      return { label: host ? `Read ${host}` : "Reading a page", detail: url || undefined };
+      return { label: host ? tr(`Read ${host}`, `قرأ ${host}`) : tr("Reading a page", "يقرأ صفحة"), detail: url || undefined };
     }
     default:
       return { label: name.replace(/_/g, " ") };
@@ -164,7 +165,7 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
               })
             : { ok: false, content: `There is no tool called ${name}.` };
           step.status = outcome.ok ? "ok" : "error";
-          step.result = outcome.result ?? (outcome.ok ? "Done" : outcome.content.slice(0, 200));
+          step.result = outcome.result ?? (outcome.ok ? tr("Done", "تم") : outcome.content.slice(0, 200));
           if (outcome.approval) step.approval = outcome.approval;
           emit({ type: "step", step });
           for (const f of outcome.files ?? []) {
@@ -183,7 +184,7 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
     const result = await run();
     closeThinking();
     if (result.refusal) {
-      const note = `\n\n> **${model.label} declined this request.** ${result.refusal}`;
+      const note = tr(`\n\n> **${model.label} declined this request.** ${result.refusal}`, `\n\n> **رفض ${model.label} هذا الطلب.** ${result.refusal}`);
       text += note;
       emit({ type: "text", delta: note });
     }

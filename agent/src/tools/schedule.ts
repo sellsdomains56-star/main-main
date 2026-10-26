@@ -1,3 +1,4 @@
+import { uiLang } from "../i18n.js";
 import type { Repeat } from "../types.js";
 
 /**
@@ -36,9 +37,10 @@ export function nextOccurrence(previous: number, repeat: Repeat, now: number): n
   return d.getTime();
 }
 
-/** "Tue 27 Oct 2026, 09:00" in the configured time zone. */
-export function formatWhen(ms: number, timeZone: string): string {
-  return new Intl.DateTimeFormat("en-GB", {
+/** "Tue 27 Oct 2026, 09:00" in the configured time zone; in Arabic for text you read when the app is in Arabic. */
+export function formatWhen(ms: number, timeZone: string, forUser = false): string {
+  const arabic = forUser && uiLang() === "ar";
+  return new Intl.DateTimeFormat(arabic ? "ar-u-nu-latn" : "en-GB", {
     timeZone,
     weekday: "short",
     day: "numeric",
