@@ -74,7 +74,7 @@ Design: minimal black and white (off-white page, black type and panels, real bar
 
 ## Try-it demo (no install)
 
-`node app/scripts/build-demo-page.mjs out.html` builds the website as one self-contained page (code, fonts, icons, demo media and seed data inlined) that runs with an in-browser demo server (`app/src/lib/demo/server.ts`) instead of the API — bookings, reviews, reels likes, shop orders and support tickets are kept on the viewer's device and payments are simulated. Its concierge and try-on suggestions are built in and answer from the demo's own data.
+`node app/scripts/build-demo-page.mjs out.html` builds the website as one self-contained page (code, fonts, icons, demo media and seed data inlined) that runs with an in-browser demo server (`app/src/lib/demo/server.ts`) instead of the API — bookings, reviews, reels likes, shop orders and support tickets are kept on the viewer's device and payments are simulated. Its concierge and try-on suggestions are built in and answer from the demo's own data. Add `--start barber`, `--start shop` or `--start admin` to build a page for one side: it opens signed in to that side's sample account, on the barber's dashboard, the barbershop panel or the admin panel.
 
 ## Tester link (Netlify)
 

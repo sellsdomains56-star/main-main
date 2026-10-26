@@ -5,7 +5,11 @@
  * page works from any host, even one that only serves a single file.
  * In the page, an in-browser demo server (src/lib/demo/server.ts) stands in for the API.
  *
- *   node scripts/build-demo-page.mjs [out.html]
+ *   node scripts/build-demo-page.mjs [out.html] [--start barber|shop|admin] [--reuse-build]
+ *
+ * --start makes a page for one side: it opens signed in to that side's sample account, on its
+ * panel (the barber's dashboard, the barbershop panel or the team's admin panel).
+ * --reuse-build skips the web export when app/dist is already built from the current code.
  */
 import { execSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
@@ -13,11 +17,19 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const app = join(dirname(fileURLToPath(import.meta.url)), "..");
-const out = process.argv[2] ?? join(app, "dist-demo.html");
+const args = process.argv.slice(2);
+const flag = (name) => (args.includes(name) ? args[args.indexOf(name) + 1] : undefined);
+const out = args[0] && !args[0].startsWith("--") ? args[0] : join(app, "dist-demo.html");
+const START = { barber: "JB Barber Dashboard", shop: "JB Shop Panel", admin: "JB Admin Panel" };
+const start = flag("--start");
+if (start && !START[start]) throw new Error(`--start must be one of: ${Object.keys(START).join(", ")}`);
 const run = (cmd, cwd) => execSync(cmd, { cwd, stdio: ["ignore", "pipe", "inherit"], maxBuffer: 256 * 1024 * 1024, env: { ...process.env, CI: "1" } }).toString();
 
-console.error("Building the website…");
-run("npx expo export --platform web", app);
+if (args.includes("--reuse-build") && existsSync(join(app, "dist/_expo/static/js/web"))) console.error("Using the existing website build…");
+else {
+  console.error("Building the website…");
+  run("npx expo export --platform web", app);
+}
 
 console.error("Exporting demo data…");
 const data = run("npx tsx scripts/export-demo-data.ts", join(app, "../server"));
@@ -42,7 +54,7 @@ js = js.replace(/"(\/assets\/[^"]+\.(png|jpg|ttf))"/g, (whole, path, ext) => {
 const safe = (s) => s.replace(/<\/(script)/gi, "<\\/$1").replace(/<!--/g, "<\\!--");
 
 const page = `<meta charset="utf-8">
-<title>JB Always Fresh</title>
+<title>${start ? START[start] : "JB Always Fresh"}</title>
 <style>
   :root { --bg: #FAF8F4; }
   html, body { height: 100%; }
@@ -51,7 +63,7 @@ const page = `<meta charset="utf-8">
 </style>
 <div id="root"></div>
 <script>
-  window.__AF_DEMO__ = ${safe(data)};
+  window.__AF_DEMO__ = ${safe(data)};${start ? `\n  window.__AF_DEMO_START__ = ${JSON.stringify(start)};` : ""}
   // The app routes by URL path; start it at its home screen wherever the page is served.
   try { if (location.pathname !== "/") history.replaceState(null, "", "/"); } catch (e) {}
 </script>

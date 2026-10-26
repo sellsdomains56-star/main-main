@@ -1,5 +1,8 @@
 /** Set only by the self-contained demo page (scripts/build-demo-page.mjs). */
 export const DEMO_DATA = (globalThis as { __AF_DEMO__?: import("./demo/server").DemoData }).__AF_DEMO__;
+/** A demo page built for one side opens straight into it (build-demo-page.mjs --start). */
+export const DEMO_START = (globalThis as { __AF_DEMO_START__?: "barber" | "shop" | "admin" }).__AF_DEMO_START__;
+export const DEMO_HOME = { barber: "/business", shop: "/shop-panel", admin: "/admin" } as const;
 
 export const API_URL = (process.env.EXPO_PUBLIC_API_URL ?? "http://localhost:4000").replace(/\/$/, "");
 

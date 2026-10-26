@@ -6,7 +6,7 @@ import { SocialSignIn } from "../components/SocialSignIn";
 import { Button, Card, ErrorBox, Field, Screen, Segmented, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
-import { APP_NAME, DEMO_DATA } from "../lib/config";
+import { APP_NAME, DEMO_DATA, DEMO_HOME } from "../lib/config";
 import { DEMO_LOGINS } from "../lib/demo/server";
 import { useLocation } from "../lib/location";
 
@@ -34,7 +34,7 @@ export default function Login() {
       const login = DEMO_LOGINS[who];
       const res = await api.login(login.email, login.password);
       await signIn(res.token, res.user);
-      router.replace(who === "barber" ? "/business" : who === "shop" ? "/shop-panel" : "/admin");
+      router.replace(DEMO_HOME[who]);
     } catch (e) {
       setError((e as Error).message);
     } finally {

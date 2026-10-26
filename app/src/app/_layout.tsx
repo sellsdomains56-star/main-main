@@ -1,15 +1,19 @@
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold, useFonts } from "@expo-google-fonts/inter";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useEffect, useRef, useState } from "react";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { AlertBanner } from "../components/AlertBanner";
 import { PaymentProvider } from "../components/PaymentProvider";
 import { colors, fonts } from "../components/theme";
 import { AlertsProvider } from "../lib/alerts";
-import { AuthProvider } from "../lib/auth";
+import { api } from "../lib/api";
+import { AuthProvider, useAuth } from "../lib/auth";
 import { usePushNavigation } from "../lib/push";
 import { CartProvider } from "../lib/cart";
-import { APP_NAME } from "../lib/config";
+import { APP_NAME, DEMO_HOME, DEMO_START } from "../lib/config";
+import { DEMO_LOGINS } from "../lib/demo/server";
 import { LocationProvider } from "../lib/location";
 
 export default function RootLayout() {
@@ -72,12 +76,37 @@ export default function RootLayout() {
                   <Stack.Screen name="business/hours" options={{ title: "Hours & days off" }} />
                 </Stack>
                 <AlertBanner />
+                {DEMO_START && <DemoStart who={DEMO_START} />}
               </>
             </PaymentProvider>
           </CartProvider>
         </LocationProvider>
       </AlertsProvider>
     </AuthProvider>
+  );
+}
+
+/** Demo page for one side: sign in with its sample account and open its panel, covering the home screen meanwhile. */
+function DemoStart({ who }: { who: keyof typeof DEMO_HOME }) {
+  const { user, loading, signIn } = useAuth();
+  const [covering, setCovering] = useState(true);
+  const started = useRef(false);
+  useEffect(() => {
+    if (loading || started.current) return;
+    started.current = true;
+    (async () => {
+      if (!user) {
+        const res = await api.login(DEMO_LOGINS[who].email, DEMO_LOGINS[who].password);
+        await signIn(res.token, res.user);
+      }
+      router.replace(DEMO_HOME[who]);
+    })().catch(() => {}).finally(() => setTimeout(() => setCovering(false), 300));
+  }, [loading, user, who, signIn]);
+  if (!covering) return null;
+  return (
+    <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }]}>
+      <ActivityIndicator color={colors.text} />
+    </View>
   );
 }
 
