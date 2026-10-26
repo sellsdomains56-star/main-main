@@ -1,7 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
+  AccessibilityInfo,
   ActivityIndicator,
+  Animated,
   Image,
   Platform,
   Pressable,
@@ -465,6 +467,74 @@ export function Loading({ color = colors.text }: { color?: string }) {
   return (
     <View style={{ padding: 40, alignItems: "center" }}>
       <ActivityIndicator color={color} />
+    </View>
+  );
+}
+
+/** A soft pulsing placeholder in the shape of what's coming (still when the system asks for less motion). */
+export function Skeleton({ width, height, radius: r = radius.md, style }: { width: number | `${number}%`; height: number; radius?: number; style?: StyleProp<ViewStyle> }) {
+  const pulse = useRef(new Animated.Value(0.55)).current;
+  useEffect(() => {
+    let loop: Animated.CompositeAnimation | null = null;
+    AccessibilityInfo.isReduceMotionEnabled().then((reduce) => {
+      if (reduce) return;
+      loop = Animated.loop(Animated.sequence([
+        Animated.timing(pulse, { toValue: 1, duration: 700, useNativeDriver: Platform.OS !== "web" }),
+        Animated.timing(pulse, { toValue: 0.55, duration: 700, useNativeDriver: Platform.OS !== "web" }),
+      ]));
+      loop.start();
+    }, () => {});
+    return () => loop?.stop();
+  }, [pulse]);
+  return <Animated.View accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[{ width, height, borderRadius: r, backgroundColor: colors.surface, opacity: pulse }, style]} />;
+}
+
+/** Loading placeholders shaped like the content: list rows, a horizontal row of tiles, or a grid. */
+export function Placeholder({ kind, count = 3, tile = 168 }: { kind: "rows" | "tiles" | "grid" | "cards"; count?: number; tile?: number }) {
+  if (kind === "tiles") {
+    return (
+      <View accessibilityLabel="Loading" style={{ flexDirection: "row", gap: 14, overflow: "hidden" }}>
+        {Array.from({ length: count }, (_, i) => (
+          <View key={i} style={{ width: tile, gap: 8 }}>
+            <Skeleton width={tile} height={tile} radius={radius.lg} />
+            <Skeleton width="80%" height={12} />
+            <Skeleton width="50%" height={10} />
+          </View>
+        ))}
+      </View>
+    );
+  }
+  if (kind === "grid") {
+    return (
+      <View accessibilityLabel="Loading" style={{ flexDirection: "row", flexWrap: "wrap", gap: 2 }}>
+        {Array.from({ length: count }, (_, i) => <Skeleton key={i} width="32.9%" height={tile} radius={0} />)}
+      </View>
+    );
+  }
+  if (kind === "cards") {
+    return (
+      <View accessibilityLabel="Loading" style={{ gap: 12 }}>
+        {Array.from({ length: count }, (_, i) => (
+          <View key={i} style={[styles.card, { padding: 18, gap: 10 }]}>
+            <Row gap={12}><Skeleton width={44} height={44} radius={22} /><View style={{ flex: 1, gap: 8 }}><Skeleton width="60%" height={14} /><Skeleton width="40%" height={11} /></View></Row>
+            <Skeleton width="90%" height={11} />
+          </View>
+        ))}
+      </View>
+    );
+  }
+  return (
+    <View accessibilityLabel="Loading" style={{ gap: 18, paddingVertical: 8 }}>
+      {Array.from({ length: count }, (_, i) => (
+        <Row key={i} gap={14}>
+          <Skeleton width={88} height={88} radius={radius.lg} />
+          <View style={{ flex: 1, gap: 9 }}>
+            <Skeleton width="70%" height={15} />
+            <Skeleton width="45%" height={11} />
+            <Skeleton width="60%" height={11} />
+          </View>
+        </Row>
+      ))}
     </View>
   );
 }

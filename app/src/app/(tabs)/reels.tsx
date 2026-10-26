@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LocationSheet } from "../../components/LocationSheet";
 import { compact } from "../../components/ReelThumb";
 import { colors, fonts, radius } from "../../components/theme";
-import { Avatar, Button, EmptyState, ErrorBox, Loading, Row, Segmented, styles, T } from "../../components/ui";
+import { Avatar, Button, EmptyState, ErrorBox, Loading, Placeholder, Row, Segmented, styles, T } from "../../components/ui";
 import { api, mediaUrl } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { useLocation } from "../../lib/location";
@@ -94,7 +94,7 @@ export default function ReelsTab() {
           {tab === "saved" && !user && (
             <EmptyState icon="bookmark-outline" title="Save reels you love" body="Tap the bookmark on any reel to keep it here — your style board for the next cut." action={{ label: "Sign in", onPress: () => router.push("/login") }} />
           )}
-          {!list && !error && (tab === "foryou" || user) && <Loading />}
+          {!list && !error && (tab === "foryou" || user) && <Placeholder kind="grid" count={9} tile={Math.round(tile * 1.6)} />}
           {list?.length === 0 && tab === "foryou" && (
             <View style={{ alignItems: "center", padding: 32 }}>
               <T variant="heading" center>No reels in {where} yet</T>

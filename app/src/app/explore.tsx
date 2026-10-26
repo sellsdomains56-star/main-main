@@ -8,7 +8,7 @@ import { LocationPill } from "../components/LocationSheet";
 import { BarberMap } from "../components/map/BarberMap";
 import { barberPins } from "../components/map/types";
 import { colors, fonts, radius } from "../components/theme";
-import { Button, Divider, EmptyState, ErrorBox, Field, IconButton, Loading, Pill, Row, SearchBar, Segmented, T, Wrap, styles } from "../components/ui";
+import { Button, Divider, EmptyState, ErrorBox, Field, IconButton, Loading, Placeholder, Pill, Row, SearchBar, Segmented, T, Wrap, styles } from "../components/ui";
 import { api } from "../lib/api";
 import { useLocation } from "../lib/location";
 import type { Barber, BarberSearch } from "../lib/types";
@@ -126,7 +126,7 @@ export default function Explore() {
 
           <View style={{ marginTop: 12 }}>
             {error && <ErrorBox message={error} />}
-            {!list && !error && <Loading />}
+            {!list && !error && <Placeholder kind="rows" count={4} />}
             {list?.length === 0 && (
               <EmptyState icon="cut-outline" title="No barbers found" body="Try fewer filters or search anywhere in the world." action={near ? { label: "Search anywhere", onPress: () => setScope("anywhere") } : undefined} />
             )}

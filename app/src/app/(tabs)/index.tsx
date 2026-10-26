@@ -14,7 +14,7 @@ import { barberPins } from "../../components/map/types";
 import { ReelThumb } from "../../components/ReelThumb";
 import { SlideToConfirm } from "../../components/SlideToConfirm";
 import { colors, fonts, radius } from "../../components/theme";
-import { Avatar, Card, IconBadge, IconButton, Loading, Rating, Row, SearchBar, Section, styles, T, Tag, Timeline, type IconName } from "../../components/ui";
+import { Avatar, Card, IconBadge, IconButton, Loading, Placeholder, Rating, Row, SearchBar, Section, styles, T, Tag, Timeline, type IconName } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAlerts } from "../../lib/alerts";
 import { useAuth } from "../../lib/auth";
@@ -208,7 +208,7 @@ export default function Home() {
           <>
             <View style={block}>
               <Section title={`Top rated in ${where}`} action={{ label: "See all", onPress: () => router.push("/explore") }}>
-                {!barbers && <Loading />}
+                {!barbers && <Placeholder kind="tiles" />}
                 {barbers?.length === 0 && <T muted>No barbers here yet — try another city.</T>}
               </Section>
             </View>
@@ -244,7 +244,7 @@ export default function Home() {
 
             <View style={block}>
               <Section title={`Trending in ${where}`} action={{ label: "Watch all", onPress: () => router.push("/reels") }}>
-                {!reels && <Loading />}
+                {!reels && <Placeholder kind="tiles" tile={120} count={4} />}
                 {reels?.length === 0 && <T muted>No reels here yet.</T>}
               </Section>
             </View>

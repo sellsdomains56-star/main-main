@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { AlertBanner } from "../components/AlertBanner";
 import { PaymentProvider } from "../components/PaymentProvider";
+import { WelcomeTour } from "../components/WelcomeTour";
 import { colors, fonts } from "../components/theme";
 import { AlertsProvider } from "../lib/alerts";
 import { api } from "../lib/api";
@@ -76,6 +77,7 @@ export default function RootLayout() {
                   <Stack.Screen name="business/hours" options={{ title: "Hours & days off" }} />
                 </Stack>
                 <AlertBanner />
+                <WelcomeTour />
                 {DEMO_START && <DemoStart who={DEMO_START} />}
               </>
             </PaymentProvider>

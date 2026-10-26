@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AddToCalendar } from "../../components/AddToCalendar";
 import { colors, radius } from "../../components/theme";
-import { Avatar, Button, Card, EmptyState, ErrorBox, Field, IconLine, Loading, Row, Screen, Segmented, T, Tag } from "../../components/ui";
+import { Avatar, Button, Card, EmptyState, ErrorBox, Field, IconLine, Loading, Placeholder, Row, Screen, Segmented, T, Tag } from "../../components/ui";
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { enablePush, pushState, type PushState } from "../../lib/push";
@@ -153,7 +153,7 @@ export default function Bookings() {
       <Segmented value={tab} onChange={setTab} options={[{ value: "upcoming", label: "Upcoming" }, { value: "past", label: "Past" }]} />
       <View style={{ marginTop: 16 }}>
         {error && <ErrorBox message={error} onRetry={load} />}
-        {!list && !error && <Loading />}
+        {!list && !error && <Placeholder kind="cards" />}
         {shownHires.map((h) => (
           <Card key={h.id} style={{ marginBottom: 12 }}>
             <Row gap={12}>

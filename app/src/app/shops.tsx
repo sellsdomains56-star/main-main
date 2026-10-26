@@ -4,7 +4,7 @@ import { LocationPill } from "../components/LocationSheet";
 import { BarberMap } from "../components/map/BarberMap";
 import { shopPins } from "../components/map/types";
 import { ShopCard } from "../components/ShopCard";
-import { Divider, EmptyState, ErrorBox, Loading, Pill, Row, Screen, T } from "../components/ui";
+import { Divider, EmptyState, ErrorBox, Loading, Placeholder, Pill, Row, Screen, T } from "../components/ui";
 import { api } from "../lib/api";
 import { useLocation } from "../lib/location";
 import type { ShopSummary } from "../lib/types";
@@ -33,7 +33,7 @@ export default function Shops() {
       <T variant="caption" muted style={{ marginTop: 10 }}>Book a chair with whoever's free, hire the whole shop for your event, or get products delivered today.</T>
       <View style={{ marginTop: 14 }}>
         {error && <ErrorBox message={error} />}
-        {!list && !error && <Loading />}
+        {!list && !error && <Placeholder kind="rows" count={4} />}
         {list?.length === 0 && (
           <EmptyState icon="storefront-outline" title={`No barbershops in ${where} yet`} body="Independent barbers here still take bookings and come to you." />
         )}
