@@ -840,6 +840,9 @@ export function openConnectors() {
     for (const c of custom) customGrid.append(connectorCard("", c.name, c.url ?? "", c, true, render));
     if (custom.length) body.append(customGrid);
     body.append(addByLinkForm(render));
+
+    // Your own APIs
+    body.append(h("h3", { class: "section-title" }, t("Your APIs")), await apisSection());
   }
 
   void render();
@@ -995,6 +998,96 @@ function connectorCard(
     h("p", { class: "conn-desc" }, description),
     ...extra,
   );
+}
+
+interface ApiView {
+  id: string;
+  name: string;
+  baseUrl: string;
+  auth: "bearer" | "header" | "query" | "basic" | "none";
+  keyName: string;
+  notes: string;
+  allowWrite: boolean;
+  secretHint: string;
+}
+
+/** Any web API you have a key for: the agent calls it with the key added by the server. */
+async function apisSection(): Promise<HTMLElement> {
+  const wrap = h("div", { class: "apis" });
+  const list = h("div", { class: "api-list" });
+  const render = async () => {
+    const apis = await api<ApiView[]>("/api/apis").catch(() => [] as ApiView[]);
+    list.replaceChildren(
+      ...apis.map((a) => {
+        const allow = h("input", { type: "checkbox", checked: a.allowWrite });
+        allow.addEventListener("change", async () => {
+          await api(`/api/apis/${a.id}`, { method: "PATCH", body: { allowWrite: allow.checked } }).catch((err: Error) => toast(err.message, "error"));
+        });
+        const remove = h("button", { class: "icon-btn", type: "button", title: t("Remove"), "aria-label": t("Remove"), html: icon("trash", 15) });
+        remove.addEventListener("click", async () => {
+          if (!(await confirmDialog(t("Remove {name}?", { name: a.name }), t("Remove")))) return;
+          await api(`/api/apis/${a.id}`, { method: "DELETE" });
+          void render();
+        });
+        return h(
+          "div",
+          { class: "api-card" },
+          h("div", { class: "api-head" }, h("strong", null, a.name), h("span", { class: "muted" }, a.baseUrl), remove),
+          a.notes ? h("p", { class: "muted small-text", dir: "auto" }, a.notes) : null,
+          h("div", { class: "api-meta" }, h("span", { class: "tag" }, a.secretHint ? t("Key {hint}", { hint: a.secretHint }) : t("No key")), h("label", { class: "check" }, allow, t("Let it make changes (POST, PUT, PATCH, DELETE)"))),
+        );
+      }),
+    );
+  };
+
+  const name = h("input", { class: "input", placeholder: "shopify", required: true, maxlength: 40, pattern: "[a-z0-9][a-z0-9_-]*" });
+  const baseUrl = h("input", { class: "input", type: "url", placeholder: "https://api.example.com/v1", required: true });
+  const auth = h("select", { class: "input" });
+  for (const [id, label] of [
+    ["bearer", t("Bearer token (Authorization header)")],
+    ["header", t("Key in a header")],
+    ["query", t("Key in the address (?key=…)")],
+    ["basic", t("Basic auth (user:password)")],
+    ["none", t("No key")],
+  ]) auth.append(h("option", { value: id }, label));
+  const keyName = h("input", { class: "input", placeholder: "X-API-Key" });
+  const keyNameField = h("label", { class: "field", hidden: true }, t("Header or parameter name"), keyName);
+  auth.addEventListener("change", () => (keyNameField.hidden = !["header", "query"].includes(auth.value)));
+  const secret = h("input", { class: "input", type: "password", placeholder: t("Your API key"), autocomplete: "off" });
+  const notes = h("textarea", { class: "input", rows: 3, placeholder: t("What it is and how to use it: main endpoints, a link to its docs. The agent reads this.") });
+  const allowWrite = h("input", { type: "checkbox" });
+  const button = h("button", { class: "btn primary small", type: "submit" }, h("span", { html: icon("plus", 14) }), t("Add API"));
+  const form = h(
+    "form",
+    { class: "setup-box" },
+    h("div", { class: "setup-title" }, h("span", { html: icon("code", 15) }), t("Add an API you have a key for")),
+    h("p", { class: "muted small-text" }, t("Your shop, CRM, accounting software, smart home… The key is stored encrypted and added by the server, so the AI never sees it, and requests can't leave this address.")),
+    h("div", { class: "row" }, h("label", { class: "field" }, t("Short name"), name), h("label", { class: "field grow" }, t("Base address"), baseUrl)),
+    h("div", { class: "row" }, h("label", { class: "field grow" }, t("How the key is sent"), auth), keyNameField),
+    h("label", { class: "field" }, t("Key"), secret),
+    h("label", { class: "field" }, t("Notes for the agent"), notes),
+    h("label", { class: "check" }, allowWrite, t("Let it make changes (POST, PUT, PATCH, DELETE)")),
+    h("div", { class: "modal-actions" }, button),
+  );
+  onSubmit(form, async () => {
+    button.disabled = true;
+    try {
+      await api("/api/apis", {
+        body: { name: name.value.trim().toLowerCase(), baseUrl: baseUrl.value.trim(), auth: auth.value, keyName: keyName.value.trim(), secret: secret.value, notes: notes.value, allowWrite: allowWrite.checked },
+      });
+      toast(t("{name} added", { name: name.value.trim() }), "success");
+      form.reset();
+      keyNameField.hidden = true;
+      void render();
+    } catch (err) {
+      toast((err as Error).message, "error");
+    } finally {
+      button.disabled = false;
+    }
+  });
+  await render();
+  wrap.append(list, form);
+  return wrap;
 }
 
 function addByLinkForm(refresh: () => void): HTMLElement {

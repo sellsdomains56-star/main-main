@@ -222,6 +222,12 @@ before(async () => {
         res.end(JSON.stringify(googleReply(req.method!, req.url!.slice("/google".length), raw)));
         return;
       }
+      if (req.url!.startsWith("/myapi/")) {
+        // A stand-in for one of your own APIs: it echoes what it got (including the key, to check it's hidden).
+        res.writeHead(200, { "content-type": "application/json" });
+        res.end(JSON.stringify({ method: req.method, path: req.url, auth: req.headers.authorization ?? null, body }));
+        return;
+      }
       if (req.url!.startsWith("/eleven/")) {
         elevenRequests.push({ path: req.url!, headers: req.headers, body });
         res.writeHead(200, { "content-type": "audio/mpeg" });
@@ -775,6 +781,44 @@ describe("Smart pick", () => {
     const req = anthropicRequests.slice(before).find((r) => r.body.stream)!;
     assert.equal(req.body.model, "claude-haiku-5-5");
     assert.equal(listMessages(conversation.id).at(-1)!.model, "claude-haiku-5-5");
+  });
+});
+
+describe("Your APIs", () => {
+  it("calls your API with your key without showing it, stays on its address, and only changes things if allowed", async () => {
+    const { addApi, apiTools, deleteApi, updateApi } = await import("./connectors/apis.js");
+    const { turnContext } = await import("./agent/prompt.js");
+    const { port } = server.address() as AddressInfo;
+    const api = addApi({ name: "shop", baseUrl: `http://127.0.0.1:${port}/myapi`, auth: "bearer", keyName: "", secret: "sk_live_abcdef123456", notes: "Orders are at /orders", allowWrite: false });
+    try {
+      assert.match(turnContext(), /shop: http:\/\/127\.0\.0\.1:\d+\/myapi \(read-only\) — Orders are at \/orders/);
+      const tool = apiTools().find((t) => t.name === "call_api")!;
+      const ctx = { conversationId: "c", signal: new AbortController().signal, progress() {} };
+      const read = await tool.run({ api: "shop", method: "GET", path: "/orders", query: { status: "open" } }, ctx);
+      assert.equal(read.ok, true);
+      assert.match(read.content, /"path": "\/myapi\/orders\?status=open"/);
+      assert.match(read.content, /Bearer \[key hidden\]/, "the server added the key");
+      assert.doesNotMatch(read.content, /sk_live_abcdef123456/, "and the model never sees it");
+
+      const write = await tool.run({ api: "shop", method: "POST", path: "/orders", body: { item: "tea" } }, ctx);
+      assert.equal(write.ok, false);
+      assert.match(write.content, /read-only/);
+
+      for (const path of ["/../../google/steal", `http://example.com/myapi/orders`]) {
+        const escaped = await tool.run({ api: "shop", method: "GET", path }, ctx);
+        assert.equal(escaped.ok, false, `refused: ${path}`);
+        assert.match(escaped.content, /have to stay under/);
+      }
+
+      updateApi(api.id, { allowWrite: true });
+      const allowed = await tool.run({ api: "shop", method: "POST", path: "/orders", body: { item: "tea" } }, ctx);
+      assert.equal(allowed.ok, true);
+      assert.match(allowed.content, /"item": "tea"/);
+      assert.match(allowed.content, /"method": "POST"/);
+    } finally {
+      deleteApi(api.id);
+    }
+    assert.equal(apiTools().length, 0, "no tool without APIs");
   });
 });
 

@@ -66,6 +66,7 @@ import { authenticationOptions, finishAuthentication, finishRegistration, passke
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { callEnded, callPin, callTurn, callWait, incomingCall, synthesize, validTwilioSignature } from "./voice.js";
+import { addApi, apiInput, apiPatch, deleteApi, listApis, publicApi, updateApi } from "./connectors/apis.js";
 import { changePassword, createVault, isUnlocked, lock, VaultLockedError, vaultExists } from "./vault.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -394,6 +395,33 @@ export function createApp() {
   app.delete("/api/passkeys/:id", (req, res) => {
     deletePasskey(param(req, "id"));
     res.json(passkeySummaries());
+  });
+
+  // ── Your own APIs ──
+  app.get("/api/apis", (_req, res) => {
+    res.json(listApis().map(publicApi));
+  });
+  app.post("/api/apis", (req, res) => {
+    try {
+      res.json(publicApi(addApi(parse(apiInput, req.body))));
+    } catch (err) {
+      if (err instanceof HttpError) throw err;
+      throw new HttpError(409, (err as Error).message);
+    }
+  });
+  app.patch("/api/apis/:id", (req, res) => {
+    let updated;
+    try {
+      updated = updateApi(param(req, "id"), parse(apiPatch, req.body));
+    } catch (err) {
+      if (err instanceof HttpError) throw err;
+      throw new HttpError(409, (err as Error).message);
+    }
+    if (!updated) throw new HttpError(404, "That API no longer exists");
+    res.json(publicApi(updated));
+  });
+  app.delete("/api/apis/:id", (req, res) => {
+    res.json({ ok: deleteApi(param(req, "id")) });
   });
 
   // ── A natural voice for calls in the app (ElevenLabs) ──

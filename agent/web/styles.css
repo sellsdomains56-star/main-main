@@ -2583,3 +2583,41 @@ code.webhook {
   font-size: 12.5px;
   overflow-wrap: anywhere;
 }
+
+/* ── Your APIs ──────────────────────────────────────────────────────────── */
+.api-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.api-card {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+.api-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.api-head .muted {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+.api-card p {
+  margin: 6px 0 0;
+}
+.api-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 13px;
+}
