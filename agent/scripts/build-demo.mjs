@@ -43,3 +43,13 @@ fs.mkdirSync(path.join(root, "dist"), { recursive: true });
 const out = path.join(root, "dist/dizz-lab-demo.html");
 fs.writeFileSync(out, html);
 console.log(`Built ${path.relative(process.cwd(), out)} (${(html.length / 1024).toFixed(0)} KB)`);
+
+// The same app as page content for hosts that supply the document skeleton themselves (a shareable web page).
+const page = `<title>Dizz Lab</title>
+<style>${css}</style>
+<div id="app"></div>
+<script type="module">${js}</script>
+`;
+const pageOut = path.join(root, "dist/dizz-lab-page.html");
+fs.writeFileSync(pageOut, page);
+console.log(`Built ${path.relative(process.cwd(), pageOut)} (${(page.length / 1024).toFixed(0)} KB)`);
