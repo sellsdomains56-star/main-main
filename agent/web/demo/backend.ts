@@ -1,7 +1,8 @@
-import type { AgentEvent, AgentProfile, Conversation, FileRecord, Settings, Source, Step, StoredMessage } from "../../src/types.js";
+import type { AgentProfile, Conversation, FileRecord, Settings, Source, Step, StoredMessage } from "../../src/types.js";
 import { TOOL_GROUPS } from "../../src/types.js";
 import { setFileUrlResolver } from "../api.js";
 import { lang } from "../i18n.js";
+import { agentFrom, broadcast, fail, installBackend, json, newId, Run, sleep, sse, type Json } from "../inpage.js";
 
 /**
  * The browser-only demo: answers the app's /api calls from memory, with
@@ -9,7 +10,6 @@ import { lang } from "../i18n.js";
  * everything is gone when you close it.
  */
 
-type Json = Record<string, unknown>;
 interface Memory {
   id: string;
   text: string;
@@ -41,11 +41,6 @@ interface DemoConnector {
   createdAt: number;
 }
 
-const realFetch = window.fetch.bind(window);
-const encoder = new TextEncoder();
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-let counter = 0;
-const newId = (prefix: string) => `${prefix}_${Date.now().toString(36)}${(counter++).toString(36)}`;
 
 const db = {
   password: "" as string,
@@ -62,81 +57,7 @@ const db = {
 
 setFileUrlResolver((id) => db.files.get(id)?.url ?? "");
 
-// ── Live events (the real app uses an EventSource) ───────────────────────────
-
-const sources = new Set<FakeEventSource>();
-class FakeEventSource {
-  onmessage: ((e: { data: string }) => void) | null = null;
-  onerror: (() => void) | null = null;
-  readyState = 1;
-  constructor(public url: string) {
-    sources.add(this);
-    setTimeout(() => this.onmessage?.({ data: JSON.stringify({ type: "hello" }) }));
-  }
-  addEventListener() {}
-  close() {
-    sources.delete(this);
-  }
-}
-function broadcast(event: Json) {
-  for (const s of sources) s.onmessage?.({ data: JSON.stringify(event) });
-}
-(window as unknown as { EventSource: unknown }).EventSource = FakeEventSource;
-
-// ── Responses ────────────────────────────────────────────────────────────────
-
-const json = (data: unknown, status = 200) => new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json" } });
-const fail = (status: number, error: string) => json({ error }, status);
-
-class Run {
-  events: AgentEvent[] = [];
-  private listeners = new Set<(e: AgentEvent) => void>();
-  private closers = new Set<() => void>();
-  done = false;
-  stopped = false;
-  push = (e: AgentEvent) => {
-    this.events.push(e);
-    for (const l of this.listeners) l(e);
-  };
-  subscribe(listener: (e: AgentEvent) => void, onClose: () => void) {
-    for (const e of this.events) listener(e);
-    if (this.done) return onClose();
-    this.listeners.add(listener);
-    this.closers.add(onClose);
-  }
-  finish() {
-    this.done = true;
-    for (const c of this.closers) c();
-    this.listeners.clear();
-    this.closers.clear();
-  }
-}
 const runs = new Map<string, Run>();
-
-function sse(run: Run, signal?: AbortSignal | null): Response {
-  let closed = false;
-  const body = new ReadableStream<Uint8Array>({
-    start(controller) {
-      run.subscribe(
-        (e) => {
-          if (!closed) controller.enqueue(encoder.encode(`data: ${JSON.stringify(e)}\n\n`));
-        },
-        () => {
-          if (!closed) {
-            closed = true;
-            controller.close();
-          }
-        },
-      );
-      signal?.addEventListener("abort", () => {
-        if (closed) return;
-        closed = true;
-        controller.error(new DOMException("Aborted", "AbortError"));
-      });
-    },
-  });
-  return new Response(body, { headers: { "content-type": "text/event-stream" } });
-}
 
 // ── The scripted "AI" ────────────────────────────────────────────────────────
 
@@ -412,21 +333,6 @@ function conversationSummary(c: Conversation) {
   return { ...c, running: runs.has(c.id), agent: agent ? { id: agent.id, name: agent.name, emoji: agent.emoji } : null };
 }
 
-function agentFrom(body: Json, current?: AgentProfile): AgentProfile {
-  const now = Date.now();
-  return {
-    id: current?.id ?? newId("a"),
-    name: String(body.name ?? current?.name ?? "").trim(),
-    emoji: String(body.emoji ?? current?.emoji ?? "🤖") || "🤖",
-    description: String(body.description ?? current?.description ?? ""),
-    instructions: String(body.instructions ?? current?.instructions ?? ""),
-    model: (body.model as string | null) ?? null,
-    effort: (body.effort as AgentProfile["effort"]) ?? null,
-    tools: (body.tools as AgentProfile["tools"]) ?? null,
-    createdAt: current?.createdAt ?? now,
-    updatedAt: now,
-  };
-}
 
 const GOOGLE_SERVICES = [
   { kind: "gmail", name: "Gmail", description: "Search and read your email, save attachments, and draft or send replies." },
@@ -559,7 +465,7 @@ async function handle(method: string, path: string, query: URLSearchParams, body
     }
     if (c === "stop") {
       const run = runs.get(conv.id);
-      if (run) run.stopped = true;
+      run?.stop();
       return json({ stopped: !!run });
     }
     if (c === "export") {
@@ -711,19 +617,4 @@ async function handle(method: string, path: string, query: URLSearchParams, body
   return fail(404, "Not found");
 }
 
-window.fetch = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
-  const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
-  if (!url.startsWith("/api/")) return realFetch(input, init);
-  const [path, qs] = url.split("?");
-  const method = (init?.method ?? "GET").toUpperCase();
-  let body: Json = {};
-  if (typeof init?.body === "string") {
-    try {
-      body = JSON.parse(init.body) as Json;
-    } catch {
-      body = {};
-    }
-  }
-  await sleep(40);
-  return handle(method, path, new URLSearchParams(qs ?? ""), body, init?.body, init?.signal);
-};
+installBackend(handle, 40);

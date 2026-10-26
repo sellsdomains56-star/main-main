@@ -378,4 +378,27 @@ export const AR: Record<string, string> = {
     "طلب التطبيق تسجيل الدخول لكنه لا يوفّر طريقة لذلك (لا يدعم OAuth). أضف مفتاح API أو رمزًا بدلًا من ذلك.",
   "Google signed this connection out. Reconnect it.": "أنهت Google هذا الاتصال. أعد ربطه.",
   "Couldn't connect": "تعذّر الربط",
+
+  // Cloud page
+  "Through your claude.ai account": "عبر حسابك في claude.ai",
+  "Claude can't be reached from here. Open this page in the Claude app or on claude.ai to chat.":
+    "لا يمكن الوصول إلى Claude من هنا. افتح هذه الصفحة في تطبيق Claude أو على claude.ai لتبدأ المحادثة.",
+  "Nothing is saved in this view. Open this page in Claude while signed in to keep your chats.":
+    "لا يُحفظ شيء في هذا العرض. افتح هذه الصفحة في Claude وأنت مسجّل الدخول لتحتفظ بمحادثاتك.",
+  "Encrypted with your password": "مشفّر بكلمة مرورك",
+  "Chats, memories, reminders, agents and settings are sealed with AES-256-GCM in this browser before they're saved to your private claude.ai storage. Without your password they can't be read.":
+    "تُشفَّر المحادثات والذاكرة والتذكيرات والوكلاء والإعدادات بمعيار AES-256-GCM داخل هذا المتصفح قبل حفظها في مساحتك الخاصة على claude.ai. لا يمكن قراءتها دون كلمة مرورك.",
+  "Nothing is saved in this view": "لا يُحفظ شيء في هذا العرض",
+  "Open this page in Claude while signed in to keep your chats.": "افتح هذه الصفحة في Claude وأنت مسجّل الدخول لتحتفظ بمحادثاتك.",
+  "Claude through your account": "Claude عبر حسابك",
+  "Each message goes to Claude through your own claude.ai account, under its privacy terms. No AI can reply to text it can't read, so this step can't be end-to-end encrypted.":
+    "تُرسل كل رسالة إلى Claude عبر حسابك في claude.ai وفق شروط الخصوصية الخاصة به. لا يستطيع أي ذكاء اصطناعي الرد على نص لا يمكنه قراءته، لذا لا يمكن تشفير هذه الخطوة من طرف إلى طرف.",
+  "Uploads stay in this page": "المرفقات تبقى في هذه الصفحة",
+  "Files you attach are read in this page and aren't saved. Attach them again in a new visit.": "تُقرأ الملفات التي ترفقها داخل هذه الصفحة ولا تُحفظ. أرفقها مجددًا في الزيارة القادمة.",
+  "Connectors need the app on your computer": "الموصلات تحتاج التطبيق على جهازك",
+  "Gmail, Calendar, Drive and apps by link work when Dizz Lab runs on your computer. This page runs inside your claude.ai account, which can't sign in to other apps for it.":
+    "تعمل Gmail والتقويم وDrive والتطبيقات المضافة برابط عندما يعمل Dizz Lab على جهازك. هذه الصفحة تعمل داخل حسابك في claude.ai، ولا يمكنها تسجيل الدخول إلى تطبيقات أخرى.",
+  "Connectors need the Dizz Lab app on your computer": "الموصلات تحتاج تطبيق Dizz Lab على جهازك",
+  "Give the agent a name": "أعطِ الوكيل اسمًا",
+  "Nothing to regenerate": "لا يوجد ما يُعاد إنشاؤه",
 };

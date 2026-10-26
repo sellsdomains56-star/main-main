@@ -22,7 +22,10 @@
 
 ## Try it without installing
 
-`npm run build:demo` builds **`dist/dizz-lab-demo.html`**: the whole app in one file that runs in any browser (desktop or phone) with **scripted replies**, so you can click through everything, including chats, agents, swarms, memory, reminders, connectors, the email approval card and Arabic, before setting anything up. Nothing leaves the page, and everything is forgotten when you close it.
+`npm run build:demo` builds two single-page versions into `dist/`:
+
+- **`dizz-lab-demo.html`** is the whole app in one file that runs in any browser (desktop or phone) with **scripted replies**, so you can click through everything, including chats, agents, swarms, memory, reminders, connectors, the email approval card and Arabic, before setting anything up. Nothing leaves the page, and everything is forgotten when you close it.
+- **`dizz-lab-cloud.html`** is page content for a claude.ai page with the `sample`, `db` and `user` capabilities. There, **real Claude answers through your own claude.ai account** (no server, no API key), with memory, reminders (while the page is open), custom agents and small parallel swarms (up to 8 tasks, 2 at a time). Chats, memories, agents and settings are encrypted in the browser with your password (AES-256-GCM, PBKDF2) before they're saved to your private claude.ai storage. It can't search the web, run code, generate images or use connectors; those need the app on your computer.
 
 ## Quick start
 
@@ -130,4 +133,4 @@ npm run build:demo # the single-file browser demo in dist/
 | `src/connectors/` | Gmail, Calendar and Drive (Google OAuth + REST), apps by link (MCP client with OAuth and automatic registration), and the app gallery. |
 | `src/vault.ts`, `db.ts`, `files.ts` | Encryption, the encrypted SQLite store, and files/workspace. |
 | `src/server.ts`, `auth.ts`, `scheduler.ts` | HTTP API, sign-in and the reminder scheduler. |
-| `web/` | The browser app (TypeScript, bundled on the fly with esbuild). `web/i18n-ar.ts` holds the Arabic text; `web/demo/` is the in-page backend for the demo build. |
+| `web/` | The browser app (TypeScript, bundled on the fly with esbuild). `web/i18n-ar.ts` holds the Arabic text. `web/inpage.ts` lets the app run on an in-page backend: `web/demo/` (scripted replies) and `web/cloud/` (Claude through the viewer's claude.ai account, with encrypted storage). |

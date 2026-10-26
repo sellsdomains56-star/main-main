@@ -798,7 +798,11 @@ function renderEmpty() {
         h("p", { class: "hero-sub" }, t("What can I do for you?")),
         state.boot.demo
           ? h("p", { class: "demo-note" }, t("Demo: this runs in your browser with scripted replies. Install Dizz Lab on your computer to talk to Claude and Grok."))
-          : null,
+          : state.boot.cloud && !state.boot.ai
+            ? h("p", { class: "demo-note" }, t("Claude can't be reached from here. Open this page in the Claude app or on claude.ai to chat."))
+            : state.boot.cloud && !state.boot.persistent
+              ? h("p", { class: "demo-note" }, t("Nothing is saved in this view. Open this page in Claude while signed in to keep your chats."))
+              : null,
       );
   const suggestions = h("div", { class: "suggestions" });
   if (!agent) {

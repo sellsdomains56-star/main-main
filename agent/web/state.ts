@@ -19,6 +19,12 @@ export interface Bootstrap {
   running: string[];
   /** Set by the browser-only demo build. */
   demo?: boolean;
+  /** Set by the cloud page (Claude through the viewer's claude.ai account). */
+  cloud?: boolean;
+  /** Cloud page: false when nothing can be saved (the page isn't open in Claude, or you're signed out). */
+  persistent?: boolean;
+  /** Cloud page: false when Claude can't be reached from this view. */
+  ai?: boolean;
 }
 
 export interface ConversationSummary extends Conversation {

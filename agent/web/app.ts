@@ -505,7 +505,7 @@ async function start() {
       searchInput.focus();
     }
   });
-  if ("serviceWorker" in navigator && !state.boot.demo) void navigator.serviceWorker.register("/sw.js").catch(() => {});
+  if ("serviceWorker" in navigator && !state.boot.demo && !state.boot.cloud) void navigator.serviceWorker.register("/sw.js").catch(() => {});
 }
 
 (async () => {

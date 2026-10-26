@@ -523,12 +523,13 @@ function securitySection(): HTMLElement {
             t("This demo keeps everything in this page's memory and forgets it when you close it. The installed app encrypts your data on disk."),
           )
         : null,
-      row(
+      state.boot.cloud ? cloudSecurityRows(row) : null,
+      state.boot.cloud ? null : row(
         true,
         t("Your data is encrypted on disk"),
         t("Chats, memories, reminders, agents, settings and uploads are stored with AES-256-GCM. The key is unlocked by your password and never saved."),
       ),
-      row(
+      state.boot.cloud ? null : row(
         secureConnection,
         secureConnection ? t("This connection is encrypted") : t("This connection is NOT encrypted"),
         secureConnection
@@ -537,7 +538,7 @@ function securitySection(): HTMLElement {
             : t("You're on this computer, so nothing crosses the network.")
           : t("Open the app over HTTPS (for example with Tailscale or a Cloudflare Tunnel) before using it away from this computer."),
       ),
-      row(
+      state.boot.cloud ? null : row(
         true,
         t("AI providers"),
         t("To answer, each message is sent over TLS to the model you pick (Anthropic for Claude, xAI for Grok). No AI can reply to text it can't read, so this step can't be end-to-end encrypted."),
@@ -546,6 +547,26 @@ function securitySection(): HTMLElement {
         ? row(false, t("Auto-unlock is on"), t("AGENT_PASSWORD is set in .env, so anyone with that file can unlock your data. Remove it for full protection."))
         : null,
     ),
+  );
+}
+
+function cloudSecurityRows(row: (ok: boolean, title: string, detail: string) => HTMLElement): HTMLElement {
+  return h(
+    "div",
+    null,
+    state.boot.persistent
+      ? row(
+          true,
+          t("Encrypted with your password"),
+          t("Chats, memories, reminders, agents and settings are sealed with AES-256-GCM in this browser before they're saved to your private claude.ai storage. Without your password they can't be read."),
+        )
+      : row(false, t("Nothing is saved in this view"), t("Open this page in Claude while signed in to keep your chats.")),
+    row(
+      true,
+      t("Claude through your account"),
+      t("Each message goes to Claude through your own claude.ai account, under its privacy terms. No AI can reply to text it can't read, so this step can't be end-to-end encrypted."),
+    ),
+    row(true, t("Uploads stay in this page"), t("Files you attach are read in this page and aren't saved. Attach them again in a new visit.")),
   );
 }
 
@@ -648,6 +669,15 @@ export function openConnectors() {
       return;
     }
     clear(body);
+    if (state.boot.cloud) {
+      body.append(
+        empty(
+          t("Connectors need the app on your computer"),
+          t("Gmail, Calendar, Drive and apps by link work when Dizz Lab runs on your computer. This page runs inside your claude.ai account, which can't sign in to other apps for it."),
+        ),
+      );
+      return;
+    }
     body.append(
       h(
         "p",
