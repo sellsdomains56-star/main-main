@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Image, Pressable, View } from "react-native";
 import { mediaUrl } from "../lib/api";
+import { useTapGuard } from "../lib/pressGuard";
 import type { Reel } from "../lib/types";
 import { colors, radius } from "./theme";
 import { Row, styles, T } from "./ui";
@@ -9,8 +10,9 @@ export const compact = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 10
 
 export function ReelThumb({ reel, width = 120, onPress, showBarber = true }: { reel: Reel; width?: number; onPress: () => void; showBarber?: boolean }) {
   const poster = mediaUrl(reel.posterUrl);
+  const tap = useTapGuard(onPress);
   return (
-    <Pressable onPress={onPress} accessibilityLabel={`Play reel by ${reel.barber.name}`} style={({ pressed }) => [{ width }, pressed && styles.pressed]}>
+    <Pressable {...tap} accessibilityRole="button" accessibilityLabel={`Play reel by ${reel.barber.name}`} style={({ pressed }) => [{ width }, pressed && styles.pressed]}>
       <View style={{ width, height: width * 1.6, borderRadius: radius.md, overflow: "hidden", backgroundColor: colors.text }}>
         {poster ? (
           <Image source={{ uri: poster }} style={{ width: "100%", height: "100%" }} />

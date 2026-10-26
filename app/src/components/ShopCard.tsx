@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import { Image, Pressable, View } from "react-native";
+import { useTapGuard } from "../lib/pressGuard";
 import { LinearGradient } from "expo-linear-gradient";
 import { shopPhoto } from "../lib/brandMedia";
 import { resolveMedia } from "../lib/config";
@@ -26,9 +27,10 @@ export function ShopPhoto({ shop, width, height, rounded = radius.lg }: { shop: 
 /** Carousel tile on Home: photo with the name over it. */
 export function ShopTile({ shop, width = 260 }: { shop: ShopSummary; width?: number }) {
   const h = Math.round(width * 0.72);
+  const tap = useTapGuard(() => open(shop.id));
   return (
     <Pressable
-      onPress={() => open(shop.id)}
+      {...tap}
       accessibilityRole="button"
       accessibilityLabel={`${shop.name}, ${shop.address}`}
       style={({ pressed }) => [{ width, cursor: "pointer" } as object, pressed && styles.pressed]}
@@ -54,9 +56,10 @@ export function ShopTile({ shop, width = 260 }: { shop: ShopSummary; width?: num
 
 /** List row on the barbershops screen. */
 export function ShopCard({ shop }: { shop: ShopSummary }) {
+  const tap = useTapGuard(() => open(shop.id));
   return (
     <Pressable
-      onPress={() => open(shop.id)}
+      {...tap}
       accessibilityRole="button"
       accessibilityLabel={`${shop.name}, ${shop.rating ?? "new"} stars, ${shop.address}`}
       style={({ pressed }) => [{ flexDirection: "row", gap: 14, paddingVertical: 14, cursor: "pointer" } as object, pressed && styles.pressed]}

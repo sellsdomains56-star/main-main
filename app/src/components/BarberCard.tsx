@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import { Pressable, View } from "react-native";
+import { useTapGuard } from "../lib/pressGuard";
 import { money } from "../lib/format";
 import type { Barber } from "../lib/types";
 import { colors, fonts, radius } from "./theme";
@@ -20,9 +21,10 @@ export function nextFreeLabel(iso: string | null, timeZone: string) {
 /** List row: photo left, details right. */
 export function BarberCard({ barber, showCountry, onPress }: { barber: Barber; showCountry?: boolean; onPress?: () => void }) {
   const next = nextFreeLabel(barber.nextAvailable, barber.timeZone);
+  const tap = useTapGuard(onPress ?? (() => open(barber.id)));
   return (
     <Pressable
-      onPress={onPress ?? (() => open(barber.id))}
+      {...tap}
       accessibilityRole="button"
       accessibilityLabel={`${barber.name}, ${barber.rating ?? "new"} stars, ${barber.city}`}
       style={({ pressed }) => [{ flexDirection: "row", gap: 14, paddingVertical: 14, cursor: "pointer" } as object, pressed && styles.pressed]}
@@ -65,8 +67,9 @@ export function RankBadge() {
 
 /** Carousel tile: big photo on top. */
 export function BarberTile({ barber, rank }: { barber: Barber; rank?: number }) {
+  const tap = useTapGuard(() => open(barber.id));
   return (
-    <Pressable onPress={() => open(barber.id)} style={({ pressed }) => [{ width: 168 }, pressed && styles.pressed]}>
+    <Pressable {...tap} accessibilityRole="button" accessibilityLabel={barber.name} style={({ pressed }) => [{ width: 168 }, pressed && styles.pressed]}>
       <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 168, height: 168 }} rounded={radius.lg} />
       <Row gap={6} style={{ position: "absolute", top: 10, left: 10, right: 10 }}>
         {rank === 1 && <RankBadge />}

@@ -10,6 +10,7 @@ import { Avatar, Button, EmptyState, ErrorBox, Loading, Row, Segmented, styles, 
 import { api, mediaUrl } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { useLocation } from "../../lib/location";
+import { useTapGuard } from "../../lib/pressGuard";
 import type { Barber, Reel } from "../../lib/types";
 
 /**
@@ -115,8 +116,9 @@ export default function ReelsTab() {
 
 function Tile({ reel, size, onPress }: { reel: Reel; size: number; onPress: () => void }) {
   const poster = mediaUrl(reel.posterUrl);
+  const tap = useTapGuard(onPress);
   return (
-    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={`Reel by ${reel.barber.name}, ${compact(reel.views)} views`} style={({ pressed }) => [{ width: size, height: size * 1.6, backgroundColor: colors.ink, opacity: pressed ? 0.85 : 1 }]}>
+    <Pressable {...tap} accessibilityRole="button" accessibilityLabel={`Reel by ${reel.barber.name}, ${compact(reel.views)} views`} style={({ pressed }) => [{ width: size, height: size * 1.6, backgroundColor: colors.ink, opacity: pressed ? 0.85 : 1 }]}>
       {poster ? <Image source={{ uri: poster }} style={{ width: "100%", height: "100%" }} resizeMode="cover" /> : null}
       <Ionicons name="film-outline" size={16} color="#fff" style={{ position: "absolute", top: 8, right: 8 }} />
       <Row gap={4} style={{ position: "absolute", left: 8, bottom: 8 }}>

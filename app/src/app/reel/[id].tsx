@@ -31,7 +31,7 @@ export default function ReelViewer() {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>
-      {reels && <ReelsFeed reels={reels} startId={id} bottomInset={insets.bottom} />}
+      {reels && <ReelsFeed reels={reels} startId={id} bottomInset={insets.bottom} topInset={insets.top} />}
       {!reels && !error && <View style={{ flex: 1, justifyContent: "center" }}><Loading color="#fff" /></View>}
       {error && <View style={{ padding: 20, marginTop: 80 }}><ErrorBox message={error} /></View>}
       <View pointerEvents="box-none" style={{ position: "absolute", top: insets.top + 8, left: 8, right: 8, flexDirection: "row", alignItems: "center" }}>

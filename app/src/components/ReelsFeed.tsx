@@ -4,7 +4,7 @@ import * as Linking from "expo-linking";
 import { router, useIsFocused } from "expo-router";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { Animated, FlatList, Image, Platform, Pressable, Share, View, type ViewToken } from "react-native";
+import { Animated, FlatList, Image, Platform, Pressable, Share, useWindowDimensions, View, type ViewToken } from "react-native";
 import { api, mediaUrl } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { APP_NAME } from "../lib/config";
@@ -26,7 +26,7 @@ export const reelLink = (id: string) => Linking.createURL(`/reel/${id}`);
  * double-tap to like, hold to pause; Like · Comment · Share · Save · ⋯ on the right.
  * Opened from a grid, so nothing plays until someone picks a reel.
  */
-export function ReelsFeed({ reels, startId, bottomInset = 0, onHide }: { reels: Reel[]; startId?: string; bottomInset?: number; onHide?: (id: string) => void }) {
+export function ReelsFeed({ reels, startId, bottomInset = 0, topInset = 0, onHide }: { reels: Reel[]; startId?: string; bottomInset?: number; topInset?: number; onHide?: (id: string) => void }) {
   const [height, setHeight] = useState(0);
   const [items, setItems] = useState(reels);
   const startIndex = Math.max(0, reels.findIndex((r) => r.id === startId));
@@ -146,6 +146,7 @@ export function ReelsFeed({ reels, startId, bottomInset = 0, onHide }: { reels: 
               onSave={() => save(item)}
               onMore={() => setMore(item)}
               bottomInset={bottomInset}
+              topInset={topInset}
             />
           )}
         />
@@ -189,6 +190,7 @@ const ReelPage = memo(function ReelPage({
   onSave,
   onMore,
   bottomInset,
+  topInset,
 }: {
   reel: Reel;
   height: number;
@@ -201,6 +203,7 @@ const ReelPage = memo(function ReelPage({
   onSave: () => void;
   onMore: () => void;
   bottomInset: number;
+  topInset: number;
 }) {
   const [held, setHeld] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -267,10 +270,15 @@ const ReelPage = memo(function ReelPage({
 
   const b = reel.barber;
   const caption = reel.caption;
+  // On a laptop the reel keeps its tall 9:16 shape in the middle of the screen, as on instagram.com.
+  const { width: screen } = useWindowDimensions();
+  const frame = screen > 640 ? Math.min(screen, Math.round(height * 9 / 16)) : screen;
   return (
-    <View style={{ height, width: "100%", backgroundColor: "#000" }}>
+    <View style={{ height, width: "100%", backgroundColor: "#000", alignItems: "center" }}>
+    <View style={{ height, width: frame, overflow: "hidden", backgroundColor: "#000" }}>
       {reel.posterUrl && <Image source={{ uri: mediaUrl(reel.posterUrl)! }} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} resizeMode="cover" />}
-      <VideoView player={player} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }} contentFit="cover" nativeControls={false} />
+      {/* playsInline: on iPhones a video without it jumps into Apple's own full-screen player. */}
+      <VideoView player={player} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }} contentFit="cover" nativeControls={false} playsInline allowsPictureInPicture={false} />
       <Pressable
         style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, alignItems: "center", justifyContent: "center" }}
         onPress={onTap}
@@ -340,10 +348,27 @@ const ReelPage = memo(function ReelPage({
         </Row>
       </View>
 
+      {/* Sound on/off, always in reach (browsers start videos muted) */}
+      <Pressable
+        onPress={onToggleMute}
+        accessibilityRole="button"
+        accessibilityLabel={muted ? "Turn sound on" : "Turn sound off"}
+        hitSlop={8}
+        style={{ position: "absolute", top: topInset + 62, right: 12, width: 34, height: 34, borderRadius: 17, backgroundColor: "rgba(0,0,0,0.45)", alignItems: "center", justifyContent: "center" }}
+      >
+        <Ionicons name={muted ? "volume-mute" : "volume-high"} size={17} color="#fff" />
+      </Pressable>
+      {muted && playing && Platform.OS === "web" && (
+        <View pointerEvents="none" style={{ position: "absolute", top: topInset + 66, right: 54, backgroundColor: "rgba(0,0,0,0.45)", borderRadius: radius.pill, paddingHorizontal: 10, height: 26, justifyContent: "center" }}>
+          <T variant="small" color="#fff" style={{ fontFamily: fonts.semibold }}>Tap for sound</T>
+        </View>
+      )}
+
       {/* Progress */}
       <View pointerEvents="none" style={{ position: "absolute", left: 0, right: 0, bottom: bottomInset, height: 2, backgroundColor: "rgba(255,255,255,0.2)" }}>
         <View style={{ width: `${progress * 100}%`, height: 2, backgroundColor: "#fff" }} />
       </View>
+    </View>
     </View>
   );
 });
