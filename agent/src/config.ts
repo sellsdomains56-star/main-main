@@ -61,6 +61,10 @@ export const config = {
   swarmConcurrency: Math.max(1, Number(env.SWARM_CONCURRENCY ?? 8)),
   /** The most tasks one delegate_tasks call may hand out. */
   swarmMaxTasks: Math.max(1, Number(env.SWARM_MAX_TASKS ?? 1000)),
+  /** Optional: Voyage AI embeddings make memory search work by meaning, not just matching words. */
+  voyageKey: env.VOYAGE_API_KEY?.trim() ?? "",
+  voyageModel: env.VOYAGE_MODEL?.trim() || "voyage-4-lite",
+  voyageBaseUrl: (env.VOYAGE_BASE_URL?.trim() || "https://api.voyageai.com/v1").replace(/\/$/, ""),
   /** A scripted provider for tests and for trying the UI without API keys. */
   mock: env.AGENT_MOCK === "1",
   anthropicModels: list(env.ANTHROPIC_MODELS, ["claude-fable-5-1", "claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5"]),

@@ -50,6 +50,8 @@ function serverLabel(name: string, input: Record<string, unknown>): { label: str
       }
       return { label: host ? tr(`Read ${host}`, `قرأ ${host}`) : tr("Reading a page", "يقرأ صفحة"), detail: url || undefined };
     }
+    case "compaction":
+      return { label: tr("Condensed the earlier conversation to keep going", "لخّص المحادثة السابقة ليواصل") };
     case "code_execution":
     case "code_interpreter":
     case "bash_code_execution": {
@@ -269,7 +271,7 @@ async function runSubAgent(parent: TurnOptions, profile: AgentProfile | null, ta
     conversationId: parent.conversationId,
     role: "user",
     text: task,
-    context: turnContext(),
+    context: turnContext(Date.now(), task),
     createdAt: Date.now(),
   };
   const reply = await runTurn({

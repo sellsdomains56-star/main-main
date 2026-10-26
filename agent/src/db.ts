@@ -14,7 +14,7 @@ import type {
   Settings,
   StoredMessage,
 } from "./types.js";
-import { decryptText as dec, encryptText as enc, onLock } from "./vault.js";
+import { decryptBytes, decryptText as dec, encryptBytes, encryptText as enc, onLock } from "./vault.js";
 
 /**
  * Storage. Ids, timestamps and flags are plain so the app can sort and schedule;
@@ -53,6 +53,8 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS agents (
     id TEXT PRIMARY KEY, data TEXT NOT NULL, model TEXT, effort TEXT, tools TEXT,
     created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL);
+  CREATE TABLE IF NOT EXISTS memory_vectors (
+    memory_id TEXT PRIMARY KEY, model TEXT NOT NULL, vector BLOB NOT NULL);
   CREATE TABLE IF NOT EXISTS usage_log (
     id INTEGER PRIMARY KEY AUTOINCREMENT, ts INTEGER NOT NULL, provider TEXT NOT NULL, model TEXT NOT NULL,
     agent_id TEXT, conversation_id TEXT, kind TEXT NOT NULL, input_tokens INTEGER NOT NULL, output_tokens INTEGER NOT NULL,
@@ -190,7 +192,27 @@ export function addMemory(text: string, category: string): Memory {
 }
 
 export function deleteMemory(id: string): boolean {
+  db.prepare("DELETE FROM memory_vectors WHERE memory_id = ?").run(id);
   return db.prepare("DELETE FROM memories WHERE id = ?").run(id).changes > 0;
+}
+
+/** Meaning-vectors of memories for semantic search, encrypted like the memories themselves. */
+export function memoryVectors(model: string): Map<string, Float32Array> {
+  const out = new Map<string, Float32Array>();
+  for (const r of db.prepare("SELECT memory_id, vector FROM memory_vectors WHERE model = ?").all(model) as Row[]) {
+    const plain = decryptBytes(Buffer.from(r.vector as Uint8Array));
+    out.set(r.memory_id as string, new Float32Array(plain.buffer, plain.byteOffset, plain.byteLength / 4));
+  }
+  return out;
+}
+
+export function saveMemoryVector(memoryId: string, model: string, vector: Float32Array): void {
+  const sealed = encryptBytes(Buffer.from(vector.buffer, vector.byteOffset, vector.byteLength));
+  db.prepare("INSERT INTO memory_vectors (memory_id, model, vector) VALUES (?, ?, ?) ON CONFLICT(memory_id) DO UPDATE SET model = excluded.model, vector = excluded.vector").run(
+    memoryId,
+    model,
+    sealed,
+  );
 }
 
 // ── Reminders ─────────────────────────────────────────────────────────────────

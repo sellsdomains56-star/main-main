@@ -8,7 +8,7 @@
 | --- | --- |
 | **Claude + Grok** | Switch per message between Claude Fable 5.1 (the most capable, and the default), Opus 5.5, Sonnet 5.5, Haiku 5.5 and Grok 4.7. Or choose **Smart pick** and it picks for each message: Haiku for small talk, Sonnet for everyday questions, Opus for analysis, plans, code and files, Fable on Max, and Grok for questions about X. Pick **Fast**, **Auto**, **Deep** or **Max** thinking. Earlier turns are replayed exactly, so a conversation keeps its reasoning. Fable 5.1 costs about twice as much as Opus 5.5 per message; pick Opus under **Settings** if you'd rather. |
 | **Live web** | Claude uses Anthropic's web search and page reading; Grok uses xAI's web search and **X search**. Sources show under every answer. |
-| **Memory** | It remembers facts about you across chats (and you can see, add and delete them under **Memory**). It can also search your past conversations. |
+| **Memory** | It remembers facts about you across chats (and you can see, add and delete them under **Memory**). It can also search your past conversations. With thousands of facts, each message gets the ones that matter (your standing instructions always), and it searches the rest, by meaning when you add a [Voyage AI](https://voyageai.com) key. Very long chats are condensed automatically on Claude so they never run out of room. |
 | **Reminders & scheduled tasks** | "Remind me at 6 to call mum", "every weekday at 8, brief me on the news and the weather". Tasks run on their own and post the result, with a browser notification and, optionally, a phone push. |
 | **Files** | Drop in images, PDFs, spreadsheets, code or any document; it reads them. Anything it makes (reports, CSVs, charts) appears as a download. |
 | **Code** | Runs Python, JavaScript or shell on your machine for maths, data analysis, charts and file conversions. Your API keys are never visible to that code. |
@@ -141,6 +141,9 @@ What each one can do: **Gmail**: search, read, save attachments to the workspace
 | `CODE_EXECUTION` | `0` turns off running code. |
 | `SWARM_CONCURRENCY`, `SWARM_MAX_TASKS` | Swarm limits. |
 | `ANTHROPIC_MODELS`, `XAI_MODELS`, `XAI_IMAGE_MODEL` | Override the model lists. |
+| `VOYAGE_API_KEY`, `VOYAGE_MODEL` | Memory search by meaning (default model `voyage-4-lite`). The vectors are stored encrypted. |
+| `SENTRY_DSN` | Error tracking (errors only, never your messages). |
+| `LITESTREAM_*` | Continuous database backups on a server (see **Run it on a server**). |
 
 Personal preferences (your name, personality — Default, Fun, Concise or Professional — default model, custom instructions, theme, read-aloud) are in the app under **Settings**.
 

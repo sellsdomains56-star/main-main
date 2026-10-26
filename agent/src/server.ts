@@ -55,6 +55,7 @@ import { getRun, isRunning, runningConversations, stopRun, type ActiveRun } from
 import { EFFORT_LEVELS, TOOL_GROUPS, type AgentEvent } from "./types.js";
 import { reportError } from "./monitoring.js";
 import { spendingReport } from "./spending.js";
+import { indexMemory } from "./memory.js";
 import { changePassword, createVault, isUnlocked, lock, VaultLockedError, vaultExists } from "./vault.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -419,7 +420,9 @@ export function createApp() {
   });
   app.post("/api/memories", (req, res) => {
     const body = parse(z.object({ text: z.string().trim().min(2).max(600), category: z.string().default("other") }), req.body);
-    res.json(addMemory(body.text, body.category));
+    const memory = addMemory(body.text, body.category);
+    indexMemory(memory);
+    res.json(memory);
   });
   app.delete("/api/memories/:id", (req, res) => {
     res.json({ ok: deleteMemory(param(req, "id")) });

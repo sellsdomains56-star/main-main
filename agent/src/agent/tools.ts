@@ -21,6 +21,7 @@ import {
   snapshotWorkspace,
   workspacePath,
 } from "../files.js";
+import { indexMemory, searchMemories } from "../memory.js";
 import { runCode } from "../tools/code.js";
 import { generateImage } from "../tools/image.js";
 import { formatWhen } from "../tools/schedule.js";
@@ -137,6 +138,7 @@ const remember = defineTool({
     const duplicate = listMemories().find((m) => m.text.toLowerCase() === fact.toLowerCase());
     if (duplicate) return { ok: true, content: `Already remembered (${duplicate.id}).`, result: tr("Already known", "معروف مسبقًا") };
     const memory = addMemory(fact, category);
+    indexMemory(memory);
     return { ok: true, content: `Saved as ${memory.id}.`, result: fact };
   },
 });
@@ -150,6 +152,24 @@ const forget = defineTool({
     return deleteMemory(memory_id)
       ? { ok: true, content: "Deleted.", result: tr("Deleted", "حُذفت") }
       : { ok: false, content: `No memory with id ${memory_id}.`, result: tr("Not found", "غير موجود") };
+  },
+});
+
+const searchMemory = defineTool({
+  name: "search_memory",
+  description:
+    "Search everything you remember about the user, by meaning. Use it when a fact you need isn't in the memory list in your " +
+    "context (that list shows only the most relevant ones once there are many). Returns the best matches with their ids.",
+  schema: z.object({ query: z.string().min(2).max(300).describe("What you're looking for, e.g. \"their kids' names\" or \"favourite restaurants\"") }),
+  label: (i) => tr(`Searched memory for ${quote(i.query)}`, `بحث في الذاكرة عن ${quote(i.query)}`),
+  async run({ query }, ctx) {
+    const hits = await searchMemories(query, 12, ctx.signal);
+    if (!hits.length) return { ok: true, content: "Nothing in memory matches.", result: tr("No matches", "لا نتائج") };
+    return {
+      ok: true,
+      content: hits.map((h) => `- [${h.memory.id}] (${h.memory.category}) ${h.memory.text}`).join("\n"),
+      result: trCount(hits.length, ["{n} match", "{n} matches"], ["نتيجة واحدة", "نتيجتان", "{n} نتائج", "{n} نتيجة"]),
+    };
   },
 });
 
@@ -362,7 +382,7 @@ const generateImageTool = defineTool({
 
 /** Our own tools, by ability group. */
 export const BASE_TOOLS = {
-  memory: [remember, forget, searchPast],
+  memory: [remember, forget, searchMemory, searchPast],
   reminders: [setReminder, listRemindersTool, cancelReminderTool],
   files: [listFilesTool, readFileTool, writeFileTool],
   /** Only offered when code runs on this machine (see toolsFor). */

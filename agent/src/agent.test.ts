@@ -168,6 +168,21 @@ function googleReply(method: string, path: string, raw: string): unknown {
 }
 
 let server: http.Server;
+/** When set, the stand-in API refuses requests that ask for compaction, like a model without it would. */
+let rejectCompaction = false;
+
+/** A stand-in for Voyage AI: a bag-of-words vector where a few words share a meaning. */
+function fakeEmbedding(text: string): number[] {
+  const same: Record<string, string> = { dog: "pet", cat: "pet", puppy: "pet", kitten: "pet", wife: "family", son: "family", daughter: "family" };
+  const v = new Array(997).fill(0);
+  for (const raw of text.toLowerCase().match(/[a-z]{3,}/g) ?? []) {
+    const w = same[raw] ?? raw;
+    let h = 2166136261;
+    for (const ch of w) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0;
+    v[h % 997] += 1;
+  }
+  return v;
+}
 
 before(async () => {
   let anthropicCalls = 0;
@@ -182,11 +197,23 @@ before(async () => {
       } catch {
         body = Object.fromEntries(new URLSearchParams(raw));
       }
+      if (rejectCompaction && req.url!.startsWith("/anthropic/") && body.context_management) {
+        anthropicRequests.push({ path: req.url!, headers: req.headers, body });
+        res.writeHead(400, { "content-type": "application/json" });
+        res.end(JSON.stringify({ type: "error", error: { type: "invalid_request_error", message: "context_management: compaction is not supported on this model" } }));
+        return;
+      }
       if (body.stream) res.writeHead(200, { "content-type": "text/event-stream" });
       if (req.url!.startsWith("/google/")) {
         googleRequests.push({ path: req.url!, headers: req.headers, body: body ?? {} });
         res.writeHead(200, { "content-type": "application/json" });
         res.end(JSON.stringify(googleReply(req.method!, req.url!.slice("/google".length), raw)));
+        return;
+      }
+      if (req.url!.startsWith("/voyage/")) {
+        res.writeHead(200, { "content-type": "application/json" });
+        const input = body.input as string[];
+        res.end(JSON.stringify({ object: "list", data: input.map((t, index) => ({ object: "embedding", embedding: fakeEmbedding(t), index })), model: body.model, usage: { total_tokens: 1 } }));
         return;
       }
       if (req.url!.startsWith("/anthropic/v1/files")) {
@@ -234,6 +261,8 @@ before(async () => {
   process.env.AGENT_PASSWORD = "correct horse";
   process.env.TIMEZONE = "Asia/Dubai";
   process.env.GOOGLE_API_ORIGIN = `http://127.0.0.1:${port}/google`;
+  process.env.VOYAGE_API_KEY = "test-key";
+  process.env.VOYAGE_BASE_URL = `http://127.0.0.1:${port}/voyage/v1`;
   const { initAuth } = await import("./auth.js");
   await initAuth(); // creates the vault from AGENT_PASSWORD and unlocks it
 });
@@ -259,6 +288,8 @@ describe("Claude adapter", () => {
     assert.deepEqual(first.body.thinking, { type: "adaptive", display: "summarized" });
     assert.deepEqual(first.body.output_config, { effort: "xhigh" });
     assert.equal(first.body.fallbacks, "default");
+    assert.deepEqual(first.body.context_management, { edits: [{ type: "compact_20260112" }] }, "long chats are compacted server-side");
+    assert.match(String(first.headers["anthropic-beta"]), /compact-2026-01-12/);
     assert.match(String(first.headers["anthropic-beta"]), /server-side-fallback-2026-07-01/);
     assert.equal("temperature" in first.body, false);
     const tools = first.body.tools as { name: string; type?: string; eager_input_streaming?: boolean }[];
@@ -424,7 +455,7 @@ describe("Swarms and custom agents", () => {
     const now = Date.now();
     const base = { id: "a_x", name: "X", emoji: "🤖", description: "", instructions: "", model: null, effort: null, createdAt: now, updatedAt: now };
     const limited = toolsFor({ ...base, tools: ["memory"] }, false);
-    assert.deepEqual(limited.tools.map((t) => t.name), ["remember", "forget", "search_past_conversations"]);
+    assert.deepEqual(limited.tools.map((t) => t.name), ["remember", "forget", "search_memory", "search_past_conversations"]);
     assert.equal(limited.serverTools, false);
     const sub = toolsFor(null, true);
     assert.ok(!sub.tools.some((t) => t.name === "delegate_tasks"));
@@ -650,6 +681,49 @@ describe("Connectors", () => {
     } finally {
       srv.close();
       mcpSrv.close();
+    }
+  });
+});
+
+describe("Long chats and big memories", () => {
+  it("drops compaction for a model that refuses it, and remembers that", async () => {
+    const { createConversation, listMessages } = await import("./db.js");
+    const { sendMessage } = await import("./agent/chat.js");
+    const conversation = createConversation();
+    rejectCompaction = true;
+    try {
+      const before = anthropicRequests.length;
+      await untilDone(sendMessage({ conversationId: conversation.id, text: "Hello", model: "claude-fable-5-1" }));
+      const reqs = anthropicRequests.slice(before).filter((r) => r.body.messages);
+      assert.ok(reqs[0].body.context_management, "asked first");
+      assert.equal(reqs[1].body.context_management, undefined, "then retried without it");
+      assert.equal(listMessages(conversation.id).at(-1)!.status, "complete");
+      const again = anthropicRequests.length;
+      await untilDone(sendMessage({ conversationId: conversation.id, text: "Again", model: "claude-fable-5-1" }));
+      assert.ok(anthropicRequests.slice(again).every((r) => !r.body.context_management), "not asked again");
+    } finally {
+      rejectCompaction = false;
+    }
+  });
+
+  it("shows the most relevant memories once there are many, and finds the rest by meaning", async () => {
+    const { addMemory, deleteMemory, listMemories } = await import("./db.js");
+    const { turnContext } = await import("./agent/prompt.js");
+    const { searchMemories } = await import("./memory.js");
+    const added = [addMemory("Prefers answers in Arabic", "instruction"), addMemory("Has a golden retriever dog called Simba", "person")];
+    for (let i = 0; i < 90; i++) added.push(addMemory(`Filler fact number ${i} about project Zephyr${i}`, "project"));
+    try {
+      assert.ok(listMemories().length > 60);
+      const context = turnContext(Date.now(), "What should I name Simba's new collar tag?");
+      assert.match(context, /Simba/);
+      assert.match(context, /Prefers answers in Arabic/, "standing instructions always come along");
+      assert.match(context, /more can be found with search_memory/);
+      assert.ok((context.match(/^- \[mem_/gm) ?? []).length <= 60);
+      // "pet" never appears in the memory: only the meaning search can connect it to the dog.
+      const hits = await searchMemories("my pet", 3);
+      assert.match(hits[0].memory.text, /retriever dog/);
+    } finally {
+      for (const m of added) deleteMemory(m.id);
     }
   });
 });

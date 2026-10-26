@@ -59,7 +59,7 @@ export function sendMessage(opts: SendOptions): ActiveRun {
   addMessage(opts.conversationId, "user", {
     text: opts.text,
     attachments: attachments.length ? attachments : undefined,
-    context: turnContext(),
+    context: turnContext(Date.now(), opts.text),
     scheduled: opts.scheduled || undefined,
   });
   return launch(opts.conversationId, model, effort, agent);

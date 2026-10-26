@@ -36,6 +36,11 @@ function fallbackFor(model: string) {
 }
 
 const FILES_BETA = "files-api-2025-04-14";
+const COMPACT_BETA = "compact-2026-01-12";
+/** Models with server-side compaction: very long chats are condensed automatically instead of running out of room. */
+const COMPACTION_MODELS = /^claude-(opus-5|fable-5|opus-4-[678]|sonnet-4-6)/;
+/** Models that turned compaction down once (an older snapshot, say); not asked again until a restart. */
+const noCompaction = new Set<string>();
 const sandboxFileKey = (attachmentId: string) => `anthropic_file:${attachmentId}`;
 /** Files the sandbox should get as real files to work on (spreadsheets, documents, data). */
 const wantsSandboxCopy = (mime: string, kind: string) => kind === "binary" || /csv|tab-separated|json|spreadsheet|excel/.test(mime);
@@ -204,7 +209,8 @@ export const anthropicProvider: ProviderAdapter = {
     }
     const messages = claudeMessages(history, codeSandbox);
     const fallback = fallbackFor(model);
-    const betas = [...(fallback.betas ?? []), ...(codeSandbox ? [FILES_BETA] : [])];
+    let compaction = COMPACTION_MODELS.test(model) && !noCompaction.has(model);
+    const betasFor = () => [...(fallback.betas ?? []), ...(codeSandbox ? [FILES_BETA] : []), ...(compaction ? [COMPACT_BETA] : [])];
     let container = savedContainer ?? null;
     let containerInfo: RunResult["container"];
     const turn: MessageParam[] = [];
@@ -224,7 +230,8 @@ export const anthropicProvider: ProviderAdapter = {
           output_config: { effort: EFFORT[effort] },
           cache_control: { type: "ephemeral" },
           ...fallback,
-          ...(betas.length ? { betas } : {}),
+          ...(betasFor().length ? { betas: betasFor() } : {}),
+          ...(compaction ? { context_management: { edits: [{ type: "compact_20260112" as const }] } } : {}),
           ...(container ? { container } : {}),
         },
         { signal },
@@ -251,6 +258,10 @@ export const anthropicProvider: ProviderAdapter = {
                 sources.push(...found);
                 hooks.onToolEnd(b.tool_use_id, { ok: true, result: `${found.length} results` });
               } else hooks.onToolEnd(b.tool_use_id, { ok: false, result: b.content.error_code });
+            } else if (b.type === "compaction") {
+              const id = `compaction_${iteration}_${ev.index}`;
+              hooks.onToolStart({ id, name: "compaction", input: {}, server: true });
+              hooks.onToolEnd(id, { ok: true, result: "" });
             } else if (sandboxSummary(b)) {
               const done = sandboxSummary(b)!;
               hooks.onToolEnd((b as { tool_use_id: string }).tool_use_id, done);
@@ -281,6 +292,11 @@ export const anthropicProvider: ProviderAdapter = {
         message = await stream.finalMessage();
         jsonRetries = 0;
       } catch (err) {
+        if (err instanceof Anthropic.APIError && compaction && !signal.aborted && err.status === 400 && /compact|context.management/i.test(err.message)) {
+          noCompaction.add(model);
+          compaction = false;
+          continue;
+        }
         // A sandbox that expired or was cleaned up: start a fresh one.
         if (err instanceof Anthropic.APIError && container && !signal.aborted && /container/i.test(err.message)) {
           container = null;

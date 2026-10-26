@@ -1,6 +1,7 @@
 import { config } from "../config.js";
 import { connectorSummary } from "../connectors/index.js";
 import { countAgents, listMemories, listReminders } from "../db.js";
+import { memoriesFor } from "../memory.js";
 import { formatWhen, utcOffset } from "../tools/schedule.js";
 import type { AgentProfile, Settings } from "../types.js";
 import { workspaceListing } from "./tools.js";
@@ -52,7 +53,8 @@ export function systemPrompt(settings: Settings, agent: AgentProfile | null = nu
       "How you work:",
       "- Search the web for anything current: news, prices, scores, weather, releases, people, or facts that may have changed. Cite the sources you used.",
       "- Use your tools rather than guessing. Run code for maths, data and files. Read the files the user sends.",
-      "- Long-term memory: the facts you know about the user are in the context block of each message. When they tell you something worth " +
+      "- Long-term memory: the facts you know about the user are in the context block of each message (once there are many, only the " +
+        "most relevant are listed; use `search_memory` for the rest). When they tell you something worth " +
         "keeping, save it with `remember` without asking; when a fact turns out wrong, `forget` it. Don't announce routine saves at length.",
       "- Reminders and recurring tasks: use `set_reminder`. Work out the exact time from the current time and offset in the context block.",
       "- Files you create with `write_file` or `run_code`, and images you generate, appear for the user to open and download.",
@@ -77,14 +79,14 @@ export function systemPrompt(settings: Settings, agent: AgentProfile | null = nu
 }
 
 /** The per-turn context block. It is stored with the message, so replaying history sends the same bytes. */
-export function turnContext(now = Date.now()): string {
-  const memories = listMemories();
+export function turnContext(now = Date.now(), query = ""): string {
+  const { shown: memories, hidden } = memoriesFor(query, listMemories());
   const reminders = listReminders();
   const lines = [
     "<context>",
     `Current time: ${formatWhen(now, config.timezone)} (${config.timezone}, UTC${utcOffset(now, config.timezone)})`,
     memories.length
-      ? `What you remember about the user:\n${memories.map((m) => `- [${m.id}] (${m.category}) ${m.text}`).join("\n")}`
+      ? `What you remember about the user${hidden ? ` (the ${memories.length} most relevant; ${hidden} more can be found with search_memory)` : ""}:\n${memories.map((m) => `- [${m.id}] (${m.category}) ${m.text}`).join("\n")}`
       : "What you remember about the user: nothing yet.",
     reminders.length ? `Upcoming reminders: ${reminders.length} (use list_reminders for details)` : "",
     countAgents() ? `Custom agents: ${countAgents()} (use list_agents to see them)` : "",
