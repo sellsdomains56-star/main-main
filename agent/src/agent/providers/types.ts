@@ -1,4 +1,4 @@
-import type { Effort, Source, StoredMessage } from "../../types.js";
+import type { Effort, FileRecord, Source, StoredMessage } from "../../types.js";
 import type { AgentTool, ToolOutcome } from "../tools.js";
 
 export interface ToolStart {
@@ -20,6 +20,8 @@ export interface RunHooks {
   onSources(sources: Source[]): void;
   /** Runs one of our own tools (validated and executed by the caller). */
   executeTool(name: string, input: unknown, id: string): Promise<ToolOutcome>;
+  /** A file the provider's sandbox made, saved to the workspace. */
+  onFile(file: FileRecord): void;
 }
 
 export interface RunInput {
@@ -31,6 +33,11 @@ export interface RunInput {
   tools: AgentTool[];
   /** Offer the provider's own web search (and X search on Grok). */
   serverTools: boolean;
+  /** Let the model run code in the provider's own isolated sandbox. */
+  codeSandbox: boolean;
+  /** The sandbox container this conversation used last, to keep its files between turns. */
+  container?: string | null;
+  conversationId: string;
   signal: AbortSignal;
   hooks: RunHooks;
 }
@@ -41,6 +48,8 @@ export interface RunResult {
   usage: { inputTokens: number; outputTokens: number };
   /** Set when the model declined the request. */
   refusal?: string;
+  /** The sandbox container used this turn, if any. */
+  container?: { id: string; expiresAt: number };
 }
 
 export interface ProviderAdapter {

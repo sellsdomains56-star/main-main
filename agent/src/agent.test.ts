@@ -68,6 +68,34 @@ function anthropicReply(call: number): string {
   ]);
 }
 
+/** Claude with a code sandbox: runs code that makes a file, then answers. */
+function anthropicSandboxReply(): string {
+  const start = (index: number, block: unknown) => ({ event: "content_block_start", data: { type: "content_block_start", index, content_block: block } });
+  const delta = (index: number, d: unknown) => ({ event: "content_block_delta", data: { type: "content_block_delta", index, delta: d } });
+  const stop = (index: number) => ({ event: "content_block_stop", data: { type: "content_block_stop", index } });
+  const message = { id: "msg_sb", type: "message", role: "assistant", model: "claude-opus-5-5", content: [], stop_reason: null, stop_sequence: null, usage: { input_tokens: 10, output_tokens: 1 } };
+  return sse([
+    { event: "message_start", data: { type: "message_start", message } },
+    start(0, { type: "server_tool_use", id: "srvtoolu_sb", name: "bash_code_execution", input: {} }),
+    delta(0, { type: "input_json_delta", partial_json: '{"command":"python chart.py"}' }),
+    stop(0),
+    start(1, {
+      type: "bash_code_execution_tool_result",
+      tool_use_id: "srvtoolu_sb",
+      content: { type: "bash_code_execution_result", return_code: 0, stdout: "saved", stderr: "", content: [{ type: "bash_code_execution_output", file_id: "file_out_1" }] },
+    }),
+    stop(1),
+    start(2, { type: "text", text: "" }),
+    delta(2, { type: "text_delta", text: "Here's your chart." }),
+    stop(2),
+    {
+      event: "message_delta",
+      data: { type: "message_delta", delta: { stop_reason: "end_turn", stop_sequence: null, container: { id: "container_1", expires_at: "2099-01-01T00:00:00Z" } }, usage: { output_tokens: 20 } },
+    },
+    { event: "message_stop", data: { type: "message_stop" } },
+  ]);
+}
+
 /** Grok: first a reasoning item and a `remember` call; then the answer with a citation. */
 function xaiReply(call: number): string {
   const reasoning = { type: "reasoning", id: `rs_${call}`, summary: [], encrypted_content: `enc-${call}` };
@@ -161,8 +189,24 @@ before(async () => {
         res.end(JSON.stringify(googleReply(req.method!, req.url!.slice("/google".length), raw)));
         return;
       }
+      if (req.url!.startsWith("/anthropic/v1/files")) {
+        anthropicRequests.push({ path: req.url!, headers: req.headers, body: { method: req.method, size: raw.length } });
+        if (req.url!.endsWith("/content")) {
+          res.writeHead(200, { "content-type": "image/png" });
+          res.end(Buffer.from([0x89, 0x50, 0x4e, 0x47, 1, 2, 3]));
+          return;
+        }
+        res.writeHead(200, { "content-type": "application/json" });
+        const id = req.method === "POST" ? "file_up_1" : req.url!.split("/").pop();
+        res.end(JSON.stringify({ id, type: "file", filename: req.method === "POST" ? "sales.csv" : "chart.png", mime_type: "image/png", size_bytes: 7, created_at: "2026-10-26T00:00:00Z", downloadable: true }));
+        return;
+      }
       if (req.url!.startsWith("/anthropic/")) {
         anthropicRequests.push({ path: req.url!, headers: req.headers, body });
+        if (body.stream && (body.tools as { type?: string }[] | undefined)?.some((t) => t.type?.startsWith("code_execution"))) {
+          res.end(anthropicSandboxReply());
+          return;
+        }
         // Title requests are plain (non-streaming) calls.
         if (!body.stream) {
           res.writeHead(200, { "content-type": "application/json" });
@@ -251,6 +295,42 @@ describe("Claude adapter", () => {
     const next = third.body.messages as unknown[];
     assert.equal(JSON.stringify(next.slice(0, prior.length)), JSON.stringify(prior));
     assert.equal(next.length, prior.length + 2);
+  });
+
+  it("runs code in Anthropic's sandbox: uploads attachments once, keeps the container, saves files it makes", async () => {
+    const { config } = await import("./config.js");
+    const { createConversation, listMessages } = await import("./db.js");
+    const { sendMessage } = await import("./agent/chat.js");
+    const { saveUpload } = await import("./files.js");
+    config.codeExecution = "sandbox";
+    try {
+      const conversation = createConversation();
+      const csv = saveUpload("sales.csv", "text/csv", Buffer.from("month,sales\nJan,10\nFeb,12\n"), conversation.id);
+      const before = anthropicRequests.length;
+      await untilDone(sendMessage({ conversationId: conversation.id, text: "Chart my sales", attachmentIds: [csv.id], model: "claude-opus-5-5" }));
+      const reqs = anthropicRequests.slice(before);
+      assert.equal(reqs.filter((r) => r.path.endsWith("/v1/files") && r.body.method === "POST").length, 1, "the attachment is uploaded once");
+      const first = reqs.find((r) => r.body.stream)!;
+      const tools = first.body.tools as { name: string; type?: string }[];
+      assert.ok(tools.some((t) => t.type === "code_execution_20260521"));
+      assert.ok(!tools.some((t) => t.name === "run_code"), "no local code runs in sandbox mode");
+      assert.match(String(first.headers["anthropic-beta"]), /files-api-2025-04-14/);
+      const userBlocks = (first.body.messages as { content: { type: string; file_id?: string }[] }[])[0].content;
+      assert.ok(userBlocks.some((b) => b.type === "container_upload" && b.file_id === "file_up_1"));
+
+      const saved = listMessages(conversation.id).at(-1)!;
+      assert.equal(saved.text, "Here's your chart.");
+      assert.deepEqual(saved.files?.map((f) => f.name), ["sandbox/chart.png"]);
+      assert.deepEqual(saved.steps?.map((s) => (s.kind === "tool" ? `${s.name}:${s.status}` : s.kind)), ["bash_code_execution:ok"]);
+
+      // The next turn reuses the container and sends the same upload again (no new upload).
+      await untilDone(sendMessage({ conversationId: conversation.id, text: "Thanks", model: "claude-opus-5-5" }));
+      const later = anthropicRequests.slice(before).filter((r) => r.body.stream);
+      assert.equal(later.at(-1)!.body.container, "container_1");
+      assert.equal(anthropicRequests.slice(before).filter((r) => r.path.endsWith("/v1/files") && r.body.method === "POST").length, 1);
+    } finally {
+      config.codeExecution = "local";
+    }
   });
 
   it("uses the basic web tools and no fallback for Haiku", async () => {

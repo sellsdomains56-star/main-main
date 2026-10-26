@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
 import { findModel, type ModelInfo } from "../config.js";
-import { addMessage, getSettings, newId } from "../db.js";
+import { addMessage, getKV, getSettings, newId, setKV } from "../db.js";
 import type { AgentEvent, AgentProfile, Effort, FileRecord, MessageData, Source, Step, StoredMessage } from "../types.js";
 import { systemPrompt, turnContext } from "./prompt.js";
 import { providerFor } from "./providers/index.js";
@@ -47,6 +47,17 @@ function serverLabel(name: string, input: Record<string, unknown>): { label: str
       }
       return { label: host ? tr(`Read ${host}`, `قرأ ${host}`) : tr("Reading a page", "يقرأ صفحة"), detail: url || undefined };
     }
+    case "code_execution":
+    case "code_interpreter":
+    case "bash_code_execution": {
+      const command = (input.command ?? input.code) as string | undefined;
+      return { label: tr("Ran code in the sandbox", "شغّل كودًا في البيئة المعزولة"), detail: command || undefined };
+    }
+    case "text_editor_code_execution": {
+      const file = input.path as string | undefined;
+      const verb = input.command === "view" ? tr("Read", "قرأ") : tr("Wrote", "كتب");
+      return { label: file ? `${verb} ${file}` : tr("Edited a file in the sandbox", "عدّل ملفًا في البيئة المعزولة"), detail: (input.file_text as string | undefined) || undefined };
+    }
     default:
       return { label: name.replace(/_/g, " ") };
   }
@@ -74,7 +85,8 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
   const started = Date.now();
   const messageId = newId("m");
   const settings = getSettings();
-  const { tools, serverTools } = toolsFor(agent, !!opts.isSubAgent);
+  const { tools, serverTools, codeSandbox } = toolsFor(agent, !!opts.isSubAgent);
+  const containerKey = `container:${conversationId}`;
   const steps: Step[] = [];
   const files: FileRecord[] = [];
   const sources: Source[] = [];
@@ -105,6 +117,10 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
       history,
       tools,
       serverTools,
+      codeSandbox,
+      // Sub-agents get a fresh sandbox; a conversation keeps its own between turns.
+      container: codeSandbox && !opts.isSubAgent ? savedContainer(containerKey) : null,
+      conversationId,
       signal,
       hooks: {
         onText(delta) {
@@ -145,6 +161,11 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
           for (const s of found) if (!sources.some((x) => x.url === s.url)) sources.push(s);
           emit({ type: "sources", sources });
         },
+        onFile(f) {
+          if (files.some((x) => x.id === f.id)) return;
+          files.push(f);
+          emit({ type: "file", file: f });
+        },
         async executeTool(name, input, id): Promise<ToolOutcome> {
           let step = toolStep(id);
           if (!step) {
@@ -183,6 +204,7 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
   try {
     const result = await run();
     closeThinking();
+    if (result.container && !opts.isSubAgent) setKV(containerKey, JSON.stringify(result.container));
     if (result.refusal) {
       const note = tr(`\n\n> **${model.label} declined this request.** ${result.refusal}`, `\n\n> **رفض ${model.label} هذا الطلب.** ${result.refusal}`);
       text += note;
@@ -208,6 +230,16 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
       : addMessage(conversationId, "assistant", data, messageId);
   emit({ type: "done", message: publicMessage(message) });
   return message;
+}
+
+/** The sandbox a conversation used last, while it still exists (containers expire after a while). */
+function savedContainer(key: string): string | null {
+  try {
+    const saved = JSON.parse(getKV(key) ?? "null") as { id: string; expiresAt: number } | null;
+    return saved && saved.expiresAt > Date.now() + 60_000 ? saved.id : null;
+  } catch {
+    return null;
+  }
 }
 
 /** One task for one agent, in a fresh context, for a swarm. */

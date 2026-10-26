@@ -1,0 +1,29 @@
+# Render Blueprint: New → Blueprint → pick this repo. Fill in the secret values in the dashboard.
+# A paid instance with a disk is needed: free instances sleep and lose their files.
+services:
+  - type: web
+    name: dizz-lab
+    runtime: docker
+    rootDir: agent
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    healthCheckPath: /healthz
+    disk:
+      name: dizz-data
+      mountPath: /data
+      sizeGB: 3
+    envVars:
+      - key: DATA_DIR
+        value: /data
+      - key: TRUST_PROXY
+        value: "1"
+      - key: CODE_EXECUTION
+        value: sandbox
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: XAI_API_KEY
+        sync: false
+      - key: PUBLIC_URL
+        sync: false
+      - key: TIMEZONE
+        sync: false

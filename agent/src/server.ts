@@ -191,6 +191,11 @@ export function createApp() {
   });
 
   // ── Session ──
+  // For uptime checks and container health checks; says nothing about you.
+  app.get("/healthz", (_req, res) => {
+    res.json({ ok: true });
+  });
+
   app.get("/api/session", (req, res) => {
     res.json({
       authenticated: isAuthenticated(req) && isUnlocked(),
@@ -293,7 +298,7 @@ export function createApp() {
       },
       features: {
         imageGeneration: !!config.xaiKey,
-        codeExecution: config.codeExecution,
+        codeExecution: config.codeExecution !== "off",
         phoneNotifications: !!config.ntfyUrl,
         swarmConcurrency: config.swarmConcurrency,
         swarmMaxTasks: config.swarmMaxTasks,

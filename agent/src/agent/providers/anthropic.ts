@@ -1,7 +1,10 @@
-import Anthropic from "@anthropic-ai/sdk";
+import fs from "node:fs";
+import path from "node:path";
+import Anthropic, { toFile } from "@anthropic-ai/sdk";
 import { config } from "../../config.js";
-import { readFileBytes } from "../../files.js";
-import type { Effort, Source, StoredMessage } from "../../types.js";
+import { getKV, setKV } from "../../db.js";
+import { readFileBytes, registerGenerated, safeName, workspacePath } from "../../files.js";
+import type { Effort, FileRecord, Source, StoredMessage } from "../../types.js";
 import type { ToolOutcome } from "../tools.js";
 import { attachmentKind } from "./attachments.js";
 import { TurnError, type ProviderAdapter, type RunInput, type RunResult } from "./types.js";
@@ -31,7 +34,62 @@ function fallbackFor(model: string) {
   return { betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" as const };
 }
 
-function userContent(m: StoredMessage): ContentBlockParam[] {
+const FILES_BETA = "files-api-2025-04-14";
+const sandboxFileKey = (attachmentId: string) => `anthropic_file:${attachmentId}`;
+/** Files the sandbox should get as real files to work on (spreadsheets, documents, data). */
+const wantsSandboxCopy = (mime: string, kind: string) => kind === "binary" || /csv|tab-separated|json|spreadsheet|excel/.test(mime);
+
+/**
+ * In sandbox mode, attachments are uploaded once to Anthropic's Files API so the code sandbox can open them.
+ * The file id is remembered, so later turns replay exactly the same request.
+ */
+async function uploadForSandbox(history: StoredMessage[], signal: AbortSignal): Promise<void> {
+  for (const m of history) {
+    for (const a of m.role === "user" ? (m.attachments ?? []) : []) {
+      if (getKV(sandboxFileKey(a.id))) continue;
+      const file = readFileBytes(a.id, { includeDeleted: true });
+      if (!file || !wantsSandboxCopy(a.mime, attachmentKind(a.mime, file.data))) continue;
+      const uploaded = await anthropic().beta.files.upload({ file: await toFile(file.data, safeName(a.name), { type: a.mime }), betas: [FILES_BETA] }, { signal });
+      setKV(sandboxFileKey(a.id), uploaded.id);
+    }
+  }
+}
+
+/** Saves the files a sandbox run produced into the workspace, where you can open and download them. */
+async function saveSandboxFiles(fileIds: string[], conversationId: string, signal: AbortSignal): Promise<FileRecord[]> {
+  const saved: FileRecord[] = [];
+  for (const id of fileIds) {
+    try {
+      const meta = await anthropic().beta.files.retrieveMetadata(id, { betas: [FILES_BETA] }, { signal });
+      const res = await anthropic().beta.files.download(id, { betas: [FILES_BETA] }, { signal });
+      const rel = path.posix.join("sandbox", safeName(meta.filename));
+      const full = workspacePath(rel);
+      fs.mkdirSync(path.dirname(full), { recursive: true });
+      fs.writeFileSync(full, Buffer.from(await res.arrayBuffer()));
+      saved.push(registerGenerated(rel, conversationId));
+    } catch (err) {
+      if (signal.aborted) throw err;
+      console.error(`[dizz] couldn't fetch sandbox file ${id}:`, err);
+    }
+  }
+  return saved;
+}
+
+function sandboxSummary(content: Anthropic.Beta.BetaContentBlock): { ok: boolean; result: string } | null {
+  if (content.type === "bash_code_execution_tool_result" || content.type === "code_execution_tool_result") {
+    const c = content.content;
+    if ("error_code" in c) return { ok: false, result: c.error_code.replace(/_/g, " ") };
+    const code = "return_code" in c ? c.return_code : 0;
+    return { ok: code === 0, result: code === 0 ? "Done" : `Exited with ${code}` };
+  }
+  if (content.type === "text_editor_code_execution_tool_result") {
+    const c = content.content;
+    return "error_code" in c ? { ok: false, result: String(c.error_code).replace(/_/g, " ") } : { ok: true, result: "Done" };
+  }
+  return null;
+}
+
+function userContent(m: StoredMessage, sandbox = false): ContentBlockParam[] {
   const blocks: ContentBlockParam[] = [];
   if (m.context) blocks.push({ type: "text", text: m.context });
   for (const a of m.attachments ?? []) {
@@ -41,7 +99,16 @@ function userContent(m: StoredMessage): ContentBlockParam[] {
       continue;
     }
     const data = file.data;
-    switch (attachmentKind(a.mime, data)) {
+    const kind = attachmentKind(a.mime, data);
+    const sandboxId = sandbox && wantsSandboxCopy(a.mime, kind) ? getKV(sandboxFileKey(a.id)) : null;
+    if (sandboxId) {
+      blocks.push({ type: "container_upload", file_id: sandboxId });
+      if (kind === "binary") {
+        blocks.push({ type: "text", text: `[Attached file "${a.name}" (${a.mime}) is in your code sandbox. Open it with code.]` });
+        continue;
+      }
+    }
+    switch (kind) {
       case "image":
         blocks.push({
           type: "image",
@@ -80,11 +147,11 @@ function userContent(m: StoredMessage): ContentBlockParam[] {
  * message is rebuilt from stored data, so the request is append-only: each turn
  * sends the previous request's messages byte-for-byte, plus the new ones.
  */
-export function claudeMessages(history: StoredMessage[]): MessageParam[] {
+export function claudeMessages(history: StoredMessage[], sandbox = false): MessageParam[] {
   const out: MessageParam[] = [];
   for (const m of history) {
     if (m.role === "user") {
-      out.push({ role: "user", content: userContent(m) });
+      out.push({ role: "user", content: userContent(m, sandbox) });
       continue;
     }
     const replay = m.provider === "anthropic" && m.status === "complete" && m.native?.length ? (m.native as MessageParam[]) : null;
@@ -110,7 +177,7 @@ function toolResultContent(outcome: ToolOutcome): Anthropic.Beta.BetaToolResultB
 }
 
 export const anthropicProvider: ProviderAdapter = {
-  async run({ model, effort, system, history, tools, serverTools, signal, hooks }: RunInput): Promise<RunResult> {
+  async run({ model, effort, system, history, tools, serverTools, codeSandbox, container: savedContainer, conversationId, signal, hooks }: RunInput): Promise<RunResult> {
     const haiku = isHaiku(model);
     const toolDefs: ToolUnion[] = tools.map((t) => ({
       name: t.name,
@@ -130,7 +197,15 @@ export const anthropicProvider: ProviderAdapter = {
       );
     }
 
-    const messages = claudeMessages(history);
+    if (codeSandbox) {
+      toolDefs.push(haiku ? { type: "code_execution_20250825", name: "code_execution" } : { type: "code_execution_20260521", name: "code_execution" });
+      await uploadForSandbox(history, signal);
+    }
+    const messages = claudeMessages(history, codeSandbox);
+    const fallback = fallbackFor(model);
+    const betas = [...(fallback.betas ?? []), ...(codeSandbox ? [FILES_BETA] : [])];
+    let container = savedContainer ?? null;
+    let containerInfo: RunResult["container"];
     const turn: MessageParam[] = [];
     const usage = { inputTokens: 0, outputTokens: 0 };
     let wroteText = false;
@@ -148,7 +223,9 @@ export const anthropicProvider: ProviderAdapter = {
           thinking: { type: "adaptive", display: "summarized" },
           output_config: { effort: EFFORT[effort] },
           cache_control: { type: "ephemeral" },
-          ...fallbackFor(model),
+          ...fallback,
+          ...(betas.length ? { betas } : {}),
+          ...(container ? { container } : {}),
         },
         { signal },
       );
@@ -174,6 +251,9 @@ export const anthropicProvider: ProviderAdapter = {
                 sources.push(...found);
                 hooks.onToolEnd(b.tool_use_id, { ok: true, result: `${found.length} results` });
               } else hooks.onToolEnd(b.tool_use_id, { ok: false, result: b.content.error_code });
+            } else if (sandboxSummary(b)) {
+              const done = sandboxSummary(b)!;
+              hooks.onToolEnd((b as { tool_use_id: string }).tool_use_id, done);
             } else if (b.type === "web_fetch_tool_result") {
               const ok = b.content.type === "web_fetch_result";
               hooks.onToolEnd(b.tool_use_id, { ok, result: ok ? "Read the page" : "Couldn't open the page" });
@@ -201,6 +281,11 @@ export const anthropicProvider: ProviderAdapter = {
         message = await stream.finalMessage();
         jsonRetries = 0;
       } catch (err) {
+        // A sandbox that expired or was cleaned up: start a fresh one.
+        if (err instanceof Anthropic.APIError && container && !signal.aborted && /container/i.test(err.message)) {
+          container = null;
+          continue;
+        }
         // With eager input streaming a tool input can arrive as invalid JSON. Re-issue the turn for that
         // case only; API errors (auth, rate limits, abort) go up.
         if (err instanceof Anthropic.APIError || signal.aborted || jsonRetries++ >= 2) throw err;
@@ -208,19 +293,30 @@ export const anthropicProvider: ProviderAdapter = {
       }
 
       if (sources.length) hooks.onSources(sources);
+      if (message.container) {
+        container = message.container.id;
+        containerInfo = { id: message.container.id, expiresAt: Date.parse(message.container.expires_at) || Date.now() + 3_600_000 };
+      }
+      const sandboxFiles: string[] = [];
+      for (const b of message.content) {
+        if (b.type === "bash_code_execution_tool_result" && b.content.type === "bash_code_execution_result") {
+          for (const out of b.content.content) sandboxFiles.push(out.file_id);
+        }
+      }
+      if (sandboxFiles.length) for (const f of await saveSandboxFiles(sandboxFiles, conversationId, signal)) hooks.onFile(f);
       const u = message.usage;
       usage.inputTokens += (u.input_tokens ?? 0) + (u.cache_read_input_tokens ?? 0) + (u.cache_creation_input_tokens ?? 0);
       usage.outputTokens += u.output_tokens ?? 0;
 
       if (message.stop_reason === "refusal") {
-        return { native: null, usage, refusal: message.stop_details?.explanation ?? "The model declined this request." };
+        return { native: null, usage, container: containerInfo, refusal: message.stop_details?.explanation ?? "The model declined this request." };
       }
       turn.push({ role: "assistant", content: message.content as ContentBlockParam[] });
 
       if (message.stop_reason === "pause_turn") continue; // a long server-side search; let it carry on
 
       const toolUses = message.content.filter((b): b is Anthropic.Beta.BetaToolUseBlock => b.type === "tool_use");
-      if (!toolUses.length) return { native: turn, usage };
+      if (!toolUses.length) return { native: turn, usage, container: containerInfo };
       if (message.stop_reason === "max_tokens") throw new TurnError("The reply hit the length limit in the middle of a tool call.");
 
       // Run every tool call from this step in parallel and answer them all in one message.

@@ -1,6 +1,7 @@
 import { createCipheriv, createDecipheriv, randomBytes, scrypt as scryptCb, type ScryptOptions } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import { DatabaseSync } from "node:sqlite";
 import { config } from "./config.js";
 
 /**
@@ -25,7 +26,8 @@ interface VaultFile {
   createdAt: number;
 }
 
-const VAULT_PATH = path.join(config.dataDir, "vault.json");
+/** Before the vault moved into the database it lived in this file; it's migrated on first start. */
+const LEGACY_VAULT_PATH = path.join(config.dataDir, "vault.json");
 const testing = process.env.NODE_ENV === "test";
 // ~128 MB of memory per guess makes brute-forcing a stolen vault expensive.
 const KDF = testing ? { N: 2 ** 14, r: 8, p: 1 } : { N: 2 ** 17, r: 8, p: 1 };
@@ -35,13 +37,29 @@ const FILE_MAGIC = Buffer.from("DZE1");
 let dataKey: Buffer | null = null;
 let memoryVault: VaultFile | null = null; // tests keep the vault in memory
 
+/**
+ * The wrapped key is kept inside the database itself, so a copy or backup of the
+ * database (Litestream, a copied file) always carries the key it needs; it's still
+ * useless without your password.
+ */
+let store: DatabaseSync | null = null;
+function vaultTable(): DatabaseSync {
+  if (store) return store;
+  fs.mkdirSync(config.dataDir, { recursive: true });
+  store = new DatabaseSync(path.join(config.dataDir, "dizzlab.db"));
+  store.exec("PRAGMA busy_timeout = 5000; CREATE TABLE IF NOT EXISTS vault (id INTEGER PRIMARY KEY CHECK (id = 1), data TEXT NOT NULL);");
+  const has = store.prepare("SELECT 1 FROM vault WHERE id = 1").get();
+  if (!has && fs.existsSync(LEGACY_VAULT_PATH)) {
+    store.prepare("INSERT INTO vault (id, data) VALUES (1, ?)").run(fs.readFileSync(LEGACY_VAULT_PATH, "utf8"));
+    fs.renameSync(LEGACY_VAULT_PATH, `${LEGACY_VAULT_PATH}.migrated`);
+  }
+  return store;
+}
+
 function readVault(): VaultFile | null {
   if (testing) return memoryVault;
-  try {
-    return JSON.parse(fs.readFileSync(VAULT_PATH, "utf8")) as VaultFile;
-  } catch {
-    return null;
-  }
+  const row = vaultTable().prepare("SELECT data FROM vault WHERE id = 1").get() as { data: string } | undefined;
+  return row ? (JSON.parse(row.data) as VaultFile) : null;
 }
 
 function writeVault(vault: VaultFile): void {
@@ -49,9 +67,7 @@ function writeVault(vault: VaultFile): void {
     memoryVault = vault;
     return;
   }
-  const tmp = `${VAULT_PATH}.tmp`;
-  fs.writeFileSync(tmp, JSON.stringify(vault, null, 2), { mode: 0o600 });
-  fs.renameSync(tmp, VAULT_PATH);
+  vaultTable().prepare("INSERT INTO vault (id, data) VALUES (1, ?) ON CONFLICT(id) DO UPDATE SET data = excluded.data").run(JSON.stringify(vault));
 }
 
 function deriveKey(password: string, kdf: VaultFile["kdf"]): Promise<Buffer> {

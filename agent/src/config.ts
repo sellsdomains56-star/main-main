@@ -10,6 +10,13 @@ function list(value: string | undefined, fallback: string[]): string[] {
   return items.length ? items : fallback;
 }
 
+function codeMode(value: string | undefined): "local" | "sandbox" | "off" {
+  const v = (value ?? "").trim().toLowerCase();
+  if (v === "0" || v === "off" || v === "false") return "off";
+  if (v === "sandbox") return "sandbox";
+  return "local";
+}
+
 const KNOWN_MODELS: Record<string, Omit<ModelInfo, "id">> = {
   "claude-fable-5-1": { label: "Claude Fable 5.1", provider: "anthropic", blurb: "Most capable. Hardest problems and long tasks" },
   "claude-opus-5-5": { label: "Claude Opus 5.5", provider: "anthropic", blurb: "Smartest. Deep reasoning and agentic work" },
@@ -45,7 +52,11 @@ export const config = {
   ntfyUrl: env.NTFY_URL?.trim() ?? "",
   /** Put the reminder text in phone pushes (it then passes through the ntfy server). */
   ntfyShowContent: env.NTFY_SHOW_CONTENT === "1",
-  codeExecution: env.CODE_EXECUTION !== "0",
+  /**
+   * Where the agent runs code: "local" (on this machine, in the workspace folder), "sandbox" (Claude runs it
+   * in Anthropic's isolated container: use this on a server) or "off".
+   */
+  codeExecution: codeMode(env.CODE_EXECUTION),
   /** How many agents of a swarm work at the same time (keeps you under rate limits). */
   swarmConcurrency: Math.max(1, Number(env.SWARM_CONCURRENCY ?? 8)),
   /** The most tasks one delegate_tasks call may hand out. */

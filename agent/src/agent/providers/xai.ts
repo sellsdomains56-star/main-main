@@ -67,9 +67,11 @@ function serverToolInput(item: Item): unknown {
 }
 
 export const xaiProvider: ProviderAdapter = {
-  async run({ model, effort, system, history, tools, serverTools, signal, hooks }: RunInput): Promise<RunResult> {
+  async run({ model, effort, system, history, tools, serverTools, codeSandbox, signal, hooks }: RunInput): Promise<RunResult> {
     const toolDefs = [
       ...(serverTools ? [{ type: "web_search" }, { type: "x_search" }] : []),
+      // On a server, Grok runs code in xAI's own sandbox rather than on this machine.
+      ...(codeSandbox ? [{ type: "code_interpreter" }] : []),
       ...tools.map((t) => ({ type: "function", name: t.name, description: t.description, parameters: t.jsonSchema })),
     ] as unknown as OpenAI.Responses.Tool[];
 

@@ -57,9 +57,40 @@ With no key set, the app runs in **demo mode** with scripted replies, so you can
 - **Phone pushes** (ntfy) only say "You have a reminder" unless you set `NTFY_SHOW_CONTENT=1`.
 - Setting `AGENT_PASSWORD` in `.env` makes the app unlock itself on start. That's convenient, but anyone with the `.env` file can then read your data. Leave it empty for full protection.
 
+## Run it on a server (works from your phone, 24/7)
+
+A small cloud server runs everything around the clock, so your phone gets the full app (web search, Grok, connectors, scheduled tasks, swarms) without a computer left on. Expect about $5–10 a month for the server, plus what you use on Claude and Grok.
+
+The `Dockerfile` builds a ready image: Node 22, Python with pandas and matplotlib, and [Litestream](https://litestream.io) for backups. Data lives in `/data`; mount a disk there.
+
+**Fly.io**
+
+```bash
+cd agent
+fly launch --copy-config --no-deploy      # uses fly.toml; pick an app name and region
+fly volumes create dizz_data --size 3
+fly secrets set ANTHROPIC_API_KEY=... XAI_API_KEY=... TIMEZONE=Asia/Dubai PUBLIC_URL=https://<app>.fly.dev
+fly deploy
+```
+
+**Render:** New → Blueprint → choose this repository (it reads `render.yaml`), then fill in the keys. Use a paid instance: free ones go to sleep, which stops reminders.
+
+**Any VPS with Docker:**
+
+```bash
+docker build -t dizz-lab agent
+docker run -d --restart unless-stopped -p 8787:8787 -v dizz-data:/data --env-file agent/.env dizz-lab
+```
+
+Put HTTPS in front of it (Caddy, Cloudflare Tunnel or Tailscale), and set `PUBLIC_URL` to that address.
+
+**On a server, code runs in a sandbox.** The image sets `CODE_EXECUTION=sandbox`: Claude runs code in Anthropic's isolated container (files you attach are uploaded to it, and files it makes appear in the chat), so code the model writes never runs on your server. `local` runs code on the machine itself, which is fine on your own computer.
+
+**Backups.** Set `LITESTREAM_REPLICA_URL` (for example `s3://my-bucket/dizzlab`), `LITESTREAM_ACCESS_KEY_ID` and `LITESTREAM_SECRET_ACCESS_KEY`, plus `LITESTREAM_ENDPOINT` and `LITESTREAM_REGION=auto` for Cloudflare R2. The database (chats, memory, agents, settings, connectors and the encryption key's wrapper) is then copied to your bucket every 10 seconds, and a new server with an empty disk restores it automatically on start. It stays encrypted with your password. Uploaded files live on the server's disk; most hosts snapshot disks daily.
+
 ## Use it from your phone
 
-The app is a website, so any device that can reach your computer can use it. To do that safely over the internet:
+The app is a website, so any device that can reach your computer (or your server) can use it. For a computer at home, make it reachable safely over the internet:
 
 1. **Tailscale (easiest, private):** install [Tailscale](https://tailscale.com) on your computer and phone, run `tailscale serve --bg 8787`, and open the `https://…ts.net` address it prints. Only your devices can reach it.
 2. **Cloudflare Tunnel:** `cloudflared tunnel --url http://localhost:8787` gives you an HTTPS address.
@@ -114,7 +145,7 @@ Personal preferences (your name, personality — Default, Fun, Concise or Profes
 
 ## Back up
 
-Copy the whole `data` folder while the app is stopped. It's encrypted, so the backup is safe to keep in the cloud, but it's only usable with your password.
+Copy the whole `data` folder while the app is stopped. It's encrypted, so the backup is safe to keep in the cloud, but it's only usable with your password. On a server, Litestream does this continuously (see **Run it on a server**).
 
 ## For developers
 

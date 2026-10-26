@@ -4,7 +4,7 @@ import { startScheduler } from "./scheduler.js";
 import { isUnlocked, vaultExists } from "./vault.js";
 import { createApp } from "./server.js";
 
-await await initAuth();
+await initAuth();
 const app = createApp();
 startScheduler();
 

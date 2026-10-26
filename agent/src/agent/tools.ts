@@ -365,7 +365,8 @@ export const BASE_TOOLS = {
   memory: [remember, forget, searchPast],
   reminders: [setReminder, listRemindersTool, cancelReminderTool],
   files: [listFilesTool, readFileTool, writeFileTool],
-  code: config.codeExecution ? [runCodeTool] : [],
+  /** Only offered when code runs on this machine (see toolsFor). */
+  code: [runCodeTool],
   images: config.xaiKey ? [generateImageTool] : [],
 };
 
