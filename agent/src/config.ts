@@ -70,6 +70,13 @@ export const config = {
 // Dates on the server (reminder repeats, "today") follow your time zone.
 process.env.TZ = config.timezone;
 
+/** A readable name for any model id, including ones no longer in the menu. */
+export function modelLabel(id: string): string {
+  const known = KNOWN_MODELS[id];
+  if (known) return known.label;
+  return id === "mock" ? "Demo mode" : id;
+}
+
 export function availableModels(): ModelInfo[] {
   const models: ModelInfo[] = [];
   if (config.anthropicKey) models.push(...config.anthropicModels.map((id) => describe(id, "anthropic")));

@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { config } from "../../config.js";
 import { readFileBytes } from "../../files.js";
+import { requestCost } from "../../pricing.js";
 import type { Effort, Source, StoredMessage } from "../../types.js";
 import { attachmentKind } from "./attachments.js";
 import { TurnError, type ProviderAdapter, type RunInput, type RunResult } from "./types.js";
@@ -67,7 +68,7 @@ function serverToolInput(item: Item): unknown {
 }
 
 export const xaiProvider: ProviderAdapter = {
-  async run({ model, effort, system, history, tools, serverTools, codeSandbox, signal, hooks }: RunInput): Promise<RunResult> {
+  async run({ model, effort, system, history, tools, serverTools, codeSandbox, signal, hooks, usage }: RunInput): Promise<RunResult> {
     const toolDefs = [
       ...(serverTools ? [{ type: "web_search" }, { type: "x_search" }] : []),
       // On a server, Grok runs code in xAI's own sandbox rather than on this machine.
@@ -77,7 +78,6 @@ export const xaiProvider: ProviderAdapter = {
 
     const base = grokInput(system, history);
     const turn: Item[] = [];
-    const usage = { inputTokens: 0, outputTokens: 0 };
     let wroteText = false;
 
     for (let iteration = 0; iteration < 60; iteration++) {
@@ -149,10 +149,20 @@ export const xaiProvider: ProviderAdapter = {
       }
       if (!final) throw new TurnError("The response ended early.");
       if (sources.length) hooks.onSources(sources);
-      usage.inputTokens += final.usage?.input_tokens ?? 0;
-      usage.outputTokens += final.usage?.output_tokens ?? 0;
-
       const output = final.output as unknown as Item[];
+      const cached = final.usage?.input_tokens_details?.cached_tokens ?? 0;
+      const counted = {
+        input: (final.usage?.input_tokens ?? 0) - cached,
+        output: final.usage?.output_tokens ?? 0,
+        cacheRead: cached,
+        webSearches: output.filter((i) => i.type === "web_search_call" || i.type === "x_search_call").length,
+      };
+      usage.inputTokens += final.usage?.input_tokens ?? 0;
+      usage.outputTokens += counted.output;
+      usage.cacheReadTokens = (usage.cacheReadTokens ?? 0) + cached;
+      usage.webSearches = (usage.webSearches ?? 0) + counted.webSearches;
+      usage.costUsd = (usage.costUsd ?? 0) + requestCost("xai", model, counted);
+
       turn.push(...output);
       const calls = output.filter((i) => i.type === "function_call");
       if (!calls.length) {

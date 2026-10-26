@@ -53,6 +53,18 @@ export type Step =
       approval?: EmailApproval;
     };
 
+/** Tokens and estimated cost of one agent turn (all of its requests together). */
+export interface TurnUsage {
+  /** Every prompt token, cached or not. */
+  inputTokens: number;
+  outputTokens: number;
+  cacheReadTokens?: number;
+  cacheWriteTokens?: number;
+  webSearches?: number;
+  /** Estimated from published prices (see pricing.ts). */
+  costUsd?: number;
+}
+
 export interface MessageData {
   text: string;
   /** user: files sent with the message */
@@ -71,7 +83,7 @@ export interface MessageData {
   native?: unknown[];
   status?: "complete" | "stopped" | "error";
   error?: string;
-  usage?: { inputTokens: number; outputTokens: number };
+  usage?: TurnUsage;
   durationMs?: number;
 }
 
@@ -142,6 +154,8 @@ export interface Settings {
   effort: Effort;
   personality: "default" | "fun" | "concise" | "professional";
   customInstructions: string;
+  /** Warn when this month's estimated spending passes 80% and 100% of this (USD); 0 = no budget. */
+  monthlyBudget: number;
 }
 
 /** What the server streams to the browser while the agent works. */

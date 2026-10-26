@@ -3,6 +3,7 @@ import { clear, h, onSubmit } from "./dom.js";
 import { icon } from "./icons.js";
 import { EFFORTS, prefs, savePrefs, state, type AgentProfile, type FileRecord, type Settings, type ToolGroup } from "./state.js";
 import { confirmDialog, debounce, formatDateTime, formatSize, promptDialog, toast } from "./util.js";
+import { renderUsage } from "./usage.js";
 import { lang, plural, t, type Lang } from "./i18n.js";
 
 interface Memory {
@@ -653,6 +654,12 @@ function appTile(key: string, name: string) {
 /** Sends you to the app's sign-in page; you come back to #/connectors. */
 function goSignIn(authUrl: string) {
   location.href = authUrl;
+}
+
+export function openUsage() {
+  const body = h("div", { class: "usage" });
+  modal(t("Usage & spending"), body, { wide: true });
+  renderUsage(body);
 }
 
 export function openConnectors() {

@@ -1,4 +1,4 @@
-import type { Effort, FileRecord, Source, StoredMessage } from "../../types.js";
+import type { Effort, FileRecord, Source, StoredMessage, TurnUsage } from "../../types.js";
 import type { AgentTool, ToolOutcome } from "../tools.js";
 
 export interface ToolStart {
@@ -40,12 +40,14 @@ export interface RunInput {
   conversationId: string;
   signal: AbortSignal;
   hooks: RunHooks;
+  /** Filled in as requests complete, so what a turn cost is known even if it fails or is stopped. */
+  usage: TurnUsage;
 }
 
 export interface RunResult {
   /** The provider's own transcript of this turn, replayed unchanged on later turns. Null when the turn didn't finish cleanly. */
   native: unknown[] | null;
-  usage: { inputTokens: number; outputTokens: number };
+  usage: TurnUsage;
   /** Set when the model declined the request. */
   refusal?: string;
   /** The sandbox container used this turn, if any. */

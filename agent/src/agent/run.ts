@@ -2,7 +2,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
 import { findModel, type ModelInfo } from "../config.js";
 import { addMessage, getKV, getSettings, newId, setKV } from "../db.js";
-import type { AgentEvent, AgentProfile, Effort, FileRecord, MessageData, Source, Step, StoredMessage } from "../types.js";
+import { recordUsage } from "../spending.js";
+import type { AgentEvent, AgentProfile, Effort, FileRecord, MessageData, Source, Step, StoredMessage, TurnUsage } from "../types.js";
 import { systemPrompt, turnContext } from "./prompt.js";
 import { providerFor } from "./providers/index.js";
 import { TurnError } from "./providers/types.js";
@@ -88,6 +89,7 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
   const settings = getSettings();
   const { tools, serverTools, codeSandbox } = toolsFor(agent, !!opts.isSubAgent);
   const containerKey = `container:${conversationId}`;
+  const usage: TurnUsage = { inputTokens: 0, outputTokens: 0 };
   const steps: Step[] = [];
   const files: FileRecord[] = [];
   const sources: Source[] = [];
@@ -123,6 +125,7 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
       container: codeSandbox && !opts.isSubAgent ? savedContainer(containerKey) : null,
       conversationId,
       signal,
+      usage,
       hooks: {
         onText(delta) {
           closeThinking();
@@ -211,19 +214,31 @@ export async function runTurn(opts: TurnOptions): Promise<StoredMessage> {
       text += note;
       emit({ type: "text", delta: note });
     }
-    data = { ...base, text, native: result.native ?? undefined, status: "complete", usage: result.usage, durationMs: Date.now() - started };
+    data = { ...base, text, native: result.native ?? undefined, status: "complete", usage, durationMs: Date.now() - started };
   } catch (err) {
     closeThinking();
     for (const s of steps) if (s.kind === "tool" && s.status === "running") s.status = "error";
     if (signal.aborted) {
-      data = { ...base, text, status: "stopped", durationMs: Date.now() - started };
+      data = { ...base, text, status: "stopped", usage, durationMs: Date.now() - started };
     } else {
       const error = friendlyError(err, model);
       console.error(`[dizz] ${model.id} turn failed:`, err);
       reportError(err, "agent-turn");
-      data = { ...base, text, status: "error", error, durationMs: Date.now() - started };
+      data = { ...base, text, status: "error", error, usage, durationMs: Date.now() - started };
       emit({ type: "error", error });
     }
+  }
+
+  // What the turn cost goes into the spending log, whether it finished or not.
+  if (usage.inputTokens || usage.outputTokens) {
+    recordUsage({
+      provider: model.provider,
+      model: model.id,
+      agentId: agent?.id ?? null,
+      conversationId,
+      kind: opts.isSubAgent ? "swarm" : history.at(-1)?.scheduled ? "scheduled" : "chat",
+      usage,
+    });
   }
 
   const message: StoredMessage =

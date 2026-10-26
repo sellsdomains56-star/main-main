@@ -53,6 +53,11 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS agents (
     id TEXT PRIMARY KEY, data TEXT NOT NULL, model TEXT, effort TEXT, tools TEXT,
     created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL);
+  CREATE TABLE IF NOT EXISTS usage_log (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, ts INTEGER NOT NULL, provider TEXT NOT NULL, model TEXT NOT NULL,
+    agent_id TEXT, conversation_id TEXT, kind TEXT NOT NULL, input_tokens INTEGER NOT NULL, output_tokens INTEGER NOT NULL,
+    cache_read_tokens INTEGER NOT NULL DEFAULT 0, web_searches INTEGER NOT NULL DEFAULT 0, cost_usd REAL NOT NULL);
+  CREATE INDEX IF NOT EXISTS usage_by_time ON usage_log(ts);
 `);
 
 type Row = Record<string, unknown>;
@@ -317,6 +322,7 @@ const DEFAULT_SETTINGS: Settings = {
   effort: "auto",
   personality: "default",
   customInstructions: "",
+  monthlyBudget: 0,
 };
 
 let settingsCache: Settings | null = null;
@@ -457,4 +463,49 @@ export function deleteConnectorRow(id: string): boolean {
 /** The stored (encrypted) form of a row, for tests that check nothing readable reaches the disk. */
 export function rawRow(table: "conversations" | "messages" | "memories" | "agents" | "connectors", id: string): Row | undefined {
   return db.prepare(`SELECT * FROM ${table} WHERE id = ?`).get(id) as Row | undefined;
+}
+
+// ── Spending log ──────────────────────────────────────────────────────────────
+// Token counts and estimated cost per agent turn. Only numbers, model names and ids:
+// nothing you said, so it isn't encrypted (and can be summed in SQL).
+
+export interface UsageRow {
+  ts: number;
+  provider: string;
+  model: string;
+  agentId: string | null;
+  conversationId: string | null;
+  kind: "chat" | "swarm" | "scheduled";
+  inputTokens: number;
+  outputTokens: number;
+  cacheReadTokens: number;
+  webSearches: number;
+  costUsd: number;
+}
+
+export function addUsageRow(r: UsageRow): void {
+  db.prepare(
+    "INSERT INTO usage_log (ts, provider, model, agent_id, conversation_id, kind, input_tokens, output_tokens, cache_read_tokens, web_searches, cost_usd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+  ).run(r.ts, r.provider, r.model, r.agentId, r.conversationId, r.kind, r.inputTokens, r.outputTokens, r.cacheReadTokens, r.webSearches, r.costUsd);
+}
+
+export function usageRowsSince(since: number): UsageRow[] {
+  return (db.prepare("SELECT * FROM usage_log WHERE ts >= ? ORDER BY ts").all(since) as Row[]).map((r) => ({
+    ts: r.ts as number,
+    provider: r.provider as string,
+    model: r.model as string,
+    agentId: (r.agent_id as string | null) ?? null,
+    conversationId: (r.conversation_id as string | null) ?? null,
+    kind: r.kind as UsageRow["kind"],
+    inputTokens: r.input_tokens as number,
+    outputTokens: r.output_tokens as number,
+    cacheReadTokens: r.cache_read_tokens as number,
+    webSearches: r.web_searches as number,
+    costUsd: r.cost_usd as number,
+  }));
+}
+
+export function usageTotal(): { costUsd: number; since: number | null } {
+  const r = db.prepare("SELECT COALESCE(SUM(cost_usd), 0) AS cost, MIN(ts) AS since FROM usage_log").get() as Row;
+  return { costUsd: r.cost as number, since: (r.since as number | null) ?? null };
 }

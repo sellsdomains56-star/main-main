@@ -54,6 +54,7 @@ import { mimeFor, readFileBytes, saveUpload, WORKSPACE_DIR } from "./files.js";
 import { getRun, isRunning, runningConversations, stopRun, type ActiveRun } from "./runs.js";
 import { EFFORT_LEVELS, TOOL_GROUPS, type AgentEvent } from "./types.js";
 import { reportError } from "./monitoring.js";
+import { spendingReport } from "./spending.js";
 import { changePassword, createVault, isUnlocked, lock, VaultLockedError, vaultExists } from "./vault.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -285,6 +286,10 @@ export function createApp() {
     issueSession(res, req.secure);
     res.json({ ok: true });
   }));
+
+  app.get("/api/usage", (_req, res) => {
+    res.json(spendingReport());
+  });
 
   app.get("/api/bootstrap", (_req, res) => {
     res.json({
@@ -611,6 +616,7 @@ export function createApp() {
         personality: z.enum(["default", "fun", "concise", "professional"]).optional(),
         language: z.enum(["en", "ar"]).optional(),
         customInstructions: z.string().max(20_000).optional(),
+        monthlyBudget: z.number().min(0).max(1_000_000).optional(),
       }),
       req.body,
     );

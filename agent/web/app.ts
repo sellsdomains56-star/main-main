@@ -4,7 +4,7 @@ import { api, downloadFrom, setUnauthorizedHandler } from "./api.js";
 import { applyModelFor, focusComposer, isBusy, mountChat, refreshIfOpen, renderHeader, showConversation } from "./chat.js";
 import { $, clear, h, onSubmit } from "./dom.js";
 import { icon, logo } from "./icons.js";
-import { applyTheme, openAgents, openConnectors, openFiles, openMemory, openReminders, openSettings } from "./panels.js";
+import { applyTheme, openAgents, openConnectors, openFiles, openMemory, openReminders, openSettings, openUsage } from "./panels.js";
 import { prefs, savePrefs, state, type AgentProfile, type Bootstrap, type ConversationSummary, type OpenConversation } from "./state.js";
 import { confirmDialog, debounce, promptDialog, relativeDay, toast } from "./util.js";
 import { lang, setLang, t, type Lang } from "./i18n.js";
@@ -287,6 +287,12 @@ function buildShell() {
         closeSidebarOnMobile();
         openFiles();
       }),
+      state.boot.cloud || state.boot.demo
+        ? null
+        : navItem("chart", t("Usage & spending"), () => {
+            closeSidebarOnMobile();
+            openUsage();
+          }),
     ),
     listEl,
     h(

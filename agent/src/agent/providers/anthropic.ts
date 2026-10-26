@@ -6,6 +6,7 @@ import { getKV, setKV } from "../../db.js";
 import { readFileBytes, registerGenerated, safeName, workspacePath } from "../../files.js";
 import type { Effort, FileRecord, Source, StoredMessage } from "../../types.js";
 import type { ToolOutcome } from "../tools.js";
+import { requestCost } from "../../pricing.js";
 import { attachmentKind } from "./attachments.js";
 import { TurnError, type ProviderAdapter, type RunInput, type RunResult } from "./types.js";
 
@@ -177,7 +178,7 @@ function toolResultContent(outcome: ToolOutcome): Anthropic.Beta.BetaToolResultB
 }
 
 export const anthropicProvider: ProviderAdapter = {
-  async run({ model, effort, system, history, tools, serverTools, codeSandbox, container: savedContainer, conversationId, signal, hooks }: RunInput): Promise<RunResult> {
+  async run({ model, effort, system, history, tools, serverTools, codeSandbox, container: savedContainer, conversationId, signal, hooks, usage }: RunInput): Promise<RunResult> {
     const haiku = isHaiku(model);
     const toolDefs: ToolUnion[] = tools.map((t) => ({
       name: t.name,
@@ -207,7 +208,6 @@ export const anthropicProvider: ProviderAdapter = {
     let container = savedContainer ?? null;
     let containerInfo: RunResult["container"];
     const turn: MessageParam[] = [];
-    const usage = { inputTokens: 0, outputTokens: 0 };
     let wroteText = false;
     let jsonRetries = 0;
 
@@ -305,8 +305,20 @@ export const anthropicProvider: ProviderAdapter = {
       }
       if (sandboxFiles.length) for (const f of await saveSandboxFiles(sandboxFiles, conversationId, signal)) hooks.onFile(f);
       const u = message.usage;
-      usage.inputTokens += (u.input_tokens ?? 0) + (u.cache_read_input_tokens ?? 0) + (u.cache_creation_input_tokens ?? 0);
-      usage.outputTokens += u.output_tokens ?? 0;
+      const counted = {
+        input: u.input_tokens ?? 0,
+        output: u.output_tokens ?? 0,
+        cacheRead: u.cache_read_input_tokens ?? 0,
+        cacheWrite: u.cache_creation_input_tokens ?? 0,
+        webSearches: u.server_tool_use?.web_search_requests ?? 0,
+      };
+      usage.inputTokens += counted.input + counted.cacheRead + counted.cacheWrite;
+      usage.outputTokens += counted.output;
+      usage.cacheReadTokens = (usage.cacheReadTokens ?? 0) + counted.cacheRead;
+      usage.cacheWriteTokens = (usage.cacheWriteTokens ?? 0) + counted.cacheWrite;
+      usage.webSearches = (usage.webSearches ?? 0) + counted.webSearches;
+      // A declined request may have been answered by a fallback model, which is billed at its own prices.
+      usage.costUsd = (usage.costUsd ?? 0) + requestCost("anthropic", message.model || model, counted);
 
       if (message.stop_reason === "refusal") {
         return { native: null, usage, container: containerInfo, refusal: message.stop_details?.explanation ?? "The model declined this request." };

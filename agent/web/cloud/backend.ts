@@ -22,7 +22,7 @@ const SWARM_MAX_TASKS = 8;
 /** Leave room under the 256 KiB input cap for the instructions and the reply's tool rounds. */
 const MAX_INPUT_BYTES = 170_000;
 
-const DEFAULT_SETTINGS: Settings = { language: "", userName: "", defaultModel: "claude", effort: "auto", personality: "default", customInstructions: "" };
+const DEFAULT_SETTINGS: Settings = { language: "", userName: "", defaultModel: "claude", effort: "auto", personality: "default", customInstructions: "", monthlyBudget: 0 };
 
 const data = {
   settings: { ...DEFAULT_SETTINGS },

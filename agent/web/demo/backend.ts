@@ -45,7 +45,7 @@ interface DemoConnector {
 const db = {
   password: "" as string,
   authed: false,
-  settings: { language: "", userName: "", defaultModel: "demo", effort: "auto", personality: "default", customInstructions: "" } as Settings,
+  settings: { language: "", userName: "", defaultModel: "demo", effort: "auto", personality: "default", customInstructions: "", monthlyBudget: 0 } as Settings,
   conversations: new Map<string, Conversation>(),
   messages: new Map<string, StoredMessage[]>(),
   memories: [] as Memory[],

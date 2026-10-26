@@ -17,6 +17,7 @@
 | **Agents** | Create unlimited named agents, each with its own instructions, model and abilities. Chat with one directly, or tell the main agent "create 20 agents for…". Import and export them as JSON. |
 | **Swarms** | "Use my research agents to compare these 200 companies." The work is split across many agents running in parallel (8 at a time by default), with live progress, and you get one combined answer plus a full report file. |
 | **Arabic & English** | The whole app is in English or Arabic (with a full right-to-left layout); switch under **Settings** or on the sign-in screen. The agent replies in Arabic when the app is in Arabic, and always in the language you write in. |
+| **Spending** | **Usage & spending** shows what you've spent today, this week, this month and in total, a 30-day chart, and costs by model and agent (estimated from published prices, prompt caching and searches included). Set a monthly budget to get a notification at 80% and 100%. |
 | **Voice** | Dictate with the mic button; turn on read-aloud in Settings. |
 | **Anywhere** | Works on desktop and phone; install it to your home screen like an app. Dark and light themes. |
 

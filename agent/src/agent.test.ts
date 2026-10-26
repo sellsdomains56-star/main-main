@@ -654,6 +654,49 @@ describe("Connectors", () => {
   });
 });
 
+describe("Spending", () => {
+  it("prices requests from published rates, caching and long prompts included", async () => {
+    const { requestCost } = await import("./pricing.js");
+    const close = (a: number, b: number) => assert.ok(Math.abs(a - b) < 1e-9, `${a} != ${b}`);
+    close(requestCost("anthropic", "claude-opus-5-5", { input: 1_000_000, output: 1_000_000 }), 24);
+    close(requestCost("anthropic", "claude-fable-5-1", { input: 0, output: 0, cacheRead: 1_000_000, cacheWrite: 1_000_000 }), 0.25 + 12.5);
+    close(requestCost("anthropic", "claude-sonnet-5-5", { input: 0, output: 0, webSearches: 3 }), 0.03);
+    // Haiku over 100K prompt tokens and Grok over 200K switch to the long-context price.
+    close(requestCost("anthropic", "claude-haiku-5-5", { input: 50_000, output: 0 }), 0.005);
+    close(requestCost("anthropic", "claude-haiku-5-5", { input: 150_000, output: 0 }), 0.075);
+    close(requestCost("xai", "grok-4.7", { input: 100_000, output: 10_000, cacheRead: 50_000 }), 0.2 + 0.06 + 0.025);
+    close(requestCost("xai", "grok-4.7", { input: 250_000, output: 0 }), 1);
+  });
+
+  it("logs every turn's cost and warns once when the monthly budget is used up", async () => {
+    const { createConversation, saveSettings } = await import("./db.js");
+    const { sendMessage } = await import("./agent/chat.js");
+    const { spendingReport } = await import("./spending.js");
+    const { onAppEvent } = await import("./events.js");
+    const before = spendingReport();
+    const alerts: string[] = [];
+    const off = onAppEvent((e) => {
+      if (e.type === "notification") alerts.push(e.title);
+    });
+    saveSettings({ monthlyBudget: before.thisMonth + 0.000001 });
+    try {
+      const conversation = createConversation();
+      await untilDone(sendMessage({ conversationId: conversation.id, text: "How much is this?", model: "claude-sonnet-5-5" }));
+      await untilDone(sendMessage({ conversationId: conversation.id, text: "And this?", model: "claude-sonnet-5-5" }));
+    } finally {
+      off();
+      saveSettings({ monthlyBudget: 0 });
+    }
+    const after = spendingReport();
+    assert.ok(after.thisMonth > before.thisMonth);
+    assert.ok(after.today >= after.thisMonth - before.thisMonth - 1e-12);
+    const sonnet = after.byModel.find((m) => m.model === "claude-sonnet-5-5");
+    assert.ok(sonnet && sonnet.turns >= 2 && sonnet.costUsd > 0);
+    assert.equal(after.days.length, 30);
+    assert.deepEqual(alerts.filter((a) => a === "Monthly budget reached"), ["Monthly budget reached"], "one alert, not one per turn");
+  });
+});
+
 describe("Arabic", () => {
   it("has an Arabic translation for every string in the interface", async () => {
     const fs = await import("node:fs");
