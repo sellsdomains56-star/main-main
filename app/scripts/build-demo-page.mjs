@@ -40,6 +40,15 @@ const jsDir = join(app, "dist/_expo/static/js/web");
 const entry = readdirSync(jsDir).find((f) => f.startsWith("entry-") && f.endsWith(".js"));
 let js = readFileSync(join(jsDir, entry), "utf8");
 
+// Browsers don't let a page opened from a file (file://) change its address, and the app's screens
+// are addresses. So the app reads the address through __AF_LOC__: the real location on a website,
+// or one kept in memory when the page is opened from a file (set up in the page below).
+js = js
+  .replace(/\{location:([\w$]+)\}=window(?![\w$.])/g, "{location:$1}={location:__AF_LOC__}")
+  .replace(/window\.location=(?!=)/g, "__AF_LOC__.href=")
+  .replace(/window\.location(?![\w$])/g, "__AF_LOC__")
+  .replace(/(?<![.\w$])location(?=\.)/g, "__AF_LOC__");
+
 // Inline the assets the app actually uses (images and the fonts it loads) as data: URIs.
 const USED_FONTS = /\/(Inter_(400Regular|500Medium|600SemiBold|700Bold|800ExtraBold)|Ionicons|MaterialCommunityIcons)\./; // the faces src/app/_layout.tsx loads
 const MIME = { png: "image/png", jpg: "image/jpeg", ttf: "font/ttf" };
@@ -51,6 +60,30 @@ js = js.replace(/"(\/assets\/[^"]+\.(png|jpg|ttf))"/g, (whole, path, ext) => {
   inlined++;
   return JSON.stringify(`data:${MIME[ext]};base64,${readFileSync(file).toString("base64")}`);
 });
+
+// Opened from a file, the address lives in memory (and in sessionStorage, so a reload stays on the
+// same screen): history entries carry it, and links the app makes point at the tester site.
+const FILE_LOCATION = `  var __AF_LOC__ = location;
+  if (location.protocol === "file:") (function () {
+    var KEY = "af_file_path", real = location, push = history.pushState.bind(history), swap = history.replaceState.bind(history);
+    var cur = new URL("/", "https://jb-always-fresh.netlify.app");
+    function set(u) { cur = new URL(u, cur); try { sessionStorage.setItem(KEY, cur.pathname + cur.search + cur.hash); } catch (e) {} }
+    try { set(sessionStorage.getItem(KEY) || "/"); } catch (e) {}
+    function go(u) { var next = new URL(u, cur); if (next.origin !== cur.origin) { real.href = next.href; return; } set(next.href); real.reload(); }
+    function tag(state) { var o = state && typeof state === "object" ? Object.assign({}, state) : {}; o.__afUrl = cur.href; return o; }
+    __AF_LOC__ = {
+      get href() { return cur.href; }, set href(u) { go(u); },
+      get pathname() { return cur.pathname; }, get search() { return cur.search; }, get hash() { return cur.hash; },
+      get origin() { return cur.origin; }, get protocol() { return cur.protocol; }, get host() { return cur.host; },
+      get hostname() { return cur.hostname; }, get port() { return cur.port; },
+      assign: go, replace: go, reload: function () { real.reload(); }, toString: function () { return cur.href; }
+    };
+    history.pushState = function (state, title, url) { if (url != null) set(url); push(tag(state), title); };
+    history.replaceState = function (state, title, url) { if (url != null) set(url); swap(tag(state), title); };
+    addEventListener("popstate", function (e) { if (e.state && e.state.__afUrl) set(e.state.__afUrl); }, true);
+    swap(tag(history.state), "");
+  })();
+`;
 
 // Nothing inlined may close the <script> element early.
 const safe = (s) => s.replace(/<\/(script)/gi, "<\\/$1").replace(/<!--/g, "<\\!--");
@@ -67,8 +100,8 @@ const page = `<meta charset="utf-8">
 <script>
   window.__AF_DEMO__ = ${safe(data)};${start ? `\n  window.__AF_DEMO_START__ = ${JSON.stringify(start)};` : ""}
 ${args.includes("--keep-path") ? "" : `  // The app routes by URL path; start it at its home screen wherever the page is served.
-  try { if (location.pathname !== "/") history.replaceState(null, "", "/"); } catch (e) {}
-`}</script>
+  if (location.protocol !== "file:") try { if (location.pathname !== "/") history.replaceState(null, "", "/"); } catch (e) {}
+`}${FILE_LOCATION}</script>
 <script>${safe(js)}</script>
 `;
 writeFileSync(out, page);
