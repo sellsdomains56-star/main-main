@@ -104,6 +104,8 @@ Set `TRUST_PROXY=1` and `PUBLIC_URL` to that address in `.env`. Then, in your ph
 
 Prefer [ntfy](https://ntfy.sh)? Subscribe to a long random topic name in its app and put `NTFY_URL=https://ntfy.sh/<your-topic>` in `.env`.
 
+**A store app?** `mobile/` holds a Capacitor shell for building an iPhone or Android app that opens your server (needs Xcode or Android Studio; see `mobile/README.md`). The Home Screen web app already has push notifications and Face ID, so most people won't need it.
+
 ## Connectors
 
 Open **Connectors** in the sidebar.
@@ -135,6 +137,7 @@ Only the numbers you list can get through, every request is checked against Twil
 
 ## Agents & swarms
 
+- **Starter team:** **Agents → Add a starter team** adds seven ready specialists for running a business: an Executive Assistant (calendar, meetings, email), an Accountant (books, invoices, VAT, cash flow, with code for every calculation), a Marketer, a Researcher, an Operations Manager, a Sales Lead and a Writer & Translator (Arabic and English). Edit them like any agent.
 - **Create:** click **Agents → New agent**, or ask: *"Create agents for a newsroom: an editor, a fact-checker, a headline writer and a social media manager."*
 - **Abilities:** each agent can be limited to web search, memory, reminders, files, code, images and/or running other agents.
 - **Swarms:** ask for parallel work: *"Have 50 agents each research one of these startups and give me founders, funding and traction"*. Agents in a swarm can't start swarms of their own.

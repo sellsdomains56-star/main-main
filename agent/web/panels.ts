@@ -6,6 +6,7 @@ import { confirmDialog, debounce, formatDateTime, formatSize, promptDialog, toas
 import { renderUsage } from "./usage.js";
 import { disablePush, enablePush, pushState } from "./push.js";
 import { addPasskey, passkeysSupported } from "./passkeys.js";
+import { addStarterTeam } from "./team.js";
 import { lang, plural, t, type Lang } from "./i18n.js";
 
 interface Memory {
@@ -129,17 +130,34 @@ export function openAgents(onChat: (agent: AgentProfile) => void) {
     const { agents, total } = await api<{ agents: AgentProfile[]; total: number }>(`/api/agents?q=${q}&limit=${PAGE}&offset=${offset}`);
     countEl.textContent = plural(total, ["{n} agent", "{n} agents"], ["وكيل واحد", "وكيلان", "{n} وكلاء", "{n} وكيل"]);
     if (reset && !agents.length) {
-      list.append(
-        search.value
-          ? empty(t("No agents match."))
-          : empty(t("No agents yet."), t("Create one here, import a JSON file, or just ask in any chat: “Create 20 agents for…”.")),
-      );
+      if (search.value) list.append(empty(t("No agents match.")));
+      else {
+        const box = empty(t("No agents yet."), t("Create one here, import a JSON file, or just ask in any chat: “Create 20 agents for…”."));
+        box.append(teamButton(true));
+        list.append(box);
+      }
     }
     for (const a of agents) list.append(card(a));
     offset += agents.length;
     loadMore.hidden = agents.length < PAGE;
   }
   const reload = () => void load(true);
+  const teamButton = (primary = false) => {
+    const btn = h("button", { class: `btn small ${primary ? "primary" : "ghost"}`, type: "button" }, h("span", { html: icon("users", 14) }), t("Add a starter team"));
+    btn.title = t("An assistant, accountant, marketer, researcher, operations manager, sales lead and writer");
+    btn.addEventListener("click", async () => {
+      btn.disabled = true;
+      try {
+        const r = await addStarterTeam();
+        toast(r.created ? t("Added {n} agents to your team", { n: r.created }) : t("Your team already has them"), "success");
+        reload();
+      } catch (err) {
+        toast((err as Error).message, "error");
+      }
+      btn.disabled = false;
+    });
+    return btn;
+  };
   search.addEventListener("input", debounce(reload, 200));
   loadMore.addEventListener("click", () => void load(false));
 
@@ -171,7 +189,7 @@ export function openAgents(onChat: (agent: AgentProfile) => void) {
       h("em", null, t("“use my research agents to compare these 30 laptops”")),
       t(". Up to {n} work at the same time.", { n: state.boot.features.swarmConcurrency }),
     ),
-    h("div", { class: "panel-toolbar" }, search, countEl),
+    h("div", { class: "panel-toolbar" }, search, countEl, teamButton()),
     list,
     loadMore,
     importInput,

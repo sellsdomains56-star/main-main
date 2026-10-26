@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dizz Lab</title>
+<style>
+  :root { color-scheme: light dark; --bg: #ffffff; --text: #18181b; --muted: #71717a; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0b0b0c; --text: #ececee; --muted: #7d7d86; } }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--text);
+         font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: center; padding: 24px; }
+  p { color: var(--muted); max-width: 30em; }
+  button { font: inherit; padding: 10px 18px; border-radius: 999px; border: 0; background: var(--text); color: var(--bg); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Can't reach Dizz Lab</h1>
+  <p>Check your internet connection. If it still doesn't open, make sure your Dizz Lab server is running.</p>
+  <p dir="rtl" lang="ar">تعذّر الوصول إلى Dizz Lab. تحقّق من اتصالك بالإنترنت، وتأكّد أن الخادم يعمل.</p>
+  <button onclick="location.reload()">Try again</button>
+</main>
+</body>
+</html>

@@ -511,4 +511,12 @@ export const AR: Record<string, string> = {
   "Key": "المفتاح",
   "Notes for the agent": "ملاحظات للوكيل",
   "{name} added": "أُضيف {name}",
+
+  // Starter team
+  "Plan my week": "خطط لأسبوعي",
+  "Look at my calendar and email for this week, then give me a plan: meetings to prepare for, deadlines, and what to do first each day.": "اطّلع على تقويمي وبريدي لهذا الأسبوع، ثم أعطني خطة: الاجتماعات التي أستعد لها، والمواعيد النهائية، وما أبدأ به كل يوم.",
+  "Add a starter team": "أضف فريقًا جاهزًا",
+  "An assistant, accountant, marketer, researcher, operations manager, sales lead and writer": "مساعد ومحاسب ومسوّق وباحث ومدير عمليات ومسؤول مبيعات وكاتب",
+  "Added {n} agents to your team": "أُضيف {n} وكلاء إلى فريقك",
+  "Your team already has them": "فريقك يضمّهم بالفعل",
 };

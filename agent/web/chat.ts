@@ -782,6 +782,7 @@ function suggestionList(): { label: string; prompt?: string; action?: () => void
       label: t("Daily briefing at 8am"),
       prompt: t("Every weekday at 8:00, give me a short briefing: top news, the weather where I am, and anything on my reminders."),
     },
+    { icon: "clock", label: t("Plan my week"), prompt: t("Look at my calendar and email for this week, then give me a plan: meetings to prepare for, deadlines, and what to do first each day.") },
     { icon: "file", label: t("Analyse a file"), action: () => fileInput.click() },
   ];
   if (state.boot.features.imageGeneration) items.push({ icon: "image", label: t("Generate an image"), prompt: t("Generate an image of a futuristic desert city at golden hour, cinematic, ultra detailed.") });

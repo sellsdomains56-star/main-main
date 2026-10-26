@@ -1,0 +1,21 @@
+{
+  "name": "dizz-lab-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dizz Lab as an iPhone and Android app: a native shell that opens your Dizz Lab server.",
+  "scripts": {
+    "add:ios": "cap add ios",
+    "add:android": "cap add android",
+    "sync": "cap sync",
+    "open:ios": "cap open ios",
+    "open:android": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.3"
+  }
+}
