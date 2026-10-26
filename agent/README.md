@@ -6,7 +6,7 @@
 
 | | |
 | --- | --- |
-| **Claude + Grok** | Switch per message between Claude Opus 5.5, Sonnet 5.5, Haiku 5.5 and Grok 4.7. Pick **Fast**, **Auto** or **Deep** thinking. Earlier turns are replayed exactly, so a conversation keeps its reasoning. |
+| **Claude + Grok** | Switch per message between Claude Fable 5.1 (the most capable, and the default), Opus 5.5, Sonnet 5.5, Haiku 5.5 and Grok 4.7. Pick **Fast**, **Auto**, **Deep** or **Max** thinking. Earlier turns are replayed exactly, so a conversation keeps its reasoning. Fable 5.1 costs about twice as much as Opus 5.5 per message; pick Opus under **Settings** if you'd rather. |
 | **Live web** | Claude uses Anthropic's web search and page reading; Grok uses xAI's web search and **X search**. Sources show under every answer. |
 | **Memory** | It remembers facts about you across chats (and you can see, add and delete them under **Memory**). It can also search your past conversations. |
 | **Reminders & scheduled tasks** | "Remind me at 6 to call mum", "every weekday at 8, brief me on the news and the weather". Tasks run on their own and post the result, with a browser notification and, optionally, a phone push. |

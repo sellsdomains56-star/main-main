@@ -4,7 +4,7 @@ import { z } from "zod";
 import { availableModels, config } from "../config.js";
 import { countAgents, createAgent, deleteAgent, findAgent, listAgents, updateAgent } from "../db.js";
 import { registerGenerated, WORKSPACE_DIR } from "../files.js";
-import { TOOL_GROUPS, type AgentProfile, type FileRecord } from "../types.js";
+import { EFFORT_LEVELS, TOOL_GROUPS, type AgentProfile, type FileRecord } from "../types.js";
 import { tr, trCount } from "../i18n.js";
 import { defineTool, type SubAgentResult } from "./tools.js";
 
@@ -40,7 +40,7 @@ const agentSpec = z.object({
     .max(20_000)
     .describe("Its system instructions: role, expertise, how it should work and what its answers should look like"),
   model: z.string().optional().describe("A model id to pin it to; leave out to use the user's default"),
-  effort: z.enum(["fast", "auto", "deep"]).optional(),
+  effort: z.enum(EFFORT_LEVELS).optional(),
   abilities,
 });
 

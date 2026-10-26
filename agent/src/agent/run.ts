@@ -224,7 +224,8 @@ async function runSubAgent(parent: TurnOptions, profile: AgentProfile | null, ta
   const reply = await runTurn({
     conversationId: parent.conversationId,
     model,
-    effort: profile?.effort ?? (parent.effort === "deep" ? "auto" : parent.effort),
+    // Swarm members think one notch less than the main agent by default: there are many of them.
+    effort: profile?.effort ?? ({ max: "deep", deep: "auto" } as const)[parent.effort as "max" | "deep"] ?? parent.effort,
     agent: profile,
     history: [userMessage],
     signal,

@@ -11,6 +11,7 @@ function list(value: string | undefined, fallback: string[]): string[] {
 }
 
 const KNOWN_MODELS: Record<string, Omit<ModelInfo, "id">> = {
+  "claude-fable-5-1": { label: "Claude Fable 5.1", provider: "anthropic", blurb: "Most capable. Hardest problems and long tasks" },
   "claude-opus-5-5": { label: "Claude Opus 5.5", provider: "anthropic", blurb: "Smartest. Deep reasoning and agentic work" },
   "claude-sonnet-5-5": { label: "Claude Sonnet 5.5", provider: "anthropic", blurb: "Fast and highly capable" },
   "claude-haiku-5-5": { label: "Claude Haiku 5.5", provider: "anthropic", blurb: "Quickest answers" },
@@ -51,7 +52,7 @@ export const config = {
   swarmMaxTasks: Math.max(1, Number(env.SWARM_MAX_TASKS ?? 1000)),
   /** A scripted provider for tests and for trying the UI without API keys. */
   mock: env.AGENT_MOCK === "1",
-  anthropicModels: list(env.ANTHROPIC_MODELS, ["claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5"]),
+  anthropicModels: list(env.ANTHROPIC_MODELS, ["claude-fable-5-1", "claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5"]),
   xaiModels: list(env.XAI_MODELS, ["grok-4.7"]),
 };
 

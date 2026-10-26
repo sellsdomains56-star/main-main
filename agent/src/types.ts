@@ -8,7 +8,9 @@ export interface ModelInfo {
   blurb: string;
 }
 
-export type Effort = "fast" | "auto" | "deep";
+export const EFFORT_LEVELS = ["fast", "auto", "deep", "max"] as const;
+/** How hard the model thinks: fast (barely), auto (as needed), deep (hard), max (as long as it takes). */
+export type Effort = (typeof EFFORT_LEVELS)[number];
 
 export interface FileRecord {
   id: string;

@@ -52,7 +52,7 @@ import { getConnector, listConnectors, publicConnector, removeConnector, takeAut
 import { onAppEvent } from "./events.js";
 import { mimeFor, readFileBytes, saveUpload, WORKSPACE_DIR } from "./files.js";
 import { getRun, isRunning, runningConversations, stopRun, type ActiveRun } from "./runs.js";
-import { TOOL_GROUPS, type AgentEvent } from "./types.js";
+import { EFFORT_LEVELS, TOOL_GROUPS, type AgentEvent } from "./types.js";
 import { changePassword, createVault, isUnlocked, lock, VaultLockedError, vaultExists } from "./vault.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -139,7 +139,7 @@ function requireConversation(id: string) {
   return conversation;
 }
 
-const effort = z.enum(["fast", "auto", "deep"]);
+const effort = z.enum(EFFORT_LEVELS);
 const agentBody = z.object({
   name: z.string().trim().min(1).max(60),
   emoji: z.string().trim().max(8).optional(),

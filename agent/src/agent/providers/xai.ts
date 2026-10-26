@@ -17,7 +17,7 @@ function xai(): OpenAI {
   return client;
 }
 
-const EFFORT: Record<Effort, "low" | "medium" | "xhigh"> = { fast: "low", auto: "medium", deep: "xhigh" };
+const EFFORT: Record<Effort, "low" | "medium" | "xhigh"> = { fast: "low", auto: "medium", deep: "xhigh", max: "xhigh" };
 
 function userContent(m: StoredMessage): ContentPart[] {
   const parts: ContentPart[] = [];

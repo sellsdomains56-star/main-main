@@ -16,10 +16,20 @@ function anthropic(): Anthropic {
   return client;
 }
 
-const EFFORT: Record<Effort, "low" | "medium" | "xhigh"> = { fast: "low", auto: "medium", deep: "xhigh" };
+const EFFORT: Record<Effort, "low" | "high" | "xhigh" | "max"> = { fast: "low", auto: "high", deep: "xhigh", max: "max" };
 
 /** Haiku has no server-side fallback and only the basic web tools. */
 const isHaiku = (model: string) => model.includes("haiku");
+
+/** If a safety classifier declines, the API retries on another model instead of failing. */
+function fallbackFor(model: string) {
+  if (isHaiku(model)) return {};
+  // Fable takes an explicit list (Opus 5 and 4.8 are its supported fallbacks); the others take Anthropic's default routing.
+  if (model.includes("fable")) {
+    return { betas: ["server-side-fallback-2026-06-01"], fallbacks: [{ model: "claude-opus-5" }, { model: "claude-opus-4-8" }] };
+  }
+  return { betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" as const };
+}
 
 function userContent(m: StoredMessage): ContentBlockParam[] {
   const blocks: ContentBlockParam[] = [];
@@ -130,15 +140,15 @@ export const anthropicProvider: ProviderAdapter = {
       const stream = anthropic().beta.messages.stream(
         {
           model,
-          max_tokens: 64000,
+          // Thinking counts toward the cap, so Max gets the model's full output budget.
+          max_tokens: effort === "max" ? 128000 : 64000,
           system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
           messages: [...messages, ...turn],
           tools: toolDefs,
           thinking: { type: "adaptive", display: "summarized" },
           output_config: { effort: EFFORT[effort] },
           cache_control: { type: "ephemeral" },
-          // If a safety classifier declines, retry on Anthropic's recommended fallback model instead of failing.
-          ...(haiku ? {} : { betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" as const }),
+          ...fallbackFor(model),
         },
         { signal },
       );

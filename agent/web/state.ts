@@ -78,4 +78,5 @@ export const EFFORTS: { id: Effort; label: string; hint: string }[] = [
   { id: "fast", label: "Fast", hint: "Quick answers" },
   { id: "auto", label: "Auto", hint: "Thinks when it helps" },
   { id: "deep", label: "Deep", hint: "Thinks hard, takes longer" },
+  { id: "max", label: "Max", hint: "Thinks as long as it needs. Slowest, smartest" },
 ];
