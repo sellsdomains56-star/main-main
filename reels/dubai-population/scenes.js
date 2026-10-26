@@ -3,7 +3,9 @@
 // "Dubai's population: 4.8 million" - HeyGen take 0cde1c5a (45 s, English), Abdullah Ahli's twin.  No map (nothing to locate): animated numbers and cards
 // on the dark gold background; his face is the small round bubble top-left.
 // Figures as he says them, from Dubai Data and Statistics Establishment releases: end-2025 4.58M after +332K (7.5%); ~4.8M in September 2026 (4,807,185 on a
-// September day; 4,782,535 end of August). End-2024 = 4.58M - 332K = ~4.25M (derived). The count moved to a real-time method from administrative records.
+// September day; 4,782,535 end of August). The count moved to a real-time method from administrative records.
+// REAL PAGES as proof (captured with shot_hl.mjs into assets/, not committed): Gulf News 29 Sep 2026 (4,807,185) and WAM 30 Jul 2026 (4.58M, +332,000, the
+// Digital Dubai infographic with 2023-2025 = 3.974M / 4.249M / 4.580M, and the new method), flown like the map with a marker on the exact words.
 // Safe zone: x 130-950, y 300-1420.
 // ---------------------------------------------------------------------------
 function buildScenes() {
@@ -17,56 +19,25 @@ function buildScenes() {
     city: tw(/^CITY$/, 0, 39.68), can: tw(/^CAN$/, 0, 40.92), pace: tw(/^PACE\?$/, 0, 42.38), where2: tw(/^WHERE$/, 1, 43.3), end: tw(/^GREATEST\?$/, 0, 44.28),
   };
 
-  const FACE_SEGS = [], PUNCHES = [], OVERLAYS = [], IMAGES = {};
+  const FACE_SEGS = [], PUNCHES = [], OVERLAYS = [], IMAGES = { gn: 'assets/gn_pop.png', wam: 'assets/wam_pop.png' };
   const GOLD = '#E9C47C', SOFT = '#F3D9A4', TEAL = '#2FD8A0', BLUE = '#3DB2FF';
   const BUBBLE = { t0: 0.1, src: { cx: 562, cy: 820, size: 600 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: K.end + 0.2, cx: 215, cy: 418, r: 78 }, { t: K.end + 1.2, cx: 540, cy: 560, r: 130 }] };
   HUD_X = 330;
+  // ---- the real pages: Gulf News (the 4.8 million count), then WAM (4.58M at the end of 2025 with the official infographic, +332,000, the new method)
+  const mk = (b, t0, t1) => ({ bbox: b, t0, t1 });
+  const page = (id, img, [a, b], keys, hl) => SCENES.push({ id, kind: 'page', img, a, b, keys, hl });
+  const T_GN = [0, K.end25 - 0.15], T_WAM = [K.end25 - 0.15, K.but - 0.2], A = T_WAM[0];
+  page('p_gn', 'gn', T_GN, [[0, 538, 330, 0.92, 0], [1.15, 538, 345, 0.98, 6], [2.0, 540, 2398, 0.98, 16], [T_GN[1] + 0.5, 540, 2402, 1.01, 18]],
+    [mk([811, 2348, 179, 48], 2.0, 2.3), mk([38, 2414, 581, 48], 2.3, 2.85)]);
+  page('p_wam', 'wam', T_WAM, [[0, 538, 300, 0.95, 0], [0.8, 538, 310, 0.98, 4], [1.45, 540, 1000, 1.12, 12], [2.6, 540, 1010, 1.15, 14], [3.15, 440, 2020, 1.22, 14], [4.3, 440, 2030, 1.25, 16],
+    [4.85, 540, 2818, 0.97, 16], [7.2, 540, 2822, 0.99, 16], [7.95, 540, 4152, 0.97, 16], [T_WAM[1] - A + 0.5, 540, 4158, 1.01, 18]],
+    [mk([467, 2705, 545, 60], A + 4.85, A + 5.2), mk([39, 2787, 871, 60], A + 5.2, A + 5.75), mk([39, 2869, 138, 60], A + 5.75, A + 5.9),
+     mk([321, 4109, 679, 60], A + 8.2, A + 8.75), mk([39, 4191, 677, 60], A + 8.75, A + 9.35)]);
+  // where the page comes from (small chip above the captions)
+  const srcChip = (t, txt, a0, a1) => { const al = win(t, a0, a1); if (al <= 0.003) return; const f = F.d(800, 24), w = M(txt, f, 2) + 48; ctx.save(); ctx.globalAlpha *= al; glassPill(CX - w / 2, 1176, w, 50, 25); T(txt, CX, 1209, { font: f, ls: 2, color: '#FFFFFF' }); ctx.restore(); };
   const win = (t, a0, a1, d = 0.4) => ea(t, a0, a0 + d) * (1 - ea(t, a1, a1 + 0.35));
   const slide = (t, a0) => (1 - ea(t, a0, a0 + 0.5, E.out4)) * 30;
 
-  // ---- 1: the live count, 4.8 million, as a field of 48 dots (one dot = 100,000 people)
-  const counter = (t) => {
-    const a0 = 0.3, a1 = K.end25 - 0.2, al = win(t, a0, a1); if (al <= 0.003) return;
-    ctx.save(); ctx.globalAlpha *= al; ctx.translate(0, slide(t, a0));
-    const v = 4807185 * ea(t, 0.4, K.m48 + 0.6, E.out3);
-    T(numberStr(v, 0), CX, 760, { font: F.d(800, 120), color: '#FFFFFF' });
-    T('RESIDENTS · SEPTEMBER 2026', CX, 830, { font: F.d(800, 30), ls: 6, color: GOLD, alpha: ea(t, K.sept - 0.2, K.sept + 0.2) });
-    for (let i = 0; i < 48; i++) { const e = ea(t, 0.5 + i * 0.045, 0.8 + i * 0.045, E.back), x = SAFE.x0 + 50 + (i % 12) * 65, y = 930 + Math.floor(i / 12) * 62; dot(x, y, 17 * e, i < 46 ? GOLD : SOFT, 0.35 + 0.65 * e); }
-    T('EACH DOT ≈ 100,000 PEOPLE', CX, 1220, { font: F.d(700, 22), ls: 3, color: C.mute, alpha: ea(t, 2.0, 2.4) });
-    ctx.restore();
-  };
-  // ---- 2: three bars - end 2024 (~4.25M, derived), end 2025 (4.58M), Sep 2026 (~4.8M); +332K between the first two
-  const bars = (t) => {
-    const a0 = K.end25 - 0.15, a1 = K.method - 0.25, al = win(t, a0, a1); if (al <= 0.003) return;
-    ctx.save(); ctx.globalAlpha *= al; ctx.translate(0, slide(t, a0));
-    glassPill(SAFE.x0, 640, SAFE.w, 620, 30);
-    T('DUBAI POPULATION · MILLIONS', SAFE.x0 + 34, 690, { font: F.d(800, 26), ls: 5, color: GOLD, align: 'left' });
-    const base = 1150, k = 300 / 4.8, bw = 190, gap = 60, x0 = SAFE.x0 + (SAFE.w - (3 * bw + 2 * gap)) / 2;
-    const rows = [['END 2024', 4.248, '≈4.25', SOFT, K.after], ['END 2025', 4.58, '4.58', GOLD, K.m458], ['SEP 2026', 4.807, '≈4.8', '#FFE2A8', K.end25 + 0.05]];
-    // keep the order of time on screen, but grow each bar when he says it
-    rows.forEach(([lab, v, txt, c, a], i) => {
-      const e = ea(t, a - 0.05, a + 0.8, E.out3); const x = x0 + i * (bw + gap), h = v * k * e;
-      ctx.save(); ctx.globalAlpha *= ea(t, a - 0.1, a + 0.2); const g = ctx.createLinearGradient(0, base - h, 0, base); g.addColorStop(0, c); g.addColorStop(1, 'rgba(233,196,124,0.25)'); rr(x, base - h, bw, h, 16); ctx.fillStyle = g; ctx.fill();
-      T(txt, x + bw / 2, base - h - 20, { font: F.d(800, 50), color: '#FFFFFF' }); T(lab, x + bw / 2, base + 46, { font: F.d(800, 24), ls: 2, color: C.dim }); ctx.restore();
-    });
-    const pe = ea(t, K.k332 - 0.1, K.k332 + 0.5, E.back);
-    if (pe > 0.003) { ctx.save(); ctx.globalAlpha *= pe; const x = x0 + bw + gap / 2; rr(x - 120, 712, 240, 78, 26); ctx.fillStyle = TEAL; ctx.fill(); T('+332K IN 2025', x, 750, { font: F.d(800, 28), color: '#0A0A0B' }); T('+7.5%', x, 778, { font: F.d(800, 20), ls: 1, color: '#0A0A0B' }); ctx.restore(); }
-    T('SOURCE: DUBAI DATA AND STATISTICS ESTABLISHMENT · 2024 = 4.58M − 332K', CX, 1236, { font: F.d(700, 16), ls: 1.5, color: C.mute });
-    ctx.restore();
-  };
-  // ---- 3: the new counting method
-  const method = (t) => {
-    const a0 = K.method - 0.2, a1 = K.but - 0.2, al = win(t, a0, a1); if (al <= 0.003) return;
-    ctx.save(); ctx.globalAlpha *= al; ctx.translate(0, slide(t, a0));
-    glassPill(SAFE.x0, 700, SAFE.w, 470, 30); rr(SAFE.x0, 700, 10, 470, 5); ctx.fillStyle = BLUE; ctx.fill();
-    T('THE COUNT CHANGED', SAFE.x0 + 44, 770, { font: F.d(800, 30), ls: 5, color: BLUE, align: 'left' });
-    T('NEW METHOD', SAFE.x0 + 44, 860, { font: F.d(800, 72), color: '#FFFFFF', align: 'left' });
-    T('REAL-TIME COUNT FROM OFFICIAL RECORDS', SAFE.x0 + 44, 916, { font: F.d(700, 26), ls: 2, color: C.dim, align: 'left' });
-    const e = ea(t, K.arrived - 1.6, K.arrived - 1.0, E.out4);
-    ctx.save(); ctx.globalAlpha *= e; line(SAFE.x0 + 44, 966, SAFE.x1 - 44, 966, { color: 'rgba(243,239,230,0.2)', w: 2 });
-    T('NOT ALL OF THEM', SAFE.x0 + 44, 1046, { font: F.d(800, 52), color: GOLD, align: 'left' }); T('JUST ARRIVED', SAFE.x0 + 44, 1110, { font: F.d(800, 52), color: GOLD, align: 'left' }); ctx.restore();
-    ctx.restore();
-  };
   // ---- 4: what a bigger population needs - four tiles
   const glyph = (k, x, y, s, c) => {
     ctx.save(); ctx.strokeStyle = c; ctx.fillStyle = c; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
@@ -122,7 +93,8 @@ function buildScenes() {
     hudTitle(t, 'FOR PROPERTY INVESTORS', 'WHO, WHERE, HOW MUCH', 'WHERE HOUSEHOLDS WANT TO LIVE', K.forp - 0.15, K.growth - 0.25, GOLD);
     hudTitle(t, 'GROWTH SUPPORTS DEMAND', 'YOUR PROPERTY?', 'IT DEPENDS ON THREE THINGS', K.growth - 0.2, K.city - 0.35, GOLD);
     hudTitle(t, 'DUBAI 2026', 'THE BIG QUESTION', 'KEEPING PACE WITH GROWTH', K.city - 0.3, K.end + 0.2, GOLD);
-    counter(t); bars(t); method(t); demand(t); personas(t); questions(t);
+    srcChip(t, 'GULF NEWS · 29 SEP 2026', 0.6, T_GN[1] - 0.15); srcChip(t, 'WAM · DIGITAL DUBAI · 30 JUL 2026', T_WAM[0] + 0.3, T_WAM[1] - 0.15);
+    demand(t); personas(t); questions(t);
     breakdown(t, { title: 'IT DEPENDS ON', a0: K.whether - 0.3, a1: K.city - 0.35, items: [{ txt: 'LOCATION', a: K.loc }, { txt: 'PRICE', a: K.price }, { txt: 'THE HOMES COMPETING WITH IT', a: K.compete - 0.2, gold: true }] });
     // the end card: his name under the grown bubble
     const ce = ea(t, K.end + 0.3, K.end + 1.0, E.out4);
