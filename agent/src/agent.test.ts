@@ -767,6 +767,27 @@ describe("Smart pick", () => {
   });
 });
 
+describe("Passkeys", () => {
+  it("unlocks the data with a passkey's PRF secret, and only that secret", async () => {
+    const { randomBytes } = await import("node:crypto");
+    const { isUnlocked, lock, unlock, unlockWithPasskey, wrapKeyForPasskey } = await import("./vault.js");
+    const { listMemories } = await import("./db.js");
+    const secret = randomBytes(32);
+    const wrapped = wrapKeyForPasskey(secret, "cred-1");
+    const before = listMemories().length;
+    lock();
+    try {
+      assert.equal(isUnlocked(), false);
+      assert.equal(unlockWithPasskey(wrapped, randomBytes(32), "cred-1"), false, "another secret doesn't open it");
+      assert.equal(unlockWithPasskey(wrapped, secret, "cred-2"), false, "it's bound to its own passkey");
+      assert.equal(unlockWithPasskey(wrapped, secret, "cred-1"), true);
+      assert.equal(listMemories().length, before, "the data reads back");
+    } finally {
+      if (!isUnlocked()) await unlock("correct horse");
+    }
+  });
+});
+
 describe("Push notifications", () => {
   it("sends end-to-end encrypted pushes to every device and forgets ones that unsubscribed", async () => {
     const { createECDH, randomBytes } = await import("node:crypto");

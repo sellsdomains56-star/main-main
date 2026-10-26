@@ -454,4 +454,21 @@ export const AR: Record<string, string> = {
   "Notifications are blocked in this browser's settings": "الإشعارات محظورة في إعدادات هذا المتصفح",
   "Notifications weren't allowed": "لم يُسمح بالإشعارات",
   "This browser can't do push notifications": "هذا المتصفح لا يدعم إشعارات الدفع",
+
+  // Passkeys
+  "Sign in with Face ID or fingerprint": "سجّل الدخول ببصمة الوجه أو الإصبع",
+  "Your data is locked after a restart, and this passkey can't unlock it. Sign in with your password once.": "بياناتك مقفلة بعد إعادة التشغيل، ومفتاح المرور هذا لا يستطيع فتحها. سجّل الدخول بكلمة المرور مرة واحدة.",
+  "Your data is locked after a restart, and this passkey can't unlock it. Sign in with your password once": "بياناتك مقفلة بعد إعادة التشغيل، ومفتاح المرور هذا لا يستطيع فتحها. سجّل الدخول بكلمة المرور مرة واحدة",
+  "or": "أو",
+  "Add this device": "أضف هذا الجهاز",
+  "Remove {name}?": "إزالة {name}؟",
+  "That device will need your password to sign in.": "سيحتاج ذلك الجهاز إلى كلمة المرور لتسجيل الدخول.",
+  "Signs in and unlocks after a restart": "يسجّل الدخول ويفتح البيانات بعد إعادة التشغيل",
+  "Signs in while unlocked; after a restart, use your password once": "يسجّل الدخول والبيانات مفتوحة؛ بعد إعادة التشغيل استخدم كلمة المرور مرة واحدة",
+  "Sign in with Face ID, Touch ID, a fingerprint or Windows Hello instead of typing your password.": "سجّل الدخول ببصمة الوجه أو Touch ID أو بصمة الإصبع أو Windows Hello بدل كتابة كلمة المرور.",
+  "Added. This device can sign in and unlock with Face ID or fingerprint.": "تمت الإضافة. يستطيع هذا الجهاز تسجيل الدخول وفتح البيانات ببصمة الوجه أو الإصبع.",
+  "Added. This device can sign in with Face ID or fingerprint.": "تمت الإضافة. يستطيع هذا الجهاز تسجيل الدخول ببصمة الوجه أو الإصبع.",
+  "Face ID & fingerprint": "بصمة الوجه والإصبع",
+  "This passkey isn't registered here. Sign in with your password.": "مفتاح المرور هذا غير مسجّل هنا. سجّل الدخول بكلمة المرور.",
+  "That passkey sign-in didn't check out. Try again.": "تعذّر التحقق من تسجيل الدخول بمفتاح المرور. حاول مجددًا.",
 };

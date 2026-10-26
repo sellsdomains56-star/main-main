@@ -13,7 +13,7 @@ function urlBase64ToBytes(base64: string): Uint8Array {
 const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 const isInstalled = () => matchMedia("(display-mode: standalone)").matches || (navigator as Navigator & { standalone?: boolean }).standalone === true;
 
-function deviceLabel(): string {
+export function deviceLabel(): string {
   const ua = navigator.userAgent;
   if (/iPhone/.test(ua)) return "iPhone";
   if (/iPad/.test(ua) || isIOS()) return "iPad";

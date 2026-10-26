@@ -44,6 +44,8 @@ import {
   updateAgent,
   updateConversation,
   removePushSubscription,
+  deletePasskey,
+  listPasskeys,
   type AgentInput,
 } from "./db.js";
 import { GALLERY } from "./connectors/gallery.js";
@@ -59,6 +61,8 @@ import { spendingReport } from "./spending.js";
 import { indexMemory } from "./memory.js";
 import { pushDevices, pushPublicKey, sendPush, subscribePush, unsubscribePush } from "./push.js";
 import { tr } from "./i18n.js";
+import type { AuthenticationResponseJSON, RegistrationResponseJSON } from "@simplewebauthn/server";
+import { authenticationOptions, finishAuthentication, finishRegistration, passkeySummaries, registrationOptions } from "./passkeys.js";
 import { changePassword, createVault, isUnlocked, lock, VaultLockedError, vaultExists } from "./vault.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -208,8 +212,32 @@ export function createApp() {
       setupRequired: !vaultExists(),
       locked: vaultExists() && !isUnlocked(),
       agentName: config.agentName,
+      passkeys: listPasskeys().length,
     });
   });
+
+  // ── Passkeys (Face ID, fingerprint): signing in ──
+  app.post("/api/passkeys/login/options", express.json(), asyncRoute(async (req, res) => {
+    res.json(await authenticationOptions(req));
+  }));
+  app.post("/api/passkeys/login", express.json(), asyncRoute(async (req, res) => {
+    const ip = req.ip ?? "unknown";
+    const wait = loginBlocked(ip);
+    if (wait) {
+      res.status(429).json({ error: `Too many attempts. Try again in ${Math.ceil(wait / 60)} min.` });
+      return;
+    }
+    const body = parse(z.object({ response: z.custom<AuthenticationResponseJSON>((v) => !!v && typeof v === "object" && typeof (v as { id?: unknown }).id === "string"), prf: z.string().max(200).optional() }), req.body);
+    const result = await finishAuthentication(req, body);
+    if (!result.ok) {
+      if (result.status === 401) recordLoginFailure(ip);
+      res.status(result.status).json({ error: result.error, needsPassword: result.needsPassword ?? false });
+      return;
+    }
+    clearLoginFailures(ip);
+    issueSession(res, req.secure);
+    res.json({ ok: true });
+  }));
 
   // First run: you choose the password that signs you in and encrypts your data.
   app.post("/api/setup", express.json(), asyncRoute(async (req, res) => {
@@ -317,6 +345,34 @@ export function createApp() {
   });
   app.post("/api/push/test", async (_req, res) => {
     res.json(await sendPush({ title: tr("Notifications are on", "الإشعارات مفعّلة"), body: tr("This is how Dizz Lab will reach you.", "هكذا سيصلك Dizz Lab."), url: "/" }));
+  });
+
+  // ── Passkeys: adding and removing (signed in) ──
+  app.get("/api/passkeys", (_req, res) => {
+    res.json(passkeySummaries());
+  });
+  app.post("/api/passkeys/register/options", asyncRoute(async (req, res) => {
+    res.json(await registrationOptions(req));
+  }));
+  app.post("/api/passkeys/register", asyncRoute(async (req, res) => {
+    const body = parse(
+      z.object({
+        response: z.custom<RegistrationResponseJSON>((v) => !!v && typeof v === "object" && typeof (v as { id?: unknown }).id === "string"),
+        prf: z.string().max(200).optional(),
+        label: z.string().trim().min(1).max(80).default("This device"),
+      }),
+      req.body,
+    );
+    try {
+      await finishRegistration(req, body);
+    } catch (err) {
+      throw new HttpError(400, err instanceof Error ? err.message : "The passkey couldn't be added");
+    }
+    res.json(passkeySummaries());
+  }));
+  app.delete("/api/passkeys/:id", (req, res) => {
+    deletePasskey(param(req, "id"));
+    res.json(passkeySummaries());
   });
 
   app.get("/api/usage", (_req, res) => {

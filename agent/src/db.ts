@@ -53,6 +53,8 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS agents (
     id TEXT PRIMARY KEY, data TEXT NOT NULL, model TEXT, effort TEXT, tools TEXT,
     created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL);
+  CREATE TABLE IF NOT EXISTS passkeys (
+    id TEXT PRIMARY KEY, data TEXT NOT NULL, created_at INTEGER NOT NULL);
   CREATE TABLE IF NOT EXISTS push_subscriptions (
     id TEXT PRIMARY KEY, data TEXT NOT NULL, created_at INTEGER NOT NULL);
   CREATE TABLE IF NOT EXISTS memory_vectors (
@@ -552,4 +554,38 @@ export function listPushSubscriptions(): { id: string; label: string; createdAt:
 
 export function removePushSubscription(id: string): void {
   db.prepare("DELETE FROM push_subscriptions WHERE id = ?").run(id);
+}
+
+// ── Passkeys ──────────────────────────────────────────────────────────────────
+// Readable while locked (sign-in has to check them before anything is unlocked). Nothing
+// here is secret: a public key, a counter, a label, and the data key wrapped with a secret
+// only the passkey can produce.
+
+export interface PasskeyRecord {
+  id: string;
+  publicKey: string;
+  counter: number;
+  transports: string[];
+  label: string;
+  /** The data key wrapped with this passkey's PRF secret, when the passkey supports it. */
+  prfWrappedKey: string | null;
+  createdAt: number;
+  lastUsedAt: number | null;
+}
+
+export function listPasskeys(): PasskeyRecord[] {
+  return (db.prepare("SELECT data FROM passkeys ORDER BY created_at").all() as Row[]).map((r) => JSON.parse(r.data as string) as PasskeyRecord);
+}
+
+export function getPasskey(id: string): PasskeyRecord | null {
+  const r = db.prepare("SELECT data FROM passkeys WHERE id = ?").get(id) as Row | undefined;
+  return r ? (JSON.parse(r.data as string) as PasskeyRecord) : null;
+}
+
+export function savePasskey(p: PasskeyRecord): void {
+  db.prepare("INSERT INTO passkeys (id, data, created_at) VALUES (?, ?, ?) ON CONFLICT(id) DO UPDATE SET data = excluded.data").run(p.id, JSON.stringify(p), p.createdAt);
+}
+
+export function deletePasskey(id: string): boolean {
+  return db.prepare("DELETE FROM passkeys WHERE id = ?").run(id).changes > 0;
 }

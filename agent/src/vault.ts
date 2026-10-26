@@ -1,4 +1,4 @@
-import { createCipheriv, createDecipheriv, randomBytes, scrypt as scryptCb, type ScryptOptions } from "node:crypto";
+import { createCipheriv, createDecipheriv, hkdfSync, randomBytes, scrypt as scryptCb, type ScryptOptions } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
@@ -120,6 +120,32 @@ export async function unlock(password: string): Promise<boolean> {
     return true;
   } catch {
     return false; // GCM authentication failed: wrong password
+  }
+}
+
+// ── Passkeys ──────────────────────────────────────────────────────────────────
+// A passkey that supports the WebAuthn PRF extension gives the browser a secret only that
+// passkey can produce. The data key is wrapped with it, so Face ID or a fingerprint can
+// unlock your data after a restart, just like your password.
+
+function passkeyKey(prfSecret: Buffer, credentialId: string): Buffer {
+  return Buffer.from(hkdfSync("sha256", prfSecret, Buffer.from("dizz-lab passkey v1"), Buffer.from(credentialId), 32));
+}
+
+/** The data key, wrapped for one passkey. Only works while unlocked. */
+export function wrapKeyForPasskey(prfSecret: Buffer, credentialId: string): string {
+  if (!dataKey) throw new VaultLockedError();
+  return seal(passkeyKey(prfSecret, credentialId), dataKey).toString("base64");
+}
+
+/** Unlocks with a passkey's secret; false if it doesn't open the key. */
+export function unlockWithPasskey(wrapped: string, prfSecret: Buffer, credentialId: string): boolean {
+  try {
+    const key = open(passkeyKey(prfSecret, credentialId), Buffer.from(wrapped, "base64"));
+    dataKey ??= key;
+    return true;
+  } catch {
+    return false;
   }
 }
 

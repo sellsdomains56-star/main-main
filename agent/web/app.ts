@@ -8,6 +8,7 @@ import { applyTheme, openAgents, openConnectors, openFiles, openMemory, openRemi
 import { prefs, savePrefs, state, type AgentProfile, type Bootstrap, type ConversationSummary, type OpenConversation } from "./state.js";
 import { confirmDialog, debounce, promptDialog, relativeDay, toast } from "./util.js";
 import { pushOnHere } from "./push.js";
+import { isNeedsPassword, passkeysSupported, signInWithPasskey } from "./passkeys.js";
 import { lang, setLang, t, type Lang } from "./i18n.js";
 
 const root = document.getElementById("app")!;
@@ -17,7 +18,7 @@ applyTheme();
 
 type Gate = "setup" | "login" | "unlock";
 
-function showLogin(agentName: string, gate: Gate) {
+function showLogin(agentName: string, gate: Gate, passkeys = 0) {
   clear(root);
   const password = h("input", {
     class: "input",
@@ -47,7 +48,7 @@ function showLogin(agentName: string, gate: Gate) {
     error,
     button,
     h("div", { class: "login-lock" }, h("span", { html: icon("lock", 13) }), h("span", null, t("Encrypted with AES-256 · key never stored"))),
-    languageToggle(() => showLogin(agentName, gate)),
+    languageToggle(() => showLogin(agentName, gate, passkeys)),
   );
   onSubmit(form, async () => {
     error.hidden = true;
@@ -69,8 +70,29 @@ function showLogin(agentName: string, gate: Gate) {
       password.select();
     }
   });
+  // Face ID / fingerprint, when a passkey is registered and this browser can use one.
+  if (gate !== "setup" && passkeys > 0 && passkeysSupported()) {
+    const faceBtn = h("button", { class: "btn block passkey-btn", type: "button" }, h("span", { html: icon("lock", 15) }), t("Sign in with Face ID or fingerprint"));
+    faceBtn.addEventListener("click", async () => {
+      error.hidden = true;
+      faceBtn.disabled = true;
+      try {
+        await signInWithPasskey();
+        await start();
+      } catch (err) {
+        const cancelled = err instanceof Error && (err.name === "NotAllowedError" || err.name === "AbortError");
+        if (!cancelled) {
+          error.textContent = isNeedsPassword(err) ? t("Your data is locked after a restart, and this passkey can't unlock it. Sign in with your password once.") : (err as Error).message;
+          error.hidden = false;
+        }
+        faceBtn.disabled = false;
+        if (isNeedsPassword(err)) password.focus();
+      }
+    });
+    button.after(h("div", { class: "login-or" }, t("or")), faceBtn);
+  }
   root.append(h("div", { class: "login" }, form));
-  password.focus();
+  if (!(gate !== "setup" && passkeys > 0 && passkeysSupported())) password.focus();
 }
 
 /** English | العربية, for the sign-in screen (the same choice is in Settings). */
@@ -517,10 +539,10 @@ async function start() {
 }
 
 (async () => {
-  const session = await api<{ authenticated: boolean; setupRequired: boolean; locked: boolean; agentName: string }>("/api/session");
+  const session = await api<{ authenticated: boolean; setupRequired: boolean; locked: boolean; agentName: string; passkeys?: number }>("/api/session");
   document.title = session.agentName;
   if (session.authenticated) await start();
-  else showLogin(session.agentName, session.setupRequired ? "setup" : session.locked ? "unlock" : "login");
+  else showLogin(session.agentName, session.setupRequired ? "setup" : session.locked ? "unlock" : "login", session.passkeys ?? 0);
 })().catch((err) => {
   root.textContent = t("Couldn't start: {error}", { error: (err as Error).message });
 });

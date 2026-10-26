@@ -5,6 +5,7 @@ import { EFFORTS, prefs, savePrefs, state, type AgentProfile, type FileRecord, t
 import { confirmDialog, debounce, formatDateTime, formatSize, promptDialog, toast } from "./util.js";
 import { renderUsage } from "./usage.js";
 import { disablePush, enablePush, pushState } from "./push.js";
+import { addPasskey, passkeysSupported } from "./passkeys.js";
 import { lang, plural, t, type Lang } from "./i18n.js";
 
 interface Memory {
@@ -444,6 +445,7 @@ export function openSettings(onSaved: (s: Settings) => void, onSignOut: (everywh
     "form",
     { class: "form" },
     securitySection(),
+    state.boot.cloud || state.boot.demo ? null : passkeySection(),
     h("div", { class: "field" }, t("Language"), languagePicker),
     h("label", { class: "field" }, t("Your name"), userName),
     h("label", { class: "field" }, t("Personality"), personality),
@@ -565,6 +567,47 @@ function cloudSecurityRows(row: (ok: boolean, title: string, detail: string) => 
     ),
     row(true, t("Uploads stay in this page"), t("Files you attach are read in this page and aren't saved. Attach them again in a new visit.")),
   );
+}
+
+/** Face ID / fingerprint sign-in: the passkeys registered, and adding this device. */
+function passkeySection(): HTMLElement {
+  const list = h("div", { class: "passkey-list" });
+  const add = h("button", { class: "btn small", type: "button" }, h("span", { html: icon("plus", 14) }), t("Add this device"));
+  const render = (keys: { id: string; label: string; createdAt: number; lastUsedAt: number | null; unlocks: boolean }[]) => {
+    clear(list);
+    for (const k of keys) {
+      const remove = h("button", { class: "icon-btn", type: "button", title: t("Remove"), "aria-label": t("Remove"), html: icon("trash", 15) });
+      remove.addEventListener("click", async () => {
+        if (!(await confirmDialog(`${t("Remove {name}?", { name: k.label })} ${t("That device will need your password to sign in.")}`, t("Remove")))) return;
+        render(await api(`/api/passkeys/${encodeURIComponent(k.id)}`, { method: "DELETE" }));
+      });
+      list.append(
+        h(
+          "div",
+          { class: "passkey-row" },
+          h("span", { html: icon("shield", 16) }),
+          h("div", null, k.label, h("small", null, k.unlocks ? t("Signs in and unlocks after a restart") : t("Signs in while unlocked; after a restart, use your password once"))),
+          remove,
+        ),
+      );
+    }
+    if (!keys.length) list.append(h("small", { class: "muted" }, t("Sign in with Face ID, Touch ID, a fingerprint or Windows Hello instead of typing your password.")));
+  };
+  add.addEventListener("click", async () => {
+    add.disabled = true;
+    try {
+      const { unlocks } = await addPasskey();
+      toast(unlocks ? t("Added. This device can sign in and unlock with Face ID or fingerprint.") : t("Added. This device can sign in with Face ID or fingerprint."));
+      render(await api("/api/passkeys"));
+    } catch (err) {
+      const cancelled = err instanceof Error && (err.name === "NotAllowedError" || err.name === "AbortError");
+      if (!cancelled) toast((err as Error).message, "error");
+    }
+    add.disabled = false;
+  });
+  void api<Parameters<typeof render>[0]>("/api/passkeys").then(render).catch(() => {});
+  if (!passkeysSupported()) add.hidden = true;
+  return h("div", { class: "field" }, t("Face ID & fingerprint"), list, add);
 }
 
 /** Push notifications for this device (or plain browser notifications where push isn't available). */
