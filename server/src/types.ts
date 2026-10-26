@@ -65,6 +65,8 @@ export interface Barber {
   sharePercent?: number; // at a barbershop: the barber's share of service takings (else the shop's default)
   clientNotes?: Record<string, string>; // the barber's private notes per client (key: customer id or "guest:<name>")
   nudgedAt?: Record<string, string>; // when each client last got a "we miss you" message
+  stripeAccountId?: string; // Stripe Connect account that receives their payouts
+  payoutsEnabled?: boolean; // Stripe says the account can be paid
 }
 
 /** Cancelling late: the barber keeps part of the price. freeHours 0 = always free. */
@@ -103,6 +105,45 @@ export interface Settings {
   platformFeePercent?: number;
   reviewNewBarbers?: boolean; // new barbers wait for approval before they appear
   hiddenCampaigns?: string[]; // campaign ids switched off on Home
+  team?: Record<string, AdminRole>; // email -> role, for team members added in the admin panel
+}
+
+/** Owner: everything. Operations: barbers, shops, bookings, orders, partners. Support: tickets, reels, bookings, customers. Finance: money and reports. */
+export type AdminRole = "owner" | "operations" | "support" | "finance";
+
+/** Something the team did in the admin panel, for the activity log. */
+export interface ActivityEntry {
+  id: string;
+  at: string;
+  by: { id: string; name: string; email: string };
+  action: string; // e.g. "barber.suspended"
+  target: string; // what it was done to, in words
+  detail?: string;
+}
+
+/** A hotel (guests book through its QR code; it earns a commission) or a company (staff get a discount). */
+export interface Partner {
+  id: string;
+  kind: "hotel" | "corporate";
+  name: string;
+  code: string; // e.g. ATLANTIS, in the QR link /p/ATLANTIS
+  discountPercent: number; // corporate: off the service for their people
+  commissionPercent: number; // hotel: of the booking value, paid by JB
+  emailDomain?: string; // corporate: staff with this email domain get the discount automatically
+  contactEmail: string;
+  active: boolean;
+  createdAt: string;
+}
+
+/** Messages between a customer and a barber. */
+export interface Chat {
+  id: string;
+  customerId: string;
+  barberId: string;
+  messages: { id: string; from: "customer" | "barber"; text: string; at: string }[];
+  customerReadAt?: string;
+  barberReadAt?: string;
+  updatedAt: string;
 }
 
 /** A barbershop: its team are the barbers with this `shopId`. */
@@ -257,6 +298,8 @@ export interface Booking {
   priceRule?: number; // off-peak (< 0) or peak (> 0) percent applied to the service
   lateFee?: number; // kept by the barber when cancelled late (minor units)
   checkedInAt?: string; // arrived at the shop (tablet check-in)
+  partnerId?: string; // booked through a hotel's QR code or with a company's code
+  partnerDiscount?: number; // what the company code took off (minor units)
   createdAt: string;
 }
 
@@ -277,7 +320,7 @@ export type ShopRole = "owner" | "manager" | "front_desk";
 /** What a barbershop changed about itself in the shop panel. */
 export type ShopSettings = Partial<Pick<Shop, "about" | "phone" | "workingDays" | "openHour" | "closeHour" | "barberSharePercent">>;
 
-export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist" | "account" | "message" | "queue";
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist" | "account" | "message" | "queue" | "chat";
 
 /** An alert shown in the app's inbox and, when the user has a phone registered, sent as a push notification. */
 export interface AppNotification {

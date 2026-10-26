@@ -42,3 +42,8 @@ yarn-error.*
 .env
 dist-demo.html
 dist-netlify/
+
+# Store upload keys (never commit)
+google-play-service-account.json
+*.p8
+*.mobileprovision

@@ -20,6 +20,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { resolveMedia } from "../lib/config";
 import { colors, emphasis, fonts, radius, raise, shadow } from "./theme";
+import { isArabic, tr } from "../lib/i18n";
 import { tick } from "../lib/haptics";
 
 export type IconName = keyof typeof Ionicons.glyphMap;
@@ -58,9 +59,20 @@ export function T({
 }) {
   return (
     <Text numberOfLines={numberOfLines} onPress={onPress} accessibilityRole={onPress ? "link" : undefined} style={[variants[variant], { color: color ?? (muted ? colors.muted : colors.text) }, center && { textAlign: "center" }, style]}>
-      {children}
+      {isArabic ? translated(children) : children}
     </Text>
   );
+}
+
+/** A label in Arabic when Arabic is on: plain strings, or text pieces like {count} visits joined first. */
+function translated(children: ReactNode): ReactNode {
+  if (typeof children === "string") return tr(children);
+  if (Array.isArray(children) && children.every((c) => typeof c === "string" || typeof c === "number")) {
+    const joined = children.join("");
+    const t = tr(joined);
+    return t === joined ? children : t;
+  }
+  return children;
 }
 
 // ---------- Layout ----------
@@ -347,6 +359,7 @@ export function Field({ label, style, ...props }: TextInputProps & { label: stri
         placeholderTextColor={colors.faint}
         selectionColor={colors.accent}
         {...props}
+        placeholder={props.placeholder && tr(props.placeholder)}
         onFocus={(e) => {
           setFocused(true);
           props.onFocus?.(e);
@@ -372,7 +385,7 @@ export function SearchBar({ value, onChangeText, placeholder, onPress, autoFocus
           accessibilityLabel={placeholder}
           value={value}
           onChangeText={onChangeText}
-          placeholder={placeholder}
+          placeholder={tr(placeholder)}
           placeholderTextColor={colors.faint}
           selectionColor={colors.accent}
           autoFocus={autoFocus}

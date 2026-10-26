@@ -39,6 +39,7 @@ export interface Barber {
   transformations: Transformation[];
   nextAvailable: string | null;
   distanceKm?: number; // when searching near the customer
+  reason?: string; // recommendations: why it was picked
   level?: Level;
   cancelPolicy?: CancelPolicy | null;
   offPeak?: PriceRule | null;
@@ -86,6 +87,7 @@ export interface User {
   email: string;
   role: "customer" | "barber";
   admin?: boolean; // on the JB Always Fresh team: can open the admin panel
+  adminRole?: AdminRole;
   manages?: string; // id of the barbershop this person runs in the shop panel
   barberId?: string;
   countryCode?: string;
@@ -754,6 +756,87 @@ export interface BookingRules {
   peak: PriceRule | null;
 }
 export type Level = "new" | "rising" | "pro" | "elite";
+
+/** Owner: everything. Operations: barbers, shops, bookings, partners. Support: tickets, reels, bookings, customers. Finance: money and reports. */
+export type AdminRole = "owner" | "operations" | "support" | "finance";
+
+export interface TeamMember { email: string; role: AdminRole; fixed: boolean; name: string | null }
+export interface ActivityEntry { id: string; at: string; by: { id: string; name: string; email: string }; action: string; target: string; detail?: string }
+
+export interface AdminAnalytics {
+  days: number;
+  bookings: { made: number; paid: number; cancelled: number; cancelRate: number; conversion: number };
+  customers: { active: number; firstTime: number; returning: number; newAccounts: number; repeatRate: number };
+  averageBooking: Money;
+  leadTimeHours: number;
+  byCity: { city: string; bookings: number; revenue: Money }[];
+  byService: { name: string; count: number }[];
+  byHour: number[];
+  byWeekday: number[];
+  topBarbers: { id: string; name: string; photoUrl: string; city: string; bookings: number }[];
+}
+
+export interface AdminFinance {
+  month: string;
+  label: string;
+  vatRegistered: boolean;
+  vatPercent: number;
+  lines: { key: string; label: string; amounts: Money }[];
+  transactions: number;
+}
+
+export interface Partner {
+  id: string;
+  kind: "hotel" | "corporate";
+  name: string;
+  code: string;
+  discountPercent: number;
+  commissionPercent: number;
+  emailDomain?: string;
+  contactEmail: string;
+  active: boolean;
+  createdAt: string;
+  link: string;
+  bookings: number;
+  bookingsThisMonth: number;
+  revenueThisMonth: Money;
+  owedThisMonth: Money;
+  discountsThisMonth: Money;
+}
+
+/** A hotel or company code a customer arrived with (QR link /p/CODE). */
+export interface PartnerWelcome { code: string; name: string; kind: "hotel" | "corporate"; discountPercent: number }
+
+export interface Award { month: string; label: string; city: string; list: { rank: number; cuts: number; barber: Barber }[] }
+
+export interface Invoice {
+  number: string;
+  title: string;
+  issuedAt: string;
+  serviceDate: string;
+  timeZone: string;
+  seller: { name: string; address: string; trn: string | null; onBehalfOf: string };
+  customer: { name: string; email: string };
+  lines: { description: string; amount: number }[];
+  currency: string;
+  discounts: { description: string; amount: number }[];
+  total: number;
+  vat: { percent: number; amount: number } | null;
+  tip: number;
+  note: string;
+}
+
+export interface ChatSummary {
+  id: string;
+  with: { id: string; name: string; photoUrl: string };
+  last: ChatMessage2 | null;
+  unread: number;
+  updatedAt: string;
+}
+export interface ChatMessage2 { id: string; from: "customer" | "barber"; text: string; at: string }
+export interface ChatThread extends ChatSummary { side: "customer" | "barber"; messages: ChatMessage2[] }
+
+export interface Payouts { available: boolean; connected: boolean; payoutsEnabled: boolean; missing?: string[]; note?: string }
 
 export interface CalBooking {
   id: string;

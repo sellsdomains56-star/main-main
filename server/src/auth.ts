@@ -2,7 +2,7 @@ import { randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 import type { NextFunction, Request, Response } from "express";
 import { config } from "./config.js";
 import { db, save } from "./db.js";
-import type { User } from "./types.js";
+import type { AdminRole, User } from "./types.js";
 
 export function hashPassword(password: string): string {
   const salt = randomBytes(16).toString("hex");
@@ -22,13 +22,23 @@ export function createSession(userId: string): string {
   return token;
 }
 
-/** The team: emails listed in ADMIN_EMAILS (and the sample admin when DEMO_ACCOUNTS is on). */
-export const isAdmin = (user: User | undefined) => !!user && (config.adminEmails.includes(user.email.toLowerCase()) || (config.demoAccounts && user.email === DEMO_ADMIN_EMAIL));
+/**
+ * The team and what each person may do. ADMIN_EMAILS (and the sample admin when DEMO_ACCOUNTS is on) are owners;
+ * owners add more people with a role in the admin panel (Settings → Team).
+ */
+export function adminRole(user: User | undefined): AdminRole | null {
+  if (!user || user.deletedAt) return null;
+  const email = user.email.toLowerCase();
+  if (config.adminEmails.includes(email) || (config.demoAccounts && email === DEMO_ADMIN_EMAIL)) return "owner";
+  return db.settings.team?.[email] ?? null;
+}
+export const isAdmin = (user: User | undefined) => adminRole(user) !== null;
 export const DEMO_ADMIN_EMAIL = "admin@demo.jbalwaysfresh.com";
 
 export function publicUser(user: User) {
   const { passwordHash: _omit, pushTokens: _tokens, appleSub: _apple, googleSub: _google, ...rest } = user;
-  return { ...rest, ...(isAdmin(user) ? { admin: true } : {}) };
+  const role = adminRole(user);
+  return { ...rest, ...(role ? { admin: true, adminRole: role } : {}) };
 }
 
 declare global {
@@ -58,6 +68,22 @@ export function requireAdmin(req: Request, res: Response, next: NextFunction) {
     next();
   });
 }
+
+/** Team members whose role is one of `roles` (owners always pass). */
+export const requireAdminRole = (...roles: AdminRole[]) => (req: Request, res: Response, next: NextFunction) => {
+  requireAuth(req, res, () => {
+    const role = adminRole(req.user);
+    if (!role) {
+      res.status(403).json({ error: "Only the JB Always Fresh team can do this." });
+      return;
+    }
+    if (role !== "owner" && !roles.includes(role)) {
+      res.status(403).json({ error: "Your team role doesn't include this. Ask an owner." });
+      return;
+    }
+    next();
+  });
+};
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
   const token = req.header("authorization")?.replace(/^Bearer\s+/i, "");

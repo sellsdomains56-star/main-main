@@ -5,6 +5,7 @@ import { db, newId, save } from "./db.js";
 import { applyPerks, priceBooking } from "./club.js";
 import { bookingConfirmed } from "./notify.js";
 import { createPaymentIntent } from "./payments.js";
+import { partnerFor } from "./partners.js";
 import { adjustedPrice, cancelTerms, priceRuleAt } from "./pro.js";
 import { SHOPS } from "./seed.js";
 import { extrasFor } from "./services.js";
@@ -42,6 +43,7 @@ export const NewBooking = z.object({
   notes: z.string().max(1000).default(""),
   // Home visits: what kind of place, and the details the barber needs to get in (room, berth, gate code…).
   venue: z.object({ kind: z.enum(["home", "hotel", "yacht", "office"]), details: z.string().trim().max(300).default("") }).optional(),
+  partner: z.string().trim().toUpperCase().max(40).optional(), // a hotel's or company's code
   // Booking for someone else (a guest, family member or client).
   guest: z.object({ name: z.string().trim().min(1).max(60), phone: z.string().trim().max(30).default("") }).optional(),
   // Extras on top of the service (hot towel, massage…): they add time and price.
@@ -98,7 +100,18 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
   // Off-peak discount or peak premium on the service itself (not extras or travel).
   const rule = consultation ? 0 : priceRuleAt(barber, booking.startsAt);
   if (rule) booking.priceRule = rule;
-  const price = priceBooking(customer, barber, rule ? { ...service, price: adjustedPrice(service.price, rule) } : service, body.locationType, booking.currency, extras.reduce((t, s) => t + s.price, 0));
+  let servicePrice = adjustedPrice(service.price, rule);
+  // A hotel's QR code or a company's code: the hotel earns a commission, the company's people get a discount.
+  const partner = consultation ? undefined : partnerFor(body.partner, customer);
+  if (partner) {
+    booking.partnerId = partner.id;
+    if (partner.kind === "corporate" && partner.discountPercent) {
+      const off = adjustedPrice(servicePrice, -partner.discountPercent);
+      booking.partnerDiscount = servicePrice - off;
+      servicePrice = off;
+    }
+  }
+  const price = priceBooking(customer, barber, servicePrice !== service.price ? { ...service, price: servicePrice } : service, body.locationType, booking.currency, extras.reduce((t, s) => t + s.price, 0));
   booking.amount = price.amount;
   if (customer) applyPerks(customer, booking, price.covered, price.creditUsed);
   // A tip rides along with a payment; on a free booking it can be left after the cut instead.
@@ -117,7 +130,7 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
     barberId: booking.barberId,
     platformFee: String(platformFee(booking.amount)), // never on the tip
     tip: String(booking.tip ?? 0),
-  });
+  }, barber.stripeAccountId && barber.payoutsEnabled ? { destination: barber.stripeAccountId, applicationFee: platformFee(booking.amount) } : undefined);
   booking.paymentIntentId = intent?.id;
   db.bookings.push(booking);
   save();

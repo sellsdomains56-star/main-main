@@ -81,6 +81,7 @@ export default function Account() {
 
       <Section title="General">
         {user?.role !== "barber" && <ListRow icon="calendar-outline" title="My bookings" onPress={() => router.push("/bookings")} />}
+        {user && <ListRow icon="chatbubbles-outline" title="Messages" subtitle={user.role === "barber" ? "Questions from your clients" : "Talk to barbers you've booked"} onPress={() => router.push("/messages")} />}
         <ListRow
           icon="notifications-outline"
           title="Alerts"

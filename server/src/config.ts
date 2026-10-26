@@ -44,4 +44,11 @@ export const config = {
   whatsappLanguage: process.env.WHATSAPP_LANGUAGE || "en",
   // Where links in emails open (the website), e.g. https://jbalwaysfresh.com
   appUrl: (process.env.APP_URL || "http://localhost:8081").replace(/\/$/, ""),
+  // On tax invoices and receipts. VAT_TRN is the company's UAE tax registration number; without it receipts carry no VAT line.
+  companyName: process.env.COMPANY_LEGAL_NAME || "JB Always Fresh",
+  companyAddress: process.env.COMPANY_ADDRESS || "Dubai, United Arab Emirates",
+  vatTrn: process.env.VAT_TRN || undefined,
+  vatPercent: Number(process.env.VAT_PERCENT ?? 5), // UAE standard rate, applied to AED prices (which include VAT)
+  // Postgres: when set, all data is kept in the database instead of server/data/db.json.
+  databaseUrl: process.env.DATABASE_URL || undefined,
 };

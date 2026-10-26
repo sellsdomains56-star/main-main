@@ -162,6 +162,26 @@ export function seedDemoAccounts() {
     });
   });
 
+  // Partners: a hotel whose guests book through its QR code, and a company whose people get a discount.
+  db.partners.push(
+    { id: "demo-partner-atlantis", kind: "hotel", name: "Atlantis The Royal", code: "ATLANTIS", discountPercent: 0, commissionPercent: 10, contactEmail: "concierge@atlantis.example", active: true, createdAt: new Date(now - 40 * 86_400_000).toISOString() },
+    { id: "demo-partner-emirates", kind: "corporate", name: "Emirates Group", code: "EMIRATES", discountPercent: 15, commissionPercent: 0, emailDomain: "emirates.example", contactEmail: "people@emirates.example", active: true, createdAt: new Date(now - 25 * 86_400_000).toISOString() },
+  );
+  db.bookings.filter((b) => ["confirmed", "completed"].includes(b.status)).forEach((b, i) => {
+    if (i % 9 === 0) b.partnerId = "demo-partner-atlantis";
+    else if (i % 13 === 0) b.partnerId = "demo-partner-emirates";
+  });
+  // A client's question for Mateo.
+  const at = (m: number) => new Date(now - m * 60_000).toISOString();
+  db.chats.push({
+    id: newId(), customerId: customers[1]!.id, barberId: DEMO_LOGINS.barber.barberId, updatedAt: at(40),
+    messages: [
+      { id: newId(), from: "customer", text: "Hi Mateo, can you do a textured crop like your last reel?", at: at(55) },
+      { id: newId(), from: "barber", text: "For sure. Bring a photo if you have one. See you Thursday!", at: at(48) },
+      { id: newId(), from: "customer", text: "Perfect, I'll be 5 minutes early.", at: at(40) },
+    ],
+  });
+
   // Support: two questions and a reported reel.
   const t = (userIdx: number, topic: "booking" | "payment" | "other", message: string, hoursAgo: number, reelId?: string) => {
     const c = customers[userIdx]!;

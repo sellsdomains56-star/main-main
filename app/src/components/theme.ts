@@ -1,7 +1,8 @@
-import { Platform } from "react-native";
+import { Appearance, Platform } from "react-native";
+import { themePref } from "../lib/prefs";
 
 // Off-white page, black ink, black panels — the "Modern Barber" look. See DESIGN.md before adding colors.
-export const colors = {
+const light = {
   // Page & surfaces
   bg: "#EEECE8", // the page: warm off-white
   card: "#FFFFFF", // cards, sheets, bars
@@ -36,6 +37,35 @@ export const colors = {
   dangerSoft: "rgba(180, 35, 24, 0.08)",
 };
 
+/** Dark mode: near-black page, raised charcoal panels, off-white ink; the accent flips to off-white. */
+const dark: typeof light = {
+  bg: "#0D0D0D",
+  card: "#171717",
+  surface: "#222222",
+  surfaceStrong: "#2E2E2E",
+  border: "#2A2A2A",
+  text: "#F2F0EC",
+  muted: "#A9A49D",
+  faint: "#6E6A64",
+  accent: "#F2F0EC",
+  accentSoft: "rgba(242, 240, 236, 0.08)",
+  accentLine: "#F2F0EC",
+  onAccent: "#0B0B0B",
+  ink: "#1F1F1F",
+  inkRaised: "#2C2C2C",
+  onInk: "#F4F2EE",
+  inkMuted: "rgba(244, 242, 238, 0.62)",
+  inkLine: "rgba(244, 242, 238, 0.14)",
+  gold: "#C9A04A",
+  goldInk: "#D4AE5B",
+  danger: "#F0645A",
+  dangerSoft: "rgba(240, 100, 90, 0.14)",
+};
+
+const pref = themePref();
+export const isDark = pref === "dark" || (pref === "system" && Appearance.getColorScheme() === "dark");
+export const colors = isDark ? dark : light;
+
 export const fonts = {
   display: "Inter_500Medium", // big, tight headlines
   regular: "Inter_400Regular",
@@ -49,13 +79,13 @@ export const radius = { sm: 10, md: 14, lg: 20, xl: 28, pill: 999 };
 
 /** Soft depth for white cards on the off-white page. */
 export const shadow = Platform.select({
-  web: { boxShadow: "0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05)" },
+  web: { boxShadow: isDark ? "0 0 0 1px rgba(255,255,255,0.05)" : "0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05)" },
   default: { shadowColor: "#000", shadowOpacity: 0.06, shadowRadius: 12, shadowOffset: { width: 0, height: 4 }, elevation: 2 },
 }) as object;
 
 /** Emphasis for the one thing that matters most (selected option, active step): a crisp black edge. */
 export const emphasis = Platform.select({
-  web: { boxShadow: "0 0 0 1px #0B0B0B, 0 10px 28px rgba(0,0,0,0.08)" },
+  web: { boxShadow: `0 0 0 1px ${isDark ? "#F2F0EC" : "#0B0B0B"}, 0 10px 28px rgba(0,0,0,0.08)` },
   default: { shadowColor: "#000", shadowOpacity: 0.1, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 4 },
 }) as object;
 

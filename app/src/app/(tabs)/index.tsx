@@ -44,6 +44,7 @@ export default function Home() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [next, setNext] = useState<Booking | null>(null);
   const [usual, setUsual] = useState<Usual | null>(null); // "book your usual" when nothing is coming up
+  const [recs, setRecs] = useState<Barber[]>([]); // "recommended for you"
 
   useEffect(() => {
     if (!place) return;
@@ -61,9 +62,11 @@ export default function Home() {
     useCallback(() => {
       if (!user || user.role !== "customer") {
         setUsual(null);
+        setRecs([]);
         return setNext(null);
       }
       api.usual().then(setUsual, () => setUsual(null));
+      api.recommendations().then(setRecs, () => setRecs([]));
       api.bookings().then(
         (list) => setNext(list.filter((b) => ["confirmed", "on_the_way", "pending_payment"].includes(b.status) && Date.parse(b.endsAt) > Date.now()).sort((a, b) => a.startsAt.localeCompare(b.startsAt))[0] ?? null),
         () => {},
@@ -229,6 +232,24 @@ export default function Home() {
           </Section>
         </View>
 
+        {recs.length > 0 && (
+          <>
+            <View style={block}>
+              <Section eyebrow="For you" title="Recommended barbers">
+                <T variant="caption" muted style={{ marginTop: -6 }}>Picked from the barbers you've booked and saved.</T>
+              </Section>
+            </View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: edge, gap: 14 }}>
+              {recs.map((b) => (
+                <View key={b.id} style={{ width: 168 }}>
+                  <BarberTile barber={b} />
+                  {!!b.reason && <T variant="small" muted numberOfLines={1} style={{ marginTop: 4 }}>{b.reason}</T>}
+                </View>
+              ))}
+            </ScrollView>
+          </>
+        )}
+
         {place && (
           <>
             <View style={block}>
@@ -242,6 +263,22 @@ export default function Home() {
                 {barbers.slice(0, 8).map((b, i) => <BarberTile key={b.id} barber={b} rank={i === 0 ? 1 : undefined} />)}
               </ScrollView>
             )}
+
+            <View style={block}>
+              <Card style={{ marginTop: 22 }} onPress={() => router.push("/awards")}>
+                <Row gap={12}>
+                  <IconBadge icon="trophy-outline" />
+                  <View style={{ flex: 1 }}>
+                    <T variant="eyebrow" muted>JB awards</T>
+                    <T variant="strong" style={{ marginTop: 2 }}>Last month's top 10 in {where}</T>
+                    <T variant="caption" muted>Most finished cuts, weighted by rating</T>
+                  </View>
+                  <Ionicons name="chevron-forward" size={18} color={colors.muted} />
+                </Row>
+              </Card>
+            </View>
+
+
 
             {shops.length > 0 && (
               <>

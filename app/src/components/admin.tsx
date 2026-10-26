@@ -6,7 +6,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { money } from "../lib/format";
-import type { AdminBookingRow, AdminOverview, Money } from "../lib/types";
+import type { AdminBookingRow, AdminOverview, AdminRole, Money } from "../lib/types";
+
+export const ROLE_NAME: Record<AdminRole, string> = { owner: "Owner", operations: "Operations", support: "Support", finance: "Finance" };
 import { colors, fonts, radius, shadow } from "./theme";
 import { Card, EmptyState, type IconName, Row, SearchBar, Segmented, T, Tag } from "./ui";
 
@@ -15,26 +17,34 @@ export const useWide = () => useWindowDimensions().width >= 960;
 
 export interface NavItem { href: string; label: string; icon: IconName }
 
-const ADMIN_NAV: (NavItem & { badge?: (o: AdminOverview) => number })[] = [
+// Who sees what (owners see everything; the API checks again).
+const ADMIN_NAV: (NavItem & { badge?: (o: AdminOverview) => number; roles?: AdminRole[] })[] = [
   { href: "/admin", label: "Overview", icon: "grid-outline" },
-  { href: "/admin/barbers", label: "Barbers", icon: "cut-outline", badge: (o) => o.barbers.pending },
+  { href: "/admin/analytics", label: "Analytics", icon: "analytics-outline", roles: ["operations", "finance"] },
+  { href: "/admin/finance", label: "Finance & VAT", icon: "cash-outline", roles: ["finance"] },
+  { href: "/admin/barbers", label: "Barbers", icon: "cut-outline", badge: (o) => o.barbers.pending, roles: ["operations", "support"] },
   { href: "/admin/bookings", label: "Bookings", icon: "calendar-outline" },
-  { href: "/admin/customers", label: "Customers", icon: "people-outline" },
-  { href: "/admin/shops", label: "Shops & orders", icon: "storefront-outline", badge: (o) => o.ordersToShip },
-  { href: "/admin/reports", label: "Reported reels", icon: "flag-outline", badge: (o) => o.openReports },
-  { href: "/admin/support", label: "Support", icon: "chatbubbles-outline", badge: (o) => o.openTickets },
-  { href: "/admin/settings", label: "Settings", icon: "settings-outline" },
+  { href: "/admin/customers", label: "Customers", icon: "people-outline", roles: ["operations", "support"] },
+  { href: "/admin/shops", label: "Shops & orders", icon: "storefront-outline", badge: (o) => o.ordersToShip, roles: ["operations"] },
+  { href: "/admin/partners", label: "Hotels & companies", icon: "business-outline", roles: ["operations", "finance"] },
+  { href: "/admin/reports", label: "Reported reels", icon: "flag-outline", badge: (o) => o.openReports, roles: ["operations", "support"] },
+  { href: "/admin/support", label: "Support", icon: "chatbubbles-outline", badge: (o) => o.openTickets, roles: ["operations", "support"] },
+  { href: "/admin/team", label: "Team & activity", icon: "key-outline", roles: ["operations"] },
+  { href: "/admin/settings", label: "Settings", icon: "settings-outline", roles: [] },
 ];
 
 /** The admin panel frame, with counts of what's waiting on the team. */
 export function AdminShell({ children }: { children: ReactNode }) {
   const path = usePathname();
+  const { user } = useAuth();
+  const role = user?.adminRole ?? "owner";
+  const nav = ADMIN_NAV.filter((n) => role === "owner" || !n.roles || n.roles.includes(role));
   const [counts, setCounts] = useState<AdminOverview | null>(null);
   useEffect(() => {
     api.admin.overview().then(setCounts, () => {});
   }, [path]);
-  const badges = Object.fromEntries(ADMIN_NAV.map((n) => [n.href, counts && n.badge ? n.badge(counts) : 0]));
-  return <PanelShell title="JB Always Fresh" subtitle="Team · Admin panel" nav={ADMIN_NAV} badges={badges}>{children}</PanelShell>;
+  const badges = Object.fromEntries(nav.map((n) => [n.href, counts && n.badge ? n.badge(counts) : 0]));
+  return <PanelShell title="JB Always Fresh" subtitle={`Team · ${ROLE_NAME[role]}`} nav={nav} badges={badges}>{children}</PanelShell>;
 }
 
 /** A panel frame (admin, shop): a sidebar on a laptop, a scrolling tab strip on a phone. The first nav item is the home page. */

@@ -9,8 +9,9 @@ import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { money, time, upcomingDays } from "../../lib/format";
 import { isExtra, minutes, sections, tipChoices } from "../../lib/menu";
+import { currentPartner } from "../../lib/partner";
 import { adjustedPrice, policyLabel } from "../../lib/rules";
-import { CONSULTATION_ID, type Barber, type LocationType, type Membership, type VenueKind } from "../../lib/types";
+import { CONSULTATION_ID, type Barber, type LocationType, type Membership, type PartnerWelcome, type VenueKind } from "../../lib/types";
 
 /** Booking a cut (shop or home), or with `?mode=consult` a free video / phone consultation. */
 export default function Book() {
@@ -41,6 +42,10 @@ export default function Book() {
   const [waitlisted, setWaitlisted] = useState<string | null>(null);
   // Extras on top of the service (hot towel, massage…) and an optional tip.
   const [deals, setDeals] = useState<Record<string, number>>({}); // off-peak (< 0) or peak (> 0) percent by start time
+  const [partner, setPartner] = useState<PartnerWelcome | null>(null); // came through a hotel's QR code or a company link
+  useEffect(() => {
+    currentPartner().then(setPartner, () => {});
+  }, []);
   const [extras, setExtras] = useState<string[]>(() => (params.extras ? params.extras.split(",").filter(Boolean) : [])); // "book your usual" brings the last extras
   const [section, setSection] = useState<string>("popular");
   const [tipPercent, setTipPercent] = useState<number>(0);
@@ -86,7 +91,9 @@ export default function Book() {
 
   const baseService = barber?.services.find((s) => s.id === serviceId);
   const rule = slot && !consult ? deals[slot] ?? 0 : 0;
-  const service = baseService && rule ? { ...baseService, price: adjustedPrice(baseService.price, rule) } : baseService;
+  const ruled = baseService && rule ? { ...baseService, price: adjustedPrice(baseService.price, rule) } : baseService;
+  const corporate = !consult && partner?.kind === "corporate" ? partner.discountPercent : 0;
+  const service = ruled && corporate ? { ...ruled, price: adjustedPrice(ruled.price, -corporate) } : ruled;
   const added = (barber?.services ?? []).filter((s) => extras.includes(s.id));
   const extrasPrice = added.reduce((t, s) => t + s.price, 0);
   const member = club?.membership?.active ? club.membership : null;
@@ -116,7 +123,7 @@ export default function Book() {
         barberId: barber.id, serviceId, startsAt: slot, locationType, address, phone, notes,
         venue: locationType === "home" ? { kind: venue, details: venueDetails } : undefined,
         guest: forGuest && guestName.trim() ? { name: guestName.trim(), phone: guestPhone.trim() } : undefined,
-        extras, tip,
+        extras, tip, partner: partner?.code,
       });
       // Paid bookings go to Review & pay (Apple Pay / Google Pay); free consultations are confirmed already.
       if (booking.status === "pending_payment") router.replace({ pathname: "/pay/[bookingId]", params: { bookingId: booking.id } });
@@ -127,7 +134,7 @@ export default function Book() {
     } finally {
       setSubmitting(false);
     }
-  }, [barber, slot, serviceId, locationType, address, phone, notes, date, venue, venueDetails, forGuest, guestName, guestPhone, extras, tip]);
+  }, [barber, slot, serviceId, locationType, address, phone, notes, date, venue, venueDetails, forGuest, guestName, guestPhone, extras, tip, partner]);
 
   if (!barber) return <Screen>{error ? <ErrorBox message={error} /> : <Loading />}</Screen>;
   if (consult && !barber.offersConsultations) return <Screen><ErrorBox message={`${barber.name} doesn't offer consultations right now.`} /></Screen>;
@@ -291,6 +298,7 @@ export default function Book() {
               </View>
             )}
             {!consult && slots && slots.length > 0 && <T variant="small" muted style={{ marginTop: 10 }}>{policyLabel(barber.cancelPolicy)}.</T>}
+            {!consult && partner && <View style={{ marginTop: 8 }}><IconLine icon={partner.kind === "hotel" ? "bed-outline" : "briefcase-outline"}>{partner.kind === "hotel" ? `Booking as a guest of ${partner.name}` : `${partner.name}: ${partner.discountPercent}% off the service`}</IconLine></View>}
           </View>
         </StepCard>
 

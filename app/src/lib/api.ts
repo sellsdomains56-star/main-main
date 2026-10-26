@@ -1,11 +1,12 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { BookingRules, CheckInRow, Client, Level, Payroll, QueueItem, QueueStatus, ShopHireRow, ShopOrderRow, ShopQueue, ShopStaff, StockRow, AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Referral, Review, SharedVisit, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, Usual, VenueKind, WorkingHours } from "./types";
+import type { ActivityEntry, AdminAnalytics, AdminFinance, AdminRole, Award, ChatMessage2, ChatSummary, ChatThread, Invoice, Partner, PartnerWelcome, Payouts, TeamMember, BookingRules, CheckInRow, Client, Level, Payroll, QueueItem, QueueStatus, ShopHireRow, ShopOrderRow, ShopQueue, ShopStaff, StockRow, AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Referral, Review, SharedVisit, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, Usual, VenueKind, WorkingHours } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
   authToken = token;
 };
+export const currentToken = () => authToken;
 
 // Screens opened straight from a link (a review, a payment) can ask before the saved sign-in is read:
 // requests wait for it, so they go out signed in. Never longer than 3 seconds.
@@ -59,6 +60,18 @@ async function request<T>(path: string, init: { method?: string; body?: unknown;
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new ApiError(res.status, data.error ?? "Something went wrong.");
   return data as T;
+}
+
+/** Like request(), for endpoints that answer with plain text (CSV). */
+async function requestText(path: string): Promise<string> {
+  await authLoaded;
+  if (demo) return String(await demo("GET", path, undefined as never, authToken));
+  const res = await fetch(API_URL + path, { headers: authToken ? { authorization: `Bearer ${authToken}` } : {} }).catch(() => {
+    throw new ApiError(0, "Can't reach JB Always Fresh right now. Check your connection.");
+  });
+  const text = await res.text();
+  if (!res.ok) throw new ApiError(res.status, (() => { try { return JSON.parse(text).error; } catch { return "Something went wrong."; } })());
+  return text;
 }
 
 const qs = (params: Record<string, string | undefined>) => {
@@ -124,7 +137,17 @@ export const api = {
         }),
     ),
   specialties: () => request<string[]>("/specialties"),
-  barber: (id: string) => request<Barber & { reviews: Review[] }>(`/barbers/${id}`),
+  barber: (id: string) => request<Barber & { reviews: Review[]; award?: { rank: number; month: string; label: string } | null }>(`/barbers/${id}`),
+  awards: (country?: string, city?: string) => request<Award>("/awards" + qs({ country, city })),
+  recommendations: () => request<Barber[]>("/me/recommendations"),
+  partner: (code: string) => request<PartnerWelcome>(`/partners/${encodeURIComponent(code)}`),
+  invoice: (bookingId: string) => request<Invoice>(`/bookings/${bookingId}/invoice`),
+  chats: () => request<ChatSummary[]>("/chats"),
+  startChat: (barberId: string) => request<ChatSummary>("/chats", { body: { barberId } }),
+  chatThread: (id: string) => request<ChatThread>(`/chats/${id}`),
+  sendChat: (id: string, text: string) => request<ChatMessage2>(`/chats/${id}/messages`, { body: { text } }),
+  payouts: () => request<Payouts>("/barbers/me/payouts"),
+  startPayouts: () => request<{ url: string }>("/barbers/me/payouts", { method: "POST" }),
   availability: (id: string, date: string, serviceId: string, extras: string[] = []) =>
     request<{ timeZone: string; slots: string[]; deals?: Record<string, number> }>(`/barbers/${id}/availability` + qs({ date, serviceId, extras: extras.length ? extras.join(",") : undefined })),
 
@@ -156,7 +179,7 @@ export const api = {
 
   createBooking: (body: {
     barberId: string; serviceId: string; startsAt: string; locationType: LocationType; address?: string; phone?: string; notes?: string;
-    venue?: { kind: VenueKind; details: string }; guest?: { name: string; phone: string }; extras?: string[]; tip?: number;
+    venue?: { kind: VenueKind; details: string }; guest?: { name: string; phone: string }; extras?: string[]; tip?: number; partner?: string;
   }) =>
     request<{ booking: Booking; clientSecret: string | null; demoPayments: boolean }>("/bookings", { body }),
   bookings: () => request<Booking[]>("/bookings"),
@@ -265,6 +288,16 @@ export const api = {
     updateSettings: (body: Partial<{ platformFeePercent: number; reviewNewBarbers: boolean; hiddenCampaigns: string[] }>) => request<AdminSettings>("/admin/settings", { method: "PATCH", body }),
     addManager: (shopId: string, email: string) => request<{ shopId: string; managers: { id: string; name: string; email: string }[] }>(`/admin/shops/${shopId}/managers`, { body: { email } }),
     removeManager: (shopId: string, userId: string) => request<null>(`/admin/shops/${shopId}/managers/${userId}`, { method: "DELETE" }),
+    team: () => request<TeamMember[]>("/admin/team"),
+    setTeamRole: (email: string, role: AdminRole | null) => request<{ email: string; role: AdminRole | null }>("/admin/team", { method: "PUT", body: { email, role } }),
+    activity: (q?: string) => request<ActivityEntry[]>("/admin/activity" + qs({ q })),
+    analytics: (days: number) => request<AdminAnalytics>("/admin/analytics" + qs({ days: String(days) })),
+    finance: (month: string) => request<AdminFinance>("/admin/finance" + qs({ month })),
+    /** The month's transactions as CSV text (for the accountant). */
+    financeCsv: (month: string) => requestText("/admin/finance.csv" + qs({ month })),
+    partners: () => request<Partner[]>("/admin/partners"),
+    addPartner: (body: Omit<Partner, "id" | "createdAt" | "link" | "bookings" | "bookingsThisMonth" | "revenueThisMonth" | "owedThisMonth" | "discountsThisMonth">) => request<Partner>("/admin/partners", { body }),
+    updatePartner: (id: string, body: Partial<Pick<Partner, "active" | "discountPercent" | "commissionPercent" | "name" | "contactEmail">>) => request<Partner>(`/admin/partners/${id}`, { method: "PATCH", body }),
   },
   // The shop panel: a barbershop's owner or manager runs the shop's day.
   manage: {

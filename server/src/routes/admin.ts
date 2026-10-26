@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { z } from "zod";
-import { publicUser, requireAdmin } from "../auth.js";
+import { publicUser, requireAdmin, requireAdminRole } from "../auth.js";
+import { logActivity } from "../activity.js";
 import { CAMPAIGNS } from "../campaigns.js";
 import { activeMembership, returnPerks } from "../club.js";
 import { barberView, findService, fromApp, getBarber, HttpError, parse, platformFee, platformFeePercent, reviewNewBarbers, CONSULTATION } from "../common.js";
@@ -111,7 +112,7 @@ export function registerAdminRoutes(app: Express) {
   });
 
   // ---------- Barbers ----------
-  app.get("/admin/barbers", requireAdmin, (req, res) => {
+  app.get("/admin/barbers", requireAdminRole("operations", "support"), (req, res) => {
     const f = parse(z.object({ status: z.enum(["pending", "live", "suspended", "all"]).default("all"), q: z.string().optional() }), req.query);
     const text = q(f.q);
     const order = { pending: 0, live: 1, suspended: 2 } as const;
@@ -123,7 +124,7 @@ export function registerAdminRoutes(app: Express) {
     res.json(list);
   });
 
-  app.get("/admin/barbers/:id", requireAdmin, (req, res) => {
+  app.get("/admin/barbers/:id", requireAdminRole("operations", "support"), (req, res) => {
     const barber = getBarber(String(req.params.id));
     const mine = db.bookings.filter((b) => b.barberId === barber.id);
     res.json({
@@ -143,12 +144,14 @@ export function registerAdminRoutes(app: Express) {
     });
   });
 
-  app.patch("/admin/barbers/:id", requireAdmin, (req, res) => {
+  app.patch("/admin/barbers/:id", requireAdminRole("operations"), (req, res) => {
     const barber = getBarber(String(req.params.id));
     const body = parse(z.object({ status: z.enum(["pending", "live", "suspended"]).optional(), verified: z.boolean().optional() }), req.body);
     const before = barber.status ?? "live";
     if (body.status) barber.status = body.status;
     if (body.verified !== undefined) barber.verified = body.verified;
+    if (body.status && body.status !== before) logActivity(req, `barber.${body.status}`, barber.name);
+    if (body.verified !== undefined) logActivity(req, body.verified ? "barber.verified" : "barber.unverified", barber.name);
     const user = barberUser(barber.id);
     if (user && body.status && body.status !== before) {
       if (body.status === "live") notify(user.id, { kind: "account", title: before === "pending" ? "You're live on JB Always Fresh" : "Your profile is back", body: "Clients can find and book you now. Keep your hours and prices up to date." });
@@ -176,7 +179,7 @@ export function registerAdminRoutes(app: Express) {
   });
 
   // The team cancels a booking: full refund, perks returned, both sides told.
-  app.post("/admin/bookings/:id/cancel", requireAdmin, async (req, res) => {
+  app.post("/admin/bookings/:id/cancel", requireAdminRole("operations", "support"), async (req, res) => {
     const { reason } = parse(z.object({ reason: z.string().trim().max(300).default("") }), req.body ?? {});
     const booking = db.bookings.find((b) => b.id === req.params.id);
     if (!booking) throw new HttpError(404, "Booking not found.");
@@ -185,6 +188,7 @@ export function registerAdminRoutes(app: Express) {
     if (wasPaid && booking.paymentIntentId) await refund(booking.paymentIntentId);
     booking.status = "cancelled";
     returnPerks(booking);
+    logActivity(req, "booking.cancelled", `Booking ${booking.id.slice(0, 8)} with ${getBarber(booking.barberId).name}`, reason || undefined);
     const why = reason ? ` Reason: ${reason}` : "";
     notify(booking.customerId, { kind: "cancelled", title: "Booking cancelled", body: `JB Always Fresh cancelled your booking.${booking.amount && wasPaid ? " You'll get a full refund." : ""}${why}`, bookingId: booking.id });
     const bu = barberUser(booking.barberId);
@@ -195,7 +199,7 @@ export function registerAdminRoutes(app: Express) {
   });
 
   // ---------- Customers ----------
-  app.get("/admin/customers", requireAdmin, (req, res) => {
+  app.get("/admin/customers", requireAdminRole("operations", "support"), (req, res) => {
     const text = q(parse(z.object({ q: z.string().optional() }), req.query).q);
     const list = db.users
       .filter((u) => u.role === "customer")
@@ -218,7 +222,7 @@ export function registerAdminRoutes(app: Express) {
   });
 
   // ---------- Barbershops and orders ----------
-  app.get("/admin/shops", requireAdmin, (_req, res) => {
+  app.get("/admin/shops", requireAdminRole("operations"), (_req, res) => {
     res.json(SHOPS.map((s) => {
       const team = db.barbers.filter((b) => b.shopId === s.id);
       const teamIds = new Set(team.map((b) => b.id));
@@ -238,27 +242,29 @@ export function registerAdminRoutes(app: Express) {
   });
 
   // Give a barbershop's owner or manager their shop panel (their account must exist: they sign up in the app first).
-  app.post("/admin/shops/:id/managers", requireAdmin, (req, res) => {
+  app.post("/admin/shops/:id/managers", requireAdminRole("operations"), (req, res) => {
     const shop = SHOPS.find((s) => s.id === req.params.id);
     if (!shop) throw new HttpError(404, "Barbershop not found.");
     const { email } = parse(z.object({ email: z.string().trim().toLowerCase().email() }), req.body);
     const user = db.users.find((u) => u.email === email);
     if (!user) throw new HttpError(404, "No account with that email yet — ask them to sign up in the app first.");
     user.manages = shop.id;
+    logActivity(req, "shop.manager_added", shop.name, email);
     notify(user.id, { kind: "account", title: `Your shop panel for ${shop.name} is ready`, body: "Open Account → Shop panel to see your barbers' calendar, add walk-ins and set hours." });
     save();
     res.json({ shopId: shop.id, managers: db.users.filter((u) => u.manages === shop.id).map((u) => ({ id: u.id, name: u.name, email: u.email })) });
   });
 
-  app.delete("/admin/shops/:id/managers/:userId", requireAdmin, (req, res) => {
+  app.delete("/admin/shops/:id/managers/:userId", requireAdminRole("operations"), (req, res) => {
     const user = db.users.find((u) => u.id === req.params.userId && u.manages === req.params.id);
     if (!user) throw new HttpError(404, "Not found.");
     delete user.manages;
+    logActivity(req, "shop.manager_removed", String(req.params.id), user.email);
     save();
     res.status(204).end();
   });
 
-  app.get("/admin/orders", requireAdmin, (_req, res) => {
+  app.get("/admin/orders", requireAdminRole("operations", "finance"), (_req, res) => {
     res.json(db.orders.filter((o) => o.status !== "pending_payment").sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 200).map((o) => {
       const customer = db.users.find((u) => u.id === o.customerId);
       const shop = o.shopId ? SHOPS.find((s) => s.id === o.shopId) : undefined;
@@ -271,11 +277,11 @@ export function registerAdminRoutes(app: Express) {
   });
 
   // ---------- Reported reels ----------
-  app.get("/admin/reports", requireAdmin, (_req, res) => {
+  app.get("/admin/reports", requireAdminRole("operations", "support"), (_req, res) => {
     res.json(db.tickets.filter((t) => t.reelId).sort((a, b) => Number(b.status === "open") - Number(a.status === "open") || b.createdAt.localeCompare(a.createdAt)).map(ticketRow));
   });
 
-  app.post("/admin/reports/:id", requireAdmin, (req, res) => {
+  app.post("/admin/reports/:id", requireAdminRole("operations", "support"), (req, res) => {
     const { action } = parse(z.object({ action: z.enum(["remove", "dismiss"]) }), req.body);
     const ticket = db.tickets.find((t) => t.id === req.params.id && t.reelId);
     if (!ticket) throw new HttpError(404, "Report not found.");
@@ -290,18 +296,19 @@ export function registerAdminRoutes(app: Express) {
       for (const t of db.tickets) if (t.reelId === ticket.reelId) t.status = "closed";
     }
     ticket.status = "closed";
+    logActivity(req, action === "remove" ? "reel.removed" : "report.dismissed", `Report ${ticket.id.slice(0, 8)}`);
     ticket.replies = [...(ticket.replies ?? []), { at: new Date().toISOString(), by: req.user!.name, text: action === "remove" ? "Reel removed." : "Report dismissed — the reel stays." }];
     save();
     res.json(ticketRow(ticket));
   });
 
   // ---------- Support tickets ----------
-  app.get("/admin/tickets", requireAdmin, (req, res) => {
+  app.get("/admin/tickets", requireAdminRole("operations", "support"), (req, res) => {
     const { status } = parse(z.object({ status: z.enum(["open", "closed", "all"]).default("open") }), req.query);
     res.json(db.tickets.filter((t) => !t.reelId && (status === "all" || t.status === status)).sort((a, b) => b.createdAt.localeCompare(a.createdAt)).map(ticketRow));
   });
 
-  app.patch("/admin/tickets/:id", requireAdmin, (req, res) => {
+  app.patch("/admin/tickets/:id", requireAdminRole("operations", "support"), (req, res) => {
     const body = parse(z.object({ status: z.enum(["open", "closed"]).optional(), reply: z.string().trim().min(1).max(4000).optional() }), req.body);
     const ticket = db.tickets.find((t) => t.id === req.params.id);
     if (!ticket) throw new HttpError(404, "Ticket not found.");
@@ -311,6 +318,7 @@ export function registerAdminRoutes(app: Express) {
       if (ticket.userId) notify(ticket.userId, { kind: "account", title: "Reply from JB Always Fresh support", body: body.reply.slice(0, 180) });
     }
     if (body.status) ticket.status = body.status;
+    logActivity(req, body.reply ? "ticket.replied" : `ticket.${body.status ?? "updated"}`, `Ticket from ${ticket.name ?? ticket.email}`);
     save();
     res.json(ticketRow(ticket));
   });
@@ -326,13 +334,14 @@ export function registerAdminRoutes(app: Express) {
     res.json(settingsView());
   });
 
-  app.patch("/admin/settings", requireAdmin, (req, res) => {
+  app.patch("/admin/settings", requireAdminRole(), (req, res) => {
     const body = parse(z.object({
       platformFeePercent: z.number().min(0).max(50).optional(),
       reviewNewBarbers: z.boolean().optional(),
       hiddenCampaigns: z.array(z.string()).max(100).optional(),
     }), req.body);
     Object.assign(db.settings, body);
+    logActivity(req, "settings.changed", "Settings", Object.entries(body).map(([k, v]) => `${k}: ${Array.isArray(v) ? v.length + " hidden" : v}`).join(", "));
     save();
     res.json(settingsView());
   });

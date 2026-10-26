@@ -298,6 +298,21 @@ export default function Bookings() {
                   })}
                 />
               )}
+              {!isBarber && ["confirmed", "on_the_way", "completed"].includes(b.status) && !isConsultation(b) && (
+                <Button
+                  title="Message"
+                  icon="chatbubble-outline"
+                  size="md"
+                  variant="ghost"
+                  onPress={run(async () => {
+                    const c = await api.startChat(b.barber.id);
+                    router.push({ pathname: "/messages/[id]", params: { id: c.id } });
+                  })}
+                />
+              )}
+              {!isBarber && (["confirmed", "on_the_way", "completed"].includes(b.status) || !!b.lateFee) && b.amount > 0 && (
+                <Button title="Receipt" icon="receipt-outline" size="md" variant="ghost" onPress={() => router.push({ pathname: "/invoice/[bookingId]", params: { bookingId: b.id } })} />
+              )}
               {isBarber && b.status === "completed" && (b.cutPhotos?.length ?? 0) < 4 && (
                 <Button
                   title="Add photo of the cut"

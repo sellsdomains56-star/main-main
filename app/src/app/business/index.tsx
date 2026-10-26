@@ -180,6 +180,8 @@ export default function Business() {
         <ListRow icon="pricetag-outline" title="Booking rules & deals" subtitle={rulesLine(data)} onPress={() => router.push("/business/rules")} />
         <ListRow icon="people-outline" title="Clients" subtitle="Visits, notes, and a nudge for the ones who went quiet" onPress={() => router.push("/business/clients")} />
         <ListRow icon="qr-code-outline" title="My link & QR code" subtitle="For your mirror, card and Instagram bio" onPress={() => router.push("/business/link")} />
+        <ListRow icon="chatbubbles-outline" title="Messages" subtitle="Questions from your clients" onPress={() => router.push("/messages")} />
+        <ListRow icon="card-outline" title="Payouts" subtitle="Where your money goes" onPress={() => router.push("/business/payouts")} />
         <ListRow icon="images-outline" title="My work" subtitle="Photo, bio, portfolio, before & afters, map pin" onPress={() => router.push("/portfolio")} />
         <ListRow icon="videocam-outline" title="Post a reel" subtitle="Show off your latest cut" onPress={() => router.push("/post-reel")} />
         <ListRow icon="chatbubbles-outline" title="Reviews" subtitle="Read and reply to what clients say" onPress={() => router.push("/business/reviews")} />

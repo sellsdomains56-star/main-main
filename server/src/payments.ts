@@ -14,10 +14,14 @@ export async function createPaymentIntent(
   amount: number,
   currency: string,
   metadata: Record<string, string>,
+  connect?: { destination: string; applicationFee: number }, // Stripe Connect: pay the barber directly, JB keeps its fee
 ): Promise<{ clientSecret: string; id: string } | null> {
   if (!stripe) return null;
   const intent = await stripe.paymentIntents.create(
-    { amount, currency, automatic_payment_methods: { enabled: true }, metadata },
+    {
+      amount, currency, automatic_payment_methods: { enabled: true }, metadata,
+      ...(connect ? { transfer_data: { destination: connect.destination }, application_fee_amount: connect.applicationFee } : {}),
+    },
     { idempotencyKey: ref },
   );
   return { clientSecret: intent.client_secret!, id: intent.id };

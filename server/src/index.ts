@@ -4,8 +4,16 @@ import { startReminderLoop } from "./notify.js";
 import { startPerksLoop } from "./rewards.js";
 import { demoPayments } from "./payments.js";
 import { seedDemoAccounts } from "./demoAccounts.js";
+import { connectDatabase, flush } from "./db.js";
 
+if (await connectDatabase()) console.log("Data is kept in Postgres (DATABASE_URL).");
 if (config.demoAccounts) seedDemoAccounts(); // sample logins for the barber side and the admin panel
+
+for (const signal of ["SIGINT", "SIGTERM"] as const) {
+  process.on(signal, () => {
+    void flush().finally(() => process.exit(0));
+  });
+}
 
 createApp().listen(config.port, () => {
   console.log(`JB Always Fresh API listening on http://localhost:${config.port}`);

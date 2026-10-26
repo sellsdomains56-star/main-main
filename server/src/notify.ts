@@ -9,6 +9,10 @@ import type { AppNotification, Booking, Hire, NotificationKind, Order } from "./
 
 const KEEP_PER_USER = 100;
 
+// Live updates: the API's event stream listens here to pass alerts on the moment they're made.
+const listeners: ((userId: string, item: AppNotification) => void)[] = [];
+export const onNotification = (fn: (userId: string, item: AppNotification) => void) => listeners.push(fn);
+
 /** Stores an alert for the user's inbox and pushes it to their phones. */
 export function notify(userId: string, n: { kind: NotificationKind; title: string; body: string; bookingId?: string; orderId?: string; hireId?: string }): AppNotification {
   const item: AppNotification = { id: newId(), userId, ...n, read: false, createdAt: new Date().toISOString() };
@@ -19,6 +23,7 @@ export function notify(userId: string, n: { kind: NotificationKind; title: strin
     db.notifications = db.notifications.filter((x) => !drop.has(x.id));
   }
   save();
+  for (const fn of listeners) fn(userId, item);
   if (wantsPush(userId, n.kind)) {
     void sendPush(userId, item);
     void sendWhatsApp(userId, item);

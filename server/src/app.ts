@@ -23,6 +23,8 @@ import { clearTries, limit, loginKey, registerAccountRoutes } from "./routes/acc
 import { registerCustomerRoutes } from "./routes/customer.js";
 import { registerProRoutes } from "./routes/pro.js";
 import { registerShopOpsRoutes } from "./routes/shopOps.js";
+import { awardOf, registerPlatformRoutes } from "./routes/platform.js";
+import { rateLimit, securityHeaders } from "./security.js";
 import { cancelTerms, inStock, priceRuleAt, takeStock } from "./pro.js";
 import { onCompleted } from "./rewards.js";
 import { campaignsFor } from "./campaigns.js";
@@ -60,6 +62,15 @@ export function createApp() {
   const app = express();
   const origins = config.corsOrigin === "*" ? true : config.corsOrigin.split(",").map((o) => o.trim());
   app.use(cors({ origin: origins }));
+  app.use(securityHeaders);
+  app.disable("x-powered-by");
+  // Abuse limits per IP on the routes people (or bots) could hammer.
+  app.use("/auth/register", rateLimit("register", 20, 60 * 60_000, "Too many sign-ups from here. Try again later."));
+  app.use("/auth/register-barber", rateLimit("register-barber", 10, 60 * 60_000, "Too many sign-ups from here. Try again later."));
+  app.use("/auth/forgot", rateLimit("forgot", 10, 60 * 60_000));
+  app.use("/support/tickets", rateLimit("tickets", 10, 10 * 60_000));
+  app.use("/assistant", rateLimit("assistant", 60, 10 * 60_000, "Lots of questions! Give the concierge a minute."));
+  app.use("/ai", rateLimit("ai", 20, 10 * 60_000, "The AI stylist needs a short break. Try again in a few minutes."));
 
   // Stripe webhook needs the raw body for signature verification, so it is registered before express.json().
   app.post("/webhooks/stripe", express.raw({ type: "application/json" }), (req, res) => {
@@ -278,6 +289,7 @@ export function createApp() {
   registerCustomerRoutes(app);
   registerProRoutes(app);
   registerShopOpsRoutes(app);
+  registerPlatformRoutes(app);
   registerNotificationRoutes(app);
   registerSupportRoutes(app);
   registerAssistantRoutes(app);
@@ -336,7 +348,7 @@ export function createApp() {
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
       .slice(0, 30)
       .map(({ customerId: _c, ...r }) => r);
-    res.json({ ...barberView(barber), reviews });
+    res.json({ ...barberView(barber), reviews, award: awardOf(barber) });
   });
 
   app.get("/barbers/:id/availability", (req, res) => {

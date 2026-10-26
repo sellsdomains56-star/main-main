@@ -3,11 +3,12 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { router, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef, useState } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { ActivityIndicator, I18nManager, Platform, StyleSheet, Text, View } from "react-native";
 import { AlertBanner } from "../components/AlertBanner";
 import { PaymentProvider } from "../components/PaymentProvider";
 import { WelcomeTour } from "../components/WelcomeTour";
-import { colors, fonts } from "../components/theme";
+import { colors, fonts, isDark } from "../components/theme";
+import { isArabic, tr } from "../lib/i18n";
 import { AlertsProvider } from "../lib/alerts";
 import { api } from "../lib/api";
 import { AuthProvider, useAuth } from "../lib/auth";
@@ -16,6 +17,17 @@ import { CartProvider } from "../lib/cart";
 import { APP_NAME, DEMO_HOME, DEMO_START } from "../lib/config";
 import { DEMO_LOGINS } from "../lib/demo/server";
 import { LocationProvider } from "../lib/location";
+
+// Language direction and page colour, before anything draws. Phones switch to right-to-left on the next launch.
+if (Platform.OS === "web" && typeof document !== "undefined") {
+  document.documentElement.lang = isArabic ? "ar" : "en";
+  document.documentElement.dir = isArabic ? "rtl" : "ltr";
+  document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+  document.body.style.backgroundColor = colors.bg;
+} else if (I18nManager.isRTL !== isArabic) {
+  I18nManager.allowRTL(isArabic);
+  I18nManager.forceRTL(isArabic);
+}
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({ ...Ionicons.font, ...MaterialCommunityIcons.font, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold });
@@ -29,13 +41,14 @@ export default function RootLayout() {
           <CartProvider>
             <PaymentProvider>
               <>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? "light" : "dark"} />
                 <Stack
                   screenOptions={{
                     headerStyle: { backgroundColor: colors.bg },
                     headerShadowVisible: false,
                     headerTintColor: colors.text,
                     headerTitleStyle: { fontFamily: fonts.bold, fontSize: 17 },
+                    headerTitle: ({ children }) => <Text numberOfLines={1} style={{ fontFamily: fonts.bold, fontSize: 17, color: colors.text }}>{tr(children)}</Text>,
                     headerBackButtonDisplayMode: "minimal",
                     contentStyle: { backgroundColor: colors.bg },
                   }}
@@ -87,6 +100,12 @@ export default function RootLayout() {
                   <Stack.Screen name="barbershop/[shopId]/queue" options={{ title: "Walk-in queue" }} />
                   <Stack.Screen name="queue-screen" options={{ headerShown: false, title: "Queue" }} />
                   <Stack.Screen name="check-in" options={{ headerShown: false, title: "Check in" }} />
+                  <Stack.Screen name="messages/index" options={{ title: "Messages" }} />
+                  <Stack.Screen name="messages/[id]" options={{ title: "" }} />
+                  <Stack.Screen name="invoice/[bookingId]" options={{ title: "Receipt" }} />
+                  <Stack.Screen name="awards" options={{ title: "Top 10" }} />
+                  <Stack.Screen name="p/[code]" options={{ title: "" }} />
+                  <Stack.Screen name="business/payouts" options={{ title: "Payouts" }} />
                   <Stack.Screen name="profile" options={{ title: "Profile" }} />
                   <Stack.Screen name="favourites" options={{ title: "Favourites" }} />
                   <Stack.Screen name="my-cuts" options={{ title: "My cuts" }} />

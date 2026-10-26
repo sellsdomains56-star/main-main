@@ -97,7 +97,7 @@ interface Booking {
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; guest?: { name: string; phone: string };
   source?: "app" | "shop"; noShow?: boolean; // "shop": a walk-in or phone booking the barbershop added, paid at the shop
   cutPhotos?: string[]; shareToken?: string;
-  priceRule?: number; lateFee?: number; checkedInAt?: string;
+  priceRule?: number; lateFee?: number; checkedInAt?: string; partnerId?: string; partnerDiscount?: number;
   seeded?: boolean;
 }
 interface Review { id: string; barberId: string; customerId: string; customerName: string; bookingId: string; rating: number; comment: string; createdAt: string; photoUrl?: string; reply?: { text: string; at: string }; seeded?: boolean }
@@ -121,6 +121,9 @@ interface Hire {
 interface Block { id: string; shopId: string; barberId: string; startsAt: string; endsAt: string; reason: string; createdAt: string; seeded?: boolean }
 type ShopSettings = Partial<Pick<SeedShop, "about" | "phone" | "workingDays" | "openHour" | "closeHour" | "barberSharePercent">>;
 interface Conversation { id: string; ownerKey: string; turns: { role: "user" | "assistant"; content: string }[]; display: ChatMessage[] }
+type AdminRole = "owner" | "operations" | "support" | "finance";
+interface Partner { id: string; kind: "hotel" | "corporate"; name: string; code: string; discountPercent: number; commissionPercent: number; emailDomain?: string; contactEmail: string; active: boolean; createdAt: string }
+interface DemoChat { id: string; customerId: string; barberId: string; messages: { id: string; from: "customer" | "barber"; text: string; at: string }[]; customerReadAt?: string; barberReadAt?: string; updatedAt: string; demoReplyAt?: number }
 interface Saved {
   v: 1;
   users: User[];
@@ -141,7 +144,10 @@ interface Saved {
   giftCards?: GiftCard[];
   purchases?: Purchase[];
   waitlist?: { id: string; userId: string; barberId: string; date: string; notified: boolean; createdAt: string }[];
-  settings?: { platformFeePercent?: number; reviewNewBarbers?: boolean; hiddenCampaigns?: string[] };
+  settings?: { platformFeePercent?: number; reviewNewBarbers?: boolean; hiddenCampaigns?: string[]; team?: Record<string, AdminRole> };
+  partners?: Partner[];
+  chats?: DemoChat[];
+  activity?: { id: string; at: string; by: { id: string; name: string; email: string }; action: string; target: string; detail?: string }[];
   removedReels?: string[];
   blocks?: Block[];
   shopSettings?: Record<string, ShopSettings>;
@@ -491,7 +497,7 @@ function orderAlert(o: Order) {
 
 const publicUser = (u: User) => ({
   id: u.id, name: u.name, email: u.email, role: u.role, barberId: u.barberId, countryCode: u.countryCode, city: u.city, preferences: u.preferences, alerts: u.alerts,
-  photoUrl: u.photoUrl, phone: u.phone, whatsapp: u.whatsapp, birthday: u.birthday, favourites: u.favourites, rebook: u.rebook, credit: u.credit, ...(u.manages ? { manages: u.manages } : {}), ...(isAdmin(u) ? { admin: true } : {}) });
+  photoUrl: u.photoUrl, phone: u.phone, whatsapp: u.whatsapp, birthday: u.birthday, favourites: u.favourites, rebook: u.rebook, credit: u.credit, ...(u.manages ? { manages: u.manages } : {}), ...(isAdmin(u) ? { admin: true, adminRole: adminRole(u) } : {}) });
 
 // ---------- The Club, gift cards (mirrors server/src/club.ts) ----------
 
@@ -944,7 +950,13 @@ export const DEMO_LOGINS = {
   barber: { email: "mateo@demo.jbalwaysfresh.com", password: "jb-barber-demo", barberId: "b37" },
   shop: { email: "owner@demo.jbalwaysfresh.com", password: "jb-shop-demo", shopId: "s-dubai-downtown" },
 };
-const isAdmin = (u?: User) => !!u && u.email === DEMO_LOGINS.admin.email;
+const adminRole = (u?: User): AdminRole | null => (!u ? null : u.email === DEMO_LOGINS.admin.email ? "owner" : saved.settings?.team?.[u.email] ?? null);
+const isAdmin = (u?: User) => adminRole(u) !== null;
+/** The admin panel's activity log (what the team did). */
+function logActivity(me: User, action: string, target: string, detail?: string) {
+  (saved.activity ??= []).push({ id: newId(), at: new Date().toISOString(), by: { id: me.id, name: me.name, email: me.email }, action, target, ...(detail ? { detail } : {}) });
+  if (saved.activity.length > 500) saved.activity.splice(0, saved.activity.length - 500);
+}
 const PAID = new Set<Booking["status"]>(["confirmed", "on_the_way", "completed"]);
 /** Booked and paid in the app (not a walk-in the barbershop added): only these carry the JB fee. */
 const fromApp = (b: Booking) => b.source !== "shop";
@@ -1068,7 +1080,7 @@ const EXTRA_TEAM: [string, string, string[]][] = [
   ["demo-dt-1", "Rami Aziz", ["skin fade", "taper", "kids cut"]],
   ["demo-dt-2", "Leo Santos", ["scissor cut", "textured crop", "beard"]],
 ];
-const SEED_VERSION = 4;
+const SEED_VERSION = 5;
 
 /** Requests that arrive together share one run, so the sample accounts are made once. */
 let seeding: Promise<void> | null = null;
@@ -1212,6 +1224,40 @@ async function buildSample() {
       status, createdAt: new Date(now - hoursAgo * 3_600_000).toISOString(), seeded: true,
     });
   });
+
+  // Partners: a hotel whose guests book through its QR code, and a company whose people get a discount.
+  if (!saved.partners?.length) {
+    saved.partners = [
+      { id: "demo-partner-atlantis", kind: "hotel", name: "Atlantis The Royal", code: "ATLANTIS", discountPercent: 0, commissionPercent: 10, contactEmail: "concierge@atlantis.example", active: true, createdAt: new Date(now - 40 * DAY).toISOString() },
+      { id: "demo-partner-emirates", kind: "corporate", name: "Emirates Group", code: "EMIRATES", discountPercent: 15, commissionPercent: 0, emailDomain: "emirates.example", contactEmail: "people@emirates.example", active: true, createdAt: new Date(now - 25 * DAY).toISOString() },
+    ];
+  }
+  saved.bookings.filter((b) => b.seeded && PAID.has(b.status)).forEach((b, i) => {
+    if (i % 9 === 0) b.partnerId = "demo-partner-atlantis";
+    else if (i % 13 === 0) b.partnerId = "demo-partner-emirates";
+  });
+  // The team's recent activity, and a client's question for Mateo.
+  if (!saved.activity?.length) {
+    const admin = saved.users.find((u) => u.email === DEMO_LOGINS.admin.email)!;
+    const at = (h: number) => new Date(now - h * 3_600_000).toISOString();
+    saved.activity = [
+      { id: newId(), at: at(30), by: { id: admin.id, name: admin.name, email: admin.email }, action: "barber.live", target: "Hassan Farouk" },
+      { id: newId(), at: at(20), by: { id: admin.id, name: admin.name, email: admin.email }, action: "partner.added", target: "Emirates Group", detail: "corporate · EMIRATES" },
+      { id: newId(), at: at(6), by: { id: admin.id, name: admin.name, email: admin.email }, action: "ticket.replied", target: `Ticket from ${customers[0]!.name}` },
+    ];
+  }
+  if (!saved.chats?.some((c) => c.barberId === "b37")) {
+    const c = customers[1]!;
+    const at = (m: number) => new Date(now - m * 60_000).toISOString();
+    (saved.chats ??= []).push({
+      id: newId(), customerId: c.id, barberId: "b37", updatedAt: at(40),
+      messages: [
+        { id: newId(), from: "customer", text: "Hi Mateo, can you do a textured crop like your last reel?", at: at(55) },
+        { id: newId(), from: "barber", text: "For sure. Bring a photo if you have one. See you Thursday!", at: at(48) },
+        { id: newId(), from: "customer", text: "Perfect, I'll be 5 minutes early.", at: at(40) },
+      ],
+    });
+  }
 
   saved.demoSeededOn = dubaiDay;
   saved.demoSeedVersion = SEED_VERSION;
@@ -1968,6 +2014,323 @@ async function shopOpsRoutes(method: string, path: string, q: Record<string, str
   return { hit: false };
 }
 
+// ---------- Platform: partners, awards, recommendations, receipts, chat, payouts (mirrors server/src/routes/platform.ts) ----------
+
+const monthOf = (iso: string) => iso.slice(0, 7);
+const lastMonth = () => {
+  const d = new Date();
+  return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() - 1, 1)).toISOString().slice(0, 7);
+};
+const monthLabel = (m: string) => new Intl.DateTimeFormat("en-GB", { month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${m}-15T00:00:00Z`));
+
+function partnerFor(code: unknown, customer: User | undefined): Partner | undefined {
+  const active = (saved.partners ?? []).filter((p) => p.active);
+  if (typeof code === "string" && code) {
+    const byCode = active.find((p) => p.code === code.toUpperCase());
+    if (byCode) return byCode;
+  }
+  const domain = customer?.email.split("@")[1]?.toLowerCase();
+  return domain ? active.find((p) => p.kind === "corporate" && p.emailDomain === domain) : undefined;
+}
+const partnerCommission = (b: Booking) => {
+  const p = b.partnerId ? (saved.partners ?? []).find((x) => x.id === b.partnerId) : undefined;
+  return p && p.kind === "hotel" ? Math.round((b.amount * p.commissionPercent) / 100) : 0;
+};
+
+function awardsFor(countryCode: string, city: string, month: string) {
+  const cuts = new Map<string, number>();
+  for (const b of saved.bookings) if (b.status === "completed" && monthOf(b.startsAt) === month && b.serviceId !== CONSULTATION.id) cuts.set(b.barberId, (cuts.get(b.barberId) ?? 0) + 1);
+  return allBarbers()
+    .filter((b) => isLive(b) && b.countryCode === countryCode && b.city.toLowerCase() === city.toLowerCase() && rating(b).ratingCount > 0)
+    .map((b) => {
+      const r = rating(b);
+      const n = cuts.get(b.id) ?? 0;
+      return { barber: b, cuts: n, score: (n * 2 + Math.min(r.ratingCount, 200) / 10) * r.raw };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10);
+}
+function awardOf(b: SeedBarber) {
+  const m = lastMonth();
+  const i = awardsFor(b.countryCode, b.city, m).findIndex((x) => x.barber.id === b.id);
+  return i >= 0 ? { rank: i + 1, month: m, label: `Top 10 in ${b.city} · ${monthLabel(m).split(" ")[0]}` } : null;
+}
+
+function chatView(c: DemoChat, side: "customer" | "barber") {
+  const b = getBarber(c.barberId);
+  const customer = saved.users.find((u) => u.id === c.customerId);
+  const readAt = side === "customer" ? c.customerReadAt : c.barberReadAt;
+  const other = side === "customer" ? "barber" : "customer";
+  return {
+    id: c.id,
+    with: side === "customer" ? { id: b.id, name: b.name, photoUrl: b.photoUrl } : { id: c.customerId, name: customer?.name ?? "Client", photoUrl: customer?.photoUrl ?? "" },
+    last: c.messages.at(-1) ?? null,
+    unread: c.messages.filter((m) => m.from === other && (!readAt || m.at > readAt)).length,
+    updatedAt: c.updatedAt,
+  };
+}
+/** The demo's barbers are fictional (except the sample barber login): they answer once, a few seconds later. */
+function demoReplies() {
+  for (const c of saved.chats ?? []) {
+    if (c.demoReplyAt && Date.now() >= c.demoReplyAt) {
+      c.demoReplyAt = undefined;
+      const at = new Date().toISOString();
+      c.messages.push({ id: newId(), from: "barber", text: "Thanks for your message! See you at your appointment. (Demo: in the app your barber replies here.)", at });
+      c.updatedAt = at;
+      notify(c.customerId, { kind: "chat", title: `${getBarber(c.barberId).name.split(" ")[0]} replied`, body: "Thanks for your message! See you at your appointment." });
+    }
+  }
+}
+
+async function platformRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null): Promise<{ hit: boolean; value?: unknown }> {
+  const hit = (value: unknown) => ({ hit: true, value });
+  let x: RegExpMatchArray | null;
+  if (path === "/awards") {
+    const month = /^\d{4}-\d{2}$/.test(q.month ?? "") ? q.month! : lastMonth();
+    const city = q.city || "Dubai";
+    return hit({ month, label: monthLabel(month), city, list: awardsFor(q.country || "AE", city, month).map((a, i) => ({ rank: i + 1, cuts: a.cuts, barber: barberView(a.barber) })) });
+  }
+  if (path === "/me/recommendations") {
+    const u = requireUser(token);
+    const booked = new Set(saved.bookings.filter((b) => b.customerId === u.id && b.status !== "pending_payment").map((b) => b.barberId));
+    const liked = [...booked, ...(u.favourites ?? [])].map((id) => allBarbers().find((b) => b.id === id)).filter((b): b is SeedBarber => !!b);
+    const tastes = new Map<string, number>();
+    for (const b of liked) for (const sp of b.specialties) tastes.set(sp, (tastes.get(sp) ?? 0) + 1);
+    const city = liked[0]?.city ?? u.city ?? "Dubai";
+    const bonus: Record<string, number> = { new: 0, rising: 0.2, pro: 0.5, elite: 0.8 };
+    return hit(allBarbers()
+      .filter((b) => isLive(b) && !booked.has(b.id) && !(u.favourites ?? []).includes(b.id) && b.city.toLowerCase() === city.toLowerCase())
+      .map((b) => {
+        const overlap = b.specialties.filter((sp) => tastes.has(sp));
+        const top = [...overlap].sort((a, c) => (tastes.get(c) ?? 0) - (tastes.get(a) ?? 0))[0];
+        return { b, score: overlap.length * 1.5 + (rating(b).raw || 4) + bonus[levelOf(b)]!, reason: top ? `Because you like ${top}` : `Top rated in ${b.city}` };
+      })
+      .sort((a, c) => c.score - a.score)
+      .slice(0, 8)
+      .map(({ b, reason }) => ({ ...barberView(b), reason })));
+  }
+  if ((x = path.match(/^\/partners\/([^/]+)$/))) {
+    const p = (saved.partners ?? []).find((y) => y.code === decodeURIComponent(x![1]!).toUpperCase() && y.active);
+    if (!p) throw new DemoError(404, "That code isn't valid.");
+    return hit({ code: p.code, name: p.name, kind: p.kind, discountPercent: p.kind === "corporate" ? p.discountPercent : 0 });
+  }
+  if ((x = path.match(/^\/bookings\/([^/]+)\/invoice$/))) {
+    const u = requireUser(token);
+    const b = saved.bookings.find((y) => y.id === x![1] && (y.customerId === u.id || (u.barberId && y.barberId === u.barberId) || isAdmin(u)));
+    if (!b) throw new DemoError(404, "Booking not found.");
+    if (!PAID.has(b.status) && !b.lateFee) throw new DemoError(400, "There's no invoice until the booking is paid.");
+    const barber = getBarber(b.barberId);
+    const service = findService(barber, b.serviceId);
+    const customer = saved.users.find((y) => y.id === b.customerId);
+    const ex = (b.extras ?? []).map((id) => barber.services.find((sv) => sv.id === id)).filter((sv): sv is SeedService => !!sv);
+    const charged = b.status === "cancelled" ? b.lateFee ?? 0 : b.amount;
+    const travel = b.locationType === "home" ? barber.homeVisitFee : 0;
+    const lines = b.status === "cancelled"
+      ? [{ description: `Late cancellation — ${service?.name ?? "appointment"} with ${barber.name}`, amount: charged }]
+      : [{ description: `${service?.name ?? "Appointment"} with ${barber.name}`, amount: b.amount - ex.reduce((t, e) => t + e.price, 0) - travel }, ...ex.map((e) => ({ description: e.name, amount: e.price })), ...(travel ? [{ description: "Home visit travel", amount: travel }] : [])].filter((l) => l.amount > 0);
+    return hit({
+      number: `JB-${b.startsAt.slice(0, 7).replace("-", "")}-${b.id.slice(0, 6).toUpperCase()}`, title: "Receipt", issuedAt: b.createdAt, serviceDate: b.startsAt, timeZone: timeZoneOf(barber),
+      seller: { name: "JB Always Fresh", address: "Dubai, United Arab Emirates", trn: null, onBehalfOf: barber.name },
+      customer: { name: b.guest?.name ?? customer?.name ?? "Customer", email: customer?.email ?? "" }, lines, currency: b.currency,
+      discounts: [...(b.creditUsed ? [{ description: "Gift credit", amount: b.creditUsed }] : []), ...(b.partnerDiscount ? [{ description: "Company discount", amount: b.partnerDiscount }] : [])],
+      total: charged, vat: null, tip: b.status === "cancelled" ? 0 : b.tip ?? 0, note: b.coveredBy === "membership" ? "Service included in your Club membership." : "",
+    });
+  }
+  if (path === "/chats" || path.startsWith("/chats/")) {
+    const u = requireUser(token);
+    demoReplies();
+    const side = (c: DemoChat): "customer" | "barber" | null => (c.customerId === u.id ? "customer" : u.barberId && c.barberId === u.barberId ? "barber" : null);
+    if (path === "/chats" && method === "GET") {
+      return hit((saved.chats ?? []).filter((c) => side(c)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).map((c) => chatView(c, side(c)!)));
+    }
+    if (path === "/chats" && method === "POST") {
+      const b = getBarber(String(body?.barberId));
+      if (!saved.bookings.some((k) => k.customerId === u.id && k.barberId === b.id && k.status !== "pending_payment")) throw new DemoError(403, `Book ${b.name.split(" ")[0]} first, then you can message them.`);
+      let c = (saved.chats ?? []).find((y) => y.customerId === u.id && y.barberId === b.id);
+      if (!c) {
+        c = { id: newId(), customerId: u.id, barberId: b.id, messages: [], updatedAt: new Date().toISOString() };
+        (saved.chats ??= []).push(c);
+        persist();
+      }
+      return hit(chatView(c, "customer"));
+    }
+    if ((x = path.match(/^\/chats\/([^/]+)(\/messages)?$/))) {
+      const c = (saved.chats ?? []).find((y) => y.id === x![1]);
+      const mySide = c && side(c);
+      if (!c || !mySide) throw new DemoError(404, "Conversation not found.");
+      if (x[2] && method === "POST") {
+        const text = String(body?.text ?? "").trim();
+        if (!text) throw new DemoError(400, "Write a message");
+        const msg = { id: newId(), from: mySide, text: text.slice(0, 1000), at: new Date().toISOString() };
+        c.messages.push(msg);
+        c.updatedAt = msg.at;
+        if (mySide === "customer") {
+          c.customerReadAt = msg.at;
+          const bu = barberUser(c.barberId);
+          if (bu) notify(bu.id, { kind: "chat", title: `Message from ${u.name.split(" ")[0]}`, body: text.slice(0, 160) });
+          if (c.barberId !== DEMO_LOGINS.barber.barberId) c.demoReplyAt = Date.now() + 4000;
+        } else {
+          c.barberReadAt = msg.at;
+          notify(c.customerId, { kind: "chat", title: `${getBarber(c.barberId).name.split(" ")[0]} replied`, body: text.slice(0, 160) });
+        }
+        persist();
+        return hit(msg);
+      }
+      if (mySide === "customer") c.customerReadAt = new Date().toISOString();
+      else c.barberReadAt = new Date().toISOString();
+      persist();
+      return hit({ ...chatView(c, mySide), side: mySide, messages: c.messages.slice(-200) });
+    }
+  }
+  if (path === "/barbers/me/payouts") {
+    const u = requireUser(token);
+    if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
+    if (method === "POST") throw new DemoError(503, "Payouts aren't switched on in the demo. In the app, Stripe checks your ID and bank once, then pays you automatically.");
+    return hit({ available: false, connected: false, payoutsEnabled: false, note: "Payouts switch on when JB connects Stripe. Until then JB pays you by bank transfer every week." });
+  }
+  return { hit: false };
+}
+
+function adminPlatform(method: string, path: string, q: Record<string, string>, body: Body | undefined, me: User): { hit: boolean; value?: unknown } {
+  const hit = (value: unknown) => ({ hit: true, value });
+  let x: RegExpMatchArray | null;
+  const owner = adminRole(me) === "owner";
+  if (path === "/admin/team") {
+    if (!owner) throw new DemoError(403, "Your team role doesn't include this. Ask an owner.");
+    if (method === "PUT") {
+      const email = String(body?.email ?? "").trim().toLowerCase();
+      if (email === DEMO_LOGINS.admin.email) throw new DemoError(400, "That person is an owner set on the server.");
+      if (body?.role && !saved.users.some((u) => u.email === email)) throw new DemoError(404, "No account with that email yet — ask them to sign up in the app first.");
+      const team = { ...saved.settings?.team };
+      if (body?.role) team[email] = body.role;
+      else delete team[email];
+      saved.settings = { ...saved.settings, team };
+      logActivity(me, body?.role ? "team.role_set" : "team.removed", email, body?.role ?? undefined);
+      persist();
+      return hit({ email, role: body?.role ?? null });
+    }
+    return hit([{ email: DEMO_LOGINS.admin.email, role: "owner", fixed: true }, ...Object.entries(saved.settings?.team ?? {}).map(([email, role]) => ({ email, role, fixed: false }))].map((m) => ({ ...m, name: saved.users.find((u) => u.email === m.email)?.name ?? null })));
+  }
+  if (path === "/admin/activity") {
+    const text = (q.q ?? "").trim().toLowerCase();
+    return hit((saved.activity ?? []).filter((a) => !text || `${a.action} ${a.target} ${a.by.name} ${a.detail ?? ""}`.toLowerCase().includes(text)).slice(-300).reverse());
+  }
+  if (path === "/admin/analytics") {
+    const days = Math.max(7, Math.min(365, Number(q.days) || 30));
+    const from = Date.now() - days * DAY;
+    const made = saved.bookings.filter((b) => fromApp(b) && Date.parse(b.createdAt) >= from);
+    const paid = made.filter((b) => PAID.has(b.status));
+    const cancelled = made.filter((b) => b.status === "cancelled");
+    const counts = new Map<string, number>();
+    for (const b of saved.bookings.filter((y) => fromApp(y) && PAID.has(y.status))) counts.set(b.customerId, (counts.get(b.customerId) ?? 0) + 1);
+    const active = new Set(paid.map((b) => b.customerId));
+    const firstTime = [...active].filter((id) => !saved.bookings.some((b) => b.customerId === id && fromApp(b) && PAID.has(b.status) && Date.parse(b.createdAt) < from)).length;
+    const lead = paid.map((b) => (Date.parse(b.startsAt) - Date.parse(b.createdAt)) / 3_600_000).filter((h) => h >= 0).sort((a, b) => a - b);
+    const cities = new Map<string, { bookings: number; revenue: { currency: string; amount: number }[] }>();
+    const services = new Map<string, number>();
+    const byHour = Array.from({ length: 24 }, () => 0);
+    const byWeekday = Array.from({ length: 7 }, () => 0);
+    const top = new Map<string, number>();
+    for (const b of paid) {
+      const barber = allBarbers().find((y) => y.id === b.barberId);
+      if (!barber) continue;
+      const row = cities.get(barber.city) ?? { bookings: 0, revenue: [] };
+      row.bookings += 1;
+      row.revenue.push({ currency: b.currency, amount: b.amount });
+      cities.set(barber.city, row);
+      const name = findService(barber, b.serviceId)?.name ?? "Consultation";
+      services.set(name, (services.get(name) ?? 0) + 1);
+      const { day, hour } = localDayHour(barber, b.startsAt);
+      byHour[hour % 24]! += 1;
+      byWeekday[day]! += 1;
+      top.set(b.barberId, (top.get(b.barberId) ?? 0) + 1);
+    }
+    return hit({
+      days,
+      bookings: { made: made.length, paid: paid.length, cancelled: cancelled.length, cancelRate: made.length ? Math.round((cancelled.length / made.length) * 100) : 0, conversion: made.length ? Math.round((paid.length / made.length) * 100) : 0 },
+      customers: { active: active.size, firstTime, returning: active.size - firstTime, newAccounts: saved.users.filter((u) => u.role === "customer" && u.createdAt && Date.parse(u.createdAt) >= from).length, repeatRate: counts.size ? Math.round(([...counts.values()].filter((n) => n >= 2).length / counts.size) * 100) : 0 },
+      averageBooking: byCurrency(paid).map((c) => ({ currency: c.currency, amount: Math.round(c.amount / paid.filter((b) => b.currency === c.currency).length) })),
+      leadTimeHours: lead.length ? Math.round(lead[Math.floor(lead.length / 2)]!) : 0,
+      byCity: [...cities].map(([city, r]) => ({ city, bookings: r.bookings, revenue: byCurrency(r.revenue) })).sort((a, b) => b.bookings - a.bookings).slice(0, 12),
+      byService: [...services].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count).slice(0, 8),
+      byHour, byWeekday,
+      topBarbers: [...top].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([id, n]) => {
+        const b = allBarbers().find((y) => y.id === id);
+        return { id, name: b?.name ?? "Barber", photoUrl: b?.photoUrl ?? "", city: b?.city ?? "", bookings: n };
+      }),
+    });
+  }
+  const financeRows = (month: string) => {
+    const rows: { date: string; type: string; ref: string; customer: string; barber: string; currency: string; amount: number; jbFee: number }[] = [];
+    const who = (id: string) => saved.users.find((u) => u.id === id)?.name ?? "";
+    for (const b of saved.bookings) {
+      if (!fromApp(b) || monthOf(b.startsAt) !== month) continue;
+      const barber = allBarbers().find((y) => y.id === b.barberId)?.name ?? "";
+      if (PAID.has(b.status)) {
+        rows.push({ date: b.startsAt, type: "booking", ref: b.id, customer: b.guest?.name ?? who(b.customerId), barber, currency: b.currency, amount: b.amount, jbFee: platformFee(b.amount) });
+        if (b.tip) rows.push({ date: b.startsAt, type: "tip", ref: b.id, customer: who(b.customerId), barber, currency: b.currency, amount: b.tip, jbFee: 0 });
+      } else if (b.status === "cancelled" && b.lateFee) rows.push({ date: b.startsAt, type: "late_cancellation", ref: b.id, customer: who(b.customerId), barber, currency: b.currency, amount: b.lateFee, jbFee: platformFee(b.lateFee) });
+    }
+    for (const o of saved.orders) if (!["pending_payment", "cancelled"].includes(o.status) && monthOf(o.createdAt) === month) rows.push({ date: o.createdAt, type: "products", ref: o.id, customer: who(o.customerId), barber: "", currency: o.currency, amount: o.amount, jbFee: o.amount });
+    for (const h of saved.hires ?? []) if (!["pending_payment", "cancelled"].includes(h.status) && monthOf(h.startsAt) === month) rows.push({ date: h.startsAt, type: "private_hire", ref: h.id, customer: who(h.customerId), barber: "", currency: h.currency, amount: h.amount, jbFee: platformFee(h.amount) });
+    for (const pu of saved.purchases ?? []) if (pu.status === "paid" && pu.kind !== "tip") rows.push({ date: new Date().toISOString(), type: pu.kind, ref: pu.id, customer: who(pu.userId), barber: "", currency: pu.currency, amount: pu.amount, jbFee: pu.amount });
+    return rows.sort((a, b) => a.date.localeCompare(b.date));
+  };
+  const month = /^\d{4}-\d{2}$/.test(q.month ?? "") ? q.month! : new Date().toISOString().slice(0, 7);
+  if (path === "/admin/finance") {
+    const rows = financeRows(month);
+    const sum = (type: string | null, k: "amount" | "jbFee") => byCurrency(rows.filter((r) => type === null || r.type === type).map((r) => ({ currency: r.currency, amount: r[k] })));
+    return hit({
+      month, label: monthLabel(month), vatRegistered: false, vatPercent: 5,
+      lines: [
+        { key: "bookings", label: "Bookings paid in the app", amounts: sum("booking", "amount") },
+        { key: "fees", label: "JB fees on bookings", amounts: sum("booking", "jbFee") },
+        { key: "late", label: "Late-cancellation fees kept", amounts: sum("late_cancellation", "amount") },
+        { key: "tips", label: "Tips (passed to barbers)", amounts: sum("tip", "amount") },
+        { key: "products", label: "JB's Fresh products", amounts: sum("products", "amount") },
+        { key: "hires", label: "Private hires", amounts: sum("private_hire", "amount") },
+        { key: "club", label: "The Club and gift cards", amounts: byCurrency(rows.filter((r) => r.type === "membership" || r.type === "gift")) },
+        { key: "refunds", label: "Refunded to customers", amounts: byCurrency(saved.bookings.filter((b) => fromApp(b) && b.status === "cancelled" && !b.seeded && monthOf(b.startsAt) === month).map((b) => ({ currency: b.currency, amount: b.amount + (b.tip ?? 0) - (b.lateFee ?? 0) }))) },
+        { key: "partners", label: "Owed to hotel partners", amounts: byCurrency(saved.bookings.filter((b) => b.partnerId && PAID.has(b.status) && monthOf(b.startsAt) === month).map((b) => ({ currency: b.currency, amount: partnerCommission(b) }))) },
+        { key: "vat", label: "VAT (add VAT_TRN once registered)", amounts: [] },
+      ],
+      transactions: rows.length,
+    });
+  }
+  if (path === "/admin/finance.csv") {
+    const cell = (v: string | number) => (typeof v === "number" ? (v / 100).toFixed(2) : `"${v.replace(/"/g, '""')}"`);
+    return hit(["date,type,reference,customer,barber,currency,amount,jb_fee,vat", ...financeRows(month).map((r) => [cell(r.date.slice(0, 10)), cell(r.type), cell(r.ref), cell(r.customer), cell(r.barber), cell(r.currency.toUpperCase()), cell(r.amount), cell(r.jbFee), cell(0)].join(","))].join("\n"));
+  }
+  const partnerView = (p: Partner) => {
+    const mine = saved.bookings.filter((b) => b.partnerId === p.id && PAID.has(b.status));
+    const now = mine.filter((b) => monthOf(b.startsAt) === new Date().toISOString().slice(0, 7));
+    return {
+      ...p, link: `${origin()}/p/${p.code}`, bookings: mine.length, bookingsThisMonth: now.length, revenueThisMonth: byCurrency(now),
+      owedThisMonth: byCurrency(now.map((b) => ({ currency: b.currency, amount: partnerCommission(b) }))), discountsThisMonth: byCurrency(now.map((b) => ({ currency: b.currency, amount: b.partnerDiscount ?? 0 }))),
+    };
+  };
+  if (path === "/admin/partners" && method === "GET") return hit((saved.partners ?? []).map(partnerView).sort((a, b) => b.bookings - a.bookings));
+  if (path === "/admin/partners" && method === "POST") {
+    const code = String(body?.code ?? "").trim().toUpperCase();
+    if (!/^[A-Z0-9-]{3,20}$/.test(code)) throw new DemoError(400, "Code: 3–20 letters, numbers or dashes");
+    if ((saved.partners ?? []).some((p) => p.code === code)) throw new DemoError(409, "That code is taken.");
+    const p: Partner = { id: newId(), kind: body?.kind === "corporate" ? "corporate" : "hotel", name: String(body?.name ?? "").trim(), code, discountPercent: Number(body?.discountPercent) || 0, commissionPercent: Number(body?.commissionPercent) || 0, emailDomain: String(body?.emailDomain ?? "").trim().toLowerCase() || undefined, contactEmail: String(body?.contactEmail ?? ""), active: true, createdAt: new Date().toISOString() };
+    (saved.partners ??= []).push(p);
+    logActivity(me, "partner.added", p.name, `${p.kind} · ${p.code}`);
+    persist();
+    return hit(partnerView(p));
+  }
+  if ((x = path.match(/^\/admin\/partners\/([^/]+)$/)) && method === "PATCH") {
+    const p = (saved.partners ?? []).find((y) => y.id === x![1]);
+    if (!p) throw new DemoError(404, "Partner not found.");
+    Object.assign(p, body);
+    logActivity(me, "partner.changed", p.name, Object.keys(body ?? {}).join(", "));
+    persist();
+    return hit(partnerView(p));
+  }
+  return { hit: false };
+}
+
 async function teamRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null, headers: Record<string, string> = {}): Promise<{ hit: boolean; value?: unknown }> {
   const hit = (value: unknown) => ({ hit: true, value });
   let x: RegExpMatchArray | null;
@@ -2003,10 +2366,14 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
 
   const pro = await proRoutes(method, path, q, body, token);
   if (pro.hit) return pro;
+  const platform = await platformRoutes(method, path, q, body, token);
+  if (platform.hit) return platform;
   if (path === "/manage" || path.startsWith("/manage/")) return hit(await manageRoutes(method, path, q, body, token, headers));
   if (!path.startsWith("/admin/")) return { hit: false };
   const me = requireUser(token);
   if (!isAdmin(me)) throw new DemoError(403, "Only the JB Always Fresh team can open this.");
+  const plat = adminPlatform(method, path, q, body, me);
+  if (plat.hit) return plat;
   const since = (days: number) => Date.now() - days * DAY;
   const text = (q.q ?? "").trim().toLowerCase();
 
@@ -2056,6 +2423,8 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
       if (body?.status) patch.status = body.status;
       if (body?.verified !== undefined) patch.verified = !!body.verified;
       saved.barberPatches[b.id] = { ...saved.barberPatches[b.id], ...patch };
+      if (patch.status && patch.status !== before) logActivity(me, `barber.${patch.status}`, b.name);
+      if (patch.verified !== undefined) logActivity(me, patch.verified ? "barber.verified" : "barber.unverified", b.name);
       const bu = barberUser(b.id);
       if (bu && patch.status && patch.status !== before) {
         if (patch.status === "live") notify(bu.id, { kind: "account", title: before === "pending" ? "You're live on JB Always Fresh" : "Your profile is back", body: "Clients can find and book you now. Keep your hours and prices up to date." });
@@ -2096,6 +2465,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
       if (owner) owner.credit = { ...owner.credit, [bk.currency]: (owner.credit?.[bk.currency] ?? 0) + bk.creditUsed };
     }
     const reason = String(body?.reason ?? "").trim();
+    logActivity(me, "booking.cancelled", `Booking ${bk.id.slice(0, 8)} with ${getBarber(bk.barberId).name}`, reason || undefined);
     const why = reason ? ` Reason: ${reason}` : "";
     notify(bk.customerId, { kind: "cancelled", title: "Booking cancelled", body: `JB Always Fresh cancelled your booking.${bk.amount && wasPaid ? " You'll get a full refund." : ""}${why}`, bookingId: bk.id });
     const bu = barberUser(bk.barberId);
@@ -2174,6 +2544,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
       for (const k of saved.tickets) if (k.reelId === t.reelId) k.status = "closed";
     }
     t.status = "closed";
+    logActivity(me, body?.action === "remove" ? "reel.removed" : "report.dismissed", `Report ${t.id.slice(0, 8)}`);
     t.replies = [...(t.replies ?? []), { at: new Date().toISOString(), by: me.name, text: body?.action === "remove" ? "Reel removed." : "Report dismissed — the reel stays." }];
     persist();
     return hit(ticketRow(t));
@@ -2191,6 +2562,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
       if (t.userId) notify(t.userId, { kind: "account", title: "Reply from JB Always Fresh support", body: reply.slice(0, 180) });
     }
     if (body?.status) t.status = body.status;
+    logActivity(me, reply ? "ticket.replied" : `ticket.${body?.status ?? "updated"}`, `Ticket from ${t.name ?? t.email}`);
     persist();
     return hit(ticketRow(t));
   }
@@ -2199,6 +2571,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
       const fee = body?.platformFeePercent;
       if (fee !== undefined && (typeof fee !== "number" || fee < 0 || fee > 50)) throw new DemoError(400, "The fee must be between 0% and 50%.");
       saved.settings = { ...saved.settings, ...body };
+      logActivity(me, "settings.changed", "Settings", Object.keys(body ?? {}).join(", "));
       persist();
     }
     const hidden = saved.settings?.hiddenCampaigns ?? [];
@@ -2435,7 +2808,7 @@ export function createDemoServer(data: DemoData) {
       const b = getBarber(x[1]);
       if ((b.status ?? "live") !== "live" && user?.barberId !== b.id && !isAdmin(user)) throw new DemoError(404, "Barber not found.");
       const reviews = saved.reviews.filter((r) => r.barberId === b.id).sort((a, c) => c.createdAt.localeCompare(a.createdAt)).map(({ customerId: _c, ...r }) => r);
-      return { ...barberView(b), reviews };
+      return { ...barberView(b), reviews, award: awardOf(b) };
     }
 
     // Bookings
@@ -2472,7 +2845,17 @@ export function createDemoServer(data: DemoData) {
       const covered = !consultation && !!plan && (plan.cutsPerPeriod === null || cutsUsed(u) < plan.cutsPerPeriod);
       const rule = consultation ? 0 : priceRuleAt(b, bk.startsAt);
       if (rule) bk.priceRule = rule;
-      const due = (covered ? 0 : adjustedPrice(s.price, rule)) + ex.reduce((t, e) => t + e.price, 0) + (locationType === "home" && !(plan?.freeHomeVisits && !consultation) ? b.homeVisitFee : 0);
+      const partner = consultation ? undefined : partnerFor(body?.partner, u);
+      let servicePrice = adjustedPrice(s.price, rule);
+      if (partner) {
+        bk.partnerId = partner.id;
+        if (partner.kind === "corporate" && partner.discountPercent) {
+          const off = adjustedPrice(servicePrice, -partner.discountPercent);
+          bk.partnerDiscount = servicePrice - off;
+          servicePrice = off;
+        }
+      }
+      const due = (covered ? 0 : servicePrice) + ex.reduce((t, e) => t + e.price, 0) + (locationType === "home" && !(plan?.freeHomeVisits && !consultation) ? b.homeVisitFee : 0);
       const credit = Math.min(u.credit?.[bk.currency] ?? 0, due);
       bk.amount = due - credit;
       if (covered) bk.coveredBy = "membership";

@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { AppState, Platform } from "react-native";
 import { api } from "./api";
 import { useAuth } from "./auth";
+import { onLive } from "./live";
 import { enablePush } from "./push";
 import type { AppNotification } from "./types";
 
@@ -54,9 +55,11 @@ export function AlertsProvider({ children }: { children: ReactNode }) {
     refresh();
     enablePush(false); // registers this phone if alerts are already allowed; never prompts here
     const timer = setInterval(refresh, POLL_MS);
+    const stopLive = onLive((event) => event === "notification" && refresh()); // instant on the website
     const sub = AppState.addEventListener("change", (s) => s === "active" && refresh());
     return () => {
       clearInterval(timer);
+      stopLive();
       sub.remove();
     };
   }, [user, refresh]);

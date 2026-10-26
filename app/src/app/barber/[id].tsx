@@ -22,7 +22,8 @@ export default function BarberProfile() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { user, setUser } = useAuth();
   const [favBusy, setFavBusy] = useState(false);
-  const [barber, setBarber] = useState<(Barber & { reviews: Review[] }) | null>(null);
+  const [barber, setBarber] = useState<(Barber & { reviews: Review[]; award?: { rank: number; month: string; label: string } | null }) | null>(null);
+  const [chatNote, setChatNote] = useState<string | null>(null);
   const [reels, setReels] = useState<Reel[]>([]);
   const [tab, setTab] = useState<TabKey>("portfolio");
   const [viewer, setViewer] = useState<string | null>(null);
@@ -100,7 +101,28 @@ export default function BarberProfile() {
           {barber.verified && <Ionicons name="shield-checkmark" size={18} color={colors.text} accessibilityLabel="Verified by JB" />}
         </Row>
         <T variant="caption" muted style={{ marginTop: 2 }}>{flag(barber.countryCode)} {barber.city}, {barber.countryName}{barber.verified ? " · Verified by JB" : ""}</T>
-        {barber.level && barber.level !== "new" && <View style={{ marginTop: 8 }}><Tag label={`${LEVEL_LABEL[barber.level]} barber`} icon="ribbon-outline" tone="dark" /></View>}
+        <Row gap={6} style={{ marginTop: 8, flexWrap: "wrap", justifyContent: "center" }}>
+          {barber.award && <Pressable onPress={() => router.push("/awards")} accessibilityRole="link"><Tag label={barber.award.label} icon="trophy-outline" tone="dark" /></Pressable>}
+          {barber.level && barber.level !== "new" && <Tag label={`${LEVEL_LABEL[barber.level]} barber`} icon="ribbon-outline" tone={barber.award ? "neutral" : "dark"} />}
+        </Row>
+        {user && user.role === "customer" && !isMe && (
+          <Button
+            title={`Message ${barber.name.split(" ")[0]}`}
+            icon="chatbubble-outline"
+            size="sm"
+            variant="ghost"
+            style={{ marginTop: 6 }}
+            onPress={async () => {
+              try {
+                const c = await api.startChat(barber.id);
+                router.push({ pathname: "/messages/[id]", params: { id: c.id } });
+              } catch (e) {
+                setChatNote((e as Error).message);
+              }
+            }}
+          />
+        )}
+        {chatNote && <T variant="caption" muted center>{chatNote}</T>}
         {isMe && barber.status && barber.status !== "live" && (
           <Pressable onPress={() => router.push("/business")} style={{ marginTop: 10 }}>
             <Tag label={barber.status === "pending" ? "In review — only you can see this" : "Paused — customers can't see this"} tone={barber.status === "pending" ? "neutral" : "danger"} icon={barber.status === "pending" ? "time-outline" : "pause"} />
