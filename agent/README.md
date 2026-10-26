@@ -186,8 +186,15 @@ GitHub Actions (`.github/workflows/dizz-lab.yml`) runs the type check, the tests
 | --- | --- |
 | `src/agent/providers/` | Claude (Anthropic SDK, Messages API) and Grok (xAI Responses API) adapters: streaming, tool loops, history replay. |
 | `src/agent/tools.ts`, `swarm.ts`, `toolkit.ts` | The agent's tools, custom agents and swarms, and which agent gets which tools. |
+| `src/agent/router.ts` | Smart pick: which model answers each message. |
+| `src/memory.ts` | Relevant memories per message and search by meaning (Voyage AI). |
+| `src/pricing.ts`, `spending.ts` | Estimated cost per request, the spending log, report and budget alerts. |
+| `src/push.ts`, `passkeys.ts`, `voice.ts` | Web Push, Face ID / fingerprint sign-in (WebAuthn + PRF unlock), ElevenLabs voice and Twilio calls. |
+| `src/connectors/apis.ts` | Your APIs: the `call_api` tool with server-side keys. |
+| `Dockerfile`, `fly.toml`, `deploy/`, `../render.yaml` | Running on a server, with Litestream backups. |
 | `src/agent/run.ts`, `chat.ts`, `prompt.ts` | One agent turn, sending and regenerating, and the system prompt. |
 | `src/connectors/` | Gmail, Calendar and Drive (Google OAuth + REST), apps by link (MCP client with OAuth and automatic registration), and the app gallery. |
 | `src/vault.ts`, `db.ts`, `files.ts` | Encryption, the encrypted SQLite store, and files/workspace. |
 | `src/server.ts`, `auth.ts`, `scheduler.ts` | HTTP API, sign-in and the reminder scheduler. |
+| `mobile/` | Capacitor shell for a store app. |
 | `web/` | The browser app (TypeScript, bundled on the fly with esbuild). `web/i18n-ar.ts` holds the Arabic text. `web/inpage.ts` lets the app run on an in-page backend: `web/demo/` (scripted replies) and `web/cloud/` (Claude through the viewer's claude.ai account, with encrypted storage). |
