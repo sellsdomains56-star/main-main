@@ -8,6 +8,7 @@ Design: minimal black and white (off-white page, black type and panels, real bar
 | --- | --- |
 | [`app/`](app) | The **iOS app, Android app and website** (Expo / React Native + Expo Router). |
 | [`server/`](server) | The **API** (Node + Express + TypeScript): barbers, search, bookings, payments, reviews, portfolios, reels, shop, AI concierge, AI try-on, support. |
+| [`agent/`](agent) | **Dizz Lab**, a separate project: a private, encrypted AI agent (Claude + Grok, web and X search, memory, reminders, files, code, images, agent swarms). See [`agent/README.md`](agent/README.md). |
 
 ## Features
 

@@ -1,0 +1,426 @@
+import assert from "node:assert/strict";
+import http from "node:http";
+import type { AddressInfo } from "node:net";
+import { after, before, describe, it } from "node:test";
+
+/**
+ * End-to-end tests against local stand-ins for the Anthropic and xAI APIs that
+ * stream the same event formats, so the adapters' requests, tool loops and
+ * history replay are checked without real keys.
+ */
+
+type Captured = { path: string; headers: http.IncomingHttpHeaders; body: Record<string, unknown> };
+const anthropicRequests: Captured[] = [];
+const xaiRequests: Captured[] = [];
+
+function sse(events: { event?: string; data: unknown }[]): string {
+  return events.map((e) => `${e.event ? `event: ${e.event}\n` : ""}data: ${JSON.stringify(e.data)}\n\n`).join("");
+}
+
+/** Claude: first a thinking block, a web search and a `remember` call; then the answer. */
+function anthropicReply(call: number): string {
+  const start = (index: number, block: unknown) => ({ event: "content_block_start", data: { type: "content_block_start", index, content_block: block } });
+  const delta = (index: number, d: unknown) => ({ event: "content_block_delta", data: { type: "content_block_delta", index, delta: d } });
+  const stop = (index: number) => ({ event: "content_block_stop", data: { type: "content_block_stop", index } });
+  const message = {
+    id: `msg_${call}`,
+    type: "message",
+    role: "assistant",
+    model: "claude-opus-5-5",
+    content: [],
+    stop_reason: null,
+    stop_sequence: null,
+    usage: { input_tokens: 100, output_tokens: 1 },
+  };
+  const head = [{ event: "message_start", data: { type: "message_start", message } }];
+  const end = (reason: string) => [
+    { event: "message_delta", data: { type: "message_delta", delta: { stop_reason: reason, stop_sequence: null }, usage: { output_tokens: 42 } } },
+    { event: "message_stop", data: { type: "message_stop" } },
+  ];
+  if (call === 1) {
+    return sse([
+      ...head,
+      start(0, { type: "thinking", thinking: "", signature: "" }),
+      delta(0, { type: "thinking_delta", thinking: "The user likes espresso; save it and look it up." }),
+      delta(0, { type: "signature_delta", signature: "sig-abc" }),
+      stop(0),
+      start(1, { type: "server_tool_use", id: "srvtoolu_1", name: "web_search", input: {} }),
+      delta(1, { type: "input_json_delta", partial_json: '{"query":"best espresso beans"}' }),
+      stop(1),
+      start(2, {
+        type: "web_search_tool_result",
+        tool_use_id: "srvtoolu_1",
+        content: [{ type: "web_search_result", url: "https://example.com/beans", title: "Best beans", encrypted_content: "enc", page_age: null }],
+      }),
+      stop(2),
+      start(3, { type: "tool_use", id: "toolu_1", name: "remember", input: {} }),
+      delta(3, { type: "input_json_delta", partial_json: '{"fact":"Loves espresso","category":"preference"}' }),
+      stop(3),
+      ...end("tool_use"),
+    ]);
+  }
+  return sse([
+    ...head,
+    start(0, { type: "text", text: "" }),
+    delta(0, { type: "text_delta", text: `Answer ${call}.` }),
+    stop(0),
+    ...end("end_turn"),
+  ]);
+}
+
+/** Grok: first a reasoning item and a `remember` call; then the answer with a citation. */
+function xaiReply(call: number): string {
+  const reasoning = { type: "reasoning", id: `rs_${call}`, summary: [], encrypted_content: `enc-${call}` };
+  const usage = { input_tokens: 50, output_tokens: 10, total_tokens: 60 };
+  const response = (output: unknown[]) => ({ id: `resp_${call}`, object: "response", status: "completed", model: "grok-4.7", output, usage });
+  const ev = (data: Record<string, unknown>) => ({ event: data.type as string, data });
+  if (call === 1) {
+    const fn = { type: "function_call", id: "fc_1", call_id: "call_1", name: "remember", arguments: '{"fact":"Prefers Grok","category":"preference"}', status: "completed" };
+    return sse([
+      ev({ type: "response.output_item.added", output_index: 0, item: reasoning, sequence_number: 1 }),
+      ev({ type: "response.output_item.done", output_index: 0, item: reasoning, sequence_number: 2 }),
+      ev({ type: "response.output_item.added", output_index: 1, item: { ...fn, arguments: "", status: "in_progress" }, sequence_number: 3 }),
+      ev({ type: "response.output_item.done", output_index: 1, item: fn, sequence_number: 4 }),
+      ev({ type: "response.completed", response: response([reasoning, fn]), sequence_number: 5 }),
+    ]);
+  }
+  const msg = {
+    type: "message",
+    id: `msg_${call}`,
+    role: "assistant",
+    status: "completed",
+    content: [{ type: "output_text", text: `Grok answer ${call}.`, annotations: [{ type: "url_citation", url: "https://x.com/post", title: "A post", start_index: 0, end_index: 1 }] }],
+  };
+  return sse([
+    ev({ type: "response.output_text.delta", item_id: msg.id, output_index: 0, content_index: 0, delta: `Grok answer ${call}.`, logprobs: [], sequence_number: 1 }),
+    ev({ type: "response.output_text.annotation.added", item_id: msg.id, output_index: 0, content_index: 0, annotation_index: 0, annotation: msg.content[0].annotations[0], sequence_number: 2 }),
+    ev({ type: "response.completed", response: response([msg]), sequence_number: 3 }),
+  ]);
+}
+
+let server: http.Server;
+
+before(async () => {
+  let anthropicCalls = 0;
+  let xaiCalls = 0;
+  server = http.createServer((req, res) => {
+    let raw = "";
+    req.on("data", (c) => (raw += c));
+    req.on("end", () => {
+      const body = raw ? JSON.parse(raw) : {};
+      if (body.stream) res.writeHead(200, { "content-type": "text/event-stream" });
+      if (req.url!.startsWith("/anthropic/")) {
+        anthropicRequests.push({ path: req.url!, headers: req.headers, body });
+        // Title requests are plain (non-streaming) calls.
+        if (!body.stream) {
+          res.writeHead(200, { "content-type": "application/json" });
+          res.end(JSON.stringify({ id: "t", type: "message", role: "assistant", model: body.model, content: [{ type: "text", text: "Espresso chat" }], stop_reason: "end_turn", stop_sequence: null, usage: { input_tokens: 1, output_tokens: 1 } }));
+          return;
+        }
+        res.end(anthropicReply(++anthropicCalls));
+      } else {
+        xaiRequests.push({ path: req.url!, headers: req.headers, body });
+        if (!body.stream) {
+          res.writeHead(200, { "content-type": "application/json" });
+          res.end(JSON.stringify({ id: "t", object: "response", status: "completed", model: body.model, output: [{ type: "message", id: "m", role: "assistant", status: "completed", content: [{ type: "output_text", text: "Grok chat", annotations: [] }] }], usage: { input_tokens: 1, output_tokens: 1, total_tokens: 2 } }));
+          return;
+        }
+        res.end(xaiReply(++xaiCalls));
+      }
+    });
+  });
+  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+  const { port } = server.address() as AddressInfo;
+  process.env.ANTHROPIC_API_KEY = "test-key";
+  process.env.ANTHROPIC_BASE_URL = `http://127.0.0.1:${port}/anthropic`;
+  process.env.XAI_API_KEY = "test-key";
+  process.env.XAI_BASE_URL = `http://127.0.0.1:${port}/xai/v1`;
+  process.env.AGENT_PASSWORD = "correct horse";
+  process.env.TIMEZONE = "Asia/Dubai";
+  const { initAuth } = await import("./auth.js");
+  await initAuth(); // creates the vault from AGENT_PASSWORD and unlocks it
+});
+
+after(() => server.close());
+
+async function untilDone(run: { subscribe: (fn: (e: { type: string }) => void, onClose?: () => void) => () => void }) {
+  await new Promise<void>((resolve) => run.subscribe(() => {}, resolve));
+}
+
+describe("Claude adapter", () => {
+  it("streams thinking, server search and tool calls, then replays history append-only", async () => {
+    const { createConversation, listMessages, listMemories } = await import("./db.js");
+    const { sendMessage } = await import("./agent/chat.js");
+    const conversation = createConversation();
+
+    await untilDone(sendMessage({ conversationId: conversation.id, text: "I love espresso", model: "claude-opus-5-5", effort: "deep" }));
+    const [first, second] = anthropicRequests.filter((r) => r.body.stream);
+    assert.ok(first && second, "two streamed requests for one tool round");
+
+    // Request shape
+    assert.equal(first.body.model, "claude-opus-5-5");
+    assert.deepEqual(first.body.thinking, { type: "adaptive", display: "summarized" });
+    assert.deepEqual(first.body.output_config, { effort: "xhigh" });
+    assert.equal(first.body.fallbacks, "default");
+    assert.match(String(first.headers["anthropic-beta"]), /server-side-fallback-2026-07-01/);
+    assert.equal("temperature" in first.body, false);
+    const tools = first.body.tools as { name: string; type?: string; eager_input_streaming?: boolean }[];
+    assert.ok(tools.some((t) => t.type === "web_search_20260209"));
+    assert.ok(tools.some((t) => t.type === "web_fetch_20260209"));
+    assert.ok(tools.filter((t) => !t.type).every((t) => t.eager_input_streaming === true));
+    assert.ok(tools.some((t) => t.name === "delegate_tasks"), "the main agent can run swarms");
+
+    // The tool round: the assistant turn comes back unchanged, then our result.
+    const msgs = second.body.messages as { role: string; content: { type: string; [k: string]: unknown }[] }[];
+    const assistant = msgs[1];
+    assert.equal(assistant.role, "assistant");
+    assert.deepEqual(assistant.content.map((b) => b.type), ["thinking", "server_tool_use", "web_search_tool_result", "tool_use"]);
+    assert.equal(assistant.content[0].signature, "sig-abc");
+    const result = msgs[2].content[0];
+    assert.equal(result.type, "tool_result");
+    assert.equal(result.tool_use_id, "toolu_1");
+    assert.ok(listMemories().some((m) => m.text === "Loves espresso"));
+
+    // What was saved
+    const saved = listMessages(conversation.id).at(-1)!;
+    assert.equal(saved.status, "complete");
+    assert.equal(saved.text, "Answer 2.");
+    assert.deepEqual(saved.sources, [{ url: "https://example.com/beans", title: "Best beans" }]);
+    assert.deepEqual(
+      saved.steps!.map((s) => (s.kind === "tool" ? `${s.name}:${s.status}` : s.kind)),
+      ["thinking", "web_search:ok", "remember:ok"],
+    );
+
+    // Next turn: the earlier request is an exact prefix of the new one.
+    await untilDone(sendMessage({ conversationId: conversation.id, text: "Thanks", model: "claude-opus-5-5" }));
+    const third = anthropicRequests.filter((r) => r.body.stream)[2];
+    const prior = second.body.messages as unknown[];
+    const next = third.body.messages as unknown[];
+    assert.equal(JSON.stringify(next.slice(0, prior.length)), JSON.stringify(prior));
+    assert.equal(next.length, prior.length + 2);
+  });
+
+  it("uses the basic web tools and no fallback for Haiku", async () => {
+    const { createConversation } = await import("./db.js");
+    const { sendMessage } = await import("./agent/chat.js");
+    const conversation = createConversation();
+    const before = anthropicRequests.length;
+    await untilDone(sendMessage({ conversationId: conversation.id, text: "hi", model: "claude-haiku-5-5" }));
+    const req = anthropicRequests.slice(before).find((r) => r.body.stream)!;
+    const tools = req.body.tools as { type?: string }[];
+    assert.ok(tools.some((t) => t.type === "web_search_20250305"));
+    assert.equal(req.body.fallbacks, undefined);
+  });
+});
+
+describe("Grok adapter", () => {
+  it("uses the Responses API with web and X search, runs function calls and passes reasoning back", async () => {
+    const { createConversation, listMessages, listMemories } = await import("./db.js");
+    const { sendMessage } = await import("./agent/chat.js");
+    const conversation = createConversation();
+    await untilDone(sendMessage({ conversationId: conversation.id, text: "Remember I prefer Grok", model: "grok-4.7", effort: "fast" }));
+
+    const [first, second] = xaiRequests.filter((r) => r.body.stream);
+    assert.equal(first.path, "/xai/v1/responses");
+    assert.equal(first.body.store, false);
+    assert.deepEqual(first.body.include, ["reasoning.encrypted_content"]);
+    assert.deepEqual(first.body.reasoning, { effort: "low" });
+    const tools = first.body.tools as { type: string; name?: string }[];
+    assert.ok(tools.some((t) => t.type === "web_search"));
+    assert.ok(tools.some((t) => t.type === "x_search"));
+    assert.ok(tools.some((t) => t.type === "function" && t.name === "generate_image"));
+
+    const input = second.body.input as { type?: string; role?: string; call_id?: string; encrypted_content?: string }[];
+    assert.equal(input[0].role, "system");
+    assert.ok(input.some((i) => i.type === "reasoning" && i.encrypted_content === "enc-1"));
+    assert.ok(input.some((i) => i.type === "function_call_output" && i.call_id === "call_1"));
+    assert.ok(listMemories().some((m) => m.text === "Prefers Grok"));
+
+    const saved = listMessages(conversation.id).at(-1)!;
+    assert.equal(saved.text, "Grok answer 2.");
+    assert.deepEqual(saved.sources, [{ url: "https://x.com/post", title: "A post" }]);
+  });
+
+  it("replays a Claude turn to Grok as plain text when you switch models", async () => {
+    const { createConversation } = await import("./db.js");
+    const { sendMessage } = await import("./agent/chat.js");
+    const conversation = createConversation();
+    await untilDone(sendMessage({ conversationId: conversation.id, text: "first", model: "claude-sonnet-5-5" }));
+    const before = xaiRequests.length;
+    await untilDone(sendMessage({ conversationId: conversation.id, text: "second", model: "grok-4.7" }));
+    const req = xaiRequests.slice(before).find((r) => r.body.stream)!;
+    const input = req.body.input as { role?: string; content?: unknown }[];
+    const assistantTurns = input.filter((i) => i.role === "assistant");
+    assert.equal(assistantTurns.length, 1);
+    assert.equal(typeof assistantTurns[0].content, "string");
+  });
+});
+
+describe("Swarms and custom agents", () => {
+  it("creates agents and runs a swarm of them in parallel", async () => {
+    const { createConversation, findAgent, listMessages } = await import("./db.js");
+    const { AGENT_TOOLS } = await import("./agent/swarm.js");
+    const { sendMessage } = await import("./agent/chat.js");
+    const create = AGENT_TOOLS.find((t) => t.name === "create_agents")!;
+    const conversation = createConversation();
+    const ctx = { conversationId: conversation.id, signal: new AbortController().signal, progress() {} };
+    const made = await create.run(
+      {
+        agents: Array.from({ length: 12 }, (_, i) => ({
+          name: `Analyst ${i + 1}`,
+          description: "Researches one company",
+          instructions: "Be precise.",
+          model: "mock",
+        })),
+      },
+      ctx,
+    );
+    assert.ok(made.ok, made.content);
+    assert.ok(findAgent("analyst 7"), "names are case-insensitive");
+
+    // The mock model delegates when asked to "use agents".
+    await untilDone(sendMessage({ conversationId: conversation.id, text: "use agents to compare phones", model: "mock" }));
+    const reply = listMessages(conversation.id).at(-1)!;
+    const swarm = reply.steps!.find((s) => s.kind === "tool" && s.name === "delegate_tasks");
+    assert.ok(swarm && swarm.kind === "tool" && swarm.status === "ok", JSON.stringify(reply.steps));
+    assert.match(reply.text, /3 of 3 tasks succeeded/);
+  });
+
+  it("gives custom agents only the abilities you chose, and never swarm tools to sub-agents", async () => {
+    const { toolsFor } = await import("./agent/toolkit.js");
+    const now = Date.now();
+    const base = { id: "a_x", name: "X", emoji: "🤖", description: "", instructions: "", model: null, effort: null, createdAt: now, updatedAt: now };
+    const limited = toolsFor({ ...base, tools: ["memory"] }, false);
+    assert.deepEqual(limited.tools.map((t) => t.name), ["remember", "forget", "search_past_conversations"]);
+    assert.equal(limited.serverTools, false);
+    const sub = toolsFor(null, true);
+    assert.ok(!sub.tools.some((t) => t.name === "delegate_tasks"));
+    assert.ok(sub.serverTools);
+  });
+});
+
+describe("Reminders", () => {
+  it("repeats in local time and skips missed runs", async () => {
+    const { nextOccurrence } = await import("./tools/schedule.js");
+    const at = new Date(2026, 9, 23, 8, 0).getTime(); // Fri 23 Oct 2026, 08:00
+    assert.equal(new Date(nextOccurrence(at, "weekdays", at)!).getDay(), 1, "Friday → Monday");
+    assert.equal(nextOccurrence(at, "none", at), null);
+    const now = new Date(2026, 9, 26, 12, 0).getTime();
+    const next = new Date(nextOccurrence(at, "daily", now)!);
+    assert.equal(next.getDate(), 27);
+    assert.equal(next.getHours(), 8);
+    const monthly = new Date(nextOccurrence(new Date(2026, 0, 31, 9, 0).getTime(), "monthly", 0)!);
+    assert.equal(monthly.getMonth(), 1);
+    assert.equal(monthly.getDate(), 28, "31 Jan → 28 Feb");
+  });
+
+  it("fires a due reminder into its chat", async () => {
+    const { addReminder, createConversation, listMessages, getReminder } = await import("./db.js");
+    const { tick } = await import("./scheduler.js");
+    const conversation = createConversation();
+    const r = addReminder({ message: "Stretch", task: null, nextRun: Date.now() - 1000, repeat: "daily", conversationId: conversation.id });
+    await tick();
+    assert.match(listMessages(conversation.id).at(-1)!.text, /Reminder:\*\* Stretch/);
+    assert.ok(getReminder(r.id)!.nextRun > Date.now(), "rescheduled for tomorrow");
+  });
+});
+
+describe("Tools", () => {
+  it("validates input and keeps file access inside the workspace", async () => {
+    const { BASE_TOOLS } = await import("./agent/tools.js");
+    const ctx = { conversationId: "c_none", signal: new AbortController().signal, progress() {} };
+    const write = BASE_TOOLS.files.find((t) => t.name === "write_file")!;
+    const read = BASE_TOOLS.files.find((t) => t.name === "read_file")!;
+    assert.equal((await write.run({ path: "../escape.txt", content: "x" }, ctx)).ok, false);
+    assert.equal((await write.run({ path: "/etc/passwd", content: "x" }, ctx)).ok, false);
+    assert.equal((await write.run({ nope: 1 }, ctx)).ok, false);
+    assert.ok((await write.run({ path: "notes/hello.md", content: "# Hi" }, ctx)).ok);
+    assert.equal((await read.run({ path: "notes/hello.md" }, ctx)).content, "# Hi");
+  });
+
+  it("runs code without leaking API keys to it", async () => {
+    const { BASE_TOOLS } = await import("./agent/tools.js");
+    const run = BASE_TOOLS.code[0];
+    const ctx = { conversationId: "c_none", signal: new AbortController().signal, progress() {} };
+    const out = await run.run({ language: "javascript", code: "console.log(process.env.ANTHROPIC_API_KEY ?? 'no key', 6 * 7)" }, ctx);
+    assert.ok(out.ok);
+    assert.match(out.content, /no key 42/);
+    const slow = await run.run({ language: "bash", code: "sleep 5", timeout_seconds: 1 }, ctx);
+    assert.equal(slow.ok, false);
+    assert.match(slow.content, /Timed out/);
+  });
+});
+
+describe("Encryption at rest", () => {
+  it("stores chats, memories and agents only as ciphertext", async () => {
+    const { addMemory, createAgent, createConversation, addMessage, rawRow, listMessages, getConversation } = await import("./db.js");
+    const c = createConversation("Secret plans");
+    const m = addMessage(c.id, "user", { text: "my bank PIN is 4321" });
+    const mem = addMemory("Lives at 1 Secret Street", "about_me");
+    const agent = createAgent({ name: "Spy", emoji: "🕵️", description: "covert", instructions: "Tell no one", model: null, effort: null, tools: null });
+    for (const [table, id] of [["conversations", c.id], ["messages", m.id], ["memories", mem.id], ["agents", agent.id]] as const) {
+      const raw = JSON.stringify(rawRow(table, id));
+      assert.doesNotMatch(raw, /Secret|4321|Tell no one|covert/, `${table} leaked plaintext`);
+      assert.match(raw, /e1:/);
+    }
+    assert.equal(getConversation(c.id)!.title, "Secret plans");
+    assert.equal(listMessages(c.id)[0].text, "my bank PIN is 4321");
+  });
+
+  it("encrypts uploaded files on disk", async () => {
+    const fs = await import("node:fs");
+    const { saveUpload, readFileBytes } = await import("./files.js");
+    const { getFile } = await import("./db.js");
+    const file = saveUpload("diary.txt", "text/plain", Buffer.from("dear diary"), null);
+    assert.doesNotMatch(fs.readFileSync(getFile(file.id)!.path).toString("latin1"), /dear diary/);
+    assert.equal(readFileBytes(file.id)!.data.toString(), "dear diary");
+  });
+
+  it("checks the password with the key itself, and can change it", async () => {
+    const { unlock, changePassword } = await import("./vault.js");
+    assert.equal(await unlock("wrong"), false);
+    assert.equal(await unlock("correct horse"), true);
+    assert.equal(await changePassword("wrong", "new password"), false);
+    assert.equal(await changePassword("correct horse", "new password 2"), true);
+    assert.equal(await unlock("new password 2"), true);
+    assert.equal(await changePassword("new password 2", "correct horse"), true);
+  });
+});
+
+describe("HTTP API", () => {
+  it("requires the password and blocks cross-site writes", async () => {
+    const { createApp } = await import("./server.js");
+    const srv = createApp().listen(0);
+    const base = `http://127.0.0.1:${(srv.address() as AddressInfo).port}`;
+    try {
+      assert.equal((await fetch(`${base}/api/conversations`)).status, 401);
+      const noHeader = await fetch(`${base}/api/login`, { method: "POST", headers: { "content-type": "application/json" }, body: '{"password":"correct horse"}' });
+      assert.equal(noHeader.status, 403);
+      const headers = { "content-type": "application/json", "x-requested-with": "agent" };
+      const wrong = await fetch(`${base}/api/login`, { method: "POST", headers, body: '{"password":"nope"}' });
+      assert.equal(wrong.status, 401);
+      const ok = await fetch(`${base}/api/login`, { method: "POST", headers, body: '{"password":"correct horse"}' });
+      assert.equal(ok.status, 200);
+      const cookie = ok.headers.get("set-cookie")!.split(";")[0];
+      const list = await fetch(`${base}/api/conversations`, { headers: { cookie } });
+      assert.equal(list.status, 200);
+      const boot = (await (await fetch(`${base}/api/bootstrap`, { headers: { cookie } })).json()) as { models: { id: string }[] };
+      assert.ok(boot.models.some((m) => m.id === "claude-opus-5-5"));
+      assert.ok(boot.models.some((m) => m.id === "grok-4.7"));
+      const page = await fetch(`${base}/`);
+      assert.match(page.headers.get("content-security-policy")!, /default-src 'self'/);
+
+      // Locking forgets the key: the session still exists, but data stays sealed until the password is entered.
+      const headersWithCookie = { ...headers, cookie };
+      assert.equal((await fetch(`${base}/api/lock`, { method: "POST", headers: headersWithCookie, body: "{}" })).status, 200);
+      assert.equal((await fetch(`${base}/api/conversations`, { headers: { cookie } })).status, 423);
+      const session = (await (await fetch(`${base}/api/session`, { headers: { cookie } })).json()) as { locked: boolean };
+      assert.equal(session.locked, true);
+      const again = await fetch(`${base}/api/login`, { method: "POST", headers, body: '{"password":"correct horse"}' });
+      assert.equal(again.status, 200);
+      assert.equal((await fetch(`${base}/api/conversations`, { headers: { cookie } })).status, 200);
+    } finally {
+      srv.close();
+    }
+  });
+});

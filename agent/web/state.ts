@@ -1,0 +1,79 @@
+import type { AgentProfile, Conversation, Effort, FileRecord, ModelInfo, Settings, StoredMessage, ToolGroup } from "../src/types.js";
+
+export type { AgentProfile, Conversation, Effort, FileRecord, ModelInfo, Settings, StoredMessage, ToolGroup };
+
+export interface Bootstrap {
+  agentName: string;
+  timezone: string;
+  models: ModelInfo[];
+  settings: Settings;
+  toolGroups: ToolGroup[];
+  security: { encryptedAtRest: boolean; autoUnlock: boolean };
+  features: {
+    imageGeneration: boolean;
+    codeExecution: boolean;
+    phoneNotifications: boolean;
+    swarmConcurrency: number;
+    swarmMaxTasks: number;
+  };
+  running: string[];
+}
+
+export interface ConversationSummary extends Conversation {
+  running: boolean;
+  agent: { id: string; name: string; emoji: string } | null;
+}
+
+export interface OpenConversation {
+  conversation: Conversation;
+  agent: AgentProfile | null;
+  messages: StoredMessage[];
+  running: boolean;
+}
+
+export const state = {
+  boot: null as unknown as Bootstrap,
+  conversations: [] as ConversationSummary[],
+  /** null while on a fresh, not-yet-sent chat */
+  current: null as OpenConversation | null,
+  /** the agent a fresh chat will be with */
+  draftAgent: null as AgentProfile | null,
+  model: "",
+  effort: "auto" as Effort,
+  search: "",
+};
+
+const LOCAL = "agent.prefs";
+interface Prefs {
+  model?: string;
+  effort?: Effort;
+  sidebarCollapsed?: boolean;
+  theme?: "system" | "dark" | "light";
+  readAloud?: boolean;
+}
+
+export function prefs(): Prefs {
+  try {
+    return JSON.parse(localStorage.getItem(LOCAL) ?? "{}") as Prefs;
+  } catch {
+    return {};
+  }
+}
+
+export function savePrefs(patch: Partial<Prefs>): void {
+  try {
+    localStorage.setItem(LOCAL, JSON.stringify({ ...prefs(), ...patch }));
+  } catch {
+    // private mode
+  }
+}
+
+export function modelInfo(id: string): ModelInfo | undefined {
+  return state.boot.models.find((m) => m.id === id);
+}
+
+export const EFFORTS: { id: Effort; label: string; hint: string }[] = [
+  { id: "fast", label: "Fast", hint: "Quick answers" },
+  { id: "auto", label: "Auto", hint: "Thinks when it helps" },
+  { id: "deep", label: "Deep", hint: "Thinks hard, takes longer" },
+];
