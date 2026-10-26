@@ -27,7 +27,7 @@ export function notify(userId: string, n: { kind: NotificationKind; title: strin
 }
 
 /** Alerts people can switch off (Account → Alerts); everything else always reaches the phone. */
-const OPTIONAL: Partial<Record<NotificationKind, "reminders" | "offers" | "tips">> = { reminder: "reminders", club: "offers", gift: "offers", tip: "tips" };
+const OPTIONAL: Partial<Record<NotificationKind, "reminders" | "offers" | "tips">> = { reminder: "reminders", club: "offers", gift: "offers", message: "offers", tip: "tips" };
 
 function wantsPush(userId: string, kind: NotificationKind) {
   const pref = OPTIONAL[kind];

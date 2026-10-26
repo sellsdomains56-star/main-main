@@ -1,9 +1,9 @@
 import { useFocusEffect } from "expo-router";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
 import { AdminPage, Bars, Kpi, Table, useWide } from "../../components/admin";
 import { colors, radius } from "../../components/theme";
-import { Avatar, Card, ErrorBox, Loading, Row, Segmented, T } from "../../components/ui";
+import { Avatar, Button, Card, ErrorBox, Field, IconLine, Loading, Pill, Row, Segmented, T, Wrap } from "../../components/ui";
 import { api } from "../../lib/api";
 import { money } from "../../lib/format";
 import type { ShopReport } from "../../lib/types";
@@ -90,8 +90,48 @@ export default function Reports() {
               { label: "Takings", align: "right", render: (b) => <T variant="caption">{money(b.takings, r.currency)}</T> },
             ]}
           />
+          <BringBack />
         </>
       )}
     </AdminPage>
+  );
+}
+
+const WEEKS = [4, 6, 8, 12];
+
+/** "We miss you": one message to app clients who haven't been in for a while (and have nothing booked). */
+function BringBack() {
+  const [weeks, setWeeks] = useState(6);
+  const [count, setCount] = useState<{ clients: number; lapsed: number } | null>(null);
+  const [text, setText] = useState("It's been a while! Your chair is waiting — book this week and leave fresh.");
+  const [result, setResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  useEffect(() => {
+    setCount(null);
+    api.manage.lapsedClients(weeks).then(setCount, (e: Error) => setError(e.message));
+  }, [weeks]);
+  const send = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const r = await api.manage.messageLapsed(weeks, text);
+      setResult(`Sent to ${r.sent} ${r.sent === 1 ? "client" : "clients"}${r.skipped ? ` · ${r.skipped} skipped (messaged this week or offers off)` : ""}.`);
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <Card style={{ marginTop: 28, padding: 20 }}>
+      <T variant="heading">Bring clients back</T>
+      <T variant="caption" muted style={{ marginTop: 4, marginBottom: 12 }}>A message in the app, with your booking link, to clients who haven't been in for a while and have nothing booked.</T>
+      <Wrap>{WEEKS.map((w) => <Pill key={w} label={`Not seen in ${w}+ weeks`} selected={weeks === w} onPress={() => { setWeeks(w); setResult(null); }} />)}</Wrap>
+      <T variant="strong" style={{ marginTop: 12 }}>{count ? `${count.lapsed} of ${count.clients} app clients` : " "}</T>
+      <Field label="Message" value={text} onChangeText={setText} multiline maxLength={400} style={{ marginTop: 10 }} />
+      {error && <ErrorBox message={error} />}
+      {result ? <IconLine icon="checkmark-circle-outline">{result}</IconLine> : <Button title={`Send to ${count?.lapsed ?? 0}`} icon="send" size="md" style={{ alignSelf: "flex-start" }} disabled={!count?.lapsed || text.trim().length < 5} loading={busy} onPress={send} />}
+    </Card>
   );
 }

@@ -39,6 +39,10 @@ export interface Barber {
   transformations: Transformation[];
   nextAvailable: string | null;
   distanceKm?: number; // when searching near the customer
+  level?: Level;
+  cancelPolicy?: CancelPolicy | null;
+  offPeak?: PriceRule | null;
+  peak?: PriceRule | null;
   status?: BarberStatus; // pending = waiting for approval, suspended = paused by the team
   verified?: boolean; // ID and licence checked by the team
 }
@@ -246,6 +250,9 @@ export interface Booking {
   tip?: number;
   cutNotes?: string; // the barber's notes for next time
   cutPhotos?: string[]; // photos of the finished cut, from the barber
+  priceRule?: number; // off-peak (< 0) or peak (> 0) percent applied
+  lateFee?: number; // kept by the barber after a late cancellation
+  cancelTerms?: { freeUntil: string | null; lateFeePercent: number; fee: number };
   venue?: { kind: VenueKind; details: string };
   guest?: { name: string; phone: string }; // booked for someone else
   bookedBy?: string | null;
@@ -437,6 +444,7 @@ export interface Earnings {
   fee: number;
   tips: number;
   net: number;
+  lateFees?: number; // kept from late cancellations (included in gross)
 }
 
 export interface WorkingHours {
@@ -463,6 +471,9 @@ export interface BusinessDashboard {
   reviews: Review[];
   checklist: { key: string; label: string; done: boolean }[];
   hours: WorkingHours;
+  level: Level;
+  link: string;
+  blocks: number; // upcoming blocked times
 }
 
 // ---------- Admin panel ----------
@@ -588,6 +599,7 @@ export interface AdminSettings {
 // ---------- Shop panel (a barbershop runs its day) ----------
 
 export interface ShopMember extends Barber {
+  sharePercent: number | null; // the barber's own split (null = the shop's default)
   status: BarberStatus;
   offline: boolean; // switched off in the app by the shop
   email: string | null;
@@ -596,10 +608,152 @@ export interface ShopMember extends Barber {
 }
 
 export interface ShopPanel {
-  shop: { id: string; name: string; address: string; city: string; phone: string; about: string; photoUrl: string; timeZone: string; currency: string; workingDays: number[]; openHour: number; closeHour: number };
+  shop: { id: string; name: string; address: string; city: string; phone: string; about: string; photoUrl: string; timeZone: string; currency: string; workingDays: number[]; openHour: number; closeHour: number; barberSharePercent: number };
+  role: ShopRole;
+  branches: { id: string; name: string; city: string }[];
+  links: { page: string; queue: string };
   today: string;
   team: ShopMember[];
 }
+
+/** Owner: everything. Manager: everything but staff. Front desk: calendar, walk-ins, queue, check-in and orders. */
+export type ShopRole = "owner" | "manager" | "front_desk";
+
+export interface ShopStaff {
+  id: string;
+  name: string;
+  email: string;
+  role: ShopRole;
+  you: boolean;
+}
+
+export interface QueueItem {
+  id: string;
+  name: string;
+  phone: string;
+  service: string;
+  status: "waiting" | "called" | "serving" | "done" | "left";
+  joinedAt: string;
+  calledAt: string | null;
+  fromApp: boolean;
+  barber: { id: string; name: string } | null;
+  position: number | null;
+  estimateMin: number | null;
+}
+
+export interface ShopQueue {
+  open: boolean;
+  chairs: number;
+  waiting: QueueItem[];
+  inChair: QueueItem[];
+  doneToday: number;
+  team: { id: string; name: string; photoUrl: string; working: boolean }[];
+}
+
+/** What a customer sees about a shop's queue. */
+export interface QueueStatus {
+  open: boolean;
+  waiting: number;
+  estimateMin: number;
+  nowServing: string[];
+  mine: QueueItem | null;
+}
+
+export interface CheckInRow {
+  id: string;
+  firstName: string;
+  startsAt: string;
+  barber: string;
+  service: string;
+  checkedIn: boolean;
+  done: boolean;
+}
+
+export interface ShopOrderRow {
+  id: string;
+  status: Order["status"];
+  createdAt: string;
+  name: string;
+  address: string;
+  items: { name: string; quantity: number }[];
+  subtotal: number;
+  amount: number;
+  currency: string;
+  commission: number;
+}
+
+export interface StockRow {
+  id: string;
+  name: string;
+  emoji: string;
+  price: number;
+  currency: string;
+  count: number | null; // null = not counted
+  low: boolean;
+}
+
+export interface ShopHireRow {
+  id: string;
+  startsAt: string;
+  endsAt: string;
+  hours: number;
+  guests: number;
+  occasion: string;
+  notes: string;
+  amount: number;
+  currency: string;
+  status: Hire["status"];
+  customer: string;
+}
+
+export interface Payroll {
+  period: "today" | "week" | "month";
+  from: string;
+  to: string;
+  currency: string;
+  defaultSharePercent: number;
+  canEditSplit: boolean;
+  rows: { id: string; name: string; photoUrl: string; sharePercent: number; customShare: boolean; appointments: number; walkIns: number; services: number; lateFees: number; tips: number; jbFee: number; barberPay: number; shopKeeps: number }[];
+  totals: { services: number; lateFees: number; tips: number; jbFee: number; barberPay: number; shopKeeps: number; productCommission: number };
+  note: string;
+}
+
+/** A client in a barber's client book. */
+export interface Client {
+  key: string;
+  name: string;
+  photoUrl: string | null;
+  visits: number;
+  lastVisit: string | null;
+  nextVisit: string | null;
+  spend: number;
+  currency: string;
+  lastService: string | null;
+  cutNotes: string | null;
+  preferences: Preferences | null;
+  note: string;
+  fromApp: boolean;
+  lastMessagedAt: string | null;
+  phone: string;
+}
+
+/** Quiet-hour discounts (off-peak) and busy-hour premiums (peak), in the barber's local time. */
+export interface PriceRule {
+  percent: number;
+  days: number[];
+  fromHour: number;
+  toHour: number;
+}
+export interface CancelPolicy {
+  freeHours: number; // 0 = always free
+  lateFeePercent: number;
+}
+export interface BookingRules {
+  cancelPolicy: CancelPolicy;
+  offPeak: PriceRule | null;
+  peak: PriceRule | null;
+}
+export type Level = "new" | "rising" | "pro" | "elite";
 
 export interface CalBooking {
   id: string;

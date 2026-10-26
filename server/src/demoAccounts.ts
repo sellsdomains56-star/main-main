@@ -1,5 +1,7 @@
 import { DEMO_ADMIN_EMAIL, hashPassword } from "./auth.js";
 import { db, newId, save } from "./db.js";
+import { mainServices } from "./common.js";
+import { PRODUCTS } from "./products.js";
 import type { Barber, Booking, User } from "./types.js";
 
 /** Sample logins for trying the barber side and the admin panel (DEMO_ACCOUNTS=1). Never use in production. */
@@ -42,7 +44,8 @@ export function seedDemoAccounts() {
   };
   user("JB Team", DEMO_LOGINS.admin.email, DEMO_LOGINS.admin.password, {}, 60);
   user("Mateo Silva", DEMO_LOGINS.barber.email, DEMO_LOGINS.barber.password, { role: "barber", barberId: DEMO_LOGINS.barber.barberId }, 90);
-  const owner = user("Nadia Haddad", DEMO_LOGINS.shop.email, DEMO_LOGINS.shop.password, { manages: DEMO_LOGINS.shop.shopId }, 120);
+  const owner = user("Nadia Haddad", DEMO_LOGINS.shop.email, DEMO_LOGINS.shop.password, { manages: DEMO_LOGINS.shop.shopId, shopRole: "owner", branches: ["s-dubai-marina"] }, 120);
+  user("Omar at the desk", "desk@demo.jbalwaysfresh.com", "jb-desk-demo", { manages: DEMO_LOGINS.shop.shopId, shopRole: "front_desk" }, 40);
   const downtown = db.barbers.filter((b) => b.shopId === DEMO_LOGINS.shop.shopId);
   for (const [id, name, specialties] of EXTRA_TEAM) {
     if (db.barbers.some((b) => b.id === id) || !downtown[0]) continue;
@@ -65,7 +68,8 @@ export function seedDemoAccounts() {
     if (taken.has(key)) return;
     if (!barber.workingDays.includes(new Date(dubai(dayOffset, 12)).getUTCDay())) return; // only on days they work
     taken.add(key);
-    const service = barber.services[Math.floor(rand() * barber.services.length)]!;
+    const menu = mainServices(barber); // extras are only added to a service, never booked alone
+    const service = menu[Math.floor(rand() * menu.length)]!;
     const startsAt = dubai(dayOffset, hour);
     const b: Booking = {
       id: newId(), customerId: customer.id, barberId, serviceId: service.id, startsAt,
@@ -128,6 +132,34 @@ export function seedDemoAccounts() {
     };
     db.barbers.push(barber);
     user(name, `${name.split(" ")[0]!.toLowerCase()}.barber@example.com`, "barber-demo", { role: "barber", barberId: id, city }, 0);
+  });
+
+  // Mateo's booking rules: free cancellation up to 24 hours, then half; 15% off quiet weekday mornings.
+  const mateo = db.barbers.find((b) => b.id === DEMO_LOGINS.barber.barberId);
+  if (mateo) {
+    mateo.cancelPolicy = { freeHours: 24, lateFeePercent: 50 };
+    mateo.offPeak = { percent: 15, days: [1, 2, 3], fromHour: 10, toHour: 13 };
+  }
+  // The shop floor: a walk-in queue, stock on the shelf, and a few deliveries.
+  const minsAgo = (m: number) => new Date(now - m * 60_000).toISOString();
+  db.queue.push(
+    { id: newId(), shopId: DEMO_LOGINS.shop.shopId, name: "Hamza", phone: "", service: "Skin fade", status: "serving", barberId: downtown[0]?.id, joinedAt: minsAgo(50), calledAt: minsAgo(15) },
+    { id: newId(), shopId: DEMO_LOGINS.shop.shopId, name: "Leo", phone: "", service: "Haircut", status: "waiting", joinedAt: minsAgo(25) },
+    { id: newId(), shopId: DEMO_LOGINS.shop.shopId, name: customers[2]!.name, phone: "", userId: customers[2]!.id, service: "Haircut + beard", status: "waiting", joinedAt: minsAgo(12) },
+    { id: newId(), shopId: DEMO_LOGINS.shop.shopId, name: "Ibrahim", phone: "", service: "Beard trim", status: "waiting", joinedAt: minsAgo(4) },
+  );
+  db.stock[DEMO_LOGINS.shop.shopId] = { "p-pomade": 14, "p-wax": 2, "p-powder": 9, "p-shampoo": 0, "p-beard-oil": 21 };
+  [[2, "p-pomade", 2, "delivered"], [6, "p-beard-oil", 1, "out_for_delivery"], [26, "p-kit", 1, "paid"]].forEach(([hoursAgo, productId, quantity, status], i) => {
+    const c = customers[(i * 3) % customers.length]!;
+    const product = PRODUCTS.find((p) => p.id === productId)!;
+    const unit = product.prices.aed!;
+    const subtotal = unit * (quantity as number);
+    db.orders.push({
+      id: newId(), customerId: c.id, items: [{ productId: product.id, name: product.name, quantity: quantity as number, unitPrice: unit }],
+      subtotal, shipping: 0, amount: subtotal, currency: "aed", fulfilment: "delivery", shopId: DEMO_LOGINS.shop.shopId,
+      shippingName: c.name, shippingAddress: ["Burj Views, Downtown Dubai", "Boulevard Point, Downtown Dubai", "29 Boulevard, Downtown Dubai"][i]!, countryCode: "AE",
+      status: status as "paid", createdAt: new Date(now - (hoursAgo as number) * 3_600_000).toISOString(),
+    });
   });
 
   // Support: two questions and a reported reel.

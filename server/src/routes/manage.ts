@@ -6,27 +6,38 @@ import { bookingView } from "../bookings.js";
 import { busy } from "../busy.js";
 import { returnPerks } from "../club.js";
 import { barberView, findService, fromApp, HttpError, parse, reviewNewBarbers } from "../common.js";
+import { config } from "../config.js";
 import { db, newId, save } from "../db.js";
 import { bookingCancelled, bookingCompleted, notify, waitlistOpened } from "../notify.js";
 import { refund } from "../payments.js";
+import { DEFAULT_BARBER_SHARE } from "../pro.js";
 import { onCompleted } from "../rewards.js";
 import { getShop, shopCurrency, shopTimeZone } from "../shops.js";
 import { zonedTime } from "../slots.js";
-import type { Barber, Booking, Shop } from "../types.js";
+import type { Barber, Booking, Shop, ShopRole } from "../types.js";
 
 const DAY = 86_400_000;
 const ACTIVE = new Set<Booking["status"]>(["confirmed", "on_the_way", "completed"]);
 const Day = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 
-/** The barbershop the signed-in person runs. */
-function myShop(req: Request): Shop {
-  const id = req.user!.manages;
-  if (!id) throw new HttpError(403, "Only barbershop owners and managers can open the shop panel.");
-  return getShop(id);
+const RANK: Record<ShopRole, number> = { front_desk: 0, manager: 1, owner: 2 };
+export const shopRole = (u: { shopRole?: ShopRole }): ShopRole => u.shopRole ?? "owner";
+
+/**
+ * The barbershop the signed-in person runs. Owners of several branches pick one with the X-Shop header.
+ * `need` is the least role allowed: front desk < manager < owner.
+ */
+export function myShop(req: Request, need: ShopRole = "front_desk"): Shop {
+  const user = req.user!;
+  if (!user.manages) throw new HttpError(403, "Only barbershop owners and managers can open the shop panel.");
+  if (RANK[shopRole(user)] < RANK[need]) throw new HttpError(403, need === "owner" ? "Only the shop's owner can do this." : "Ask your manager — front desk accounts can't change this.");
+  const wanted = req.header("x-shop");
+  const mine = [user.manages, ...(user.branches ?? [])];
+  return getShop(wanted && mine.includes(wanted) ? wanted : user.manages);
 }
 
 /** Everyone on the shop's team, including barbers switched off or waiting for approval. */
-const teamOf = (shop: Shop) => db.barbers.filter((b) => b.shopId === shop.id);
+export const teamOf = (shop: Shop) => db.barbers.filter((b) => b.shopId === shop.id);
 
 function teamBarber(shop: Shop, id: string) {
   const b = teamOf(shop).find((x) => x.id === id);
@@ -53,7 +64,7 @@ function isFree(barberId: string, start: number, end: number, ignore?: string) {
 
 const isWorking = (b: Barber, date: string) => !b.offline && b.workingDays.includes(new Date(`${date}T12:00:00Z`).getUTCDay()) && !b.timeOff?.includes(date);
 
-function calendarBooking(b: Booking) {
+export function calendarBooking(b: Booking) {
   const v = bookingView(b);
   return {
     id: b.id, barberId: b.barberId, startsAt: b.startsAt, endsAt: b.endsAt, status: b.status, noShow: !!b.noShow,
@@ -67,10 +78,19 @@ function memberView(b: Barber, date: string) {
   const user = db.users.find((u) => u.role === "barber" && u.barberId === b.id);
   return {
     ...barberView(b),
-    status: b.status ?? "live", offline: !!b.offline, email: user?.email ?? null,
+    status: b.status ?? "live", offline: !!b.offline, email: user?.email ?? null, sharePercent: b.sharePercent ?? null,
     hours: { workingDays: b.workingDays, openHour: b.openHour, closeHour: b.closeHour, timeOff: b.timeOff ?? [] },
     workingToday: isWorking(b, date),
   };
+}
+
+/** Today, this week (Monday to Sunday) or this month in the shop's time zone: local dates and UTC bounds. */
+export function periodRange(shop: Shop, period: "today" | "week" | "month") {
+  const now = today(shop);
+  const first = period === "today" ? now : period === "week" ? addDays(now, -((new Date(`${now}T12:00:00Z`).getUTCDay() + 6) % 7)) : `${now.slice(0, 8)}01`;
+  const end = period === "today" ? now : period === "week" ? addDays(first, 6) : addDays(`${addDays(`${now.slice(0, 8)}28`, 4).slice(0, 8)}01`, -1);
+  const days = Math.round((Date.parse(`${end}T12:00:00Z`) - Date.parse(`${first}T12:00:00Z`)) / DAY) + 1;
+  return { now, first, end, days, from: dayStart(shop, first), to: dayStart(shop, addDays(end, 1)) };
 }
 
 /** Same name → same service: a menu change keeps ids (and so the bookings that use them). */
@@ -94,7 +114,11 @@ export function registerManageRoutes(app: Express) {
       shop: {
         id: shop.id, name: shop.name, address: shop.address, city: shop.city, phone: shop.phone, about: shop.about, photoUrl: shop.photoUrl,
         timeZone: shopTimeZone(shop), currency: shopCurrency(shop), workingDays: shop.workingDays, openHour: shop.openHour, closeHour: shop.closeHour,
+        barberSharePercent: shop.barberSharePercent ?? DEFAULT_BARBER_SHARE,
       },
+      role: shopRole(req.user!),
+      branches: [req.user!.manages!, ...(req.user!.branches ?? [])].map((id) => getShop(id)).map((s) => ({ id: s.id, name: s.name, city: s.city })),
+      links: { page: `${config.appUrl}/barbershop/${shop.id}`, queue: `${config.appUrl}/barbershop/${shop.id}/queue` },
       today: date,
       team: teamOf(shop).map((b) => memberView(b, date)),
     });
@@ -248,7 +272,7 @@ export function registerManageRoutes(app: Express) {
 
   // A barber's week: working days, hours, days off, and whether the app takes bookings for them.
   app.patch("/manage/barbers/:id", requireAuth, (req, res) => {
-    const shop = myShop(req);
+    const shop = myShop(req, "manager");
     const b = teamBarber(shop, String(req.params.id));
     const body = parse(z.object({
       workingDays: z.array(z.number().int().min(0).max(6)).min(1, "Pick at least one working day").max(7).optional(),
@@ -256,8 +280,12 @@ export function registerManageRoutes(app: Express) {
       closeHour: z.number().int().min(1).max(24).optional(),
       timeOff: z.array(Day).max(120).optional(),
       offline: z.boolean().optional(),
+      sharePercent: z.number().int().min(0).max(100).nullable().optional(), // null = the shop's default
     }), req.body);
     if ((body.closeHour ?? b.closeHour) - (body.openHour ?? b.openHour) < 1) throw new HttpError(400, "Closing time must be after opening time.");
+    if (body.sharePercent !== undefined && shopRole(req.user!) !== "owner") throw new HttpError(403, "Only the shop's owner can change the money split.");
+    if (body.sharePercent === null) delete b.sharePercent;
+    else if (body.sharePercent !== undefined) b.sharePercent = body.sharePercent;
     if (body.workingDays) b.workingDays = [...new Set(body.workingDays)].sort();
     if (body.openHour !== undefined) b.openHour = body.openHour;
     if (body.closeHour !== undefined) b.closeHour = body.closeHour;
@@ -269,7 +297,7 @@ export function registerManageRoutes(app: Express) {
 
   // Services, times and prices for the whole team, or for chosen barbers.
   app.put("/manage/services", requireAuth, (req, res) => {
-    const shop = myShop(req);
+    const shop = myShop(req, "manager");
     const body = parse(z.object({ services: z.array(ServiceInput).min(1, "Keep at least one service").max(40), barberIds: z.array(z.string()).optional() }), req.body);
     const names = body.services.map((s) => nameKey(s.name));
     if (new Set(names).size !== names.length) throw new HttpError(400, "Two services have the same name.");
@@ -293,7 +321,7 @@ export function registerManageRoutes(app: Express) {
 
   // Add a barber to the team: their app account is created, with a first password to hand over.
   app.post("/manage/barbers", requireAuth, (req, res) => {
-    const shop = myShop(req);
+    const shop = myShop(req, "manager");
     const body = parse(z.object({ name: z.string().trim().min(2).max(60), email: z.string().trim().toLowerCase().email() }), req.body);
     if (db.users.some((u) => u.email === body.email)) throw new HttpError(409, "There's already an account with that email.");
     const team = teamOf(shop);
@@ -315,14 +343,9 @@ export function registerManageRoutes(app: Express) {
 
   // How the shop is doing — today, this week (Monday to Sunday) or this month, including what's already booked.
   app.get("/manage/reports", requireAuth, (req, res) => {
-    const shop = myShop(req);
+    const shop = myShop(req, "manager");
     const { period } = parse(z.object({ period: z.enum(["today", "week", "month"]).default("week") }), req.query);
-    const now = today(shop);
-    const first = period === "today" ? now : period === "week" ? addDays(now, -((new Date(`${now}T12:00:00Z`).getUTCDay() + 6) % 7)) : `${now.slice(0, 8)}01`;
-    const end = period === "today" ? now : period === "week" ? addDays(first, 6) : addDays(`${addDays(`${now.slice(0, 8)}28`, 4).slice(0, 8)}01`, -1);
-    const days = Math.round((Date.parse(`${end}T12:00:00Z`) - Date.parse(`${first}T12:00:00Z`)) / DAY) + 1;
-    const from = dayStart(shop, first);
-    const to = dayStart(shop, addDays(end, 1));
+    const { now, first, end, days, from, to } = periodRange(shop, period);
     const team = teamOf(shop);
     const inRange = db.bookings.filter((b) => team.some((t) => t.id === b.barberId) && b.status !== "pending_payment" && Date.parse(b.startsAt) >= from && Date.parse(b.startsAt) < to);
     const active = inRange.filter((b) => ACTIVE.has(b.status));
@@ -358,16 +381,18 @@ export function registerManageRoutes(app: Express) {
 
   // The shop's own details and opening hours.
   app.patch("/manage/settings", requireAuth, (req, res) => {
-    const shop = myShop(req);
+    const shop = myShop(req, "manager");
     const body = parse(z.object({
       about: z.string().trim().max(400).optional(), phone: z.string().trim().max(30).optional(),
       workingDays: z.array(z.number().int().min(0).max(6)).min(1).max(7).optional(),
       openHour: z.number().int().min(0).max(23).optional(), closeHour: z.number().int().min(1).max(24).optional(),
+      barberSharePercent: z.number().int().min(0).max(100).optional(),
     }), req.body);
     if ((body.closeHour ?? shop.closeHour) - (body.openHour ?? shop.openHour) < 1) throw new HttpError(400, "Closing time must be after opening time.");
+    if (body.barberSharePercent !== undefined && shopRole(req.user!) !== "owner") throw new HttpError(403, "Only the shop's owner can change the money split.");
     db.shopSettings[shop.id] = { ...db.shopSettings[shop.id], ...body };
     save();
     const s = getShop(shop.id);
-    res.json({ about: s.about, phone: s.phone, workingDays: s.workingDays, openHour: s.openHour, closeHour: s.closeHour });
+    res.json({ about: s.about, phone: s.phone, workingDays: s.workingDays, openHour: s.openHour, closeHour: s.closeHour, barberSharePercent: s.barberSharePercent ?? DEFAULT_BARBER_SHARE });
   });
 }

@@ -3,7 +3,9 @@ import { z } from "zod";
 import { requireAuth } from "../auth.js";
 import { bookingView } from "../bookings.js";
 import { barberView, cityOf, findCountry, fromApp, getBarber, HttpError, parse, platformFee, platformFeePercent } from "../common.js";
+import { config } from "../config.js";
 import { db, newId, save } from "../db.js";
+import { levelOf } from "../pro.js";
 import { zonedTime } from "../slots.js";
 import type { Barber, Booking } from "../types.js";
 
@@ -30,11 +32,13 @@ export function profileChecklist(b: Barber) {
 
 /** Totals of paid bookings (and tips) starting from `since`, before the platform fee and after it. */
 function earnings(list: Booking[], since: number, until = Infinity) {
-  const inRange = list.filter((b) => PAID.has(b.status) && fromApp(b) && Date.parse(b.startsAt) >= since && Date.parse(b.startsAt) < until); // walk-ins are paid at the shop
-  const gross = inRange.reduce((s, b) => s + b.amount, 0);
+  const within = (b: Booking) => fromApp(b) && Date.parse(b.startsAt) >= since && Date.parse(b.startsAt) < until; // walk-ins are paid at the shop
+  const inRange = list.filter((b) => PAID.has(b.status) && within(b));
+  const lateFees = list.filter((b) => b.status === "cancelled" && b.lateFee && within(b)).reduce((s, b) => s + b.lateFee!, 0); // kept from late cancellations
+  const gross = inRange.reduce((s, b) => s + b.amount, 0) + lateFees;
   const tips = inRange.reduce((s, b) => s + (b.tip ?? 0), 0);
-  const fee = inRange.reduce((s, b) => s + platformFee(b.amount), 0);
-  return { count: inRange.length, gross, fee, tips, net: gross - fee + tips };
+  const fee = inRange.reduce((s, b) => s + platformFee(b.amount), 0) + platformFee(lateFees);
+  return { count: inRange.length, gross, fee, tips, net: gross - fee + tips, lateFees };
 }
 
 /** Start of the local day, week (Monday) and month in a time zone, as UTC milliseconds. */
@@ -95,6 +99,9 @@ export function registerBusinessRoutes(app: Express) {
       cancelledThisMonth: mine.filter((b) => b.status === "cancelled" && Date.parse(b.startsAt) >= starts.month).length,
       reviews,
       checklist: profileChecklist(barber),
+      level: levelOf(barber),
+      link: `${config.appUrl}/barber/${barber.id}`,
+      blocks: db.blocks.filter((k) => k.barberId === barber.id && Date.parse(k.endsAt) > Date.now()).length,
       hours: { workingDays: barber.workingDays, openHour: barber.openHour, closeHour: barber.closeHour, timeOff: barber.timeOff ?? [] },
     });
   });

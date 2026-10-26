@@ -59,6 +59,41 @@ export interface Barber {
   joinedAt?: string; // ISO
   pinSetAt?: string; // when the barber last placed their exact pin
   offline?: boolean; // the barbershop switched them off in the app for now (sick, holiday): no free times
+  cancelPolicy?: CancelPolicy; // missing = free cancellation up to the start
+  offPeak?: PriceRule | null; // a discount for quiet hours
+  peak?: PriceRule | null; // a premium for the busiest hours
+  sharePercent?: number; // at a barbershop: the barber's share of service takings (else the shop's default)
+  clientNotes?: Record<string, string>; // the barber's private notes per client (key: customer id or "guest:<name>")
+  nudgedAt?: Record<string, string>; // when each client last got a "we miss you" message
+}
+
+/** Cancelling late: the barber keeps part of the price. freeHours 0 = always free. */
+export interface CancelPolicy {
+  freeHours: number;
+  lateFeePercent: number;
+}
+
+/** A price change for some hours of the week, in the barber's local time. percent < 0 is a discount. */
+export interface PriceRule {
+  percent: number;
+  days: number[]; // 0 = Sunday
+  fromHour: number;
+  toHour: number;
+}
+
+/** A walk-in waiting at a barbershop (or on their way, joined from the app). */
+export interface QueueEntry {
+  id: string;
+  shopId: string;
+  name: string;
+  phone: string;
+  userId?: string; // joined from the app
+  service: string;
+  status: "waiting" | "called" | "serving" | "done" | "left";
+  barberId?: string; // who is cutting
+  joinedAt: string;
+  calledAt?: string;
+  doneAt?: string;
 }
 
 export type BarberStatus = "pending" | "live" | "suspended";
@@ -90,6 +125,7 @@ export interface Shop {
   /** Courier delivery of the products this shop stocks. Null = not offered. */
   delivery: { fee: number; freeFrom: number; etaMin: number; radiusKm: number } | null;
   productIds: string[]; // JB's Fresh products in stock
+  barberSharePercent?: number; // barbers' share of service takings (owner sets it; default in pro.ts)
 }
 
 export type HireStatus = "pending_payment" | "confirmed" | "completed" | "cancelled";
@@ -143,6 +179,8 @@ export interface User {
   credit?: Record<string, number>; // gift-card balance per currency, minor units
   membership?: Membership; // The Club
   manages?: string; // id of the barbershop this person runs in the shop panel (owner or manager)
+  shopRole?: ShopRole; // what they may do in the shop panel (missing = owner)
+  branches?: string[]; // more barbershops they run (multi-branch owners)
   alerts?: AlertSettings; // which alerts they get on their phone (missing = all on)
   photoUrl?: string; // profile photo (uploaded first)
   phone?: string; // mobile number, for WhatsApp messages when they opt in
@@ -216,6 +254,9 @@ export interface Booking {
   guest?: { name: string; phone: string }; // booked for someone else; for shop bookings, the client
   source?: "app" | "shop"; // "shop" = added by the barbershop (walk-in or phone), paid at the shop, no JB fee
   noShow?: boolean; // cancelled because the client didn't come (no refund)
+  priceRule?: number; // off-peak (< 0) or peak (> 0) percent applied to the service
+  lateFee?: number; // kept by the barber when cancelled late (minor units)
+  checkedInAt?: string; // arrived at the shop (tablet check-in)
   createdAt: string;
 }
 
@@ -230,10 +271,13 @@ export interface Block {
   createdAt: string;
 }
 
-/** What a barbershop changed about itself in the shop panel. */
-export type ShopSettings = Partial<Pick<Shop, "about" | "phone" | "workingDays" | "openHour" | "closeHour">>;
+/** Owner: everything. Manager: everything but staff. Front desk: calendar, walk-ins, queue, check-in and orders. */
+export type ShopRole = "owner" | "manager" | "front_desk";
 
-export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist" | "account";
+/** What a barbershop changed about itself in the shop panel. */
+export type ShopSettings = Partial<Pick<Shop, "about" | "phone" | "workingDays" | "openHour" | "closeHour" | "barberSharePercent">>;
+
+export type NotificationKind = "booking_confirmed" | "new_booking" | "on_the_way" | "reminder" | "completed" | "cancelled" | "order_update" | "hire" | "club" | "gift" | "tip" | "waitlist" | "account" | "message" | "queue";
 
 /** An alert shown in the app's inbox and, when the user has a phone registered, sent as a push notification. */
 export interface AppNotification {

@@ -9,6 +9,7 @@ import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { money, time, upcomingDays } from "../../lib/format";
 import { isExtra, minutes, sections, tipChoices } from "../../lib/menu";
+import { adjustedPrice, policyLabel } from "../../lib/rules";
 import { CONSULTATION_ID, type Barber, type LocationType, type Membership, type VenueKind } from "../../lib/types";
 
 /** Booking a cut (shop or home), or with `?mode=consult` a free video / phone consultation. */
@@ -39,6 +40,7 @@ export default function Book() {
   const [club, setClub] = useState<{ membership: Membership | null; credit: Record<string, number> } | null>(null);
   const [waitlisted, setWaitlisted] = useState<string | null>(null);
   // Extras on top of the service (hot towel, massage…) and an optional tip.
+  const [deals, setDeals] = useState<Record<string, number>>({}); // off-peak (< 0) or peak (> 0) percent by start time
   const [extras, setExtras] = useState<string[]>(() => (params.extras ? params.extras.split(",").filter(Boolean) : [])); // "book your usual" brings the last extras
   const [section, setSection] = useState<string>("popular");
   const [tipPercent, setTipPercent] = useState<number>(0);
@@ -76,12 +78,15 @@ export default function Book() {
       if (!r.slots.length && !userPickedDate && i >= 0 && i < days.length - 1) setDate(days[i + 1].date);
       else {
         setSlots(r.slots);
+        setDeals(r.deals ?? {});
         if (params.startsAt && r.slots.includes(params.startsAt)) setSlot(params.startsAt);
       }
     }, (e: Error) => setError(e.message));
   }, [barber, date, serviceId, extras, days, userPickedDate, params.startsAt]);
 
-  const service = barber?.services.find((s) => s.id === serviceId);
+  const baseService = barber?.services.find((s) => s.id === serviceId);
+  const rule = slot && !consult ? deals[slot] ?? 0 : 0;
+  const service = baseService && rule ? { ...baseService, price: adjustedPrice(baseService.price, rule) } : baseService;
   const added = (barber?.services ?? []).filter((s) => extras.includes(s.id));
   const extrasPrice = added.reduce((t, s) => t + s.price, 0);
   const member = club?.membership?.active ? club.membership : null;
@@ -276,8 +281,16 @@ export default function Book() {
               </View>
             )}
             <Wrap gap={8}>
-              {slots?.map((s) => <Pill key={s} label={time(s, barber.timeZone)} selected={s === slot} onPress={() => setSlot(s)} />)}
+              {slots?.map((s) => <Pill key={s} label={deals[s] ? `${time(s, barber.timeZone)} · ${deals[s]! < 0 ? "−" : "+"}${Math.abs(deals[s]!)}%` : time(s, barber.timeZone)} selected={s === slot} onPress={() => setSlot(s)} />)}
             </Wrap>
+            {!!rule && baseService && (
+              <View style={{ marginTop: 10 }}>
+                <IconLine icon={rule < 0 ? "pricetag-outline" : "trending-up-outline"}>
+                  {rule < 0 ? `Off-peak: ${Math.abs(rule)}% off` : `Peak time: +${rule}%`} — {baseService.name} {money(service!.price, barber.currency)} instead of {money(baseService.price, barber.currency)}
+                </IconLine>
+              </View>
+            )}
+            {!consult && slots && slots.length > 0 && <T variant="small" muted style={{ marginTop: 10 }}>{policyLabel(barber.cancelPolicy)}.</T>}
           </View>
         </StepCard>
 

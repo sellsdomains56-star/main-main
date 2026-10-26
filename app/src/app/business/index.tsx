@@ -7,6 +7,7 @@ import { Avatar, Button, Card, EmptyState, ErrorBox, IconLine, ListRow, Loading,
 import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import { money, time } from "../../lib/format";
+import { LEVEL_LABEL } from "../../lib/rules";
 import type { Booking, BusinessDashboard, Earnings } from "../../lib/types";
 
 type Period = "today" | "week" | "month";
@@ -67,6 +68,7 @@ export default function Business() {
       <Row gap={6} style={{ marginTop: 10, flexWrap: "wrap" }}>
         <Tag label={data.status === "live" ? "Live" : data.status === "pending" ? "In review" : "Paused"} tone={data.status === "live" ? "accent" : data.status === "pending" ? "neutral" : "danger"} icon={data.status === "live" ? "radio-button-on" : data.status === "pending" ? "time-outline" : "pause"} />
         {data.verified && <Tag label="Verified" icon="shield-checkmark" />}
+        <Tag label={LEVEL_LABEL[data.level]} icon="ribbon-outline" />
         <Tag label={data.barber.city} icon="location-outline" />
       </Row>
 
@@ -174,6 +176,10 @@ export default function Business() {
       <Section title="Manage">
         <ListRow icon="pricetags-outline" title="Services & prices" subtitle={`${data.barber.services.length} services · from ${money(data.barber.startingPrice, cur)}${data.barber.offersHomeVisits ? " · home visits on" : ""}`} onPress={() => router.push("/business/services")} />
         <ListRow icon="time-outline" title="Hours & days off" subtitle={hoursLine(data)} onPress={() => router.push("/business/hours")} />
+        <ListRow icon="ban-outline" title="Block time" subtitle={data.blocks ? `${data.blocks} coming up · lunch, appointments` : "Lunch, an appointment, the school run"} onPress={() => router.push("/business/blocks")} />
+        <ListRow icon="pricetag-outline" title="Booking rules & deals" subtitle={rulesLine(data)} onPress={() => router.push("/business/rules")} />
+        <ListRow icon="people-outline" title="Clients" subtitle="Visits, notes, and a nudge for the ones who went quiet" onPress={() => router.push("/business/clients")} />
+        <ListRow icon="qr-code-outline" title="My link & QR code" subtitle="For your mirror, card and Instagram bio" onPress={() => router.push("/business/link")} />
         <ListRow icon="images-outline" title="My work" subtitle="Photo, bio, portfolio, before & afters, map pin" onPress={() => router.push("/portfolio")} />
         <ListRow icon="videocam-outline" title="Post a reel" subtitle="Show off your latest cut" onPress={() => router.push("/post-reel")} />
         <ListRow icon="chatbubbles-outline" title="Reviews" subtitle="Read and reply to what clients say" onPress={() => router.push("/business/reviews")} />
@@ -202,6 +208,15 @@ export default function Business() {
   );
 }
 
+/** "Free cancellation up to 24 h · 15% off quiet hours". */
+function rulesLine(d: BusinessDashboard) {
+  const b = d.barber;
+  const parts = [b.cancelPolicy?.freeHours ? `Free cancellation up to ${b.cancelPolicy.freeHours} h` : "Free cancellation any time"];
+  if (b.offPeak) parts.push(`${b.offPeak.percent}% off quiet hours`);
+  if (b.peak) parts.push(`+${b.peak.percent}% at peak`);
+  return parts.join(" · ");
+}
+
 function EarningsLines({ e, cur, fee }: { e: Earnings; cur: string; fee: number }) {
   const line = (label: string, value: string) => (
     <Row style={{ justifyContent: "space-between", marginTop: 6 }}>
@@ -214,6 +229,7 @@ function EarningsLines({ e, cur, fee }: { e: Earnings; cur: string; fee: number 
       {line("Bookings", money(e.gross, cur))}
       {line(`JB fee (${fee}%)`, `− ${money(e.fee, cur)}`)}
       {line("Tips", `+ ${money(e.tips, cur)}`)}
+      {!!e.lateFees && line("Late cancellations (in bookings)", money(e.lateFees, cur))}
     </View>
   );
 }

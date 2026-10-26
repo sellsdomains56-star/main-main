@@ -38,7 +38,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
 }
 
 /** A panel frame (admin, shop): a sidebar on a laptop, a scrolling tab strip on a phone. The first nav item is the home page. */
-export function PanelShell({ title, subtitle, nav, badges = {}, children }: { title: string; subtitle: string; nav: NavItem[]; badges?: Record<string, number>; children: ReactNode }) {
+export function PanelShell({ title, subtitle, nav, badges = {}, extra, children }: { title: string; subtitle: string; nav: NavItem[]; badges?: Record<string, number>; extra?: ReactNode; children: ReactNode }) {
   const wide = useWide();
   const insets = useSafeAreaInsets();
   const path = usePathname();
@@ -62,7 +62,10 @@ export function PanelShell({ title, subtitle, nav, badges = {}, children }: { ti
     return (
       <View style={{ flex: 1, flexDirection: "row", backgroundColor: colors.bg }}>
         <View style={{ width: 248, backgroundColor: colors.ink, paddingTop: insets.top + 22, paddingHorizontal: 14, paddingBottom: 18 }}>
-          <View style={{ paddingHorizontal: 8, marginBottom: 26 }}>{brand}</View>
+          <View style={{ paddingHorizontal: 8, marginBottom: 26 }}>
+            {brand}
+            {extra && <View style={{ marginTop: 14 }}>{extra}</View>}
+          </View>
           {nav.map((n) => {
             const on = active(n.href);
             const badge = badges[n.href] ?? 0;
@@ -92,7 +95,10 @@ export function PanelShell({ title, subtitle, nav, badges = {}, children }: { ti
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       <View style={{ backgroundColor: colors.ink, paddingTop: insets.top + 12, paddingBottom: 12 }}>
-        <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>{brand}</View>
+        <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
+          {brand}
+          {extra && <View style={{ marginTop: 10 }}>{extra}</View>}
+        </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 12, gap: 6 }}>
           {nav.map((n) => {
             const on = active(n.href);

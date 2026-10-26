@@ -2,6 +2,7 @@ import { isExtra } from "./services.js";
 import { busy } from "./busy.js";
 import { barberView, findCountry, HttpError } from "./common.js";
 import { db } from "./db.js";
+import { inStock } from "./pro.js";
 import { PRODUCTS, SHIPPING } from "./products.js";
 import { SHOPS } from "./seed.js";
 import { availableSlots, zonedTime } from "./slots.js";
@@ -93,7 +94,7 @@ export function hireSlots(shop: Shop, date: string, hours: number, now = new Dat
 
 function productsFor(shop: Shop) {
   const currency = shopCurrency(shop);
-  return PRODUCTS.filter((p) => shop.productIds.includes(p.id)).map((p) => ({
+  return PRODUCTS.filter((p) => shop.productIds.includes(p.id) && inStock(shop.id, p.id)).map((p) => ({
     id: p.id, name: p.name, category: p.category, emoji: p.emoji, description: p.description, price: p.prices[currency] ?? p.prices.eur, currency,
   }));
 }

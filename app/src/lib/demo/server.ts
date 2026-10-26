@@ -21,6 +21,14 @@ interface SeedBarber {
   offersConsultations?: boolean; videoLink?: string; shopId?: string;
   status?: "pending" | "live" | "suspended"; verified?: boolean; timeOff?: string[]; joinedAt?: string; pinSetAt?: string;
   offline?: boolean; // switched off in the app by their barbershop
+  cancelPolicy?: { freeHours: number; lateFeePercent: number };
+  offPeak?: PriceRule | null; peak?: PriceRule | null;
+  sharePercent?: number; clientNotes?: Record<string, string>; nudgedAt?: Record<string, string>;
+}
+interface PriceRule { percent: number; days: number[]; fromHour: number; toHour: number }
+interface QueueEntry {
+  id: string; shopId: string; name: string; phone: string; userId?: string; service: string;
+  status: "waiting" | "called" | "serving" | "done" | "left"; barberId?: string; joinedAt: string; calledAt?: string; doneAt?: string; seeded?: boolean;
 }
 interface SeedPlan { id: "fresh" | "regular" | "black"; name: string; tagline: string; prices: Record<string, number>; cutsPerPeriod: number | null; productDiscount: number; freeHomeVisits: boolean; perks: string[] }
 interface SeedShop {
@@ -29,6 +37,7 @@ interface SeedShop {
   privateHire: { pricePerHour: number; minHours: number; maxHours: number; maxGuests: number } | null;
   delivery: { fee: number; freeFrom: number; etaMin: number; radiusKm: number } | null;
   productIds: string[];
+  barberSharePercent?: number;
 }
 interface SeedCountry { code: string; name: string; currency: string; cities: { name: string; timeZone: string; lat: number; lng: number }[] }
 interface SeedReel {
@@ -74,6 +83,7 @@ interface User {
   favourites?: string[];
   rebook?: { barberId: string; serviceId: string; everyWeeks: number; nextAt: string };
   referralCode?: string; referredBy?: string; referralRewarded?: boolean;
+  shopRole?: "owner" | "manager" | "front_desk"; branches?: string[];
 }
 interface GiftCard { id: string; code: string; amount: number; currency: string; buyerId: string; toName: string; toEmail: string; message: string; design: "noir" | "ivory"; status: "pending_payment" | "active" | "redeemed"; createdAt: string }
 interface Purchase { id: string; userId: string; kind: "membership" | "gift" | "tip"; ref: string; label: string; amount: number; currency: string; status: "pending_payment" | "paid" }
@@ -87,6 +97,7 @@ interface Booking {
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; guest?: { name: string; phone: string };
   source?: "app" | "shop"; noShow?: boolean; // "shop": a walk-in or phone booking the barbershop added, paid at the shop
   cutPhotos?: string[]; shareToken?: string;
+  priceRule?: number; lateFee?: number; checkedInAt?: string;
   seeded?: boolean;
 }
 interface Review { id: string; barberId: string; customerId: string; customerName: string; bookingId: string; rating: number; comment: string; createdAt: string; photoUrl?: string; reply?: { text: string; at: string }; seeded?: boolean }
@@ -99,6 +110,7 @@ interface Order {
   subtotal: number; shipping: number; amount: number; currency: string; shippingName: string; shippingAddress: string;
   fulfilment?: "shipping" | "delivery"; shopId?: string; discount?: number; creditUsed?: number;
   demoOutAt?: number; demoDeliveredAt?: number; // demo only: when the pretend courier leaves and arrives
+  seeded?: boolean;
   status: "pending_payment" | "paid" | "out_for_delivery" | "delivered" | "cancelled"; createdAt: string;
 }
 interface Hire {
@@ -107,7 +119,7 @@ interface Hire {
 }
 /** Time a barbershop blocked for a barber (a break, training): the app can't book it. */
 interface Block { id: string; shopId: string; barberId: string; startsAt: string; endsAt: string; reason: string; createdAt: string; seeded?: boolean }
-type ShopSettings = Partial<Pick<SeedShop, "about" | "phone" | "workingDays" | "openHour" | "closeHour">>;
+type ShopSettings = Partial<Pick<SeedShop, "about" | "phone" | "workingDays" | "openHour" | "closeHour" | "barberSharePercent">>;
 interface Conversation { id: string; ownerKey: string; turns: { role: "user" | "assistant"; content: string }[]; display: ChatMessage[] }
 interface Saved {
   v: 1;
@@ -135,6 +147,9 @@ interface Saved {
   shopSettings?: Record<string, ShopSettings>;
   demoSeededOn?: string; // the Dubai date the sample bookings were last built for
   demoSeedVersion?: number; // bumped when the sample gains something new, so returning visitors get it today
+  queue?: QueueEntry[];
+  stock?: Record<string, Record<string, number>>;
+  shopNudges?: Record<string, Record<string, string>>;
 }
 interface DemoNotification { id: string; userId: string; kind: string; title: string; body: string; bookingId?: string; orderId?: string; hireId?: string; read: boolean; createdAt: string }
 
@@ -260,7 +275,47 @@ function barberView(b: SeedBarber) {
     startingPrice: Math.min(...mainServices(b).map((s) => s.price)), yearsExperience: b.yearsExperience, languages: b.languages,
     gallery: b.gallery, transformations: b.transformations, nextAvailable: nextAvailable(b),
     status: b.status ?? "live", verified: !!b.verified,
+    level: levelOf(b), cancelPolicy: b.cancelPolicy ?? null, offPeak: b.offPeak ?? null, peak: b.peak ?? null,
   };
+}
+
+// ---------- Booking rules, deals and levels (mirrors server/src/pro.ts) ----------
+
+function localDayHour(b: SeedBarber, iso: string | number) {
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: timeZoneOf(b), weekday: "short", hour: "2-digit", hourCycle: "h23" }).formatToParts(new Date(iso)).map((x) => [x.type, x.value]));
+  return { day: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday!), hour: Number(p.hour) };
+}
+const ruleApplies = (r: PriceRule | null | undefined, day: number, hour: number) => !!r && r.days.includes(day) && hour >= r.fromHour && hour < r.toHour;
+function priceRuleAt(b: SeedBarber, iso: string | number) {
+  const { day, hour } = localDayHour(b, iso);
+  if (ruleApplies(b.offPeak, day, hour)) return -Math.abs(b.offPeak!.percent);
+  if (ruleApplies(b.peak, day, hour)) return Math.abs(b.peak!.percent);
+  return 0;
+}
+const adjustedPrice = (price: number, percent: number) => (percent ? Math.max(0, Math.round((price * (100 + percent)) / 100 / 100) * 100) : price);
+function cancelTerms(b: Booking, now = Date.now()) {
+  const policy = allBarbers().find((x) => x.id === b.barberId)?.cancelPolicy;
+  const late = !!policy && policy.freeHours > 0 && policy.lateFeePercent > 0 && Date.parse(b.startsAt) - now < policy.freeHours * 3_600_000 && b.status === "confirmed";
+  const fee = late ? Math.round((b.amount * policy!.lateFeePercent) / 100) : 0;
+  return { freeUntil: policy?.freeHours ? new Date(Date.parse(b.startsAt) - policy.freeHours * 3_600_000).toISOString() : null, lateFeePercent: policy?.lateFeePercent ?? 0, fee };
+}
+function levelOf(b: SeedBarber) {
+  const done = saved.bookings.filter((x) => x.barberId === b.id && x.status === "completed").length;
+  const r = rating(b);
+  const cuts = Math.max(done, r.ratingCount);
+  if (cuts >= 60 && r.raw >= 4.8) return "elite";
+  if (cuts >= 25 && r.raw >= 4.5) return "pro";
+  if (cuts >= 5) return "rising";
+  return "new";
+}
+const LEVEL_NAME: Record<string, string> = { new: "New", rising: "Rising", pro: "Pro", elite: "Elite" };
+const PRODUCT_COMMISSION_PERCENT = 15;
+const DEFAULT_BARBER_SHARE = 50;
+const inStock = (shopId: string, productId: string) => (saved.stock?.[shopId]?.[productId] ?? 1) > 0;
+function takeStock(o: Order) {
+  const shelf = o.shopId ? saved.stock?.[o.shopId] : undefined;
+  if (!shelf) return;
+  for (const i of o.items) if (shelf[i.productId] !== undefined) shelf[i.productId] = Math.max(0, shelf[i.productId]! - i.quantity);
 }
 
 interface Filters { country?: string; city?: string; q?: string; specialties?: string[]; minRating?: number; maxPrice?: number; availableToday?: boolean; homeVisits?: boolean; openNow?: boolean; near?: { lat: number; lng: number }; sort?: string; limit?: number }
@@ -402,7 +457,7 @@ function shopDetail(s: SeedShop) {
   return {
     ...shopSummary(s), phone: s.phone, timeZone: shopTz(s), workingDays: s.workingDays, openHour: s.openHour, closeHour: s.closeHour,
     menu: shopMenu(s), team: team(s).map(barberView), privateHire: s.privateHire, delivery: s.delivery,
-    products: seed.products.filter((p) => s.productIds.includes(p.id)).map((p) => ({ id: p.id, name: p.name, category: p.category, emoji: p.emoji, description: p.description, price: p.prices[cur] ?? p.prices.eur, currency: cur })),
+    products: seed.products.filter((p) => s.productIds.includes(p.id) && inStock(s.id, p.id)).map((p) => ({ id: p.id, name: p.name, category: p.category, emoji: p.emoji, description: p.description, price: p.prices[cur] ?? p.prices.eur, currency: cur })),
   };
 }
 
@@ -602,6 +657,7 @@ function bookingView(b: Booking) {
   return {
     ...b,
     shareToken: undefined, // only the customer gets it, through "share my visit"
+    cancelTerms: cancelTerms(b),
     extras: (b.extras ?? []).map((id) => barber.services.find((s) => s.id === id)).filter((s): s is SeedService => !!s).map((s) => ({ id: s.id, name: s.name, durationMin: s.durationMin, price: s.price })),
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: timeZoneOf(barber) },
     shop: b.locationType === "shop" ? shopRef(barber.shopId) : null,
@@ -919,11 +975,13 @@ function profileChecklist(b: SeedBarber) {
 }
 
 function earnings(list: Booking[], since: number, until = Infinity) {
-  const inRange = list.filter((b) => PAID.has(b.status) && fromApp(b) && Date.parse(b.startsAt) >= since && Date.parse(b.startsAt) < until); // walk-ins are paid at the shop
-  const gross = inRange.reduce((s, b) => s + b.amount, 0);
+  const within = (b: Booking) => fromApp(b) && Date.parse(b.startsAt) >= since && Date.parse(b.startsAt) < until; // walk-ins are paid at the shop
+  const inRange = list.filter((b) => PAID.has(b.status) && within(b));
+  const lateFees = list.filter((b) => b.status === "cancelled" && b.lateFee && within(b)).reduce((s, b) => s + b.lateFee!, 0);
+  const gross = inRange.reduce((s, b) => s + b.amount, 0) + lateFees;
   const tips = inRange.reduce((s, b) => s + (b.tip ?? 0), 0);
-  const fee = inRange.reduce((s, b) => s + platformFee(b.amount), 0);
-  return { count: inRange.length, gross, fee, tips, net: gross - fee + tips };
+  const fee = inRange.reduce((s, b) => s + platformFee(b.amount), 0) + platformFee(lateFees);
+  return { count: inRange.length, gross, fee, tips, net: gross - fee + tips, lateFees };
 }
 
 function localStarts(tz: string) {
@@ -957,6 +1015,8 @@ function business(b: SeedBarber) {
     reviews: saved.reviews.filter((r) => r.barberId === b.id).sort((a, c) => c.createdAt.localeCompare(a.createdAt)).slice(0, 3).map(({ customerId: _c, ...r }) => r),
     checklist: profileChecklist(b),
     hours: { workingDays: b.workingDays, openHour: b.openHour, closeHour: b.closeHour, timeOff: b.timeOff ?? [] },
+    level: levelOf(b), link: `${typeof location !== "undefined" ? location.origin : ""}/barber/${b.id}`,
+    blocks: (saved.blocks ?? []).filter((k) => k.barberId === b.id && Date.parse(k.endsAt) > Date.now()).length,
   };
 }
 
@@ -1008,7 +1068,7 @@ const EXTRA_TEAM: [string, string, string[]][] = [
   ["demo-dt-1", "Rami Aziz", ["skin fade", "taper", "kids cut"]],
   ["demo-dt-2", "Leo Santos", ["scissor cut", "textured crop", "beard"]],
 ];
-const SEED_VERSION = 2;
+const SEED_VERSION = 4;
 
 /** Requests that arrive together share one run, so the sample accounts are made once. */
 let seeding: Promise<void> | null = null;
@@ -1036,6 +1096,10 @@ async function buildSample() {
   await ensure("JB Team", DEMO_LOGINS.admin.email, DEMO_LOGINS.admin.password, {}, 60);
   await ensure("Mateo Silva", DEMO_LOGINS.barber.email, DEMO_LOGINS.barber.password, { role: "barber", barberId: DEMO_LOGINS.barber.barberId }, 90);
   const owner = await ensure("Nadia Haddad", DEMO_LOGINS.shop.email, DEMO_LOGINS.shop.password, { manages: DEMO_LOGINS.shop.shopId }, 120);
+  Object.assign(owner, { shopRole: "owner", branches: ["s-dubai-marina"] }); // runs two branches
+  await ensure("Omar at the desk", "desk@demo.jbalwaysfresh.com", "jb-desk-demo", { manages: DEMO_LOGINS.shop.shopId, shopRole: "front_desk" }, 40);
+  // Mateo's booking rules: free cancellation up to 24 hours, then half; 15% off quiet weekday mornings.
+  if (!saved.barberPatches.b37?.cancelPolicy) saved.barberPatches.b37 = { ...saved.barberPatches.b37, cancelPolicy: { freeHours: 24, lateFeePercent: 50 }, offPeak: { percent: 15, days: [1, 2, 3], fromHour: 10, toHour: 13 } };
   const base = seed.barbers.find((b) => b.shopId === DEMO_LOGINS.shop.shopId);
   for (const [id, name, specialties] of EXTRA_TEAM) {
     if (!base || allBarbers().some((b) => b.id === id)) continue;
@@ -1065,7 +1129,8 @@ async function buildSample() {
     if (!barber || taken.has(key) || !barber.workingDays.includes(new Date(dubai(dayOffset, 12)).getUTCDay())) return;
     taken.add(key);
     const customer = customers[Math.floor(rand() * customers.length)]!;
-    const service = barber.services[Math.floor(rand() * barber.services.length)]!;
+    const menu = mainServices(barber); // extras are only added to a service, never booked alone
+    const service = menu[Math.floor(rand() * menu.length)]!;
     const startsAt = dubai(dayOffset, hour);
     const b: Booking = {
       id: newId(), customerId: customer.id, barberId, serviceId: service.id, startsAt, endsAt: new Date(Date.parse(startsAt) + service.durationMin * 60_000).toISOString(),
@@ -1124,6 +1189,30 @@ async function buildSample() {
     const by = reel && allBarbers().find((b) => b.id === reel.barberId);
     if (reel && by) ticket(customers[5]!, "other", `Reported reel by ${by.name}: Looks like someone else's photo`, 3, reel.id);
   }
+  // The shop floor: a walk-in queue, stock on the shelf, and a few deliveries to send out.
+  const minsAgo = (m: number) => new Date(now - m * 60_000).toISOString();
+  const downtownShop = DEMO_LOGINS.shop.shopId;
+  saved.queue = [
+    ...(saved.queue ?? []).filter((e) => !e.seeded),
+    { id: newId(), shopId: downtownShop, name: "Hamza", phone: "", service: "Skin fade", status: "serving", barberId: "b36", joinedAt: minsAgo(50), calledAt: minsAgo(15), seeded: true },
+    { id: newId(), shopId: downtownShop, name: "Leo", phone: "", service: "Haircut", status: "waiting", joinedAt: minsAgo(25), seeded: true },
+    { id: newId(), shopId: downtownShop, name: customers[2]!.name, phone: "", userId: customers[2]!.id, service: "Haircut + beard", status: "waiting", joinedAt: minsAgo(12), seeded: true },
+    { id: newId(), shopId: downtownShop, name: "Ibrahim", phone: "", service: "Beard trim", status: "waiting", joinedAt: minsAgo(4), seeded: true },
+  ];
+  saved.stock = { ...saved.stock, [downtownShop]: saved.stock?.[downtownShop] ?? { "p-pomade": 14, "p-wax": 2, "p-powder": 9, "p-shampoo": 0, "p-beard-oil": 21 } };
+  saved.orders = saved.orders.filter((o) => !o.seeded);
+  ([[2, "p-pomade", 2, "delivered"], [6, "p-beard-oil", 1, "out_for_delivery"], [26, "p-kit", 1, "paid"]] as const).forEach(([hoursAgo, productId, quantity, status], i) => {
+    const product = seed.products.find((p) => p.id === productId);
+    if (!product) return;
+    const c = customers[(i * 3) % customers.length]!;
+    const unit = product.prices.aed ?? product.prices.eur!;
+    saved.orders.push({
+      id: newId(), customerId: c.id, items: [{ productId, name: product.name, quantity, unitPrice: unit }], subtotal: unit * quantity, shipping: 0, amount: unit * quantity, currency: "aed",
+      fulfilment: "delivery", shopId: downtownShop, shippingName: c.name, shippingAddress: ["Burj Views, Downtown Dubai", "Boulevard Point, Downtown Dubai", "29 Boulevard, Downtown Dubai"][i]!,
+      status, createdAt: new Date(now - hoursAgo * 3_600_000).toISOString(), seeded: true,
+    });
+  });
+
   saved.demoSeededOn = dubaiDay;
   saved.demoSeedVersion = SEED_VERSION;
   persist();
@@ -1180,7 +1269,7 @@ function calendarBooking(b: Booking) {
 function memberView(b: SeedBarber, date: string) {
   return {
     ...barberView(b),
-    status: statusOf(b), offline: !!b.offline, email: barberUser(b.id)?.email ?? null,
+    status: statusOf(b), offline: !!b.offline, email: barberUser(b.id)?.email ?? null, sharePercent: b.sharePercent ?? null,
     hours: { workingDays: b.workingDays, openHour: b.openHour, closeHour: b.closeHour, timeOff: b.timeOff ?? [] },
     workingToday: isWorking(b, date),
   };
@@ -1195,12 +1284,22 @@ const patchBarber = (id: string, patch: Partial<SeedBarber>) => {
 const hourOk = (v: unknown, min: number, max: number) => v === undefined || (Number.isInteger(v) && (v as number) >= min && (v as number) <= max);
 
 /** The shop panel: a barbershop's owner or manager runs the shop's day. Everything here changes what customers can book in the app. */
-async function manageRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null): Promise<unknown> {
+async function manageRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null, headers: Record<string, string> = {}): Promise<unknown> {
   const me = requireUser(token);
   if (!me.manages) throw new DemoError(403, "Only barbershop owners and managers can open the shop panel.");
-  const shop = getShop(me.manages);
+  const mine = [me.manages, ...(me.branches ?? [])];
+  const shop = getShop(headers["x-shop"] && mine.includes(headers["x-shop"]) ? headers["x-shop"] : me.manages);
   const tz = shopTz(shop);
+  const role = me.shopRole ?? "owner";
+  const RANK = { front_desk: 0, manager: 1, owner: 2 } as const;
+  const need = (r: keyof typeof RANK) => {
+    if (RANK[role] < RANK[r]) throw new DemoError(403, r === "owner" ? "Only the shop's owner can do this." : "Ask your manager — front desk accounts can't change this.");
+  };
+  if (/^\/manage\/(barbers|services|reports|settings|payroll|clients)/.test(path) && !(path === "/manage/barbers" && method === "GET")) need("manager");
+  if (path.startsWith("/manage/staff")) need("owner");
   let x: RegExpMatchArray | null;
+  const shopOps = await shopOpsRoutes(method, path, q, body, me, shop, role);
+  if (shopOps.hit) return shopOps.value;
 
   if (path === "/manage" && method === "GET") {
     const date = shopToday(shop);
@@ -1208,7 +1307,10 @@ async function manageRoutes(method: string, path: string, q: Record<string, stri
       shop: {
         id: shop.id, name: shop.name, address: shop.address, city: shop.city, phone: shop.phone, about: shop.about, photoUrl: shop.photoUrl,
         timeZone: tz, currency: shopCurrency(shop), workingDays: shop.workingDays, openHour: shop.openHour, closeHour: shop.closeHour,
+        barberSharePercent: shop.barberSharePercent ?? DEFAULT_BARBER_SHARE,
       },
+      role, branches: mine.map((id) => getShop(id)).map((s) => ({ id: s.id, name: s.name, city: s.city })),
+      links: { page: `${origin()}/barbershop/${shop.id}`, queue: `${origin()}/barbershop/${shop.id}/queue` },
       today: date,
       team: teamOf(shop).map((b) => memberView(b, date)),
     };
@@ -1357,7 +1459,8 @@ async function manageRoutes(method: string, path: string, q: Record<string, stri
   // A barber's week: working days, hours, days off, and whether the app takes bookings for them.
   if ((x = path.match(/^\/manage\/barbers\/([^/]+)$/)) && method === "PATCH") {
     const b = teamBarber(shop, x[1]!);
-    const p = (body ?? {}) as { workingDays?: number[]; openHour?: number; closeHour?: number; timeOff?: string[]; offline?: boolean };
+    const p = (body ?? {}) as { workingDays?: number[]; openHour?: number; closeHour?: number; timeOff?: string[]; offline?: boolean; sharePercent?: number | null };
+    if (p.sharePercent !== undefined && role !== "owner") throw new DemoError(403, "Only the shop's owner can change the money split.");
     if (p.workingDays && (!p.workingDays.length || p.workingDays.some((d) => !Number.isInteger(d) || d < 0 || d > 6))) throw new DemoError(400, "Pick at least one working day");
     if (!hourOk(p.openHour, 0, 23) || !hourOk(p.closeHour, 1, 24)) throw new DemoError(400, "Pick hours between 00:00 and 24:00.");
     if ((p.closeHour ?? b.closeHour) - (p.openHour ?? b.openHour) < 1) throw new DemoError(400, "Closing time must be after opening time.");
@@ -1368,6 +1471,7 @@ async function manageRoutes(method: string, path: string, q: Record<string, stri
     if (p.closeHour !== undefined) patch.closeHour = p.closeHour;
     if (p.timeOff) patch.timeOff = [...new Set(p.timeOff)].sort();
     if (p.offline !== undefined) patch.offline = !!p.offline;
+    if (p.sharePercent !== undefined) patch.sharePercent = p.sharePercent === null ? undefined : Math.max(0, Math.min(100, Math.round(p.sharePercent)));
     patchBarber(b.id, patch);
     persist();
     return memberView(getBarber(b.id), shopToday(shop));
@@ -1480,15 +1584,391 @@ async function manageRoutes(method: string, path: string, q: Record<string, stri
     if (p.workingDays) patch.workingDays = [...new Set(p.workingDays)].sort();
     if (p.openHour !== undefined) patch.openHour = p.openHour;
     if (p.closeHour !== undefined) patch.closeHour = p.closeHour;
+    if (p.barberSharePercent !== undefined) {
+      if (role !== "owner") throw new DemoError(403, "Only the shop's owner can change the money split.");
+      patch.barberSharePercent = Math.max(0, Math.min(100, Math.round(Number(p.barberSharePercent))));
+    }
     saved.shopSettings = { ...saved.shopSettings, [shop.id]: { ...saved.shopSettings?.[shop.id], ...patch } };
     persist();
     const s = getShop(shop.id);
-    return { about: s.about, phone: s.phone, workingDays: s.workingDays, openHour: s.openHour, closeHour: s.closeHour };
+    return { about: s.about, phone: s.phone, workingDays: s.workingDays, openHour: s.openHour, closeHour: s.closeHour, barberSharePercent: s.barberSharePercent ?? DEFAULT_BARBER_SHARE };
   }
   throw new DemoError(404, "Not found.");
 }
 
-async function teamRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null): Promise<{ hit: boolean; value?: unknown }> {
+const origin = () => (typeof location !== "undefined" ? location.origin : "");
+
+// ---------- The barber's own tools and the walk-in queue (mirrors server/src/routes/pro.ts and shopOps.ts) ----------
+
+const clientKey = (b: Booking) => (b.guest ? `guest:${b.guest.name.trim().toLowerCase()}` : b.customerId);
+
+function clientsOf(barber: SeedBarber) {
+  const mine = saved.bookings.filter((b) => b.barberId === barber.id && PAID.has(b.status) && b.serviceId !== CONSULTATION.id);
+  const groups = new Map<string, Booking[]>();
+  for (const b of mine) groups.set(clientKey(b), [...(groups.get(clientKey(b)) ?? []), b]);
+  const now = Date.now();
+  return [...groups].map(([key, list]) => {
+    list.sort((a, b) => a.startsAt.localeCompare(b.startsAt));
+    const past = list.filter((b) => Date.parse(b.startsAt) <= now);
+    const next = list.find((b) => Date.parse(b.startsAt) > now);
+    const last = past.at(-1);
+    const user = key.startsWith("guest:") ? undefined : saved.users.find((u) => u.id === key);
+    return {
+      key, name: list.at(-1)!.guest?.name ?? user?.name ?? "Client", photoUrl: user?.photoUrl ?? null,
+      visits: past.length, lastVisit: last?.startsAt ?? null, nextVisit: next?.startsAt ?? null,
+      spend: list.reduce((s, b) => s + b.amount + (fromApp(b) ? b.tip ?? 0 : 0), 0), currency: list[0]!.currency,
+      lastService: last ? findService(barber, last.serviceId)?.name ?? null : null,
+      cutNotes: [...past].reverse().find((b) => b.cutNotes)?.cutNotes ?? null, preferences: user?.preferences ?? null,
+      note: barber.clientNotes?.[key] ?? "", fromApp: !!user && !user.deletedAt && fromApp(list.at(-1)!), lastMessagedAt: barber.nudgedAt?.[key] ?? null, phone: list.at(-1)!.guest?.phone || "",
+    };
+  }).sort((a, b) => (b.lastVisit ?? b.nextVisit ?? "").localeCompare(a.lastVisit ?? a.nextVisit ?? ""));
+}
+
+function messageClients(fromName: string, nudged: Record<string, string>, keys: string[], text: string, link: string) {
+  let sent = 0;
+  let skipped = 0;
+  for (const key of new Set(keys)) {
+    const user = key.startsWith("guest:") ? undefined : saved.users.find((u) => u.id === key && !u.deletedAt);
+    const recent = nudged[key] && Date.now() - Date.parse(nudged[key]!) < 7 * DAY;
+    if (!user || recent || user.alerts?.offers === false) {
+      skipped++;
+      continue;
+    }
+    notify(user.id, { kind: "message", title: `Message from ${fromName}`, body: `${text}\n\nBook: ${link}` });
+    nudged[key] = new Date().toISOString();
+    sent++;
+  }
+  return { sent, skipped };
+}
+
+function shopOpenNow(s: SeedShop) {
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: shopTz(s), weekday: "short", hour: "2-digit", hourCycle: "h23" }).formatToParts(new Date()).map((x) => [x.type, x.value]));
+  const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday!);
+  return s.workingDays.includes(day) && Number(p.hour) >= s.openHour && Number(p.hour) < s.closeHour;
+}
+
+function queueOf(s: SeedShop) {
+  const since = Date.now() - DAY / 2;
+  const list = (saved.queue ?? []).filter((e) => e.shopId === s.id && Date.parse(e.joinedAt) > since).sort((a, b) => a.joinedAt.localeCompare(b.joinedAt));
+  const chairs = Math.max(1, teamOf(s).filter((b) => isLive(b) && openNow(b)).length);
+  const waiting = list.filter((e) => e.status === "waiting");
+  const estimate = (i: number) => Math.ceil(((i + 1) * 30) / chairs / 5) * 5;
+  return { list, waiting, chairs, estimate };
+}
+
+function queueView(e: QueueEntry, position: number | null, estimateMin: number | null) {
+  const barber = e.barberId ? allBarbers().find((b) => b.id === e.barberId) : undefined;
+  return { id: e.id, name: e.name, phone: e.phone, service: e.service, status: e.status, joinedAt: e.joinedAt, calledAt: e.calledAt ?? null, fromApp: !!e.userId, barber: barber ? { id: barber.id, name: barber.name } : null, position, estimateMin };
+}
+
+async function proRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null): Promise<{ hit: boolean; value?: unknown }> {
+  const hit = (value: unknown) => ({ hit: true, value });
+  let x: RegExpMatchArray | null;
+  const myBarber = () => {
+    const u = requireUser(token);
+    if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
+    return getBarber(u.barberId);
+  };
+  if (path === "/barbers/me/blocks" && method === "GET") {
+    const b = myBarber();
+    return hit((saved.blocks ?? []).filter((k) => k.barberId === b.id && Date.parse(k.endsAt) > Date.now()).sort((a, c) => a.startsAt.localeCompare(c.startsAt)).map(({ seeded: _s, ...k }) => k));
+  }
+  if (path === "/barbers/me/blocks" && method === "POST") {
+    const b = myBarber();
+    const start = Date.parse(String(body?.startsAt));
+    const end = Date.parse(String(body?.endsAt));
+    if (!(end - start >= 15 * 60_000)) throw new DemoError(400, "Block at least 15 minutes.");
+    if (end - start > 3 * DAY) throw new DemoError(400, "For whole days, use Hours & days off.");
+    if (end < Date.now()) throw new DemoError(400, "That time has already passed.");
+    if (saved.bookings.some((k) => k.barberId === b.id && ["confirmed", "on_the_way"].includes(k.status) && start < Date.parse(k.endsAt) && end > Date.parse(k.startsAt))) throw new DemoError(409, "You have a booking in that time. Move or cancel it first.");
+    const block = { id: newId(), shopId: b.shopId ?? "", barberId: b.id, startsAt: new Date(start).toISOString(), endsAt: new Date(end).toISOString(), reason: String(body?.reason ?? "").trim().slice(0, 80) || "Blocked", createdAt: new Date().toISOString() };
+    (saved.blocks ??= []).push(block);
+    persist();
+    return hit(block);
+  }
+  if ((x = path.match(/^\/barbers\/me\/blocks\/([^/]+)$/)) && method === "DELETE") {
+    const b = myBarber();
+    const before = saved.blocks?.length ?? 0;
+    saved.blocks = (saved.blocks ?? []).filter((k) => !(k.id === x![1] && k.barberId === b.id));
+    if (saved.blocks.length === before) throw new DemoError(404, "Not found.");
+    persist();
+    return hit(undefined);
+  }
+  if (path === "/barbers/me/rules") {
+    const b = myBarber();
+    if (method === "PUT") {
+      const rule = (r: unknown) => {
+        if (r === null || r === undefined) return r as null | undefined;
+        const v = r as PriceRule;
+        if (!v.days?.length) throw new DemoError(400, "Pick at least one day");
+        if (!(v.toHour > v.fromHour)) throw new DemoError(400, "The end time must be after the start time.");
+        if (!(v.percent >= 5 && v.percent <= 30)) throw new DemoError(400, "Between 5% and 30%.");
+        return { percent: Math.round(v.percent), days: [...new Set(v.days)], fromHour: v.fromHour, toHour: v.toHour };
+      };
+      const offPeak = rule(body?.offPeak);
+      const peak = rule(body?.peak);
+      if (offPeak && peak && offPeak.days.some((d) => peak.days.includes(d)) && offPeak.fromHour < peak.toHour && peak.fromHour < offPeak.toHour) throw new DemoError(400, "Off-peak and peak hours overlap. Change one of them.");
+      const patch: Partial<SeedBarber> = {};
+      if (body?.cancelPolicy) patch.cancelPolicy = { freeHours: Number(body.cancelPolicy.freeHours) || 0, lateFeePercent: Number(body.cancelPolicy.lateFeePercent) || 0 };
+      if (offPeak !== undefined) patch.offPeak = offPeak;
+      if (peak !== undefined) patch.peak = peak;
+      patchBarber(b.id, patch);
+      persist();
+    }
+    const now = getBarber(b.id);
+    return hit({ cancelPolicy: now.cancelPolicy ?? { freeHours: 0, lateFeePercent: 0 }, offPeak: now.offPeak ?? null, peak: now.peak ?? null });
+  }
+  if (path === "/barbers/me/clients" && method === "GET") return hit(clientsOf(myBarber()));
+  if (path === "/barbers/me/clients/note" && method === "PUT") {
+    const b = myBarber();
+    const key = String(body?.key ?? "");
+    if (!clientsOf(b).some((c) => c.key === key)) throw new DemoError(404, "Client not found.");
+    const notes = { ...b.clientNotes, [key]: String(body?.note ?? "").trim().slice(0, 500) };
+    if (!notes[key]) delete notes[key];
+    patchBarber(b.id, { clientNotes: notes });
+    persist();
+    return hit({ key, note: notes[key] ?? "" });
+  }
+  if (path === "/barbers/me/clients/message" && method === "POST") {
+    const b = myBarber();
+    const text = String(body?.text ?? "").trim();
+    if (text.length < 5) throw new DemoError(400, "Write a short message");
+    const known = new Set(clientsOf(b).map((c) => c.key));
+    const nudged = { ...b.nudgedAt };
+    const r = messageClients(b.name, nudged, ((body?.keys ?? []) as string[]).filter((k) => known.has(k)), text.slice(0, 400), `${origin()}/barber/${b.id}`);
+    patchBarber(b.id, { nudgedAt: nudged });
+    persist();
+    return hit(r);
+  }
+  if (path === "/barbers/me/link") {
+    const b = myBarber();
+    const level = levelOf(b);
+    return hit({ url: `${origin()}/barber/${b.id}`, name: b.name, level, levelLabel: LEVEL_NAME[level] });
+  }
+  // Customers and the walk-in queue.
+  if ((x = path.match(/^\/shops\/([^/]+)\/queue(\/mine)?$/))) {
+    const s = getShop(x[1]!);
+    const { list, waiting, estimate } = queueOf(s);
+    const u = token && saved.sessions[token] ? saved.users.find((y) => y.id === saved.sessions[token]) : undefined;
+    const open = (e: QueueEntry) => ["waiting", "called", "serving"].includes(e.status);
+    if (method === "DELETE") {
+      const me = requireUser(token);
+      const e = list.find((y) => y.userId === me.id && open(y));
+      if (e) e.status = "left";
+      persist();
+      return hit(undefined);
+    }
+    if (method === "POST") {
+      const me = requireUser(token);
+      if (!shopOpenNow(s)) throw new DemoError(400, `${s.name} is closed right now. Book a time instead.`);
+      if (list.some((y) => y.userId === me.id && open(y))) throw new DemoError(409, "You're already in the queue.");
+      const e: QueueEntry = { id: newId(), shopId: s.id, name: me.name, phone: me.phone ?? "", userId: me.id, service: String(body?.service ?? "Haircut").slice(0, 60), status: "waiting", joinedAt: new Date().toISOString() };
+      (saved.queue ??= []).push(e);
+      persist();
+      return hit(queueView(e, null, null));
+    }
+    const mine = u ? list.find((y) => y.userId === u.id && open(y)) : undefined;
+    const pos = mine ? waiting.indexOf(mine) : -1;
+    return hit({
+      open: shopOpenNow(s), waiting: waiting.length, estimateMin: waiting.length ? estimate(waiting.length - 1) : 0,
+      nowServing: list.filter((e) => e.status === "called" || e.status === "serving").map((e) => firstName(e.name)),
+      mine: mine ? queueView(mine, pos >= 0 ? pos + 1 : null, pos >= 0 ? estimate(pos) : 0) : null,
+    });
+  }
+  return { hit: false };
+}
+
+/** The shop floor in the panel: queue, check-in, deliveries, stock, hires, staff, pay and client messages. */
+async function shopOpsRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, me: User, shop: SeedShop, role: "owner" | "manager" | "front_desk"): Promise<{ hit: boolean; value?: unknown }> {
+  const hit = (value: unknown) => ({ hit: true, value });
+  let x: RegExpMatchArray | null;
+  const tz = shopTz(shop);
+  const cur = shopCurrency(shop);
+  if (path === "/manage/queue" && method === "GET") {
+    const { list, waiting, chairs, estimate } = queueOf(shop);
+    return hit({
+      open: shopOpenNow(shop), chairs, waiting: waiting.map((e, i) => queueView(e, i + 1, estimate(i))),
+      inChair: list.filter((e) => e.status === "called" || e.status === "serving").map((e) => queueView(e, null, null)),
+      doneToday: list.filter((e) => e.status === "done").length,
+      team: teamOf(shop).filter(isLive).map((b) => ({ id: b.id, name: b.name, photoUrl: b.photoUrl, working: openNow(b) })),
+    });
+  }
+  if (path === "/manage/queue" && method === "POST") {
+    const name = String(body?.name ?? "").trim();
+    if (!name) throw new DemoError(400, "Add a name");
+    const e: QueueEntry = { id: newId(), shopId: shop.id, name: name.slice(0, 60), phone: String(body?.phone ?? ""), service: String(body?.service ?? "Haircut").slice(0, 60), status: "waiting", joinedAt: new Date().toISOString() };
+    (saved.queue ??= []).push(e);
+    persist();
+    return hit(queueView(e, null, null));
+  }
+  if ((x = path.match(/^\/manage\/queue\/([^/]+)$/)) && method === "POST") {
+    const e = (saved.queue ?? []).find((y) => y.id === x![1] && y.shopId === shop.id);
+    if (!e) throw new DemoError(404, "Not in the queue.");
+    const action = String(body?.action);
+    if (body?.barberId) teamBarber(shop, String(body.barberId));
+    if (action === "call") {
+      e.status = "called";
+      e.calledAt = new Date().toISOString();
+      if (body?.barberId) e.barberId = String(body.barberId);
+      const who = e.barberId ? allBarbers().find((b) => b.id === e.barberId)?.name.split(" ")[0] : null;
+      if (e.userId) notify(e.userId, { kind: "queue", title: "It's your turn", body: `${who ? `${who} is ready for you` : "Your chair is ready"} at ${shop.name}. Head to the desk.` });
+    } else if (action === "serve") {
+      e.status = "serving";
+      if (body?.barberId) e.barberId = String(body.barberId);
+    } else if (action === "done") {
+      e.status = "done";
+      e.doneAt = new Date().toISOString();
+    } else e.status = "left";
+    persist();
+    return hit(queueView(e, null, null));
+  }
+  if (path === "/manage/check-in" && method === "GET") {
+    const day = localDate(Date.now(), tz);
+    const team = new Map(teamOf(shop).map((b) => [b.id, b]));
+    return hit(saved.bookings
+      .filter((b) => team.has(b.barberId) && PAID.has(b.status) && b.locationType === "shop" && localDate(b.startsAt, tz) === day)
+      .sort((a, b) => a.startsAt.localeCompare(b.startsAt))
+      .map((b) => {
+        const v = calendarBooking(b);
+        return { id: b.id, firstName: firstName(v.client), startsAt: b.startsAt, barber: team.get(b.barberId)!.name, service: v.service, checkedIn: !!b.checkedInAt, done: b.status === "completed" };
+      }));
+  }
+  if ((x = path.match(/^\/manage\/check-in\/([^/]+)$/)) && method === "POST") {
+    const b = shopBooking(shop, x[1]!);
+    b.checkedInAt ??= new Date().toISOString();
+    persist();
+    return hit({ id: b.id, checkedIn: true });
+  }
+  const orderRow = (o: Order) => ({
+    id: o.id, status: o.status, createdAt: o.createdAt, name: o.shippingName || "Customer", address: o.shippingAddress,
+    items: o.items.map((i) => ({ name: i.name, quantity: i.quantity })), subtotal: o.subtotal, amount: o.amount, currency: o.currency,
+    commission: Math.round((o.subtotal * PRODUCT_COMMISSION_PERCENT) / 100),
+  });
+  const monthStart = dayStart(shop, `${shopToday(shop).slice(0, 8)}01`);
+  if (path === "/manage/orders" && method === "GET") {
+    dueReminders();
+    const orders = saved.orders.filter((o) => o.shopId === shop.id && o.status !== "pending_payment").sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    const month = orders.filter((o) => o.status !== "cancelled" && Date.parse(o.createdAt) >= monthStart);
+    return hit({ commissionPercent: PRODUCT_COMMISSION_PERCENT, currency: cur, month: { orders: month.length, sales: month.reduce((s, o) => s + o.subtotal, 0), commission: month.reduce((s, o) => s + orderRow(o).commission, 0) }, orders: orders.slice(0, 100).map(orderRow) });
+  }
+  if ((x = path.match(/^\/manage\/orders\/([^/]+)$/)) && method === "POST") {
+    const o = saved.orders.find((y) => y.id === x![1] && y.shopId === shop.id);
+    if (!o) throw new DemoError(404, "Order not found.");
+    if (!["paid", "out_for_delivery"].includes(o.status)) throw new DemoError(400, "Only paid orders can be updated.");
+    if (o.status !== body?.status) {
+      o.status = body?.status === "delivered" ? "delivered" : "out_for_delivery";
+      o.demoOutAt = o.demoDeliveredAt = undefined; // the shop is driving it now
+      orderAlert(o);
+      persist();
+    }
+    return hit(orderRow(o));
+  }
+  if (path === "/manage/stock") {
+    if (method === "PUT") {
+      if (role === "front_desk") throw new DemoError(403, "Ask your manager — front desk accounts can't change this.");
+      const shelf = { ...saved.stock?.[shop.id] };
+      for (const [id, n] of Object.entries((body?.counts ?? {}) as Record<string, number | null>)) {
+        if (!shop.productIds.includes(id)) throw new DemoError(400, "That product isn't stocked here.");
+        if (n === null) delete shelf[id];
+        else shelf[id] = Math.max(0, Math.round(n));
+      }
+      saved.stock = { ...saved.stock, [shop.id]: shelf };
+      persist();
+      return hit({ ok: true });
+    }
+    const shelf = saved.stock?.[shop.id] ?? {};
+    return hit(seed.products.filter((p) => shop.productIds.includes(p.id)).map((p) => ({ id: p.id, name: p.name, emoji: p.emoji, price: p.prices[cur] ?? p.prices.eur, currency: cur, count: shelf[p.id] ?? null, low: shelf[p.id] !== undefined && shelf[p.id]! <= 3 })));
+  }
+  if (path === "/manage/hires" && method === "GET") {
+    return hit((saved.hires ?? []).filter((h) => h.shopId === shop.id && h.status !== "pending_payment").sort((a, b) => b.startsAt.localeCompare(a.startsAt)).map((h) => ({
+      id: h.id, startsAt: h.startsAt, endsAt: h.endsAt, hours: h.hours, guests: h.guests, occasion: h.occasion, notes: h.notes, amount: h.amount, currency: h.currency, status: h.status,
+      customer: saved.users.find((u) => u.id === h.customerId)?.name ?? "Customer",
+    })));
+  }
+  const staffView = (u: User) => ({ id: u.id, name: u.name, email: u.email, role: u.shopRole ?? "owner", you: u.id === me.id });
+  if (path === "/manage/staff" && method === "GET") return hit(saved.users.filter((u) => !u.deletedAt && (u.manages === shop.id || u.branches?.includes(shop.id))).map(staffView));
+  if (path === "/manage/staff" && method === "POST") {
+    const email = String(body?.email ?? "").trim().toLowerCase();
+    const name = String(body?.name ?? "").trim();
+    if (name.length < 2 || !email.includes("@")) throw new DemoError(400, "Add a name and an email.");
+    if (saved.users.some((u) => u.email === email)) throw new DemoError(409, "There's already an account with that email.");
+    const password = Array.from(crypto.getRandomValues(new Uint8Array(6)), (n) => CODE_CHARS[n % CODE_CHARS.length]).join("").toLowerCase();
+    const u: User = { id: newId(), name, email, passwordHash: await hash(password), role: "customer", manages: shop.id, shopRole: body?.role === "manager" ? "manager" : "front_desk", countryCode: shop.countryCode, city: shop.city, createdAt: new Date().toISOString() };
+    saved.users.push(u);
+    persist();
+    return hit({ staff: staffView(u), login: { email, password } });
+  }
+  if ((x = path.match(/^\/manage\/staff\/([^/]+)$/))) {
+    const u = saved.users.find((y) => y.id === x![1] && y.manages === shop.id);
+    if (!u || u.id === me.id || (u.shopRole ?? "owner") === "owner") throw new DemoError(404, "Staff member not found.");
+    if (method === "PATCH") {
+      u.shopRole = body?.role === "manager" ? "manager" : "front_desk";
+      persist();
+      return hit(staffView(u));
+    }
+    delete u.manages;
+    delete u.shopRole;
+    for (const [t, id] of Object.entries(saved.sessions)) if (id === u.id) delete saved.sessions[t];
+    persist();
+    return hit(null);
+  }
+  if (path === "/manage/payroll" && method === "GET") {
+    const period = (["today", "week", "month"].includes(q.period ?? "") ? q.period : "month") as "today" | "week" | "month";
+    const now = shopToday(shop);
+    const first = period === "today" ? now : period === "week" ? addDays(now, -((new Date(`${now}T12:00:00Z`).getUTCDay() + 6) % 7)) : `${now.slice(0, 8)}01`;
+    const end = period === "today" ? now : period === "week" ? addDays(first, 6) : addDays(`${addDays(`${now.slice(0, 8)}28`, 4).slice(0, 8)}01`, -1);
+    const from = dayStart(shop, first);
+    const to = dayStart(shop, addDays(end, 1));
+    const shopDefault = shop.barberSharePercent ?? DEFAULT_BARBER_SHARE;
+    const rows = teamOf(shop).map((t) => {
+      const mine = saved.bookings.filter((b) => b.barberId === t.id && Date.parse(b.startsAt) >= from && Date.parse(b.startsAt) < to);
+      const done = mine.filter((b) => PAID.has(b.status));
+      const services = done.reduce((s, b) => s + b.amount, 0);
+      const lateFees = mine.filter((b) => b.status === "cancelled" && b.lateFee).reduce((s, b) => s + b.lateFee!, 0);
+      const tips = done.filter(fromApp).reduce((s, b) => s + (b.tip ?? 0), 0);
+      const jbFee = done.filter(fromApp).reduce((s, b) => s + platformFee(b.amount), 0) + platformFee(lateFees);
+      const share = t.sharePercent ?? shopDefault;
+      const net = services + lateFees - jbFee;
+      const barberPay = Math.round((net * share) / 100) + tips;
+      return { id: t.id, name: t.name, photoUrl: t.photoUrl, sharePercent: share, customShare: t.sharePercent !== undefined, appointments: done.length, walkIns: done.filter((b) => !fromApp(b)).length, services, lateFees, tips, jbFee, barberPay, shopKeeps: net - (barberPay - tips) };
+    }).sort((a, b) => b.services - a.services);
+    const productCommission = saved.orders.filter((o) => o.shopId === shop.id && !["pending_payment", "cancelled"].includes(o.status) && Date.parse(o.createdAt) >= from && Date.parse(o.createdAt) < to).reduce((s, o) => s + Math.round((o.subtotal * PRODUCT_COMMISSION_PERCENT) / 100), 0);
+    const sum = (k: "services" | "lateFees" | "tips" | "jbFee" | "barberPay" | "shopKeeps") => rows.reduce((s, r) => s + r[k], 0);
+    return hit({
+      period, from: first, to: end, currency: cur, defaultSharePercent: shopDefault, canEditSplit: role === "owner", rows,
+      totals: { services: sum("services"), lateFees: sum("lateFees"), tips: sum("tips"), jbFee: sum("jbFee"), barberPay: sum("barberPay"), shopKeeps: sum("shopKeeps") + productCommission, productCommission },
+      note: "Walk-ins are paid at the shop and carry no JB fee. Tips go to the barber in full. App money is paid out by JB; walk-in money is already in the shop's till.",
+    });
+  }
+  const lapsed = (weeks: number) => {
+    const team = new Set(teamOf(shop).map((b) => b.id));
+    const last = new Map<string, number>();
+    const upcoming = new Set<string>();
+    for (const b of saved.bookings.filter((y) => team.has(y.barberId) && fromApp(y) && PAID.has(y.status) && !y.guest)) {
+      const t = Date.parse(b.startsAt);
+      if (t > Date.now()) upcoming.add(b.customerId);
+      else last.set(b.customerId, Math.max(last.get(b.customerId) ?? 0, t));
+    }
+    const cutoff = Date.now() - weeks * 7 * DAY;
+    return { all: last.size, ids: [...last].filter(([id, t]) => t < cutoff && !upcoming.has(id)).map(([id]) => id) };
+  };
+  if (path === "/manage/clients" && method === "GET") {
+    const weeks = Math.max(2, Math.min(52, Number(q.weeks) || 6));
+    const r = lapsed(weeks);
+    return hit({ clients: r.all, lapsed: r.ids.length, weeks });
+  }
+  if (path === "/manage/clients/message" && method === "POST") {
+    const text = String(body?.text ?? "").trim();
+    if (text.length < 5) throw new DemoError(400, "Write a short message");
+    const nudged = ((saved.shopNudges ??= {})[shop.id] ??= {});
+    const r = messageClients(shop.name, nudged, lapsed(Number(body?.weeks) || 6).ids, text.slice(0, 400), `${origin()}/barbershop/${shop.id}`);
+    persist();
+    return hit(r);
+  }
+  return { hit: false };
+}
+
+async function teamRoutes(method: string, path: string, q: Record<string, string>, body: Body | undefined, token: string | null, headers: Record<string, string> = {}): Promise<{ hit: boolean; value?: unknown }> {
   const hit = (value: unknown) => ({ hit: true, value });
   let x: RegExpMatchArray | null;
 
@@ -1521,7 +2001,9 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
     return hit(barberView(getBarber(b.id)));
   }
 
-  if (path === "/manage" || path.startsWith("/manage/")) return hit(await manageRoutes(method, path, q, body, token));
+  const pro = await proRoutes(method, path, q, body, token);
+  if (pro.hit) return pro;
+  if (path === "/manage" || path.startsWith("/manage/")) return hit(await manageRoutes(method, path, q, body, token, headers));
   if (!path.startsWith("/admin/")) return { hit: false };
   const me = requireUser(token);
   if (!isAdmin(me)) throw new DemoError(403, "Only the JB Always Fresh team can open this.");
@@ -1740,7 +2222,7 @@ export function createDemoServer(data: DemoData) {
 
     if (path === "/health") return { ok: true, demoPayments: true, aiStylist: true, assistant: true, tryOn: false };
     await seedDemoAccounts();
-    const teamRoute = await teamRoutes(method, path, q, body, token);
+    const teamRoute = await teamRoutes(method, path, q, body, token, headers);
     if (teamRoute.hit) return teamRoute.value;
 
     if (path === "/campaigns") {
@@ -1945,7 +2427,9 @@ export function createDemoServer(data: DemoData) {
       const s = findService(b, q.serviceId);
       if (!s) throw new DemoError(404, "Service not found.");
       const ex = extrasOf(b, q.extras ? q.extras.split(",").filter(Boolean) : []);
-      return { timeZone: timeZoneOf(b), slots: slots(b, q.date, s.durationMin + ex.reduce((t, e) => t + e.durationMin, 0)) };
+      const free = slots(b, q.date, s.durationMin + ex.reduce((t, e) => t + e.durationMin, 0));
+      const deals = s.id === CONSULTATION.id ? {} : Object.fromEntries(free.map((t) => [t, priceRuleAt(b, t)]).filter(([, p]) => p));
+      return { timeZone: timeZoneOf(b), slots: free, deals };
     }
     if ((x = m(/^\/barbers\/([^/]+)$/))) {
       const b = getBarber(x[1]);
@@ -1986,7 +2470,9 @@ export function createDemoServer(data: DemoData) {
       const m = activeMembership(u);
       const plan = m ? planOf(m.plan)! : null;
       const covered = !consultation && !!plan && (plan.cutsPerPeriod === null || cutsUsed(u) < plan.cutsPerPeriod);
-      const due = (covered ? 0 : s.price) + ex.reduce((t, e) => t + e.price, 0) + (locationType === "home" && !(plan?.freeHomeVisits && !consultation) ? b.homeVisitFee : 0);
+      const rule = consultation ? 0 : priceRuleAt(b, bk.startsAt);
+      if (rule) bk.priceRule = rule;
+      const due = (covered ? 0 : adjustedPrice(s.price, rule)) + ex.reduce((t, e) => t + e.price, 0) + (locationType === "home" && !(plan?.freeHomeVisits && !consultation) ? b.homeVisitFee : 0);
       const credit = Math.min(u.credit?.[bk.currency] ?? 0, due);
       bk.amount = due - credit;
       if (covered) bk.coveredBy = "membership";
@@ -2153,6 +2639,7 @@ export function createDemoServer(data: DemoData) {
           break;
         case "cancel":
           if (bk.status === "completed" || bk.status === "cancelled") throw new DemoError(400, "This booking can't be cancelled.");
+          if (bk.customerId === u.id && cancelTerms(bk).fee) bk.lateFee = cancelTerms(bk).fee; // the barber's late-cancellation rule
           bk.status = "cancelled";
           if (bk.creditUsed) {
             const owner = saved.users.find((x) => x.id === bk.customerId);
@@ -2452,6 +2939,7 @@ export function createDemoServer(data: DemoData) {
         const p = seed.products.find((p) => p.id === i.productId);
         if (!p) throw new DemoError(404, "One of the products is no longer available.");
         if (shop && !shop.productIds.includes(p.id)) throw new DemoError(400, `${shop.name} doesn't stock ${p.name}.`);
+        if (shop && !inStock(shop.id, p.id)) throw new DemoError(409, `${p.name} is sold out at ${shop.name} right now.`);
         return { productId: p.id, name: p.name, quantity: Number(i.quantity), unitPrice: p.prices[cur] };
       });
       if (String(body?.shippingAddress ?? "").trim().length < 5) throw new DemoError(400, "Please enter your delivery address.");
@@ -2472,6 +2960,7 @@ export function createDemoServer(data: DemoData) {
       if (o.amount === 0) {
         // Paid in full with gift credit.
         o.status = "paid";
+        takeStock(o);
         if (o.fulfilment === "delivery") {
           o.demoOutAt = Date.now() + 20_000;
           o.demoDeliveredAt = Date.now() + 50_000;
@@ -2499,6 +2988,7 @@ export function createDemoServer(data: DemoData) {
       if (x[2] === "payment") return { order: orderView(o), clientSecret: null, demoPayments: true };
       if (o.status === "pending_payment") {
         o.status = "paid";
+        takeStock(o);
         o.createdAt = new Date().toISOString(); // the delivery clock starts when it's paid
         if (o.fulfilment === "delivery") {
           o.demoOutAt = Date.now() + 20_000;

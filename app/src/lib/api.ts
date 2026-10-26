@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Referral, Review, SharedVisit, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, Usual, VenueKind, WorkingHours } from "./types";
+import type { BookingRules, CheckInRow, Client, Level, Payroll, QueueItem, QueueStatus, ShopHireRow, ShopOrderRow, ShopQueue, ShopStaff, StockRow, AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Referral, Review, SharedVisit, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, Usual, VenueKind, WorkingHours } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -16,6 +16,12 @@ const authLoaded = new Promise<void>((resolve) => {
 });
 export const savedSignInRead = () => markAuthLoaded();
 
+// Owners of several barbershops: which branch the shop panel is showing.
+let shopBranch: string | null = null;
+export const setShopBranch = (id: string | null) => {
+  shopBranch = id;
+};
+
 export class ApiError extends Error {
   constructor(public status: number, message: string) {
     super(message);
@@ -26,6 +32,7 @@ const demo = DEMO_DATA ? createDemoServer(DEMO_DATA) : null;
 
 async function request<T>(path: string, init: { method?: string; body?: unknown; headers?: Record<string, string> } = {}): Promise<T> {
   await authLoaded;
+  if (shopBranch && path.startsWith("/manage")) init = { ...init, headers: { ...init.headers, "x-shop": shopBranch } };
   if (demo) {
     try {
       return (await demo(init.method ?? (init.body !== undefined ? "POST" : "GET"), path, init.body as never, authToken, init.headers)) as T;
@@ -119,7 +126,7 @@ export const api = {
   specialties: () => request<string[]>("/specialties"),
   barber: (id: string) => request<Barber & { reviews: Review[] }>(`/barbers/${id}`),
   availability: (id: string, date: string, serviceId: string, extras: string[] = []) =>
-    request<{ timeZone: string; slots: string[] }>(`/barbers/${id}/availability` + qs({ date, serviceId, extras: extras.length ? extras.join(",") : undefined })),
+    request<{ timeZone: string; slots: string[]; deals?: Record<string, number> }>(`/barbers/${id}/availability` + qs({ date, serviceId, extras: extras.length ? extras.join(",") : undefined })),
 
   register: (body: { name: string; email: string; password: string; countryCode?: string; city?: string; invite?: string }) =>
     request<{ token: string; user: User }>("/auth/register", { body }),
@@ -225,6 +232,18 @@ export const api = {
   removePushToken: (token: string) => request<void>("/me/push-tokens", { method: "DELETE", body: { token } }),
   myBarberSettings: () => request<{ videoLink: string; offersConsultations: boolean }>("/barbers/me/settings"),
   business: () => request<BusinessDashboard>("/barbers/me/business"),
+  myBlocks: () => request<CalBlock[]>("/barbers/me/blocks"),
+  addMyBlock: (body: { startsAt: string; endsAt: string; reason: string }) => request<CalBlock>("/barbers/me/blocks", { body }),
+  removeMyBlock: (id: string) => request<void>(`/barbers/me/blocks/${id}`, { method: "DELETE" }),
+  myRules: () => request<BookingRules>("/barbers/me/rules"),
+  saveMyRules: (body: Partial<BookingRules>) => request<BookingRules>("/barbers/me/rules", { method: "PUT", body }),
+  myClients: () => request<Client[]>("/barbers/me/clients"),
+  saveClientNote: (key: string, note: string) => request<{ key: string; note: string }>("/barbers/me/clients/note", { method: "PUT", body: { key, note } }),
+  messageClients: (keys: string[], text: string) => request<{ sent: number; skipped: number }>("/barbers/me/clients/message", { body: { keys, text } }),
+  myLink: () => request<{ url: string; name: string; level: Level; levelLabel: string }>("/barbers/me/link"),
+  queueStatus: (shopId: string) => request<QueueStatus>(`/shops/${shopId}/queue`),
+  joinQueue: (shopId: string, service: string) => request<QueueItem>(`/shops/${shopId}/queue`, { body: { service } }),
+  leaveQueue: (shopId: string) => request<void>(`/shops/${shopId}/queue/mine`, { method: "DELETE" }),
   saveServices: (services: { id?: string; name: string; durationMin: number; price: number; category?: ServiceCategory; description?: string }[]) => request<Barber>("/barbers/me/services", { method: "PUT", body: { services } }),
 
   // Admin panel (the JB Always Fresh team)
@@ -256,12 +275,29 @@ export const api = {
     move: (id: string, barberId: string, startsAt: string) => request<CalBooking>(`/manage/bookings/${id}/move`, { body: { barberId, startsAt } }),
     block: (body: { barberIds: string[]; startsAt: string; endsAt: string; reason: string }) => request<CalBlock[]>("/manage/blocks", { body }),
     unblock: (id: string) => request<null>(`/manage/blocks/${id}`, { method: "DELETE" }),
-    updateBarber: (id: string, body: Partial<WorkingHours> & { offline?: boolean }) => request<ShopMember>(`/manage/barbers/${id}`, { method: "PATCH", body }),
+    updateBarber: (id: string, body: Partial<WorkingHours> & { offline?: boolean; sharePercent?: number | null }) => request<ShopMember>(`/manage/barbers/${id}`, { method: "PATCH", body }),
     saveServices: (services: { name: string; durationMin: number; price: number; category?: ServiceCategory; description?: string }[], barberIds?: string[]) => request<ShopMember[]>("/manage/services", { method: "PUT", body: { services, barberIds } }),
     addBarber: (name: string, email: string) => request<{ barber: ShopMember; login: { email: string; password: string } }>("/manage/barbers", { body: { name, email } }),
     reports: (period: "today" | "week" | "month") => request<ShopReport>("/manage/reports" + qs({ period })),
-    updateSettings: (body: Partial<{ about: string; phone: string; workingDays: number[]; openHour: number; closeHour: number }>) =>
-      request<{ about: string; phone: string; workingDays: number[]; openHour: number; closeHour: number }>("/manage/settings", { method: "PATCH", body }),
+    updateSettings: (body: Partial<{ about: string; phone: string; workingDays: number[]; openHour: number; closeHour: number; barberSharePercent: number }>) =>
+      request<{ about: string; phone: string; workingDays: number[]; openHour: number; closeHour: number; barberSharePercent: number }>("/manage/settings", { method: "PATCH", body }),
+    queue: () => request<ShopQueue>("/manage/queue"),
+    addToQueue: (body: { name: string; phone?: string; service?: string }) => request<QueueItem>("/manage/queue", { body }),
+    queueAction: (id: string, action: "call" | "serve" | "done" | "remove", barberId?: string) => request<QueueItem>(`/manage/queue/${id}`, { body: { action, barberId } }),
+    checkIns: () => request<CheckInRow[]>("/manage/check-in"),
+    checkIn: (id: string) => request<{ id: string; checkedIn: boolean }>(`/manage/check-in/${id}`, { method: "POST" }),
+    orders: () => request<{ commissionPercent: number; currency: string; month: { orders: number; sales: number; commission: number }; orders: ShopOrderRow[] }>("/manage/orders"),
+    setOrderStatus: (id: string, status: "out_for_delivery" | "delivered") => request<ShopOrderRow>(`/manage/orders/${id}`, { body: { status } }),
+    stock: () => request<StockRow[]>("/manage/stock"),
+    saveStock: (counts: Record<string, number | null>) => request<{ ok: boolean }>("/manage/stock", { method: "PUT", body: { counts } }),
+    hires: () => request<ShopHireRow[]>("/manage/hires"),
+    staff: () => request<ShopStaff[]>("/manage/staff"),
+    addStaff: (body: { name: string; email: string; role: "manager" | "front_desk" }) => request<{ staff: ShopStaff; login: { email: string; password: string } }>("/manage/staff", { body }),
+    setStaffRole: (id: string, role: "manager" | "front_desk") => request<ShopStaff>(`/manage/staff/${id}`, { method: "PATCH", body: { role } }),
+    removeStaff: (id: string) => request<null>(`/manage/staff/${id}`, { method: "DELETE" }),
+    payroll: (period: "today" | "week" | "month") => request<Payroll>("/manage/payroll" + qs({ period })),
+    lapsedClients: (weeks: number) => request<{ clients: number; lapsed: number; weeks: number }>("/manage/clients" + qs({ weeks: String(weeks) })),
+    messageLapsed: (weeks: number, text: string) => request<{ sent: number; skipped: number }>("/manage/clients/message", { body: { weeks, text } }),
   },
   addGalleryPhoto: (url: string, caption: string) => request<Barber>("/barbers/me/gallery", { body: { url, caption, consent: true } }),
   removeGalleryPhoto: (id: string) => request<Barber>(`/barbers/me/gallery/${id}`, { method: "DELETE" }),

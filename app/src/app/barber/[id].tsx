@@ -13,6 +13,7 @@ import { useAuth } from "../../lib/auth";
 import { dateTime, money } from "../../lib/format";
 import { minutes, sections } from "../../lib/menu";
 import { flag } from "../../lib/location";
+import { LEVEL_LABEL, policyLabel, ruleLabel } from "../../lib/rules";
 import type { Barber, Reel, Review } from "../../lib/types";
 
 type TabKey = "portfolio" | "services" | "reels" | "reviews";
@@ -99,6 +100,7 @@ export default function BarberProfile() {
           {barber.verified && <Ionicons name="shield-checkmark" size={18} color={colors.text} accessibilityLabel="Verified by JB" />}
         </Row>
         <T variant="caption" muted style={{ marginTop: 2 }}>{flag(barber.countryCode)} {barber.city}, {barber.countryName}{barber.verified ? " · Verified by JB" : ""}</T>
+        {barber.level && barber.level !== "new" && <View style={{ marginTop: 8 }}><Tag label={`${LEVEL_LABEL[barber.level]} barber`} icon="ribbon-outline" tone="dark" /></View>}
         {isMe && barber.status && barber.status !== "live" && (
           <Pressable onPress={() => router.push("/business")} style={{ marginTop: 10 }}>
             <Tag label={barber.status === "pending" ? "In review — only you can see this" : "Paused — customers can't see this"} tone={barber.status === "pending" ? "neutral" : "danger"} icon={barber.status === "pending" ? "time-outline" : "pause"} />
@@ -120,6 +122,9 @@ export default function BarberProfile() {
           {barber.offersHomeVisits ? `Comes to you (+${money(barber.homeVisitFee, barber.currency)}) or at the shop` : "Appointments at the shop"}
         </IconLine>
         {barber.offersConsultations && <IconLine icon="videocam-outline">Free 15-min consultation · Google Meet or phone</IconLine>}
+        {barber.offPeak && <IconLine icon="pricetag-outline">Deal: {ruleLabel(barber.offPeak, "offPeak")}</IconLine>}
+        {barber.peak && <IconLine icon="trending-up-outline" muted>Peak: {ruleLabel(barber.peak, "peak")}</IconLine>}
+        <IconLine icon="refresh-outline" muted>{policyLabel(barber.cancelPolicy)}</IconLine>
         {barber.languages.length > 0 && <IconLine icon="chatbubbles-outline">Speaks {barber.languages.join(", ")}</IconLine>}
         <IconLine icon="location-outline" muted>{barber.shopAddress}</IconLine>
       </View>

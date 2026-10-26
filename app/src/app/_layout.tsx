@@ -80,6 +80,13 @@ export default function RootLayout() {
                   <Stack.Screen name="business/services" options={{ title: "Services & prices" }} />
                   <Stack.Screen name="business/hours" options={{ title: "Hours & days off" }} />
                   <Stack.Screen name="business/reviews" options={{ title: "Reviews" }} />
+                  <Stack.Screen name="business/blocks" options={{ title: "Block time" }} />
+                  <Stack.Screen name="business/rules" options={{ title: "Booking rules & deals" }} />
+                  <Stack.Screen name="business/clients" options={{ title: "Clients" }} />
+                  <Stack.Screen name="business/link" options={{ title: "My link & QR" }} />
+                  <Stack.Screen name="barbershop/[shopId]/queue" options={{ title: "Walk-in queue" }} />
+                  <Stack.Screen name="queue-screen" options={{ headerShown: false, title: "Queue" }} />
+                  <Stack.Screen name="check-in" options={{ headerShown: false, title: "Check in" }} />
                   <Stack.Screen name="profile" options={{ title: "Profile" }} />
                   <Stack.Screen name="favourites" options={{ title: "Favourites" }} />
                   <Stack.Screen name="my-cuts" options={{ title: "My cuts" }} />

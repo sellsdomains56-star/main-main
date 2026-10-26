@@ -21,6 +21,9 @@ import { registerAdminRoutes } from "./routes/admin.js";
 import { registerManageRoutes } from "./routes/manage.js";
 import { clearTries, limit, loginKey, registerAccountRoutes } from "./routes/account.js";
 import { registerCustomerRoutes } from "./routes/customer.js";
+import { registerProRoutes } from "./routes/pro.js";
+import { registerShopOpsRoutes } from "./routes/shopOps.js";
+import { cancelTerms, inStock, priceRuleAt, takeStock } from "./pro.js";
 import { onCompleted } from "./rewards.js";
 import { campaignsFor } from "./campaigns.js";
 import { registerClubRoutes } from "./routes/club.js";
@@ -80,6 +83,7 @@ export function createApp() {
       const order = db.orders.find((o) => o.paymentIntentId === event.data.object.id);
       if (order && order.status === "pending_payment") {
         order.status = "paid";
+        takeStock(order);
         orderUpdate(order);
       }
       const purchase = db.purchases.find((p) => p.paymentIntentId === event.data.object.id);
@@ -272,6 +276,8 @@ export function createApp() {
   registerManageRoutes(app);
   registerAccountRoutes(app);
   registerCustomerRoutes(app);
+  registerProRoutes(app);
+  registerShopOpsRoutes(app);
   registerNotificationRoutes(app);
   registerSupportRoutes(app);
   registerAssistantRoutes(app);
@@ -342,7 +348,10 @@ export function createApp() {
     const extras = extrasFor(barber, q.extras ? q.extras.split(",").filter(Boolean) : []);
     if (!extras) throw new HttpError(400, "One of the extras isn't on this barber's menu.");
     const minutes = service.durationMin + extras.reduce((m, s) => m + s.durationMin, 0);
-    res.json({ timeZone: cityOf(barber).timeZone, slots: availableSlots(barber, cityOf(barber).timeZone, q.date, minutes, busy()) });
+    const slots = availableSlots(barber, cityOf(barber).timeZone, q.date, minutes, busy());
+    // Off-peak discounts and peak premiums by start time (percent), so the app can show "−15%".
+    const deals = service.id === CONSULTATION.id ? {} : Object.fromEntries(slots.map((s) => [s, priceRuleAt(barber, s)]).filter(([, p]) => p));
+    res.json({ timeZone: cityOf(barber).timeZone, slots, deals });
   });
 
   // ---------- Bookings & payments ----------
@@ -390,7 +399,10 @@ export function createApp() {
     if (!booking || !canAccess(req.user!.id, booking)) throw new HttpError(404, "Booking not found.");
     if (booking.status === "completed" || booking.status === "cancelled") throw new HttpError(400, "This booking can't be cancelled.");
     const wasConfirmed = booking.status !== "pending_payment";
-    if (wasConfirmed && booking.paymentIntentId) await refund(booking.paymentIntentId);
+    // The customer cancelling late: the barber's cancellation rules may keep part of the price (never the tip).
+    const fee = booking.customerId === req.user!.id ? cancelTerms(booking).fee : 0;
+    if (wasConfirmed && booking.paymentIntentId) await refund(booking.paymentIntentId, fee ? booking.amount + (booking.tip ?? 0) - fee : undefined);
+    if (fee) booking.lateFee = fee;
     booking.status = "cancelled";
     returnPerks(booking);
     bookingCancelled(booking, wasConfirmed, req.user!.id);
@@ -477,6 +489,7 @@ export function createApp() {
       const product = PRODUCTS.find((p) => p.id === i.productId);
       if (!product) throw new HttpError(404, "One of the products is no longer available.");
       if (shop && !shop.productIds.includes(product.id)) throw new HttpError(400, `${shop.name} doesn't stock ${product.name}.`);
+      if (shop && !inStock(shop.id, product.id)) throw new HttpError(409, `${product.name} is sold out at ${shop.name} right now.`);
       return { productId: product.id, name: product.name, quantity: i.quantity, unitPrice: product.prices[currency] };
     });
     const subtotal = items.reduce((sum, i) => sum + i.unitPrice * i.quantity, 0);
@@ -497,6 +510,7 @@ export function createApp() {
     if (order.amount === 0) {
       // Paid in full with gift-card credit.
       order.status = "paid";
+      takeStock(order);
       db.orders.push(order);
       orderUpdate(order);
       save();
@@ -573,6 +587,7 @@ export function createApp() {
       const paid = demoPayments || (order.paymentIntentId ? await paymentSucceeded(order.paymentIntentId) : false);
       if (!paid) throw new HttpError(402, "Payment hasn't gone through yet.");
       order.status = "paid";
+      takeStock(order);
       orderUpdate(order);
       save();
     }

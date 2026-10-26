@@ -4,6 +4,7 @@ import { config } from "./config.js";
 import { db } from "./db.js";
 import { COUNTRIES, SHOPS } from "./seed.js";
 import { availableSlots } from "./slots.js";
+import { levelOf } from "./pro.js";
 import { isExtra } from "./services.js";
 import type { Barber, Booking, Service } from "./types.js";
 
@@ -89,6 +90,10 @@ export function barberView(b: Barber) {
     nextAvailable: nextAvailable(b),
     status: b.status ?? "live",
     verified: !!b.verified,
+    level: levelOf(b),
+    cancelPolicy: b.cancelPolicy ?? null, // late cancellations: what the barber keeps
+    offPeak: b.offPeak ?? null,
+    peak: b.peak ?? null,
   };
 }
 

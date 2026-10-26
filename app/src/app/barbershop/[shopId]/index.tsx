@@ -82,6 +82,14 @@ export default function ShopPage() {
           body={`Pick a service and a time; we seat you with ${shop.teamSize > 1 ? "the best-rated barber who's free" : shop.team[0]?.name ?? "the barber"}.`}
           onPress={book}
         />
+        <Action
+          tone="light"
+          icon="people-outline"
+          eyebrow="Walk-in queue"
+          title="Join the queue from here"
+          body="No time slot needed: wait at home or nearby, and we'll alert you when your chair is ready."
+          onPress={() => router.push({ pathname: "/barbershop/[shopId]/queue", params: { shopId: shop.id } })}
+        />
         {shop.privateHire && (
           <Action
             tone="light"

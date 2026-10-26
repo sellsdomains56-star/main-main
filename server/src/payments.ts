@@ -34,7 +34,8 @@ export async function paymentSucceeded(paymentIntentId: string): Promise<boolean
   return intent.status === "succeeded";
 }
 
-export async function refund(paymentIntentId: string): Promise<void> {
+/** Refunds a payment: all of it, or `amount` (minor units) when part is kept, e.g. a late-cancellation fee. */
+export async function refund(paymentIntentId: string, amount?: number): Promise<void> {
   if (!stripe) return;
-  await stripe.refunds.create({ payment_intent: paymentIntentId });
+  await stripe.refunds.create({ payment_intent: paymentIntentId, ...(amount !== undefined ? { amount } : {}) });
 }

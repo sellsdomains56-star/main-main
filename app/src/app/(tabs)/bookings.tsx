@@ -237,6 +237,8 @@ export default function Bookings() {
               {!!b.notes && <IconLine icon="document-text-outline" muted>{b.notes}</IconLine>}
               {!!b.cutNotes && !isBarber && <IconLine icon="cut-outline">Your barber's notes: {b.cutNotes}</IconLine>}
               {!!b.tip && <IconLine icon="heart-outline" muted>{isBarber ? "Tipped" : "You tipped"} {money(b.tip, b.currency)}</IconLine>}
+              {!!b.priceRule && <IconLine icon="pricetag-outline" muted>{b.priceRule < 0 ? `Off-peak price (${Math.abs(b.priceRule)}% off)` : `Peak-time price (+${b.priceRule}%)`}</IconLine>}
+              {!!b.lateFee && <IconLine icon="information-circle-outline" muted>Cancelled late: {money(b.lateFee, b.currency)} kept{isBarber ? " for you" : " by the barber"}</IconLine>}
               {!isBarber && b.locationType === "home" && ["confirmed", "on_the_way"].includes(b.status) && (
                 <IconLine icon="shield-checkmark-outline" muted>Barbers are ID-checked. In an emergency call 999.</IconLine>
               )}
@@ -371,7 +373,13 @@ export default function Bookings() {
             )}
             {confirmingCancel === b.id && (
               <View style={{ marginTop: 12, padding: 12, borderRadius: 14, backgroundColor: colors.dangerSoft }}>
-                <T variant="caption">{b.status === "confirmed" ? "Cancel this booking? You'll get a full refund." : "Cancel this booking?"}</T>
+                <T variant="caption">
+                  {b.status !== "confirmed"
+                    ? "Cancel this booking?"
+                    : !isBarber && b.cancelTerms?.fee
+                      ? `Cancel this booking? It's less than the barber's free-cancellation time, so ${money(b.cancelTerms.fee, b.currency)} is kept and you get ${money(b.amount + (b.tip ?? 0) - b.cancelTerms.fee, b.currency)} back.`
+                      : "Cancel this booking? You'll get a full refund."}
+                </T>
                 <Row gap={8} style={{ marginTop: 10 }}>
                   <Button
                     title="Yes, cancel"

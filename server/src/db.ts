@@ -2,7 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import { DEMO_REELS } from "./reels.js";
 import { BARBERS, COUNTRIES } from "./seed.js";
-import type { AppNotification, Barber, Block, Booking, Conversation, GiftCard, Hire, Order, Purchase, Reel, Review, SupportTicket, User, WaitlistEntry, Settings, ShopSettings } from "./types.js";
+import type { AppNotification, Barber, Block, Booking, Conversation, GiftCard, Hire, Order, Purchase, QueueEntry, Reel, Review, SupportTicket, User, WaitlistEntry, Settings, ShopSettings } from "./types.js";
 
 // Simple JSON-file store. Good enough to run the product end-to-end; swap for
 // Postgres (or similar) before going to production — the rest of the code only
@@ -27,6 +27,9 @@ interface Data {
   shopSettings: Record<string, ShopSettings>; // what each barbershop changed in the shop panel
   resetTokens: { hash: string; userId: string; expires: string }[]; // password-reset links (only the hash is kept)
   outbox: { id: string; to: string; subject: string; text: string; sentAt: string; delivered: boolean }[]; // recent emails
+  queue: QueueEntry[]; // walk-ins waiting at barbershops
+  stock: Record<string, Record<string, number>>; // shop id -> product id -> how many in stock (missing = not counted)
+  shopNudges: Record<string, Record<string, string>>; // shop id -> client -> when the shop last messaged them
 }
 
 const DATA_DIR = new URL("../data/", import.meta.url);
@@ -37,7 +40,7 @@ const persist = process.env.NODE_ENV !== "test";
 function load(): Data {
   if (persist) {
     try {
-      const data = { orders: [], hires: [], giftCards: [], purchases: [], waitlist: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], settings: {}, blocks: [], shopSettings: {}, resetTokens: [], outbox: [], ...JSON.parse(readFileSync(DATA_FILE, "utf8")) } as Data;
+      const data = { orders: [], hires: [], giftCards: [], purchases: [], waitlist: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], settings: {}, blocks: [], shopSettings: {}, resetTokens: [], outbox: [], queue: [], stock: {}, shopNudges: {}, ...JSON.parse(readFileSync(DATA_FILE, "utf8")) } as Data;
       // Fill fields added after this file was first written.
       const defaults = { yearsExperience: 0, languages: [], gallery: [], transformations: [] };
       data.barbers = data.barbers.map((b) => {
@@ -57,7 +60,7 @@ function load(): Data {
       // first run
     }
   }
-  return { users: [], barbers: structuredClone(BARBERS), bookings: [], hires: [], giftCards: [], purchases: [], waitlist: [], reviews: [], orders: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], sessions: {}, settings: {}, blocks: [], shopSettings: {}, resetTokens: [], outbox: [] };
+  return { users: [], barbers: structuredClone(BARBERS), bookings: [], hires: [], giftCards: [], purchases: [], waitlist: [], reviews: [], orders: [], reels: structuredClone(DEMO_REELS), tickets: [], conversations: [], notifications: [], sessions: {}, settings: {}, blocks: [], shopSettings: {}, resetTokens: [], outbox: [], queue: [], stock: {}, shopNudges: {} };
 }
 
 export const db: Data = load();

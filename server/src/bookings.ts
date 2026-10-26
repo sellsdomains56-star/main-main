@@ -5,6 +5,7 @@ import { db, newId, save } from "./db.js";
 import { applyPerks, priceBooking } from "./club.js";
 import { bookingConfirmed } from "./notify.js";
 import { createPaymentIntent } from "./payments.js";
+import { adjustedPrice, cancelTerms, priceRuleAt } from "./pro.js";
 import { SHOPS } from "./seed.js";
 import { extrasFor } from "./services.js";
 import { availableSlots } from "./slots.js";
@@ -18,6 +19,7 @@ export function bookingView(b: Booking) {
     ...b,
     paymentIntentId: undefined,
     shareToken: undefined, // only the customer gets it, through "share my visit"
+    cancelTerms: cancelTerms(b),
     barber: { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city, timeZone: cityOf(barber).timeZone },
     shop: shop ? { id: shop.id, name: shop.name } : null,
     customerName: b.guest?.name ?? customer?.name ?? "Customer",
@@ -93,7 +95,10 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
     createdAt: new Date().toISOString(),
   };
   const customer = db.users.find((u) => u.id === customerId);
-  const price = priceBooking(customer, barber, service, body.locationType, booking.currency, extras.reduce((t, s) => t + s.price, 0));
+  // Off-peak discount or peak premium on the service itself (not extras or travel).
+  const rule = consultation ? 0 : priceRuleAt(barber, booking.startsAt);
+  if (rule) booking.priceRule = rule;
+  const price = priceBooking(customer, barber, rule ? { ...service, price: adjustedPrice(service.price, rule) } : service, body.locationType, booking.currency, extras.reduce((t, s) => t + s.price, 0));
   booking.amount = price.amount;
   if (customer) applyPerks(customer, booking, price.covered, price.creditUsed);
   // A tip rides along with a payment; on a free booking it can be left after the cut instead.
