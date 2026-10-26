@@ -1,0 +1,3035 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1433359 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="8291830505" visible="true" version="5" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9620875" lon="55.2380766"/>
+ <node id="8617901108" visible="true" version="6" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9627895" lon="55.2375563"/>
+ <node id="8617901109" visible="true" version="6" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9646217" lon="55.2360740"/>
+ <node id="8929360813" visible="true" version="4" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9577031" lon="55.2388564"/>
+ <node id="8929368819" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2451782" lon="54.7264594"/>
+ <node id="8929368820" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2443421" lon="54.7291957"/>
+ <node id="8929368821" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2437213" lon="54.7316915"/>
+ <node id="8929368822" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2418544" lon="54.7435837"/>
+ <node id="8929368823" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2414944" lon="54.7451532"/>
+ <node id="8929368824" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2412085" lon="54.7461952"/>
+ <node id="8929368825" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2403753" lon="54.7486206"/>
+ <node id="8929368826" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2385424" lon="54.7536727"/>
+ <node id="8929368827" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2381084" lon="54.7549624"/>
+ <node id="8929368828" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2377357" lon="54.7562771"/>
+ <node id="8929368829" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2347920" lon="54.7940173"/>
+ <node id="8929368830" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2339555" lon="54.8000621"/>
+ <node id="8929368831" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.2526284" lon="54.7099882"/>
+ <node id="8929368832" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2533335" lon="54.7084754"/>
+ <node id="8929368833" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2546359" lon="54.7057766"/>
+ <node id="8929368834" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2570328" lon="54.7006606"/>
+ <node id="8929368835" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2577881" lon="54.6987038"/>
+ <node id="8929368837" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2587734" lon="54.6953825"/>
+ <node id="8929368838" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2593204" lon="54.6928269"/>
+ <node id="8929368851" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2598131" lon="54.6884978"/>
+ <node id="8929368852" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2598627" lon="54.6870069"/>
+ <node id="8929368853" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2472348" lon="54.6280105"/>
+ <node id="8929368854" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2513182" lon="54.6416695"/>
+ <node id="8929368855" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2513640" lon="54.6418632"/>
+ <node id="8929368856" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.2515500" lon="54.6428418"/>
+ <node id="8929368857" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2516465" lon="54.6432924"/>
+ <node id="8929368858" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2519018" lon="54.6444228"/>
+ <node id="8929368859" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2519561" lon="54.6446731"/>
+ <node id="8929368860" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2539882" lon="54.6544333"/>
+ <node id="8929368861" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2542888" lon="54.6558808"/>
+ <node id="8929368862" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2596759" lon="54.6902534"/>
+ <node id="8929368863" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2596767" lon="54.6824846"/>
+ <node id="8929368864" visible="true" version="3" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4442464" lon="54.8487962"/>
+ <node id="8929368865" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2334337" lon="54.8040254"/>
+ <node id="8929368866" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2314542" lon="54.8181660"/>
+ <node id="8929368867" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2309725" lon="54.8223706"/>
+ <node id="8929368868" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2311088" lon="54.8242974"/>
+ <node id="8929368869" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2312470" lon="54.8250713"/>
+ <node id="8929368870" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2315181" lon="54.8262228"/>
+ <node id="8929368871" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2328034" lon="54.8290430"/>
+ <node id="8929368872" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2345990" lon="54.8312911"/>
+ <node id="8929368873" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2367172" lon="54.8329246"/>
+ <node id="8929368874" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2389827" lon="54.8338849"/>
+ <node id="8929368875" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2433899" lon="54.8347433"/>
+ <node id="8929368876" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2483764" lon="54.8356480"/>
+ <node id="8929368877" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2636686" lon="54.8383287"/>
+ <node id="8929368878" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2664496" lon="54.8385795"/>
+ <node id="8929368879" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.2698142" lon="54.8387074"/>
+ <node id="8929368880" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2791408" lon="54.8380349"/>
+ <node id="8929368881" visible="true" version="3" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.2811925" lon="54.8378486"/>
+ <node id="8929368882" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2854749" lon="54.8375405"/>
+ <node id="8929368883" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2888949" lon="54.8375033"/>
+ <node id="8929368884" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2918759" lon="54.8376291"/>
+ <node id="8929368885" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.3016559" lon="54.8380959"/>
+ <node id="8929368886" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.3143720" lon="54.8387265"/>
+ <node id="8929368887" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.3269983" lon="54.8393297"/>
+ <node id="8929368888" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.3542727" lon="54.8406398"/>
+ <node id="8929368892" visible="true" version="2" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3836290" lon="54.8420548"/>
+ <node id="8929368893" visible="true" version="2" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3883146" lon="54.8424384"/>
+ <node id="8929368894" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.3924332" lon="54.8430097"/>
+ <node id="8929368895" visible="true" version="2" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4024751" lon="54.8448283"/>
+ <node id="8929368896" visible="true" version="2" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4192839" lon="54.8478886"/>
+ <node id="8929368897" visible="true" version="2" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4204269" lon="54.8480925"/>
+ <node id="8929368898" visible="true" version="2" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4255116" lon="54.8489884"/>
+ <node id="8929368901" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.4378389" lon="54.8489776"/>
+ <node id="8929368902" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.4385203" lon="54.8489481"/>
+ <node id="8929368949" visible="true" version="3" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5978694" lon="54.8448298"/>
+ <node id="8929368950" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.5981141" lon="54.8450562"/>
+ <node id="8929368952" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6034087" lon="54.8501739"/>
+ <node id="8929368955" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6111980" lon="54.8594472"/>
+ <node id="8929368962" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.6050109" lon="54.8518932"/>
+ <node id="8929368963" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6088664" lon="54.8564100"/>
+ <node id="8929368964" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6136825" lon="54.8629546"/>
+ <node id="8929368965" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6172110" lon="54.8685926"/>
+ <node id="8929368966" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6232337" lon="54.8794193"/>
+ <node id="8929368967" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6258890" lon="54.8843023"/>
+ <node id="8929368968" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6276336" lon="54.8875464"/>
+ <node id="8929368969" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6301717" lon="54.8921820"/>
+ <node id="8929368970" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6319541" lon="54.8954496"/>
+ <node id="8929368971" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6329262" lon="54.8971192"/>
+ <node id="8929368972" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6351662" lon="54.9006082"/>
+ <node id="8929368990" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6387891" lon="54.9054018"/>
+ <node id="8929368991" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6370533" lon="54.9031542"/>
+ <node id="8929368992" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6424449" lon="54.9101039"/>
+ <node id="8929368993" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6451546" lon="54.9136055"/>
+ <node id="8929368994" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6546084" lon="54.9257960"/>
+ <node id="8929368995" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.6586354" lon="54.9310774"/>
+ <node id="8929368996" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.6601735" lon="54.9330837"/>
+ <node id="8929368998" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.6619676" lon="54.9354118"/>
+ <node id="8929368999" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.6755489" lon="54.9529508"/>
+ <node id="8929369018" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.6769990" lon="54.9548002"/>
+ <node id="8929369019" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.6981185" lon="54.9820071"/>
+ <node id="8929369020" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.6985767" lon="54.9825811"/>
+ <node id="8929369021" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7063694" lon="54.9926662"/>
+ <node id="8929369022" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7098831" lon="54.9972260"/>
+ <node id="8929369023" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7135867" lon="55.0020164"/>
+ <node id="8929369024" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7157649" lon="55.0047898"/>
+ <node id="8929369045" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7186473" lon="55.0080648"/>
+ <node id="8929369046" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7205452" lon="55.0099987"/>
+ <node id="8929369056" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7227136" lon="55.0120479"/>
+ <node id="8929369059" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7257639" lon="55.0146604"/>
+ <node id="8929369067" visible="true" version="2" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.7316839" lon="55.0196869"/>
+ <node id="8929369068" visible="true" version="2" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.7321516" lon="55.0201006"/>
+ <node id="8929369069" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7563650" lon="55.0406563"/>
+ <node id="8929369070" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7595801" lon="55.0433814"/>
+ <node id="8929369071" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7612802" lon="55.0448459"/>
+ <node id="8929369072" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7625710" lon="55.0460422"/>
+ <node id="8929369073" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7636329" lon="55.0470883"/>
+ <node id="8929369077" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8290537" lon="55.1377295"/>
+ <node id="8929369107" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8059607" lon="55.1019502"/>
+ <node id="8929369108" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8027224" lon="55.0969183"/>
+ <node id="8929369109" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8012664" lon="55.0948852"/>
+ <node id="8929369110" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7992650" lon="55.0924927"/>
+ <node id="8929369111" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7972148" lon="55.0904167"/>
+ <node id="8929369112" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7939130" lon="55.0874448"/>
+ <node id="8929369113" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7887021" lon="55.0827455"/>
+ <node id="8929369116" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7648556" lon="55.0484133"/>
+ <node id="8929369117" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7664387" lon="55.0503552"/>
+ <node id="8929369118" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7676418" lon="55.0520074"/>
+ <node id="8929369119" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7697753" lon="55.0552690"/>
+ <node id="8929369136" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7814015" lon="55.0732827"/>
+ <node id="8929369137" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7762680" lon="55.0653326"/>
+ <node id="8929369138" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.7745950" lon="55.0626880"/>
+ <node id="8929369139" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7717382" lon="55.0582945"/>
+ <node id="8929369140" visible="true" version="4" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.7730225" lon="55.0602350">
+  <tag k="railway" v="switch"/>
+  <tag k="railway:switch" v="default"/>
+  <tag k="railway:turnout_side" v="left"/>
+ </node>
+ <node id="8929369157" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.7841959" lon="55.0774589">
+  <tag k="railway" v="switch"/>
+  <tag k="railway:switch" v="default"/>
+  <tag k="railway:turnout_side" v="right"/>
+ </node>
+ <node id="8929369158" visible="true" version="2" changeset="125627453" timestamp="2022-08-31T20:10:25Z" user="lorenzo23622" uid="476483" lat="24.7859544" lon="55.0797380"/>
+ <node id="8929369160" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7896128" lon="55.0835878"/>
+ <node id="8929369161" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7918920" lon="55.0856531"/>
+ <node id="8929369162" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7960168" lon="55.0893277"/>
+ <node id="8929369163" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.7983105" lon="55.0914949"/>
+ <node id="8929369164" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8003655" lon="55.0937694"/>
+ <node id="8929369165" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8020991" lon="55.0960278"/>
+ <node id="8929369166" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8033458" lon="55.0978517"/>
+ <node id="8929369167" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8090443" lon="55.1067057"/>
+ <node id="8929369168" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8115451" lon="55.1105338"/>
+ <node id="8929369169" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8116099" lon="55.1106341"/>
+ <node id="8929369170" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8200132" lon="55.1237190"/>
+ <node id="8929369171" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8255879" lon="55.1323610"/>
+ <node id="8929369176" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8487486" lon="55.1651967"/>
+ <node id="8929369177" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8505837" lon="55.1675650"/>
+ <node id="8929369178" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8533875" lon="55.1708239"/>
+ <node id="8929369179" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8591835" lon="55.1770708"/>
+ <node id="8929369180" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8596981" lon="55.1776153"/>
+ <node id="8929369182" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8661545" lon="55.1845864"/>
+ <node id="8929369185" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8783971" lon="55.1958597"/>
+ <node id="8929369186" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8832247" lon="55.2001405"/>
+ <node id="8929369187" visible="true" version="1" changeset="108173266" timestamp="2021-07-17T20:34:20Z" user="TWHB" uid="6556551" lat="24.8888404" lon="55.2048719"/>
+ <node id="8929369192" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9123614" lon="55.2211126"/>
+ <node id="8929369193" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9129039" lon="55.2214452"/>
+ <node id="8929369195" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9256988" lon="55.2281266"/>
+ <node id="8929369196" visible="true" version="2" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9286785" lon="55.2294140"/>
+ <node id="8929369197" visible="true" version="3" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9360490" lon="55.2320076"/>
+ <node id="8929369198" visible="true" version="3" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9512848" lon="55.2371737"/>
+ <node id="8929369200" visible="true" version="4" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9565302" lon="55.2386519">
+  <tag k="railway" v="switch"/>
+ </node>
+ <node id="8929369201" visible="true" version="4" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9547174" lon="55.2381569"/>
+ <node id="9233727553" visible="true" version="3" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9587228" lon="55.2389279"/>
+ <node id="9233727567" visible="true" version="3" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9612467" lon="55.2385016"/>
+ <node id="9370158188" visible="true" version="1" changeset="115425742" timestamp="2021-12-27T12:57:47Z" user="TWHB" uid="6556551" lat="24.6646702" lon="54.9389018"/>
+ <node id="9370158189" visible="true" version="1" changeset="115425742" timestamp="2021-12-27T12:57:47Z" user="TWHB" uid="6556551" lat="24.6645460" lon="54.9387414"/>
+ <node id="9370219862" visible="true" version="3" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9682603" lon="55.2332025"/>
+ <node id="9559252271" visible="true" version="2" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.7865931" lon="55.0804661"/>
+ <node id="9559252272" visible="true" version="2" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.7869320" lon="55.0808579"/>
+ <node id="9767645815" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6357630" lon="54.9014362"/>
+ <node id="9767645816" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6344257" lon="54.8995125"/>
+ <node id="9767753917" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6336699" lon="54.8983423"/>
+ <node id="9767753918" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.5999189" lon="54.8467165"/>
+ <node id="9767753919" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6016211" lon="54.8483580"/>
+ <node id="9767753920" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6071033" lon="54.8542803"/>
+ <node id="9767753925" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6100467" lon="54.8579174"/>
+ <node id="9767753926" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6124218" lon="54.8611361"/>
+ <node id="9767753927" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6146213" lon="54.8643815"/>
+ <node id="9767753928" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.6155358" lon="54.8658138"/>
+ <node id="9767753948" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6363487" lon="54.9022342"/>
+ <node id="9767754034" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6401678" lon="54.9071417">
+  <tag k="railway" v="switch"/>
+  <tag k="railway:switch" v="default"/>
+  <tag k="railway:turnout_side" v="left"/>
+ </node>
+ <node id="9767754057" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.4413955" lon="54.8488475"/>
+ <node id="9767754066" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.4338933" lon="54.8491603"/>
+ <node id="9767754067" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.4340805" lon="54.8491487"/>
+ <node id="9767754102" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9100514" lon="55.2196099"/>
+ <node id="9767754144" visible="true" version="2" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2509456" lon="54.6399987"/>
+ <node id="9767754145" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2504152" lon="54.6382660"/>
+ <node id="9767754146" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2491851" lon="54.6338859"/>
+ <node id="9767754147" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2496522" lon="54.6354389"/>
+ <node id="9767754204" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2460144" lon="54.6241213"/>
+ <node id="9767754205" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2463042" lon="54.6251392"/>
+ <node id="9767754206" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2451878" lon="54.6202509"/>
+ <node id="9767754207" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2455265" lon="54.6221057"/>
+ <node id="9767754208" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2453468" lon="54.6212125"/>
+ <node id="9767754209" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2457638" lon="54.6231276"/>
+ <node id="9767754210" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2448589" lon="54.6175325"/>
+ <node id="9767754211" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2447855" lon="54.6165803"/>
+ <node id="9767754212" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2449371" lon="54.6183613"/>
+ <node id="9767754213" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2446999" lon="54.6143889"/>
+ <node id="9767754214" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2447097" lon="54.6132785"/>
+ <node id="9767754215" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2447513" lon="54.6122700"/>
+ <node id="9767754216" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2447219" lon="54.6153384"/>
+ <node id="9767754217" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2450558" lon="54.6192934"/>
+ <node id="9767754218" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2496278" lon="54.5956859"/>
+ <node id="9767754219" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2507381" lon="54.5939156"/>
+ <node id="9767754220" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2501805" lon="54.5947739"/>
+ <node id="9767754221" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2476885" lon="54.5995456"/>
+ <node id="9767754222" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2486153" lon="54.5975688"/>
+ <node id="9767754223" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2481409" lon="54.5985451"/>
+ <node id="9767754224" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2490995" lon="54.5966381"/>
+ <node id="9767754225" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2451964" lon="54.6080723"/>
+ <node id="9767754226" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2456390" lon="54.6058461"/>
+ <node id="9767754227" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2454018" lon="54.6069619"/>
+ <node id="9767754228" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2468814" lon="54.6015841"/>
+ <node id="9767754229" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2461942" lon="54.6036923"/>
+ <node id="9767754230" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2465195" lon="54.6026301"/>
+ <node id="9767754231" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2459007" lon="54.6047571"/>
+ <node id="9767754232" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2472629" lon="54.6005568"/>
+ <node id="9767754233" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2448809" lon="54.6104354"/>
+ <node id="9767754234" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2448010" lon="54.6113895"/>
+ <node id="9767754235" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2450215" lon="54.6091881"/>
+ <node id="9767754258" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2586463" lon="54.5835101"/>
+ <node id="9767754259" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2468398" lon="54.6268277"/>
+ <node id="9767754260" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2513470" lon="54.5930198"/>
+ <node id="9767754261" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2519633" lon="54.5921843"/>
+ <node id="9767754262" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2525184" lon="54.5914641"/>
+ <node id="9767754263" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2799660" lon="54.5534465"/>
+ <node id="9767754264" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2800443" lon="54.5529529"/>
+ <node id="9767754266" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2793817" lon="54.5555976"/>
+ <node id="9767754267" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2796604" lon="54.5547447"/>
+ <node id="9767754268" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2798804" lon="54.5538461"/>
+ <node id="9767754269" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2787582" lon="54.5570138"/>
+ <node id="9767754270" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2784037" lon="54.5576602"/>
+ <node id="9767754271" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2778536" lon="54.5584998"/>
+ <node id="9767754272" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2790661" lon="54.5563743"/>
+ <node id="9767754273" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.2770100" lon="54.5596142"/>
+ <node id="9767754510" visible="true" version="2" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.9161018" lon="55.2232482"/>
+ <node id="9767754511" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9149088" lon="55.2226107"/>
+ <node id="9767754518" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9188169" lon="55.2246485"/>
+ <node id="9767754521" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9057080" lon="55.2165958"/>
+ <node id="9767754523" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9017155" lon="55.2138221"/>
+ <node id="9767754524" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9108288" lon="55.2201444"/>
+ <node id="9767754526" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9095259" lon="55.2192487"/>
+ <node id="9767754528" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9339367" lon="55.2312763"/>
+ <node id="9767754529" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9237279" lon="55.2271597"/>
+ <node id="9767754531" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8729191" lon="55.1909670"/>
+ <node id="9767754533" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8684518" lon="55.1869225"/>
+ <node id="9767754535" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8355854" lon="55.1477650"/>
+ <node id="9767754537" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8338931" lon="55.1452604"/>
+ <node id="9767754539" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8366183" lon="55.1492162"/>
+ <node id="9767754542" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.8519856" lon="55.1692347"/>
+ <node id="9767754562" visible="true" version="1" changeset="121436846" timestamp="2022-05-24T17:35:08Z" user="TWHB" uid="6556551" lat="24.9602410" lon="55.2388340"/>
+ <node id="9769637910" visible="true" version="3" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6593729" lon="54.9320093">
+  <tag k="railway" v="switch"/>
+  <tag k="railway:switch" v="default"/>
+  <tag k="railway:turnout_side" v="right"/>
+ </node>
+ <node id="9783554429" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5738785" lon="54.8295131"/>
+ <node id="9783554430" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5727357" lon="54.8290332"/>
+ <node id="9783554431" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5718208" lon="54.8286615"/>
+ <node id="9783554432" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5701970" lon="54.8280449"/>
+ <node id="9783554433" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5691965" lon="54.8276934"/>
+ <node id="9783554434" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5680590" lon="54.8273050"/>
+ <node id="9783554435" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5670922" lon="54.8269907"/>
+ <node id="9783554436" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5658848" lon="54.8266085"/>
+ <node id="9783554437" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5646720" lon="54.8262546"/>
+ <node id="9783554438" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5633260" lon="54.8258785"/>
+ <node id="9783554439" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5616656" lon="54.8254199"/>
+ <node id="9783554440" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5600179" lon="54.8250086"/>
+ <node id="9783554441" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5584885" lon="54.8246412"/>
+ <node id="9783554442" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5570675" lon="54.8243464"/>
+ <node id="9783554443" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5554044" lon="54.8240286"/>
+ <node id="9783554444" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5537537" lon="54.8237697"/>
+ <node id="9783554458" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5780159" lon="54.8313982"/>
+ <node id="9783554459" visible="true" version="2" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.5758799" lon="54.8303818"/>
+ <node id="9783554460" visible="true" version="2" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.5760400" lon="54.8304549"/>
+ <node id="9783554461" visible="true" version="2" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.5799572" lon="54.8323798"/>
+ <node id="9783554462" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5817057" lon="54.8333171"/>
+ <node id="9783554463" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5830372" lon="54.8340752"/>
+ <node id="9783554464" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5845861" lon="54.8349894"/>
+ <node id="9783554465" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5859984" lon="54.8358676"/>
+ <node id="9783554466" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5871799" lon="54.8366251"/>
+ <node id="9783554467" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5878541" lon="54.8370621"/>
+ <node id="9783554468" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5888161" lon="54.8377091"/>
+ <node id="9783554469" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5903433" lon="54.8387713"/>
+ <node id="9783554470" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5921268" lon="54.8400672"/>
+ <node id="9783554471" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5931072" lon="54.8408153"/>
+ <node id="9783554472" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5952680" lon="54.8425730"/>
+ <node id="9783554473" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5962835" lon="54.8433966"/>
+ <node id="9783554474" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5974162" lon="54.8443878"/>
+ <node id="9783554475" visible="true" version="2" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.5801853" lon="54.8324968"/>
+ <node id="9783554486" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5526815" lon="54.8236048"/>
+ <node id="9783554487" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5510256" lon="54.8233984"/>
+ <node id="9783554488" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5491136" lon="54.8231840"/>
+ <node id="9783554489" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5474271" lon="54.8230415"/>
+ <node id="9783554490" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5455091" lon="54.8229163"/>
+ <node id="9783554491" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5420221" lon="54.8228140"/>
+ <node id="9783554492" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5409743" lon="54.8228058"/>
+ <node id="9783554493" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5393624" lon="54.8228318"/>
+ <node id="9783554494" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5378352" lon="54.8228671"/>
+ <node id="9783554495" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5370262" lon="54.8228965"/>
+ <node id="9783554496" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5361892" lon="54.8229500"/>
+ <node id="9783554497" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5336118" lon="54.8231278"/>
+ <node id="9783554498" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5310233" lon="54.8234211"/>
+ <node id="9783554499" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5290027" lon="54.8237029"/>
+ <node id="9783554500" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5271705" lon="54.8239742"/>
+ <node id="9783554501" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5254344" lon="54.8242995"/>
+ <node id="9783554502" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5228123" lon="54.8248396"/>
+ <node id="9783554503" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5218736" lon="54.8250603"/>
+ <node id="9783554504" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5206239" lon="54.8253587"/>
+ <node id="9783554505" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5190722" lon="54.8257763"/>
+ <node id="9783554506" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5175054" lon="54.8262191"/>
+ <node id="9783554507" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5152476" lon="54.8269201"/>
+ <node id="9783554508" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5128637" lon="54.8277363"/>
+ <node id="9783554509" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5113198" lon="54.8283143"/>
+ <node id="9783554510" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5069624" lon="54.8300364"/>
+ <node id="9783554511" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.5042776" lon="54.8310881"/>
+ <node id="9783554512" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4892744" lon="54.8370306"/>
+ <node id="9783562229" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4782413" lon="54.8413762"/>
+ <node id="9783562230" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4514591" lon="54.8483439"/>
+ <node id="9783562232" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4493382" lon="54.8485302"/>
+ <node id="9783562234" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4475807" lon="54.8486479"/>
+ <node id="9783562236" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4727591" lon="54.8435098"/>
+ <node id="9783562237" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4711328" lon="54.8440936"/>
+ <node id="9783562238" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4687411" lon="54.8448961"/>
+ <node id="9783562239" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4637732" lon="54.8462897"/>
+ <node id="9783562240" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4625520" lon="54.8465872"/>
+ <node id="9783562241" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4601113" lon="54.8471318"/>
+ <node id="9783562242" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4574599" lon="54.8476145"/>
+ <node id="9783562243" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4558963" lon="54.8478482"/>
+ <node id="9783562244" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4544508" lon="54.8480481"/>
+ <node id="9783562245" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4535942" lon="54.8481456"/>
+ <node id="9783562246" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4452481" lon="54.8487580"/>
+ <node id="9783562247" visible="true" version="1" changeset="121731876" timestamp="2022-05-30T17:27:31Z" user="TWHB" uid="6556551" lat="24.4751577" lon="54.8425892"/>
+ <node id="9815612906" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4316930" lon="54.8492610"/>
+ <node id="9815612907" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4295457" lon="54.8492841"/>
+ <node id="9815612908" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4274579" lon="54.8491761"/>
+ <node id="9815612909" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4264479" lon="54.8490806"/>
+ <node id="9815612910" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4246568" lon="54.8488757"/>
+ <node id="9815612911" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4237263" lon="54.8487174"/>
+ <node id="9815612912" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4217462" lon="54.8483443"/>
+ <node id="9815612913" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.4221833" lon="54.8484193"/>
+ <node id="9815649265" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3957315" lon="54.8435932"/>
+ <node id="9815649266" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3905376" lon="54.8427200"/>
+ <node id="9815649270" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3379619" lon="54.8398609"/>
+ <node id="9815649272" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3487047" lon="54.8403559"/>
+ <node id="9815649281" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3807039" lon="54.8419039"/>
+ <node id="9815649282" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3739652" lon="54.8415793"/>
+ <node id="9815649283" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3689239" lon="54.8413468"/>
+ <node id="9815649284" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3645922" lon="54.8411338"/>
+ <node id="9815649287" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3564938" lon="54.8407198"/>
+ <node id="9815649288" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3854270" lon="54.8421688"/>
+ <node id="9815649289" visible="true" version="1" changeset="122342555" timestamp="2022-06-13T20:32:25Z" user="TWHB" uid="6556551" lat="24.3860528" lon="54.8422208"/>
+ <node id="9911584111" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2512619" lon="54.6414169"/>
+ <node id="9911584116" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2519452" lon="54.6446239"/>
+ <node id="9911584126" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2570629" lon="54.6691990"/>
+ <node id="9911584127" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2556758" lon="54.6625184"/>
+ <node id="9911584128" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2549992" lon="54.6592119"/>
+ <node id="9911584151" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2584666" lon="54.6758772"/>
+ <node id="9911584152" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2591813" lon="54.6791951"/>
+ <node id="9911584153" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2594613" lon="54.6808399"/>
+ <node id="9911584154" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2598471" lon="54.6847918"/>
+ <node id="9911584155" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2597877" lon="54.6836453"/>
+ <node id="9911584156" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2598678" lon="54.6858993"/>
+ <node id="9911584157" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2595127" lon="54.6915808"/>
+ <node id="9911584158" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2590630" lon="54.6941330"/>
+ <node id="9911584159" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2583066" lon="54.6970821"/>
+ <node id="9911584174" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2574273" lon="54.6996822"/>
+ <node id="9911584175" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2560310" lon="54.7028489"/>
+ <node id="9911584181" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2540270" lon="54.7070683"/>
+ <node id="9911584182" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2486612" lon="54.7183018"/>
+ <node id="9911584183" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2460004" lon="54.7242263"/>
+ <node id="9911584184" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2472789" lon="54.7212560"/>
+ <node id="9911584185" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2455819" lon="54.7253266"/>
+ <node id="9911584186" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2466249" lon="54.7227005"/>
+ <node id="9911584187" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2447305" lon="54.7278926"/>
+ <node id="9911584211" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2529800" lon="54.7092279"/>
+ <node id="9911584212" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2532812" lon="54.7085852"/>
+ <node id="9911584232" visible="true" version="2" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2426171" lon="54.7385240"/>
+ <node id="9911584233" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2426341" lon="54.7383650"/>
+ <node id="9911584234" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2431067" lon="54.7349256"/>
+ <node id="9911584235" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2428591" lon="54.7366436"/>
+ <node id="9911584236" visible="true" version="1" changeset="124092839" timestamp="2022-07-26T11:49:47Z" user="cmuell60" uid="10149110" lat="24.2433930" lon="54.7333351"/>
+ <node id="9911781882" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2309901" lon="54.8229335"/>
+ <node id="9911781883" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2310270" lon="54.8236216"/>
+ <node id="9911781884" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2311515" lon="54.8202190"/>
+ <node id="9911781885" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2310339" lon="54.8212825"/>
+ <node id="9911781886" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2324440" lon="54.8111265"/>
+ <node id="9911781887" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2329304" lon="54.8076037"/>
+ <node id="9911781888" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2331905" lon="54.8057375"/>
+ <node id="9911781889" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2344110" lon="54.7968677"/>
+ <node id="9911781890" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2345004" lon="54.7961881"/>
+ <node id="9911781891" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2346523" lon="54.7949842"/>
+ <node id="9911782681" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2339774" lon="54.7999223"/>
+ <node id="9911782682" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2358141" lon="54.7865698"/>
+ <node id="9911782683" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2359698" lon="54.7852541"/>
+ <node id="9911782684" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2361789" lon="54.7830259"/>
+ <node id="9911782685" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2363395" lon="54.7806867"/>
+ <node id="9911782686" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2364520" lon="54.7787046"/>
+ <node id="9911782687" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2364080" lon="54.7796930"/>
+ <node id="9911782688" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2364786" lon="54.7771727"/>
+ <node id="9911782689" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2364542" lon="54.7756733"/>
+ <node id="9911782690" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2364644" lon="54.7737316"/>
+ <node id="9911782691" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2364842" lon="54.7713739"/>
+ <node id="9911782692" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2365383" lon="54.7693806"/>
+ <node id="9911782693" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2365748" lon="54.7669488"/>
+ <node id="9911782694" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2366104" lon="54.7647520"/>
+ <node id="9911782695" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2367284" lon="54.7622278"/>
+ <node id="9911782696" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2366523" lon="54.7634899"/>
+ <node id="9911782697" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2369541" lon="54.7600876"/>
+ <node id="9911782698" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2368290" lon="54.7611765"/>
+ <node id="9911782699" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2372935" lon="54.7581743"/>
+ <node id="9911782700" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2371140" lon="54.7591229"/>
+ <node id="9911782701" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2394500" lon="54.7511685"/>
+ <node id="9911782702" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2399090" lon="54.7498854"/>
+ <node id="9911782703" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2389990" lon="54.7524196"/>
+ <node id="9911782704" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2408144" lon="54.7474109"/>
+ <node id="9911782705" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2422610" lon="54.7410292"/>
+ <node id="9911782706" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2420718" lon="54.7423157"/>
+ <node id="9911782707" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2419743" lon="54.7429435"/>
+ <node id="9911782715" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2416828" lon="54.7443715"/>
+ <node id="9911782751" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2352553" lon="54.7905400"/>
+ <node id="9911782755" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2344476" lon="54.7965775"/>
+ <node id="9911782756" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2344804" lon="54.7963226"/>
+ <node id="9911782898" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2314082" lon="54.8258362"/>
+ <node id="9911782902" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2320542" lon="54.8276223"/>
+ <node id="9911782903" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2324401" lon="54.8284229"/>
+ <node id="9911782904" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2326395" lon="54.8287949"/>
+ <node id="9911782906" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2335801" lon="54.8301362"/>
+ <node id="9911782907" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2340957" lon="54.8307499"/>
+ <node id="9911782908" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2331795" lon="54.8295977"/>
+ <node id="9911782909" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2356410" lon="54.8322232"/>
+ <node id="9911782910" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2378485" lon="54.8334510"/>
+ <node id="9911782911" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2412930" lon="54.8343696"/>
+ <node id="9911782912" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2423470" lon="54.8345432"/>
+ <node id="9911782915" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2426148" lon="54.8345903"/>
+ <node id="9911782916" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2431237" lon="54.8346908"/>
+ <node id="9911782917" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2586510" lon="54.8374922"/>
+ <node id="9911782920" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2631366" lon="54.8382497"/>
+ <node id="9911782921" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2627905" lon="54.8381977"/>
+ <node id="9911782958" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2607403" lon="54.8378611"/>
+ <node id="9911782959" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2617727" lon="54.8380428"/>
+ <node id="9911782965" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2650676" lon="54.8384577"/>
+ <node id="9911782968" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2681393" lon="54.8386729"/>
+ <node id="9911782975" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2724530" lon="54.8386386"/>
+ <node id="9911782976" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2711378" lon="54.8386884"/>
+ <node id="9911782977" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2736469" lon="54.8385594"/>
+ <node id="9911782998" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2779832" lon="54.8381572"/>
+ <node id="9911782999" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2775772" lon="54.8381842"/>
+ <node id="9911783004" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2817060" lon="54.8378256"/>
+ <node id="9911783006" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2825835" lon="54.8377457"/>
+ <node id="9911783007" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2833151" lon="54.8376802"/>
+ <node id="9911783008" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2840047" lon="54.8376186"/>
+ <node id="9911783009" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2849702" lon="54.8375636"/>
+ <node id="9911783010" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2864767" lon="54.8375042"/>
+ <node id="9911783011" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2874077" lon="54.8374875"/>
+ <node id="9911783012" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2883009" lon="54.8374927"/>
+ <node id="9911783013" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2898866" lon="54.8375383"/>
+ <node id="9911783014" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.2906384" lon="54.8375713"/>
+ <node id="9911783015" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.3069141" lon="54.8383592"/>
+ <node id="9911783016" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.3077511" lon="54.8383887"/>
+ <node id="9911783026" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.3071416" lon="54.8383652"/>
+ <node id="9911783040" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.3171697" lon="54.8388679"/>
+ <node id="9911783049" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.3219749" lon="54.8390856"/>
+ <node id="9911783072" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.3221684" lon="54.8390908"/>
+ <node id="9911783081" visible="true" version="1" changeset="124097394" timestamp="2022-07-26T13:35:15Z" user="cmuell60" uid="10149110" lat="24.3224856" lon="54.8391086"/>
+ <node id="9914013910" visible="true" version="1" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.6723994" lon="54.9488834"/>
+ <node id="9914013911" visible="true" version="1" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.6722375" lon="54.9486742"/>
+ <node id="9914013916" visible="true" version="1" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.7326743" lon="55.0205413"/>
+ <node id="9914020476" visible="true" version="1" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.8756469" lon="55.1934303"/>
+ <node id="9914020490" visible="true" version="1" changeset="124127689" timestamp="2022-07-27T08:25:48Z" user="cmuell60" uid="10149110" lat="24.9170324" lon="55.2237404"/>
+ <node id="9914020560" visible="true" version="2" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9531858" lon="55.2377563"/>
+ <node id="9914020561" visible="true" version="2" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9556300" lon="55.2384063"/>
+ <node id="9991486183" visible="true" version="1" changeset="125627453" timestamp="2022-08-31T20:10:25Z" user="lorenzo23622" uid="476483" lat="24.7851877" lon="55.0787735"/>
+ <node id="9992337236" visible="true" version="1" changeset="125645408" timestamp="2022-09-01T09:06:33Z" user="lorenzo23622" uid="476483" lat="24.8074223" lon="55.1042238"/>
+ <node id="9992337243" visible="true" version="1" changeset="125645408" timestamp="2022-09-01T09:06:33Z" user="lorenzo23622" uid="476483" lat="24.8842392" lon="55.2009953"/>
+ <node id="9992337244" visible="true" version="1" changeset="125645408" timestamp="2022-09-01T09:06:33Z" user="lorenzo23622" uid="476483" lat="24.8837575" lon="55.2005894"/>
+ <node id="9992337245" visible="true" version="1" changeset="125645408" timestamp="2022-09-01T09:06:33Z" user="lorenzo23622" uid="476483" lat="24.8938144" lon="55.2082970"/>
+ <node id="9992342759" visible="true" version="1" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.2513510" lon="54.6418084"/>
+ <node id="9992342761" visible="true" version="1" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.2597776" lon="54.6889515"/>
+ <node id="9992342762" visible="true" version="1" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.2431983" lon="54.8347055"/>
+ <node id="9992342764" visible="true" version="1" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.3866979" lon="54.8422829"/>
+ <node id="9992342767" visible="true" version="1" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.4215166" lon="54.8483005"/>
+ <node id="9992342770" visible="true" version="1" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.4349093" lon="54.8491110"/>
+ <node id="9992342771" visible="true" version="1" changeset="125644939" timestamp="2022-09-01T08:55:47Z" user="lorenzo23622" uid="476483" lat="24.5985044" lon="54.8454153"/>
+ <node id="9992342772" visible="true" version="2" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6378334" lon="54.9041529"/>
+ <node id="11033665013" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8063589" lon="55.1025546"/>
+ <node id="11033665015" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8043544" lon="55.0994334"/>
+ <node id="11033665021" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8068526" lon="55.1033259"/>
+ <node id="11033665024" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8080167" lon="55.1051084">
+  <tag k="railway" v="switch"/>
+  <tag k="railway:switch" v="default"/>
+  <tag k="railway:turnout_side" v="right"/>
+ </node>
+ <node id="11033665028" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8082718" lon="55.1055138">
+  <tag k="railway" v="switch"/>
+  <tag k="railway:switch" v="default"/>
+  <tag k="railway:turnout_side" v="right"/>
+ </node>
+ <node id="11033665030" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8096402" lon="55.1075999"/>
+ <node id="11033665031" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.8127505" lon="55.1124091"/>
+ <node id="11033665037" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.7729234" lon="55.0600825">
+  <tag k="railway" v="switch"/>
+  <tag k="railway:switch" v="default"/>
+  <tag k="railway:turnout_side" v="left"/>
+ </node>
+ <node id="11033665038" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.7725991" lon="55.0595836"/>
+ <node id="11033665047" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6630868" lon="54.9368326">
+  <tag k="railway" v="switch"/>
+  <tag k="railway:switch" v="default"/>
+  <tag k="railway:turnout_side" v="right"/>
+ </node>
+ <node id="11033665048" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6398769" lon="54.9067745">
+  <tag k="railway" v="switch"/>
+  <tag k="railway:switch" v="default"/>
+  <tag k="railway:turnout_side" v="left"/>
+ </node>
+ <node id="11033665056" visible="true" version="1" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274" lat="24.6415609" lon="54.9089639"/>
+ <node id="12218368929" visible="true" version="3" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2815179" lon="54.5448951"/>
+ <node id="12218368930" visible="true" version="3" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2808141" lon="54.5474183"/>
+ <node id="12218368931" visible="true" version="3" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2806236" lon="54.5490229"/>
+ <node id="12218368944" visible="true" version="3" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2817174" lon="54.5444329"/>
+ <node id="12218368945" visible="true" version="3" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2818614" lon="54.5441337"/>
+ <node id="12218368946" visible="true" version="3" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2820137" lon="54.5438483"/>
+ <node id="12218368947" visible="true" version="3" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2807229" lon="54.5480701"/>
+ <node id="12218368948" visible="true" version="3" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2810561" lon="54.5463216"/>
+ <node id="12218368950" visible="true" version="10" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.3338831" lon="54.5294437">
+  <tag k="alt_name:en" v="Abu Dhabi City Station"/>
+  <tag k="name" v="محطة أبوظبي"/>
+  <tag k="name:en" v="Abu Dhabi Mohamed bin Zayed City Station"/>
+  <tag k="network" v="Etihad Rail"/>
+  <tag k="operator" v="Etihad Rail"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="railway" v="stop"/>
+  <tag k="train" v="yes"/>
+ </node>
+ <node id="12218368954" visible="true" version="4" changeset="168299253" timestamp="2025-06-30T09:11:34Z" user="Merna_mahmoud" uid="15567198" lat="24.3084676" lon="54.5304063"/>
+ <node id="12247705693" visible="true" version="2" changeset="158211518" timestamp="2024-10-22T13:18:11Z" user="Vyvagaba" uid="20874349" lat="24.3015163" lon="54.5322193"/>
+ <node id="12278671358" visible="true" version="2" changeset="168299253" timestamp="2025-06-30T09:11:34Z" user="Merna_mahmoud" uid="15567198" lat="24.3062829" lon="54.5306531"/>
+ <node id="12278671359" visible="true" version="2" changeset="168299253" timestamp="2025-06-30T09:11:34Z" user="Merna_mahmoud" uid="15567198" lat="24.3059187" lon="54.5307215"/>
+ <node id="12278671360" visible="true" version="1" changeset="158211518" timestamp="2024-10-22T13:18:11Z" user="Vyvagaba" uid="20874349" lat="24.3042345" lon="54.5311171"/>
+ <node id="12278671361" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.3037088" lon="54.5312592"/>
+ <node id="12278671362" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.3031393" lon="54.5314443"/>
+ <node id="12278671363" visible="true" version="2" changeset="168299253" timestamp="2025-06-30T09:11:34Z" user="Merna_mahmoud" uid="15567198" lat="24.3045846" lon="54.5310097"/>
+ <node id="12278671364" visible="true" version="2" changeset="168299253" timestamp="2025-06-30T09:11:34Z" user="Merna_mahmoud" uid="15567198" lat="24.3069214" lon="54.5305574"/>
+ <node id="12278671365" visible="true" version="3" changeset="168299253" timestamp="2025-06-30T09:11:34Z" user="Merna_mahmoud" uid="15567198" lat="24.3090529" lon="54.5303752"/>
+ <node id="12278671366" visible="true" version="2" changeset="168299253" timestamp="2025-06-30T09:11:34Z" user="Merna_mahmoud" uid="15567198" lat="24.3076095" lon="54.5304766"/>
+ <node id="12278671367" visible="true" version="2" changeset="168299253" timestamp="2025-06-30T09:11:34Z" user="Merna_mahmoud" uid="15567198" lat="24.3054853" lon="54.5308018"/>
+ <node id="12278671368" visible="true" version="2" changeset="168299253" timestamp="2025-06-30T09:11:34Z" user="Merna_mahmoud" uid="15567198" lat="24.3050416" lon="54.5308944"/>
+ <node id="12278671369" visible="true" version="1" changeset="158211518" timestamp="2024-10-22T13:18:11Z" user="Vyvagaba" uid="20874349" lat="24.3026953" lon="54.5316862"/>
+ <node id="12278671370" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2827190" lon="54.5425581"/>
+ <node id="12278671371" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2844329" lon="54.5405022"/>
+ <node id="12278671372" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2846113" lon="54.5403342"/>
+ <node id="12278671377" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2882052" lon="54.5381191">
+  <tag k="railway" v="switch"/>
+ </node>
+ <node id="12278671379" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2828338" lon="54.5423863"/>
+ <node id="12278671380" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2829891" lon="54.5421618"/>
+ <node id="12278671381" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2831436" lon="54.5419793"/>
+ <node id="12278671390" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2842767" lon="54.5406697"/>
+ <node id="12278671391" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2840998" lon="54.5408575"/>
+ <node id="12278671392" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2836726" lon="54.5413320"/>
+ <node id="12278671394" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2822930" lon="54.5432596"/>
+ <node id="12278671395" visible="true" version="1" changeset="158211518" timestamp="2024-10-22T13:18:11Z" user="Vyvagaba" uid="20874349" lat="24.3007110" lon="54.5325729"/>
+ <node id="12278671396" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2806574" lon="54.5486163"/>
+ <node id="12278671398" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2821332" lon="54.5435677"/>
+ <node id="12278671399" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2813381" lon="54.5453692"/>
+ <node id="12278671400" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2849791" lon="54.5400105"/>
+ <node id="12278708402" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2839336" lon="54.5410326"/>
+ <node id="12278708403" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2847825" lon="54.5401712"/>
+ <node id="12278708404" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2825839" lon="54.5427690"/>
+ <node id="12278708405" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2833444" lon="54.5417237"/>
+ <node id="12278708406" visible="true" version="3" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2824269" lon="54.5430267"/>
+ <node id="12278708407" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2835100" lon="54.5415135"/>
+ <node id="12278708408" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2851472" lon="54.5398657"/>
+ <node id="12278708409" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2853027" lon="54.5397160"/>
+ <node id="12278708410" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2811898" lon="54.5458521"/>
+ <node id="12278708411" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2809306" lon="54.5468194"/>
+ <node id="12278708412" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2805553" lon="54.5495780"/>
+ <node id="12278708417" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2805015" lon="54.5501252"/>
+ <node id="12278708418" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2804673" lon="54.5504792"/>
+ <node id="12278708419" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2803890" lon="54.5511445"/>
+ <node id="12278708425" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2891175" lon="54.5377063"/>
+ <node id="12278708426" visible="true" version="1" changeset="158211518" timestamp="2024-10-22T13:18:11Z" user="Vyvagaba" uid="20874349" lat="24.2995233" lon="54.5330898"/>
+ <node id="12452722885" visible="true" version="3" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3109100" lon="54.5303646"/>
+ <node id="12452722886" visible="true" version="4" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3228580" lon="54.5298893"/>
+ <node id="12964062214" visible="true" version="3" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3246958" lon="54.5298030"/>
+ <node id="12964062215" visible="true" version="4" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.3284916" lon="54.5296633"/>
+ <node id="12964062216" visible="true" version="3" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3179217" lon="54.5302377"/>
+ <node id="12964062218" visible="true" version="3" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3155467" lon="54.5302801"/>
+ <node id="13237586290" visible="true" version="1" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874" lat="24.2634852" lon="54.8383015"/>
+ <node id="13714770128" visible="true" version="3" changeset="183835995" timestamp="2026-06-08T15:58:49Z" user="Hariva" uid="3216809" lat="24.2309813" lon="54.8226516"/>
+ <node id="14105356001" visible="true" version="1" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3197258" lon="54.5301448"/>
+ <node id="14105356002" visible="true" version="1" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3215382" lon="54.5299691"/>
+ <node id="14105356009" visible="true" version="1" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3167524" lon="54.5302588"/>
+ <node id="14105356010" visible="true" version="1" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3144524" lon="54.5302963"/>
+ <node id="14105356011" visible="true" version="1" changeset="187690226" timestamp="2026-08-19T13:29:33Z" user="mariem_mohamed" uid="22378295" lat="24.3132205" lon="54.5303205"/>
+ <node id="14105356012" visible="true" version="2" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.3266293" lon="54.5297545"/>
+ <node id="14111303878" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2874135" lon="54.5384906"/>
+ <node id="14111303879" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2867536" lon="54.5388337"/>
+ <node id="14111303880" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.2860012" lon="54.5392715"/>
+ <node id="14111303888" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.3326802" lon="54.5295652"/>
+ <node id="14111303889" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.3326786" lon="54.5295290"/>
+ <node id="14111303890" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.3358484" lon="54.5293618"/>
+ <node id="14111303891" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069" lat="24.3358500" lon="54.5293980"/>
+ <node id="14111337329" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0111379" lon="55.1664265"/>
+ <node id="14111337330" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0113700" lon="55.1662499"/>
+ <node id="14111337331" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0116741" lon="55.1660747"/>
+ <node id="14111337332" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0120329" lon="55.1659290"/>
+ <node id="14111337333" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0123783" lon="55.1658466"/>
+ <node id="14111337336" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0127912" lon="55.1658128"/>
+ <node id="14111337338" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0131282" lon="55.1658316"/>
+ <node id="14111337339" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0135306" lon="55.1659273"/>
+ <node id="14111337340" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0138135" lon="55.1660308"/>
+ <node id="14111337341" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0140339" lon="55.1661391"/>
+ <node id="14111337345" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0144178" lon="55.1664105"/>
+ <node id="14111337346" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0148230" lon="55.1667149">
+  <tag k="railway" v="switch"/>
+ </node>
+ <node id="14111337347" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0150491" lon="55.1668687"/>
+ <node id="14111337348" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0153192" lon="55.1670099"/>
+ <node id="14111337350" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0155979" lon="55.1671699"/>
+ <node id="14111337351" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0170518" lon="55.1679482">
+  <tag k="alt_name:en" v="Dubai Jumeirah Station"/>
+  <tag k="name" v="محطة دبي"/>
+  <tag k="name:en" v="Dubai Al Yalayis Station"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="train" v="yes"/>
+ </node>
+ <node id="14111337358" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0185057" lon="55.1686922"/>
+ <node id="14111337359" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0185275" lon="55.1686423"/>
+ <node id="14111337360" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0156261" lon="55.1670966"/>
+ <node id="14111337361" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069" lat="25.0156042" lon="55.1671465"/>
+ <node id="14250259853" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9871764" lon="55.2181274"/>
+ <node id="14250259854" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9886667" lon="55.2168024"/>
+ <node id="14250259855" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9892173" lon="55.2161680"/>
+ <node id="14250259856" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9895735" lon="55.2156168"/>
+ <node id="14250259857" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9898190" lon="55.2151555"/>
+ <node id="14250259860" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9900062" lon="55.2147129"/>
+ <node id="14250259861" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9903490" lon="55.2138010"/>
+ <node id="14250259862" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9911622" lon="55.2116337"/>
+ <node id="14250259863" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9711336" lon="55.2309323"/>
+ <node id="14250259865" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9704525" lon="55.2314620">
+  <tag k="railway" v="switch"/>
+ </node>
+ <node id="14250259867" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9814533" lon="55.2226549"/>
+ <node id="14250259868" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9861832" lon="55.2189361"/>
+ <node id="14250259869" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9677644" lon="55.2335983"/>
+ <node id="14250259886" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9670305" lon="55.2341830"/>
+ <node id="14250259889" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9594021" lon="55.2389225"/>
+ <node id="14250259890" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9583224" lon="55.2389199"/>
+ <node id="14250259891" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9607809" lon="55.2386624"/>
+ <node id="14250259892" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9616587" lon="55.2383244"/>
+ <node id="14250259893" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069" lat="24.9624222" lon="55.2378389"/>
+ <way id="965253629" visible="true" version="9" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="8617901108"/>
+  <nd ref="14250259893"/>
+  <nd ref="8291830505"/>
+  <nd ref="14250259892"/>
+  <nd ref="9233727567"/>
+  <nd ref="14250259891"/>
+  <nd ref="9767754562"/>
+  <nd ref="14250259889"/>
+  <nd ref="9233727553"/>
+  <nd ref="14250259890"/>
+  <nd ref="8929360813"/>
+  <nd ref="8929369200"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="Jebel Ali Extension"/>
+  <tag k="name:en" v="Jebel Ali Extension"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="branch"/>
+ </way>
+ <way id="965253634" visible="true" version="8" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="9767754144"/>
+  <nd ref="9767754145"/>
+  <nd ref="9767754147"/>
+  <nd ref="9767754146"/>
+  <nd ref="8929368853"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253636" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929368854"/>
+  <nd ref="9992342759"/>
+  <nd ref="8929368855"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253637" visible="true" version="6" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368855"/>
+  <nd ref="8929368856"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253638" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368856"/>
+  <nd ref="8929368857"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253639" visible="true" version="6" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368857"/>
+  <nd ref="8929368858"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253640" visible="true" version="7" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="8929368859"/>
+  <nd ref="8929368860"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253641" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368858"/>
+  <nd ref="9911584116"/>
+  <nd ref="8929368859"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253642" visible="true" version="6" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="8929368860"/>
+  <nd ref="8929368861"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253643" visible="true" version="7" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="8929368861"/>
+  <nd ref="9911584128"/>
+  <nd ref="9911584127"/>
+  <nd ref="9911584126"/>
+  <nd ref="9911584151"/>
+  <nd ref="9911584152"/>
+  <nd ref="9911584153"/>
+  <nd ref="8929368863"/>
+  <nd ref="9911584155"/>
+  <nd ref="9911584154"/>
+  <nd ref="9911584156"/>
+  <nd ref="8929368852"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253644" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368852"/>
+  <nd ref="8929368851"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253645" visible="true" version="6" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911584232"/>
+  <nd ref="9911782705"/>
+  <nd ref="9911782706"/>
+  <nd ref="9911782707"/>
+  <nd ref="8929368822"/>
+  <nd ref="9911782715"/>
+  <nd ref="8929368823"/>
+  <nd ref="8929368824"/>
+  <nd ref="9911782704"/>
+  <nd ref="8929368825"/>
+  <nd ref="9911782702"/>
+  <nd ref="9911782701"/>
+  <nd ref="9911782703"/>
+  <nd ref="8929368826"/>
+  <nd ref="8929368827"/>
+  <nd ref="8929368828"/>
+  <nd ref="9911782699"/>
+  <nd ref="9911782700"/>
+  <nd ref="9911782697"/>
+  <nd ref="9911782698"/>
+  <nd ref="9911782695"/>
+  <nd ref="9911782696"/>
+  <nd ref="9911782694"/>
+  <nd ref="9911782693"/>
+  <nd ref="9911782692"/>
+  <nd ref="9911782691"/>
+  <nd ref="9911782690"/>
+  <nd ref="9911782689"/>
+  <nd ref="9911782688"/>
+  <nd ref="9911782686"/>
+  <nd ref="9911782687"/>
+  <nd ref="9911782685"/>
+  <nd ref="9911782684"/>
+  <nd ref="9911782683"/>
+  <nd ref="9911782682"/>
+  <nd ref="9911782751"/>
+  <nd ref="8929368829"/>
+  <nd ref="9911781891"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253646" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368868"/>
+  <nd ref="8929368869"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253648" visible="true" version="5" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929368902"/>
+  <nd ref="8929368901"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253649" visible="true" version="8" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9767754066"/>
+  <nd ref="9815612906"/>
+  <nd ref="9815612907"/>
+  <nd ref="9815612908"/>
+  <nd ref="9815612909"/>
+  <nd ref="8929368898"/>
+  <nd ref="9815612910"/>
+  <nd ref="9815612911"/>
+  <nd ref="9815612913"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253650" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368897"/>
+  <nd ref="8929368896"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253651" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368880"/>
+  <nd ref="8929368881"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253652" visible="true" version="6" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911782915"/>
+  <nd ref="9911782916"/>
+  <nd ref="9992342762"/>
+  <nd ref="8929368875"/>
+  <nd ref="8929368876"/>
+  <nd ref="9911782917"/>
+  <nd ref="9911782958"/>
+  <nd ref="9911782959"/>
+  <nd ref="9911782921"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253653" visible="true" version="8" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929368991"/>
+  <nd ref="9767753948"/>
+  <nd ref="9767645815"/>
+  <nd ref="8929368972"/>
+  <nd ref="9767645816"/>
+  <nd ref="9767753917"/>
+  <nd ref="8929368971"/>
+  <nd ref="8929368970"/>
+  <nd ref="8929368969"/>
+  <nd ref="8929368968"/>
+  <nd ref="8929368967"/>
+  <nd ref="8929368966"/>
+  <nd ref="8929368965"/>
+  <nd ref="9767753928"/>
+  <nd ref="9767753927"/>
+  <nd ref="8929368964"/>
+  <nd ref="9767753926"/>
+  <nd ref="8929368955"/>
+  <nd ref="9767753925"/>
+  <nd ref="8929368963"/>
+  <nd ref="9767753920"/>
+  <nd ref="8929368962"/>
+  <nd ref="8929368952"/>
+  <nd ref="9767753919"/>
+  <nd ref="9767753918"/>
+  <nd ref="9992342771"/>
+  <nd ref="8929368950"/>
+  <nd ref="8929368949"/>
+  <nd ref="9783554474"/>
+  <nd ref="9783554473"/>
+  <nd ref="9783554472"/>
+  <nd ref="9783554471"/>
+  <nd ref="9783554470"/>
+  <nd ref="9783554469"/>
+  <nd ref="9783554468"/>
+  <nd ref="9783554467"/>
+  <nd ref="9783554466"/>
+  <nd ref="9783554465"/>
+  <nd ref="9783554464"/>
+  <nd ref="9783554463"/>
+  <nd ref="9783554462"/>
+  <nd ref="9783554475"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253654" visible="true" version="6" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9815649270"/>
+  <nd ref="8929368887"/>
+  <nd ref="9911783081"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253667" visible="true" version="6" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929369019"/>
+  <nd ref="8929369018"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253669" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369068"/>
+  <nd ref="8929369067"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253671" visible="true" version="5" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369067"/>
+  <nd ref="8929369059"/>
+  <nd ref="8929369056"/>
+  <nd ref="8929369046"/>
+  <nd ref="8929369045"/>
+  <nd ref="8929369024"/>
+  <nd ref="8929369023"/>
+  <nd ref="8929369022"/>
+  <nd ref="8929369021"/>
+  <nd ref="8929369020"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253674" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369020"/>
+  <nd ref="8929369019"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253675" visible="true" version="10" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9370158189"/>
+  <nd ref="11033665047"/>
+  <nd ref="8929368998"/>
+  <nd ref="8929368996"/>
+  <nd ref="9769637910"/>
+  <nd ref="8929368995"/>
+  <nd ref="8929368994"/>
+  <nd ref="8929368993"/>
+  <nd ref="8929368992"/>
+  <nd ref="11033665056"/>
+  <nd ref="9767754034"/>
+  <nd ref="11033665048"/>
+  <nd ref="8929368990"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253689" visible="true" version="8" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274">
+  <nd ref="9559252271"/>
+  <nd ref="8929369158"/>
+  <nd ref="9991486183"/>
+  <nd ref="8929369157"/>
+  <nd ref="8929369136"/>
+  <nd ref="8929369137"/>
+  <nd ref="8929369138"/>
+  <nd ref="8929369140"/>
+  <nd ref="11033665037"/>
+  <nd ref="11033665038"/>
+  <nd ref="8929369139"/>
+  <nd ref="8929369119"/>
+  <nd ref="8929369118"/>
+  <nd ref="8929369117"/>
+  <nd ref="8929369116"/>
+  <nd ref="8929369073"/>
+  <nd ref="8929369072"/>
+  <nd ref="8929369071"/>
+  <nd ref="8929369070"/>
+  <nd ref="8929369069"/>
+  <nd ref="9914013916"/>
+  <nd ref="8929369068"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253703" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369169"/>
+  <nd ref="8929369168"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253704" visible="true" version="5" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369180"/>
+  <nd ref="8929369179"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253705" visible="true" version="7" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274">
+  <nd ref="8929369179"/>
+  <nd ref="8929369178"/>
+  <nd ref="9767754542"/>
+  <nd ref="8929369177"/>
+  <nd ref="8929369176"/>
+  <nd ref="9767754539"/>
+  <nd ref="9767754535"/>
+  <nd ref="9767754537"/>
+  <nd ref="8929369077"/>
+  <nd ref="8929369171"/>
+  <nd ref="8929369170"/>
+  <nd ref="11033665031"/>
+  <nd ref="8929369169"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253706" visible="true" version="6" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369193"/>
+  <nd ref="8929369192"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253707" visible="true" version="6" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9767754102"/>
+  <nd ref="9767754526"/>
+  <nd ref="9767754521"/>
+  <nd ref="9767754523"/>
+  <nd ref="9992337245"/>
+  <nd ref="8929369187"/>
+  <nd ref="9992337243"/>
+  <nd ref="9992337244"/>
+  <nd ref="8929369186"/>
+  <nd ref="8929369185"/>
+  <nd ref="9914020476"/>
+  <nd ref="9767754531"/>
+  <nd ref="9767754533"/>
+  <nd ref="8929369182"/>
+  <nd ref="8929369180"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253708" visible="true" version="5" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369201"/>
+  <nd ref="9914020560"/>
+  <nd ref="8929369198"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="965253709" visible="true" version="5" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369198"/>
+  <nd ref="8929369197"/>
+  <nd ref="9767754528"/>
+  <nd ref="8929369196"/>
+  <nd ref="8929369195"/>
+  <nd ref="9767754529"/>
+  <nd ref="9767754518"/>
+  <nd ref="9914020490"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="976322627" visible="true" version="9" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="9767754262"/>
+  <nd ref="9767754258"/>
+  <nd ref="9767754273"/>
+  <nd ref="9767754271"/>
+  <nd ref="9767754270"/>
+  <nd ref="9767754269"/>
+  <nd ref="9767754272"/>
+  <nd ref="9767754266"/>
+  <nd ref="9767754267"/>
+  <nd ref="9767754268"/>
+  <nd ref="9767754263"/>
+  <nd ref="9767754264"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1000341804" visible="true" version="8" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="8617901109"/>
+  <nd ref="8617901108"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="Jebel Ali Extension"/>
+  <tag k="name:en" v="Jebel Ali Extension"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="branch"/>
+ </way>
+ <way id="1015854166" visible="true" version="5" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9370158188"/>
+  <nd ref="9370158189"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1015854167" visible="true" version="7" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9914013911"/>
+  <nd ref="9370158188"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1037837514" visible="true" version="7" changeset="138249798" timestamp="2023-07-08T04:08:35Z" user="adjuva" uid="92274">
+  <nd ref="8929369168"/>
+  <nd ref="11033665030"/>
+  <nd ref="8929369167"/>
+  <nd ref="11033665028"/>
+  <nd ref="11033665024"/>
+  <nd ref="9992337236"/>
+  <nd ref="11033665021"/>
+  <nd ref="11033665013"/>
+  <nd ref="8929369107"/>
+  <nd ref="11033665015"/>
+  <nd ref="8929369166"/>
+  <nd ref="8929369108"/>
+  <nd ref="8929369165"/>
+  <nd ref="8929369109"/>
+  <nd ref="8929369164"/>
+  <nd ref="8929369110"/>
+  <nd ref="8929369163"/>
+  <nd ref="8929369111"/>
+  <nd ref="8929369162"/>
+  <nd ref="8929369112"/>
+  <nd ref="8929369161"/>
+  <nd ref="8929369160"/>
+  <nd ref="8929369113"/>
+  <nd ref="9559252272"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1037837515" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9559252272"/>
+  <nd ref="9559252271"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="-1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="tunnel" v="yes"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347461" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929368990"/>
+  <nd ref="9992342772"/>
+  <nd ref="8929368991"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347465" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929368901"/>
+  <nd ref="9992342770"/>
+  <nd ref="9767754067"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347466" visible="true" version="3" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9767754067"/>
+  <nd ref="9767754066"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347472" visible="true" version="3" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369192"/>
+  <nd ref="9767754524"/>
+  <nd ref="9767754102"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347479" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9767754144"/>
+  <nd ref="9911584111"/>
+  <nd ref="8929368854"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347496" visible="true" version="5" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="9767754234"/>
+  <nd ref="9767754233"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347497" visible="true" version="6" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="9767754259"/>
+  <nd ref="9767754205"/>
+  <nd ref="9767754204"/>
+  <nd ref="9767754209"/>
+  <nd ref="9767754207"/>
+  <nd ref="9767754208"/>
+  <nd ref="9767754206"/>
+  <nd ref="9767754217"/>
+  <nd ref="9767754212"/>
+  <nd ref="9767754210"/>
+  <nd ref="9767754211"/>
+  <nd ref="9767754216"/>
+  <nd ref="9767754213"/>
+  <nd ref="9767754214"/>
+  <nd ref="9767754215"/>
+  <nd ref="9767754234"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347502" visible="true" version="5" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="9767754261"/>
+  <nd ref="9767754262"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347503" visible="true" version="6" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="9767754233"/>
+  <nd ref="9767754235"/>
+  <nd ref="9767754225"/>
+  <nd ref="9767754227"/>
+  <nd ref="9767754226"/>
+  <nd ref="9767754231"/>
+  <nd ref="9767754229"/>
+  <nd ref="9767754230"/>
+  <nd ref="9767754228"/>
+  <nd ref="9767754232"/>
+  <nd ref="9767754221"/>
+  <nd ref="9767754223"/>
+  <nd ref="9767754222"/>
+  <nd ref="9767754224"/>
+  <nd ref="9767754218"/>
+  <nd ref="9767754220"/>
+  <nd ref="9767754219"/>
+  <nd ref="9767754260"/>
+  <nd ref="9767754261"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1063347504" visible="true" version="6" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="8929368853"/>
+  <nd ref="9767754259"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="highspeed" v="yes"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1065285234" visible="true" version="5" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="14250259865"/>
+  <nd ref="9370219862"/>
+  <nd ref="14250259869"/>
+  <nd ref="14250259886"/>
+  <nd ref="8617901109"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="Jebel Ali Extension"/>
+  <tag k="name:en" v="Jebel Ali Extension"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="branch"/>
+ </way>
+ <way id="1065285237" visible="true" version="3" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9783554460"/>
+  <nd ref="9783554459"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1065285238" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9783554461"/>
+  <nd ref="9783554458"/>
+  <nd ref="9783554460"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1065285239" visible="true" version="3" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9783554475"/>
+  <nd ref="9783554461"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1065285240" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9783554459"/>
+  <nd ref="9783554429"/>
+  <nd ref="9783554430"/>
+  <nd ref="9783554431"/>
+  <nd ref="9783554432"/>
+  <nd ref="9783554433"/>
+  <nd ref="9783554434"/>
+  <nd ref="9783554435"/>
+  <nd ref="9783554436"/>
+  <nd ref="9783554437"/>
+  <nd ref="9783554438"/>
+  <nd ref="9783554439"/>
+  <nd ref="9783554440"/>
+  <nd ref="9783554441"/>
+  <nd ref="9783554442"/>
+  <nd ref="9783554443"/>
+  <nd ref="9783554444"/>
+  <nd ref="9783554486"/>
+  <nd ref="9783554487"/>
+  <nd ref="9783554488"/>
+  <nd ref="9783554489"/>
+  <nd ref="9783554490"/>
+  <nd ref="9783554491"/>
+  <nd ref="9783554492"/>
+  <nd ref="9783554493"/>
+  <nd ref="9783554494"/>
+  <nd ref="9783554495"/>
+  <nd ref="9783554496"/>
+  <nd ref="9783554497"/>
+  <nd ref="9783554498"/>
+  <nd ref="9783554499"/>
+  <nd ref="9783554500"/>
+  <nd ref="9783554501"/>
+  <nd ref="9783554502"/>
+  <nd ref="9783554503"/>
+  <nd ref="9783554504"/>
+  <nd ref="9783554505"/>
+  <nd ref="9783554506"/>
+  <nd ref="9783554507"/>
+  <nd ref="9783554508"/>
+  <nd ref="9783554509"/>
+  <nd ref="9783554510"/>
+  <nd ref="9783554511"/>
+  <nd ref="9783554512"/>
+  <nd ref="9783562229"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1065285265" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9783562229"/>
+  <nd ref="9783562247"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1065285268" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9783562247"/>
+  <nd ref="9783562236"/>
+  <nd ref="9783562237"/>
+  <nd ref="9783562238"/>
+  <nd ref="9783562239"/>
+  <nd ref="9783562240"/>
+  <nd ref="9783562241"/>
+  <nd ref="9783562242"/>
+  <nd ref="9783562243"/>
+  <nd ref="9783562244"/>
+  <nd ref="9783562245"/>
+  <nd ref="9783562230"/>
+  <nd ref="9783562232"/>
+  <nd ref="9783562234"/>
+  <nd ref="9783562246"/>
+  <nd ref="8929368864"/>
+  <nd ref="9767754057"/>
+  <nd ref="8929368902"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1069401026" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9815612912"/>
+  <nd ref="9992342767"/>
+  <nd ref="8929368897"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1069401027" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9815612913"/>
+  <nd ref="9815612912"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1069401099" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9815649288"/>
+  <nd ref="8929368892"/>
+  <nd ref="9815649281"/>
+  <nd ref="9815649282"/>
+  <nd ref="9815649283"/>
+  <nd ref="9815649284"/>
+  <nd ref="9815649287"/>
+  <nd ref="8929368888"/>
+  <nd ref="9815649272"/>
+  <nd ref="9815649270"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1069401106" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368896"/>
+  <nd ref="8929368895"/>
+  <nd ref="9815649265"/>
+  <nd ref="8929368894"/>
+  <nd ref="9815649266"/>
+  <nd ref="8929368893"/>
+  <nd ref="9992342764"/>
+  <nd ref="9815649289"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1069401107" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9815649288"/>
+  <nd ref="9815649289"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081393186" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368851"/>
+  <nd ref="9992342761"/>
+  <nd ref="8929368862"/>
+  <nd ref="9911584157"/>
+  <nd ref="8929368838"/>
+  <nd ref="9911584158"/>
+  <nd ref="8929368837"/>
+  <nd ref="9911584159"/>
+  <nd ref="8929368835"/>
+  <nd ref="9911584174"/>
+  <nd ref="8929368834"/>
+  <nd ref="9911584175"/>
+  <nd ref="8929368833"/>
+  <nd ref="9911584181"/>
+  <nd ref="8929368832"/>
+  <nd ref="9911584212"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081393187" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911584212"/>
+  <nd ref="9911584211"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="-1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="tunnel" v="yes"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081393190" visible="true" version="5" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911584211"/>
+  <nd ref="8929368831"/>
+  <nd ref="9911584182"/>
+  <nd ref="9911584184"/>
+  <nd ref="9911584186"/>
+  <nd ref="9911584183"/>
+  <nd ref="9911584185"/>
+  <nd ref="8929368819"/>
+  <nd ref="9911584187"/>
+  <nd ref="8929368820"/>
+  <nd ref="8929368821"/>
+  <nd ref="9911584236"/>
+  <nd ref="9911584234"/>
+  <nd ref="9911584235"/>
+  <nd ref="9911584233"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081393191" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911584233"/>
+  <nd ref="9911584232"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421929" visible="true" version="5" changeset="183835995" timestamp="2026-06-08T15:58:49Z" user="Hariva" uid="3216809">
+  <nd ref="8929368830"/>
+  <nd ref="8929368865"/>
+  <nd ref="9911781888"/>
+  <nd ref="9911781887"/>
+  <nd ref="9911781886"/>
+  <nd ref="8929368866"/>
+  <nd ref="9911781884"/>
+  <nd ref="9911781885"/>
+  <nd ref="8929368867"/>
+  <nd ref="13714770128"/>
+  <nd ref="9911781882"/>
+  <nd ref="9911781883"/>
+  <nd ref="8929368868"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421932" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911782755"/>
+  <nd ref="9911781889"/>
+  <nd ref="9911782681"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421933" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911782681"/>
+  <nd ref="8929368830"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421934" visible="true" version="3" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9911781891"/>
+  <nd ref="9911781890"/>
+  <nd ref="9911782756"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421935" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911782756"/>
+  <nd ref="9911782755"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421959" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="8929368869"/>
+  <nd ref="9911782898"/>
+  <nd ref="8929368870"/>
+  <nd ref="9911782902"/>
+  <nd ref="9911782903"/>
+  <nd ref="9911782904"/>
+  <nd ref="8929368871"/>
+  <nd ref="9911782908"/>
+  <nd ref="9911782906"/>
+  <nd ref="9911782907"/>
+  <nd ref="8929368872"/>
+  <nd ref="9911782909"/>
+  <nd ref="8929368873"/>
+  <nd ref="9911782910"/>
+  <nd ref="8929368874"/>
+  <nd ref="9911782911"/>
+  <nd ref="9911782912"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421960" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911782912"/>
+  <nd ref="9911782915"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421961" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911782920"/>
+  <nd ref="13237586290"/>
+  <nd ref="8929368877"/>
+  <nd ref="9911782965"/>
+  <nd ref="8929368878"/>
+  <nd ref="9911782968"/>
+  <nd ref="8929368879"/>
+  <nd ref="9911782976"/>
+  <nd ref="9911782975"/>
+  <nd ref="9911782977"/>
+  <nd ref="9911782999"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421962" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911782921"/>
+  <nd ref="9911782920"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="-1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="tunnel" v="yes"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421972" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911782998"/>
+  <nd ref="8929368880"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421973" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911782999"/>
+  <nd ref="9911782998"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421976" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911783026"/>
+  <nd ref="9911783015"/>
+  <nd ref="8929368885"/>
+  <nd ref="8929368884"/>
+  <nd ref="9911783014"/>
+  <nd ref="9911783013"/>
+  <nd ref="8929368883"/>
+  <nd ref="9911783012"/>
+  <nd ref="9911783011"/>
+  <nd ref="9911783010"/>
+  <nd ref="8929368882"/>
+  <nd ref="9911783009"/>
+  <nd ref="9911783008"/>
+  <nd ref="9911783007"/>
+  <nd ref="9911783006"/>
+  <nd ref="9911783004"/>
+  <nd ref="8929368881"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421977" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911783016"/>
+  <nd ref="9911783026"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421985" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911783072"/>
+  <nd ref="9911783049"/>
+  <nd ref="9911783040"/>
+  <nd ref="8929368886"/>
+  <nd ref="9911783016"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081421986" visible="true" version="4" changeset="173379645" timestamp="2025-10-16T18:30:05Z" user="ev290802" uid="23215874">
+  <nd ref="9911783081"/>
+  <nd ref="9911783072"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="200"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081692752" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="8929369018"/>
+  <nd ref="8929368999"/>
+  <nd ref="9914013910"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081692753" visible="true" version="4" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9914013910"/>
+  <nd ref="9914013911"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081692767" visible="true" version="3" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9767754510"/>
+  <nd ref="9767754511"/>
+  <nd ref="8929369193"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1081692768" visible="true" version="3" changeset="131746722" timestamp="2023-01-26T20:24:01Z" user="TWHB" uid="6556551">
+  <nd ref="9914020490"/>
+  <nd ref="9767754510"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1320359922" visible="true" version="6" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="9767754264"/>
+  <nd ref="12278708419"/>
+  <nd ref="12278708418"/>
+  <nd ref="12278708417"/>
+  <nd ref="12278708412"/>
+  <nd ref="12218368931"/>
+  <nd ref="12278671396"/>
+  <nd ref="12218368947"/>
+  <nd ref="12218368930"/>
+  <nd ref="12278708411"/>
+  <nd ref="12218368948"/>
+  <nd ref="12278708410"/>
+  <nd ref="12278671399"/>
+  <nd ref="12218368929"/>
+  <nd ref="12218368944"/>
+  <nd ref="12218368945"/>
+  <nd ref="12218368946"/>
+  <nd ref="12278671398"/>
+  <tag k="construction" v="rail"/>
+  <tag k="construction:gauge" v="1435"/>
+  <tag k="construction:usage" v="main"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="100"/>
+  <tag k="name" v="Etihad Rail"/>
+  <tag k="operator" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+ </way>
+ <way id="1320359923" visible="true" version="6" changeset="179250835" timestamp="2026-03-02T11:51:06Z" user="user_23822185" uid="23822185">
+  <nd ref="12278708426"/>
+  <nd ref="12278708425"/>
+  <tag k="construction" v="rail"/>
+  <tag k="construction:gauge" v="1435"/>
+  <tag k="construction:usage" v="main"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="railway" v="rail"/>
+ </way>
+ <way id="1327239040" visible="true" version="9" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="12452722886"/>
+  <nd ref="14105356002"/>
+  <nd ref="14105356001"/>
+  <nd ref="12964062216"/>
+  <nd ref="14105356009"/>
+  <nd ref="12964062218"/>
+  <nd ref="14105356010"/>
+  <nd ref="14105356011"/>
+  <nd ref="12452722885"/>
+  <nd ref="12278671365"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="railway" v="rail"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1327239041" visible="true" version="5" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="12278671365"/>
+  <nd ref="12218368954"/>
+  <nd ref="12278671366"/>
+  <nd ref="12278671364"/>
+  <nd ref="12278671358"/>
+  <nd ref="12278671359"/>
+  <nd ref="12278671367"/>
+  <nd ref="12278671368"/>
+  <nd ref="12278671363"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="railway" v="rail"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1327239042" visible="true" version="5" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="12278671363"/>
+  <nd ref="12278671360"/>
+  <nd ref="12278671361"/>
+  <nd ref="12278671362"/>
+  <nd ref="12278671369"/>
+  <nd ref="12247705693"/>
+  <nd ref="12278671395"/>
+  <nd ref="12278708426"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="railway" v="rail"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1327239043" visible="true" version="7" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="12278708406"/>
+  <nd ref="12278708404"/>
+  <nd ref="12278671370"/>
+  <nd ref="12278671379"/>
+  <nd ref="12278671380"/>
+  <nd ref="12278671381"/>
+  <nd ref="12278708405"/>
+  <nd ref="12278708407"/>
+  <nd ref="12278671392"/>
+  <nd ref="12278708402"/>
+  <nd ref="12278671391"/>
+  <nd ref="12278671390"/>
+  <nd ref="12278671371"/>
+  <nd ref="12278671372"/>
+  <nd ref="12278708403"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="construction" v="rail"/>
+  <tag k="construction:gauge" v="1435"/>
+  <tag k="construction:usage" v="main"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="100"/>
+  <tag k="name" v="Etihad Rail"/>
+  <tag k="operator" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+ </way>
+ <way id="1327239045" visible="true" version="6" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="12278708409"/>
+  <nd ref="14111303880"/>
+  <nd ref="14111303879"/>
+  <nd ref="14111303878"/>
+  <nd ref="12278671377"/>
+  <tag k="construction" v="rail"/>
+  <tag k="construction:gauge" v="1435"/>
+  <tag k="construction:usage" v="main"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="100"/>
+  <tag k="name" v="Etihad Rail"/>
+  <tag k="operator" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+ </way>
+ <way id="1327239047" visible="true" version="6" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="12278708425"/>
+  <nd ref="12278671377"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="100"/>
+  <tag k="name" v="Etihad Rail"/>
+  <tag k="operator" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1333209312" visible="true" version="5" changeset="186057306" timestamp="2026-07-20T12:26:52Z" user="SyndicateLyte" uid="23662216">
+  <nd ref="12278671398"/>
+  <nd ref="12278671394"/>
+  <nd ref="12278708406"/>
+  <tag k="construction" v="rail"/>
+  <tag k="construction:gauge" v="1435"/>
+  <tag k="construction:usage" v="main"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="maxspeed" v="100"/>
+  <tag k="name" v="Etihad Rail"/>
+  <tag k="operator" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+ </way>
+ <way id="1346337788" visible="true" version="8" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="12218368950"/>
+  <nd ref="12964062215"/>
+  <nd ref="14105356012"/>
+  <nd ref="12964062214"/>
+  <nd ref="12452722886"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="railway" v="rail"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1551410778" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="12278708403"/>
+  <nd ref="12278671400"/>
+  <nd ref="12278708408"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="100"/>
+  <tag k="name" v="Etihad Rail"/>
+  <tag k="operator" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <way id="1551410779" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="12278708408"/>
+  <nd ref="12278708409"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="construction" v="rail"/>
+  <tag k="construction:gauge" v="1435"/>
+  <tag k="construction:usage" v="main"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="100"/>
+  <tag k="name" v="Etihad Rail"/>
+  <tag k="operator" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+ </way>
+ <way id="1551410784" visible="true" version="1" changeset="187818009" timestamp="2026-08-21T21:33:47Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="14111303891"/>
+  <nd ref="14111303890"/>
+  <nd ref="14111303889"/>
+  <nd ref="14111303888"/>
+  <nd ref="14111303891"/>
+  <tag k="public_transport" v="platform"/>
+  <tag k="railway" v="platform"/>
+  <tag k="ref" v="1"/>
+ </way>
+ <way id="1551413102" visible="true" version="2" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="14111337351"/>
+  <nd ref="14111337350"/>
+  <nd ref="14111337348"/>
+  <nd ref="14111337347"/>
+  <nd ref="14111337346"/>
+  <nd ref="14111337345"/>
+  <nd ref="14111337341"/>
+  <nd ref="14111337340"/>
+  <nd ref="14111337339"/>
+  <nd ref="14111337338"/>
+  <nd ref="14111337336"/>
+  <nd ref="14111337333"/>
+  <nd ref="14111337332"/>
+  <nd ref="14111337331"/>
+  <nd ref="14111337330"/>
+  <nd ref="14111337329"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="railway" v="rail"/>
+  <tag k="usage" v="branch"/>
+ </way>
+ <way id="1551413105" visible="true" version="1" changeset="187818389" timestamp="2026-08-21T21:46:45Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="14111337361"/>
+  <nd ref="14111337360"/>
+  <nd ref="14111337359"/>
+  <nd ref="14111337358"/>
+  <nd ref="14111337361"/>
+  <tag k="public_transport" v="platform"/>
+  <tag k="railway" v="platform"/>
+  <tag k="ref" v="1"/>
+ </way>
+ <way id="1565024301" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="14250259862"/>
+  <nd ref="14250259861"/>
+  <nd ref="14250259860"/>
+  <nd ref="14250259857"/>
+  <nd ref="14250259856"/>
+  <nd ref="14250259855"/>
+  <nd ref="14250259854"/>
+  <nd ref="14250259853"/>
+  <nd ref="14250259868"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="Jebel Ali Extension"/>
+  <tag k="name:en" v="Jebel Ali Extension"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="branch"/>
+ </way>
+ <way id="1565024303" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="14250259868"/>
+  <nd ref="14250259867"/>
+  <nd ref="14250259863"/>
+  <nd ref="14250259865"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="Jebel Ali Extension"/>
+  <tag k="name:en" v="Jebel Ali Extension"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="branch"/>
+ </way>
+ <way id="1565024306" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069">
+  <nd ref="8929369200"/>
+  <nd ref="9914020561"/>
+  <nd ref="8929369201"/>
+  <tag k="axle_load" v="32,5"/>
+  <tag k="electrified" v="no"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="gauge" v="1435"/>
+  <tag k="name" v="الاتحاد للقطارات"/>
+  <tag k="name:ar" v="الاتحاد للقطارات"/>
+  <tag k="name:en" v="Etihad Rail"/>
+  <tag k="operator" v="الاتحاد للقطارات"/>
+  <tag k="operator:en" v="Etihad Rail"/>
+  <tag k="railway" v="rail"/>
+  <tag k="railway:etcs" v="2"/>
+  <tag k="railway:traffic_mode" v="mixed"/>
+  <tag k="usage" v="main"/>
+ </way>
+ <relation id="21493966" visible="true" version="1" changeset="190003744" timestamp="2026-10-04T21:46:23Z" user="Claudius Henrichs" uid="18069">
+  <member type="node" ref="14111337351" role="stop"/>
+  <member type="way" ref="1551413105" role="platform"/>
+  <member type="node" ref="12218368950" role="stop"/>
+  <member type="way" ref="1551410784" role="platform"/>
+  <member type="way" ref="1551413102" role=""/>
+  <member type="way" ref="1565024301" role=""/>
+  <member type="way" ref="1565024303" role=""/>
+  <member type="way" ref="1065285234" role=""/>
+  <member type="way" ref="1000341804" role=""/>
+  <member type="way" ref="965253629" role=""/>
+  <member type="way" ref="1565024306" role=""/>
+  <member type="way" ref="965253708" role=""/>
+  <member type="way" ref="965253709" role=""/>
+  <member type="way" ref="1081692768" role=""/>
+  <member type="way" ref="1081692767" role=""/>
+  <member type="way" ref="965253706" role=""/>
+  <member type="way" ref="1063347472" role=""/>
+  <member type="way" ref="965253707" role=""/>
+  <member type="way" ref="965253704" role=""/>
+  <member type="way" ref="965253705" role=""/>
+  <member type="way" ref="965253703" role=""/>
+  <member type="way" ref="1037837514" role=""/>
+  <member type="way" ref="1037837515" role=""/>
+  <member type="way" ref="965253689" role=""/>
+  <member type="way" ref="965253669" role=""/>
+  <member type="way" ref="965253671" role=""/>
+  <member type="way" ref="965253674" role=""/>
+  <member type="way" ref="965253667" role=""/>
+  <member type="way" ref="1081692752" role=""/>
+  <member type="way" ref="1081692753" role=""/>
+  <member type="way" ref="1015854167" role=""/>
+  <member type="way" ref="1015854166" role=""/>
+  <member type="way" ref="965253675" role=""/>
+  <member type="way" ref="1063347461" role=""/>
+  <member type="way" ref="965253653" role=""/>
+  <member type="way" ref="1065285239" role=""/>
+  <member type="way" ref="1065285238" role=""/>
+  <member type="way" ref="1065285237" role=""/>
+  <member type="way" ref="1065285240" role=""/>
+  <member type="way" ref="1065285265" role=""/>
+  <member type="way" ref="1065285268" role=""/>
+  <member type="way" ref="965253648" role=""/>
+  <member type="way" ref="1063347465" role=""/>
+  <member type="way" ref="1063347466" role=""/>
+  <member type="way" ref="965253649" role=""/>
+  <member type="way" ref="1069401027" role=""/>
+  <member type="way" ref="1069401026" role=""/>
+  <member type="way" ref="965253650" role=""/>
+  <member type="way" ref="1069401106" role=""/>
+  <member type="way" ref="1069401107" role=""/>
+  <member type="way" ref="1069401099" role=""/>
+  <member type="way" ref="965253654" role=""/>
+  <member type="way" ref="1081421986" role=""/>
+  <member type="way" ref="1081421985" role=""/>
+  <member type="way" ref="1081421977" role=""/>
+  <member type="way" ref="1081421976" role=""/>
+  <member type="way" ref="965253651" role=""/>
+  <member type="way" ref="1081421972" role=""/>
+  <member type="way" ref="1081421973" role=""/>
+  <member type="way" ref="1081421961" role=""/>
+  <member type="way" ref="1081421962" role=""/>
+  <member type="way" ref="965253652" role=""/>
+  <member type="way" ref="1081421960" role=""/>
+  <member type="way" ref="1081421959" role=""/>
+  <member type="way" ref="965253646" role=""/>
+  <member type="way" ref="1081421929" role=""/>
+  <member type="way" ref="1081421933" role=""/>
+  <member type="way" ref="1081421932" role=""/>
+  <member type="way" ref="1081421935" role=""/>
+  <member type="way" ref="1081421934" role=""/>
+  <member type="way" ref="965253645" role=""/>
+  <member type="way" ref="1081393191" role=""/>
+  <member type="way" ref="1081393190" role=""/>
+  <member type="way" ref="1081393187" role=""/>
+  <member type="way" ref="1081393186" role=""/>
+  <member type="way" ref="965253644" role=""/>
+  <member type="way" ref="965253643" role=""/>
+  <member type="way" ref="965253642" role=""/>
+  <member type="way" ref="965253640" role=""/>
+  <member type="way" ref="965253641" role=""/>
+  <member type="way" ref="965253639" role=""/>
+  <member type="way" ref="965253638" role=""/>
+  <member type="way" ref="965253637" role=""/>
+  <member type="way" ref="965253636" role=""/>
+  <member type="way" ref="1063347479" role=""/>
+  <member type="way" ref="965253634" role=""/>
+  <member type="way" ref="1063347504" role=""/>
+  <member type="way" ref="1063347497" role=""/>
+  <member type="way" ref="1063347496" role=""/>
+  <member type="way" ref="1063347503" role=""/>
+  <member type="way" ref="1063347502" role=""/>
+  <member type="way" ref="976322627" role=""/>
+  <member type="way" ref="1320359922" role=""/>
+  <member type="way" ref="1333209312" role=""/>
+  <member type="way" ref="1327239043" role=""/>
+  <member type="way" ref="1551410778" role=""/>
+  <member type="way" ref="1551410779" role=""/>
+  <member type="way" ref="1327239045" role=""/>
+  <member type="way" ref="1327239047" role=""/>
+  <member type="way" ref="1320359923" role=""/>
+  <member type="way" ref="1327239042" role=""/>
+  <member type="way" ref="1327239041" role=""/>
+  <member type="way" ref="1327239040" role=""/>
+  <member type="way" ref="1346337788" role=""/>
+  <tag k="colour" v="#A6192E"/>
+  <tag k="duration" v="01:59"/>
+  <tag k="fee" v="yes"/>
+  <tag k="from" v="محطة الفجيرة"/>
+  <tag k="interval" v="04:00"/>
+  <tag k="name" v="الاتحاد للقطارات: محطة الفجيرة → محطة أبوظبي"/>
+  <tag k="name:en" v="Etihad Rail: Dubai → Abu Dhabi"/>
+  <tag k="network" v="Etihad Rail"/>
+  <tag k="operator" v="Etihad Rail"/>
+  <tag k="public_transport:version" v="2"/>
+  <tag k="reservation" v="recommended"/>
+  <tag k="route" v="train"/>
+  <tag k="to" v="محطة أبوظبي"/>
+  <tag k="type" v="route"/>
+  <tag k="website" v="https://www.etihadrail.ae"/>
+ </relation>
+</osm>
