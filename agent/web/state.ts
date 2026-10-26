@@ -15,6 +15,7 @@ export interface Bootstrap {
     phoneNotifications: boolean;
     /** The server can send Web Push notifications. */
     webPush?: boolean;
+    voice?: { naturalVoice: boolean; phone: boolean; phoneWebhook: string | null };
     swarmConcurrency: number;
     swarmMaxTasks: number;
   };

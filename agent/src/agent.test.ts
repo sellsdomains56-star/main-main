@@ -128,6 +128,7 @@ function xaiReply(call: number): string {
 
 const googleRequests: Captured[] = [];
 const pushDeliveries: { path: string; headers: http.IncomingHttpHeaders; raw: Buffer }[] = [];
+const elevenRequests: Captured[] = [];
 let tokenCounter = 0;
 
 /** A stand-in for Google's sign-in, Gmail and Calendar APIs. */
@@ -221,6 +222,12 @@ before(async () => {
         res.end(JSON.stringify(googleReply(req.method!, req.url!.slice("/google".length), raw)));
         return;
       }
+      if (req.url!.startsWith("/eleven/")) {
+        elevenRequests.push({ path: req.url!, headers: req.headers, body });
+        res.writeHead(200, { "content-type": "audio/mpeg" });
+        res.end(Buffer.from("ID3-fake-mp3"));
+        return;
+      }
       if (req.url!.startsWith("/voyage/")) {
         res.writeHead(200, { "content-type": "application/json" });
         const input = body.input as string[];
@@ -272,6 +279,10 @@ before(async () => {
   process.env.AGENT_PASSWORD = "correct horse";
   process.env.TIMEZONE = "Asia/Dubai";
   process.env.GOOGLE_API_ORIGIN = `http://127.0.0.1:${port}/google`;
+  process.env.TWILIO_AUTH_TOKEN = "twilio-token";
+  process.env.TWILIO_ALLOWED_CALLERS = "+971 50 000 0001";
+  process.env.ELEVENLABS_API_KEY = "eleven-key";
+  process.env.ELEVENLABS_BASE_URL = `http://127.0.0.1:${port}/eleven/v1`;
   process.env.VOYAGE_API_KEY = "test-key";
   process.env.VOYAGE_BASE_URL = `http://127.0.0.1:${port}/voyage/v1`;
   const { initAuth } = await import("./auth.js");
@@ -764,6 +775,97 @@ describe("Smart pick", () => {
     const req = anthropicRequests.slice(before).find((r) => r.body.stream)!;
     assert.equal(req.body.model, "claude-haiku-5-5");
     assert.equal(listMessages(conversation.id).at(-1)!.model, "claude-haiku-5-5");
+  });
+});
+
+describe("Voice", () => {
+  const signedPost = async (base: string, path: string, params: Record<string, string>, token = "twilio-token") => {
+    const { createHmac } = await import("node:crypto");
+    const url = `${base}${path}`;
+    const data = url + Object.keys(params).sort().map((k) => k + params[k]).join("");
+    const signature = createHmac("sha1", token).update(data).digest("base64");
+    const res = await fetch(url, { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded", "x-twilio-signature": signature }, body: new URLSearchParams(params) });
+    return { status: res.status, text: await res.text() };
+  };
+
+  it("answers the phone for allowed callers only, and talks to the agent turn by turn", async () => {
+    const { createApp } = await import("./server.js");
+    const { listMessages, listConversations } = await import("./db.js");
+    const srv = createApp().listen(0);
+    const base = `http://127.0.0.1:${(srv.address() as AddressInfo).port}`;
+    try {
+      const forged = await signedPost(base, "/api/voice/twilio/incoming", { CallSid: "CA1", From: "+971500000001" }, "wrong-token");
+      assert.equal(forged.status, 403, "requests not signed by Twilio are refused");
+      const stranger = await signedPost(base, "/api/voice/twilio/incoming", { CallSid: "CA0", From: "+15550001111" });
+      assert.match(stranger.text, /<Reject/, "unknown numbers are rejected");
+
+      const hello = await signedPost(base, "/api/voice/twilio/incoming", { CallSid: "CA1", From: "+971500000001" });
+      assert.equal(hello.status, 200);
+      assert.match(hello.text, /<Gather input="speech" action="\/api\/voice\/twilio\/turn"/);
+      assert.match(hello.text, /How can I help\?/);
+
+      const before = anthropicRequests.length;
+      const turn = await signedPost(base, "/api/voice/twilio/turn", { CallSid: "CA1", From: "+971500000001", SpeechResult: "What's on today?" });
+      assert.match(turn.text, /<Say [^>]*>Answer \d+\.<\/Say>/, "the reply is spoken");
+      assert.match(turn.text, /<Gather/, "and it listens again");
+      const req = anthropicRequests.slice(before).find((r) => r.body.stream)!;
+      const lastUser = (req.body.messages as { role: string; content: { type: string; text?: string }[] }[]).at(-1)!;
+      assert.ok(lastUser.content.some((b) => b.text?.includes("[Voice call")), "the agent knows it's a call");
+
+      const call = listConversations().find((c) => c.title.startsWith("📞"))!;
+      assert.ok(call, "the call is saved as a chat");
+      assert.equal(listMessages(call.id).filter((m) => m.role === "user" && m.voice).length, 1);
+
+      const bye = await signedPost(base, "/api/voice/twilio/turn", { CallSid: "CA1", From: "+971500000001", SpeechResult: "Goodbye" });
+      assert.match(bye.text, /<Hangup\/>/);
+    } finally {
+      srv.close();
+    }
+  });
+
+  it("asks for the keypad PIN first when one is set", async () => {
+    const { createApp } = await import("./server.js");
+    const { config } = await import("./config.js");
+    const srv = createApp().listen(0);
+    const base = `http://127.0.0.1:${(srv.address() as AddressInfo).port}`;
+    config.twilioPin = "4321";
+    try {
+      const from = { CallSid: "CA9", From: "+971500000001" };
+      const first = await signedPost(base, "/api/voice/twilio/incoming", from);
+      assert.match(first.text, /<Gather input="dtmf" action="\/api\/voice\/twilio\/pin"/);
+      assert.doesNotMatch(first.text, /How can I help/);
+      const early = await signedPost(base, "/api/voice/twilio/turn", { ...from, SpeechResult: "Read my email" });
+      assert.match(early.text, /This call has ended/, "nothing reaches the agent before the PIN");
+      const wrong = await signedPost(base, "/api/voice/twilio/pin", { ...from, Digits: "0000" });
+      assert.match(wrong.text, /isn&apos;t right\. Try again/);
+      const right = await signedPost(base, "/api/voice/twilio/pin", { ...from, Digits: "4321" });
+      assert.match(right.text, /How can I help/);
+    } finally {
+      config.twilioPin = "";
+      srv.close();
+    }
+  });
+
+  it("speaks with ElevenLabs through the server, with an Arabic hint for Arabic text", async () => {
+    const { createApp } = await import("./server.js");
+    const srv = createApp().listen(0);
+    const base = `http://127.0.0.1:${(srv.address() as AddressInfo).port}`;
+    try {
+      const headers = { "content-type": "application/json", "x-requested-with": "agent" };
+      const login = await fetch(`${base}/api/login`, { method: "POST", headers, body: '{"password":"correct horse"}' });
+      const cookie = login.headers.get("set-cookie")!.split(";")[0];
+      const res = await fetch(`${base}/api/voice/speech`, { method: "POST", headers: { ...headers, cookie }, body: JSON.stringify({ text: "**مرحبا** بك" }) });
+      assert.equal(res.status, 200);
+      assert.equal(res.headers.get("content-type"), "audio/mpeg");
+      assert.equal(Buffer.from(await res.arrayBuffer()).toString(), "ID3-fake-mp3");
+      const sent = elevenRequests.at(-1)!;
+      assert.equal(sent.headers["xi-api-key"], "eleven-key");
+      assert.equal(sent.body.text, "مرحبا بك", "Markdown is stripped before speaking");
+      assert.equal(sent.body.language_code, "ar");
+      assert.equal(sent.body.model_id, "eleven_flash_v2_5");
+    } finally {
+      srv.close();
+    }
   });
 });
 

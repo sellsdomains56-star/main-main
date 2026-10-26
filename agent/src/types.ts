@@ -73,6 +73,8 @@ export interface MessageData {
   context?: string;
   /** user: sent by the scheduler, not typed */
   scheduled?: boolean;
+  /** user: said out loud on a voice call (in the app or by phone), so the reply will be spoken */
+  voice?: boolean;
   /** assistant */
   steps?: Step[];
   files?: FileRecord[];

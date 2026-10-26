@@ -63,6 +63,9 @@ import { pushDevices, pushPublicKey, sendPush, subscribePush, unsubscribePush } 
 import { tr } from "./i18n.js";
 import type { AuthenticationResponseJSON, RegistrationResponseJSON } from "@simplewebauthn/server";
 import { authenticationOptions, finishAuthentication, finishRegistration, passkeySummaries, registrationOptions } from "./passkeys.js";
+import { Readable } from "node:stream";
+import { pipeline } from "node:stream/promises";
+import { callEnded, callPin, callTurn, callWait, incomingCall, synthesize, validTwilioSignature } from "./voice.js";
 import { changePassword, createVault, isUnlocked, lock, VaultLockedError, vaultExists } from "./vault.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -193,7 +196,8 @@ export function createApp() {
   // Every state-changing API call must carry this header. Browsers won't add it cross-site, which (with the
   // SameSite=Strict cookie) blocks request forgery.
   app.use("/api", (req, res, next) => {
-    if (req.method !== "GET" && req.get("x-requested-with") !== "agent") {
+    // Twilio's webhooks are checked by their signature instead (see voice.ts).
+    if (req.method !== "GET" && req.get("x-requested-with") !== "agent" && !req.path.startsWith("/voice/twilio/")) {
       res.status(403).json({ error: "Missing X-Requested-With header" });
       return;
     }
@@ -214,6 +218,23 @@ export function createApp() {
       agentName: config.agentName,
       passkeys: listPasskeys().length,
     });
+  });
+
+  // ── Phone calls (Twilio): signed by Twilio, so they don't use the app's sign-in ──
+  const twilioForm = express.urlencoded({ extended: false, limit: "100kb" });
+  const twilioOnly = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    if (!config.twilioAuthToken) return void res.status(404).end();
+    if (!validTwilioSignature(req)) return void res.status(403).end();
+    next();
+  };
+  const xmlReply = (res: express.Response, body: string) => res.type("text/xml").send(body);
+  app.post("/api/voice/twilio/incoming", twilioForm, twilioOnly, (req, res) => xmlReply(res, incomingCall(req.body)));
+  app.post("/api/voice/twilio/pin", twilioForm, twilioOnly, (req, res) => xmlReply(res, callPin(req.body)));
+  app.post("/api/voice/twilio/turn", twilioForm, twilioOnly, asyncRoute(async (req, res) => void xmlReply(res, await callTurn(req.body))));
+  app.post("/api/voice/twilio/wait", twilioForm, twilioOnly, asyncRoute(async (req, res) => void xmlReply(res, await callWait(req.body))));
+  app.post("/api/voice/twilio/status", twilioForm, twilioOnly, (req, res) => {
+    if (["completed", "busy", "failed", "no-answer", "canceled"].includes(req.body.CallStatus)) callEnded(req.body);
+    res.status(204).end();
   });
 
   // ── Passkeys (Face ID, fingerprint): signing in ──
@@ -375,6 +396,18 @@ export function createApp() {
     res.json(passkeySummaries());
   });
 
+  // ── A natural voice for calls in the app (ElevenLabs) ──
+  app.post("/api/voice/speech", asyncRoute(async (req, res) => {
+    if (!config.elevenlabsKey) throw new HttpError(404, "No ElevenLabs key is set");
+    const { text } = parse(z.object({ text: z.string().min(1).max(20_000) }), req.body);
+    const controller = new AbortController();
+    res.on("close", () => controller.abort());
+    const audio = await synthesize(text, controller.signal);
+    res.setHeader("Content-Type", "audio/mpeg");
+    res.setHeader("Cache-Control", "no-store");
+    await pipeline(Readable.fromWeb(audio.body as import("node:stream/web").ReadableStream), res).catch(() => {});
+  }));
+
   app.get("/api/usage", (_req, res) => {
     res.json(spendingReport());
   });
@@ -395,6 +428,11 @@ export function createApp() {
         codeExecution: config.codeExecution !== "off",
         phoneNotifications: !!config.ntfyUrl,
         webPush: true,
+        voice: {
+          naturalVoice: !!config.elevenlabsKey,
+          phone: !!config.twilioAuthToken && config.twilioAllowedCallers.length > 0,
+          phoneWebhook: config.publicUrl ? `${config.publicUrl}/api/voice/twilio/incoming` : null,
+        },
         swarmConcurrency: config.swarmConcurrency,
         swarmMaxTasks: config.swarmMaxTasks,
       },
@@ -457,6 +495,7 @@ export function createApp() {
     attachmentIds: z.array(z.string()).max(20).default([]),
     model: z.string().optional(),
     effort: effort.optional(),
+    voice: z.boolean().optional(),
   });
 
   app.post("/api/conversations/:id/messages", (req, res) => {

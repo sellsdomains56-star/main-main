@@ -3,7 +3,7 @@ import { config } from "../../config.js";
 import { readFileBytes } from "../../files.js";
 import { requestCost } from "../../pricing.js";
 import type { Effort, Source, StoredMessage } from "../../types.js";
-import { attachmentKind } from "./attachments.js";
+import { attachmentKind, userTurnText } from "./attachments.js";
 import { TurnError, type ProviderAdapter, type RunInput, type RunResult } from "./types.js";
 
 type InputItem = OpenAI.Responses.ResponseInputItem;
@@ -42,7 +42,7 @@ function userContent(m: StoredMessage): ContentPart[] {
       });
     }
   }
-  const text = m.scheduled ? `[Scheduled task — the user isn't watching live; do it and report the result]\n${m.text}` : m.text;
+  const text = userTurnText(m);
   parts.push({ type: "input_text", text: text || "(see attachments)" });
   return parts;
 }

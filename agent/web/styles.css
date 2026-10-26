@@ -2439,3 +2439,147 @@ input[type="password"] {
   color: var(--success);
   display: inline-flex;
 }
+
+/* ── Voice call ─────────────────────────────────────────────────────────── */
+.call-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: max(48px, env(safe-area-inset-top)) 24px max(36px, env(safe-area-inset-bottom));
+  background: radial-gradient(120% 80% at 50% 0%, color-mix(in srgb, var(--brand) 18%, var(--bg)) 0%, var(--bg) 60%);
+  color: var(--text);
+  text-align: center;
+  user-select: none;
+}
+.call-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 560px);
+  margin-top: 6vh;
+}
+.call-body h2 {
+  margin: 14px 0 0;
+  font-size: 24px;
+  font-weight: 650;
+}
+.call-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+.call-emoji {
+  font-size: 58px;
+  line-height: 1;
+}
+.call-avatar::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid var(--brand);
+  opacity: 0;
+}
+.call-overlay[data-phase="listening"] .call-avatar::after {
+  animation: call-pulse 1.6s ease-out infinite;
+}
+.call-overlay[data-phase="speaking"] .call-avatar::after {
+  opacity: 0.9;
+  animation: call-talk 0.9s ease-in-out infinite alternate;
+}
+.call-overlay[data-phase="thinking"] .call-avatar {
+  animation: call-think 1.4s ease-in-out infinite;
+}
+@keyframes call-pulse {
+  from { transform: scale(0.92); opacity: 0.8; }
+  to { transform: scale(1.18); opacity: 0; }
+}
+@keyframes call-talk {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+@keyframes call-think {
+  50% { opacity: 0.6; }
+}
+.call-status {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 15px;
+}
+.call-heard {
+  margin: 18px 0 0;
+  font-size: 19px;
+  font-weight: 550;
+  color: var(--text);
+  min-height: 1.4em;
+}
+.call-said {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-2);
+  max-height: 34vh;
+  overflow: auto;
+}
+.call-hint {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin: 0 0 14px;
+  visibility: hidden;
+}
+.call-overlay[data-phase="speaking"] .call-hint {
+  visibility: visible;
+}
+.call-controls {
+  display: flex;
+  gap: 28px;
+}
+.call-ctl {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elev-2);
+  color: var(--text);
+  cursor: pointer;
+}
+.call-ctl.off {
+  background: var(--text);
+  color: var(--bg);
+}
+.call-ctl.end {
+  background: var(--danger);
+  border-color: transparent;
+  color: #fff;
+}
+.call-ctl.end svg {
+  transform: rotate(135deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .call-avatar,
+  .call-avatar::after {
+    animation: none !important;
+  }
+}
+code.webhook {
+  display: block;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--bg-elev-2);
+  font-size: 12.5px;
+  overflow-wrap: anywhere;
+}

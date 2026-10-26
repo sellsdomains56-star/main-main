@@ -471,4 +471,22 @@ export const AR: Record<string, string> = {
   "Face ID & fingerprint": "بصمة الوجه والإصبع",
   "This passkey isn't registered here. Sign in with your password.": "مفتاح المرور هذا غير مسجّل هنا. سجّل الدخول بكلمة المرور.",
   "That passkey sign-in didn't check out. Try again.": "تعذّر التحقق من تسجيل الدخول بمفتاح المرور. حاول مجددًا.",
+
+  // Voice call
+  "Pause listening": "إيقاف الاستماع مؤقتًا",
+  "End call": "إنهاء المكالمة",
+  "Voice call": "مكالمة صوتية",
+  "Tap anywhere to interrupt": "اضغط في أي مكان للمقاطعة",
+  "Listening…": "يستمع…",
+  "Speaking…": "يتحدث…",
+  "Paused. Tap the microphone to talk.": "متوقف مؤقتًا. اضغط الميكروفون لتتحدث.",
+  "Allow the microphone to talk to {name}.": "اسمح باستخدام الميكروفون لتتحدث مع {name}.",
+
+  // Phone
+  "Voice calls in the app use your ElevenLabs voice.": "المكالمات الصوتية في التطبيق تستخدم صوتك من ElevenLabs.",
+  "Voice calls in the app use this device's voice. Add an ElevenLabs key for a natural one.": "المكالمات الصوتية في التطبيق تستخدم صوت هذا الجهاز. أضف مفتاح ElevenLabs لصوت طبيعي.",
+  "Your agent answers your Twilio number for the callers you allowed.": "يرد وكيلك على رقم Twilio الخاص بك للمتصلين الذين سمحت لهم.",
+  "Set PUBLIC_URL so Twilio can reach the app.": "عيّن PUBLIC_URL ليتمكن Twilio من الوصول إلى التطبيق.",
+  "To call it from any phone, connect a Twilio number (see the README).": "للاتصال به من أي هاتف، اربط رقمًا من Twilio (راجع ملف README).",
+  "Calls": "المكالمات",
 };

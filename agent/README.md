@@ -18,7 +18,7 @@
 | **Swarms** | "Use my research agents to compare these 200 companies." The work is split across many agents running in parallel (8 at a time by default), with live progress, and you get one combined answer plus a full report file. |
 | **Arabic & English** | The whole app is in English or Arabic (with a full right-to-left layout); switch under **Settings** or on the sign-in screen. The agent replies in Arabic when the app is in Arabic, and always in the language you write in. |
 | **Spending** | **Usage & spending** shows what you've spent today, this week, this month and in total, a 30-day chart, and costs by model and agent (estimated from published prices, prompt caching and searches included). Set a monthly budget to get a notification at 80% and 100%. |
-| **Voice** | Dictate with the mic button; turn on read-aloud in Settings. |
+| **Voice & calls** | Dictate with the mic button, or tap the **phone** button for a hands-free voice call: talk, it answers out loud, tap to interrupt. With an [ElevenLabs](https://elevenlabs.io) key it speaks in a natural voice (English and Arabic). Connect a Twilio number and you can **phone your agent from any phone**. |
 | **Anywhere** | Works on desktop and phone; install it to your home screen like an app. Dark and light themes. |
 
 ## Try it without installing
@@ -123,6 +123,15 @@ What each one can do: **Gmail**: search, read, save attachments to the workspace
 
 **Safety:** connector sign-ins are stored encrypted with everything else. You can switch each connector off or disconnect it at any time; disconnecting Google also revokes the access at Google. The agent treats what it reads in emails and apps as information, not instructions. Custom agents only get connectors if you tick **Connected apps** in their abilities.
 
+## Phone your agent (Twilio)
+
+1. Buy a phone number in the [Twilio console](https://console.twilio.com) (Phone Numbers → Buy a number).
+2. Set these in `.env` (or your server's secrets): `TWILIO_AUTH_TOKEN` (Account → API keys & tokens), `TWILIO_ALLOWED_CALLERS` (your own number, e.g. `+971501234567`; several separated by commas), `TWILIO_PIN` (a few digits you'll type before talking; strongly recommended, because caller ID can be faked), and `PUBLIC_URL` (your HTTPS address).
+3. In the number's settings, under **Voice → A call comes in**, choose **Webhook**, `https://<your address>/api/voice/twilio/incoming`, **HTTP POST**. Optionally set the **status callback** to `/api/voice/twilio/status`.
+4. Call it. Each call is saved as a chat (📞) in the app. Say "goodbye" to hang up.
+
+Only the numbers you list can get through, every request is checked against Twilio's signature, and nothing reaches the agent before the PIN. It speaks English or Arabic following your app language (override with `TWILIO_LANGUAGE`, e.g. `ar-AE`, and `TWILIO_VOICE`). Twilio charges for the number (about $1–2 a month) and per minute.
+
 ## Agents & swarms
 
 - **Create:** click **Agents → New agent**, or ask: *"Create agents for a newsroom: an editor, a fact-checker, a headline writer and a social media manager."*
@@ -144,6 +153,8 @@ What each one can do: **Gmail**: search, read, save attachments to the workspace
 | `CODE_EXECUTION` | `0` turns off running code. |
 | `SWARM_CONCURRENCY`, `SWARM_MAX_TASKS` | Swarm limits. |
 | `ANTHROPIC_MODELS`, `XAI_MODELS`, `XAI_IMAGE_MODEL` | Override the model lists. |
+| `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_ID`, `ELEVENLABS_MODEL` | A natural voice for calls (default model `eleven_flash_v2_5`). |
+| `TWILIO_AUTH_TOKEN`, `TWILIO_ALLOWED_CALLERS`, `TWILIO_PIN`, `TWILIO_LANGUAGE`, `TWILIO_VOICE` | Phone your agent (see **Phone your agent**). |
 | `VOYAGE_API_KEY`, `VOYAGE_MODEL` | Memory search by meaning (default model `voyage-4-lite`). The vectors are stored encrypted. |
 | `SENTRY_DSN` | Error tracking (errors only, never your messages). |
 | `LITESTREAM_*` | Continuous database backups on a server (see **Run it on a server**). |

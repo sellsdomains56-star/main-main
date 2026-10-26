@@ -5,6 +5,7 @@ import { icon, logo, type IconName } from "./icons.js";
 import { renderMarkdown } from "./markdown.js";
 import { EFFORTS, modelInfo, prefs, savePrefs, state, type FileRecord, type OpenConversation, type StoredMessage } from "./state.js";
 import { formatSize, greeting, hostOf, prepareImage, toast } from "./util.js";
+import { startCall } from "./call.js";
 import { lang, plural, t } from "./i18n.js";
 
 export interface ChatHooks {
@@ -658,7 +659,14 @@ export function addFiles(files: Iterable<File>) {
   updateSendState();
 }
 
-async function send(textOverride?: string) {
+/** Sends something said on a voice call and resolves with the reply's text (null if there wasn't one). */
+export async function sendSpoken(text: string): Promise<string | null> {
+  await send(text, { voice: true });
+  const last = state.current?.messages.at(-1);
+  return last?.role === "assistant" ? last.text || last.error || null : null;
+}
+
+async function send(textOverride?: string, opts: { voice?: boolean } = {}) {
   if (busy) return;
   const text = (textOverride ?? textarea.value).trim();
   if (!text && !pending.length) return;
@@ -690,6 +698,7 @@ async function send(textOverride?: string) {
       attachmentIds: uploads.map((u) => u.id),
       model: state.model,
       effort: state.effort,
+      ...(opts.voice ? { voice: true } : {}),
     });
   } catch (err) {
     toast((err as Error).message, "error");
@@ -931,6 +940,7 @@ export function mountChat(root: HTMLElement, chatHooks: ChatHooks, onMenu: () =>
       h("div", { class: "model-wrap" }, modelBtn),
       h("div", { class: "spacer" }),
       hasSpeech ? micBtn : null,
+      hasSpeech ? h("button", { class: "icon-btn call-btn", type: "button", title: t("Voice call"), "aria-label": t("Voice call"), html: icon("phone", 18), onclick: () => startCall() }) : null,
       sendBtn,
     ),
     fileInput,

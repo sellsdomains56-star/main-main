@@ -7,7 +7,7 @@ import { readFileBytes, registerGenerated, safeName, workspacePath } from "../..
 import type { Effort, FileRecord, Source, StoredMessage } from "../../types.js";
 import type { ToolOutcome } from "../tools.js";
 import { requestCost } from "../../pricing.js";
-import { attachmentKind } from "./attachments.js";
+import { attachmentKind, userTurnText } from "./attachments.js";
 import { TurnError, type ProviderAdapter, type RunInput, type RunResult } from "./types.js";
 
 type MessageParam = Anthropic.Beta.BetaMessageParam;
@@ -142,7 +142,7 @@ function userContent(m: StoredMessage, sandbox = false): ContentBlockParam[] {
         });
     }
   }
-  const text = m.scheduled ? `[Scheduled task — the user isn't watching live; do it and report the result]\n${m.text}` : m.text;
+  const text = userTurnText(m);
   blocks.push({ type: "text", text: text || "(see attachments)" });
   return blocks;
 }

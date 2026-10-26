@@ -16,6 +16,8 @@ export interface SendOptions {
   effort?: Effort;
   /** Sent by the scheduler rather than typed. */
   scheduled?: boolean;
+  /** Said out loud on a call: the reply will be spoken. */
+  voice?: boolean;
 }
 
 function resolveModelAndEffort(conversationId: string, model?: string, effort?: Effort) {
@@ -61,6 +63,7 @@ export function sendMessage(opts: SendOptions): ActiveRun {
     attachments: attachments.length ? attachments : undefined,
     context: turnContext(Date.now(), opts.text),
     scheduled: opts.scheduled || undefined,
+    voice: opts.voice || undefined,
   });
   return launch(opts.conversationId, model, effort, agent);
 }

@@ -453,6 +453,7 @@ export function openSettings(onSaved: (s: Settings) => void, onSignOut: (everywh
     h("label", { class: "field" }, t("Custom instructions"), custom),
     h("div", { class: "row" }, h("label", { class: "field grow" }, t("Theme"), theme), h("div", { class: "field grow" }, t("Notifications on this device"), notifications)),
     h("label", { class: "check" }, readAloud, t("Read replies aloud automatically")),
+    state.boot.cloud || state.boot.demo ? null : phoneSection(),
     changePasswordSection(),
     h(
       "div",
@@ -567,6 +568,23 @@ function cloudSecurityRows(row: (ok: boolean, title: string, detail: string) => 
     ),
     row(true, t("Uploads stay in this page"), t("Files you attach are read in this page and aren't saved. Attach them again in a new visit.")),
   );
+}
+
+/** Calling your agent: the in-app call button, and a real phone number through Twilio. */
+function phoneSection(): HTMLElement {
+  const voice = state.boot.features.voice;
+  const lines: (HTMLElement | string)[] = [
+    h("small", { class: "muted" }, voice?.naturalVoice ? t("Voice calls in the app use your ElevenLabs voice.") : t("Voice calls in the app use this device's voice. Add an ElevenLabs key for a natural one.")),
+  ];
+  if (voice?.phone) {
+    lines.push(
+      h("small", { class: "muted" }, t("Your agent answers your Twilio number for the callers you allowed.")),
+      voice.phoneWebhook ? h("code", { class: "webhook" }, voice.phoneWebhook) : h("small", { class: "form-error" }, t("Set PUBLIC_URL so Twilio can reach the app.")),
+    );
+  } else {
+    lines.push(h("small", { class: "muted" }, t("To call it from any phone, connect a Twilio number (see the README).")));
+  }
+  return h("div", { class: "field" }, t("Calls"), ...lines);
 }
 
 /** Face ID / fingerprint sign-in: the passkeys registered, and adding this device. */

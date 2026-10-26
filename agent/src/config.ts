@@ -65,6 +65,18 @@ export const config = {
   voyageKey: env.VOYAGE_API_KEY?.trim() ?? "",
   voyageModel: env.VOYAGE_MODEL?.trim() || "voyage-4-lite",
   voyageBaseUrl: (env.VOYAGE_BASE_URL?.trim() || "https://api.voyageai.com/v1").replace(/\/$/, ""),
+  /** Optional: a natural voice for calls (ElevenLabs). Without it the browser's own voice speaks. */
+  elevenlabsKey: env.ELEVENLABS_API_KEY?.trim() ?? "",
+  elevenlabsVoiceId: env.ELEVENLABS_VOICE_ID?.trim() || "JBFqnCBsd6RMkjVDRZzb",
+  elevenlabsModel: env.ELEVENLABS_MODEL?.trim() || "eleven_flash_v2_5",
+  elevenlabsBaseUrl: (env.ELEVENLABS_BASE_URL?.trim() || "https://api.elevenlabs.io/v1").replace(/\/$/, ""),
+  /** Optional: answer a real phone number with Twilio. Only the numbers listed may call. */
+  twilioAuthToken: env.TWILIO_AUTH_TOKEN?.trim() ?? "",
+  twilioAllowedCallers: (env.TWILIO_ALLOWED_CALLERS ?? "").split(",").map((s) => s.replace(/[^\d+]/g, "")).filter(Boolean),
+  twilioLanguage: env.TWILIO_LANGUAGE?.trim() ?? "",
+  twilioVoice: env.TWILIO_VOICE?.trim() ?? "",
+  /** Callers type this on the keypad before the agent talks (caller ID can be faked). Recommended. */
+  twilioPin: (env.TWILIO_PIN ?? "").replace(/\D/g, ""),
   /** A scripted provider for tests and for trying the UI without API keys. */
   mock: env.AGENT_MOCK === "1",
   anthropicModels: list(env.ANTHROPIC_MODELS, ["claude-fable-5-1", "claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5"]),

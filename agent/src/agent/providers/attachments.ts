@@ -1,4 +1,17 @@
 import { isTextMime, isVisionImage } from "../../files.js";
+import type { StoredMessage } from "../../types.js";
+
+/** The text of a user turn as the model sees it, with a note when it was a scheduled task or said on a call. */
+export function userTurnText(m: StoredMessage): string {
+  const notes = [
+    m.scheduled ? "[Scheduled task — the user isn't watching live; do it and report the result]" : "",
+    m.voice
+      ? "[Voice call — the user said this out loud and will hear your reply spoken. Answer like a person on the phone: short, " +
+        "natural sentences, no Markdown, lists, tables, links or emoji; offer details only if asked. Spell out numbers and symbols the way you'd say them.]"
+      : "",
+  ].filter(Boolean);
+  return notes.length ? `${notes.join("\n")}\n${m.text}` : m.text;
+}
 
 export type AttachmentKind = "image" | "pdf" | "text" | "binary";
 
