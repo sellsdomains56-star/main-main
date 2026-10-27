@@ -3,7 +3,8 @@
 64 s vertical reel (1080x1920, 30 fps; 60.7 s of his recording + 3 s end card) from his Arabic recording (WeTransfer `t-18nx78ex6AaNmYMZ`, 27 Oct 2026, 2160x3840 25 fps, Gulf Arabic). The recording shows him at the podcast table for the first 6.24 s, then the picture is **black with his voice only** to the end. Feedback: "do the black part with all animation and his VO", "the content is in Arabic so the animation should be the same". So:
 
 - 0 - 6.0 s: his footage exactly as recorded (no zoom, nothing on top); it cross-fades into the animation by 6.24 s, when the recording turns black.
-- 6.24 s to the end: all animation on the dark background, **every word on screen in Arabic** (right to left, Cairo bold), his face as a small **still** circle top-right (taken from the footage; the ring still pulses with his voice), no captions (as in the last Arabic reel).
+- 6.24 s to the end: all animation on the dark background, **every word on screen in Arabic** (right to left, Cairo bold), **no face circle** (feedback: "don't put his image small, just directly animation to the pages and articles"), no captions (as in the last Arabic reel).
+- **His voice exactly as recorded**: `cut.json` points at a stereo 48 kHz extract of the WeTransfer file and sets `chain: anull` (no denoise / compressor / EQ). The first version read a MONO extract as stereo, which played the voice at double speed - fixed; `build/voice48k.wav` now matches the original sample for sample.
 - Real **Arabic** news pages as proof, flown like the map, with the marker wiping **right to left** over the exact words he is saying, and a source chip (outlet, date).
 - Quiet whoosh-only sound, Reels safe zone; call to action "اكتب إكسبو في التعليقات" (typed, sent, answered "بأرسل لك التفاصيل"), end card "عبدالله أهلي".
 
@@ -33,14 +34,14 @@
 ## Build
 Engine as `../dubai-population` plus Arabic: Cairo fonts (`index.html`), `T()` / `M()` with no letter-spacing and right-to-left direction for Arabic (`lib.js`), `NO_CAPTIONS` and `STATIC_FACE` (`main.js`), right-to-left marker on pages (`h.rtl`, `scenes_lib.js`), the Arabic-aware `make_timeline.py` from `../dubai-five-zones-ar`.
 ```
-python3 -I prep_cut.py cut.json                          # cut.json -> the WeTransfer file (not committed)
+ffmpeg -i take.mp4 -vn -ac 2 -ar 48000 a48s.wav           # STEREO: prep_cut.py reads 2-channel audio
+python3 -I prep_cut.py cut.json                          # cut.json -> the WeTransfer file (not committed), chain 'anull' = voice untouched
 ASR_LANG=ar python3 -I asr_words.py build/voice48k.wav build/words_raw.json
 python3 -I make_timeline.py 3.0 && python3 -I snap_onsets.py   # script.txt = his words, ASR spellings corrected
 (cd data && python3 -I nominatim_expo.py && python3 -I build_geo.py)
 node shot_hl.mjs "<sky news arabia url>" assets/sky_aldar.png --w 430 --dpr 2.5 --wait 9000 --pad 160 --noempty --hidetext "أخبار ذات صلة" --hidetext "سياسة ملفات الارتباط" --find "إبرام شراكة لتطوير مشروع رئيسي متعدد الاستخدامات" --find "يضم مجموعةً متنوعةً من المساحات السكنية والمكتبية ومتاجر التجزئة"
 node shot_hl.mjs "<emarat al youm url>" assets/ey_dec.png --w 430 --dpr 2.5 --wait 9000 --pad 160 --noempty --find "المخطط الرئيسي لتوسعة مركز دبي للمعارض في مدينة إكسبو دبي بتكلفة 10 مليارات درهم"
 node shot_hl.mjs "<wam url>" assets/wam_dwc.png --w 430 --dpr 2.5 --wait 12000 --pad 160 --find "بتكلفة 128 مليار درهم"
-# assets/portrait.jpg = build/footage/f_00060.jpg cropped (250, 560, 810, 1120) -> 512 px
 node export_cues.mjs && node fetch_tiles.mjs && node render.mjs --out build/frames --fmt jpg --workers 3 --ss 1.5
 python3 -I audio.py build/voice48k.wav build/mix.wav && CRF=22 MAXRATE=2.4M BUFSIZE=4.8M bash encode.sh expo-city-aldar-ar
 ```

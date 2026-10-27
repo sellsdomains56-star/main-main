@@ -1,7 +1,8 @@
 'use strict';
 // ---------------------------------------------------------------------------
 // "ليش الدار اختارت إكسبو سيتي؟" - his Arabic recording (WeTransfer 27 Oct 2026, 4K 25 fps, 60.7 s, Gulf Arabic).  0 - 6.24 s: him at the podcast table, as recorded;
-// 6.24 s to the end the recording is BLACK with his voice only -> all animation, everything on screen in Arabic (right to left), his face as a small still circle.
+// 6.24 s to the end the recording is BLACK with his voice only -> all animation, everything on screen in Arabic (right to left). No face circle (feedback: straight
+// into the animation, the pages and the articles). His voice exactly as recorded (cut.json: stereo source, no filter chain).
 // Facts on screen come from real pages (captured with shot_hl.mjs into assets/, not committed), flown like the map with a marker on the exact words:
 //   Sky News Arabia 10 Oct 2024 - Aldar x Expo City Dubai partnership: a mixed-use project (homes, offices, retail), total cost "تتجاوز 1.75 مليار درهم", next to DEC
 //   Emarat Al Youm 24 Sep 2024 - Mohammed bin Rashid approves the Dubai Exhibition Centre expansion master plan, AED 10 billion
@@ -23,7 +24,7 @@ function buildScenes() {
   };
 
   const FACE_SEGS = [[0, K.blk]], PUNCHES = [], OVERLAYS = [];        // K.blk = 5.96: the cross-fade to the animation is done by 6.24 s, when the recording goes black
-  const IMAGES = { portrait: 'assets/portrait.jpg', sky: 'assets/sky_aldar.png', ey: 'assets/ey_dec.png', wam: 'assets/wam_dwc.png' };
+  const IMAGES = { sky: 'assets/sky_aldar.png', ey: 'assets/ey_dec.png', wam: 'assets/wam_dwc.png' };
   const GOLD = '#E9C47C', SOFT = '#F3D9A4', BLUE = ['#3DB2FF', '#A9DEFF'], TEAL = ['#2FD8A0', '#A6F3D6'], GOLDS = ['#C99A4A', '#F3D9A4'];
   const P = GEO.x.points || {}, EXPO = P.expo || [55.1544, 24.9587], DEC = P.dec || [55.1468, 24.9625], DWC = P.dwc || [55.1593, 24.892], TERM = P.dwc_term || [55.1592, 24.8863];
 
@@ -46,14 +47,12 @@ function buildScenes() {
   page('p_wam', 'wam', T_WAM, [[0, 538, 330, 0.92, 0], [dur(T_WAM) + 0.5, 538, 345, 0.98, 6]],
     [mk([84, 322, 145, 85], W0 + 0.2, W0 + 0.5), mk([702, 390, 334, 85], W0 + 0.5, W0 + 1.2)]);
 
-  // his face: a small still circle top-right (the recording is black after 6.24 s); it grows to the centre for the end card
-  const BUBBLE = { img: 'portrait', t0: K.blk - 0.05, keys: [{ t: 0, cx: 865, cy: 418, r: 78 }, { t: K.uktub - 0.2, cx: 865, cy: 418, r: 78 }, { t: K.uktub + 0.9, cx: 540, cy: 470, r: 125 }] };
-  const HX = 765;                                                        // right edge of the HUD text (left of the bubble)
+  const HX = SAFE.x1;                                                    // right edge of the HUD text (no face circle: the title uses the full width)
   const win = (t, a0, a1, d = 0.4) => ea(t, a0, a0 + d) * (1 - ea(t, a1, a1 + 0.35));
   const slide = (t, a0) => (1 - ea(t, a0, a0 + 0.5, E.out4)) * 30;
   const fit = (s, f, w) => Math.min(1, w / M(s, f));
 
-  // ---- the HUD title, mirrored for Arabic: small kicker, the name, a coloured underline and sub line, all right-aligned next to the bubble
+  // ---- the HUD title, mirrored for Arabic: small kicker, the name, a coloured underline and sub line, all right-aligned
   const hudAR = (t, kicker, name, sub, a0, a1, color = GOLD) => {
     const al = ea(t, a0, a0 + 0.35) * (a1 ? 1 - ea(t, a1, a1 + 0.35) : 1); if (al <= 0.003) return;
     const e = ea(t, a0, a0 + 0.7, E.out4), dy = (1 - e) * 34, MW = HX - SAFE.x0, f = F.d(800, 56), fk = F.d(700, 30), f3 = F.d(700, 31);
@@ -208,7 +207,7 @@ function buildScenes() {
     const ce = ea(t, K.uktub - 0.1, K.uktub + 0.6, E.out4);
     if (ce > 0.003) {
       ctx.save(); ctx.globalAlpha *= ce; ctx.fillStyle = 'rgba(8,8,10,0.9)'; ctx.fillRect(0, 0, W, H); ctx.restore();
-      ctx.save(); ctx.globalAlpha *= ce; T('عبدالله أهلي', CX, 690, { font: F.d(800, 64), color: C.ink }); T('ABDULLAH AHLI', CX, 744, { font: F.d(700, 30), ls: 6, color: C.gold }); ctx.restore();
+      ctx.save(); ctx.globalAlpha *= ce; T('عبدالله أهلي', CX, 620, { font: F.d(800, 80), color: C.ink }); T('ABDULLAH AHLI', CX, 684, { font: F.d(700, 32), ls: 6, color: C.gold }); ctx.restore();
       const send = K.atrish - 0.1, sent = ea(t, send, send + 0.35), ia = ea(t, K.uktub + 0.2, K.uktub + 0.7, E.out4), iy = 1185, X0 = SAFE.x0, X1 = SAFE.x1, BW = X1 - X0, msg = 'إكسبو';
       const typed = ea(t, K.expoC - 0.05, K.expoC + 0.35, E.lin);
       ctx.save(); ctx.globalAlpha *= ia; rr(X0, iy - 65, BW, 130, 65); ctx.fillStyle = C.panel; ctx.fill(); ctx.strokeStyle = 'rgba(243,239,230,0.28)'; ctx.lineWidth = 3; ctx.stroke();
@@ -225,5 +224,5 @@ function buildScenes() {
   [T_B1[0], T_M1[0], T_SKY[0], T_M2[0], T_EY[0], T_M3[0], T_WAM[0], T_HUB[0], T_28[0], T_Q[0], T_CTA[0], K.uktub].forEach(x => cues.push({ k: 'wh', t: x - 0.2, d: 0.5 }));
   [K.milyar, K.m10, K.aamal, K.maarid, K.sharikat, K.y2028].forEach(x => cues.push({ k: 'pin', t: x }));
   cues.push({ k: 'send', t: K.atrish - 0.1 });
-  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, FOOT_MAX: 1821, NO_CAPTIONS: true, STATIC_FACE: true };
+  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE: null, FOOT_MAX: 1821, NO_CAPTIONS: true, STATIC_FACE: true };
 }
