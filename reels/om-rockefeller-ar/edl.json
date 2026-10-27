@@ -1,0 +1,19 @@
+{
+ "notes": {
+  "n1": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/vn_0340/n1.m4a",
+  "n2": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/vn_0340/n2.m4a",
+  "n3": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/vn_0340/n3.m4a",
+  "n4": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/vn_0340/n4.m4a",
+  "n5": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/vn_0340/n5.m4a"
+ },
+ "note": "one video from voice note n4 (27 Oct 2026), the whole note with its own call to action; all five notes are listed only so each gets the same plain gain as in the other four videos",
+ "pieces": [
+  [
+   "n4",
+   0.0,
+   999
+  ]
+ ],
+ "gap": 0.42,
+ "max_pause": 0.3
+}
