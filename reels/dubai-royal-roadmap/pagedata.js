@@ -1,0 +1,3 @@
+'use strict';
+// the captured pages (shot_hl.mjs): image height, url and the exact boxes (image px) of each quoted phrase, in the order they were searched for
+const PAGES = {"dmo_emaar":{"h":2679,"url":"https://mediaoffice.ae/en/news/2026/may/12-05/dubai-holding-and-icd-announce-completion-of-strategic-transaction-in-emaar-properties","boxes":[[[143,1943,880,53],[28,1999,978,53]],[[28,2113,990,53],[28,2169,829,53],[28,2226,212,53]]],"phrases":["Dubai Holding has acquired a 22.27% equity stake in Emaar Properties PJSC (Emaar Properties) from ICD","total shareholding in Emaar Properties has increased to 29.73%, positioning it as the company\u2019s largest shareholder"]}};

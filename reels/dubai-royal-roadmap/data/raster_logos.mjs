@@ -1,6 +1,8 @@
 // SVG / PNG logos -> trimmed PNGs on a transparent background (Chromium renders the SVG exactly as a browser would).
 //   node data/raster_logos.mjs <out_dir> <file> [<file> ...]        each output: <out_dir>/<basename>.png, about 900 px on the long side
-import { chromium } from 'playwright';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url); let chromium;
+for (const m of [process.env.PLAYWRIGHT_PATH, '/opt/node22/lib/node_modules/playwright', 'playwright'].filter(Boolean)) { try { ({ chromium } = require(m)); break; } catch (e) { /* try the next */ } }
 import fs from 'node:fs'; import path from 'node:path';
 const [out, ...files] = process.argv.slice(2); fs.mkdirSync(out, { recursive: true });
 const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1000, height: 1000 } });
