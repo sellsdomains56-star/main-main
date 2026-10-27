@@ -8,20 +8,27 @@
 - Real **Arabic** news pages as proof, flown like the map, with the marker wiping **right to left** over the exact words he is saying, and a source chip (outlet, date).
 - Quiet whoosh-only sound, Reels safe zone; call to action "اكتب إكسبو في التعليقات" (typed, sent, answered "بأرسل لك التفاصيل"), end card "عبدالله أهلي".
 
-| Time | What he says | On screen |
+**v3 (27 Oct 2026)** after the feedback "add the first question as text at the beginning as a caption, everything with articles or map, and speed our sound a bit without distortion":
+- **Voice 1.1x**: `ffmpeg -af rubberband=tempo=1.1:transients=mixed:phase=laminar:formant=preserved:pitchq=quality:channels=together` (pitch and formants kept: median pitch 139.5 Hz before and after); the footage is sped up the same (`setpts=PTS/1.1`) so picture and voice stay in sync. 60.7 s -> 55.2 s, +3 s end card.
+- **Captions only for the opening question** (Arabic, right to left, `CAP_UNTIL`), over his footage and the first page.
+- **Every beat after the footage is a real page or the map** (the counter, the tiles and the plain cards of v2 are gone).
+
+| Time (1.1x) | What he says | On screen |
 |------|--------------|-----------|
-| 0 - 6.0 | Abdullah, why is Aldar, an Abu Dhabi company, expanding in Dubai, in Expo City? | FOOTAGE as recorded |
-| 6.0 - 11.6 | why did Aldar choose Expo City for a project of nearly AED 1.8 billion? | counter: "بتكلفة إجمالية تتجاوز 1.75 مليار درهم" (the figure as published) |
-| 11.6 - 15.2 | the answer is not only the project, it is what is happening around it | MAP: Expo City (Expo 2020 district) outline, then pull back with rings |
-| 15.2 - 21.9 | Aldar partnered with Expo City Dubai; offices, shops and homes | REAL PAGE: Sky News Arabia, 10 Oct 2024 - markers on "إبرام شراكة لتطوير مشروع رئيسي متعدد الاستخدامات، يضم مجموعةً متنوعةً من المساحات السكنية والمكتبية ومتاجر التجزئة" |
-| 21.9 - 27.3 | look at the location: next to the future Dubai Exhibition Centre | MAP: the DEC halls highlighted, "مشروع الدار بجانب المركز" |
-| 27.3 - 30.2 | which has a 10 billion dirham expansion plan | REAL PAGE: Emarat Al Youm, 24 Sep 2024 - Mohammed bin Rashid: "المخطط الرئيسي لتوسعة مركز دبي للمعارض في مدينة إكسبو دبي بتكلفة 10 مليارات درهم" |
-| 30.2 - 33.4 | and near Al Maktoum International Airport | MAP: pull back south, the airport outline, a line from Expo City |
-| 33.4 - 35.6 | which is preparing for a huge expansion | REAL PAGE: WAM, 28 Apr 2024 - headline "... بتكلفة 128 مليار درهم" |
-| 35.6 - 42.4 | not only a place to live: a hub for business, exhibitions, companies | four tiles (سكن dims; أعمال · معارض · شركات light up) |
-| 42.4 - 45.4 | expected handover 2028 | 2028 card, 2024 announcement -> 2028 handover line |
-| 45.4 - 52.8 | could Expo City become one of Dubai's top office destinations? | the question, three towers rising |
-| 52.8 - 63.7 | for the project details and the area plan, write إكسبو | details card, then the comment animation and the end card |
+| 0 - 5.4 | Abdullah, why is Aldar, an Abu Dhabi company, expanding in Dubai, in Expo City? | FOOTAGE as recorded + the question as captions |
+| 5.4 - 10.5 | why did Aldar choose Expo City for a project of nearly AED 1.8 billion? | PAGE Sky News Arabia: headline, then the marker on "بتكلفة إجمالية تتجاوز 1.75 مليار درهم" (+ captions) |
+| 10.5 - 13.8 | the answer is what is happening around it | MAP: Expo City outline, pull back with rings |
+| 13.8 - 19.9 | Aldar partnered with Expo City Dubai; offices, shops, homes | PAGE Sky News Arabia: "إبرام شراكة لتطوير مشروع رئيسي متعدد الاستخدامات، يضم ... السكنية والمكتبية ومتاجر التجزئة" |
+| 19.9 - 24.8 | look at the location: next to the future Dubai Exhibition Centre | MAP: DEC halls, "مشروع الدار بجانب المركز" |
+| 24.8 - 27.5 | which has a 10 billion dirham expansion plan | PAGE Emarat Al Youm: "... مركز دبي للمعارض في مدينة إكسبو دبي بتكلفة 10 مليارات درهم" |
+| 27.5 - 30.3 | and near Al Maktoum International Airport | MAP: the airport outline, a line from Expo City |
+| 30.3 - 32.3 | preparing for a huge expansion | PAGE WAM: "... بتكلفة 128 مليار درهم" |
+| 32.3 - 35.1 | the area is not only a place to live | MAP: Expo City + DEC + the airport, "ليست وجهة للسكن فقط" |
+| 35.1 - 38.5 | it is being prepared as a hub for business, exhibitions, companies | PAGE Emarat Al Youm: "وتعزّز مكانة مدينة إكسبو كمركز اقتصادي ديناميكي، مدفوعاً بالمعارض والفعاليات العالمية" |
+| 38.5 - 41.3 | expected handover 2028 | MAP: Expo City / DEC, a large "2028" card |
+| 41.3 - 48.0 | could Expo City become one of Dubai's top office destinations? | MAP: slow flight over Expo City, the question card |
+| 48.0 - 51.5 | for the project details and the area plan | PAGE Sky News Arabia (headline, signing photo) + the details card |
+| 51.5 - 58.2 | write إكسبو in the comments | comment animation, end card "عبدالله أهلي" |
 
 ## Facts and two things to check
 - Aldar x Expo City Dubai (Sky News Arabia, WAM, Gulf News, The National, Oct 2024): a 50/50 joint venture, mixed-use (residential, office, retail), total cost **more than AED 1.75 billion** (he says "nearly 1.8 billion"), next to the Dubai Exhibition Centre.

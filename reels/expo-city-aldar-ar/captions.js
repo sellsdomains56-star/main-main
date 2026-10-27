@@ -61,10 +61,11 @@ function glassPill(x, y, w, h, rad) {                                           
 function drawCaptions(tg, Fv = 1) {
   for (const c of CHUNKS) {
     if (tg < c.a - 0.001 || tg > c.b + 0.2) continue;
+    if (CFG.CAP_UNTIL && c.a >= CFG.CAP_UNTIL) continue;                          // CFG.CAP_UNTIL: captions only for the phrases that start before it (the opening question)
     const outP = c.hardEnd ? (tg >= c.b ? 1 : 0) : E.in2(prog(tg, c.b, c.b + Math.min(0.12, Math.max(0.02, c.gap - 0.02))));
     const inP = ea(tg, c.a, c.a + 0.07, E.out3), alpha = inP * (1 - outP); if (alpha <= 0.003) continue;
     const L = layoutChunk(c), nLines = L.lines.length, cy0 = CAP.cy - (nLines - 1) * CAP.pitch * 0.5, capH = capHeight(L.font);
-    ctx.save(); ctx.globalAlpha *= alpha; ctx.translate(0, (1 - inP) * 12); ctx.font = L.font; ctx.letterSpacing = '0px'; ctx.textAlign = 'center';
+    ctx.save(); ctx.globalAlpha *= alpha; ctx.translate(0, (1 - inP) * 12); ctx.font = L.font; ctx.letterSpacing = '0px'; ctx.textAlign = 'center'; ctx.direction = AR.test(L.lines[0].txt) ? 'rtl' : 'ltr';   // Arabic: right to left
     L.lines.forEach((ln, li) => {
       const cy = cy0 + li * CAP.pitch, w = ln.w + CAP.padX * 2, h = CAP.pillH;
       if (CAP.style === 'bar') {                                                    // the old look: black on white
