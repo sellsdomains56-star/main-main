@@ -1,0 +1,3 @@
+'use strict';
+// the captured pages (shot_hl.mjs): image height, url and the exact boxes (image px) of each quoted phrase, in the order they were searched for
+const PAGES = {"gn_pop":{"h":2862,"url":"https://gulfnews.com/uae/dubai-population-rises-by-226885-since-start-of-2026-1.500692623","boxes":[[[811,2348,179,48],[38,2414,581,48]]],"phrases":["reaching 4,807,185 by midday Monday"]},"wam_pop":{"h":4751,"url":"https://www.wam.ae/en/article/c1hd5qo-dubai-population-tops-4580-million-end-2025","boxes":[[[467,2705,545,60],[39,2787,871,60],[39,2869,138,60]],[[321,4109,679,60],[39,4191,677,60]]],"phrases":["reached 4.58 million by the end of 2025, an increase of around 332,000 people","relying on administrative records, smart systems and real-time data"]}};
