@@ -2,15 +2,15 @@
 
 64 s vertical reel (1080x1920, 30 fps; 60.7 s of his recording + 3 s end card) from his Arabic recording (WeTransfer `t-18nx78ex6AaNmYMZ`, 27 Oct 2026, 2160x3840 25 fps, Gulf Arabic). The recording shows him at the podcast table for the first 6.24 s, then the picture is **black with his voice only** to the end. Feedback: "do the black part with all animation and his VO", "the content is in Arabic so the animation should be the same". So:
 
-- 0 - 6.24 s: his footage exactly as recorded (no zoom, nothing on top).
+- 0 - 6.0 s: his footage exactly as recorded (no zoom, nothing on top); it cross-fades into the animation by 6.24 s, when the recording turns black.
 - 6.24 s to the end: all animation on the dark background, **every word on screen in Arabic** (right to left, Cairo bold), his face as a small **still** circle top-right (taken from the footage; the ring still pulses with his voice), no captions (as in the last Arabic reel).
 - Real **Arabic** news pages as proof, flown like the map, with the marker wiping **right to left** over the exact words he is saying, and a source chip (outlet, date).
 - Quiet whoosh-only sound, Reels safe zone; call to action "اكتب إكسبو في التعليقات" (typed, sent, answered "بأرسل لك التفاصيل"), end card "عبدالله أهلي".
 
 | Time | What he says | On screen |
 |------|--------------|-----------|
-| 0 - 6.2 | Abdullah, why is Aldar, an Abu Dhabi company, expanding in Dubai, in Expo City? | FOOTAGE as recorded |
-| 6.2 - 11.6 | why did Aldar choose Expo City for a project of nearly AED 1.8 billion? | counter: "بتكلفة إجمالية تتجاوز 1.75 مليار درهم" (the figure as published) |
+| 0 - 6.0 | Abdullah, why is Aldar, an Abu Dhabi company, expanding in Dubai, in Expo City? | FOOTAGE as recorded |
+| 6.0 - 11.6 | why did Aldar choose Expo City for a project of nearly AED 1.8 billion? | counter: "بتكلفة إجمالية تتجاوز 1.75 مليار درهم" (the figure as published) |
 | 11.6 - 15.2 | the answer is not only the project, it is what is happening around it | MAP: Expo City (Expo 2020 district) outline, then pull back with rings |
 | 15.2 - 21.9 | Aldar partnered with Expo City Dubai; offices, shops and homes | REAL PAGE: Sky News Arabia, 10 Oct 2024 - markers on "إبرام شراكة لتطوير مشروع رئيسي متعدد الاستخدامات، يضم مجموعةً متنوعةً من المساحات السكنية والمكتبية ومتاجر التجزئة" |
 | 21.9 - 27.3 | look at the location: next to the future Dubai Exhibition Centre | MAP: the DEC halls highlighted, "مشروع الدار بجانب المركز" |

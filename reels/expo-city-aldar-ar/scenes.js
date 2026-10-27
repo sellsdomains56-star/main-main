@@ -13,7 +13,7 @@ function buildScenes() {
   const add = (s) => { SCENES.push(s); return s; };
 
   const K = {
-    blk: 6.24, milyar: tw(/^المليار$/, 0, 9.78), jawab: tw(/^الجواب$/, 0, 11.66), jawab2: tw(/^الجواب$/, 1, 13.4),
+    blk: 5.96, milyar: tw(/^المليار$/, 0, 9.78), jawab: tw(/^الجواب$/, 0, 11.66), jawab2: tw(/^الجواب$/, 1, 13.4),
     aldar2: tw(/^الدار$/, 2, 15.3), shiraka: tw(/^بشراكة$/, 0, 16.46), makatib: tw(/^مكاتب$/, 0, 19.98), mahallat: tw(/^ومحلات$/, 0, 20.56), sakaniya: tw(/^سكنية\.?$/, 0, 21.5),
     bas: tw(/^بس$/, 1, 22.0), shufu: tw(/^شوفوا$/, 0, 22.66), qarib: tw(/^قريب$/, 0, 24.22), markaz: tw(/^مركز$/, 0, 24.74), khitta: tw(/^خطة$/, 0, 27.56), m10: tw(/^10$/, 0, 28.84),
     qarib2: tw(/^وقريب$/, 0, 30.28), matar: tw(/^مطار$/, 0, 31.52), yatjahaz: tw(/^يتجهز$/, 0, 33.7), yani: tw(/^يعني$/, 0, 35.62),
@@ -22,7 +22,7 @@ function buildScenes() {
     itha: tw(/^إذا$/, 0, 52.86), tafasil: tw(/^تفاصيل$/, 0, 53.96), khitta2: tw(/^وخطة$/, 0, 55.1), uktub: tw(/^اكتب$/, 0, 56.78), expoC: tw(/^إكسبو$/, 4, 57.24), atrish: tw(/^وبأطرش$/, 0, 58.28),
   };
 
-  const FACE_SEGS = [[0, K.blk]], PUNCHES = [], OVERLAYS = [];
+  const FACE_SEGS = [[0, K.blk]], PUNCHES = [], OVERLAYS = [];        // K.blk = 5.96: the cross-fade to the animation is done by 6.24 s, when the recording goes black
   const IMAGES = { portrait: 'assets/portrait.jpg', sky: 'assets/sky_aldar.png', ey: 'assets/ey_dec.png', wam: 'assets/wam_dwc.png' };
   const GOLD = '#E9C47C', SOFT = '#F3D9A4', BLUE = ['#3DB2FF', '#A9DEFF'], TEAL = ['#2FD8A0', '#A6F3D6'], GOLDS = ['#C99A4A', '#F3D9A4'];
   const P = GEO.x.points || {}, EXPO = P.expo || [55.1544, 24.9587], DEC = P.dec || [55.1468, 24.9625], DWC = P.dwc || [55.1593, 24.892], TERM = P.dwc_term || [55.1592, 24.8863];
