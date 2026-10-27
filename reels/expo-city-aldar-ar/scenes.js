@@ -1,8 +1,8 @@
 'use strict';
 // ---------------------------------------------------------------------------
-// "ليش الدار اختارت إكسبو سيتي؟" - his Arabic recording (WeTransfer 27 Oct 2026, 4K 25 fps, 60.7 s, Gulf Arabic), played at 1.1x (cut.json: voice time-stretched with
-// rubberband, pitch and formants kept; picture setpts=PTS/1.1) -> 55.2 s.  0 - 5.67 s: him at the podcast table, as recorded, with the opening question as Arabic
-// captions; from 5.67 s the recording is BLACK with his voice only -> every beat is a real article page or the map, everything on screen in Arabic (right to left),
+// "ليش الدار اختارت إكسبو سيتي؟" - his Arabic recording (WeTransfer 27 Oct 2026, 4K 25 fps, 60.7 s, Gulf Arabic).  His voice is UNTOUCHED (no stretch, no filter):
+// the reel is quicker only because pauses longer than 0.2 s after the footage are shortened to 0.2 s (cut.json) -> 56.4 s.  0 - 6.24 s: him at the podcast table, as
+// recorded, with the opening question as Arabic captions; from 6.24 s the recording is BLACK with his voice only -> every beat is a real article page or the map, everything on screen in Arabic (right to left),
 // no face circle.  Real pages (captured with shot_hl.mjs into assets/, not committed), flown like the map, the marker wiping right to left over the exact words:
 //   Sky News Arabia 10 Oct 2024 - Aldar x Expo City Dubai partnership: a mixed-use project (homes, offices, retail), total cost "تتجاوز 1.75 مليار درهم", next to DEC
 //   Emarat Al Youm 24 Sep 2024 - DEC expansion master plan, AED 10 billion; "تعزّز مكانة مدينة إكسبو كمركز اقتصادي ديناميكي، مدفوعاً بالمعارض والفعاليات العالمية"
@@ -14,7 +14,7 @@ function buildScenes() {
   const add = (s) => { SCENES.push(s); return s; };
 
   const K = {
-    blk: 5.39,                                                       // the recording turns black at 5.67 s (1.1x): the face beat's 0.4 s cross-fade finishes there
+    blk: 5.96,                                                       // the recording turns black at 6.24 s: the face beat's 0.4 s cross-fade finishes there
     milyar: tw(/^المليار$/, 0, 8.86), jawab: tw(/^الجواب$/, 0, 10.6), jawab2: tw(/^الجواب$/, 1, 12.18),
     aldar2: tw(/^الدار$/, 2, 13.9), shiraka: tw(/^بشراكة$/, 0, 14.98), makatib: tw(/^مكاتب$/, 0, 18.16), sakaniya: tw(/^سكنية\.?$/, 0, 19.54),
     bas: tw(/^بس$/, 1, 20.02), qarib: tw(/^قريب$/, 0, 22.02), markaz: tw(/^مركز$/, 0, 22.5), khitta: tw(/^خطة$/, 0, 25.06),
@@ -192,5 +192,5 @@ function buildScenes() {
   [K.milyar, K.aamal, K.maarid, K.sharikat, K.y2028].forEach(x => cues.push({ k: 'pin', t: x }));
   cues.push({ k: 'send', t: K.atrish - 0.1 });
   // captions: only the opening question (his recording + the first page), in Arabic
-  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE: null, FOOT_MAX: 1655, NO_CAPTIONS: false, CAP_UNTIL: K.jawab - 0.15, STATIC_FACE: true };
+  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE: null, FOOT_MAX: 1691, NO_CAPTIONS: false, CAP_UNTIL: K.jawab - 0.15, STATIC_FACE: true };
 }

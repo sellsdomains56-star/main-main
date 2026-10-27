@@ -8,10 +8,7 @@
 - Real **Arabic** news pages as proof, flown like the map, with the marker wiping **right to left** over the exact words he is saying, and a source chip (outlet, date).
 - Quiet whoosh-only sound, Reels safe zone; call to action "اكتب إكسبو في التعليقات" (typed, sent, answered "بأرسل لك التفاصيل"), end card "عبدالله أهلي".
 
-**v3 (27 Oct 2026)** after the feedback "add the first question as text at the beginning as a caption, everything with articles or map, and speed our sound a bit without distortion":
-- **Voice 1.1x**: `ffmpeg -af rubberband=tempo=1.1:transients=mixed:phase=laminar:formant=preserved:pitchq=quality:channels=together` (pitch and formants kept: median pitch 139.5 Hz before and after); the footage is sped up the same (`setpts=PTS/1.1`) so picture and voice stay in sync. 60.7 s -> 55.2 s, +3 s end card.
-- **Captions only for the opening question** (Arabic, right to left, `CAP_UNTIL`), over his footage and the first page.
-- **Every beat after the footage is a real page or the map** (the counter, the tiles and the plain cards of v2 are gone).
+**v4 (27 Oct 2026)**: v3's 1.1x time-stretch made the voice sound processed ("the sound quality is bad"). Now his voice is **untouched**: no stretch, no filter (`chain: anull`), and the encode skips loudnorm and uses AAC 256k (`AF=anull ABR=256k bash encode.sh`). The pace is quicker only because the 13 pauses longer than 0.2 s after the footage (from 6.3 s, black picture) are shortened to 0.2 s and the tail after the last word to 0.3 s (`cut.json`, 15 pieces): 60.7 s -> 56.4 s, +3 s end card. Every piece of voice matches the original recording sample for sample. Captions for the opening question and every beat on a page or the map, as in v3. Times in the table below are v3's (1.1x); v4 runs about 2% longer.
 
 | Time (1.1x) | What he says | On screen |
 |------|--------------|-----------|
