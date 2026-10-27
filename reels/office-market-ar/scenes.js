@@ -9,7 +9,7 @@
 function buildScenes() {
   const cues = [], SCENES = [], add = (s) => { SCENES.push(s); return s; };
   // word time: first word (punctuation ignored) at or after `from`
-  const A = (w, from = 0) => { const n = s => s.replace(/[.،؟?:!]/g, ''); const x = TL.words.find(q => q.t >= from - 1e-6 && n(q.text) === w); if (!x) console.error('anchor missing: ' + w + ' @' + from); return x ? x.t : from; };
+  const A = (w, from = 0) => { const n = s => s.replace(/[.،؟?:!]+$/, ''); const x = TL.words.find(q => q.t >= from - 1e-6 && n(q.text) === w); if (!x) console.error('anchor missing: ' + w + ' @' + from); return x ? x.t : from; };
   const END = TL.dur;
 
   const FACE_SEGS = [], PUNCHES = [], OVERLAYS = [];
@@ -248,9 +248,9 @@ function buildScenes() {
   // ---------------------------------------------------------------- overlay: HUD titles, source chips, the call to action
   const CTA = A('اكتب', 241), RP = A('ريبورت', 242), SEND = A('وبطرش', 242.5);
   const overlay = (t) => {
-    BEATS.forEach(({ T: B, hud, src }, i) => {
-      const prev = BEATS[i - 1], next = BEATS[i + 1], same = (x) => x && x.hud && hud && x.hud[1] === hud[1];
-      if (hud) hudAR(t, hud[0], hud[1], hud[2], same(prev) ? B[0] - 1 : B[0] + 0.05, same(next) ? 0 : B[1] - 0.1, hud[3] || GOLD);
+    BEATS.forEach(({ T: B, hud, src }, i) => {                       // consecutive beats with the same title share one title (it stays up, then fades once)
+      const same = (x) => x && x.hud && hud && x.hud[1] === hud[1];
+      if (hud && !same(BEATS[i - 1])) { let j = i; while (same(BEATS[j + 1])) j++; hudAR(t, hud[0], hud[1], hud[2], B[0] + 0.05, BEATS[j].T[1] - 0.1, hud[3] || GOLD); }
       if (src) srcChip(t, src, B[0] + 0.3, B[1] - 0.15);
     });
     const ce = ea(t, CTA - 0.1, CTA + 0.6, E.out4);
