@@ -57,6 +57,7 @@ python3 -I make_timeline.py 3.0 && python3 -I snap_onsets.py   # script.txt = th
 node shot_hl.mjs "<url>" assets/<name>.png --w 430 --dpr 2.5 --wait 10000 --pad 160 --noempty --find "<exact phrase>" ...   # one per page (URLs in pagedata.js)
 # pagedata.js = the boxes from assets/*.json
 node export_cues.mjs && node fetch_tiles.mjs && node render.mjs --out build/frames --fmt jpg --workers 3 --ss 1.5
-python3 -I audio.py build/voice48k.wav build/mix.wav && AF=anull ABR=256k CRF=22 MAXRATE=2.4M BUFSIZE=4.8M bash encode.sh office-market-ar
+python3 -I audio.py build/voice48k.wav build/mix.wav && AF=anull ABR=256k CRF=22 MAXRATE=2.4M BUFSIZE=4.8M bash encode.sh office-market-ar   # 64.5 MB
+# under 30 MB (sent as office-market-ar-30mb.mp4): two-pass x264 -preset slow -b:v 760k -maxrate 1600k, AAC 192k, -af anull -> 29.8 MB
 ```
 Geography (c) OpenStreetMap contributors (ODbL); imagery (c) Esri, Maxar, Earthstar Geographics.
