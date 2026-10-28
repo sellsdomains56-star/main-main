@@ -1,6 +1,7 @@
 import { Stack, router } from "expo-router";
 import { useState } from "react";
 import { Platform, Switch, View } from "react-native";
+import { PermissionsList } from "../components/PermissionsList";
 import { colors } from "../components/theme";
 import { Button, Card, ErrorBox, IconLine, ListRow, Pill, Row, Screen, Section, T, Wrap } from "../components/ui";
 import { langPref, themePref, writePref, type LangPref, type ThemePref } from "../lib/prefs";
@@ -58,6 +59,7 @@ export default function Settings() {
       <Screen>
         <Stack.Screen options={{ title: "Settings" }} />
         <LookAndLanguage />
+        <PermissionsList />
         <Section title="Legal">
           <ListRow icon="document-text-outline" title="Terms of use" onPress={() => router.push({ pathname: "/legal/[doc]", params: { doc: "terms" } })} />
           <ListRow icon="lock-closed-outline" title="Privacy policy" onPress={() => router.push({ pathname: "/legal/[doc]", params: { doc: "privacy" } })} />
@@ -107,6 +109,8 @@ export default function Settings() {
           );
         })}
       </Section>
+
+      <PermissionsList />
 
       <LookAndLanguage />
 

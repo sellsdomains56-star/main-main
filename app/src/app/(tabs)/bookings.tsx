@@ -130,7 +130,7 @@ export default function Bookings() {
                 onPress={() => router.push({ pathname: "/book/[barberId]", params: { barberId: justBooked.barber.id, serviceId: justBooked.service!.id, startsAt: justBooked.endsAt, locationType: justBooked.locationType === "home" ? "home" : "shop", guest: "1" } })}
               />
             )}
-            {push === "ask" && <Button title="Turn on alerts" icon="notifications-outline" size="sm" variant="light" onPress={async () => setPush(await enablePush(true))} />}
+            {(push === "ask" || push === "off") && <Button title="Turn on alerts" icon="notifications-outline" size="sm" variant="light" onPress={async () => setPush(await enablePush(true))} />}
           </Row>
         </Card>
       )}

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, I18nManager, Platform, StyleSheet, Text, View } from "react-native";
 import { AlertBanner } from "../components/AlertBanner";
 import { PaymentProvider } from "../components/PaymentProvider";
+import { PermissionSheet } from "../components/PermissionSheet";
 import { WelcomeTour } from "../components/WelcomeTour";
 import { colors, fonts, isDark } from "../components/theme";
 import { isArabic, tr } from "../lib/i18n";
@@ -116,6 +117,7 @@ export default function RootLayout() {
                 </Stack>
                 <AlertBanner />
                 <WelcomeTour />
+                <PermissionSheet />
                 {DEMO_START && <DemoStart who={DEMO_START} />}
               </>
             </PaymentProvider>

@@ -1,5 +1,6 @@
-import { EntityTypes, getCalendars, getDefaultCalendarSync, requestCalendarPermissions } from "expo-calendar";
+import { EntityTypes, getCalendars, getDefaultCalendarSync } from "expo-calendar";
 import { Platform } from "react-native";
+import { askPermission } from "./askPermission";
 import { ALERT_MINUTES_BEFORE, type CalendarItem, type CalendarTarget } from "./calendarEvent";
 
 /**
@@ -7,8 +8,8 @@ import { ALERT_MINUTES_BEFORE, type CalendarItem, type CalendarTarget } from "./
  * a day and an hour before. Resolves with a message to show.
  */
 export async function addToCalendar(item: CalendarItem, _target: CalendarTarget = "device"): Promise<string> {
-  const permission = await requestCalendarPermissions(true); // iOS: write-only, no access to existing events
-  if (!permission.granted) throw new Error("Allow calendar access in Settings to add your appointment.");
+  // iOS: add-only access, no reading of existing events. Explained first; Settings if it was turned off.
+  if (!(await askPermission("calendar"))) throw new Error("Calendar access is off, so the appointment wasn't added. You can turn it on in Settings → Permissions.");
   const calendar =
     Platform.OS === "ios"
       ? getDefaultCalendarSync()

@@ -10,6 +10,7 @@ import { barberPins } from "../components/map/types";
 import { colors, fonts, radius } from "../components/theme";
 import { Button, Divider, EmptyState, ErrorBox, Field, IconButton, Loading, Placeholder, Pill, Row, SearchBar, Segmented, T, Wrap, styles } from "../components/ui";
 import { api } from "../lib/api";
+import { askPermission } from "../lib/askPermission";
 import { useLocation } from "../lib/location";
 import { currentPosition } from "../lib/position";
 import type { Barber, BarberSearch } from "../lib/types";
@@ -57,11 +58,12 @@ export default function Explore() {
   const [error, setError] = useState<string | null>(null);
   const [here, setHere] = useState<{ lat: number; lng: number; approx: boolean } | null>(null); // for "Nearest"
 
-  // "Nearest" needs to know where you are: the phone's position, or your city's centre if you'd rather not say.
+  // "Nearest" needs to know where you are: the phone's position (explained before the system asks),
+  // or your city's centre if you'd rather not say.
   useEffect(() => {
     if (filters.sort !== "nearest" || here) return;
     let live = true;
-    currentPosition().then((pos) => {
+    askPermission("location").then((ok) => (ok ? currentPosition() : null)).then((pos) => {
       if (!live) return;
       const centre = country?.cities.find((c) => c.name === place?.city) ?? country?.cities[0];
       if (pos) setHere({ ...pos, approx: false });

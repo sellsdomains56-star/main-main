@@ -64,13 +64,28 @@ Privacy policy URL: `https://jbalwaysfresh.com/legal/privacy` (the in-app page a
 | Data | Used for | Tracking |
 |---|---|---|
 | Name, email, phone number | App functionality, customer support | No |
-| Precise location (only while searching "Nearest") | App functionality | No |
+| Precise location (only when the user taps "Nearest" or "Use my location" for a home visit; never in the background) | App functionality | No |
 | Photos (profile, review, try-on, barber portfolio) | App functionality | No |
+| Government ID and barber licence photos (only barbers who apply to join) | App functionality (identity checks) | No |
 | Purchase history | App functionality | No |
 | User ID, device ID (push token) | App functionality | No |
 | Customer support messages, in-app messages | App functionality, customer support | No |
 
 No data is used for tracking or sold. Payment card details are handled by Stripe and never reach JB.
+
+### Permissions: when each is asked, and why
+
+Nothing is asked at launch. Each permission is asked the first time someone uses the feature, after a short screen that explains it (the system prompt can only be shown once). If it was turned off, the app offers the phone's Settings instead, and Settings → Permissions in the app shows each one.
+
+| Permission | Asked when | Why | Alternative if declined |
+|---|---|---|---|
+| Location, while using the app (iOS "When In Use", Android approximate or precise) | "Nearest" in search, or "Use my location" when a barber comes to you | Nearest barbers; distance and extra travel for a home visit | The city centre, or pick an area |
+| Notifications | After the first booking, from Alerts, or Settings | Confirmations, reminders, "on the way", messages | The in-app Alerts inbox |
+| Camera | Tapping "Camera" / "Retake" (try-on selfie, ID and licence photos, profile and work photos) | Taking that photo | Choose a photo or file instead |
+| Calendar (iOS 17+: add-only) | Tapping "Add to calendar" | Adding that appointment with alerts | Nothing is added |
+| Photos | Never: the system picker shows only the photos the person picks | — | — |
+
+Not used, and removed from the builds: microphone, background location, motion, Face ID, full photo-library access (Android `READ_MEDIA_*`), draw-over-other-apps, tracking (no ATT prompt; `NSPrivacyTracking` is false). Google Play needs no background-location or photo-and-video permission declaration.
 
 ### Google Play Data safety
 
@@ -92,7 +107,7 @@ Same data as above. Data is encrypted in transit. Users can request deletion in 
 > Sign-in for review: create an account in the app, or use the sample customer `omar@example.com` / `customer-demo` on the review build. Payments run in Stripe test mode on the review build: use card 4242 4242 4242 4242, any future date, any CVC.
 > Barber side: `mateo@demo.jbalwaysfresh.com` / `jb-barber-demo`. Barbershop panel: `owner@demo.jbalwaysfresh.com` / `jb-shop-demo`.
 > Account deletion: Settings → Delete account.
-> Location is only requested when the user taps "Nearest" in search.
+> Permissions are asked only when a feature is used, each after a short explanation: location for "Nearest" or "Use my location" on a home visit, the camera when tapping Camera, notifications after the first booking or from Alerts, the calendar when tapping Add to calendar. Settings → Permissions lists them. No background location, microphone or tracking.
 
 ## Before submitting
 

@@ -1,6 +1,7 @@
 import * as DocumentPicker from "expo-document-picker";
 import { ImageManipulator, SaveFormat } from "expo-image-manipulator";
 import * as ImagePicker from "expo-image-picker";
+import { askPermission } from "./askPermission";
 import { DEMO_DATA } from "./config";
 
 export type PickedDoc = { blob: Blob; contentType: string };
@@ -16,10 +17,9 @@ async function shrink(uri: string, width: number): Promise<PickedDoc> {
   return { blob: await (await fetch(saved.uri)).blob(), contentType: "image/jpeg" };
 }
 
-/** Take a photo of a document with the camera. Null if cancelled. */
+/** Take a photo of a document with the camera. Null if cancelled, or if the camera wasn't allowed (they can upload a file instead). */
 export async function photographDocument(): Promise<PickedDoc | null> {
-  const permission = await ImagePicker.requestCameraPermissionsAsync();
-  if (!permission.granted) throw new Error("Allow camera access to take a photo, or choose a file instead.");
+  if (!(await askPermission("camera"))) return null;
   const res = await ImagePicker.launchCameraAsync({ mediaTypes: ["images"], quality: 1 });
   if (res.canceled || !res.assets[0]) return null;
   return shrink(res.assets[0].uri, res.assets[0].width);

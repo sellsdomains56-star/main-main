@@ -11,6 +11,7 @@ import { useAuth } from "../../lib/auth";
 import { money, time, upcomingDays } from "../../lib/format";
 import { isExtra, minutes, sections, tipChoices } from "../../lib/menu";
 import { currentPartner } from "../../lib/partner";
+import { askPermission } from "../../lib/askPermission";
 import { currentPosition } from "../../lib/position";
 import { adjustedPrice, policyLabel } from "../../lib/rules";
 import { CONSULTATION_ID, type Barber, type LocationType, type Membership, type PartnerWelcome, type Spot, type TravelQuote, type VenueKind } from "../../lib/types";
@@ -371,8 +372,10 @@ function TravelPicker({ barber, areas, spot, quote, typedArea, onSpot }: { barbe
   const first = barber.name.split(" ")[0];
   const cur = barber.currency;
   const locate = async () => {
-    setLocating(true);
     setNote(null);
+    // Explained first; if location was turned off, the sheet offers Settings. Either way, areas still work.
+    if (!(await askPermission("location"))) return setNote("No problem: choose your area instead.");
+    setLocating(true);
     const pos = await currentPosition();
     setLocating(false);
     if (pos) onSpot({ ...pos, label: "Your location", source: "gps" });

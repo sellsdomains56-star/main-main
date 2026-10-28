@@ -2,8 +2,9 @@ import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import { router } from "expo-router";
 import { useEffect } from "react";
-import { Platform } from "react-native";
 import { api } from "./api";
+import { askPermission } from "./askPermission";
+import { ensureNotificationChannel } from "./permissions";
 import { storage } from "./storage";
 
 const TOKEN_KEY = "af_push_token";
@@ -25,11 +26,10 @@ export async function pushState(): Promise<PushState> {
  * then registers this phone with the API so booking alerts arrive as push notifications.
  */
 export async function enablePush(ask: boolean): Promise<PushState> {
-  if (Platform.OS === "android") {
-    await Notifications.setNotificationChannelAsync("default", { name: "Bookings", importance: Notifications.AndroidImportance.HIGH });
-  }
+  await ensureNotificationChannel(); // Android 13+ shows the prompt only once a channel exists
   let state = await pushState();
-  if (state === "ask" && ask) state = (await Notifications.requestPermissionsAsync()).granted ? "on" : "off";
+  // Explained first ("Get alerts about your bookings"), then the system's prompt; Settings if it was turned off.
+  if (state !== "on" && ask) state = (await askPermission("notifications")) ? "on" : await pushState();
   if (state !== "on") return state;
   // Push tokens come from Expo's push service and need the EAS project id (run `eas init`).
   const projectId = Constants.expoConfig?.extra?.eas?.projectId ?? Constants.easConfig?.projectId;

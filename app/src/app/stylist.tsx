@@ -8,6 +8,7 @@ import { BarberCard } from "../components/BarberCard";
 import { BeforeAfter } from "../components/BeforeAfter";
 import { colors, radius } from "../components/theme";
 import { Button, Card, Divider, ErrorBox, Field, IconLine, Pill, Row, Screen, Segmented, StepCard, StepConnector, T, Tag, Wrap } from "../components/ui";
+import { askPermission } from "../lib/askPermission";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { useLocation } from "../lib/location";
@@ -52,13 +53,8 @@ export default function TryOn() {
 
   async function pick(source: "camera" | "library") {
     setError(null);
-    if (source === "camera") {
-      const perm = await ImagePicker.requestCameraPermissionsAsync();
-      if (!perm.granted) {
-        setError("Camera access is needed to take a photo. You can also choose one from your library.");
-        return;
-      }
-    }
+    // The camera asks first (explained, with a way to Settings); "Not now" leaves the library to choose from.
+    if (source === "camera" && !(await askPermission("camera"))) return;
     const options: ImagePicker.ImagePickerOptions = { mediaTypes: ["images"], allowsEditing: true, aspect: [1, 1], quality: 1 };
     const res = source === "camera"
       ? await ImagePicker.launchCameraAsync({ ...options, cameraType: ImagePicker.CameraType.front })

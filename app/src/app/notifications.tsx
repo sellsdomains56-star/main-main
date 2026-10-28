@@ -1,12 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router, Stack, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { Platform, Pressable, View } from "react-native";
+import { AppState, Platform, Pressable, View } from "react-native";
 import { ALERT_ICON } from "../components/AlertBanner";
 import { colors, fonts, radius } from "../components/theme";
 import { Button, Card, EmptyState, IconButton, Loading, Row, Screen, styles, T } from "../components/ui";
 import { useAlerts } from "../lib/alerts";
 import { useAuth } from "../lib/auth";
+import { openPermissionSettings } from "../lib/permissions";
 import { enablePush, pushState, type PushState } from "../lib/push";
 import type { AppNotification } from "../lib/types";
 
@@ -35,6 +36,9 @@ export default function Notifications() {
   );
   useEffect(() => {
     pushState().then(setPush, () => {});
+    // Back from the phone's Settings: pick up the change, and register this phone if alerts are now on.
+    const sub = AppState.addEventListener("change", (s) => s === "active" && enablePush(false).then(setPush, () => {}));
+    return () => sub.remove();
   }, []);
 
   const open = (n: AppNotification) => {
@@ -65,7 +69,10 @@ export default function Notifications() {
               {push === "ask" ? (
                 <Button title="Turn on" variant="light" size="sm" onPress={async () => setPush(await enablePush(true))} style={{ alignSelf: "flex-start", marginTop: 12 }} />
               ) : (
-                <T variant="caption" color={colors.onInk} style={{ marginTop: 10 }}>Notifications are off for this app — turn them on in your phone's Settings.</T>
+                <>
+                  <T variant="caption" color={colors.onInk} style={{ marginTop: 10 }}>Notifications are off for this app. Turn them on in your phone&apos;s Settings.</T>
+                  <Button title="Open Settings" icon="settings-outline" variant="light" size="sm" onPress={() => openPermissionSettings()} style={{ alignSelf: "flex-start", marginTop: 10 }} />
+                </>
               )}
             </View>
           </Row>
