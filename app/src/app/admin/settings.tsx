@@ -13,12 +13,16 @@ export default function Settings() {
   const wide = useWide();
   const [s, setS] = useState<AdminSettings | null>(null);
   const [fee, setFee] = useState(10);
+  const [includedKm, setIncludedKm] = useState(10);
+  const [perKm, setPerKm] = useState(400); // AED minor units
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
   const load = useCallback(() => {
     api.admin.settings().then((x) => {
       setS(x);
       setFee(x.platformFeePercent);
+      setIncludedKm(x.travelIncludedKm);
+      setPerKm(x.travelPerKmAed);
     }, (e: Error) => setError(e.message));
   }, []);
   useFocusEffect(load);
@@ -30,6 +34,8 @@ export default function Settings() {
       const next = await api.admin.updateSettings(body);
       setS(next);
       setFee(next.platformFeePercent);
+      setIncludedKm(next.travelIncludedKm);
+      setPerKm(next.travelPerKmAed);
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -66,6 +72,19 @@ export default function Settings() {
         </Card>
       </View>
 
+      <Card style={{ padding: 20, marginTop: 16 }}>
+        <T variant="heading">Home visits further away</T>
+        <T variant="caption" muted style={{ marginTop: 2 }}>The barber&apos;s visit fee covers the first {s.travelIncludedKm} km from their pin. Beyond that, customers pay extra for the barber&apos;s taxi there and back, shown before they pay. It all goes to the barber, with no JB fee. Each barber sets how far they go.</T>
+        <View style={{ flexDirection: wide ? "row" : "column", gap: 16, marginTop: 16, alignItems: wide ? "center" : "flex-start" }}>
+          <Stepper label="Included" value={`${includedKm} km`} onLess={() => setIncludedKm((k) => Math.max(0, k - 1))} onMore={() => setIncludedKm((k) => Math.min(100, k + 1))} />
+          <Stepper label="Then, a km" value={`AED ${(perKm / 100).toFixed(perKm % 100 ? 2 : 0)}`} onLess={() => setPerKm((p) => Math.max(0, p - 50))} onMore={() => setPerKm((p) => Math.min(5000, p + 50))} />
+          <Button title="Save" size="md" disabled={includedKm === s.travelIncludedKm && perKm === s.travelPerKmAed} loading={busy === "travel"} onPress={() => patch("travel", { travelIncludedKm: includedKm, travelPerKmAed: perKm })} />
+        </View>
+        <T variant="caption" muted style={{ marginTop: 12 }}>
+          A customer 23 km away pays {23 > includedKm ? `AED ${Math.ceil(((23 - includedKm) * perKm) / 500) * 5} extra (${23 - includedKm} km beyond ${includedKm})` : "nothing extra"} on top of the barber&apos;s visit fee. Distances are the straight line plus 30% for roads.
+        </T>
+      </Card>
+
       <T variant="title" style={{ fontSize: 20, marginTop: 28 }}>Home banners</T>
       <T muted style={{ marginTop: 4, marginBottom: 12 }}>Switch campaigns on and off. New campaigns are added by the developers.</T>
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12 }}>
@@ -92,5 +111,18 @@ export default function Settings() {
         <IconLine icon="key-outline" muted>Payment keys, AI keys and email settings live on the server, never in this panel.</IconLine>
       </View>
     </AdminPage>
+  );
+}
+
+function Stepper({ label, value, onLess, onMore }: { label: string; value: string; onLess: () => void; onMore: () => void }) {
+  return (
+    <View>
+      <T variant="caption" muted style={{ marginBottom: 6 }}>{label}</T>
+      <Row gap={0} style={{ backgroundColor: colors.surface, borderRadius: radius.pill }}>
+        <Pressable accessibilityLabel={`Less: ${label}`} onPress={onLess} style={{ padding: 14 }}><Ionicons name="remove" size={18} color={colors.text} /></Pressable>
+        <T variant="title" style={{ minWidth: 96, textAlign: "center" }}>{value}</T>
+        <Pressable accessibilityLabel={`More: ${label}`} onPress={onMore} style={{ padding: 14 }}><Ionicons name="add" size={18} color={colors.text} /></Pressable>
+      </Row>
+    </View>
   );
 }

@@ -40,6 +40,7 @@ export interface Barber {
   services: Service[];
   offersHomeVisits: boolean;
   homeVisitFee: number; // minor units
+  travelMaxKm?: number; // how far from their pin they go for a home visit (missing = 30 km)
   offersConsultations?: boolean; // free 15-min video/phone consultations; on unless set to false
   videoLink?: string; // the barber's Google Meet link for video consultations
   yearsExperience: number;
@@ -137,6 +138,8 @@ export interface Settings {
   reviewNewBarbers?: boolean; // new barbers wait for approval before they appear
   hiddenCampaigns?: string[]; // campaign ids switched off on Home
   team?: Record<string, AdminRole>; // email -> role, for team members added in the admin panel
+  travelIncludedKm?: number; // home visits: km the barber's visit fee covers
+  travelPerKmAed?: number; // home visits: what each km beyond that adds, AED minor units
 }
 
 /** Owner: everything. Operations: barbers, shops, bookings, orders, partners. Support: tickets, reels, bookings, customers. Finance: money and reports. */
@@ -323,6 +326,9 @@ export interface Booking {
   shareToken?: string; // "share my visit": a read-only link a friend can open
   cutNotes?: string; // the barber's notes for next time: guards, products, length
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; // where a home visit happens
+  spot?: { lat: number; lng: number; label?: string }; // a home visit's point on the map (the customer's location or area)
+  distanceKm?: number; // a home visit: about how far the drive is from the barber's pin
+  travelFee?: number; // a home visit beyond the included km: extra for the barber's taxi (minor units, all for the barber, no JB fee)
   guest?: { name: string; phone: string }; // booked for someone else; for shop bookings, the client
   source?: "app" | "shop"; // "shop" = added by the barbershop (walk-in or phone), paid at the shop, no JB fee
   noShow?: boolean; // cancelled because the client didn't come (no refund)

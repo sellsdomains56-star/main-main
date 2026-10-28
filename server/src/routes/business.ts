@@ -2,7 +2,7 @@ import type { Express, Request } from "express";
 import { z } from "zod";
 import { requireAuth } from "../auth.js";
 import { bookingView } from "../bookings.js";
-import { barberView, cityOf, findCountry, fromApp, getBarber, HttpError, parse, platformFee, platformFeePercent } from "../common.js";
+import { barberView, bookingFee, cityOf, findCountry, fromApp, getBarber, HttpError, parse, platformFee, platformFeePercent } from "../common.js";
 import { config } from "../config.js";
 import { db, newId, save } from "../db.js";
 import { levelOf } from "../pro.js";
@@ -38,7 +38,7 @@ function earnings(list: Booking[], since: number, until = Infinity) {
   const lateFees = list.filter((b) => b.status === "cancelled" && b.lateFee && within(b)).reduce((s, b) => s + b.lateFee!, 0); // kept from late cancellations
   const gross = inRange.reduce((s, b) => s + b.amount, 0) + lateFees;
   const tips = inRange.reduce((s, b) => s + (b.tip ?? 0), 0);
-  const fee = inRange.reduce((s, b) => s + platformFee(b.amount), 0) + platformFee(lateFees);
+  const fee = inRange.reduce((s, b) => s + bookingFee(b), 0) + platformFee(lateFees);
   return { count: inRange.length, gross, fee, tips, net: gross - fee + tips, lateFees };
 }
 

@@ -2,7 +2,7 @@ import { randomBytes } from "node:crypto";
 import type { Express } from "express";
 import { z } from "zod";
 import { hashPassword, optionalAuth, requireAuth } from "../auth.js";
-import { fromApp, HttpError, parse, platformFee } from "../common.js";
+import { bookingFee, fromApp, HttpError, parse, platformFee } from "../common.js";
 import { config } from "../config.js";
 import { db, newId, save } from "../db.js";
 import { notify, orderUpdate } from "../notify.js";
@@ -263,7 +263,7 @@ export function registerShopOpsRoutes(app: Express) {
       const services = done.reduce((s, b) => s + b.amount, 0);
       const lateFees = mine.filter((b) => b.status === "cancelled" && b.lateFee).reduce((s, b) => s + b.lateFee!, 0);
       const tips = done.filter(fromApp).reduce((s, b) => s + (b.tip ?? 0), 0);
-      const jbFee = done.filter(fromApp).reduce((s, b) => s + platformFee(b.amount), 0) + platformFee(lateFees);
+      const jbFee = done.filter(fromApp).reduce((s, b) => s + bookingFee(b), 0) + platformFee(lateFees);
       const share = t.sharePercent ?? shopDefault;
       const net = services + lateFees - jbFee;
       const barberPay = Math.round((net * share) / 100) + tips;

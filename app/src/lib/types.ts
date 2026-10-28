@@ -27,6 +27,7 @@ export interface Barber {
   services: Service[];
   offersHomeVisits: boolean;
   homeVisitFee: number;
+  travel?: { includedKm: number; perKm: number; maxKm: number }; // home visits further away: the visit fee covers includedKm, each km beyond adds perKm
   offersConsultations: boolean; // free 15-min video (Google Meet) or phone consultation
   hasVideoLink: boolean;
   currency: string;
@@ -256,6 +257,9 @@ export interface Booking {
   lateFee?: number; // kept by the barber after a late cancellation
   cancelTerms?: { freeUntil: string | null; lateFeePercent: number; fee: number };
   venue?: { kind: VenueKind; details: string };
+  spot?: { lat: number; lng: number; label?: string }; // a home visit's point on the map
+  distanceKm?: number; // a home visit: about how far the drive is from the barber's pin
+  travelFee?: number; // extra for the barber's taxi on a far home visit (all to the barber)
   guest?: { name: string; phone: string }; // booked for someone else
   bookedBy?: string | null;
   customerPreferences?: Preferences | null;
@@ -643,6 +647,8 @@ export interface AdminTicket {
 export interface AdminSettings {
   platformFeePercent: number;
   reviewNewBarbers: boolean;
+  travelIncludedKm: number; // home visits: km the visit fee covers
+  travelPerKmAed: number; // home visits: what each km beyond adds (AED minor units)
   campaigns: { id: string; eyebrow: string; title: string; photoUrl: string; countries: string[] | null; except: string[] | null; hidden: boolean }[];
 }
 
@@ -931,4 +937,26 @@ export interface ShopReport {
   byBarber: { id: string; name: string; photoUrl: string; bookings: number; completed: number; walkIns: number; noShows: number; takings: number; busyPercent: number }[];
   topServices: { name: string; count: number }[];
   perDay: { date: string; count: number }[];
+}
+
+/** A home visit to a point on the map: about how far, the extra for the barber's taxi, and whether they go that far. */
+export interface TravelQuote {
+  km: number;
+  minutes: number;
+  includedKm: number;
+  extraKm: number;
+  perKm: number;
+  fee: number;
+  maxKm: number;
+  tooFar: boolean;
+  currency: string;
+  visitFee: number;
+}
+
+/** Where a home visit happens, on the map. */
+export interface Spot {
+  lat: number;
+  lng: number;
+  label: string;
+  source: "gps" | "area";
 }

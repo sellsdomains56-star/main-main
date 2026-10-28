@@ -51,6 +51,7 @@ export function registerPortfolioRoutes(app: Express) {
         closeHour: z.number().int().min(1).max(24).optional(),
         timeOff: z.array(z.string().regex(/^\d{4}-\d{2}-\d{2}$/)).max(120).optional(),
         homeVisitFee: z.number().int().min(0).max(10_000_000).optional(), // minor units
+        travelMaxKm: z.number().int().min(1).max(200).optional(), // how far from their pin they go for a home visit
         videoLink: z
           .string()
           .trim()

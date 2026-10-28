@@ -30,6 +30,7 @@ export default function Services() {
   const [rows, setRows] = useState<Draft[]>([]);
   const [home, setHome] = useState(false);
   const [homeFee, setHomeFee] = useState("");
+  const [maxKm, setMaxKm] = useState(30); // how far from their pin they go
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
@@ -41,6 +42,7 @@ export default function Services() {
       setRows(toDraft(b));
       setHome(b.offersHomeVisits);
       setHomeFee(b.homeVisitFee ? String(b.homeVisitFee / 100) : "");
+      setMaxKm(b.travel?.maxKm ?? 30);
     }, (e: Error) => setError(e.message));
   }, [user]);
   useEffect(load, [load]);
@@ -67,7 +69,7 @@ export default function Services() {
     setBusy(true);
     try {
       await api.saveServices(rows.map((r) => ({ id: r.id, name: r.name.trim(), durationMin: r.durationMin, price: toMinor(r.price), category: r.category, description: r.description.trim() })));
-      const next = await api.updateMyBarber({ offersHomeVisits: home, homeVisitFee: home ? toMinor(homeFee) : 0 });
+      const next = await api.updateMyBarber({ offersHomeVisits: home, homeVisitFee: home ? toMinor(homeFee) : 0, ...(home ? { travelMaxKm: maxKm } : {}) });
       setBarber(next);
       setRows(toDraft(next));
       setSaved(true);
@@ -119,6 +121,20 @@ export default function Services() {
         <OptionRow label="Only at my chair" selected={!home} onPress={() => { setSaved(false); setHome(false); }} icon="storefront-outline" />
         {home && <Field label={`Travel fee on top of the service (${cur.toUpperCase()})`} value={homeFee} onChangeText={(v) => { setSaved(false); setHomeFee(v.replace(/[^\d.,]/g, "")); }} keyboardType="decimal-pad" placeholder="e.g. 50" />}
         {home && toMinor(homeFee) > 0 && <T variant="caption" muted>A classic cut at home: {money((barber.services[0]?.price ?? 0) + toMinor(homeFee), cur)}.</T>}
+        {home && (
+          <View style={{ marginTop: 16 }}>
+            <T variant="strong">How far you go</T>
+            <T variant="caption" muted style={{ marginTop: 2, marginBottom: 8 }}>From your pin on the map. Customers further away can&apos;t book you to come to them.</T>
+            <Wrap gap={8}>{[10, 20, 30, 50, 80].map((km) => <Pill key={km} label={`${km} km`} selected={maxKm === km} onPress={() => { setSaved(false); setMaxKm(km); }} />)}</Wrap>
+            {barber.travel && (
+              <View style={{ marginTop: 10 }}>
+                <IconLine icon="car-outline" muted>
+                  Your travel fee covers the first {barber.travel.includedKm} km. Further than that, customers pay {money(barber.travel.perKm, cur)} a km extra for your taxi there and back, and the app tells them before they pay. It all goes to you, with no JB fee.
+                </IconLine>
+              </View>
+            )}
+          </View>
+        )}
       </Section>
 
       <Section>

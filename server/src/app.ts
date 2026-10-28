@@ -38,6 +38,7 @@ import { registerTryOnRoutes } from "./routes/tryon.js";
 import { bookingView, NewBooking, placeBooking } from "./bookings.js";
 import { extrasFor } from "./services.js";
 import { barberView, cityOf, CONSULTATION, findCountry, findService, fromApp, getBarber, HttpError, isLive, parse, reviewNewBarbers } from "./common.js";
+import { travelQuote } from "./travel.js";
 import { availableSlots } from "./slots.js";
 import { upsertSocialUser, verifyIdentityToken } from "./social.js";
 import { adviseHaircut, StylistUnavailableError } from "./stylist.js";
@@ -368,6 +369,15 @@ export function createApp() {
     // Off-peak discounts and peak premiums by start time (percent), so the app can show "−15%".
     const deals = service.id === CONSULTATION.id ? {} : Object.fromEntries(slots.map((s) => [s, priceRuleAt(barber, s)]).filter(([, p]) => p));
     res.json({ timeZone: cityOf(barber).timeZone, slots, deals });
+  });
+
+  // A home visit to a point on the map: about how far, any extra travel, and whether the barber goes that far.
+  app.get("/barbers/:id/travel", (req, res) => {
+    const barber = getBarber(req.params.id);
+    if (!isLive(barber) || !barber.offersHomeVisits) throw new HttpError(404, "This barber doesn't do home visits.");
+    const q = parse(z.object({ lat: z.coerce.number().min(-90).max(90), lng: z.coerce.number().min(-180).max(180) }), req.query);
+    const currency = findCountry(barber.countryCode)!.currency;
+    res.json({ ...travelQuote(barber, q, currency), currency, visitFee: barber.homeVisitFee });
   });
 
   // ---------- Bookings & payments ----------

@@ -33,7 +33,8 @@ export default function Pay() {
   const amount = money(charge, booking.currency);
   const servicePrice = booking.coveredBy ? 0 : booking.service?.price ?? booking.amount;
   const extrasPrice = (booking.extras ?? []).reduce((t, x) => t + x.price, 0);
-  const fee = Math.max(0, booking.amount + (booking.creditUsed ?? 0) - servicePrice - extrasPrice);
+  const travel = booking.travelFee ?? 0; // extra for the barber's taxi on a far home visit
+  const fee = Math.max(0, booking.amount + (booking.creditUsed ?? 0) - servicePrice - extrasPrice - travel);
 
   return (
     <Screen>
@@ -51,6 +52,7 @@ export default function Pay() {
         <SummaryLine label={booking.service?.name ?? "Service"} value={booking.coveredBy ? "Included · The Club" : money(servicePrice, booking.currency)} />
         {(booking.extras ?? []).map((x) => <SummaryLine key={x.id} label={x.name} value={money(x.price, booking.currency)} />)}
         {fee > 0 && <SummaryLine label="Home visit" value={money(fee, booking.currency)} />}
+        {travel > 0 && <SummaryLine label={`Extra travel · about ${booking.distanceKm} km`} value={money(travel, booking.currency)} />}
         {tip > 0 && <SummaryLine label={`Tip for ${booking.barber.name.split(" ")[0]}`} value={money(tip, booking.currency)} />}
         {!!booking.creditUsed && <SummaryLine label="Gift credit" value={`−${money(booking.creditUsed, booking.currency)}`} />}
         <View style={{ marginTop: 6 }}><IconLine icon={booking.locationType === "home" ? "home-outline" : "storefront-outline"} muted>{booking.address}</IconLine></View>

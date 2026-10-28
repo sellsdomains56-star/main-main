@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { busy } from "./busy.js";
-import { cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError, isLive, platformFee } from "./common.js";
+import { bookingFee, cityOf, CONSULTATION, findCountry, findService, getBarber, HttpError, isLive } from "./common.js";
 import { db, newId, save } from "./db.js";
 import { applyPerks, priceBooking } from "./club.js";
 import { bookingConfirmed } from "./notify.js";
@@ -10,6 +10,7 @@ import { adjustedPrice, cancelTerms, priceRuleAt } from "./pro.js";
 import { SHOPS } from "./seed.js";
 import { extrasFor } from "./services.js";
 import { availableSlots } from "./slots.js";
+import { travelQuote } from "./travel.js";
 import type { Booking } from "./types.js";
 
 export function bookingView(b: Booking) {
@@ -43,6 +44,8 @@ export const NewBooking = z.object({
   notes: z.string().max(1000).default(""),
   // Home visits: what kind of place, and the details the barber needs to get in (room, berth, gate code…).
   venue: z.object({ kind: z.enum(["home", "hotel", "yacht", "office"]), details: z.string().trim().max(300).default("") }).optional(),
+  // Home visits: where on the map (the phone's location or the area picked), to work out the distance and any extra travel.
+  spot: z.object({ lat: z.number().min(-90).max(90), lng: z.number().min(-180).max(180), label: z.string().trim().max(120).optional() }).optional(),
   partner: z.string().trim().toUpperCase().max(40).optional(), // a hotel's or company's code
   // Booking for someone else (a guest, family member or client).
   guest: z.object({ name: z.string().trim().min(1).max(60), phone: z.string().trim().max(30).default("") }).optional(),
@@ -66,6 +69,13 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
   if (body.locationType === "home" && !barber.offersHomeVisits) throw new HttpError(400, "This barber doesn't do home visits.");
   if (body.locationType === "home" && !body.address.trim()) throw new HttpError(400, "Please enter the address the barber should come to.");
   if (body.locationType === "phone" && body.phone.replace(/[^\d]/g, "").length < 6) throw new HttpError(400, "Please enter the phone number your barber should call.");
+  // Home visits: how far the barber drives, and the extra for their taxi beyond the km the visit fee covers.
+  let travel: ReturnType<typeof travelQuote> | undefined;
+  if (body.locationType === "home") {
+    if (!body.spot) throw new HttpError(400, "Tell us where the barber should come: use your location or pick your area.");
+    travel = travelQuote(barber, body.spot, findCountry(barber.countryCode)!.currency);
+    if (travel.tooFar) throw new HttpError(400, `${barber.name.split(" ")[0]} goes up to ${travel.maxKm} km for home visits, and your place is about ${travel.km} km away. Pick a barber nearer you, or book at the shop.`);
+  }
 
   const extras = consultation ? [] : extrasFor(barber, body.extras);
   if (!extras) throw new HttpError(400, "One of the extras isn't on this barber's menu.");
@@ -90,6 +100,7 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
     amount: 0, // priced below: Club coverage, then gift-card credit
     currency: findCountry(barber.countryCode)!.currency,
     venue: body.locationType === "home" ? body.venue : undefined,
+    ...(travel ? { spot: body.spot, distanceKm: travel.km, ...(travel.fee ? { travelFee: travel.fee } : {}) } : {}),
     guest: body.guest,
     ...(extras.length ? { extras: extras.map((s) => s.id) } : {}),
     status: "pending_payment",
@@ -111,7 +122,7 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
       servicePrice = off;
     }
   }
-  const price = priceBooking(customer, barber, servicePrice !== service.price ? { ...service, price: servicePrice } : service, body.locationType, booking.currency, extras.reduce((t, s) => t + s.price, 0));
+  const price = priceBooking(customer, barber, servicePrice !== service.price ? { ...service, price: servicePrice } : service, body.locationType, booking.currency, extras.reduce((t, s) => t + s.price, 0), travel?.fee ?? 0);
   booking.amount = price.amount;
   if (customer) applyPerks(customer, booking, price.covered, price.creditUsed);
   // A tip rides along with a payment; on a free booking it can be left after the cut instead.
@@ -128,9 +139,9 @@ export async function placeBooking(customerId: string, body: z.infer<typeof NewB
     kind: "booking",
     bookingId: booking.id,
     barberId: booking.barberId,
-    platformFee: String(platformFee(booking.amount)), // never on the tip
+    platformFee: String(bookingFee(booking)), // never on the tip or the extra travel
     tip: String(booking.tip ?? 0),
-  }, barber.stripeAccountId && barber.payoutsEnabled ? { destination: barber.stripeAccountId, applicationFee: platformFee(booking.amount) } : undefined);
+  }, barber.stripeAccountId && barber.payoutsEnabled ? { destination: barber.stripeAccountId, applicationFee: bookingFee(booking) } : undefined);
   booking.paymentIntentId = intent?.id;
   db.bookings.push(booking);
   save();

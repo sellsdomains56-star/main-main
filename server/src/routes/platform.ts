@@ -2,7 +2,7 @@ import type { Express, Request, Response } from "express";
 import { z } from "zod";
 import { logActivity } from "../activity.js";
 import { adminRole, optionalAuth, requireAdminRole, requireAuth } from "../auth.js";
-import { barberView, cityOf, findService, fromApp, getBarber, HttpError, isLive, parse, platformFee } from "../common.js";
+import { barberView, bookingFee, cityOf, findService, fromApp, getBarber, HttpError, isLive, parse, platformFee } from "../common.js";
 import { config } from "../config.js";
 import { db, newId, save } from "../db.js";
 import { notify, onNotification } from "../notify.js";
@@ -179,7 +179,7 @@ export function registerPlatformRoutes(app: Express) {
     for (const b of db.bookings) {
       if (!fromApp(b) || monthOf(b.startsAt) !== month) continue;
       if (PAID.has(b.status)) {
-        const fee = platformFee(b.amount);
+        const fee = bookingFee(b);
         rows.push({ date: b.startsAt, type: "booking", ref: b.id, customer: b.guest?.name ?? who(b.customerId), barber: barberName(b.barberId), currency: b.currency, amount: b.amount, jbFee: fee, vat: vatIn(fee, b.currency) });
         if (b.tip) rows.push({ date: b.startsAt, type: "tip", ref: b.id, customer: who(b.customerId), barber: barberName(b.barberId), currency: b.currency, amount: b.tip, jbFee: 0, vat: 0 });
       } else if (b.status === "cancelled" && b.lateFee) {
@@ -326,9 +326,10 @@ export function registerPlatformRoutes(app: Express) {
     const lines = b.status === "cancelled"
       ? [{ description: `Late cancellation — ${service?.name ?? "appointment"} with ${barber.name}`, amount: charged }]
       : [
-        { description: `${service?.name ?? "Appointment"} with ${barber.name}`, amount: b.amount - extras.reduce((t, s) => t + s!.price, 0) - (b.locationType === "home" ? barber.homeVisitFee : 0) },
+        { description: `${service?.name ?? "Appointment"} with ${barber.name}`, amount: b.amount - extras.reduce((t, s) => t + s!.price, 0) - (b.locationType === "home" ? barber.homeVisitFee : 0) - (b.travelFee ?? 0) },
         ...extras.map((s) => ({ description: s!.name, amount: s!.price })),
         ...(b.locationType === "home" ? [{ description: "Home visit travel", amount: barber.homeVisitFee }] : []),
+        ...(b.travelFee ? [{ description: `Extra travel (about ${b.distanceKm} km)`, amount: b.travelFee }] : []),
       ].filter((l) => l.amount > 0);
     const vat = vatIn(charged, b.currency);
     res.json({

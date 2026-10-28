@@ -6,6 +6,7 @@ import { COUNTRIES, SHOPS } from "./seed.js";
 import { availableSlots } from "./slots.js";
 import { levelOf } from "./pro.js";
 import { isExtra } from "./services.js";
+import { maxKmOf, perKmFor, travelSettings } from "./travel.js";
 import type { Barber, Booking, Service } from "./types.js";
 
 /** The services you can book on their own (extras only go with one). */
@@ -28,6 +29,8 @@ export const isLive = (b: Barber) => (b.status ?? "live") === "live";
 /** The platform fee in percent: the admin panel's setting, else PLATFORM_FEE_PERCENT. */
 export const platformFeePercent = () => db.settings.platformFeePercent ?? config.platformFeePercent;
 export const platformFee = (amount: number) => Math.round((amount * platformFeePercent()) / 100);
+/** JB's fee on a booking: on what was paid, minus the extra travel for a far home visit (that's all the barber's, like tips). */
+export const bookingFee = (b: Pick<Booking, "amount" | "travelFee">) => platformFee(Math.max(0, b.amount - (b.travelFee ?? 0)));
 /** Bookings a barbershop adds itself (walk-ins, phone) are paid at the shop: no JB fee. */
 export const fromApp = (b: Booking) => b.source !== "shop";
 
@@ -77,6 +80,8 @@ export function barberView(b: Barber) {
     services: b.services,
     offersHomeVisits: b.offersHomeVisits,
     homeVisitFee: b.homeVisitFee,
+    // Home visits further away: the visit fee covers includedKm; each km beyond adds perKm; they go up to maxKm.
+    travel: { includedKm: travelSettings().includedKm, perKm: perKmFor(country.currency), maxKm: maxKmOf(b) },
     offersConsultations: offersConsultations(b),
     hasVideoLink: !!b.videoLink,
     currency: country.currency,

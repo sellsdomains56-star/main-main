@@ -4,11 +4,12 @@ import { publicUser, requireAdmin, requireAdminRole } from "../auth.js";
 import { logActivity } from "../activity.js";
 import { CAMPAIGNS } from "../campaigns.js";
 import { activeMembership, returnPerks } from "../club.js";
-import { barberView, findService, fromApp, getBarber, HttpError, parse, platformFee, platformFeePercent, reviewNewBarbers, CONSULTATION } from "../common.js";
+import { barberView, bookingFee, findService, fromApp, getBarber, HttpError, parse, platformFeePercent, reviewNewBarbers, CONSULTATION } from "../common.js";
 import { db, save } from "../db.js";
 import { notify, waitlistOpened } from "../notify.js";
 import { refund } from "../payments.js";
 import { SHOPS } from "../seed.js";
+import { travelSettings } from "../travel.js";
 import type { Barber, Booking, User } from "../types.js";
 import { applicationOf, applicationStatus, applicationView, needsApplication } from "./applications.js";
 import { profileChecklist } from "./business.js";
@@ -33,7 +34,7 @@ function bookingRow(b: Booking) {
   const service = barber ? findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined) : undefined;
   return {
     id: b.id, startsAt: b.startsAt, createdAt: b.createdAt, status: b.status, amount: b.amount, currency: b.currency, locationType: b.locationType,
-    fee: PAID.has(b.status) && fromApp(b) ? platformFee(b.amount) : 0,
+    fee: PAID.has(b.status) && fromApp(b) ? bookingFee(b) : 0,
     service: service?.name ?? "Service",
     barber: barber ? { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city } : null,
     customer: customer ? { id: customer.id, name: b.guest?.name ?? customer.name, email: customer.email } : null,
@@ -96,7 +97,7 @@ export function registerAdminRoutes(app: Express) {
       },
       revenue30: {
         bookings: byCurrency(paid30),
-        fees: byCurrency(paid30.map((b) => ({ currency: b.currency, amount: platformFee(b.amount) }))),
+        fees: byCurrency(paid30.map((b) => ({ currency: b.currency, amount: bookingFee(b) }))),
         hires: byCurrency(hires30),
         shop: byCurrency(orders30),
         clubAndGifts: byCurrency(purchases30),
@@ -332,6 +333,8 @@ export function registerAdminRoutes(app: Express) {
   const settingsView = () => ({
     platformFeePercent: platformFeePercent(),
     reviewNewBarbers: reviewNewBarbers(),
+    travelIncludedKm: travelSettings().includedKm,
+    travelPerKmAed: travelSettings().perKmAed,
     campaigns: CAMPAIGNS.map((c) => ({ id: c.id, eyebrow: c.eyebrow, title: c.title, photoUrl: c.photoUrl, countries: c.countries ?? null, except: c.except ?? null, hidden: (db.settings.hiddenCampaigns ?? []).includes(c.id) })),
   });
 
@@ -344,6 +347,8 @@ export function registerAdminRoutes(app: Express) {
       platformFeePercent: z.number().min(0).max(50).optional(),
       reviewNewBarbers: z.boolean().optional(),
       hiddenCampaigns: z.array(z.string()).max(100).optional(),
+      travelIncludedKm: z.number().int().min(0).max(100).optional(),
+      travelPerKmAed: z.number().int().min(0).max(5000).optional(), // minor units
     }), req.body);
     Object.assign(db.settings, body);
     logActivity(req, "settings.changed", "Settings", Object.entries(body).map(([k, v]) => `${k}: ${Array.isArray(v) ? v.length + " hidden" : v}`).join(", "));

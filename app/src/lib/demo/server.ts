@@ -23,6 +23,7 @@ interface SeedBarber {
   offline?: boolean; // switched off in the app by their barbershop
   cancelPolicy?: { freeHours: number; lateFeePercent: number };
   offPeak?: PriceRule | null; peak?: PriceRule | null;
+  travelMaxKm?: number; // how far from their pin they go for a home visit (missing = 30 km)
   sharePercent?: number; clientNotes?: Record<string, string>; nudgedAt?: Record<string, string>;
 }
 interface PriceRule { percent: number; days: number[]; fromHour: number; toHour: number }
@@ -98,6 +99,7 @@ interface Booking {
   status: "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled"; reviewed: boolean; createdAt: string;
   coveredBy?: "membership"; creditUsed?: number; tip?: number; cutNotes?: string; extras?: string[];
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; guest?: { name: string; phone: string };
+  spot?: { lat: number; lng: number; label?: string }; distanceKm?: number; travelFee?: number; // a home visit's point, drive and extra travel
   source?: "app" | "shop"; noShow?: boolean; // "shop": a walk-in or phone booking the barbershop added, paid at the shop
   cutPhotos?: string[]; shareToken?: string;
   priceRule?: number; lateFee?: number; checkedInAt?: string; partnerId?: string; partnerDiscount?: number;
@@ -147,7 +149,7 @@ interface Saved {
   giftCards?: GiftCard[];
   purchases?: Purchase[];
   waitlist?: { id: string; userId: string; barberId: string; date: string; notified: boolean; createdAt: string }[];
-  settings?: { platformFeePercent?: number; reviewNewBarbers?: boolean; hiddenCampaigns?: string[]; team?: Record<string, AdminRole> };
+  settings?: { platformFeePercent?: number; reviewNewBarbers?: boolean; hiddenCampaigns?: string[]; team?: Record<string, AdminRole>; travelIncludedKm?: number; travelPerKmAed?: number };
   partners?: Partner[];
   chats?: DemoChat[];
   activity?: { id: string; at: string; by: { id: string; name: string; email: string }; action: string; target: string; detail?: string }[];
@@ -290,6 +292,7 @@ function barberView(b: SeedBarber) {
     id: b.id, name: b.name, bio: b.bio, photoUrl: b.photoUrl, countryCode: b.countryCode, countryName: c.name, city: b.city,
     timeZone: timeZoneOf(b), shopAddress: b.shopAddress, shop: shopRef(b.shopId), lat: b.lat, lng: b.lng, specialties: b.specialties, services: b.services,
     offersHomeVisits: b.offersHomeVisits, homeVisitFee: b.homeVisitFee, offersConsultations: b.offersConsultations !== false, hasVideoLink: !!b.videoLink,
+    travel: { includedKm: travelIncludedKm(), perKm: perKmFor(c.currency), maxKm: maxKmOf(b) },
     currency: c.currency, rating: r.rating, ratingCount: r.ratingCount,
     startingPrice: Math.min(...mainServices(b).map((s) => s.price)), yearsExperience: b.yearsExperience, languages: b.languages,
     gallery: b.gallery, transformations: b.transformations, nextAvailable: nextAvailable(b),
@@ -976,6 +979,29 @@ const fromApp = (b: Booking) => b.source !== "shop";
 const feePercent = () => saved.settings?.platformFeePercent ?? 10;
 const reviewNewBarbers = () => saved.settings?.reviewNewBarbers ?? true;
 const platformFee = (amount: number) => Math.round((amount * feePercent()) / 100);
+/** JB's fee on a booking: not on the extra travel of a far home visit, which is all the barber's (mirrors bookingFee). */
+const bookingFee = (b: Booking) => platformFee(Math.max(0, b.amount - (b.travelFee ?? 0)));
+
+// Home visits further away (mirrors server/src/travel.ts): the visit fee covers the first km from the barber's pin,
+// each km beyond adds a rate for the barber's taxi there and back, and each barber sets how far they go.
+const TRAVEL_PER_KM: Record<string, number> = { sar: 400, eur: 100, gbp: 100, usd: 100, cad: 150, aud: 150, try: 3000, ngn: 50000, brl: 500 };
+const travelIncludedKm = () => saved.settings?.travelIncludedKm ?? 10;
+const perKmFor = (currency: string) => (currency === "aed" ? saved.settings?.travelPerKmAed ?? 400 : TRAVEL_PER_KM[currency] ?? 100);
+const maxKmOf = (b: SeedBarber) => b.travelMaxKm ?? 30;
+function roadKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
+  const rad = (d: number) => (d * Math.PI) / 180;
+  const h = Math.sin(rad(b.lat - a.lat) / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(rad(b.lng - a.lng) / 2) ** 2;
+  return Math.max(1, Math.round(6371 * 2 * Math.asin(Math.sqrt(h)) * 1.3));
+}
+function travelQuote(b: SeedBarber, spot: { lat: number; lng: number }) {
+  const km = roadKm(b, spot);
+  const currency = country(b.countryCode)!.currency;
+  const includedKm = travelIncludedKm();
+  const perKm = perKmFor(currency);
+  const extraKm = Math.max(0, km - includedKm);
+  const fee = extraKm && perKm ? Math.ceil((extraKm * perKm) / 500) * 500 : 0;
+  return { km, minutes: Math.max(10, Math.round((km / 45) * 12) * 5), includedKm, extraKm, perKm, fee, maxKm: maxKmOf(b), tooFar: km > maxKmOf(b), currency, visitFee: b.homeVisitFee };
+}
 const statusOf = (b: SeedBarber) => b.status ?? "live";
 const isLive = (b: SeedBarber) => statusOf(b) === "live";
 const removedReels = () => new Set(saved.removedReels ?? []);
@@ -1005,7 +1031,7 @@ function earnings(list: Booking[], since: number, until = Infinity) {
   const lateFees = list.filter((b) => b.status === "cancelled" && b.lateFee && within(b)).reduce((s, b) => s + b.lateFee!, 0);
   const gross = inRange.reduce((s, b) => s + b.amount, 0) + lateFees;
   const tips = inRange.reduce((s, b) => s + (b.tip ?? 0), 0);
-  const fee = inRange.reduce((s, b) => s + platformFee(b.amount), 0) + platformFee(lateFees);
+  const fee = inRange.reduce((s, b) => s + bookingFee(b), 0) + platformFee(lateFees);
   return { count: inRange.length, gross, fee, tips, net: gross - fee + tips, lateFees };
 }
 
@@ -1216,7 +1242,7 @@ function bookingRow(b: Booking) {
   const service = barber ? findService(barber, b.serviceId) ?? (b.serviceId === CONSULTATION.id ? CONSULTATION : undefined) : undefined;
   return {
     id: b.id, startsAt: b.startsAt, createdAt: b.createdAt, status: b.status, amount: b.amount, currency: b.currency, locationType: b.locationType,
-    fee: PAID.has(b.status) && fromApp(b) ? platformFee(b.amount) : 0, service: service?.name ?? "Service",
+    fee: PAID.has(b.status) && fromApp(b) ? bookingFee(b) : 0, service: service?.name ?? "Service",
     barber: barber ? { id: barber.id, name: barber.name, photoUrl: barber.photoUrl, city: barber.city } : null,
     customer: customer ? { id: customer.id, name: b.guest?.name ?? customer.name, email: customer.email } : null,
     coveredBy: b.coveredBy ?? null,
@@ -2163,7 +2189,7 @@ async function shopOpsRoutes(method: string, path: string, q: Record<string, str
       const services = done.reduce((s, b) => s + b.amount, 0);
       const lateFees = mine.filter((b) => b.status === "cancelled" && b.lateFee).reduce((s, b) => s + b.lateFee!, 0);
       const tips = done.filter(fromApp).reduce((s, b) => s + (b.tip ?? 0), 0);
-      const jbFee = done.filter(fromApp).reduce((s, b) => s + platformFee(b.amount), 0) + platformFee(lateFees);
+      const jbFee = done.filter(fromApp).reduce((s, b) => s + bookingFee(b), 0) + platformFee(lateFees);
       const share = t.sharePercent ?? shopDefault;
       const net = services + lateFees - jbFee;
       const barberPay = Math.round((net * share) / 100) + tips;
@@ -2318,7 +2344,7 @@ async function platformRoutes(method: string, path: string, q: Record<string, st
     const travel = b.locationType === "home" ? barber.homeVisitFee : 0;
     const lines = b.status === "cancelled"
       ? [{ description: `Late cancellation — ${service?.name ?? "appointment"} with ${barber.name}`, amount: charged }]
-      : [{ description: `${service?.name ?? "Appointment"} with ${barber.name}`, amount: b.amount - ex.reduce((t, e) => t + e.price, 0) - travel }, ...ex.map((e) => ({ description: e.name, amount: e.price })), ...(travel ? [{ description: "Home visit travel", amount: travel }] : [])].filter((l) => l.amount > 0);
+      : [{ description: `${service?.name ?? "Appointment"} with ${barber.name}`, amount: b.amount - ex.reduce((t, e) => t + e.price, 0) - travel - (b.travelFee ?? 0) }, ...ex.map((e) => ({ description: e.name, amount: e.price })), ...(travel ? [{ description: "Home visit travel", amount: travel }] : []), ...(b.travelFee ? [{ description: `Extra travel (about ${b.distanceKm} km)`, amount: b.travelFee }] : [])].filter((l) => l.amount > 0);
     return hit({
       number: `JB-${b.startsAt.slice(0, 7).replace("-", "")}-${b.id.slice(0, 6).toUpperCase()}`, title: "Receipt", issuedAt: b.createdAt, serviceDate: b.startsAt, timeZone: timeZoneOf(barber),
       seller: { name: "JB Always Fresh", address: "Dubai, United Arab Emirates", trn: null, onBehalfOf: barber.name },
@@ -2458,7 +2484,7 @@ function adminPlatform(method: string, path: string, q: Record<string, string>, 
       if (!fromApp(b) || monthOf(b.startsAt) !== month) continue;
       const barber = allBarbers().find((y) => y.id === b.barberId)?.name ?? "";
       if (PAID.has(b.status)) {
-        rows.push({ date: b.startsAt, type: "booking", ref: b.id, customer: b.guest?.name ?? who(b.customerId), barber, currency: b.currency, amount: b.amount, jbFee: platformFee(b.amount) });
+        rows.push({ date: b.startsAt, type: "booking", ref: b.id, customer: b.guest?.name ?? who(b.customerId), barber, currency: b.currency, amount: b.amount, jbFee: bookingFee(b) });
         if (b.tip) rows.push({ date: b.startsAt, type: "tip", ref: b.id, customer: who(b.customerId), barber, currency: b.currency, amount: b.tip, jbFee: 0 });
       } else if (b.status === "cancelled" && b.lateFee) rows.push({ date: b.startsAt, type: "late_cancellation", ref: b.id, customer: who(b.customerId), barber, currency: b.currency, amount: b.lateFee, jbFee: platformFee(b.lateFee) });
     }
@@ -2585,7 +2611,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
         cancelled30: saved.bookings.filter((b) => b.status === "cancelled" && Date.parse(b.createdAt) >= since(30)).length,
       },
       revenue30: {
-        bookings: byCurrency(paid30), fees: byCurrency(paid30.map((b) => ({ currency: b.currency, amount: platformFee(b.amount) }))),
+        bookings: byCurrency(paid30), fees: byCurrency(paid30.map((b) => ({ currency: b.currency, amount: bookingFee(b) }))),
         hires: byCurrency((saved.hires ?? []).filter((h) => h.status !== "pending_payment" && h.status !== "cancelled" && Date.parse(h.createdAt) >= since(30))),
         shop: byCurrency(saved.orders.filter((o) => !["pending_payment", "cancelled"].includes(o.status) && Date.parse(o.createdAt) >= since(30))),
         clubAndGifts: byCurrency((saved.purchases ?? []).filter((p) => p.status === "paid" && p.kind !== "tip")),
@@ -2765,6 +2791,8 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
     if (method === "PATCH") {
       const fee = body?.platformFeePercent;
       if (fee !== undefined && (typeof fee !== "number" || fee < 0 || fee > 50)) throw new DemoError(400, "The fee must be between 0% and 50%.");
+      if (body?.travelIncludedKm !== undefined && !(body.travelIncludedKm >= 0 && body.travelIncludedKm <= 100)) throw new DemoError(400, "Included km must be between 0 and 100.");
+      if (body?.travelPerKmAed !== undefined && !(body.travelPerKmAed >= 0 && body.travelPerKmAed <= 5000)) throw new DemoError(400, "The rate must be between AED 0 and 50 a km.");
       saved.settings = { ...saved.settings, ...body };
       logActivity(me, "settings.changed", "Settings", Object.keys(body ?? {}).join(", "));
       persist();
@@ -2772,6 +2800,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
     const hidden = saved.settings?.hiddenCampaigns ?? [];
     return hit({
       platformFeePercent: feePercent(), reviewNewBarbers: reviewNewBarbers(),
+      travelIncludedKm: travelIncludedKm(), travelPerKmAed: perKmFor("aed"),
       campaigns: seed.campaigns.map((c) => ({ id: c.id, eyebrow: c.eyebrow, title: c.title, photoUrl: c.photoUrl, countries: c.countries ?? null, except: c.except ?? null, hidden: hidden.includes(c.id) })),
     });
   }
@@ -2992,6 +3021,14 @@ export function createDemoServer(data: DemoData) {
       persist();
       return barberView(getBarber(u.barberId));
     }
+    if ((x = m(/^\/barbers\/([^/]+)\/travel$/))) {
+      const b = getBarber(x[1]);
+      if (!b.offersHomeVisits) throw new DemoError(404, "This barber doesn't do home visits.");
+      const lat = Number(q.lat);
+      const lng = Number(q.lng);
+      if (!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) throw new DemoError(400, "That place isn't on the map.");
+      return travelQuote(b, { lat, lng });
+    }
     if ((x = m(/^\/barbers\/([^/]+)\/availability$/))) {
       const b = getBarber(x[1]);
       const s = findService(b, q.serviceId);
@@ -3018,6 +3055,11 @@ export function createDemoServer(data: DemoData) {
       const consultation = s.id === CONSULTATION.id;
       const locationType: Booking["locationType"] = consultation ? (body?.locationType === "phone" ? "phone" : "video") : body?.locationType === "home" ? "home" : "shop";
       if (locationType === "home" && !String(body?.address ?? "").trim()) throw new DemoError(400, "Please enter the address the barber should come to.");
+      // Home visits: how far the barber drives, and the extra for their taxi beyond the included km.
+      const spot = body?.spot && Number.isFinite(Number(body.spot.lat)) && Number.isFinite(Number(body.spot.lng)) ? { lat: Number(body.spot.lat), lng: Number(body.spot.lng), ...(body.spot.label ? { label: String(body.spot.label).slice(0, 120) } : {}) } : undefined;
+      const trip = locationType === "home" ? (spot ? travelQuote(b, spot) : null) : undefined;
+      if (trip === null) throw new DemoError(400, "Tell us where the barber should come: use your location or pick your area.");
+      if (trip?.tooFar) throw new DemoError(400, `${b.name.split(" ")[0]} goes up to ${trip.maxKm} km for home visits, and your place is about ${trip.km} km away. Pick a barber nearer you, or book at the shop.`);
       const phone = String(body?.phone ?? "").trim();
       if (locationType === "phone" && phone.replace(/[^\d]/g, "").length < 6) throw new DemoError(400, "Please enter the phone number your barber should call.");
       const ex = consultation ? [] : extrasOf(b, (body?.extras ?? []) as string[]);
@@ -3034,6 +3076,7 @@ export function createDemoServer(data: DemoData) {
         amount: 0, currency: country(b.countryCode)!.currency,
         status: "pending_payment", reviewed: false, createdAt: new Date().toISOString(),
         venue: locationType === "home" && body?.venue ? { kind: body.venue.kind, details: String(body.venue.details ?? "") } : undefined,
+        ...(trip ? { spot, distanceKm: trip.km, ...(trip.fee ? { travelFee: trip.fee } : {}) } : {}),
         guest: body?.guest?.name ? { name: String(body.guest.name), phone: String(body.guest.phone ?? "") } : undefined,
       };
       // The Club first, then gift credit (mirrors priceBooking on the server).
@@ -3052,7 +3095,7 @@ export function createDemoServer(data: DemoData) {
           servicePrice = off;
         }
       }
-      const due = (covered ? 0 : servicePrice) + ex.reduce((t, e) => t + e.price, 0) + (locationType === "home" && !(plan?.freeHomeVisits && !consultation) ? b.homeVisitFee : 0);
+      const due = (covered ? 0 : servicePrice) + ex.reduce((t, e) => t + e.price, 0) + (locationType === "home" && !(plan?.freeHomeVisits && !consultation) ? b.homeVisitFee : 0) + (trip?.fee ?? 0);
       const credit = Math.min(u.credit?.[bk.currency] ?? 0, due);
       bk.amount = due - credit;
       if (covered) bk.coveredBy = "membership";

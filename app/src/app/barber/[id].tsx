@@ -265,7 +265,7 @@ export default function BarberProfile() {
               })}
             </View>
           ))}
-          {barber.offersHomeVisits && <T variant="caption" muted>Home visit: +{money(barber.homeVisitFee, barber.currency)} travel fee</T>}
+          {barber.offersHomeVisits && <T variant="caption" muted>Home visit: +{money(barber.homeVisitFee, barber.currency)} travel fee{barber.travel ? `, up to ${barber.travel.includedKm} km; further, ${money(barber.travel.perKm, barber.currency)} a km (goes up to ${barber.travel.maxKm} km)` : ""}</T>}
         </View>
       )}
 

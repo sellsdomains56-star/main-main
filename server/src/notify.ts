@@ -102,7 +102,7 @@ export function bookingConfirmed(b: Booking) {
     notify(d.barberUserId, {
       kind: "new_booking",
       title: d.consult ? "New consultation" : "New booking",
-      body: `${d.customerName} booked ${d.service}, ${d.when}, ${d.where}.`,
+      body: `${d.customerName} booked ${d.service}, ${d.when}, ${d.where}.${b.distanceKm ? ` About ${b.distanceKm} km from your pin${b.travelFee ? `, with ${new Intl.NumberFormat("en", { style: "currency", currency: b.currency.toUpperCase() }).format(b.travelFee / 100)} extra for your taxi` : ""}.` : ""}`,
       bookingId: b.id,
     });
   }
@@ -121,7 +121,8 @@ function bookingEmail(b: Booking, d: ReturnType<typeof details>) {
     "Receipt",
     `${d.service}: ${b.coveredBy ? "included in The Club" : money(findService(barber, b.serviceId)?.price ?? 0)}`,
     ...extras.map((s) => `${s.name}: ${money(s.price)}`),
-    ...(b.locationType === "home" ? [`Home visit: ${money(Math.max(0, b.amount + (b.creditUsed ?? 0) - (b.coveredBy ? 0 : findService(barber, b.serviceId)?.price ?? 0) - extras.reduce((t, s) => t + s.price, 0)))}`] : []),
+    ...(b.locationType === "home" ? [`Home visit: ${money(Math.max(0, b.amount + (b.creditUsed ?? 0) - (b.coveredBy ? 0 : findService(barber, b.serviceId)?.price ?? 0) - extras.reduce((t, s) => t + s.price, 0) - (b.travelFee ?? 0)))}`] : []),
+    ...(b.travelFee ? [`Extra travel (about ${b.distanceKm} km): ${money(b.travelFee)}`] : []),
     ...(b.creditUsed ? [`Gift credit: -${money(b.creditUsed)}`] : []),
     ...(b.tip ? [`Tip for ${first(barber.name)}: ${money(b.tip)}`] : []),
     `Total paid: ${money(b.amount + (b.tip ?? 0))}`,

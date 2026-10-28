@@ -1,6 +1,6 @@
 import { API_URL, DEMO_DATA, resolveMedia } from "./config";
 import { createDemoServer, demoPostReel, demoUpload, DemoError } from "./demo/server";
-import type { ActivityEntry, Agreement, ApplicationDocKind, ApplicationRow, BarberApplication, AdminAnalytics, AdminFinance, AdminRole, Award, ChatMessage2, ChatSummary, ChatThread, Invoice, Partner, PartnerWelcome, Payouts, TeamMember, BookingRules, CheckInRow, Client, Level, Payroll, QueueItem, QueueStatus, ShopHireRow, ShopOrderRow, ShopQueue, ShopStaff, StockRow, AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Referral, Review, SharedVisit, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, Usual, VenueKind, WorkingHours } from "./types";
+import type { ActivityEntry, Agreement, ApplicationDocKind, ApplicationRow, BarberApplication, AdminAnalytics, AdminFinance, AdminRole, Award, ChatMessage2, ChatSummary, ChatThread, Invoice, Partner, PartnerWelcome, Payouts, TeamMember, TravelQuote, BookingRules, CheckInRow, Client, Level, Payroll, QueueItem, QueueStatus, ShopHireRow, ShopOrderRow, ShopQueue, ShopStaff, StockRow, AdminBarberDetail, AlertSettings, AdminBarberRow, AdminBookingRow, AdminCustomerRow, AdminOrderRow, AdminOverview, AdminSettings, AdminShopRow, AdminTicket, AppNotification, AssistantAction, Barber, BarberSearch, BarberStatus, Booking, BusinessDashboard, CalBlock, CalBooking, Campaign, Catalog, ChatMessage, Country, FaqItem, GiftCard, Hire, LocationType, Membership, Order, Plan, Preferences, Purchase, Reel, ReelComment, Referral, Review, SharedVisit, ServiceCategory, Shop, ShopCalendar, ShopMember, ShopPanel, ShopReport, ShopSummary, StyleAdvice, User, Usual, VenueKind, WorkingHours } from "./types";
 
 let authToken: string | null = null;
 export const setAuthToken = (token: string | null) => {
@@ -150,6 +150,7 @@ export const api = {
   startPayouts: () => request<{ url: string }>("/barbers/me/payouts", { method: "POST" }),
   availability: (id: string, date: string, serviceId: string, extras: string[] = []) =>
     request<{ timeZone: string; slots: string[]; deals?: Record<string, number> }>(`/barbers/${id}/availability` + qs({ date, serviceId, extras: extras.length ? extras.join(",") : undefined })),
+  travel: (id: string, spot: { lat: number; lng: number }) => request<TravelQuote>(`/barbers/${id}/travel` + qs({ lat: String(spot.lat), lng: String(spot.lng) })),
 
   register: (body: { name: string; email: string; password: string; countryCode?: string; city?: string; invite?: string }) =>
     request<{ token: string; user: User }>("/auth/register", { body }),
@@ -180,6 +181,7 @@ export const api = {
   createBooking: (body: {
     barberId: string; serviceId: string; startsAt: string; locationType: LocationType; address?: string; phone?: string; notes?: string;
     venue?: { kind: VenueKind; details: string }; guest?: { name: string; phone: string }; extras?: string[]; tip?: number; partner?: string;
+    spot?: { lat: number; lng: number; label?: string };
   }) =>
     request<{ booking: Booking; clientSecret: string | null; demoPayments: boolean }>("/bookings", { body }),
   bookings: () => request<Booking[]>("/bookings"),
@@ -247,7 +249,7 @@ export const api = {
     if (!res.ok) throw new ApiError(res.status, data.error ?? "Upload failed.");
     return data;
   },
-  updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties" | "offersConsultations" | "offersHomeVisits" | "homeVisitFee" | "lat" | "lng" | "shopAddress"> & { videoLink: string } & Partial<WorkingHours>>) =>
+  updateMyBarber: (body: Partial<Pick<Barber, "photoUrl" | "bio" | "yearsExperience" | "languages" | "specialties" | "offersConsultations" | "offersHomeVisits" | "homeVisitFee" | "lat" | "lng" | "shopAddress"> & { videoLink: string; travelMaxKm: number } & Partial<WorkingHours>>) =>
     request<Barber>("/barbers/me", { method: "PATCH", body }),
   notifications: () => request<{ unread: number; items: AppNotification[] }>("/notifications"),
   markNotificationsRead: (ids?: string[]) => request<void>("/notifications/read", { body: { ids } }),
@@ -309,7 +311,7 @@ export const api = {
     tickets: (status: "open" | "closed" | "all") => request<AdminTicket[]>("/admin/tickets" + qs({ status })),
     updateTicket: (id: string, body: { reply?: string; status?: "open" | "closed" }) => request<AdminTicket>(`/admin/tickets/${id}`, { method: "PATCH", body }),
     settings: () => request<AdminSettings>("/admin/settings"),
-    updateSettings: (body: Partial<{ platformFeePercent: number; reviewNewBarbers: boolean; hiddenCampaigns: string[] }>) => request<AdminSettings>("/admin/settings", { method: "PATCH", body }),
+    updateSettings: (body: Partial<{ platformFeePercent: number; reviewNewBarbers: boolean; hiddenCampaigns: string[]; travelIncludedKm: number; travelPerKmAed: number }>) => request<AdminSettings>("/admin/settings", { method: "PATCH", body }),
     addManager: (shopId: string, email: string) => request<{ shopId: string; managers: { id: string; name: string; email: string }[] }>(`/admin/shops/${shopId}/managers`, { body: { email } }),
     removeManager: (shopId: string, userId: string) => request<null>(`/admin/shops/${shopId}/managers/${userId}`, { method: "DELETE" }),
     team: () => request<TeamMember[]>("/admin/team"),

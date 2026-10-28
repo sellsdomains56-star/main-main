@@ -4,14 +4,16 @@ import { ScrollView, View } from "react-native";
 import { DayPicker } from "../../components/DayPicker";
 import { SlideToConfirm } from "../../components/SlideToConfirm";
 import { colors } from "../../components/theme";
-import { Avatar, Button, ErrorBox, Field, IconLine, Loading, OptionRow, Pill, Row, Screen, StepCard, StepConnector, T, Wrap } from "../../components/ui";
+import { Avatar, Button, Card, ErrorBox, Field, IconLine, Loading, OptionRow, Pill, Row, Screen, StepCard, StepConnector, T, Wrap } from "../../components/ui";
 import { api } from "../../lib/api";
+import { areaInAddress, areasFor, searchAreas, spotOf, straightKm, type Area } from "../../lib/areas";
 import { useAuth } from "../../lib/auth";
 import { money, time, upcomingDays } from "../../lib/format";
 import { isExtra, minutes, sections, tipChoices } from "../../lib/menu";
 import { currentPartner } from "../../lib/partner";
+import { currentPosition } from "../../lib/position";
 import { adjustedPrice, policyLabel } from "../../lib/rules";
-import { CONSULTATION_ID, type Barber, type LocationType, type Membership, type PartnerWelcome, type VenueKind } from "../../lib/types";
+import { CONSULTATION_ID, type Barber, type LocationType, type Membership, type PartnerWelcome, type Spot, type TravelQuote, type VenueKind } from "../../lib/types";
 
 /** Booking a cut (shop or home), or with `?mode=consult` a free video / phone consultation. */
 export default function Book() {
@@ -33,6 +35,9 @@ export default function Book() {
   // Home visits: home, hotel, yacht or office, and how to get in.
   const [venue, setVenue] = useState<VenueKind>("home");
   const [venueDetails, setVenueDetails] = useState("");
+  // Where on the map, for the distance and any extra travel: the phone's location or an area picked, else an area named in the address.
+  const [chosenSpot, setChosenSpot] = useState<Spot | null>(null);
+  const [quoted, setQuoted] = useState<{ key: string; quote: TravelQuote } | null>(null);
   // Booking for someone else.
   const [forGuest, setForGuest] = useState(params.guest === "1"); // "add a friend right after" opens this ready for their name
   const [guestName, setGuestName] = useState("");
@@ -89,6 +94,18 @@ export default function Book() {
     }, (e: Error) => setError(e.message));
   }, [barber, date, serviceId, extras, days, userPickedDate, params.startsAt]);
 
+  const areas = useMemo(() => (barber ? areasFor(barber.countryCode, barber.city) : []), [barber]);
+  // An area named in the address ("Atlantis The Royal, Palm Jumeirah") places the visit when nothing was chosen.
+  const typedArea = useMemo(() => areaInAddress(areas, address), [areas, address]);
+  const spot = chosenSpot ?? (typedArea ? spotOf(typedArea) : null);
+  const spotKey = spot ? `${spot.lat},${spot.lng}` : "";
+  const quote = quoted && quoted.key === spotKey ? quoted.quote : null;
+  useEffect(() => {
+    if (!barber || locationType !== "home" || !spotKey) return;
+    const [lat, lng] = spotKey.split(",").map(Number);
+    api.travel(barber.id, { lat, lng }).then((q) => setQuoted({ key: spotKey, quote: q }), (e: Error) => setError(e.message));
+  }, [barber, locationType, spotKey]);
+
   const baseService = barber?.services.find((s) => s.id === serviceId);
   const rule = slot && !consult ? deals[slot] ?? 0 : 0;
   const ruled = baseService && rule ? { ...baseService, price: adjustedPrice(baseService.price, rule) } : baseService;
@@ -99,10 +116,11 @@ export default function Book() {
   const member = club?.membership?.active ? club.membership : null;
   const clubCovers = !consult && !!member && (member.cutsLeft === null || member.cutsLeft > 0);
   const clubHomeFree = !consult && !!member?.freeHomeVisits && locationType === "home";
-  const before = consult ? 0 : (clubCovers ? 0 : service?.price ?? 0) + extrasPrice + (locationType === "home" && !clubHomeFree ? barber?.homeVisitFee ?? 0 : 0);
+  const travelFee = locationType === "home" && quote && !quote.tooFar ? quote.fee : 0; // the barber's taxi beyond the included km
+  const before = consult ? 0 : (clubCovers ? 0 : service?.price ?? 0) + extrasPrice + (locationType === "home" && !clubHomeFree ? barber?.homeVisitFee ?? 0 : 0) + travelFee;
   const credit = barber ? Math.min(club?.credit?.[barber.currency] ?? 0, before) : 0;
   const subtotal = before - credit;
-  // Tips are worked out on the service and extras (not the travel fee); none on a booking with nothing to pay.
+  // Tips are worked out on the service and extras (not travel); none on a booking with nothing to pay.
   const tipBase = (service?.price ?? 0) + extrasPrice;
   const tip = consult || subtotal === 0 ? 0 : tipChoices(tipBase).find((c) => c.percent === tipPercent)?.amount ?? 0;
   const total = subtotal + tip;
@@ -111,7 +129,7 @@ export default function Book() {
   const extraItems = menu.find((m) => m.id === "extras")?.items ?? [];
   const shown = section === "popular" ? (barber?.services ?? []).filter((s) => !isExtra(s)).slice(0, 4) : mains.find((m) => m.id === section)?.items ?? [];
   const totalMinutes = (service?.durationMin ?? 0) + added.reduce((m, s) => m + s.durationMin, 0);
-  const whereDone = (consult ? locationType === "video" || phone.replace(/\D/g, "").length >= 6 : locationType === "shop" || address.trim().length > 4) && (!forGuest || guestName.trim().length > 0);
+  const whereDone = (consult ? locationType === "video" || phone.replace(/\D/g, "").length >= 6 : locationType === "shop" || (address.trim().length > 4 && !!quote && !quote.tooFar)) && (!forGuest || guestName.trim().length > 0);
   const ready = !!slot && (consult || !!service) && whereDone;
 
   const confirm = useCallback(async () => {
@@ -122,6 +140,7 @@ export default function Book() {
       const { booking } = await api.createBooking({
         barberId: barber.id, serviceId, startsAt: slot, locationType, address, phone, notes,
         venue: locationType === "home" ? { kind: venue, details: venueDetails } : undefined,
+        spot: locationType === "home" && spot ? { lat: spot.lat, lng: spot.lng, label: spot.label } : undefined,
         guest: forGuest && guestName.trim() ? { name: guestName.trim(), phone: guestPhone.trim() } : undefined,
         extras, tip, partner: partner?.code,
       });
@@ -134,7 +153,7 @@ export default function Book() {
     } finally {
       setSubmitting(false);
     }
-  }, [barber, slot, serviceId, locationType, address, phone, notes, date, venue, venueDetails, forGuest, guestName, guestPhone, extras, tip, partner]);
+  }, [barber, slot, serviceId, locationType, address, phone, notes, date, venue, venueDetails, spot, forGuest, guestName, guestPhone, extras, tip, partner]);
 
   if (!barber) return <Screen>{error ? <ErrorBox message={error} /> : <Loading />}</Screen>;
   if (consult && !barber.offersConsultations) return <Screen><ErrorBox message={`${barber.name} doesn't offer consultations right now.`} /></Screen>;
@@ -147,13 +166,13 @@ export default function Book() {
             <T variant="eyebrow" color={colors.muted}>Total</T>
             <T variant="title">{consult ? "Free" : total === 0 && clubCovers ? "Included" : money(total, barber.currency)}</T>
             {!consult && (clubCovers || credit > 0) && <T variant="small" muted>{clubCovers ? `Cut included · The Club` : `${money(credit, barber.currency)} gift credit`}</T>}
-            {!consult && tip > 0 && <T variant="small" muted>incl. {money(tip, barber.currency)} tip</T>}
+            {!consult && (tip > 0 || travelFee > 0) && <T variant="small" muted>incl. {[travelFee > 0 && `${money(travelFee, barber.currency)} travel`, tip > 0 && `${money(tip, barber.currency)} tip`].filter(Boolean).join(" · ")}</T>}
           </View>
           <View style={{ flex: 1 }}>
             {user ? (
               <SlideToConfirm
                 label={consult ? "Slide to book call" : "Slide to book"}
-                disabledLabel={!slot ? "Pick a time" : consult ? "Add your number" : "Add your address"}
+                disabledLabel={!slot ? "Pick a time" : consult ? "Add your number" : locationType === "home" && quote?.tooFar ? "Too far for a visit" : locationType === "home" && !spot ? "Choose where" : "Add your address"}
                 disabled={!ready}
                 loading={submitting}
                 onConfirm={confirm}
@@ -234,7 +253,7 @@ export default function Book() {
               {barber.offersHomeVisits && (
                 <OptionRow
                   label="At my place"
-                  sublabel={`Home, hotel or office · +${money(barber.homeVisitFee, barber.currency)}`}
+                  sublabel={`Home, hotel or office · +${money(barber.homeVisitFee, barber.currency)}${barber.travel ? `, extra beyond ${barber.travel.includedKm} km` : ""}`}
                   icon="home-outline"
                   selected={locationType === "home"}
                   onPress={() => setLocationType("home")}
@@ -248,6 +267,7 @@ export default function Book() {
                   </Wrap>
                   <Field label={VENUES.find((v) => v.kind === venue)!.address} placeholder={VENUES.find((v) => v.kind === venue)!.addressHint} value={address} onChangeText={setAddress} autoComplete="street-address" style={{ marginTop: 12 }} />
                   <Field label={VENUES.find((v) => v.kind === venue)!.details} placeholder={VENUES.find((v) => v.kind === venue)!.detailsHint} value={venueDetails} onChangeText={setVenueDetails} style={{ marginBottom: 0 }} />
+                  <TravelPicker barber={barber} areas={areas} spot={spot} quote={quote} typedArea={typedArea} onSpot={setChosenSpot} />
                 </View>
               )}
             </StepCard>
@@ -339,6 +359,76 @@ export default function Book() {
       </View>
       {error && <View style={{ marginTop: 16 }}><ErrorBox message={error} /></View>}
     </Screen>
+  );
+}
+
+/** Where on the map a home visit is, and what the distance means for the price. */
+function TravelPicker({ barber, areas, spot, quote, typedArea, onSpot }: { barber: Barber; areas: Area[]; spot: Spot | null; quote: TravelQuote | null; typedArea: Area | null; onSpot: (s: Spot) => void }) {
+  const [picking, setPicking] = useState(false);
+  const [query, setQuery] = useState("");
+  const [locating, setLocating] = useState(false);
+  const [note, setNote] = useState<string | null>(null);
+  const first = barber.name.split(" ")[0];
+  const cur = barber.currency;
+  const locate = async () => {
+    setLocating(true);
+    setNote(null);
+    const pos = await currentPosition();
+    setLocating(false);
+    if (pos) onSpot({ ...pos, label: "Your location", source: "gps" });
+    else setNote("We couldn't get your location. Choose your area instead.");
+  };
+  return (
+    <View style={{ marginTop: 16 }}>
+      <T variant="strong">Where on the map?</T>
+      <T variant="caption" muted style={{ marginTop: 2, marginBottom: 10 }}>So you see how far {first} travels, and any extra, before you pay.</T>
+      <Wrap gap={8}>
+        <Pill label={locating ? "Finding you…" : "Use my location"} icon="locate-outline" selected={spot?.source === "gps"} onPress={locate} />
+        <Pill label={spot?.source === "area" ? spot.label : "Choose your area"} icon="map-outline" selected={spot?.source === "area"} onPress={() => setPicking((p) => !p)} />
+      </Wrap>
+      {note && <T variant="small" muted style={{ marginTop: 8 }}>{note}</T>}
+      {/* Booking from somewhere else ("my location" at the office, the address at home): say so, so they pick the right one. */}
+      {spot?.source === "gps" && typedArea && straightKm(spot, typedArea) > 3 && (
+        <View style={{ marginTop: 10 }}>
+          <IconLine icon="information-circle-outline">Your address says {typedArea.name}, but you&apos;re about {Math.round(straightKm(spot, typedArea))} km from there now.</IconLine>
+          <Button title={`Use ${typedArea.name}`} size="sm" variant="secondary" icon="map-outline" onPress={() => onSpot(spotOf(typedArea))} style={{ alignSelf: "flex-start", marginTop: 8 }} />
+        </View>
+      )}
+      {picking && (
+        <View style={{ marginTop: 12 }}>
+          <Field label="Area" placeholder={barber.countryCode === "AE" ? "e.g. Dubai Marina, Arabian Ranches" : "Search"} value={query} onChangeText={setQuery} style={{ marginBottom: 8 }} />
+          <Wrap gap={8}>
+            {searchAreas(areas, query).map((a) => (
+              <Pill key={a.name} label={a.name} selected={spot?.label === a.name} onPress={() => { onSpot(spotOf(a)); setPicking(false); setQuery(""); }} />
+            ))}
+          </Wrap>
+        </View>
+      )}
+      {spot && !quote && <View style={{ marginTop: 12 }}><Loading /></View>}
+      {quote && (
+        quote.tooFar ? (
+          <Card tone="surface" style={{ marginTop: 12, padding: 14 }}>
+            <IconLine icon="alert-circle-outline">
+              {first} goes up to {quote.maxKm} km for home visits, and {spot?.source === "gps" ? "you're" : `${spot?.label} is`} about {quote.km} km away. Pick a barber nearer you, or book at the shop.
+            </IconLine>
+          </Card>
+        ) : quote.fee > 0 ? (
+          <Card tone="surface" style={{ marginTop: 12, padding: 14 }}>
+            <Row style={{ justifyContent: "space-between", alignItems: "flex-start" }} gap={10}>
+              <T variant="strong" style={{ flex: 1 }}>{first} is about {quote.km} km away</T>
+              <T variant="strong">+{money(quote.fee, cur)}</T>
+            </Row>
+            <T variant="caption" muted style={{ marginTop: 4 }}>
+              About {quote.minutes} min by car. The visit fee covers {quote.includedKm} km; the other {quote.extraKm} km add {money(quote.fee, cur)} for {first}&apos;s taxi there and back. It all goes to {first}.
+            </T>
+          </Card>
+        ) : (
+          <View style={{ marginTop: 12 }}>
+            <IconLine icon="car-outline">About {quote.km} km from {first} (≈{quote.minutes} min). No extra travel: the visit fee covers up to {quote.includedKm} km.</IconLine>
+          </View>
+        )
+      )}
+    </View>
   );
 }
 

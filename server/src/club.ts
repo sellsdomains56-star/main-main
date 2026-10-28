@@ -93,11 +93,12 @@ export function clubCoverage(user: User | undefined, service: Service, locationT
 }
 
 /** Prices a booking for this customer: Club coverage first, then gift-card credit. Doesn't change anything. */
-export function priceBooking(user: User | undefined, barber: Barber, service: Service, locationType: Booking["locationType"], currency: string, extras = 0) {
+/** `travel` is the extra for a far home visit: always paid (the Club covers the visit fee, not the taxi). */
+export function priceBooking(user: User | undefined, barber: Barber, service: Service, locationType: Booking["locationType"], currency: string, extras = 0, travel = 0) {
   const cover = clubCoverage(user, service, locationType);
   const serviceAmount = cover.service ? 0 : service.price;
   const homeFee = locationType === "home" && !cover.homeFee ? barber.homeVisitFee : 0;
-  const due = serviceAmount + extras + homeFee; // the Club covers the service, not the extras
+  const due = serviceAmount + extras + homeFee + travel; // the Club covers the service, not the extras
   const credit = Math.min(user?.credit?.[currency] ?? 0, due);
   return { covered: cover.service, homeFeeCovered: cover.homeFee, creditUsed: credit, amount: due - credit };
 }

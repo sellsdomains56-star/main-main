@@ -62,7 +62,7 @@ test("full flow: register, book, pay (demo), complete, rate", async () => {
 
   const booking = await call("/bookings", {
     token: customer.json.token,
-    body: { barberId, serviceId: service.id, startsAt: avail.slots[0], locationType: "home", address: "Kiezweg 5, Berlin" },
+    body: { barberId, serviceId: service.id, startsAt: avail.slots[0], locationType: "home", address: "Kiezweg 5, Berlin", spot: { lat: barber.lat + 0.01, lng: barber.lng } },
   });
   assert.equal(booking.status, 201, JSON.stringify(booking.json));
   assert.equal(booking.json.demoPayments, true);
@@ -235,7 +235,7 @@ test("alerts: confirmation for both sides, on-the-way, reminders, cancellation, 
   const { json: avail } = await call(`/barbers/${barberId}/availability?date=${date}&serviceId=${profile.services[0].id}`);
   const { json: created } = await call("/bookings", {
     token: customer.json.token,
-    body: { barberId, serviceId: profile.services[0].id, startsAt: avail.slots[0], locationType: "home", address: "221B Baker Street" },
+    body: { barberId, serviceId: profile.services[0].id, startsAt: avail.slots[0], locationType: "home", address: "221B Baker Street", spot: { lat: profile.lat, lng: profile.lng } },
   });
   const bookingId = created.booking.id;
 

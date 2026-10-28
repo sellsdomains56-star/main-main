@@ -80,7 +80,7 @@ test("Black members get home visits included", async () => {
   const cut = b5.services[0];
   const r = await call("/bookings", {
     token,
-    body: { barberId: "b5", serviceId: cut.id, startsAt: await firstSlot("b5", cut.id, 5), locationType: "home", address: "Suite 1204, The Ned, London", venue: { kind: "hotel", details: "Room 1204, ask for me at the desk" } },
+    body: { barberId: "b5", serviceId: cut.id, startsAt: await firstSlot("b5", cut.id, 5), locationType: "home", address: "Suite 1204, The Ned, London", spot: { lat: b5.lat, lng: b5.lng }, venue: { kind: "hotel", details: "Room 1204, ask for me at the desk" } },
   });
   assert.equal(r.json.booking.amount, 0);
   assert.equal(r.json.booking.venue.kind, "hotel");

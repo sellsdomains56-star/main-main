@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { Pressable, View } from "react-native";
+import { Linking, Pressable, View } from "react-native";
 import { colors, fonts, radius } from "../../components/theme";
 import { Avatar, Button, Card, EmptyState, ErrorBox, IconLine, ListRow, Loading, Rating, Row, Screen, Section, T, Tag } from "../../components/ui";
 import { api } from "../../lib/api";
@@ -177,6 +177,7 @@ export default function Business() {
                     <T variant="strong">{b.guest?.name ?? b.customerName}</T>
                     <T variant="caption" muted>{b.service?.name ?? "Appointment"} · {money(b.amount, b.currency)}{b.tip ? ` + ${money(b.tip, b.currency)} tip` : ""}</T>
                     <T variant="caption" muted numberOfLines={1}>{WHERE[b.locationType] ?? b.locationType}{b.locationType === "home" ? ` · ${b.address}` : ""}</T>
+                    {!!b.distanceKm && <T variant="caption" muted>About {b.distanceKm} km from your pin{b.travelFee ? ` · +${money(b.travelFee, b.currency)} for your taxi` : ""}</T>}
                     {!!b.notes && <T variant="caption" style={{ marginTop: 4 }}>“{b.notes}”</T>}
                   </View>
                   {past ? <Tag label="Done" icon="checkmark" /> : b.status === "on_the_way" ? <Tag label="On the way" tone="accent" /> : null}
@@ -184,6 +185,7 @@ export default function Business() {
                 {!past && (
                   <Row gap={8} style={{ marginTop: 12 }}>
                     {b.locationType === "home" && b.status === "confirmed" && <Button title="On my way" icon="car-outline" size="sm" loading={busy === b.id + "on_the_way"} onPress={() => setStatus(b, "on_the_way")} />}
+                    {b.locationType === "home" && b.spot && <Button title="Directions" icon="navigate-outline" size="sm" variant="secondary" onPress={() => Linking.openURL(`https://www.google.com/maps/dir/?api=1&destination=${b.spot!.lat},${b.spot!.lng}`)} />}
                     <Button title="Mark done" icon="checkmark" size="sm" variant="secondary" loading={busy === b.id + "completed"} onPress={() => setStatus(b, "completed")} />
                   </Row>
                 )}
