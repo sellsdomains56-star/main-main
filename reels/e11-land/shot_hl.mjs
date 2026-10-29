@@ -27,6 +27,7 @@ try {
   }
   for (let y = 0; y < 6000; y += 700) { await page.evaluate(v => window.scrollTo(0, v), y); await page.waitForTimeout(250); }   // wake lazy images
   await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(800);
+  if (opt('eval', '')) { await page.evaluate(opt('eval', '')); await page.waitForTimeout(800); }   // --eval "js": e.g. open the collapsed sections of a mobile Wikipedia page
   const res = await page.evaluate(({ finds, TOP, hides, EMPTY }) => {
     const hide = el => el.style.setProperty('display', 'none', 'important');
     const st = document.createElement('style');                               // finish fade-in / scroll-reveal animations so the text is at full contrast
