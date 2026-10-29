@@ -7,7 +7,8 @@ EXT=$(ls build/frames | sed -n 1p | sed "s/.*\.//"); [ "$EXT" = jpg ] && MINK=60
 LAST=$(ls build/frames | tail -1)
 HAVE=$(ls build/frames | wc -l)
 [ "$HAVE" -eq "$N" ] || { echo "expected $N frames, found $HAVE - render is not complete"; exit 1; }
-SMALL=$(find build/frames -size -${MINK}k -name "f_*.$EXT" ! -name "f_00000.$EXT" ! -name "$LAST" | wc -l)
+TAILN=$(( N - 20 ))                                             # the last 20 frames fade to black on purpose (small files)
+SMALL=$(find build/frames -size -${MINK}k -name "f_*.$EXT" ! -name "f_00000.$EXT" ! -name "$LAST" | awk -F"[_.]" -v n=$TAILN '$2+0 < n' | wc -l)
 [ "$SMALL" -eq 0 ] || { echo "$SMALL blank/truncated frames (disk full or a browser crash?):"; find build/frames -size -${MINK}k -name "f_*.$EXT" ! -name "f_00000.$EXT" ! -name "$LAST" | head; exit 1; }
 ffmpeg -v error -y -framerate $(python3 -c "import json;print(json.load(open('timeline.json')).get('fps',30))") -i build/frames/f_%05d.$EXT -i build/mix.wav \
   -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -preset medium -crf ${CRF:-17} -maxrate ${MAXRATE:-5M} -bufsize ${BUFSIZE:-10M} -r $(python3 -c "import json;print(json.load(open('timeline.json')).get('fps',30))") \
