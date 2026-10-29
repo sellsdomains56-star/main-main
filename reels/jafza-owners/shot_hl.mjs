@@ -1,5 +1,5 @@
 // Capture a real article for a PAGE beat: screenshot from the headline down to the last quoted phrase, plus the exact boxes of those phrases (for the marker).
-//   node shot_hl.mjs <url> <out.png> --find "phrase" [--find "phrase 2" ...] [--hidetext "text a block starts with"] [--noempty] [--w 540] [--dpr 2] [--pad 260] [--wait 5000] [--top h1]
+//   node shot_hl.mjs <url> <out.png> --find "phrase" [--find "phrase 2" ...] [--hidetext "text a block starts with"] [--noempty] [--desktop] [--w 540] [--dpr 2] [--pad 260] [--wait 5000] [--top h1]
 // Writes <out.png> and <out>.json { url, title, w, h, boxes: [{ phrase, bbox: [x, y, w, h] (image px) }, ...], head: [x, y, w, h] }.
 // Fixed / sticky bars, cookie banners and ad slots are hidden before the shot, so only the article itself is on the picture.
 import { createRequire } from 'node:module';
@@ -15,7 +15,8 @@ const finds = rest.flatMap((a, i) => (a === '--find' ? [rest[i + 1]] : []));
 const hides = rest.flatMap((a, i) => (a === '--hidetext' ? [rest[i + 1]] : []));          // blocks to remove, by the text they start with ("RECOMMENDED FOR YOU", "SPONSORED LINKS")
 const VW = +opt('w', 540), DPR = +opt('dpr', 2), PAD = +opt('pad', 260), TOP = opt('top', 'h1');
 const browser = await chromium.launch({ executablePath: CHROME, proxy: process.env.HTTPS_PROXY ? { server: process.env.HTTPS_PROXY } : undefined, args: ['--no-sandbox', '--disable-gpu', '--disable-blink-features=AutomationControlled'] });
-const ctx = await browser.newContext({ viewport: { width: VW, height: 1400 }, deviceScaleFactor: DPR, userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1', locale: 'en-US', isMobile: true, hasTouch: true });
+const MOBILE = !rest.includes('--desktop');                                       // --desktop: no phone emulation (pages that only lay out as a desktop document, e.g. the Dubai Legislation Portal)
+const ctx = await browser.newContext({ viewport: { width: VW, height: 1400 }, deviceScaleFactor: DPR, ...(MOBILE ? { userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1' } : {}), locale: 'en-US', isMobile: MOBILE, hasTouch: MOBILE });
 const page = await ctx.newPage();
 const ADS = /doubleclick|googlesyndication|googletagservices|adservice|adnxs|taboola|outbrain|criteo|amazon-adsystem|pubmatic|rubiconproject|teads|mgid|projectagora|adsrvr|smartadserver|openx|yieldmo|33across|sharethrough|media\.net|revcontent|zergnet|onesignal/;   // ad networks: never loaded
 await page.route('**/*', r => (ADS.test(r.request().url()) ? r.abort() : r.continue()));
