@@ -1,0 +1,836 @@
+{
+"fps": 60,
+"frames": 2654,
+"voice_dur": 44.233333333333334,
+"dur": 46.233,
+"words": [
+{
+"t": 0.15,
+"e": 0.38,
+"text": "UK.",
+"chunk": 0
+},
+{
+"t": 0.46,
+"e": 0.82,
+"text": "Quick",
+"chunk": 1
+},
+{
+"t": 0.82,
+"e": 1.2,
+"text": "question.",
+"chunk": 1
+},
+{
+"t": 1.535,
+"e": 1.655,
+"text": "Have",
+"chunk": 2
+},
+{
+"t": 1.56,
+"e": 1.66,
+"text": "you",
+"chunk": 2
+},
+{
+"t": 1.66,
+"e": 1.82,
+"text": "looked",
+"chunk": 2
+},
+{
+"t": 1.82,
+"e": 1.92,
+"text": "at",
+"chunk": 3
+},
+{
+"t": 1.92,
+"e": 2.06,
+"text": "what",
+"chunk": 3
+},
+{
+"t": 2.06,
+"e": 2.18,
+"text": "it",
+"chunk": 3
+},
+{
+"t": 2.18,
+"e": 2.28,
+"text": "would",
+"chunk": 4
+},
+{
+"t": 2.28,
+"e": 2.6,
+"text": "actually",
+"chunk": 4
+},
+{
+"t": 2.6,
+"e": 2.96,
+"text": "cost",
+"chunk": 4
+},
+{
+"t": 2.96,
+"e": 3.16,
+"text": "to",
+"chunk": 5
+},
+{
+"t": 3.16,
+"e": 3.34,
+"text": "build",
+"chunk": 5
+},
+{
+"t": 3.34,
+"e": 3.42,
+"text": "a",
+"chunk": 5
+},
+{
+"t": 3.42,
+"e": 3.62,
+"text": "life",
+"chunk": 6
+},
+{
+"t": 3.62,
+"e": 3.74,
+"text": "in",
+"chunk": 6
+},
+{
+"t": 3.74,
+"e": 3.96,
+"text": "Dubai?",
+"chunk": 6
+},
+{
+"t": 4.375,
+"e": 4.495,
+"text": "The",
+"chunk": 7
+},
+{
+"t": 4.4,
+"e": 4.56,
+"text": "UK",
+"chunk": 7
+},
+{
+"t": 4.56,
+"e": 4.94,
+"text": "government",
+"chunk": 7
+},
+{
+"t": 4.94,
+"e": 5.18,
+"text": "is",
+"chunk": 8
+},
+{
+"t": 5.18,
+"e": 5.4,
+"text": "advising",
+"chunk": 8
+},
+{
+"t": 5.4,
+"e": 5.96,
+"text": "households",
+"chunk": 9
+},
+{
+"t": 5.96,
+"e": 6.3,
+"text": "to",
+"chunk": 9
+},
+{
+"t": 6.3,
+"e": 6.48,
+"text": "keep",
+"chunk": 9
+},
+{
+"t": 6.48,
+"e": 6.7,
+"text": "three",
+"chunk": 10
+},
+{
+"t": 6.7,
+"e": 6.96,
+"text": "days",
+"chunk": 10
+},
+{
+"t": 6.96,
+"e": 7.18,
+"text": "of",
+"chunk": 10
+},
+{
+"t": 7.18,
+"e": 7.46,
+"text": "emergency",
+"chunk": 11
+},
+{
+"t": 7.46,
+"e": 7.96,
+"text": "supplies.",
+"chunk": 11
+},
+{
+"t": 8.385,
+"e": 8.58,
+"text": "That's",
+"chunk": 12
+},
+{
+"t": 8.58,
+"e": 8.9,
+"text": "sensible",
+"chunk": 12
+},
+{
+"t": 8.9,
+"e": 9.26,
+"text": "preparation.",
+"chunk": 13
+},
+{
+"t": 9.86,
+"e": 9.98,
+"text": "But",
+"chunk": 14
+},
+{
+"t": 9.86,
+"e": 10.04,
+"text": "your",
+"chunk": 14
+},
+{
+"t": 10.04,
+"e": 10.56,
+"text": "long-term",
+"chunk": 14
+},
+{
+"t": 10.56,
+"e": 10.92,
+"text": "plans",
+"chunk": 15
+},
+{
+"t": 10.92,
+"e": 11.3,
+"text": "deserve",
+"chunk": 15
+},
+{
+"t": 11.3,
+"e": 11.54,
+"text": "some",
+"chunk": 15
+},
+{
+"t": 11.54,
+"e": 11.86,
+"text": "preparation",
+"chunk": 16
+},
+{
+"t": 11.86,
+"e": 12.32,
+"text": "too.",
+"chunk": 16
+},
+{
+"t": 12.85,
+"e": 12.97,
+"text": "In",
+"chunk": 17
+},
+{
+"t": 12.88,
+"e": 13.0,
+"text": "the",
+"chunk": 17
+},
+{
+"t": 13.0,
+"e": 13.28,
+"text": "UAE,",
+"chunk": 17
+},
+{
+"t": 13.71,
+"e": 13.84,
+"text": "there's",
+"chunk": 18
+},
+{
+"t": 13.84,
+"e": 13.94,
+"text": "no",
+"chunk": 18
+},
+{
+"t": 13.94,
+"e": 14.36,
+"text": "personal",
+"chunk": 18
+},
+{
+"t": 14.36,
+"e": 14.6,
+"text": "income",
+"chunk": 19
+},
+{
+"t": 14.6,
+"e": 14.94,
+"text": "tax",
+"chunk": 19
+},
+{
+"t": 14.94,
+"e": 15.12,
+"text": "on",
+"chunk": 19
+},
+{
+"t": 15.12,
+"e": 15.48,
+"text": "salaries.",
+"chunk": 20
+},
+{
+"t": 15.9,
+"e": 16.12,
+"text": "Income",
+"chunk": 21
+},
+{
+"t": 16.12,
+"e": 16.32,
+"text": "from",
+"chunk": 21
+},
+{
+"t": 16.32,
+"e": 16.62,
+"text": "property",
+"chunk": 21
+},
+{
+"t": 16.62,
+"e": 16.88,
+"text": "held",
+"chunk": 22
+},
+{
+"t": 16.88,
+"e": 17.06,
+"text": "as",
+"chunk": 22
+},
+{
+"t": 17.06,
+"e": 17.11,
+"text": "a",
+"chunk": 22
+},
+{
+"t": 17.1,
+"e": 17.4,
+"text": "personal",
+"chunk": 23
+},
+{
+"t": 17.4,
+"e": 17.8,
+"text": "investment",
+"chunk": 23
+},
+{
+"t": 17.8,
+"e": 18.26,
+"text": "is",
+"chunk": 24
+},
+{
+"t": 18.26,
+"e": 18.56,
+"text": "generally",
+"chunk": 24
+},
+{
+"t": 18.56,
+"e": 18.94,
+"text": "outside",
+"chunk": 24
+},
+{
+"t": 18.94,
+"e": 19.56,
+"text": "UAE",
+"chunk": 25
+},
+{
+"t": 19.56,
+"e": 19.82,
+"text": "corporate",
+"chunk": 25
+},
+{
+"t": 19.82,
+"e": 20.28,
+"text": "tax.",
+"chunk": 25
+},
+{
+"t": 20.48,
+"e": 20.88,
+"text": "And",
+"chunk": 26
+},
+{
+"t": 20.88,
+"e": 21.14,
+"text": "qualifying",
+"chunk": 26
+},
+{
+"t": 21.14,
+"e": 21.52,
+"text": "property",
+"chunk": 27
+},
+{
+"t": 21.52,
+"e": 21.88,
+"text": "worth",
+"chunk": 27
+},
+{
+"t": 21.88,
+"e": 22.04,
+"text": "at",
+"chunk": 27
+},
+{
+"t": 22.04,
+"e": 22.2,
+"text": "least",
+"chunk": 28
+},
+{
+"t": 22.2,
+"e": 22.34,
+"text": "2",
+"chunk": 28
+},
+{
+"t": 22.34,
+"e": 22.54,
+"text": "million",
+"chunk": 28
+},
+{
+"t": 22.54,
+"e": 23.02,
+"text": "AED",
+"chunk": 29
+},
+{
+"t": 23.02,
+"e": 23.38,
+"text": "can",
+"chunk": 29
+},
+{
+"t": 23.38,
+"e": 23.56,
+"text": "make",
+"chunk": 29
+},
+{
+"t": 23.56,
+"e": 23.68,
+"text": "you",
+"chunk": 30
+},
+{
+"t": 23.68,
+"e": 23.9,
+"text": "eligible",
+"chunk": 30
+},
+{
+"t": 23.9,
+"e": 24.16,
+"text": "to",
+"chunk": 30
+},
+{
+"t": 24.16,
+"e": 24.34,
+"text": "apply",
+"chunk": 31
+},
+{
+"t": 24.34,
+"e": 24.58,
+"text": "for",
+"chunk": 31
+},
+{
+"t": 24.58,
+"e": 24.72,
+"text": "a",
+"chunk": 31
+},
+{
+"t": 24.72,
+"e": 24.9,
+"text": "10-year",
+"chunk": 32
+},
+{
+"t": 25.14,
+"e": 25.38,
+"text": "golden",
+"chunk": 32
+},
+{
+"t": 25.38,
+"e": 25.72,
+"text": "visa.",
+"chunk": 32
+},
+{
+"t": 26.13,
+"e": 26.25,
+"text": "But",
+"chunk": 33
+},
+{
+"t": 26.16,
+"e": 26.42,
+"text": "buying",
+"chunk": 33
+},
+{
+"t": 26.42,
+"e": 26.62,
+"text": "here",
+"chunk": 33
+},
+{
+"t": 26.62,
+"e": 27.0,
+"text": "doesn't",
+"chunk": 34
+},
+{
+"t": 27.0,
+"e": 27.38,
+"text": "automatically",
+"chunk": 34
+},
+{
+"t": 27.38,
+"e": 27.76,
+"text": "remove",
+"chunk": 35
+},
+{
+"t": 27.76,
+"e": 28.0,
+"text": "your",
+"chunk": 35
+},
+{
+"t": 28.0,
+"e": 28.2,
+"text": "UK",
+"chunk": 35
+},
+{
+"t": 28.2,
+"e": 28.48,
+"text": "tax",
+"chunk": 36
+},
+{
+"t": 28.48,
+"e": 28.9,
+"text": "obligations.",
+"chunk": 36
+},
+{
+"t": 29.645,
+"e": 29.765,
+"text": "Your",
+"chunk": 37
+},
+{
+"t": 29.66,
+"e": 30.08,
+"text": "residency",
+"chunk": 37
+},
+{
+"t": 30.08,
+"e": 30.52,
+"text": "and",
+"chunk": 37
+},
+{
+"t": 30.52,
+"e": 30.84,
+"text": "personal",
+"chunk": 38
+},
+{
+"t": 30.84,
+"e": 31.46,
+"text": "circumstances",
+"chunk": 39
+},
+{
+"t": 31.46,
+"e": 32.06,
+"text": "matter.",
+"chunk": 39
+},
+{
+"t": 32.485,
+"e": 32.605,
+"text": "If",
+"chunk": 40
+},
+{
+"t": 32.52,
+"e": 32.66,
+"text": "you're",
+"chunk": 40
+},
+{
+"t": 32.66,
+"e": 33.06,
+"text": "considering",
+"chunk": 40
+},
+{
+"t": 33.06,
+"e": 33.4,
+"text": "Dubai,",
+"chunk": 41
+},
+{
+"t": 33.68,
+"e": 34.04,
+"text": "compare",
+"chunk": 42
+},
+{
+"t": 34.04,
+"e": 34.3,
+"text": "the",
+"chunk": 42
+},
+{
+"t": 34.3,
+"e": 34.58,
+"text": "property",
+"chunk": 42
+},
+{
+"t": 34.58,
+"e": 34.98,
+"text": "price,",
+"chunk": 43
+},
+{
+"t": 35.435,
+"e": 35.6,
+"text": "annual",
+"chunk": 44
+},
+{
+"t": 35.6,
+"e": 36.16,
+"text": "costs,",
+"chunk": 44
+},
+{
+"t": 36.54,
+"e": 36.66,
+"text": "and",
+"chunk": 45
+},
+{
+"t": 36.56,
+"e": 36.72,
+"text": "what",
+"chunk": 45
+},
+{
+"t": 36.72,
+"e": 36.9,
+"text": "you'd",
+"chunk": 45
+},
+{
+"t": 36.9,
+"e": 37.12,
+"text": "actually",
+"chunk": 46
+},
+{
+"t": 37.12,
+"e": 37.44,
+"text": "keep",
+"chunk": 46
+},
+{
+"t": 37.44,
+"e": 37.74,
+"text": "after",
+"chunk": 46
+},
+{
+"t": 37.74,
+"e": 38.1,
+"text": "expenses.",
+"chunk": 47
+},
+{
+"t": 39.2,
+"e": 39.32,
+"text": "Send",
+"chunk": 48
+},
+{
+"t": 39.32,
+"e": 39.5,
+"text": "me",
+"chunk": 48
+},
+{
+"t": 39.5,
+"e": 39.78,
+"text": "UK",
+"chunk": 48
+},
+{
+"t": 39.78,
+"e": 40.1,
+"text": "with",
+"chunk": 49
+},
+{
+"t": 40.1,
+"e": 40.22,
+"text": "your",
+"chunk": 49
+},
+{
+"t": 40.22,
+"e": 40.54,
+"text": "budget",
+"chunk": 49
+},
+{
+"t": 40.54,
+"e": 40.86,
+"text": "and",
+"chunk": 50
+},
+{
+"t": 40.86,
+"e": 41.14,
+"text": "whether",
+"chunk": 50
+},
+{
+"t": 41.14,
+"e": 41.3,
+"text": "you're",
+"chunk": 50
+},
+{
+"t": 41.3,
+"e": 41.48,
+"text": "looking",
+"chunk": 51
+},
+{
+"t": 41.48,
+"e": 41.7,
+"text": "to",
+"chunk": 51
+},
+{
+"t": 41.7,
+"e": 42.2,
+"text": "relocate",
+"chunk": 51
+},
+{
+"t": 42.2,
+"e": 42.34,
+"text": "or",
+"chunk": 52
+},
+{
+"t": 42.34,
+"e": 42.6,
+"text": "invest.",
+"chunk": 52
+},
+{
+"t": 43.18,
+"e": 43.28,
+"text": "Let's",
+"chunk": 53
+},
+{
+"t": 43.28,
+"e": 43.38,
+"text": "look",
+"chunk": 53
+},
+{
+"t": 43.38,
+"e": 43.5,
+"text": "at",
+"chunk": 53
+},
+{
+"t": 43.5,
+"e": 43.58,
+"text": "your",
+"chunk": 54
+},
+{
+"t": 43.58,
+"e": 43.82,
+"text": "options.",
+"chunk": 54
+}
+]
+}
