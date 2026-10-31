@@ -1,0 +1,3 @@
+'use strict';
+// the captured pages (shot_hl.mjs): image height, url and the exact boxes (image px) of each quoted phrase, in the order they were searched for
+const PAGES = {"admo_142":{"h":3166,"url":"https://www.mediaoffice.abudhabi/en/infrastructure/abu-dhabi-real-estate-centre-records-44-percent-increase-reaching-aed142bn-in-transactions-in-2025/","boxes":[[[838,1969,183,48],[40,2024,879,48],[40,2079,728,48]],[[40,2509,972,48],[40,2564,926,48],[40,2619,507,48]]],"phrases":["recording total real estate transactions valued at a record AED142 billion from 42,814 transactions","AED99.4 billion generated from sales and purchases from 25,604 transactions, while mortgage activity contributed AED42.7 billion"]}};
