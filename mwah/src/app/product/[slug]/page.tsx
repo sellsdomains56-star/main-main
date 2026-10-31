@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { activeProducts, productBySlug } from "@/lib/store";
 import { fmt } from "@/lib/money";
@@ -31,9 +32,10 @@ export default async function ProductPage({ params }: Props) {
           <div className="mt-7"><AddToCart p={p} big /></div>
           {p.stock > 0 && p.stock <= 15 && <p className="mt-3 text-sm font-bold text-cherry">Only {p.stock} left, so grab yours.</p>}
           <ul className="mt-8 space-y-2 rounded-3xl bg-blush p-5 text-sm font-medium">
-            <li>🚚 Free UAE delivery over AED 150 · ships worldwide</li><li>💧 Non-sticky, all-day hydration</li><li>↩️ 14-day happy-lips guarantee</li>
+            <li>🚚 Free UAE delivery over AED 150 · ships worldwide</li><li>💧 Non-sticky, all-day hydration</li><li>↩️ Unopened balms can be returned within 14 days</li>
           </ul>
           <details className="mt-5 border-t-2 border-blush pt-4"><summary className="cursor-pointer font-bold">Ingredients</summary><p className="mt-2 text-sm">{p.ingredients}</p></details>
+          <details className="mt-3 border-t-2 border-blush pt-4"><summary className="cursor-pointer font-bold">Safety & use</summary><p className="mt-2 text-sm">Cosmetic product for external use on the lips only. Check the ingredients if you have allergies or sensitivities, and stop using it if irritation occurs. Keep out of reach of young children. Store in a cool place away from heat. <Link href="/terms" className="underline">Terms of Sale</Link></p></details>
         </div>
       </div>
       <h2 className="mb-6 mt-20 text-3xl font-extrabold">You might also kiss</h2>

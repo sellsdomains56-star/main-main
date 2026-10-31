@@ -5,6 +5,8 @@ import { quote } from "@/lib/pricing";
 import { r2 } from "@/lib/money";
 import { uid } from "@/lib/db";
 import { stripe } from "@/lib/stripe";
+import { estimateWindow } from "@/lib/delivery";
+import { POLICY_VERSION } from "@/lib/legal";
 import type { Order } from "@/lib/types";
 
 const clean = (v: unknown, max = 200) => String(v ?? "").trim().slice(0, max);
@@ -17,6 +19,8 @@ export async function POST(req: NextRequest) {
   if (!/^\S+@\S+\.\S+$/.test(email) || !name || !phone || !address.line1 || !address.city || !address.country)
     return NextResponse.json({ error: "Please fill in all the required fields." }, { status: 400 });
 
+  if (b.acceptTerms !== true) return NextResponse.json({ error: "Please accept the Terms of Sale, Privacy Policy and Shipping & Returns policies to continue." }, { status: 400 });
+
   const [products, settings] = await Promise.all([activeProducts(), getSettings()]);
   const typed = clean(b.code, 40);
   const discount = await discountByCode(typed);
@@ -25,6 +29,8 @@ export async function POST(req: NextRequest) {
   if (influencer && influencer.email === email) influencer = null; // no self-referrals
 
   const q = quote({ products, lines: b.lines ?? [], country: address.country, settings, discount, influencer });
+  if (q.blocked) return NextResponse.json({ error: "Sorry, we can't ship to that country at the moment." }, { status: 400 });
+  if (stripe && q.total < 2) return NextResponse.json({ error: "The minimum order total is AED 2." }, { status: 400 });
   if (!q.items.length) return NextResponse.json({ error: "Your bag is empty or items are out of stock." }, { status: 400 });
 
   const productValue = r2(q.subtotal - q.discount);
@@ -35,7 +41,9 @@ export async function POST(req: NextRequest) {
     influencerId: influencer?.id,
     referralCode: influencer?.code,
     commission: influencer ? r2(productValue * influencer.commissionPct / 100) : 0,
-    status: "pending", notes: [], testMode: !stripe, createdAt: new Date().toISOString(),
+    status: "pending", notes: [], refunded: 0, testMode: !stripe, createdAt: new Date().toISOString(),
+    estimatedDelivery: (() => { const w = estimateWindow(settings, q.zone); return { from: w.from.toISOString(), to: w.to.toISOString() }; })(),
+    terms: { version: POLICY_VERSION, acceptedAt: new Date().toISOString(), ip: req.headers.get("x-forwarded-for")?.split(",")[0].trim() },
   };
 
   if (!stripe) { // no Stripe keys yet: test mode, no real charge
@@ -52,11 +60,12 @@ export async function POST(req: NextRequest) {
   }));
   if (q.shipping) line_items.push({ quantity: 1, price_data: { currency: "aed", unit_amount: Math.round(q.shipping * 100), product_data: { name: `Shipping to ${q.zone.name}` } } });
   const session = await stripe.checkout.sessions.create({
-    mode: "payment", customer_email: email, line_items,
-    metadata: { orderId: order.id },
+    mode: "payment", customer_email: email, line_items, locale: "auto", billing_address_collection: "auto",
+    metadata: { orderId: order.id, orderNumber: String(order.number) },
+    payment_intent_data: { description: `Mwah order #${order.number}`, metadata: { orderId: order.id, orderNumber: String(order.number) } },
     success_url: `${origin}/order/${order.id}?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/checkout`,
-  });
+  }, { idempotencyKey: `checkout-${order.id}` });
   order.stripeSessionId = session.id;
   await saveOrder(order);
   return NextResponse.json({ url: session.url });

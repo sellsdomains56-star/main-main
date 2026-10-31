@@ -7,7 +7,7 @@ export function zoneFor(s: Settings, country: string): ShippingZone {
 
 export type Quote = {
   items: OrderItem[]; subtotal: number; discount: number; shipping: number; vat: number; total: number;
-  zone: ShippingZone; discountLabel?: string; free: boolean;
+  zone: ShippingZone; discountLabel?: string; free: boolean; blocked: boolean;
 };
 
 /** Prices are VAT-inclusive. Orders shipped outside the UAE are treated as zero-rated exports (VAT removed) when enabled. */
@@ -45,5 +45,5 @@ export function quote(opts: {
   const exportZero = s.exportsZeroRated && country !== "AE";
   const net = exportZero ? r2(afterDiscount / (1 + s.vatPct / 100)) : afterDiscount;
   const vat = exportZero ? 0 : r2(afterDiscount * s.vatPct / (100 + s.vatPct));
-  return { items, subtotal: gross, discount, shipping, vat, total: r2(net + shipping), zone, discountLabel, free };
+  return { items, subtotal: gross, discount, shipping, vat, total: r2(net + shipping), zone, discountLabel, free, blocked: s.blockedCountries.includes(country) };
 }

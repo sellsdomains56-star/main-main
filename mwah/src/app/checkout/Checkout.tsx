@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/Cart";
 import { fmt } from "@/lib/money";
+import { fmtDay } from "@/lib/delivery";
 
-type Q = { subtotal: number; discount: number; shipping: number; vat: number; total: number; free: boolean; discountLabel?: string; codeOk: boolean; creator: string | null; zone: { name: string; days: string; freeOver?: number } };
+type Q = { subtotal: number; discount: number; shipping: number; vat: number; total: number; free: boolean; discountLabel?: string; codeOk: boolean; creator: string | null; zone: { name: string; freeOver?: number }; delivery: { from: string; to: string; processing: number[]; transit: number[] } };
 
 export function Checkout({ countries }: { countries: [string, string][] }) {
   const { lines, clear } = useCart();
   const [f, setF] = useState({ email: "", name: "", phone: "", line1: "", line2: "", city: "", state: "", postcode: "", country: "AE", code: "" });
   const [q, setQ] = useState<Q | null>(null);
-  const [err, setErr] = useState(""); const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState(""); const [busy, setBusy] = useState(false); const [agree, setAgree] = useState(false);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setF({ ...f, [k]: e.target.value });
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export function Checkout({ countries }: { countries: [string, string][] }) {
 
   async function pay(e: React.FormEvent) {
     e.preventDefault(); setBusy(true); setErr("");
-    const r = await fetch("/api/checkout", { method: "POST", body: JSON.stringify({ lines: lines.map((l) => ({ productId: l.productId, qty: l.qty })), email: f.email, name: f.name, phone: f.phone, code: f.code, address: { line1: f.line1, line2: f.line2, city: f.city, state: f.state, postcode: f.postcode, country: f.country } }) });
+    const r = await fetch("/api/checkout", { method: "POST", body: JSON.stringify({ lines: lines.map((l) => ({ productId: l.productId, qty: l.qty })), email: f.email, name: f.name, phone: f.phone, code: f.code, acceptTerms: agree, address: { line1: f.line1, line2: f.line2, city: f.city, state: f.state, postcode: f.postcode, country: f.country } }) });
     const d = await r.json();
     if (!r.ok || !d.url) { setErr(d.error ?? "Something went wrong. Please try again."); setBusy(false); return; }
     clear(); window.location.href = d.url;
@@ -45,7 +46,10 @@ export function Checkout({ countries }: { countries: [string, string][] }) {
           <div><label className="label" htmlFor="country">Country</label><select id="country" className="input" value={f.country} onChange={set("country")} autoComplete="country">{countries.map(([c, n]) => <option key={c} value={c}>{n}</option>)}</select></div>
           {field("line1", "Address", { req: true, auto: "address-line1" })}{field("line2", "Apartment, suite, etc. (optional)", { auto: "address-line2" })}
           <div className="grid gap-4 sm:grid-cols-3">{field("city", "City", { req: true, auto: "address-level2" })}{field("state", "Emirate / State", { auto: "address-level1" })}{field("postcode", "Postcode", { auto: "postal-code" })}</div>
-          {q && <p className="rounded-2xl bg-blush p-3 text-sm font-medium">📦 {q.zone.name}: {q.zone.days}. {q.free ? "Free shipping unlocked 🎉" : q.zone.freeOver ? `Free shipping over ${fmt(q.zone.freeOver)}.` : ""}</p>}
+          {q && <div className="space-y-1 rounded-2xl bg-blush p-4 text-sm">
+            <p className="font-extrabold">📦 Estimated delivery: {fmtDay(q.delivery.from)} – {fmtDay(q.delivery.to)}</p>
+            <p>{q.delivery.processing[0]}–{q.delivery.processing[1]} business days to prepare + {q.delivery.transit[0]}–{q.delivery.transit[1]} days by courier ({q.zone.name}). {q.free ? "Free shipping unlocked 🎉" : q.zone.freeOver ? `Free shipping over ${fmt(q.zone.freeOver)}.` : ""}</p>
+            <p className="text-xs">An estimate, not a guarantee. Customs clearance can add time. {f.country !== "AE" && "Import duties, taxes and fees in your country are not included and are paid by you."} <Link href="/shipping" target="_blank" className="underline">Shipping policy</Link></p></div>}
         </section>
       </div>
       <aside className="card h-fit space-y-4 p-6 lg:sticky lg:top-24">
@@ -62,8 +66,10 @@ export function Checkout({ countries }: { countries: [string, string][] }) {
           <div className="flex justify-between border-t-2 border-blush pt-2 text-xl font-extrabold"><dt>Total</dt><dd>{fmt(q.total)}</dd></div>
         </dl>}
         {err && <p role="alert" className="rounded-xl bg-red-100 p-3 text-sm font-bold text-red-800">{err}</p>}
-        <button disabled={busy || !q} className="btn btn-pink w-full text-lg">{busy ? "One moment…" : "Pay securely"}</button>
-        <p className="text-center text-xs">Card, Apple Pay & Google Pay via Stripe. Orders outside the UAE may incur import duties set by your country.</p>
+        <label className="flex gap-2 text-sm"><input type="checkbox" required checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-pink-500" />
+          <span>I have read and agree to the <Link href="/terms" target="_blank" className="font-bold underline">Terms of Sale</Link>, <Link href="/privacy" target="_blank" className="font-bold underline">Privacy Policy</Link>, <Link href="/shipping" target="_blank" className="font-bold underline">Shipping Policy</Link> and <Link href="/returns" target="_blank" className="font-bold underline">Returns & Refunds Policy</Link>.</span></label>
+        <button disabled={busy || !q || !agree} className="btn btn-pink w-full text-lg">{busy ? "One moment…" : "Pay securely"}</button>
+        <p className="text-center text-xs">Pay securely with card, Apple Pay or Google Pay through Stripe. We never see or store your card details.</p>
       </aside>
     </form>
   );

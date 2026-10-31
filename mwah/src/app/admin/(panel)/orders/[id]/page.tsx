@@ -6,6 +6,8 @@ import { fmt } from "@/lib/money";
 import { countryName } from "@/lib/countries";
 import { StatusBadge } from "@/components/StatusBadge";
 import { addNote, saveShipment, updateOrderStatus } from "../../../actions";
+import { RefundForm } from "./RefundForm";
+import { fmtDay } from "@/lib/delivery";
 import type { OrderStatus } from "@/lib/types";
 export const metadata: Metadata = { title: "Order", robots: { index: false } };
 const FLOW: OrderStatus[] = ["paid", "packed", "shipped", "delivered"];
@@ -24,7 +26,9 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
           <form action={updateOrderStatus.bind(null, o.id, "cancelled")}><button className="btn btn-ghost px-4 py-2 text-sm">Cancel</button></form>
           <form action={updateOrderStatus.bind(null, o.id, "refunded")}><button className="btn btn-ghost px-4 py-2 text-sm">Mark refunded</button></form></>}
       </div>
-      {o.status === "refunded" && <p className="rounded-2xl bg-butter p-3 text-sm font-bold">Refunds are issued in your Stripe dashboard. This only marks the order and restocks.</p>}
+      {o.estimatedDelivery && <p className="text-sm">Customer was promised delivery <b>{fmtDay(o.estimatedDelivery.from)} – {fmtDay(o.estimatedDelivery.to)}</b>.{o.terms && <> Accepted policies v{o.terms.version} on {new Date(o.terms.acceptedAt).toLocaleString("en")}.</>}</p>}
+      {!o.testMode && ["paid", "packed", "shipped", "delivered"].includes(o.status) && <RefundForm id={o.id} left={Math.round((o.total - o.refunded) * 100) / 100} hasPayment={Boolean(o.stripePaymentIntent)} />}
+      {o.refunded > 0 && <p className="text-sm font-bold text-cherry">Refunded so far: {fmt(o.refunded)}</p>}
       <div className="grid gap-5 lg:grid-cols-3">
         <section className="card space-y-2 p-5 lg:col-span-2"><h2 className="text-lg font-extrabold">Items</h2>
           {o.items.map((i) => <div key={i.productId} className="flex justify-between text-sm"><span>{i.qty} × {i.name}</span><span>{fmt(i.price * i.qty)}</span></div>)}

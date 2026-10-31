@@ -1,4 +1,5 @@
-import type { Product, Settings } from "./types";
+import type { Product, Settings, ShippingZone } from "./types";
+import { COUNTRY_LIST, DEFAULT_BLOCKED, type RegionId } from "./countries";
 
 const now = () => new Date().toISOString();
 const P = (slug: string, name: string, tagline: string, color: string, color2: string, price: number, featured = false, stock = 120): Product => ({
@@ -9,14 +10,34 @@ const P = (slug: string, name: string, tagline: string, color: string, color2: s
   size: "4.5 g", createdAt: now(),
 });
 
+// Courier transit in business days after dispatch (express courier, customs clearance not included). Planning estimates, not
+// carrier quotes: confirm rates and times with your courier before launch (Admin → Launch checklist).
+const ZONES: [RegionId, string, number, number | undefined, number, number][] = [
+  ["uae", "United Arab Emirates", 15, 150, 1, 3],
+  ["gcc", "GCC countries", 35, 300, 2, 5],
+  ["mena", "Middle East, North Africa & Türkiye", 55, 400, 4, 8],
+  ["europe", "Europe (EU, EFTA & neighbours)", 70, 450, 3, 7],
+  ["uk", "United Kingdom & Crown Dependencies", 70, 450, 3, 7],
+  ["na", "United States & Canada", 80, 500, 4, 8],
+  ["southasia", "South Asia", 55, 400, 4, 8],
+  ["eastasia", "East & South-East Asia", 65, 450, 4, 8],
+  ["oceania", "Australia & New Zealand", 85, 500, 5, 10],
+  ["central", "Eastern Europe, Caucasus & Central Asia", 75, 450, 5, 10],
+  ["latam", "Latin America & Caribbean", 95, 500, 6, 12],
+  ["africa", "Sub-Saharan Africa", 90, 500, 6, 12],
+  ["remote", "Remote islands & territories", 120, 600, 8, 16],
+];
+export const defaultZones: ShippingZone[] = ZONES.map(([id, name, rate, freeOver, minDays, maxDays]) => ({
+  id, name, rate, freeOver, minDays, maxDays, countries: COUNTRY_LIST.filter((c) => c.region === id).map((c) => c.code),
+}));
+
 export const defaultSettings: Settings = {
   id: "main", storeName: "Mwah", vatPct: 5, exportsZeroRated: true,
-  zones: [
-    { id: "uae", name: "United Arab Emirates", countries: ["AE"], rate: 15, freeOver: 150, days: "1-3 days" },
-    { id: "gcc", name: "GCC", countries: ["SA", "KW", "QA", "BH", "OM"], rate: 35, freeOver: 300, days: "3-6 days" },
-    { id: "world", name: "Rest of the world", countries: ["*"], rate: 55, freeOver: 450, days: "6-12 days" },
-  ],
-  defaultCommissionPct: 15, defaultCustomerDiscountPct: 10, lowStockAt: 15,
+  zones: defaultZones, blockedCountries: DEFAULT_BLOCKED,
+  processingMinDays: 1, processingMaxDays: 2,
+  defaultCommissionPct: 15, defaultCustomerDiscountPct: 10, minPayout: 100, lowStockAt: 15,
+  legal: { legalName: "", tradeLicenceNo: "", licensingAuthority: "", vatTrn: "", address: "", email: "", phone: "", jurisdiction: "Dubai" },
+  confirmations: {},
 };
 
 export function seed() {

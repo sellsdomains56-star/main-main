@@ -29,7 +29,7 @@ export default async function Home() {
               <Link href="/product/mwah-set" className="btn btn-ghost text-lg">The Mwah Set · AED 99</Link>
             </div>
             <OrderCounter initial={orders} />
-            <p className="mt-2 text-sm">Free UAE shipping over AED 150 · Ships worldwide</p>
+            <p className="mt-2 text-sm">Free UAE shipping over AED 150 · <Link href="/delivery-times" className="font-bold underline">Ships worldwide, see delivery times</Link></p>
           </div>
           <div className="relative mx-auto flex h-[420px] w-full max-w-md items-end justify-center">
             <div className="absolute inset-6 rounded-full bg-blush" />

@@ -3,6 +3,8 @@ import { headers } from "next/headers";
 import { influencerId } from "@/lib/auth";
 import { influencerById, influencerStats } from "@/lib/store";
 import { fmt } from "@/lib/money";
+import { getSettings } from "@/lib/store";
+import Link from "next/link";
 import { Login } from "./Login";
 import { CopyButton } from "./CopyButton";
 import { creatorLogout } from "./actions";
@@ -14,6 +16,7 @@ export default async function Dashboard() {
   const inf = id ? await influencerById(id) : null;
   if (!inf || inf.status !== "active") return <div className="px-4 py-20"><Login /></div>;
   const st = await influencerStats(inf);
+  const { minPayout } = await getSettings();
   const h = await headers();
   const origin = process.env.SITE_URL ?? `${h.get("x-forwarded-proto") ?? "http"}://${h.get("host")}`;
   const link = `${origin}/r/${inf.code}`;
@@ -32,7 +35,7 @@ export default async function Dashboard() {
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         <section className="card p-5"><h2 className="text-xl font-extrabold">Recent orders</h2>
           {st.recent.length === 0 ? <p className="mt-3 text-sm">No orders yet. Share your link to get started!</p> : <ul className="mt-3 divide-y divide-blush text-sm">{st.recent.map((o) => <li key={o.id} className="flex justify-between py-2"><span>#{o.number} · {o.name.split(" ")[0]} · {new Date(o.createdAt).toLocaleDateString("en")}</span><b>+{fmt(o.commission)}</b></li>)}</ul>}</section>
-        <section className="card p-5"><h2 className="text-xl font-extrabold">Payouts</h2>
+        <section className="card p-5"><h2 className="text-xl font-extrabold">Payouts</h2><p className="mt-1 text-xs">Paid when your balance reaches {fmt(minPayout)}. <Link href="/creator-terms" className="underline">Creator terms</Link></p>
           {st.payouts.length === 0 ? <p className="mt-3 text-sm">No payouts yet. Paid out: {fmt(0)}.</p> : <ul className="mt-3 divide-y divide-blush text-sm">{st.payouts.map((p) => <li key={p.id} className="flex justify-between py-2"><span>{new Date(p.createdAt).toLocaleDateString("en")} · {p.note}</span><b>{fmt(p.amount)}</b></li>)}</ul>}</section>
       </div>
     </div>

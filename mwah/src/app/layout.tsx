@@ -4,6 +4,7 @@ import { CartProvider } from "@/components/Cart";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HideInAdmin } from "@/components/HideInAdmin";
+import { CookieConsent } from "@/components/CookieConsent";
 
 export const dynamic = "force-dynamic"; // shop data changes from the admin panel, so never cache pages
 
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <CartProvider><Header /><main>{children}</main><HideInAdmin><Footer /></HideInAdmin></CartProvider>
+        <CartProvider><Header /><main>{children}</main><HideInAdmin><Footer /><CookieConsent /></HideInAdmin></CartProvider>
       </body>
     </html>
   );

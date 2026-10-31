@@ -37,3 +37,16 @@ h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0
 @keyframes float { 50% { transform: translateY(-14px) rotate(var(--r, 0deg)); } }
 .float { animation: float 5s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .marquee, .float { animation: none; } html { scroll-behavior: auto; } }
+
+.policy h2 { font-size: 1.5rem; font-weight: 800; margin: 2.2rem 0 .6rem; }
+.policy h3 { font-size: 1.1rem; font-weight: 800; margin: 1.3rem 0 .3rem; }
+.policy p, .policy li { line-height: 1.7; }
+.policy p { margin: .6rem 0; }
+.policy ul, .policy ol { margin: .6rem 0 .6rem 1.3rem; }
+.policy ul { list-style: disc; } .policy ol { list-style: decimal; }
+.policy li { margin: .3rem 0; }
+.policy a { text-decoration: underline; text-decoration-color: var(--color-pink); text-underline-offset: 3px; font-weight: 700; }
+.policy table { width: 100%; border-collapse: collapse; font-size: .9rem; margin: .8rem 0; }
+.policy th, .policy td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid #f0d3df; vertical-align: top; }
+.policy th { background: #fff; }
+.todo { background: var(--color-butter); border-radius: .4rem; padding: 0 .3rem; font-weight: 700; }

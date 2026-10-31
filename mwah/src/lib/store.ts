@@ -4,7 +4,13 @@ import { defaultSettings } from "./seed";
 import { r2 } from "./money";
 import type { Discount, Influencer, Order, OrderStatus, Payout, Product, ReferralClick, Settings } from "./types";
 
-export const getSettings = async () => (await get<Settings>("settings", "main")) ?? defaultSettings;
+export async function getSettings(): Promise<Settings> {
+  const s = await get<Settings>("settings", "main");
+  if (!s) return defaultSettings;
+  const zonesOk = Array.isArray(s.zones) && s.zones.every((z) => typeof z.minDays === "number");
+  return { ...defaultSettings, ...s, zones: zonesOk ? s.zones : defaultSettings.zones,
+    legal: { ...defaultSettings.legal, ...s.legal }, confirmations: { ...defaultSettings.confirmations, ...s.confirmations } };
+}
 export const saveSettings = (s: Settings) => put("settings", s);
 
 /* ---------- products ---------- */
