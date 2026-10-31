@@ -20,6 +20,11 @@ export const DEFAULT_MAX_KM = 30;
 const PER_KM: Record<string, number> = { sar: 400, eur: 100, gbp: 100, usd: 100, cad: 150, aud: 150, try: 3000, ngn: 50000, brl: 500 };
 
 /** Straight-line distance in km (haversine). */
+/** About how long the drive takes, rounded to 5 minutes (at least 10). */
+export function driveMinutes(km: number) {
+  return Math.max(10, Math.round((km / AVERAGE_KMH) * 12) * 5);
+}
+
 export function straightKm(a: Spot, b: Spot) {
   const rad = (d: number) => (d * Math.PI) / 180;
   const h = Math.sin(rad(b.lat - a.lat) / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(rad(b.lng - a.lng) / 2) ** 2;
@@ -49,7 +54,7 @@ export function travelQuote(b: Barber, spot: Spot, currency: string) {
   const fee = extraKm && perKm ? Math.ceil((extraKm * perKm) / 500) * 500 : 0;
   return {
     km,
-    minutes: Math.max(10, Math.round((km / AVERAGE_KMH) * 12) * 5),
+    minutes: driveMinutes(km),
     includedKm,
     extraKm,
     perKm,

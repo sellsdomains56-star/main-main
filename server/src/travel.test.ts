@@ -87,7 +87,7 @@ test("home visits further away cost extra for the barber's taxi, which goes to t
 
   // The barber is told how far, and what the taxi extra is.
   const alerts = (await call("/notifications", { token: acc.token })).json;
-  assert.match(alerts.items[0].body, /About 23 km from your pin, with AED\s?55\.00 extra for your taxi/);
+  assert.match(alerts.items[0].body, /booked and paid AED\s?205\.00: .*Go to Villa 12, Arabian Ranches\. About 23 km from your pin, 30 min by car, with AED\s?55\.00 extra for your taxi\. Leave by 08:20\./);
 
   // Always Fresh's 10% is on the cut and the visit fee, not on the taxi extra.
   const lead = (await call("/auth/register", { body: { name: "Travel Lead", email: "travel-lead@alwaysfresh.app", password: "password123" } })).json;

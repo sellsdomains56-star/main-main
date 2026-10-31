@@ -318,6 +318,7 @@ export interface Booking {
   reviewed: boolean;
   remindedDay?: boolean; // "tomorrow" reminder sent
   remindedHour?: boolean; // "in an hour" reminder sent
+  remindedLeave?: boolean; // home visit: the barber was told it is time to leave
   coveredBy?: "membership"; // the service was included in the customer's Club plan
   creditUsed?: number; // gift-card balance applied, minor units
   tip?: number; // minor units, all for the barber: chosen when booking (charged with it) or paid after the cut

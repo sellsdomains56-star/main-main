@@ -6,6 +6,7 @@ import { db, newId, save } from "./db.js";
 import { SHOPS } from "./seed.js";
 import { shopTimeZone } from "./shops.js";
 import type { AppNotification, Booking, Hire, NotificationKind, Order } from "./types.js";
+import { driveMinutes } from "./travel.js";
 
 const KEEP_PER_USER = 100;
 
@@ -98,14 +99,36 @@ export function bookingConfirmed(b: Booking) {
     bookingId: b.id,
   });
   bookingEmail(b, d);
-  if (d.barberUserId) {
-    notify(d.barberUserId, {
-      kind: "new_booking",
-      title: d.consult ? "New consultation" : "New booking",
-      body: `${d.customerName} booked ${d.service}, ${d.when}, ${d.where}.${b.distanceKm ? ` About ${b.distanceKm} km from your pin${b.travelFee ? `, with ${new Intl.NumberFormat("en", { style: "currency", currency: b.currency.toUpperCase() }).format(b.travelFee / 100)} extra for your taxi` : ""}.` : ""}`,
+  if (d.barberUserId) notify(d.barberUserId, barberNewBooking(b, d));
+}
+
+const moneyOf = (minor: number, currency: string) => new Intl.NumberFormat("en", { style: "currency", currency: currency.toUpperCase() }).format(minor / 100);
+
+/** When a barber should set off for a home visit: the drive plus 10 minutes to park and get in. */
+export function leaveAt(b: Booking) {
+  return Date.parse(b.startsAt) - (driveMinutes(b.distanceKm ?? 0) + 10) * 60_000;
+}
+
+/** The barber's alert for a new booking: who, what they paid, and for a home visit where to go and when to leave. */
+export function barberNewBooking(b: Booking, d: ReturnType<typeof details>) {
+  const paid = b.amount + (b.tip ?? 0);
+  const howPaid = paid > 0 ? ` and paid ${moneyOf(paid, b.currency)}` : b.coveredBy ? " (covered by The Club)" : "";
+  if (b.locationType === "home") {
+    const leave = new Intl.DateTimeFormat("en-GB", { timeZone: cityOf(d.barber).timeZone, hour: "2-digit", minute: "2-digit" }).format(new Date(leaveAt(b)));
+    const trip = b.distanceKm ? ` About ${b.distanceKm} km from your pin, ${driveMinutes(b.distanceKm)} min by car${b.travelFee ? `, with ${moneyOf(b.travelFee, b.currency)} extra for your taxi` : ""}.` : "";
+    return {
+      kind: "new_booking" as const,
+      title: paid > 0 ? "New home visit · paid" : "New home visit",
+      body: `${d.customerName} booked${howPaid}: ${d.service}, ${d.when}. Go to ${b.address}.${trip} Leave by ${leave}.`,
       bookingId: b.id,
-    });
+    };
   }
+  return {
+    kind: "new_booking" as const,
+    title: d.consult ? "New consultation" : paid > 0 ? "New booking · paid" : "New booking",
+    body: `${d.customerName} booked${howPaid}: ${d.service}, ${d.when}, ${d.where}.`,
+    bookingId: b.id,
+  };
 }
 
 /** The confirmation and receipt by email. */
@@ -227,6 +250,15 @@ export function sendDueReminders(now = new Date()) {
     const left = Date.parse(b.startsAt) - now.getTime();
     if (left <= 0) continue;
     const d = details(b);
+    // A home visit: tell the barber when it's time to set off.
+    if (b.locationType === "home" && !b.remindedLeave && now.getTime() >= leaveAt(b) - 5 * 60_000) {
+      sent = true;
+      b.remindedLeave = true;
+      if (d.barberUserId) {
+        const km = b.distanceKm ? ` About ${b.distanceKm} km, ${driveMinutes(b.distanceKm)} min by car.` : "";
+        notify(d.barberUserId, { kind: "on_the_way", title: `Time to leave for ${first(d.customerName)}`, body: `${d.service} at ${d.time}, ${b.address}.${km} Tap “On my way” when you set off so they know.`, bookingId: b.id });
+      }
+    }
     if (!b.remindedHour && left <= 60 * 60_000) {
       sent = true;
       b.remindedHour = true;

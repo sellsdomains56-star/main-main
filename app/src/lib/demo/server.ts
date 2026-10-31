@@ -94,7 +94,7 @@ interface Purchase { id: string; userId: string; kind: "membership" | "gift" | "
 interface Booking {
   id: string; customerId: string; barberId: string; serviceId: string; startsAt: string; endsAt: string;
   locationType: "shop" | "home" | "video" | "phone"; address: string; phone?: string; notes: string; amount: number; currency: string;
-  remindedDay?: boolean; remindedHour?: boolean;
+  remindedDay?: boolean; remindedHour?: boolean; remindedLeave?: boolean;
   demoOnTheWayAt?: number; // demo only: when to play the "barber is on the way" alert
   status: "pending_payment" | "confirmed" | "on_the_way" | "completed" | "cancelled"; reviewed: boolean; createdAt: string;
   coveredBy?: "membership"; creditUsed?: number; tip?: number; cutNotes?: string; extras?: string[];
@@ -618,10 +618,30 @@ function alertDetails(b: Booking) {
   };
 }
 
+const driveMinutes = (km: number) => Math.max(10, Math.round((km / 45) * 12) * 5);
+const moneyOf = (minor: number, currency: string) => new Intl.NumberFormat("en", { style: "currency", currency: currency.toUpperCase() }).format(minor / 100);
+/** When a barber should set off for a home visit: the drive plus 10 minutes to park and get in. */
+const leaveAt = (b: Booking) => Date.parse(b.startsAt) - (driveMinutes(b.distanceKm ?? 0) + 10) * 60_000;
+
+/** The barber's alert for a new booking (mirrors barberNewBooking in server/src/notify.ts). */
+function barberNewBooking(b: Booking, d: ReturnType<typeof alertDetails>) {
+  const customer = saved.users.find((u) => u.id === b.customerId)?.name ?? "A customer";
+  const paid = b.amount + (b.tip ?? 0);
+  const howPaid = paid > 0 ? ` and paid ${moneyOf(paid, b.currency)}` : b.coveredBy ? " (covered by The Club)" : "";
+  if (b.locationType === "home") {
+    const leave = new Intl.DateTimeFormat("en-GB", { timeZone: timeZoneOf(d.barber), hour: "2-digit", minute: "2-digit" }).format(new Date(leaveAt(b)));
+    const trip = b.distanceKm ? ` About ${b.distanceKm} km from your pin, ${driveMinutes(b.distanceKm)} min by car${b.travelFee ? `, with ${moneyOf(b.travelFee, b.currency)} extra for your taxi` : ""}.` : "";
+    return { kind: "new_booking", title: paid > 0 ? "New home visit · paid" : "New home visit", body: `${customer} booked${howPaid}: ${d.service}, ${d.when}. Go to ${b.address}.${trip} Leave by ${leave}.`, bookingId: b.id };
+  }
+  return { kind: "new_booking", title: d.consult ? "New consultation" : paid > 0 ? "New booking · paid" : "New booking", body: `${customer} booked${howPaid}: ${d.service}, ${d.when}, ${d.where}.`, bookingId: b.id };
+}
+
 function bookingConfirmed(b: Booking) {
   const d = alertDetails(b);
   if (Date.parse(b.startsAt) - Date.now() < 24 * 3_600_000) b.remindedDay = true;
   notify(b.customerId, { kind: "booking_confirmed", title: d.consult ? "Consultation booked" : "You're booked", body: `${d.service} with ${d.barber.name}, ${d.when}, ${d.where}.`, bookingId: b.id });
+  const bu = barberUser(b.barberId);
+  if (bu && bu.id !== b.customerId) notify(bu.id, barberNewBooking(b, d));
   // The demo's barbers are fictional, so nobody taps "On my way" — play that alert shortly after booking.
   if (b.locationType === "home") b.demoOnTheWayAt = Date.now() + 20_000;
 }
@@ -653,6 +673,13 @@ function dueReminders(now = new Date()) {
     const left = Date.parse(b.startsAt) - now.getTime();
     if (left <= 0) continue;
     const d = alertDetails(b);
+    // A home visit: tell the barber when it's time to set off.
+    if (b.locationType === "home" && !b.remindedLeave && now.getTime() >= leaveAt(b) - 5 * 60_000) {
+      b.remindedLeave = true;
+      const bu = barberUser(b.barberId);
+      const who = (saved.users.find((u) => u.id === b.customerId)?.name ?? "your customer").split(" ")[0];
+      if (bu) notify(bu.id, { kind: "on_the_way", title: `Time to leave for ${who}`, body: `${d.service} at ${d.time}, ${b.address}.${b.distanceKm ? ` About ${b.distanceKm} km, ${driveMinutes(b.distanceKm)} min by car.` : ""} Tap “On my way” when you set off so they know.`, bookingId: b.id });
+    }
     if (!b.remindedHour && left <= 60 * 60_000) {
       b.remindedHour = b.remindedDay = true;
       notify(b.customerId, { kind: "reminder", title: `${d.service} in 1 hour`, body: `${d.service} with ${d.barber.name} at ${d.time}, ${d.where}.`, bookingId: b.id });

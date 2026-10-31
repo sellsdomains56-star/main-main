@@ -1,6 +1,6 @@
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold, useFonts } from "@expo-google-fonts/inter";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { router, Stack } from "expo-router";
+import { router, Stack, usePathname } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, I18nManager, Platform, StyleSheet, Text, View } from "react-native";
@@ -15,7 +15,7 @@ import { api } from "../lib/api";
 import { AuthProvider, useAuth } from "../lib/auth";
 import { usePushNavigation } from "../lib/push";
 import { CartProvider } from "../lib/cart";
-import { APP_NAME, DEMO_HOME, DEMO_START } from "../lib/config";
+import { APP_NAME, DEMO_DATA, DEMO_HOME, DEMO_START } from "../lib/config";
 import { DEMO_LOGINS } from "../lib/demo/server";
 import { LocationProvider } from "../lib/location";
 
@@ -119,6 +119,7 @@ export default function RootLayout() {
                 <WelcomeTour />
                 <PermissionSheet />
                 {DEMO_START && <DemoStart who={DEMO_START} />}
+                {DEMO_DATA && !DEMO_START && <DemoSides />}
               </>
             </PaymentProvider>
           </CartProvider>
@@ -145,6 +146,34 @@ function DemoStart({ who }: { who: keyof typeof DEMO_HOME }) {
     })().catch(() => {}).finally(() => setTimeout(() => setCovering(false), 300));
   }, [loading, user, who, signIn]);
   if (!covering) return null;
+  return (
+    <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }]}>
+      <ActivityIndicator color={colors.text} />
+    </View>
+  );
+}
+
+/** The demo site: opening the admin panel, the shop panel or the barber dashboard signs in to that side's sample
+ * account, so every side opens straight away instead of asking to sign in. Demo builds only. */
+function DemoSides() {
+  const path = usePathname();
+  const { user, loading, signIn } = useAuth();
+  const [busy, setBusy] = useState(false);
+  const side: keyof typeof DEMO_HOME | null =
+    path.startsWith("/admin") ? "admin"
+    : path.startsWith("/shop-panel") || path === "/queue-screen" || path === "/check-in" ? "shop"
+    : path === "/business" || path.startsWith("/business/") ? "barber"
+    : null;
+  const ready = !side || (side === "admin" ? !!user?.admin : side === "shop" ? !!user?.manages : user?.role === "barber");
+  useEffect(() => {
+    if (loading || ready || busy || !side) return;
+    setBusy(true);
+    api.login(DEMO_LOGINS[side].email, DEMO_LOGINS[side].password)
+      .then((res) => signIn(res.token, res.user))
+      .catch(() => {})
+      .finally(() => setBusy(false));
+  }, [loading, ready, busy, side, signIn]);
+  if (!side || ready) return null;
   return (
     <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }]}>
       <ActivityIndicator color={colors.text} />

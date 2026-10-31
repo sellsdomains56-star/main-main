@@ -249,15 +249,20 @@ test("alerts: confirmation for both sides, on-the-way, reminders, cancellation, 
   assert.match(mine.items[0].body, /221B Baker Street/);
   const theirs = (await call("/notifications", { token: barber.json.token })).json;
   assert.equal(theirs.items[0].kind, "new_booking");
-  assert.match(theirs.items[0].body, /Alex Alert booked/);
+  assert.equal(theirs.items[0].title, "New home visit · paid");
+  assert.match(theirs.items[0].body, /Alex Alert booked and paid .*Go to 221B Baker Street\..*Leave by \d\d:\d\d\./);
 
   // Reminders fire once each: a day before, then an hour before.
   const start = Date.parse(created.booking.startsAt);
   sendDueReminders(new Date(start - 20 * 3_600_000));
   sendDueReminders(new Date(start - 19 * 3_600_000));
   sendDueReminders(new Date(start - 30 * 60_000));
+  sendDueReminders(new Date(start - 25 * 60_000));
   const kinds = (await call("/notifications", { token: customer.json.token })).json.items.map((n: { kind: string; title: string }) => `${n.kind}:${n.title}`);
   assert.deepEqual(kinds.filter((k: string) => k.startsWith("reminder")), ["reminder:Classic haircut in 1 hour", "reminder:Coming up"]);
+  // The barber is told once when it's time to set off for the home visit.
+  const barberAlerts = (await call("/notifications", { token: barber.json.token })).json.items.map((n: { kind: string; title: string }) => `${n.kind}:${n.title}`);
+  assert.deepEqual(barberAlerts.filter((k: string) => k.startsWith("on_the_way")), ["on_the_way:Time to leave for Alex"]);
 
   // The barber sets off: the customer is told they're on the way.
   await call(`/bookings/${bookingId}/status`, { token: barber.json.token, body: { status: "on_the_way" } });
