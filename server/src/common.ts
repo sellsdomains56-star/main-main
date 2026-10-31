@@ -29,9 +29,9 @@ export const isLive = (b: Barber) => (b.status ?? "live") === "live";
 /** The platform fee in percent: the admin panel's setting, else PLATFORM_FEE_PERCENT. */
 export const platformFeePercent = () => db.settings.platformFeePercent ?? config.platformFeePercent;
 export const platformFee = (amount: number) => Math.round((amount * platformFeePercent()) / 100);
-/** JB's fee on a booking: on what was paid, minus the extra travel for a far home visit (that's all the barber's, like tips). */
+/** Always Fresh's fee on a booking: on what was paid, minus the extra travel for a far home visit (that's all the barber's, like tips). */
 export const bookingFee = (b: Pick<Booking, "amount" | "travelFee">) => platformFee(Math.max(0, b.amount - (b.travelFee ?? 0)));
-/** Bookings a barbershop adds itself (walk-ins, phone) are paid at the shop: no JB fee. */
+/** Bookings a barbershop adds itself (walk-ins, phone) are paid at the shop: no Always Fresh fee. */
 export const fromApp = (b: Booking) => b.source !== "shop";
 
 /** Whether new barbers wait for the team's approval before they appear. */

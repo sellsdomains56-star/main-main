@@ -3,7 +3,7 @@ import type { AddressInfo } from "node:net";
 import { after, before, test } from "node:test";
 
 // The team's email must be known before the config loads.
-process.env.ADMIN_EMAILS = "lead@jbalwaysfresh.com";
+process.env.ADMIN_EMAILS = "lead@alwaysfresh.app";
 const { createApp } = await import("./app.js");
 const { needsApplication } = await import("./routes/applications.js");
 
@@ -26,7 +26,7 @@ const upload = (token: string, kind: string, type = "image/jpeg") =>
   fetch(`${base}/barbers/me/application/documents/${kind}`, { method: "POST", headers: { authorization: `Bearer ${token}`, "content-type": type }, body: new Uint8Array(3000).fill(7) });
 
 test("freelance barbers apply with their Emirates ID, licence and the signed agreement; the team approves", async () => {
-  const lead = (await call("/auth/register", { body: { name: "Team Lead", email: "lead@jbalwaysfresh.com", password: "password123" } })).json;
+  const lead = (await call("/auth/register", { body: { name: "Team Lead", email: "lead@alwaysfresh.app", password: "password123" } })).json;
   await call("/admin/settings", { method: "PATCH", token: lead.token, body: { reviewNewBarbers: true } });
   const acc = (await call("/auth/register-barber", {
     body: { name: "Faisal Freelance", email: "faisal@example.com", password: "password123", countryCode: "AE", city: "Dubai", shopAddress: "Al Barsha 1", haircutPrice: 7000 },
@@ -34,7 +34,7 @@ test("freelance barbers apply with their Emirates ID, licence and the signed agr
   const id = acc.user.barberId;
   const token = acc.token;
 
-  // A fresh application: everything still to do, and the agreement with JB's fee filled in.
+  // A fresh application: everything still to do, and the agreement with Always Fresh's fee filled in.
   const start = (await call("/barbers/me/application", { token })).json;
   assert.equal(start.status, "draft");
   assert.equal(start.required, true);
@@ -94,7 +94,7 @@ test("freelance barbers apply with their Emirates ID, licence and the signed agr
   // Approved: verified and live, and the team's view shows the signature's details.
   const ok = (await call(`/admin/barbers/${id}/application/approve`, { token: lead.token, method: "POST" })).json;
   assert.equal(ok.status, "approved");
-  assert.equal(ok.reviewedBy, "lead@jbalwaysfresh.com");
+  assert.equal(ok.reviewedBy, "lead@alwaysfresh.app");
   assert.ok(ok.signature.userAgent !== undefined);
   const detail = (await call(`/admin/barbers/${id}`, { token: lead.token })).json;
   assert.equal(detail.status, "live");

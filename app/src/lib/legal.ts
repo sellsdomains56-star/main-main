@@ -4,16 +4,16 @@
  */
 export const LEGAL_REVIEWED = false;
 export const LEGAL_UPDATED = "October 2026";
-export const LEGAL_CONTACT = "support@jbalwaysfresh.com";
+export const LEGAL_CONTACT = "support@alwaysfresh.app";
 
 export interface LegalDoc { title: string; intro: string; sections: { heading: string; body: string[] }[] }
 
 export const LEGAL: Record<"terms" | "privacy", LegalDoc> = {
   terms: {
     title: "Terms of use",
-    intro: "These terms apply when you use the JB Always Fresh app or website to find, book and pay barbers and barbershops, buy JB's Fresh products, join The Club or buy gift cards. By creating an account or booking, you agree to them.",
+    intro: "These terms apply when you use the Always Fresh app or website to find, book and pay barbers and barbershops, buy Always Fresh products, join The Club or buy gift cards. By creating an account or booking, you agree to them.",
     sections: [
-      { heading: "What JB Always Fresh does", body: [
+      { heading: "What Always Fresh does", body: [
         "We run a marketplace. Barbers and barbershops on the app are independent businesses: they set their own services, prices and hours and are responsible for the services they provide. We take bookings and payments for them and pass the money on, minus our fee.",
         "Barbers are checked before they can take bookings (identity, trade licence and health card where required), but we don't employ them.",
       ] },
@@ -35,7 +35,7 @@ export const LEGAL: Record<"terms" | "privacy", LegalDoc> = {
         "Gift cards can be spent on bookings and products. They can't be exchanged for cash.",
       ] },
       { heading: "Products and delivery", body: [
-        "JB's Fresh products are sold by us. Delivery times are estimates. If something arrives damaged or wrong, contact us within 7 days for a replacement or refund.",
+        "Always Fresh products are sold by us. Delivery times are estimates. If something arrives damaged or wrong, contact us within 7 days for a replacement or refund.",
       ] },
       { heading: "Reviews, reels and photos", body: [
         "Only customers who completed a booking can review it. Reviews must be honest and respectful.",
@@ -56,7 +56,7 @@ export const LEGAL: Record<"terms" | "privacy", LegalDoc> = {
   },
   privacy: {
     title: "Privacy policy",
-    intro: "This explains what personal data JB Always Fresh collects, why, who we share it with and the choices you have. We follow the UAE Personal Data Protection Law (Federal Decree-Law No. 45 of 2021).",
+    intro: "This explains what personal data Always Fresh collects, why, who we share it with and the choices you have. We follow the UAE Personal Data Protection Law (Federal Decree-Law No. 45 of 2021).",
     sections: [
       { heading: "What we collect", body: [
         "Account details: name, email, password (stored scrambled), city, and your Apple or Google sign-in ID if you use them.",

@@ -66,7 +66,7 @@ export function registerAccountRoutes(app: Express) {
       save();
       await sendEmail({
         to: user.email,
-        subject: "Reset your JB Always Fresh password",
+        subject: "Reset your Always Fresh password",
         text: letter(user.name, [
           "Someone (hopefully you) asked to reset your password. Choose a new one here:",
           `${config.appUrl}/reset-password?token=${token}`,
@@ -112,9 +112,9 @@ export function registerAccountRoutes(app: Express) {
     const data = JSON.stringify(exportFor(user), null, 2);
     await sendEmail({
       to: user.email,
-      subject: "Your JB Always Fresh data",
+      subject: "Your Always Fresh data",
       text: letter(user.name, ["Here's a copy of everything we hold about you, attached as a file.", "Questions? Reply to this email or open Account → Help centre."]),
-      attachments: [{ filename: "jb-always-fresh-my-data.json", content: Buffer.from(data).toString("base64") }],
+      attachments: [{ filename: "always-fresh-my-data.json", content: Buffer.from(data).toString("base64") }],
     });
     res.status(202).json({ sentTo: user.email });
   });
@@ -140,7 +140,7 @@ export function registerAccountRoutes(app: Express) {
     const email = user.email;
     const name = user.name;
     Object.assign(user, {
-      name: "Deleted account", email: `deleted+${user.id}@deleted.jbalwaysfresh.invalid`, passwordHash: hashPassword(randomBytes(24).toString("hex")),
+      name: "Deleted account", email: `deleted+${user.id}@deleted.alwaysfresh.invalid`, passwordHash: hashPassword(randomBytes(24).toString("hex")),
       deletedAt: new Date().toISOString(),
     });
     for (const k of ["appleSub", "googleSub", "pushTokens", "preferences", "credit", "manages", "alerts", "countryCode", "city", "membership"] as const) delete user[k];
@@ -151,7 +151,7 @@ export function registerAccountRoutes(app: Express) {
     db.resetTokens = db.resetTokens.filter((t) => t.userId !== user.id);
     for (const [token, id] of Object.entries(db.sessions)) if (id === user.id) delete db.sessions[token];
     save();
-    void sendEmail({ to: email, subject: "Your JB Always Fresh account is deleted", text: letter(name, ["Your account and personal details are deleted, and any upcoming bookings were cancelled and refunded.", "We're sorry to see you go — you're always welcome back."]) });
+    void sendEmail({ to: email, subject: "Your Always Fresh account is deleted", text: letter(name, ["Your account and personal details are deleted, and any upcoming bookings were cancelled and refunded.", "We're sorry to see you go — you're always welcome back."]) });
     res.status(204).end();
   });
 }

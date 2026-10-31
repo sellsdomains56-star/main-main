@@ -10,7 +10,7 @@ import type { AdminOrderRow, AdminShopRow } from "../../lib/types";
 
 type Tab = "shops" | "orders";
 
-/** Partner barbershops (teams, private hire, delivery) and JB's Fresh Shop orders to ship. */
+/** Partner barbershops (teams, private hire, delivery) and Always Fresh Shop orders to ship. */
 export default function Shops() {
   const [tab, setTab] = useState<Tab>("shops");
   const [shops, setShops] = useState<AdminShopRow[] | null>(null);
@@ -25,7 +25,7 @@ export default function Shops() {
   const [access, setAccess] = useState<AdminShopRow | null>(null);
 
   return (
-    <AdminPage title="Shops & orders" subtitle="Barbershops on the platform, and product orders from JB's Fresh Shop.">
+    <AdminPage title="Shops & orders" subtitle="Barbershops on the platform, and product orders from the Always Fresh Shop.">
       <Toolbar filter={{ value: tab, onChange: setTab, options: [{ value: "shops", label: `Barbershops${shops ? ` · ${shops.length}` : ""}` }, { value: "orders", label: `Orders${toShip ? ` · ${toShip} to ship` : ""}` }] }} />
       {error && <ErrorBox message={error} onRetry={load} />}
       {tab === "shops" ? (

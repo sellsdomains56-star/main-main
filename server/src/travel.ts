@@ -3,7 +3,7 @@ import type { Barber } from "./types.js";
 
 /**
  * Home visits from further away: the barber's visit fee covers the first few km from their pin; beyond that the
- * customer pays a rate per km for the barber's taxi there and back. All of it goes to the barber (no JB fee).
+ * customer pays a rate per km for the barber's taxi there and back. All of it goes to the barber (no Always Fresh fee).
  * Distances are estimates from map points: the straight line, plus 30% because roads wind.
  */
 

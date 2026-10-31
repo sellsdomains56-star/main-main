@@ -65,10 +65,10 @@ export default function BecomeBarber() {
             { title: "Your profile", body: "Your city, prices and specialties (this page)" },
             { title: "Your ID and licence", body: "Photos of your Emirates ID and your barber licence or permit" },
             { title: "The agreement", body: "Read the barber agreement and sign it in the app", onPress: () => router.push("/business/agreement") },
-            { title: "Approval", body: "The JB team checks everything, then you go live" },
+            { title: "Approval", body: "The Always Fresh team checks everything, then you go live" },
           ]}
         />
-        <T variant="small" muted style={{ marginTop: 14 }}>Work at a barbershop? You don't need to apply: JB signs a contract with your shop and the shop adds you.</T>
+        <T variant="small" muted style={{ marginTop: 14 }}>Work at a barbershop? You don't need to apply: Always Fresh signs a contract with your shop and the shop adds you.</T>
       </Card>
 
       <Section title="Where do you work?">

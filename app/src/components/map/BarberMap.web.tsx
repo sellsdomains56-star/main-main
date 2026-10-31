@@ -8,36 +8,36 @@ import { buildingAt, covered, drawFrame, latToY, lngToX, MAX_PITCH, NIGHT, scale
 import type { BarberMapProps, MapPin } from "./types";
 
 const PIN_CSS = `
-.jb-map3d { position: absolute; inset: 0; overflow: hidden; outline: none; font-family: ${fonts.medium}, Inter, system-ui, sans-serif; }
-.jb-map3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
-.jb-map3d.still canvas { touch-action: auto; }
-.jb-map3d:focus-visible { box-shadow: inset 0 0 0 3px #F4F2EE; }
-.jb-pins { position: absolute; inset: 0; pointer-events: none; }
-.jb-pin { position: absolute; left: 0; top: 0; width: 1px; height: 1px; will-change: transform; }
-.jb-body:focus-visible .jb-head { outline: 3px solid #F4F2EE; outline-offset: 3px; }
-.jb-shadow { position: absolute; left: -18px; top: -7px; width: 36px; height: 14px; border-radius: 50%; background: radial-gradient(closest-side, rgba(244,242,238,0.55), rgba(244,242,238,0.12) 55%, rgba(244,242,238,0)); }
-.jb-shadow::after { content: ""; position: absolute; left: 15px; top: 4.5px; width: 6px; height: 5px; border-radius: 50%; background: #F4F2EE; }
-.jb-ground { position: absolute; left: -22px; top: -9px; width: 44px; height: 18px; border-radius: 50%; border: 2px solid rgba(244,242,238,0.9); opacity: 0; }
-.jb-pin.selected .jb-ground { animation: jb-ring 1.8s ease-out infinite; }
-@keyframes jb-ring { 0% { transform: scale(0.4); opacity: 0.9; } 100% { transform: scale(1.6); opacity: 0; } }
-.jb-body { position: absolute; left: 0; bottom: 0; pointer-events: auto; cursor: pointer; border: 0; padding: 0; margin: 0; background: none; font: inherit; color: inherit; display: flex; flex-direction: column; align-items: center; transform: translateX(-50%); animation: jb-drop 0.65s cubic-bezier(.2,1.4,.4,1) both; transition: transform 0.18s ease; }
-@keyframes jb-drop { from { transform: translate(-50%, -46px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
-.jb-body:hover { transform: translate(-50%, -4px); }
-.jb-head { position: relative; width: 46px; height: 46px; border-radius: 50%; border: 2.5px solid #F4F2EE; background: #0B0B0B center / cover no-repeat; box-shadow: 0 14px 22px rgba(0,0,0,0.55), 0 3px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; color: #F4F2EE; transition: width .2s, height .2s; }
-.jb-head::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(160deg, rgba(255,255,255,0.28), rgba(255,255,255,0) 45%); pointer-events: none; }
-.jb-pin.shop .jb-head { border-radius: 14px; }
-.jb-pin.selected .jb-head { width: 58px; height: 58px; border-width: 3px; box-shadow: 0 0 0 5px rgba(244,242,238,0.22), 0 18px 28px rgba(0,0,0,0.6); }
-.jb-stack { position: absolute; top: 4px; width: 38px; height: 38px; border-radius: 50%; border: 2px solid #F4F2EE; background: #262523 center / cover no-repeat; box-shadow: 0 8px 14px rgba(0,0,0,0.5); }
-.jb-count { position: absolute; right: -8px; top: -6px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: #F4F2EE; color: #0B0B0B; font: 700 11px/22px ${fonts.bold}, Inter, system-ui, sans-serif; text-align: center; box-shadow: 0 3px 8px rgba(0,0,0,0.45); }
-.jb-free { position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px; border-radius: 50%; background: #F4F2EE; border: 2.5px solid #0B0B0B; }
-.jb-free::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid rgba(244,242,238,0.8); animation: jb-ping 2.2s ease-out infinite; }
-@keyframes jb-ping { 0% { transform: scale(0.5); opacity: 1; } 80%, 100% { transform: scale(1.4); opacity: 0; } }
-.jb-tag { margin-top: 6px; white-space: nowrap; border-radius: 999px; padding: 4px 9px; font: 700 11.5px ${fonts.bold}, Inter, system-ui, sans-serif; letter-spacing: 0.2px; background: rgba(11,11,11,0.86); color: #F4F2EE; border: 1px solid rgba(244,242,238,0.22); box-shadow: 0 6px 14px rgba(0,0,0,0.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.jb-pin.selected .jb-tag { background: #F4F2EE; color: #0B0B0B; border-color: #F4F2EE; font-size: 12.5px; padding: 5px 11px; }
-.jb-stem { width: 2px; background: linear-gradient(#F4F2EE, rgba(244,242,238,0.15)); border-radius: 1px; }
-.jb-pin.dim { opacity: 0.55; }
-.jb-pin.dim:hover, .jb-pin.dim:focus-within { opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .jb-body, .jb-free::before, .jb-pin.selected .jb-ground { animation: none; } }
+.af-map3d { position: absolute; inset: 0; overflow: hidden; outline: none; font-family: ${fonts.medium}, Inter, system-ui, sans-serif; }
+.af-map3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+.af-map3d.still canvas { touch-action: auto; }
+.af-map3d:focus-visible { box-shadow: inset 0 0 0 3px #F4F2EE; }
+.af-pins { position: absolute; inset: 0; pointer-events: none; }
+.af-pin { position: absolute; left: 0; top: 0; width: 1px; height: 1px; will-change: transform; }
+.af-body:focus-visible .af-head { outline: 3px solid #F4F2EE; outline-offset: 3px; }
+.af-shadow { position: absolute; left: -18px; top: -7px; width: 36px; height: 14px; border-radius: 50%; background: radial-gradient(closest-side, rgba(244,242,238,0.55), rgba(244,242,238,0.12) 55%, rgba(244,242,238,0)); }
+.af-shadow::after { content: ""; position: absolute; left: 15px; top: 4.5px; width: 6px; height: 5px; border-radius: 50%; background: #F4F2EE; }
+.af-ground { position: absolute; left: -22px; top: -9px; width: 44px; height: 18px; border-radius: 50%; border: 2px solid rgba(244,242,238,0.9); opacity: 0; }
+.af-pin.selected .af-ground { animation: af-ring 1.8s ease-out infinite; }
+@keyframes af-ring { 0% { transform: scale(0.4); opacity: 0.9; } 100% { transform: scale(1.6); opacity: 0; } }
+.af-body { position: absolute; left: 0; bottom: 0; pointer-events: auto; cursor: pointer; border: 0; padding: 0; margin: 0; background: none; font: inherit; color: inherit; display: flex; flex-direction: column; align-items: center; transform: translateX(-50%); animation: af-drop 0.65s cubic-bezier(.2,1.4,.4,1) both; transition: transform 0.18s ease; }
+@keyframes af-drop { from { transform: translate(-50%, -46px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+.af-body:hover { transform: translate(-50%, -4px); }
+.af-head { position: relative; width: 46px; height: 46px; border-radius: 50%; border: 2.5px solid #F4F2EE; background: #0B0B0B center / cover no-repeat; box-shadow: 0 14px 22px rgba(0,0,0,0.55), 0 3px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; color: #F4F2EE; transition: width .2s, height .2s; }
+.af-head::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(160deg, rgba(255,255,255,0.28), rgba(255,255,255,0) 45%); pointer-events: none; }
+.af-pin.shop .af-head { border-radius: 14px; }
+.af-pin.selected .af-head { width: 58px; height: 58px; border-width: 3px; box-shadow: 0 0 0 5px rgba(244,242,238,0.22), 0 18px 28px rgba(0,0,0,0.6); }
+.af-stack { position: absolute; top: 4px; width: 38px; height: 38px; border-radius: 50%; border: 2px solid #F4F2EE; background: #262523 center / cover no-repeat; box-shadow: 0 8px 14px rgba(0,0,0,0.5); }
+.af-count { position: absolute; right: -8px; top: -6px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: #F4F2EE; color: #0B0B0B; font: 700 11px/22px ${fonts.bold}, Inter, system-ui, sans-serif; text-align: center; box-shadow: 0 3px 8px rgba(0,0,0,0.45); }
+.af-free { position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px; border-radius: 50%; background: #F4F2EE; border: 2.5px solid #0B0B0B; }
+.af-free::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid rgba(244,242,238,0.8); animation: af-ping 2.2s ease-out infinite; }
+@keyframes af-ping { 0% { transform: scale(0.5); opacity: 1; } 80%, 100% { transform: scale(1.4); opacity: 0; } }
+.af-tag { margin-top: 6px; white-space: nowrap; border-radius: 999px; padding: 4px 9px; font: 700 11.5px ${fonts.bold}, Inter, system-ui, sans-serif; letter-spacing: 0.2px; background: rgba(11,11,11,0.86); color: #F4F2EE; border: 1px solid rgba(244,242,238,0.22); box-shadow: 0 6px 14px rgba(0,0,0,0.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.af-pin.selected .af-tag { background: #F4F2EE; color: #0B0B0B; border-color: #F4F2EE; font-size: 12.5px; padding: 5px 11px; }
+.af-stem { width: 2px; background: linear-gradient(#F4F2EE, rgba(244,242,238,0.15)); border-radius: 1px; }
+.af-pin.dim { opacity: 0.55; }
+.af-pin.dim:hover, .af-pin.dim:focus-within { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .af-body, .af-free::before, .af-pin.selected .af-ground { animation: none; } }
 `;
 
 let styled = false;
@@ -398,7 +398,7 @@ export function BarberMap({
 
   function onPointerDown(e: React.PointerEvent) {
     if (!interactive) return;
-    if ((e.target as HTMLElement).closest(".jb-pin")) return;
+    if ((e.target as HTMLElement).closest(".af-pin")) return;
     host.current?.focus({ preventScroll: true });
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     const p = local(e);
@@ -538,7 +538,7 @@ export function BarberMap({
     <View style={{ height, borderRadius: radius, overflow: "hidden", backgroundColor: NIGHT.land }}>
       <div
         ref={host}
-        className={`jb-map3d${interactive ? "" : " still"}`}
+        className={`af-map3d${interactive ? "" : " still"}`}
         tabIndex={interactive ? 0 : -1}
         aria-label={label}
         role="application"
@@ -550,12 +550,12 @@ export function BarberMap({
         onKeyDown={onKeyDown}
         onContextMenu={(e) => interactive && e.preventDefault()}
         onClick={(e) => {
-          if (!interactive && onPress && !(e.target as HTMLElement).closest(".jb-pin")) onPress();
+          if (!interactive && onPress && !(e.target as HTMLElement).closest(".af-pin")) onPress();
         }}
         style={{ cursor: interactive ? "grab" : onPress ? "pointer" : "default" }}
       >
         <canvas ref={canvas} aria-hidden />
-        <div className="jb-pins">
+        <div className="af-pins">
           {!onCenter && items.map((item, i) => (
             <PinNode
               key={item.key}
@@ -658,12 +658,12 @@ function PinNode({ item, index, selected, dim, refFn, onPress, focusable }: { it
   const others = item.members.slice(1, 3);
   const what = count > 1 ? `${count} places here, including ${p.title ?? p.label}. Zoom in` : `${p.title ?? ""}${p.kind === "shop" ? ", barbershop" : ""}, ${p.label}${p.rating ? `, rated ${p.rating.toFixed(1)}` : ""}${p.free ? ", free today" : ""}${p.address ? `, ${p.address}` : ""}`;
   return (
-    <div ref={refFn} className={`jb-pin${p.kind === "shop" ? " shop" : ""}${selected ? " selected" : ""}${dim ? " dim" : ""}`} style={{ transform: "translate3d(-999px,-999px,0)" }}>
-      <span className="jb-shadow" />
-      <span className="jb-ground" />
+    <div ref={refFn} className={`af-pin${p.kind === "shop" ? " shop" : ""}${selected ? " selected" : ""}${dim ? " dim" : ""}`} style={{ transform: "translate3d(-999px,-999px,0)" }}>
+      <span className="af-shadow" />
+      <span className="af-ground" />
       <button
         type="button"
-        className="jb-body"
+        className="af-body"
         aria-label={what}
         aria-pressed={selected}
         tabIndex={focusable ? 0 : -1}
@@ -676,15 +676,15 @@ function PinNode({ item, index, selected, dim, refFn, onPress, focusable }: { it
         <span style={{ position: "relative", display: "flex", justifyContent: "center" }}>
           {others.map((o, i) => {
             const ph = o.photoUrl && !o.photoUrl.startsWith("brand:") ? resolveMedia(o.photoUrl) : null;
-            return <span key={o.id} className="jb-stack" style={{ transform: `translateX(${(i === 0 ? -1 : 1) * 16}px)`, backgroundImage: ph ? `url("${ph}")` : undefined }} />;
+            return <span key={o.id} className="af-stack" style={{ transform: `translateX(${(i === 0 ? -1 : 1) * 16}px)`, backgroundImage: ph ? `url("${ph}")` : undefined }} />;
           })}
-          <span className="jb-head" style={{ backgroundImage: photo ? `url("${photo}")` : undefined }}>
+          <span className="af-head" style={{ backgroundImage: photo ? `url("${photo}")` : undefined }}>
             {!photo && <ScissorsGlyph />}
-            {count > 1 ? <span className="jb-count">{count}</span> : p.free && p.kind !== "shop" ? <span className="jb-free" /> : null}
+            {count > 1 ? <span className="af-count">{count}</span> : p.free && p.kind !== "shop" ? <span className="af-free" /> : null}
           </span>
         </span>
-        <span className="jb-tag">{count > 1 ? (item.members.every((m) => m.kind === "shop") ? `${count} barbershops` : `${count} here`) : p.label}</span>
-        <span className="jb-stem" style={{ height: "var(--stem, 10px)" }} />
+        <span className="af-tag">{count > 1 ? (item.members.every((m) => m.kind === "shop") ? `${count} barbershops` : `${count} here`) : p.label}</span>
+        <span className="af-stem" style={{ height: "var(--stem, 10px)" }} />
       </button>
     </div>
   );

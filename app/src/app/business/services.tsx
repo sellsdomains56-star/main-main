@@ -90,7 +90,7 @@ export default function Services() {
         </Row>
       }
     >
-      <T muted>What customers can book, how long it takes and what it costs. Prices are in {cur.toUpperCase()}, before the JB fee.</T>
+      <T muted>What customers can book, how long it takes and what it costs. Prices are in {cur.toUpperCase()}, before the Always Fresh fee.</T>
       {error && <View style={{ marginTop: 12 }}><ErrorBox message={error} /></View>}
 
       <Section title="Your services">
@@ -129,7 +129,7 @@ export default function Services() {
             {barber.travel && (
               <View style={{ marginTop: 10 }}>
                 <IconLine icon="car-outline" muted>
-                  Your travel fee covers the first {barber.travel.includedKm} km. Further than that, customers pay {money(barber.travel.perKm, cur)} a km extra for your taxi there and back, and the app tells them before they pay. It all goes to you, with no JB fee.
+                  Your travel fee covers the first {barber.travel.includedKm} km. Further than that, customers pay {money(barber.travel.perKm, cur)} a km extra for your taxi there and back, and the app tells them before they pay. It all goes to you, with no Always Fresh fee.
                 </IconLine>
               </View>
             )}

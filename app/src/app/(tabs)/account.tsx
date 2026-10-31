@@ -62,7 +62,7 @@ export default function Account() {
       )}
 
       {user?.admin && (
-        <Section title="JB team">
+        <Section title="Always Fresh team">
           <ListRow icon="shield-checkmark-outline" title="Admin panel" subtitle="Approve barbers, bookings & refunds, support, settings" onPress={() => router.push("/admin")} />
         </Section>
       )}
@@ -95,7 +95,7 @@ export default function Account() {
       </Section>
 
       <Section title="Support">
-        <ListRow icon="chatbubble-ellipses-outline" title="JB Concierge" subtitle="Ask anything, 24/7" onPress={() => router.push("/assistant")} />
+        <ListRow icon="chatbubble-ellipses-outline" title="Always Fresh Concierge" subtitle="Ask anything, 24/7" onPress={() => router.push("/assistant")} />
         <ListRow icon="help-circle-outline" title="Help centre" subtitle="FAQs and contact support" onPress={() => router.push("/help")} />
       </Section>
 
@@ -103,7 +103,7 @@ export default function Account() {
         <Section title="Demo">
           <ListRow icon="cut-outline" title="Try as a barber" subtitle="Dashboard, earnings, services, hours" onPress={() => router.push("/login")} />
           <ListRow icon="storefront-outline" title="Try as a barbershop" subtitle="The shop panel: calendar, walk-ins, team hours" onPress={() => router.push("/login")} />
-          <ListRow icon="shield-checkmark-outline" title="Try as the JB team" subtitle="The admin panel with sample data" onPress={() => router.push("/login")} />
+          <ListRow icon="shield-checkmark-outline" title="Try as the Always Fresh team" subtitle="The admin panel with sample data" onPress={() => router.push("/login")} />
         </Section>
       )}
 

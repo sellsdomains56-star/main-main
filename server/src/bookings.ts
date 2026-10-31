@@ -51,7 +51,7 @@ export const NewBooking = z.object({
   guest: z.object({ name: z.string().trim().min(1).max(60), phone: z.string().trim().max(30).default("") }).optional(),
   // Extras on top of the service (hot towel, massage…): they add time and price.
   extras: z.array(z.string()).max(8).default([]),
-  // A tip chosen while booking, charged with it; all of it goes to the barber (no JB fee).
+  // A tip chosen while booking, charged with it; all of it goes to the barber (no Always Fresh fee).
   tip: z.number().int().min(0).max(100_000_000).default(0),
 });
 

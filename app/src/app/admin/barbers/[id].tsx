@@ -86,7 +86,7 @@ export default function BarberDetail() {
         <View style={{ flex: 1, gap: 16 }}>
           <Card style={{ padding: 20 }}>
             <T variant="heading">Profile checklist</T>
-            <T variant="caption" muted style={{ marginBottom: 10 }}>{b.shop ? `Works at ${b.shop.name}: covered by the shop's contract with JB, no application needed.` : "What the barber has filled in so far."}</T>
+            <T variant="caption" muted style={{ marginBottom: 10 }}>{b.shop ? `Works at ${b.shop.name}: covered by the shop's contract with Always Fresh, no application needed.` : "What the barber has filled in so far."}</T>
             {b.checklist.map((c) => (
               <Row key={c.key} gap={10} style={{ paddingVertical: 5 }}>
                 <Ionicons name={c.done ? "checkmark-circle" : "ellipse-outline"} size={18} color={c.done ? colors.text : colors.faint} />

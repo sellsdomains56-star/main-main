@@ -23,8 +23,8 @@ export function policyLabel(p: CancelPolicy | null | undefined) {
 
 export const LEVEL_LABEL: Record<Level, string> = { new: "New", rising: "Rising", pro: "Pro", elite: "Elite" };
 export const LEVEL_HELP: Record<Level, string> = {
-  new: "Just joined JB",
-  rising: "5+ cuts on JB",
+  new: "Just joined Always Fresh",
+  rising: "5+ cuts on Always Fresh",
   pro: "25+ cuts, rated 4.5 or more",
   elite: "60+ cuts, rated 4.8 or more",
 };

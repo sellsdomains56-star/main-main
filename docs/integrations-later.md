@@ -1,10 +1,10 @@
-# Integrations that need JB's own accounts
+# Integrations that need Always Fresh's own accounts
 
 These are designed but not switched on, because each needs a contract or an account in the company's name. The steps below are what to do once you have them.
 
 ## Stripe Connect (paying barbers automatically)
 
-Built: barbers open Dashboard → Payouts, Stripe checks their ID and bank (Stripe Express), and from then on each booking's money goes straight to them with JB's fee taken by Stripe (`application_fee_amount`). Without it, JB keeps receiving all money and pays barbers by bank transfer.
+Built: barbers open Dashboard → Payouts, Stripe checks their ID and bank (Stripe Express), and from then on each booking's money goes straight to them with Always Fresh's fee taken by Stripe (`application_fee_amount`). Without it, Always Fresh keeps receiving all money and pays barbers by bank transfer.
 
 1. In the Stripe dashboard, open Connect and choose **Express** accounts. Fill in the platform profile (UAE, marketplace for barber services).
 2. Set `STRIPE_SECRET_KEY` (live key) on the server. Nothing else to configure.
@@ -38,7 +38,7 @@ Not built. Needs an Apple Developer account (Pass Type ID and certificate).
 
 Not built. Needs the native iOS build.
 
-1. Add an App Intent ("Book my usual") with an Expo config plugin, which opens `jbalwaysfresh://book/<barber>?serviceId=…` — the app already handles "Book your usual" links.
+1. Add an App Intent ("Book my usual") with an Expo config plugin, which opens `alwaysfresh://book/<barber>?serviceId=…` — the app already handles "Book your usual" links.
 2. Donate the intent after each booking so Siri suggests it.
 
 ## Google Maps on Android

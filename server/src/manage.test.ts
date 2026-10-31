@@ -3,7 +3,7 @@ import type { AddressInfo } from "node:net";
 import { after, before, test } from "node:test";
 
 // The team's email must be known before the config loads.
-process.env.ADMIN_EMAILS = "team@jbalwaysfresh.com";
+process.env.ADMIN_EMAILS = "team@alwaysfresh.app";
 const { createApp } = await import("./app.js");
 
 let base = "";
@@ -37,8 +37,8 @@ const dubai = (date: string, hour: number, minute = 0) => new Date(Date.parse(`$
 let owner = "";
 let customer = "";
 
-test("the JB team gives a shop owner their panel; nobody else gets in", async () => {
-  const team = await register("Team", "team@jbalwaysfresh.com");
+test("the Always Fresh team gives a shop owner their panel; nobody else gets in", async () => {
+  const team = await register("Team", "team@alwaysfresh.app");
   const o = await register("Omar Owner", "owner@marina.example");
   customer = (await register("Cyrus Customer", "cyrus@example.com")).token;
   owner = o.token;

@@ -7,7 +7,7 @@ import { api } from "../../lib/api";
 import { money } from "../../lib/format";
 import type { Invoice } from "../../lib/types";
 
-/** A receipt (or UAE tax invoice once JB is VAT-registered) for a paid booking. Printable on the website. */
+/** A receipt (or UAE tax invoice once Always Fresh is VAT-registered) for a paid booking. Printable on the website. */
 export default function InvoiceScreen() {
   const { bookingId } = useLocalSearchParams<{ bookingId: string }>();
   const [inv, setInv] = useState<Invoice | null>(null);

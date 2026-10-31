@@ -27,9 +27,9 @@ export default function Overview() {
   ].filter((t) => t.n > 0);
 
   return (
-    <AdminPage title="Overview" subtitle={`Last 30 days · JB fee ${o.feePercent}% of every booking`}>
+    <AdminPage title="Overview" subtitle={`Last 30 days · Always Fresh fee ${o.feePercent}% of every booking`}>
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12 }}>
-        <Kpi dark label="JB revenue · fees" value={sumText(o.revenue30.fees, "0")} sub={`On ${sumText(o.revenue30.bookings, "no")} of bookings`} icon="trending-up" />
+        <Kpi dark label="Always Fresh revenue · fees" value={sumText(o.revenue30.fees, "0")} sub={`On ${sumText(o.revenue30.bookings, "no")} of bookings`} icon="trending-up" />
         <Kpi label="Bookings" value={String(o.bookings.last30)} sub={`${o.bookings.last7} this week · ${o.bookings.today} today`} icon="calendar-outline" onPress={() => router.navigate("/admin/bookings")} />
         <Kpi label="Barbers live" value={String(o.barbers.live)} sub={`${o.barbers.pending} in review · ${o.barbers.suspended} paused`} icon="cut-outline" onPress={() => router.navigate("/admin/barbers")} />
         <Kpi label="Customers" value={String(o.customers.total)} sub={`${o.customers.new7} new this week · ${o.customers.members} Club members`} icon="people-outline" onPress={() => router.navigate("/admin/customers")} />
@@ -55,7 +55,7 @@ export default function Overview() {
           <View style={{ marginTop: 14, borderTopWidth: 1, borderTopColor: colors.border, paddingTop: 12, gap: 6 }}>
             <T variant="eyebrow" muted>Other income · 30 days</T>
             <Row style={{ justifyContent: "space-between" }}><T variant="caption" muted>Private hire</T><T variant="caption">{sumText(o.revenue30.hires)}</T></Row>
-            <Row style={{ justifyContent: "space-between" }}><T variant="caption" muted>JB's Fresh Shop</T><T variant="caption">{sumText(o.revenue30.shop)}</T></Row>
+            <Row style={{ justifyContent: "space-between" }}><T variant="caption" muted>Always Fresh Shop</T><T variant="caption">{sumText(o.revenue30.shop)}</T></Row>
             <Row style={{ justifyContent: "space-between" }}><T variant="caption" muted>The Club & gift cards</T><T variant="caption">{sumText(o.revenue30.clubAndGifts)}</T></Row>
             <Row style={{ justifyContent: "space-between" }}><T variant="caption" muted>Cancelled bookings</T><T variant="caption">{o.bookings.cancelled30}</T></Row>
           </View>

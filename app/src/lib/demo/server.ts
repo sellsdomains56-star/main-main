@@ -561,7 +561,7 @@ function fulfil(p: Purchase) {
     const start = live && cur.plan === plan.id ? Date.parse(cur.paidUntil) : now;
     u.membership = {
       plan: plan.id, currency: p.currency,
-      number: cur?.number ?? `JB-${String(Math.floor(Math.random() * 10000)).padStart(4, "0")}-${String(Math.floor(Math.random() * 1000)).padStart(3, "0")}`,
+      number: cur?.number ?? `AF-${String(Math.floor(Math.random() * 10000)).padStart(4, "0")}-${String(Math.floor(Math.random() * 1000)).padStart(3, "0")}`,
       since: live ? cur!.since : new Date(now).toISOString(), paidUntil: new Date(start + 30 * DAY).toISOString(),
     };
     notify(u.id, { kind: "club", title: `Welcome to The Club — ${plan.name}`, body: `Your member card is in Account → The Club. ${plan.perks[0]}.` });
@@ -719,7 +719,7 @@ function onCompleted(b: Booking) {
     customer.referralRewarded = true;
     const amount = giftFor(b.currency).referral;
     addCredit(customer, b.currency, amount);
-    notify(customer.id, { kind: "gift", title: "Your welcome credit is in", body: "Thanks for your first cut with JB. Your invite credit is ready for the next one." });
+    notify(customer.id, { kind: "gift", title: "Your welcome credit is in", body: "Thanks for your first cut with Always Fresh. Your invite credit is ready for the next one." });
     const friend = saved.users.find((u) => u.id === customer.referredBy && !u.deletedAt);
     if (friend) {
       addCredit(friend, b.currency, amount);
@@ -753,7 +753,7 @@ function runPerks(now = new Date()) {
         u.birthdayGiftYear = now.getUTCFullYear();
         const cur = currencyOf(u);
         addCredit(u, cur, giftFor(cur).birthday);
-        notify(u.id, { kind: "gift", title: `Happy birthday, ${u.name.split(" ")[0]}`, body: "A birthday treat from JB is in your account. Use it on your next cut or our products." });
+        notify(u.id, { kind: "gift", title: `Happy birthday, ${u.name.split(" ")[0]}`, body: "A birthday treat from Always Fresh is in your account. Use it on your next cut or our products." });
       }
     }
   }
@@ -962,9 +962,9 @@ type Body = Record<string, any>; // eslint-disable-line @typescript-eslint/no-ex
 
 /** Sample logins shown on the demo's sign-in screen. */
 export const DEMO_LOGINS = {
-  admin: { email: "admin@demo.jbalwaysfresh.com", password: "jb-team-demo" },
-  barber: { email: "mateo@demo.jbalwaysfresh.com", password: "jb-barber-demo", barberId: "b37" },
-  shop: { email: "owner@demo.jbalwaysfresh.com", password: "jb-shop-demo", shopId: "s-dubai-downtown" },
+  admin: { email: "admin@demo.alwaysfresh.app", password: "fresh-team-demo" },
+  barber: { email: "mateo@demo.alwaysfresh.app", password: "fresh-barber-demo", barberId: "b37" },
+  shop: { email: "owner@demo.alwaysfresh.app", password: "fresh-shop-demo", shopId: "s-dubai-downtown" },
 };
 const adminRole = (u?: User): AdminRole | null => (!u ? null : u.email === DEMO_LOGINS.admin.email ? "owner" : saved.settings?.team?.[u.email] ?? null);
 const isAdmin = (u?: User) => adminRole(u) !== null;
@@ -974,12 +974,12 @@ function logActivity(me: User, action: string, target: string, detail?: string) 
   if (saved.activity.length > 500) saved.activity.splice(0, saved.activity.length - 500);
 }
 const PAID = new Set<Booking["status"]>(["confirmed", "on_the_way", "completed"]);
-/** Booked and paid in the app (not a walk-in the barbershop added): only these carry the JB fee. */
+/** Booked and paid in the app (not a walk-in the barbershop added): only these carry the Always Fresh fee. */
 const fromApp = (b: Booking) => b.source !== "shop";
 const feePercent = () => saved.settings?.platformFeePercent ?? 10;
 const reviewNewBarbers = () => saved.settings?.reviewNewBarbers ?? true;
 const platformFee = (amount: number) => Math.round((amount * feePercent()) / 100);
-/** JB's fee on a booking: not on the extra travel of a far home visit, which is all the barber's (mirrors bookingFee). */
+/** Always Fresh's fee on a booking: not on the extra travel of a far home visit, which is all the barber's (mirrors bookingFee). */
 const bookingFee = (b: Booking) => platformFee(Math.max(0, b.amount - (b.travelFee ?? 0)));
 
 // Home visits further away (mirrors server/src/travel.ts): the visit fee covers the first km from the barber's pin,
@@ -1077,7 +1077,7 @@ const barberUser = (barberId: string) => saved.users.find((u) => u.barberId === 
 // ---------- Freelance barbers' applications (mirrors server/src/routes/applications.ts) ----------
 
 const applicationOf = (barberId: string) => (saved.applications ?? []).find((a) => a.barberId === barberId);
-/** Barbers at a barbershop don't apply: JB's contract with the shop covers them. */
+/** Barbers at a barbershop don't apply: Always Fresh's contract with the shop covers them. */
 const needsApplication = (b: SeedBarber) => !b.shopId;
 function startApplication(barberId: string) {
   const now = new Date().toISOString();
@@ -1088,7 +1088,7 @@ function startApplication(barberId: string) {
 const inUae = (b: SeedBarber) => b.countryCode === "AE";
 const todayIso = () => new Date().toISOString().slice(0, 10);
 function agreementText() {
-  const fill = (t: string) => t.replaceAll("{company}", "JB Always Fresh").replaceAll("{fee}", String(feePercent()));
+  const fill = (t: string) => t.replaceAll("{company}", "Always Fresh").replaceAll("{fee}", String(feePercent()));
   const a = seed.agreement;
   return { version: a.version, title: a.title, intro: fill(a.intro), sections: a.sections.map((x) => ({ heading: x.heading, body: fill(x.body) })) };
 }
@@ -1147,9 +1147,9 @@ function applicationRoutes(method: string, path: string, q: Record<string, strin
     if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
     const b = getBarber(u.barberId);
     if (path === "/barbers/me/application" && method === "GET") return hit(applicationView(b));
-    if (!needsApplication(b)) throw new DemoError(400, "Barbers at a barbershop don't apply: JB's contract with your shop covers you.");
+    if (!needsApplication(b)) throw new DemoError(400, "Barbers at a barbershop don't apply: Always Fresh's contract with your shop covers you.");
     const a = applicationOf(b.id) ?? startApplication(b.id);
-    if (a.status === "submitted") throw new DemoError(409, "Your application is with the JB team. You can change it if they ask you to.");
+    if (a.status === "submitted") throw new DemoError(409, "Your application is with the Always Fresh team. You can change it if they ask you to.");
     if (a.status === "approved") throw new DemoError(409, "Your application is approved. To update a document, contact support.");
     const touch = () => {
       a.updatedAt = new Date().toISOString();
@@ -1277,12 +1277,12 @@ function rng(seedValue: number) {
   return () => (s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296;
 }
 
-/** Two more chairs at JB's Fresh Downtown, so the shop panel's calendar has a full team. */
+/** Two more chairs at Always Fresh Downtown, so the shop panel's calendar has a full team. */
 const EXTRA_TEAM: [string, string, string[]][] = [
   ["demo-dt-1", "Rami Aziz", ["skin fade", "taper", "kids cut"]],
   ["demo-dt-2", "Leo Santos", ["scissor cut", "textured crop", "beard"]],
 ];
-const SEED_VERSION = 6;
+const SEED_VERSION = 8;
 
 /** Requests that arrive together share one run, so the sample accounts are made once. */
 let seeding: Promise<void> | null = null;
@@ -1296,6 +1296,13 @@ function seedDemoAccounts() {
 async function buildSample() {
   const dubaiDay = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Dubai" }).format(new Date());
   if (saved.demoSeededOn === dubaiDay && saved.demoSeedVersion === SEED_VERSION) return;
+  // The sample logins moved to @demo.alwaysfresh.app: move a returning tester's sample accounts over (same passwords) instead of making them twice.
+  for (const u of saved.users) {
+    if (!u.seeded || !/@demo\.(?!alwaysfresh\.app$)/.test(u.email)) continue;
+    u.email = u.email.replace(/@demo\..+$/, "@demo.alwaysfresh.app");
+    if (u.email === DEMO_LOGINS.admin.email) u.name = "Always Fresh team";
+    for (const a of saved.activity ?? []) if (a.by.id === u.id) a.by = { id: u.id, name: u.name, email: u.email };
+  }
   // Earlier versions could make a sample account twice when the page first loaded; keep the first.
   saved.users = saved.users.filter((u, i, all) => !u.seeded || all.findIndex((x) => x.email === u.email) === i);
   const now = Date.now();
@@ -1307,18 +1314,18 @@ async function buildSample() {
     }
     return u;
   };
-  await ensure("JB Team", DEMO_LOGINS.admin.email, DEMO_LOGINS.admin.password, {}, 60);
+  await ensure("Always Fresh team", DEMO_LOGINS.admin.email, DEMO_LOGINS.admin.password, {}, 60);
   await ensure("Mateo Silva", DEMO_LOGINS.barber.email, DEMO_LOGINS.barber.password, { role: "barber", barberId: DEMO_LOGINS.barber.barberId }, 90);
   const owner = await ensure("Nadia Haddad", DEMO_LOGINS.shop.email, DEMO_LOGINS.shop.password, { manages: DEMO_LOGINS.shop.shopId }, 120);
   Object.assign(owner, { shopRole: "owner", branches: ["s-dubai-marina"] }); // runs two branches
-  await ensure("Omar at the desk", "desk@demo.jbalwaysfresh.com", "jb-desk-demo", { manages: DEMO_LOGINS.shop.shopId, shopRole: "front_desk" }, 40);
+  await ensure("Omar at the desk", "desk@demo.alwaysfresh.app", "fresh-desk-demo", { manages: DEMO_LOGINS.shop.shopId, shopRole: "front_desk" }, 40);
   // Mateo's booking rules: free cancellation up to 24 hours, then half; 15% off quiet weekday mornings.
   if (!saved.barberPatches.b37?.cancelPolicy) saved.barberPatches.b37 = { ...saved.barberPatches.b37, cancelPolicy: { freeHours: 24, lateFeePercent: 50 }, offPeak: { percent: 15, days: [1, 2, 3], fromHour: 10, toHour: 13 } };
   const base = seed.barbers.find((b) => b.shopId === DEMO_LOGINS.shop.shopId);
   for (const [id, name, specialties] of EXTRA_TEAM) {
     if (!base || allBarbers().some((b) => b.id === id)) continue;
     saved.newBarbers.push({
-      ...structuredClone(base), id, name, bio: `${name.split(" ")[0]} works the chairs at JB's Fresh Downtown.`, photoUrl: "", specialties,
+      ...structuredClone(base), id, name, bio: `${name.split(" ")[0]} works the chairs at Always Fresh Downtown.`, photoUrl: "", specialties,
       services: base.services.map((sv) => ({ ...sv, id: `${id}-${sv.id.split("-").pop()}` })), gallery: [], transformations: [], ratingSum: 0, ratingCount: 0,
       yearsExperience: 4, workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 21, timeOff: [],
     });
@@ -1362,7 +1369,7 @@ async function buildSample() {
     const n = id === "b37" ? 2 + Math.floor(rand() * 3) : rand() < 0.4 ? 1 : 0;
     for (let i = 0; i < n; i++) book(id, d, 10 + Math.floor(rand() * 9), "confirmed");
   }
-  // A busy day at JB's Fresh Downtown: app bookings, walk-ins, a lunch break.
+  // A busy day at Always Fresh Downtown: app bookings, walk-ins, a lunch break.
   saved.blocks = (saved.blocks ?? []).filter((k) => !k.seeded);
   const walkIns = ["Khalid", "Arjun", "Tom", "Majid", "Pedro", "Ali"];
   ["b36", "b41", "demo-dt-1", "demo-dt-2"].forEach((id, i) => {
@@ -2200,7 +2207,7 @@ async function shopOpsRoutes(method: string, path: string, q: Record<string, str
     return hit({
       period, from: first, to: end, currency: cur, defaultSharePercent: shopDefault, canEditSplit: role === "owner", rows,
       totals: { services: sum("services"), lateFees: sum("lateFees"), tips: sum("tips"), jbFee: sum("jbFee"), barberPay: sum("barberPay"), shopKeeps: sum("shopKeeps") + productCommission, productCommission },
-      note: "Walk-ins are paid at the shop and carry no JB fee. Tips go to the barber in full. App money is paid out by JB; walk-in money is already in the shop's till.",
+      note: "Walk-ins are paid at the shop and carry no Always Fresh fee. Tips go to the barber in full. App money is paid out by Always Fresh; walk-in money is already in the shop's till.",
     });
   }
   const lapsed = (weeks: number) => {
@@ -2346,8 +2353,8 @@ async function platformRoutes(method: string, path: string, q: Record<string, st
       ? [{ description: `Late cancellation — ${service?.name ?? "appointment"} with ${barber.name}`, amount: charged }]
       : [{ description: `${service?.name ?? "Appointment"} with ${barber.name}`, amount: b.amount - ex.reduce((t, e) => t + e.price, 0) - travel - (b.travelFee ?? 0) }, ...ex.map((e) => ({ description: e.name, amount: e.price })), ...(travel ? [{ description: "Home visit travel", amount: travel }] : []), ...(b.travelFee ? [{ description: `Extra travel (about ${b.distanceKm} km)`, amount: b.travelFee }] : [])].filter((l) => l.amount > 0);
     return hit({
-      number: `JB-${b.startsAt.slice(0, 7).replace("-", "")}-${b.id.slice(0, 6).toUpperCase()}`, title: "Receipt", issuedAt: b.createdAt, serviceDate: b.startsAt, timeZone: timeZoneOf(barber),
-      seller: { name: "JB Always Fresh", address: "Dubai, United Arab Emirates", trn: null, onBehalfOf: barber.name },
+      number: `AF-${b.startsAt.slice(0, 7).replace("-", "")}-${b.id.slice(0, 6).toUpperCase()}`, title: "Receipt", issuedAt: b.createdAt, serviceDate: b.startsAt, timeZone: timeZoneOf(barber),
+      seller: { name: "Always Fresh", address: "Dubai, United Arab Emirates", trn: null, onBehalfOf: barber.name },
       customer: { name: b.guest?.name ?? customer?.name ?? "Customer", email: customer?.email ?? "" }, lines, currency: b.currency,
       discounts: [...(b.creditUsed ? [{ description: "Gift credit", amount: b.creditUsed }] : []), ...(b.partnerDiscount ? [{ description: "Company discount", amount: b.partnerDiscount }] : [])],
       total: charged, vat: null, tip: b.status === "cancelled" ? 0 : b.tip ?? 0, note: b.coveredBy === "membership" ? "Service included in your Club membership." : "",
@@ -2403,7 +2410,7 @@ async function platformRoutes(method: string, path: string, q: Record<string, st
     const u = requireUser(token);
     if (!u.barberId) throw new DemoError(403, "Only barbers can do this.");
     if (method === "POST") throw new DemoError(503, "Payouts aren't switched on in the demo. In the app, Stripe checks your ID and bank once, then pays you automatically.");
-    return hit({ available: false, connected: false, payoutsEnabled: false, note: "Payouts switch on when JB connects Stripe. Until then JB pays you by bank transfer every week." });
+    return hit({ available: false, connected: false, payoutsEnabled: false, note: "Payouts switch on when Always Fresh connects Stripe. Until then Always Fresh pays you by bank transfer every week." });
   }
   return { hit: false };
 }
@@ -2501,10 +2508,10 @@ function adminPlatform(method: string, path: string, q: Record<string, string>, 
       month, label: monthLabel(month), vatRegistered: false, vatPercent: 5,
       lines: [
         { key: "bookings", label: "Bookings paid in the app", amounts: sum("booking", "amount") },
-        { key: "fees", label: "JB fees on bookings", amounts: sum("booking", "jbFee") },
+        { key: "fees", label: "Always Fresh fees on bookings", amounts: sum("booking", "jbFee") },
         { key: "late", label: "Late-cancellation fees kept", amounts: sum("late_cancellation", "amount") },
         { key: "tips", label: "Tips (passed to barbers)", amounts: sum("tip", "amount") },
-        { key: "products", label: "JB's Fresh products", amounts: sum("products", "amount") },
+        { key: "products", label: "Always Fresh products", amounts: sum("products", "amount") },
         { key: "hires", label: "Private hires", amounts: sum("private_hire", "amount") },
         { key: "club", label: "The Club and gift cards", amounts: byCurrency(rows.filter((r) => r.type === "membership" || r.type === "gift")) },
         { key: "refunds", label: "Refunded to customers", amounts: byCurrency(saved.bookings.filter((b) => fromApp(b) && b.status === "cancelled" && !b.seeded && monthOf(b.startsAt) === month).map((b) => ({ currency: b.currency, amount: b.amount + (b.tip ?? 0) - (b.lateFee ?? 0) }))) },
@@ -2516,7 +2523,7 @@ function adminPlatform(method: string, path: string, q: Record<string, string>, 
   }
   if (path === "/admin/finance.csv") {
     const cell = (v: string | number) => (typeof v === "number" ? (v / 100).toFixed(2) : `"${v.replace(/"/g, '""')}"`);
-    return hit(["date,type,reference,customer,barber,currency,amount,jb_fee,vat", ...financeRows(month).map((r) => [cell(r.date.slice(0, 10)), cell(r.type), cell(r.ref), cell(r.customer), cell(r.barber), cell(r.currency.toUpperCase()), cell(r.amount), cell(r.jbFee), cell(0)].join(","))].join("\n"));
+    return hit(["date,type,reference,customer,barber,currency,amount,always_fresh_fee,vat", ...financeRows(month).map((r) => [cell(r.date.slice(0, 10)), cell(r.type), cell(r.ref), cell(r.customer), cell(r.barber), cell(r.currency.toUpperCase()), cell(r.amount), cell(r.jbFee), cell(0)].join(","))].join("\n"));
   }
   const partnerView = (p: Partner) => {
     const mine = saved.bookings.filter((b) => b.partnerId === p.id && PAID.has(b.status));
@@ -2590,14 +2597,14 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
   if (path === "/manage" || path.startsWith("/manage/")) return hit(await manageRoutes(method, path, q, body, token, headers));
   if (!path.startsWith("/admin/")) return { hit: false };
   const me = requireUser(token);
-  if (!isAdmin(me)) throw new DemoError(403, "Only the JB Always Fresh team can open this.");
+  if (!isAdmin(me)) throw new DemoError(403, "Only the Always Fresh team can open this.");
   const plat = adminPlatform(method, path, q, body, me);
   if (plat.hit) return plat;
   const since = (days: number) => Date.now() - days * DAY;
   const text = (q.q ?? "").trim().toLowerCase();
 
   if (path === "/admin/overview") {
-    const paid = saved.bookings.filter((b) => PAID.has(b.status) && fromApp(b)); // JB's numbers: bookings made and paid in the app
+    const paid = saved.bookings.filter((b) => PAID.has(b.status) && fromApp(b)); // Always Fresh's numbers: bookings made and paid in the app
     const paid30 = paid.filter((b) => Date.parse(b.createdAt) >= since(30));
     const customers = saved.users.filter((u) => u.role === "customer" && !isAdmin(u));
     const count = (s: string) => allBarbers().filter((b) => statusOf(b) === s).length;
@@ -2648,7 +2655,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
       if (patch.verified !== undefined) logActivity(me, patch.verified ? "barber.verified" : "barber.unverified", b.name);
       const bu = barberUser(b.id);
       if (bu && patch.status && patch.status !== before) {
-        if (patch.status === "live") notify(bu.id, { kind: "account", title: before === "pending" ? "You're live on JB Always Fresh" : "Your profile is back", body: "Clients can find and book you now. Keep your hours and prices up to date." });
+        if (patch.status === "live") notify(bu.id, { kind: "account", title: before === "pending" ? "You're live on Always Fresh" : "Your profile is back", body: "Clients can find and book you now. Keep your hours and prices up to date." });
         if (patch.status === "suspended") notify(bu.id, { kind: "account", title: "Your profile is paused", body: "Clients can't find or book you for now. Contact support to find out why." });
       }
       persist();
@@ -2688,9 +2695,9 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
     const reason = String(body?.reason ?? "").trim();
     logActivity(me, "booking.cancelled", `Booking ${bk.id.slice(0, 8)} with ${getBarber(bk.barberId).name}`, reason || undefined);
     const why = reason ? ` Reason: ${reason}` : "";
-    notify(bk.customerId, { kind: "cancelled", title: "Booking cancelled", body: `JB Always Fresh cancelled your booking.${bk.amount && wasPaid ? " You'll get a full refund." : ""}${why}`, bookingId: bk.id });
+    notify(bk.customerId, { kind: "cancelled", title: "Booking cancelled", body: `Always Fresh cancelled your booking.${bk.amount && wasPaid ? " You'll get a full refund." : ""}${why}`, bookingId: bk.id });
     const bu = barberUser(bk.barberId);
-    if (bu) notify(bu.id, { kind: "cancelled", title: "Booking cancelled", body: `JB Always Fresh cancelled a booking with you.${why}`, bookingId: bk.id });
+    if (bu) notify(bu.id, { kind: "cancelled", title: "Booking cancelled", body: `Always Fresh cancelled a booking with you.${why}`, bookingId: bk.id });
     persist();
     return hit(bookingRow(bk));
   }
@@ -2780,7 +2787,7 @@ async function teamRoutes(method: string, path: string, q: Record<string, string
     const reply = String(body?.reply ?? "").trim();
     if (reply) {
       t.replies = [...(t.replies ?? []), { at: new Date().toISOString(), by: me.name, text: reply }];
-      if (t.userId) notify(t.userId, { kind: "account", title: "Reply from JB Always Fresh support", body: reply.slice(0, 180) });
+      if (t.userId) notify(t.userId, { kind: "account", title: "Reply from Always Fresh support", body: reply.slice(0, 180) });
     }
     if (body?.status) t.status = body.status;
     logActivity(me, reply ? "ticket.replied" : `ticket.${body?.status ?? "updated"}`, `Ticket from ${t.name ?? t.email}`);
@@ -2863,7 +2870,7 @@ export function createDemoServer(data: DemoData) {
     // Demo stand-in for Sign in with Apple / Google: no real provider, just a demo account on this device.
     if ((path === "/auth/apple" || path === "/auth/google") && method === "POST") {
       const provider = path.endsWith("apple") ? "Apple" : "Google";
-      const email = `${provider.toLowerCase()}-demo@jbalwaysfresh.demo`;
+      const email = `${provider.toLowerCase()}-demo@alwaysfresh.demo`;
       let u = saved.users.find((x) => x.email === email);
       if (!u) {
         u = { id: newId(), name: String(body?.name ?? "").trim() || `${provider} Demo`, email, passwordHash: await hash(newId()), role: "customer" };
@@ -2907,7 +2914,7 @@ export function createDemoServer(data: DemoData) {
       }
       if (u.barberId) saved.barberPatches[u.barberId] = { ...saved.barberPatches[u.barberId], status: "suspended", offline: true };
       if (u.barberId) saved.applications = (saved.applications ?? []).filter((a) => a.barberId !== u.barberId); // the ID documents go with the account
-      Object.assign(u, { name: "Deleted account", email: `deleted+${u.id}@deleted.jbalwaysfresh.invalid`, passwordHash: newId(), deletedAt: new Date().toISOString() });
+      Object.assign(u, { name: "Deleted account", email: `deleted+${u.id}@deleted.alwaysfresh.invalid`, passwordHash: newId(), deletedAt: new Date().toISOString() });
       for (const k of ["preferences", "credit", "manages", "alerts", "membership", "countryCode", "city"] as const) delete u[k];
       for (const r of saved.reviews) if (r.customerId === u.id) r.customerName = "Former customer";
       saved.notifications = (saved.notifications ?? []).filter((n) => n.userId !== u.id);
@@ -3407,7 +3414,7 @@ export function createDemoServer(data: DemoData) {
       if (!String(body?.toName ?? "").trim()) throw new DemoError(400, "Who is it for?");
       if (!/.+@.+\..+/.test(String(body?.toEmail ?? ""))) throw new DemoError(400, "Enter their email so we can send it");
       const g: GiftCard = {
-        id: newId(), code: `JBF-${block()}-${block()}`, amount, currency: cur, buyerId: u.id, toName: String(body?.toName).trim(), toEmail: String(body?.toEmail).trim(),
+        id: newId(), code: `AFG-${block()}-${block()}`, amount, currency: cur, buyerId: u.id, toName: String(body?.toName).trim(), toEmail: String(body?.toEmail).trim(),
         message: String(body?.message ?? "").slice(0, 300), design: body?.design === "ivory" ? "ivory" : "noir", status: "pending_payment", createdAt: new Date().toISOString(),
       };
       (saved.giftCards ??= []).push(g);

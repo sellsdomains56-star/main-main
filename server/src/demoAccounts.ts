@@ -7,12 +7,12 @@ import type { Barber, Booking, User } from "./types.js";
 
 /** Sample logins for trying the barber side and the admin panel (DEMO_ACCOUNTS=1). Never use in production. */
 export const DEMO_LOGINS = {
-  admin: { email: DEMO_ADMIN_EMAIL, password: "jb-team-demo" },
-  barber: { email: "mateo@demo.jbalwaysfresh.com", password: "jb-barber-demo", barberId: "b37" },
-  shop: { email: "owner@demo.jbalwaysfresh.com", password: "jb-shop-demo", shopId: "s-dubai-downtown" },
+  admin: { email: DEMO_ADMIN_EMAIL, password: "fresh-team-demo" },
+  barber: { email: "mateo@demo.alwaysfresh.app", password: "fresh-barber-demo", barberId: "b37" },
+  shop: { email: "owner@demo.alwaysfresh.app", password: "fresh-shop-demo", shopId: "s-dubai-downtown" },
 };
 
-/** Two more chairs at JB's Fresh Downtown, so the shop panel's calendar has a full team. */
+/** Two more chairs at Always Fresh Downtown, so the shop panel's calendar has a full team. */
 const EXTRA_TEAM: [string, string, string[]][] = [
   ["demo-dt-1", "Rami Aziz", ["skin fade", "taper", "kids cut"]],
   ["demo-dt-2", "Leo Santos", ["scissor cut", "textured crop", "beard"]],
@@ -43,16 +43,16 @@ export function seedDemoAccounts() {
     db.users.push(u);
     return u;
   };
-  user("JB Team", DEMO_LOGINS.admin.email, DEMO_LOGINS.admin.password, {}, 60);
+  user("Always Fresh team", DEMO_LOGINS.admin.email, DEMO_LOGINS.admin.password, {}, 60);
   user("Mateo Silva", DEMO_LOGINS.barber.email, DEMO_LOGINS.barber.password, { role: "barber", barberId: DEMO_LOGINS.barber.barberId }, 90);
   const owner = user("Nadia Haddad", DEMO_LOGINS.shop.email, DEMO_LOGINS.shop.password, { manages: DEMO_LOGINS.shop.shopId, shopRole: "owner", branches: ["s-dubai-marina"] }, 120);
-  user("Omar at the desk", "desk@demo.jbalwaysfresh.com", "jb-desk-demo", { manages: DEMO_LOGINS.shop.shopId, shopRole: "front_desk" }, 40);
+  user("Omar at the desk", "desk@demo.alwaysfresh.app", "fresh-desk-demo", { manages: DEMO_LOGINS.shop.shopId, shopRole: "front_desk" }, 40);
   const downtown = db.barbers.filter((b) => b.shopId === DEMO_LOGINS.shop.shopId);
   for (const [id, name, specialties] of EXTRA_TEAM) {
     if (db.barbers.some((b) => b.id === id) || !downtown[0]) continue;
     const base = downtown[0];
     db.barbers.push({
-      ...structuredClone(base), id, name, bio: `${name.split(" ")[0]} works the chairs at JB's Fresh Downtown.`, photoUrl: "", specialties,
+      ...structuredClone(base), id, name, bio: `${name.split(" ")[0]} works the chairs at Always Fresh Downtown.`, photoUrl: "", specialties,
       services: base.services.map((s) => ({ ...s, id: `${id}-${s.id.split("-").pop()}` })), gallery: [], transformations: [], ratingSum: 0, ratingCount: 0,
       yearsExperience: 4, workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 21, timeOff: [],
     });
@@ -94,7 +94,7 @@ export function seedDemoAccounts() {
     }
   }
 
-  // A busy day at JB's Fresh Downtown: app bookings, walk-ins, a lunch break.
+  // A busy day at Always Fresh Downtown: app bookings, walk-ins, a lunch break.
   const walkIns = ["Khalid", "Arjun", "Tom", "Majid", "Pedro", "Ali"];
   ["b36", "b41", "demo-dt-1", "demo-dt-2"].forEach((id, i) => {
     for (const h of [11, 13, 16, 18]) {

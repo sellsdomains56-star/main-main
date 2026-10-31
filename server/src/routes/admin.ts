@@ -71,12 +71,12 @@ function ticketRow(t: (typeof db.tickets)[number]) {
 }
 
 /**
- * The admin panel's API: the JB Always Fresh team (ADMIN_EMAILS) approves and suspends barbers,
+ * The admin panel's API: the Always Fresh team (ADMIN_EMAILS) approves and suspends barbers,
  * sees every booking and refunds, moderates reported reels, answers tickets and changes settings.
  */
 export function registerAdminRoutes(app: Express) {
   app.get("/admin/overview", requireAdmin, (_req, res) => {
-    const paid = db.bookings.filter((b) => PAID.has(b.status) && fromApp(b)); // JB's numbers: bookings made and paid in the app
+    const paid = db.bookings.filter((b) => PAID.has(b.status) && fromApp(b)); // Always Fresh's numbers: bookings made and paid in the app
     const paid30 = paid.filter((b) => Date.parse(b.createdAt) >= since(30));
     const hires30 = db.hires.filter((h) => h.status === "confirmed" || h.status === "completed").filter((h) => Date.parse(h.createdAt) >= since(30));
     const orders30 = db.orders.filter((o) => !["pending_payment", "cancelled"].includes(o.status) && Date.parse(o.createdAt) >= since(30));
@@ -160,7 +160,7 @@ export function registerAdminRoutes(app: Express) {
     if (body.verified !== undefined) logActivity(req, body.verified ? "barber.verified" : "barber.unverified", barber.name);
     const user = barberUser(barber.id);
     if (user && body.status && body.status !== before) {
-      if (body.status === "live") notify(user.id, { kind: "account", title: before === "pending" ? "You're live on JB Always Fresh" : "Your profile is back", body: "Clients can find and book you now. Keep your hours and prices up to date." });
+      if (body.status === "live") notify(user.id, { kind: "account", title: before === "pending" ? "You're live on Always Fresh" : "Your profile is back", body: "Clients can find and book you now. Keep your hours and prices up to date." });
       if (body.status === "suspended") notify(user.id, { kind: "account", title: "Your profile is paused", body: "Clients can't find or book you for now. Contact support to find out why." });
     }
     save();
@@ -196,9 +196,9 @@ export function registerAdminRoutes(app: Express) {
     returnPerks(booking);
     logActivity(req, "booking.cancelled", `Booking ${booking.id.slice(0, 8)} with ${getBarber(booking.barberId).name}`, reason || undefined);
     const why = reason ? ` Reason: ${reason}` : "";
-    notify(booking.customerId, { kind: "cancelled", title: "Booking cancelled", body: `JB Always Fresh cancelled your booking.${booking.amount && wasPaid ? " You'll get a full refund." : ""}${why}`, bookingId: booking.id });
+    notify(booking.customerId, { kind: "cancelled", title: "Booking cancelled", body: `Always Fresh cancelled your booking.${booking.amount && wasPaid ? " You'll get a full refund." : ""}${why}`, bookingId: booking.id });
     const bu = barberUser(booking.barberId);
-    if (bu) notify(bu.id, { kind: "cancelled", title: "Booking cancelled", body: `JB Always Fresh cancelled a booking with you.${why}`, bookingId: booking.id });
+    if (bu) notify(bu.id, { kind: "cancelled", title: "Booking cancelled", body: `Always Fresh cancelled a booking with you.${why}`, bookingId: booking.id });
     if (wasPaid) waitlistOpened(booking);
     save();
     res.json(bookingRow(booking));
@@ -321,7 +321,7 @@ export function registerAdminRoutes(app: Express) {
     if (body.reply) {
       ticket.replies = [...(ticket.replies ?? []), { at: new Date().toISOString(), by: req.user!.name, text: body.reply }];
       // Signed-in customers see the reply in their alerts; hook your email service here for the rest.
-      if (ticket.userId) notify(ticket.userId, { kind: "account", title: "Reply from JB Always Fresh support", body: body.reply.slice(0, 180) });
+      if (ticket.userId) notify(ticket.userId, { kind: "account", title: "Reply from Always Fresh support", body: body.reply.slice(0, 180) });
     }
     if (body.status) ticket.status = body.status;
     logActivity(req, body.reply ? "ticket.replied" : `ticket.${body.status ?? "updated"}`, `Ticket from ${ticket.name ?? ticket.email}`);

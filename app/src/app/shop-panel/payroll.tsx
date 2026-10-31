@@ -10,7 +10,7 @@ import type { Payroll as PayrollData } from "../../lib/types";
 type Period = PayrollData["period"];
 const SHARES = [40, 50, 60, 70];
 
-/** Who earned what: each barber's share of their services (after the JB fee on app bookings), their tips, and what the shop keeps. */
+/** Who earned what: each barber's share of their services (after the Always Fresh fee on app bookings), their tips, and what the shop keeps. */
 export default function Payroll() {
   const [period, setPeriod] = useState<Period>("month");
   const [p, setP] = useState<PayrollData | null>(null);
@@ -47,7 +47,7 @@ export default function Payroll() {
             <Kpi dark label="Barbers' pay" value={money(p.totals.barberPay, p.currency)} sub={`incl. ${money(p.totals.tips, p.currency)} tips`} />
             <Kpi label="The shop keeps" value={money(p.totals.shopKeeps, p.currency)} sub={p.totals.productCommission ? `incl. ${money(p.totals.productCommission, p.currency)} product commission` : undefined} />
             <Kpi label="Services" value={money(p.totals.services, p.currency)} sub={p.totals.lateFees ? `+ ${money(p.totals.lateFees, p.currency)} late-cancellation fees` : undefined} />
-            <Kpi label="JB fee" value={money(p.totals.jbFee, p.currency)} sub="App bookings only" />
+            <Kpi label="Always Fresh fee" value={money(p.totals.jbFee, p.currency)} sub="App bookings only" />
           </View>
 
           <Card style={{ marginTop: 16, padding: 20 }}>
@@ -74,7 +74,7 @@ export default function Payroll() {
               columns={[
                 { label: "Barber", flex: 1.6, render: (r) => <Row gap={10}><Avatar uri={r.photoUrl} name={r.name} size={32} /><View><T variant="strong">{r.name}</T><T variant="small" muted>{r.appointments} cuts · {r.walkIns} walk-ins</T></View></Row> },
                 { label: "Services", align: "right", render: (r) => <T variant="caption">{money(r.services + r.lateFees, p.currency)}</T> },
-                { label: "JB fee", align: "right", render: (r) => <T variant="caption">− {money(r.jbFee, p.currency)}</T> },
+                { label: "Always Fresh fee", align: "right", render: (r) => <T variant="caption">− {money(r.jbFee, p.currency)}</T> },
                 {
                   label: "Split", align: "right", render: (r) => editing === r.id ? (
                     <Wrap gap={4}>

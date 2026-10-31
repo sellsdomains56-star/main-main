@@ -40,7 +40,7 @@ export default function Payouts() {
         </T>
         <T variant="caption" color={p.payoutsEnabled ? colors.inkMuted : colors.muted} style={{ marginTop: 6 }}>
           {p.payoutsEnabled
-            ? "Each paid booking goes to your account minus the JB fee. Tips are yours in full."
+            ? "Each paid booking goes to your account minus the Always Fresh fee. Tips are yours in full."
             : p.available
               ? "Stripe (our payments partner) checks your ID and bank once. After that every booking pays out to you on its own."
               : p.note}
@@ -52,7 +52,7 @@ export default function Payouts() {
         </View>
       )}
       <View style={{ marginTop: 18, gap: 8 }}>
-        <IconLine icon="shield-checkmark-outline" muted>Your bank details stay with Stripe; JB never sees them.</IconLine>
+        <IconLine icon="shield-checkmark-outline" muted>Your bank details stay with Stripe; Always Fresh never sees them.</IconLine>
         <IconLine icon="time-outline" muted>Payouts usually land 2–7 days after the appointment, depending on your bank.</IconLine>
       </View>
       {error && <ErrorBox message={error} />}

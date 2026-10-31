@@ -104,7 +104,7 @@ export type BarberStatus = "pending" | "live" | "suspended";
 /**
  * A freelance barber's application to join: their ID, their licence to work as a barber and the signed
  * barber agreement. The team checks it before the barber goes live. Barbers at a barbershop don't apply:
- * JB signs a contract with the shop itself.
+ * Always Fresh signs a contract with the shop itself.
  */
 export type ApplicationStatus = "draft" | "submitted" | "approved" | "rejected";
 export type ApplicationDocKind = "id_front" | "id_back" | "licence";
@@ -162,7 +162,7 @@ export interface Partner {
   name: string;
   code: string; // e.g. ATLANTIS, in the QR link /p/ATLANTIS
   discountPercent: number; // corporate: off the service for their people
-  commissionPercent: number; // hotel: of the booking value, paid by JB
+  commissionPercent: number; // hotel: of the booking value, paid by Always Fresh
   emailDomain?: string; // corporate: staff with this email domain get the discount automatically
   contactEmail: string;
   active: boolean;
@@ -199,7 +199,7 @@ export interface Shop {
   privateHire: { pricePerHour: number; minHours: number; maxHours: number; maxGuests: number } | null;
   /** Courier delivery of the products this shop stocks. Null = not offered. */
   delivery: { fee: number; freeFrom: number; etaMin: number; radiusKm: number } | null;
-  productIds: string[]; // JB's Fresh products in stock
+  productIds: string[]; // Always Fresh products in stock
   barberSharePercent?: number; // barbers' share of service takings (owner sets it; default in pro.ts)
 }
 
@@ -273,7 +273,7 @@ export interface User {
 /** Which alerts reach the phone. Bookings, payments and account messages always do. */
 export interface AlertSettings {
   reminders?: boolean; // "tomorrow" and "in an hour" before a booking
-  offers?: boolean; // The Club, gift cards, offers from JB
+  offers?: boolean; // The Club, gift cards, offers from Always Fresh
   social?: boolean; // likes, comments and replies on reels
   tips?: boolean; // barbers: "You got a tip"
 }
@@ -292,7 +292,7 @@ export type PlanId = "fresh" | "regular" | "black";
 
 export interface Membership {
   plan: PlanId;
-  number: string; // member number on the card, e.g. "JB-0427-118"
+  number: string; // member number on the card, e.g. "AF-0427-118"
   currency: string;
   since: string; // ISO
   paidUntil: string; // ISO; renewed by paying again (Stripe Billing in production)
@@ -328,9 +328,9 @@ export interface Booking {
   venue?: { kind: "home" | "hotel" | "yacht" | "office"; details: string }; // where a home visit happens
   spot?: { lat: number; lng: number; label?: string }; // a home visit's point on the map (the customer's location or area)
   distanceKm?: number; // a home visit: about how far the drive is from the barber's pin
-  travelFee?: number; // a home visit beyond the included km: extra for the barber's taxi (minor units, all for the barber, no JB fee)
+  travelFee?: number; // a home visit beyond the included km: extra for the barber's taxi (minor units, all for the barber, no Always Fresh fee)
   guest?: { name: string; phone: string }; // booked for someone else; for shop bookings, the client
-  source?: "app" | "shop"; // "shop" = added by the barbershop (walk-in or phone), paid at the shop, no JB fee
+  source?: "app" | "shop"; // "shop" = added by the barbershop (walk-in or phone), paid at the shop, no Always Fresh fee
   noShow?: boolean; // cancelled because the client didn't come (no refund)
   priceRule?: number; // off-peak (< 0) or peak (> 0) percent applied to the service
   lateFee?: number; // kept by the barber when cancelled late (minor units)
@@ -480,7 +480,7 @@ export interface Conversation {
 /** A gift card someone bought; the recipient redeems the code into their credit. */
 export interface GiftCard {
   id: string;
-  code: string; // e.g. "JBF-7K2Q-9MXA"
+  code: string; // e.g. "AFG-7K2Q-9MXA"
   amount: number;
   currency: string;
   buyerId: string;

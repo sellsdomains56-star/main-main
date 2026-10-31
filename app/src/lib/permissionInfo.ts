@@ -14,7 +14,7 @@ export type PermissionState = "granted" | "limited" | "undetermined" | "denied" 
 export const isAllowed = (s: PermissionState) => s === "granted" || s === "limited" || s === "notNeeded";
 
 const web = Platform.OS === "web";
-const where = Platform.OS === "ios" ? "Settings → JB Always Fresh" : Platform.OS === "android" ? "Settings → Apps → JB Always Fresh → Permissions" : "your browser's site settings (the icon next to the address)";
+const where = Platform.OS === "ios" ? "Settings → Always Fresh" : Platform.OS === "android" ? "Settings → Apps → Always Fresh → Permissions" : "your browser's site settings (the icon next to the address)";
 
 /** What each permission is for, in the words the pre-permission sheet and Settings use. */
 export const PERMISSION_INFO: Record<PermissionKind, { title: string; icon: IconName; ask: string; lead: string; reasons: string[]; promise: string; offTitle: string; off: string; settingsName: string }> = {
@@ -22,11 +22,11 @@ export const PERMISSION_INFO: Record<PermissionKind, { title: string; icon: Icon
     title: "Location",
     icon: "location-outline",
     ask: "Find barbers near you",
-    lead: "JB Always Fresh uses your location only while you're using the app.",
+    lead: "Always Fresh uses your location only while you're using the app.",
     reasons: ["Show the barbers and barbershops closest to you", "Work out how far a barber travels to you, and any extra travel cost, before you pay"],
     promise: "Never in the background. Rather not? You can pick your area instead.",
     offTitle: "Location is off",
-    off: `Location is off for JB Always Fresh. Turn it on in ${where}, or pick your area instead.`,
+    off: `Location is off for Always Fresh. Turn it on in ${where}, or pick your area instead.`,
     settingsName: "Location",
   },
   notifications: {
@@ -37,7 +37,7 @@ export const PERMISSION_INFO: Record<PermissionKind, { title: string; icon: Icon
     reasons: ["Your confirmation and receipt", "Reminders a day and an hour before", "When your barber is on the way, and messages from them"],
     promise: "Choose which alerts you get in Settings at any time.",
     offTitle: "Notifications are off",
-    off: `Notifications are off for JB Always Fresh. Turn them on in ${where}. Your alerts still wait for you in the app.`,
+    off: `Notifications are off for Always Fresh. Turn them on in ${where}. Your alerts still wait for you in the app.`,
     settingsName: "Notifications",
   },
   camera: {
@@ -48,7 +48,7 @@ export const PERMISSION_INFO: Record<PermissionKind, { title: string; icon: Icon
     reasons: ["A selfie for the AI try-on", "Photos of your Emirates ID and licence when you apply as a barber", "Your profile photo and photos of your work"],
     promise: "Nothing is recorded without you tapping, and no sound is ever recorded.",
     offTitle: "The camera is off",
-    off: `The camera is off for JB Always Fresh. Turn it on in ${where}, or choose a photo you already have.`,
+    off: `The camera is off for Always Fresh. Turn it on in ${where}, or choose a photo you already have.`,
     settingsName: "Camera",
   },
   calendar: {
@@ -57,9 +57,9 @@ export const PERMISSION_INFO: Record<PermissionKind, { title: string; icon: Icon
     ask: "Add it to your calendar",
     lead: "Your appointment goes in your calendar with alerts a day and an hour before.",
     reasons: ["Adds the appointments you choose, one at a time"],
-    promise: Platform.OS === "ios" ? "JB Always Fresh can only add events. It can't read your calendar." : "JB Always Fresh only adds the appointments you choose.",
+    promise: Platform.OS === "ios" ? "Always Fresh can only add events. It can't read your calendar." : "Always Fresh only adds the appointments you choose.",
     offTitle: "Calendar access is off",
-    off: `Calendar access is off for JB Always Fresh. Turn it on in ${where}.`,
+    off: `Calendar access is off for Always Fresh. Turn it on in ${where}.`,
     settingsName: "Calendar",
   },
   photos: {
@@ -68,7 +68,7 @@ export const PERMISSION_INFO: Record<PermissionKind, { title: string; icon: Icon
     ask: "Choose a photo",
     lead: "You pick each photo yourself.",
     reasons: [],
-    promise: "JB Always Fresh only sees the photos you pick, never the rest of your library.",
+    promise: "Always Fresh only sees the photos you pick, never the rest of your library.",
     offTitle: "",
     off: "",
     settingsName: "Photos",

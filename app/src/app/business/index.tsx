@@ -16,12 +16,12 @@ const WHERE: Record<string, string> = { shop: "At the shop", home: "Home visit",
 
 const APPLICATION_LINE: Record<string, string> = {
   draft: "ID, licence and agreement: not sent yet",
-  submitted: "With the JB team for checking",
+  submitted: "With the Always Fresh team for checking",
   rejected: "The team asked for a change",
   approved: "Approved: ID, licence and signed agreement",
 };
 
-/** Freelancers go live once the JB team has checked their ID, licence and signed agreement. */
+/** Freelancers go live once the Always Fresh team has checked their ID, licence and signed agreement. */
 function ApplicationCard({ data }: { data: BusinessDashboard }) {
   const a = data.application;
   if (a.status === "draft" || (a.status === "rejected" && data.status === "pending")) {
@@ -40,7 +40,7 @@ function ApplicationCard({ data }: { data: BusinessDashboard }) {
   if (a.status === "submitted") {
     return (
       <Card tone="surface" style={{ marginTop: 16 }}>
-        <IconLine icon="time-outline">Application sent. The JB team is checking your ID, licence and agreement, and we'll let you know here. Customers can book you once you're approved, so finish your profile in the meantime.</IconLine>
+        <IconLine icon="time-outline">Application sent. The Always Fresh team is checking your ID, licence and agreement, and we'll let you know here. Customers can book you once you're approved, so finish your profile in the meantime.</IconLine>
         <Button title="View application" variant="ghost" size="sm" onPress={() => router.push("/business/apply")} style={{ alignSelf: "flex-start", paddingHorizontal: 0, marginTop: 4 }} />
       </Card>
     );
@@ -139,7 +139,7 @@ export default function Business() {
           ))}
         </View>
       </Card>
-      <T variant="small" muted style={{ marginTop: 8 }}>After the {data.feePercent}% JB fee. Tips are 100% yours. Payouts go to your bank every week once payouts are switched on.</T>
+      <T variant="small" muted style={{ marginTop: 8 }}>After the {data.feePercent}% Always Fresh fee. Tips are 100% yours. Payouts go to your bank every week once payouts are switched on.</T>
 
       {/* The week ahead */}
       <Section title="Next 7 days">
@@ -271,7 +271,7 @@ function EarningsLines({ e, cur, fee }: { e: Earnings; cur: string; fee: number 
   return (
     <View style={{ marginTop: 12, borderTopWidth: 1, borderTopColor: colors.inkLine, paddingTop: 6 }}>
       {line("Bookings", money(e.gross, cur))}
-      {line(`JB fee (${fee}%)`, `− ${money(e.fee, cur)}`)}
+      {line(`Always Fresh fee (${fee}%)`, `− ${money(e.fee, cur)}`)}
       {line("Tips", `+ ${money(e.tips, cur)}`)}
       {!!e.lateFees && line("Late cancellations (in bookings)", money(e.lateFees, cur))}
     </View>

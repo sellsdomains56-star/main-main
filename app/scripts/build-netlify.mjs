@@ -34,8 +34,8 @@ try {
 copyFileSync(join(app, "assets/favicon.png"), join(out, "favicon.png"));
 
 writeFileSync(join(out, "manifest.webmanifest"), JSON.stringify({
-  name: "JB Always Fresh",
-  short_name: "JB Fresh",
+  name: "Always Fresh",
+  short_name: "Always Fresh",
   description: "Book the best barbers — demo for testers.",
   start_url: "/",
   scope: "/",
@@ -56,7 +56,7 @@ const head = `<meta name="viewport" content="width=device-width, initial-scale=1
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="JB Fresh">
+<meta name="apple-mobile-web-app-title" content="Always Fresh">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icon-180.png">
 <link rel="icon" type="image/png" href="/favicon.png">

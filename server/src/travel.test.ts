@@ -3,7 +3,7 @@ import type { AddressInfo } from "node:net";
 import { after, before, test } from "node:test";
 
 // The team's email must be known before the config loads.
-process.env.ADMIN_EMAILS = "travel-lead@jbalwaysfresh.com";
+process.env.ADMIN_EMAILS = "travel-lead@alwaysfresh.app";
 const { createApp } = await import("./app.js");
 const { roadKm, straightKm } = await import("./travel.js");
 
@@ -37,7 +37,7 @@ test("distances: straight line, then about 30% more by road", () => {
   assert.equal(roadKm(marina, marina), 1);
 });
 
-test("home visits further away cost extra for the barber's taxi, which goes to the barber with no JB fee", async () => {
+test("home visits further away cost extra for the barber's taxi, which goes to the barber with no Always Fresh fee", async () => {
   const customer = (await call("/auth/register", { body: { name: "Tariq Traveller", email: "tariq@example.com", password: "password123" } })).json;
   const acc = (await call("/auth/register-barber", {
     body: { name: "Rami Roads", email: "rami@example.com", password: "password123", countryCode: "AE", city: "Dubai", shopAddress: "Al Barsha 1", haircutPrice: 10000, offersHomeVisits: true },
@@ -89,8 +89,8 @@ test("home visits further away cost extra for the barber's taxi, which goes to t
   const alerts = (await call("/notifications", { token: acc.token })).json;
   assert.match(alerts.items[0].body, /About 23 km from your pin, with AED\s?55\.00 extra for your taxi/);
 
-  // JB's 10% is on the cut and the visit fee, not on the taxi extra.
-  const lead = (await call("/auth/register", { body: { name: "Travel Lead", email: "travel-lead@jbalwaysfresh.com", password: "password123" } })).json;
+  // Always Fresh's 10% is on the cut and the visit fee, not on the taxi extra.
+  const lead = (await call("/auth/register", { body: { name: "Travel Lead", email: "travel-lead@alwaysfresh.app", password: "password123" } })).json;
   const rows = (await call("/admin/bookings?status=all", { token: lead.token })).json;
   const row = (rows.items ?? rows).find((r: { id: string }) => r.id === made.json.booking.id);
   assert.equal(row.fee, Math.round((service.price + barber.homeVisitFee) / 10));

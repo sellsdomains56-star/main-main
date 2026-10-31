@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import type { AddressInfo } from "node:net";
 import { after, before, test } from "node:test";
 
-process.env.ADMIN_EMAILS = "boss@jbalwaysfresh.com";
+process.env.ADMIN_EMAILS = "boss@alwaysfresh.app";
 const { createApp } = await import("./app.js");
 const { db } = await import("./db.js");
 
@@ -55,7 +55,7 @@ test("security headers and abuse limits", async () => {
 });
 
 test("team roles: owners add people; each role sees only its part; everything is logged", async () => {
-  const boss = await register("Boss Owner", "boss@jbalwaysfresh.com");
+  const boss = await register("Boss Owner", "boss@alwaysfresh.app");
   const sup = await register("Sam Support", "support-person@example.com");
   const fin = await register("Fin Finance", "finance-person@example.com");
   assert.equal((await call("/me", { token: boss.token })).json.adminRole, "owner");
@@ -74,14 +74,14 @@ test("team roles: owners add people; each role sees only its part; everything is
   // The owner changes things; the log shows who did what.
   assert.equal((await call("/admin/barbers/b19", { method: "PATCH", token: boss.token, body: { verified: true } })).status, 200);
   const log = (await call("/admin/activity", { token: boss.token })).json as { action: string; by: { email: string } }[];
-  assert.ok(log.some((a) => a.action === "barber.verified" && a.by.email === "boss@jbalwaysfresh.com"));
+  assert.ok(log.some((a) => a.action === "barber.verified" && a.by.email === "boss@alwaysfresh.app"));
   assert.ok(log.some((a) => a.action === "team.role_set"));
   assert.equal((await call("/admin/team", { method: "PUT", token: boss.token, body: { email: "support-person@example.com", role: null } })).status, 200);
   assert.equal((await call("/admin/tickets", { token: sup.token })).status, 403, "removed from the team");
 });
 
 test("partners: a company code gives a discount; a hotel QR earns a commission", async () => {
-  const boss = (await call("/auth/login", { body: { email: "boss@jbalwaysfresh.com", password: "password123" } })).json;
+  const boss = (await call("/auth/login", { body: { email: "boss@alwaysfresh.app", password: "password123" } })).json;
   const hotel = await call("/admin/partners", { token: boss.token, body: { kind: "hotel", name: "Atlantis The Royal", code: "atlantis", commissionPercent: 10, contactEmail: "concierge@atlantis.example" } });
   assert.equal(hotel.status, 201);
   assert.match(hotel.json.link, /\/p\/ATLANTIS$/);
@@ -103,7 +103,7 @@ test("partners: a company code gives a discount; a hotel QR earns a commission",
 });
 
 test("finance month with VAT lines and a CSV; analytics; invoices", async () => {
-  const boss = (await call("/auth/login", { body: { email: "boss@jbalwaysfresh.com", password: "password123" } })).json;
+  const boss = (await call("/auth/login", { body: { email: "boss@alwaysfresh.app", password: "password123" } })).json;
   const me = await register("Invoice Person", "invoice@example.com");
   const b = await paidBooking(me.token, "b35");
   const month = b.startsAt.slice(0, 7);
@@ -111,14 +111,14 @@ test("finance month with VAT lines and a CSV; analytics; invoices", async () => 
   assert.ok(fin.lines.find((l: { key: string }) => l.key === "bookings").amounts.length > 0);
   const csv = await call(`/admin/finance.csv?month=${month}`, { token: boss.token });
   assert.equal(csv.headers.get("content-type"), "text/csv; charset=utf-8");
-  assert.match(String(csv.json), /^date,type,reference,customer,barber,currency,amount,jb_fee,vat/);
+  assert.match(String(csv.json), /^date,type,reference,customer,barber,currency,amount,always_fresh_fee,vat/);
   assert.match(String(csv.json), new RegExp(b.id));
   const stats = (await call("/admin/analytics?days=30", { token: boss.token })).json;
   assert.ok(stats.bookings.paid >= 1);
   assert.equal(stats.byHour.length, 24);
   const inv = await call(`/bookings/${b.id}/invoice`, { token: me.token });
   assert.equal(inv.status, 200);
-  assert.match(inv.json.number, /^JB-\d{6}-[A-Z0-9]{6}$/);
+  assert.match(inv.json.number, /^AF-\d{6}-[A-Z0-9]{6}$/);
   assert.equal(inv.json.total, b.amount);
   assert.equal(inv.json.lines.reduce((t: number, l: { amount: number }) => t + l.amount, 0), b.amount);
   const other = await register("Not Mine", "notmine@example.com");

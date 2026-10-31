@@ -45,7 +45,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
     api.admin.overview().then(setCounts, () => {});
   }, [path]);
   const badges = Object.fromEntries(nav.map((n) => [n.href, counts && n.badge ? n.badge(counts) : 0]));
-  return <PanelShell title="JB Always Fresh" subtitle={`Team · ${ROLE_NAME[role]}`} nav={nav} badges={badges}>{children}</PanelShell>;
+  return <PanelShell title="Always Fresh" subtitle={`Team · ${ROLE_NAME[role]}`} nav={nav} badges={badges}>{children}</PanelShell>;
 }
 
 /** A panel frame (admin, shop): a sidebar on a laptop, a scrolling tab strip on a phone. The first nav item is the home page. */
@@ -60,7 +60,7 @@ export function PanelShell({ title, subtitle, nav, badges = {}, extra, children 
   const brand = (
     <Pressable onPress={() => router.navigate("/")} accessibilityRole="link" accessibilityLabel="Back to the app" style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
       <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: colors.onInk, alignItems: "center", justifyContent: "center" }}>
-        <T variant="caption" color={colors.ink} style={{ fontFamily: fonts.black }}>JB</T>
+        <T variant="caption" color={colors.ink} style={{ fontFamily: fonts.black }}>AF</T>
       </View>
       <View style={{ flexShrink: 1 }}>
         <T variant="strong" color={colors.onInk} numberOfLines={1}>{title}</T>

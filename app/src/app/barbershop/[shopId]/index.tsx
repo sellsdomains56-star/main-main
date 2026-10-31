@@ -106,7 +106,7 @@ export default function ShopPage() {
             icon="bicycle-outline"
             eyebrow={`${shop.privateHire ? "03" : "02"} — Delivery`}
             title={`Products to your door in ~${shop.delivery.etaMin} min`}
-            body={`${shop.products.length} JB's Fresh products in stock. ${shop.delivery.fee ? `Delivery ${money(shop.delivery.fee, shop.currency)}, free over ${money(shop.delivery.freeFrom, shop.currency)}` : "Free delivery"} · within ${shop.delivery.radiusKm} km.`}
+            body={`${shop.products.length} Always Fresh products in stock. ${shop.delivery.fee ? `Delivery ${money(shop.delivery.fee, shop.currency)}, free over ${money(shop.delivery.freeFrom, shop.currency)}` : "Free delivery"} · within ${shop.delivery.radiusKm} km.`}
             onPress={() => {
               setDeliveryShop(shop.id);
               router.push({ pathname: "/shop", params: { shopId: shop.id } });

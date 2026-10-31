@@ -114,7 +114,7 @@ export default function Portfolio() {
         {barber.shop ? (
           <T variant="caption" muted>You work at {barber.shop.name}, so customers see the shop's pin at {barber.shopAddress}.</T>
         ) : Platform.OS === "web" && barber.countryCode !== "AE" ? (
-          <T variant="caption" muted>Set your exact spot in the JB Always Fresh app on your phone — the website's detailed 3D map covers the UAE.</T>
+          <T variant="caption" muted>Set your exact spot in the Always Fresh app on your phone — the website's detailed 3D map covers the UAE.</T>
         ) : (
           <>
             <T variant="caption" muted style={{ marginBottom: 12 }}>Customers see exactly where your chair is, down to the building. Move the map until the pin sits on your door, then save.</T>

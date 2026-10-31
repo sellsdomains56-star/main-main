@@ -1,4 +1,4 @@
-// Renders the JB monogram (assets/brand/monogram.json) into the app icon, Android adaptive
+// Renders the Always Fresh monogram (assets/brand/monogram.json) into the app icon, Android adaptive
 // icon layers, splash icon and favicon. Needs Playwright's Chromium:
 //   PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/make-icons.mjs
 import { readFileSync } from "node:fs";

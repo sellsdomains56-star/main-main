@@ -11,7 +11,7 @@ import type { AlertSettings } from "../lib/types";
 
 const ALERTS: { key: keyof AlertSettings; title: string; body: string; barbersOnly?: boolean }[] = [
   { key: "reminders", title: "Reminders", body: "The day before and an hour before each booking" },
-  { key: "offers", title: "Offers and The Club", body: "Member perks, gift cards and offers from JB" },
+  { key: "offers", title: "Offers and The Club", body: "Member perks, gift cards and offers from Always Fresh" },
   { key: "social", title: "Reels activity", body: "Likes, comments and replies on reels" },
   { key: "tips", title: "Tips", body: "When a client leaves you a tip", barbersOnly: true },
 ];

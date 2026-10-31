@@ -19,7 +19,7 @@ const NAV: (NavItem & { need: ShopRole })[] = [
   { href: "/shop-panel/settings", label: "Shop settings", icon: "settings-outline", need: "manager" },
 ];
 
-/** The shop panel: for a barbershop's owner, managers and front desk (given access by the JB team or the owner). The API checks again on every call. */
+/** The shop panel: for a barbershop's owner, managers and front desk (given access by the Always Fresh team or the owner). The API checks again on every call. */
 export default function ShopPanelLayout() {
   const { user, loading } = useAuth();
   if (loading) return <Screen><Loading /></Screen>;
@@ -29,7 +29,7 @@ export default function ShopPanelLayout() {
         <EmptyState
           icon="storefront-outline"
           title="For barbershops"
-          body="The shop panel is for barbershop owners and their staff on JB Always Fresh. Ask the JB team, or your shop's owner, to connect your account."
+          body="The shop panel is for barbershop owners and their staff on Always Fresh. Ask the Always Fresh team, or your shop's owner, to connect your account."
           action={user ? { label: "Back to the app", onPress: () => router.replace("/") } : { label: "Sign in", onPress: () => router.push("/login") }}
         />
       </Screen>
@@ -58,7 +58,7 @@ function Shell() {
             accessibilityLabel={`Open ${b.name}`}
             style={{ paddingHorizontal: 10, paddingVertical: 6, borderRadius: radius.pill, borderWidth: 1, borderColor: on ? colors.onInk : colors.inkLine, backgroundColor: on ? colors.onInk : "transparent" }}
           >
-            <T variant="small" color={on ? colors.ink : colors.onInk} style={{ fontFamily: fonts.semibold }}>{b.name.replace(/^JB’s Fresh /, "")}</T>
+            <T variant="small" color={on ? colors.ink : colors.onInk} style={{ fontFamily: fonts.semibold }}>{b.name.replace(/^Always Fresh /, "")}</T>
           </Pressable>
         );
       })}
@@ -67,7 +67,7 @@ function Shell() {
   return (
     <PanelShell
       title={panel?.shop.name ?? "Your barbershop"}
-      subtitle={panel ? `Shop panel · ${ROLE_LABEL[panel.role]}` : "Shop panel · JB Always Fresh"}
+      subtitle={panel ? `Shop panel · ${ROLE_LABEL[panel.role]}` : "Shop panel · Always Fresh"}
       nav={NAV.filter((n) => !panel || can(n.need))}
       extra={switcher}
     >

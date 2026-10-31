@@ -315,15 +315,15 @@ const BASE_BARBERS: SeedBarber[] = [
     specialties: ["taper", "buzz cut", "kids cut", "skin fade"], services: std("b33", 4500, 2500, 6500, 5500),
     offersHomeVisits: true, homeVisitFee: 3000, ...base, workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 22, ratingSum: 4.6 * 26, ratingCount: 26,
   },
-  // More chairs at the JB's Fresh flagships
+  // More chairs at the Always Fresh flagships
   {
-    id: "b34", name: "Theo Mensah", bio: "Tapers, waves and beard shaping at JB’s Fresh Peckham.",
+    id: "b34", name: "Theo Mensah", bio: "Tapers, waves and beard shaping at Always Fresh Peckham.",
     photoUrl: photo(11), countryCode: "GB", city: "London", shopAddress: "88 Rye Lane, London SE15", lat: 51.469, lng: -0.069,
     specialties: ["taper", "waves", "beard", "afro"], services: std("b34", 2200, 1100, 3200, 2600),
     offersHomeVisits: false, homeVisitFee: 0, ...base, ratingSum: 4.8 * 58, ratingCount: 58,
   },
   {
-    id: "b35", name: "Zayn Haddad", bio: "Textured crops and hot towel shaves at JB’s Fresh Dubai Marina.",
+    id: "b35", name: "Zayn Haddad", bio: "Textured crops and hot towel shaves at Always Fresh Dubai Marina.",
     photoUrl: photo(3), countryCode: "AE", city: "Dubai", shopAddress: "Marina Walk, by Dubai Marina Mall, Dubai Marina", lat: 25.07664, lng: 55.14022,
     specialties: ["textured crop", "hot towel shave", "beard", "skin fade"], services: std("b35", 8500, 4500, 12000, 9500),
     offersHomeVisits: false, homeVisitFee: 0, ...base, workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 22, ratingSum: 4.7 * 31, ratingCount: 31,
@@ -360,7 +360,7 @@ const BASE_BARBERS: SeedBarber[] = [
     offersHomeVisits: true, homeVisitFee: 15000, ...base, workingDays: [0, 1, 2, 3, 4, 5, 6], openHour: 8, closeHour: 23, ratingSum: 5 * 46, ratingCount: 46,
   },
   {
-    id: "b41", name: "Sami Nasser", bio: "Beard specialist at JB’s Fresh Downtown — sculpting, colour and the perfect line-up.",
+    id: "b41", name: "Sami Nasser", bio: "Beard specialist at Always Fresh Downtown — sculpting, colour and the perfect line-up.",
     photoUrl: photo(9), countryCode: "AE", city: "Dubai", shopAddress: "Boulevard Plaza, Mohammed Bin Rashid Blvd, Downtown Dubai", lat: 25.20009, lng: 55.27507,
     specialties: ["beard", "line-up", "hot towel shave", "hair color"], services: std("b41", 10000, 6000, 14000, 11500),
     offersHomeVisits: false, homeVisitFee: 0, ...base, workingDays: [0, 1, 2, 3, 4, 6], openHour: 10, closeHour: 22, ratingSum: 4.9 * 88, ratingCount: 88,
@@ -423,8 +423,8 @@ const ALL_PRODUCTS = ["p-pomade", "p-wax", "p-powder", "p-wave", "p-shampoo", "p
 
 export const SHOPS: Shop[] = [
   {
-    id: "s-london-peckham", name: "JB’s Fresh Peckham", photoUrl: "brand:hero-barber-bw",
-    about: "The JB’s Fresh flagship: fades and designs all day, and the full product wall.",
+    id: "s-london-peckham", name: "Always Fresh Peckham", photoUrl: "brand:hero-barber-bw",
+    about: "The Always Fresh flagship: fades and designs all day, and the full product wall.",
     countryCode: "GB", city: "London", address: "88 Rye Lane, London SE15", lat: 51.469, lng: -0.069, phone: "+44 20 7946 0188",
     ...shopBase, closeHour: 20,
     privateHire: { pricePerHour: 15000, minHours: 2, maxHours: 8, maxGuests: 12 },
@@ -439,7 +439,7 @@ export const SHOPS: Shop[] = [
     delivery: null, productIds: ["p-shampoo", "p-beard-oil", "p-aftershave"],
   },
   {
-    id: "s-dubai-marina", name: "JB’s Fresh Dubai Marina", photoUrl: "/media/demo/shop-luxury.jpg",
+    id: "s-dubai-marina", name: "Always Fresh Dubai Marina", photoUrl: "/media/demo/shop-luxury.jpg",
     about: "Marina Walk flagship with sea views. Late opening, VIP room and same-hour delivery across the Marina and JBR.",
     countryCode: "AE", city: "Dubai", address: "Marina Walk, by Dubai Marina Mall, Dubai Marina", lat: 25.07664, lng: 55.14022, phone: "+971 4 555 0188",
     ...gulfDays,
@@ -447,7 +447,7 @@ export const SHOPS: Shop[] = [
     delivery: { fee: 1500, freeFrom: 15000, etaMin: 40, radiusKm: 10 }, productIds: ALL_PRODUCTS,
   },
   {
-    id: "s-dubai-downtown", name: "JB’s Fresh Downtown", photoUrl: "/media/demo/chair-window.jpg",
+    id: "s-dubai-downtown", name: "Always Fresh Downtown", photoUrl: "/media/demo/chair-window.jpg",
     about: "Floor-to-ceiling windows on the Boulevard. Fades, beard sculpting and a private room for groom parties.",
     countryCode: "AE", city: "Dubai", address: "Boulevard Plaza, Mohammed Bin Rashid Blvd, Downtown Dubai", lat: 25.20009, lng: 55.27507, phone: "+971 4 555 0177",
     ...gulfDays,

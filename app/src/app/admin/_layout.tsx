@@ -13,7 +13,7 @@ export default function AdminLayout() {
         <EmptyState
           icon="lock-closed-outline"
           title="Team only"
-          body="The admin panel is for the JB Always Fresh team. Sign in with your team account."
+          body="The admin panel is for the Always Fresh team. Sign in with your team account."
           action={user ? { label: "Back to the app", onPress: () => router.replace("/") } : { label: "Sign in", onPress: () => router.push("/login") }}
         />
       </Screen>

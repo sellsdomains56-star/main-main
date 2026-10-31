@@ -33,7 +33,7 @@ export function adminRole(user: User | undefined): AdminRole | null {
   return db.settings.team?.[email] ?? null;
 }
 export const isAdmin = (user: User | undefined) => adminRole(user) !== null;
-export const DEMO_ADMIN_EMAIL = "admin@demo.jbalwaysfresh.com";
+export const DEMO_ADMIN_EMAIL = "admin@demo.alwaysfresh.app";
 
 export function publicUser(user: User) {
   const { passwordHash: _omit, pushTokens: _tokens, appleSub: _apple, googleSub: _google, ...rest } = user;
@@ -62,7 +62,7 @@ export function optionalAuth(req: Request, _res: Response, next: NextFunction) {
 export function requireAdmin(req: Request, res: Response, next: NextFunction) {
   requireAuth(req, res, () => {
     if (!isAdmin(req.user)) {
-      res.status(403).json({ error: "Only the JB Always Fresh team can do this." });
+      res.status(403).json({ error: "Only the Always Fresh team can do this." });
       return;
     }
     next();
@@ -74,7 +74,7 @@ export const requireAdminRole = (...roles: AdminRole[]) => (req: Request, res: R
   requireAuth(req, res, () => {
     const role = adminRole(req.user);
     if (!role) {
-      res.status(403).json({ error: "Only the JB Always Fresh team can do this." });
+      res.status(403).json({ error: "Only the Always Fresh team can do this." });
       return;
     }
     if (role !== "owner" && !roles.includes(role)) {

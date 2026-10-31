@@ -107,7 +107,7 @@ test("AI stylist requires sign-in and reports when not configured", async () => 
 test("shop: products priced in local currency, order with shipping, pay (demo)", async () => {
   const { json: uk } = await call("/products?country=GB");
   assert.equal(uk.currency, "gbp");
-  assert.ok(uk.products.length > 5 && uk.products.every((p: { name: string; price: number }) => p.name.startsWith("JB's Fresh") && p.price > 0));
+  assert.ok(uk.products.length > 5 && uk.products.every((p: { name: string; price: number }) => p.name.startsWith("Always Fresh") && p.price > 0));
 
   const { json: acc } = await call("/auth/register", { body: { name: "Shopper", email: "shop@example.com", password: "password123" } });
   assert.equal((await call("/orders", { body: { countryCode: "DE", items: [{ productId: "p-pomade", quantity: 1 }], shippingName: "S", shippingAddress: "Somewhere 1" } })).status, 401);

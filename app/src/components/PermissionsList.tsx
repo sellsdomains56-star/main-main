@@ -41,7 +41,7 @@ export function PermissionsList() {
   return (
     <Section title={web ? "This browser" : "Permissions"}>
       <T variant="caption" muted style={{ marginBottom: 6 }}>
-        {web ? "The website only asks for your location, and only when you use it." : "JB Always Fresh asks only when you use a feature that needs it, and explains why first."}
+        {web ? "The website only asks for your location, and only when you use it." : "Always Fresh asks only when you use a feature that needs it, and explains why first."}
       </T>
       {KINDS.map((k) => {
         const s = states[k];

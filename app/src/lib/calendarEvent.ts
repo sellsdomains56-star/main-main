@@ -47,11 +47,11 @@ export function icsFor(item: CalendarItem): string {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//JB Always Fresh//Bookings//EN",
+    "PRODID:-//Always Fresh//Bookings//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
-    `UID:${item.id}@jbalwaysfresh`,
+    `UID:${item.id}@alwaysfresh.app`,
     `DTSTAMP:${stamp(new Date())}`,
     `DTSTART:${stamp(item.start)}`,
     `DTEND:${stamp(item.end)}`,

@@ -46,7 +46,7 @@ function ConciergeOrb({ size, ring }: { size: number; ring: string }) {
 /**
  * The black navigation from the reference: a docked bar on phones, and on wide screens
  * the rounded black side rail with the monogram, the tabs, "Book now" and your avatar.
- * The middle tab is JB Concierge, a raised orb that opens the AI chat full screen.
+ * The middle tab is Always Fresh Concierge, a raised orb that opens the AI chat full screen.
  */
 export function TabBar({ state, descriptors, navigation, wide }: TabBarProps & { wide: boolean }) {
   const insets = useSafeAreaInsets();
@@ -69,7 +69,7 @@ export function TabBar({ state, descriptors, navigation, wide }: TabBarProps & {
           key={route.key}
           onPress={open}
           accessibilityRole="button"
-          accessibilityLabel="Ask JB Concierge, your AI assistant"
+          accessibilityLabel="Ask the Concierge, your AI assistant"
           style={({ pressed }) => [
             { alignItems: "center", justifyContent: "flex-end", gap: 4, minHeight: 52 },
             wide ? { width: 64, paddingVertical: 6 } : { flex: 1 },
@@ -79,7 +79,7 @@ export function TabBar({ state, descriptors, navigation, wide }: TabBarProps & {
           <View style={wide ? undefined : { marginTop: -34 }}>
             <ConciergeOrb size={wide ? 52 : 62} ring={wide ? colors.ink : onReels ? "#000" : colors.bg} />
           </View>
-          <T variant="small" color={colors.onInk} style={{ fontFamily: fonts.semibold, fontSize: 11 }}>{wide ? "Ask JB" : label}</T>
+          <T variant="small" color={colors.onInk} style={{ fontFamily: fonts.semibold, fontSize: 11, textAlign: "center" }}>{wide ? "Ask the Concierge" : label}</T>
         </Pressable>
       );
     }

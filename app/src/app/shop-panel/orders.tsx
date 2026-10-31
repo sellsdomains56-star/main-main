@@ -73,10 +73,10 @@ export default function OrdersAndStock() {
           <Table
             rows={orders.orders}
             keyOf={(o) => o.id}
-            empty={{ icon: "bag-handle-outline", title: "No deliveries yet", body: "When customers order JB's Fresh products for delivery from your shop, they appear here." }}
+            empty={{ icon: "bag-handle-outline", title: "No deliveries yet", body: "When customers order Always Fresh products for delivery from your shop, they appear here." }}
             columns={[
               { label: "Customer", flex: 1.4, render: (o) => <View><T variant="strong">{o.name}</T><T variant="small" muted numberOfLines={1}>{o.address}</T></View> },
-              { label: "Items", flex: 1.6, render: (o) => <T variant="caption">{o.items.map((i) => `${i.quantity} × ${i.name.replace("JB's Fresh ", "")}`).join(", ")}</T> },
+              { label: "Items", flex: 1.6, render: (o) => <T variant="caption">{o.items.map((i) => `${i.quantity} × ${i.name.replace("Always Fresh ", "")}`).join(", ")}</T> },
               { label: "Ordered", render: (o) => <T variant="caption">{shortDateTime(o.createdAt)}</T> },
               { label: "Commission", align: "right", render: (o) => <T variant="caption">{money(o.commission, o.currency)}</T> },
               { label: "Status", render: (o) => <StatusTag status={o.status} /> },
@@ -100,7 +100,7 @@ export default function OrdersAndStock() {
           {stock.map((p) => (
             <Row key={p.id} gap={12} style={{ paddingVertical: 10, borderTopWidth: 1, borderTopColor: "rgba(0,0,0,0.06)" }}>
               <View style={{ flex: 1 }}>
-                <T variant="strong">{p.name.replace("JB's Fresh ", "")}</T>
+                <T variant="strong">{p.name.replace("Always Fresh ", "")}</T>
                 <T variant="small" muted>{money(p.price, p.currency)}</T>
               </View>
               {counts[p.id] === null || counts[p.id] === undefined ? (

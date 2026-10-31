@@ -147,7 +147,7 @@ function AddBarber({ onAdded }: { onAdded: () => void }) {
           <T variant="strong">{login.name} is on your team</T>
           <T variant="caption" style={{ marginTop: 6 }}>Email: {login.email}</T>
           <T variant="caption">First password: <T variant="caption" style={{ fontFamily: fonts.bold }}>{login.password}</T></T>
-          <T variant="small" muted style={{ marginTop: 6 }}>Shown once. JB checks new barbers before customers can book them.</T>
+          <T variant="small" muted style={{ marginTop: 6 }}>Shown once. Always Fresh checks new barbers before customers can book them.</T>
           <Button title="Add another" size="sm" variant="ghost" onPress={() => setLogin(null)} style={{ alignSelf: "flex-start", marginTop: 6, paddingHorizontal: 0 }} />
         </View>
       ) : (

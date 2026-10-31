@@ -38,7 +38,7 @@ export default function Visit() {
           <View style={{ flex: 1 }}>
             <Row gap={6}>
               <T variant="heading">{visit.barber.name}</T>
-              {visit.barber.verified && <Ionicons name="shield-checkmark" size={16} color={colors.text} accessibilityLabel="Verified by JB" />}
+              {visit.barber.verified && <Ionicons name="shield-checkmark" size={16} color={colors.text} accessibilityLabel="Verified by Always Fresh" />}
             </Row>
             <T variant="caption" muted>{visit.service}</T>
           </View>

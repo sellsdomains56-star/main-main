@@ -86,7 +86,7 @@ export default function CheckIn() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.ink, paddingTop: insets.top + 24, paddingHorizontal: big ? 48 : 20, paddingBottom: 24 }}>
       <Pressable onPress={() => router.back()} accessibilityLabel="Close check-in" hitSlop={10} style={{ alignSelf: "flex-start" }}>
-        <T variant="eyebrow" color={colors.inkMuted}>{panel?.shop.name ?? "JB Always Fresh"}</T>
+        <T variant="eyebrow" color={colors.inkMuted}>{panel?.shop.name ?? "Always Fresh"}</T>
       </Pressable>
 
       {step === "home" && (

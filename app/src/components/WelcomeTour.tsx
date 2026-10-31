@@ -15,7 +15,7 @@ const KEY = "af_welcomed";
 const SLIDES = [
   { photo: HERO_PHOTOS[1]!, title: "The best barbers in the UAE", body: "See their real work, reels and reviews, then book a free time in seconds." },
   { photo: HERO_PHOTOS[0]!, title: "At the shop, or at your door", body: "Home, hotel, office or yacht. Pay with Apple Pay or Google Pay, and every tip goes to your barber." },
-  { photo: HERO_PHOTOS[2]!, title: "Stay fresh every month", body: "Join The Club for monthly cuts, try new looks with AI, and get JB's Fresh products delivered." },
+  { photo: HERO_PHOTOS[2]!, title: "Stay fresh every month", body: "Join The Club for monthly cuts, try new looks with AI, and get Always Fresh products delivered." },
 ];
 
 /** Three slides the first time someone opens the app. Not on the team's or a shop's panel. */

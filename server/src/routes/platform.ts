@@ -113,7 +113,7 @@ export function registerPlatformRoutes(app: Express) {
     db.settings.team = team;
     logActivity(req, role ? "team.role_set" : "team.removed", email, role ?? undefined);
     const user = db.users.find((u) => u.email === email);
-    if (user && role) notify(user.id, { kind: "account", title: "You're on the JB team", body: `You can open the admin panel from Account (${role}).` });
+    if (user && role) notify(user.id, { kind: "account", title: "You're on the Always Fresh team", body: `You can open the admin panel from Account (${role}).` });
     save();
     res.json({ email, role });
   });
@@ -171,7 +171,7 @@ export function registerPlatformRoutes(app: Express) {
     });
   });
 
-  // ---------- Finance: a month's money by currency, VAT on JB's fees, and a CSV for the accountant ----------
+  // ---------- Finance: a month's money by currency, VAT on Always Fresh's fees, and a CSV for the accountant ----------
   function financeRows(month: string) {
     const rows: { date: string; type: string; ref: string; customer: string; barber: string; currency: string; amount: number; jbFee: number; vat: number }[] = [];
     const who = (id: string) => db.users.find((u) => u.id === id)?.name ?? "";
@@ -212,15 +212,15 @@ export function registerPlatformRoutes(app: Express) {
       month, label: monthLabel(month), vatRegistered: !!config.vatTrn, vatPercent: config.vatPercent,
       lines: [
         { key: "bookings", label: "Bookings paid in the app", amounts: sum("booking", "amount") },
-        { key: "fees", label: "JB fees on bookings", amounts: sum("booking", "jbFee") },
+        { key: "fees", label: "Always Fresh fees on bookings", amounts: sum("booking", "jbFee") },
         { key: "late", label: "Late-cancellation fees kept", amounts: sum("late_cancellation", "amount") },
         { key: "tips", label: "Tips (passed to barbers)", amounts: sum("tip", "amount") },
-        { key: "products", label: "JB's Fresh products", amounts: sum("products", "amount") },
+        { key: "products", label: "Always Fresh products", amounts: sum("products", "amount") },
         { key: "hires", label: "Private hires", amounts: sum("private_hire", "amount") },
         { key: "club", label: "The Club and gift cards", amounts: byCurrency(rows.filter((r) => r.type === "membership" || r.type === "gift").map((r) => ({ currency: r.currency, amount: r.amount }))) },
         { key: "refunds", label: "Refunded to customers", amounts: refunds },
         { key: "partners", label: "Owed to hotel partners", amounts: commissions },
-        { key: "vat", label: config.vatTrn ? `VAT in JB's income (${config.vatPercent}%)` : "VAT (add VAT_TRN once registered)", amounts: sum(null, "vat") },
+        { key: "vat", label: config.vatTrn ? `VAT in Always Fresh's income (${config.vatPercent}%)` : "VAT (add VAT_TRN once registered)", amounts: sum(null, "vat") },
       ],
       transactions: rows.length,
     });
@@ -228,9 +228,9 @@ export function registerPlatformRoutes(app: Express) {
   app.get("/admin/finance.csv", requireAdminRole("finance"), (req, res) => {
     const { month } = parse(z.object({ month: Month.default(thisMonth()) }), req.query);
     const cell = (v: string | number) => (typeof v === "number" ? (v / 100).toFixed(2) : `"${v.replace(/"/g, '""')}"`);
-    const lines = ["date,type,reference,customer,barber,currency,amount,jb_fee,vat", ...financeRows(month).map((r) => [cell(r.date.slice(0, 10)), cell(r.type), cell(r.ref), cell(r.customer), cell(r.barber), cell(r.currency.toUpperCase()), cell(r.amount), cell(r.jbFee), cell(r.vat)].join(","))];
+    const lines = ["date,type,reference,customer,barber,currency,amount,always_fresh_fee,vat", ...financeRows(month).map((r) => [cell(r.date.slice(0, 10)), cell(r.type), cell(r.ref), cell(r.customer), cell(r.barber), cell(r.currency.toUpperCase()), cell(r.amount), cell(r.jbFee), cell(r.vat)].join(","))];
     res.setHeader("content-type", "text/csv; charset=utf-8");
-    res.setHeader("content-disposition", `attachment; filename="jb-finance-${month}.csv"`);
+    res.setHeader("content-disposition", `attachment; filename="always-fresh-finance-${month}.csv"`);
     res.send(lines.join("\n"));
   });
 
@@ -333,7 +333,7 @@ export function registerPlatformRoutes(app: Express) {
       ].filter((l) => l.amount > 0);
     const vat = vatIn(charged, b.currency);
     res.json({
-      number: `JB-${b.startsAt.slice(0, 7).replace("-", "")}-${b.id.slice(0, 6).toUpperCase()}`,
+      number: `AF-${b.startsAt.slice(0, 7).replace("-", "")}-${b.id.slice(0, 6).toUpperCase()}`,
       title: config.vatTrn && b.currency === "aed" ? "Tax invoice" : "Receipt",
       issuedAt: b.createdAt, serviceDate: b.startsAt, timeZone: cityOf(barber).timeZone,
       seller: { name: config.companyName, address: config.companyAddress, trn: config.vatTrn ?? null, onBehalfOf: barber.name },
@@ -418,7 +418,7 @@ export function registerPlatformRoutes(app: Express) {
     const u = req.user!;
     if (!u.barberId) throw new HttpError(403, "Only barbers can do this.");
     const b = getBarber(u.barberId);
-    if (!stripe) return res.json({ available: false, connected: false, payoutsEnabled: false, note: "Payouts switch on when JB connects Stripe. Until then JB pays you by bank transfer every week." });
+    if (!stripe) return res.json({ available: false, connected: false, payoutsEnabled: false, note: "Payouts switch on when Always Fresh connects Stripe. Until then Always Fresh pays you by bank transfer every week." });
     if (!b.stripeAccountId) return res.json({ available: true, connected: false, payoutsEnabled: false });
     const acct = await stripe.accounts.retrieve(b.stripeAccountId);
     b.payoutsEnabled = !!acct.payouts_enabled && !!acct.charges_enabled;
@@ -428,7 +428,7 @@ export function registerPlatformRoutes(app: Express) {
   app.post("/barbers/me/payouts", requireAuth, async (req, res) => {
     const u = req.user!;
     if (!u.barberId) throw new HttpError(403, "Only barbers can do this.");
-    if (!stripe) throw new HttpError(503, "Payouts aren't switched on yet. JB pays you by bank transfer every week until then.");
+    if (!stripe) throw new HttpError(503, "Payouts aren't switched on yet. Always Fresh pays you by bank transfer every week until then.");
     const b = getBarber(u.barberId);
     if (!b.stripeAccountId) {
       const acct = await stripe.accounts.create({ type: "express", country: b.countryCode, email: u.email, business_type: "individual", capabilities: { card_payments: { requested: true }, transfers: { requested: true } }, metadata: { barberId: b.id } });

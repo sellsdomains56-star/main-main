@@ -12,7 +12,7 @@ export function partnerFor(code: string | undefined, customer: User | undefined)
   return domain ? active.find((p) => p.kind === "corporate" && p.emailDomain && p.emailDomain.toLowerCase() === domain) : undefined;
 }
 
-/** What JB owes a hotel for a booking made through its QR code (minor units). */
+/** What Always Fresh owes a hotel for a booking made through its QR code (minor units). */
 export function partnerCommission(b: Pick<Booking, "partnerId" | "amount">) {
   const p = b.partnerId ? db.partners.find((x) => x.id === b.partnerId) : undefined;
   return p && p.kind === "hotel" ? Math.round((b.amount * p.commissionPercent) / 100) : 0;

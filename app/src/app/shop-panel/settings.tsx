@@ -57,7 +57,7 @@ export default function ShopSettings() {
           <T variant="heading" style={{ marginBottom: 12 }}>Your page in the app</T>
           <Field label="About the shop" value={about} onChangeText={(v) => { touch(); setAbout(v); }} multiline maxLength={400} />
           <Field label="Phone" value={phone} onChangeText={(v) => { touch(); setPhone(v); }} keyboardType="phone-pad" />
-          <IconLine icon="information-circle-outline" muted>To change the name, address, photos or the private-hire price, message the JB team.</IconLine>
+          <IconLine icon="information-circle-outline" muted>To change the name, address, photos or the private-hire price, message the Always Fresh team.</IconLine>
         </Card>
         <Card style={{ flex: 1, padding: 20 }}>
           <T variant="heading" style={{ marginBottom: 12 }}>Opening hours</T>

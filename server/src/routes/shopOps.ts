@@ -279,7 +279,7 @@ export function registerShopOpsRoutes(app: Express) {
       period, from: first, to: end, currency: shopCurrency(shop), defaultSharePercent: shopDefault, canEditSplit: shopRole(req.user!) === "owner",
       rows,
       totals: { services: sum("services"), lateFees: sum("lateFees"), tips: sum("tips"), jbFee: sum("jbFee"), barberPay: sum("barberPay"), shopKeeps: sum("shopKeeps") + productCommission, productCommission },
-      note: "Walk-ins are paid at the shop and carry no JB fee. Tips go to the barber in full. App money is paid out by JB; walk-in money is already in the shop's till.",
+      note: "Walk-ins are paid at the shop and carry no Always Fresh fee. Tips go to the barber in full. App money is paid out by Always Fresh; walk-in money is already in the shop's till.",
     });
   });
 

@@ -16,7 +16,7 @@ for (const signal of ["SIGINT", "SIGTERM"] as const) {
 }
 
 createApp().listen(config.port, () => {
-  console.log(`JB Always Fresh API listening on http://localhost:${config.port}`);
+  console.log(`Always Fresh API listening on http://localhost:${config.port}`);
   if (demoPayments) console.log("STRIPE_SECRET_KEY not set — payments run in demo mode.");
   if (!config.anthropicConfigured) console.log("ANTHROPIC_API_KEY not set — AI stylist disabled.");
   if (!config.adminEmails.length && !config.demoAccounts) console.log("ADMIN_EMAILS not set — nobody can open the admin panel.");

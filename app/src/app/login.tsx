@@ -102,7 +102,7 @@ export default function Login() {
           <T variant="caption" muted style={{ marginTop: 4, marginBottom: 12 }}>Sample accounts with a month of bookings. Nothing is real and nothing is charged.</T>
           <Button title="Try as a barber" icon="cut-outline" variant="secondary" size="md" disabled={busy} onPress={() => tryAs("barber")} />
           <Button title="Try as a barbershop" icon="storefront-outline" variant="secondary" size="md" disabled={busy} onPress={() => tryAs("shop")} style={{ marginTop: 8 }} />
-          <Button title="Try as the JB team (admin)" icon="shield-checkmark-outline" variant="secondary" size="md" disabled={busy} onPress={() => tryAs("admin")} style={{ marginTop: 8 }} />
+          <Button title="Try as the Always Fresh team (admin)" icon="shield-checkmark-outline" variant="secondary" size="md" disabled={busy} onPress={() => tryAs("admin")} style={{ marginTop: 8 }} />
         </Card>
       )}
     </Screen>

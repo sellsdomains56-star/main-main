@@ -47,7 +47,7 @@ export const DEMO_REELS: Reel[] = [
   demo("r12", "b11", "Pompadour with volume that lasts all day", 4, 208),
   // Dubai
   demo("r13", "b36", "Skin fade on the Boulevard, Burj in the window ✂️ #dubai #fade", 0, 486),
-  demo("r14", "b19", "Saturday at JB’s Fresh Dubai Marina — every chair full 🔥", 1, 391),
+  demo("r14", "b19", "Saturday at Always Fresh Dubai Marina — every chair full 🔥", 1, 391),
   demo("r15", "b38", "First haircut? Ahmed has the patience of a saint 👦", 2, 334),
   demo("r16", "b40", "Hot towel shave on a yacht at Dubai Harbour ⚓", 1, 612),
   demo("r17", "b37", "Blow-dry and finish — boardroom-ready by 9am", 3, 219),

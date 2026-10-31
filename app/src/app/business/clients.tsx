@@ -82,7 +82,7 @@ export default function Clients() {
       {composer && (
         <Card tone="surface" style={{ marginTop: 14 }}>
           <T variant="strong">Message {picked.length} {picked.length === 1 ? "client" : "clients"}</T>
-          <T variant="caption" muted style={{ marginTop: 2, marginBottom: 10 }}>Arrives in their JB alerts with your booking link. People who turned offers off, or got a message from you this week, are skipped.</T>
+          <T variant="caption" muted style={{ marginTop: 2, marginBottom: 10 }}>Arrives in their Always Fresh alerts with your booking link. People who turned offers off, or got a message from you this week, are skipped.</T>
           <Field label="Message" value={text} onChangeText={setText} multiline maxLength={400} />
           <Row gap={8}>
             <Button title="Send" size="sm" icon="send" onPress={send} loading={busy} disabled={text.trim().length < 5} />

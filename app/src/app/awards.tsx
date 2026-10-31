@@ -20,7 +20,7 @@ export default function Awards() {
     <Screen>
       <Stack.Screen options={{ title: "Top 10" }} />
       <Card tone="ink" style={{ padding: 22, borderRadius: radius.xl }}>
-        <T variant="eyebrow" color={colors.inkMuted}>JB awards · {award?.label ?? ""}</T>
+        <T variant="eyebrow" color={colors.inkMuted}>Always Fresh Awards · {award?.label ?? ""}</T>
         <T variant="title" color={colors.onInk} style={{ marginTop: 6 }}>Top 10 in {award?.city ?? place?.city ?? "your city"}</T>
         <T variant="caption" color={colors.inkMuted} style={{ marginTop: 6 }}>The barbers with the most finished cuts last month, weighted by their rating. A new list every month.</T>
       </Card>

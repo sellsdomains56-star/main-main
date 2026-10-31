@@ -15,7 +15,7 @@ const MONTHS = Array.from({ length: 6 }, (_, i) => {
 });
 const short = (m: string) => new Intl.DateTimeFormat(undefined, { month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(`${m}-15T00:00:00Z`));
 
-/** A month's money per currency (never converted), VAT in JB's income, and the transactions as CSV for the accountant. */
+/** A month's money per currency (never converted), VAT in Always Fresh's income, and the transactions as CSV for the accountant. */
 export default function Finance() {
   const [month, setMonth] = useState(MONTHS[0]!);
   const [f, setF] = useState<AdminFinance | null>(null);
@@ -31,8 +31,8 @@ export default function Finance() {
     setBusy(true);
     try {
       const csv = await api.admin.financeCsv(month);
-      if (Platform.OS === "web") await saveFile(`jb-finance-${month}.csv`, csv, "text/csv");
-      else await Share.share({ message: csv, title: `jb-finance-${month}.csv` });
+      if (Platform.OS === "web") await saveFile(`always-fresh-finance-${month}.csv`, csv, "text/csv");
+      else await Share.share({ message: csv, title: `always-fresh-finance-${month}.csv` });
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -55,8 +55,8 @@ export default function Finance() {
         </Card>
       )}
       <View style={{ marginTop: 14, gap: 6 }}>
-        <IconLine icon="information-circle-outline" muted>Amounts are kept in each currency, never converted. Tips go to barbers in full; JB's income is its fees, products, the Club and gift cards.</IconLine>
-        {f && !f.vatRegistered && <IconLine icon="alert-circle-outline" muted>Once JB is VAT-registered in the UAE, set VAT_TRN on the server: receipts become tax invoices and VAT shows here.</IconLine>}
+        <IconLine icon="information-circle-outline" muted>Amounts are kept in each currency, never converted. Tips go to barbers in full; Always Fresh's income is its fees, products, the Club and gift cards.</IconLine>
+        {f && !f.vatRegistered && <IconLine icon="alert-circle-outline" muted>Once Always Fresh is VAT-registered in the UAE, set VAT_TRN on the server: receipts become tax invoices and VAT shows here.</IconLine>}
       </View>
     </AdminPage>
   );

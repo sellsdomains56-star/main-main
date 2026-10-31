@@ -106,7 +106,7 @@ export default function Home() {
       steps={[
         { title: "Consultation", body: "Free video call on Google Meet or a phone call with your barber.", onPress: goConsult },
         { title: "Cut & style", body: "At the shop or at your door. Slide to book, pay with Apple Pay.", onPress: () => router.push("/explore") },
-        { title: "Finish & groom", body: "Rate the cut, pick up JB's Fresh products, rebook in a tap.", onPress: () => router.push("/shop") },
+        { title: "Finish & groom", body: "Rate the cut, pick up Always Fresh products, rebook in a tap.", onPress: () => router.push("/shop") },
       ]}
     />
   );
@@ -225,7 +225,7 @@ export default function Home() {
             </View>
           )}
 
-          <Section eyebrow="More from JB" title="Fresh, your way">
+          <Section eyebrow="More from Always Fresh" title="Fresh, your way">
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12 }}>
               {MORE.map((m) => <MoreCard key={m.title} {...m} width={wide ? (contentW - 24) / 3 : (contentW - 12) / 2} />)}
             </View>
@@ -269,7 +269,7 @@ export default function Home() {
                 <Row gap={12}>
                   <IconBadge icon="trophy-outline" />
                   <View style={{ flex: 1 }}>
-                    <T variant="eyebrow" muted>JB awards</T>
+                    <T variant="eyebrow" muted>Always Fresh Awards</T>
                     <T variant="strong" style={{ marginTop: 2 }}>Last month's top 10 in {where}</T>
                     <T variant="caption" muted>Most finished cuts, weighted by rating</T>
                   </View>
@@ -387,7 +387,7 @@ export default function Home() {
   );
 }
 
-/** Phone header: the JB logo, cart and account. */
+/** Phone header: the Always Fresh logo, cart and account. */
 function TopBar({ count }: { count: number }) {
   const { user } = useAuth();
   const { unread } = useAlerts();
@@ -462,7 +462,7 @@ function HeroCarousel({ width, height, featured, where, wide }: { width: number;
           {wide && (
             <Pressable onPress={() => router.push("/assistant")} accessibilityRole="button" style={({ pressed }) => [{ flexDirection: "row", alignItems: "center", gap: 6, height: 38, paddingHorizontal: 14, borderRadius: radius.pill, borderWidth: 1, borderColor: "rgba(244,242,238,0.4)" }, pressed && styles.pressed]}>
               <Ionicons name="sparkles" size={14} color={colors.onInk} />
-              <T variant="caption" color={colors.onInk} style={{ fontFamily: fonts.semibold }}>Ask JB Concierge</T>
+              <T variant="caption" color={colors.onInk} style={{ fontFamily: fonts.semibold }}>Ask the Concierge</T>
             </Pressable>
           )}
         </Row>
@@ -548,7 +548,7 @@ function ServiceTile({ slot, label, art, go, width }: (typeof SERVICES)[number] 
 const MORE: { title: string; body: string; icon: IconName; go: () => void }[] = [
   { title: "Consultation", body: "Google Meet or a call", icon: "videocam-outline", go: goConsult },
   { title: "Barber at home", body: "They come to you", icon: "home-outline", go: () => router.push({ pathname: "/explore", params: { home: "1" } }) },
-  { title: "JB Concierge", body: "Ask anything, 24/7", icon: "chatbubble-ellipses-outline", go: () => router.push("/assistant") },
+  { title: "Always Fresh Concierge", body: "Ask anything, 24/7", icon: "chatbubble-ellipses-outline", go: () => router.push("/assistant") },
   { title: "Reels", body: "Watch barbers at work", icon: "play-outline", go: () => router.push("/reels") },
   { title: "The Club", body: "Cuts every month", icon: "card-outline", go: () => router.push("/club") },
   { title: "Gift cards", body: "Give a fresh cut", icon: "gift-outline", go: () => router.push("/gifts") },

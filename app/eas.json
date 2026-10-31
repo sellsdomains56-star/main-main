@@ -7,18 +7,18 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "env": { "EXPO_PUBLIC_API_URL": "https://api-staging.jbalwaysfresh.com" }
+      "env": { "EXPO_PUBLIC_API_URL": "https://api-staging.alwaysfresh.app" }
     },
     "preview": {
       "distribution": "internal",
       "channel": "preview",
-      "env": { "EXPO_PUBLIC_API_URL": "https://api-staging.jbalwaysfresh.com" },
+      "env": { "EXPO_PUBLIC_API_URL": "https://api-staging.alwaysfresh.app" },
       "android": { "buildType": "apk" }
     },
     "production": {
       "channel": "production",
       "autoIncrement": true,
-      "env": { "EXPO_PUBLIC_API_URL": "https://api.jbalwaysfresh.com" }
+      "env": { "EXPO_PUBLIC_API_URL": "https://api.alwaysfresh.app" }
     }
   },
   "submit": {

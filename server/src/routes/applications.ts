@@ -24,7 +24,7 @@ const idLabel = (b: Barber) => (inUae(b) ? "Emirates ID" : "passport");
 
 export const applicationOf = (barberId: string) => db.applications.find((a) => a.barberId === barberId);
 
-/** Freelance barbers apply with their ID, licence and the signed agreement; barbers at a barbershop are covered by JB's contract with the shop. */
+/** Freelance barbers apply with their ID, licence and the signed agreement; barbers at a barbershop are covered by Always Fresh's contract with the shop. */
 export const needsApplication = (b: Barber) => !b.shopId;
 
 export function startApplication(barberId: string): BarberApplication {
@@ -67,7 +67,7 @@ export function applicationStatus(b: Barber): ApplicationStatus | "not_needed" |
   return applicationOf(b.id)?.status ?? (b.status === "pending" ? "draft" : "none");
 }
 
-/** The application as the barber (or, with `team`, the JB team) sees it, documents as short-lived links. */
+/** The application as the barber (or, with `team`, the Always Fresh team) sees it, documents as short-lived links. */
 export function applicationView(b: Barber, team = false) {
   const a = applicationOf(b.id);
   const status = applicationStatus(b);
@@ -105,9 +105,9 @@ function myBarber(req: Request) {
 /** The barber's application, while they may still change it. */
 function editable(req: Request) {
   const b = myBarber(req);
-  if (!needsApplication(b)) throw new HttpError(400, "Barbers at a barbershop don't apply: JB's contract with your shop covers you.");
+  if (!needsApplication(b)) throw new HttpError(400, "Barbers at a barbershop don't apply: Always Fresh's contract with your shop covers you.");
   const a = applicationOf(b.id) ?? startApplication(b.id);
-  if (a.status === "submitted") throw new HttpError(409, "Your application is with the JB team. You can change it if they ask you to.");
+  if (a.status === "submitted") throw new HttpError(409, "Your application is with the Always Fresh team. You can change it if they ask you to.");
   if (a.status === "approved") throw new HttpError(409, "Your application is approved. To update a document, contact support.");
   return { a, b };
 }

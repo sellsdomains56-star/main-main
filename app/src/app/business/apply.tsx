@@ -28,7 +28,7 @@ const formOf = (a: BarberApplication): Record<TextKey, string> => ({
   legalName: a.legalName, idNumber: a.idNumber, idExpiry: toDmy(a.idExpiry), licenceNumber: a.licenceNumber, licenceAuthority: a.licenceAuthority, licenceExpiry: toDmy(a.licenceExpiry),
 });
 
-/** A freelance barber's application: ID, licence and the signed agreement, sent to the JB team to check before going live. */
+/** A freelance barber's application: ID, licence and the signed agreement, sent to the Always Fresh team to check before going live. */
 export default function Apply() {
   const { user } = useAuth();
   const [app, setApp] = useState<BarberApplication | null>(null);
@@ -120,14 +120,14 @@ export default function Apply() {
         edit ? (
           <View style={{ gap: 6 }}>
             <Button title={app.status === "rejected" ? "Send application again" : "Submit application"} icon="paper-plane" onPress={submit} loading={busy === "submit"} disabled={app.missing.length > 0} />
-            <T variant="small" muted center>{app.missing.length ? `${app.missing.length} ${app.missing.length === 1 ? "thing" : "things"} left before you can send it` : "Everything's ready. The JB team checks it before you go live."}</T>
+            <T variant="small" muted center>{app.missing.length ? `${app.missing.length} ${app.missing.length === 1 ? "thing" : "things"} left before you can send it` : "Everything's ready. The Always Fresh team checks it before you go live."}</T>
           </View>
         ) : undefined
       }
     >
-      <T variant="eyebrow" muted>Join JB Always Fresh</T>
+      <T variant="eyebrow" muted>Join Always Fresh</T>
       <T variant="title" style={{ marginTop: 6 }}>Your barber application</T>
-      <T muted style={{ marginTop: 6 }}>Every freelance barber on JB is licensed and verified. Send your {app.idLabel}, your barber licence and the signed agreement, and the JB team checks them before you go live.</T>
+      <T muted style={{ marginTop: 6 }}>Every freelance barber on Always Fresh is licensed and verified. Send your {app.idLabel}, your barber licence and the signed agreement, and the Always Fresh team checks them before you go live.</T>
 
       <StatusCard app={app} step={step} />
       {error && <View style={{ marginTop: 12 }}><ErrorBox message={error} /></View>}
@@ -145,7 +145,7 @@ export default function Apply() {
               <DocTile label={app.uae ? "Front" : "Photo page"} doc={app.docs.id_front} edit={edit} busy={busy === "id_front"} onCamera={() => upload("id_front", "camera")} onFile={() => upload("id_front", "file")} />
               {app.uae && <DocTile label="Back" doc={app.docs.id_back} edit={edit} busy={busy === "id_back"} onCamera={() => upload("id_back", "camera")} onFile={() => upload("id_back", "file")} />}
             </Row>
-            <T variant="small" muted style={{ marginTop: 10 }}>Lay the card flat in good light so every word is readable. Only the JB team can see your documents.</T>
+            <T variant="small" muted style={{ marginTop: 10 }}>Lay the card flat in good light so every word is readable. Only the Always Fresh team can see your documents.</T>
           </Section>
 
           <Section eyebrow="Step 02" title="Your barber licence">
@@ -183,7 +183,7 @@ export default function Apply() {
             ) : (
               <Card tone="surface" style={{ padding: 16 }}>
                 <T variant="strong">{app.agreement.title}</T>
-                <T variant="caption" muted style={{ marginTop: 4 }}>How you work with JB as an independent barber: your licence, standards, prices and the JB fee, payouts and leaving. Read it and sign with your finger.</T>
+                <T variant="caption" muted style={{ marginTop: 4 }}>How you work with Always Fresh as an independent barber: your licence, standards, prices and the Always Fresh fee, payouts and leaving. Read it and sign with your finger.</T>
                 <Button title={app.signature ? "Sign the new version" : "Read and sign"} icon="create-outline" size="md" onPress={() => router.push("/business/agreement")} style={{ alignSelf: "flex-start", marginTop: 12 }} disabled={!edit} />
               </Card>
             )}
@@ -210,18 +210,18 @@ function StatusCard({ app, step }: { app: BarberApplication; step: number }) {
   if (!app.required) {
     return (
       <Card tone="surface" style={{ marginTop: 16 }}>
-        <IconLine icon="storefront-outline">You work at a barbershop, so JB's contract with your shop covers you. There's nothing for you to send.</IconLine>
+        <IconLine icon="storefront-outline">You work at a barbershop, so Always Fresh's contract with your shop covers you. There's nothing for you to send.</IconLine>
       </Card>
     );
   }
   if (app.status === "none") {
-    return <Card tone="surface" style={{ marginTop: 16 }}><IconLine icon="shield-checkmark-outline">Your documents are on file with the JB team. Nothing to do here.</IconLine></Card>;
+    return <Card tone="surface" style={{ marginTop: 16 }}><IconLine icon="shield-checkmark-outline">Your documents are on file with the Always Fresh team. Nothing to do here.</IconLine></Card>;
   }
   if (app.status === "submitted") {
     return (
       <Card tone="ink" style={{ marginTop: 16, padding: 20 }}>
         <Row gap={8}><Ionicons name="time-outline" size={18} color={colors.onInk} /><T variant="eyebrow" color={colors.inkMuted}>Submitted · {shortDay(app.submittedAt!)}</T></Row>
-        <T variant="heading" color={colors.onInk} style={{ marginTop: 8 }}>The JB team is checking your documents</T>
+        <T variant="heading" color={colors.onInk} style={{ marginTop: 8 }}>The Always Fresh team is checking your documents</T>
         <T variant="caption" color={colors.inkMuted} style={{ marginTop: 6 }}>We check your {app.idLabel}, your licence and the signed agreement, then let you know here. Meanwhile, finish your profile so you're ready to be booked.</T>
       </Card>
     );
@@ -230,7 +230,7 @@ function StatusCard({ app, step }: { app: BarberApplication; step: number }) {
     return (
       <Card style={{ marginTop: 16, padding: 20 }}>
         <Row gap={8}><Ionicons name="shield-checkmark" size={20} color={colors.text} /><T variant="heading">Approved · verified barber</T></Row>
-        <T variant="caption" muted style={{ marginTop: 6 }}>Checked by the JB team on {shortDay(app.reviewedAt!)}. Your profile shows the Verified badge. To update a document (for example a renewed licence), contact support.</T>
+        <T variant="caption" muted style={{ marginTop: 6 }}>Checked by the Always Fresh team on {shortDay(app.reviewedAt!)}. Your profile shows the Verified badge. To update a document (for example a renewed licence), contact support.</T>
       </Card>
     );
   }
@@ -238,7 +238,7 @@ function StatusCard({ app, step }: { app: BarberApplication; step: number }) {
     <View style={{ marginTop: 16, gap: 12 }}>
       {app.status === "rejected" && (
         <Card tone="surface" style={{ backgroundColor: colors.dangerSoft, padding: 16 }}>
-          <T variant="strong" color={colors.danger}>The JB team asked for a change</T>
+          <T variant="strong" color={colors.danger}>The Always Fresh team asked for a change</T>
           <T variant="caption" color={colors.danger} style={{ marginTop: 4 }}>{app.rejectionReason}</T>
           <T variant="small" color={colors.danger} style={{ marginTop: 6 }}>Fix it below, then send your application again.</T>
         </Card>
@@ -250,7 +250,7 @@ function StatusCard({ app, step }: { app: BarberApplication; step: number }) {
             { title: `Your ${app.idLabel}`, body: app.uae ? "Number, expiry and photos of both sides" : "Number, expiry and a photo of the photo page" },
             { title: "Your licence", body: "Licence or permit number, who issued it, expiry and a photo or PDF" },
             { title: "The agreement", body: "Read the barber agreement and sign it" },
-            { title: "JB checks", body: "We verify everything, then you go live" },
+            { title: "Always Fresh checks", body: "We verify everything, then you go live" },
           ]}
         />
       </Card>

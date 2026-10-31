@@ -87,7 +87,7 @@ export interface User {
   name: string;
   email: string;
   role: "customer" | "barber";
-  admin?: boolean; // on the JB Always Fresh team: can open the admin panel
+  admin?: boolean; // on the Always Fresh team: can open the admin panel
   adminRole?: AdminRole;
   manages?: string; // id of the barbershop this person runs in the shop panel
   barberId?: string;
@@ -462,8 +462,8 @@ export interface WorkingHours {
 
 /** The barber's business dashboard. */
 /**
- * A freelance barber's application to join: ID, licence and the signed agreement, checked by the JB team.
- * "none": joined before applications existed; "not_needed": works at a barbershop (JB's contract with the shop covers them).
+ * A freelance barber's application to join: ID, licence and the signed agreement, checked by the Always Fresh team.
+ * "none": joined before applications existed; "not_needed": works at a barbershop (Always Fresh's contract with the shop covers them).
  */
 export type ApplicationStatus = "draft" | "submitted" | "approved" | "rejected" | "none" | "not_needed";
 export type ApplicationDocKind = "id_front" | "id_back" | "licence";

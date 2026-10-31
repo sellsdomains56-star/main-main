@@ -22,7 +22,7 @@ const app = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
 const flag = (name) => (args.includes(name) ? args[args.indexOf(name) + 1] : undefined);
 const out = args[0] && !args[0].startsWith("--") ? args[0] : join(app, "dist-demo.html");
-const START = { barber: "JB Barber Dashboard", shop: "JB Shop Panel", admin: "JB Admin Panel" };
+const START = { barber: "Always Fresh Barber Dashboard", shop: "Always Fresh Shop Panel", admin: "Always Fresh Admin Panel" };
 const start = flag("--start");
 if (start && !START[start]) throw new Error(`--start must be one of: ${Object.keys(START).join(", ")}`);
 const run = (cmd, cwd) => execSync(cmd, { cwd, stdio: ["ignore", "pipe", "inherit"], maxBuffer: 256 * 1024 * 1024, env: { ...process.env, CI: "1" } }).toString();
@@ -89,7 +89,7 @@ const FILE_LOCATION = `  var __AF_LOC__ = location;
 const safe = (s) => s.replace(/<\/(script)/gi, "<\\/$1").replace(/<!--/g, "<\\!--");
 
 const page = `<meta charset="utf-8">
-<title>${start ? START[start] : "JB Always Fresh"}</title>
+<title>${start ? START[start] : "Always Fresh"}</title>
 <style>
   :root { --bg: #FAF8F4; }
   html, body { height: 100%; }

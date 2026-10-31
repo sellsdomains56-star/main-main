@@ -478,7 +478,7 @@ export function createApp() {
 
   registerReelRoutes(app);
 
-  // ---------- Shop: JB's Fresh products ----------
+  // ---------- Shop: Always Fresh products ----------
   const currencyFor = (country?: string) => {
     const currency = (country && findCountry(country)?.currency) || "eur";
     return SHIPPING[currency] ? currency : "eur";
@@ -501,7 +501,7 @@ export function createApp() {
         items: z.array(z.object({ productId: z.string(), quantity: z.number().int().min(1).max(20) })).min(1),
         shippingName: z.string().trim().min(1, "Please enter a name for delivery"),
         shippingAddress: z.string().trim().min(5, "Please enter your delivery address"),
-        // "delivery": a barbershop nearby brings it by courier today. "shipping": posted from the JB's Fresh warehouse.
+        // "delivery": a barbershop nearby brings it by courier today. "shipping": posted from the Always Fresh warehouse.
         fulfilment: z.enum(["shipping", "delivery"]).default("shipping"),
         shopId: z.string().optional(),
       }),

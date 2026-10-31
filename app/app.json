@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "JB Always Fresh",
+    "name": "Always Fresh",
     "slug": "always-fresh",
     "scheme": "alwaysfresh",
     "version": "1.0.0",
@@ -88,8 +88,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "JB Always Fresh opens your photos only when you choose one to add: a profile photo, a photo of your cut or your work, a reel, a selfie for the AI try-on, or a document for a barber application. It only sees the photos you pick.",
-          "cameraPermission": "JB Always Fresh uses the camera only when you tap to take a photo: a selfie for the AI try-on, your profile photo, photos of your work, or your Emirates ID and barber licence when you apply as a barber.",
+          "photosPermission": "Always Fresh opens your photos only when you choose one to add: a profile photo, a photo of your cut or your work, a reel, a selfie for the AI try-on, or a document for a barber application. It only sees the photos you pick.",
+          "cameraPermission": "Always Fresh uses the camera only when you tap to take a photo: a selfie for the AI try-on, your profile photo, photos of your work, or your Emirates ID and barber licence when you apply as a barber.",
           "microphonePermission": false
         }
       ],
@@ -104,7 +104,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "JB Always Fresh uses your location while you use the app to show the barbers closest to you and, when a barber comes to you, to work out how far they travel and any extra travel cost before you pay. It isn't used in the background.",
+          "locationWhenInUsePermission": "Always Fresh uses your location while you use the app to show the barbers closest to you and, when a barber comes to you, to work out how far they travel and any extra travel cost before you pay. It isn't used in the background.",
           "isIosBackgroundLocationEnabled": false,
           "isAndroidBackgroundLocationEnabled": false,
           "locationAlwaysAndWhenInUsePermission": false,
@@ -123,9 +123,9 @@
       [
         "expo-calendar",
         {
-          "calendarPermission": "JB Always Fresh adds the appointments you choose to your calendar, with alerts a day and an hour before.",
+          "calendarPermission": "Always Fresh adds the appointments you choose to your calendar, with alerts a day and an hour before.",
           "writeOnlyAccess": true,
-          "writeOnlyCalendarPermission": "JB Always Fresh adds the appointments you choose to your calendar, with alerts a day and an hour before. It can't read your other events.",
+          "writeOnlyCalendarPermission": "Always Fresh adds the appointments you choose to your calendar, with alerts a day and an hour before. It can't read your other events.",
           "remindersPermission": false
         }
       ]

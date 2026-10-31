@@ -33,7 +33,7 @@ async function guestKey() {
   return key;
 }
 
-/** JB Concierge: AI help with finding barbers, bookings and support. */
+/** Always Fresh Concierge: AI help with finding barbers, bookings and support. */
 export default function Assistant() {
   const insets = useSafeAreaInsets();
   const { user } = useAuth();
@@ -93,7 +93,7 @@ export default function Assistant() {
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior={Platform.OS === "ios" ? "padding" : undefined} keyboardVerticalOffset={90}>
       <Stack.Screen
         options={{
-          title: "JB Concierge",
+          title: "Always Fresh Concierge",
           headerRight: () => (messages.length ? <IconButton icon="create-outline" label="New chat" tone="plain" onPress={newChat} /> : null),
         }}
       />
@@ -106,7 +106,7 @@ export default function Assistant() {
         {messages.length === 0 && (
           <View style={{ alignItems: "center", paddingTop: 32 }}>
             <Orb size={132} />
-            <T variant="eyebrow" style={{ marginTop: 28 }}>JB Concierge</T>
+            <T variant="eyebrow" style={{ marginTop: 28 }}>Always Fresh Concierge</T>
             <T variant="display" center style={{ marginTop: 8, fontSize: 30, lineHeight: 36 }}>
               {user ? `${user.name.split(" ")[0]}, how` : "How"} can I{"\n"}help today?
             </T>

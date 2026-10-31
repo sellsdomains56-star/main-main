@@ -8,7 +8,7 @@ import { api } from "../../lib/api";
 import { useAuth } from "../../lib/auth";
 import type { Partner } from "../../lib/types";
 
-/** Hotels whose guests book through a QR code (JB pays them a commission) and companies whose people get a discount. */
+/** Hotels whose guests book through a QR code (Always Fresh pays them a commission) and companies whose people get a discount. */
 export default function Partners() {
   const wide = useWide();
   const { user } = useAuth();
@@ -56,7 +56,7 @@ export default function Partners() {
   const shown = list?.find((p) => p.id === open);
 
   return (
-    <AdminPage title="Hotels & companies" subtitle="Partners' QR codes, their bookings this month, and what JB owes or gives">
+    <AdminPage title="Hotels & companies" subtitle="Partners' QR codes, their bookings this month, and what Always Fresh owes or gives">
       {error && <ErrorBox message={error} onRetry={load} />}
       <View style={{ flexDirection: wide ? "row" : "column", gap: 16, alignItems: "flex-start" }}>
         <View style={{ flex: 2, width: "100%" }}>
@@ -100,7 +100,7 @@ export default function Partners() {
             </Wrap>
             <Field label="Name" value={name} onChangeText={setName} placeholder={kind === "hotel" ? "Atlantis The Royal" : "Emirates Group"} style={{ marginTop: 12 }} />
             <Field label="Code (in the QR link)" value={code} onChangeText={(v) => setCode(v.toUpperCase())} autoCapitalize="characters" placeholder={kind === "hotel" ? "ATLANTIS" : "EMIRATES"} />
-            <T variant="caption" muted style={{ marginBottom: 8 }}>{kind === "hotel" ? "Commission JB pays the hotel" : "Discount for their people"}</T>
+            <T variant="caption" muted style={{ marginBottom: 8 }}>{kind === "hotel" ? "Commission Always Fresh pays the hotel" : "Discount for their people"}</T>
             <Wrap>{(kind === "hotel" ? [5, 10, 15] : [10, 15, 20, 25]).map((x) => <Pill key={x} label={`${x}%`} selected={percent === x} onPress={() => setPercent(x)} />)}</Wrap>
             {kind === "corporate" && <Field label="Company email domain (optional)" value={domain} onChangeText={setDomain} autoCapitalize="none" placeholder="emirates.com" style={{ marginTop: 12 }} />}
             <Field label="Contact email" value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" style={{ marginTop: kind === "corporate" ? 0 : 12 }} />

@@ -51,8 +51,8 @@ export default function Settings() {
       {error && <ErrorBox message={error} />}
       <View style={{ flexDirection: wide ? "row" : "column", gap: 16 }}>
         <Card style={{ flex: 1, padding: 20 }}>
-          <T variant="heading">JB fee</T>
-          <T variant="caption" muted style={{ marginTop: 2 }}>The share of each booking JB keeps. Tips always go 100% to the barber.</T>
+          <T variant="heading">Always Fresh fee</T>
+          <T variant="caption" muted style={{ marginTop: 2 }}>The share of each booking Always Fresh keeps. Tips always go 100% to the barber.</T>
           <Row style={{ marginTop: 16, justifyContent: "space-between" }}>
             <Row gap={0} style={{ backgroundColor: colors.surface, borderRadius: radius.pill }}>
               <Pressable accessibilityLabel="Lower the fee" onPress={() => setFee((f) => Math.max(0, f - 1))} style={{ padding: 14 }}><Ionicons name="remove" size={18} color={colors.text} /></Pressable>
@@ -61,7 +61,7 @@ export default function Settings() {
             </Row>
             <Button title="Save fee" size="md" disabled={fee === s.platformFeePercent} loading={busy === "fee"} onPress={() => patch("fee", { platformFeePercent: fee })} />
           </Row>
-          <T variant="caption" muted style={{ marginTop: 12 }}>On an AED 120 cut the barber gets AED {Math.round(120 * (1 - fee / 100))}, JB keeps AED {Math.round(120 * fee / 100)}. Only new bookings use the new fee — tell barbers before you change it.</T>
+          <T variant="caption" muted style={{ marginTop: 12 }}>On an AED 120 cut the barber gets AED {Math.round(120 * (1 - fee / 100))}, Always Fresh keeps AED {Math.round(120 * fee / 100)}. Only new bookings use the new fee — tell barbers before you change it.</T>
         </Card>
 
         <Card style={{ flex: 1, padding: 20 }}>
@@ -74,7 +74,7 @@ export default function Settings() {
 
       <Card style={{ padding: 20, marginTop: 16 }}>
         <T variant="heading">Home visits further away</T>
-        <T variant="caption" muted style={{ marginTop: 2 }}>The barber&apos;s visit fee covers the first {s.travelIncludedKm} km from their pin. Beyond that, customers pay extra for the barber&apos;s taxi there and back, shown before they pay. It all goes to the barber, with no JB fee. Each barber sets how far they go.</T>
+        <T variant="caption" muted style={{ marginTop: 2 }}>The barber&apos;s visit fee covers the first {s.travelIncludedKm} km from their pin. Beyond that, customers pay extra for the barber&apos;s taxi there and back, shown before they pay. It all goes to the barber, with no Always Fresh fee. Each barber sets how far they go.</T>
         <View style={{ flexDirection: wide ? "row" : "column", gap: 16, marginTop: 16, alignItems: wide ? "center" : "flex-start" }}>
           <Stepper label="Included" value={`${includedKm} km`} onLess={() => setIncludedKm((k) => Math.max(0, k - 1))} onMore={() => setIncludedKm((k) => Math.min(100, k + 1))} />
           <Stepper label="Then, a km" value={`AED ${(perKm / 100).toFixed(perKm % 100 ? 2 : 0)}`} onLess={() => setPerKm((p) => Math.max(0, p - 50))} onMore={() => setPerKm((p) => Math.min(5000, p + 50))} />

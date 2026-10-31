@@ -44,7 +44,7 @@ export default function QueueScreen() {
     <View style={{ flex: 1, backgroundColor: colors.ink, paddingTop: insets.top + 28, paddingHorizontal: big ? 56 : 24, paddingBottom: 28 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
         <Pressable onPress={() => router.back()} accessibilityLabel="Close the queue screen" hitSlop={10}>
-          <T variant="eyebrow" color={colors.inkMuted}>{panel?.shop.name ?? "JB Always Fresh"}</T>
+          <T variant="eyebrow" color={colors.inkMuted}>{panel?.shop.name ?? "Always Fresh"}</T>
         </Pressable>
         <T variant="heading" color={colors.onInk}>{time}</T>
       </View>

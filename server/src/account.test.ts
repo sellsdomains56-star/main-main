@@ -75,7 +75,7 @@ test("alerts can be switched off; a copy of your data; deleting the account", as
   assert.equal(mine.json.account.email, "delete@example.com");
   assert.equal(mine.json.bookings.length, 1);
   assert.equal((await call("/me/export", { method: "POST", token: acc.token })).status, 202);
-  assert.ok(db.outbox.some((m) => m.to === "delete@example.com" && /Your JB Always Fresh data/.test(m.subject)));
+  assert.ok(db.outbox.some((m) => m.to === "delete@example.com" && /Your Always Fresh data/.test(m.subject)));
 
   assert.equal((await call("/me", { method: "DELETE", token: acc.token, body: {} })).status, 400, "needs a confirmation");
   assert.equal((await call("/me", { method: "DELETE", token: acc.token, body: { confirm: true } })).status, 204);

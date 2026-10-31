@@ -57,7 +57,7 @@ export const CAMPAIGNS: Campaign[] = [
     cta: "Find a family barber", photoUrl: "/media/demo/cmp-family.jpg", link: { pathname: "/explore", params: { specialty: "kids cut" } },
   },
   {
-    id: "products", eyebrow: "JB's Fresh", title: "Delivered from the shop",
+    id: "products", eyebrow: "Always Fresh", title: "Delivered from the shop",
     body: "Pomade, beard oil and more, brought to your door by your nearest barbershop.",
     cta: "Shop products", photoUrl: "/media/demo/cmp-products.jpg", link: { pathname: "/shops" },
   },

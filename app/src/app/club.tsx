@@ -81,7 +81,7 @@ export default function Club() {
         <>
           {welcome && <T variant="eyebrow" muted style={{ marginBottom: 10 }}>Welcome to The Club</T>}
           <MemberCard plan={active.plan} planName={active.name} number={active.number} name={user?.name ?? ""} validUntil={shortDate(active.paidUntil)} width={cardW} />
-          <T variant="small" muted center style={{ marginTop: 10 }}>Show your card at any JB barbershop · drag it to tilt</T>
+          <T variant="small" muted center style={{ marginTop: 10 }}>Show your card at any Always Fresh barbershop · drag it to tilt</T>
           <Card style={{ marginTop: 18 }}>
             <Row style={{ justifyContent: "space-between" }}>
               <View>
@@ -105,7 +105,7 @@ export default function Club() {
           <T variant="eyebrow" color={colors.inkMuted} style={{ letterSpacing: 3 }}>The Club</T>
           <Text style={{ fontFamily: fonts.display, color: colors.onInk, fontSize: 38, lineHeight: 40, letterSpacing: -1.6, marginTop: 12 }}>Never{"\n"}grown out.</Text>
           <T variant="caption" color={colors.inkMuted} style={{ marginTop: 10, maxWidth: 300 }}>
-            One monthly membership for cuts with any barber on {`JB Always Fresh`} — in the shop, or at your home, hotel or yacht with Black.
+            One monthly membership for cuts with any barber on {`Always Fresh`} — in the shop, or at your home, hotel or yacht with Black.
           </T>
         </View>
       )}
@@ -152,7 +152,7 @@ export default function Club() {
       {!active && plan && (
         <View style={{ marginTop: 14, alignItems: "center" }}>
           <T variant="eyebrow" muted style={{ marginBottom: 10 }}>Your card</T>
-          <MemberCard plan={plan.id} planName={plan.name} number="JB-0000-000" name={user?.name ?? "Your name"} width={Math.min(cardW, 340)} />
+          <MemberCard plan={plan.id} planName={plan.name} number="AF-0000-000" name={user?.name ?? "Your name"} width={Math.min(cardW, 340)} />
         </View>
       )}
       <T variant="small" muted center style={{ marginTop: 18 }}>

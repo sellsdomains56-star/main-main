@@ -13,7 +13,7 @@ export async function addToCalendar(item: CalendarItem, target: CalendarTarget =
   const blob = new Blob([icsFor(item)], { type: "text/calendar;charset=utf-8" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "jb-always-fresh-appointment.ics";
+  a.download = "always-fresh-appointment.ics";
   document.body.appendChild(a);
   a.click();
   a.remove();

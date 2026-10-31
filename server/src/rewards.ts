@@ -44,7 +44,7 @@ export function onCompleted(b: Booking) {
     const cur = b.currency;
     const amount = giftFor(cur).referral;
     credit(customer, cur, amount);
-    notify(customer.id, { kind: "gift", title: "Your welcome credit is in", body: "Thanks for your first cut with JB. Your invite credit is ready for the next one." });
+    notify(customer.id, { kind: "gift", title: "Your welcome credit is in", body: "Thanks for your first cut with Always Fresh. Your invite credit is ready for the next one." });
     if (friend) {
       credit(friend, cur, amount);
       notify(friend.id, { kind: "gift", title: `${customer.name.split(" ")[0]} had their first cut`, body: "You both got credit for your next booking. Thanks for spreading the word." });
@@ -87,7 +87,7 @@ export function runPerks(now = new Date()) {
         u.birthdayGiftYear = now.getUTCFullYear();
         const cur = currencyOf(u);
         credit(u, cur, giftFor(cur).birthday);
-        notify(u.id, { kind: "gift", title: `Happy birthday, ${u.name.split(" ")[0]}`, body: "A birthday treat from JB is in your account. Use it on your next cut or our products." });
+        notify(u.id, { kind: "gift", title: `Happy birthday, ${u.name.split(" ")[0]}`, body: "A birthday treat from Always Fresh is in your account. Use it on your next cut or our products." });
         changed = true;
       }
     }

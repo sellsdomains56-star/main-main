@@ -68,7 +68,7 @@ export default function Help() {
       >
         <IconBadge icon="sparkles" dark size={48} />
         <View style={{ flex: 1 }}>
-          <T variant="heading" color={colors.onInk}>Chat with JB Concierge</T>
+          <T variant="heading" color={colors.onInk}>Chat with Always Fresh Concierge</T>
           <T variant="caption" color={colors.inkMuted}>Instant answers, barber recommendations and booking help — 24/7.</T>
         </View>
         <Ionicons name="arrow-forward" size={20} color={colors.onInk} />

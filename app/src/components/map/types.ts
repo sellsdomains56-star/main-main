@@ -77,7 +77,7 @@ export function shopPins(shops: ShopSummary[]): MapPin[] {
     id: s.id,
     lat: s.lat,
     lng: s.lng,
-    label: s.name.replace(/^JB’s Fresh /, "JB’s "),
+    label: s.name,
     free: true,
     kind: "shop" as const,
     title: s.name,

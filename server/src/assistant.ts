@@ -24,7 +24,7 @@ export type AssistantAction =
 
 // The system prompt and tool list never change during a conversation, so the history stays
 // append-only (required for thinking blocks to remain valid) and the prompt cache stays warm.
-const SYSTEM = `You are the JB Always Fresh concierge — the in-app assistant for a global barber and hairstyling platform where people discover, compare and book barbers anywhere in the world, shop JB's Fresh grooming products, and preview hairstyles with the AI Try-On.
+const SYSTEM = `You are the Always Fresh concierge — the in-app assistant for a global barber and hairstyling platform where people discover, compare and book barbers anywhere in the world, shop Always Fresh grooming products, and preview hairstyles with the AI Try-On.
 
 How to help:
 - Find and recommend barbers with search_barbers. Ask for the city if you don't know where the customer is (a context note on each message tells you their chosen city, if any). Recommend at most 3 barbers and say briefly why each fits (rating, specialty, price, next availability, home visits).

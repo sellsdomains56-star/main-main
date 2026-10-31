@@ -41,5 +41,5 @@ export async function sendEmail(email: Email): Promise<boolean> {
 
 /** A plain, readable email body: greeting, lines, sign-off. */
 export function letter(name: string, lines: string[]) {
-  return [`Hi ${name.split(" ")[0]},`, "", ...lines, "", "Stay fresh,", "JB Always Fresh"].join("\n");
+  return [`Hi ${name.split(" ")[0]},`, "", ...lines, "", "Stay fresh,", "Always Fresh"].join("\n");
 }

@@ -54,7 +54,7 @@ async function request<T>(path: string, init: { method?: string; body?: unknown;
       body: init.body !== undefined ? JSON.stringify(init.body) : undefined,
     });
   } catch {
-    throw new ApiError(0, "Can't reach JB Always Fresh right now. Check your connection.");
+    throw new ApiError(0, "Can't reach Always Fresh right now. Check your connection.");
   }
   if (res.status === 204) return undefined as T;
   const data = await res.json().catch(() => ({}));
@@ -67,7 +67,7 @@ async function requestText(path: string): Promise<string> {
   await authLoaded;
   if (demo) return String(await demo("GET", path, undefined as never, authToken));
   const res = await fetch(API_URL + path, { headers: authToken ? { authorization: `Bearer ${authToken}` } : {} }).catch(() => {
-    throw new ApiError(0, "Can't reach JB Always Fresh right now. Check your connection.");
+    throw new ApiError(0, "Can't reach Always Fresh right now. Check your connection.");
   });
   const text = await res.text();
   if (!res.ok) throw new ApiError(res.status, (() => { try { return JSON.parse(text).error; } catch { return "Something went wrong."; } })());
@@ -292,7 +292,7 @@ export const api = {
   leaveQueue: (shopId: string) => request<void>(`/shops/${shopId}/queue/mine`, { method: "DELETE" }),
   saveServices: (services: { id?: string; name: string; durationMin: number; price: number; category?: ServiceCategory; description?: string }[]) => request<Barber>("/barbers/me/services", { method: "PUT", body: { services } }),
 
-  // Admin panel (the JB Always Fresh team)
+  // Admin panel (the Always Fresh team)
   admin: {
     overview: () => request<AdminOverview>("/admin/overview"),
     barbers: (f: { status?: string; q?: string }) => request<AdminBarberRow[]>("/admin/barbers" + qs(f)),

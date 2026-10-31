@@ -8,19 +8,19 @@ export const AGREEMENT_VERSION = "2026-10";
 export const AGREEMENT = {
   title: "Independent Barber Agreement",
   intro:
-    "This agreement sets out how you work with JB Always Fresh as an independent barber. Please read it in full. You sign it once, electronically, before your profile goes live.",
+    "This agreement sets out how you work with Always Fresh as an independent barber. Please read it in full. You sign it once, electronically, before your profile goes live.",
   sections: [
     {
       heading: "1. Who this agreement is between",
-      body: "This agreement is between {company} (\"JB\"), which runs the JB Always Fresh app, and you, the barber who signs below. You join as an independent professional: you are not JB's employee, partner or agent, and you decide when, where and how you work.",
+      body: "This agreement is between {company} (\"Always Fresh\"), which runs the Always Fresh app, and you, the barber who signs below. You join as an independent professional: you are not Always Fresh's employee, partner or agent, and you decide when, where and how you work.",
     },
     {
-      heading: "2. What JB does",
-      body: "JB lists you in the app, lets customers find and book you, takes payment from customers on your behalf, sends booking confirmations and reminders, and gives you and your customers support. JB does not promise any number of bookings.",
+      heading: "2. What Always Fresh does",
+      body: "Always Fresh lists you in the app, lets customers find and book you, takes payment from customers on your behalf, sends booking confirmations and reminders, and gives you and your customers support. Always Fresh does not promise any number of bookings.",
     },
     {
       heading: "3. Your licence and your ID",
-      body: "You confirm that you hold a valid licence or permit to work as a barber where you work, and a valid Emirates ID (or passport, outside the UAE). You keep them valid, show them to JB when asked, and tell JB within 7 days if any of them is suspended, cancelled or expires. JB may pause your profile until valid documents are on file.",
+      body: "You confirm that you hold a valid licence or permit to work as a barber where you work, and a valid Emirates ID (or passport, outside the UAE). You keep them valid, show them to Always Fresh when asked, and tell Always Fresh within 7 days if any of them is suspended, cancelled or expires. Always Fresh may pause your profile until valid documents are on file.",
     },
     {
       heading: "4. Standards of work",
@@ -28,7 +28,7 @@ export const AGREEMENT = {
     },
     {
       heading: "5. Prices, payment and fees",
-      body: "You set your own services and prices in the app. Customers pay through the app. JB keeps a service fee of {fee}% of the price of each booking made through the app. Tips always go to you in full, and bookings you add yourself (walk-ins, phone bookings) carry no JB fee. JB pays your share to your bank account every week, or automatically through Stripe once you set up payouts. You are responsible for your own taxes, including VAT if you are registered for it.",
+      body: "You set your own services and prices in the app. Customers pay through the app. Always Fresh keeps a service fee of {fee}% of the price of each booking made through the app. Tips always go to you in full, and bookings you add yourself (walk-ins, phone bookings) carry no Always Fresh fee. Always Fresh pays your share to your bank account every week, or automatically through Stripe once you set up payouts. You are responsible for your own taxes, including VAT if you are registered for it.",
     },
     {
       heading: "6. Cancellations and no-shows",
@@ -40,23 +40,23 @@ export const AGREEMENT = {
     },
     {
       heading: "8. Photos and videos",
-      body: "You only post photos or videos of a customer with that customer's agreement. You keep the rights to your content and allow JB to show it in the app and in JB's marketing while you are on JB Always Fresh.",
+      body: "You only post photos or videos of a customer with that customer's agreement. You keep the rights to your content and allow Always Fresh to show it in the app and in Always Fresh's marketing while you are on Always Fresh.",
     },
     {
       heading: "9. Responsibility and insurance",
-      body: "You are responsible for the services you provide and for any harm they cause. Where the law or your licence requires insurance, you keep it in place. As far as the law allows, JB is not responsible for the services you provide.",
+      body: "You are responsible for the services you provide and for any harm they cause. Where the law or your licence requires insurance, you keep it in place. As far as the law allows, Always Fresh is not responsible for the services you provide.",
     },
     {
       heading: "10. Reviews and complaints",
-      body: "Customers can review your work. JB may remove reviews that break the app's rules. JB handles customer complaints and may refund a customer when a service was not delivered as booked.",
+      body: "Customers can review your work. Always Fresh may remove reviews that break the app's rules. Always Fresh handles customer complaints and may refund a customer when a service was not delivered as booked.",
     },
     {
       heading: "11. Pausing and leaving",
-      body: "You can leave at any time (Settings → Delete account); your upcoming bookings are then cancelled and refunded. JB may pause or remove your profile if you break this agreement, if your documents are no longer valid, or if customers' safety is at risk, and JB will tell you why.",
+      body: "You can leave at any time (Settings → Delete account); your upcoming bookings are then cancelled and refunded. Always Fresh may pause or remove your profile if you break this agreement, if your documents are no longer valid, or if customers' safety is at risk, and Always Fresh will tell you why.",
     },
     {
       heading: "12. Changes to this agreement",
-      body: "JB may update this agreement. JB tells you about changes in the app at least 14 days before they apply, and asks you to sign again when the changes are significant.",
+      body: "Always Fresh may update this agreement. Always Fresh tells you about changes in the app at least 14 days before they apply, and asks you to sign again when the changes are significant.",
     },
     {
       heading: "13. Law",

@@ -51,7 +51,7 @@ test("The Club: join Fresh, first cut is included, second is paid, products disc
   const paid = await pay(token, join.json.purchase.id);
   assert.equal(paid.json.membership.active, true);
   assert.equal(paid.json.membership.cutsLeft, 1);
-  assert.match(paid.json.membership.number, /^JB-\d{4}-\d{3}$/);
+  assert.match(paid.json.membership.number, /^AF-\d{4}-\d{3}$/);
 
   const b5 = (await call("/barbers/b5")).json;
   const cut = b5.services[0];
@@ -94,10 +94,10 @@ test("gift cards: buy, pay, the code shows once; redeem once into credit that pa
   assert.equal(g.json.gift.code, null); // not until it's paid
   const paid = await pay(buyer, g.json.purchase.id);
   const code = paid.json.gift.code as string;
-  assert.match(code, /^JBF-[A-Z0-9]{4}-[A-Z0-9]{4}$/);
+  assert.match(code, /^AFG-[A-Z0-9]{4}-[A-Z0-9]{4}$/);
 
   const friend = await customer("gift-friend@example.com");
-  assert.equal((await call("/gifts/redeem", { token: friend, body: { code: "JBF-NOPE-NOPE" } })).status, 404);
+  assert.equal((await call("/gifts/redeem", { token: friend, body: { code: "AFG-NOPE-NOPE" } })).status, 404);
   const redeemed = await call("/gifts/redeem", { token: friend, body: { code: code.toLowerCase() } });
   assert.equal(redeemed.json.credit.gbp, 5000);
   assert.equal((await call("/gifts/redeem", { token: friend, body: { code } })).status, 409);

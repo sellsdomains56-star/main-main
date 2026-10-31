@@ -17,7 +17,7 @@ export interface Plan {
   tagline: string;
   prices: Record<string, number>; // per 30 days, minor units
   cutsPerPeriod: number | null; // null = unlimited
-  productDiscount: number; // percent off JB's Fresh products
+  productDiscount: number; // percent off Always Fresh products
   freeHomeVisits: boolean;
   perks: string[];
 }
@@ -25,15 +25,15 @@ export interface Plan {
 export const PLANS: Plan[] = [
   {
     id: "fresh", name: "Fresh", tagline: "One cut a month, always on point.", prices: price(3900, 159), cutsPerPeriod: 1, productDiscount: 10, freeHomeVisits: false,
-    perks: ["1 service a month with any barber", "10% off JB's Fresh products", "Member card in the app"],
+    perks: ["1 service a month with any barber", "10% off Always Fresh products", "Member card in the app"],
   },
   {
     id: "regular", name: "Regular", tagline: "Every two weeks. Never grown out.", prices: price(6900, 279), cutsPerPeriod: 2, productDiscount: 15, freeHomeVisits: false,
-    perks: ["2 services a month with any barber", "15% off JB's Fresh products", "Member card in the app"],
+    perks: ["2 services a month with any barber", "15% off Always Fresh products", "Member card in the app"],
   },
   {
     id: "black", name: "Black", tagline: "Unlimited. At the shop or at your door.", prices: price(14900, 599), cutsPerPeriod: null, productDiscount: 20, freeHomeVisits: true,
-    perks: ["Unlimited services with any barber", "Home, hotel and yacht visits included", "20% off JB's Fresh products", "Black member card in the app"],
+    perks: ["Unlimited services with any barber", "Home, hotel and yacht visits included", "20% off Always Fresh products", "Black member card in the app"],
   },
 ];
 
@@ -125,8 +125,8 @@ export function returnPerks(booking: Booking) {
 
 const ALPHABET = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ"; // no 0/O or 1/I
 const block = () => Array.from({ length: 4 }, () => ALPHABET[randomInt(ALPHABET.length)]).join("");
-export const newGiftCode = () => `JBF-${block()}-${block()}`;
-export const memberNumber = () => `JB-${String(randomInt(10000)).padStart(4, "0")}-${String(randomInt(1000)).padStart(3, "0")}`;
+export const newGiftCode = () => `AFG-${block()}-${block()}`;
+export const memberNumber = () => `AF-${String(randomInt(10000)).padStart(4, "0")}-${String(randomInt(1000)).padStart(3, "0")}`;
 
 export const GIFT_AMOUNTS: Record<string, number[]> = {
   eur: [5000, 10000, 15000, 25000],

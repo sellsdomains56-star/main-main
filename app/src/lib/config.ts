@@ -26,5 +26,5 @@ export const APPLE_MERCHANT_ID = "merchant.com.alwaysfresh.app";
 export const MERCHANT_COUNTRY = process.env.EXPO_PUBLIC_MERCHANT_COUNTRY ?? "DE";
 
 // Brand name shown throughout the app — change it here.
-export const APP_NAME = "JB Always Fresh";
-export const SHOP_NAME = "JB's Fresh";
+export const APP_NAME = "Always Fresh";
+export const SHOP_NAME = "Always Fresh";

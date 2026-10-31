@@ -1,4 +1,4 @@
-// Renders the JB logo (monogram + ALWAYS FRESH + EST. 2026) in black and white versions into
+// Renders the Always Fresh logo (AF monogram + ALWAYS FRESH + EST. 2026) in black and white versions into
 // assets/brand/logo/: transparent PNGs for print/social, previews on a background, and the
 // monogram on its own as SVG. Needs Playwright's Chromium:
 //   PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/make-logos.mjs
@@ -16,7 +16,7 @@ const WHITE = "#F4F2EE";
 const monogramSvg = (color, stroke = 2.4) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${mono.viewBox}" width="512" height="512">${mono.paths.map((d) => `<path d="${d}" fill="none" stroke="${color}" stroke-width="${stroke}" stroke-linecap="square"/>`).join("")}</svg>`;
 
-for (const [name, color] of [["black", BLACK], ["white", WHITE]]) writeFileSync(new URL(`jb-monogram-${name}.svg`, out), monogramSvg(color) + "\n");
+for (const [name, color] of [["black", BLACK], ["white", WHITE]]) writeFileSync(new URL(`always-fresh-monogram-${name}.svg`, out), monogramSvg(color) + "\n");
 
 const lockup = (color, bg) => `<!doctype html><html><head><style>
 @font-face { font-family: InterB; src: url(data:font/ttf;base64,${font("700Bold")}); }
@@ -31,10 +31,10 @@ body { margin: 0; background: ${bg}; }
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 2000, height: 1600 } });
 const shots = [
-  ["jb-logo-black.png", BLACK, "transparent"],
-  ["jb-logo-white.png", WHITE, "transparent"],
-  ["jb-logo-black-on-white.png", BLACK, "#FFFFFF"],
-  ["jb-logo-white-on-black.png", WHITE, BLACK],
+  ["always-fresh-logo-black.png", BLACK, "transparent"],
+  ["always-fresh-logo-white.png", WHITE, "transparent"],
+  ["always-fresh-logo-black-on-white.png", BLACK, "#FFFFFF"],
+  ["always-fresh-logo-white-on-black.png", WHITE, BLACK],
 ];
 for (const [file, color, bg] of shots) {
   await page.setContent(lockup(color, bg));

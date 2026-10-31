@@ -3,7 +3,7 @@ import type { AddressInfo } from "node:net";
 import { after, before, test } from "node:test";
 
 // The team's email must be known before the config loads.
-process.env.ADMIN_EMAILS = "boss@jbalwaysfresh.com";
+process.env.ADMIN_EMAILS = "boss@alwaysfresh.app";
 const { createApp } = await import("./app.js");
 
 let base = "";
@@ -45,7 +45,7 @@ test("only the team opens the admin panel", async () => {
   const someone = await register("Some One", "someone@example.com");
   assert.equal((await call("/admin/overview")).status, 401);
   assert.equal((await call("/admin/overview", { token: someone.token })).status, 403);
-  const boss = await register("The Boss", "boss@jbalwaysfresh.com");
+  const boss = await register("The Boss", "boss@alwaysfresh.app");
   assert.equal(boss.user.admin, true);
   const { status, json } = await call("/admin/overview", { token: boss.token });
   assert.equal(status, 200);
@@ -54,7 +54,7 @@ test("only the team opens the admin panel", async () => {
 });
 
 test("new barbers wait for approval; the team approves, verifies and suspends", async () => {
-  const boss = (await call("/auth/login", { body: { email: "boss@jbalwaysfresh.com", password: "password123" } })).json;
+  const boss = (await call("/auth/login", { body: { email: "boss@alwaysfresh.app", password: "password123" } })).json;
   await call("/admin/settings", { method: "PATCH", token: boss.token, body: { reviewNewBarbers: true } });
   const acc = (await call("/auth/register-barber", {
     body: { name: "Karim Pending", email: "karim@example.com", password: "password123", countryCode: "AE", city: "Dubai", shopAddress: "JLT Cluster D", haircutPrice: 8000 },
@@ -131,7 +131,7 @@ test("barbers run their business: services, hours, days off, dashboard", async (
 });
 
 test("the team cancels with a refund, moderates reels, answers tickets and sets the fee", async () => {
-  const boss = (await call("/auth/login", { body: { email: "boss@jbalwaysfresh.com", password: "password123" } })).json;
+  const boss = (await call("/auth/login", { body: { email: "boss@alwaysfresh.app", password: "password123" } })).json;
   const customer = await register("Tia Ticket", "tia@example.com");
 
   // Cancel a paid booking for a customer.

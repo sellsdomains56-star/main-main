@@ -22,7 +22,7 @@ export default function MyLink() {
   if (!link) return <Screen>{error ? <ErrorBox message={error} /> : <Loading />}</Screen>;
 
   const share = async () => {
-    const how = await shareText(`Book ${link.name}`, `Book your next cut with me on JB Always Fresh:`, link.url);
+    const how = await shareText(`Book ${link.name}`, `Book your next cut with me on Always Fresh:`, link.url);
     setNote(how === "copied" ? "Link copied." : null);
   };
 

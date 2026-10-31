@@ -141,7 +141,7 @@ export default function Gifts() {
         )}
         <Row gap={10} style={{ alignItems: "flex-end" }}>
           <View style={{ flex: 1 }}>
-            <Field label="Gift card code" value={code} onChangeText={(v) => setCode(v.toUpperCase())} autoCapitalize="characters" placeholder="JBF-XXXX-XXXX" style={{ marginBottom: 0 }} />
+            <Field label="Gift card code" value={code} onChangeText={(v) => setCode(v.toUpperCase())} autoCapitalize="characters" placeholder="AFG-XXXX-XXXX" style={{ marginBottom: 0 }} />
           </View>
           <Button title="Redeem" variant="secondary" onPress={redeem} disabled={code.trim().length < 8} />
         </Row>

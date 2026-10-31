@@ -62,7 +62,7 @@ test("book any barber at a shop: the best-rated free barber gets it", async () =
   const first = await call(`/shops/${PECKHAM}/bookings`, { token, body: { service: "skin-fade", startsAt: slot } });
   assert.equal(first.status, 201);
   assert.equal(first.json.booking.barber.name, "Dre Clipz"); // 4.9 beats 4.8
-  assert.equal(first.json.booking.shop.name, "JB’s Fresh Peckham");
+  assert.equal(first.json.booking.shop.name, "Always Fresh Peckham");
   // Same time again: the other barber takes it; a third time, the shop is full.
   const second = await call(`/shops/${PECKHAM}/bookings`, { token, body: { service: "skin-fade", startsAt: slot } });
   assert.equal(second.json.booking.barber.name, "Theo Mensah");
@@ -127,7 +127,7 @@ test("delivery from a barbershop: shop terms, stock check, courier updates", asy
   const small = await call("/orders", { token, body: { ...base, items: [{ productId: "p-brush", quantity: 1 }] } });
   assert.equal(small.status, 201);
   assert.equal(small.json.order.shipping, 399);
-  assert.equal(small.json.order.shop.name, "JB’s Fresh Peckham");
+  assert.equal(small.json.order.shop.name, "Always Fresh Peckham");
 
   // Shaw & Sons doesn't deliver; Paris can't deliver to the UK.
   assert.equal((await call("/orders", { token, body: { ...base, shopId: "s-london-jermyn", items: [{ productId: "p-shampoo", quantity: 1 }] } })).status, 400);

@@ -6,7 +6,7 @@ Copy for both stores, ready to paste. Character limits are noted where the store
 
 | Field | Text | Limit |
 |---|---|---|
-| App name | JB Always Fresh | 30 |
+| App name | Always Fresh | 30 |
 | Subtitle (iOS) | Book top barbers, home or shop | 30 |
 | Short description (Android) | Book Dubai's best barbers at the shop, at home or in your hotel. Pay in the app. | 80 |
 | Promotional text (iOS, can change without review) | New: book your usual in one tap, join a shop's walk-in queue from your phone, and message your barber. | 170 |
@@ -15,7 +15,7 @@ Copy for both stores, ready to paste. Character limits are noted where the store
 
 > Fresh cuts, on your schedule.
 >
-> JB Always Fresh is the easiest way to book a great barber in Dubai and beyond, at the barbershop, at your home, your hotel suite or even your yacht.
+> Always Fresh is the easiest way to book a great barber in Dubai and beyond, at the barbershop, at your home, your hotel suite or even your yacht.
 >
 > **Find your barber**
 > • Browse verified barbers with real reviews, photos of their work, before-and-afters and reels
@@ -36,7 +36,7 @@ Copy for both stores, ready to paste. Character limits are noted where the store
 >
 > **Try before you cut**
 > • AI Try-On shows new styles on your own photo
-> • The JB Concierge answers questions 24/7
+> • The Always Fresh Concierge answers questions 24/7
 >
 > **For barbers and barbershops**
 > Barbers get a business dashboard: their calendar, earnings, clients, booking rules and a personal booking link with QR code. Barbershops get a shop panel with every chair's calendar, walk-ins, a virtual queue, check-in tablet, staff roles and payroll.
@@ -57,7 +57,7 @@ Copy for both stores, ready to paste. Character limits are noted where the store
 
 ## Privacy
 
-Privacy policy URL: `https://jbalwaysfresh.com/legal/privacy` (the in-app page at Settings → Privacy policy, published on the website).
+Privacy policy URL: `https://alwaysfresh.app/legal/privacy` (the in-app page at Settings → Privacy policy, published on the website).
 
 ### Apple privacy "nutrition label" (Data linked to the user)
 
@@ -71,7 +71,7 @@ Privacy policy URL: `https://jbalwaysfresh.com/legal/privacy` (the in-app page a
 | User ID, device ID (push token) | App functionality | No |
 | Customer support messages, in-app messages | App functionality, customer support | No |
 
-No data is used for tracking or sold. Payment card details are handled by Stripe and never reach JB.
+No data is used for tracking or sold. Payment card details are handled by Stripe and never reach Always Fresh.
 
 ### Permissions: when each is asked, and why
 
@@ -105,7 +105,7 @@ Same data as above. Data is encrypted in transit. Users can request deletion in 
 ## App Review notes (iOS)
 
 > Sign-in for review: create an account in the app, or use the sample customer `omar@example.com` / `customer-demo` on the review build. Payments run in Stripe test mode on the review build: use card 4242 4242 4242 4242, any future date, any CVC.
-> Barber side: `mateo@demo.jbalwaysfresh.com` / `jb-barber-demo`. Barbershop panel: `owner@demo.jbalwaysfresh.com` / `jb-shop-demo`.
+> Barber side: `mateo@demo.alwaysfresh.app` / `fresh-barber-demo`. Barbershop panel: `owner@demo.alwaysfresh.app` / `fresh-shop-demo`.
 > Account deletion: Settings → Delete account.
 > Permissions are asked only when a feature is used, each after a short explanation: location for "Nearest" or "Use my location" on a home visit, the camera when tapping Camera, notifications after the first booking or from Alerts, the calendar when tapping Add to calendar. Settings → Permissions lists them. No background location, microphone or tracking.
 

@@ -294,7 +294,7 @@ function NewBooking({ cal, draft, onClose, onDone }: { cal: ShopCalendar; draft:
       <Field label="Client's name" value={name} onChangeText={setName} placeholder="e.g. Ahmed" />
       <Field label="Phone (optional)" value={phone} onChangeText={setPhone} keyboardType="phone-pad" placeholder="+971 …" />
       <Field label="Notes (optional)" value={notes} onChangeText={setNotes} placeholder="e.g. same as last time" />
-      <IconLine icon="information-circle-outline" muted>Paid at the shop — no JB fee. The app won't offer this time to anyone else.</IconLine>
+      <IconLine icon="information-circle-outline" muted>Paid at the shop — no Always Fresh fee. The app won't offer this time to anyone else.</IconLine>
       {error && <View style={{ marginTop: 12 }}><ErrorBox message={error} /></View>}
       <Button title={chosen ? `Book ${hhmm(chosen, tz)}` : "Pick a time"} onPress={save} loading={busy} disabled={!chosen || !name.trim()} style={{ marginTop: 16 }} />
     </Sheet>

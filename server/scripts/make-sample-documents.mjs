@@ -29,7 +29,7 @@ const card = (inner) => `<style>${base}
   .head { width: 86px; height: 86px; border-radius: 50%; background: #9aa6b3; margin-bottom: 8px; }
   .body { width: 150px; height: 70px; border-radius: 75px 75px 0 0; background: #9aa6b3; }
   dl { display: grid; grid-template-columns: 170px 1fr; row-gap: 14px; font-size: 19px; } dt { color: #5a6675; } dd { font-weight: 700; }
-</style><div class="card">${inner}<div class="mark"><span>SAMPLE</span></div><div class="note">SAMPLE FOR THE JB ALWAYS FRESH DEMO · NOT A REAL DOCUMENT</div></div>`;
+</style><div class="card">${inner}<div class="mark"><span>SAMPLE</span></div><div class="note">SAMPLE FOR THE ALWAYS FRESH DEMO · NOT A REAL DOCUMENT</div></div>`;
 
 const pages = {
   "sample-id-front.jpg": card(`
@@ -49,7 +49,7 @@ const pages = {
   </style><div class="doc"><h1>BARBER LICENCE</h1><h2>SAMPLE DOCUMENT</h2>
     <p>This sample certifies that the holder is permitted to practise as a barber.</p>
     <dl><dt>Holder</dt><dd>SAMPLE BARBER</dd><dt>Licence number</dt><dd>BL-2026-004512</dd><dt>Issued by</dt><dd>Sample Licensing Authority</dd><dt>Valid until</dt><dd>30/09/2027</dd></dl>
-    <div class="seal">SAMPLE</div><div class="mark"><span>SAMPLE</span></div><div class="note">SAMPLE FOR THE JB ALWAYS FRESH DEMO · NOT A REAL DOCUMENT</div></div>`,
+    <div class="seal">SAMPLE</div><div class="mark"><span>SAMPLE</span></div><div class="note">SAMPLE FOR THE ALWAYS FRESH DEMO · NOT A REAL DOCUMENT</div></div>`,
 };
 
 const browser = await chromium.launch();

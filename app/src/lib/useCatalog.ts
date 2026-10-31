@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { api } from "./api";
 import type { Catalog } from "./types";
 
-/** JB's Fresh products priced in the currency of the given country. */
+/** Always Fresh products priced in the currency of the given country. */
 export function useCatalog(countryCode?: string) {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [error, setError] = useState<string | null>(null);

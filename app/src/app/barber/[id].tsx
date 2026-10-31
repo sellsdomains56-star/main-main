@@ -98,9 +98,9 @@ export default function BarberProfile() {
         <Photo uri={barber.photoUrl} name={barber.name} style={{ width: 112, height: 112 }} rounded={56} />
         <Row gap={6} style={{ marginTop: 14 }}>
           <T variant="title">{barber.name}</T>
-          {barber.verified && <Ionicons name="shield-checkmark" size={18} color={colors.text} accessibilityLabel="Verified by JB" />}
+          {barber.verified && <Ionicons name="shield-checkmark" size={18} color={colors.text} accessibilityLabel="Verified by Always Fresh" />}
         </Row>
-        <T variant="caption" muted style={{ marginTop: 2 }}>{flag(barber.countryCode)} {barber.city}, {barber.countryName}{barber.verified ? " · Verified by JB" : ""}</T>
+        <T variant="caption" muted style={{ marginTop: 2 }}>{flag(barber.countryCode)} {barber.city}, {barber.countryName}{barber.verified ? " · Verified by Always Fresh" : ""}</T>
         <Row gap={6} style={{ marginTop: 8, flexWrap: "wrap", justifyContent: "center" }}>
           {barber.award && <Pressable onPress={() => router.push("/awards")} accessibilityRole="link"><Tag label={barber.award.label} icon="trophy-outline" tone="dark" /></Pressable>}
           {barber.level && barber.level !== "new" && <Tag label={`${LEVEL_LABEL[barber.level]} barber`} icon="ribbon-outline" tone={barber.award ? "neutral" : "dark"} />}

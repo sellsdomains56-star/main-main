@@ -72,7 +72,7 @@ export function fullMenu(prefix: string, specialties: string[], p: { cut: number
     ["fresh", "The Full Fresh", "packages", 90, n((c + p.beard) * 1.6), "Haircut, beard sculpt, hot towel, express facial and a head massage."],
     (has("hot towel shave", "side part") || c >= 10000) && ["groom", "Groom package", "packages", 120, n(c * 3.2), "For the big day: cut, hot towel shave, facial, black mask and styling."],
     ["towel", "Hot towel", "extras", 10, n(c * 0.15), "A hot towel to finish any service."],
-    ["wash", "Hair wash & style", "extras", 10, n(c * 0.2), "Wash, condition and style with JB's Fresh products."],
+    ["wash", "Hair wash & style", "extras", 10, n(c * 0.2), "Wash, condition and style with Always Fresh products."],
     ["massage", "Head & shoulder massage", "extras", 15, n(c * 0.3), "Ten minutes to switch off."],
     ["brows", "Eyebrow threading", "extras", 10, n(c * 0.2), "Clean, natural brows."],
     ["wax", "Nose & ear wax", "extras", 10, n(c * 0.2), "Quick and tidy."],
