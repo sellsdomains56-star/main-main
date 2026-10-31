@@ -1,0 +1,1208 @@
+{
+"fps": 60,
+"frames": 4310,
+"voice_dur": 71.83333333333333,
+"dur": 73.833,
+"words": [
+{
+"t": 0.13,
+"e": 0.22,
+"text": "Before",
+"chunk": 0
+},
+{
+"t": 0.22,
+"e": 0.42,
+"text": "you",
+"chunk": 0
+},
+{
+"t": 0.42,
+"e": 0.58,
+"text": "buy",
+"chunk": 0
+},
+{
+"t": 0.58,
+"e": 0.68,
+"text": "a",
+"chunk": 1
+},
+{
+"t": 0.68,
+"e": 0.92,
+"text": "commercial",
+"chunk": 1
+},
+{
+"t": 0.92,
+"e": 1.34,
+"text": "property",
+"chunk": 1
+},
+{
+"t": 1.34,
+"e": 1.62,
+"text": "in",
+"chunk": 2
+},
+{
+"t": 1.62,
+"e": 1.82,
+"text": "Dubai,",
+"chunk": 2
+},
+{
+"t": 2.12,
+"e": 2.42,
+"text": "look",
+"chunk": 3
+},
+{
+"t": 2.42,
+"e": 2.56,
+"text": "at",
+"chunk": 3
+},
+{
+"t": 2.56,
+"e": 2.76,
+"text": "what's",
+"chunk": 3
+},
+{
+"t": 2.76,
+"e": 2.92,
+"text": "coming",
+"chunk": 4
+},
+{
+"t": 2.92,
+"e": 3.12,
+"text": "to",
+"chunk": 4
+},
+{
+"t": 3.12,
+"e": 3.3,
+"text": "Motor",
+"chunk": 4
+},
+{
+"t": 3.3,
+"e": 3.6,
+"text": "City.",
+"chunk": 5
+},
+{
+"t": 4.02,
+"e": 4.28,
+"text": "O1NE",
+"chunk": 6
+},
+{
+"t": 4.82,
+"e": 5.32,
+"text": "District",
+"chunk": 6
+},
+{
+"t": 5.32,
+"e": 5.76,
+"text": "by",
+"chunk": 6
+},
+{
+"t": 5.76,
+"e": 7.4,
+"text": "AVENEW",
+"chunk": 7
+},
+{
+"t": 7.4,
+"e": 7.86,
+"text": "and",
+"chunk": 7
+},
+{
+"t": 7.86,
+"e": 8.38,
+"text": "KORA",
+"chunk": 7
+},
+{
+"t": 8.38,
+"e": 8.88,
+"text": "sits",
+"chunk": 8
+},
+{
+"t": 8.88,
+"e": 9.18,
+"text": "next",
+"chunk": 8
+},
+{
+"t": 9.18,
+"e": 9.4,
+"text": "to",
+"chunk": 8
+},
+{
+"t": 9.4,
+"e": 9.6,
+"text": "Dubai",
+"chunk": 9
+},
+{
+"t": 9.6,
+"e": 10.24,
+"text": "Autodrome.",
+"chunk": 9
+},
+{
+"t": 10.855,
+"e": 10.975,
+"text": "The",
+"chunk": 10
+},
+{
+"t": 10.88,
+"e": 11.12,
+"text": "master",
+"chunk": 10
+},
+{
+"t": 11.12,
+"e": 11.36,
+"text": "plan",
+"chunk": 10
+},
+{
+"t": 11.36,
+"e": 11.76,
+"text": "includes",
+"chunk": 11
+},
+{
+"t": 11.76,
+"e": 12.1,
+"text": "six",
+"chunk": 11
+},
+{
+"t": 12.1,
+"e": 12.44,
+"text": "commercial",
+"chunk": 12
+},
+{
+"t": 12.44,
+"e": 12.86,
+"text": "towers,",
+"chunk": 12
+},
+{
+"t": 13.34,
+"e": 13.56,
+"text": "retail,",
+"chunk": 13
+},
+{
+"t": 13.86,
+"e": 14.22,
+"text": "healthcare",
+"chunk": 14
+},
+{
+"t": 14.22,
+"e": 14.6,
+"text": "facilities",
+"chunk": 14
+},
+{
+"t": 14.98,
+"e": 15.2,
+"text": "and",
+"chunk": 15
+},
+{
+"t": 15.2,
+"e": 15.74,
+"text": "landscaped",
+"chunk": 15
+},
+{
+"t": 15.74,
+"e": 15.94,
+"text": "public",
+"chunk": 15
+},
+{
+"t": 15.94,
+"e": 16.4,
+"text": "spaces.",
+"chunk": 16
+},
+{
+"t": 16.94,
+"e": 17.22,
+"text": "DAWN",
+"chunk": 17
+},
+{
+"t": 17.22,
+"e": 17.46,
+"text": "is",
+"chunk": 17
+},
+{
+"t": 17.46,
+"e": 17.6,
+"text": "the",
+"chunk": 17
+},
+{
+"t": 17.6,
+"e": 17.84,
+"text": "first",
+"chunk": 18
+},
+{
+"t": 17.84,
+"e": 18.12,
+"text": "office",
+"chunk": 18
+},
+{
+"t": 18.12,
+"e": 18.38,
+"text": "tower",
+"chunk": 18
+},
+{
+"t": 18.38,
+"e": 18.6,
+"text": "in",
+"chunk": 19
+},
+{
+"t": 18.6,
+"e": 18.68,
+"text": "the",
+"chunk": 19
+},
+{
+"t": 18.68,
+"e": 19.0,
+"text": "district,",
+"chunk": 19
+},
+{
+"t": 19.43,
+"e": 19.52,
+"text": "with",
+"chunk": 20
+},
+{
+"t": 19.52,
+"e": 19.76,
+"text": "direct",
+"chunk": 20
+},
+{
+"t": 19.76,
+"e": 20.04,
+"text": "mall",
+"chunk": 20
+},
+{
+"t": 20.04,
+"e": 20.44,
+"text": "connectivity,",
+"chunk": 21
+},
+{
+"t": 21.08,
+"e": 21.24,
+"text": "sky",
+"chunk": 22
+},
+{
+"t": 21.24,
+"e": 21.74,
+"text": "gardens,",
+"chunk": 22
+},
+{
+"t": 22.335,
+"e": 22.52,
+"text": "outdoor",
+"chunk": 23
+},
+{
+"t": 22.52,
+"e": 23.32,
+"text": "workspaces",
+"chunk": 23
+},
+{
+"t": 23.48,
+"e": 23.7,
+"text": "and",
+"chunk": 24
+},
+{
+"t": 23.7,
+"e": 23.94,
+"text": "rooftop",
+"chunk": 24
+},
+{
+"t": 23.94,
+"e": 24.3,
+"text": "dining",
+"chunk": 24
+},
+{
+"t": 24.3,
+"e": 24.64,
+"text": "planned.",
+"chunk": 25
+},
+{
+"t": 25.1,
+"e": 25.16,
+"text": "For",
+"chunk": 26
+},
+{
+"t": 25.16,
+"e": 25.26,
+"text": "a",
+"chunk": 26
+},
+{
+"t": 25.26,
+"e": 25.44,
+"text": "business",
+"chunk": 26
+},
+{
+"t": 25.44,
+"e": 25.78,
+"text": "choosing",
+"chunk": 27
+},
+{
+"t": 25.78,
+"e": 26.0,
+"text": "an",
+"chunk": 27
+},
+{
+"t": 26.0,
+"e": 26.24,
+"text": "office,",
+"chunk": 27
+},
+{
+"t": 26.7,
+"e": 26.78,
+"text": "the",
+"chunk": 28
+},
+{
+"t": 26.78,
+"e": 27.02,
+"text": "working",
+"chunk": 28
+},
+{
+"t": 27.02,
+"e": 27.26,
+"text": "day",
+"chunk": 28
+},
+{
+"t": 27.26,
+"e": 27.62,
+"text": "matters.",
+"chunk": 29
+},
+{
+"t": 27.62,
+"e": 28.12,
+"text": "How",
+"chunk": 30
+},
+{
+"t": 28.12,
+"e": 28.44,
+"text": "easily",
+"chunk": 30
+},
+{
+"t": 28.44,
+"e": 28.66,
+"text": "can",
+"chunk": 30
+},
+{
+"t": 28.66,
+"e": 28.94,
+"text": "staff",
+"chunk": 31
+},
+{
+"t": 28.94,
+"e": 29.24,
+"text": "arrive?",
+"chunk": 31
+},
+{
+"t": 29.71,
+"e": 29.83,
+"text": "Where",
+"chunk": 32
+},
+{
+"t": 29.74,
+"e": 29.86,
+"text": "do",
+"chunk": 32
+},
+{
+"t": 29.86,
+"e": 30.16,
+"text": "clients",
+"chunk": 32
+},
+{
+"t": 30.16,
+"e": 30.5,
+"text": "park?",
+"chunk": 33
+},
+{
+"t": 30.85,
+"e": 30.97,
+"text": "Can",
+"chunk": 34
+},
+{
+"t": 30.88,
+"e": 31.12,
+"text": "people",
+"chunk": 34
+},
+{
+"t": 31.12,
+"e": 31.34,
+"text": "reach",
+"chunk": 34
+},
+{
+"t": 31.34,
+"e": 31.7,
+"text": "cafes,",
+"chunk": 35
+},
+{
+"t": 32.14,
+"e": 32.58,
+"text": "shops",
+"chunk": 36
+},
+{
+"t": 32.82,
+"e": 33.0,
+"text": "and",
+"chunk": 36
+},
+{
+"t": 33.0,
+"e": 33.4,
+"text": "services",
+"chunk": 36
+},
+{
+"t": 33.4,
+"e": 33.76,
+"text": "without",
+"chunk": 37
+},
+{
+"t": 33.76,
+"e": 33.94,
+"text": "getting",
+"chunk": 37
+},
+{
+"t": 33.94,
+"e": 34.18,
+"text": "back",
+"chunk": 37
+},
+{
+"t": 34.18,
+"e": 34.34,
+"text": "in",
+"chunk": 38
+},
+{
+"t": 34.34,
+"e": 34.44,
+"text": "the",
+"chunk": 38
+},
+{
+"t": 34.44,
+"e": 34.64,
+"text": "car?",
+"chunk": 38
+},
+{
+"t": 34.96,
+"e": 35.12,
+"text": "That's",
+"chunk": 39
+},
+{
+"t": 35.12,
+"e": 35.22,
+"text": "what",
+"chunk": 39
+},
+{
+"t": 35.22,
+"e": 35.42,
+"text": "makes",
+"chunk": 39
+},
+{
+"t": 35.42,
+"e": 35.58,
+"text": "a",
+"chunk": 40
+},
+{
+"t": 35.58,
+"e": 35.86,
+"text": "connected",
+"chunk": 40
+},
+{
+"t": 35.86,
+"e": 36.22,
+"text": "business",
+"chunk": 40
+},
+{
+"t": 36.22,
+"e": 36.68,
+"text": "district",
+"chunk": 41
+},
+{
+"t": 36.68,
+"e": 37.06,
+"text": "worth",
+"chunk": 41
+},
+{
+"t": 37.06,
+"e": 37.48,
+"text": "comparing",
+"chunk": 42
+},
+{
+"t": 37.48,
+"e": 37.76,
+"text": "with",
+"chunk": 42
+},
+{
+"t": 37.76,
+"e": 38.0,
+"text": "established",
+"chunk": 43
+},
+{
+"t": 38.0,
+"e": 38.52,
+"text": "office",
+"chunk": 43
+},
+{
+"t": 38.52,
+"e": 39.02,
+"text": "locations.",
+"chunk": 44
+},
+{
+"t": 39.645,
+"e": 39.74,
+"text": "But",
+"chunk": 45
+},
+{
+"t": 39.74,
+"e": 40.08,
+"text": "don't",
+"chunk": 45
+},
+{
+"t": 40.08,
+"e": 40.24,
+"text": "take",
+"chunk": 45
+},
+{
+"t": 40.24,
+"e": 40.32,
+"text": "a",
+"chunk": 46
+},
+{
+"t": 40.32,
+"e": 40.5,
+"text": "rent",
+"chunk": 46
+},
+{
+"t": 40.5,
+"e": 40.86,
+"text": "achieved",
+"chunk": 46
+},
+{
+"t": 40.86,
+"e": 41.08,
+"text": "in",
+"chunk": 47
+},
+{
+"t": 41.08,
+"e": 41.28,
+"text": "Dubai",
+"chunk": 47
+},
+{
+"t": 41.28,
+"e": 41.58,
+"text": "Hills",
+"chunk": 47
+},
+{
+"t": 41.58,
+"e": 41.92,
+"text": "or",
+"chunk": 48
+},
+{
+"t": 41.92,
+"e": 42.2,
+"text": "Marina",
+"chunk": 48
+},
+{
+"t": 42.2,
+"e": 42.64,
+"text": "and",
+"chunk": 48
+},
+{
+"t": 42.64,
+"e": 42.88,
+"text": "apply",
+"chunk": 49
+},
+{
+"t": 42.88,
+"e": 43.04,
+"text": "it",
+"chunk": 49
+},
+{
+"t": 43.04,
+"e": 43.2,
+"text": "straight",
+"chunk": 49
+},
+{
+"t": 43.2,
+"e": 43.44,
+"text": "to",
+"chunk": 50
+},
+{
+"t": 43.44,
+"e": 43.58,
+"text": "Motor",
+"chunk": 50
+},
+{
+"t": 43.58,
+"e": 43.82,
+"text": "City.",
+"chunk": 50
+},
+{
+"t": 44.78,
+"e": 44.94,
+"text": "Different",
+"chunk": 51
+},
+{
+"t": 44.94,
+"e": 45.36,
+"text": "locations",
+"chunk": 51
+},
+{
+"t": 45.36,
+"e": 45.78,
+"text": "attract",
+"chunk": 52
+},
+{
+"t": 45.78,
+"e": 46.24,
+"text": "different",
+"chunk": 52
+},
+{
+"t": 46.24,
+"e": 46.66,
+"text": "tenants",
+"chunk": 53
+},
+{
+"t": 46.66,
+"e": 46.9,
+"text": "and",
+"chunk": 53
+},
+{
+"t": 46.9,
+"e": 47.2,
+"text": "budgets.",
+"chunk": 53
+},
+{
+"t": 47.48,
+"e": 47.82,
+"text": "Before",
+"chunk": 54
+},
+{
+"t": 47.82,
+"e": 48.2,
+"text": "buying,",
+"chunk": 54
+},
+{
+"t": 48.75,
+"e": 48.86,
+"text": "check",
+"chunk": 55
+},
+{
+"t": 48.86,
+"e": 49.02,
+"text": "your",
+"chunk": 55
+},
+{
+"t": 49.02,
+"e": 49.44,
+"text": "office's",
+"chunk": 55
+},
+{
+"t": 49.44,
+"e": 49.7,
+"text": "allocated",
+"chunk": 56
+},
+{
+"t": 49.7,
+"e": 50.24,
+"text": "parking,",
+"chunk": 56
+},
+{
+"t": 50.765,
+"e": 50.98,
+"text": "usable",
+"chunk": 57
+},
+{
+"t": 50.98,
+"e": 51.32,
+"text": "area,",
+"chunk": 57
+},
+{
+"t": 51.32,
+"e": 52.14,
+"text": "fit-out",
+"chunk": 58
+},
+{
+"t": 52.14,
+"e": 52.62,
+"text": "requirements,",
+"chunk": 58
+},
+{
+"t": 53.215,
+"e": 53.46,
+"text": "service",
+"chunk": 59
+},
+{
+"t": 53.46,
+"e": 53.84,
+"text": "charges",
+"chunk": 59
+},
+{
+"t": 54.1,
+"e": 54.34,
+"text": "and",
+"chunk": 59
+},
+{
+"t": 54.34,
+"e": 54.82,
+"text": "handover",
+"chunk": 60
+},
+{
+"t": 55.16,
+"e": 55.3,
+"text": "terms.",
+"chunk": 60
+},
+{
+"t": 55.845,
+"e": 55.94,
+"text": "Then",
+"chunk": 61
+},
+{
+"t": 55.94,
+"e": 56.3,
+"text": "compare",
+"chunk": 61
+},
+{
+"t": 56.3,
+"e": 56.54,
+"text": "the",
+"chunk": 61
+},
+{
+"t": 56.54,
+"e": 56.78,
+"text": "total",
+"chunk": 62
+},
+{
+"t": 56.78,
+"e": 57.16,
+"text": "cost",
+"chunk": 62
+},
+{
+"t": 57.16,
+"e": 57.44,
+"text": "with",
+"chunk": 62
+},
+{
+"t": 57.44,
+"e": 57.8,
+"text": "realistic",
+"chunk": 63
+},
+{
+"t": 57.8,
+"e": 58.16,
+"text": "rental",
+"chunk": 63
+},
+{
+"t": 58.16,
+"e": 58.56,
+"text": "evidence",
+"chunk": 64
+},
+{
+"t": 58.56,
+"e": 58.84,
+"text": "from",
+"chunk": 64
+},
+{
+"t": 58.84,
+"e": 58.96,
+"text": "the",
+"chunk": 64
+},
+{
+"t": 58.96,
+"e": 59.22,
+"text": "surrounding",
+"chunk": 65
+},
+{
+"t": 59.22,
+"e": 59.66,
+"text": "market.",
+"chunk": 65
+},
+{
+"t": 60.44,
+"e": 60.96,
+"text": "O1NE",
+"chunk": 66
+},
+{
+"t": 60.96,
+"e": 61.4,
+"text": "District",
+"chunk": 66
+},
+{
+"t": 61.4,
+"e": 61.88,
+"text": "deserves",
+"chunk": 67
+},
+{
+"t": 61.88,
+"e": 62.14,
+"text": "a",
+"chunk": 67
+},
+{
+"t": 62.14,
+"e": 62.36,
+"text": "place",
+"chunk": 67
+},
+{
+"t": 62.36,
+"e": 62.5,
+"text": "on",
+"chunk": 68
+},
+{
+"t": 62.5,
+"e": 62.64,
+"text": "your",
+"chunk": 68
+},
+{
+"t": 62.64,
+"e": 63.06,
+"text": "shortlist.",
+"chunk": 68
+},
+{
+"t": 63.61,
+"e": 63.73,
+"text": "The",
+"chunk": 69
+},
+{
+"t": 63.62,
+"e": 63.78,
+"text": "right",
+"chunk": 69
+},
+{
+"t": 63.78,
+"e": 64.08,
+"text": "unit",
+"chunk": 69
+},
+{
+"t": 64.08,
+"e": 64.34,
+"text": "still",
+"chunk": 70
+},
+{
+"t": 64.34,
+"e": 64.62,
+"text": "needs",
+"chunk": 70
+},
+{
+"t": 64.62,
+"e": 64.8,
+"text": "to",
+"chunk": 70
+},
+{
+"t": 64.8,
+"e": 65.14,
+"text": "justify",
+"chunk": 71
+},
+{
+"t": 65.14,
+"e": 65.38,
+"text": "its",
+"chunk": 71
+},
+{
+"t": 65.38,
+"e": 65.64,
+"text": "price.",
+"chunk": 71
+},
+{
+"t": 66.06,
+"e": 66.28,
+"text": "Comment",
+"chunk": 72
+},
+{
+"t": 66.28,
+"e": 66.58,
+"text": "OFFICE",
+"chunk": 72
+},
+{
+"t": 66.58,
+"e": 66.86,
+"text": "with",
+"chunk": 72
+},
+{
+"t": 66.86,
+"e": 66.96,
+"text": "your",
+"chunk": 73
+},
+{
+"t": 66.96,
+"e": 67.28,
+"text": "budget",
+"chunk": 73
+},
+{
+"t": 67.28,
+"e": 67.56,
+"text": "and",
+"chunk": 73
+},
+{
+"t": 67.56,
+"e": 67.78,
+"text": "whether",
+"chunk": 74
+},
+{
+"t": 67.78,
+"e": 67.94,
+"text": "you're",
+"chunk": 74
+},
+{
+"t": 67.94,
+"e": 68.16,
+"text": "buying",
+"chunk": 74
+},
+{
+"t": 68.16,
+"e": 68.32,
+"text": "to",
+"chunk": 75
+},
+{
+"t": 68.32,
+"e": 68.6,
+"text": "occupy",
+"chunk": 75
+},
+{
+"t": 68.6,
+"e": 69.0,
+"text": "or",
+"chunk": 75
+},
+{
+"t": 69.0,
+"e": 69.16,
+"text": "to",
+"chunk": 76
+},
+{
+"t": 69.16,
+"e": 69.34,
+"text": "rent",
+"chunk": 76
+},
+{
+"t": 69.34,
+"e": 69.52,
+"text": "out.",
+"chunk": 76
+},
+{
+"t": 69.97,
+"e": 70.08,
+"text": "Let's",
+"chunk": 77
+},
+{
+"t": 70.08,
+"e": 70.3,
+"text": "compare",
+"chunk": 77
+},
+{
+"t": 70.3,
+"e": 70.44,
+"text": "the",
+"chunk": 77
+},
+{
+"t": 70.44,
+"e": 70.76,
+"text": "options",
+"chunk": 78
+},
+{
+"t": 70.76,
+"e": 71.0,
+"text": "and",
+"chunk": 78
+},
+{
+"t": 71.0,
+"e": 71.16,
+"text": "run",
+"chunk": 78
+},
+{
+"t": 71.16,
+"e": 71.3,
+"text": "the",
+"chunk": 79
+},
+{
+"t": 71.3,
+"e": 71.5,
+"text": "numbers.",
+"chunk": 79
+}
+]
+}
