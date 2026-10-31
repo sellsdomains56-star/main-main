@@ -1,0 +1,914 @@
+{
+"fps": 60,
+"frames": 3374,
+"voice_dur": 56.233333333333334,
+"dur": 58.233,
+"words": [
+{
+"t": 0.13,
+"e": 0.28,
+"text": "Someone",
+"chunk": 0
+},
+{
+"t": 0.28,
+"e": 0.52,
+"text": "tells",
+"chunk": 0
+},
+{
+"t": 0.52,
+"e": 0.72,
+"text": "you",
+"chunk": 0
+},
+{
+"t": 0.72,
+"e": 0.94,
+"text": "Dubai",
+"chunk": 1
+},
+{
+"t": 0.94,
+"e": 1.36,
+"text": "property",
+"chunk": 1
+},
+{
+"t": 1.36,
+"e": 1.62,
+"text": "has",
+"chunk": 1
+},
+{
+"t": 1.62,
+"e": 2.04,
+"text": "crashed.",
+"chunk": 2
+},
+{
+"t": 2.46,
+"e": 2.58,
+"text": "Ask",
+"chunk": 3
+},
+{
+"t": 2.58,
+"e": 2.74,
+"text": "them",
+"chunk": 3
+},
+{
+"t": 2.74,
+"e": 2.92,
+"text": "three",
+"chunk": 3
+},
+{
+"t": 2.92,
+"e": 3.24,
+"text": "things:",
+"chunk": 4
+},
+{
+"t": 3.635,
+"e": 3.7,
+"text": "which",
+"chunk": 5
+},
+{
+"t": 3.7,
+"e": 4.0,
+"text": "area,",
+"chunk": 5
+},
+{
+"t": 4.45,
+"e": 4.56,
+"text": "which",
+"chunk": 6
+},
+{
+"t": 4.56,
+"e": 4.9,
+"text": "property",
+"chunk": 6
+},
+{
+"t": 4.9,
+"e": 5.22,
+"text": "type,",
+"chunk": 6
+},
+{
+"t": 5.535,
+"e": 5.6,
+"text": "and",
+"chunk": 7
+},
+{
+"t": 5.6,
+"e": 5.92,
+"text": "compared",
+"chunk": 7
+},
+{
+"t": 5.92,
+"e": 6.14,
+"text": "with",
+"chunk": 7
+},
+{
+"t": 6.14,
+"e": 6.34,
+"text": "when?",
+"chunk": 8
+},
+{
+"t": 6.46,
+"e": 6.72,
+"text": "Reporting",
+"chunk": 9
+},
+{
+"t": 6.72,
+"e": 7.04,
+"text": "based",
+"chunk": 9
+},
+{
+"t": 7.04,
+"e": 7.26,
+"text": "on",
+"chunk": 9
+},
+{
+"t": 7.26,
+"e": 7.46,
+"text": "Dubai",
+"chunk": 10
+},
+{
+"t": 7.46,
+"e": 7.74,
+"text": "Land",
+"chunk": 10
+},
+{
+"t": 7.74,
+"e": 8.02,
+"text": "Department",
+"chunk": 10
+},
+{
+"t": 8.02,
+"e": 8.44,
+"text": "records",
+"chunk": 11
+},
+{
+"t": 8.44,
+"e": 8.86,
+"text": "puts",
+"chunk": 11
+},
+{
+"t": 8.86,
+"e": 9.16,
+"text": "total",
+"chunk": 11
+},
+{
+"t": 9.16,
+"e": 9.74,
+"text": "transactions",
+"chunk": 12
+},
+{
+"t": 9.74,
+"e": 10.18,
+"text": "for",
+"chunk": 12
+},
+{
+"t": 10.18,
+"e": 10.52,
+"text": "January",
+"chunk": 13
+},
+{
+"t": 10.52,
+"e": 10.86,
+"text": "to",
+"chunk": 13
+},
+{
+"t": 10.86,
+"e": 11.18,
+"text": "September",
+"chunk": 13
+},
+{
+"t": 11.18,
+"e": 11.9,
+"text": "2026",
+"chunk": 14
+},
+{
+"t": 11.9,
+"e": 12.3,
+"text": "at",
+"chunk": 14
+},
+{
+"t": 12.3,
+"e": 12.76,
+"text": "approximately",
+"chunk": 14
+},
+{
+"t": 13.66,
+"e": 14.86,
+"text": "AED 574 billion.",
+"chunk": 15
+},
+{
+"t": 15.565,
+"e": 15.78,
+"text": "Sales",
+"chunk": 16
+},
+{
+"t": 15.78,
+"e": 16.02,
+"text": "accounted",
+"chunk": 16
+},
+{
+"t": 16.02,
+"e": 16.46,
+"text": "for",
+"chunk": 16
+},
+{
+"t": 16.46,
+"e": 16.72,
+"text": "around",
+"chunk": 17
+},
+{
+"t": 17.24,
+"e": 18.26,
+"text": "AED 379 billion",
+"chunk": 18
+},
+{
+"t": 19.1,
+"e": 19.22,
+"text": "of",
+"chunk": 18
+},
+{
+"t": 18.84,
+"e": 18.96,
+"text": "that",
+"chunk": 19
+},
+{
+"t": 18.96,
+"e": 19.26,
+"text": "total.",
+"chunk": 19
+},
+{
+"t": 19.44,
+"e": 19.92,
+"text": "Mortgages",
+"chunk": 20
+},
+{
+"t": 19.92,
+"e": 20.12,
+"text": "and",
+"chunk": 20
+},
+{
+"t": 20.12,
+"e": 20.38,
+"text": "gifts",
+"chunk": 20
+},
+{
+"t": 20.38,
+"e": 20.6,
+"text": "are",
+"chunk": 21
+},
+{
+"t": 20.6,
+"e": 20.9,
+"text": "separate",
+"chunk": 21
+},
+{
+"t": 20.9,
+"e": 21.3,
+"text": "categories.",
+"chunk": 22
+},
+{
+"t": 21.875,
+"e": 21.98,
+"text": "Those",
+"chunk": 23
+},
+{
+"t": 21.98,
+"e": 22.26,
+"text": "figures",
+"chunk": 23
+},
+{
+"t": 22.26,
+"e": 22.52,
+"text": "show",
+"chunk": 23
+},
+{
+"t": 22.52,
+"e": 22.92,
+"text": "substantial",
+"chunk": 24
+},
+{
+"t": 22.92,
+"e": 23.38,
+"text": "market",
+"chunk": 24
+},
+{
+"t": 23.38,
+"e": 23.78,
+"text": "activity.",
+"chunk": 25
+},
+{
+"t": 24.19,
+"e": 24.31,
+"text": "They",
+"chunk": 26
+},
+{
+"t": 24.24,
+"e": 24.4,
+"text": "don't",
+"chunk": 26
+},
+{
+"t": 24.4,
+"e": 24.58,
+"text": "prove",
+"chunk": 26
+},
+{
+"t": 24.58,
+"e": 24.8,
+"text": "every",
+"chunk": 27
+},
+{
+"t": 24.8,
+"e": 25.2,
+"text": "property",
+"chunk": 27
+},
+{
+"t": 25.2,
+"e": 25.52,
+"text": "increased",
+"chunk": 28
+},
+{
+"t": 25.52,
+"e": 25.86,
+"text": "in",
+"chunk": 28
+},
+{
+"t": 25.86,
+"e": 26.14,
+"text": "value.",
+"chunk": 28
+},
+{
+"t": 26.14,
+"e": 26.46,
+"text": "A",
+"chunk": 29
+},
+{
+"t": 26.46,
+"e": 26.72,
+"text": "market",
+"chunk": 29
+},
+{
+"t": 26.72,
+"e": 26.92,
+"text": "can",
+"chunk": 29
+},
+{
+"t": 26.92,
+"e": 27.22,
+"text": "record",
+"chunk": 30
+},
+{
+"t": 27.22,
+"e": 27.6,
+"text": "large",
+"chunk": 30
+},
+{
+"t": 27.6,
+"e": 28.08,
+"text": "transaction",
+"chunk": 31
+},
+{
+"t": 28.08,
+"e": 28.74,
+"text": "totals",
+"chunk": 31
+},
+{
+"t": 28.74,
+"e": 28.94,
+"text": "while",
+"chunk": 32
+},
+{
+"t": 28.94,
+"e": 29.28,
+"text": "certain",
+"chunk": 32
+},
+{
+"t": 29.28,
+"e": 29.66,
+"text": "owners",
+"chunk": 32
+},
+{
+"t": 29.66,
+"e": 29.86,
+"text": "cut",
+"chunk": 33
+},
+{
+"t": 29.86,
+"e": 30.22,
+"text": "prices,",
+"chunk": 33
+},
+{
+"t": 30.945,
+"e": 31.06,
+"text": "certain",
+"chunk": 34
+},
+{
+"t": 31.06,
+"e": 31.56,
+"text": "buildings",
+"chunk": 34
+},
+{
+"t": 31.56,
+"e": 31.82,
+"text": "face",
+"chunk": 35
+},
+{
+"t": 31.82,
+"e": 32.18,
+"text": "weaker",
+"chunk": 35
+},
+{
+"t": 32.18,
+"e": 32.72,
+"text": "rents,",
+"chunk": 35
+},
+{
+"t": 32.72,
+"e": 32.82,
+"text": "and",
+"chunk": 36
+},
+{
+"t": 32.82,
+"e": 33.06,
+"text": "other",
+"chunk": 36
+},
+{
+"t": 33.06,
+"e": 33.46,
+"text": "locations",
+"chunk": 36
+},
+{
+"t": 33.46,
+"e": 33.8,
+"text": "remain",
+"chunk": 37
+},
+{
+"t": 33.8,
+"e": 34.26,
+"text": "competitive.",
+"chunk": 37
+},
+{
+"t": 34.87,
+"e": 34.99,
+"text": "The",
+"chunk": 38
+},
+{
+"t": 34.9,
+"e": 35.06,
+"text": "same",
+"chunk": 38
+},
+{
+"t": 35.06,
+"e": 35.3,
+"text": "applies",
+"chunk": 38
+},
+{
+"t": 35.3,
+"e": 35.6,
+"text": "to",
+"chunk": 39
+},
+{
+"t": 35.6,
+"e": 35.92,
+"text": "off-plan",
+"chunk": 39
+},
+{
+"t": 35.92,
+"e": 36.2,
+"text": "sales.",
+"chunk": 39
+},
+{
+"t": 37.23,
+"e": 37.35,
+"text": "A",
+"chunk": 40
+},
+{
+"t": 37.24,
+"e": 37.4,
+"text": "high",
+"chunk": 40
+},
+{
+"t": 37.4,
+"e": 37.62,
+"text": "share",
+"chunk": 40
+},
+{
+"t": 37.62,
+"e": 37.82,
+"text": "of",
+"chunk": 41
+},
+{
+"t": 37.82,
+"e": 38.18,
+"text": "off-plan",
+"chunk": 41
+},
+{
+"t": 38.18,
+"e": 38.66,
+"text": "transactions",
+"chunk": 42
+},
+{
+"t": 38.66,
+"e": 39.18,
+"text": "tells",
+"chunk": 42
+},
+{
+"t": 39.18,
+"e": 39.36,
+"text": "you",
+"chunk": 43
+},
+{
+"t": 39.36,
+"e": 39.48,
+"text": "what",
+"chunk": 43
+},
+{
+"t": 39.48,
+"e": 39.8,
+"text": "buyers",
+"chunk": 43
+},
+{
+"t": 39.8,
+"e": 39.94,
+"text": "are",
+"chunk": 44
+},
+{
+"t": 39.94,
+"e": 40.3,
+"text": "purchasing.",
+"chunk": 44
+},
+{
+"t": 40.875,
+"e": 40.995,
+"text": "It",
+"chunk": 45
+},
+{
+"t": 40.9,
+"e": 41.12,
+"text": "doesn't",
+"chunk": 45
+},
+{
+"t": 41.12,
+"e": 41.5,
+"text": "guarantee",
+"chunk": 45
+},
+{
+"t": 41.5,
+"e": 41.72,
+"text": "their",
+"chunk": 46
+},
+{
+"t": 41.72,
+"e": 41.94,
+"text": "eventual",
+"chunk": 46
+},
+{
+"t": 41.94,
+"e": 42.4,
+"text": "returns.",
+"chunk": 47
+},
+{
+"t": 43.055,
+"e": 43.14,
+"text": "So",
+"chunk": 48
+},
+{
+"t": 43.14,
+"e": 43.32,
+"text": "before",
+"chunk": 48
+},
+{
+"t": 43.32,
+"e": 43.68,
+"text": "calling",
+"chunk": 48
+},
+{
+"t": 43.68,
+"e": 43.88,
+"text": "the",
+"chunk": 49
+},
+{
+"t": 43.88,
+"e": 44.02,
+"text": "whole",
+"chunk": 49
+},
+{
+"t": 44.02,
+"e": 44.34,
+"text": "market",
+"chunk": 49
+},
+{
+"t": 44.34,
+"e": 44.48,
+"text": "a",
+"chunk": 50
+},
+{
+"t": 44.48,
+"e": 44.8,
+"text": "crash",
+"chunk": 50
+},
+{
+"t": 44.8,
+"e": 45.26,
+"text": "or",
+"chunk": 50
+},
+{
+"t": 45.26,
+"e": 45.48,
+"text": "a",
+"chunk": 51
+},
+{
+"t": 45.48,
+"e": 45.84,
+"text": "guaranteed",
+"chunk": 51
+},
+{
+"t": 45.84,
+"e": 46.22,
+"text": "opportunity,",
+"chunk": 52
+},
+{
+"t": 47.02,
+"e": 47.18,
+"text": "compare",
+"chunk": 53
+},
+{
+"t": 47.18,
+"e": 47.62,
+"text": "completed",
+"chunk": 53
+},
+{
+"t": 47.62,
+"e": 48.06,
+"text": "sales,",
+"chunk": 54
+},
+{
+"t": 48.545,
+"e": 48.74,
+"text": "rental",
+"chunk": 55
+},
+{
+"t": 48.74,
+"e": 49.14,
+"text": "evidence,",
+"chunk": 55
+},
+{
+"t": 49.4,
+"e": 49.56,
+"text": "and",
+"chunk": 56
+},
+{
+"t": 49.56,
+"e": 49.88,
+"text": "upcoming",
+"chunk": 56
+},
+{
+"t": 49.88,
+"e": 50.28,
+"text": "supply",
+"chunk": 56
+},
+{
+"t": 50.28,
+"e": 50.62,
+"text": "in",
+"chunk": 57
+},
+{
+"t": 50.62,
+"e": 50.72,
+"text": "the",
+"chunk": 57
+},
+{
+"t": 50.72,
+"e": 50.98,
+"text": "exact",
+"chunk": 57
+},
+{
+"t": 50.98,
+"e": 51.54,
+"text": "location.",
+"chunk": 58
+},
+{
+"t": 52.095,
+"e": 52.3,
+"text": "Comment",
+"chunk": 59
+},
+{
+"t": 52.3,
+"e": 52.6,
+"text": "CRASH",
+"chunk": 59
+},
+{
+"t": 52.6,
+"e": 53.1,
+"text": "with",
+"chunk": 59
+},
+{
+"t": 53.1,
+"e": 53.22,
+"text": "the",
+"chunk": 60
+},
+{
+"t": 53.22,
+"e": 53.44,
+"text": "area",
+"chunk": 60
+},
+{
+"t": 53.44,
+"e": 53.66,
+"text": "you're",
+"chunk": 60
+},
+{
+"t": 53.66,
+"e": 53.98,
+"text": "watching.",
+"chunk": 61
+},
+{
+"t": 53.98,
+"e": 54.6,
+"text": "Let's",
+"chunk": 62
+},
+{
+"t": 54.6,
+"e": 54.7,
+"text": "look",
+"chunk": 62
+},
+{
+"t": 54.7,
+"e": 54.82,
+"text": "at",
+"chunk": 62
+},
+{
+"t": 54.82,
+"e": 54.88,
+"text": "the",
+"chunk": 63
+},
+{
+"t": 54.88,
+"e": 55.12,
+"text": "evidence",
+"chunk": 63
+},
+{
+"t": 55.12,
+"e": 55.44,
+"text": "behind",
+"chunk": 63
+},
+{
+"t": 55.44,
+"e": 55.6,
+"text": "the",
+"chunk": 64
+},
+{
+"t": 55.6,
+"e": 55.78,
+"text": "headline.",
+"chunk": 64
+}
+]
+}
