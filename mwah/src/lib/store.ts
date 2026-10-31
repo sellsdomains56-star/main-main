@@ -9,7 +9,9 @@ export async function getSettings(): Promise<Settings> {
   if (!s) return defaultSettings;
   const zonesOk = Array.isArray(s.zones) && s.zones.every((z) => typeof z.minDays === "number");
   return { ...defaultSettings, ...s, zones: zonesOk ? s.zones : defaultSettings.zones,
-    legal: { ...defaultSettings.legal, ...s.legal }, confirmations: { ...defaultSettings.confirmations, ...s.confirmations } };
+    legal: { ...defaultSettings.legal, ...s.legal }, confirmations: { ...defaultSettings.confirmations, ...s.confirmations },
+    tax: Object.fromEntries(Object.entries(defaultSettings.tax).map(([k, v]) => [k, { ...v, ...s.tax?.[k] }])),
+    currencies: { ...defaultSettings.currencies, ...s.currencies } };
 }
 export const saveSettings = (s: Settings) => put("settings", s);
 

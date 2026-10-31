@@ -17,7 +17,7 @@ cd mwah && npm install && npm run dev
 4. Deploy, log in at `/admin`, and work through **Launch checklist**. It tracks everything below and stays red until it is true.
 
 ## What's in it
-- **Storefront**: home, shop (search/sort), product pages, slide-out bag, one-page checkout with live totals, order tracking page, story, shipping & returns.
+- **Storefront**: home, shop (search/sort), product pages (full description, benefits, details, how to use, ingredients, safety, delivery check, structured data for Google), slide-out bag, one-page checkout with live totals, order page, tax invoice, story, help. Sitemap, robots.txt and share metadata included.
 - **Admin** (`/admin`): sales dashboard, orders (status flow, tracking, notes), products (photos, stock, drafts), discount codes, customers, settings (shipping zones, VAT).
 - **Shipping & tax**: zones by country with free-shipping thresholds. 5% UAE VAT included in prices; orders shipped outside the UAE are zero-rated exports (switchable). Confirm with your accountant.
 
@@ -25,6 +25,8 @@ cd mwah && npm install && npm run dev
 - **Policy pages** (all generated from your **Admin → Settings**): Terms of Sale, Shipping, Returns & Refunds, Privacy, Cookies and Creator Terms. Footer links to all of them. Checkout will not take payment until the customer ticks acceptance, and the order stores the policy version, time and IP they accepted.
 - **Business details** (company name, trade licence, TRN, address, email) are entered in Settings. Anything missing shows as a visible gap on the policy pages and fails the launch checklist. Nothing is invented.
 - **Delivery estimates for 238 countries and territories**, grouped into 13 zones, with a searchable public page (`/delivery-times`). Customers also see an estimated delivery *date range* at checkout (processing + courier business days, Mon–Fri) and on their order page. Every zone's rate, free-shipping threshold and days are editable. The defaults are planning estimates, not carrier quotes.
+- **Taxes by destination country** (Admin → Taxes): reference VAT/GST rates for 238 countries and territories. Per country you choose *customer pays at import* (estimate shown, nothing charged) or *collect at checkout* (tax added as its own line, charged via Stripe, shown on the invoice). GCC: Saudi 15%, Bahrain 10%, Oman 5%, Qatar and Kuwait none. UAE orders include 5% VAT on goods and delivery. Printable tax invoice for every order.
+- **Shop in your currency**: country and currency picker (AED, SAR, QAR, BHD, OMR, KWD, USD, EUR, GBP) with approximate prices. Customers are always charged in AED. Each product page has a live delivery date, shipping and tax check for the chosen country.
 - **Blocked destinations** (default Cuba, Iran, North Korea, Syria, Russia, Belarus) are hidden at checkout and refused by the server.
 - **Cookies**: essential only unless the visitor accepts. Creator referral cookies are never set before consent; a creator link then just shows the code to type.
 - These policies are **drafts, not legal advice**. See [`docs/LAUNCH.md`](docs/LAUNCH.md) for what a lawyer must review and the regulatory risks that policy text cannot fix.

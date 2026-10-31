@@ -9,7 +9,7 @@ export async function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <p className="font-display text-5xl font-extrabold text-pink">mwah.</p>
-          <p className="mt-3 max-w-sm">Lip balm that feels as good as it looks. Made in the UAE, shipped worldwide.</p>
+          <p className="mt-3 max-w-sm">Lip balm that feels as good as it looks. Shipped from the UAE to the GCC and worldwide.</p>
           {l.email && <p className="mt-3 text-sm">{l.email}{l.phone && ` · ${l.phone}`}</p>}
         </div>
         <div className="space-y-2 text-sm"><p className="font-bold">Shop</p><Link className="block hover:text-pink" href="/shop">All balms</Link><Link className="block hover:text-pink" href="/product/mwah-set">The Mwah Set</Link><Link className="block hover:text-pink" href="/delivery-times">Delivery times</Link><Link className="block hover:text-pink" href="/faq">Help</Link></div>

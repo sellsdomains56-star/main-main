@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
     influencerId: influencer?.id,
     referralCode: influencer?.code,
     commission: influencer ? r2(productValue * influencer.commissionPct / 100) : 0,
+    destTax: q.destTax ? { label: q.destTax.label, amount: q.destTax.amount, regNo: q.destTax.regNo } : undefined, uaeVat: q.vat,
     status: "pending", notes: [], refunded: 0, testMode: !stripe, createdAt: new Date().toISOString(),
     estimatedDelivery: (() => { const w = estimateWindow(settings, q.zone); return { from: w.from.toISOString(), to: w.to.toISOString() }; })(),
     terms: { version: POLICY_VERSION, acceptedAt: new Date().toISOString(), ip: req.headers.get("x-forwarded-for")?.split(",")[0].trim() },
@@ -53,12 +54,14 @@ export async function POST(req: NextRequest) {
   }
 
   const origin = process.env.SITE_URL ?? req.headers.get("origin") ?? new URL(req.url).origin;
-  const ratio = q.subtotal ? (q.total - q.shipping) / q.subtotal : 1; // spreads discount / export-VAT over the lines
+  const goodsTotal = r2(q.total - q.shipping - (q.destTax?.amount ?? 0));
+  const ratio = q.subtotal ? goodsTotal / q.subtotal : 1; // spreads discount / export-VAT over the lines
   const line_items = q.items.map((i) => ({
     quantity: i.qty,
     price_data: { currency: "aed", unit_amount: Math.round(i.price * ratio * 100), product_data: { name: `Mwah ${i.name}` } },
   }));
   if (q.shipping) line_items.push({ quantity: 1, price_data: { currency: "aed", unit_amount: Math.round(q.shipping * 100), product_data: { name: `Shipping to ${q.zone.name}` } } });
+  if (q.destTax) line_items.push({ quantity: 1, price_data: { currency: "aed", unit_amount: Math.round(q.destTax.amount * 100), product_data: { name: `Import tax prepaid: ${q.destTax.label}` } } });
   const session = await stripe.checkout.sessions.create({
     mode: "payment", customer_email: email, line_items, locale: "auto", billing_address_collection: "auto",
     metadata: { orderId: order.id, orderNumber: String(order.number) },

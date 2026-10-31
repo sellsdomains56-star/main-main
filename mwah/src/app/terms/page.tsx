@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Policy, V } from "@/components/Policy";
 import { getSettings } from "@/lib/store";
+import { countryName } from "@/lib/countries";
 export const metadata: Metadata = { title: "Terms of Sale" };
 
 export default async function Terms() {
-  const { legal: l, storeName, vatPct } = await getSettings();
+  const { legal: l, storeName, vatPct, tax } = await getSettings();
+  const collected = Object.entries(tax).filter(([, t]) => t.collect).map(([c]) => countryName(c)).sort();
   return (
     <Policy title="Terms of Sale" intro={`These terms apply to every order you place on this website. Please read them together with our Shipping, Returns & Refunds and Privacy policies.`}>
       <h2>1. Who we are</h2>
@@ -21,7 +23,7 @@ export default async function Terms() {
       <h2>3. Prices, VAT and payment</h2>
       <ul>
         <li>Prices are shown in UAE dirhams (AED). Prices for deliveries within the UAE include {vatPct}% VAT. Deliveries to addresses outside the UAE are treated as exports and are normally zero-rated for UAE VAT. The total shown at checkout is what you pay to us.</li>
-        <li><b>Import duties, taxes and fees.</b> If your order is delivered outside the UAE, your country may charge import VAT or GST, customs duty and courier handling fees. These are not included in our prices, are set by the authorities and couriers of your country, and are your responsibility. We have no control over them and cannot tell you the amount in advance.</li>
+        <li><b>Import taxes, duties and fees.</b> If your order is delivered outside the UAE, your country may charge import VAT or GST, customs duty and courier handling fees. {collected.length > 0 ? <>For deliveries to <b>{collected.join(", ")}</b> we collect the destination VAT/GST (and duty, where shown) at checkout. It appears as a separate line, is included in the total you pay, and you will have nothing more to pay on delivery for those items. </> : null}For every other country these charges are not included in our prices, are set by the authorities and couriers of your country, and are your responsibility. Checkout shows an estimate where we can, but we cannot guarantee the amount.</li>
         <li>Payment is taken at checkout by our payment provider, Stripe, using cards, Apple Pay or Google Pay. Your bank may ask you to confirm the payment (3-D Secure). We never see or store your full card details. Your bank or card issuer may convert AED into your currency and may charge its own fees.</li>
         <li>A tax invoice is available on request.</li>
       </ul>

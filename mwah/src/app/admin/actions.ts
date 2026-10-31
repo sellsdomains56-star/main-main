@@ -5,6 +5,8 @@ import { ADMIN_EMAIL, hashPassword, loginAdmin, logout, randomPassword, requireA
 import { uid } from "@/lib/db";
 import * as S from "@/lib/store";
 import type { OrderStatus, Product, ShippingZone } from "@/lib/types";
+import { COUNTRY_LIST } from "@/lib/countries";
+import { CURRENCIES } from "@/lib/tax";
 import { stripe } from "@/lib/stripe";
 import { r2 } from "@/lib/money";
 
@@ -72,6 +74,8 @@ export async function saveProduct(id: string | null, fd: FormData) {
     images: str(fd, "images").split("\n").map((s) => s.trim()).filter(Boolean),
     status: str(fd, "status") === "draft" ? "draft" : "active", featured: fd.get("featured") === "on",
     ingredients: str(fd, "ingredients"), size: str(fd, "size") || "4.5 g",
+    highlights: str(fd, "highlights").split("\n").map((x) => x.trim()).filter(Boolean).slice(0, 8),
+    howToUse: str(fd, "howToUse"), flavourNotes: str(fd, "flavourNotes"), finish: str(fd, "finish"), shelfLife: str(fd, "shelfLife"),
   };
   await S.saveProduct(p); revalidatePath("/", "layout"); redirect("/admin/products");
 }
@@ -164,10 +168,33 @@ export async function saveSettings(fd: FormData) {
 }
 
 /** One-click sign-offs on the launch checklist. Stored with a date so you can see when you confirmed it. */
-export async function confirmItem(key: "policiesReviewedAt" | "shippingReviewedAt" | "cosmeticsCheckedAt", on: boolean) {
+export async function confirmItem(key: "policiesReviewedAt" | "shippingReviewedAt" | "cosmeticsCheckedAt" | "taxReviewedAt" | "copyReviewedAt", on: boolean) {
   await requireAdmin();
   const s = await S.getSettings();
   await S.saveSettings({ ...s, confirmations: { ...s.confirmations, [key]: on ? new Date().toISOString() : undefined } });
   revalidatePath("/admin", "layout");
+}
+
+/** Destination taxes. One form, one row per country. Changing any rate or collect flag clears the "taxes reviewed" tick. */
+export async function saveTaxes(fd: FormData) {
+  await requireAdmin();
+  const s = await S.getSettings();
+  const pct = (v: string) => { if (v.trim() === "") return null; const n = Number(v); return Number.isFinite(n) && n >= 0 && n <= 100 ? n : null; };
+  const tax = { ...s.tax };
+  for (const c of COUNTRY_LIST) {
+    const cur = tax[c.code];
+    tax[c.code] = { name: str(fd, `name_${c.code}`) || cur.name, rate: pct(str(fd, `rate_${c.code}`)), duty: pct(str(fd, `duty_${c.code}`)), collect: fd.get(`collect_${c.code}`) === "on", regNo: str(fd, `reg_${c.code}`) || undefined };
+  }
+  const changed = JSON.stringify(tax) !== JSON.stringify(s.tax);
+  await S.saveSettings({ ...s, tax, confirmations: changed ? { ...s.confirmations, taxReviewedAt: undefined } : s.confirmations });
+  revalidatePath("/", "layout");
+}
+export async function saveCurrencies(fd: FormData) {
+  await requireAdmin();
+  const s = await S.getSettings();
+  const currencies = { ...s.currencies };
+  for (const k of Object.keys(CURRENCIES)) { const n = Number(str(fd, `fx_${k}`)); if (k !== "AED" && Number.isFinite(n) && n > 0) currencies[k] = n; }
+  await S.saveSettings({ ...s, currencies, currenciesUpdated: new Date().toISOString() });
+  revalidatePath("/", "layout");
 }
 export const adminEmail = async () => ADMIN_EMAIL;

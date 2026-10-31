@@ -4,11 +4,13 @@ import { Policy, V } from "@/components/Policy";
 import { getSettings } from "@/lib/store";
 import { COUNTRY_LIST } from "@/lib/countries";
 import { fmt } from "@/lib/money";
+import { countryName } from "@/lib/countries";
 import { totalDays } from "@/lib/delivery";
 export const metadata: Metadata = { title: "Shipping Policy" };
 
 export default async function Shipping() {
   const s = await getSettings();
+  const collected = Object.entries(s.tax).filter(([, t]) => t.collect).map(([c]) => countryName(c)).sort();
   const blocked = s.blockedCountries.map((c) => COUNTRY_LIST.find((x) => x.code === c)?.name ?? c);
   return (
     <Policy title="Shipping Policy" intro="We ship from the UAE to customers around the world. Here is exactly what to expect.">
@@ -26,7 +28,9 @@ export default async function Shipping() {
       <p><b>Estimates are not guarantees.</b> Customs inspection, public holidays, severe weather, incorrect addresses and courier delays can add time, and remote areas may take longer than the region average. We are not liable for delays outside our control, but please tell us if your order is late and we will chase it.</p>
 
       <h2>3. Customs, duties and taxes</h2>
-      <p>For orders delivered outside the UAE, the parcel is exported from the UAE and imported into your country. Your country may charge <b>import VAT/GST, customs duty and courier clearance fees</b>. We do not collect these and they are not included in our prices. The courier may ask you to pay them before or on delivery. You are the importer of the goods and are responsible for any such charges and for making sure the products are allowed into your country.</p>
+      <p>For orders delivered outside the UAE, the parcel is exported from the UAE and imported into your country. Your country may charge <b>import VAT/GST, customs duty and courier clearance fees</b>.</p>
+      {collected.length > 0 && <p><b>Collected at checkout:</b> for deliveries to {collected.join(", ")} we charge the destination VAT/GST (and duty, where shown) when you order, as a separate line, so there is nothing further to pay on delivery for those items.</p>}
+      <p><b>Everywhere else</b> these charges are not included in our prices. The courier may ask you to pay them before or on delivery. You are the importer of the goods and are responsible for any such charges and for making sure the products are allowed into your country. Checkout and each product page show an estimate where we can, which is not a guarantee.</p>
       <p>If you refuse or fail to pay charges and the parcel is returned to us or abandoned, we will refund the price of the products minus the courier&apos;s return and handling costs, once the parcel is back with us. We cannot refund the original shipping cost in that case. If the parcel is destroyed by customs, we cannot refund it.</p>
 
       <h2>4. Where we deliver</h2>

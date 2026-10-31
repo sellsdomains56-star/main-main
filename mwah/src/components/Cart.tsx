@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { fmt } from "@/lib/money";
+import { Price } from "./Locale";
 
 export type Line = { productId: string; slug: string; name: string; price: number; color: string; color2: string; image?: string; qty: number; stock: number };
 type Ctx = { lines: Line[]; count: number; subtotal: number; open: boolean; setOpen: (v: boolean) => void; add: (l: Omit<Line, "qty">, qty?: number) => void; setQty: (id: string, q: number) => void; clear: () => void };
@@ -45,21 +45,21 @@ function Drawer() {
                 <svg viewBox="0 0 120 260" className="h-16"><rect x="30" y="6" width="60" height="60" rx="10" fill="#2a1320" /><rect x="30" y="66" width="60" height="180" rx="10" fill={l.color} /></svg>
               </div>
               <div className="flex-1">
-                <p className="font-bold">{l.name}</p><p className="text-sm">{fmt(l.price)}</p>
+                <p className="font-bold">{l.name}</p><p className="text-sm"><Price aed={l.price} /></p>
                 <div className="mt-1 inline-flex items-center rounded-full border-2 border-blush">
                   <button className="h-8 w-8" onClick={() => setQty(l.productId, l.qty - 1)} aria-label="Less">−</button>
                   <span className="w-6 text-center text-sm font-bold">{l.qty}</span>
                   <button className="h-8 w-8" onClick={() => setQty(l.productId, l.qty + 1)} aria-label="More">+</button>
                 </div>
               </div>
-              <p className="font-bold">{fmt(l.price * l.qty)}</p>
+              <p className="font-bold"><Price aed={l.price * l.qty} /></p>
             </div>
           ))}
         </div>
         {lines.length > 0 && (
           <div className="space-y-3 border-t-2 border-blush p-5">
-            <div className="flex justify-between text-lg font-bold"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
-            <p className="text-xs">Shipping, VAT and discount codes are worked out at checkout.</p>
+            <div className="flex justify-between text-lg font-bold"><span>Subtotal</span><Price aed={subtotal} /></div>
+            <p className="text-xs">Shipping, taxes and discount codes are worked out at checkout. You are charged in AED.</p>
             <Link href="/checkout" onClick={() => setOpen(false)} className="btn btn-pink w-full">Checkout</Link>
           </div>
         )}

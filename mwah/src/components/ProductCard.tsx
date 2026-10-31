@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Product } from "@/lib/types";
-import { fmt } from "@/lib/money";
+import { Price } from "./Locale";
 import { ProductImage } from "./ProductImage";
 import { AddToCart } from "./AddToCart";
 
@@ -13,7 +13,7 @@ export function ProductCard({ p }: { p: Product }) {
           : p.stock <= 15 ? <span className="sticker absolute left-3 top-3">Only {p.stock} left</span> : null}
       </Link>
       <div className="flex items-end justify-between gap-2 p-4">
-        <Link href={`/product/${p.slug}`}><h3 className="text-lg font-extrabold leading-tight">{p.name}</h3><p className="text-sm">{fmt(p.price)}</p></Link>
+        <Link href={`/product/${p.slug}`}><h3 className="text-lg font-extrabold leading-tight">{p.name}</h3><p className="text-sm"><Price aed={p.price} /></p></Link>
         <AddToCart p={p} />
       </div>
     </div>

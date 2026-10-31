@@ -5,7 +5,7 @@ import { useCart } from "@/components/Cart";
 import { fmt } from "@/lib/money";
 import { fmtDay } from "@/lib/delivery";
 
-type Q = { subtotal: number; discount: number; shipping: number; vat: number; total: number; free: boolean; discountLabel?: string; codeOk: boolean; creator: string | null; zone: { name: string; freeOver?: number }; delivery: { from: string; to: string; processing: number[]; transit: number[] } };
+type Q = { destTax: { label: string; amount: number; regNo?: string } | null; importEstimate: { amount: number; name: string; vatPct: number | null; dutyPct: number | null; unknown: boolean } | null; subtotal: number; discount: number; shipping: number; vat: number; total: number; free: boolean; discountLabel?: string; codeOk: boolean; creator: string | null; zone: { name: string; freeOver?: number }; delivery: { from: string; to: string; processing: number[]; transit: number[] } };
 
 export function Checkout({ countries }: { countries: [string, string][] }) {
   const { lines, clear } = useCart();
@@ -62,9 +62,18 @@ export function Checkout({ countries }: { countries: [string, string][] }) {
           <div className="flex justify-between"><dt>Subtotal</dt><dd>{fmt(q.subtotal)}</dd></div>
           {q.discount > 0 && <div className="flex justify-between text-green-700"><dt>Discount {q.discountLabel && `(${q.discountLabel})`}</dt><dd>−{fmt(q.discount)}</dd></div>}
           <div className="flex justify-between"><dt>Shipping</dt><dd>{q.shipping ? fmt(q.shipping) : "Free"}</dd></div>
-          <div className="flex justify-between"><dt>{q.vat ? "VAT (included)" : "VAT"}</dt><dd>{q.vat ? fmt(q.vat) : "0 (export)"}</dd></div>
+          <div className="flex justify-between"><dt>{q.vat ? "UAE VAT (included)" : "UAE VAT"}</dt><dd>{q.vat ? fmt(q.vat) : "0 (export)"}</dd></div>
+          {q.destTax && <div className="flex justify-between"><dt>{q.destTax.label}<span className="block text-xs">Import tax, prepaid so you pay nothing on delivery</span></dt><dd>{fmt(q.destTax.amount)}</dd></div>}
           <div className="flex justify-between border-t-2 border-blush pt-2 text-xl font-extrabold"><dt>Total</dt><dd>{fmt(q.total)}</dd></div>
         </dl>}
+        {q?.importEstimate && (
+          <p className="rounded-2xl bg-butter p-3 text-xs font-medium">
+            {q.importEstimate.unknown
+              ? "Your country may charge import tax or duty on delivery. The amount varies and is not included in this total."
+              : q.importEstimate.amount === 0
+              ? "Your country does not charge import VAT on this order, but customs duty or courier fees may still apply on delivery."
+              : <>Not included: <b>estimated {q.importEstimate.name}{q.importEstimate.vatPct ? ` ${q.importEstimate.vatPct}%` : ""}{q.importEstimate.dutyPct ? ` and duty ${q.importEstimate.dutyPct}%` : ""} ≈ {fmt(q.importEstimate.amount)}</b>, payable to the courier or customs on delivery. It is an estimate and set by your country.</>}
+          </p>)}
         {err && <p role="alert" className="rounded-xl bg-red-100 p-3 text-sm font-bold text-red-800">{err}</p>}
         <label className="flex gap-2 text-sm"><input type="checkbox" required checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-pink-500" />
           <span>I have read and agree to the <Link href="/terms" target="_blank" className="font-bold underline">Terms of Sale</Link>, <Link href="/privacy" target="_blank" className="font-bold underline">Privacy Policy</Link>, <Link href="/shipping" target="_blank" className="font-bold underline">Shipping Policy</Link> and <Link href="/returns" target="_blank" className="font-bold underline">Returns & Refunds Policy</Link>.</span></label>

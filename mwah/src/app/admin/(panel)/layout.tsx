@@ -5,7 +5,7 @@ import { usingSupabase } from "@/lib/db";
 import { stripe, stripeMode } from "@/lib/stripe";
 import { launchChecks } from "@/lib/launch";
 
-const NAV = [["/admin", "Dashboard", "📊"], ["/admin/orders", "Orders", "📦"], ["/admin/products", "Products", "💄"], ["/admin/discounts", "Discounts", "🏷️"], ["/admin/customers", "Customers", "👥"], ["/admin/influencers", "Creators", "🤳"], ["/admin/launch", "Launch checklist", "🚀"], ["/admin/settings", "Settings", "⚙️"]];
+const NAV = [["/admin", "Dashboard", "📊"], ["/admin/orders", "Orders", "📦"], ["/admin/products", "Products", "💄"], ["/admin/discounts", "Discounts", "🏷️"], ["/admin/customers", "Customers", "👥"], ["/admin/influencers", "Creators", "🤳"], ["/admin/taxes", "Taxes by country", "🧾"], ["/admin/currencies", "Currencies", "💱"], ["/admin/launch", "Launch checklist", "🚀"], ["/admin/settings", "Settings", "⚙️"]];
 
 export default async function PanelLayout({ children }: { children: React.ReactNode }) {
   await requireAdmin();

@@ -36,7 +36,10 @@ export default async function OrderPage({ params, searchParams }: { params: Prom
       {o.estimatedDelivery && !["cancelled", "refunded", "delivered"].includes(o.status) && <p className="mt-4 rounded-2xl bg-blush p-3 text-sm font-medium">📦 Estimated delivery: <b>{fmtDay(o.estimatedDelivery.from)} – {fmtDay(o.estimatedDelivery.to)}</b>. This is an estimate, not a guarantee. Customs clearance can add time. <Link href="/shipping" className="underline">Shipping policy</Link></p>}
       <div className="card mt-8 space-y-2 p-6 text-sm">
         {o.items.map((i) => <div key={i.productId} className="flex justify-between"><span>{i.qty} × {i.name}</span><span>{fmt(i.price * i.qty)}</span></div>)}
+        {o.shipping > 0 && <div className="flex justify-between"><span>Shipping</span><span>{fmt(o.shipping)}</span></div>}
+        {o.destTax && <div className="flex justify-between"><span>{o.destTax.label} (prepaid)</span><span>{fmt(o.destTax.amount)}</span></div>}
         <div className="flex justify-between border-t-2 border-blush pt-2 text-lg font-extrabold"><span>Total</span><span>{fmt(o.total)}</span></div>
+        <p className="pt-1"><Link href={`/order/${o.id}/invoice`} className="font-bold underline">View tax invoice</Link></p>
         <p className="pt-2">Shipping to {o.address.line1}, {o.address.city}, {countryName(o.address.country)}</p>
       </div>
       <Link href="/shop" className="btn btn-ghost mt-8">Keep shopping</Link>
