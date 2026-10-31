@@ -1,0 +1,902 @@
+{
+"fps": 60,
+"frames": 3586,
+"voice_dur": 59.766666666666666,
+"dur": 61.767,
+"words": [
+{
+"t": 0.15,
+"e": 0.38,
+"text": "Buying",
+"chunk": 0
+},
+{
+"t": 0.38,
+"e": 0.56,
+"text": "on",
+"chunk": 0
+},
+{
+"t": 0.56,
+"e": 0.78,
+"text": "Palm",
+"chunk": 0
+},
+{
+"t": 0.78,
+"e": 1.2,
+"text": "Jumeirah?",
+"chunk": 1
+},
+{
+"t": 1.28,
+"e": 1.58,
+"text": "These",
+"chunk": 2
+},
+{
+"t": 1.58,
+"e": 1.84,
+"text": "five",
+"chunk": 2
+},
+{
+"t": 1.84,
+"e": 2.28,
+"text": "addresses",
+"chunk": 2
+},
+{
+"t": 2.28,
+"e": 2.64,
+"text": "offer",
+"chunk": 3
+},
+{
+"t": 2.64,
+"e": 3.0,
+"text": "very",
+"chunk": 3
+},
+{
+"t": 3.0,
+"e": 3.3,
+"text": "different",
+"chunk": 3
+},
+{
+"t": 3.3,
+"e": 3.68,
+"text": "versions",
+"chunk": 4
+},
+{
+"t": 3.68,
+"e": 3.94,
+"text": "of",
+"chunk": 4
+},
+{
+"t": 3.94,
+"e": 4.2,
+"text": "luxury.",
+"chunk": 4
+},
+{
+"t": 4.82,
+"e": 5.18,
+"text": "Atlantis",
+"chunk": 5
+},
+{
+"t": 5.18,
+"e": 5.38,
+"text": "The",
+"chunk": 5
+},
+{
+"t": 5.38,
+"e": 5.58,
+"text": "Royal",
+"chunk": 5
+},
+{
+"t": 5.58,
+"e": 5.94,
+"text": "combines",
+"chunk": 6
+},
+{
+"t": 5.94,
+"e": 6.76,
+"text": "residences",
+"chunk": 6
+},
+{
+"t": 6.76,
+"e": 6.98,
+"text": "with",
+"chunk": 7
+},
+{
+"t": 6.98,
+"e": 7.12,
+"text": "one",
+"chunk": 7
+},
+{
+"t": 7.12,
+"e": 7.24,
+"text": "of",
+"chunk": 7
+},
+{
+"t": 7.24,
+"e": 7.66,
+"text": "Dubai's",
+"chunk": 8
+},
+{
+"t": 7.66,
+"e": 7.88,
+"text": "most",
+"chunk": 8
+},
+{
+"t": 7.88,
+"e": 8.48,
+"text": "recognisable",
+"chunk": 9
+},
+{
+"t": 8.48,
+"e": 8.94,
+"text": "resort",
+"chunk": 9
+},
+{
+"t": 8.94,
+"e": 9.44,
+"text": "destinations.",
+"chunk": 10
+},
+{
+"t": 10.29,
+"e": 10.62,
+"text": "Serenia",
+"chunk": 11
+},
+{
+"t": 10.62,
+"e": 10.82,
+"text": "Living",
+"chunk": 11
+},
+{
+"t": 10.82,
+"e": 11.1,
+"text": "has",
+"chunk": 11
+},
+{
+"t": 11.1,
+"e": 12.2,
+"text": "226",
+"chunk": 12
+},
+{
+"t": 12.2,
+"e": 12.8,
+"text": "residences",
+"chunk": 12
+},
+{
+"t": 12.8,
+"e": 13.04,
+"text": "across",
+"chunk": 12
+},
+{
+"t": 13.04,
+"e": 13.42,
+"text": "four",
+"chunk": 13
+},
+{
+"t": 13.42,
+"e": 13.86,
+"text": "towers",
+"chunk": 13
+},
+{
+"t": 13.86,
+"e": 14.0,
+"text": "on",
+"chunk": 13
+},
+{
+"t": 14.0,
+"e": 14.1,
+"text": "the",
+"chunk": 14
+},
+{
+"t": 14.1,
+"e": 14.26,
+"text": "West",
+"chunk": 14
+},
+{
+"t": 14.26,
+"e": 14.66,
+"text": "Crescent.",
+"chunk": 14
+},
+{
+"t": 15.22,
+"e": 15.38,
+"text": "Palma",
+"chunk": 15
+},
+{
+"t": 15.38,
+"e": 15.64,
+"text": "announced",
+"chunk": 15
+},
+{
+"t": 15.64,
+"e": 15.96,
+"text": "its",
+"chunk": 15
+},
+{
+"t": 15.96,
+"e": 16.26,
+"text": "completion",
+"chunk": 16
+},
+{
+"t": 16.26,
+"e": 16.58,
+"text": "this",
+"chunk": 16
+},
+{
+"t": 16.58,
+"e": 16.8,
+"text": "year.",
+"chunk": 16
+},
+{
+"t": 17.14,
+"e": 17.72,
+"text": "ORLA",
+"chunk": 17
+},
+{
+"t": 17.72,
+"e": 18.14,
+"text": "by",
+"chunk": 17
+},
+{
+"t": 18.14,
+"e": 19.52,
+"text": "OMNIYAT",
+"chunk": 17
+},
+{
+"t": 19.52,
+"e": 20.12,
+"text": "brings",
+"chunk": 18
+},
+{
+"t": 20.12,
+"e": 20.52,
+"text": "together",
+"chunk": 18
+},
+{
+"t": 20.52,
+"e": 21.02,
+"text": "architecture",
+"chunk": 19
+},
+{
+"t": 21.02,
+"e": 21.52,
+"text": "by",
+"chunk": 19
+},
+{
+"t": 21.52,
+"e": 22.36,
+"text": "Foster + Partners",
+"chunk": 20
+},
+{
+"t": 22.36,
+"e": 22.7,
+"text": "and",
+"chunk": 20
+},
+{
+"t": 22.7,
+"e": 23.16,
+"text": "management",
+"chunk": 21
+},
+{
+"t": 23.16,
+"e": 23.42,
+"text": "by",
+"chunk": 21
+},
+{
+"t": 23.42,
+"e": 23.82,
+"text": "Dorchester",
+"chunk": 22
+},
+{
+"t": 23.82,
+"e": 24.2,
+"text": "Collection,",
+"chunk": 23
+},
+{
+"t": 24.2,
+"e": 24.82,
+"text": "with",
+"chunk": 24
+},
+{
+"t": 24.82,
+"e": 24.9,
+"text": "a",
+"chunk": 24
+},
+{
+"t": 24.9,
+"e": 25.14,
+"text": "private",
+"chunk": 24
+},
+{
+"t": 25.14,
+"e": 25.46,
+"text": "beach.",
+"chunk": 25
+},
+{
+"t": 26.17,
+"e": 26.26,
+"text": "Six",
+"chunk": 26
+},
+{
+"t": 26.26,
+"e": 26.64,
+"text": "Senses",
+"chunk": 26
+},
+{
+"t": 26.64,
+"e": 27.3,
+"text": "Residences",
+"chunk": 26
+},
+{
+"t": 27.36,
+"e": 27.48,
+"text": "The",
+"chunk": 27
+},
+{
+"t": 27.48,
+"e": 27.74,
+"text": "Palm",
+"chunk": 27
+},
+{
+"t": 27.9,
+"e": 28.24,
+"text": "includes",
+"chunk": 27
+},
+{
+"t": 28.24,
+"e": 29.16,
+"text": "162",
+"chunk": 28
+},
+{
+"t": 29.16,
+"e": 29.5,
+"text": "homes,",
+"chunk": 28
+},
+{
+"t": 29.5,
+"e": 30.04,
+"text": "with",
+"chunk": 29
+},
+{
+"t": 30.04,
+"e": 30.14,
+"text": "a",
+"chunk": 29
+},
+{
+"t": 30.14,
+"e": 30.36,
+"text": "strong",
+"chunk": 29
+},
+{
+"t": 30.36,
+"e": 30.72,
+"text": "focus",
+"chunk": 30
+},
+{
+"t": 30.72,
+"e": 30.94,
+"text": "on",
+"chunk": 30
+},
+{
+"t": 30.94,
+"e": 31.3,
+"text": "wellness",
+"chunk": 30
+},
+{
+"t": 31.3,
+"e": 31.54,
+"text": "and",
+"chunk": 31
+},
+{
+"t": 31.54,
+"e": 31.86,
+"text": "access",
+"chunk": 31
+},
+{
+"t": 31.86,
+"e": 32.04,
+"text": "to",
+"chunk": 31
+},
+{
+"t": 32.04,
+"e": 32.26,
+"text": "hotel",
+"chunk": 32
+},
+{
+"t": 32.26,
+"e": 32.7,
+"text": "facilities.",
+"chunk": 32
+},
+{
+"t": 33.405,
+"e": 33.48,
+"text": "And",
+"chunk": 33
+},
+{
+"t": 33.48,
+"e": 33.98,
+"text": "AVA",
+"chunk": 33
+},
+{
+"t": 33.98,
+"e": 34.38,
+"text": "by",
+"chunk": 33
+},
+{
+"t": 34.38,
+"e": 35.8,
+"text": "OMNIYAT",
+"chunk": 34
+},
+{
+"t": 35.8,
+"e": 36.18,
+"text": "is",
+"chunk": 34
+},
+{
+"t": 36.18,
+"e": 36.32,
+"text": "a",
+"chunk": 34
+},
+{
+"t": 36.32,
+"e": 36.44,
+"text": "much",
+"chunk": 35
+},
+{
+"t": 36.44,
+"e": 36.76,
+"text": "smaller",
+"chunk": 35
+},
+{
+"t": 36.76,
+"e": 37.14,
+"text": "collection:",
+"chunk": 36
+},
+{
+"t": 37.695,
+"e": 37.84,
+"text": "16",
+"chunk": 37
+},
+{
+"t": 37.84,
+"e": 38.62,
+"text": "residences",
+"chunk": 37
+},
+{
+"t": 38.62,
+"e": 38.92,
+"text": "and",
+"chunk": 37
+},
+{
+"t": 38.92,
+"e": 39.12,
+"text": "one",
+"chunk": 38
+},
+{
+"t": 39.12,
+"e": 39.36,
+"text": "Sky",
+"chunk": 38
+},
+{
+"t": 39.36,
+"e": 39.7,
+"text": "Palace.",
+"chunk": 38
+},
+{
+"t": 40.165,
+"e": 40.22,
+"text": "But",
+"chunk": 39
+},
+{
+"t": 40.22,
+"e": 40.48,
+"text": "fewer",
+"chunk": 39
+},
+{
+"t": 40.48,
+"e": 40.8,
+"text": "homes",
+"chunk": 39
+},
+{
+"t": 40.8,
+"e": 41.26,
+"text": "don't",
+"chunk": 40
+},
+{
+"t": 41.26,
+"e": 41.6,
+"text": "automatically",
+"chunk": 40
+},
+{
+"t": 41.6,
+"e": 42.02,
+"text": "mean",
+"chunk": 41
+},
+{
+"t": 42.02,
+"e": 42.2,
+"text": "a",
+"chunk": 41
+},
+{
+"t": 42.2,
+"e": 42.36,
+"text": "better",
+"chunk": 41
+},
+{
+"t": 42.36,
+"e": 42.82,
+"text": "investment.",
+"chunk": 42
+},
+{
+"t": 43.88,
+"e": 44.02,
+"text": "Compare",
+"chunk": 43
+},
+{
+"t": 44.02,
+"e": 44.26,
+"text": "the",
+"chunk": 43
+},
+{
+"t": 44.26,
+"e": 44.52,
+"text": "exact",
+"chunk": 43
+},
+{
+"t": 44.52,
+"e": 44.9,
+"text": "view,",
+"chunk": 44
+},
+{
+"t": 45.305,
+"e": 45.56,
+"text": "layout,",
+"chunk": 45
+},
+{
+"t": 45.82,
+"e": 46.28,
+"text": "privacy,",
+"chunk": 46
+},
+{
+"t": 46.66,
+"e": 47.22,
+"text": "service",
+"chunk": 47
+},
+{
+"t": 47.22,
+"e": 47.58,
+"text": "charges,",
+"chunk": 47
+},
+{
+"t": 48.255,
+"e": 48.4,
+"text": "beach",
+"chunk": 48
+},
+{
+"t": 48.4,
+"e": 48.82,
+"text": "access,",
+"chunk": 48
+},
+{
+"t": 49.08,
+"e": 49.26,
+"text": "and",
+"chunk": 49
+},
+{
+"t": 49.26,
+"e": 49.56,
+"text": "management",
+"chunk": 49
+},
+{
+"t": 49.56,
+"e": 50.02,
+"text": "arrangements.",
+"chunk": 50
+},
+{
+"t": 50.485,
+"e": 50.58,
+"text": "Check",
+"chunk": 51
+},
+{
+"t": 50.58,
+"e": 50.92,
+"text": "completion",
+"chunk": 51
+},
+{
+"t": 50.92,
+"e": 51.26,
+"text": "and",
+"chunk": 51
+},
+{
+"t": 51.26,
+"e": 51.6,
+"text": "handover",
+"chunk": 52
+},
+{
+"t": 51.6,
+"e": 51.88,
+"text": "status",
+"chunk": 52
+},
+{
+"t": 51.88,
+"e": 52.22,
+"text": "for",
+"chunk": 52
+},
+{
+"t": 52.22,
+"e": 52.3,
+"text": "the",
+"chunk": 53
+},
+{
+"t": 52.3,
+"e": 52.66,
+"text": "particular",
+"chunk": 53
+},
+{
+"t": 52.66,
+"e": 53.1,
+"text": "property",
+"chunk": 54
+},
+{
+"t": 53.1,
+"e": 53.4,
+"text": "you're",
+"chunk": 54
+},
+{
+"t": 53.4,
+"e": 53.76,
+"text": "considering.",
+"chunk": 55
+},
+{
+"t": 53.76,
+"e": 54.2,
+"text": "DM",
+"chunk": 56
+},
+{
+"t": 54.2,
+"e": 54.44,
+"text": "me",
+"chunk": 56
+},
+{
+"t": 54.44,
+"e": 54.66,
+"text": "DOORS",
+"chunk": 56
+},
+{
+"t": 54.66,
+"e": 54.96,
+"text": "with",
+"chunk": 57
+},
+{
+"t": 54.96,
+"e": 55.06,
+"text": "your",
+"chunk": 57
+},
+{
+"t": 55.06,
+"e": 55.38,
+"text": "budget",
+"chunk": 57
+},
+{
+"t": 55.38,
+"e": 55.64,
+"text": "and",
+"chunk": 58
+},
+{
+"t": 55.64,
+"e": 55.82,
+"text": "whether",
+"chunk": 58
+},
+{
+"t": 55.82,
+"e": 55.98,
+"text": "you're",
+"chunk": 58
+},
+{
+"t": 55.98,
+"e": 56.18,
+"text": "buying",
+"chunk": 59
+},
+{
+"t": 56.18,
+"e": 56.4,
+"text": "for",
+"chunk": 59
+},
+{
+"t": 56.4,
+"e": 56.76,
+"text": "personal",
+"chunk": 59
+},
+{
+"t": 56.76,
+"e": 57.06,
+"text": "use",
+"chunk": 60
+},
+{
+"t": 57.06,
+"e": 57.28,
+"text": "or",
+"chunk": 60
+},
+{
+"t": 57.28,
+"e": 57.56,
+"text": "investment.",
+"chunk": 60
+},
+{
+"t": 58.22,
+"e": 58.32,
+"text": "Let's",
+"chunk": 61
+},
+{
+"t": 58.32,
+"e": 58.48,
+"text": "compare",
+"chunk": 61
+},
+{
+"t": 58.48,
+"e": 58.7,
+"text": "the",
+"chunk": 61
+},
+{
+"t": 58.7,
+"e": 58.98,
+"text": "addresses",
+"chunk": 62
+},
+{
+"t": 58.98,
+"e": 59.26,
+"text": "that",
+"chunk": 62
+},
+{
+"t": 59.26,
+"e": 59.38,
+"text": "fit.",
+"chunk": 62
+}
+]
+}
