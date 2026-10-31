@@ -1,0 +1,968 @@
+{
+"fps": 60,
+"frames": 3495,
+"voice_dur": 58.25,
+"dur": 60.25,
+"words": [
+{
+"t": 0.14,
+"e": 0.3,
+"text": "Palm",
+"chunk": 0
+},
+{
+"t": 0.3,
+"e": 0.54,
+"text": "Jebel",
+"chunk": 0
+},
+{
+"t": 0.54,
+"e": 0.7,
+"text": "Ali",
+"chunk": 0
+},
+{
+"t": 0.7,
+"e": 1.0,
+"text": "gets",
+"chunk": 1
+},
+{
+"t": 1.0,
+"e": 1.2,
+"text": "the",
+"chunk": 1
+},
+{
+"t": 1.2,
+"e": 1.5,
+"text": "headlines,",
+"chunk": 1
+},
+{
+"t": 1.93,
+"e": 2.08,
+"text": "but",
+"chunk": 2
+},
+{
+"t": 2.08,
+"e": 2.38,
+"text": "family",
+"chunk": 2
+},
+{
+"t": 2.38,
+"e": 2.66,
+"text": "homes",
+"chunk": 2
+},
+{
+"t": 2.66,
+"e": 2.86,
+"text": "on",
+"chunk": 3
+},
+{
+"t": 2.86,
+"e": 2.96,
+"text": "the",
+"chunk": 3
+},
+{
+"t": 2.96,
+"e": 3.2,
+"text": "mainland",
+"chunk": 3
+},
+{
+"t": 3.2,
+"e": 3.66,
+"text": "nearby",
+"chunk": 4
+},
+{
+"t": 3.66,
+"e": 4.06,
+"text": "could",
+"chunk": 4
+},
+{
+"t": 4.06,
+"e": 4.3,
+"text": "attract",
+"chunk": 4
+},
+{
+"t": 4.3,
+"e": 4.58,
+"text": "a",
+"chunk": 5
+},
+{
+"t": 4.58,
+"e": 4.76,
+"text": "different",
+"chunk": 5
+},
+{
+"t": 4.76,
+"e": 5.14,
+"text": "buyer.",
+"chunk": 5
+},
+{
+"t": 5.54,
+"e": 5.6,
+"text": "Early",
+"chunk": 6
+},
+{
+"t": 5.6,
+"e": 6.02,
+"text": "marketing",
+"chunk": 6
+},
+{
+"t": 6.02,
+"e": 6.38,
+"text": "material",
+"chunk": 7
+},
+{
+"t": 6.38,
+"e": 6.8,
+"text": "describes",
+"chunk": 7
+},
+{
+"t": 6.8,
+"e": 7.28,
+"text": "Palm",
+"chunk": 8
+},
+{
+"t": 7.28,
+"e": 7.48,
+"text": "Springs",
+"chunk": 8
+},
+{
+"t": 7.48,
+"e": 7.94,
+"text": "as",
+"chunk": 8
+},
+{
+"t": 7.94,
+"e": 8.06,
+"text": "a",
+"chunk": 9
+},
+{
+"t": 8.06,
+"e": 8.42,
+"text": "proposed",
+"chunk": 9
+},
+{
+"t": 8.42,
+"e": 8.96,
+"text": "Nakheel",
+"chunk": 9
+},
+{
+"t": 8.96,
+"e": 9.34,
+"text": "community",
+"chunk": 10
+},
+{
+"t": 9.34,
+"e": 9.7,
+"text": "of",
+"chunk": 10
+},
+{
+"t": 9.7,
+"e": 10.04,
+"text": "villas",
+"chunk": 10
+},
+{
+"t": 10.04,
+"e": 10.18,
+"text": "and",
+"chunk": 11
+},
+{
+"t": 10.18,
+"e": 10.74,
+"text": "townhouses",
+"chunk": 11
+},
+{
+"t": 10.74,
+"e": 11.06,
+"text": "near",
+"chunk": 11
+},
+{
+"t": 11.06,
+"e": 11.34,
+"text": "Palm",
+"chunk": 12
+},
+{
+"t": 11.34,
+"e": 11.6,
+"text": "Jebel",
+"chunk": 12
+},
+{
+"t": 11.6,
+"e": 11.86,
+"text": "Ali,",
+"chunk": 12
+},
+{
+"t": 11.86,
+"e": 12.36,
+"text": "with",
+"chunk": 13
+},
+{
+"t": 12.36,
+"e": 12.7,
+"text": "access",
+"chunk": 13
+},
+{
+"t": 12.7,
+"e": 12.98,
+"text": "to",
+"chunk": 13
+},
+{
+"t": 12.98,
+"e": 13.18,
+"text": "Sheikh",
+"chunk": 14
+},
+{
+"t": 13.18,
+"e": 13.48,
+"text": "Zayed",
+"chunk": 14
+},
+{
+"t": 13.48,
+"e": 13.72,
+"text": "Road.",
+"chunk": 14
+},
+{
+"t": 14.05,
+"e": 14.12,
+"text": "The",
+"chunk": 15
+},
+{
+"t": 14.12,
+"e": 14.34,
+"text": "distinction",
+"chunk": 15
+},
+{
+"t": 14.34,
+"e": 14.82,
+"text": "matters.",
+"chunk": 16
+},
+{
+"t": 15.325,
+"e": 15.445,
+"text": "A",
+"chunk": 17
+},
+{
+"t": 15.36,
+"e": 15.72,
+"text": "beachfront",
+"chunk": 17
+},
+{
+"t": 15.72,
+"e": 16.02,
+"text": "villa",
+"chunk": 17
+},
+{
+"t": 16.02,
+"e": 16.32,
+"text": "and",
+"chunk": 18
+},
+{
+"t": 16.32,
+"e": 16.38,
+"text": "a",
+"chunk": 18
+},
+{
+"t": 16.38,
+"e": 16.68,
+"text": "family",
+"chunk": 18
+},
+{
+"t": 16.68,
+"e": 17.18,
+"text": "townhouse",
+"chunk": 19
+},
+{
+"t": 17.18,
+"e": 17.46,
+"text": "serve",
+"chunk": 19
+},
+{
+"t": 17.46,
+"e": 17.82,
+"text": "different",
+"chunk": 20
+},
+{
+"t": 17.82,
+"e": 18.14,
+"text": "budgets",
+"chunk": 20
+},
+{
+"t": 18.14,
+"e": 18.4,
+"text": "and",
+"chunk": 20
+},
+{
+"t": 18.4,
+"e": 18.72,
+"text": "priorities.",
+"chunk": 21
+},
+{
+"t": 19.275,
+"e": 19.48,
+"text": "Families",
+"chunk": 22
+},
+{
+"t": 19.48,
+"e": 19.68,
+"text": "may",
+"chunk": 22
+},
+{
+"t": 19.68,
+"e": 19.9,
+"text": "care",
+"chunk": 22
+},
+{
+"t": 19.9,
+"e": 20.1,
+"text": "more",
+"chunk": 23
+},
+{
+"t": 20.1,
+"e": 20.38,
+"text": "about",
+"chunk": 23
+},
+{
+"t": 20.38,
+"e": 20.76,
+"text": "garden",
+"chunk": 23
+},
+{
+"t": 20.76,
+"e": 21.02,
+"text": "space,",
+"chunk": 24
+},
+{
+"t": 21.645,
+"e": 21.84,
+"text": "practical",
+"chunk": 25
+},
+{
+"t": 21.84,
+"e": 22.28,
+"text": "layouts,",
+"chunk": 25
+},
+{
+"t": 22.88,
+"e": 23.14,
+"text": "schools,",
+"chunk": 26
+},
+{
+"t": 23.56,
+"e": 24.12,
+"text": "shops,",
+"chunk": 27
+},
+{
+"t": 24.6,
+"e": 24.66,
+"text": "and",
+"chunk": 28
+},
+{
+"t": 24.66,
+"e": 24.78,
+"text": "the",
+"chunk": 28
+},
+{
+"t": 24.78,
+"e": 25.0,
+"text": "daily",
+"chunk": 28
+},
+{
+"t": 25.0,
+"e": 25.4,
+"text": "commute",
+"chunk": 29
+},
+{
+"t": 25.4,
+"e": 25.7,
+"text": "than",
+"chunk": 29
+},
+{
+"t": 25.7,
+"e": 25.88,
+"text": "having",
+"chunk": 29
+},
+{
+"t": 25.88,
+"e": 26.06,
+"text": "a",
+"chunk": 30
+},
+{
+"t": 26.06,
+"e": 26.42,
+"text": "beachfront",
+"chunk": 30
+},
+{
+"t": 26.42,
+"e": 26.76,
+"text": "address.",
+"chunk": 30
+},
+{
+"t": 27.205,
+"e": 27.325,
+"text": "The",
+"chunk": 31
+},
+{
+"t": 27.24,
+"e": 27.5,
+"text": "wider",
+"chunk": 31
+},
+{
+"t": 27.5,
+"e": 27.86,
+"text": "corridor",
+"chunk": 31
+},
+{
+"t": 27.86,
+"e": 28.28,
+"text": "includes",
+"chunk": 32
+},
+{
+"t": 28.28,
+"e": 28.68,
+"text": "Jebel",
+"chunk": 32
+},
+{
+"t": 28.68,
+"e": 29.12,
+"text": "Ali's",
+"chunk": 32
+},
+{
+"t": 29.12,
+"e": 29.44,
+"text": "established",
+"chunk": 33
+},
+{
+"t": 29.44,
+"e": 29.78,
+"text": "business",
+"chunk": 33
+},
+{
+"t": 29.78,
+"e": 30.32,
+"text": "activity",
+"chunk": 34
+},
+{
+"t": 30.32,
+"e": 30.94,
+"text": "and",
+"chunk": 34
+},
+{
+"t": 30.94,
+"e": 31.1,
+"text": "the",
+"chunk": 34
+},
+{
+"t": 31.1,
+"e": 31.48,
+"text": "developing",
+"chunk": 35
+},
+{
+"t": 31.48,
+"e": 31.8,
+"text": "Dubai",
+"chunk": 35
+},
+{
+"t": 31.8,
+"e": 32.12,
+"text": "South",
+"chunk": 36
+},
+{
+"t": 32.12,
+"e": 32.5,
+"text": "airport",
+"chunk": 36
+},
+{
+"t": 32.5,
+"e": 32.88,
+"text": "district.",
+"chunk": 37
+},
+{
+"t": 33.39,
+"e": 33.44,
+"text": "But",
+"chunk": 38
+},
+{
+"t": 33.44,
+"e": 33.82,
+"text": "proximity",
+"chunk": 38
+},
+{
+"t": 33.82,
+"e": 34.12,
+"text": "to",
+"chunk": 38
+},
+{
+"t": 34.12,
+"e": 34.34,
+"text": "major",
+"chunk": 39
+},
+{
+"t": 34.34,
+"e": 34.82,
+"text": "projects",
+"chunk": 39
+},
+{
+"t": 34.82,
+"e": 35.28,
+"text": "doesn't",
+"chunk": 40
+},
+{
+"t": 35.28,
+"e": 35.46,
+"text": "tell",
+"chunk": 40
+},
+{
+"t": 35.46,
+"e": 35.58,
+"text": "you",
+"chunk": 40
+},
+{
+"t": 35.58,
+"e": 35.76,
+"text": "whether",
+"chunk": 41
+},
+{
+"t": 35.76,
+"e": 35.88,
+"text": "a",
+"chunk": 41
+},
+{
+"t": 35.88,
+"e": 36.14,
+"text": "particular",
+"chunk": 41
+},
+{
+"t": 36.14,
+"e": 36.54,
+"text": "home",
+"chunk": 42
+},
+{
+"t": 36.54,
+"e": 36.7,
+"text": "is",
+"chunk": 42
+},
+{
+"t": 36.7,
+"e": 36.84,
+"text": "good",
+"chunk": 42
+},
+{
+"t": 36.84,
+"e": 37.18,
+"text": "value.",
+"chunk": 43
+},
+{
+"t": 38.02,
+"e": 38.14,
+"text": "For",
+"chunk": 44
+},
+{
+"t": 38.04,
+"e": 38.28,
+"text": "that,",
+"chunk": 44
+},
+{
+"t": 38.755,
+"e": 38.88,
+"text": "compare",
+"chunk": 45
+},
+{
+"t": 38.88,
+"e": 39.16,
+"text": "the",
+"chunk": 45
+},
+{
+"t": 39.16,
+"e": 39.4,
+"text": "official",
+"chunk": 45
+},
+{
+"t": 39.4,
+"e": 39.74,
+"text": "price,",
+"chunk": 46
+},
+{
+"t": 40.33,
+"e": 40.4,
+"text": "plot",
+"chunk": 47
+},
+{
+"t": 40.4,
+"e": 40.7,
+"text": "size,",
+"chunk": 47
+},
+{
+"t": 40.7,
+"e": 41.54,
+"text": "built-up",
+"chunk": 48
+},
+{
+"t": 41.54,
+"e": 41.78,
+"text": "area,",
+"chunk": 48
+},
+{
+"t": 42.235,
+"e": 42.44,
+"text": "delivery",
+"chunk": 49
+},
+{
+"t": 42.44,
+"e": 42.86,
+"text": "schedule,",
+"chunk": 49
+},
+{
+"t": 43.08,
+"e": 43.3,
+"text": "and",
+"chunk": 50
+},
+{
+"t": 43.3,
+"e": 43.62,
+"text": "services",
+"chunk": 50
+},
+{
+"t": 43.62,
+"e": 43.98,
+"text": "available",
+"chunk": 51
+},
+{
+"t": 43.98,
+"e": 44.28,
+"text": "at",
+"chunk": 51
+},
+{
+"t": 44.28,
+"e": 44.66,
+"text": "handover.",
+"chunk": 52
+},
+{
+"t": 45.02,
+"e": 45.24,
+"text": "Don't",
+"chunk": 53
+},
+{
+"t": 45.24,
+"e": 45.36,
+"text": "assume",
+"chunk": 53
+},
+{
+"t": 45.36,
+"e": 45.64,
+"text": "every",
+"chunk": 53
+},
+{
+"t": 45.64,
+"e": 46.14,
+"text": "townhouse",
+"chunk": 54
+},
+{
+"t": 46.14,
+"e": 46.32,
+"text": "has",
+"chunk": 54
+},
+{
+"t": 46.32,
+"e": 46.46,
+"text": "the",
+"chunk": 54
+},
+{
+"t": 46.46,
+"e": 46.66,
+"text": "same",
+"chunk": 55
+},
+{
+"t": 46.66,
+"e": 46.96,
+"text": "plot",
+"chunk": 55
+},
+{
+"t": 46.96,
+"e": 47.44,
+"text": "or",
+"chunk": 55
+},
+{
+"t": 47.44,
+"e": 47.72,
+"text": "that",
+"chunk": 56
+},
+{
+"t": 47.72,
+"e": 47.88,
+"text": "an",
+"chunk": 56
+},
+{
+"t": 47.88,
+"e": 48.12,
+"text": "early",
+"chunk": 56
+},
+{
+"t": 48.12,
+"e": 48.4,
+"text": "price",
+"chunk": 57
+},
+{
+"t": 48.4,
+"e": 48.68,
+"text": "applies",
+"chunk": 57
+},
+{
+"t": 48.68,
+"e": 48.92,
+"text": "to",
+"chunk": 57
+},
+{
+"t": 48.92,
+"e": 49.12,
+"text": "every",
+"chunk": 58
+},
+{
+"t": 49.12,
+"e": 49.42,
+"text": "unit.",
+"chunk": 58
+},
+{
+"t": 49.785,
+"e": 50.0,
+"text": "DM",
+"chunk": 59
+},
+{
+"t": 50.0,
+"e": 50.32,
+"text": "me",
+"chunk": 59
+},
+{
+"t": 50.32,
+"e": 51.3,
+"text": "PALM",
+"chunk": 59
+},
+{
+"t": 51.3,
+"e": 53.34,
+"text": "SPRINGS",
+"chunk": 60
+},
+{
+"t": 53.34,
+"e": 53.86,
+"text": "with",
+"chunk": 60
+},
+{
+"t": 53.86,
+"e": 54.0,
+"text": "your",
+"chunk": 60
+},
+{
+"t": 54.0,
+"e": 54.32,
+"text": "budget",
+"chunk": 61
+},
+{
+"t": 54.32,
+"e": 54.52,
+"text": "and",
+"chunk": 61
+},
+{
+"t": 54.52,
+"e": 54.78,
+"text": "bedroom",
+"chunk": 61
+},
+{
+"t": 54.78,
+"e": 55.12,
+"text": "requirement.",
+"chunk": 62
+},
+{
+"t": 55.9,
+"e": 55.98,
+"text": "I'll",
+"chunk": 63
+},
+{
+"t": 55.98,
+"e": 56.18,
+"text": "share",
+"chunk": 63
+},
+{
+"t": 56.18,
+"e": 56.48,
+"text": "confirmed",
+"chunk": 63
+},
+{
+"t": 56.48,
+"e": 56.88,
+"text": "launch",
+"chunk": 64
+},
+{
+"t": 56.88,
+"e": 57.1,
+"text": "details",
+"chunk": 64
+},
+{
+"t": 57.1,
+"e": 57.54,
+"text": "when",
+"chunk": 64
+},
+{
+"t": 57.54,
+"e": 57.74,
+"text": "available.",
+"chunk": 65
+}
+]
+}
