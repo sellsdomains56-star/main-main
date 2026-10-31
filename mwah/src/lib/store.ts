@@ -70,6 +70,11 @@ export async function nextOrderNumber() {
   return all.reduce((m, o) => Math.max(m, o.number), 1000) + 1;
 }
 
+/** Public "orders so far" number: only orders that were really paid and not cancelled or refunded. */
+export async function orderCount() {
+  return (await allOrders()).filter((o) => ["paid", "packed", "shipped", "delivered"].includes(o.status)).length;
+}
+
 /** Idempotent: marks an order paid, takes stock, counts the discount code and fixes the creator's commission. */
 export async function finalizePaid(orderId: string) {
   const o = await orderById(orderId);
@@ -116,8 +121,9 @@ export async function dashboard() {
   const totalRev = r2(paid.reduce((t, o) => t + o.total, 0));
   const sold = new Map<string, number>();
   paid.forEach((o) => o.items.forEach((i) => sold.set(i.name, (sold.get(i.name) ?? 0) + i.qty)));
+  const today = new Date().toISOString().slice(0, 10);
   return {
-    totalRev, monthRev, orderCount: paid.length, aov: paid.length ? r2(totalRev / paid.length) : 0,
+    totalRev, monthRev, orderCount: paid.length, ordersToday: paid.filter((o) => o.createdAt.slice(0, 10) === today).length, aov: paid.length ? r2(totalRev / paid.length) : 0,
     toShip: orders.filter((o) => ["paid", "packed"].includes(o.status)).length,
     days, recent: orders.slice(0, 6),
     low: products.filter((p) => p.status === "active" && p.stock <= settings.lowStockAt),

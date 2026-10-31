@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { activeProducts } from "@/lib/store";
+import { activeProducts, orderCount } from "@/lib/store";
+import { OrderCounter } from "@/components/OrderCounter";
 import { ProductCard } from "@/components/ProductCard";
 import { BalmTube } from "@/components/BalmTube";
 import { cookies } from "next/headers";
@@ -7,6 +8,7 @@ import { influencerByCode } from "@/lib/store";
 
 export default async function Home() {
   const products = (await activeProducts()).filter((p) => p.featured).slice(0, 4);
+  const orders = await orderCount();
   const ref = await influencerByCode((await cookies()).get("mwah_ref")?.value);
   const tubes = [["#ff5d8f", "#ffb3c7", -8], ["#d6124a", "#ff6b8e", 6], ["#f5d6a1", "#fff1d6", -3]] as const;
   return (
@@ -26,7 +28,8 @@ export default async function Home() {
               <Link href="/shop" className="btn btn-pink text-lg">Shop the balms</Link>
               <Link href="/product/mwah-set" className="btn btn-ghost text-lg">The Mwah Set · AED 99</Link>
             </div>
-            <p className="mt-6 text-sm font-bold">Free UAE shipping over AED 150 · Ships worldwide</p>
+            <OrderCounter initial={orders} />
+            <p className="mt-2 text-sm">Free UAE shipping over AED 150 · Ships worldwide</p>
           </div>
           <div className="relative mx-auto flex h-[420px] w-full max-w-md items-end justify-center">
             <div className="absolute inset-6 rounded-full bg-blush" />

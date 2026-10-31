@@ -3,16 +3,22 @@ import Link from "next/link";
 import { dashboard } from "@/lib/store";
 import { fmt } from "@/lib/money";
 import { StatusBadge } from "@/components/StatusBadge";
+import { AutoRefresh } from "@/components/AutoRefresh";
 export const metadata: Metadata = { title: "Dashboard", robots: { index: false } };
 
 export default async function Dash() {
   const d = await dashboard();
   const max = Math.max(1, ...d.days.map((x) => x.revenue));
-  const tiles: [string, string, string][] = [["Revenue (all time)", fmt(d.totalRev), "💰"], ["This month", fmt(d.monthRev), "📈"], ["Paid orders", String(d.orderCount), "🧾"], ["Avg. order", fmt(d.aov), "🛍️"], ["To ship", String(d.toShip), "📦"]];
+  const tiles: [string, string, string][] = [["Revenue (all time)", fmt(d.totalRev), "💰"], ["This month", fmt(d.monthRev), "📈"], ["Avg. order", fmt(d.aov), "🛍️"], ["To ship", String(d.toShip), "📦"]];
   return (
     <div className="space-y-6">
-      <h1 className="text-4xl font-extrabold">Dashboard</h1>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-5">{tiles.map(([k, v, e]) => <div key={k} className="card p-4"><p className="text-xs font-bold">{e} {k}</p><p className="mt-1 text-2xl font-extrabold">{v}</p></div>)}</div>
+      <AutoRefresh seconds={30} />
+      <div className="flex flex-wrap items-end justify-between gap-3"><h1 className="text-4xl font-extrabold">Dashboard</h1><p className="text-xs">Updates by itself every 30 seconds</p></div>
+      <section className="flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-ink p-6 text-cream" aria-label="Order counter">
+        <div><p className="text-sm font-bold">Orders so far</p><p className="font-display text-7xl font-extrabold leading-none text-pink tabular-nums" aria-live="polite">{d.orderCount.toLocaleString("en")}</p></div>
+        <div className="text-right"><p className="text-sm font-bold">Today</p><p className="font-display text-4xl font-extrabold tabular-nums">{d.ordersToday}</p></div>
+      </section>
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">{tiles.map(([k, v, e]) => <div key={k} className="card p-4"><p className="text-xs font-bold">{e} {k}</p><p className="mt-1 text-2xl font-extrabold">{v}</p></div>)}</div>
       <section className="card p-5"><h2 className="text-lg font-extrabold">Revenue, last 14 days</h2>
         <div className="mt-4 flex h-44 items-end gap-1.5" role="img" aria-label="Revenue per day for the last 14 days">
           {d.days.map((x) => <div key={x.key} className="group flex h-full flex-1 flex-col items-center justify-end gap-1" title={`${x.label}: ${fmt(x.revenue)}`}>
