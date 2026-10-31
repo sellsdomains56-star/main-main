@@ -1,0 +1,626 @@
+{
+"fps": 60,
+"frames": 2818,
+"voice_dur": 46.96666666666667,
+"dur": 48.967,
+"words": [
+{
+"t": 0.18,
+"e": 0.3,
+"text": "Here",
+"chunk": 0
+},
+{
+"t": 0.2,
+"e": 0.34,
+"text": "are",
+"chunk": 0
+},
+{
+"t": 0.34,
+"e": 0.6,
+"text": "five",
+"chunk": 0
+},
+{
+"t": 0.6,
+"e": 0.76,
+"text": "of",
+"chunk": 1
+},
+{
+"t": 0.76,
+"e": 0.84,
+"text": "the",
+"chunk": 1
+},
+{
+"t": 0.84,
+"e": 1.24,
+"text": "wealthiest",
+"chunk": 1
+},
+{
+"t": 1.24,
+"e": 1.46,
+"text": "people",
+"chunk": 2
+},
+{
+"t": 1.46,
+"e": 1.8,
+"text": "living",
+"chunk": 2
+},
+{
+"t": 1.8,
+"e": 1.96,
+"text": "in",
+"chunk": 2
+},
+{
+"t": 1.96,
+"e": 2.08,
+"text": "the",
+"chunk": 3
+},
+{
+"t": 2.08,
+"e": 2.48,
+"text": "UAE,",
+"chunk": 3
+},
+{
+"t": 2.56,
+"e": 2.84,
+"text": "using",
+"chunk": 4
+},
+{
+"t": 2.84,
+"e": 3.22,
+"text": "Forbes'",
+"chunk": 4
+},
+{
+"t": 3.38,
+"e": 3.82,
+"text": "2026",
+"chunk": 4
+},
+{
+"t": 3.82,
+"e": 4.24,
+"text": "estimates.",
+"chunk": 5
+},
+{
+"t": 4.875,
+"e": 5.04,
+"text": "Pavel",
+"chunk": 6
+},
+{
+"t": 5.04,
+"e": 5.36,
+"text": "Durov,",
+"chunk": 6
+},
+{
+"t": 5.75,
+"e": 5.84,
+"text": "$6.6 billion,",
+"chunk": 7
+},
+{
+"t": 7.0,
+"e": 7.5,
+"text": "founder",
+"chunk": 8
+},
+{
+"t": 7.5,
+"e": 7.74,
+"text": "of",
+"chunk": 8
+},
+{
+"t": 7.74,
+"e": 8.18,
+"text": "Telegram,",
+"chunk": 8
+},
+{
+"t": 8.34,
+"e": 8.58,
+"text": "the",
+"chunk": 9
+},
+{
+"t": 8.58,
+"e": 8.86,
+"text": "messaging",
+"chunk": 9
+},
+{
+"t": 8.86,
+"e": 9.14,
+"text": "platform",
+"chunk": 10
+},
+{
+"t": 9.14,
+"e": 9.86,
+"text": "headquartered",
+"chunk": 11
+},
+{
+"t": 9.86,
+"e": 9.92,
+"text": "in",
+"chunk": 11
+},
+{
+"t": 9.92,
+"e": 10.18,
+"text": "Dubai.",
+"chunk": 12
+},
+{
+"t": 10.18,
+"e": 10.96,
+"text": "Hussain",
+"chunk": 13
+},
+{
+"t": 10.96,
+"e": 11.44,
+"text": "Sajwani,",
+"chunk": 13
+},
+{
+"t": 11.845,
+"e": 11.92,
+"text": "$15.3 billion,",
+"chunk": 14
+},
+{
+"t": 13.22,
+"e": 13.7,
+"text": "founder",
+"chunk": 15
+},
+{
+"t": 13.7,
+"e": 13.96,
+"text": "of",
+"chunk": 15
+},
+{
+"t": 13.96,
+"e": 14.26,
+"text": "DAMAC",
+"chunk": 15
+},
+{
+"t": 14.26,
+"e": 14.78,
+"text": "Properties",
+"chunk": 16
+},
+{
+"t": 14.78,
+"e": 15.08,
+"text": "and",
+"chunk": 16
+},
+{
+"t": 15.08,
+"e": 15.22,
+"text": "the",
+"chunk": 16
+},
+{
+"t": 15.22,
+"e": 15.86,
+"text": "highest-ranked",
+"chunk": 17
+},
+{
+"t": 15.86,
+"e": 16.24,
+"text": "Emirati",
+"chunk": 18
+},
+{
+"t": 16.24,
+"e": 16.46,
+"text": "on",
+"chunk": 18
+},
+{
+"t": 16.46,
+"e": 16.76,
+"text": "Forbes'",
+"chunk": 18
+},
+{
+"t": 16.92,
+"e": 17.42,
+"text": "2026",
+"chunk": 19
+},
+{
+"t": 17.42,
+"e": 17.98,
+"text": "billionaires",
+"chunk": 19
+},
+{
+"t": 17.98,
+"e": 18.22,
+"text": "list.",
+"chunk": 20
+},
+{
+"t": 18.22,
+"e": 18.92,
+"text": "Andrey",
+"chunk": 21
+},
+{
+"t": 18.92,
+"e": 19.58,
+"text": "Melnichenko",
+"chunk": 21
+},
+{
+"t": 19.58,
+"e": 19.68,
+"text": "and",
+"chunk": 22
+},
+{
+"t": 19.68,
+"e": 19.94,
+"text": "family,",
+"chunk": 22
+},
+{
+"t": 20.435,
+"e": 20.58,
+"text": "$20.4 billion,",
+"chunk": 23
+},
+{
+"t": 21.76,
+"e": 22.14,
+"text": "with",
+"chunk": 24
+},
+{
+"t": 22.14,
+"e": 22.24,
+"text": "a",
+"chunk": 24
+},
+{
+"t": 22.24,
+"e": 22.54,
+"text": "fortune",
+"chunk": 24
+},
+{
+"t": 22.54,
+"e": 22.88,
+"text": "built",
+"chunk": 25
+},
+{
+"t": 22.88,
+"e": 23.18,
+"text": "around",
+"chunk": 25
+},
+{
+"t": 23.18,
+"e": 23.86,
+"text": "fertilisers",
+"chunk": 26
+},
+{
+"t": 23.86,
+"e": 24.06,
+"text": "and",
+"chunk": 26
+},
+{
+"t": 24.06,
+"e": 24.34,
+"text": "coal.",
+"chunk": 26
+},
+{
+"t": 24.34,
+"e": 24.875,
+"text": "Vinod",
+"chunk": 27
+},
+{
+"t": 24.875,
+"e": 25.5,
+"text": "Adani,",
+"chunk": 27
+},
+{
+"t": 25.5,
+"e": 25.9,
+"text": "$20.8 billion,",
+"chunk": 28
+},
+{
+"t": 27.08,
+"e": 27.64,
+"text": "the",
+"chunk": 29
+},
+{
+"t": 27.64,
+"e": 27.84,
+"text": "older",
+"chunk": 29
+},
+{
+"t": 27.84,
+"e": 28.1,
+"text": "brother",
+"chunk": 29
+},
+{
+"t": 28.1,
+"e": 28.36,
+"text": "of",
+"chunk": 30
+},
+{
+"t": 28.36,
+"e": 28.74,
+"text": "Gautam",
+"chunk": 30
+},
+{
+"t": 28.74,
+"e": 29.12,
+"text": "Adani,",
+"chunk": 30
+},
+{
+"t": 29.18,
+"e": 29.44,
+"text": "with",
+"chunk": 31
+},
+{
+"t": 29.44,
+"e": 29.96,
+"text": "holdings",
+"chunk": 31
+},
+{
+"t": 29.96,
+"e": 30.08,
+"text": "through",
+"chunk": 31
+},
+{
+"t": 30.08,
+"e": 30.48,
+"text": "overseas",
+"chunk": 32
+},
+{
+"t": 30.48,
+"e": 30.8,
+"text": "investment",
+"chunk": 32
+},
+{
+"t": 30.8,
+"e": 31.4,
+"text": "companies,",
+"chunk": 33
+},
+{
+"t": 32.09,
+"e": 32.21,
+"text": "and",
+"chunk": 34
+},
+{
+"t": 32.12,
+"e": 32.58,
+"text": "Changpeng",
+"chunk": 34
+},
+{
+"t": 32.58,
+"e": 32.78,
+"text": "Zhao,",
+"chunk": 34
+},
+{
+"t": 33.215,
+"e": 33.34,
+"text": "known",
+"chunk": 35
+},
+{
+"t": 33.34,
+"e": 33.56,
+"text": "as",
+"chunk": 35
+},
+{
+"t": 33.56,
+"e": 33.84,
+"text": "CZ,",
+"chunk": 35
+},
+{
+"t": 34.275,
+"e": 34.7,
+"text": "$110 billion,",
+"chunk": 36
+},
+{
+"t": 34.7,
+"e": 36.64,
+"text": "co-founder",
+"chunk": 37
+},
+{
+"t": 36.64,
+"e": 36.86,
+"text": "of",
+"chunk": 37
+},
+{
+"t": 36.86,
+"e": 37.4,
+"text": "Binance.",
+"chunk": 38
+},
+{
+"t": 38.21,
+"e": 38.52,
+"text": "Technology,",
+"chunk": 39
+},
+{
+"t": 39.18,
+"e": 39.3,
+"text": "property,",
+"chunk": 40
+},
+{
+"t": 39.7,
+"e": 40.24,
+"text": "industry,",
+"chunk": 41
+},
+{
+"t": 40.48,
+"e": 40.72,
+"text": "and",
+"chunk": 42
+},
+{
+"t": 40.72,
+"e": 41.12,
+"text": "finance:",
+"chunk": 42
+},
+{
+"t": 41.65,
+"e": 41.76,
+"text": "very",
+"chunk": 43
+},
+{
+"t": 41.76,
+"e": 42.0,
+"text": "different",
+"chunk": 43
+},
+{
+"t": 42.0,
+"e": 42.48,
+"text": "businesses,",
+"chunk": 44
+},
+{
+"t": 43.06,
+"e": 43.12,
+"text": "with",
+"chunk": 45
+},
+{
+"t": 43.12,
+"e": 43.24,
+"text": "their",
+"chunk": 45
+},
+{
+"t": 43.24,
+"e": 43.62,
+"text": "founders",
+"chunk": 45
+},
+{
+"t": 43.62,
+"e": 43.92,
+"text": "sharing",
+"chunk": 46
+},
+{
+"t": 43.92,
+"e": 44.14,
+"text": "a",
+"chunk": 46
+},
+{
+"t": 44.14,
+"e": 44.34,
+"text": "base",
+"chunk": 46
+},
+{
+"t": 44.34,
+"e": 44.54,
+"text": "in",
+"chunk": 47
+},
+{
+"t": 44.54,
+"e": 44.66,
+"text": "the",
+"chunk": 47
+},
+{
+"t": 44.66,
+"e": 45.04,
+"text": "UAE.",
+"chunk": 47
+},
+{
+"t": 45.49,
+"e": 45.58,
+"text": "Which",
+"chunk": 48
+},
+{
+"t": 45.58,
+"e": 45.8,
+"text": "name",
+"chunk": 48
+},
+{
+"t": 45.8,
+"e": 46.08,
+"text": "surprised",
+"chunk": 48
+},
+{
+"t": 46.08,
+"e": 46.36,
+"text": "you",
+"chunk": 49
+},
+{
+"t": 46.36,
+"e": 46.56,
+"text": "most?",
+"chunk": 49
+}
+]
+}
