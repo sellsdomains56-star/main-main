@@ -8,6 +8,7 @@ Design: minimal black and white (off-white page, black type and panels, real bar
 | --- | --- |
 | [`app/`](app) | The **iOS app, Android app and website** (Expo / React Native + Expo Router). |
 | [`server/`](server) | The **API** (Node + Express + TypeScript): barbers, search, bookings, payments, reviews, portfolios, reels, shop, AI concierge, AI try-on, support. |
+| [`wepink-gcc/`](wepink-gcc) | A separate client project: the **wepink GCC storefront** (English/Arabic, six Gulf currencies). See its [README](wepink-gcc/README.md). |
 
 ## Features
 

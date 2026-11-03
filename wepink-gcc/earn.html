@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Earn with wepink · wepink Gulf</title>
+  <meta name="description" content="Become a wepink Gulf ambassador: give friends 10% off and earn up to 20% commission on every order.">
+  <meta name="theme-color" content="#E6007E">
+  <meta property="og:site_name" content="wepink Gulf">
+  <meta property="og:title" content="Earn with wepink · wepink Gulf">
+  <meta property="og:description" content="Become a wepink Gulf ambassador: give friends 10% off and earn up to 20% commission on every order.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.wepink-gulf.com/assets/photos/og-share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=El+Messiri:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>
+    // Set language and direction before first paint so Arabic and Portuguese visitors never see a flash of English layout.
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search).get("lang");
+        var nav = (navigator.language || "").toLowerCase().slice(0, 2);
+        var l = q || JSON.parse(localStorage.getItem("wpg.lang") || "null") || (nav === "ar" || nav === "pt" ? nav : "en");
+        if (l === "ar") { document.documentElement.lang = "ar"; document.documentElement.dir = "rtl"; }
+        else if (l === "pt") document.documentElement.lang = "pt-BR";
+      } catch (e) {}
+      // Black or white: the shopper's saved choice, else the device's setting.
+      try {
+        var tone = JSON.parse(localStorage.getItem("wpg.tone") || "null");
+      } catch (e) {}
+      if (tone !== "noir" && tone !== "blanc") tone = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "noir" : "blanc";
+      document.documentElement.setAttribute("data-tone", tone);
+    })();
+  </script>
+  <script defer src="assets/js/catalog.js"></script>
+  <script defer src="assets/js/data.js"></script>
+  <script defer src="assets/js/sync.js"></script>
+  <script defer src="assets/js/i18n.js"></script>
+  <script defer src="assets/js/art.js"></script>
+  <script defer src="assets/js/silk.js"></script>
+  <script defer src="assets/js/app.js"></script>
+  <script defer src="assets/js/brain.js"></script>
+  <script defer src="assets/js/assistant.js"></script>
+  <script defer src="assets/js/pages.js"></script>
+</head>
+<body data-page="earn">
+  <div id="app-header"></div>
+  <main id="main" tabindex="-1"></main>
+  <div id="app-footer"></div>
+  <noscript><p style="padding:24px;text-align:center">Please enable JavaScript to shop wepink Gulf. · يرجى تفعيل JavaScript للتسوق.</p></noscript>
+</body>
+</html>
