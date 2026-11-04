@@ -1,0 +1,55 @@
+{
+ "notes": {
+  "z5": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/zoom_in/zoom5.m4a",
+  "z6": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/zoom_in/zoom6.m4a",
+  "z7": "/tmp/claude-0/-home-user-main-main/be3abcf9-0f5c-57e1-887a-062f3550b887/scratchpad/zoom_in/zoom7.m4a"
+ },
+ "voices": {
+  "palm_springs_one": [
+   [
+    "z5",
+    2.05,
+    18.95
+   ],
+   [
+    "z5",
+    23.6,
+    32.0
+   ],
+   [
+    "z6",
+    21.2,
+    30.85
+   ],
+   [
+    "z6",
+    34.8,
+    42.75
+   ],
+   [
+    "z6",
+    61.3,
+    76.25
+   ],
+   [
+    "z6",
+    82.4,
+    100.6
+   ],
+   [
+    "z6",
+    116.8,
+    125.9
+   ],
+   [
+    "z7",
+    0.5,
+    12.5
+   ]
+  ]
+ },
+ "lufs": -16,
+ "gap": 0.18,
+ "max_pause": 0.22,
+ "trim_edges": true
+}
