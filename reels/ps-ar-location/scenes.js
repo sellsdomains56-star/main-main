@@ -1,42 +1,36 @@
 'use strict';
 // ---------------------------------------------------------------------------
-// "Palm Springs by Nakheel is a proposed new villa and townhouse community near Palm Jebel Ali" - HeyGen cfdcf947 (53.6 s, English).  60 fps.
-// Same look as ../dh-villa-pja (the same project: map + roadmap + real pages), his face SMALL the whole time.
-// Facts (research 29 Oct 2026, scratchpad research_villa.md): Palm Springs is reported only by broker / channel-partner listings (28-29 Oct 2026):
-// Nakheel (Dubai Holding Real Estate), Hessyan First / Jebel Ali, access via Sheikh Zayed Road and D53, 3-4 bed townhouses and 4-5 bed villas;
-// no plot, price, payment plan or handover published; nothing on the Nakheel / Dubai Holding press pages -> "proposed", approximate area, no price.
-// Dubai Media Office 28 Apr 2024: AED128 billion terminal, 260 million passengers.  jafza.ae: 11,000+ businesses.  Palm Jebel Ali: 13.4 km2.
+// بالم سبرينغز - الموقع والعائلات (Arabic, his edited Zoom voice: clip A, 55.6 s).  60 fps.  Everything on screen in Arabic, right to left.
+// No camera footage (audio only): his still portrait sits in the small bubble top-left, as in every reel.
+// Facts (4 Nov 2026): Palm Springs is reported only by broker listings (Hessyan 1, opposite Palm Jebel Ali, off Sheikh Zayed Road) - he says
+// "حسب المعلومات الأولية", the pin is approximate.  Dubai Media Office (Arabic), 5 May 2025: "ارتفاع عدد شركات جافزا من 19 شركة في عام 1985 إلى 11 ألف شركة
+// حالياً" and "جافزا وميناء جبل علي يسهمان بنسبة 36% من الناتج المحلي الإجمالي لإمارة دبي".  Jebel Ali Port marker: Container Terminal 2 (OSM node 2600959627).
 // Map: (c) OpenStreetMap contributors (ODbL); imagery (c) Esri, Maxar, Earthstar Geographics.  Safe zone: x 130-950, y 300-1420.
 // ---------------------------------------------------------------------------
 function buildScenes() {
   const cues = [], SCENES = [], PUNCHES = [], OVERLAYS = [], add = (s) => { SCENES.push(s); return s; };
-  const A = (w, from = 0) => { const n = s => s.toUpperCase().replace(/[.,?!:;]+$/, ''); const x = TL.words.find(q => q.t >= from - 1e-6 && n(q.text) === n(w)); if (!x) console.error('anchor missing: ' + w + ' @' + from); return x ? x.t : from; };
+  const A = (w, from = 0) => { const n = s => s.toUpperCase().replace(/[.,?!:;،؟]+$/, ''); const x = TL.words.find(q => q.t >= from - 1e-6 && n(q.text) === n(w)); if (!x) console.error('anchor missing: ' + w + ' @' + from); return x ? x.t : from; };
   const VEND = TL.voice_dur, END = TL.dur;
   const GOLD = '#E9C47C', GOLD_A = 'rgba(233,196,124,', WHITE_A = 'rgba(243,239,230,', RED = '#E5484D', RED2 = '#FF8A8E', AMBER = '#FFB547', TEAL = ['#2FD8A0', '#A6F3D6'], BLUE = ['#3DB2FF', '#A9DEFF'], GOLDS = ['#C99A4A', '#F3D9A4'], WHITES = ['#F3EFE6', '#FFFFFF'];
   const IMAGES = Object.fromEntries(Object.keys(PAGES).map(k => [k, `assets/${k}.png`]));
-  const LOGO = { nakheel: 'nakheel_logo_white_original' };
-  for (const [k, f] of Object.entries(LOGO)) IMAGES['L_' + k] = `assets/img/${f}.png`;
+  IMAGES.L_nakheel = 'assets/img/nakheel_logo_white_original.png'; IMAGES.portrait = 'assets/img/portrait.jpg';
   const DARK_PLATE = new Set(['nakheel']);
   const P = GEO.x.points || {};
-  const SITE = [55.052, 24.957];                                                    // the reported area: Hessyan 1 beside D53 / Sheikh Zayed Road (approximate; no plot published)
-  const TERM = [55.1592, 24.8864];                                                  // Al Maktoum International Airport passenger terminal (OSM way 170139991)
+  const SITE = [55.026, 24.966], PORT = [55.0618, 25.0223];                          // Palm Springs: the reported area (Hessyan 1, approximate); Jebel Ali Port (CT2)
   const win = (t, a0, a1, d = 0.4) => ea(t, a0, a0 + d) * (1 - ea(t, a1, a1 + 0.4));
   const fit = (s, f, w, ls = 0) => Math.min(1, w / M(s, f, ls));
   const ok = id => IMG[id] && IMG[id].naturalWidth > 0;
   const dur = T => T[1] - T[0];
-  HUD_X = 330;                                                                       // titles sit right of his bubble
-  const BUBBLE = { t0: 0, src: { cx: 562, cy: 820, size: 600 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: END, cx: 215, cy: 418, r: 78 }] };
+  HUD_X = 330;                                                                       // titles sit right of his bubble (right-aligned at the safe edge)
+  const BUBBLE = { t0: 0, img: 'portrait', src: { cx: 300, cy: 300, size: 600 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: END, cx: 215, cy: 418, r: 78 }] };
 
   const K = {
-    location: A('location'), price0: A('price.'), palm1: A('palm'), nakheel: A('nakheel'), proposed: A('proposed'), villa: A('villa'), townhouse: A('townhouse'), near: A('near'), palm2: A('palm', 8.6), sheikh: A('sheikh'),
-    early: A('early'), contemporary: A('contemporary'), green: A('green'), spacious: A('spacious'), final: A('final'),
-    but: A('but'), palm3: A('palm', 21.5), jafza: A('jafza'), and2: A('and', 26), b128: A('128'), al: A('al', 29), adds: A('adds'),
-    for2: A('for', 34), villa2: A('villa', 35), launch: A('launch'), the2: A('the', 38.5), price: A('price', 40), plot: A('plot'), payment: A('payment'), handover: A('handover'), not: A('not', 44.5), waterfront: A('waterfront'),
-    comment: A('comment'), SPRINGS: A('springs', 47), message: A('message'), budget: A('budget.'), confirmed: A('confirmed'),
+    nakheel: A('نخيل'), dimn: A('ضمن'), hasab: A('حسب'), majma2: A('المجمع'), nakhla: A('نخلة'), bimuhatha: A('بمحاذاة'), markazain: A('مركزين'), jafza1: A('جافزا'),
+    mina1: A('وميناء'), jafza2: A('جافزا', 16), mina2: A('ميناء', 19), p36: A('36%'), nashat: A('هالنشاط'), ailat: A('عائلات'), tafaddal: A('وتفضل'), raeesiya: A('الرئيسية'),
+    shariha: A('الشريحة'), wana: A('وأنا'), dirasa: A('دراسة'), uktub: A('اكتب'), kw: A('بالم', 50), tawasal: A('وبتواصل'),
   };
   const FACE_SEGS = [];
-  const M0 = [0, K.palm1 - 0.12], S1 = [M0[1], K.near - 0.1], M1 = [S1[1], K.early - 0.12], R1 = [M1[1], K.but - 0.12], M2 = [R1[1], K.and2 - 0.12],
-    P1 = [M2[1], K.adds - 0.12], M3 = [P1[1], K.for2 - 0.12], T1 = [M3[1], K.the2 - 0.12], C1 = [T1[1], K.comment - 0.12];
+  const H0 = [0, K.hasab - 0.12], M1 = [H0[1], 16.75], P1 = [M1[1], K.nashat - 0.15], F1 = [P1[1], 35.4], M3 = [F1[1], 43.55], CTA = 43.6;   // 16.75 / 35.4 / 43.55: the joins between his recordings
 
   // ---------------------------------------------------------------- drawing pieces
   const imgCover = (id, x, y, w, h, r, zoom = 1, fx = 0.5, fy = 0.5) => {         // image filling a rounded box (object-fit: cover), focus fx/fy
@@ -117,7 +111,7 @@ function buildScenes() {
     const [cy, z] = camAt(s.cam, t), drift = (1 - ea(t, s.T[0] - 0.05, s.T[0] + 0.6, E.out4)) * 40 - ea(t, s.T[1] - 0.15, s.T[1] + 0.3, E.in2) * 40;
     ctx.save(); ctx.globalAlpha *= al; ctx.translate(CX, 800 + drift); ctx.scale(z, z); ctx.translate(-CX, -cy);
     for (const e of s.edges) edge(t, e);
-    for (const n of s.nodes) (n.kind === 'person' ? person : n.kind === 'tag' ? tag : n.kind === 'tile' ? tile : card)(t, n);
+    for (const n of s.nodes) (n.kind === 'person' ? person : n.kind === 'tag' ? tag : n.kind === 'tile' ? tile : n.kind === 'cardAR' ? cardAR : card)(t, n);
     ctx.restore();
   };
 
@@ -144,8 +138,50 @@ function buildScenes() {
     add({ id, kind: 'page', img, a: T[0], b: T[1], keys, hl });
   };
   const qy = (img, pi) => { const r = PAGES[img].boxes[pi]; return (Math.min(...r.map(b => b[1])) + Math.max(...r.map(b => b[1] + b[3]))) / 2; };
-  page('p_dwc', 'dmo_dwc', P1, [[P1[0] + 0.1, qy('dmo_dwc', 0)]], [[0, K.and2 + 0.4, K.al + 1.0]]);
-
+  // ---------------------------------------------------------------- right-to-left pieces (Arabic)
+  const hudAR = (t, kicker, name, sub, a0, a1, color) => {                           // the title block beside his bubble, right-aligned at the safe edge
+    const al = ea(t, a0, a0 + 0.35) * (a1 ? 1 - ea(t, a1, a1 + 0.35) : 1); if (al <= 0.003) return;
+    const e = ea(t, a0, a0 + 0.7, E.out4), dy = (1 - e) * 34, X = SAFE.x1, MW = SAFE.x1 - HUD_X, f = F.d(800, 56), f3 = F.d(700, 32), fk = F.d(700, 28);
+    ctx.save(); ctx.globalAlpha *= al; { const g = ctx.createLinearGradient(0, 270, 0, 600); g.addColorStop(0, 'rgba(8,8,10,0)'); g.addColorStop(0.2, 'rgba(8,8,10,0.62)'); g.addColorStop(0.62, 'rgba(8,8,10,0.62)'); g.addColorStop(1, 'rgba(8,8,10,0)'); ctx.fillStyle = g; ctx.fillRect(0, 270, W, 330); }
+    ctx.shadowColor = 'rgba(0,0,0,0.75)'; ctx.shadowBlur = 16 * SS; ctx.shadowOffsetY = 2 * SS;
+    if (kicker) T(kicker, X, 362 + dy, { font: fk, color: C.dim, align: 'right', sx: fit(kicker, fk, MW) });
+    T(name, X, 430 + dy, { font: f, color: C.ink, align: 'right', sx: fit(name, f, MW) });
+    rr(X - 120 * e, 450 + dy, 120 * e, 6, 3); ctx.fillStyle = color || C.gold; ctx.fill();
+    if (sub) T(sub, X, 500 + dy, { font: f3, color: color || C.gold, align: 'right', sx: fit(sub, f3, MW) });
+    ctx.restore();
+  };
+  const cardAR = (t, n) => {                                                          // a wide card: logo / icon plate on the RIGHT, text right-aligned beside it
+    const e = pop(t, n.t); if (e <= 0.003) return; const { x, y, w, h } = n, x0 = x - w / 2, y0 = y - h / 2;
+    ctx.save(); ctx.globalAlpha *= clamp(ea(t, n.t, n.t + 0.25) * 1.2) * (n.a1 ? 1 - ea(t, n.a1, n.a1 + 0.4) : 1); ctx.translate(x, y); ctx.scale(lerp(0.86, 1, e), lerp(0.86, 1, e)); ctx.translate(-x, -y);
+    box(x0, y0, w, h, 26, n.edge || GOLD_A + '0.32)'); const pw = n.pw || 200, ph = h - 36, px = x0 + w - 18 - pw;
+    if (n.logo) plate(n.logo, px, y0 + 18, pw, ph);
+    else { rr(px, y0 + 18, pw, ph, 16); ctx.fillStyle = '#101114'; ctx.fill(); ctx.strokeStyle = GOLD_A + '0.35)'; ctx.lineWidth = 1.5; ctx.stroke();
+      if (n.icon) { dot(px + pw / 2, y0 + 18 + ph / 2, Math.min(ph, pw) * 0.32, '#1A1712'); ring(px + pw / 2, y0 + 18 + ph / 2, Math.min(ph, pw) * 0.32, { color: GOLD, w: 3 }); icon(n.icon, px + pw / 2, y0 + 18 + ph / 2, Math.min(ph, pw) * 0.16, { p: ea(t, n.t + 0.1, n.t + 0.7), color: GOLD, w: 4 }); }
+      else T(n.mono, px + pw / 2, y0 + 18 + ph / 2 + 15, { font: F.d(800, 42), color: n.monoC || GOLD, sx: fit(n.mono, F.d(800, 42), pw - 20) }); }
+    const tx = px - 28, mw = tx - x0 - 28, f = F.d(800, n.fs || 40);
+    T(n.title, tx, y0 + h / 2 + (n.sub ? -4 : 15), { font: f, color: '#FFFFFF', align: 'right', sx: fit(n.title, f, mw) });
+    if (n.sub) T(n.sub, tx, y0 + h / 2 + 42, { font: F.d(700, 26), color: n.subC || GOLD, align: 'right', alpha: ea(t, n.subT ?? n.t, (n.subT ?? n.t) + 0.4), sx: fit(n.sub, F.d(700, 26), mw) });
+    ctx.restore();
+  };
+  const chipAR = (t, txt, x, y, a0, a1, ic, col = GOLD) => {                          // a pill: icon on the right, text beside it
+    const e = ea(t, a0, a0 + 0.45, E.back) * (a1 ? 1 - ea(t, a1, a1 + 0.35) : 1); if (e <= 0.003) return; const f = F.d(800, 34), w = Math.min(SAFE.w, M(txt, f) + (ic ? 120 : 70)), h = 84;
+    ctx.save(); ctx.globalAlpha *= clamp(e); ctx.translate(x, y); ctx.scale(lerp(0.85, 1, e), lerp(0.85, 1, e)); box(-w / 2, -h / 2, w, h, h / 2, col + 'AA');
+    if (ic) { dot(w / 2 - 46, 0, 26, '#1A1712'); icon(ic, w / 2 - 46, 0, 14, { p: ea(t, a0, a0 + 0.5), color: col, w: 3.5 }); }
+    T(txt, ic ? w / 2 - 86 : 0, 12, { font: f, color: '#FFFFFF', align: ic ? 'right' : 'center', sx: fit(txt, f, w - (ic ? 120 : 60)) }); ctx.restore();
+  };
+  const calloutAR = (t, cam, [lon, lat], label, sub, color, a0, a1, dy = -150) => {   // a map label box (text right-aligned, colour bar on the right) with a leg to the place
+    const al = ea(t, a0, a0 + 0.3) * (a1 ? 1 - ea(t, a1, a1 + 0.4) : 1); if (al <= 0.003) return;
+    const [ax, ay] = satProj(cam, lon, lat), f = F.d(800, 32), f2 = F.d(700, 24), tw = Math.max(M(label, f), sub ? M(sub, f2) : 0), pw = Math.min(SAFE.w, tw + 76), ph = sub ? 108 : 70;
+    const lx = clamp(ax, SAFE.x0 + pw / 2, SAFE.x1 - pw / 2), ly = clamp(ay + dy, 640 + ph / 2, 1270 - ph / 2), e = ea(t, a0, a0 + 0.5, E.back), p = ea(t, a0 - 0.1, a0 + 0.35, E.out3);
+    const ey = ay < ly ? ly - ph / 2 : ly + ph / 2;
+    ctx.save(); ctx.globalAlpha *= al; ring(ax, ay, 15, { color: '#FFFFFF', w: 3 }); dot(ax, ay, 6.5, '#FFFFFF');
+    strokePoly([[ax, ay], [ax, lerp(ay, ey, 1)]], p, { color: 'rgba(8,9,11,0.6)', w: 6 }); strokePoly([[ax, ay], [ax, ey]], p, { color: '#FFFFFF', w: 2.5 });
+    ctx.translate(lx, ly); ctx.scale(lerp(0.88, 1, e), lerp(0.88, 1, e)); ctx.globalAlpha *= clamp(e * 1.4);
+    ctx.shadowColor = 'rgba(0,0,0,0.55)'; ctx.shadowBlur = 18 * SS; rr(-pw / 2, -ph / 2, pw, ph, 18); ctx.fillStyle = 'rgba(10,11,14,0.9)'; ctx.fill(); ctx.shadowColor = 'transparent';
+    rr(pw / 2 - 10, -ph / 2, 10, ph, [0, 18, 18, 0]); ctx.fillStyle = color; ctx.fill();
+    T(label, pw / 2 - 34, -ph / 2 + 46, { font: f, color: '#FFFFFF', align: 'right', sx: fit(label, f, pw - 56) }); if (sub) T(sub, pw / 2 - 34, ph / 2 - 22, { font: f2, color, align: 'right', sx: fit(sub, f2, pw - 56) });
+    ctx.restore();
+  };
   // ---------------------------------------------------------------- the maps
   const calloutEN = (t, cam, [lon, lat], label, sub, color, a0, a1, dx = 0, dy = -150) => {
     const al = ea(t, a0, a0 + 0.3) * (a1 ? 1 - ea(t, a1, a1 + 0.4) : 1); if (al <= 0.003) return;
@@ -175,34 +211,28 @@ function buildScenes() {
     ctx.translate(lx, ly); ctx.scale(lerp(0.85, 1, e), lerp(0.85, 1, e)); rr(-w / 2, -26, w, 52, 26); ctx.fillStyle = 'rgba(10,11,14,0.92)'; ctx.fill(); ctx.strokeStyle = GOLD; ctx.lineWidth = 2; ctx.stroke();
     T(txt, 0, 10, { font: f, ls: 2, color: '#FFFFFF' }); ctx.restore();
   };
-  const near = (t, cam, a0, a1) => { mapArea(t, cam, 'hessyan1', { c: TEAL, a0, dur: 0.8, on: [a0 + 0.2, a1 || 999], base: 0.35, a1 }); mapPulse(t, cam, SITE[0], SITE[1], 650, a0 + 0.2, a1); };
-  flight('m0', M0, [[0, 55.085, 25.0, 11.45, 0, 10], [dur(M0) + 0.5, 55.035, 24.985, 12.0, 0, 22]], (t, cam) => {
-    mapRoad(t, cam, 'E11', { a0: 0.3, dur: 1.6, alpha: 0.95 });
-    near(t, cam, K.location - 0.2);
+  page('p_jafza', 'dmo_jafza_ar', P1, [[P1[0] + 0.1, qy('dmo_jafza_ar', 0)], [K.mina2 - 0.4, qy('dmo_jafza_ar', 1)]], [[0, P1[0] + 0.3, K.mina2 - 0.5], [1, K.mina2 - 0.2, P1[1] - 0.6]]);
+  for (const s of SCENES) if (s.kind === 'page') for (const h of s.hl) h.rtl = true;    // Arabic: the marker wipes right to left
+
+  // the map: the reported area opposite Palm Jebel Ali, Sheikh Zayed Road, JAFZA and Jebel Ali Port
+  flight('m1', M1, [[0, 55.06, 25.03, 11.55, 0, 10], [2.2, 55.03, 24.986, 12.15, 0, 20], [7.6, 55.035, 24.99, 12.2, 0, 22], [9.6, 55.042, 24.996, 12.1, 0, 20], [dur(M1) + 0.5, 55.042, 24.996, 12.15, 0, 22]], (t, cam) => {
+    mapArea(t, cam, 'hessyan1', { c: TEAL, a0: K.majma2 - 0.3, dur: 0.8, on: [K.majma2, M1[1]], base: 0.35 }); mapPulse(t, cam, SITE[0], SITE[1], 650, K.majma2, 0);
+    calloutAR(t, cam, SITE, 'بالم سبرينغز', 'حسب المعلومات الأولية · الموقع تقريبي', TEAL[1], K.majma2 + 0.2, K.markazain - 0.3, 230);
+    mapArea(t, cam, 'palm', { c: GOLDS, a0: K.nakhla - 0.3, dur: 0.9, on: [K.nakhla - 0.1, M1[1]], base: 0.45 }); mapTagEN(t, cam, P.palm, 'نخلة جبل علي', K.nakhla, 0, -100);
+    mapRoad(t, cam, 'E11', { a0: K.bimuhatha - 0.2, dur: 1.4, alpha: 0.95, name: 'شارع الشيخ زايد', shields: [[55.075, 24.995], [55.06, 24.98]] });
+    mapArea(t, cam, 'jafza', { c: BLUE, a0: K.jafza1 - 0.3, dur: 0.8, on: [K.jafza1 - 0.1, M1[1]], base: 0.4 }); mapTagEN(t, cam, P.jafza, 'جافزا', K.jafza1, 0, 100);
+    mapPulse(t, cam, PORT[0], PORT[1], 500, K.mina1 - 0.1, 0); mapTagEN(t, cam, PORT, 'ميناء جبل علي', K.mina1, 0, -90);
   });
-  flight('m1', M1, [[0, 55.03, 24.985, 12.2, 0, 18], [dur(M1) + 0.5, 55.03, 24.985, 12.45, 0, 24]], (t, cam) => {
-    mapRoad(t, cam, 'E11', { a0: M1[0] - 2, dur: 0.1, alpha: 0.95, hi: ea(t, K.sheikh - 0.1, K.sheikh + 0.4) });
-    near(t, cam, M1[0] - 2);
-    calloutEN(t, cam, SITE, 'REPORTED AREA', 'HESSYAN 1 · PLOT NOT PUBLISHED', TEAL[1], M1[0] + 0.3, 0, 40, 230);
-    mapArea(t, cam, 'palm', { c: GOLDS, a0: K.palm2 - 0.3, dur: 0.9, on: [K.palm2 - 0.1, M1[1]], base: 0.45 });
-    calloutEN(t, cam, P.palm, 'PALM JEBEL ALI', '', GOLD, K.palm2 - 0.1, 0, 60, -200);
-  });
-  flight('m2', M2, [[0, 55.035, 24.99, 12.0, 0, 18], [dur(M2) + 0.5, 55.035, 24.99, 12.2, 0, 22]], (t, cam) => {
-    mapRoad(t, cam, 'E11', { a0: M2[0] - 2, dur: 0.1, alpha: 0.85 }); near(t, cam, M2[0] - 2);
-    mapArea(t, cam, 'palm', { c: GOLDS, a0: K.palm3 - 0.3, dur: 0.8, on: [K.palm3 - 0.1, M2[1]], base: 0.45 });
-    mapArea(t, cam, 'jafza', { c: BLUE, a0: K.jafza - 0.3, dur: 0.8, on: [K.jafza - 0.1, M2[1]], base: 0.45 });
-    mapTagEN(t, cam, P.palm, 'DEVELOPING COAST', K.palm3, 0, -110);
-    mapTagEN(t, cam, P.jafza, 'EMPLOYMENT HUB', K.jafza, 0, -100);
-  });
-  flight('m3', M3, [[0, 55.08, 24.94, 11.6, 0, 18], [dur(M3) + 0.5, 55.095, 24.935, 11.75, 0, 22]], (t, cam) => {
-    mapRoad(t, cam, 'E11', { a0: M3[0] - 2, dur: 0.1, alpha: 0.85 }); near(t, cam, M3[0] - 2);
-    mapArea(t, cam, 'jafza', { c: BLUE, a0: M3[0] - 2, dur: 0.1, base: 0.3 }); mapArea(t, cam, 'palm', { c: GOLDS, a0: M3[0] - 2, dur: 0.1, base: 0.3 });
-    mapArea(t, cam, 'dwc', { c: BLUE, a0: M3[0] + 0.05, dur: 0.9, on: [M3[0] + 0.2, M3[1]], base: 0.45 });
-    mapMeasure(t, cam, SITE, TERM, { a0: M3[0] + 0.5, dur: 1.0, to: 'THE TERMINAL', at: 0.5 });
-    calloutEN(t, cam, P.dwc, 'AL MAKTOUM INTERNATIONAL AIRPORT', 'AED 128 BN EXPANSION', BLUE[1], M3[0] + 0.3, 0, -40, 250);
+  // the families' commute: JAFZA and the port -> the reported area
+  flight('m3', M3, [[0, 55.045, 24.995, 12.15, 0, 20], [dur(M3) + 0.5, 55.04, 24.99, 12.3, 0, 24]], (t, cam) => {
+    mapArea(t, cam, 'hessyan1', { c: TEAL, a0: M3[0] - 2, dur: 0.1, on: [M3[0], M3[1]], base: 0.35 }); mapPulse(t, cam, SITE[0], SITE[1], 650, M3[0], 0);
+    mapArea(t, cam, 'jafza', { c: BLUE, a0: M3[0] - 2, dur: 0.1, base: 0.35 }); mapArea(t, cam, 'palm', { c: GOLDS, a0: M3[0] - 2, dur: 0.1, base: 0.3 });
+    mapTagEN(t, cam, P.jafza, 'جافزا', M3[0] - 1, 0, 100); mapTagEN(t, cam, PORT, 'ميناء جبل علي', M3[0] - 1, K.shariha - 0.4, -90);
+    mapFlow(t, cam, P.jafza, SITE, M3[0] + 0.3, 0, { bend: 0.2, dur: 1.1 }); mapFlow(t, cam, PORT, SITE, M3[0] + 0.6, 0, { bend: -0.25, dur: 1.2 });
+    calloutAR(t, cam, SITE, 'بالم سبرينغز', 'من الخيارات الرئيسية لهذه العوائل', TEAL[1], K.raeesiya - 0.6, 0, 230);
   });
 
-  // ---------------------------------------------------------------- roadmap branches (screen coordinates: camera at y 800)
+  // ---------------------------------------------------------------- roadmap branches
   const ST = (T) => [[T[0], 800, 1], [T[1], 812, 1.015]];
   const rows = (t, T0, items) => {                                                    // status rows: ok (teal check), no (red cross), q (amber question)
     const al = win(t, T0[0], T0[1] - 0.15); if (al <= 0.003) return; ctx.save(); ctx.globalAlpha *= al;
@@ -214,61 +244,47 @@ function buildScenes() {
       T(txt, SAFE.x0 + 40, y + 64, { font: F.d(800, 38), color: '#FFFFFF', align: 'left', sx: fit(txt, F.d(800, 38), SAFE.w - 170) }); T(sub, SAFE.x0 + 40, y + 106, { font: F.d(700, 23), ls: 3, color: colL, align: 'left', sx: fit(sub, F.d(700, 23), SAFE.w - 170, 3) }); ctx.restore(); });
     ctx.restore();
   };
-  // Palm Springs by Nakheel: proposed villas and townhouses
-  section(S1, ST(S1), [
-    { x: CX, y: 650, w: 820, h: 160, logo: 'nakheel', pw: 300, t: S1[0] + 0.05, title: 'PALM SPRINGS', sub: 'BY NAKHEEL · PROPOSED', subT: K.proposed - 0.1, fs: 40 },
-    { kind: 'tile', x: 335, y: 900, w: 390, h: 210, icon: 'house', title: 'VILLAS', t: K.villa - 0.15 },
-    { kind: 'tile', x: 745, y: 900, w: 390, h: 210, icon: 'building', title: 'TOWNHOUSES', t: K.townhouse - 0.15 },
-  ], [ { pts: [[CX, 730], [CX, 762], [335, 762], [335, 795]], t: K.villa - 0.45, d: 0.3 }, { pts: [[CX, 762], [745, 762], [745, 795]], t: K.townhouse - 0.4, d: 0.3 } ]);
-  const R1rows = t => rows(t, R1, [[620, K.contemporary - 0.15, 'CONTEMPORARY HOMES', 'EARLY MARKETING', 'q'], [770, K.green - 0.15, 'GREEN SURROUNDINGS', 'EARLY MARKETING', 'q'],
-    [920, K.spacious - 0.15, 'SPACIOUS LAYOUTS', 'EARLY MARKETING', 'q'], [1070, K.final - 0.15, 'SPECS AND PRICES', 'NOT OFFICIALLY CONFIRMED', 'no']]);
-  // for villa / townhouse buyers: a launch worth following
-  section(T1, ST(T1), [
-    { kind: 'tile', x: 335, y: 720, w: 390, h: 200, icon: 'house', title: 'VILLA BUYERS', t: K.villa2 - 0.3 },
-    { kind: 'tile', x: 745, y: 720, w: 390, h: 200, icon: 'building', title: 'TOWNHOUSE BUYERS', t: K.villa2 + 0.2 },
-    { kind: 'tag', x: CX, y: 960, w: 700, h: 76, icon: 'flag', title: 'A LAUNCH WORTH FOLLOWING', t: K.launch - 0.2 },
-  ], [ { pts: [[335, 820], [335, 880], [CX, 880], [CX, 922]], t: K.launch - 0.5, d: 0.3 }, { pts: [[745, 820], [745, 880], [CX, 880]], t: K.launch - 0.45, d: 0.25 } ]);
-  // the comparison that matters
-  section(C1, ST(C1), [
-    { kind: 'tile', x: 335, y: 740, w: 390, h: 200, icon: 'tag', title: 'PRICE PER SQ FT', t: K.price - 0.15 },
-    { kind: 'tile', x: 745, y: 740, w: 390, h: 200, icon: 'house', title: 'PLOT SIZE', t: K.plot - 0.15 },
-    { kind: 'tile', x: 335, y: 960, w: 390, h: 200, icon: 'doc', title: 'PAYMENT PLAN', t: K.payment - 0.15 },
-    { kind: 'tile', x: 745, y: 960, w: 390, h: 200, icon: 'check', title: 'HANDOVER DATE', t: K.handover - 0.15 },
-  ], []);
-  const C1rows = t => rows(t, [K.not - 0.3, C1[1]], [[1085, K.not - 0.2, 'CHEAPER THAN WATERFRONT?', 'NOT THE RIGHT TEST ON ITS OWN', 'no']]);
+  // the hook: Palm Springs by Nakheel - why put it on your list?
+  section(H0, ST(H0), [ { kind: 'cardAR', x: CX, y: 760, w: 820, h: 180, logo: 'nakheel', pw: 250, t: 0.4, title: 'بالم سبرينغز', sub: 'من نخيل', subT: K.nakheel - 0.1, fs: 52 } ], []);
+  const H0chip = t => chipAR(t, 'ضمن خياراتك الاستثمارية؟', CX, 1010, K.dimn - 0.25, H0[1] - 0.15, 'chart');
+  // why it matters: the families who work here
+  section(F1, ST(F1), [
+    { kind: 'cardAR', x: CX, y: 660, w: 820, h: 160, mono: '36%', t: F1[0] + 0.05, title: 'النشاط الاقتصادي', sub: 'جافزا · ميناء جبل علي', subT: F1[0] + 0.3, fs: 42 },
+    { kind: 'tile', x: 335, y: 960, w: 390, h: 250, icon: 'briefcase', title: 'قريب من\nمقار العمل', t: K.tafaddal - 0.1 },
+    { kind: 'tile', x: 745, y: 960, w: 390, h: 250, icon: 'house', title: 'عائلات تتمركز\nحول المنطقة', t: K.ailat - 0.2 },
+  ], [ { pts: [[CX, 740], [CX, 790], [745, 790], [745, 835]], t: K.ailat - 0.5, d: 0.35 }, { pts: [[CX, 790], [335, 790], [335, 835]], t: K.tafaddal - 0.4, d: 0.35 } ]);
+  const M3chip = t => chipAR(t, 'شريحة ممكن تكبر مع الوقت', CX, 655, K.shariha - 0.3, M3[1] - 0.15, 'up', TEAL[0]);
   const srcChip = (t, txt, a0, a1) => { const al = win(t, a0, a1); if (al <= 0.003) return; const f = F.d(800, 24), w = Math.min(SAFE.w, M(txt, f, 2) + 48); ctx.save(); ctx.globalAlpha *= al; glassPill(CX - w / 2, 1172, w, 52, 26); T(txt, CX, 1207, { font: f, ls: 2, color: '#FFFFFF', sx: Math.min(1, (SAFE.w - 48) / M(txt, f, 2)) }); ctx.restore(); };
 
   const overlay = (t) => {
     for (const s of SECT) drawSection(t, s);
-    R1rows(t); C1rows(t);
-    hudTitle(t, "DON'T MISS THIS ONE", 'LOOK AT THE LOCATION', 'BEFORE YOU JUDGE THE PRICE', 0.15, M0[1] - 0.15, GOLD);
-    hudTitle(t, 'NEW · BY NAKHEEL', 'PALM SPRINGS', 'PROPOSED VILLAS & TOWNHOUSES', S1[0] + 0.05, S1[1] - 0.15, GOLD);
-    hudTitle(t, 'NEAR PALM JEBEL ALI', 'OFF SHEIKH ZAYED ROAD', 'EXACT SITE NOT YET CONFIRMED', M1[0] + 0.05, M1[1] - 0.15, TEAL[1]);
-    hudTitle(t, 'EARLY MARKETING MATERIAL', 'WHAT IT POINTS TO', 'NOTHING FINAL YET', R1[0] + 0.05, R1[1] - 0.15, AMBER);
-    hudTitle(t, "LOOK AT WHAT'S AROUND IT", 'COAST · JOBS', 'PALM JEBEL ALI · JAFZA', M2[0] + 0.05, M2[1] - 0.15, GOLD);
-    hudTitle(t, 'AL MAKTOUM INTERNATIONAL AIRPORT', 'AED 128 BILLION', 'THE EXPANSION', P1[0] + 0.05, P1[1] - 0.15, BLUE[1]);
-    hudTitle(t, 'ANOTHER MAJOR INVESTMENT', 'THIS SIDE OF DUBAI', '', M3[0] + 0.05, M3[1] - 0.15, BLUE[1]);
-    hudTitle(t, 'FOR VILLA & TOWNHOUSE BUYERS', 'WORTH FOLLOWING', '', T1[0] + 0.05, T1[1] - 0.15, GOLD);
-    hudTitle(t, 'THE REAL COMPARISON', 'PRICE PER SQ FT', 'PLOT · PAYMENT PLAN · HANDOVER', C1[0] + 0.05, C1[1] - 0.15, GOLD);
-    srcChip(t, 'DUBAI MEDIA OFFICE · 28 APR 2024', P1[0] + 0.2, P1[1] - 0.15);
-    // the call to action: comment SPRINGS, or message your budget
-    const ce = ea(t, K.comment - 0.1, K.comment + 0.5, E.out4);
+    H0chip(t); M3chip(t);
+    hudAR(t, 'مجمع جديد من نخيل', 'ليش يستاهل؟', 'ضمن خياراتك الاستثمارية', 0.15, H0[1] - 0.15, GOLD);
+    hudAR(t, 'حسب المعلومات الأولية', 'مقابل نخلة جبل علي', 'بمحاذاة شارع الشيخ زايد', M1[0] + 0.05, K.markazain - 0.25, TEAL[1]);
+    hudAR(t, 'قريب من', 'مركزين اقتصاديين كبار', 'جافزا · ميناء جبل علي', K.markazain - 0.15, M1[1] - 0.15, BLUE[1]);
+    hudAR(t, 'المكتب الإعلامي لحكومة دبي', 'أكثر من 11 ألف شركة', 'في جافزا', P1[0] + 0.05, K.mina2 - 0.3, GOLD);
+    hudAR(t, 'جافزا + ميناء جبل علي', '36% من الناتج المحلي', 'لإمارة دبي', K.mina2 - 0.2, P1[1] - 0.15, GOLD);
+    hudAR(t, 'هالنشاط الاقتصادي', 'ليش يهم المستثمر؟', '', F1[0] + 0.05, F1[1] - 0.15, GOLD);
+    hudAR(t, 'موقع بالم سبرينغز', 'خيار رئيسي للعائلات', 'قريب من مقار عملها', M3[0] + 0.05, M3[1] - 0.15, TEAL[1]);
+    srcChip(t, 'المكتب الإعلامي لحكومة دبي · 5 مايو 2025', P1[0] + 0.2, P1[1] - 0.15);
+    // the call to action: his investment study - comment "بالم"
+    const ce = ea(t, CTA - 0.1, CTA + 0.5, E.out4);
     if (ce > 0.003) {
-      ctx.save(); ctx.globalAlpha *= ce; ctx.fillStyle = 'rgba(8,8,10,0.9)'; ctx.fillRect(0, 0, W, H); T('ABDULLAH AHLI', CX, 640, { font: F.d(800, 62), ls: 2, color: C.ink }); T('PORTFOLIO STRATEGIST', CX, 694, { font: F.d(700, 34), ls: 6, color: C.gold }); ctx.restore();
-      const msg = 'SPRINGS', send = K.SPRINGS + 0.45, sent = ea(t, send, send + 0.35), ia = ea(t, K.comment + 0.05, K.comment + 0.45, E.out4), iy = 1260, X0 = SAFE.x0, X1 = SAFE.x1, BW = X1 - X0, typed = msg.slice(0, Math.floor(msg.length * ea(t, K.SPRINGS - 0.05, K.SPRINGS + 0.35, E.lin) + 0.0001)), fm = F.d(700, 58);
+      ctx.save(); ctx.globalAlpha *= ce; ctx.fillStyle = 'rgba(8,8,10,0.9)'; ctx.fillRect(0, 0, W, H); T('عبدالله أهلي', CX, 650, { font: F.d(800, 70), color: C.ink }); T('محلل عقاري', CX, 712, { font: F.d(700, 34), color: C.gold }); ctx.restore();
+      cardAR(t, { x: CX, y: 850, w: 820, h: 150, icon: 'doc', pw: 150, t: K.dirasa - 0.25, title: 'دراسة متكاملة عن المشروع', sub: 'من زاوية استثمارية', subT: K.dirasa + 0.6, fs: 38 });
+      const msg = 'بالم', send = K.kw + 0.45, sent = ea(t, send, send + 0.35), ia = ea(t, K.uktub - 0.4, K.uktub, E.out4), iy = 1270, X0 = SAFE.x0, X1 = SAFE.x1, BW = X1 - X0, typed = msg.slice(0, Math.floor(msg.length * ea(t, K.kw - 0.05, K.kw + 0.3, E.lin) + 0.0001)), fm = F.d(700, 56);
       ctx.save(); ctx.globalAlpha *= ia; rr(X0, iy - 65, BW, 130, 65); ctx.fillStyle = C.panel; ctx.fill(); ctx.strokeStyle = 'rgba(243,239,230,0.28)'; ctx.lineWidth = 3; ctx.stroke();
-      T(typed, X0 + 56, iy + 20, { font: fm, color: C.ink, align: 'left', alpha: 1 - sent }); T('Add a comment…', X0 + 56, iy + 20, { font: F.d(700, 54), color: C.mute, align: 'left', alpha: (1 - ea(t, K.SPRINGS - 0.05, K.SPRINGS + 0.05)) * (1 - sent) });
-      dot(X1 - 66, iy, 48, C.gold); icon('plane', X1 - 66, iy, 20, { p: 1, color: '#17181B', w: 4.5, rot: -0.5 + 0.5 * sent }); ctx.restore();
+      T(typed, X1 - 56, iy + 20, { font: fm, color: C.ink, align: 'right', alpha: 1 - sent }); T('أضف تعليقاً…', X1 - 56, iy + 18, { font: F.d(700, 46), color: C.mute, align: 'right', alpha: (1 - ea(t, K.kw - 0.05, K.kw + 0.05)) * (1 - sent) });
+      dot(X0 + 66, iy, 48, C.gold); icon('plane', X0 + 66, iy, 20, { p: 1, color: '#17181B', w: 4.5, rot: Math.PI + 0.5 - 0.5 * sent }); ctx.restore();
       const b1 = ea(t, send, send + 0.5, E.out4);
-      if (b1 > 0.002) { ctx.save(); ctx.globalAlpha *= b1; ctx.translate(0, (1 - b1) * 36); const w = M(msg, fm) + 84; rr(X1 - w, 770, w, 112, 56); ctx.fillStyle = C.gold; ctx.fill(); T(msg, X1 - w / 2, 845, { font: fm, color: '#17181B' }); ctx.restore(); }
-      { const e = ea(t, K.message - 0.15, K.message + 0.3, E.back), fc = F.d(800, 34), txt = 'OR DM YOUR BUDGET', w = M(txt, fc, 2) + 64; if (e > 0.003) { ctx.save(); ctx.globalAlpha *= clamp(e); ctx.translate(X1 - w / 2, 960); ctx.scale(lerp(0.8, 1, e), lerp(0.8, 1, e)); rr(-w / 2, -38, w, 76, 38); ctx.fillStyle = '#1A1712'; ctx.fill(); ctx.strokeStyle = GOLD; ctx.lineWidth = 2.5; ctx.stroke(); T(txt, 0, 12, { font: fc, ls: 2, color: GOLD }); ctx.restore(); } }
-      const b2 = ea(t, K.confirmed - 0.35, K.confirmed + 0.15, E.out4);
-      if (b2 > 0.002) { ctx.save(); ctx.globalAlpha *= b2; ctx.translate(0, (1 - b2) * 36); const txt = 'Launch details when confirmed', f = F.d(700, 40), w = Math.min(BW, M(txt, f) + 130); rr(X0, 1045, w, 104, 52); ctx.fillStyle = C.panel; ctx.fill(); ctx.strokeStyle = 'rgba(243,239,230,0.28)'; ctx.lineWidth = 3; ctx.stroke(); icon('check', X0 + 60, 1097, 20, { p: ea(t, K.confirmed - 0.1, K.confirmed + 0.3), color: C.gold, w: 4.5 }); T(txt, X0 + 104, 1111, { font: f, color: C.ink, align: 'left', sx: fit(txt, f, w - 130) }); ctx.restore(); }
+      if (b1 > 0.002) { ctx.save(); ctx.globalAlpha *= b1; ctx.translate(0, (1 - b1) * 36); const w = M(msg, fm) + 90; rr(X1 - w, 975, w, 104, 52); ctx.fillStyle = C.gold; ctx.fill(); T(msg, X1 - w / 2, 1046, { font: fm, color: '#17181B' }); ctx.restore(); }
+      const b2 = ea(t, K.tawasal - 0.1, K.tawasal + 0.4, E.out4);
+      if (b2 > 0.002) { ctx.save(); ctx.globalAlpha *= b2; ctx.translate(0, (1 - b2) * 36); const txt = 'بتواصل وياك بشكل مباشر', f = F.d(700, 38), w = Math.min(BW, M(txt, f) + 130); rr(X0, 1095, w, 96, 48); ctx.fillStyle = C.panel; ctx.fill(); ctx.strokeStyle = 'rgba(243,239,230,0.28)'; ctx.lineWidth = 3; ctx.stroke(); icon('check', X0 + w - 56, 1143, 18, { p: ea(t, K.tawasal, K.tawasal + 0.4), color: C.gold, w: 4.5 }); T(txt, X0 + w - 96, 1157, { font: f, color: C.ink, align: 'right', sx: fit(txt, f, w - 130) }); ctx.restore(); }
     }
   };
   OVERLAYS.push(overlay);
 
-  [M0[0] + 0.2, S1[0], M1[0], R1[0], M2[0], P1[0], M3[0], T1[0], C1[0], K.comment].forEach(x => cues.push({ k: 'wh', t: x - 0.2, d: 0.5 }));
-  [K.b128].forEach(x => cues.push({ k: 'pin', t: x })); cues.push({ k: 'send', t: K.SPRINGS + 0.45 });
-  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, FOOT_MAX: Math.min(TL.frames, 3214) - 1, NO_CAPTIONS: false, CAP_UNTIL: VEND, STATIC_FACE: false };
+  [H0[0] + 0.2, M1[0], P1[0], F1[0], M3[0], CTA].forEach(x => cues.push({ k: 'wh', t: x - 0.2, d: 0.5 }));
+  [K.p36].forEach(x => cues.push({ k: 'pin', t: x })); cues.push({ k: 'send', t: K.kw + 0.45 });
+  return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, NO_CAPTIONS: false, CAP_UNTIL: VEND, STATIC_FACE: false };
 }
