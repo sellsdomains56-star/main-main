@@ -1,7 +1,7 @@
 'use strict';
 // ---------------------------------------------------------------------------
 // بالم سبرينغز - الموقع والعائلات (Arabic, his edited Zoom voice: clip A, 55.6 s).  60 fps.  Everything on screen in Arabic, right to left.
-// No camera footage (audio only): his still portrait sits in the small bubble top-left, as in every reel.
+// No camera footage (audio only) and no picture of him (his request): voice + graphics only.
 // Facts (4 Nov 2026): Palm Springs is reported only by broker listings (Hessyan 1, opposite Palm Jebel Ali, off Sheikh Zayed Road) - he says
 // "حسب المعلومات الأولية", the pin is approximate.  Dubai Media Office (Arabic), 5 May 2025: "ارتفاع عدد شركات جافزا من 19 شركة في عام 1985 إلى 11 ألف شركة
 // حالياً" and "جافزا وميناء جبل علي يسهمان بنسبة 36% من الناتج المحلي الإجمالي لإمارة دبي".  Jebel Ali Port marker: Container Terminal 2 (OSM node 2600959627).
@@ -13,7 +13,7 @@ function buildScenes() {
   const VEND = TL.voice_dur, END = TL.dur;
   const GOLD = '#E9C47C', GOLD_A = 'rgba(233,196,124,', WHITE_A = 'rgba(243,239,230,', RED = '#E5484D', RED2 = '#FF8A8E', AMBER = '#FFB547', TEAL = ['#2FD8A0', '#A6F3D6'], BLUE = ['#3DB2FF', '#A9DEFF'], GOLDS = ['#C99A4A', '#F3D9A4'], WHITES = ['#F3EFE6', '#FFFFFF'];
   const IMAGES = Object.fromEntries(Object.keys(PAGES).map(k => [k, `assets/${k}.png`]));
-  IMAGES.L_nakheel = 'assets/img/nakheel_logo_white_original.png'; IMAGES.portrait = 'assets/img/portrait.jpg';
+  IMAGES.L_nakheel = 'assets/img/nakheel_logo_white_original.png';
   const DARK_PLATE = new Set(['nakheel']);
   const P = GEO.x.points || {};
   const SITE = [55.026, 24.966], PORT = [55.0618, 25.0223];                          // Palm Springs: the reported area (Hessyan 1, approximate); Jebel Ali Port (CT2)
@@ -21,8 +21,8 @@ function buildScenes() {
   const fit = (s, f, w, ls = 0) => Math.min(1, w / M(s, f, ls));
   const ok = id => IMG[id] && IMG[id].naturalWidth > 0;
   const dur = T => T[1] - T[0];
-  HUD_X = 330;                                                                       // titles sit right of his bubble (right-aligned at the safe edge)
-  const BUBBLE = { t0: 0, img: 'portrait', src: { cx: 300, cy: 300, size: 600 }, keys: [{ t: 0, cx: 215, cy: 418, r: 78 }, { t: END, cx: 215, cy: 418, r: 78 }] };
+  HUD_X = SAFE.x0;                                                                   // no bubble: the titles may use the full safe width (right-aligned)
+  const BUBBLE = null;                                                              // no picture of him (his request): voice + graphics only
 
   const K = {
     nakheel: A('نخيل'), dimn: A('ضمن'), hasab: A('حسب'), majma2: A('المجمع'), nakhla: A('نخلة'), bimuhatha: A('بمحاذاة'), markazain: A('مركزين'), jafza1: A('جافزا'),

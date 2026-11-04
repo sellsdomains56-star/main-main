@@ -1,6 +1,6 @@
 # بالم سبرينغز - محركات النمو (Arabic, clip B of the Zoom 5/6/7 recordings)
 
-64.7 s vertical video (1080x1920, **60 fps**; 62.7 s of voice + 2 s end) from his raw Zoom recordings, edited in `../ps-ar-audio` (clip B). Everything on screen in Arabic, right to left; real pages with a marker on the exact words. Audio only, so his still portrait sits in the small bubble top-left, its ring pulsing while he speaks.
+64.7 s vertical video (1080x1920, **60 fps**; 62.7 s of voice + 2 s end) from his raw Zoom recordings, edited in `../ps-ar-audio` (clip B). Everything on screen in Arabic, right to left; real pages with a marker on the exact words. Audio only, and no picture of him (his request): voice + graphics only.
 
 ## The voice
 `../ps-ar-audio/build/clip_b_growth.wav`: his voice untouched; cuts in real silences (one exact cut before "من ضمن المحركات"), pauses shortened to 0.3 s, one plain gain (-4.2 dB). No filters, no loudnorm (`AF=anull`). His "يعني سعر البيع ارتفع بحوالي 95%" is cut (3.2m -> 6m is +87.5%).

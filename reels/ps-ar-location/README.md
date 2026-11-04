@@ -1,6 +1,6 @@
 # بالم سبرينغز - الموقع والعائلات (Arabic, clip A of the Zoom 5/6/7 recordings)
 
-57.6 s vertical video (1080x1920, **60 fps**; 55.6 s of voice + 2 s end) from his raw Zoom recordings, edited in `../ps-ar-audio` (clip A). Everything on screen in Arabic, right to left; real pages with a marker on the exact words, the map where the place matters. There is no camera footage (audio only), so his still portrait (a frame from his own HeyGen take) sits in the small bubble top-left, its ring pulsing while he speaks.
+57.6 s vertical video (1080x1920, **60 fps**; 55.6 s of voice + 2 s end) from his raw Zoom recordings, edited in `../ps-ar-audio` (clip A). Everything on screen in Arabic, right to left; real pages with a marker on the exact words, the map where the place matters. There is no camera footage (audio only) and no picture of him (his request): voice + graphics only.
 
 ## The voice
 `../ps-ar-audio/build/clip_a_location.wav`: his voice untouched; cuts in real silences, pauses shortened to 0.3 s, one plain gain (-4.2 dB, peaks at -1 dBFS). No filters, no loudnorm (`AF=anull`).
