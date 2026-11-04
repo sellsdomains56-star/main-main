@@ -14,13 +14,14 @@
 | 26.2 - 35.4 | النشاط الاقتصادي -> عائلات تتمركز حول المنطقة · قريب من مقار العمل |
 | 35.4 - 43.6 | MAP: routes from JAFZA and the port; "من الخيارات الرئيسية لهذه العوائل"; "شريحة ممكن تكبر مع الوقت" |
 | 43.6 - 50.1 | PAGE Dubai Media Office, 31 May 2023: 13.4 كم² · ضعف نخلة جميرا / لنحو 35 ألف أسرة |
-| 50.1 - 55.0 | PAGE Dubai Media Office, 28 Apr 2024: الأكبر في العالم بتكلفة 128 مليار درهم |
+| 50.1 - 52.0 | MAP: Al Maktoum International Airport outline, a line from the reported area to the passenger terminal, "نحو 16 كم عن الموقع · خط مستقيم" |
+| 52.0 - 55.0 | PAGE Dubai Media Office, 28 Apr 2024: الأكبر في العالم بتكلفة 128 مليار درهم |
 | 55.0 - 63.2 | توسع الأعمال -> زيادة الوظائف -> طلب أعلى على البيوت العائلية -> مجمعات مثل بالم سبرينغز |
 | 63.2 - 82.5 | مثال: مجمعات نخيل القريبة -> تلال الفرجان (فيلا 4 غرف): 3.2 مليون -> 6 ملايين درهم, "ارتفاع بنحو 87.5%" |
 | 82.5 - end | "عبدالله أهلي · محلل عقاري", "دراسة متكاملة عن المشروع", comment "بالم", reply "بتواصل وياك بشكل مباشر" |
 
 ## Facts to check before posting
-Same as `../ps-ar-location` and `../ps-ar-growth`: Palm Springs is broker-reported only (approximate pin); **the Tilal Al Furjan example is his own** (Nakheel launched Tilal Al Furjan in Jan 2022, he says off-plan 2021 - please confirm the community, year and prices); 3.2m -> 6m = +87.5%.
+Same as `../ps-ar-location` and `../ps-ar-growth`: Palm Springs is broker-reported only (approximate pin); **the Tilal Al Furjan example is his own** (Nakheel launched Tilal Al Furjan in Jan 2022, he says off-plan 2021 - please confirm the community, year and prices); 3.2m -> 6m = +87.5%. The 16 km to the airport terminal is a straight line from the approximate Palm Springs pin (Hessyan 1) to the passenger terminal (OSM way 170139991), not a road distance.
 
 ## Build
 As `../ps-ar-location`; `build/words_raw.json` = `../ps-ar-audio/build/full_words.json` (ASR of the same voice); `bash encode.sh ps-ar-full`.

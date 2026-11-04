@@ -17,7 +17,7 @@ function buildScenes() {
   IMAGES.L_nakheel = 'assets/img/nakheel_logo_white_original.png';
   const DARK_PLATE = new Set(['nakheel']);
   const P = GEO.x.points || {};
-  const SITE = [55.026, 24.966], PORT = [55.0618, 25.0223];                          // Palm Springs: the reported area (Hessyan 1, approximate); Jebel Ali Port (CT2)
+  const SITE = [55.026, 24.966], PORT = [55.0618, 25.0223], TERM = [55.1592, 24.8864];   // + Al Maktoum International passenger terminal (OSM way 170139991)                          // Palm Springs: the reported area (Hessyan 1, approximate); Jebel Ali Port (CT2)
   const win = (t, a0, a1, d = 0.4) => ea(t, a0, a0 + d) * (1 - ea(t, a1, a1 + 0.4));
   const fit = (s, f, w, ls = 0) => Math.min(1, w / M(s, f, ls));
   const ok = id => IMG[id] && IMG[id].naturalWidth > 0;
@@ -28,12 +28,12 @@ function buildScenes() {
   const K = {
     nakheel: A('نخيل'), dimn: A('ضمن'), hasab: A('حسب'), majma2: A('المجمع'), nakhla: A('نخلة'), bimuhatha: A('بمحاذاة'), markazain: A('مركزين'), jafza1: A('جافزا'),
     mina1: A('وميناء'), mina2: A('ميناء', 19), p36: A('36%'), nashat: A('هالنشاط'), ailat: A('عائلات'), tafaddal: A('وتفضل'), raeesiya: A('الرئيسية'), shariha: A('الشريحة'),
-    tawsia: A('وتوسعة'), matar: A('مطار'), wazaif: A('الوظائف'), yazid: A('يزيد'), majmaat: A('والمجمعات'), khalna: A('وخلنا'), nakheel2: A('نخيل', 66), tilal: A('تلال'),
+    tawsia: A('وتوسعة'), matar: A('مطار'), tukallifa: A('بتكلفة'), wazaif: A('الوظائف'), yazid: A('يزيد'), majmaat: A('والمجمعات'), khalna: A('وخلنا'), nakheel2: A('نخيل', 66), tilal: A('تلال'),
     m32: A('3.2 مليون'), m6: A('بـ6 ملايين'), dirasa: A('دراسة'), uktub: A('اكتب'), kw: A('بالم', 90), tawasal: A('وبتواصل'),
   };
   const FACE_SEGS = [];
   // 16.75 / 35.4 / 43.55 / 55.0 / 82.5: the joins between his recordings (the edit's pieces: 16.53|16.91, 35.11|35.49, 43.34|43.72, 76.75|77.13, 82.38|82.76)
-  const H0 = [0, K.hasab - 0.12], M1 = [H0[1], 16.75], P1 = [M1[1], K.nashat - 0.15], F1 = [P1[1], 35.4], M3 = [F1[1], 43.55], P2 = [M3[1], K.tawsia - 0.15], P3 = [P2[1], 55.0],
+  const H0 = [0, K.hasab - 0.12], M1 = [H0[1], 16.75], P1 = [M1[1], K.nashat - 0.15], F1 = [P1[1], 35.4], M3 = [F1[1], 43.55], P2 = [M3[1], K.tawsia - 0.15], M4 = [P2[1], K.tukallifa - 0.05], P3 = [M4[1], 55.0],
     D1 = [P3[1], K.khalna - 0.15], E1a = [D1[1], K.tilal - 0.2], E1b = [E1a[1], 82.5], CTA = 82.65;
   const WORK = 55.2, JOBS = K.wazaif - 0.25, ROADS = 47.9;
 
@@ -218,7 +218,7 @@ function buildScenes() {
   };
   page('p_jafza', 'dmo_jafza_ar', P1, [[P1[0] + 0.1, qy('dmo_jafza_ar', 0)], [K.mina2 - 0.4, qy('dmo_jafza_ar', 1)]], [[0, P1[0] + 0.3, K.mina2 - 0.5], [1, K.mina2 - 0.2, P1[1] - 0.6]]);
   page('p_pja', 'dmo_pja_ar', P2, [[P2[0] + 0.1, qy('dmo_pja_ar', 0)], [ROADS, qy('dmo_pja_ar', 1)]], [[0, P2[0] + 0.6, ROADS - 0.2], [1, ROADS + 0.1, P2[1] - 0.3]]);
-  page('p_dwc', 'dmo_dwc_ar', P3, [[P3[0] + 0.1, qy('dmo_dwc_ar', 0)]], [[0, K.matar - 0.1, P3[1] - 0.6]]);
+  page('p_dwc', 'dmo_dwc_ar', P3, [[P3[0] + 0.1, qy('dmo_dwc_ar', 0)]], [[0, P3[0] + 0.15, P3[1] - 0.5]]);
   for (const s of SCENES) if (s.kind === 'page') for (const h of s.hl) h.rtl = true;    // Arabic: the marker wipes right to left
 
   // the map: the reported area opposite Palm Jebel Ali, Sheikh Zayed Road, JAFZA and Jebel Ali Port
@@ -237,6 +237,13 @@ function buildScenes() {
     mapTagEN(t, cam, P.jafza, 'جافزا', M3[0] - 1, 0, 100); mapTagEN(t, cam, PORT, 'ميناء جبل علي', M3[0] - 1, K.shariha - 0.4, -90);
     mapFlow(t, cam, P.jafza, SITE, M3[0] + 0.3, 0, { bend: 0.2, dur: 1.1 }); mapFlow(t, cam, PORT, SITE, M3[0] + 0.6, 0, { bend: -0.25, dur: 1.2 });
     calloutAR(t, cam, SITE, 'بالم سبرينغز', 'من الخيارات الرئيسية لهذه العوائل', TEAL[1], K.raeesiya - 0.6, 0, 230);
+  });
+
+  // the airport on the map: Al Maktoum International, about 16 km from the reported area in a straight line
+  flight('m4', M4, [[0, 55.05, 24.975, 12.0, 0, 20], [1.0, 55.093, 24.928, 11.72, 0, 16], [dur(M4) + 0.5, 55.093, 24.928, 11.78, 0, 18]], (t, cam) => {
+    mapArea(t, cam, 'hessyan1', { c: TEAL, a0: M4[0] - 2, dur: 0.1, base: 0.45 }); mapTagEN(t, cam, SITE, 'بالم سبرينغز', M4[0] + 0.1, 0, -80);
+    mapArea(t, cam, 'dwc', { c: BLUE, a0: M4[0] + 0.15, dur: 0.8, on: [M4[0] + 0.3, M4[1]], base: 0.45 }); mapFlow(t, cam, SITE, TERM, M4[0] + 0.5, 0, { bend: 0.06, dur: 0.9 });
+    calloutAR(t, cam, P.dwc, 'مطار آل مكتوم الدولي', 'نحو 16 كم عن الموقع · خط مستقيم', BLUE[1], M4[0] + 0.45, 0, 230);
   });
 
   // ---------------------------------------------------------------- roadmap branches
@@ -289,7 +296,8 @@ function buildScenes() {
     hudAR(t, 'موقع بالم سبرينغز', 'خيار رئيسي للعائلات', 'قريب من مقار عملها', M3[0] + 0.05, M3[1] - 0.15, TEAL[1]);
     hudAR(t, 'المحرك الأول', 'تطوير نخلة جبل علي', '13.4 كم² · ضعف نخلة جميرا', P2[0] + 0.05, ROADS - 0.05, GOLD);
     hudAR(t, 'نخلة جبل علي', 'لنحو 35 ألف أسرة', 'والطرق المرتبطة فيها', ROADS + 0.05, P2[1] - 0.15, GOLD);
-    hudAR(t, 'المحرك الثاني', 'توسعة مطار آل مكتوم', 'بتكلفة 128 مليار درهم', P3[0] + 0.05, P3[1] - 0.15, BLUE[1]);
+    hudAR(t, 'المحرك الثاني', 'مطار آل مكتوم الدولي', 'نحو 16 كم عن بالم سبرينغز', M4[0] + 0.05, M4[1] - 0.15, BLUE[1]);
+    hudAR(t, 'توسعة مطار آل مكتوم', 'بتكلفة 128 مليار درهم', 'المكتب الإعلامي لحكومة دبي', P3[0] + 0.05, P3[1] - 0.15, BLUE[1]);
     hudAR(t, 'مع توسع الأعمال', 'يزيد الطلب', 'على البيوت العائلية', D1[0] + 0.05, D1[1] - 0.15, GOLD);
     hudAR(t, 'خلنا ناخذ مثال', 'ارتفاع رأس المال', 'مجمعات نخيل القريبة', E1a[0] + 0.05, E1a[1] - 0.15, TEAL[1]);
     hudAR(t, 'مثال من نخيل', 'تلال الفرجان', 'فيلا من 4 غرف', E1b[0] + 0.05, K.m6 + 0.8, GOLD);
@@ -313,7 +321,7 @@ function buildScenes() {
   };
   OVERLAYS.push(overlay);
 
-  [H0[0] + 0.2, M1[0], P1[0], F1[0], M3[0], P2[0], P3[0], D1[0], E1a[0], E1b[0], CTA].forEach(x => cues.push({ k: 'wh', t: x - 0.2, d: 0.5 }));
+  [H0[0] + 0.2, M1[0], P1[0], F1[0], M3[0], P2[0], M4[0], P3[0], D1[0], E1a[0], E1b[0], CTA].forEach(x => cues.push({ k: 'wh', t: x - 0.2, d: 0.5 }));
   [K.p36, K.m32, K.m6].forEach(x => cues.push({ k: 'pin', t: x })); cues.push({ k: 'send', t: K.kw + 0.45 });
   return { FACE_SEGS, PUNCHES, SCENES, OVERLAYS, cues, IMAGES, BUBBLE, NO_CAPTIONS: false, CAP_UNTIL: VEND, STATIC_FACE: false };
 }
