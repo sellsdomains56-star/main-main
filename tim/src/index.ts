@@ -2,14 +2,23 @@ import { reply } from "./brain.js";
 import { betweenMs, readDelayMs, sleep, toBubbles, typingDelayMs } from "./humanize.js";
 import { dueNudges } from "./jobs.js";
 import { getSpeed } from "./state.js";
+import { readText, writeText } from "./store.js";
 import { accountTransport, botTransport, type Incoming } from "./transport.js";
+import { loginViaWeb } from "./weblogin.js";
 
-const session = process.env.TELEGRAM_SESSION;
+const apiId = Number(process.env.TELEGRAM_API_ID);
+const apiHash = process.env.TELEGRAM_API_HASH ?? "";
 const token = process.env.TELEGRAM_BOT_TOKEN;
-if (!session && !token) throw new Error("Set TELEGRAM_SESSION (real account, run `npm run login`) or TELEGRAM_BOT_TOKEN (bot). See .env.example.");
-const tg = session
-  ? accountTransport(Number(process.env.TELEGRAM_API_ID), process.env.TELEGRAM_API_HASH ?? "", session)
-  : botTransport(token!);
+let session = process.env.TELEGRAM_SESSION?.trim() || readText("session.txt").trim();
+
+if (apiId && apiHash && !session) {
+  const pagePassword = process.env.LOGIN_PAGE_PASSWORD;
+  if (!pagePassword) throw new Error("Tim isn't logged in yet. Set LOGIN_PAGE_PASSWORD to use the phone login page, or run `npm run login`.");
+  session = await loginViaWeb({ port: Number(process.env.PORT ?? 3000), apiId, apiHash, pagePassword });
+  writeText("session.txt", session); // keep it on the data volume so restarts stay logged in
+}
+if (!session && !token) throw new Error("Set TELEGRAM_API_ID + TELEGRAM_API_HASH (real account) or TELEGRAM_BOT_TOKEN (bot). See .env.example.");
+const tg = session ? accountTransport(apiId, apiHash, session) : botTransport(token!);
 if (!process.env.ANTHROPIC_API_KEY) throw new Error("Set ANTHROPIC_API_KEY (see .env.example)");
 const OWNER = process.env.OWNER_TELEGRAM_ID ? Number(process.env.OWNER_TELEGRAM_ID) : null;
 let ownerChat: number | null = OWNER; // in this version the chat id is just the boss's user id

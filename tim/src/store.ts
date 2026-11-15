@@ -26,3 +26,8 @@ export function readText(name: string): string {
     return "";
   }
 }
+
+export function writeText(name: string, value: string): void {
+  mkdirSync(DATA_DIR, { recursive: true });
+  writeFileSync(DATA_DIR + name, value, { mode: 0o600 });
+}

@@ -12,11 +12,14 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.131.0",
-    "telegram": "^2.26.22"
+    "telegram": "^2.26.22",
+    "tsx": "^4.23.15"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",
-    "tsx": "^4.23.15",
     "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=22.9"
   }
 }
