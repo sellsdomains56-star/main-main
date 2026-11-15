@@ -4,7 +4,7 @@ const $ = (id) => document.getElementById(id);
 let el = {};
 const cache = {};
 let radarCtx = null;
-const RADAR = 168, RANGE = 38;
+const RADAR = 168, RANGE = 46;
 
 export function init() {
   for (const id of ['scoreA', 'scoreB', 'timer', 'killfeed', 'hp', 'hpfill', 'wname', 'wtype', 'ammoCur', 'ammoRes', 'nades', 'slots', 'msg', 'death', 'deathBy', 'respawnT',
@@ -130,11 +130,11 @@ function radar(p) {
   c.translate(-p.pos.x * k, -p.pos.z * k);
   c.fillStyle = 'rgba(160,190,210,.28)';
   for (const b of W.boxes) {
-    if (b.y0 > 2 || b.x1 - b.x0 > 90) continue;
+    if (b.y0 > 2 || b.x1 - b.x0 > 120) continue;
     c.fillRect(b.x0 * k, b.z0 * k, (b.x1 - b.x0) * k, (b.z1 - b.z0) * k);
   }
   // map border
-  c.strokeStyle = 'rgba(255,170,60,.5)'; c.lineWidth = 1.5; c.strokeRect(-50 * k, -50 * k, 100 * k, 100 * k);
+  c.strokeStyle = 'rgba(255,170,60,.5)'; c.lineWidth = 1.5; { const H = W.half; c.strokeRect(-H * k, -H * k, H * 2 * k, H * 2 * k); }
   for (const a of G.actors) {
     if (!a.alive || a.isPlayer) continue;
     if (a.team !== 0 && !(a.revealT > 0)) continue;

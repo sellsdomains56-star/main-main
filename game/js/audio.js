@@ -1,5 +1,5 @@
 import { G, clamp } from './state.js';
-import * as THREE from '../lib/three.module.js';
+import * as THREE from 'three';
 
 /* Fully synthesised sound: no audio files needed. */
 export class AudioEngine {

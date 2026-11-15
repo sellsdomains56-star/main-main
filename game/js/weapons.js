@@ -1,9 +1,10 @@
-import * as THREE from '../lib/three.module.js';
+import * as THREE from 'three';
+import { A } from './assets.js';
 
 /* Weapon stats. Angles in degrees, rates in rounds per minute. */
 export const WEAPONS = {
   ar: {
-    id: 'ar', name: 'M4-X CARBINE', type: 'ASSAULT RIFLE', auto: true, rpm: 760, dmg: 27, head: 2.0,
+    id: 'ar', name: 'M4A1 CARBINE', type: 'ASSAULT RIFLE', auto: true, rpm: 760, dmg: 27, head: 2.0,
     mag: 30, reserve: 150, reload: 2.2, range: 160, fStart: 35, fEnd: 100, fMin: 0.6,
     spread: 1.0, adsSpread: 0.12, moveSpread: 1.1, jumpSpread: 3.0,
     recoilP: 0.62, recoilY: 0.28, kick: 0.035, adsFov: 52, adsSpeed: 0.78, adsTime: 0.13, pellets: 1, sound: 'ar', flash: 1.0, moveSpeed: 1.0,
@@ -21,13 +22,13 @@ export const WEAPONS = {
     recoilP: 3.6, recoilY: 0.6, kick: 0.1, adsFov: 62, adsSpeed: 0.9, adsTime: 0.14, pellets: 9, sound: 'shotgun', flash: 1.7, moveSpeed: 1.0,
   },
   sniper: {
-    id: 'sniper', name: 'AX-50 SENTINEL', type: 'SNIPER RIFLE', auto: false, rpm: 48, dmg: 105, head: 2.0,
+    id: 'sniper', name: 'KAR-98 MARKSMAN', type: 'BOLT-ACTION RIFLE', auto: false, rpm: 48, dmg: 105, head: 2.0,
     mag: 5, reserve: 25, reload: 3.2, range: 400, fStart: 200, fEnd: 400, fMin: 0.9,
     spread: 6.0, adsSpread: 0.0, moveSpread: 5, jumpSpread: 8,
     recoilP: 4.2, recoilY: 0.5, kick: 0.12, adsFov: 13, adsSpeed: 0.55, adsTime: 0.24, pellets: 1, sound: 'sniper', flash: 2.0, scope: true, moveSpeed: 0.92,
   },
   pistol: {
-    id: 'pistol', name: 'M1911-D', type: 'PISTOL', auto: false, rpm: 380, dmg: 36, head: 2.2,
+    id: 'pistol', name: 'M1911 SERVICE', type: 'PISTOL', auto: false, rpm: 380, dmg: 36, head: 2.2,
     mag: 12, reserve: 72, reload: 1.5, range: 90, fStart: 22, fEnd: 60, fMin: 0.55,
     spread: 1.0, adsSpread: 0.1, moveSpread: 1.2, jumpSpread: 2.6,
     recoilP: 1.5, recoilY: 0.35, kick: 0.05, adsFov: 62, adsSpeed: 0.95, adsTime: 0.09, pellets: 1, sound: 'pistol', flash: 0.9, moveSpeed: 1.1,
@@ -56,24 +57,9 @@ function mats() {
 // part spec: [kind, a, b, c, x, y, z, mat, opts]; kind 'b' box(w,h,d) or 'c' cylinder along z (r,len)
 const DEFS = {
   ar: {
-    parts: [
-      ['b', 0.058, 0.09, 0.36, 0, 0, -0.12, 'metal'],
-      ['b', 0.052, 0.058, 0.28, 0, -0.004, -0.42, 'poly'],
-      ['b', 0.046, 0.012, 0.24, 0, 0.034, -0.42, 'metal'],
-      ['c', 0.011, 0.3, 0, 0.004, -0.74, 'steel'],
-      ['c', 0.019, 0.075, 0, 0.004, -0.9, 'metal'],
-      ['b', 0.05, 0.1, 0.22, 0, -0.015, 0.2, 'poly'],
-      ['b', 0.052, 0.04, 0.1, 0, -0.055, 0.28, 'tan'],
-      ['b', 0.044, 0.11, 0.06, 0, -0.095, 0.01, 'poly', { rx: 0.3 }],
-      ['b', 0.042, 0.15, 0.075, 0, -0.125, -0.2, 'dark', { rx: -0.12, name: 'mag' }],
-      ['b', 0.04, 0.014, 0.13, 0, 0.051, -0.1, 'dark'],
-      ['b', 0.007, 0.05, 0.1, -0.026, 0.078, -0.1, 'dark'],
-      ['b', 0.007, 0.05, 0.1, 0.026, 0.078, -0.1, 'dark'],
-      ['b', 0.06, 0.009, 0.1, 0, 0.106, -0.1, 'dark'],
-      ['b', 0.006, 0.006, 0.004, 0, 0.078, -0.16, 'dot'],
-    ],
-    muzzle: [0, 0.004, -0.95], handL: [0.005, -0.055, -0.46], handR: [0, -0.105, 0.0],
-    hip: [0.2, -0.2, -0.38], ads: [0, -0.078, -0.26],
+    parts: [], model: { name: 'm4a1', ry: Math.PI, off: [0, -0.02, 0.0], s: 1.0 },
+    muzzle: [0, 0.03, -0.66], handL: [0.005, -0.04, -0.3], handR: [0, -0.1, 0.03],
+    hip: [0.2, -0.2, -0.38], ads: [0, -0.15, -0.24],
   },
   smg: {
     parts: [
@@ -108,35 +94,14 @@ const DEFS = {
     hip: [0.2, -0.21, -0.38], ads: [0, -0.067, -0.25],
   },
   sniper: {
-    parts: [
-      ['b', 0.058, 0.09, 0.4, 0, 0, -0.1, 'metal'],
-      ['c', 0.014, 0.75, 0, 0.005, -0.7, 'steel'],
-      ['c', 0.024, 0.12, 0, 0.005, -1.1, 'dark'],
-      ['b', 0.055, 0.12, 0.34, 0, -0.01, 0.28, 'tan'],
-      ['b', 0.044, 0.11, 0.06, 0, -0.095, 0.02, 'poly', { rx: 0.3 }],
-      ['b', 0.04, 0.1, 0.1, 0, -0.1, -0.22, 'dark', { name: 'mag' }],
-      ['c', 0.03, 0.34, 0, 0.1, -0.1, 'dark'],
-      ['c', 0.036, 0.07, 0, 0.1, -0.31, 'dark'],
-      ['c', 0.036, 0.07, 0, 0.1, 0.1, 'dark'],
-      ['c', 0.025, 0.002, 0, 0.1, -0.347, 'lens'],
-      ['b', 0.02, 0.04, 0.03, 0, 0.065, -0.1, 'dark'],
-      ['b', 0.01, 0.08, 0.01, 0.06, 0.02, 0.0, 'steel', { name: 'bolt' }],
-      ['b', 0.02, 0.06, 0.24, 0, -0.07, -0.55, 'dark', { rx: 0.0 }],
-    ],
-    muzzle: [0, 0.005, -1.17], handL: [0, -0.06, -0.5], handR: [0, -0.105, 0.02],
-    hip: [0.21, -0.22, -0.42], ads: [0, -0.115, -0.3],
+    parts: [], model: { name: 'rifle', ry: Math.PI / 2, off: [0, 0.0, -0.294], s: 1.0 },
+    muzzle: [0, 0.02, -0.9], handL: [0.0, -0.045, -0.46], handR: [0, -0.1, 0.02],
+    hip: [0.2, -0.2, -0.42], ads: [0, -0.115, -0.3],
   },
   pistol: {
-    parts: [
-      ['b', 0.034, 0.045, 0.22, 0, 0.012, -0.03, 'steel', { name: 'slide' }],
-      ['b', 0.032, 0.03, 0.2, 0, -0.022, -0.02, 'metal'],
-      ['b', 0.036, 0.12, 0.06, 0, -0.085, 0.07, 'poly', { rx: 0.22, name: 'mag' }],
-      ['b', 0.008, 0.012, 0.008, 0, 0.04, -0.12, 'dark'],
-      ['b', 0.008, 0.012, 0.008, 0, 0.04, 0.05, 'dark'],
-      ['b', 0.003, 0.003, 0.003, 0, 0.037, 0.05, 'dot'],
-    ],
-    muzzle: [0, 0.012, -0.14], handL: [0.004, -0.095, 0.075], handR: [0, -0.08, 0.075],
-    hip: [0.16, -0.14, -0.3], ads: [0, -0.052, -0.22],
+    parts: [], model: { name: 'pistol', ry: Math.PI / 2, off: [0, -0.02, 0.02], s: 1.2 },
+    muzzle: [0, 0.03, -0.17], handL: [0.0, -0.075, 0.05], handR: [0, -0.07, 0.05],
+    hip: [0.15, -0.13, -0.3], ads: [0, -0.075, -0.22],
   },
 };
 
@@ -159,6 +124,13 @@ export function buildGunMesh(id, withHands = true) {
     }
     if (o) { if (o.rx) mesh.rotation.x += o.rx; if (o.name) { mesh.name = o.name; named[o.name] = mesh; mesh.userData.home = mesh.position.clone(); } }
     gun.add(mesh);
+  }
+  if (def.model) {
+    const mo = A.models[def.model.name].scene.clone(true);
+    const holder = new THREE.Group(); holder.add(mo);
+    mo.rotation.y = def.model.ry; mo.position.set(...def.model.off); mo.scale.setScalar(def.model.s);
+    mo.traverse((o) => { if (o.isMesh) { o.castShadow = false; o.frustumCulled = false; o.material = o.material.clone(); o.material.envMapIntensity = 1.0; } });
+    gun.add(holder); named.model = holder;
   }
   const muzzle = new THREE.Object3D(); muzzle.position.set(...def.muzzle); gun.add(muzzle);
   if (withHands) {

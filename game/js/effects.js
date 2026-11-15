@@ -1,4 +1,4 @@
-import * as THREE from '../lib/three.module.js';
+import * as THREE from 'three';
 import { G, rnd } from './state.js';
 
 let scene;

@@ -1,7 +1,8 @@
-import * as THREE from '../lib/three.module.js';
+import * as THREE from 'three';
 import { G, rnd, clamp } from './state.js';
 import * as FX from './effects.js';
 import * as HUD from './hud.js';
+import { A } from './assets.js';
 
 const _o = new THREE.Vector3(), _d = new THREE.Vector3(), _p = new THREE.Vector3(), _n = new THREE.Vector3(), _m = new THREE.Vector3();
 
@@ -118,8 +119,8 @@ export function throwGrenade(owner, from, vel) {
     nadeMat = new THREE.MeshStandardMaterial({ color: 0x3c4a2a, roughness: 0.6, metalness: 0.4 });
     pinMat = new THREE.MeshBasicMaterial({ color: 0xff3020 });
   }
-  const m = new THREE.Mesh(nadeGeo, nadeMat); m.castShadow = true;
-  const led = new THREE.Mesh(new THREE.SphereGeometry(0.02, 6, 4), pinMat); led.position.y = 0.07; m.add(led);
+  const m = new THREE.Group(); const gm = A.models.grenade.scene.clone(true); gm.scale.setScalar(1.15);
+  gm.traverse((o) => { if (o.isMesh) o.castShadow = true; }); m.add(gm);
   G.scene.add(m);
   nades.push({ m, owner, pos: from.clone(), vel: vel.clone(), fuse: 2.6, bounces: 0 });
   m.position.copy(from);

@@ -1,4 +1,4 @@
-import * as THREE from '../lib/three.module.js';
+import * as THREE from 'three';
 import { G, clamp, lerp, damp, rnd } from './state.js';
 import * as FX from './effects.js';
 import * as HUD from './hud.js';
@@ -207,7 +207,7 @@ export class Player {
       this.pos.y = gy; this.vel.y = 0; this.onGround = true;
     } else if (this.pos.y > gy + 0.05) this.onGround = false;
     // clamp inside map
-    this.pos.x = clamp(this.pos.x, -48.8, 48.8); this.pos.z = clamp(this.pos.z, -48.8, 48.8);
+    const lim = W.half - 1.2; this.pos.x = clamp(this.pos.x, -lim, lim); this.pos.z = clamp(this.pos.z, -lim, lim);
 
     /* footsteps + bob */
     const spd = Math.hypot(this.vel.x, this.vel.z);

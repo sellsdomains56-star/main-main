@@ -1,6 +1,7 @@
-import * as THREE from '../lib/three.module.js';
+import * as THREE from 'three';
 import { G, clamp, rnd } from './state.js';
-import { buildWorld } from './world.js';
+import { buildWorld } from './dubai.js';
+import { loadAssets } from './assets.js';
 import { AudioEngine } from './audio.js';
 import * as FX from './effects.js';
 import * as HUD from './hud.js';
@@ -9,6 +10,7 @@ import { Bot } from './bots.js';
 import { updateGrenades, clearGrenades } from './combat.js';
 import { WEAPON_ORDER } from './weapons.js';
 
+(async () => {
 const $ = (id) => document.getElementById(id);
 G.debug = new URLSearchParams(location.search).has('debug');
 
@@ -26,24 +28,25 @@ renderer.autoClear = false;
 $('game').appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.fog = new THREE.Fog(0xb89479, 45, 230);
-const camera = new THREE.PerspectiveCamera(78, innerWidth / innerHeight, 0.05, 800);
+scene.fog = new THREE.Fog(0xd9c9ae, 90, 620);
+const camera = new THREE.PerspectiveCamera(78, innerWidth / innerHeight, 0.05, 3500);
 scene.add(camera);
 const vmScene = new THREE.Scene();
 const vmCam = new THREE.PerspectiveCamera(56, innerWidth / innerHeight, 0.07, 6);
 G.scene = scene; G.camera = camera; G.renderer = renderer;
 
+await loadAssets((p) => { const l = document.getElementById('loading'); if (l) l.textContent = 'LOADING ' + Math.round(p * 100) + '%'; });
 const world = buildWorld(scene);
 G.world = world;
 
 // lighting
-const hemi = new THREE.HemisphereLight(0xaebddf, 0x6a5440, 1.25);
+const hemi = new THREE.HemisphereLight(0xbcd4f0, 0xc9b08a, 1.45);
 scene.add(hemi);
-const sun = new THREE.DirectionalLight(0xffc489, 3.3);
+const sun = new THREE.DirectionalLight(0xfff0d6, 3.4);
 sun.castShadow = true;
 sun.shadow.mapSize.set(2048, 2048);
-sun.shadow.camera.left = -42; sun.shadow.camera.right = 42; sun.shadow.camera.top = 42; sun.shadow.camera.bottom = -42;
-sun.shadow.camera.near = 1; sun.shadow.camera.far = 220;
+sun.shadow.camera.left = -58; sun.shadow.camera.right = 58; sun.shadow.camera.top = 58; sun.shadow.camera.bottom = -58;
+sun.shadow.camera.near = 1; sun.shadow.camera.far = 400;
 sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.04;
 scene.add(sun, sun.target);
 const sunDir = world.sunLight.dir;
@@ -52,7 +55,6 @@ const sunDir = world.sunLight.dir;
 const pm = new THREE.PMREMGenerator(renderer);
 const env = pm.fromEquirectangular(world.skyT).texture;
 scene.environment = env; vmScene.environment = env;
-for (const m of Object.values(world.mats)) if (m.isMeshStandardMaterial) m.envMapIntensity = 0.55;
 
 vmScene.add(new THREE.HemisphereLight(0xbfd0f0, 0x4a3a2c, 1.4));
 const vmSun = new THREE.DirectionalLight(0xffd2a0, 2.6); vmSun.position.set(-0.4, 1, 0.6); vmScene.add(vmSun);
@@ -253,8 +255,8 @@ function frame(now) {
   } else if (G.state === 'menu' || G.state === 'ended' || G.state === 'paused') {
     if (G.state === 'menu' || G.state === 'ended') {
       G.time += dt; const a = G.time * 0.08;
-      camera.position.set(Math.cos(a) * 44, 15 + Math.sin(a * 1.7) * 3, Math.sin(a) * 44);
-      camera.lookAt(0, 3, 0); camera.fov = 62; camera.updateProjectionMatrix(); camera.updateMatrixWorld(true);
+      camera.position.set(Math.cos(a) * 150, 34 + Math.sin(a * 1.7) * 6, Math.sin(a) * 150);
+      camera.lookAt(0, 60, 0); camera.fov = 62; camera.updateProjectionMatrix(); camera.updateMatrixWorld(true);
     }
   }
   FX.updateEffects(dt);
@@ -262,7 +264,7 @@ function frame(now) {
   // sun / shadow follows the camera (snapped to avoid shimmering)
   snap.set(Math.round(camera.position.x / 2) * 2, 0, Math.round(camera.position.z / 2) * 2);
   sun.target.position.copy(snap);
-  sun.position.copy(snap).addScaledVector(sunDir, 120);
+  sun.position.copy(snap).addScaledVector(sunDir, 200);
 
   renderer.clear();
   renderer.render(scene, camera);
@@ -279,3 +281,5 @@ setTimeout(() => $('loading').remove(), 700);
 applyQuality('high');
 requestAnimationFrame(frame);
 if (G.debug) { window.__start = startMatch; }
+
+})();

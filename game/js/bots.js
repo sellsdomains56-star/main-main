@@ -1,4 +1,4 @@
-import * as THREE from '../lib/three.module.js';
+import * as THREE from 'three';
 import { G, rnd, clamp, damp, angDiff } from './state.js';
 import * as FX from './effects.js';
 import { fireBullet, makeNoise, throwGrenade, registerKill } from './combat.js';
@@ -10,21 +10,8 @@ const SKILL = [
   { name: 'VETERAN', react: 0.2, spread: 1.5, dmg: 14, turn: 9.5, head: 0.3, view: 90, burst: [4, 8], pause: [0.15, 0.5], grenade: 1.6 },
 ];
 
-const teamMats = {};
-function mats(team) {
-  if (teamMats[team]) return teamMats[team];
-  const vest = team === 0 ? 0x2c5f94 : 0x9c3427, glow = team === 0 ? 0x4cc3ff : 0xff4a2a;
-  teamMats[team] = {
-    vest: new THREE.MeshStandardMaterial({ color: vest, roughness: 0.75 }),
-    cloth: new THREE.MeshStandardMaterial({ color: team === 0 ? 0x2c3238 : 0x2e2a28, roughness: 0.9 }),
-    pants: new THREE.MeshStandardMaterial({ color: 0x23272b, roughness: 0.9 }),
-    skin: new THREE.MeshStandardMaterial({ color: 0x15171a, roughness: 0.8 }),
-    helmet: new THREE.MeshStandardMaterial({ color: team === 0 ? 0x3a4a3c : 0x3b3433, roughness: 0.6, metalness: 0.2 }),
-    visor: new THREE.MeshStandardMaterial({ color: 0x000000, emissive: glow, emissiveIntensity: 3.5 }),
-    glow: new THREE.MeshBasicMaterial({ color: glow }),
-  };
-  return teamMats[team];
-}
+import { A } from './assets.js';
+import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
 
 function nameSprite(name, team) {
   const c = document.createElement('canvas'); c.width = 256; c.height = 64;
@@ -39,6 +26,7 @@ function nameSprite(name, team) {
   return s;
 }
 
+const _q = new THREE.Quaternion(), _e = new THREE.Euler(), _hp = new THREE.Vector3(), _up = new THREE.Vector3(0, 1, 0), _off = new THREE.Vector3();
 const _eye = new THREE.Vector3(), _dir = new THREE.Vector3(), _mz = new THREE.Vector3(), _aim = new THREE.Vector3();
 
 export class Bot {
@@ -52,40 +40,50 @@ export class Bot {
     this.strafe = 1; this.strafeT = 1; this.senseT = rnd(0, 0.2); this.walk = 0; this.deadT = 0;
     this.lastHit = -99; this.revealT = 0; this.stuckT = 0; this.lastCheck = new THREE.Vector3(); this.investT = 0;
     this.retreatT = 0; this.aimHead = false; this.kick = 0; this.lastFired = -99;
-    this.def = { name: 'M4-X CARBINE', dmg: 11, head: 2.0, range: 130, fStart: 35, fEnd: 100, fMin: 0.55 };
+    this.def = { name: 'M4A1 CARBINE', dmg: 11, head: 2.0, range: 130, fStart: 35, fEnd: 100, fMin: 0.55 };
     this.build();
   }
 
   build() {
-    const m = mats(this.team);
+    const src = A.models.soldier;
+    const root = SkeletonUtils.clone(src.scene);
     const g = (this.model = new THREE.Group());
-    const add = (geo, mat, x, y, z, parent = g) => { const me = new THREE.Mesh(geo, mat); me.position.set(x, y, z); me.castShadow = true; parent.add(me); return me; };
-    this.legL = new THREE.Group(); this.legR = new THREE.Group();
-    this.legL.position.set(-0.11, 0.84, 0); this.legR.position.set(0.11, 0.84, 0); g.add(this.legL, this.legR);
-    for (const L of [this.legL, this.legR]) {
-      add(new THREE.BoxGeometry(0.17, 0.5, 0.21), m.pants, 0, -0.25, 0, L);
-      add(new THREE.BoxGeometry(0.15, 0.36, 0.2), m.cloth, 0, -0.62, 0, L);
-      add(new THREE.BoxGeometry(0.17, 0.08, 0.28), m.skin, 0, -0.8, -0.03, L);
-    }
-    this.torso = new THREE.Group(); this.torso.position.y = 0; g.add(this.torso);
-    add(new THREE.BoxGeometry(0.44, 0.3, 0.25), m.cloth, 0, 0.96, 0, this.torso);
-    add(new THREE.BoxGeometry(0.5, 0.46, 0.3), m.vest, 0, 1.2, 0, this.torso);
-    add(new THREE.BoxGeometry(0.4, 0.12, 0.08), m.cloth, 0, 1.12, -0.17, this.torso);
-    add(new THREE.BoxGeometry(0.14, 0.08, 0.1), m.cloth, 0, 1.5, 0, this.torso);
-    add(new THREE.BoxGeometry(0.2, 0.22, 0.21), m.skin, 0, 1.58, 0, this.torso);
-    add(new THREE.BoxGeometry(0.27, 0.13, 0.29), m.helmet, 0, 1.7, 0.01, this.torso);
-    add(new THREE.BoxGeometry(0.2, 0.045, 0.02), m.visor, 0, 1.61, -0.108, this.torso);
-    add(new THREE.BoxGeometry(0.1, 0.03, 0.02), m.glow, 0, 1.36, -0.16, this.torso);
+    g.add(root);
+    // normalise to a 1.82 m soldier standing on y = 0
+    g.updateMatrixWorld(true);
+    const bb = new THREE.Box3().setFromObject(root);
+    const k = 1.82 / Math.max(0.01, bb.max.y - bb.min.y);
+    root.scale.multiplyScalar(k);
+    g.updateMatrixWorld(true);
+    const bb2 = new THREE.Box3().setFromObject(root);
+    root.position.y -= bb2.min.y;
+    const tint = this.team === 0 ? new THREE.Color(0.55, 0.78, 1.25) : new THREE.Color(1.3, 0.58, 0.5);
+    const glow = this.team === 0 ? 0x38b6ff : 0xff3a1c;
+    root.traverse((o) => {
+      if (!o.isMesh) return;
+      o.castShadow = true; o.frustumCulled = false;
+      o.material = o.material.clone();
+      if (/visor/i.test(o.material.name) || /visor/i.test(o.name)) { o.material.color.set(0x000000); o.material.emissive = new THREE.Color(glow); o.material.emissiveIntensity = 2.5; }
+      else { o.material.color.copy(tint); o.material.envMapIntensity = 0.5; }
+    });
+    // animation
+    this.mixer = new THREE.AnimationMixer(root);
+    const clip = (n) => src.animations.find((a) => a.name === n);
+    this.act = {};
+    for (const n of ['Idle', 'Walk', 'Run']) { const a = this.mixer.clipAction(clip(n)); a.play(); a.setEffectiveWeight(n === 'Idle' ? 1 : 0); this.act[n] = a; }
+    this.wts = { Idle: 1, Walk: 0, Run: 0 };
+    this.mixer.update(Math.random() * 2);
+    // find bones
+    this.bones = {};
+    root.traverse((o) => { if (o.isBone) { const n = o.name.replace(/^mixamorig:?/, ''); this.bones[n] = o; } });
+    // weapon in the right hand
     const gun = (this.gun = buildGunMesh('ar', false));
-    gun.root.position.set(0.14, 1.2, -0.26); gun.root.scale.setScalar(0.95);
-    this.torso.add(gun.root);
-    add(new THREE.BoxGeometry(0.1, 0.1, 0.46), m.cloth, 0.2, 1.22, -0.14, this.torso).rotation.y = 0.12;
-    add(new THREE.BoxGeometry(0.1, 0.1, 0.56), m.cloth, -0.22, 1.24, -0.28, this.torso).rotation.y = -0.32;
-    add(new THREE.BoxGeometry(0.09, 0.09, 0.09), m.skin, 0.16, 1.22, -0.4, this.torso);
-    add(new THREE.BoxGeometry(0.09, 0.09, 0.09), m.skin, -0.06, 1.24, -0.54, this.torso);
+    this.gunHolder = new THREE.Group(); g.add(this.gunHolder); this.gunHolder.add(gun.root);
+    gun.root.scale.setScalar(0.95);
     g.visible = false;
     G.scene.add(g);
     if (this.team === 0) { this.tag = nameSprite(this.name, 0); this.tag.visible = false; G.scene.add(this.tag); }
+    this.poseK = 0; this.pitch = 0;
   }
 
   get skill() { return SKILL[G.settings.diff]; }
@@ -99,8 +97,8 @@ export class Bot {
     this.retreatT = 0; this.investT = 0; this.fireCd = 0.5; this.grenCd = rnd(6, 14);
     const enemy = G.spawnCenter(1 - this.team);
     this.yaw = Math.atan2(-(enemy.x - p.x), -(enemy.z - p.z));
-    this.model.visible = true; this.model.rotation.set(0, this.yaw, 0); this.model.position.set(p.x, 0, p.z); this.torso.rotation.set(0, 0, 0);
-    this.model.scale.set(1, 1, 1); this.legL.rotation.x = this.legR.rotation.x = 0;
+    this.model.visible = true; this.model.rotation.set(0, this.yaw, 0); this.model.position.set(p.x, 0, p.z);
+    for (const a of Object.values(this.act)) a.paused = false;
     this.model.position.y = 0;
     if (this.tag) this.tag.visible = true;
   }
@@ -315,18 +313,46 @@ export class Bot {
       this.lastCheck.copy(this.pos); this.stuckT = 0;
     }
 
-    // animation
+    // animation: blend idle / walk / run by speed, aim the rifle
     const sp = Math.hypot(this.vel.x, this.vel.z);
-    const prevStep = Math.floor(this.walk / Math.PI);
-    this.walk += sp * dt * 2.1;
-    if (sp > 2 && Math.floor(this.walk / Math.PI) !== prevStep && G.audio && G.player && Math.abs(this.pos.x - G.player.pos.x) < 30 && Math.abs(this.pos.z - G.player.pos.z) < 30) G.audio.step(this.pos, sp > 4.6 ? 0.34 : 0.22);
-    const sw = Math.min(1, sp / 4) * 0.8;
-    this.legL.rotation.x = Math.sin(this.walk) * sw; this.legR.rotation.x = -Math.sin(this.walk) * sw;
-    this.model.position.set(this.pos.x, this.pos.y + Math.abs(Math.sin(this.walk)) * 0.03 * Math.min(1, sp / 3), this.pos.z);
+    if (sp > 2 && G.audio && G.player && Math.abs(this.pos.x - G.player.pos.x) < 30 && Math.abs(this.pos.z - G.player.pos.z) < 30) {
+      this.stepAcc = (this.stepAcc || 0) + sp * dt;
+      if (this.stepAcc > (sp > 4.6 ? 2.6 : 1.9)) { this.stepAcc = 0; G.audio.step(this.pos, sp > 4.6 ? 0.34 : 0.22); }
+    }
+    const tIdle = sp < 0.4 ? 1 : 0, tRun = sp > 3.4 ? 1 : 0, tWalk = sp >= 0.4 && sp <= 3.4 ? 1 : 0;
+    const bl = 1 - Math.exp(-10 * dt);
+    this.wts.Idle += (tIdle - this.wts.Idle) * bl; this.wts.Walk += (tWalk - this.wts.Walk) * bl; this.wts.Run += (tRun - this.wts.Run) * bl;
+    for (const n of ['Idle', 'Walk', 'Run']) this.act[n].setEffectiveWeight(this.wts[n]);
+    this.act.Walk.timeScale = clamp(sp / 1.5, 0.6, 2.2); this.act.Run.timeScale = clamp(sp / 4.2, 0.7, 1.5);
+    this.mixer.update(dt);
+    this.model.position.set(this.pos.x, this.pos.y, this.pos.z);
     this.model.rotation.y = this.yaw;
-    this.torso.rotation.x = -this.kick * 0.04;
-    this.gun.root.position.z = -0.26 + this.kick * 0.04;
-    if (this.tag) this.tag.position.set(this.pos.x, this.pos.y + 2.15, this.pos.z);
+    this.applyAim(dt, engaged || this.kick > 0 || G.time - this.lastFired < 1.2);
+    if (this.tag) this.tag.position.set(this.pos.x, this.pos.y + 2.25, this.pos.z);
+  }
+
+  // raise both arms into a rifle stance, point the weapon at the target
+  applyAim(dt, aiming) {
+    this.poseK += ((aiming ? 1 : 0.55) - this.poseK) * (1 - Math.exp(-8 * dt));
+    const B = this.bones, k = this.poseK;
+    const tgt = this.target && this.target.alive ? this.target : null;
+    let pitch = 0;
+    if (tgt) { const dx = tgt.pos.x - this.pos.x, dz = tgt.pos.z - this.pos.z, dy = tgt.pos.y + 1.1 - (this.pos.y + 1.45); pitch = Math.atan2(dy, Math.hypot(dx, dz)); }
+    this.pitch += (pitch - this.pitch) * (1 - Math.exp(-10 * dt));
+    const rot = (bone, x, y, z) => { if (!bone) return; _q.setFromEuler(_e.set(x, y, z)); bone.quaternion.multiply(_q); };
+    // bring the arms up in front of the chest (angles tuned for the Mixamo rig)
+    rot(B.Spine1, -this.pitch * 0.35, 0, 0); rot(B.Spine2, -this.pitch * 0.35, 0, 0);
+    rot(B.RightArm, -1.12 * k, 0.12 * k, 0); rot(B.LeftArm, -1.25 * k, -0.08 * k, 0);
+    rot(B.RightForeArm, 0, -0.18 * k, 0); rot(B.LeftForeArm, 0, 0.22 * k, 0);
+    // weapon follows the right hand but is aimed along the body forward + pitch
+    const hand = B.RightHand;
+    if (hand) {
+      this.model.updateMatrixWorld(true);
+      hand.getWorldPosition(_hp);
+      this.gunHolder.position.copy(_hp).sub(this.model.position).applyAxisAngle(_up, -this.yaw);
+      this.gunHolder.rotation.set(this.pitch, 0, 0);
+      this.gunHolder.position.add(_off.set(0.0, 0.06, -0.02));
+    }
   }
 
   updateDead(dt) {
@@ -336,7 +362,6 @@ export class Bot {
     this.model.position.y = this.pos.y - (this.deadT > 3.5 ? (this.deadT - 3.5) * 1.2 : 0);
     this.model.position.x = this.pos.x; this.model.position.z = this.pos.z;
     this.model.position.y += e * 0.12;
-    this.legL.rotation.x = this.legR.rotation.x = 0;
     if (this.deadT > 4.8) this.model.visible = false;
     if (this.deadT > 5.2 && G.state === 'playing') G.respawnActor(this);
   }
