@@ -83,6 +83,9 @@ body.menu #game canvas{filter:saturate(1.05)}
 #vitals small{font-size:14px;letter-spacing:.25em;color:var(--dim)}
 #hpbar{height:8px;background:rgba(255,255,255,.12);transform:skewX(-24deg);overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.4)}
 #hpfill{height:100%;width:100%;background:linear-gradient(90deg,#ffb347,#ffd27a);transition:width .15s,background .2s}
+#armorbar{height:5px;background:rgba(255,255,255,.1);transform:skewX(-24deg);overflow:hidden}
+#armorfill{height:100%;width:0;background:#4aa8ff;transition:width .15s}
+#slots span.off{opacity:.28}
 #nadewrap{display:flex;gap:8px;align-items:center;margin-top:6px;font-size:15px;letter-spacing:.18em;color:var(--dim)}
 #nadewrap b{color:var(--ink);font-size:20px}
 #nadewrap .key{border:1px solid var(--dim);padding:0 6px;border-radius:3px;font-size:12px}
@@ -182,9 +185,9 @@ input[type=range]{accent-color:var(--accent);width:200px}
   <div id="indicators"></div>
 
   <div id="top">
-    <div class="team ally"><b id="scoreA">0</b><span>ALLIES</span></div>
+    <div class="team ally"><b id="scoreA">0</b><span id="labelA">ALLIES</span></div>
     <div id="timer">10:00</div>
-    <div class="team enemy"><b id="scoreB">0</b><span>HOSTILES</span></div>
+    <div class="team enemy"><b id="scoreB">0</b><span id="labelB">HOSTILES</span></div>
     <div id="limit">FIRST TO 40</div>
   </div>
   <div id="radarWrap"><canvas id="radar"></canvas></div>
@@ -193,7 +196,8 @@ input[type=range]{accent-color:var(--accent);width:200px}
   <div id="vitals">
     <div class="row"><span id="hp">100</span><small>HEALTH</small></div>
     <div id="hpbar"><div id="hpfill"></div></div>
-    <div id="nadewrap"><span class="key">G</span> FRAG <b id="nades">3</b></div>
+    <div id="armorbar"><div id="armorfill"></div></div>
+    <div id="nadewrap"><span class="key">G</span> FRAG <b id="nades">3</b> &nbsp; <span class="key">H</span> MEDKIT <b id="medkits">0</b></div>
   </div>
 
   <div id="ammo">
@@ -207,7 +211,7 @@ input[type=range]{accent-color:var(--accent);width:200px}
   <div id="reloadbar"><div id="reloadfill"></div></div>
   <div id="banner"></div>
   <div id="points"></div>
-  <div id="hint"><b>WASD</b> MOVE · <b>MOUSE</b> AIM · <b>LMB</b> FIRE · <b>RMB</b> AIM DOWN SIGHTS<br><b>SHIFT</b> SPRINT · <b>C</b> CROUCH · <b>R</b> RELOAD · <b>G</b> GRENADE · <b>1-5</b> / <b>WHEEL</b> WEAPONS · <b>TAB</b> SCORES</div>
+  <div id="hint"><b>WASD</b> MOVE · <b>MOUSE</b> AIM · <b>F</b> or <b>CLICK</b> FIRE · <b>E</b> or <b>RIGHT CLICK</b> AIM · <b>V</b> 1ST / 3RD PERSON<br><b>SHIFT</b> SPRINT · <b>C</b> CROUCH · <b>R</b> RELOAD · <b>G</b> GRENADE · <b>H</b> HEAL · <b>1-5</b> WEAPONS · <b>TAB</b> SCORES</div>
   <div id="death"><h2>YOU WERE ELIMINATED</h2><div id="deathBy"></div><div id="respawnT"></div></div>
   <div id="scoreboard">
     <table><caption style="color:var(--ally)">ALLIES</caption><thead><tr><th>OPERATOR</th><th>K</th><th>D</th><th>SCORE</th></tr></thead><tbody id="sbA"></tbody></table>
@@ -219,17 +223,18 @@ input[type=range]{accent-color:var(--accent);width:200px}
 <div class="screen on" id="menu">
   <div class="card">
     <div class="logo">IRON<br>HORIZON<small>TACTICAL WARFARE</small></div>
-    <div class="mode">TEAM DEATHMATCH · 5 vs 5 · FIRST TO 40</div>
+    <div class="mode" id="modeLine">BATTLE ROYALE · 40 PLAYERS · LAST ONE STANDING</div>
     <div class="opts">
+      <div class="opt"><label>MODE</label><div class="seg" id="mode"><button data-v="br" class="on">BATTLE ROYALE</button><button data-v="tdm">TEAM DEATHMATCH</button></div></div>
       <div class="opt"><label>BOT SKILL</label><div class="seg" id="diff"><button data-v="0">RECRUIT</button><button data-v="1" class="on">REGULAR</button><button data-v="2">VETERAN</button></div></div>
       <div class="opt"><label>SENSITIVITY</label><input id="sens" type="range" min="0.2" max="3" step="0.05" value="1"><output id="sensV">1.0</output></div>
       <div class="opt"><label>FIELD OF VIEW</label><input id="fov" type="range" min="65" max="105" step="1" value="78"><output id="fovV">78</output></div>
       <div class="opt"><label>GRAPHICS</label><div class="seg" id="qual"><button data-v="high" class="on">HIGH</button><button data-v="low">PERFORMANCE</button></div></div>
     </div>
     <div class="keys">
-      <span><b>W A S D</b>Move</span><span><b>MOUSE</b>Aim</span><span><b>LMB</b>Fire</span><span><b>RMB</b>Aim</span>
-      <span><b>SHIFT</b>Sprint</span><span><b>SPACE</b>Jump</span><span><b>C</b>Crouch</span><span><b>R</b>Reload</span>
-      <span><b>G</b>Grenade</span><span><b>1-5</b>Weapon</span><span><b>Q</b>Last</span><span><b>TAB</b>Scores</span>
+      <span><b>W A S D</b>Move</span><span><b>MOUSE</b>Look</span><span><b>F</b> / <b>CLICK</b>Fire</span><span><b>E</b> / <b>R-CLICK</b>Aim</span>
+      <span><b>V</b>1st / 3rd person</span><span><b>SHIFT</b>Sprint</span><span><b>SPACE</b>Jump / Chute</span><span><b>C</b>Crouch</span>
+      <span><b>R</b>Reload</span><span><b>G</b>Grenade</span><span><b>H</b>Heal</span><span><b>1-5</b>Weapon</span>
     </div>
     <button class="btn" id="deploy">DEPLOY</button>
   </div>

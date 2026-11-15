@@ -133,6 +133,7 @@ export function explode(pos, owner) {
   for (const a of G.actors) {
     if (!a.alive) continue;
     if (a !== owner && owner && a.team === owner.team) continue;
+    if (G.mode === 'br' && owner && !owner.isPlayer && !a.isPlayer) continue;
     const cy = a.pos.y + 1.0, dx = a.pos.x - pos.x, dy = cy - pos.y, dz = a.pos.z - pos.z;
     const d = Math.hypot(dx, dy, dz);
     if (d > R) continue;
@@ -187,8 +188,10 @@ const streakNames = ['', '', 'DOUBLE KILL', 'TRIPLE KILL', 'MULTI KILL', 'MEGA K
 export function registerKill(victim, killer, weapon, head) {
   victim.alive = false; victim.deaths++;
   const k = killer || victim;
-  if (killer && killer !== victim) { killer.kills++; G.scores[killer.team]++; }
-  else if (killer === victim) { /* suicide: no team point, +1 to the enemy */ G.scores[1 - victim.team]++; }
+  const tdm = G.mode === 'tdm';
+  if (killer && killer !== victim) { killer.kills++; if (tdm) G.scores[killer.team]++; }
+  else if (killer === victim && tdm) G.scores[1 - victim.team]++;
+  if (G.onKill) G.onKill(victim, killer);
   HUD.killfeed(k, victim, weapon, head);
   if (killer && killer.isPlayer && killer !== victim) {
     const now = G.time;
@@ -206,5 +209,5 @@ export function registerKill(victim, killer, weapon, head) {
     G.audio && G.audio.kill(head);
   } else if (killer) killer.score += 100;
   if (victim.isPlayer) victim.streak = 0;
-  if (G.scores[0] >= G.scoreLimit || G.scores[1] >= G.scoreLimit) G.endMatch && G.endMatch();
+  if (tdm && (G.scores[0] >= G.scoreLimit || G.scores[1] >= G.scoreLimit)) G.endMatch && G.endMatch();
 }

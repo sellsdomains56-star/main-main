@@ -3,7 +3,7 @@ import { G, clamp, lerp, damp, rnd } from './state.js';
 import * as FX from './effects.js';
 import * as HUD from './hud.js';
 import { WEAPONS, WEAPON_ORDER, buildGunMesh, getHip, getAds } from './weapons.js';
-import { fireBullet, makeNoise, throwGrenade, registerKill } from './combat.js';
+import { fireBullet, makeNoise, throwGrenade, registerKill, castRay } from './combat.js';
 
 const DEG = Math.PI / 180;
 const _dir = new THREE.Vector3(), _org = new THREE.Vector3(), _mz = new THREE.Vector3(), _v = new THREE.Vector3(), _e = new THREE.Euler(0, 0, 0, 'YXZ');
@@ -31,13 +31,38 @@ export class Player {
     }
     this.flashLight = new THREE.PointLight(0xffb060, 0, 3, 2); vmScene.add(this.flashLight);
     this.flashT = 0; this.flashSize = 1;
+    this.tpv = false; this.phase = 'ground'; this.owned = {}; this.armor = 0; this.medkits = 0; this.healT = 0; this.avatar = null;
     this.resetLoadout();
   }
 
   resetLoadout() {
-    for (const id of WEAPON_ORDER) { const w = WEAPONS[id]; this.ws[id] = { ammo: w.mag, reserve: w.reserve }; }
-    this.nades = 3; this.cur = 0; this.last = 1; this.weapon = WEAPONS[WEAPON_ORDER[0]];
+    const br = G.mode === 'br';
+    for (const id of WEAPON_ORDER) {
+      const w = WEAPONS[id], has = !br || id === 'pistol';
+      this.owned[id] = has; this.ws[id] = { ammo: has ? w.mag : 0, reserve: has ? (br ? w.mag * 3 : w.reserve) : 0 };
+    }
+    this.nades = br ? 1 : 3; this.armor = 0; this.medkits = br ? 1 : 0; this.healT = 0;
+    this.cur = br ? WEAPON_ORDER.indexOf('pistol') : 0; this.last = this.cur; this.weapon = WEAPONS[WEAPON_ORDER[this.cur]];
     this.showGun(this.weapon.id);
+  }
+  tpvActive() { return (this.tpv || this.phase !== 'ground') && !this.scoped(); }
+  // loot pickup; returns a label for the HUD or null if nothing was gained
+  give(type) {
+    const W = WEAPONS[type];
+    if (W) {
+      const st = this.ws[type];
+      if (!this.owned[type]) { this.owned[type] = true; st.ammo = W.mag; st.reserve += W.mag * 2; if (this.weapon.id === 'pistol') this.switchTo(WEAPON_ORDER.indexOf(type)); return W.name; }
+      st.reserve += W.mag * 2; return W.name + ' AMMO';
+    }
+    if (type === 'ammo') { for (const id of WEAPON_ORDER) if (this.owned[id]) this.ws[id].reserve += WEAPONS[id].mag; return 'AMMO'; }
+    if (type === 'medkit') { this.medkits++; return 'MEDKIT  ·  PRESS H TO HEAL'; }
+    if (type === 'armor') { if (this.armor >= 100) return null; this.armor = Math.min(100, this.armor + 50); return 'ARMOR PLATE'; }
+    if (type === 'nade') { this.nades++; return 'FRAG GRENADE'; }
+    return null;
+  }
+  heal() {
+    if (!this.alive || this.medkits <= 0 || this.hp >= 100 || this.healT > 0 || this.phase !== 'ground') return;
+    this.medkits--; this.healT = 2.2; HUD.message('HEALING…', 2200); G.audio && G.audio.click('magout', null, 0.5);
   }
   showGun(id) {
     for (const k of WEAPON_ORDER) this.guns[k].root.visible = k === id;
@@ -59,14 +84,16 @@ export class Player {
 
   takeDamage(dmg, attacker, head, weapon, from) {
     if (!this.alive || G.state !== 'playing') return;
+    if (this.phase !== 'ground' && attacker !== this) return;
+    if (this.armor > 0) { const ab = Math.min(this.armor, dmg * 0.5); this.armor -= ab; dmg -= ab; }
     this.hp -= dmg; this.lastHit = G.time; this.dmgFlash = Math.min(1, this.dmgFlash + dmg / 45);
     G.audio && G.audio.hurt();
     G.shake = Math.max(G.shake, Math.min(0.6, dmg / 60));
-    if (from && attacker !== this) HUD.damageIndicator(attacker.pos.x, attacker.pos.z);
+    if (from && attacker && attacker !== this) HUD.damageIndicator(attacker.pos.x, attacker.pos.z);
     if (this.hp <= 0) {
       this.hp = 0; this.alive = false; this.deadT = 0; this.killer = attacker; this.vel.multiplyScalar(0.2);
       registerKill(this, attacker, weapon, head);
-      HUD.showDeath(attacker && attacker !== this ? attacker.name : 'YOURSELF', true);
+      HUD.showDeath(attacker && attacker !== this ? attacker.name : attacker ? 'YOURSELF' : weapon, true);
       this.alive = false;
     }
   }
@@ -80,11 +107,11 @@ export class Player {
   }
 
   switchTo(i) {
-    if (i === this.cur || i < 0 || i >= WEAPON_ORDER.length || this.switchT > 0 || !this.alive) return;
+    if (i === this.cur || i < 0 || i >= WEAPON_ORDER.length || this.switchT > 0 || !this.alive || !this.owned[WEAPON_ORDER[i]]) return;
     this.last = this.cur; this.pendingSwitch = i; this.switchT = 0.5; this.reloading = false;
     G.audio && G.audio.click('switch', null, 0.5);
   }
-  cycle(dir) { this.switchTo((this.cur + dir + WEAPON_ORDER.length) % WEAPON_ORDER.length); }
+  cycle(dir) { const n = WEAPON_ORDER.length; for (let k = 1; k < n; k++) { const i = (this.cur + dir * k + n * k) % n; if (this.owned[WEAPON_ORDER[i]]) { this.switchTo(i); return; } } }
 
   startReload() {
     const w = this.weapon, st = this.ws[w.id];
@@ -125,6 +152,12 @@ export class Player {
     const eyeY = this.pos.y + this.eyeH();
     _org.set(this.pos.x, eyeY, this.pos.z);
     const cp = Math.cos(this.pitch), baseDir = new THREE.Vector3(-Math.sin(this.yaw) * cp, Math.sin(this.pitch), -Math.cos(this.yaw) * cp);
+    if (this.tpvActive()) { // third person: shoot at what the crosshair is on
+      const cam = G.camera, cd = cam.getWorldDirection(new THREE.Vector3());
+      const h = castRay(cam.position.x, cam.position.y, cam.position.z, cd.x, cd.y, cd.z, 400, this);
+      const t = Math.max(h.t, 6);
+      baseDir.set(cam.position.x + cd.x * t - _org.x, cam.position.y + cd.y * t - _org.y, cam.position.z + cd.z * t - _org.z).normalize();
+    }
     const right = new THREE.Vector3(Math.cos(this.yaw), 0, -Math.sin(this.yaw));
     const up = new THREE.Vector3().crossVectors(right, baseDir).normalize();
     // tracer origin: project the viewmodel muzzle through the main camera so tracers leave the barrel
@@ -134,6 +167,7 @@ export class Player {
     const ray = new THREE.Vector3(ndc.x, ndc.y, 0.5).unproject(G.camera).sub(G.camera.position).normalize();
     const k = -_mz.z / Math.max(0.2, ray.dot(baseDir));
     const wm = G.camera.position.clone().addScaledVector(ray, k);
+    if (this.tpvActive() && this.avatar) { this.avatar.model.updateMatrixWorld(true); this.avatar.gun.muzzle.getWorldPosition(wm); FX.muzzleFlash(wm, 0.5); this.avatar.kick = 1; }
     const spread = this.currentSpread() * DEG;
     for (let i = 0; i < w.pellets; i++) {
       const r = spread * Math.sqrt(Math.random()), th = rnd(0, 6.283);
@@ -170,8 +204,10 @@ export class Player {
   update(dt, keys, mouse) {
     const W = G.world;
     this.dmgFlash = Math.max(0, this.dmgFlash - dt * 1.2);
-    if (!this.alive) { this.updateDead(dt); return; }
-    if (G.time - this.lastHit > 5 && this.hp < 100) this.hp = Math.min(100, this.hp + 28 * dt);
+    if (!this.alive) { this.updateDead(dt); this.updateAvatar(dt); return; }
+    if (this.phase !== 'ground') { this.updateDrop(dt, keys); this.updateAvatar(dt); return; }
+    if (G.mode === 'tdm' && G.time - this.lastHit > 5 && this.hp < 100) this.hp = Math.min(100, this.hp + 28 * dt);
+    if (this.healT > 0) { this.healT -= dt; if (this.healT <= 0) { this.hp = Math.min(100, this.hp + 60); HUD.message('+60 HEALTH', 1000); } }
     this.fireCd -= dt; this.nadeCd -= dt;
     this.heat = Math.max(0, this.heat - dt * 1.6);
     if (this.autoReload > 0) { this.autoReload -= dt; if (this.autoReload <= 0 && !this.reloading) this.startReload(); }
@@ -265,6 +301,7 @@ export class Player {
     this.spreadDeg = this.currentSpread();
     this.updateCamera(dt, spd);
     this.updateViewmodel(dt, spd);
+    this.updateAvatar(dt);
   }
 
   updateCamera(dt, spd) {
@@ -279,6 +316,7 @@ export class Player {
     const targetFov = lerp(G.settings.fov, this.weapon.adsFov, this.adsT * (this.scoped() || !this.weapon.scope ? 1 : 1)) + (this.sprinting ? 5 : 0);
     this.fov = damp(this.fov, targetFov, 18, dt);
     if (Math.abs(cam.fov - this.fov) > 0.01) { cam.fov = this.fov; cam.updateProjectionMatrix(); }
+    if (this.tpvActive()) this.applyTpv(cam, lerp(3.3, 1.9, this.adsT), 0.55);
     cam.updateMatrixWorld(true);
   }
 
@@ -324,7 +362,7 @@ export class Player {
     }
     root.position.set(x, y, z);
     root.rotation.set(rx, ry, rz);
-    g.root.visible = !(this.scoped());
+    g.root.visible = !this.scoped() && !this.tpvActive();
     // muzzle flash
     this.flashLight.intensity = Math.max(0, this.flashLight.intensity - dt * 120);
     g.muzzle.getWorldPosition(_v); this.flashLight.position.copy(_v).add(new THREE.Vector3(0, 0.04, 0.12));
@@ -334,6 +372,56 @@ export class Player {
       g.flash.material.rotation = rnd(0, 6.28);
       const sz = 0.13 * this.flashSize * rnd(0.8, 1.15); g.flash.scale.set(sz, sz, 1);
     } else g.flash.visible = false;
+  }
+
+  // over-the-shoulder camera with wall avoidance
+  applyTpv(cam, dist, side) {
+    const W = G.world, cp = Math.cos(this.pitch);
+    const fx = -Math.sin(this.yaw) * cp, fy = Math.sin(this.pitch), fz = -Math.cos(this.yaw) * cp;
+    const rx = Math.cos(this.yaw), rz = -Math.sin(this.yaw);
+    const px = this.pos.x, py = this.pos.y + this.eyeH() + 0.22, pz = this.pos.z;
+    let dx = -fx * dist + rx * side, dy = -fy * dist + 0.1, dz = -fz * dist + rz * side;
+    const len = Math.hypot(dx, dy, dz); dx /= len; dy /= len; dz /= len;
+    const t = W.rayWorld(px, py, pz, dx, dy, dz, len + 0.3);
+    const d = t >= 0 ? Math.max(0.4, t - 0.3) : len;
+    cam.position.set(px + dx * d, Math.max(0.25, py + dy * d), pz + dz * d);
+  }
+
+  updateAvatar(dt) {
+    const a = this.avatar; if (!a) return;
+    const show = this.tpvActive() && (this.alive || this.deadT < 3);
+    a.pos.copy(this.pos); a.yaw = this.yaw; a.vel.copy(this.vel); a.aimPitch = this.phase === 'ground' ? this.pitch : 0;
+    a.kick = Math.max(0, (a.kick || 0) - dt * 9);
+    if (show) a.animate(dt, this.phase === 'ground' && (this.adsT > 0.2 || G.time - (this.lastFire || -9) < 1.5));
+    a.model.visible = show && this.phase !== 'plane'; a.chute.visible = this.phase === 'chute';
+    if (this.phase === 'fall') a.model.rotation.set(-1.2, this.yaw, 0, 'YXZ');
+    if (!this.alive) a.model.rotation.set(Math.min(1.5, this.deadT * 3), this.yaw, 0, 'YXZ');
+  }
+
+  // battle royale arrival: plane -> freefall -> parachute
+  updateDrop(dt, keys) {
+    const W = G.world, cam = G.camera;
+    if (this.phase === 'plane') { this.vel.set(0, 0, 0); }
+    else {
+      const chute = this.phase === 'chute';
+      const fwd = (keys.KeyW ? 1 : 0) - (keys.KeyS ? 1 : 0), strafe = (keys.KeyD ? 1 : 0) - (keys.KeyA ? 1 : 0), sp = chute ? 13 : 22;
+      let wx = 0, wz = 0;
+      if (fwd || strafe) { const l = Math.hypot(fwd, strafe); wx = (-Math.sin(this.yaw) * fwd + Math.cos(this.yaw) * strafe) / l * sp; wz = (-Math.cos(this.yaw) * fwd - Math.sin(this.yaw) * strafe) / l * sp; }
+      this.vel.x = damp(this.vel.x, wx, 2.5, dt); this.vel.z = damp(this.vel.z, wz, 2.5, dt);
+      this.vel.y = damp(this.vel.y, chute ? -8.5 : -50, chute ? 4 : 0.9, dt);
+      this.pos.addScaledVector(this.vel, dt);
+      W.resolveCircle(this.pos, 0.8, this.pos.y, 2);
+      const lim = W.half - 2; this.pos.x = clamp(this.pos.x, -lim, lim); this.pos.z = clamp(this.pos.z, -lim, lim);
+      const gy = W.groundHeight(this.pos.x, this.pos.z, 0.4, this.pos.y);
+      if (!chute && (this.pos.y - gy < 85 || (keys.Space && !this.spaceHeld))) { this.phase = 'chute'; this.vel.y = Math.max(this.vel.y, -20); G.audio && G.audio.thud(null); HUD.message('PARACHUTE OPEN', 1200); }
+      if (this.pos.y <= gy) { this.pos.y = gy; this.vel.set(0, 0, 0); this.phase = 'ground'; this.onGround = true; this.fireCd = 0.4; G.audio && G.audio.step(null, 0.6); HUD.message('FIND WEAPONS · STAY INSIDE THE ZONE', 2600); }
+    }
+    this.spaceHeld = !!keys.Space;
+    this.adsT = 0; this.fov = damp(this.fov, G.settings.fov, 8, dt); cam.fov = this.fov; cam.updateProjectionMatrix();
+    cam.rotation.set(this.pitch, this.yaw, 0, 'YXZ');
+    this.applyTpv(cam, this.phase === 'plane' ? 38 : 7.5, 0);
+    cam.updateMatrixWorld(true);
+    this.gun.root.visible = false;
   }
 
   updateDead(dt) {
@@ -346,8 +434,8 @@ export class Player {
     cam.updateMatrixWorld(true);
     this.adsT = 0; this.gun.root.visible = false;
     const remain = 4 - this.deadT;
-    HUD.setRespawn(remain);
-    if (this.deadT > 4 && G.state === 'playing') G.respawnActor(this);
+    if (G.mode === 'tdm') HUD.setRespawn(remain);
+    if (this.deadT > 4 && G.state === 'playing' && G.mode === 'tdm') G.respawnActor(this);
   }
 }
 

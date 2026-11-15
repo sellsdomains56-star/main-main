@@ -7,10 +7,12 @@ import { A } from './assets.js';
    (© OpenStreetMap contributors, ODbL), placed at their true relative positions in metres.
    Everything inside the arena is collision-checked; landmarks outside it form the skyline. */
 
-export const HALF = 100;          // arena is 200 x 200 m
+export const HALF = 230;          // map is 460 x 460 m
 export const STEP = 0.5;
 const REF = { lat: 25.1955, lon: 55.2760 };          // projection origin
-const CENTER = { x: -180, z: -170 };                  // arena centre in that frame (on the Burj Khalifa)
+const CENTER = { x: -150, z: -50 };
+const PX = -30, PZ = -120;                             // Burj plaza centre in map coordinates
+let OX = 0, OZ = 0;                                     // offset applied to hand-placed plaza content                  // arena centre in that frame (on the Burj Khalifa)
 
 const toLocal = (lon, lat) => [
   (lon - REF.lon) * 111320 * Math.cos((REF.lat * Math.PI) / 180) - CENTER.x,
@@ -109,6 +111,7 @@ export function buildWorld(scene, renderer) {
     g.n += p.count; geom.dispose();
   }
   function box(cx, cz, w, d, h, key, o = {}) {
+    cx += OX; cz += OZ;
     const y0 = o.y0 || 0, tile = o.tile || 3, solid = o.solid !== false;
     const geo = new THREE.BoxGeometry(w, h, d), uv = geo.attributes.uv, ox = rnd(0, 1), oy = rnd(0, 1);
     for (let f = 0; f < 6; f++) {
@@ -121,11 +124,12 @@ export function buildWorld(scene, renderer) {
     if (solid) boxes.push({ x0: cx - w / 2, x1: cx + w / 2, y0, y1: y0 + h, z0: cz - d / 2, z1: cz + d / 2 });
   }
   function cyl(cx, cz, r, h, key, o = {}) {
+    cx += OX; cz += OZ;
     const g = new THREE.CylinderGeometry(o.r2 ?? r, r, h, o.seg || 14); g.translate(cx, (o.y0 || 0) + h / 2, cz); push(key, g);
     if (o.solid !== false) boxes.push({ x0: cx - r * 0.85, x1: cx + r * 0.85, y0: o.y0 || 0, y1: (o.y0 || 0) + h, z0: cz - r * 0.85, z1: cz + r * 0.85 });
   }
-  const sphere = (cx, cy, cz, r, key) => { const g = new THREE.SphereGeometry(r, 16, 10); g.translate(cx, cy, cz); push(key, g); };
-  const free = (x, z, w, d, pad = 0.6) => !boxes.some((b) => x + w / 2 + pad > b.x0 && x - w / 2 - pad < b.x1 && z + d / 2 + pad > b.z0 && z - d / 2 - pad < b.z1 && b.y0 < 2.5);
+  const sphere = (cx, cy, cz, r, key) => { cx += OX; cz += OZ; const g = new THREE.SphereGeometry(r, 16, 10); g.translate(cx, cy, cz); push(key, g); };
+  const free = (x, z, w, d, pad = 0.6) => (x += OX, z += OZ, true) && !boxes.some((b) => x + w / 2 + pad > b.x0 && x - w / 2 - pad < b.x1 && z + d / 2 + pad > b.z0 && z - d / 2 - pad < b.z1 && b.y0 < 2.5);
 
   /* ---------- wall/building helpers (same grammar as before) ---------- */
   function seg(axis, fixed, a0, a1, y0, y1, t, key) {
@@ -204,7 +208,7 @@ export function buildWorld(scene, renderer) {
 
   /* ---------- THE BURJ KHALIFA (real footprint) ---------- */
   const burj = ring('Burj Khalifa Dubai')[0];
-  polyBoxes(burj, 40);
+  polyBoxes(burj, 900);
   const tiers = [[0, 45, 1.0], [45, 110, 0.94], [110, 190, 0.85], [190, 290, 0.75], [290, 400, 0.65], [400, 510, 0.54], [510, 620, 0.43], [620, 710, 0.32], [710, 770, 0.2]];
   for (const [a, b, s] of tiers) extrude(s === 1 ? burj : scaleAbout(burj, s), a, b, 'glass', 40);
   { let cx = 0, cz = 0; for (const p of burj) { cx += p[0]; cz += p[1]; } cx /= burj.length; cz /= burj.length; cyl(cx, cz, 2.6, 60, 'metal', { r2: 0.25, y0: 768, solid: false, seg: 10 }); }
@@ -215,7 +219,7 @@ export function buildWorld(scene, renderer) {
   /* ---------- skyline: real outlines of neighbouring landmarks ---------- */
   const sky = [['The Address Downtown Dubai', 302, 'glass'], ['Boulevard Plaza Dubai', 263, 'glass'], ['The Lofts Downtown Dubai', 150, 'glassDark'], ['Vida Downtown Dubai', 95, 'glass'],
     ['Burj Views Dubai', 210, 'glassDark'], ['Palace Downtown Dubai', 42, 'stone'], ['Souk Al Bahar Dubai', 24, 'stone'], ['Dubai Opera', 30, 'brick']];
-  for (const [name, h, mat] of sky) for (const r of ring(name)) { extrude(r, 0, h, mat, mat === 'stone' || mat === 'brick' ? 6 : 40); extrude(r, h, h + 0.8, 'roof', 4); }
+  for (const [name, h, mat] of sky) for (const r of ring(name)) { polyBoxes(r, h); extrude(r, 0, h, mat, mat === 'stone' || mat === 'brick' ? 6 : 40); extrude(r, h, h + 0.8, 'roof', 4); }
   // The Dubai Mall: only its west lobe reaches the arena, so give it collision there
   for (const r of ring('The Dubai Mall')) { polyBoxes(r, 26); extrude(r, 0, 26, 'brick', 6); extrude(r, 26, 27, 'roof', 4); }
   for (const r of ring('Burj Park Dubai')) extrude(r, 0, 0.12, 'grass', 8);
@@ -228,6 +232,7 @@ export function buildWorld(scene, renderer) {
     box(x, z, w + 0.4, d + 0.4, 0.4, 'gold', { y0: 5.5, tile: 3, solid: false });
   }
 
+  OX = PX; OZ = PZ;
   /* ---------- Souk quarter (SW) ---------- */
   building(-62, 56, 24, 15, 6.4, { key: 'plaster', n: [D(-6), W(6)], s: [D(4), W(-7, 2.4)], w: [D(0)], e: [D(-3), W(4)], tower: { dx: -6, dz: 0 } });
   building(-82, 20, 15, 20, 6.0, { key: 'brick', n: [W(0)], s: [D(0)], w: [W(-5), W(5)], e: [D(-4), D(5)], tower: { dx: 0, dz: 5 } });
@@ -236,14 +241,6 @@ export function buildWorld(scene, renderer) {
   // arcade (covered walkway) in front of the souk
   for (let i = 0; i < 6; i++) box(-70 + i * 4.2, 33, 0.8, 0.8, 3.6, 'stone', { tile: 2 });
   box(-58.5, 33, 26, 2.6, 0.5, 'roof', { y0: 3.6, tile: 3, solid: false });
-
-  /* ---------- mosque + minaret (NE of arena, west of the mall) ---------- */
-  if (free(70, -20, 22, 16)) {
-    building(70, -20, 20, 14, 6.6, { key: 'brick', roof: false, n: [W(-5), W(5)], s: [D(0, 4)], w: [D(0)], e: [W(0)] });
-    box(70, -20, 21.4, 15.4, 0.5, 'roof', { y0: 6.6, tile: 4, solid: false });
-    sphere(70, 8.4, -20, 5.2, 'gold');
-    cyl(82.5, -28, 1.3, 24, 'brick', { r2: 1.0 }); sphere(82.5, 25.6, -28, 1.25, 'gold'); cyl(82.5, -28, 0.12, 4, 'gold', { y0: 26.5, solid: false, r2: 0.04 });
-  }
 
   /* ---------- pavilions / majlis (colonnades with shade roofs) ---------- */
   function pavilion(cx, cz, nx, nz, sp, h = 4.2) {
@@ -259,7 +256,7 @@ export function buildWorld(scene, renderer) {
   /* ---------- water features ---------- */
   function pool(cx, cz, w, d) {
     box(cx, cz, w, d, 0.45, 'marble', { tile: 2 });
-    const g = new THREE.PlaneGeometry(w - 1.2, d - 1.2); g.rotateX(-Math.PI / 2); g.translate(cx, 0.43, cz); push('water', g);
+    const g = new THREE.PlaneGeometry(w - 1.2, d - 1.2); g.rotateX(-Math.PI / 2); g.translate(cx + OX, 0.43, cz + OZ); push('water', g);
   }
   pool(-8, 60, 18, 7); pool(60, 30, 14, 14); pool(-60, -76, 16, 6);
 
@@ -273,7 +270,8 @@ export function buildWorld(scene, renderer) {
 
   /* ---------- Dubai cars (cover) ---------- */
   function car(cx, cz, rot, bodyKey, big = true) {
-    const L = big ? 4.9 : 4.4, Wd = 1.95, g = new THREE.Group();
+    cx += OX; cz += OZ;
+    const L = big ? 4.9 : 4.4, Wd = 1.95;
     const parts = [];
     const add = (w, h, d, x, y, z, key) => { const geo = new THREE.BoxGeometry(w, h, d); geo.translate(x, y, z); parts.push([key, geo]); };
     add(L, 0.78, Wd, 0, 0.72, 0, bodyKey);
@@ -300,6 +298,7 @@ export function buildWorld(scene, renderer) {
   const props = [];
   function prop(name, x, z, ry, scale, bw, bd, bh) {
     if (!free(x, z, bw, bd, 0.3)) return;
+    x += OX; z += OZ;
     const o = A.models[name].scene.clone(true); o.position.set(x, 0, z); o.rotation.y = ry; o.scale.setScalar(scale);
     o.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
     props.push(o);
@@ -312,14 +311,46 @@ export function buildWorld(scene, renderer) {
   for (const [x, z] of [[-14, -4], [-14.9, -3], [24, -26], [24.9, -27.2], [-40, 66], [-41, 67.2], [50, 70], [49, 68.8], [6, 0], [-58, -56], [76, 40], [-24, 94]]) prop('barrel', x, z, rnd(0, 6), 1.15, 0.65, 0.65, 1.0);
   for (const [x, z, r] of [[-18, 20, 0.3], [-17, 21.2, -0.2], [20, -22, 0.4], [21, -20.8, 0.1], [44, -8, 0], [-52, -10, 1], [60, 66, 0.5], [-4, -60, 0.2], [36, 20, 1.2], [-30, -50, 0.7]]) prop('crate', x, z, r, 1.7, 1.4, 0.8, 0.45);
 
+  const palmSpots0 = [];
+
+  /* ---------- the rest of Downtown: procedurally placed blocks, towers, cover ---------- */
+  OX = 0; OZ = 0;
+  const ROADZ = 88 + PZ, ROADX = 60;
+  const inPlaza = (x, z) => Math.abs(x - PX) < 106 && Math.abs(z - PZ) < 106;
+  const onRoad = (x, z, m) => Math.abs(z - ROADZ) < m || Math.abs(x - ROADX) < m;
+  const pick = (a) => a[(Math.random() * a.length) | 0];
+  function scatter(n, tries, fn, roadPad = 0) {
+    let made = 0;
+    for (let i = 0; i < tries && made < n; i++) {
+      const x = rnd(-HALF + 14, HALF - 14), z = rnd(-HALF + 14, HALF - 14);
+      if (inPlaza(x, z) || (roadPad && onRoad(x, z, roadPad))) continue;
+      if (fn(x, z)) made++;
+    }
+  }
+  scatter(10, 400, (x, z) => { const w = rnd(22, 34), d = rnd(22, 34); if (!free(x, z, w + 12, d + 12)) return false; const h = rnd(55, 190); box(x, z, w, d, h, pick(['glass', 'glassDark']), { tile: 40 }); box(x, z, w + 1.6, d + 1.6, 4.2, 'stone', { tile: 4 }); box(x, z, w + 2, d + 2, 0.4, 'gold', { y0: 4.2, tile: 4, solid: false }); return true; }, 26);
+  scatter(22, 900, (x, z) => { const w = rnd(12, 24), d = rnd(10, 18); if (!free(x, z, w + 7, d + 7)) return false; building(x, z, w, d, rnd(5.4, 6.8), { key: pick(['plaster', 'brick', 'plaster2']), n: [D(rnd(-w / 5, w / 5))], s: [D(rnd(-w / 5, w / 5))], w: [W(0)], e: [D(0)], tower: Math.random() < 0.5 ? { dx: rnd(-3, 3), dz: 0 } : null }); return true; }, 20);
+  scatter(6, 300, (x, z) => { if (!free(x, z, 26, 16)) return false; pavilion(x, z, 5, 3, 5); return true; }, 18);
+  scatter(5, 300, (x, z) => { const w = rnd(12, 20), d = rnd(6, 12); if (!free(x, z, w + 4, d + 4)) return false; pool(x, z, w, d); return true; }, 16);
+  scatter(34, 900, (x, z) => { const h = Math.random() < 0.5, w = h ? rnd(6, 11) : 2.2, d = h ? 2.2 : rnd(6, 11); if (!free(x, z, w + 1, d + 1)) return false; planter(x, z, w, d); return true; }, 9);
+  scatter(34, 900, (x, z) => { const r = Math.random() < 0.5 ? 0 : Math.PI / 2; if (!free(x, z, 5.4, 5.4, 0.4)) return false; car(x, z, r, pick(['carWhite', 'carWhite', 'carBlack', 'carGold'])); return true; });
+  scatter(26, 900, (x, z) => { if (!free(x, z, 5, 5, 0.3)) return false; const r = Math.random() < 0.5 ? 0 : Math.PI / 2, dx = r ? 0 : 1.6, dz = r ? 1.6 : 0; prop('barrier', x, z, r, 1, 1.56, 0.45, 1.1); prop('barrier', x + dx, z + dz, r, 1, 1.56, 0.45, 1.1); return true; });
+  scatter(30, 600, (x, z) => { if (!free(x, z, 1.2, 1.2, 0.3)) return false; prop('barrel', x, z, rnd(0, 6), 1.15, 0.65, 0.65, 1.0); return true; });
+  scatter(26, 600, (x, z) => { if (!free(x, z, 2, 2, 0.3)) return false; prop('crate', x, z, rnd(0, 3), 1.7, 1.4, 0.8, 0.45); return true; });
+  scatter(26, 500, (x, z) => { if (!free(x, z, 0.8, 0.8)) return false; box(x, z, 0.3, 0.3, 7.5, 'metal', { tile: 2 }); box(x + 0.6, z, 1.4, 0.2, 0.18, 'metal', { y0: 7.4, solid: false, tile: 2 }); box(x + 1.2, z, 0.5, 0.3, 0.12, 'lamp', { y0: 7.28, solid: false, tile: 2 }); return true; });
+  for (let i = 0; i < 150; i++) palmSpots0.push([rnd(-HALF + 6, HALF - 6) - PX, rnd(-HALF + 6, HALF - 6) - PZ]);
+  for (let x = -HALF + 4; x < HALF - 4; x += 6) box(x, ROADZ, 3, 0.2, 0.02, 'paintWhite', { solid: false });
+  for (let z = -HALF + 4; z < HALF - 4; z += 8) box(ROADX, z, 0.2, 3, 0.02, 'paint', { solid: false });
+  OX = PX; OZ = PZ;
+
   /* ---------- palms ---------- */
   const palmSpots = [];
   for (let i = -4; i <= 4; i++) { palmSpots.push([i * 10 + 5, 24], [i * 10 + 5, -30]); }
   for (let i = -3; i <= 3; i++) { palmSpots.push([-20, i * 14], [20, i * 14 + 6], [-88, i * 12], [88, i * 12 + 4]); }
+  for (const p of palmSpots0) palmSpots.push(p);
   let palms = 0;
-  for (const [px, pz] of palmSpots) {
-    if (!free(px, pz, 0.7, 0.7, 0.8) || Math.abs(px) > HALF - 3 || Math.abs(pz) > HALF - 3 || palms > 46) continue;
-    palms++;
+  for (let [px, pz] of palmSpots) {
+    if (!free(px, pz, 0.7, 0.7, 0.8) || Math.abs(px + OX) > HALF - 3 || Math.abs(pz + OZ) > HALF - 3 || palms > 170) continue;
+    palms++; px += OX; pz += OZ;
     const H = rnd(7, 11), lean = rnd(-1, 1), leanA = rnd(0, 6.28), segs = 7;
     let prev = [0, 0, 0];
     for (let s = 0; s < segs; s++) {
@@ -351,6 +382,7 @@ export function buildWorld(scene, renderer) {
     }
   }
 
+  OX = 0; OZ = 0;
   /* ---------- merge to meshes ---------- */
   for (const [key, g] of groups) {
     const geo = new THREE.BufferGeometry();
@@ -374,11 +406,13 @@ export function buildWorld(scene, renderer) {
     const g = new THREE.Mesh(new THREE.PlaneGeometry(size, size), m); g.rotation.x = -Math.PI / 2; g.position.y = y; g.receiveShadow = true; scene.add(g); return g;
   };
   mkGround('dense_sand', 3200, 8, -0.06, 0xe6cfa0);
-  mkGround('rectangular_paving', HALF * 2 + 40, 3.2, 0, 0xf4e8d4);
+  mkGround('rectangular_paving', 240, 3.2, 0, 0xf4e8d4).position.set(PX, 0, PZ);
   { // asphalt strip (south road) + curb
     const t = A.tex.asphalt_05, m = new THREE.MeshStandardMaterial({ map: t.map.clone(), normalMap: t.normal.clone(), roughness: 0.95, envMapIntensity: 0.4 });
     for (const k of ['map', 'normalMap']) { m[k].repeat.set(HALF * 2 / 4, 4); m[k].needsUpdate = true; }
-    const r = new THREE.Mesh(new THREE.PlaneGeometry(HALF * 2, 16), m); r.rotation.x = -Math.PI / 2; r.position.set(0, 0.015, 88); r.receiveShadow = true; scene.add(r);
+    const r = new THREE.Mesh(new THREE.PlaneGeometry(HALF * 2, 16), m); r.rotation.x = -Math.PI / 2; r.position.set(0, 0.015, 88 + PZ);
+    const m2 = m.clone(); m2.map = m.map.clone(); m2.normalMap = m.normalMap.clone(); for (const k of ['map', 'normalMap']) { m2[k].repeat.set(4, HALF * 2 / 4); m2[k].needsUpdate = true; }
+    const r2 = new THREE.Mesh(new THREE.PlaneGeometry(16, HALF * 2), m2); r2.rotation.x = -Math.PI / 2; r2.position.set(60, 0.012, 0); r2.receiveShadow = true; scene.add(r2); r.receiveShadow = true; scene.add(r);
   }
 
   /* ---------- sky, sun, far skyline ---------- */
@@ -449,7 +483,7 @@ export function buildWorld(scene, renderer) {
     const hh = (i) => { const dx = Math.abs((i % N) - e0), dz = Math.abs(((i / N) | 0) - e1); return dx + dz - 0.5858 * Math.min(dx, dz); };
     gS[si] = 0; hpush(hh(si), si);
     let found = false, guard = 0;
-    while (hn > 0 && guard++ < 20000) {
+    while (hn > 0 && guard++ < 45000) {
       const cur = hpop(); if (closedS[cur]) continue; closedS[cur] = 1;
       if (cur === ei) { found = true; break; }
       const ci = cur % N, cj = (cur / N) | 0;
@@ -523,9 +557,10 @@ export function buildWorld(scene, renderer) {
   const spawns = [
     [{ x: -90, z: 70 }, { x: -90, z: 40 }, { x: -92, z: 10 }, { x: -86, z: 85 }, { x: -92, z: -20 }, { x: -76, z: 76 }],
     [{ x: 92, z: -70 }, { x: 92, z: -40 }, { x: 90, z: -10 }, { x: 86, z: -85 }, { x: 92, z: 20 }, { x: 76, z: -76 }],
-  ].map((l) => l.map(snap));
+  ].map((l) => l.map((p) => snap({ x: p.x + PX, z: p.z + PZ })));
   const pois = [];
-  for (let x = -85; x <= 85; x += 17) for (let z = -85; z <= 85; z += 17) { if (!isBlocked(x, z)) pois.push({ x, z }); }
+  for (let x = -HALF + 15; x <= HALF - 15; x += 18) for (let z = -HALF + 15; z <= HALF - 15; z += 18) { if (!isBlocked(x, z)) pois.push({ x, z }); }
+  const plaza = { x: PX, z: PZ, r: 108 };
 
-  return { boxes, spawns, pois, sunLight: { dir: sunDir }, mats, skyT, half: HALF, groundHeight, resolveCircle, rayWorld, hasLOS, rayNormal: nrm, findPath, randomFreePoint, isBlocked, walkable };
+  return { boxes, spawns, pois, plaza, snap, sunLight: { dir: sunDir }, mats, skyT, half: HALF, groundHeight, resolveCircle, rayWorld, hasLOS, rayNormal: nrm, findPath, randomFreePoint, isBlocked, walkable };
 }

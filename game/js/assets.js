@@ -32,10 +32,11 @@ async function tex(path, srgb) {
 }
 
 export async function loadAssets(progress) {
-  const total = MODELS.length + TEXS.length * 2 + 3;
+  const total = MODELS.length + TEXS.length * 2 + 5;
   let done = 0;
   const tick = () => progress && progress(++done / total);
   const loader = new GLTFLoader();
+  const mgr = new THREE.LoadingManager(); mgr.setURLModifier(() => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==');
   await Promise.all([
     ...MODELS.map(async (m) => {
       const buf = await bytes(`models/${m}.glb`);
@@ -48,12 +49,21 @@ export async function loadAssets(progress) {
     ]),
     (async () => {
       const [buf, map] = await Promise.all([bytes('models/m4a1.fbx'), tex('tex/m4a1_d.jpg', true)]);
-      const mgr = new THREE.LoadingManager(); mgr.setURLModifier(() => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==');
       const g = new FBXLoader(mgr).parse(buf, '');
       const mat = new THREE.MeshStandardMaterial({ map, roughness: 0.5, metalness: 0.55, envMapIntensity: 1.0 });
       g.traverse((o) => { if (o.isMesh) o.material = mat; });
       A.models.m4a1 = { scene: g, animations: [] }; tick(); tick();
     })(),
+    ...['smg', 'shotgun'].map(async (n) => {
+      const g = new FBXLoader(mgr).parse(await bytes(`models/${n}.fbx`), '');
+      const conv = (m) => new THREE.MeshStandardMaterial({ color: m.color ? m.color.clone().multiplyScalar(0.8) : 0x333333, roughness: 0.45, metalness: 0.6, envMapIntensity: 1.0 });
+      g.traverse((o) => { if (o.isMesh) { o.material = Array.isArray(o.material) ? o.material.map(conv) : conv(o.material); } });
+      // normalise: longest axis becomes the barrel, centred, in metres
+      const wrap = new THREE.Group(); wrap.add(g); wrap.updateMatrixWorld(true);
+      const bb = new THREE.Box3().setFromObject(g), sz = bb.getSize(new THREE.Vector3()), c = bb.getCenter(new THREE.Vector3());
+      g.position.sub(c);
+      A.models[n] = { scene: wrap, animations: [], size: sz }; tick();
+    }),
     bytes('osm/landmarks.json').then((b) => { A.landmarks = JSON.parse(new TextDecoder().decode(b)); tick(); }),
   ]);
   // Poly Haven files ship LOD copies, spare parts and loose ammo: keep only the real thing.

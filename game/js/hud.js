@@ -1,4 +1,5 @@
 import { G, clamp } from './state.js';
+import { BR } from './br.js';
 
 const $ = (id) => document.getElementById(id);
 let el = {};
@@ -8,7 +9,7 @@ const RADAR = 168, RANGE = 46;
 
 export function init() {
   for (const id of ['scoreA', 'scoreB', 'timer', 'killfeed', 'hp', 'hpfill', 'wname', 'wtype', 'ammoCur', 'ammoRes', 'nades', 'slots', 'msg', 'death', 'deathBy', 'respawnT',
-    'scoreboard', 'sbA', 'sbB', 'fps', 'indicators', 'scope', 'vignette', 'lowhp', 'crosshair', 'hitmarker', 'banner', 'points', 'radar', 'hint', 'reloadbar', 'reloadfill', 'dot']) el[id] = $(id);
+    'scoreboard', 'sbA', 'sbB', 'fps', 'indicators', 'scope', 'vignette', 'lowhp', 'crosshair', 'hitmarker', 'banner', 'points', 'radar', 'hint', 'reloadbar', 'reloadfill', 'dot', 'labelA', 'labelB', 'limit', 'armorfill', 'medkits']) el[id] = $(id);
   radarCtx = el.radar.getContext('2d');
   el.radar.width = RADAR * 2; el.radar.height = RADAR * 2;
   radarCtx.scale(2, 2);
@@ -19,7 +20,8 @@ export function killfeed(k, v, weapon, head) {
   const d = document.createElement('div');
   d.className = 'kf' + (k.isPlayer ? ' me' : '') + (v.isPlayer ? ' died' : '');
   const kc = k.team === 0 ? 'ally' : 'enemy', vc = v.team === 0 ? 'ally' : 'enemy';
-  d.innerHTML = `<b class="${kc}">${k === v ? '' : k.name}</b><i>${k === v ? 'SELF' : weapon.toUpperCase()}${head ? ' ◉' : ''}</i><b class="${vc}">${v.name}</b>`;
+  if (k === v) weapon = weapon === 'THE ZONE' ? 'THE ZONE' : 'SELF';
+  d.innerHTML = `<b class="${kc}">${k === v ? '' : k.name}</b><i>${weapon.toUpperCase()}${head ? ' ◉' : ''}</i><b class="${vc}">${v.name}</b>`;
   el.killfeed.prepend(d);
   while (el.killfeed.children.length > 6) el.killfeed.lastChild.remove();
   setTimeout(() => d.classList.add('out'), 5200);
@@ -75,12 +77,19 @@ function buildScoreboard() {
 
 export function fmtTime(s) { s = Math.max(0, Math.ceil(s)); return `${(s / 60) | 0}:${String(s % 60).padStart(2, '0')}`; }
 
+const ORDER = ['ar', 'smg', 'shotgun', 'sniper', 'pistol'];
 let rFrame = 0;
 export function update(dt, fps) {
   const p = G.player;
-  set('scoreA', G.scores[0]); set('scoreB', G.scores[1]);
-  set('timer', fmtTime(G.matchLimit - G.matchTime));
   if (!p) return;
+  if (G.mode === 'br') {
+    set('labelA', 'ALIVE'); set('labelB', 'KILLS'); set('scoreA', BR.alive); set('scoreB', p.kills);
+    set('timer', fmtTime(BR.timer)); set('limit', BR.shrinking ? 'ZONE IS CLOSING' : 'ZONE CLOSES IN');
+  } else {
+    set('labelA', 'ALLIES'); set('labelB', 'HOSTILES'); set('scoreA', G.scores[0]); set('scoreB', G.scores[1]);
+    set('timer', fmtTime(G.matchLimit - G.matchTime)); set('limit', 'FIRST TO ' + G.scoreLimit);
+  }
+  el.armorfill.style.width = clamp(p.armor, 0, 100) + '%'; set('medkits', p.medkits);
   const hp = Math.ceil(p.hp);
   set('hp', hp);
   el.hpfill.style.width = clamp(p.hp, 0, 100) + '%';
@@ -89,9 +98,10 @@ export function update(dt, fps) {
   set('wname', w.name); set('wtype', w.type);
   set('ammoCur', String(st.ammo).padStart(2, '0')); set('ammoRes', st.reserve);
   set('nades', p.nades);
-  if (cache.slotsKey !== p.cur) {
-    cache.slotsKey = p.cur;
-    el.slots.querySelectorAll('span').forEach((s, i) => s.classList.toggle('on', i === p.cur));
+  const sk = p.cur + '|' + ORDER.map((id) => (p.owned[id] ? 1 : 0)).join('');
+  if (cache.slotsKey !== sk) {
+    cache.slotsKey = sk;
+    el.slots.querySelectorAll('span').forEach((s, i) => { s.classList.toggle('on', i === p.cur); s.classList.toggle('off', !p.owned[ORDER[i]]); });
   }
   el.lowhp.style.opacity = p.alive && p.hp < 35 ? 0.4 + Math.sin(G.time * 7) * 0.2 : 0;
   el.vignette.style.opacity = clamp(p.dmgFlash, 0, 1);
@@ -100,7 +110,7 @@ export function update(dt, fps) {
   const gap = 6 + p.spreadDeg * 9;
   const ch = el.crosshair;
   if (!p.adsT || p.adsT < 0.25) {
-    ch.style.opacity = p.alive && !p.sprinting ? 1 : 0;
+    ch.style.opacity = p.alive && !p.sprinting && p.phase === 'ground' ? 1 : 0;
     ch.style.setProperty('--gap', gap.toFixed(1) + 'px');
     el.dot.style.opacity = 0;
   } else { ch.style.opacity = 0; el.dot.style.opacity = scoped ? 0 : 1; }
@@ -135,11 +145,16 @@ function radar(p) {
   }
   // map border
   c.strokeStyle = 'rgba(255,170,60,.5)'; c.lineWidth = 1.5; { const H = W.half; c.strokeRect(-H * k, -H * k, H * 2 * k, H * 2 * k); }
+  if (G.zone) {
+    c.strokeStyle = 'rgba(90,190,255,.95)'; c.lineWidth = 2; c.beginPath(); c.arc(G.zone.x * k, G.zone.z * k, Math.max(1, G.zone.r * k), 0, 7); c.stroke();
+    if (BR.active) { c.strokeStyle = 'rgba(255,255,255,.7)'; c.lineWidth = 1; c.setLineDash([4, 4]); c.beginPath(); c.arc(BR.next.x * k, BR.next.z * k, Math.max(1, BR.next.r * k), 0, 7); c.stroke(); c.setLineDash([]); }
+  }
+  if (BR.active) { c.fillStyle = '#ffd24a'; for (const l of BR.loot) { if (Math.abs(l.x - p.pos.x) < RANGE && Math.abs(l.z - p.pos.z) < RANGE) c.fillRect(l.x * k - 1.5, l.z * k - 1.5, 3, 3); } }
   for (const a of G.actors) {
-    if (!a.alive || a.isPlayer) continue;
-    if (a.team !== 0 && !(a.revealT > 0)) continue;
+    if (!a.alive || a.isPlayer || a.puppet) continue;
+    if (a.team !== p.team && !(a.revealT > 0)) continue;
     c.save(); c.translate(a.pos.x * k, a.pos.z * k); c.rotate(-a.yaw);
-    c.fillStyle = a.team === 0 ? '#52c6ff' : '#ff4b36';
+    c.fillStyle = a.team === p.team ? '#52c6ff' : '#ff4b36';
     c.beginPath(); c.moveTo(0, -5); c.lineTo(3.8, 4); c.lineTo(-3.8, 4); c.closePath(); c.fill();
     c.restore();
   }

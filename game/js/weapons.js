@@ -62,36 +62,14 @@ const DEFS = {
     hip: [0.2, -0.2, -0.38], ads: [0, -0.15, -0.24],
   },
   smg: {
-    parts: [
-      ['b', 0.056, 0.085, 0.3, 0, 0, -0.1, 'metal'],
-      ['b', 0.05, 0.06, 0.2, 0, -0.01, -0.33, 'poly'],
-      ['c', 0.011, 0.2, 0, 0.003, -0.55, 'steel'],
-      ['c', 0.024, 0.14, 0, 0.003, -0.62, 'dark'],
-      ['b', 0.04, 0.08, 0.2, 0, -0.01, 0.17, 'poly'],
-      ['b', 0.044, 0.11, 0.06, 0, -0.095, 0.01, 'poly', { rx: 0.25 }],
-      ['b', 0.04, 0.2, 0.06, 0, -0.17, -0.12, 'dark', { name: 'mag', rx: 0.04 }],
-      ['b', 0.04, 0.09, 0.05, 0, -0.07, -0.34, 'poly', { rx: 0.15 }],
-      ['b', 0.036, 0.012, 0.1, 0, 0.047, -0.08, 'dark'],
-      ['b', 0.006, 0.04, 0.08, -0.022, 0.068, -0.08, 'dark'],
-      ['b', 0.006, 0.04, 0.08, 0.022, 0.068, -0.08, 'dark'],
-      ['b', 0.05, 0.008, 0.08, 0, 0.09, -0.08, 'dark'],
-      ['b', 0.006, 0.006, 0.004, 0, 0.068, -0.13, 'dot'],
-    ],
-    muzzle: [0, 0.003, -0.72], handL: [0, -0.08, -0.34], handR: [0, -0.105, 0.0],
-    hip: [0.2, -0.2, -0.36], ads: [0, -0.068, -0.24],
+    parts: [], model: { name: 'smg', auto: 0.56, flip: false, off: [0, -0.02, -0.12] },
+    muzzle: [0, 0.02, -0.42], handL: [0, -0.07, -0.26], handR: [0, -0.1, 0.02],
+    hip: [0.2, -0.2, -0.36], ads: [0, -0.1, -0.24],
   },
   shotgun: {
-    parts: [
-      ['b', 0.062, 0.095, 0.34, 0, 0, -0.1, 'metal'],
-      ['c', 0.017, 0.5, 0, 0.012, -0.5, 'steel'],
-      ['c', 0.017, 0.4, 0, -0.026, -0.46, 'steel'],
-      ['b', 0.07, 0.055, 0.24, 0, -0.03, -0.46, 'tan', { name: 'pump' }],
-      ['b', 0.052, 0.12, 0.3, 0, -0.02, 0.26, 'tan'],
-      ['b', 0.045, 0.11, 0.06, 0, -0.1, 0.02, 'poly', { rx: 0.3 }],
-      ['b', 0.012, 0.028, 0.012, 0, 0.04, -0.74, 'dot'],
-    ],
-    muzzle: [0, 0.012, -0.78], handL: [0, -0.06, -0.46], handR: [0, -0.108, 0.01],
-    hip: [0.2, -0.21, -0.38], ads: [0, -0.067, -0.25],
+    parts: [], model: { name: 'shotgun', auto: 0.98, flip: false, off: [0, -0.02, -0.3] },
+    muzzle: [0, 0.03, -0.8], handL: [0, -0.06, -0.48], handR: [0, -0.105, 0.02],
+    hip: [0.2, -0.21, -0.38], ads: [0, -0.085, -0.25],
   },
   sniper: {
     parts: [], model: { name: 'rifle', ry: Math.PI / 2, off: [0, 0.0, -0.294], s: 1.0 },
@@ -128,8 +106,13 @@ export function buildGunMesh(id, withHands = true) {
   if (def.model) {
     const mo = A.models[def.model.name].scene.clone(true);
     const holder = new THREE.Group(); holder.add(mo);
-    mo.rotation.y = def.model.ry; mo.position.set(...def.model.off); mo.scale.setScalar(def.model.s);
-    mo.traverse((o) => { if (o.isMesh) { o.castShadow = false; o.frustumCulled = false; o.material = o.material.clone(); o.material.envMapIntensity = 1.0; } });
+    if (def.model.auto) { // FBX of unknown size/orientation: longest axis becomes the barrel
+      const sz = A.models[def.model.name].size, len = Math.max(sz.x, sz.y, sz.z);
+      mo.scale.setScalar(def.model.auto / len);
+      mo.rotation.y = sz.x >= sz.z ? (def.model.flip ? -Math.PI / 2 : Math.PI / 2) : (def.model.flip ? 0 : Math.PI);
+      mo.position.set(...def.model.off);
+    } else { mo.rotation.y = def.model.ry; mo.position.set(...def.model.off); mo.scale.setScalar(def.model.s); }
+    mo.traverse((o) => { if (o.isMesh) { o.castShadow = false; o.frustumCulled = false; } });
     gun.add(holder); named.model = holder;
   }
   const muzzle = new THREE.Object3D(); muzzle.position.set(...def.muzzle); gun.add(muzzle);

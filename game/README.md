@@ -6,18 +6,22 @@ Team deathmatch, 5 vs 5, against AI bots. Plain WebGL (Three.js), no install.
 Double-click **`IronHorizon.html`** (Chrome / Edge recommended), press **DEPLOY**.
 Or serve the folder (`python3 -m http.server`) and open `index.html`.
 
+## Modes
+- **Battle Royale** (default): 40 players. Jump from the plane, parachute in, loot weapons, stay inside the shrinking zone, last one standing wins.
+- **Team Deathmatch**: 5 vs 5 on the Burj Khalifa plaza, first to 40.
+
 ## Controls
 | Key | Action |
 |---|---|
-| W A S D | Move |
-| Mouse | Aim |
-| Left click / Right click | Fire / Aim down sights |
-| Shift / Space / C | Sprint / Jump / Crouch |
-| R | Reload |
-| G | Frag grenade |
-| 1–5, wheel, Q | Weapons (carbine, SMG, shotgun, sniper, pistol), last weapon |
-| Tab | Scoreboard |
-| Esc | Pause |
+| W A S D | Move / steer while falling |
+| Mouse | Look |
+| F or left click | Fire (F also jumps from the plane) |
+| E (toggle) or right click (hold) | Aim down sights |
+| V | First person / third person |
+| Shift / Space / C | Sprint / Jump or open parachute / Crouch |
+| R / G / H | Reload / Grenade / Use medkit |
+| 1–5, wheel, Q | Weapons, last weapon |
+| Tab / Esc | Scoreboard / Pause |
 | F3 / M | FPS counter / mute |
 
 ## Notes
@@ -31,6 +35,6 @@ Or serve the folder (`python3 -m http.server`) and open `index.html`.
 - **Soldier:** `Soldier.glb` from the three.js examples (Mixamo character).
 - **Bolt-action rifle, service pistol, stick grenade, crate, barrel, road barrier, all PBR textures:** Poly Haven (CC0).
 - **M4A1:** "Low-Poly M4A1" by MallNinjaMax, OpenGameArt (CC0).
-- SMG and shotgun are still simple hand-built models.
+- **SMG and shotgun:** Quaternius Ultimate Gun Pack (CC0), via OpenGameArt.
 
 Rebuild after editing: `python3 build.py path/to/esbuild` (writes `IronHorizon.html` and `dist/game.js`).

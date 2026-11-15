@@ -26,12 +26,14 @@ function nameSprite(name, team) {
   return s;
 }
 
+const CHUTE_GEO = new THREE.SphereGeometry(2.4, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2.2);
+const zoneOut = (x, z, m = 6) => G.zone && Math.hypot(x - G.zone.x, z - G.zone.z) > G.zone.r - m;
 const _q = new THREE.Quaternion(), _e = new THREE.Euler(), _hp = new THREE.Vector3(), _up = new THREE.Vector3(0, 1, 0), _off = new THREE.Vector3();
 const _eye = new THREE.Vector3(), _dir = new THREE.Vector3(), _mz = new THREE.Vector3(), _aim = new THREE.Vector3();
 
 export class Bot {
-  constructor(id, name, team) {
-    this.id = id; this.name = name; this.team = team; this.isPlayer = false;
+  constructor(id, name, team, opts = {}) {
+    this.id = id; this.name = name; this.team = team; this.isPlayer = false; this.puppet = !!opts.puppet; this.dropping = false;
     this.pos = new THREE.Vector3(); this.vel = new THREE.Vector3();
     this.yaw = 0; this.alive = false; this.hp = 100; this.kills = 0; this.deaths = 0; this.score = 0;
     this.target = null; this.visible = false; this.seenT = 0; this.lostT = 99; this.lastKnown = null;
@@ -57,14 +59,13 @@ export class Bot {
     g.updateMatrixWorld(true);
     const bb2 = new THREE.Box3().setFromObject(root);
     root.position.y -= bb2.min.y;
-    const tint = this.team === 0 ? new THREE.Color(0.55, 0.78, 1.25) : new THREE.Color(1.3, 0.58, 0.5);
-    const glow = this.team === 0 ? 0x38b6ff : 0xff3a1c;
+    this.bodyMats = []; this.visorMats = [];
     root.traverse((o) => {
       if (!o.isMesh) return;
       o.castShadow = true; o.frustumCulled = false;
       o.material = o.material.clone();
-      if (/visor/i.test(o.material.name) || /visor/i.test(o.name)) { o.material.color.set(0x000000); o.material.emissive = new THREE.Color(glow); o.material.emissiveIntensity = 2.5; }
-      else { o.material.color.copy(tint); o.material.envMapIntensity = 0.5; }
+      if (/visor/i.test(o.material.name) || /visor/i.test(o.name)) { o.material.color.set(0x000000); o.material.emissive = new THREE.Color(0xffffff); o.material.emissiveIntensity = 2.5; this.visorMats.push(o.material); }
+      else { o.material.envMapIntensity = 0.5; this.bodyMats.push(o.material); }
     });
     // animation
     this.mixer = new THREE.AnimationMixer(root);
@@ -82,8 +83,40 @@ export class Bot {
     gun.root.scale.setScalar(0.95);
     g.visible = false;
     G.scene.add(g);
-    if (this.team === 0) { this.tag = nameSprite(this.name, 0); this.tag.visible = false; G.scene.add(this.tag); }
+    // parachute canopy (only shown while dropping)
+    this.chute = new THREE.Mesh(CHUTE_GEO, new THREE.MeshStandardMaterial({ color: 0xffffff, side: THREE.DoubleSide, roughness: 0.8 }));
+    this.chute.position.y = 4.6; this.chute.visible = false; g.add(this.chute);
     this.poseK = 0; this.pitch = 0;
+    this.setLook(this.team, false);
+  }
+
+  // team / free-for-all colours
+  setLook(team, ffa) {
+    this.team = team;
+    const pal = [[1.3, 0.58, 0.5], [1.15, 0.95, 0.55], [0.75, 1.1, 0.6], [1.0, 0.7, 1.1], [0.7, 0.75, 0.8], [1.2, 0.75, 0.45], [0.6, 1.0, 1.0]];
+    const c = this.puppet ? [0.55, 0.78, 1.25] : ffa ? pal[this.id % pal.length] : team === 0 ? [0.55, 0.78, 1.25] : [1.3, 0.58, 0.5];
+    const glow = this.puppet || (!ffa && team === 0) ? 0x38b6ff : 0xff3a1c;
+    for (const m of this.bodyMats) m.color.setRGB(c[0], c[1], c[2]);
+    for (const m of this.visorMats) m.emissive.set(glow);
+    this.chute.material.color.setRGB(c[0] * 0.8, c[1] * 0.8, c[2] * 0.8);
+    if (this.tag) { G.scene.remove(this.tag); this.tag = null; }
+    if (!ffa && team === 0 && !this.puppet) { this.tag = nameSprite(this.name, 0); this.tag.visible = false; G.scene.add(this.tag); }
+  }
+
+  // battle royale: arrive by parachute
+  startDrop(from, target) {
+    this.spawnAt({ x: from.x, z: from.z });
+    this.pos.y = from.y; this.dropping = true; this.dropTarget = target; this.chute.visible = true;
+    this.model.position.copy(this.pos);
+  }
+  updateDrop(dt) {
+    const t = this.dropTarget, dx = t.x - this.pos.x, dz = t.z - this.pos.z, d = Math.hypot(dx, dz);
+    const sp = Math.min(16, d * 0.8);
+    if (d > 0.3) { this.pos.x += (dx / d) * sp * dt; this.pos.z += (dz / d) * sp * dt; this.yaw = Math.atan2(-dx, -dz); }
+    this.pos.y -= 15 * dt;
+    if (this.pos.y <= 0) { this.pos.y = 0; this.pos.x = t.x; this.pos.z = t.z; this.dropping = false; this.chute.visible = false; this.fireCd = rnd(8, 20); }
+    this.vel.set(0, 0, 0);
+    this.animate(dt, false);
   }
 
   get skill() { return SKILL[G.settings.diff]; }
@@ -104,7 +137,8 @@ export class Bot {
   }
 
   takeDamage(dmg, attacker, head, weapon, from) {
-    if (!this.alive) return;
+    if (!this.alive || this.dropping) return;
+    if (G.mode === 'br' && attacker && !attacker.isPlayer) dmg *= 0.07;   // bots thin each other out slowly
     this.hp -= dmg; this.lastHit = G.time;
     if (attacker && attacker.alive && attacker.team !== this.team) {
       if (!this.visible) { this.lastKnown = { x: attacker.pos.x, z: attacker.pos.z }; this.investT = 8; this.path = []; }
@@ -133,9 +167,10 @@ export class Bot {
     const fx = -Math.sin(this.yaw), fz = -Math.cos(this.yaw);
     let best = null, bd = 1e9;
     for (const a of G.actors) {
-      if (!a.alive || a.team === this.team) continue;
+      if (!a.alive || a.team === this.team || a.dropping) continue;
+      if (G.mode === 'br' && !a.isPlayer && G.time < 120) continue;   // early game: bots loot instead of fighting each other
       const dx = a.pos.x - this.pos.x, dz = a.pos.z - this.pos.z, d = Math.hypot(dx, dz);
-      if (d > sk.view) continue;
+      if (d > (G.mode === 'br' ? Math.min(sk.view, a.isPlayer ? 60 : 17) : sk.view)) continue;
       const dot = (dx * fx + dz * fz) / (d || 1);
       if (dot < 0.3 && d > 6) continue;
       if (!W.hasLOS(_eye.x, _eye.y, _eye.z, a.pos.x, a.pos.y + 1.1, a.pos.z) &&
@@ -154,18 +189,23 @@ export class Bot {
   }
 
   pickGoal() {
-    const W = G.world;
+    const W = G.world, Z = G.zone;
+    if (Z && zoneOut(this.pos.x, this.pos.z, 10)) {
+      // outside the safe zone: head in, in hops the path-finder can handle
+      const dx = Z.x - this.pos.x, dz = Z.z - this.pos.z, d = Math.hypot(dx, dz) || 1, hop = Math.min(d, 75);
+      return W.snap({ x: this.pos.x + (dx / d) * hop + rnd(-6, 6), z: this.pos.z + (dz / d) * hop + rnd(-6, 6) });
+    }
     const en = G.spawnCenter(1 - this.team);
     let best = null, bs = 1e9;
-    const tries = 3;
-    for (let i = 0; i < tries; i++) {
+    for (let i = 0; i < 14; i++) {
       const p = W.pois[(Math.random() * W.pois.length) | 0];
-      const sc = Math.hypot(p.x - en.x, p.z - en.z) + Math.random() * 40;
+      const dSelf = Math.hypot(p.x - this.pos.x, p.z - this.pos.z);
+      if (dSelf > 95 || dSelf < 8 || zoneOut(p.x, p.z, 4)) continue;
+      const sc = Math.hypot(p.x - en.x, p.z - en.z) * (G.mode === 'br' ? 0 : 1) + Math.random() * 60;
       if (sc < bs) { bs = sc; best = p; }
     }
-    if (Math.random() < 0.4) best = W.pois[(Math.random() * W.pois.length) | 0];
-    const jitter = { x: best.x + rnd(-3, 3), z: best.z + rnd(-3, 3) };
-    return jitter;
+    if (!best) best = Z ? { x: Z.x, z: Z.z } : W.pois[(Math.random() * W.pois.length) | 0];
+    return { x: best.x + rnd(-3, 3), z: best.z + rnd(-3, 3) };
   }
 
   setGoal(g) {
@@ -234,7 +274,9 @@ export class Bot {
 
   update(dt) {
     const W = G.world, sk = this.skill;
+    if (this.inPlane) return;
     if (!this.alive) { this.updateDead(dt); return; }
+    if (this.dropping) { this.updateDrop(dt); return; }
     if (this.revealT > 0) this.revealT -= dt;
     this.fireCd -= dt; this.pauseT -= dt; this.grenCd -= dt; this.kick = Math.max(0, this.kick - dt * 9);
     if (G.time - this.lastHit > 5 && this.hp < 100) this.hp = Math.min(100, this.hp + 22 * dt);
@@ -276,7 +318,7 @@ export class Bot {
       // trigger discipline
       if (this.seenT > sk.react && this.reloadT <= 0 && this.mag > 0 && this.fireCd <= 0 && this.pauseT <= 0 && err < 0.14) this.shoot();
       // grenades at mid-range targets
-      if (this.grenCd <= 0 && dist > 12 && dist < 34 && this.seenT > 0.8 && Math.random() < dt * 0.5) this.throwNade();
+      if (this.grenCd <= 0 && (G.mode !== 'br' || t.isPlayer) && dist > 12 && dist < 34 && this.seenT > 0.8 && Math.random() < dt * 0.5) this.throwNade();
     } else {
       this.seenT = 0;
       this.repathT -= dt;
@@ -286,8 +328,9 @@ export class Bot {
         if (this.followPath(dt, 5.4)) speed = 5.4;
         else this.investT = 0;
       } else {
-        if (!this.goal || this.pathIdx >= this.path.length || this.repathT <= -2) this.setGoal(this.pickGoal());
-        if (this.followPath(dt, 4.3)) speed = 4.3;
+        if (!this.goal || this.pathIdx >= this.path.length || this.repathT <= -2 || (this.repathT <= 0 && zoneOut(this.goal.x, this.goal.z, 2))) this.setGoal(this.pickGoal());
+        const rs = zoneOut(this.pos.x, this.pos.z, 10) ? 6.6 : 4.3;
+        if (this.followPath(dt, rs)) speed = rs;
         else { this.goal = null; }
       }
       if (speed > 0.1) { const m = Math.hypot(this.vel.x, this.vel.z); if (m > 0.5) desiredYaw = Math.atan2(-this.vel.x, -this.vel.z); }
@@ -313,22 +356,31 @@ export class Bot {
       this.lastCheck.copy(this.pos); this.stuckT = 0;
     }
 
-    // animation: blend idle / walk / run by speed, aim the rifle
-    const sp = Math.hypot(this.vel.x, this.vel.z);
-    if (sp > 2 && G.audio && G.player && Math.abs(this.pos.x - G.player.pos.x) < 30 && Math.abs(this.pos.z - G.player.pos.z) < 30) {
-      this.stepAcc = (this.stepAcc || 0) + sp * dt;
+    this.animate(dt, engaged || this.kick > 0 || G.time - this.lastFired < 1.2);
+  }
+
+  // blend idle / walk / run by speed, aim the rifle; far-away soldiers animate at a reduced rate
+  animate(dt, aiming) {
+    const sp = Math.hypot(this.vel.x, this.vel.z), cam = G.camera.position;
+    const dc = Math.hypot(this.pos.x - cam.x, this.pos.z - cam.z);
+    this.model.position.set(this.pos.x, this.pos.y, this.pos.z);
+    this.model.rotation.y = this.yaw;
+    if (this.tag) this.tag.position.set(this.pos.x, this.pos.y + 2.25, this.pos.z);
+    this.model.visible = dc < 330;
+    this.lodAcc = (this.lodAcc || 0) + dt;
+    if (dc > 110 && this.lodAcc < (dc > 200 ? 0.25 : 0.1)) return;
+    const adt = this.lodAcc; this.lodAcc = 0;
+    if (!this.puppet && sp > 2 && G.audio && dc < 30) {
+      this.stepAcc = (this.stepAcc || 0) + sp * adt;
       if (this.stepAcc > (sp > 4.6 ? 2.6 : 1.9)) { this.stepAcc = 0; G.audio.step(this.pos, sp > 4.6 ? 0.34 : 0.22); }
     }
     const tIdle = sp < 0.4 ? 1 : 0, tRun = sp > 3.4 ? 1 : 0, tWalk = sp >= 0.4 && sp <= 3.4 ? 1 : 0;
-    const bl = 1 - Math.exp(-10 * dt);
+    const bl = 1 - Math.exp(-10 * adt);
     this.wts.Idle += (tIdle - this.wts.Idle) * bl; this.wts.Walk += (tWalk - this.wts.Walk) * bl; this.wts.Run += (tRun - this.wts.Run) * bl;
     for (const n of ['Idle', 'Walk', 'Run']) this.act[n].setEffectiveWeight(this.wts[n]);
     this.act.Walk.timeScale = clamp(sp / 1.5, 0.6, 2.2); this.act.Run.timeScale = clamp(sp / 4.2, 0.7, 1.5);
-    this.mixer.update(dt);
-    this.model.position.set(this.pos.x, this.pos.y, this.pos.z);
-    this.model.rotation.y = this.yaw;
-    this.applyAim(dt, engaged || this.kick > 0 || G.time - this.lastFired < 1.2);
-    if (this.tag) this.tag.position.set(this.pos.x, this.pos.y + 2.25, this.pos.z);
+    this.mixer.update(adt);
+    this.applyAim(adt, aiming);
   }
 
   // raise both arms into a rifle stance, point the weapon at the target
@@ -336,7 +388,7 @@ export class Bot {
     this.poseK += ((aiming ? 1 : 0.55) - this.poseK) * (1 - Math.exp(-8 * dt));
     const B = this.bones, k = this.poseK;
     const tgt = this.target && this.target.alive ? this.target : null;
-    let pitch = 0;
+    let pitch = this.aimPitch || 0;
     if (tgt) { const dx = tgt.pos.x - this.pos.x, dz = tgt.pos.z - this.pos.z, dy = tgt.pos.y + 1.1 - (this.pos.y + 1.45); pitch = Math.atan2(dy, Math.hypot(dx, dz)); }
     this.pitch += (pitch - this.pitch) * (1 - Math.exp(-10 * dt));
     const rot = (bone, x, y, z) => { if (!bone) return; _q.setFromEuler(_e.set(x, y, z)); bone.quaternion.multiply(_q); };
@@ -363,6 +415,6 @@ export class Bot {
     this.model.position.x = this.pos.x; this.model.position.z = this.pos.z;
     this.model.position.y += e * 0.12;
     if (this.deadT > 4.8) this.model.visible = false;
-    if (this.deadT > 5.2 && G.state === 'playing') G.respawnActor(this);
+    if (this.deadT > 5.2 && G.state === 'playing' && G.mode === 'tdm') G.respawnActor(this);
   }
 }
