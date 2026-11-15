@@ -7,10 +7,12 @@
   "scripts": {
     "start": "tsx --env-file-if-exists=.env src/index.ts",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test src/*.test.ts"
+    "test": "tsx --test src/*.test.ts",
+    "login": "tsx --env-file-if-exists=.env src/login.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.131.0"
+    "@anthropic-ai/sdk": "^0.131.0",
+    "telegram": "^2.26.22"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",
