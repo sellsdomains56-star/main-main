@@ -5,7 +5,7 @@
 <style>
 /* Layout: two phone-shaped cards. Cover (title, names, scroll arrow), then details. Beige paper, dried flowers, brown ink, gold accents. */
 :root{
-  --paper:#e6dccd;
+  --paper:#ecd9c0;
   --ink:#5a3f2d;
   --ink-soft:#7d6450;
   --gold:#b08a4a;
@@ -25,7 +25,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--caps);
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
   scroll-snap-align:start;overflow:hidden;background:var(--paper) center/cover no-repeat}
 .page::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 46% 40% at 50% 50%,rgba(241,234,223,.9) 55%,rgba(241,234,223,0) 100%)}
+  background:radial-gradient(ellipse 46% 40% at 50% 50%,rgba(243,230,212,.45) 40%,rgba(243,230,212,0) 100%)}
 .inner{position:relative}
 #cover{background-image:url(bg1.jpg)}
 #details{background-image:url(bg2.jpg)}
@@ -61,6 +61,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--caps);
 #app[lang="ar"] .hint{font-size:3.4cqw}
 
 /* details */
+#details .inner{transform:scale(.9)}
 #details .names{margin:2cqw 0 2cqw}
 #details .names .n{font-size:12cqw}
 #details .names .and{font-size:7cqw}
@@ -128,10 +129,7 @@ html.print{scroll-snap-type:none}
 
  <section class="page" id="details">
   <div class="inner">
-   <div class="caps s" data-k="verse">And We created you in pairs</div>
-   <div class="orn"><i></i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.500-4.700-7.500-10.200A4.300 4.300 0 0 1 12 8a4.300 4.300 0 0 1 7.500 2.800C19.500 16.300 12 21 12 21z"/></svg><i></i></div>
-   <div class="caps s" data-k="ref">Quran 78:8</div>
-   <div class="caps" style="margin-top:3.5cqw" data-k="fam">Together with their families</div>
+   <div class="caps" data-k="fam">Together with their families</div>
    <div class="names"><span class="n" data-k="n1">Monem</span><span class="and" data-k="and">and</span><span class="n" data-k="n2">Dunja</span></div>
    <div class="caps" data-k="inv">Invite you to celebrate<br>the beginning of their forever</div>
    <div class="when">
@@ -151,12 +149,12 @@ html.print{scroll-snap-type:none}
 (function(){
 var T={
  en:{title:'Wedding Invitation',n1:'Monem',and:'and',n2:'Dunja',cdate:'8 . JAN . 2027',hint:'Tap anywhere to play music',scroll:'Scroll down',
-  verse:'And We created you in pairs',ref:'Quran 78:8',fam:'Together with their families',
+  fam:'Together with their families',
   inv:'Invite you to celebrate<br>the beginning of their forever',day:'Friday',num:'08',mo:'January<br>2027',town:'Dubai',
   place:'Palazzo Versace',addr:'Palazzo Versace Dubai Hotel<br>Dubai, United Arab Emirates',map:'Open location',
   close:'We look forward to celebrating with you',music:'Music',toggle:'العربية'},
  ar:{title:'دعـــوة زفـــاف',n1:'منعم',and:'و',n2:'دنيا',cdate:'٨ . يناير . ٢٠٢٧',hint:'المس الشاشة لتشغيل الموسيقى',scroll:'اسحب للأسفل',
-  verse:'﴿ وَخَلَقْنَاكُمْ أَزْوَاجًا ﴾',ref:'سورة النبأ · ٨',fam:'يتشرّف أهل العروسين',
+  fam:'يتشرّف أهل العروسين',
   inv:'بدعوتكم لحضور حفل زفافهما<br>وبحضوركم تكتمل فرحتنا',day:'الجمعة',num:'٠٨',mo:'يناير<br>٢٠٢٧',town:'دبي',
   place:'بالازو فيرساتشي',addr:'فندق بالازو فيرساتشي دبي<br>دبي، الإمارات العربية المتحدة',map:'فتح الموقع',
   close:'اللهم بارك لهما وبارك عليهما واجمع بينهما في خير',music:'الموسيقى',toggle:'English'}
