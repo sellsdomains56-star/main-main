@@ -1,107 +1,95 @@
 <title>Monem & Dunja</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&family=Tajawal:wght@300;400;500&display=swap">
 <style>
-/* Layout: two full-screen pages. Cover (title + scroll cue), then details. Black and gold, Greek-key border. */
+/* Layout: two phone-shaped cards. Cover (title, names, scroll arrow), then details. Beige paper, dried flowers, brown ink, gold accents. */
 :root{
-  --ink:#0c0a10;
-  --ink-2:#15121c;
-  --gold:#c9a45c;
-  --gold-soft:#e6cf9a;
-  --ivory:#f4ecd8;
-  --mute:#b9ad94;
-  --display:'Great Vibes','Snell Roundhand',cursive;
+  --paper:#e6dccd;
+  --ink:#5a3f2d;
+  --ink-soft:#7d6450;
+  --gold:#b08a4a;
+  --line:rgba(122,92,60,.45);
+  --script:'Pinyon Script','Snell Roundhand',cursive;
+  --caps:'Jost','Helvetica Neue',Arial,sans-serif;
   --serif:'Cormorant Garamond','Times New Roman',serif;
-  color-scheme:dark;
+  color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-snap-type:y proximity}
-body{background:var(--ink);color:var(--ivory);font-family:var(--serif);
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+body{background:var(--paper);color:var(--ink);font-family:var(--caps);
   -webkit-print-color-adjust:exact;print-color-adjust:exact}
-#app[lang="ar"]{--display:'Aref Ruqaa','Amiri',serif;--serif:'Amiri','Times New Roman',serif}
+#app[lang="ar"]{--script:'Aref Ruqaa','Amiri',serif;--caps:'Tajawal','Segoe UI',Tahoma,sans-serif;--serif:'Tajawal','Segoe UI',Tahoma,sans-serif}
 
-.page{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding-block:76px 64px;scroll-snap-align:start;overflow:hidden;
-  background:
-   radial-gradient(60% 45% at 50% 0%,rgba(201,164,92,.20),transparent 70%),
-   radial-gradient(70% 50% at 50% 110%,rgba(201,164,92,.12),transparent 70%),
-   var(--ink)}
-.page + .page{background:
-   radial-gradient(60% 40% at 50% 100%,rgba(201,164,92,.16),transparent 70%),
-   var(--ink-2)}
-/* frame */
-.frame{position:absolute;inset:14px 0;border:1px solid rgba(201,164,92,.55);pointer-events:none}
-.frame::after{content:"";position:absolute;inset:6px;border:1px solid rgba(201,164,92,.22)}
-.key{position:absolute;left:0;right:0;height:24px;opacity:.85;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M1 23V1h22v16H7V7h10v6' fill='none' stroke='%23c9a45c' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x center}
-.key.t{top:26px}.key.b{bottom:26px}
+.page{position:relative;width:min(100%,56.25svh);min-width:min(100%,360px);min-height:100svh;margin:0 auto;container-type:inline-size;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  scroll-snap-align:start;overflow:hidden;background:var(--paper) center/cover no-repeat}
+.page::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 46% 40% at 50% 50%,rgba(241,234,223,.9) 55%,rgba(241,234,223,0) 100%)}
+.inner{position:relative}
+#cover{background-image:url(bg1.jpg)}
+#details{background-image:url(bg2.jpg)}
+.inner{width:100%;display:flex;flex-direction:column;align-items:center;
+  padding-block:20cqw;padding-left:max(16px,env(safe-area-inset-left,0px),15cqw);padding-right:max(16px,env(safe-area-inset-right,0px),15cqw)}
 
-.inner{position:relative;width:100%;max-width:520px;display:flex;flex-direction:column;align-items:center}
-.eyebrow{font-size:clamp(12px,3.4vw,15px);letter-spacing:.5em;text-transform:uppercase;color:var(--gold);font-weight:600;padding-inline-start:.5em}
-#app[lang="ar"] .eyebrow{letter-spacing:.06em;font-size:clamp(18px,5vw,22px);padding:0;text-transform:none}
-.bism{font-family:'Aref Ruqaa','Amiri',serif;color:var(--gold-soft);font-size:clamp(20px,5.5vw,26px);margin-bottom:14px;display:none}
-#app[lang="ar"] .bism{display:block}
-.rule{display:flex;align-items:center;gap:12px;width:min(260px,70%);margin:22px 0}
-.rule i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.rule b{width:7px;height:7px;transform:rotate(45deg);background:var(--gold)}
-.names{display:flex;flex-direction:column;align-items:center;line-height:1.02}
-.names .n{font-family:var(--display);font-size:clamp(68px,22vw,128px);color:var(--ivory);
-  text-shadow:0 0 40px rgba(201,164,92,.25);padding:.04em .1em}
-.names .amp{font-family:var(--serif);font-style:italic;font-size:clamp(26px,7vw,36px);color:var(--gold);margin:-2px 0}
-#app[lang="ar"] .names .n{font-size:clamp(60px,19vw,104px);line-height:1.35}
-.cover-date{margin-top:6px;font-size:clamp(15px,4.2vw,19px);letter-spacing:.32em;text-transform:uppercase;color:var(--gold-soft)}
-#app[lang="ar"] .cover-date{letter-spacing:.04em;font-size:clamp(19px,5vw,24px);text-transform:none}
+.caps{font-family:var(--caps);font-weight:400;text-transform:uppercase;letter-spacing:.3em;font-size:2.9cqw;line-height:1.9;color:var(--ink);padding-inline-start:.3em}
+.caps.s{font-size:2.3cqw;color:var(--ink-soft)}
+#app[lang="ar"] .caps{letter-spacing:0;text-transform:none;font-size:4.5cqw;padding:0;line-height:1.8}
+#app[lang="ar"] .caps.s{font-size:3.7cqw}
+.orn{display:flex;align-items:center;gap:2cqw;margin:1.6cqw 0;color:var(--gold)}
+.orn i{width:9cqw;height:1px;background:var(--gold);opacity:.7}
+.orn svg{width:2.6cqw;height:2.6cqw}
 
-.scroll{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;
-  color:var(--gold);font-size:12px;letter-spacing:.4em;text-transform:uppercase;text-decoration:none;padding:10px 14px}
-#app[lang="ar"] .scroll{letter-spacing:.05em;font-size:15px;text-transform:none}
-.scroll svg{width:26px;height:26px;animation:bob 1.8s ease-in-out infinite}
-.scroll:focus-visible,.btn:focus-visible,.ctl:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px}
-@keyframes bob{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(8px);opacity:1}}
-.hint{position:absolute;left:0;right:0;bottom:128px;text-align:center;font-size:12px;color:var(--mute);letter-spacing:.08em}
+/* cover */
+.title{font-family:var(--caps);font-weight:300;text-transform:uppercase;letter-spacing:.42em;font-size:3.5cqw;padding-inline-start:.42em}
+#app[lang="ar"] .title{letter-spacing:0;font-size:6cqw;padding:0;font-weight:400}
+.names{display:flex;flex-direction:column;align-items:center;margin:5cqw 0 3cqw}
+.names .n{font-family:var(--script);font-size:17cqw;line-height:1.05;color:var(--ink);padding:0 3cqw}
+.names .n + .and + .n{margin-top:-1cqw}
+.names .and{font-family:var(--script);font-size:8.5cqw;color:var(--gold);line-height:1.1;margin:-1cqw 0 1cqw}
+#app[lang="ar"] .names .n{font-size:16cqw;line-height:1.5;font-weight:700}
+#app[lang="ar"] .names .and{font-size:7cqw;margin:-3cqw 0 -2cqw}
+.cdate{font-family:var(--serif);font-size:4.3cqw;letter-spacing:.28em;color:var(--ink-soft);padding-inline-start:.28em}
+#app[lang="ar"] .cdate{letter-spacing:.02em;padding:0;font-size:4.6cqw}
+.scroll{position:absolute;left:50%;bottom:calc(9cqw + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:1cqw;
+  color:var(--ink);text-decoration:none;font-size:2.4cqw;letter-spacing:.34em;text-transform:uppercase;padding:2cqw 4cqw;
+  background:rgba(240,232,220,.72);border-radius:10cqw}
+#app[lang="ar"] .scroll{letter-spacing:0;font-size:3.6cqw;text-transform:none}
+.scroll svg{width:5.5cqw;height:5.5cqw;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(1.6cqw);opacity:1}}
+.hint{font-size:2.5cqw;color:var(--ink-soft);margin-top:5cqw;letter-spacing:.06em}
+#app[lang="ar"] .hint{font-size:3.4cqw}
 
 /* details */
-.kicker{font-size:clamp(34px,10vw,52px);font-family:var(--display);color:var(--gold-soft);line-height:1.2}
-#app[lang="ar"] .kicker{font-size:clamp(32px,9vw,46px);line-height:1.5}
-.lede{max-width:34ch;font-size:clamp(17px,4.6vw,21px);line-height:1.6;color:var(--ivory);margin-top:8px;font-style:italic}
-#app[lang="ar"] .lede{font-style:normal;line-height:1.9;max-width:30ch}
-.label{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:600;padding-inline-start:.42em}
-#app[lang="ar"] .label{letter-spacing:.04em;font-size:17px;text-transform:none;padding:0}
-.day{font-size:clamp(15px,4vw,18px);letter-spacing:.38em;text-transform:uppercase;color:var(--gold-soft);margin-top:12px;padding-inline-start:.38em}
-#app[lang="ar"] .day{letter-spacing:.03em;font-size:clamp(20px,5vw,24px);text-transform:none;padding:0}
-.date{display:flex;align-items:baseline;justify-content:center;gap:14px;margin-top:2px;flex-wrap:wrap}
-.date .d{font-size:clamp(64px,19vw,96px);font-weight:500;line-height:1;color:var(--ivory)}
-.date .m{font-size:clamp(22px,6vw,30px);letter-spacing:.28em;text-transform:uppercase;text-align:start}
-#app[lang="ar"] .date .m{letter-spacing:.02em;text-transform:none;font-size:clamp(30px,8vw,40px)}
-#app[lang="ar"] .date .d{font-weight:700}
-.venue{font-size:clamp(24px,6.8vw,34px);letter-spacing:.16em;text-transform:uppercase;font-weight:600;line-height:1.25;margin-top:8px}
-#app[lang="ar"] .venue{letter-spacing:0;text-transform:none;font-weight:700;font-size:clamp(26px,7.4vw,36px)}
-.city{margin-top:6px;font-style:italic;color:var(--mute);font-size:clamp(16px,4.2vw,19px)}
-#app[lang="ar"] .city{font-style:normal}
-.btn{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:13px 26px;border:1px solid var(--gold);color:var(--gold-soft);
-  text-decoration:none;letter-spacing:.24em;text-transform:uppercase;font-size:12.5px;font-weight:600;transition:background .2s,color .2s}
-#app[lang="ar"] .btn{letter-spacing:.02em;font-size:17px;text-transform:none}
-.btn:hover{background:var(--gold);color:var(--ink)}
-.btn svg{width:16px;height:16px}
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:340px;margin-top:6px;direction:ltr}
-.count div{padding:10px 0 8px;border-top:1px solid rgba(201,164,92,.45)}
-.count b{display:block;font-weight:500;font-size:clamp(26px,8vw,34px);font-variant-numeric:tabular-nums;color:var(--ivory)}
-.count span{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
-#app[lang="ar"] .count span{letter-spacing:.02em;font-size:14px;text-transform:none}
-.sec{display:flex;flex-direction:column;align-items:center}
-.close{margin-top:22px;font-style:italic;color:var(--gold-soft);font-size:clamp(16px,4.4vw,20px)}
-#app[lang="ar"] .close{font-style:normal}
-.mono{margin-top:14px;font-family:var(--display);font-size:34px;color:var(--gold)}
+#details .names{margin:2cqw 0 2cqw}
+#details .names .n{font-size:12cqw}
+#details .names .and{font-size:7cqw}
+#app[lang="ar"] #details .names .n{font-size:10.5cqw}
+#app[lang="ar"] #details .names .and{font-size:6cqw}
+.when{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;width:100%;margin:3.5cqw 0 3cqw;direction:ltr}
+#app[lang="ar"] .when{direction:rtl}
+.when .side{border-block:1px solid var(--line);padding:2.2cqw 0;font-size:2.7cqw;letter-spacing:.24em;text-transform:uppercase}
+#app[lang="ar"] .when .side{letter-spacing:0;font-size:4.2cqw;text-transform:none}
+.when .mid{border-inline:1px solid var(--line);padding:0 4.5cqw;margin:0 3cqw;display:flex;flex-direction:column;align-items:center}
+.when .num{font-family:var(--serif);font-weight:500;font-size:11cqw;line-height:1;letter-spacing:.06em}
+#app[lang="ar"] .when .num{font-weight:500;font-size:10cqw}
+.when .mo{font-size:2.7cqw;letter-spacing:.24em;text-transform:uppercase;line-height:1.9;padding-inline-start:.24em}
+#app[lang="ar"] .when .mo{letter-spacing:0;font-size:4.2cqw;text-transform:none;padding:0;line-height:1.6}
+.pin{width:5.5cqw;height:5.5cqw;color:var(--ink)}
+.place{font-family:var(--script);font-size:9.5cqw;line-height:1.05;margin:1cqw 0 .5cqw;color:var(--ink)}
+#app[lang="ar"] .place{font-size:8.6cqw;line-height:1.6;font-weight:700;margin:0}
+.btn{display:inline-flex;align-items:center;gap:1.6cqw;margin-top:3cqw;padding:2.1cqw 5cqw;border:1px solid var(--ink);color:var(--ink);border-radius:10cqw;
+  text-decoration:none;letter-spacing:.24em;text-transform:uppercase;font-size:2.4cqw;font-weight:500;background:rgba(240,232,220,.6);transition:background .2s,color .2s}
+#app[lang="ar"] .btn{letter-spacing:0;font-size:3.7cqw;text-transform:none}
+.btn:hover{background:var(--ink);color:#f3ece2}
+.close{margin-top:4.5cqw}
+.scroll:focus-visible,.btn:focus-visible,.ctl:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 
 /* controls */
-.ctls{position:fixed;z-index:20;top:calc(14px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));display:flex;gap:8px}
-.ctl{height:40px;min-width:40px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
-  background:rgba(12,10,16,.72);backdrop-filter:blur(6px);border:1px solid rgba(201,164,92,.6);color:var(--gold-soft);
-  font:600 13px/1 var(--serif);letter-spacing:.14em;border-radius:20px}
-.ctl svg{width:18px;height:18px}
-.ctl .off{display:none}.ctl[aria-pressed="false"] .on{display:none}.ctl[aria-pressed="false"] .off{display:block}
+.ctls{position:fixed;z-index:20;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));display:flex;gap:8px}
+.ctl{height:38px;min-width:38px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
+  background:rgba(243,236,226,.86);backdrop-filter:blur(6px);border:1px solid var(--line);color:var(--ink);
+  font:500 13px/1 var(--caps);letter-spacing:.08em;border-radius:19px}
 .bars{display:inline-flex;gap:2px;align-items:flex-end;height:14px}
 .bars i{width:2px;background:var(--gold);animation:eq 1s ease-in-out infinite}
 .bars i:nth-child(2){animation-delay:.2s}.bars i:nth-child(3){animation-delay:.4s}
@@ -109,22 +97,10 @@ body{background:var(--ink);color:var(--ivory);font-family:var(--serif);
 @keyframes eq{0%,100%{height:4px}50%{height:14px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll svg,.bars i{animation:none}}
 
-/* print / PDF mode: two A5 pages */
+/* PDF mode: two phone-shaped pages */
 html.print{scroll-snap-type:none}
-.print .page{min-height:0;height:210mm;width:148mm;margin:0 auto;break-after:page;padding-block:24mm 20mm}
-.print .ctls,.print .hint,.print .count-wrap{display:none}
-.print .page{padding-block:20mm 18mm}
-.print .rule{margin:12px 0}
-.print .kicker{font-size:36px}
-.print .lede{font-size:16px;margin-top:2px}
-.print .date .d{font-size:64px}
-.print .date .m{font-size:22px}
-.print .venue{font-size:26px}
-.print .btn{display:none}
-.print .close{margin-top:18px}
-.print .mono{display:none}
-.print .scroll{bottom:58px}
-.print body{padding:0}
+.print .page{width:120mm;min-width:0;min-height:0;height:213mm;break-after:page}
+.print .ctls,.print .hint,.print .btn{display:none}
 </style>
 
 <div id="app" lang="en" dir="ltr">
@@ -137,54 +113,36 @@ html.print{scroll-snap-type:none}
  </div>
 
  <section class="page" id="cover">
-  <div class="frame"></div><div class="key t"></div><div class="key b"></div>
   <div class="inner">
-   <div class="bism">بسم الله الرحمن الرحيم</div>
-   <div class="eyebrow" data-k="eyebrow">Wedding Invitation</div>
-   <div class="rule"><i></i><b></b><i></i></div>
-   <div class="names"><span class="n" data-k="n1">Monem</span><span class="amp" data-k="amp">&amp;</span><span class="n" data-k="n2">Dunja</span></div>
-   <div class="rule"><i></i><b></b><i></i></div>
-   <div class="cover-date" data-k="coverDate">8 January 2027</div>
+   <div class="title" data-k="title">Wedding Invitation</div>
+   <div class="orn"><i></i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.500-4.700-7.500-10.200A4.300 4.300 0 0 1 12 8a4.300 4.300 0 0 1 7.500 2.800C19.500 16.300 12 21 12 21z"/></svg><i></i></div>
+   <div class="names"><span class="n" data-k="n1">Monem</span><span class="and" data-k="and">and</span><span class="n" data-k="n2">Dunja</span></div>
+   <div class="cdate" data-k="cdate">8 . JAN . 2027</div>
+   <div class="hint" id="hint" data-k="hint">Tap anywhere to play music</div>
   </div>
   <a class="scroll" href="#details" id="down" aria-label="Scroll down">
-   <span data-k="scroll">Scroll</span>
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l7 7 7-7"/><path d="M5 14l7 7 7-7" opacity=".55"/></svg>
+   <span data-k="scroll">Scroll down</span>
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7l7 7 7-7"/><path d="M5 13l7 7 7-7" opacity=".5"/></svg>
   </a>
-  <div class="hint" id="hint" data-k="hint">Tap anywhere to play music</div>
  </section>
 
  <section class="page" id="details">
-  <div class="frame"></div><div class="key t"></div><div class="key b"></div>
   <div class="inner">
-   <div class="sec">
-    <div class="kicker" data-k="kicker">You are invited</div>
-    <p class="lede" data-k="lede">Together with their families, Monem and Dunja joyfully invite you to celebrate their wedding.</p>
+   <div class="caps s" data-k="verse">And We created you in pairs</div>
+   <div class="orn"><i></i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.500-4.700-7.500-10.200A4.300 4.300 0 0 1 12 8a4.300 4.300 0 0 1 7.500 2.800C19.500 16.300 12 21 12 21z"/></svg><i></i></div>
+   <div class="caps s" data-k="ref">Quran 78:8</div>
+   <div class="caps" style="margin-top:3.5cqw" data-k="fam">Together with their families</div>
+   <div class="names"><span class="n" data-k="n1">Monem</span><span class="and" data-k="and">and</span><span class="n" data-k="n2">Dunja</span></div>
+   <div class="caps" data-k="inv">Invite you to celebrate<br>the beginning of their forever</div>
+   <div class="when">
+    <div class="side" data-k="day">Friday</div>
+    <div class="mid"><span class="num" data-k="num">08</span><span class="mo" data-k="mo">January<br>2027</span></div>
+    <div class="side" data-k="town">Dubai</div>
    </div>
-   <div class="rule"><i></i><b></b><i></i></div>
-   <div class="sec">
-    <div class="label" data-k="when">The Date</div>
-    <div class="day" data-k="day">Friday</div>
-    <div class="date"><span class="d" data-k="dnum">8</span><span class="m" data-k="mon">January<br>2027</span></div>
-   </div>
-   <div class="rule"><i></i><b></b><i></i></div>
-   <div class="sec">
-    <div class="label" data-k="where">The Venue</div>
-    <div class="venue" data-k="venue">Palazzo Versace Dubai</div>
-    <div class="city" data-k="city">Dubai, United Arab Emirates</div>
-    <a class="btn" href="https://share.google/FUWqG07dL8mfGFrkB" target="_blank" rel="noopener">
-     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg>
-     <span data-k="map">View Location</span>
-    </a>
-   </div>
-   <div class="rule count-wrap" style="margin:24px 0 10px"><i></i><b></b><i></i></div>
-   <div class="count count-wrap" id="count" aria-live="off">
-    <div><b id="cd">0</b><span data-k="days">Days</span></div>
-    <div><b id="ch">0</b><span data-k="hours">Hours</span></div>
-    <div><b id="cm">0</b><span data-k="mins">Min</span></div>
-    <div><b id="cs">0</b><span data-k="secs">Sec</span></div>
-   </div>
-   <div class="close" data-k="close">We look forward to celebrating with you</div>
-   <div class="mono" data-k="mono">M &amp; D</div>
+   <svg class="pin" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.200 7 13 7 13s7-7.800 7-13a7 7 0 0 0-7-7zm0 9.600A2.600 2.600 0 1 1 12 6.400a2.600 2.600 0 0 1 0 5.200z"/></svg>
+   <div class="place" data-k="place">Palazzo Versace</div>
+   <div class="caps" data-k="addr">Palazzo Versace Dubai Hotel<br>Dubai, United Arab Emirates</div>
+   <a class="btn" href="https://share.google/FUWqG07dL8mfGFrkB" target="_blank" rel="noopener"><span data-k="map">Open location</span></a>
   </div>
  </section>
 </div>
@@ -192,16 +150,16 @@ html.print{scroll-snap-type:none}
 <script>
 (function(){
 var T={
- en:{eyebrow:'Wedding Invitation',n1:'Monem',amp:'&',n2:'Dunja',coverDate:'8 January 2027',scroll:'Scroll',hint:'Tap anywhere to play music',
-  kicker:'You are invited',lede:'Together with their families, Monem and Dunja joyfully invite you to celebrate their wedding.',
-  when:'The Date',day:'Friday',dnum:'8',mon:'January<br>2027',where:'The Venue',venue:'Palazzo Versace Dubai',city:'Dubai, United Arab Emirates',
-  map:'View Location',days:'Days',hours:'Hours',mins:'Min',secs:'Sec',close:'We look forward to celebrating with you',mono:'M & D',
-  music:'Music',toggle:'العربية'},
- ar:{eyebrow:'دعوة زفاف',n1:'منعم',amp:'و',n2:'دنيا',coverDate:'الجمعة ٨ يناير ٢٠٢٧',scroll:'مرّر للأسفل',hint:'المس الشاشة لتشغيل الموسيقى',
-  kicker:'أنتم مدعوّون',lede:'يتشرّف أهل العروسين بدعوتكم لحضور حفل زفاف منعم ودنيا.',
-  when:'الموعد',day:'الجمعة',dnum:'٨',mon:'يناير<br>٢٠٢٧',where:'المكان',venue:'فندق بالازو فيرساتشي دبي',city:'دبي، الإمارات العربية المتحدة',
-  map:'عرض الموقع',days:'يوم',hours:'ساعة',mins:'دقيقة',secs:'ثانية',close:'بحضوركم تكتمل فرحتنا',mono:'م و د',
-  music:'الموسيقى',toggle:'English'}
+ en:{title:'Wedding Invitation',n1:'Monem',and:'and',n2:'Dunja',cdate:'8 . JAN . 2027',hint:'Tap anywhere to play music',scroll:'Scroll down',
+  verse:'And We created you in pairs',ref:'Quran 78:8',fam:'Together with their families',
+  inv:'Invite you to celebrate<br>the beginning of their forever',day:'Friday',num:'08',mo:'January<br>2027',town:'Dubai',
+  place:'Palazzo Versace',addr:'Palazzo Versace Dubai Hotel<br>Dubai, United Arab Emirates',map:'Open location',
+  close:'We look forward to celebrating with you',music:'Music',toggle:'العربية'},
+ ar:{title:'دعـــوة زفـــاف',n1:'منعم',and:'و',n2:'دنيا',cdate:'٨ . يناير . ٢٠٢٧',hint:'المس الشاشة لتشغيل الموسيقى',scroll:'اسحب للأسفل',
+  verse:'﴿ وَخَلَقْنَاكُمْ أَزْوَاجًا ﴾',ref:'سورة النبأ · ٨',fam:'يتشرّف أهل العروسين',
+  inv:'بدعوتكم لحضور حفل زفافهما<br>وبحضوركم تكتمل فرحتنا',day:'الجمعة',num:'٠٨',mo:'يناير<br>٢٠٢٧',town:'دبي',
+  place:'بالازو فيرساتشي',addr:'فندق بالازو فيرساتشي دبي<br>دبي، الإمارات العربية المتحدة',map:'فتح الموقع',
+  close:'اللهم بارك لهما وبارك عليهما واجمع بينهما في خير',music:'الموسيقى',toggle:'English'}
 };
 var app=document.getElementById('app'),cur='en';
 var qs=new URLSearchParams(location.search);
@@ -212,21 +170,8 @@ function setLang(l){
   document.getElementById('lang').textContent=T[l].toggle;
   document.getElementById('musicLbl').textContent=T[l].music;
   document.getElementById('down').setAttribute('aria-label',T[l].scroll);
-  tick();
 }
 document.getElementById('lang').addEventListener('click',function(){setLang(cur==='en'?'ar':'en')});
-
-/* countdown to 8 Jan 2027 */
-var target=new Date(2027,0,8,0,0,0).getTime();
-function nf(n){return cur==='ar'?n.toLocaleString('ar-EG',{useGrouping:false}):String(n)}
-function tick(){
-  var d=Math.max(0,target-Date.now()),s=Math.floor(d/1000);
-  document.getElementById('cd').textContent=nf(Math.floor(s/86400));
-  document.getElementById('ch').textContent=nf(Math.floor(s%86400/3600));
-  document.getElementById('cm').textContent=nf(Math.floor(s%3600/60));
-  document.getElementById('cs').textContent=nf(s%60);
-}
-setInterval(tick,1000);
 
 /* music: soft piano arpeggios over the Canon in D progression, made live in the browser */
 var ac,master,fx,loopTimer,nextT=0,idx=0,on=false,userOff=false;
@@ -273,7 +218,7 @@ function startAudio(){
   master.gain.cancelScheduledValues(ac.currentTime);master.gain.setTargetAtTime(.55,ac.currentTime,1.2);
   if(!loopTimer){nextT=Math.max(nextT,ac.currentTime+.05);pump();loopTimer=setInterval(pump,250)}
   on=true;btn.setAttribute('aria-pressed','true');
-  document.getElementById('hint').hidden=true;
+  document.getElementById('hint').style.visibility='hidden';
 }
 function stopAudio(){
   if(!ac)return;master.gain.cancelScheduledValues(ac.currentTime);master.gain.setTargetAtTime(0,ac.currentTime,.3);
@@ -289,6 +234,6 @@ function firstGesture(e){
 document.getElementById('down').addEventListener('click',function(e){
   e.preventDefault();document.getElementById('details').scrollIntoView({behavior:'smooth'});
 });
-var qLang=qs.get('lang');setLang(qLang==='ar'?'ar':'en');
+setLang(qs.get('lang')==='ar'?'ar':'en');
 })();
 </script>
