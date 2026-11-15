@@ -1,0 +1,20 @@
+{
+  "name": "tim",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Tim: a human-sounding Telegram assistant that talks to the boss, keeps a job book and chases payments. Throwaway spike: private chat only.",
+  "scripts": {
+    "start": "tsx --env-file-if-exists=.env src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/*.test.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
