@@ -1,107 +1,89 @@
 <title>Monem & Dunja</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&family=Tajawal:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Tajawal:wght@300;400;500&display=swap">
 <style>
-/* Layout: two phone-shaped cards. Cover (title, names, scroll arrow), then details. Beige paper, dried flowers, brown ink, gold accents. */
+/* Layout: two phone-shaped photos of a cream card on linen with ribbon. Text is printed on the card. Page 1 title, page 2 details. */
 :root{
-  --paper:#ecd9c0;
-  --ink:#5a3f2d;
-  --ink-soft:#7d6450;
-  --gold:#b08a4a;
-  --line:rgba(122,92,60,.45);
-  --script:'Pinyon Script','Snell Roundhand',cursive;
-  --caps:'Jost','Helvetica Neue',Arial,sans-serif;
+  --linen:#d9c9ac;
+  --ink:#7a6040;
+  --ink-soft:#8f775a;
+  --line:rgba(122,96,64,.55);
   --serif:'Cormorant Garamond','Times New Roman',serif;
+  --script:'Alex Brush','Snell Roundhand',cursive;
+  --name:'Cormorant Garamond','Times New Roman',serif;
   color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-snap-type:y proximity}
-body{background:var(--paper);color:var(--ink);font-family:var(--caps);
+html{scroll-behavior:smooth}
+body{background:var(--linen);color:var(--ink);font-family:var(--serif);font-variant-numeric:lining-nums;
+  padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px));
   -webkit-print-color-adjust:exact;print-color-adjust:exact}
-#app[lang="ar"]{--script:'Aref Ruqaa','Amiri',serif;--caps:'Tajawal','Segoe UI',Tahoma,sans-serif;--serif:'Tajawal','Segoe UI',Tahoma,sans-serif}
+#app[lang="ar"]{--serif:'Tajawal','Segoe UI',Tahoma,sans-serif;--script:'Amiri','Times New Roman',serif;--name:'Amiri','Times New Roman',serif}
 
-.page{position:relative;width:min(100%,56.25svh);min-width:min(100%,360px);min-height:100svh;margin:0 auto;container-type:inline-size;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  scroll-snap-align:start;overflow:hidden;background:var(--paper) center/cover no-repeat}
-.page::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 46% 40% at 50% 50%,rgba(243,230,212,.45) 40%,rgba(243,230,212,0) 100%)}
-.inner{position:relative}
+.page{position:relative;width:min(100%,56.25svh);min-width:min(100%,340px);aspect-ratio:9/16;margin:0 auto;overflow:hidden;
+  background:var(--linen) center/cover no-repeat}
 #cover{background-image:url(bg1.jpg)}
 #details{background-image:url(bg2.jpg)}
-.inner{width:100%;display:flex;flex-direction:column;align-items:center;
-  padding-block:20cqw;padding-left:max(16px,env(safe-area-inset-left,0px),15cqw);padding-right:max(16px,env(safe-area-inset-right,0px),15cqw)}
+.card{position:absolute;left:12.6%;top:21.2%;width:75%;height:57.6%;container-type:inline-size;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 6%}
+#details .card{left:12.4%}
 
-.caps{font-family:var(--caps);font-weight:400;text-transform:uppercase;letter-spacing:.3em;font-size:2.9cqw;line-height:1.9;color:var(--ink);padding-inline-start:.3em}
-.caps.s{font-size:2.3cqw;color:var(--ink-soft)}
-#app[lang="ar"] .caps{letter-spacing:0;text-transform:none;font-size:4.5cqw;padding:0;line-height:1.8}
-#app[lang="ar"] .caps.s{font-size:3.7cqw}
-.orn{display:flex;align-items:center;gap:2cqw;margin:1.6cqw 0;color:var(--gold)}
-.orn i{width:9cqw;height:1px;background:var(--gold);opacity:.7}
-.orn svg{width:2.6cqw;height:2.6cqw}
+.caps{font-family:var(--serif);font-weight:500;text-transform:uppercase;letter-spacing:.2em;font-size:3.8cqw;line-height:1.85;padding-inline-start:.2em}
+#app[lang="ar"] .caps{letter-spacing:0;text-transform:none;font-size:4.6cqw;padding:0;line-height:1.75;font-weight:400}
+.name{font-family:var(--name);font-weight:400;text-transform:uppercase;letter-spacing:.14em;font-size:11.5cqw;line-height:1.15;padding-inline-start:.14em}
+#app[lang="ar"] .name{letter-spacing:0;padding:0;font-size:13.5cqw;line-height:1.45;font-weight:400}
+.and{display:flex;align-items:center;justify-content:center;gap:3cqw;width:100%;font-family:var(--script);font-size:8cqw;line-height:1.05;margin:.8cqw 0}
+#app[lang="ar"] .and{font-size:7cqw;margin:-1.5cqw 0 -1cqw}
+.and i{width:15cqw;height:1px;background:var(--line)}
+.sprig{width:36cqw;margin:3cqw 0;color:var(--ink)}
+.when{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;width:100%;margin:1.5cqw 0 3.5cqw}
+.when .side{font-weight:500;font-size:3.5cqw;letter-spacing:.2em;text-transform:uppercase}
+#app[lang="ar"] .when .side{letter-spacing:0;font-size:5cqw;text-transform:none;font-weight:400}
+.when .mid{border-inline:1px solid var(--line);padding:0 5.5cqw;margin:0 4cqw;display:flex;flex-direction:column;align-items:center}
+.when .num{font-size:10cqw;line-height:1;font-weight:400}
+.when .mo{font-size:3.5cqw;letter-spacing:.2em;text-transform:uppercase;font-weight:500;line-height:1.7;padding-inline-start:.2em}
+#app[lang="ar"] .when .mo{letter-spacing:0;font-size:4.6cqw;text-transform:none;padding:0;font-weight:400}
+.rule{display:flex;align-items:center;gap:2cqw;margin:3cqw 0 2.5cqw}
+.rule i{width:16cqw;height:1px;background:var(--line)}
+.rule b{width:1.5cqw;height:1.5cqw;transform:rotate(45deg);background:var(--ink)}
+.scan{font-size:3.3cqw}
+#app[lang="ar"] .scan{font-size:4.2cqw}
+.qrlink{display:block;margin-top:2cqw;color:#5d4a33;line-height:0}
+.qr{width:19cqw;height:19cqw}
 
 /* cover */
-.title{font-family:var(--caps);font-weight:300;text-transform:uppercase;letter-spacing:.42em;font-size:3.5cqw;padding-inline-start:.42em}
-#app[lang="ar"] .title{letter-spacing:0;font-size:6cqw;padding:0;font-weight:400}
-.names{display:flex;flex-direction:column;align-items:center;margin:5cqw 0 3cqw}
-.names .n{font-family:var(--script);font-size:17cqw;line-height:1.05;color:var(--ink);padding:0 3cqw}
-.names .n + .and + .n{margin-top:-1cqw}
-.names .and{font-family:var(--script);font-size:8.5cqw;color:var(--gold);line-height:1.1;margin:-1cqw 0 1cqw}
-#app[lang="ar"] .names .n{font-size:16cqw;line-height:1.5;font-weight:700}
-#app[lang="ar"] .names .and{font-size:7cqw;margin:-3cqw 0 -2cqw}
-.cdate{font-family:var(--serif);font-size:4.3cqw;letter-spacing:.28em;color:var(--ink-soft);padding-inline-start:.28em}
-#app[lang="ar"] .cdate{letter-spacing:.02em;padding:0;font-size:4.6cqw}
-.scroll{position:absolute;left:50%;bottom:calc(9cqw + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:1cqw;
-  color:var(--ink);text-decoration:none;font-size:2.4cqw;letter-spacing:.34em;text-transform:uppercase;padding:2cqw 4cqw;
-  background:rgba(240,232,220,.72);border-radius:10cqw}
-#app[lang="ar"] .scroll{letter-spacing:0;font-size:3.6cqw;text-transform:none}
-.scroll svg{width:5.5cqw;height:5.5cqw;animation:bob 1.8s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(1.6cqw);opacity:1}}
-.hint{font-size:2.5cqw;color:var(--ink-soft);margin-top:5cqw;letter-spacing:.06em}
-#app[lang="ar"] .hint{font-size:3.4cqw}
-
-/* details */
-#details .inner{transform:scale(.9)}
-#details .names{margin:2cqw 0 2cqw}
-#details .names .n{font-size:12cqw}
-#details .names .and{font-size:7cqw}
-#app[lang="ar"] #details .names .n{font-size:10.5cqw}
-#app[lang="ar"] #details .names .and{font-size:6cqw}
-.when{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;width:100%;margin:3.5cqw 0 3cqw;direction:ltr}
-#app[lang="ar"] .when{direction:rtl}
-.when .side{border-block:1px solid var(--line);padding:2.2cqw 0;font-size:2.7cqw;letter-spacing:.24em;text-transform:uppercase}
-#app[lang="ar"] .when .side{letter-spacing:0;font-size:4.2cqw;text-transform:none}
-.when .mid{border-inline:1px solid var(--line);padding:0 4.5cqw;margin:0 3cqw;display:flex;flex-direction:column;align-items:center}
-.when .num{font-family:var(--serif);font-weight:500;font-size:11cqw;line-height:1;letter-spacing:.06em}
-#app[lang="ar"] .when .num{font-weight:500;font-size:10cqw}
-.when .mo{font-size:2.7cqw;letter-spacing:.24em;text-transform:uppercase;line-height:1.9;padding-inline-start:.24em}
-#app[lang="ar"] .when .mo{letter-spacing:0;font-size:4.2cqw;text-transform:none;padding:0;line-height:1.6}
-.pin{width:5.5cqw;height:5.5cqw;color:var(--ink)}
-.place{font-family:var(--script);font-size:9.5cqw;line-height:1.05;margin:1cqw 0 .5cqw;color:var(--ink)}
-#app[lang="ar"] .place{font-size:8.6cqw;line-height:1.6;font-weight:700;margin:0}
-.btn{display:inline-flex;align-items:center;gap:1.6cqw;margin-top:3cqw;padding:2.1cqw 5cqw;border:1px solid var(--ink);color:var(--ink);border-radius:10cqw;
-  text-decoration:none;letter-spacing:.24em;text-transform:uppercase;font-size:2.4cqw;font-weight:500;background:rgba(240,232,220,.6);transition:background .2s,color .2s}
-#app[lang="ar"] .btn{letter-spacing:0;font-size:3.7cqw;text-transform:none}
-.btn:hover{background:var(--ink);color:#f3ece2}
-.close{margin-top:4.5cqw}
-.scroll:focus-visible,.btn:focus-visible,.ctl:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+#cover .title{font-size:4.6cqw;letter-spacing:.3em;padding-inline-start:.3em;margin-bottom:6cqw}
+#app[lang="ar"] #cover .title{font-size:7cqw;letter-spacing:0;padding:0;margin-bottom:3cqw}
+#cover .name{font-size:15cqw}
+#app[lang="ar"] #cover .name{font-size:18cqw}
+#cover .cdate{font-size:4.6cqw;letter-spacing:.3em;margin-top:1cqw;padding-inline-start:.3em;direction:ltr}
+.scroll{position:absolute;left:50%;bottom:6.5%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;
+  color:#5d4a33;text-decoration:none;font:500 clamp(10px,2.9vw,13px)/1.2 var(--serif);letter-spacing:.3em;text-transform:uppercase;padding:9px 18px 7px;
+  background:rgba(247,240,228,.82);border-radius:40px;white-space:nowrap}
+#app[lang="ar"] .scroll{letter-spacing:0;font-size:clamp(13px,3.6vw,15px);text-transform:none}
+.scroll svg{width:20px;height:20px;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(4px);opacity:1}}
+.hint{font-size:3cqw;color:var(--ink-soft);margin-top:7cqw;font-style:italic}
+#app[lang="ar"] .hint{font-style:normal;font-size:3.8cqw}
+.scroll:focus-visible,.qrlink:focus-visible,.ctl:focus-visible{outline:2px solid #5d4a33;outline-offset:3px}
 
 /* controls */
 .ctls{position:fixed;z-index:20;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));display:flex;gap:8px}
 .ctl{height:38px;min-width:38px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
-  background:rgba(243,236,226,.86);backdrop-filter:blur(6px);border:1px solid var(--line);color:var(--ink);
-  font:500 13px/1 var(--caps);letter-spacing:.08em;border-radius:19px}
+  background:rgba(247,240,228,.88);backdrop-filter:blur(6px);border:1px solid var(--line);color:#5d4a33;
+  font:500 14px/1 'Cormorant Garamond','Tajawal',serif;letter-spacing:.06em;border-radius:19px}
 .bars{display:inline-flex;gap:2px;align-items:flex-end;height:14px}
-.bars i{width:2px;background:var(--gold);animation:eq 1s ease-in-out infinite}
+.bars i{width:2px;background:var(--ink);animation:eq 1s ease-in-out infinite}
 .bars i:nth-child(2){animation-delay:.2s}.bars i:nth-child(3){animation-delay:.4s}
 .ctl[aria-pressed="false"] .bars i{animation:none;height:3px!important}
 @keyframes eq{0%,100%{height:4px}50%{height:14px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll svg,.bars i{animation:none}}
 
-/* PDF mode: two phone-shaped pages */
-html.print{scroll-snap-type:none}
-.print .page{width:120mm;min-width:0;min-height:0;height:213mm;break-after:page}
-.print .ctls,.print .hint,.print .btn{display:none}
+/* PDF mode */
+.print .page{width:120mm;min-width:0;height:212.8mm;aspect-ratio:auto}
+.print .ctls,.print .hint{display:none}
+.print .scroll{font-size:11px}
 </style>
 
 <div id="app" lang="en" dir="ltr">
@@ -114,11 +96,13 @@ html.print{scroll-snap-type:none}
  </div>
 
  <section class="page" id="cover">
-  <div class="inner">
-   <div class="title" data-k="title">Wedding Invitation</div>
-   <div class="orn"><i></i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.500-4.700-7.500-10.200A4.300 4.300 0 0 1 12 8a4.300 4.300 0 0 1 7.500 2.800C19.500 16.300 12 21 12 21z"/></svg><i></i></div>
-   <div class="names"><span class="n" data-k="n1">Monem</span><span class="and" data-k="and">and</span><span class="n" data-k="n2">Dunja</span></div>
-   <div class="cdate" data-k="cdate">8 . JAN . 2027</div>
+  <div class="card">
+   <div class="caps title" data-k="title">Wedding Invitation</div>
+   <div class="name" data-k="n1">Monem</div>
+   <div class="and"><i></i><span data-k="and">and</span><i></i></div>
+   <div class="name" data-k="n2">Dunja</div>
+   <svg class="sprig" viewBox="0 0 100 22" fill="none" stroke="currentColor" stroke-width=".7" stroke-linecap="round" aria-hidden="true"><ellipse cx="32.6" cy="12.0" rx="4.6" ry="1.5" transform="rotate(170 32.6 12.0)"/><ellipse cx="35.0" cy="7.4" rx="4.6" ry="1.5" transform="rotate(246 35.0 7.4)"/><ellipse cx="25.3" cy="9.5" rx="4.6" ry="1.5" transform="rotate(172 25.3 9.5)"/><ellipse cx="27.9" cy="5.1" rx="4.6" ry="1.5" transform="rotate(248 27.9 5.1)"/><ellipse cx="18.0" cy="7.8" rx="4.6" ry="1.5" transform="rotate(175 18.0 7.8)"/><ellipse cx="20.8" cy="3.5" rx="4.6" ry="1.5" transform="rotate(251 20.8 3.5)"/><ellipse cx="10.7" cy="7.2" rx="4.6" ry="1.5" transform="rotate(178 10.7 7.2)"/><ellipse cx="13.7" cy="3.0" rx="4.6" ry="1.5" transform="rotate(254 13.7 3.0)"/><ellipse cx="3.4" cy="7.6" rx="4.6" ry="1.5" transform="rotate(181 3.4 7.6)"/><ellipse cx="6.7" cy="3.5" rx="4.6" ry="1.5" transform="rotate(257 6.7 3.5)"/><path d="M50 15 Q26 2 3 11"/><ellipse cx="65.0" cy="7.4" rx="4.6" ry="1.5" transform="rotate(-66 65.0 7.4)"/><ellipse cx="67.4" cy="12.0" rx="4.6" ry="1.5" transform="rotate(10 67.4 12.0)"/><ellipse cx="72.1" cy="5.1" rx="4.6" ry="1.5" transform="rotate(-68 72.1 5.1)"/><ellipse cx="74.7" cy="9.5" rx="4.6" ry="1.5" transform="rotate(8 74.7 9.5)"/><ellipse cx="79.2" cy="3.5" rx="4.6" ry="1.5" transform="rotate(-71 79.2 3.5)"/><ellipse cx="82.0" cy="7.8" rx="4.6" ry="1.5" transform="rotate(5 82.0 7.8)"/><ellipse cx="86.3" cy="3.0" rx="4.6" ry="1.5" transform="rotate(-74 86.3 3.0)"/><ellipse cx="89.3" cy="7.2" rx="4.6" ry="1.5" transform="rotate(2 89.3 7.2)"/><ellipse cx="93.3" cy="3.5" rx="4.6" ry="1.5" transform="rotate(-77 93.3 3.5)"/><ellipse cx="96.6" cy="7.6" rx="4.6" ry="1.5" transform="rotate(-1 96.6 7.6)"/><path d="M50 15 Q74 2 97 11"/></svg>
+   <div class="caps cdate" data-k="cdate">08 . 01 . 2027</div>
    <div class="hint" id="hint" data-k="hint">Tap anywhere to play music</div>
   </div>
   <a class="scroll" href="#details" id="down" aria-label="Scroll down">
@@ -128,19 +112,22 @@ html.print{scroll-snap-type:none}
  </section>
 
  <section class="page" id="details">
-  <div class="inner">
-   <div class="caps" data-k="fam">Together with their families</div>
-   <div class="names"><span class="n" data-k="n1">Monem</span><span class="and" data-k="and">and</span><span class="n" data-k="n2">Dunja</span></div>
-   <div class="caps" data-k="inv">Invite you to celebrate<br>the beginning of their forever</div>
+  <div class="card">
+   <div class="caps" data-k="fam" style="margin-bottom:2.5cqw">Together with their families</div>
+   <div class="name" data-k="n1">Monem</div>
+   <div class="and"><i></i><span data-k="and">and</span><i></i></div>
+   <div class="name" data-k="n2">Dunja</div>
+   <div class="caps" data-k="inv" style="margin-top:3cqw">Invite you to celebrate<br>their wedding</div>
+   <svg class="sprig" viewBox="0 0 100 22" fill="none" stroke="currentColor" stroke-width=".7" stroke-linecap="round" aria-hidden="true"><ellipse cx="32.6" cy="12.0" rx="4.6" ry="1.5" transform="rotate(170 32.6 12.0)"/><ellipse cx="35.0" cy="7.4" rx="4.6" ry="1.5" transform="rotate(246 35.0 7.4)"/><ellipse cx="25.3" cy="9.5" rx="4.6" ry="1.5" transform="rotate(172 25.3 9.5)"/><ellipse cx="27.9" cy="5.1" rx="4.6" ry="1.5" transform="rotate(248 27.9 5.1)"/><ellipse cx="18.0" cy="7.8" rx="4.6" ry="1.5" transform="rotate(175 18.0 7.8)"/><ellipse cx="20.8" cy="3.5" rx="4.6" ry="1.5" transform="rotate(251 20.8 3.5)"/><ellipse cx="10.7" cy="7.2" rx="4.6" ry="1.5" transform="rotate(178 10.7 7.2)"/><ellipse cx="13.7" cy="3.0" rx="4.6" ry="1.5" transform="rotate(254 13.7 3.0)"/><ellipse cx="3.4" cy="7.6" rx="4.6" ry="1.5" transform="rotate(181 3.4 7.6)"/><ellipse cx="6.7" cy="3.5" rx="4.6" ry="1.5" transform="rotate(257 6.7 3.5)"/><path d="M50 15 Q26 2 3 11"/><ellipse cx="65.0" cy="7.4" rx="4.6" ry="1.5" transform="rotate(-66 65.0 7.4)"/><ellipse cx="67.4" cy="12.0" rx="4.6" ry="1.5" transform="rotate(10 67.4 12.0)"/><ellipse cx="72.1" cy="5.1" rx="4.6" ry="1.5" transform="rotate(-68 72.1 5.1)"/><ellipse cx="74.7" cy="9.5" rx="4.6" ry="1.5" transform="rotate(8 74.7 9.5)"/><ellipse cx="79.2" cy="3.5" rx="4.6" ry="1.5" transform="rotate(-71 79.2 3.5)"/><ellipse cx="82.0" cy="7.8" rx="4.6" ry="1.5" transform="rotate(5 82.0 7.8)"/><ellipse cx="86.3" cy="3.0" rx="4.6" ry="1.5" transform="rotate(-74 86.3 3.0)"/><ellipse cx="89.3" cy="7.2" rx="4.6" ry="1.5" transform="rotate(2 89.3 7.2)"/><ellipse cx="93.3" cy="3.5" rx="4.6" ry="1.5" transform="rotate(-77 93.3 3.5)"/><ellipse cx="96.6" cy="7.6" rx="4.6" ry="1.5" transform="rotate(-1 96.6 7.6)"/><path d="M50 15 Q74 2 97 11"/></svg>
    <div class="when">
     <div class="side" data-k="day">Friday</div>
-    <div class="mid"><span class="num" data-k="num">08</span><span class="mo" data-k="mo">January<br>2027</span></div>
-    <div class="side" data-k="town">Dubai</div>
+    <div class="mid"><span class="num" data-k="num">8</span><span class="mo" data-k="mo">Jan</span></div>
+    <div class="side" data-k="year">2027</div>
    </div>
-   <svg class="pin" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.200 7 13 7 13s7-7.800 7-13a7 7 0 0 0-7-7zm0 9.600A2.600 2.600 0 1 1 12 6.400a2.600 2.600 0 0 1 0 5.200z"/></svg>
-   <div class="place" data-k="place">Palazzo Versace</div>
-   <div class="caps" data-k="addr">Palazzo Versace Dubai Hotel<br>Dubai, United Arab Emirates</div>
-   <a class="btn" href="https://share.google/FUWqG07dL8mfGFrkB" target="_blank" rel="noopener"><span data-k="map">Open location</span></a>
+   <div class="caps" data-k="addr">Palazzo Versace Dubai<br>Dubai, United Arab Emirates</div>
+   <div class="rule"><i></i><b></b><i></i></div>
+   <div class="caps scan" data-k="scan">Scan to view location</div>
+   <a class="qrlink" href="https://share.google/FUWqG07dL8mfGFrkB" target="_blank" rel="noopener" aria-label="Open location"><svg class="qr" viewBox="0 0 29 29" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM11 0h1v1h-1zM13 0h1v1h-1zM14 0h1v1h-1zM15 0h1v1h-1zM22 0h1v1h-1zM23 0h1v1h-1zM24 0h1v1h-1zM25 0h1v1h-1zM26 0h1v1h-1zM27 0h1v1h-1zM28 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM10 1h1v1h-1zM13 1h1v1h-1zM15 1h1v1h-1zM16 1h1v1h-1zM17 1h1v1h-1zM18 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM9 2h1v1h-1zM11 2h1v1h-1zM12 2h1v1h-1zM14 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM19 2h1v1h-1zM20 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM25 2h1v1h-1zM26 2h1v1h-1zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM9 3h1v1h-1zM10 3h1v1h-1zM11 3h1v1h-1zM13 3h1v1h-1zM14 3h1v1h-1zM15 3h1v1h-1zM16 3h1v1h-1zM17 3h1v1h-1zM18 3h1v1h-1zM19 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM25 3h1v1h-1zM26 3h1v1h-1zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM10 4h1v1h-1zM11 4h1v1h-1zM13 4h1v1h-1zM14 4h1v1h-1zM15 4h1v1h-1zM16 4h1v1h-1zM19 4h1v1h-1zM22 4h1v1h-1zM24 4h1v1h-1zM25 4h1v1h-1zM26 4h1v1h-1zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM10 5h1v1h-1zM11 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM19 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM23 6h1v1h-1zM24 6h1v1h-1zM25 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM10 7h1v1h-1zM17 7h1v1h-1zM18 7h1v1h-1zM19 7h1v1h-1zM20 7h1v1h-1zM0 8h1v1h-1zM3 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM11 8h1v1h-1zM12 8h1v1h-1zM16 8h1v1h-1zM19 8h1v1h-1zM21 8h1v1h-1zM23 8h1v1h-1zM1 9h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM9 9h1v1h-1zM10 9h1v1h-1zM11 9h1v1h-1zM15 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM21 9h1v1h-1zM22 9h1v1h-1zM25 9h1v1h-1zM28 9h1v1h-1zM1 10h1v1h-1zM2 10h1v1h-1zM3 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM12 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM21 10h1v1h-1zM25 10h1v1h-1zM26 10h1v1h-1zM27 10h1v1h-1zM0 11h1v1h-1zM1 11h1v1h-1zM2 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM8 11h1v1h-1zM9 11h1v1h-1zM10 11h1v1h-1zM11 11h1v1h-1zM12 11h1v1h-1zM14 11h1v1h-1zM16 11h1v1h-1zM18 11h1v1h-1zM19 11h1v1h-1zM26 11h1v1h-1zM27 11h1v1h-1zM0 12h1v1h-1zM1 12h1v1h-1zM2 12h1v1h-1zM4 12h1v1h-1zM6 12h1v1h-1zM7 12h1v1h-1zM8 12h1v1h-1zM9 12h1v1h-1zM16 12h1v1h-1zM20 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM25 12h1v1h-1zM27 12h1v1h-1zM28 12h1v1h-1zM0 13h1v1h-1zM1 13h1v1h-1zM3 13h1v1h-1zM4 13h1v1h-1zM5 13h1v1h-1zM8 13h1v1h-1zM12 13h1v1h-1zM15 13h1v1h-1zM17 13h1v1h-1zM19 13h1v1h-1zM20 13h1v1h-1zM21 13h1v1h-1zM1 14h1v1h-1zM2 14h1v1h-1zM4 14h1v1h-1zM5 14h1v1h-1zM6 14h1v1h-1zM7 14h1v1h-1zM8 14h1v1h-1zM11 14h1v1h-1zM12 14h1v1h-1zM16 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM25 14h1v1h-1zM26 14h1v1h-1zM27 14h1v1h-1zM28 14h1v1h-1zM0 15h1v1h-1zM2 15h1v1h-1zM3 15h1v1h-1zM7 15h1v1h-1zM8 15h1v1h-1zM9 15h1v1h-1zM12 15h1v1h-1zM13 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM19 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM25 15h1v1h-1zM27 15h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM4 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM13 16h1v1h-1zM14 16h1v1h-1zM17 16h1v1h-1zM18 16h1v1h-1zM20 16h1v1h-1zM21 16h1v1h-1zM27 16h1v1h-1zM1 17h1v1h-1zM2 17h1v1h-1zM5 17h1v1h-1zM7 17h1v1h-1zM8 17h1v1h-1zM10 17h1v1h-1zM12 17h1v1h-1zM16 17h1v1h-1zM18 17h1v1h-1zM21 17h1v1h-1zM22 17h1v1h-1zM23 17h1v1h-1zM25 17h1v1h-1zM28 17h1v1h-1zM0 18h1v1h-1zM2 18h1v1h-1zM3 18h1v1h-1zM4 18h1v1h-1zM6 18h1v1h-1zM7 18h1v1h-1zM11 18h1v1h-1zM13 18h1v1h-1zM18 18h1v1h-1zM21 18h1v1h-1zM22 18h1v1h-1zM24 18h1v1h-1zM27 18h1v1h-1zM28 18h1v1h-1zM4 19h1v1h-1zM5 19h1v1h-1zM7 19h1v1h-1zM8 19h1v1h-1zM9 19h1v1h-1zM10 19h1v1h-1zM12 19h1v1h-1zM13 19h1v1h-1zM15 19h1v1h-1zM17 19h1v1h-1zM19 19h1v1h-1zM20 19h1v1h-1zM23 19h1v1h-1zM24 19h1v1h-1zM27 19h1v1h-1zM28 19h1v1h-1zM0 20h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM11 20h1v1h-1zM12 20h1v1h-1zM14 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM21 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM24 20h1v1h-1zM26 20h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM10 21h1v1h-1zM11 21h1v1h-1zM12 21h1v1h-1zM13 21h1v1h-1zM16 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM19 21h1v1h-1zM20 21h1v1h-1zM24 21h1v1h-1zM26 21h1v1h-1zM27 21h1v1h-1zM28 21h1v1h-1zM0 22h1v1h-1zM1 22h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM11 22h1v1h-1zM13 22h1v1h-1zM14 22h1v1h-1zM17 22h1v1h-1zM20 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM27 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM11 23h1v1h-1zM13 23h1v1h-1zM15 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM24 23h1v1h-1zM25 23h1v1h-1zM26 23h1v1h-1zM27 23h1v1h-1zM28 23h1v1h-1zM0 24h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM14 24h1v1h-1zM15 24h1v1h-1zM17 24h1v1h-1zM20 24h1v1h-1zM21 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM27 24h1v1h-1zM28 24h1v1h-1zM0 25h1v1h-1zM2 25h1v1h-1zM3 25h1v1h-1zM4 25h1v1h-1zM6 25h1v1h-1zM8 25h1v1h-1zM9 25h1v1h-1zM10 25h1v1h-1zM12 25h1v1h-1zM14 25h1v1h-1zM16 25h1v1h-1zM17 25h1v1h-1zM19 25h1v1h-1zM20 25h1v1h-1zM22 25h1v1h-1zM23 25h1v1h-1zM24 25h1v1h-1zM25 25h1v1h-1zM26 25h1v1h-1zM27 25h1v1h-1zM0 26h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM6 26h1v1h-1zM10 26h1v1h-1zM16 26h1v1h-1zM17 26h1v1h-1zM19 26h1v1h-1zM20 26h1v1h-1zM24 26h1v1h-1zM25 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM11 27h1v1h-1zM13 27h1v1h-1zM14 27h1v1h-1zM15 27h1v1h-1zM16 27h1v1h-1zM17 27h1v1h-1zM19 27h1v1h-1zM20 27h1v1h-1zM22 27h1v1h-1zM24 27h1v1h-1zM27 27h1v1h-1zM0 28h1v1h-1zM1 28h1v1h-1zM2 28h1v1h-1zM3 28h1v1h-1zM4 28h1v1h-1zM5 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM10 28h1v1h-1zM11 28h1v1h-1zM13 28h1v1h-1zM14 28h1v1h-1zM15 28h1v1h-1zM20 28h1v1h-1zM21 28h1v1h-1zM22 28h1v1h-1zM24 28h1v1h-1zM27 28h1v1h-1z"/></svg></a>
   </div>
  </section>
 </div>
@@ -148,16 +135,12 @@ html.print{scroll-snap-type:none}
 <script>
 (function(){
 var T={
- en:{title:'Wedding Invitation',n1:'Monem',and:'and',n2:'Dunja',cdate:'8 . JAN . 2027',hint:'Tap anywhere to play music',scroll:'Scroll down',
-  fam:'Together with their families',
-  inv:'Invite you to celebrate<br>the beginning of their forever',day:'Friday',num:'08',mo:'January<br>2027',town:'Dubai',
-  place:'Palazzo Versace',addr:'Palazzo Versace Dubai Hotel<br>Dubai, United Arab Emirates',map:'Open location',
-  close:'We look forward to celebrating with you',music:'Music',toggle:'العربية'},
- ar:{title:'دعـــوة زفـــاف',n1:'منعم',and:'و',n2:'دنيا',cdate:'٨ . يناير . ٢٠٢٧',hint:'المس الشاشة لتشغيل الموسيقى',scroll:'اسحب للأسفل',
-  fam:'يتشرّف أهل العروسين',
-  inv:'بدعوتكم لحضور حفل زفافهما<br>وبحضوركم تكتمل فرحتنا',day:'الجمعة',num:'٠٨',mo:'يناير<br>٢٠٢٧',town:'دبي',
-  place:'بالازو فيرساتشي',addr:'فندق بالازو فيرساتشي دبي<br>دبي، الإمارات العربية المتحدة',map:'فتح الموقع',
-  close:'اللهم بارك لهما وبارك عليهما واجمع بينهما في خير',music:'الموسيقى',toggle:'English'}
+ en:{title:'Wedding Invitation',n1:'Monem',and:'and',n2:'Dunja',cdate:'08 . 01 . 2027',hint:'Tap anywhere to play music',scroll:'Scroll down',
+  fam:'Together with their families',inv:'Invite you to celebrate<br>their wedding',day:'Friday',num:'8',mo:'Jan',year:'2027',
+  addr:'Palazzo Versace Dubai<br>Dubai, United Arab Emirates',scan:'Scan to view location',music:'Music',toggle:'العربية'},
+ ar:{title:'دعـــوة زفـــاف',n1:'مـنـعـم',and:'و',n2:'دنـيـا',cdate:'08 . 01 . 2027',hint:'المس الشاشة لتشغيل الموسيقى',scroll:'اسحب للأسفل',
+  fam:'يتشرّف أهل العروسين',inv:'بدعوتكم لحضور<br>حفل زفافهما',day:'الجمعة',num:'٨',mo:'يناير',year:'٢٠٢٧',
+  addr:'فندق بالازو فيرساتشي دبي<br>دبي، الإمارات العربية المتحدة',scan:'امسح الرمز لعرض الموقع',music:'الموسيقى',toggle:'English'}
 };
 var app=document.getElementById('app'),cur='en';
 var qs=new URLSearchParams(location.search);
@@ -232,6 +215,7 @@ function firstGesture(e){
 document.getElementById('down').addEventListener('click',function(e){
   e.preventDefault();document.getElementById('details').scrollIntoView({behavior:'smooth'});
 });
+
 setLang(qs.get('lang')==='ar'?'ar':'en');
 })();
 </script>
